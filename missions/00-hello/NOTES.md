@@ -17,7 +17,8 @@ Context and observations that help the mission but do not change its
 - Compiled graph: `docs/evidence/00-hello/compiled-graph.json` (bound version `1-4322186fed9c15a8` after revision 2; revision 1 was `1-acb61bc08740b27d`).
 - Mission plan-lock: approved by `human@kernel` on `qitem-20261002213817-6d848ac6` (transition 15); stamp recorded 2026-10-02T22:02:45Z on the human's behalf (action `01M3ZA897KREJPTBCN20F9F9JV`), visible as `approved-spec-at` in `SPEC.md` frontmatter.
 - Wave w1 / slice `01-ping`: workflow instance `01M3ZA8Q39QEB3R1QDQCVTER18` (`urlshort-slice`, high tier), entry packet `qitem-20261002220259-281a4efc` owned by `requirements-agent@urlshort-factory`. Worktree `.worktrees/01-ping` on branch `slice/01-ping` from main `f43ecd1`.
-- Current mission step: `wave_integration`, packet `qitem-20261002220222-65f568f1` (mine), waiting on the slice entry packet with `--wait-for-proof 00-hello/slices/01-ping`. Decompose closed at commit `adfa5ca`.
+- Current mission step: `wave_integration`, packet `qitem-20261002220222-65f568f1` (mine), waiting on the slice's current frontier packet with `--wait-for-proof 00-hello/slices/01-ping`; re-presented at every slice step change. Decompose closed at commit `adfa5ca`.
+- Slice `01-ping` progress: requirements ✔ → design ✔ → design_review ✖ (DR-01) → design ✔ → design_review ✔ → plan_lock ✔ (human: "approve: lock SPEC 4e581cc + design d0521de; functional profile overlay accepted", 23:2xZ) → **implement** in progress on `qitem-20261002232943-d0903176` (development agent, `.worktrees/01-ping`). Six hops of 24 used.
 
 ## 2. Orchestration lead
 
