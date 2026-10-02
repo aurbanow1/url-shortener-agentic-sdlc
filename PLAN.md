@@ -286,3 +286,17 @@ Spikes (facts that must be verified by running, ~1 h, in a scratch directory):
 ## 11. First actions once you say go
 
 `git init` → `scripts/env.sh` (JDK 21) + Gradle skeleton from start.spring.io → `./gradlew check` green → `project.yaml` + register repo in `~/.openrig/workspace/workspace.yaml` → `rig/` (rig.yaml, CULTURE.md, agents, workflow) → `rig spec validate` / `rig agent validate` / `rig workflow validate` → permission allow-lists → spikes 1–7 → `rig gateway human add` → `rig up rig/rig.yaml --cwd .` → hello slice end to end → evidence export → first commit "Bootstrap orchestration layer".
+
+## 12. Day-0 log (2026-10-02)
+
+**Built and committed:** rig spec (7 seats), 7 role specs + vendored shared skill pool, two slice workflow specs, mission lifecycle profile, culture + factory protocol, Spring Boot 4.1.1 / Java 21 / Gradle 9.7.1 skeleton with unit + functional suites and the JaCoCo 100 % gate (18 s warm), `scripts/gw` wrapper, container packaging (image builds, smoke passes), evidence exporter, metrics tool, ARCHITECTURE / GOVERNANCE / TESTING / RISKS / SETUP docs, ledgers.
+
+**Decisions taken today (user):** Java + Spring Boot on Gradle; `standard` permissions + allow-lists; zip-only submission; `product-team` rig snapshotted down; **an independent reviewer for every chunk** (requirements, design, decomposition, release — not only code) plus a recorded self-check inside every producing step; review loops bounded by severity gate, re-review discipline, deadlock escalation and `max_hops`.
+
+**Dry run (`00-hello` / `01-ping`) so far:** mission plan-lock approved by the human (`human@kernel`, 21:59Z); requirements SPEC (8 AC, 9-row ambiguity log) ; design + 4 ADRs; **first real review loop** — the Codex reviewer failed the design with an empirically proven HIGH finding (bootstrap test properties shadowing the production config), the design agent replaced the mechanism with a profile overlay, the reviewer re-ran the probe and passed it; slice plan-lock approved by the human (23:27Z); implementation in progress.
+
+**Incidents and fixes (all recorded in `docs/scenarios/drills.md` / `docs/SETUP-FACTORY.md`):** guidance-merged role files collided across seats → roles by `send_text`; Claude Code stops on `source`, `$VAR`, `find -exec`, out-of-tree reads, new domains → command hygiene rule + allow-lists; Codex sandbox blocks Gradle's lock socket and treats any shell plumbing as an opaque script → execpolicy allow for `scripts/gw` and a `--log` flag on the wrapper; `rig down`→`rig up` race left seats without a harness → documented relaunch order; daemon-side scope/proof verbs resolve from `workspace.root` → repo made the work root, daemon restarted; accidental Codex upgrade 0.159.3 → 0.160.0 via a prompt-driving keystroke (disclosed); `git add -A` committed managed blocks → clean blob restored, pathspec-only rule.
+
+**Engine facts learned:** gate steps are engine-parked packets resolved by the human; standalone spec edits apply to in-flight instances at their next hop, lifecycle profile edits need `rig workflow revise` (refused when a completed step would be rewritten); the stuck-sweep routes stalled packets to the orchestration lead, who diagnosed correctly.
+
+**Next (Day 1):** finish the dry run through QA, reviews, integration, wave review, release review and ship sign-off; export evidence and metrics; cycle the seats so the new role contracts load natively; scaffold missions 01–03 and start `01-greenfield-core`.
