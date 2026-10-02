@@ -6,6 +6,9 @@ verified: 2026-10-02 against scaffold (rig scope create)
 created: 2026-10-02
 intent: "Prove the factory end to end: one trivial endpoint travels every pipeline step and both human gates, leaving a complete evidence trail."
 depends_on: []
+approved-spec-by: orchestration-lead@urlshort-factory
+approved-spec-at: 2026-10-02T22:02:45.361Z
+provenance: transport:v1
 ---
 
 # Mission — Hello: factory dry run

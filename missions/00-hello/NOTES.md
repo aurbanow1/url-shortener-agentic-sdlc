@@ -14,16 +14,19 @@ Context and observations that help the mission but do not change its
 - Lifecycle instance: `01M3Z8AJ1EDFTHQ1HPAWPNP2YN` (`lifecycle-urlshort-00-hello`), operation key `hello-run-1`, created by `operator-human@kernel` 2026-10-02T21:29Z.
 - Entry packet (decompose): `qitem-20261002212902-0f6e128b`, owner orchestration lead.
 - Wave map row: `qitem-20261002213604-5d55a7ba` (tags `wave-map`, `format:wave-map-v1`, `mission:00-hello`): one wave `w1` = [`01-ping`].
-- Compiled graph: `docs/evidence/00-hello/compiled-graph.json` (bound version `1-acb61bc08740b27d`).
-- Slice instance ids: none yet (launched at `wave_integration`).
-- Current step after decompose: `mission_plan_lock`, packet `qitem-20261002213817-6d848ac6` (mine), parked on `human@kernel`, evidence `missions/00-hello/SPEC.md` §Decision brief. Decompose closed at commit `adfa5ca`.
+- Compiled graph: `docs/evidence/00-hello/compiled-graph.json` (bound version `1-4322186fed9c15a8` after revision 2; revision 1 was `1-acb61bc08740b27d`).
+- Mission plan-lock: approved by `human@kernel` on `qitem-20261002213817-6d848ac6` (transition 15); stamp recorded 2026-10-02T22:02:45Z on the human's behalf (action `01M3ZA897KREJPTBCN20F9F9JV`), visible as `approved-spec-at` in `SPEC.md` frontmatter.
+- Wave w1 / slice `01-ping`: workflow instance `01M3ZA8Q39QEB3R1QDQCVTER18` (`urlshort-slice`, high tier), entry packet `qitem-20261002220259-281a4efc` owned by `requirements-agent@urlshort-factory`. Worktree `.worktrees/01-ping` on branch `slice/01-ping` from main `f43ecd1`.
+- Current mission step: `wave_integration`, packet `qitem-20261002220222-65f568f1` (mine), waiting on the slice entry packet with `--wait-for-proof 00-hello/slices/01-ping`. Decompose closed at commit `adfa5ca`.
 
 ## 2. Orchestration lead
 
 - 2026-10-02 — decompose. The scaffold already held `slices/01-ping/slice.yaml` (tier high) and the `mission.yaml` composition entry. Widened the slice territory to include `src/{main,test,functionalTest}/java/dev/urlshort/web/` so the cross-cutting request-id filter has a home outside `ping/`; adopted the change on the running instance with `rig workflow revise 01M3Z8AJ1EDFTHQ1HPAWPNP2YN --apply` (revision `revision-06cf30eaa295267ec7327a05`, instance version 1 → 2, digest `08fe06…` → `acb61b…`). Wrote the plan-lock decision brief into the mission `SPEC.md`.
 - Seat inventory at decompose: orchestration lead, design, development, QA present; requirements, review, release seats absent from `rig ps --nodes`. Named as a runtime risk in the brief.
 - 2026-10-02T21:59Z — mission plan-lock decided by `human@kernel` on `qitem-20261002213817-6d848ac6`: "approve: one slice, one wave; keep the request-id filter minimal". The constraint on the filter is binding for the `01-ping` design: smallest thing that puts `requestId` on the MDC and the response header, nothing more.
-- **Stamp pending (gap, not silently narrowed).** `rig scope mission approve 00-hello --scope spec --on-behalf-of human@kernel` failed daemon-side with `scope_not_found: No SPEC.md or README.md at 00-hello under the missions root` even after the operator set `workspace.root` to this repo (CLI-side `rig scope mission ls` resolves correctly). The human decision itself is durable in the gate packet's transition log (transition 15, actor `human@kernel`). The stamp is to be retried once the operator confirms the daemon picked up the new root; the lifecycle proceeds on the operator's explicit instruction.
+- Stamp history: the first `rig scope mission approve 00-hello --scope spec --on-behalf-of human@kernel` attempts failed daemon-side with `scope_not_found` because the daemon resolved missions from `~/.openrig/workspace`; the operator set `workspace.root` to this repo and restarted the daemon. The stamp then succeeded at 22:02:45Z. Between the failure and the fix, the lifecycle moved to `wave_integration` on the operator's explicit instruction, with the gap recorded here and in the handoff note; the human decision was durable in the gate transition log throughout.
+- 2026-10-02T22:02Z — operator changed `project.yaml` (`proofPolicy.judges = qa-agent@urlshort-factory`, commit `f43ecd1` on main). Adopted on the lifecycle instance with `rig workflow revise --apply` (revision `revision-ad9a8402eb83e92df15942bd`, instance v4 → v5). Compiled graph re-exported.
+- 2026-10-02T22:03Z — wave_integration: created `.worktrees/01-ping` (branch `slice/01-ping` from `f43ecd1`) and instantiated `urlshort-slice` as `01M3ZA8Q39QEB3R1QDQCVTER18`; root objective carries the slice intent plus the human's plan-lock constraint on the request-id filter. Waiting on the slice proof.
 
 ## Notes
 
