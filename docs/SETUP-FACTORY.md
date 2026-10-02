@@ -54,6 +54,11 @@ Launch notes learned the hard way (OpenRig 0.6.3):
 - Codex seats run sandboxed; `.codex/rules/urlshort.rules` lets `scripts/gw`
   run outside the sandbox (Gradle needs a loopback lock socket). Upgrade Codex
   *before* launching, or its "update available" dialog blocks the seat.
+- While the rig runs, OpenRig appends managed blocks to `AGENTS.md` (Codex) and
+  `CLAUDE.local.md` (Claude). Never `git add -A`; `AGENTS.md` is marked
+  `git update-index --skip-worktree` during a run — reverse it after `rig down`
+  with `git update-index --no-skip-worktree AGENTS.md` (the blocks are stripped
+  by `rig down`, so the file returns to its committed content).
 - Relaunching: `rig down urlshort-factory --force`, wait until
   `tmux ls | grep urlshort` is empty, then `rig down <rigId> --delete --force`,
   then `rig up …`. An immediate `rig up` after `rig down` can race the dying
