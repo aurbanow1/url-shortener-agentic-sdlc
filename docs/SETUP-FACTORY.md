@@ -44,6 +44,21 @@ rig ps --nodes --rig urlshort-factory
 rig chatroom history urlshort-factory
 ```
 
+Launch notes learned the hard way (OpenRig 0.6.3):
+
+- All seats share this directory, so role files travel by `send_text` (a
+  `guidance_merge` role block would collide across seats).
+- Claude Code stops for approval on any command containing `$VAR`, `$(…)`,
+  backticks or `source`, whatever the allow list says — seat instructions use
+  literal paths and `scripts/gw`.
+- Codex seats run sandboxed; `.codex/rules/urlshort.rules` lets `scripts/gw`
+  run outside the sandbox (Gradle needs a loopback lock socket). Upgrade Codex
+  *before* launching, or its "update available" dialog blocks the seat.
+- Relaunching: `rig down urlshort-factory --force`, wait until
+  `tmux ls | grep urlshort` is empty, then `rig down <rigId> --delete --force`,
+  then `rig up …`. An immediate `rig up` after `rig down` can race the dying
+  sessions and leave seats with "Cannot establish managed input target".
+
 Then hand the orchestration lead a mission:
 
 ```sh
