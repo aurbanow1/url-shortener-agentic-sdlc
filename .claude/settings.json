@@ -66,7 +66,17 @@
       "WebFetch(domain:www.jacoco.org)",
       "WebFetch(domain:h2database.com)",
       "WebFetch(domain:openrig.dev)",
-      "WebFetch(domain:www.openrig.dev)"
+      "WebFetch(domain:www.openrig.dev)",
+      "Bash(unzip -l *)",
+      "Bash(jar tf *)",
+      "Bash(jar xf *)",
+      "Bash(javap *)",
+      "Bash(file *)",
+      "Bash(stat *)",
+      "Bash(du *)",
+      "Bash(tree *)",
+      "Bash(env)",
+      "Bash(printenv *)"
     ],
     "deny": [
       "Bash(git push *)",
