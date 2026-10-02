@@ -16,7 +16,7 @@ Context and observations that help the mission but do not change its
 - Wave map row: `qitem-20261002213604-5d55a7ba` (tags `wave-map`, `format:wave-map-v1`, `mission:00-hello`): one wave `w1` = [`01-ping`].
 - Compiled graph: `docs/evidence/00-hello/compiled-graph.json` (bound version `1-acb61bc08740b27d`).
 - Slice instance ids: none yet (launched at `wave_integration`).
-- Current step after decompose: `mission_plan_lock`, parked on `human@kernel`, evidence `missions/00-hello/SPEC.md` §Decision brief.
+- Current step after decompose: `mission_plan_lock`, packet `qitem-20261002213817-6d848ac6` (mine), parked on `human@kernel`, evidence `missions/00-hello/SPEC.md` §Decision brief. Decompose closed at commit `adfa5ca`.
 
 ## 2. Orchestration lead
 
