@@ -64,6 +64,7 @@ testing {
 				all {
 					testTask.configure {
 						shouldRunAfter(tasks.named("test"))
+						systemProperty("spring.profiles.active", "functional")
 					}
 				}
 			}
