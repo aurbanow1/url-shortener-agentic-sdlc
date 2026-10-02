@@ -75,9 +75,10 @@ stopped with SIGTERM (graceful shutdown at 23:45:12Z).
   request id, copied verbatim. A single ECS JSON object, `requestId` equal to the
   response header, `message` `ping`, logger `dev.urlshort.ping.PingController`.
   Shows AC-6.
-- AC-7: `grep -c "canary\|127.0.0.1"` over the whole bootRun stdout, startup
-  through shutdown, returns 0. Neither canary nor the loopback client address
-  appears anywhere.
+- AC-7: `grep -c "canary\|127.0.0.1\|::1\|0:0:0:0:0:0:0:1"` over the whole
+  bootRun stdout, startup through shutdown, returns 0: neither canary nor the
+  loopback client address in its IPv4 or IPv6 forms appears anywhere. The ping
+  log line itself has no address field at all.
 - `proof/builder-check.txt`: the gate log on the candidate, every task executed.
 
 ### Not verified
