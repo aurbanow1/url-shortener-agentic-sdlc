@@ -1,0 +1,20 @@
+%% urlshort — container view (kept current by the Design Agent; last: 01-ping)
+flowchart LR
+    C[Client / operator / proxy]
+    subgraph urlshort [urlshort · Spring Boot 4.1 · Java 21]
+        F[RequestIdFilter<br/>web · highest precedence]
+        D[DispatcherServlet]
+        P[PingController<br/>ping]
+        E[ProblemDetailsExceptionHandler<br/>platform]
+        A[Actuator<br/>health · info · metrics]
+        O[springdoc OpenAPI]
+    end
+    L[(stdout · ECS JSON lines)]
+    H[(H2 file DB · data/<br/>schema via Flyway · no tables yet)]
+    C -->|HTTP| F --> D
+    D --> P
+    D -.-> E
+    C -->|/actuator/*| A
+    C -->|/v3/api-docs| O
+    P -->|INFO ping · MDC requestId| L
+    urlshort -.->|not used by 01-ping| H

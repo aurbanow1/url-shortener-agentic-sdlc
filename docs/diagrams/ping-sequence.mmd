@@ -1,0 +1,32 @@
+%% GET /api/ping with request id, plus the wrong-method path (slice 01-ping)
+sequenceDiagram
+    autonumber
+    participant C as Client
+    participant F as RequestIdFilter (web)
+    participant D as DispatcherServlet
+    participant P as PingController (ping)
+    participant L as Logback (ECS JSON → stdout)
+    participant H as ProblemDetailsExceptionHandler (platform)
+
+    C->>F: GET /api/ping [User-Agent, maybe X-Request-Id — ignored]
+    F->>F: id = UUID.randomUUID()
+    F->>F: response.setHeader("X-Request-Id", id)
+    F->>F: MDC.put("requestId", id)
+    F->>D: chain.doFilter
+    D->>P: ping()
+    P->>L: INFO "ping"  (MDC: requestId=id)
+    L-->>L: {"@timestamp":…,"message":"ping","requestId":"id",…}
+    P-->>D: PingResponse("ok", Instant.now().toString())
+    D-->>F: 200 application/json
+    F->>F: finally MDC.remove("requestId")
+    F-->>C: 200 + X-Request-Id: id + {"status":"ok","time":"…Z"}
+
+    Note over C,H: wrong method
+    C->>F: POST /api/ping
+    F->>F: header + MDC as above
+    F->>D: chain.doFilter
+    D-->>H: HttpRequestMethodNotSupportedException
+    H-->>D: 405 ProblemDetail (application/problem+json)
+    D-->>F: 405
+    F->>F: finally MDC.remove
+    F-->>C: 405 + X-Request-Id: id + problem body

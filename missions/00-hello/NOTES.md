@@ -30,6 +30,12 @@ Context and observations that help the mission but do not change its
 - 2026-10-02T22:22Z — stuck-sweep finding `qitem-recovery-a562baedab298be5` on the design packet (stalled 10 min after claim). Diagnosis from `rig capture design-agent@urlshort-factory`: the seat is at a Claude Code WebFetch permission prompt (github.com, Spring Boot 4.1 release notes, 2 of 5) while researching design.md. Not an agent-resolvable stall and not a `resume`/`route`/`abort` case; the operator was informed by `rig send` to answer the prompt in that pane. Lesson for the rig: seats doing web research hit per-domain fetch prompts; a standing allow for github.com in the seat settings would remove this class of stall.
 - 2026-10-02T22:03Z — wave_integration: created `.worktrees/01-ping` (branch `slice/01-ping` from `f43ecd1`) and instantiated `urlshort-slice` as `01M3ZA8Q39QEB3R1QDQCVTER18`; root objective carries the slice intent plus the human's plan-lock constraint on the request-id filter. Waiting on the slice proof.
 
+## 3. Design agent
+
+- 2026-10-02T22:48Z — `01-ping` design written: `slices/01-ping/design.md`, ADR-0001..0004 in `docs/adr/`, `docs/DESIGN.md` (system view + Boot 4.1 stack conventions), `docs/diagrams/{container,ping-sequence}.mmd`. No question parked on `human@kernel`.
+- Two territory asks routed to the orchestration lead (design.md §9): (1) `slice.yaml` on disk lists only the `ping/` paths while the revised instance includes `web/`; (2) add `src/functionalTest/resources/application.properties` so the functional suite can run under the shipped ECS logging format (recommended AC-6 mechanism, one-line deletion). Fallback without it is a per-class property override with a stated uncertainty; the AC-6 test must fail, not skip, if the line is not JSON.
+- Design packet `qitem-20261002221159-a35e50bc` handed off to `plan_lock` (engine parks the gate on `human@kernel`). On approval: `rig scope slice approve missions/00-hello/slices/01-ping --scope spec --locked-artifacts SPEC.md,design.md --on-behalf-of human@kernel`, record the decision text here, then project `handoff` to implement.
+
 ## Notes
 
 - 2026-10-02 — mission scaffolded.
