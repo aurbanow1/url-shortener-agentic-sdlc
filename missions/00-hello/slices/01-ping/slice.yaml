@@ -11,11 +11,18 @@ metadata:
 # Gate tier decides the workflow variant: high -> urlshort-slice (human plan-lock),
 # low -> urlshort-slice-delegated (orchestration lead approves the plan-lock).
 tier: high
-tier_reason: dry run of the full pipeline including the human plan-lock gate
+tier_reason: dry run of the full pipeline including the human plan-lock gate; first slice to add a cross-cutting request-id filter (foundation)
+# Territory: the ping endpoint itself plus a shared web package for the
+# request-id filter (every request line must carry requestId; no filter exists
+# yet, and it does not belong under ping/). Single slice in this wave, so the
+# wider territory collides with nothing.
 territory:
   - src/main/java/dev/urlshort/ping/
   - src/test/java/dev/urlshort/ping/
   - src/functionalTest/java/dev/urlshort/ping/
+  - src/main/java/dev/urlshort/web/
+  - src/test/java/dev/urlshort/web/
+  - src/functionalTest/java/dev/urlshort/web/
 execution:
   actor_role: requirements
   depends_on: []

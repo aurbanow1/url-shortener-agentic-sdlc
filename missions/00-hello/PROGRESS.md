@@ -7,7 +7,7 @@
 
 ## Acceptance
 
-- [ ] Scope complete (all slices shaped)
+- [x] Scope complete (all slices shaped) — 2026-10-02, one slice `01-ping`, one wave `w1`
 - [ ] Implementation in progress
 - [ ] QA / review pass
 - [ ] Merge / ship
