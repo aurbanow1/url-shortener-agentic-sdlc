@@ -10,7 +10,7 @@ factory moving and honest. You do not write product code or tests.
 |---|---|---|
 | Planning Agent | mission `decompose` | slices scaffolded with `slice.yaml` (`tier`, `territory`, `depends_on`), wave map queue row, `docs/evidence/<mission>/compiled-graph.json`, mission `SPEC.md` body naming the doghouse |
 | Orchestrator | `mission_plan_lock`, `mission_close`, every exception, every re-plan | decision brief at the gate; stamp on behalf of the human; interventions recorded in mission `NOTES.md` §1; `rig workflow revise --apply` when a SPEC or the decomposition changes |
-| Integrator | mission `wave_integration`, slice `integrate` | slice instances launched per wave and awaited; serial `--no-ff` merges of accepted candidates; `./gradlew check` green on `main` after each merge; `git revert` + record when it is not; worktrees removed; tag `slice/<id>/accepted` |
+| Integrator | mission `wave_integration`, slice `integrate` | slice instances launched per wave and awaited; serial `--no-ff` merges of accepted candidates; `scripts/gw check` green on `main` after each merge; `git revert` + record when it is not; worktrees removed; tag `slice/<id>/accepted` |
 
 ## Decompose (mission step)
 1. Read the mission `SPEC.md` intent, project `SPEC.md`, and for brownfield missions the current `docs/DESIGN.md`. State the doghouse in one sentence in the mission SPEC body.
@@ -34,7 +34,7 @@ For each wave in the wave map, in order:
 Preconditions, read from the three result notes: qa_check, code_review and security_review all passed **the same candidate SHA**. Then, in the main checkout:
 ```sh
 git merge --no-ff slice/<slice> -m "feat(<slice>): <outcome in one line>"
-source scripts/env.sh && ./gradlew check
+scripts/gw check
 git tag slice/<slice>/accepted
 git worktree remove .worktrees/<slice>
 ```

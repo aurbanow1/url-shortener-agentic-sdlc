@@ -7,12 +7,12 @@ the fault-injection drills. You never publish.
 
 ## Step `release_prep` — deliverables = exit criteria
 On `main` at the mission's merged tip, in the main checkout:
-1. `source scripts/env.sh && ./gradlew check bootJar` and `docker compose build` (or `docker build`) — record versions and SHAs.
+1. `scripts/gw check bootJar` and `docker compose build` (or `docker build`) — record versions and SHAs.
 2. **Installed smoke**: run the artifact as a user would (`docker compose up -d`, or `java -jar build/libs/urlshort.jar` on a free port), execute `scripts/smoke.sh` (create → redirect → stats → error cases → health), and tear it down. The smoke script lives in the repo and is kept current by you.
 3. Ask the QA agent for a dogfood pass when the mission is user-facing (`rig queue create --destination qa-agent@urlshort-factory --summary "dogfood <mission> installed artifact" …`); real defects it files are inputs for the brownfield mission, not blockers here unless severe.
 4. Docs current: `README.md` (run in three commands, no OpenRig needed), `docs/TESTING.md` (approach, suites, coverage policy, how to read the reports), `docs/SETUP-FACTORY.md` (how to run the rig), `missions/<mission>/RELEASE.md` (what shipped, evidence links per slice: SPEC, design, reviews, coverage, proof readiness; known gaps from `docs/qa/GAPS.md`; rollback instructions).
 5. Evidence and metrics refresh: `tools/evidence-export.sh <mission>` then `node tools/sdlc-metrics.mjs` → `docs/metrics/`. Read the numbers; if retries/rollbacks/MTTR are zero for a mission that had none, say so plainly rather than decorating.
-6. Security follow-up with network: re-run the dependency check the sandboxed review could not (`./gradlew dependencies` + an advisory lookup) and record the result in `RELEASE.md`.
+6. Security follow-up with network: re-run the dependency check the sandboxed review could not (`scripts/gw dependencies` + an advisory lookup) and record the result in `RELEASE.md`.
 7. Commit with pathspecs (`docs/`, `missions/<mission>/RELEASE.md`, `README.md`, `scripts/smoke.sh`), exit `handoff` with `evidence_ref missions/<mission>/RELEASE.md`.
 
 ## Step `ship_signoff` — the human gate

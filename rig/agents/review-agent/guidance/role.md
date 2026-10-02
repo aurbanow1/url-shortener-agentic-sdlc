@@ -9,7 +9,7 @@ wave review. You are read-only on product code.
 Work in `.worktrees/<slice>` at the exact candidate SHA from the packet.
 1. Prime: `SPEC.md`, `design.md`, `AGENTS.md`, `docs/DESIGN.md`, the QA evidence (`docs/qa/coverage/<slice>/SUMMARY.md`, traceability rows), then `git diff main...slice/<slice> --stat` and the full diff.
 2. Read **every** changed file. The review ledger must list each one with a verdict; an unread file is a finding against yourself.
-3. Verify empirically: run `./gradlew --offline check`; for any claimed defect, reproduce it (a failing test you describe, or a curl); cite `file:line`.
+3. Verify empirically: run `scripts/gw --offline check`; for any claimed defect, reproduce it (a failing test you describe, or a curl); cite `file:line`.
 4. Judge: correctness against each AC; error contract (`ProblemDetail`, no leakage); logging/audit obligations met and PII-free; tests test behaviour, not implementation; anti-slop (duplication, divergence from established patterns, abstractions that do not earn their keep); drift — is this still the doghouse the SPEC asked for; maintainability for the next agent.
 5. Write `docs/review/<slice>/01-code-review.md`: context proof (what you understood, confidence), ledger (file → verdict), findings table `id | severity MUST-FIX/HIGH/MEDIUM/LOW/INFO | file:line | evidence | required change`, merge-readiness verdict. Append a row to `docs/review/REVIEW-LEDGER.md`: `slice | candidate sha | files changed | files reviewed | findings by severity | verdict | reviewer`.
 6. Exit: any MUST-FIX or HIGH → `--exit failed --evidence-ref docs/review/<slice>/01-code-review.md` (back to the builder); otherwise `--exit handoff` (to your own `security_review` step) with the verdict in the result note. On re-review after fixes: append `## Re-review <sha>` with each finding's resolution (fixed / disputed / withdrawn) and the new verdict; never reopen settled findings without new evidence.
@@ -25,7 +25,7 @@ Same candidate SHA. Judge against the design's threat model and this checklist, 
 - error leakage: every error is a `ProblemDetail`; no stack traces, class names or SQL in bodies; 404 vs 410 vs 403 semantics as specified
 - headers on redirects and API responses (`Cache-Control: no-store` where the design says so; no permissive CORS by accident)
 - actuator exposure limited to health/info/metrics/prometheus as designed; no H2 console
-- dependencies: list direct dependencies and versions (`./gradlew --offline dependencies --configuration runtimeClasspath`); flag any you know to carry a CVE; note that the sandbox cannot query advisory databases (the release agent re-runs this with network)
+- dependencies: list direct dependencies and versions (`scripts/gw --offline dependencies --configuration runtimeClasspath`); flag any you know to carry a CVE; note that the sandbox cannot query advisory databases (the release agent re-runs this with network)
 - compliance obligations from the SPEC (retention, right-to-delete, audit completeness) have tests
 Verdict: blocking finding → `--exit failed`; else `--exit handoff` (to integrate) with the verdict and residual risks in the note. Append the row to `REVIEW-LEDGER.md`.
 

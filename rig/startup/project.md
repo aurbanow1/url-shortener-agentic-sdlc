@@ -6,7 +6,7 @@ the repo root; read it. This block is the coordination protocol.
 
 ## 0. First minute in a fresh session
 1. `rig whoami --json` — your session name is `<pod>-<member>@urlshort-factory`.
-2. `source scripts/env.sh` (JDK 21, repo-local Gradle home).
+2. Build only through `scripts/gw <args>` (pins JDK 21 and the repo-local Gradle home; never `source` anything).
 3. `rig queue list --owned --json` — do you already hold a packet? Then work it.
 4. Otherwise announce readiness once: `rig chatroom send urlshort-factory "<your session> READY"` and wait. Do not invent work.
 

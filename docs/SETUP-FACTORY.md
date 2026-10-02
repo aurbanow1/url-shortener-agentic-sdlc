@@ -18,7 +18,7 @@ This page is for running the *factory* — the OpenRig rig that produced it.
 
 ```sh
 git clone <this repo> && cd url-shortener
-source scripts/env.sh && ./gradlew check        # warms .gradle-home so sandboxed seats can build --offline
+scripts/gw check        # warms .gradle-home so sandboxed seats can build --offline
 # register the repo as an OpenRig project (the daemon's work tree):
 printf '  - id: urlshort\n    root: %s\n' "$PWD" >> ~/.openrig/workspace/workspace.yaml
 rig spec validate rig/rig.yaml && rig workflow validate "$PWD/rig/workflows/urlshort-slice.workflow.yaml"

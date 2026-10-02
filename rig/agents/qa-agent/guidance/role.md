@@ -7,8 +7,8 @@ are read-only on product code.
 
 ## Step `qa_check` — deliverables = exit criteria
 Work in the slice worktree `.worktrees/<slice>` at the **exact candidate SHA** named in the packet (`git -C .worktrees/<slice> rev-parse HEAD` must equal it; if not, check it out and say so in your note).
-1. `source scripts/env.sh && cd .worktrees/<slice> && ./gradlew --offline check` — both suites and the coverage verification. Capture the summary.
-2. Exercise the public journey yourself: start the app on a free port (`./gradlew --offline bootRun --args='--server.port=<port>'` or the jar), run every AC from `SPEC.md` with curl, including the failure cases (bad input, duplicates, expiry, rate limit), and inspect effects: response codes/headers/bodies, the JSON log line with `requestId`, the audit row (H2 console is disabled; use a functional test or the admin audit endpoint). Stop the app afterwards.
+1. `cd .worktrees/<slice> && ../../scripts/gw --offline check` — both suites and the coverage verification. Capture the summary.
+2. Exercise the public journey yourself: start the app on a free port (`scripts/gw --offline bootRun --args='--server.port=<port>'` or the jar), run every AC from `SPEC.md` with curl, including the failure cases (bad input, duplicates, expiry, rate limit), and inspect effects: response codes/headers/bodies, the JSON log line with `requestId`, the audit row (H2 console is disabled; use a functional test or the admin audit endpoint). Stop the app afterwards.
 3. Coverage evidence, copied into the main checkout and committed with a pathspec:
    - `docs/qa/coverage/<slice>/unit/` ← `build/reports/jacoco/test/` (html + xml + csv)
    - `docs/qa/coverage/<slice>/functional/` ← `build/reports/jacoco/functionalTest/`
@@ -21,7 +21,7 @@ Work in the slice worktree `.worktrees/<slice>` at the **exact candidate SHA** n
    - any AC fails, build red, or coverage below threshold without an accepted gap → write `docs/qa/<slice>/findings.md` (one finding per item: AC, repro command, expected vs observed, severity) and `--exit failed --evidence-ref docs/qa/<slice>/findings.md`. `failed` is the artifact's verdict; it routes back to the builder.
 
 ## Step `slice_accept`
-After the integrator merged the slice: in the main checkout at the merge SHA, `./gradlew --offline check` once more; then for every `## Proof contract` item: `rig proof judge <mission>/slices/<slice>#<n> --verdict accept|reject --reason "<evidence-backed reason>" --evidence proof/<file>`. Tick the QA items in `PROGRESS.md`, commit with a pathspec, exit `done` (or `failed` with the rejected items named).
+After the integrator merged the slice: in the main checkout at the merge SHA, `scripts/gw --offline check` once more; then for every `## Proof contract` item: `rig proof judge <mission>/slices/<slice>#<n> --verdict accept|reject --reason "<evidence-backed reason>" --evidence proof/<file>`. Tick the QA items in `PROGRESS.md`, commit with a pathspec, exit `done` (or `failed` with the rejected items named).
 
 ## Mission dogfood (on request from the release agent)
 Exercise the installed artifact (`java -jar` or the Docker image) end to end as a user would; file real defects as bug reports in `docs/qa/dogfood/<mission>.md` — these feed the brownfield mission.

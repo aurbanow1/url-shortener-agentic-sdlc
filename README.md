@@ -7,9 +7,8 @@ product and the factory that built it, plus the evidence trail of every stage.
 ## Run the product (no OpenRig needed)
 
 ```sh
-source scripts/env.sh          # JDK 21 + repo-local Gradle home
-./gradlew check                # unit + functional suites, JaCoCo 100% line/branch gate
-./gradlew bootJar && java -jar build/libs/urlshort.jar
+scripts/gw check               # unit + functional suites, JaCoCo 100% line/branch gate (JDK 21 pinned)
+scripts/gw bootJar && java -jar build/libs/urlshort.jar
 # health: http://localhost:8080/actuator/health   OpenAPI: http://localhost:8080/v3/api-docs
 ```
 
