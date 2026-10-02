@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
-# Gradle entry point for every seat and human:   scripts/gw <gradle args>
+# Gradle entry point for every seat and human:   scripts/gw [--log <file>] <gradle args>
 # Pins JDK 21 and the repo-local Gradle home (also when invoked from a slice
-# worktree), then execs the wrapper. No `source` needed anywhere.
+# worktree), then runs the wrapper. --log <file> tees combined output into the
+# file so sandboxed seats never need shell redirection or pipes on the command
+# line (a redirection would turn the call into an opaque script and defeat the
+# execpolicy allow rule). No `source` needed anywhere.
 set -euo pipefail
 _main_git_dir="$(git rev-parse --git-common-dir 2>/dev/null || echo .git)"
 ROOT="$(cd "$(dirname "$_main_git_dir")" && pwd)"
@@ -9,4 +12,9 @@ export JAVA_HOME="${URLSHORT_JAVA_HOME:-/opt/homebrew/opt/openjdk@21}"
 export PATH="$JAVA_HOME/bin:$PATH"
 export GRADLE_USER_HOME="$ROOT/.gradle-home"
 PROJECT_DIR="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+LOG=""
+if [ "${1:-}" = "--log" ]; then LOG="${2:?--log needs a file path}"; shift 2; mkdir -p "$(dirname "$LOG")"; fi
+if [ -n "$LOG" ]; then
+  set +e; "$PROJECT_DIR/gradlew" "$@" 2>&1 | tee "$LOG"; status=${PIPESTATUS[0]}; set -e; exit "$status"
+fi
 exec "$PROJECT_DIR/gradlew" "$@"
