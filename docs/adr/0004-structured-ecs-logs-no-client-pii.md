@@ -34,6 +34,9 @@ would hide the JSON contract from the tests that are supposed to prove it.
 - Any later slice that wants client analytics (for example per-click
   statistics) must not log or store a raw IP; it uses a salted hash and gets
   its own ADR.
-- Logging is initialised before the `ApplicationContext` and configured once
-  per JVM; only Environment-level properties affect it, which is why the
-  format is set in the suite's property file rather than per test class.
+- Logging is initialised before the `ApplicationContext`, so only
+  Environment-level properties affect it. The intended mechanism is the
+  suite's property file, not a per-test-class override; whether Boot
+  re-applies a format change requested by a later test context in the same
+  JVM is what the `01-ping` builder's AC-6 test establishes (slice design §7
+  names the fallback and the fail-not-skip rule).
