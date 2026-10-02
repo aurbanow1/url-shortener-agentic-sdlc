@@ -51,6 +51,17 @@ Nothing beyond that endpoint is in scope. The product value is the proven pipeli
 
 **Recommended default.** Approve. The decomposition is the smallest that exercises every step and gate once.
 
+## Self-check (decompose)
+
+Added 2026-10-02T22:47Z under the protocol update of 22:45Z, after the plan-lock stamp; it records checks that were already true at the decompose handoff and changes no contract content.
+
+- One buildable user outcome per slice: yes, `01-ping` is one endpoint with its filter.
+- Disjoint territories: yes, trivially, one slice in the wave.
+- Tier per slice with reason: yes, `01-ping` high, reason in `slice.yaml` and the brief.
+- Waves consistent with `depends_on`: yes, one wave, no edges.
+- Risks named: yes, seat availability, filter scope creep, logging already configured.
+- Doghouse stated: yes, in §The doghouse.
+
 ## Slices
 
 - `01-ping` — Ping endpoint. Tier high. Wave w1. State: scaffolded, awaiting mission plan-lock.
