@@ -1,0 +1,34 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :jar UP-TO-DATE
+> Task :compileFunctionalTestJava UP-TO-DATE
+> Task :processFunctionalTestResources UP-TO-DATE
+> Task :functionalTestClasses UP-TO-DATE
+
+> Task :designConfigProfileOverlay
+activeProfiles=functional
+spring.application.name=urlshort
+spring.mvc.problemdetails.enabled=true
+logging.structured.format.console=ecs
+spring.datasource.url=jdbc:h2:mem:urlshort-functional;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+spring.flyway.enabled=true
+source=systemProperties
+source=systemEnvironment
+source=Config resource 'class path resource [application-functional.properties]' via location 'optional:classpath:/'
+source=Config resource 'class path resource [application.properties]' via location 'optional:classpath:/'
+
+> Task :designConfigProfileOverlayNoProfile
+activeProfiles=
+spring.application.name=urlshort
+spring.mvc.problemdetails.enabled=true
+logging.structured.format.console=ecs
+spring.datasource.url=jdbc:h2:file:./data/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE
+spring.flyway.enabled=true
+source=systemProperties
+source=systemEnvironment
+source=Config resource 'class path resource [application.properties]' via location 'optional:classpath:/'
+
+BUILD SUCCESSFUL in 1s
+7 actionable tasks: 2 executed, 5 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html

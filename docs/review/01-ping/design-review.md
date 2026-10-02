@@ -105,3 +105,60 @@ baseline source/configuration read in addition):
   assess the producer's response, with escalation if the same finding fails twice.
 - Ledger records all nine design-delivery files and this verdict. No claim
   that the future endpoint, full coverage gate or log capture has been verified.
+
+## Re-review d0521deaa453d9e425b3ca9d06f2d10b65a16255
+
+2026-10-02 UTC; packet `qitem-20261002230841-dc5cdf2b`.
+**PASS — DR-01 fixed; no open findings.** Ready for human plan-lock.
+This supersedes the initial verdict above. The SPEC remains at `4e581cc`.
+
+| Finding | Producer response | Independent judgment |
+|---|---|---|
+| DR-01 (HIGH) | Accepted the cause; replace the shadowing suite file with `application-functional.properties` containing only the H2 overrides, and activate `functional` on the Gradle functional-test task. | **Fixed in design.** Independently reran the profile and no-profile probes: the active profile retains the in-memory database while loading the shipped `ecs` and `true` settings. The control without the profile selects the shipped file database, confirming why both the rename and activation are necessary. |
+
+Ran the producer's inspected init script through `scripts/gw --offline -I
+missions/00-hello/slices/01-ping/design-probe/config-probe-profile.gradle
+designConfigProfileOverlay designConfigProfileOverlayNoProfile`.
+Gradle reported `BUILD SUCCESSFUL`, with both probes executed.
+The fresh reviewer capture is [config-profile-rereview.txt](proof/config-profile-rereview.txt).
+
+With `functional` active, the result is `spring.application.name=urlshort`,
+`spring.mvc.problemdetails.enabled=true`,
+`logging.structured.format.console=ecs`,
+`spring.datasource.url=jdbc:h2:mem:urlshort-functional;MODE=PostgreSQL;DB_CLOSE_DELAY=-1`,
+and `spring.flyway.enabled=true`. Both base and profile property sources are
+listed. No service was started or database opened by this property probe.
+
+The correction preserves the HTTP 405 assertion and the strict JSON-log
+assertion. It removes the per-class override fallback and keeps the product
+components unchanged. The two additional territory paths were granted in
+`2b29248`; the build permission is limited to the functional-test block.
+
+Eight changed delivery/supporting files read (unchanged design content retains
+the initial review; no settled finding reopened):
+
+| File | Verdict |
+|---|---|
+| `missions/00-hello/slices/01-ping/design.md` | DR-01 response accepted; mechanism and unchanged AC assertions sufficient |
+| `docs/DESIGN.md` | Configuration-source rule matches the probe |
+| `docs/adr/0004-structured-ecs-logs-no-client-pii.md` | Profile mechanism replaces shadowing; original privacy contract preserved |
+| `missions/00-hello/slices/01-ping/design-probe/ConfigProbe.java` | Reads effective properties only; exposes database and profile selection |
+| `missions/00-hello/slices/01-ping/design-probe/config-probe-profile.gradle` | Reproduces the proposed resource rename and JVM property on the real classpath |
+| `missions/00-hello/slices/01-ping/design-probe/output.txt` | Producer's results agree with the independent rerun |
+| `missions/00-hello/slices/01-ping/slice.yaml` | Required profile file and scoped build change granted |
+| `missions/00-hello/NOTES.md` | Response, territory grant and unit-suite follow-up recorded |
+
+The unit-suite shadowing is an existing, recorded follow-up for when unit
+tests need shipped settings; it is not a new blocker or a required expansion
+of this slice. No non-blocking review items require correction in passing.
+
+## Self-check (re-review)
+
+- Judged the producer's response to the only finding, with fresh successful
+  configuration probes; all eight changed delivery/supporting files read.
+- Confirmed the reviewed artifacts still match `d0521de` and the SPEC is
+  unchanged; product source and tests were not edited.
+- DR-01 is fixed in the design. The actual endpoint, output capture and
+  coverage gate still require implementation and independent QA/code review.
+- Recorded the passing ledger row and preserved the original failed review.
+  Handoff proceeds to plan-lock; no stamp or human decision is claimed here.
