@@ -112,7 +112,7 @@ service's log output. Each becomes one functional test.
    generation scheme is not part of this contract.
 3. **The header is on every response.** Success and error responses alike
    carry `X-Request-Id`, including responses the framework produces before any
-   handler runs (wrong method, unknown path).
+   handler runs; the wrong-method path (AC-5) is the one this slice proves.
 4. **`status` is always `ok`.** Ping has no degraded answer. If the service
    cannot answer, the client gets no `200` at all; health and readiness remain
    the job of `/actuator/health`.
@@ -180,8 +180,8 @@ service's log output. Each becomes one functional test.
 | A-5 | Which log event must carry the request id: a generic per-request access line for all endpoints, or the ping event only? | A: generic access line from the request-id mechanism; B: only the ping request's event is required | **assumed** B. The human's constraint limits the request-id mechanism to the smallest thing that issues the id and exposes it; a generic access log is more mechanism. `AGENTS.md` requires that request lines which exist carry `requestId`; it does not require that every request produce one. Safe because B is a strict subset of A and A can follow later. |
 | A-6 | The test property files blank `logging.structured.format.console`, so a test run as configured never emits JSON. Is MDC presence enough proof of "logged as structured JSON"? | A: accept MDC presence as proof; B: prove a JSON line by effect under the default format | **decided** B. The mission brief says the slice must verify, not assume, that the id reaches the JSON line. AC-6 therefore reads the event as JSON, and the proof contract requires a captured JSON line as an artifact. How the functional test obtains that line is a design and test-engineering matter. |
 | A-7 | Does the request-id header have to appear on error responses too? | ping only; every response | **decided** every response. `AGENTS.md` names the request id as cross-cutting and the mission brief gives the slice the `web/` territory for exactly that reason. Proven by AC-5 on the wrong-method path. |
-| A-9 | Does the inbound-id policy (A-2) need its own test, or is it implied by AC-3? | implied; explicit AC | **decided** explicit AC-8. It is the slice's only trust-boundary decision; an explicit test keeps it visible in the traceability table and flips deliberately if a later slice chooses to honor inbound ids. |
 | A-8 | Can `status` ever be something other than `ok`? | always `ok`; `ok` or `degraded` | **decided** always `ok` (business rule 4). A degraded state would need a definition of degraded; `/actuator/health` already owns that. |
+| A-9 | Does the inbound-id policy (A-2) need its own test, or is it implied by AC-3? | implied; explicit AC | **decided** explicit AC-8. It is the slice's only trust-boundary decision; an explicit test keeps it visible in the traceability table and flips deliberately if a later slice chooses to honor inbound ids. |
 
 No question was parked on `human@kernel`: each ambiguity had a safe default
 that does not change what a later slice could still build.
