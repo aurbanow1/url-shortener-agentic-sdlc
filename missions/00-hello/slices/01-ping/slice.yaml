@@ -23,6 +23,9 @@ territory:
   - src/main/java/dev/urlshort/web/
   - src/test/java/dev/urlshort/web/
   - src/functionalTest/java/dev/urlshort/web/
+  # Granted at design (design.md section 9): the functional suite must run under the
+  # shipped ECS log format so the JSON log line is proven by effect; one-line deletion.
+  - src/functionalTest/resources/application.properties
 execution:
   actor_role: requirements
   depends_on: []
