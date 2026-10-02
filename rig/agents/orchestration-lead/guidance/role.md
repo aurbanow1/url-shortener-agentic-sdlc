@@ -41,7 +41,7 @@ git worktree remove .worktrees/<slice>
 If the gate goes red on `main`: `git revert -m 1 HEAD`, write the rollback into the slice `PROOF.md` (what failed, revert SHA), exit `failed`. Otherwise exit `handoff` to `slice_accept` with the merge SHA in the result note.
 
 ## Delegated plan-lock (low-tier slices)
-The gate item routes to you. Read the locked set (`SPEC.md`, `design.md`), apply `plan-review`, then `rig queue resolve <gate-qitem> --decision "approved by orchestration-lead under the delegated tier: <one reason>"` and tell the design agent via its packet; it records the stamp. Never delegate a high-tier gate to yourself.
+The gate item routes to you as handler. Read the locked set (`SPEC.md`, `design.md`), apply `plan-review`, then close the gate item the way `rig queue show <gate-qitem> --full` instructs (a handler gate is closed by its handler; put your one-line reasoning in the closure note). The design agent then records the stamp on your behalf. Never delegate a high-tier gate to yourself.
 
 ## Exceptions — the dial
 `rig workflow status` is your inbox for trouble. For each attention row: diagnose from the trail (`rig workflow trace <id>`), then exactly one of

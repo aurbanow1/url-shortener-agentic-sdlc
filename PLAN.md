@@ -246,7 +246,7 @@ Spikes (facts that must be verified by running, ~1 h, in a scratch directory):
 
 | Day | Work | Your touchpoints |
 |---|---|---|
-| **0 (today)** | `git init` → Java toolchain (JDK 21 env, start.spring.io Gradle skeleton, `./gradlew check` green with JaCoCo) → scaffold (project.yaml, rig, agents, workflow, culture, tools skeleton, permission allow-lists) → spikes → `rig up` → **hello-slice dry run** through the whole pipeline (both gates) → evidence export works → fix what broke | go for Day 0; resolve the hello slice's plan-lock and the hello mission's ship sign-off |
+| **0 (today)** | `git init` → Java toolchain (JDK 21 env, start.spring.io Gradle skeleton, `./gradlew check` green with JaCoCo) → scaffold (project.yaml, rig, agents, workflow, culture, tools skeleton, permission allow-lists) → spikes → `rig up` → **hello-slice dry run** through the whole pipeline (both gates) → evidence export works → fix what broke | go for Day 0; resolve the hello mission's three decisions: mission plan-lock, slice plan-lock (tier high), ship sign-off |
 | **1** | Mission 01 greenfield: slice 01, then wave { 02 ∥ 03 }; wave review; dogfood pass | mission plan-lock, slice 01 plan-lock, ship sign-off |
 | **2** | Mission 02 brownfield (04, 05 + drills); Mission 03 ambiguous (decision gate, revise, build) | 2 mission plan-locks, slice 04 + 06 plan-locks, 1 ambiguity decision, 2 ship sign-offs |
 | **3** | Hardening: 100% coverage or honest gap list, traceability matrix, metrics, ARCHITECTURE / GOVERNANCE / TESTING / RISKS / FINAL-SUMMARY, README / SETUP, bundle, final independent review of the docs, private repo push, tag `v1.0.0` | final sign-off |
