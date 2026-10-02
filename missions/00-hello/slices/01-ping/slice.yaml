@@ -24,8 +24,16 @@ territory:
   - src/test/java/dev/urlshort/web/
   - src/functionalTest/java/dev/urlshort/web/
   # Granted at design (design.md section 9): the functional suite must run under the
-  # shipped ECS log format so the JSON log line is proven by effect; one-line deletion.
+  # shipped ECS log format so the JSON log line is proven by effect.
   - src/functionalTest/resources/application.properties
+  # Granted after design-review finding DR-01 (design.md sections 7, 9, 11): the
+  # functional properties file shadows the shipped one, so the suite's overrides move
+  # to a profile overlay and the functionalTest task activates that profile.
+  - src/functionalTest/resources/application-functional.properties
+  # build.gradle.kts: LIMITED to the functionalTest suite block, one line
+  # (systemProperty spring.profiles.active=functional). Reviewers check the diff
+  # stays inside that block.
+  - build.gradle.kts
 execution:
   actor_role: requirements
   depends_on: []
