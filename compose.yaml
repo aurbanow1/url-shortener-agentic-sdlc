@@ -1,0 +1,18 @@
+services:
+  urlshort:
+    build: .
+    image: urlshort:local
+    ports:
+      - "8080:8080"
+    volumes:
+      - urlshort-data:/app/data
+    healthcheck:
+      # the JRE image has no curl/wget; a bash TCP probe is enough for "is it listening"
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8080"]
+      interval: 10s
+      timeout: 3s
+      retries: 6
+      start_period: 20s
+
+volumes:
+  urlshort-data: {}
