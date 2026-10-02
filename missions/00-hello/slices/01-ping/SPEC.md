@@ -233,6 +233,21 @@ N/A — non-visual slice.
 
 - None. `depends_on` is empty; this is the only slice in wave `w1`.
 
+## Self-check
+
+Checks performed before the requirements handoff on 2026-10-02; recorded here
+after that handoff, when the protocol began requiring the block in the artifact.
+
+- Every AC observable from outside: AC-1 to AC-5 through HTTP status, headers and body; AC-6 to AC-8 through captured log output. No AC inspects internal state.
+- Error and privacy paths are ACs: AC-5 (wrong method, problem detail), AC-7 (no client address or user agent in logs), AC-8 (client-supplied id ignored and not logged).
+- Business rules cover the non-obvious logic: rules 1 to 8 fix id issuance, id shape, header-on-every-response, the constant `ok`, the clock, the exact body, problem-detail errors and the log event.
+- Out of scope is explicit: nine named exclusions, each one a thing a builder might otherwise add.
+- Every ambiguity resolved: A-1 to A-9, four `assumed` with the reason the default is safe, five `decided`; none parked, none left open.
+- Proof contract names coverage (merged 100% plus per-suite reports), traceability rows, a `GAPS.md` row, and two by-effect captures (the HTTP exchange and its JSON log line).
+- No design leaked: no class, package, schema, library or mechanism is named; "filter" appears only inside the quoted human constraint in A-2.
+- Consistent with the mission brief and the human's plan-lock decision: minimal request-id mechanism (A-2, A-5), JSON logging verified rather than re-implemented (A-6), territory limited to the ping endpoint and the cross-cutting header.
+- `plan-review`: the engineering-clarity lens was applied and produced AC-8 and the AC-6 rewording. The strategy and UX lenses were skipped as not applicable to a non-visual dry-run endpoint, and no executive summary was produced.
+
 ---
 
 > **How you work this slice (SOP):** conventions SSOT: `docs/reference/sdlc-conventions.md` (installed: `$OPENRIG_HOME/reference/sdlc-conventions.md`) — read its COMPONENT MENU first: your mission chooses the build path (the simple default flow · the wave model · the assigned rigorous overlay) and the planning rigor (the P0–P4 dial); do not assume the heavy flow unless your mission or dispatch assigns it. Full flow for the default path: the `mission-slice-sop` skill. The floor on every path: track on PROGRESS.md; evidence lands via `rig proof add` (never hand-placed); a slice is **not done** until its promised outcomes have evidence; verify with `rig scope audit`.
