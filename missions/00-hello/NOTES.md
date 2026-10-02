@@ -22,6 +22,8 @@ Context and observations that help the mission but do not change its
 
 - 2026-10-02 — decompose. The scaffold already held `slices/01-ping/slice.yaml` (tier high) and the `mission.yaml` composition entry. Widened the slice territory to include `src/{main,test,functionalTest}/java/dev/urlshort/web/` so the cross-cutting request-id filter has a home outside `ping/`; adopted the change on the running instance with `rig workflow revise 01M3Z8AJ1EDFTHQ1HPAWPNP2YN --apply` (revision `revision-06cf30eaa295267ec7327a05`, instance version 1 → 2, digest `08fe06…` → `acb61b…`). Wrote the plan-lock decision brief into the mission `SPEC.md`.
 - Seat inventory at decompose: orchestration lead, design, development, QA present; requirements, review, release seats absent from `rig ps --nodes`. Named as a runtime risk in the brief.
+- 2026-10-02T21:59Z — mission plan-lock decided by `human@kernel` on `qitem-20261002213817-6d848ac6`: "approve: one slice, one wave; keep the request-id filter minimal". The constraint on the filter is binding for the `01-ping` design: smallest thing that puts `requestId` on the MDC and the response header, nothing more.
+- **Stamp pending (gap, not silently narrowed).** `rig scope mission approve 00-hello --scope spec --on-behalf-of human@kernel` failed daemon-side with `scope_not_found: No SPEC.md or README.md at 00-hello under the missions root` even after the operator set `workspace.root` to this repo (CLI-side `rig scope mission ls` resolves correctly). The human decision itself is durable in the gate packet's transition log (transition 15, actor `human@kernel`). The stamp is to be retried once the operator confirms the daemon picked up the new root; the lifecycle proceeds on the operator's explicit instruction.
 
 ## Notes
 
