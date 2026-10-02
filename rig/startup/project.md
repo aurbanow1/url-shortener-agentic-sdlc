@@ -42,6 +42,7 @@ rig workflow project --instance <instance> --current-packet <qitem> \
 - Never close a workflow packet with `rig queue update --state done`; always `rig workflow project`.
 - `--exit failed` is a verdict on the artifact (routes to the builder). For your own blocker use `--exit waiting --blocked-on <qitem|external:<what>|human@kernel>` with a continuation, or escalate to the orchestration lead with `rig queue create --destination orchestration-lead@urlshort-factory --summary ... --body-file ...`.
 - Your last act on a turn is an edit, a commit, or a `rig workflow project` — never a note to yourself.
+- Claude Code cannot pre-check commands that contain `$VAR`, `$(…)` or backticks and will stop for approval: write literal paths (`rig scope mission ls`, `cd .worktrees/01-ping`), never `"$PWD"` or command substitution. Codex seats: build only via `scripts/gw`.
 - Keep queue bodies small: paths and one-paragraph summaries, no dumps, no raw backticks inline (use `--body-file`).
 
 ## 4. Human gates and decisions

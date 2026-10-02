@@ -48,7 +48,13 @@
       "Bash(scripts/*)",
       "Bash(./scripts/*)",
       "Bash(../../scripts/gw *)",
-      "Bash(scripts/gw *)"
+      "Bash(scripts/gw *)",
+      "Bash(docker info*)",
+      "Bash(docker version*)",
+      "Bash(docker run *)",
+      "Bash(docker stop *)",
+      "Bash(docker rm *)",
+      "Bash(docker images*)"
     ],
     "deny": [
       "Bash(git push *)",
