@@ -9,6 +9,16 @@ verified: 2026-10-02 against scaffold (rig scope create)
 created: 2026-10-02
 intent: "GET /api/ping returns 200 with a JSON body {status: ok, time: <ISO-8601 UTC>} and a request id header, is logged as structured JSON, and is covered 100% by unit and functional tests."
 depends_on: []
+approved-spec-by: design-agent@urlshort-factory
+approved-spec-at: 2026-10-02T23:27:40.441Z
+locked-artifacts:
+  - name: SPEC.md
+    path: SPEC.md
+    kind: spec
+  - name: design.md
+    path: design.md
+    kind: spec
+provenance: transport:v1
 ---
 
 # Slice 01 — Ping endpoint
