@@ -1,0 +1,27 @@
+// Run through scripts/gw --offline -I <this file> reviewConfigProduction
+// reviewConfigProbe reviewConfigAfterDeletion. No product or test files change.
+gradle.projectsEvaluated {
+    def project = gradle.rootProject
+    def functional = project.sourceSets.functionalTest
+    def variant = project.layout.buildDirectory.dir('review/01-ping/without-blank').get().asFile
+    [reviewConfigProduction: project.sourceSets.main.runtimeClasspath,
+     reviewConfigProbe: functional.runtimeClasspath,
+     reviewConfigAfterDeletion: project.files(variant) + functional.runtimeClasspath.filter {
+         it != functional.output.resourcesDir
+     }].each { name, probeClasspath ->
+        project.tasks.register(name, JavaExec) {
+            dependsOn project.tasks.named('functionalTestClasses')
+            javaLauncher.set(project.javaToolchains.launcherFor {
+                languageVersion = JavaLanguageVersion.of(21)
+            })
+            classpath = probeClasspath
+            mainClass = project.file('docs/review/01-ping/proof/ConfigProbe.java').absolutePath
+            doFirst {
+                variant.mkdirs()
+                new File(variant, 'application.properties').text =
+                    project.file('src/functionalTest/resources/application.properties').text
+                        .replace('logging.structured.format.console=\n', '')
+            }
+        }
+    }
+}
