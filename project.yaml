@@ -10,6 +10,12 @@ install:
 missions:
   root: missions
 
+# Attributed proof judgments: the QA Agent judges proof-contract items
+# (rig proof judge); delivery stamps follow the human's ship sign-off.
+proofPolicy:
+  judges:
+    - qa-agent@urlshort-factory
+
 # Mission lifecycle: the mission-level dependency graph (pure depends_on DAG).
 # Slices are NOT steps here — each slice runs as its own urlshort-slice workflow
 # instance, launched and awaited by wave_integration (fan-out / fan-in).
