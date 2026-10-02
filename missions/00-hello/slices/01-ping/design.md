@@ -283,16 +283,13 @@ not listed in §1.
 | `src/{main,test,functionalTest}/java/dev/urlshort/ping/` | yes (since `ae8b303`) | yes — `PingController`, `PingResponse`, their tests |
 | `src/{main,test,functionalTest}/java/dev/urlshort/web/` | yes (since `adfa5ca`, decompose) | yes — `RequestIdFilter` and its unit test |
 | `src/functionalTest/resources/application.properties` | yes (granted at `0160958`) | yes — **deleted**, replaced by the profile file below (§7) |
-| `src/functionalTest/resources/application-functional.properties` | **no** | **requested** — new file holding the suite's in-memory H2 override (§7) |
-| `build.gradle.kts`, the `functionalTest` suite target block only | **no** | **requested** — one line activating the `functional` profile for the suite's JVM (§7) |
+| `src/functionalTest/resources/application-functional.properties` | yes (granted on `qitem-20261002230608-0396d59c`) | yes — new file holding the suite's in-memory H2 override (§7) |
+| `build.gradle.kts`, the `functionalTest` suite target block only | yes (granted on the same item; the limit is recorded as a comment in `slice.yaml`) | yes — one line activating the `functional` profile for the suite's JVM (§7) |
 
-Two asks to the orchestration lead, routed as a queue item (id recorded in
-`missions/00-hello/NOTES.md` §3). Recommended default: grant both, so the
-configuration change lands in the same slice commit as the tests that need
-it and is reviewed with them. Alternative: the lead lands the build line on
-`main` as a chore and the builder merges `main` into the slice branch; more
-operations, same result. Neither ask blocks the design re-review; both are
-needed before implement.
+Both extensions were asked of the orchestration lead as a queue item and
+granted at 23:06Z, so the configuration change lands in the same slice commit
+as the tests that need it and is reviewed with them. No territory question
+remains open.
 
 History of this section: the first version reported `web/` as missing from
 `slice.yaml` (stale working-copy read; `web/` has been there since `adfa5ca`)
