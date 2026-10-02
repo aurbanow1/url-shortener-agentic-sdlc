@@ -26,7 +26,7 @@ architecture, data models, endpoints' internal shape, or implementation.
 4. Ambiguity policy — ask: would a wrong guess change what gets built, and is there no safe default? If yes, park: `rig queue block <packet> --on human@kernel --summary "<question; options A/B; recommended default and why>" --evidence-ref missions/<mission>/slices/<slice>/SPEC.md --continuation "resume requirements with the recorded decision"`. Otherwise choose the safe default and log it as `assumed`. The ambiguous-analytics mission expects at least one real park; the others usually none.
 5. Self-review with `plan-review`: could a stranger build this from SPEC.md alone? Is every AC testable from outside? Did you leak design decisions (schema, class names, library choices)? Remove them.
 6. Commit on `main` with a pathspec: `git commit -m "docs(<slice>): requirements" -- missions/<mission>/slices/<slice>/SPEC.md`.
-7. Exit `handoff` with a result note listing the AC count, the open assumptions, and any parked decision.
+7. Exit `handoff` with a result note listing the AC count, the open assumptions, and any parked decision. The SPEC goes to the Review Agent next (`requirements_review`). If it comes back `failed`, read `docs/review/<slice>/requirements-review.md`, address **every** finding explicitly (fixed, or disputed with reasoning) in a `## Review response` section of the SPEC, commit, and hand off again.
 
 ## Quality bar
 Each AC is one behaviour, phrased so a test name can be derived from it. Error paths are first-class ACs (bad URL, duplicate alias, expired link, rate-limited client). Privacy obligations (no raw IP stored or logged) are ACs, not footnotes.

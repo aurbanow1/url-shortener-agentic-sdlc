@@ -7,8 +7,8 @@ workflow:
   version: 1
   objective: >-
     Take one low-tier slice from intent to an accepted, merged candidate with
-    the plan-lock delegated to the orchestration lead; every other step is
-    identical to urlshort-slice.
+    the plan-lock delegated to the orchestration lead; every other step
+    (including the per-chunk reviews) is identical to urlshort-slice.
   target:
     rig: urlshort-factory
   entry:
@@ -26,6 +26,10 @@ workflow:
       preferred_targets: [development-agent@urlshort-factory]
     qa:
       preferred_targets: [qa-agent@urlshort-factory]
+    requirements_review:
+      preferred_targets: [review-agent@urlshort-factory]
+    design_review:
+      preferred_targets: [review-agent@urlshort-factory]
     code_review:
       preferred_targets: [review-agent@urlshort-factory]
     security:
@@ -44,7 +48,21 @@ workflow:
       allowed_exits: [handoff, waiting, failed]
       next_hop:
         mode: require
+        suggested_roles: [requirements_review]
+    - id: requirements_review
+      actor_role: requirements_review
+      objective: >-
+        Independent review of SPEC.md before anything is designed: every
+        acceptance criterion observable from the public surface, error and
+        privacy paths present, ambiguity-log resolutions sound, proof contract
+        complete, no design leaked in. Findings carry severity; MUST-FIX or
+        HIGH routes back to requirements.
+      allowed_exits: [handoff, waiting, failed]
+      next_hop:
+        mode: require
         suggested_roles: [design]
+        on:
+          failed: requirements
     - id: design
       actor_role: design
       objective: >-
@@ -53,8 +71,22 @@ workflow:
         and an impact analysis for brownfield slices.
       allowed_exits: [handoff, waiting, failed]
       next_hop:
+        mode: require
+        suggested_roles: [design_review]
+    - id: design_review
+      actor_role: design_review
+      objective: >-
+        Independent review of design.md (and impact-analysis.md on brownfield
+        slices) against the SPEC: every acceptance criterion reachable, error
+        contract explicit, data model and migration reversible, threat model
+        covering every new entry point, smallest structure that satisfies the
+        SPEC. MUST-FIX or HIGH routes back to design; otherwise the locked set
+        proceeds to plan_lock.
+      allowed_exits: [handoff, waiting, failed]
+      next_hop:
         on:
           handoff: plan_lock
+          failed: design
     - id: plan_lock
       actor_role: design
       objective: >-
@@ -99,8 +131,9 @@ workflow:
       objective: >-
         Independent review of the exact candidate against SPEC and design:
         every changed file read, findings with severity and evidence, anti-slop
-        and drift checks, review ledger updated. MUST-FIX or HIGH routes back to
-        implement.
+        and drift checks, review ledger updated — and a review of the QA
+        evidence itself (traceability complete, coverage honest, gaps real).
+        MUST-FIX or HIGH routes back to implement.
       allowed_exits: [handoff, waiting, failed]
       next_hop:
         mode: require
@@ -145,7 +178,7 @@ workflow:
     closure_required: true
     allowed_exits: [handoff, waiting, done, failed]
   loop_guards:
-    max_hops: 24
+    max_hops: 36
     spawn_budget: 0
   closure:
     success: Slice merged into main with all proof-contract items accepted.

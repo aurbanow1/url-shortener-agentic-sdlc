@@ -83,20 +83,28 @@ flowchart TB
 
 ```mermaid
 flowchart LR
-  DEC[decompose<br/>Planning] --> MPL{{mission_plan_lock<br/>human}}
+  DEC[decompose<br/>Planning] --> DR[decomposition_review<br/>Review Agent]
+  DR --> MPL{{mission_plan_lock<br/>human}}
   MPL --> WI[wave_integration<br/>Integrator: launch slice instances, wait on proofs, merge serially]
   WI --> WR[wave_review<br/>two vantages, authors excluded]
   WR --> RP[release_prep<br/>Release Agent]
-  RP --> SS{{ship_signoff<br/>human}}
+  RP --> RR[release_review<br/>Review Agent]
+  RR --> SS{{ship_signoff<br/>human}}
   SS --> EX[evidence_export] --> MC[mission_close]
 ```
 
 **Slice workflow** (`rig/workflows/urlshort-slice.workflow.yaml`; a `next_hop`
-routing graph with bounded loops, one instance per slice):
+routing graph with bounded loops, one instance per slice). Every producing
+step is followed by an independent review whose `failed` verdict routes back to
+the producer; human gates come after a review, never before:
 
 ```mermaid
 flowchart LR
-  REQ[requirements] --> DES[design] --> PL{{plan_lock<br/>human or lead, by tier}}
+  REQ[requirements] --> RQR[requirements_review]
+  RQR -- failed --> REQ
+  RQR --> DES[design] --> DSR[design_review]
+  DSR -- failed --> DES
+  DSR --> PL{{plan_lock<br/>human or lead, by tier}}
   PL --> IMPL[implement] --> QA[qa_check]
   QA -- failed --> IMPL
   QA --> CR[code_review]
@@ -139,6 +147,7 @@ risk tier is there too.
 
 | Decision | Why |
 |---|---|
+| A reviewer for every chunk, not only for code | requirements, design, decomposition and release packages are reviewed by an independent seat before they are consumed or put in front of the human; the human is never the first reviewer |
 | Own role specs instead of OpenRig's builtin agents | the brief names the agents; contracts had to be specific (Java/Spring/Gradle, exact artifacts, exit semantics). The builtins' generic guidance stays vendored for reference |
 | Release steps live at mission level, not per slice | shipping is a high-impact act; clean slice closeouts auto-continue instead of manufacturing a human gate each time |
 | Risk-tiered plan-lock | human attention goes to foundations, migrations, security-relevant and ambiguous slices; low-tier plan-locks are delegated and recorded |

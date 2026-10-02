@@ -13,4 +13,5 @@ normal work are listed separately at the bottom.
 
 | When | Slice | What failed | How it was handled | Evidence |
 |---|---|---|---|---|
+| 2026-10-02 22:3xZ | 00-hello lifecycle | per-chunk review steps added to the mission profile while the lifecycle was running | `rig workflow revise 01M3Z8AJ…` reported `incompatible` (mission_plan_lock already completed; new predecessor would rewrite completed work) and adopted nothing — the dry run finishes on its original graph, later missions use the new one | revise receipt in `docs/evidence/00-hello/` (next export), commit of `project.yaml` |
 | 2026-10-02 22:21–22:23Z | 00-hello / 01-ping (design step) | design-agent sat at a Claude Code WebFetch permission prompt (Spring Boot 4.1 release notes); packet idle 10 min | OpenRig stuck-sweep created `qitem-recovery-a562baedab298be5` for the orchestration lead; the lead diagnosed the root cause (operator-only prompt) and parked the finding on the underlying packet; operator approved the fetch and allow-listed documentation domains in `.claude/settings.json` | `docs/evidence/00-hello/packets/qitem-recovery-a562baedab298be5.*`, commit `4b67617` |

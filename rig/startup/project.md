@@ -24,8 +24,8 @@ the repo root; read it. This block is the coordination protocol.
 | `human@kernel` | the human: mission plan-locks, high-tier slice plan-locks, ambiguity decisions, ship sign-offs |
 
 ## 2. How work flows
-- A **mission** (`missions/<mission>/`) runs one lifecycle instance: `decompose → mission_plan_lock → wave_integration → wave_review → release_prep → ship_signoff → evidence_export → mission_close`.
-- A **slice** (`missions/<mission>/slices/<slice>/`) runs one `urlshort-slice` workflow instance: `requirements → design → plan_lock → implement → qa_check → code_review → security_review → integrate → slice_accept`. A failed check in qa_check / code_review / security_review routes back to implement (bounded by `max_hops`).
+- A **mission** (`missions/<mission>/`) runs one lifecycle instance: `decompose → decomposition_review → mission_plan_lock → wave_integration → wave_review → release_prep → release_review → ship_signoff → evidence_export → mission_close`. Every producing step is followed by an independent review by the Review Agent before a human gate; mission-level rework travels back to the producer as a queue item while the review step waits.
+- A **slice** (`missions/<mission>/slices/<slice>/`) runs one `urlshort-slice` workflow instance: `requirements → requirements_review → design → design_review → plan_lock → implement → qa_check → code_review → security_review → integrate → slice_accept`. A failed review routes back to its producer (requirements, design or implement), bounded by `max_hops`.
 - Slice **code** lives in `.worktrees/<slice>/` on branch `slice/<slice>`; slice **documents** (`SPEC.md`, `design.md`, `PROGRESS.md`, `PROOF.md`, `proof/`) and `docs/` evidence live in the main checkout and are committed with explicit pathspecs. Only the orchestration lead merges to `main`.
 
 ## 3. Working a packet (the only loop you need)

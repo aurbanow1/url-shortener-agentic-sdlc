@@ -147,25 +147,31 @@ Edges are coordination shape, not hierarchy: `delegates_to` orders launch, `can_
 
 ```mermaid
 flowchart LR
-  DEC[decompose<br/>Planning: slices, depends_on, wave map, gate tiers] --> MPL{{mission_plan_lock<br/>Orchestrator · gate → HUMAN}}
+  DEC[decompose<br/>Planning: slices, depends_on, wave map, gate tiers] --> DR[decomposition_review<br/>Review Agent]
+  DR --> MPL{{mission_plan_lock<br/>Orchestrator · gate → HUMAN}}
   MPL --> W1[wave_1<br/>Integrator: run slice 01, wait-for-proof]
   W1 --> W2[wave_2<br/>Integrator: run slices 02 ∥ 03, wait-for-proof ×2]
   W2 --> WR[wave_review<br/>Code Review Agent + Design Agent<br/>two vantages, authors excluded]
   WR --> RP[release_prep<br/>Release Agent: installed smoke, docs, evidence, metrics]
-  RP --> SS{{ship_signoff<br/>Release Agent · gate → HUMAN}}
+  RP --> RR[release_review<br/>Review Agent]
+  RR --> SS{{ship_signoff<br/>Release Agent · gate → HUMAN}}
   SS --> EX[evidence_export<br/>Release Agent] --> MC[mission_close<br/>Orchestrator]
 ```
 
 - **Parallel paths with synchronization live here.** A wave step launches one slice workflow instance per slice (02 and 03 run concurrently in separate git worktrees with declared file territories) and exits `waiting --blocked-on <qitem> --wait-for-proof <slice>` until every slice's judgments land; the Integrator merges candidates serially as they freeze. The fan-in is the wave step's own closure. Wave composition is the care dial: a risky slice gets a wave of its own.
 - **Re-plan.** When a SPEC or the decomposition changes (the ambiguous scenario), Planning edits `mission.yaml` / `slice.yaml` and runs `rig workflow revise --apply`; completed steps are preserved, unstarted successors adopt the change.
 - Missions 02 and 03 depend on 01; the project-level order is recorded in `project.yaml`.
+- `decomposition_review` and `release_review` (Review Agent) precede the two human gates: the human is never the first reviewer. The lifecycle DAG has no back-edges, so mission-level rework travels to the producer as a queue item while the review step waits.
 
 ### 5.3 Slice workflow (`next_hop`; one instance per slice)
 
 ```mermaid
 flowchart LR
-  REQ[requirements<br/>Requirements Agent] --> DES[design<br/>Design Agent]
-  DES --> PL{{plan_lock<br/>Design Agent · gate → HUMAN or Orchestrator, by risk tier}}
+  REQ[requirements<br/>Requirements Agent] --> RQR[requirements_review<br/>Review Agent]
+  RQR -- failed --> REQ
+  RQR --> DES[design<br/>Design Agent] --> DSR[design_review<br/>Review Agent]
+  DSR -- failed --> DES
+  DSR --> PL{{plan_lock<br/>Design Agent · gate → HUMAN or Orchestrator, by risk tier}}
   PL --> IMPL[implement<br/>Development Agent]
   IMPL --> QA[qa_check<br/>QA Agent]
   QA -- failed --> IMPL
@@ -179,7 +185,7 @@ flowchart LR
   EXC[exception dial → Orchestrator] -.-> IMPL & QA & INT
 ```
 
-- 9 steps; bounded remediation loops from `qa_check` / `code_review` / `security_review` back to `implement`. `loop_guards.max_hops` is sized from the graph, not guessed: 9 + 3 rounds × the 4-hop loop = 21 → **24**, arithmetic kept in the spec comment. A trip becomes an exception; `rig workflow resume --decision "<why>"` grants one more window.
+- 11 steps; **every producing step is followed by an independent review** (requirements_review, design_review, code_review + security_review) whose `failed` verdict routes back to the producer. `loop_guards.max_hops` is sized from the graph, not guessed: 11 + 2×2 + 2×2 + 3×4 = 31 → **36**, arithmetic kept in the spec comment. A trip becomes an exception; `rig workflow resume --decision "<why>"` grants one more window.
 - Release work is deliberately **not** per slice: shipping is a mission-level act (§5.2). A slice ends at `slice_accept`: QA records attributed judgments (`rig proof judge`; policy `proofPolicy.judges: [qa-agent@urlshort-factory]`), the proof-lock stamp is written (`rig scope slice approve --scope delivery`, by you or by the orchestrator `--on-behalf-of`, recorded), and the conveyor auto-continues — no manufactured human gate on a clean closeout.
 - Gates are ordinary steps with an owner whose `gate:` routes to the human (`plan_lock` → Design Agent; `mission_plan_lock` → Orchestrator; `ship_signoff` → Release Agent, routed from `release_prep` by explicit step id because they share the actor, as in the shipped `factory-rsi` spec). Each carries `summary` + `evidence_ref` (SPEC.md / mission SPEC.md + wave map / PROOF.md).
 - Every packet ends with an authored exit (`handoff | waiting | failed | done`) — the hot-potato rule: no seat idles while holding work.

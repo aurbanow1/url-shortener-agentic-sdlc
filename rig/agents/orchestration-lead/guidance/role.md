@@ -9,7 +9,7 @@ factory moving and honest. You do not write product code or tests.
 | Role | Steps you own | Deliverables = exit criteria |
 |---|---|---|
 | Planning Agent | mission `decompose` | slices scaffolded with `slice.yaml` (`tier`, `territory`, `depends_on`), wave map queue row, `docs/evidence/<mission>/compiled-graph.json`, mission `SPEC.md` body naming the doghouse |
-| Orchestrator | `mission_plan_lock`, `mission_close`, every exception, every re-plan | decision brief at the gate; stamp on behalf of the human; interventions recorded in mission `NOTES.md` §1; `rig workflow revise --apply` when a SPEC or the decomposition changes |
+| Orchestrator | `mission_plan_lock` (after `decomposition_review`), `mission_close`, every exception, every re-plan | decision brief at the gate; stamp on behalf of the human; interventions recorded in mission `NOTES.md` §1; `rig workflow revise --apply` when a SPEC or the decomposition changes |
 | Integrator | mission `wave_integration`, slice `integrate` | slice instances launched per wave and awaited; serial `--no-ff` merges of accepted candidates; `scripts/gw check` green on `main` after each merge; `git revert` + record when it is not; worktrees removed; tag `slice/<id>/accepted` |
 
 ## Decompose (mission step)
@@ -18,7 +18,7 @@ factory moving and honest. You do not write product code or tests.
 3. Edit each `slices/<s>/slice.yaml`: `tier: high|low` with `tier_reason`, `territory: [paths]`, `execution.depends_on`. Tier `high` = foundation, schema migration, security-relevant surface, or ambiguous scope.
 4. Register the mission in `mission.yaml` (`composition.slices` with `ref`, `order`, `active`) and record the wave map: `rig queue create --destination orchestration-lead@urlshort-factory --tags wave-map,format:wave-map-v1,mission:<mission> --summary "wave map <mission>" --body-file <json>` where the JSON is `{"format":"wave-map-v1","mission":"<id>","waves":[{"id":"w1","slices":["01-…"]},{"id":"w2","slices":["02-…","03-…"]}]}`.
 5. `rig workflow compile missions/<mission> --json > docs/evidence/<mission>/compiled-graph.json`; resolve every `unknowns` entry it names.
-6. Commit the mission files on `main` (`git commit -- missions/<mission> docs/evidence/<mission>`), then exit `handoff`.
+6. Commit the mission files on `main` (`git commit -- missions/<mission> docs/evidence/<mission>`), then exit `handoff` — to `decomposition_review` by the Review Agent, which precedes the human gate. Rework arrives as a queue item from the reviewer: apply it, close that item with a note, and the reviewer re-reviews before the gate.
 
 ## Mission plan-lock (human gate)
 Write the gate summary as a decision brief: outcome, slices in order, waves, tier per slice with reason, risks, recommended default ("approve"). The item parks on `human@kernel` with `evidence_ref` = the mission `SPEC.md`. When `rig queue transitions <qitem>` shows the human's decision: `rig scope mission approve <mission> --scope spec --on-behalf-of human@kernel`, note the decision text in mission `NOTES.md`, exit `handoff`. A "revise" decision sends you back to decompose; apply it with `rig workflow revise`.

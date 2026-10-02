@@ -18,7 +18,8 @@ proofPolicy:
 
 # Mission lifecycle: the mission-level dependency graph (pure depends_on DAG).
 # Slices are NOT steps here — each slice runs as its own urlshort-slice workflow
-# instance, launched and awaited by wave_integration (fan-out / fan-in).
+# instance, launched and awaited by wave_integration (fan-out / fan-in). Every
+# producing step is followed by an independent review before a human gate.
 # Inspect with: rig workflow compile missions/<mission> --json
 lifecycle:
   profile: urlshort-mission-v1
@@ -26,10 +27,12 @@ lifecycle:
     urlshort-mission-v1:
       required_steps:
         - decompose
+        - decomposition_review
         - mission_plan_lock
         - wave_integration
         - wave_review
         - release_prep
+        - release_review
         - ship_signoff
         - evidence_export
         - mission_close
@@ -42,6 +45,7 @@ lifecycle:
           orchestrator:  { preferred_targets: [orchestration-lead@urlshort-factory] }
           integrator:    { preferred_targets: [orchestration-lead@urlshort-factory] }
           wave_reviewer: { preferred_targets: [review-agent@urlshort-factory] }
+          reviewer:      { preferred_targets: [review-agent@urlshort-factory] }
           release:       { preferred_targets: [release-agent@urlshort-factory] }
         steps:
           - id: decompose
@@ -53,9 +57,19 @@ lifecycle:
               map and a gate tier per slice, scaffold slice.yaml files, and export
               the compiled graph to docs/evidence/<mission>/compiled-graph.json.
             allowed_exits: [handoff, waiting, failed]
+          - id: decomposition_review
+            actor_role: reviewer
+            depends_on: [decompose]
+            objective: >-
+              Independent review of the decomposition before the human sees it:
+              slices are single buildable outcomes with disjoint territories,
+              dependencies and waves are consistent with the intent, gate tiers
+              are justified, risks are named. Rework goes back to the planner by
+              queue handoff while this step waits; a clean review hands off.
+            allowed_exits: [handoff, waiting, failed]
           - id: mission_plan_lock
             actor_role: orchestrator
-            depends_on: [decompose]
+            depends_on: [decomposition_review]
             objective: >-
               Hold the decomposition at the human gate: slices, order, waves, gate
               tiers and risks as a decision brief. On approval record the mission
@@ -90,9 +104,19 @@ lifecycle:
               journey, update README/TESTING, write RELEASE.md with evidence links
               and known gaps, export evidence and refresh metrics. Publish nothing.
             allowed_exits: [handoff, waiting, failed]
+          - id: release_review
+            actor_role: reviewer
+            depends_on: [release_prep]
+            objective: >-
+              Independent review of the release package before the human ship
+              gate: every claim in RELEASE.md traced to evidence (proof readiness,
+              review verdicts, coverage, smoke), known gaps complete and honest,
+              rollback path real. Rework goes back to the release agent by queue
+              handoff while this step waits; a clean review hands off.
+            allowed_exits: [handoff, waiting, failed]
           - id: ship_signoff
             actor_role: release
-            depends_on: [release_prep]
+            depends_on: [release_review]
             objective: >-
               Hold the ship decision at the human gate against RELEASE.md. Approval
               records delivery stamps for the mission's slices; nothing is

@@ -12,7 +12,7 @@ In `missions/<mission>/slices/<slice>/`:
 - `docs/DESIGN.md` (system view, kept current across slices) and `docs/diagrams/*.mmd` (context/container, ERD, key sequences). Update rather than append; stale diagrams are worse than none.
 - Brownfield slices only: `impact-analysis.md` — impacted modules, endpoints, schema, data flows; blast radius; migration and rollback plan; test impact; compatibility notes.
 - Commit on `main` with a pathspec: `git commit -m "docs(<slice>): design" -- missions/<mission>/slices/<slice> docs/adr docs/DESIGN.md docs/diagrams`.
-- Exit `handoff` (routes to `plan_lock`, which you also own).
+- Exit `handoff`. The design goes to the Review Agent (`design_review`). A `failed` review returns the packet to you with `docs/review/<slice>/design-review.md`: address every finding explicitly, commit, hand off again. A passed review routes to `plan_lock`, which you also own.
 
 ## Step `plan_lock`
 You own the gate step. The locked set is `SPEC.md` + `design.md` (+ `impact-analysis.md` when present).
