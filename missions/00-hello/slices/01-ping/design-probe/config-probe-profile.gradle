@@ -1,0 +1,39 @@
+// Probe for the revised AC-5/AC-6 configuration mechanism (design.md section 7,
+// response to DR-01). Run from the repo root:
+//   scripts/gw --offline -I missions/00-hello/slices/01-ping/design-probe/config-probe-profile.gradle designConfigProfileOverlay designConfigProfileOverlayNoProfile
+// No product, test or build file changes. Two tasks:
+//   designConfigProfileOverlay          — functional runtime classpath with its resources dir
+//                                         replaced by a variant holding ONLY
+//                                         application-functional.properties (datasource lines),
+//                                         JVM started with -Dspring.profiles.active=functional.
+//                                         Expected: shipped values present, datasource overridden.
+//   designConfigProfileOverlayNoProfile — same classpath, no profile. Shows the shipped file DB
+//                                         URL would be used, i.e. the profile activation is what
+//                                         keeps the temporary H2 database.
+gradle.projectsEvaluated {
+    def project = gradle.rootProject
+    def functional = project.sourceSets.functionalTest
+    def variant = project.layout.buildDirectory.dir('design/01-ping/profile-overlay').get().asFile
+    def probeClasspath = project.files(variant) + functional.runtimeClasspath.filter {
+        it != functional.output.resourcesDir
+    }
+    [designConfigProfileOverlay: 'functional', designConfigProfileOverlayNoProfile: null].each { name, profile ->
+        project.tasks.register(name, JavaExec) {
+            dependsOn project.tasks.named('functionalTestClasses')
+            javaLauncher.set(project.javaToolchains.launcherFor {
+                languageVersion = JavaLanguageVersion.of(21)
+            })
+            classpath = probeClasspath
+            mainClass = project.file('missions/00-hello/slices/01-ping/design-probe/ConfigProbe.java').absolutePath
+            if (profile != null) {
+                systemProperty 'spring.profiles.active', profile
+            }
+            doFirst {
+                variant.mkdirs()
+                new File(variant, 'application-functional.properties').text =
+                    project.file('src/functionalTest/resources/application.properties').text
+                        .replace('logging.structured.format.console=\n', '')
+            }
+        }
+    }
+}

@@ -23,7 +23,7 @@ where the platform already does the job, the design says so and adds no code.
 | Problem-detail handling | `org.springframework.boot.webmvc.autoconfigure.ProblemDetailsExceptionHandler` (platform) | **unchanged** | Already enabled by `spring.mvc.problemdetails.enabled=true`; turns the wrong-method exception into an RFC 9457 body (AC-5, BR-7). **No project `@RestControllerAdvice` is added** by this slice (ADR-0002). |
 | Structured logging | `logging.structured.format.console=ecs` (platform, shipped config) | **unchanged** | Renders every log event as one ECS JSON object per line; MDC entries become top-level members (AC-6). |
 | Application class, properties, build | `UrlshortApplication`, `src/main/resources/application.properties`, `build.gradle.kts` | **unchanged** | — |
-| Functional-suite properties | `src/functionalTest/resources/application.properties` | **one-line deletion, see §9 Territory** | Stop blanking the structured format so HTTP journeys run under the shipped logging configuration (AC-6 GIVEN). |
+| Functional-suite configuration | `src/functionalTest/resources/application-functional.properties` (**replaces** the suite's `application.properties`) and the `functionalTest` suite block in `build.gradle.kts` | **changed, see §7 and §9** | The suite's overrides (in-memory H2) move into a profile-specific file and the suite's JVM activates the `functional` profile, so the shipped `application.properties` is loaded as the base instead of being shadowed. Prerequisite for both AC-5 (problem details enabled) and AC-6 (ECS format). |
 
 Mechanics the builder relies on, all platform-provided:
 
@@ -186,27 +186,68 @@ with a `CapturedOutput` parameter where log output is inspected
 | BR-1, BR-2, BR-3 | unit | `RequestIdFilterTest` | with `MockHttpServletRequest/Response` and a chain lambda: header value equals `MDC.get("requestId")` *during* the chain; MDC is empty after; an inbound `X-Request-Id` does not influence the issued id; two invocations differ; MDC is cleared when the chain throws |
 | BR-4, BR-5, BR-6 | unit | `PingControllerTest` | `new PingController().ping()` → `status == "ok"`, `Instant.parse(time)` succeeds, ends with `Z` |
 
-**AC-6 mechanism — read this before writing the test.** AC-6 requires the
-*shipped* logging configuration, but both test property files set
-`logging.structured.format.console=` (blank), so a suite run as configured
-emits plain text, and no MDC-presence check counts as proof (SPEC A-6).
+**AC-5 / AC-6 configuration mechanism — read this before writing any
+functional test.** Spring Boot loads `classpath:/application.properties` as a
+*single* resource. The functional suite's
+`src/functionalTest/resources/application.properties` comes first on the test
+classpath and therefore **shadows** the shipped file entirely: in the suite as
+it stands, `spring.mvc.problemdetails.enabled` and
+`logging.structured.format.console` are not overridden, they are *absent*
+(design review finding DR-01, reproduced in
+`docs/review/01-ping/proof/config-probe.txt`). Deleting the blank logging
+line, as the first version of this design proposed, changes nothing. Without
+the shipped property the platform problem-details handler is not registered
+either, so AC-5 would have failed as well.
 
-- **Recommended:** delete the blanking line from
-  `src/functionalTest/resources/application.properties` so the whole functional
-  suite runs under the shipped ECS format. One-line deletion, deterministic,
-  independent of test order; the unit suite keeps plain text. This file is
-  outside the current territory — see §9.
-- **Fallback if the territory is not widened:** a per-class override on the
-  ping journey test, `@TestPropertySource(properties =
-  "logging.structured.format.console=ecs")`. Uncertainty, stated plainly: Boot
-  configures Logback before the ApplicationContext exists and the Logback
-  configuration is applied once per JVM, so a format change requested by a
-  *later* test context in the same JVM may not be re-applied. The builder's
-  TDD loop proves which way it goes.
-- **Rule either way:** the AC-6 test must **fail** when the captured line is
-  not a JSON object. Never skip, never degrade to "MDC contained the key".
-  If the fallback does not produce JSON, stop and route the territory
-  question rather than weakening the test.
+Mechanism, verified by effect on the real functional runtime classpath
+(`design-probe/output.txt`; rerun with
+`scripts/gw --offline -I missions/00-hello/slices/01-ping/design-probe/config-probe-profile.gradle designConfigProfileOverlay designConfigProfileOverlayNoProfile`):
+
+1. Rename `src/functionalTest/resources/application.properties` to
+   `src/functionalTest/resources/application-functional.properties` and keep
+   only the three datasource lines (in-memory H2). The blank
+   `logging.structured.format.console=` line is dropped.
+2. In `build.gradle.kts`, inside the existing `functionalTest` suite target
+   block, add `systemProperty("spring.profiles.active", "functional")` to the
+   `testTask.configure { … }` call. The suite's JVM then activates the profile
+   and Boot layers the profile file over the shipped base.
+
+Effective properties with the profile active (probe output):
+
+| Property | Value | Source |
+|---|---|---|
+| `spring.application.name` | `urlshort` | shipped `application.properties` |
+| `spring.mvc.problemdetails.enabled` | `true` | shipped |
+| `logging.structured.format.console` | `ecs` | shipped |
+| `spring.datasource.url` | `jdbc:h2:mem:urlshort-functional;MODE=PostgreSQL;DB_CLOSE_DELAY=-1` | `application-functional.properties` (profile, higher precedence) |
+| `spring.flyway.enabled` | `true` | shipped |
+
+The probe's second task runs the same classpath without the profile and gets
+the shipped file-DB URL, so the profile activation, not the rename alone, is
+what keeps the temporary database.
+
+Consequences for the tests: the whole functional suite boots on the shipped
+configuration. Every functional log line is ECS JSON from the first context,
+so nothing depends on test order or on Boot re-applying a logging format for
+a later context; the earlier per-class override fallback is withdrawn.
+`HealthJourneyTest` is unaffected (same datasource, health unchanged). Flyway
+runs against the in-memory database with no migrations, as it already does.
+
+Rejected alternatives: duplicating the two shipped values into the functional
+`application.properties` (tests would prove a copy of the configuration and
+drift would go unnoticed); `spring.config.import` of the shipped file through
+a build-output path (couples tests to the build layout); `@ActiveProfiles` or
+`@TestPropertySource` per test class (needs every functional test class,
+including `HealthJourneyTest` outside the territory, and a per-class logging
+override is order-dependent).
+
+Rule unchanged: the AC-6 test must **fail** when a captured line carrying `R`
+is not a JSON object. Never skip, never degrade to "MDC contained the key".
+
+The unit suite's `src/test/resources/application.properties` shadows the
+shipped file the same way. Harmless today (no unit test depends on shipped
+values); converting it to the same profile pattern is a follow-up for the
+orchestration lead, not part of this slice.
 
 Coverage: the new code has no conditional branches (UUID, `setHeader`,
 `MDC.put/remove`, one record, one `log.info`). 100 % line and branch is
@@ -227,8 +268,8 @@ whole capture of that method.
 | AC-2 | `Instant.now().toString()` | — | ✔ |
 | AC-3 | `RequestIdFilter` header | — | ✔ |
 | AC-4 | `UUID.randomUUID()` | — | ✔ |
-| AC-5 | filter order + platform `ProblemDetailsExceptionHandler` | yes, §2 error table | other methods ✔ |
-| AC-6 | MDC + shipped ECS format + §7 mechanism | — | log stream ✔ |
+| AC-5 | filter order + platform `ProblemDetailsExceptionHandler`, enabled by the shipped property that the functional suite now loads (§7) | yes, §2 error table | other methods ✔ |
+| AC-6 | MDC + shipped ECS format, loaded in the functional suite through the profile overlay (§7) | — | log stream ✔ |
 | AC-7 | nothing logs IP/UA; canary test | — | inbound headers ✔ |
 | AC-8 | filter never reads request headers | — | inbound `X-Request-Id` ✔ |
 
@@ -241,14 +282,24 @@ not listed in §1.
 |---|---|---|
 | `src/{main,test,functionalTest}/java/dev/urlshort/ping/` | yes (since `ae8b303`) | yes — `PingController`, `PingResponse`, their tests |
 | `src/{main,test,functionalTest}/java/dev/urlshort/web/` | yes (since `adfa5ca`, decompose) | yes — `RequestIdFilter` and its unit test |
-| `src/functionalTest/resources/application.properties` | yes (granted at `0160958` on this design's request) | yes — one-line deletion for the AC-6 mechanism (recommended option in §7). The builder takes the recommended path; the §7 fallback is no longer needed |
+| `src/functionalTest/resources/application.properties` | yes (granted at `0160958`) | yes — **deleted**, replaced by the profile file below (§7) |
+| `src/functionalTest/resources/application-functional.properties` | **no** | **requested** — new file holding the suite's in-memory H2 override (§7) |
+| `build.gradle.kts`, the `functionalTest` suite target block only | **no** | **requested** — one line activating the `functional` profile for the suite's JVM (§7) |
 
-Record of how this section got here: the first version of this design
-reported `web/` as missing from `slice.yaml`; that came from a stale read of
-the working copy, not from `main`. The orchestration lead confirmed `web/`
-had been in the manifest since `adfa5ca` and granted the properties file
-(queue item `qitem-20261002225104-18f52706`, closed). No territory question
-remains open.
+Two asks to the orchestration lead, routed as a queue item (id recorded in
+`missions/00-hello/NOTES.md` §3). Recommended default: grant both, so the
+configuration change lands in the same slice commit as the tests that need
+it and is reviewed with them. Alternative: the lead lands the build line on
+`main` as a chore and the builder merges `main` into the slice branch; more
+operations, same result. Neither ask blocks the design re-review; both are
+needed before implement.
+
+History of this section: the first version reported `web/` as missing from
+`slice.yaml` (stale working-copy read; `web/` has been there since `adfa5ca`)
+and asked for the functional `application.properties`, which the lead
+granted (`qitem-20261002225104-18f52706`). Design review DR-01 then showed
+that editing that file cannot restore the shipped settings, which is why the
+territory now extends to the profile file and the build block.
 
 Everything else this design touches is documentation in the main checkout.
 
@@ -263,16 +314,27 @@ Not decided here (deferred to the slice that introduces them): H2 + Flyway
 schema conventions, 301 vs 302 redirects, short-code generation, salted IP
 hashing, audit-record shape.
 
+## 11. Review responses
+
+| Finding | Severity | Response | Evidence |
+|---|---|---|---|
+| DR-01 — the functional `application.properties` shadows the shipped resource; the proposed deletion leaves ECS logging and problem-details enablement absent (`docs/review/01-ping/design-review.md`) | HIGH | **Fixed.** Cause accepted: Boot loads a single `classpath:/application.properties`, and the suite's copy wins. Mechanism replaced by a profile overlay: the suite's overrides move to `application-functional.properties` and the `functionalTest` task activates the `functional` profile, so the shipped file is the base (§7). Verified on the real functional runtime classpath with a variant of the reviewer's probe: shipped values present, in-memory H2 retained, and the no-profile control shows the file-DB URL. AC-5 and AC-6 assertions unchanged; the fail-on-non-JSON rule stands. Two territory items (new profile file, build block) requested from the lead (§9). | `design-probe/output.txt`, `design-probe/config-probe-profile.gradle`, `design-probe/ConfigProbe.java` |
+
 ## Status
 
-- 2026-10-02 — design written against SPEC.md (8 AC, 8 BR). No question parked
-  on `human@kernel`; two territory asks routed to the orchestration lead.
-  Awaiting plan-lock.
+- 2026-10-02 22:48Z — design written against SPEC.md (8 AC, 8 BR). No
+  question parked on `human@kernel`; territory asks routed to the lead.
+- 2026-10-02 22:59Z — design review FAIL (DR-01, HIGH). Returned to design.
+- 2026-10-02 23:06Z — DR-01 fixed with a probe-verified profile-overlay
+  mechanism (§7, §11); territory extension requested from the lead as
+  `qitem-20261002230608-0396d59c` (§9). Re-submitted for review.
 
 ## Self-check
 
-Recorded before handoff to `plan_lock`. "Verified" means I read the SPEC
-clause and the design section side by side; nothing here was executed.
+Recorded before each handoff; this version covers the re-review candidate
+after DR-01. "Verified" means I read the SPEC clause and the design section
+side by side; the only thing executed is the configuration probe in
+`design-probe/`.
 
 | # | Item | Result | Where |
 |---|---|---|---|
@@ -281,10 +343,11 @@ clause and the design section side by side; nothing here was executed.
 | 3 | Migration has a written rollback | n/a — no schema change, no migration; stated explicitly | §3 |
 | 4 | Log/audit events PII-free | ✔ one event `ping` with `requestId` only; never IP, `User-Agent`, copied inbound headers; no audit events | §5 |
 | 5 | Threat model covers every new entry point | ✔ `GET /api/ping`, other methods on `/api/ping`, inbound headers (`X-Request-Id`, `User-Agent`); STRIDE rows with mitigations and accepted residuals | §6 |
-| 6 | Test strategy maps each AC to a suite | ✔ 8 functional tests (one per AC) + 2 unit tests (filter, controller); AC-6 mechanism named with recommended path, fallback and a fail-not-skip rule | §7 |
-| 7 | No structure beyond the SPEC | ✔ no `Clock` bean, no `@RestControllerAdvice`, no service/repository layer, no access log, no new dependency | §1 |
-| 8 | Territory respected | ✔ design stays inside `ping/`, `web/` and the granted `functionalTest` properties file; nothing outside the manifest on `main` | §9 |
-| 9 | ADRs for cross-cutting choices | ✔ ADR-0001 stack, 0002 problem details, 0003 request id, 0004 structured logs / PII | §10, `docs/adr/` |
+| 6 | Test strategy maps each AC to a suite | ✔ 8 functional tests (one per AC) + 2 unit tests (filter, controller); the suite configuration that AC-5 and AC-6 depend on is specified and verified by probe, with a fail-not-skip rule for AC-6 | §7 |
+| 7 | No structure beyond the SPEC | ✔ no `Clock` bean, no `@RestControllerAdvice`, no service/repository layer, no access log, no new dependency; the configuration change is a rename plus one build line, no new mechanism | §1 |
+| 8 | Territory respected | ✔ design stays inside `ping/`, `web/` and the granted properties file; the two further paths it needs (profile file, build block) are **requested**, not taken | §9 |
+| 9 | ADRs for cross-cutting choices | ✔ ADR-0001 stack, 0002 problem details, 0003 request id, 0004 structured logs / PII (updated with the suite-configuration rule) | §10, `docs/adr/` |
+| 10 | Every review finding answered | ✔ DR-01 fixed with evidence; no disputed findings | §11 |
 
 ### plan-review (three lenses, proportionate to a dry-run slice)
 
@@ -312,13 +375,13 @@ classes and about ten tests; realistic for one implement step.
 **Issues found**
 
 - Blocking: none.
-- Important, both resolved before plan-lock: (1) the review first reported
-  `web/` as missing from `slice.yaml`; a check against `main` showed it present
-  since `adfa5ca` (stale working-copy read). (2) The recommended AC-6
-  mechanism needed `src/functionalTest/resources/application.properties` in
-  the territory; the lead granted it at `0160958`, so the builder takes the
-  recommended path and the §7 fallback stays documented only as the
-  fail-not-skip rule's origin.
+- Important: (1) the first version's AC-6 mechanism (delete one line in the
+  functional `application.properties`) could not work because that file
+  shadows the shipped one; found by the independent design review (DR-01)
+  and replaced with a probe-verified profile overlay (§7, §11). (2) The
+  replacement needs two more paths in the territory (profile file, build
+  block), requested from the lead (§9); not blocking the re-review. The
+  earlier `slice.yaml` drift report was a stale read and is withdrawn.
 - Suggestions: assert `Content-Type` with "compatible with" matchers so a
   future charset parameter cannot break AC-1/AC-5; keep the `Allow` header
   and `detail` wording unasserted (framework-owned).

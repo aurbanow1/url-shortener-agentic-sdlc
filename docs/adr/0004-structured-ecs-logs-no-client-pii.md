@@ -23,10 +23,16 @@ would hide the JSON contract from the tests that are supposed to prove it.
   value, or any value copied from an inbound request header. Framework
   loggers stay at INFO in the shipped configuration; Tomcat access logging
   stays off.
-- The unit suite keeps plain-text logging. The functional suite runs under
-  the shipped structured format so HTTP journeys prove the JSON contract by
-  effect; tests assert only the members they own (`requestId`, absence of
-  canaries), never the ECS envelope.
+- The functional suite runs under the shipped structured format so HTTP
+  journeys prove the JSON contract by effect; tests assert only the members
+  they own (`requestId`, absence of canaries), never the ECS envelope.
+- Suite-specific overrides live in profile-specific files
+  (`application-<suite>.properties`, for example `application-functional.properties`)
+  activated by the suite's Gradle task. A suite-level `application.properties`
+  is not used: Boot loads `classpath:/application.properties` as a single
+  resource, so a test copy shadows the shipped file instead of overriding it
+  (found by the `01-ping` design review, DR-01). The unit suite still carries
+  such a file; converting it is a follow-up.
 
 ## Consequences
 
@@ -35,8 +41,6 @@ would hide the JSON contract from the tests that are supposed to prove it.
   statistics) must not log or store a raw IP; it uses a salted hash and gets
   its own ADR.
 - Logging is initialised before the `ApplicationContext`, so only
-  Environment-level properties affect it. The intended mechanism is the
-  suite's property file, not a per-test-class override; whether Boot
-  re-applies a format change requested by a later test context in the same
-  JVM is what the `01-ping` builder's AC-6 test establishes (slice design §7
-  names the fallback and the fail-not-skip rule).
+  Environment-level properties affect it. With the shipped file loaded as the
+  suite's base, the functional suite logs ECS JSON from its first context and
+  no per-test-class override is needed or allowed.

@@ -55,7 +55,7 @@ only because it has no logic and no state.
 | Errors | Every non-2xx is an RFC 9457 `ProblemDetail`, `application/problem+json`, no stack trace or class name; platform handler until a domain exception exists | ADR-0002 |
 | Logging | ECS JSON, one object per line, MDC as top-level members; never client IP, `User-Agent` or copied inbound header values | ADR-0004 |
 | Persistence | H2 file DB under `data/`, schema owned by Flyway migrations `src/main/resources/db/migration/V<n>__<name>.sql` | baseline; ADR with the first persisting slice |
-| Tests | unit suite `test` (plain-text logs), functional suite `functionalTest` (`@SpringBootTest` + `MockMvc`, shipped logging format), 100 % line + branch gate on merged data | ADR-0001, `TESTING.md` |
+| Tests | unit suite `test` (plain-text logs), functional suite `functionalTest` (`@SpringBootTest` + `MockMvc`, boots on the shipped `application.properties` plus the `functional` profile overlay for the in-memory database), 100 % line + branch gate on merged data | ADR-0001, ADR-0004, `TESTING.md` |
 
 ## 4. Stack conventions (Spring Boot 4.1.1)
 
@@ -102,6 +102,15 @@ Testing
   **[notes]**
 - Gradle JVM test suites: `functionalTest` runs after `test`; both write
   `build/jacoco/*.exec`; the gate verifies the merged data. **[build.gradle.kts]**
+- A test suite's `application.properties` **shadows** the shipped one: Boot
+  loads `classpath:/application.properties` as a single resource and the test
+  resources come first, so shipped values are absent in that suite, not
+  overridden. Suite overrides therefore go in a profile-specific file
+  (`application-<suite>.properties`) and the suite's Gradle task activates the
+  profile (`systemProperty("spring.profiles.active", "<suite>")`). **[probe:
+  `docs/review/01-ping/proof/config-probe.txt` shows the shadowing,
+  `missions/00-hello/slices/01-ping/design-probe/output.txt` shows the overlay
+  working]**
 
 JSON
 
@@ -126,9 +135,9 @@ Logging
 - Logging is initialised before the `ApplicationContext` is created, so only
   Environment-level properties (property files, system properties, test
   property sources at bootstrap) influence it, and the Logback configuration
-  is applied once per JVM. Set suite-wide logging in the suite's
-  `application.properties`, not per test class. **[docs; per-JVM behaviour to
-  be confirmed by the 01-ping builder, see the slice design §7]**
+  is applied once per JVM. Suite-wide logging therefore comes from the
+  shipped file plus the suite's profile overlay, never from a per-test-class
+  override. **[docs]**
 
 Persistence
 
@@ -165,3 +174,4 @@ salted IP hashing for analytics; audit-record shape.
 | Date | Slice | Change to the system |
 |---|---|---|
 | 2026-10-02 | 01-ping | Adds `web.RequestIdFilter` (cross-cutting) and `ping.PingController`/`PingResponse`; fixes the request-id, error and logging contracts; records ADR-0001..0004 |
+| 2026-10-02 | 01-ping (design review DR-01) | Functional suite configuration becomes a profile overlay (`application-functional.properties` + `functional` profile from the Gradle task) so the shipped `application.properties` is the base in HTTP journeys |
