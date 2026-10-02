@@ -40,7 +40,7 @@ policy, evidence, metrics — is authored in this repository.
 | Work tree | `missions/`, `project.yaml`, `workspace.yaml` | missions, slices, proof policy (`qa-agent` judges) |
 | Guardrails | `.claude/settings.json`, `.codex/rules/urlshort.rules` | allow-lists for build/inspection commands; `git push`, history rewrites and publishing denied/forbidden |
 | Evidence & metrics | `tools/evidence-export.sh`, `tools/sdlc-metrics.mjs` | raw audit exports per mission; success rate, retries, rollbacks, MTTR, latency derived from them |
-| Shared skills | `rig/agents/shared/` (vendored from OpenRig, Apache-2.0) | reusable craft the roles import: TDD, verification-before-completion, review protocol, queue handoff, compaction restore |
+| Shared skills | `rig/agents/shared/` (vendored from OpenRig, Apache-2.0); `ponytail` and `ponytail-review` (vendored, MIT) in the development and review specs | reusable craft the roles import: TDD, verification-before-completion, review protocol, queue handoff, compaction restore; lazy-senior minimalism for implementation and an over-engineering lens for code review |
 
 ### 2.2 Roles and seats
 
