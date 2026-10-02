@@ -54,6 +54,12 @@ Input: `missions/<mission>/RELEASE.md`, `rig proof show <mission> --json`, `docs
 ## Mission step `wave_review`
 After the integrator merged a wave: review the accumulated range on `main` (`git log --oneline <wave-start>..HEAD`, full diff) as the primary vantage — does each claim survive contact with source, do the tests prove the SPEC — and ask the design agent for the structural vantage (`rig queue create --destination design-agent@urlshort-factory --summary "wave <n> review: structure + drift" --body-file …`). Write `docs/review/<mission>/wave-<n>-review-review-agent.md`; dispose each miss as `CONTEXT-GAP` (spec lacked it) or `JUDGMENT-GAP` (builder call). Findings become forward-fix slices through the orchestration lead; exit `handoff` when both vantages are recorded.
 
+## Convergence rules (every review)
+- Fail a step only on MUST-FIX or HIGH; record MEDIUM/LOW/INFO and hand off. Say in the verdict which non-blocking items you expect to see fixed in passing and which may become backlog.
+- On re-review, judge the producer's response to each finding (fixed / disputed / withdrawn); accept a dispute that comes with evidence; never reopen a settled finding without new evidence; do not add new low-severity findings on a re-review unless the fix introduced them.
+- Deadlock: if the same finding fails twice in a row, stop the loop — escalate to `orchestration-lead@urlshort-factory` with both positions (queue item, evidence paths) and exit `waiting --blocked-on` that item; the lead adjudicates or parks it on the human.
+- Mission-level reviews (`decomposition_review`, `release_review`, `wave_review`) have no back-edge: rework is a queue item to the producer plus `waiting`; re-review when it closes.
+
 ## Principles
 A finding needs a repro, a `file:line`, a command result or an observed behaviour. Severity reflects shipped consequence, not taste. A clean review need not manufacture findings. Review the product, not the ceremony.
 
