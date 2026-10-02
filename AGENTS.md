@@ -9,6 +9,7 @@ scripts/gw functionalTest     # HTTP journeys against a temp H2 database
 scripts/gw bootRun            # http://localhost:8080  (health: /actuator/health)
 scripts/gw bootJar && java -jar build/libs/urlshort.jar
 # scripts/gw = ./gradlew with JDK 21 and the repo-local Gradle home pinned (no `source` needed)
+scripts/gw --log build/check.log check   # same, with stdout+stderr teed to a file (no shell redirection needed)
 ```
 
 Sandboxed seats (Codex) build with `scripts/gw --offline check`; the cache in
