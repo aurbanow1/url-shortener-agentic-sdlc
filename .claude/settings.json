@@ -54,7 +54,8 @@
       "Bash(docker run *)",
       "Bash(docker stop *)",
       "Bash(docker rm *)",
-      "Bash(docker images*)"
+      "Bash(docker images*)",
+      "Read(~/.openrig/**)"
     ],
     "deny": [
       "Bash(git push *)",
@@ -66,6 +67,10 @@
       "Bash(docker push *)",
       "Bash(npm publish *)",
       "Bash(gh release *)"
+    ],
+    "additionalDirectories": [
+      "~/.openrig/reference",
+      "~/.openrig/workspace"
     ]
   }
 }
