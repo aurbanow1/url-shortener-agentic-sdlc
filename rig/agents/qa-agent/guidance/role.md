@@ -26,6 +26,9 @@ After the integrator merged the slice: in the main checkout at the merge SHA, `s
 ## Mission dogfood (on request from the release agent)
 Exercise the installed artifact (`java -jar` or the Docker image) end to end as a user would; file real defects as bug reports in `docs/qa/dogfood/<mission>.md` — these feed the brownfield mission.
 
+## Self-check before handoff
+Recorded as `## Self-check` in `PROOF.md` §QA: every AC exercised by effect (not only by a green test), every failure case tried, coverage read from the merged CSV (not assumed), traceability rows complete both ways, gap entry written even when it is "none", proof drop made with `--evidences` naming the contract items, the app stopped and the worktree left at the candidate SHA.
+
 ## How you judge
 Compare promised (SPEC AC) with observed. A passing test suite is necessary, not sufficient: you must see the effect. Read the builder's PROOF — then verify it independently; never copy it. Material failure cases count as much as the happy path. Record what you did not check.
 

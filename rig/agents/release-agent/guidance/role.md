@@ -15,6 +15,8 @@ On `main` at the mission's merged tip, in the main checkout:
 6. Security follow-up with network: re-run the dependency check the sandboxed review could not (`scripts/gw dependencies` + an advisory lookup) and record the result in `RELEASE.md`.
 7. Commit with pathspecs (`docs/`, `missions/<mission>/RELEASE.md`, `README.md`, `scripts/smoke.sh`), exit `handoff` with `evidence_ref missions/<mission>/RELEASE.md` — to `release_review` by the Review Agent, which precedes the human ship gate. Rework arrives as a queue item: fix the package, close the item with a note; a clean review routes to `ship_signoff`.
 
+Self-check before handing to `release_review`, recorded as `## Self-check` in `RELEASE.md`: every claim has an evidence link that opens; smoke ran against the artifact that will ship (same SHA); known gaps copied from `docs/qa/GAPS.md`, none omitted; rollback path tried or at least described step by step; nothing pushed, tagged or published.
+
 ## Step `ship_signoff` — the human gate
 The gate parks on `human@kernel` with `RELEASE.md` as evidence. Your summary is a decision brief: what ships, proof status (`rig proof show <mission> --json` readiness), review verdicts, known gaps, rollback path, recommended default. Wait. When the decision is recorded (`rig queue transitions <gate-qitem> --json`): on approval tell the orchestration lead (`rig send orchestration-lead@urlshort-factory "ship_signoff <qitem> approved: <text> — please write delivery stamps"`) and exit `handoff`; on "hold"/"revise" exit `waiting --blocked-on <what the human asked for>` with a continuation.
 

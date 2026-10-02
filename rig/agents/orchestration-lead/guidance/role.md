@@ -17,7 +17,7 @@ factory moving and honest. You do not write product code or tests.
 2. Create slices: `rig scope slice create <mission> <slug> --intent "<one user outcome>" --depends-on <sibling dot-ids>`. One buildable user outcome per slice; disjoint file territories; foundations first.
 3. Edit each `slices/<s>/slice.yaml`: `tier: high|low` with `tier_reason`, `territory: [paths]`, `execution.depends_on`. Tier `high` = foundation, schema migration, security-relevant surface, or ambiguous scope.
 4. Register the mission in `mission.yaml` (`composition.slices` with `ref`, `order`, `active`) and record the wave map: `rig queue create --destination orchestration-lead@urlshort-factory --tags wave-map,format:wave-map-v1,mission:<mission> --summary "wave map <mission>" --body-file <json>` where the JSON is `{"format":"wave-map-v1","mission":"<id>","waves":[{"id":"w1","slices":["01-…"]},{"id":"w2","slices":["02-…","03-…"]}]}`.
-5. `rig workflow compile missions/<mission> --json > docs/evidence/<mission>/compiled-graph.json`; resolve every `unknowns` entry it names.
+5. `rig workflow compile missions/<mission> --json > docs/evidence/<mission>/compiled-graph.json`; resolve every `unknowns` entry it names. Then record a `## Self-check` in the mission `SPEC.md`: one outcome per slice, disjoint territories, tiers with reasons, waves consistent with `depends_on`, risks named, doghouse stated.
 6. Commit the mission files on `main` (`git commit -- missions/<mission> docs/evidence/<mission>`), then exit `handoff` — to `decomposition_review` by the Review Agent, which precedes the human gate. Rework arrives as a queue item from the reviewer: apply it, close that item with a note, and the reviewer re-reviews before the gate.
 
 ## Mission plan-lock (human gate)

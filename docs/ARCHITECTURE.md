@@ -147,6 +147,7 @@ risk tier is there too.
 
 | Decision | Why |
 |---|---|
+| Self-check inside every step, independent review between steps | the author records a definition-of-done checklist in its artifact; a different seat on a different model reviews next. Review inside a step by its own author would not be independent, and a second reviewer seat per step would add hops without a new vantage |
 | A reviewer for every chunk, not only for code | requirements, design, decomposition and release packages are reviewed by an independent seat before they are consumed or put in front of the human; the human is never the first reviewer |
 | Own role specs instead of OpenRig's builtin agents | the brief names the agents; contracts had to be specific (Java/Spring/Gradle, exact artifacts, exit semantics). The builtins' generic guidance stays vendored for reference |
 | Release steps live at mission level, not per slice | shipping is a high-impact act; clean slice closeouts auto-continue instead of manufacturing a human gate each time |
