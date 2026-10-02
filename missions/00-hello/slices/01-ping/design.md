@@ -235,20 +235,20 @@ whole capture of that method.
 Every business rule maps to at least one test in §7. No AC needs a component
 not listed in §1.
 
-## 9. Territory (confirmed against `slice.yaml` and the mission SPEC)
+## 9. Territory (confirmed against `slice.yaml` on `main` and the mission SPEC)
 
-| Path | In `slice.yaml` on disk | In mission SPEC / revised instance | Needed by this design |
-|---|---|---|---|
-| `src/{main,test,functionalTest}/java/dev/urlshort/ping/` | yes | yes | yes |
-| `src/{main,test,functionalTest}/java/dev/urlshort/web/` | **no** | yes (lead widened it at decompose; adopted with `rig workflow revise`) | yes — `RequestIdFilter` and its unit test |
-| `src/functionalTest/resources/application.properties` | no | no | **requested** — one-line deletion for the AC-6 mechanism (recommended option in §7) |
+| Path | In `slice.yaml` (`main`) | Needed by this design |
+|---|---|---|
+| `src/{main,test,functionalTest}/java/dev/urlshort/ping/` | yes (since `ae8b303`) | yes — `PingController`, `PingResponse`, their tests |
+| `src/{main,test,functionalTest}/java/dev/urlshort/web/` | yes (since `adfa5ca`, decompose) | yes — `RequestIdFilter` and its unit test |
+| `src/functionalTest/resources/application.properties` | yes (granted at `0160958` on this design's request) | yes — one-line deletion for the AC-6 mechanism (recommended option in §7). The builder takes the recommended path; the §7 fallback is no longer needed |
 
-Two asks for the orchestration lead, neither blocking plan-lock:
-
-1. Bring `slice.yaml` territory in line with the revised instance (add the
-   `web/` paths) so `rig scope audit` agrees with this design.
-2. Add `src/functionalTest/resources/application.properties` to the territory.
-   If declined, the builder uses the §7 fallback under the stated rule.
+Record of how this section got here: the first version of this design
+reported `web/` as missing from `slice.yaml`; that came from a stale read of
+the working copy, not from `main`. The orchestration lead confirmed `web/`
+had been in the manifest since `adfa5ca` and granted the properties file
+(queue item `qitem-20261002225104-18f52706`, closed). No territory question
+remains open.
 
 Everything else this design touches is documentation in the main checkout.
 
@@ -283,7 +283,7 @@ clause and the design section side by side; nothing here was executed.
 | 5 | Threat model covers every new entry point | ✔ `GET /api/ping`, other methods on `/api/ping`, inbound headers (`X-Request-Id`, `User-Agent`); STRIDE rows with mitigations and accepted residuals | §6 |
 | 6 | Test strategy maps each AC to a suite | ✔ 8 functional tests (one per AC) + 2 unit tests (filter, controller); AC-6 mechanism named with recommended path, fallback and a fail-not-skip rule | §7 |
 | 7 | No structure beyond the SPEC | ✔ no `Clock` bean, no `@RestControllerAdvice`, no service/repository layer, no access log, no new dependency | §1 |
-| 8 | Territory respected | ✔ design stays inside `ping/` and `web/`; the one file outside (`functionalTest` properties) is **requested**, not taken; `slice.yaml` drift vs the revised instance reported | §9 |
+| 8 | Territory respected | ✔ design stays inside `ping/`, `web/` and the granted `functionalTest` properties file; nothing outside the manifest on `main` | §9 |
 | 9 | ADRs for cross-cutting choices | ✔ ADR-0001 stack, 0002 problem details, 0003 request id, 0004 structured logs / PII | §10, `docs/adr/` |
 
 ### plan-review (three lenses, proportionate to a dry-run slice)
@@ -312,13 +312,13 @@ classes and about ten tests; realistic for one implement step.
 **Issues found**
 
 - Blocking: none.
-- Important: (1) `slice.yaml` territory on disk omits `web/` although the
-  revised instance includes it; `rig scope audit` may disagree with the
-  design until the lead updates the manifest. (2) The recommended AC-6
-  mechanism needs `src/functionalTest/resources/application.properties` in
-  the territory; without it the builder takes the §7 fallback under the
-  fail-not-skip rule. Both routed to the orchestration lead; neither blocks
-  the plan-lock decision.
+- Important, both resolved before plan-lock: (1) the review first reported
+  `web/` as missing from `slice.yaml`; a check against `main` showed it present
+  since `adfa5ca` (stale working-copy read). (2) The recommended AC-6
+  mechanism needed `src/functionalTest/resources/application.properties` in
+  the territory; the lead granted it at `0160958`, so the builder takes the
+  recommended path and the §7 fallback stays documented only as the
+  fail-not-skip rule's origin.
 - Suggestions: assert `Content-Type` with "compatible with" matchers so a
   future charset parameter cannot break AC-1/AC-5; keep the `Allow` header
   and `detail` wording unasserted (framework-owned).
