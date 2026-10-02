@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Localhost-only curl for seats:   scripts/http <curl args...> <http://localhost|127.0.0.1[:port]/...>
+# Lets agents exercise the running app by effect without a blanket curl
+# allowance: every URL argument must point at the loopback host.
+set -euo pipefail
+for a in "$@"; do
+  case "$a" in
+    http://*|https://*)
+      case "$a" in
+        http://localhost*|http://127.0.0.1*|http://\[::1\]*) ;;
+        *) echo "scripts/http: refusing non-loopback URL: $a" >&2; exit 2 ;;
+      esac ;;
+  esac
+done
+exec curl "$@"
