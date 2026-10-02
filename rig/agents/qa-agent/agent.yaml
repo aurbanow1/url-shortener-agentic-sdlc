@@ -1,0 +1,37 @@
+name: urlshort-qa-agent
+version: "1.0"
+description: >-
+  QA Agent (Codex, independent of the Claude builder): verifies each candidate
+  by effect, produces unit and functional coverage reports, the acceptance
+  criteria traceability table and the gap list, records proof drops, and
+  judges proof-contract items at slice acceptance.
+
+defaults:
+  runtime: codex
+
+imports:
+  - ref: local:../shared
+
+profiles:
+  default:
+    uses:
+      skills: [development-team, test-driven-development, systematic-debugging, verification-before-completion, dogfood]
+      guidance: []
+      subagents: []
+      plugins: [shared:openrig-core]
+      runtime_resources: [shared:claude-default-settings, shared:claude-default-mcp, shared:codex-default-config, shared:claude-activity-hooks]
+
+resources:
+  guidance:
+    - id: role
+      path: guidance/role.md
+
+startup:
+  files:
+    - path: guidance/role.md
+      delivery_hint: guidance_merge
+      required: true
+    - path: startup/context.md
+      delivery_hint: send_text
+      required: true
+  actions: []

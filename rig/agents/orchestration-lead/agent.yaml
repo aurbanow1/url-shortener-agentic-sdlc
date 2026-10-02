@@ -1,0 +1,36 @@
+name: urlshort-orchestration-lead
+version: "1.0"
+description: >-
+  Orchestration lead of urlshort-factory: Orchestrator (dispatch, gates,
+  exception dial, safe-stop), Planning Agent (decomposition, dependency graph,
+  wave map, re-plan) and Integrator (serial merges to main, rollback).
+
+defaults:
+  runtime: claude-code
+
+imports:
+  - ref: local:../shared
+
+profiles:
+  default:
+    uses:
+      skills: [orchestration-team, plan-review, backlog-capture, systematic-debugging, verification-before-completion]
+      guidance: []
+      subagents: []
+      plugins: [shared:openrig-core]
+      runtime_resources: [shared:claude-default-settings, shared:claude-default-mcp, shared:codex-default-config, shared:claude-activity-hooks]
+
+resources:
+  guidance:
+    - id: role
+      path: guidance/role.md
+
+startup:
+  files:
+    - path: guidance/role.md
+      delivery_hint: guidance_merge
+      required: true
+    - path: startup/context.md
+      delivery_hint: send_text
+      required: true
+  actions: []

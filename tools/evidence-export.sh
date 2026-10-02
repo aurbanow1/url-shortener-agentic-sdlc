@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+# Export the OpenRig audit trail for one mission into docs/evidence/<mission>/.
+# Everything is raw daemon output (--json) so a reader who cannot run OpenRig
+# still gets the primary record: compiled dependency graph, scope audit, proof
+# readiness, every workflow instance's append-only step trail, and the queue
+# transition log of every packet those trails name.
+#
+#   tools/evidence-export.sh <mission-dir-name> [instance-id ...]
+#
+# Without instance ids, every workflow instance known to the daemon is exported
+# (there are few; exporting all keeps this idempotent and complete).
+set -euo pipefail
+ROOT="$(git rev-parse --show-toplevel)"
+MISSION="${1:?mission dir name, e.g. 00-hello}"; shift || true
+OUT="$ROOT/docs/evidence/$MISSION"
+mkdir -p "$OUT/instances" "$OUT/packets"
+cd "$ROOT"
+
+stamp() { date -u +%Y-%m-%dT%H:%M:%SZ; }
+echo "exporting evidence for $MISSION at $(stamp)"
+
+rig workflow compile "$ROOT/missions/$MISSION" --json > "$OUT/compiled-graph.json" || true
+rig scope --workspace "$ROOT" audit --json > "$OUT/scope-audit.json" 2>/dev/null || true
+rig proof show "$MISSION" --json > "$OUT/proof-readiness.json" 2>/dev/null || true
+rig workflow list --json > "$OUT/workflow-list.json" 2>/dev/null || true
+rig workflow status --json > "$OUT/workflow-status.json" 2>/dev/null || true
+rig queue list --json > "$OUT/queue-active.json" 2>/dev/null || true
+rig usage top --json > "$OUT/usage-top.json" 2>/dev/null || true
+
+if [ "$#" -gt 0 ]; then
+  INSTANCES=("$@")
+else
+  # Accept any of the id field spellings the list may use; dedupe.
+  INSTANCES=($(node -e '
+    let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{
+      let j; try{ j=JSON.parse(s) }catch{ process.exit(0) }
+      const rows=Array.isArray(j)?j:(j.instances||j.rows||j.items||[]);
+      const ids=new Set(rows.map(r=>r.instanceId||r.instance_id||r.id).filter(Boolean));
+      console.log([...ids].join(" "));
+    })' < "$OUT/workflow-list.json" 2>/dev/null || true))
+fi
+
+PACKETS=()
+for id in "${INSTANCES[@]:-}"; do
+  [ -z "$id" ] && continue
+  rig workflow trace "$id" --json > "$OUT/instances/$id.trace.json" 2>/dev/null || continue
+  rig workflow show "$id" --json > "$OUT/instances/$id.show.json" 2>/dev/null || true
+  # every qitem id mentioned anywhere in the trail
+  while read -r q; do PACKETS+=("$q"); done < <(grep -oE 'qitem-[A-Za-z0-9_-]+|"packetId":"[^"]+"' "$OUT/instances/$id.trace.json" | sed -E 's/"packetId":"//; s/"$//' | sort -u)
+done
+
+for q in $(printf '%s\n' "${PACKETS[@]:-}" | sort -u); do
+  [ -z "$q" ] && continue
+  rig queue transitions "$q" --json > "$OUT/packets/$q.transitions.json" 2>/dev/null || true
+  rig queue show "$q" --full --json > "$OUT/packets/$q.show.json" 2>/dev/null || true
+done
+
+{
+  echo "# Evidence export — $MISSION"
+  echo
+  echo "Exported $(stamp) by tools/evidence-export.sh from OpenRig $(rig --version)."
+  echo
+  echo "| Artifact | Governance clause (docs/GOVERNANCE.md) |"
+  echo "|---|---|"
+  echo "| compiled-graph.json | explicit dependency graph (mission DAG) |"
+  echo "| instances/*.trace.json | append-only step trails: lineage, exits, retries, gates |"
+  echo "| packets/*.transitions.json | queue transition logs: handoffs, parks, human resolutions |"
+  echo "| proof-readiness.json | attributed proof judgments per slice |"
+  echo "| scope-audit.json | convention audit (advisory) |"
+  echo "| workflow-status.json / workflow-list.json | instance states, attention classes |"
+  echo "| usage-top.json | per-seat token burn in the window |"
+  echo
+  echo "Instances exported: ${#INSTANCES[@]}; packets exported: $(ls "$OUT/packets" 2>/dev/null | grep -c transitions || true)."
+} > "$OUT/INDEX.md"
+echo "done → $OUT"

@@ -1,0 +1,21 @@
+schema: openrig.slice/v0alpha1
+kind: slice
+composition:
+  mission: ../../mission.yaml
+  slice_markdown:
+    spec: SPEC.md
+    progress: PROGRESS.md
+    proof: PROOF.md
+metadata:
+  id: 01-ping
+# Gate tier decides the workflow variant: high -> urlshort-slice (human plan-lock),
+# low -> urlshort-slice-delegated (orchestration lead approves the plan-lock).
+tier: high
+tier_reason: dry run of the full pipeline including the human plan-lock gate
+territory:
+  - src/main/java/dev/urlshort/ping/
+  - src/test/java/dev/urlshort/ping/
+  - src/functionalTest/java/dev/urlshort/ping/
+execution:
+  actor_role: requirements
+  depends_on: []

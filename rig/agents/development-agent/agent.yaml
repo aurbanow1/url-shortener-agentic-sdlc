@@ -1,0 +1,37 @@
+name: urlshort-development-agent
+version: "1.0"
+description: >-
+  Development Agent: implements the locked SPEC + design test-first in the
+  slice worktree — ProblemDetail error handling, structured logging with
+  request ids, audit records, Flyway migrations — with ./gradlew check green at
+  100% coverage and conventional commits.
+
+defaults:
+  runtime: claude-code
+
+imports:
+  - ref: local:../shared
+
+profiles:
+  default:
+    uses:
+      skills: [development-team, test-driven-development, systematic-debugging, verification-before-completion]
+      guidance: []
+      subagents: []
+      plugins: [shared:openrig-core]
+      runtime_resources: [shared:claude-default-settings, shared:claude-default-mcp, shared:codex-default-config, shared:claude-activity-hooks]
+
+resources:
+  guidance:
+    - id: role
+      path: guidance/role.md
+
+startup:
+  files:
+    - path: guidance/role.md
+      delivery_hint: guidance_merge
+      required: true
+    - path: startup/context.md
+      delivery_hint: send_text
+      required: true
+  actions: []

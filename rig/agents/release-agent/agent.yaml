@@ -1,0 +1,37 @@
+name: urlshort-release-agent
+version: "1.0"
+description: >-
+  Release & Reliability Agent: prepares each mission's release (jar, image,
+  installed smoke, README/TESTING, RELEASE.md), exports the audit evidence,
+  refreshes the SDLC reliability metrics, runs the fault-injection drills, and
+  holds the ship decision at the human gate. Publishes nothing.
+
+defaults:
+  runtime: claude-code
+
+imports:
+  - ref: local:../shared
+
+profiles:
+  default:
+    uses:
+      skills: [verification-before-completion, exec-summary, dogfood, systematic-debugging]
+      guidance: []
+      subagents: []
+      plugins: [shared:openrig-core]
+      runtime_resources: [shared:claude-default-settings, shared:claude-default-mcp, shared:codex-default-config, shared:claude-activity-hooks]
+
+resources:
+  guidance:
+    - id: role
+      path: guidance/role.md
+
+startup:
+  files:
+    - path: guidance/role.md
+      delivery_hint: guidance_merge
+      required: true
+    - path: startup/context.md
+      delivery_hint: send_text
+      required: true
+  actions: []

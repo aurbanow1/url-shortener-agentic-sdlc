@@ -1,0 +1,24 @@
+# urlshort-factory — Codex command rules for the QA and review seats.
+# Project layer (<repo>/.codex/rules). Allows the build/inspection families
+# the seats need without approval prompts; forbids publishing and history
+# rewrites. The OpenRig launch keeps the workspace-write sandbox; these rules
+# do not widen filesystem or network access.
+prefix_rule(pattern=["rig"], decision="allow")
+prefix_rule(pattern=["./gradlew"], decision="allow")
+prefix_rule(pattern=["java"], decision="allow")
+prefix_rule(pattern=["git", "status"], decision="allow")
+prefix_rule(pattern=["git", "log"], decision="allow")
+prefix_rule(pattern=["git", "diff"], decision="allow")
+prefix_rule(pattern=["git", "show"], decision="allow")
+prefix_rule(pattern=["git", "rev-parse"], decision="allow")
+prefix_rule(pattern=["git", "branch"], decision="allow")
+prefix_rule(pattern=["git", "checkout"], decision="allow")
+prefix_rule(pattern=["git", "worktree", "list"], decision="allow")
+prefix_rule(pattern=["git", "add"], decision="allow")
+prefix_rule(pattern=["git", "commit"], decision="allow")
+prefix_rule(pattern=["git", "push"], decision="forbidden")
+prefix_rule(pattern=["git", "reset", "--hard"], decision="forbidden")
+prefix_rule(pattern=["git", "clean"], decision="forbidden")
+prefix_rule(pattern=["docker", "push"], decision="forbidden")
+prefix_rule(pattern=["curl", "http://localhost"], decision="allow")
+prefix_rule(pattern=["curl", "http://127.0.0.1"], decision="allow")

@@ -1,0 +1,130 @@
+version: "0.2"
+name: urlshort-factory
+summary: >-
+  The URL-shortener factory: seven seats named after the SDLC agents the brief
+  asks for (requirements, design, development, QA, code review, release) plus
+  one orchestration lead that also holds the planning and integrator roles.
+  Ten workflow roles resolve onto these seats; QA and review run on Codex for
+  cross-runtime independence from the Claude builder. Launch from the repo
+  root:  rig up rig/rig.yaml --cwd "$PWD"
+
+culture_file: CULTURE.md
+permission_policy: builtin:standard
+
+# OpenRig writes its managed instruction blocks for Claude seats here instead of
+# the committed CLAUDE.md (which only imports AGENTS.md). Codex seats always use
+# AGENTS.md, whose managed blocks are stripped by `rig down`.
+managed_blocks:
+  claude-code: CLAUDE.local.md
+
+# Rig-wide factory protocol delivered to every seat before boot.
+startup:
+  files:
+    - path: startup/project.md
+      delivery_hint: guidance_merge
+      required: true
+  actions: []
+
+# One pod per seat keeps canonical session names 1:1 with the brief's agents:
+# <pod>-<member>@urlshort-factory, e.g. requirements-agent@urlshort-factory.
+pods:
+  - id: orchestration
+    label: Orchestration
+    summary: Orchestrator, Planning Agent and Integrator on one seat; the only writer of main.
+    members:
+      - id: lead
+        label: Orchestration Lead
+        agent_ref: "local:agents/orchestration-lead"
+        runtime: claude-code
+        profile: default
+        cwd: "."
+    edges: []
+
+  - id: requirements
+    label: Requirements
+    members:
+      - id: agent
+        label: Requirements Agent
+        agent_ref: "local:agents/requirements-agent"
+        runtime: claude-code
+        profile: default
+        cwd: "."
+    edges: []
+
+  - id: design
+    label: Design
+    members:
+      - id: agent
+        label: Design Agent
+        agent_ref: "local:agents/design-agent"
+        runtime: claude-code
+        profile: default
+        cwd: "."
+    edges: []
+
+  - id: development
+    label: Development
+    members:
+      - id: agent
+        label: Development Agent
+        agent_ref: "local:agents/development-agent"
+        runtime: claude-code
+        profile: default
+        cwd: "."
+    edges: []
+
+  - id: qa
+    label: QA
+    members:
+      - id: agent
+        label: QA Agent
+        agent_ref: "local:agents/qa-agent"
+        runtime: codex
+        profile: default
+        cwd: "."
+    edges: []
+
+  - id: review
+    label: Review
+    summary: Code Review Agent and Security & Compliance Agent on one Codex seat, independent of the builder.
+    members:
+      - id: agent
+        label: Review Agent
+        agent_ref: "local:agents/review-agent"
+        runtime: codex
+        profile: default
+        cwd: "."
+    edges: []
+
+  - id: release
+    label: Release
+    members:
+      - id: agent
+        label: Release & Reliability Agent
+        agent_ref: "local:agents/release-agent"
+        runtime: claude-code
+        profile: default
+        cwd: "."
+    edges: []
+
+# Coordination shape, not hierarchy. delegates_to orders launch (lead first);
+# can_observe lets evaluators read the builder's pane/transcript; escalates_to
+# is the exception dial. The lead is the only path to the human.
+edges:
+  - { kind: delegates_to, from: orchestration.lead, to: requirements.agent }
+  - { kind: delegates_to, from: orchestration.lead, to: design.agent }
+  - { kind: delegates_to, from: orchestration.lead, to: development.agent }
+  - { kind: delegates_to, from: orchestration.lead, to: qa.agent }
+  - { kind: delegates_to, from: orchestration.lead, to: review.agent }
+  - { kind: delegates_to, from: orchestration.lead, to: release.agent }
+  - { kind: collaborates_with, from: requirements.agent, to: design.agent }
+  - { kind: can_observe, from: qa.agent, to: development.agent }
+  - { kind: can_observe, from: review.agent, to: development.agent }
+  - { kind: can_observe, from: review.agent, to: qa.agent }
+  - { kind: can_observe, from: release.agent, to: review.agent }
+  - { kind: escalates_to, from: requirements.agent, to: orchestration.lead }
+  - { kind: escalates_to, from: design.agent, to: orchestration.lead }
+  - { kind: escalates_to, from: development.agent, to: orchestration.lead }
+  - { kind: escalates_to, from: qa.agent, to: orchestration.lead }
+  - { kind: escalates_to, from: review.agent, to: orchestration.lead }
+  - { kind: escalates_to, from: release.agent, to: orchestration.lead }

@@ -1,0 +1,37 @@
+name: urlshort-design-agent
+version: "1.0"
+description: >-
+  Design Agent: turns a locked SPEC into design.md (API contract, data model
+  and migration, sequence, logging/audit events, threat model), ADRs, Mermaid
+  diagrams and — for brownfield slices — an impact analysis; owns the plan-lock
+  step and is the second vantage in wave review.
+
+defaults:
+  runtime: claude-code
+
+imports:
+  - ref: local:../shared
+
+profiles:
+  default:
+    uses:
+      skills: [context-builder, plan-review, systematic-debugging, verification-before-completion]
+      guidance: []
+      subagents: []
+      plugins: [shared:openrig-core]
+      runtime_resources: [shared:claude-default-settings, shared:claude-default-mcp, shared:codex-default-config, shared:claude-activity-hooks]
+
+resources:
+  guidance:
+    - id: role
+      path: guidance/role.md
+
+startup:
+  files:
+    - path: guidance/role.md
+      delivery_hint: guidance_merge
+      required: true
+    - path: startup/context.md
+      delivery_hint: send_text
+      required: true
+  actions: []

@@ -1,0 +1,16 @@
+schema: openrig.mission/v0alpha1
+kind: mission
+metadata:
+  name: 00-hello
+  id: OPR.99.0.1
+lifecycle:
+  profile: urlshort-mission-v1
+composition:
+  mission_markdown:
+    spec: SPEC.md
+  slices:
+    - ref: slices/01-ping/slice.yaml
+      order: 10
+      active: true
+
+# Optional team and SDLC sections are added here.

@@ -1,0 +1,30 @@
+# confidential inputs never enter the repo
+*.pdf
+
+# java / gradle
+.gradle/
+.gradle-home/
+build/
+out/
+*.class
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+
+# runtime data
+data/
+*.db
+*.mv.db
+*.trace.db
+logs/
+*.log
+
+# editors / os
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
+# personal harness settings (shared project settings ARE committed)
+.claude/settings.local.json
+.worktrees/
+CLAUDE.local.md
