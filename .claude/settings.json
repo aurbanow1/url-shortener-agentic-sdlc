@@ -55,7 +55,18 @@
       "Bash(docker stop *)",
       "Bash(docker rm *)",
       "Bash(docker images*)",
-      "Read(~/.openrig/**)"
+      "Read(~/.openrig/**)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:spring.io)",
+      "WebFetch(domain:docs.spring.io)",
+      "WebFetch(domain:springdoc.org)",
+      "WebFetch(domain:gradle.org)",
+      "WebFetch(domain:docs.gradle.org)",
+      "WebFetch(domain:www.jacoco.org)",
+      "WebFetch(domain:h2database.com)",
+      "WebFetch(domain:openrig.dev)",
+      "WebFetch(domain:www.openrig.dev)"
     ],
     "deny": [
       "Bash(git push *)",
