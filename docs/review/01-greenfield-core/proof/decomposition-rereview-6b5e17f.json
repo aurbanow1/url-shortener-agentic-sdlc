@@ -1,0 +1,32 @@
+{
+  "candidate": "6b5e17f8830de35f2052eda2fa66d8eda17f4a14",
+  "compiledInputDigest": "de9659cfc2f86cdbe9dd70a1398db5eb9230bc3184f5468b7c023f1e32e1468f",
+  "workflowVersion": "1-de9659cfc2f86cdb",
+  "unknowns": [],
+  "advisories": [],
+  "savedGraphMatchesFresh": {
+    "digest": true,
+    "sources": true,
+    "workflowSpec": true
+  },
+  "instanceBindingMatches": true,
+  "reconciliation": "current",
+  "changedCompiledFields": [
+    "compiledInputDigest",
+    "sources",
+    "workflowSpec"
+  ],
+  "workflowFieldsChanged": [
+    "version"
+  ],
+  "sequence": [
+    "02 earns its own QA/code/security verdicts",
+    "02 integrates without waiting for 03",
+    "02 is accepted",
+    "03 rebases and regenerates OpenAPI including 02",
+    "03 hands off and earns its own QA/code/security verdicts",
+    "03 integrates and is accepted",
+    "wave_integration admits w3 after both accepted"
+  ],
+  "verificationScope": "Documentary prerequisite trace and fresh compiled/live graph comparison; no child workflows executed."
+}

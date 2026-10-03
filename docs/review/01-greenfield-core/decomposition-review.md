@@ -1,5 +1,8 @@
 # 01-greenfield-core — decomposition review
 
+**Latest verdict: PASS at `6b5e17f8830de35f2052eda2fa66d8eda17f4a14`.** DC-01 and
+DC-02 are fixed. The original review and each re-review remain below as history.
+
 Candidate: `bb198b5a8d7b8ed8ff06a7e29871cd3da89b239a` (decomposition commit
 `77fb368` plus the count correction). Reviewed 2026-10-03 by
 `review-agent@urlshort-factory` (Codex); author: orchestration lead (Claude).
@@ -170,3 +173,49 @@ the baseline gate was not repeated for this documentation-only fix.
 - No new lower-severity findings. One open HIGH; ledger row appended.
 - Reviewer edits remain under `docs/review/`; rework is routed to the planner,
   and the current review packet waits on that durable item.
+
+## Re-review 6b5e17f8830de35f2052eda2fa66d8eda17f4a14
+
+2026-10-03. **PASS — DC-02 fixed; DC-01 remains fixed. No open findings.**
+Candidate verified against rework transition 258 and `git rev-parse HEAD`;
+checkout clean before reviewer edits. Reviewed the complete four-file fix.
+
+DC-02 resolution: mission SPEC's three wave rows, the following integration
+paragraph, shaping rule 5, and 03's manifest now explicitly allow each slice's
+merge on its own three verdicts. In w2, 02 merges without waiting for 03; 03
+then rebases/regenerates, hands off, earns its own verdicts and merges. The
+wave-level barrier is acceptance of both slices before starting w3. This
+matches the slice workflow's `integrate → slice_accept` order and removes the
+edge from merge02 to proof03 that caused the circular wait. The sequential
+check is recorded in `proof/decomposition-rereview-6b5e17f.json`.
+
+| Changed file | Verdict |
+|---|---|
+| `docs/evidence/01-greenfield-core/compiled-graph.json` | Pass — saved graph equals fresh compile; live binding current/adopted |
+| `missions/01-greenfield-core/NOTES.md` | Pass — DC-02 response and revision receipt agree with source/live state |
+| `missions/01-greenfield-core/SPEC.md` | Pass — per-slice merge preconditions and wave acceptance barrier now acyclic |
+| `missions/01-greenfield-core/slices/03-operate/slice.yaml` | Pass — continuation explicitly permits merge02 without waiting for 03 |
+
+Fresh compile: digest
+`de9659cfc2f86cdbe9dd70a1398db5eb9230bc3184f5468b7c023f1e32e1468f`, bound workflow
+`1-de9659cfc2f86cdb`, unknowns/advisories empty. Compared the complete saved JSON
+with its prior version: only the digest, 03 manifest source hash and workflow
+version changed; executable steps and policy did not. The live instance matches
+the new source. The existing wave-map order remains 02 then 03.
+
+No additional gate execution: this fix changes only planning documents and a
+manifest comment. Fresh verification targeted those documents and the graph.
+The baseline gate result remains scoped to the original review; no product,
+child-workflow execution or implementation acceptance is claimed here.
+
+### Self-check
+
+- 4/4 changed files read; candidate and clean starting state verified.
+- DC-02's formerly stalled state now has an eligible next action, merge02;
+  each subsequent prerequisite follows from a completed earlier action.
+- DC-01's owner, ordered grant, API verification and 04-deferral independence
+  remain intact. No settled findings reopened or new findings added.
+- Fresh graph/source/live-binding checks passed; evidence and ledger updated.
+- Only `docs/review/` edited. Handoff to mission_plan_lock is a review verdict,
+  not human approval: the eight assumed rows, dependency-override placement
+  and FR-17 keep/defer decision still belong to the human.
