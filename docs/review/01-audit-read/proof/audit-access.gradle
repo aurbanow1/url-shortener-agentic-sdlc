@@ -1,0 +1,14 @@
+// Temporary reviewer task only. Does not add product classes or tests.
+gradle.projectsEvaluated {
+    def project = gradle.rootProject
+    def functional = project.sourceSets.functionalTest
+    project.tasks.register('reviewAuditAccess', JavaExec) {
+        dependsOn project.tasks.named('functionalTestClasses')
+        javaLauncher.set(project.javaToolchains.launcherFor {
+            languageVersion = JavaLanguageVersion.of(21)
+        })
+        classpath = functional.runtimeClasspath
+        mainClass = project.file('docs/review/01-audit-read/proof/AuditAccessProbe.java').absolutePath
+        systemProperty 'spring.profiles.active', 'functional'
+    }
+}
