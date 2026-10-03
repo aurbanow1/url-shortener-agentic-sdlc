@@ -1,0 +1,18 @@
+// Review-only task: actual candidate classes, with no product/test source edits.
+gradle.projectsEvaluated {
+    def p = gradle.rootProject
+    def main = p.sourceSets.main
+    def compileProbe = p.tasks.register('compileReviewSaltLifetime', JavaCompile) {
+        dependsOn p.tasks.named('classes')
+        source p.file('../../docs/review/02-analytics/proof/SaltLifetimeProbe.java')
+        classpath = main.runtimeClasspath
+        destinationDirectory.set(p.layout.buildDirectory.dir('review-salt-lifetime'))
+        javaCompiler.set(p.javaToolchains.compilerFor { languageVersion = JavaLanguageVersion.of(21) })
+    }
+    p.tasks.register('reviewSaltLifetime', JavaExec) {
+        dependsOn compileProbe
+        javaLauncher.set(p.javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) })
+        classpath = p.files(compileProbe.flatMap { it.destinationDirectory }) + main.runtimeClasspath
+        mainClass = 'dev.urlshort.click.SaltLifetimeProbe'
+    }
+}

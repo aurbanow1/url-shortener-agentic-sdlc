@@ -1,0 +1,11 @@
+PASS: 312 unique HTTP ids/completion statuses; redirects, problems and every captured stats body agree; 314 events, one loss WARN
+PASS: 256 reduced clicks, exact 200 concurrent; spoofed forwarding identity unchanged; 24 audit/22 link rows byte-identical
+PASS: fresh test reports 121 invocations, no failures/errors/skips
+PASS: fresh functionalTest reports 126 invocations, no failures/errors/skips
+PASS: QA unit CSV counters (line missed/covered, branch missed/covered) = (34, 325, 0, 118)
+PASS: QA functional CSV counters (line missed/covered, branch missed/covered) = (35, 324, 26, 92)
+PASS: QA all CSV counters (line missed/covered, branch missed/covered) = (0, 359, 0, 118)
+PASS: fresh merged {'type': 'BRANCH', 'missed': '0', 'covered': '118'}
+PASS: fresh merged {'type': 'LINE', 'missed': '0', 'covered': '358'}
+NOTE: both XML roots count 358 distinct lines; both per-class CSV sums count 359 (shared line in web). Both are 100%.
+PASS: candidate live OpenAPI equals committed JSON

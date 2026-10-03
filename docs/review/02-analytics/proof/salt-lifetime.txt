@@ -1,0 +1,13 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :compileReviewSaltLifetime
+
+> Task :reviewSaltLifetime
+PASS: scheduled expiry with no further click nulls salt/day and zeros all 32 bytes
+PASS: close zeros and drops managed salt/day; close is idempotent; stale callback is harmless
+LIMIT: in-flight SecretKeySpec copies are ordinary JVM objects, not claimed to be securely wiped
+
+BUILD SUCCESSFUL in 1s
+4 actionable tasks: 2 executed, 2 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html

@@ -1,0 +1,27 @@
+> Task :compileJava
+> Task :processResources
+> Task :classes
+> Task :compileTestJava
+> Task :processTestResources
+> Task :testClasses
+
+> Task :test
+
+DailySaltTest > aSelectionMadeBeforeMidnightKeepsItsDayAndNeverReplacesTheNextDaysSalt() FAILED
+    org.opentest4j.AssertionFailedError at DailySaltTest.java:73
+
+1 test completed, 1 failed
+
+> Task :test FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':test'.
+> There were failing tests. See the report at: file:///Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/02-analytics/build/reports/tests/test/index.html
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 7s
+5 actionable tasks: 5 executed

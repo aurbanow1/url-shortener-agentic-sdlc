@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.urlshort.click.DailySaltTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2026-10-03T10:43:58.313Z" hostname="Andrzejs-MacBook-Pro.local" time="0.075">
+  <properties/>
+  <testcase name="aSelectionMadeBeforeMidnightKeepsItsDayAndNeverReplacesTheNextDaysSalt()" classname="dev.urlshort.click.DailySaltTest" time="0.068">
+    <failure message="org.opentest4j.AssertionFailedError: [the delayed request finishes with day D's key] &#10;expected: &quot;5f548bd3668f2f6fafe0b2ec3883758223478db691128157aa6459092c8aac27&quot;&#10; but was: &quot;c8aa6eb000aac68ddaaf5f13eeae143eb0db8a757d113afcb0d3fd4aed78c6d6&quot;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: [the delayed request finishes with day D's key] 
+expected: &quot;5f548bd3668f2f6fafe0b2ec3883758223478db691128157aa6459092c8aac27&quot;
+ but was: &quot;c8aa6eb000aac68ddaaf5f13eeae143eb0db8a757d113afcb0d3fd4aed78c6d6&quot;
+	at dev.urlshort.click.DailySaltTest.aSelectionMadeBeforeMidnightKeepsItsDayAndNeverReplacesTheNextDaysSalt(DailySaltTest.java:73)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
