@@ -1,0 +1,20 @@
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon    597kB
+Step 1/15 : FROM eclipse-temurin:21-jdk AS build
+21-jdk: Pulling from library/eclipse-temurin
+Digest: sha256:3e3c176ffed168beb42c607be9bc1639b466cf00261a0fb04425562c9d0c5c2b
+Status: Image is up to date for eclipse-temurin:21-jdk
+ ---> 3e3c176ffed1
+Step 2/15 : WORKDIR /src
+ ---> Running in 4b48ae942f8a
+ ---> Removed intermediate container 4b48ae942f8a
+ ---> 1a10dc31771f
+Step 3/15 : COPY gradlew settings.gradle.kts build.gradle.kts ./
+ ---> 7840656df0a5
+Step 4/15 : COPY gradle gradle
+ ---> 05c4a3984a0e
+Step 5/15 : RUN ./gradlew --no-daemon --version >/dev/null
+ ---> Running in ccc240c4a297
