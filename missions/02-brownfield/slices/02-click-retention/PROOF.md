@@ -111,3 +111,66 @@ cover the 1.3 M-click case (ADR-0018 ceiling, probe M5/L10).
   `SIGTERM` during a run; a large directory; PostgreSQL. My first two jar starts (shipped and candidate)
   omitted `--server.address=127.0.0.1`, which the operator flagged. They ran about 20 s each on a
   developer machine, and the invalid-setting run was repeated loopback-bound.
+
+## QA — qa2-agent@urlshort-factory (Codex), 2026-10-03
+
+**PASS on X = a8fc8b6b67e3a3cbdaada43a3233191b6c7610e1**, with proof item 9
+explicitly left for X′ under the lead's 21:42Z custody amendment. QA packet
+qitem-20261003214414-12d75069. This is QA handoff, not slice acceptance.
+
+Fresh offline gate: 174 unit / 172 functional, no failures/errors/skips;
+merged 490/490 lines, 168/168 branches; Javadoc green. Independent original
+f6dd29e functional-source replay: 155/155, with only the granted profile overlay.
+All 333 copied coverage reports were hashed twice against source. All 210 named
+source test methods map to an AC/business rule; all 16 ACs have functional tests.
+
+The corrected independent effects driver completed 249 assertions. I observed
+all ACs through actual HTTP/rows/logs: strict boundary and advancing window,
+real 7-day environment override, all three invalid values without deletion,
+96→91 daily statistics, empty→one-click statistics with identical creation/audit
+rows, installed f6dd29e→X upgrade, automatic startup and no-trigger 00:10Z daily
+purge, zero/nonzero one-INFO outcomes, a real store failure followed by successful
+retry, redirect plus writer commit while actual H2 DELETE remained blocked,
+actual keyed-hash reduction failure with correlated distinct WARN, environment
+pause at both required +60-second service-clock observations, and fresh/upgraded
+schema and row audit values. Full original column lengths/defaults/precision,
+PK/FK/check semantics and index columns were compared unchanged. All 207 saved
+HTTP responses correlate to JSON product events. Normal/invalid app logs and
+raw commands/responses/JDBC query results are saved in proof/qa-effects-final-a8fc8b6/.
+
+The default installed upgrade had five original clicks on five UTC days. At
+readiness before another redirect it retained only July 5, September 23 and
+October 3 (one each), deleted June 5 and July 4, and logged deleted=2,
+cutoff=2026-07-05, retentionDays=90. Links and audit rows were byte-identical;
+retained v1 click columns/classes stayed unchanged and V3 audit values were filled.
+
+Independent design re-review read/executed the exact migration rollback (29
+assertions); its SQL equals the candidate at SHA-256
+908715401b5c84aa8b4d1525b91a9bd472d2a9ada605a8dbd5651ff1fdfc5fb6.
+ADRs 0018/0020 and amendments 0011/0013 existed and were indexed before dependent
+implementation commits. Product diff from base 16312da has 18 paths in the
+granted territory (builder packet described 16); no extra territory issue.
+
+Not checked: Docker/PostgreSQL, large-data catch-up budgets or SIGTERM during
+purge. The design's probes retain their own attribution. Clock/JDBC/HMAC controls
+are QA fixtures, not product endpoints. Script assumptions corrected during
+probing and the sandbox denial are retained in qa-instrumentation-notes.md.
+No product, canonical test, build config or script edit was made.
+
+Evidence entry: docs/qa/coverage/02-click-retention/SUMMARY.md; traceability and
+gaps appended. Custody continuation qitem-20261003221121-7686465a returns item 9
+to QA on X′ before acceptance; X stays at the named SHA through review. Fresh
+range-diff and full gate on X′ are required by the lead's rule.
+
+## Self-check
+
+- All ACs exercised by effect, including bad input, replay/mismatch/expiry,
+  retirement, rate limit, deletion/store/hash failure and pause cases.
+- Actual merged CSV read; per-suite deficits documented with merged complement.
+- Reports copied and SHA-256 verified; original 24 functional sources unchanged.
+- Traceability complete both ways: 210 methods, AC-1..16, BR-1..7.
+- Gap entry written; performance/shutdown scope and custody sequencing explicit.
+- Proof drop names items 1–8 and 10; each judgment attributed to X. Item 9 is
+  deliberately unjudged until X′ under the lead's explicit exception.
+- Six healthy final-run JVMs stopped; three invalid starts exited; independent
+  probes confirm ports 18141..18149 closed. Candidate worktree unchanged at X.

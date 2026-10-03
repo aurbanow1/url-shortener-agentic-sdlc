@@ -1,0 +1,3 @@
+[
+  "INSERT INTO click (link_id,clicked_at,clicked_on,referrer,user_agent_class,client_hash) SELECT MIN(id),TIMESTAMP WITH TIME ZONE '2026-01-01 00:00:00+00',DATE '2026-01-01',NULL,'unknown',REPEAT('c',64) FROM link"
+]

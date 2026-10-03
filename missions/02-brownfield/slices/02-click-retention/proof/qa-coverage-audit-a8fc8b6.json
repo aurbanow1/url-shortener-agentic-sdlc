@@ -1,0 +1,1704 @@
+{
+  "candidate": "a8fc8b6b67e3a3cbdaada43a3233191b6c7610e1",
+  "suites": {
+    "test": {
+      "tests": 174,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "functionalTest": {
+      "tests": 172,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "coverage": {
+    "unit": {
+      "LINE_MISSED": 43,
+      "LINE_COVERED": 447,
+      "BRANCH_MISSED": 0,
+      "BRANCH_COVERED": 168
+    },
+    "functional": {
+      "LINE_MISSED": 32,
+      "LINE_COVERED": 458,
+      "BRANCH_MISSED": 33,
+      "BRANCH_COVERED": 135
+    },
+    "all": {
+      "LINE_MISSED": 0,
+      "LINE_COVERED": 490,
+      "BRANCH_MISSED": 0,
+      "BRANCH_COVERED": 168
+    }
+  },
+  "files": [
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort/UrlshortApplication.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort/UrlshortApplication.html",
+      "sha256": "871a85758d2a795508b976b871089b568ad27d047798bce1d0949a657231e9a6"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort/UrlshortApplication.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort/UrlshortApplication.java.html",
+      "sha256": "a2b6df2e20e2756bb833c44fae11825fb3387365068eff4cca9738bcb5a2ea17"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort/index.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort/index.html",
+      "sha256": "28b3de4ba4b203b41124a992f8eca61ce60994a5a366d8ff50392628c75e329f"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort/index.source.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort/index.source.html",
+      "sha256": "31edfa63e07e56dd9532556f7862016ca3726c040df00bffc8786f72a654ae39"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.audit/AuditLog.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.audit/AuditLog.html",
+      "sha256": "b85caf36cf4f1167781009d059e14d9d93f54252405f666db3c8c37e1a0fc9d2"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.audit/AuditLog.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.audit/AuditLog.java.html",
+      "sha256": "6094db21181a0cc49fc68b6453e8e7923fbad441406df2e2d647c2a395590618"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.audit/index.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.audit/index.html",
+      "sha256": "d7bce69284306cc5ef7135678822b0b042c5ba5dca9795e2efc822e1628511cc"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.audit/index.source.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.audit/index.source.html",
+      "sha256": "7690d7cd26ee7aba966fdfb2e4ccaa58ea9f450b07f5b623f72c961759907ee0"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/Click.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/Click.html",
+      "sha256": "ca52b6fcf4f2b1c49112df5e48f5148a92fe078e29a835602cb2cfa8b434566c"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/Click.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/Click.java.html",
+      "sha256": "96ad2366b4d6b4d25affdfb62fe8b1a97c6f3d6b55538a367cc85710844cee6f"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/ClickPurge.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/ClickPurge.html",
+      "sha256": "37e19b89c70c8fcab83c1e014e78a8d82be9fe7caae50fb2ab66b3d97be4c970"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/ClickPurge.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/ClickPurge.java.html",
+      "sha256": "2b71e06cab127d81ce051b37229f6f730b6b460778e749b610821a66465f9e21"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/ClickRecorder$ClickWrite.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/ClickRecorder$ClickWrite.html",
+      "sha256": "4f1f5edbc32197907f5cc03dee56626f315d2a9ae9b75f66cadb77c027ad2f0d"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/ClickRecorder.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/ClickRecorder.html",
+      "sha256": "f72ccc64d2759b1c0db390977e7600657f319fd9ad359bc0a4dae4bce68a64a4"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/ClickRecorder.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/ClickRecorder.java.html",
+      "sha256": "743cdd90d8c58ab63fa2eaa2211f7cf0f72e45a16a137d1c8a873e74330fa9db"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/ClickRetentionProperties.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/ClickRetentionProperties.html",
+      "sha256": "a5e2eb2dc9dd210b11471a7d6f38c123718191c50bca7853c4c7e0d76036b85b"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/ClickRetentionProperties.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/ClickRetentionProperties.java.html",
+      "sha256": "72f92dfae5d5018eedb070060dbaa79b37836dcbd7a3aa00d219224019ef2b93"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/ClickStore$DayReferrerCount.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/ClickStore$DayReferrerCount.html",
+      "sha256": "04dd6156bc2ae3b7efab7928beb7893609808a29d2ba352947e0ae232445930c"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/ClickStore.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/ClickStore.html",
+      "sha256": "38bd6cad7725c4a246d2cfea4801c31ac9e3ddc6f46116c3c1f66aef3ae19292"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/ClickStore.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/ClickStore.java.html",
+      "sha256": "78aa215698a4a30bf05f95b3889b230509d2bdd7e2b5ab8bf0e666ea6734cc0a"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/DailySalt$Selection.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/DailySalt$Selection.html",
+      "sha256": "8d59456ba4b496408b2ec9a3ec40333df28df9fb45b4446781b9acaac92abb83"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/DailySalt$Stamp.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/DailySalt$Stamp.html",
+      "sha256": "661a22076273d6a18e660b09cd457a92b1eabec4c5c1459d9c598404dfd24ec6"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/DailySalt.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/DailySalt.html",
+      "sha256": "f59172e0fc099b8326bb2a6e24c1e49a9bb9e965c011aa03d13e1c2c449f51fb"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/DailySalt.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/DailySalt.java.html",
+      "sha256": "dd6de28a44b17f7fc939c3d7ff5d179051bb05a7ccaa9f281f2f21b5361e7433"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/LinkStats$DayClicks.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/LinkStats$DayClicks.html",
+      "sha256": "333497a493558857467728e450448b1f139bee2ebde93729fd01e0fd60e24045"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/LinkStats$ReferrerClicks.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/LinkStats$ReferrerClicks.html",
+      "sha256": "f7b07ee2324c1c72f97eeeec978276e22128388b090e7cd0928a32a6bdce970a"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/LinkStats.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/LinkStats.html",
+      "sha256": "0f7845c4aa4000b7c42ed533b63ccd353fc5a61444ae7d717b4984ad01f78a48"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/LinkStats.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/LinkStats.java.html",
+      "sha256": "546659e18da983b15f1867e75ac736ca2d53d7faaedc98887b44bea4026927c9"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/StatsController.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/StatsController.html",
+      "sha256": "afc99c921e54afbddd82ec243be59e5c849735aef55b9bd4e7d8c5da366a1153"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/StatsController.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/StatsController.java.html",
+      "sha256": "8064ee3540829b9759f6539b35d1755e9face0d9777db87b680ade371adab515"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/index.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/index.html",
+      "sha256": "c3d620d30f7ed648fad82355af85d7c272ca9ac6024c96f4018126df6073f8f3"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.click/index.source.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.click/index.source.html",
+      "sha256": "8b4c493ffe38d2afcca3dd6598f2a4c6f6d2a49905162cc9251b1fa0eb9d990b"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/CreateLinkRequest.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/CreateLinkRequest.html",
+      "sha256": "5451bad8dbf2d90f81cd1f9b6c8b1222aa83adc111c20a742824b5f66de809f7"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/CreateLinkRequest.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/CreateLinkRequest.java.html",
+      "sha256": "a6faa2699e08655e010048133c4ebf12c6fc1a7ceecf1bd8d03bd0dc5a0ea272"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/Link.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/Link.html",
+      "sha256": "6c7f7374a3a0d58cf6d71b1220397515b0865f3f2f79e9129fa5b65fbbf030a8"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/Link.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/Link.java.html",
+      "sha256": "f1a55d4219173ce496879f54c5b5365232c842c560246519a72371613ec1e38c"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/LinkConfig.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/LinkConfig.html",
+      "sha256": "618edb4aecd8bfbfd3342c1cd36833f5dfabe7a44a3d15121b6a277e4d0608d9"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/LinkConfig.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/LinkConfig.java.html",
+      "sha256": "24db28dbbe8fd806ff48d4f97699a2f136cb1142a0e67c2a47fd70bccd07a558"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/LinkController.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/LinkController.html",
+      "sha256": "77e187cad9f2ca39e98a6773ed0ffc52e4dc9612b86d4dff8e83288a5251d817"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/LinkController.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/LinkController.java.html",
+      "sha256": "6c3c7e59e0e3cb89fd20be896b2e585ff7c6a24b294da4425642f00572e22423"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/LinkProperties.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/LinkProperties.html",
+      "sha256": "b9039de028ecf12f28f8fc358315d44288c4cbe2193f336efb71e7807b4bef7d"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/LinkProperties.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/LinkProperties.java.html",
+      "sha256": "2a4da29047b196e11624c71a1fcff02ca367300141cf918c2e8aa04e01a83bfe"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/LinkResponse.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/LinkResponse.html",
+      "sha256": "643c74811b607c1ab539d2e3805ffa67bfdefa375ca7c6735f6b9b9bec1700c1"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/LinkResponse.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/LinkResponse.java.html",
+      "sha256": "1f69d7285ce722489e08d6d9f36021f8842b2ed25dfa6524bdaffd31ecb41367"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/LinkService.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/LinkService.html",
+      "sha256": "0e71ed6fd83d08e2a7c0034179d1d0ba61da5ad5ab01ecb838669745f5b8794e"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/LinkService.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/LinkService.java.html",
+      "sha256": "f1361080a3f61a7a177db8f20392f466a9cd9a1cdfa5370c660e33e0d4ebd18c"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/LinkSnapshot.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/LinkSnapshot.html",
+      "sha256": "31ddfd62a2dd96fce2cc034ec0a7077132813ef8bdeee86ceef096105deb80c5"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/LinkSnapshot.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/LinkSnapshot.java.html",
+      "sha256": "62d5df6950ab82ac3a5c8477c62524fc6a98b51f01884ee011766d2e834390bc"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/LinkValidation.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/LinkValidation.html",
+      "sha256": "42384350a12bdd33634bceecf752e30ba40585a95707ae49bb2ee20c15f77a92"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/LinkValidation.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/LinkValidation.java.html",
+      "sha256": "1ef5a81def7a85289632cd0198df880579babb6a65ef757cfbaba15be9c2f550"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/RedirectController.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/RedirectController.html",
+      "sha256": "aa4d838c7021d77de1ba18683c2f3c87b678fd69d9f007eb04a76ee32e4a108d"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/RedirectController.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/RedirectController.java.html",
+      "sha256": "9d303916b36c6d05ce29eca9c3300300d8a7223625c5d09e959b6b7ccff641ca"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/ShortCodes.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/ShortCodes.html",
+      "sha256": "3340439a54d04cf0ca4314a445441b7bba5c5a5d0feb662a062181b63d221be9"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/ShortCodes.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/ShortCodes.java.html",
+      "sha256": "4fe9a724d75d176312e84559f1a27f6634974cc0bbf4c8e67297f21b9afc8b08"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/index.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/index.html",
+      "sha256": "82f32278b743473133e1dc9c42bffbea609300d427b3513bc692121c460c3348"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.link/index.source.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.link/index.source.html",
+      "sha256": "9e443f1efa8816b041e88ffbd4b9328c79393d99a19586455c4b9ef1ea4775a7"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.ping/PingController.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.ping/PingController.html",
+      "sha256": "8243284e8b6db34ae0abb73f5221e80000235c5e5f012c3cc069799881e63f70"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.ping/PingController.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.ping/PingController.java.html",
+      "sha256": "d0d29ca629bac9bd3a9775186097e88996a40fa111b6ffac9e524cad7c570ba6"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.ping/PingResponse.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.ping/PingResponse.html",
+      "sha256": "f1e8e26266278c1b3ea2064dd3ae3602a3b27a8b64591fed94a54d7fed0d4545"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.ping/PingResponse.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.ping/PingResponse.java.html",
+      "sha256": "a5dd2d1bf053d9bf55cdc014e110501bb838fe40e4d9a3ea72bcb7d4bdfc555a"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.ping/index.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.ping/index.html",
+      "sha256": "5a180e50bbf49a1a79253647ef0e2742c293be37d2e1b7f5b6166773bd57fdf9"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.ping/index.source.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.ping/index.source.html",
+      "sha256": "d4bd6d8eefcc1a3ac44cf5efb798f36f45845cbf3c5134f9b1688b54d5d1507f"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/OpenApiConfig.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/OpenApiConfig.html",
+      "sha256": "e36394c4447c6a968b38c2ddcd07084c6aca47f1307e7fc8ad399cd9f9911d07"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/OpenApiConfig.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/OpenApiConfig.java.html",
+      "sha256": "ef385aa8a177586bebfab0fa85f1a507d963fb3a85a7b00ecaa78d888b98ce14"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/ProblemDetailsAdvice.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/ProblemDetailsAdvice.html",
+      "sha256": "d42fe4dfc6af2d2df3d895a24f5013e771882075872ea4eb1646701870dfbc12"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/ProblemDetailsAdvice.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/ProblemDetailsAdvice.java.html",
+      "sha256": "434b98a520706168290199827e8129a6f210034c1b29cf05b698b40adb704d87"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/Problems$FieldError.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/Problems$FieldError.html",
+      "sha256": "0fe6650c9c2634318b1f913418ebc70ee3d79289a1b5c74dfe35f1f8ae7b091c"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/Problems.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/Problems.html",
+      "sha256": "a7772de79e69dd8b3f74d4de10c4c4f7d821959deefbedd1ad3b5a30cbef3e1e"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/Problems.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/Problems.java.html",
+      "sha256": "5f8469de4056ffe9c3edaa7ff38fada47eaf2d63f9d5dbc93f0627d5e36c4b7d"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/RateLimitConfig.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/RateLimitConfig.html",
+      "sha256": "4f260b1b80ef9aa6b4d15cc1879580f37e2493c53f660c33d732bf1ab9a3f81b"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/RateLimitConfig.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/RateLimitConfig.java.html",
+      "sha256": "1f528b8decd3528b9d1cfd5b341b867044daf3e1149d7e25b13ef49116a5a6b0"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/RateLimitFilter.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/RateLimitFilter.html",
+      "sha256": "c48125bbd78829385885fc1552c8a3bbe8793f425b33ef7e58c5b0ad10cef81e"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/RateLimitFilter.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/RateLimitFilter.java.html",
+      "sha256": "238117bd7c4e8ce709d6a8a81f8bd46f8283d05654532ce684e98f5a79c1afe2"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/RateLimitProperties.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/RateLimitProperties.html",
+      "sha256": "a75fd94a32153327e0f10f3ee64cbc83805ac693338d6ad00df428b995a97286"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/RateLimitProperties.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/RateLimitProperties.java.html",
+      "sha256": "54abc710ab5526acaaad182072c70a7878bb4bfb142c1b769ccc03e66fc88910"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/RateLimiter$Buckets.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/RateLimiter$Buckets.html",
+      "sha256": "defe42c12d5f16916a72b85aab655a2e7bf6770a0e00694ec0e5f7a6eb5e4bc2"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/RateLimiter$Budget.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/RateLimiter$Budget.html",
+      "sha256": "281321196a59f3370ee488ff19cc6b7ec9937d99754a7741cfb35a5fde1d8a8d"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/RateLimiter.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/RateLimiter.html",
+      "sha256": "2c278c0b9fecb239cb2221c4a041656d3361b86af71ab3587c999f0c6d0d865d"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/RateLimiter.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/RateLimiter.java.html",
+      "sha256": "40f35831681dad559b069f572003cf12dfde147340d17db8e4288a86934cf908"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/RequestBodyLimitFilter$1.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/RequestBodyLimitFilter$1.html",
+      "sha256": "45cc80f558d1451b55bfa497d99b3e56ea99ec7ee529027c053cab6ab84e7618"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/RequestBodyLimitFilter$LimitedInputStream.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/RequestBodyLimitFilter$LimitedInputStream.html",
+      "sha256": "b52d9ada0dcaaa9fbd881d7d2b3e0019dbc9ccde5544419a404899e5f5f1c20a"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/RequestBodyLimitFilter.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/RequestBodyLimitFilter.html",
+      "sha256": "658625279535745be8c796b3b59aed07ad19bd2d862a2028834d60e6d6b80db0"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/RequestBodyLimitFilter.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/RequestBodyLimitFilter.java.html",
+      "sha256": "5edd5d9829cccaeb3cd9c17776ceb362e518904b25b9c485b7648256cd93319e"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/RequestIdFilter.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/RequestIdFilter.html",
+      "sha256": "58bffe9b1107814fd8c83592b724fa646bd333c4caad64dfcd13a8e23096c71c"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/RequestIdFilter.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/RequestIdFilter.java.html",
+      "sha256": "cf1013276b996fa8ab5bedcd26aa115d3fc001c6f17c985b52ffa4cc8aa52546"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/index.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/index.html",
+      "sha256": "4d20a5365357319b5f9d418a4e7939bf43472533047003ce77e09019a872d7ca"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/dev.urlshort.web/index.source.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/dev.urlshort.web/index.source.html",
+      "sha256": "16ecdfb98c9db6739a4a692671f002a5ec028d230d6ce595422d18ddc978f097"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/index.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/index.html",
+      "sha256": "4976e6eff15953f121b362c03a5ac179536ff6c10de8b64a901464b4d9cb05d1"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/jacoco-resources/branchfc.gif",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/jacoco-resources/branchfc.gif",
+      "sha256": "a90e2acee1486fcc06a9dc77dc3a2c7d1103f9f65a9c833834c22079ca446d76"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/jacoco-resources/branchnc.gif",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/jacoco-resources/branchnc.gif",
+      "sha256": "cfd1d5ad1e939c895fc6c3a4b621f5b4bec61a4b71f8386d3520f0920930ba1f"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/jacoco-resources/branchpc.gif",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/jacoco-resources/branchpc.gif",
+      "sha256": "a419dc4732e7c225b409bfd5457263de4f20b6aa9737f4636f6dfad36b194b1d"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/jacoco-resources/bundle.gif",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/jacoco-resources/bundle.gif",
+      "sha256": "22656fa2e683f8e5f7adae31f091ce045fc91f042a8fed82ee7a05fc4029e0c2"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/jacoco-resources/class.gif",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/jacoco-resources/class.gif",
+      "sha256": "7ad9ac2c3f87d220f46d077e1b03d743ba45084cbbbccc2577e18c167f0fb2b1"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/jacoco-resources/down.gif",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/jacoco-resources/down.gif",
+      "sha256": "69233accdde9fbbeef01a6bb5c117a4af85f24f7312054bccbeb0f64b7bb437c"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/jacoco-resources/greenbar.gif",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/jacoco-resources/greenbar.gif",
+      "sha256": "a29475aae8c0a107bc41459eb2ca079bc34fc5092f107a78a287c4864b325791"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/jacoco-resources/group.gif",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/jacoco-resources/group.gif",
+      "sha256": "eb39f2e57cabfd740ab8d0c5fb4b26fc5ca71b334e2cfc8d6481c34842b4c360"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/jacoco-resources/method.gif",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/jacoco-resources/method.gif",
+      "sha256": "6308ea5fba7f5e989f67e3e9bb3366f0cb4c90ab72e838af7ff813aca5aac487"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/jacoco-resources/package.gif",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/jacoco-resources/package.gif",
+      "sha256": "82577b6b416bbf65cc99bc1c249e6462ae4ac708687fe2e1428b610c049300c2"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/jacoco-resources/prettify.css",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/jacoco-resources/prettify.css",
+      "sha256": "2247d0cf27cb7fd9cd850eb33444c059f261eb63a718c26b8f357a938401c5f9"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/jacoco-resources/prettify.js",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/jacoco-resources/prettify.js",
+      "sha256": "743c6c4cab9499cd0bfe18a5a62281eccce843f47ec75eedb32eeb29c755aa68"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/jacoco-resources/redbar.gif",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/jacoco-resources/redbar.gif",
+      "sha256": "906ce7fcec0fbac1a26c16521e375f020a513f0cf87888766b69c4bf63f4d9bd"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/jacoco-resources/report.css",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/jacoco-resources/report.css",
+      "sha256": "0c464ff9ce9154fdf1a041b0efed7bc31da4a4c9744249d8ffa6b80f1c36ed9e"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/jacoco-resources/report.gif",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/jacoco-resources/report.gif",
+      "sha256": "c765cafa65ec9a3c221b46062c6ef691f2dd5ff25628ee2c65cc9fe0b74aeea6"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/jacoco-resources/session.gif",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/jacoco-resources/session.gif",
+      "sha256": "1ec062e347bc7db837b9471b6c6128e1d0a5ae8d4c6a2eaa8fee4d5cb6441dab"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/jacoco-resources/sort.gif",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/jacoco-resources/sort.gif",
+      "sha256": "1875d39ff1be841991aa768486f1bcfc0ca02969323e2d2ec52ec156bb5cf240"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/jacoco-resources/sort.js",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/jacoco-resources/sort.js",
+      "sha256": "15c9a3f8a4dac379c8521491fd7949f0b705cad53be33512eb8b0741fd1202df"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/jacoco-resources/source.gif",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/jacoco-resources/source.gif",
+      "sha256": "50257f70adf3ebe4d18bb2432a61370dac06dad7a45f235c8e5f376081251ac3"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/jacoco-resources/up.gif",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/jacoco-resources/up.gif",
+      "sha256": "e1ce2c1d5128b701f2dc5bb5f63c5c402d5d8125ad9c3ffc31c6abc7767899a0"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/html/jacoco-sessions.html",
+      "copy": "docs/qa/coverage/02-click-retention/unit/html/jacoco-sessions.html",
+      "sha256": "294b29e3faa84c47e9e37622012048aa308a9003ac8ee09341eb3d250859b460"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/jacocoTestReport.csv",
+      "copy": "docs/qa/coverage/02-click-retention/unit/jacocoTestReport.csv",
+      "sha256": "9b81e69da2a75f6c7b12633f4eb77a825830f5c8b154c0ee64ba802419658d30"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/test/jacocoTestReport.xml",
+      "copy": "docs/qa/coverage/02-click-retention/unit/jacocoTestReport.xml",
+      "sha256": "e4035cf524f9b44e566cca8d11ce3c4991ad8eed56003f7ad696f33a5cdad8c6"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort/UrlshortApplication.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort/UrlshortApplication.html",
+      "sha256": "92eae01b61e629fb6c77ab4da82ec215dad51bfd14a7d65ae246639d786ae7cc"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort/UrlshortApplication.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort/UrlshortApplication.java.html",
+      "sha256": "3152dd059b8d000e95efa9d7053d2b6247e8a4752cedce58f1c8ab20769d7db1"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort/index.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort/index.html",
+      "sha256": "8899760004352cf1364952165eecd9cc775903205c6a2b70c0e6542afaf97cf9"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort/index.source.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort/index.source.html",
+      "sha256": "673de512897a89610d23f554eb2d9def282ee1efcafd4c07ae4ef7361b8dc5ce"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.audit/AuditLog.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.audit/AuditLog.html",
+      "sha256": "b85caf36cf4f1167781009d059e14d9d93f54252405f666db3c8c37e1a0fc9d2"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.audit/AuditLog.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.audit/AuditLog.java.html",
+      "sha256": "6094db21181a0cc49fc68b6453e8e7923fbad441406df2e2d647c2a395590618"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.audit/index.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.audit/index.html",
+      "sha256": "d7bce69284306cc5ef7135678822b0b042c5ba5dca9795e2efc822e1628511cc"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.audit/index.source.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.audit/index.source.html",
+      "sha256": "7690d7cd26ee7aba966fdfb2e4ccaa58ea9f450b07f5b623f72c961759907ee0"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/Click.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/Click.html",
+      "sha256": "0bc2405cd7c46c9b6054870a8a2c31514704329f5a70ea27c58ec53e8189dff2"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/Click.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/Click.java.html",
+      "sha256": "06419cd965ea9f00043b376ed7d0926d8189bd1718a9770d9e68a7ca0891802c"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/ClickPurge.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/ClickPurge.html",
+      "sha256": "fabe6c6245a7227e99b181e2d0377524c51c051f39e7362f2d098f92b04aa410"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/ClickPurge.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/ClickPurge.java.html",
+      "sha256": "078bb397ef438e08792c73925e706ded895e54191af6b1ff7555a29662067885"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/ClickRecorder$ClickWrite.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/ClickRecorder$ClickWrite.html",
+      "sha256": "33f09ed76518819599071d98393bc1d78430b36bd5894fee7fa805fb7b8b94e3"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/ClickRecorder.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/ClickRecorder.html",
+      "sha256": "e0d80d8338484f86186c82de868862e3e29aa0a161d930aaa4c1340391ce88f5"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/ClickRecorder.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/ClickRecorder.java.html",
+      "sha256": "f60002b0d7e8865f7239f516d71089ad2e06a32ff8596b4fd0e8b206a1b98668"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/ClickRetentionProperties.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/ClickRetentionProperties.html",
+      "sha256": "a5e2eb2dc9dd210b11471a7d6f38c123718191c50bca7853c4c7e0d76036b85b"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/ClickRetentionProperties.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/ClickRetentionProperties.java.html",
+      "sha256": "72f92dfae5d5018eedb070060dbaa79b37836dcbd7a3aa00d219224019ef2b93"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/ClickStore$DayReferrerCount.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/ClickStore$DayReferrerCount.html",
+      "sha256": "04dd6156bc2ae3b7efab7928beb7893609808a29d2ba352947e0ae232445930c"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/ClickStore.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/ClickStore.html",
+      "sha256": "0ebec853fbdd99d594852717376e4db75beb7ef227eb1cbab8038222a86871fb"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/ClickStore.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/ClickStore.java.html",
+      "sha256": "8fa94eb45bea52a6c58f95b21ba8664e0cc4db59678dae36e6d9b8d2fd5d04f3"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/DailySalt$Selection.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/DailySalt$Selection.html",
+      "sha256": "8d59456ba4b496408b2ec9a3ec40333df28df9fb45b4446781b9acaac92abb83"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/DailySalt$Stamp.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/DailySalt$Stamp.html",
+      "sha256": "661a22076273d6a18e660b09cd457a92b1eabec4c5c1459d9c598404dfd24ec6"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/DailySalt.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/DailySalt.html",
+      "sha256": "914673680aedeef4f50d36067a4dd7a5287affa29c6b629e94e70c201a81fc2d"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/DailySalt.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/DailySalt.java.html",
+      "sha256": "243dde42f14d7ea30e3f2e0a00ef45adca234c2b5c40761596e59cad2f8d76de"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/LinkStats$DayClicks.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/LinkStats$DayClicks.html",
+      "sha256": "333497a493558857467728e450448b1f139bee2ebde93729fd01e0fd60e24045"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/LinkStats$ReferrerClicks.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/LinkStats$ReferrerClicks.html",
+      "sha256": "f7b07ee2324c1c72f97eeeec978276e22128388b090e7cd0928a32a6bdce970a"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/LinkStats.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/LinkStats.html",
+      "sha256": "0f7845c4aa4000b7c42ed533b63ccd353fc5a61444ae7d717b4984ad01f78a48"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/LinkStats.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/LinkStats.java.html",
+      "sha256": "546659e18da983b15f1867e75ac736ca2d53d7faaedc98887b44bea4026927c9"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/StatsController.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/StatsController.html",
+      "sha256": "325b790971a6861abbf83a9c4d41e471c2979dc3e0d675a65992fe9a7d9c50cc"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/StatsController.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/StatsController.java.html",
+      "sha256": "7c68c9d801ff29e19fdc55000e9f5ea9a51dec2dfca6cb7dec289906979ad519"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/index.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/index.html",
+      "sha256": "c2bfb9f04505df2d7b2102b3f49bba47ff67beac08c44a3ee0e4fa8fd04545df"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.click/index.source.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.click/index.source.html",
+      "sha256": "774538a5493632552dab6f4d0760255f0493ba94aea88c2d0c63465b5a5b0e57"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/CreateLinkRequest.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/CreateLinkRequest.html",
+      "sha256": "b7a8b9615ff82087e51208d776360cab87b10dc8b66778f2702e190e27a796d3"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/CreateLinkRequest.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/CreateLinkRequest.java.html",
+      "sha256": "a241ccc2b52964445d7e2c243e952eb67b9b2a75745b44a78a5824b0751a36b9"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/Link.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/Link.html",
+      "sha256": "6c7f7374a3a0d58cf6d71b1220397515b0865f3f2f79e9129fa5b65fbbf030a8"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/Link.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/Link.java.html",
+      "sha256": "f1a55d4219173ce496879f54c5b5365232c842c560246519a72371613ec1e38c"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/LinkConfig.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/LinkConfig.html",
+      "sha256": "618edb4aecd8bfbfd3342c1cd36833f5dfabe7a44a3d15121b6a277e4d0608d9"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/LinkConfig.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/LinkConfig.java.html",
+      "sha256": "24db28dbbe8fd806ff48d4f97699a2f136cb1142a0e67c2a47fd70bccd07a558"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/LinkController.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/LinkController.html",
+      "sha256": "a0b053fcf023d31dc48956c32d7d508b5f94c5852e9dbd87e0a75664a8882258"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/LinkController.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/LinkController.java.html",
+      "sha256": "cc7d55536b8e9ff2c76ce7dbfa86fe5d466b3c2157ca89a3e3e46ad537087364"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/LinkProperties.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/LinkProperties.html",
+      "sha256": "b9039de028ecf12f28f8fc358315d44288c4cbe2193f336efb71e7807b4bef7d"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/LinkProperties.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/LinkProperties.java.html",
+      "sha256": "2a4da29047b196e11624c71a1fcff02ca367300141cf918c2e8aa04e01a83bfe"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/LinkResponse.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/LinkResponse.html",
+      "sha256": "d82c22a68a8c06280884fb76a566c5a34fa5158142e51ec518353eae9f07589a"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/LinkResponse.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/LinkResponse.java.html",
+      "sha256": "bcfd1bbbb75a3f4263a3c9a372436fa192c979f9bb2026595eb1b195e3527ca3"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/LinkService.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/LinkService.html",
+      "sha256": "0e71ed6fd83d08e2a7c0034179d1d0ba61da5ad5ab01ecb838669745f5b8794e"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/LinkService.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/LinkService.java.html",
+      "sha256": "f1361080a3f61a7a177db8f20392f466a9cd9a1cdfa5370c660e33e0d4ebd18c"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/LinkSnapshot.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/LinkSnapshot.html",
+      "sha256": "31ddfd62a2dd96fce2cc034ec0a7077132813ef8bdeee86ceef096105deb80c5"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/LinkSnapshot.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/LinkSnapshot.java.html",
+      "sha256": "62d5df6950ab82ac3a5c8477c62524fc6a98b51f01884ee011766d2e834390bc"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/LinkValidation.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/LinkValidation.html",
+      "sha256": "de5480c3359d56d56465bde47023558034260c9bc124b07da2f46ff70df3f3a8"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/LinkValidation.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/LinkValidation.java.html",
+      "sha256": "f768d308a2cd708cfcc602971db8f95a29b74ea707745138e372e172d18724d6"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/RedirectController.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/RedirectController.html",
+      "sha256": "19a83adfea6030eb6772c41165a03fdf10aa6ac2a0b3899fdbe0e47a5daa261f"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/RedirectController.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/RedirectController.java.html",
+      "sha256": "b58014474c3212e4e5b4e68d2b4685368de9967a59d5885e337e0dda64d2c461"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/ShortCodes.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/ShortCodes.html",
+      "sha256": "bcec5be74f7a4c98e4f67547b66337ef509aa1bd3833cbfcf70fbf156efa9e2c"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/ShortCodes.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/ShortCodes.java.html",
+      "sha256": "ce4f15dcea3d8b6dde20c1afed7cd46e05aa27170bc8b4b5f97c396c89173533"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/index.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/index.html",
+      "sha256": "bbb057808e04354eec0400f13139a14d0ad99770deb310f500d4b849ec7207aa"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.link/index.source.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.link/index.source.html",
+      "sha256": "0c5bf5e6ce13d589b4fee183f47e9676445e5f4a38d64546b209e2b115d6a0fe"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.ping/PingController.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.ping/PingController.html",
+      "sha256": "8243284e8b6db34ae0abb73f5221e80000235c5e5f012c3cc069799881e63f70"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.ping/PingController.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.ping/PingController.java.html",
+      "sha256": "d0d29ca629bac9bd3a9775186097e88996a40fa111b6ffac9e524cad7c570ba6"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.ping/PingResponse.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.ping/PingResponse.html",
+      "sha256": "f1e8e26266278c1b3ea2064dd3ae3602a3b27a8b64591fed94a54d7fed0d4545"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.ping/PingResponse.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.ping/PingResponse.java.html",
+      "sha256": "a5dd2d1bf053d9bf55cdc014e110501bb838fe40e4d9a3ea72bcb7d4bdfc555a"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.ping/index.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.ping/index.html",
+      "sha256": "5a180e50bbf49a1a79253647ef0e2742c293be37d2e1b7f5b6166773bd57fdf9"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.ping/index.source.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.ping/index.source.html",
+      "sha256": "d4bd6d8eefcc1a3ac44cf5efb798f36f45845cbf3c5134f9b1688b54d5d1507f"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/OpenApiConfig.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/OpenApiConfig.html",
+      "sha256": "35a352a10a94a9e282cdcf19fe3a143a88fd75d2d56b54e6928c030129ff03cb"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/OpenApiConfig.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/OpenApiConfig.java.html",
+      "sha256": "77dc434086ae45fea8dcf48386f6cd919702f33fd900f723edacb08e3c02568a"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/ProblemDetailsAdvice.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/ProblemDetailsAdvice.html",
+      "sha256": "da16bb97aaad78ed5be371074672e05c0e487dd370bec69dc5f828a792405f0a"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/ProblemDetailsAdvice.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/ProblemDetailsAdvice.java.html",
+      "sha256": "91be695339a12ae0940e2797741fee86b163c9bdee0985d0f283314af2b4da17"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/Problems$FieldError.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/Problems$FieldError.html",
+      "sha256": "0fe6650c9c2634318b1f913418ebc70ee3d79289a1b5c74dfe35f1f8ae7b091c"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/Problems.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/Problems.html",
+      "sha256": "a7772de79e69dd8b3f74d4de10c4c4f7d821959deefbedd1ad3b5a30cbef3e1e"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/Problems.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/Problems.java.html",
+      "sha256": "5f8469de4056ffe9c3edaa7ff38fada47eaf2d63f9d5dbc93f0627d5e36c4b7d"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/RateLimitConfig.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/RateLimitConfig.html",
+      "sha256": "4f260b1b80ef9aa6b4d15cc1879580f37e2493c53f660c33d732bf1ab9a3f81b"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/RateLimitConfig.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/RateLimitConfig.java.html",
+      "sha256": "1f528b8decd3528b9d1cfd5b341b867044daf3e1149d7e25b13ef49116a5a6b0"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/RateLimitFilter.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/RateLimitFilter.html",
+      "sha256": "d711ccace4193a0124939dd1e82b486bbead0bb1e9bad07794d85d2dc6e72e50"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/RateLimitFilter.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/RateLimitFilter.java.html",
+      "sha256": "e030743ca12539faf2c9713f633b7a9a9e8c8fe8f01a350bd7653341bc8faa60"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/RateLimitProperties.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/RateLimitProperties.html",
+      "sha256": "a75fd94a32153327e0f10f3ee64cbc83805ac693338d6ad00df428b995a97286"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/RateLimitProperties.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/RateLimitProperties.java.html",
+      "sha256": "54abc710ab5526acaaad182072c70a7878bb4bfb142c1b769ccc03e66fc88910"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/RateLimiter$Buckets.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/RateLimiter$Buckets.html",
+      "sha256": "defe42c12d5f16916a72b85aab655a2e7bf6770a0e00694ec0e5f7a6eb5e4bc2"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/RateLimiter$Budget.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/RateLimiter$Budget.html",
+      "sha256": "281321196a59f3370ee488ff19cc6b7ec9937d99754a7741cfb35a5fde1d8a8d"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/RateLimiter.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/RateLimiter.html",
+      "sha256": "8ce03473c2e1e7cedc50aca744dbdba455362201c3878897af7919d5a1d35204"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/RateLimiter.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/RateLimiter.java.html",
+      "sha256": "48b2fd42eb0c0d1048cfea7ae799aa6ab05884441b433c70631f6159c2ebdd0d"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/RequestBodyLimitFilter$1.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/RequestBodyLimitFilter$1.html",
+      "sha256": "fc348df862ebe3b0c1786d75a266f80f6aa4a01252c076152ca29d5e14ff06a0"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/RequestBodyLimitFilter$LimitedInputStream.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/RequestBodyLimitFilter$LimitedInputStream.html",
+      "sha256": "d87aa71f65ab0463ed1dd3812d3c4df3b853a08d2defabd3d2327cdce9fa464d"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/RequestBodyLimitFilter.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/RequestBodyLimitFilter.html",
+      "sha256": "658625279535745be8c796b3b59aed07ad19bd2d862a2028834d60e6d6b80db0"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/RequestBodyLimitFilter.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/RequestBodyLimitFilter.java.html",
+      "sha256": "3e23dc49cd79ea4f0642140c15625037153bb5aaed481bd9b0f8c544b73cad69"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/RequestIdFilter.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/RequestIdFilter.html",
+      "sha256": "58bffe9b1107814fd8c83592b724fa646bd333c4caad64dfcd13a8e23096c71c"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/RequestIdFilter.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/RequestIdFilter.java.html",
+      "sha256": "cf1013276b996fa8ab5bedcd26aa115d3fc001c6f17c985b52ffa4cc8aa52546"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/index.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/index.html",
+      "sha256": "72e8a1fce1b1b5ad2e8820f992f6fa9640fbc830ae326e863842b4fced3812ac"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/dev.urlshort.web/index.source.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/dev.urlshort.web/index.source.html",
+      "sha256": "a5582c7b1dc8579b1fe0e89908c4380c3d7533c277ef8c1caba5b2dc9b18dbdd"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/index.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/index.html",
+      "sha256": "088d491239c92a5229a84a7e79f01f7f81b6b7815fe06c916c91b35b61f1a111"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/jacoco-resources/branchfc.gif",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/jacoco-resources/branchfc.gif",
+      "sha256": "a90e2acee1486fcc06a9dc77dc3a2c7d1103f9f65a9c833834c22079ca446d76"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/jacoco-resources/branchnc.gif",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/jacoco-resources/branchnc.gif",
+      "sha256": "cfd1d5ad1e939c895fc6c3a4b621f5b4bec61a4b71f8386d3520f0920930ba1f"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/jacoco-resources/branchpc.gif",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/jacoco-resources/branchpc.gif",
+      "sha256": "a419dc4732e7c225b409bfd5457263de4f20b6aa9737f4636f6dfad36b194b1d"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/jacoco-resources/bundle.gif",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/jacoco-resources/bundle.gif",
+      "sha256": "22656fa2e683f8e5f7adae31f091ce045fc91f042a8fed82ee7a05fc4029e0c2"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/jacoco-resources/class.gif",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/jacoco-resources/class.gif",
+      "sha256": "7ad9ac2c3f87d220f46d077e1b03d743ba45084cbbbccc2577e18c167f0fb2b1"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/jacoco-resources/down.gif",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/jacoco-resources/down.gif",
+      "sha256": "69233accdde9fbbeef01a6bb5c117a4af85f24f7312054bccbeb0f64b7bb437c"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/jacoco-resources/greenbar.gif",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/jacoco-resources/greenbar.gif",
+      "sha256": "a29475aae8c0a107bc41459eb2ca079bc34fc5092f107a78a287c4864b325791"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/jacoco-resources/group.gif",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/jacoco-resources/group.gif",
+      "sha256": "eb39f2e57cabfd740ab8d0c5fb4b26fc5ca71b334e2cfc8d6481c34842b4c360"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/jacoco-resources/method.gif",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/jacoco-resources/method.gif",
+      "sha256": "6308ea5fba7f5e989f67e3e9bb3366f0cb4c90ab72e838af7ff813aca5aac487"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/jacoco-resources/package.gif",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/jacoco-resources/package.gif",
+      "sha256": "82577b6b416bbf65cc99bc1c249e6462ae4ac708687fe2e1428b610c049300c2"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/jacoco-resources/prettify.css",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/jacoco-resources/prettify.css",
+      "sha256": "2247d0cf27cb7fd9cd850eb33444c059f261eb63a718c26b8f357a938401c5f9"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/jacoco-resources/prettify.js",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/jacoco-resources/prettify.js",
+      "sha256": "743c6c4cab9499cd0bfe18a5a62281eccce843f47ec75eedb32eeb29c755aa68"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/jacoco-resources/redbar.gif",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/jacoco-resources/redbar.gif",
+      "sha256": "906ce7fcec0fbac1a26c16521e375f020a513f0cf87888766b69c4bf63f4d9bd"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/jacoco-resources/report.css",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/jacoco-resources/report.css",
+      "sha256": "0c464ff9ce9154fdf1a041b0efed7bc31da4a4c9744249d8ffa6b80f1c36ed9e"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/jacoco-resources/report.gif",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/jacoco-resources/report.gif",
+      "sha256": "c765cafa65ec9a3c221b46062c6ef691f2dd5ff25628ee2c65cc9fe0b74aeea6"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/jacoco-resources/session.gif",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/jacoco-resources/session.gif",
+      "sha256": "1ec062e347bc7db837b9471b6c6128e1d0a5ae8d4c6a2eaa8fee4d5cb6441dab"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/jacoco-resources/sort.gif",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/jacoco-resources/sort.gif",
+      "sha256": "1875d39ff1be841991aa768486f1bcfc0ca02969323e2d2ec52ec156bb5cf240"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/jacoco-resources/sort.js",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/jacoco-resources/sort.js",
+      "sha256": "15c9a3f8a4dac379c8521491fd7949f0b705cad53be33512eb8b0741fd1202df"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/jacoco-resources/source.gif",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/jacoco-resources/source.gif",
+      "sha256": "50257f70adf3ebe4d18bb2432a61370dac06dad7a45f235c8e5f376081251ac3"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/jacoco-resources/up.gif",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/jacoco-resources/up.gif",
+      "sha256": "e1ce2c1d5128b701f2dc5bb5f63c5c402d5d8125ad9c3ffc31c6abc7767899a0"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/html/jacoco-sessions.html",
+      "copy": "docs/qa/coverage/02-click-retention/functional/html/jacoco-sessions.html",
+      "sha256": "f5e73978007cab7dc4a4fe8133eae0df5e0c4a0b41ec3cb7dc4e5ddc04eebebc"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/jacocoTestReport.csv",
+      "copy": "docs/qa/coverage/02-click-retention/functional/jacocoTestReport.csv",
+      "sha256": "401f54641b7fd0b11c4b5634a434eb57dd5b99eb4d382dabc64e5baedc6b85fa"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/functionalTest/jacocoTestReport.xml",
+      "copy": "docs/qa/coverage/02-click-retention/functional/jacocoTestReport.xml",
+      "sha256": "434ef0bad0a2ee0dc6d2aea9e1a47fdba29b1d6f772e3923feeb163a0b1b628b"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort/UrlshortApplication.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort/UrlshortApplication.html",
+      "sha256": "871a85758d2a795508b976b871089b568ad27d047798bce1d0949a657231e9a6"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort/UrlshortApplication.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort/UrlshortApplication.java.html",
+      "sha256": "a2b6df2e20e2756bb833c44fae11825fb3387365068eff4cca9738bcb5a2ea17"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort/index.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort/index.html",
+      "sha256": "28b3de4ba4b203b41124a992f8eca61ce60994a5a366d8ff50392628c75e329f"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort/index.source.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort/index.source.html",
+      "sha256": "31edfa63e07e56dd9532556f7862016ca3726c040df00bffc8786f72a654ae39"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.audit/AuditLog.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.audit/AuditLog.html",
+      "sha256": "b85caf36cf4f1167781009d059e14d9d93f54252405f666db3c8c37e1a0fc9d2"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.audit/AuditLog.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.audit/AuditLog.java.html",
+      "sha256": "6094db21181a0cc49fc68b6453e8e7923fbad441406df2e2d647c2a395590618"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.audit/index.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.audit/index.html",
+      "sha256": "d7bce69284306cc5ef7135678822b0b042c5ba5dca9795e2efc822e1628511cc"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.audit/index.source.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.audit/index.source.html",
+      "sha256": "7690d7cd26ee7aba966fdfb2e4ccaa58ea9f450b07f5b623f72c961759907ee0"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/Click.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/Click.html",
+      "sha256": "ca52b6fcf4f2b1c49112df5e48f5148a92fe078e29a835602cb2cfa8b434566c"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/Click.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/Click.java.html",
+      "sha256": "96ad2366b4d6b4d25affdfb62fe8b1a97c6f3d6b55538a367cc85710844cee6f"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/ClickPurge.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/ClickPurge.html",
+      "sha256": "37e19b89c70c8fcab83c1e014e78a8d82be9fe7caae50fb2ab66b3d97be4c970"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/ClickPurge.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/ClickPurge.java.html",
+      "sha256": "2b71e06cab127d81ce051b37229f6f730b6b460778e749b610821a66465f9e21"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/ClickRecorder$ClickWrite.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/ClickRecorder$ClickWrite.html",
+      "sha256": "4f1f5edbc32197907f5cc03dee56626f315d2a9ae9b75f66cadb77c027ad2f0d"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/ClickRecorder.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/ClickRecorder.html",
+      "sha256": "f72ccc64d2759b1c0db390977e7600657f319fd9ad359bc0a4dae4bce68a64a4"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/ClickRecorder.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/ClickRecorder.java.html",
+      "sha256": "743cdd90d8c58ab63fa2eaa2211f7cf0f72e45a16a137d1c8a873e74330fa9db"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/ClickRetentionProperties.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/ClickRetentionProperties.html",
+      "sha256": "a5e2eb2dc9dd210b11471a7d6f38c123718191c50bca7853c4c7e0d76036b85b"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/ClickRetentionProperties.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/ClickRetentionProperties.java.html",
+      "sha256": "72f92dfae5d5018eedb070060dbaa79b37836dcbd7a3aa00d219224019ef2b93"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/ClickStore$DayReferrerCount.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/ClickStore$DayReferrerCount.html",
+      "sha256": "04dd6156bc2ae3b7efab7928beb7893609808a29d2ba352947e0ae232445930c"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/ClickStore.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/ClickStore.html",
+      "sha256": "0ebec853fbdd99d594852717376e4db75beb7ef227eb1cbab8038222a86871fb"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/ClickStore.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/ClickStore.java.html",
+      "sha256": "8fa94eb45bea52a6c58f95b21ba8664e0cc4db59678dae36e6d9b8d2fd5d04f3"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/DailySalt$Selection.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/DailySalt$Selection.html",
+      "sha256": "8d59456ba4b496408b2ec9a3ec40333df28df9fb45b4446781b9acaac92abb83"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/DailySalt$Stamp.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/DailySalt$Stamp.html",
+      "sha256": "661a22076273d6a18e660b09cd457a92b1eabec4c5c1459d9c598404dfd24ec6"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/DailySalt.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/DailySalt.html",
+      "sha256": "f59172e0fc099b8326bb2a6e24c1e49a9bb9e965c011aa03d13e1c2c449f51fb"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/DailySalt.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/DailySalt.java.html",
+      "sha256": "dd6de28a44b17f7fc939c3d7ff5d179051bb05a7ccaa9f281f2f21b5361e7433"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/LinkStats$DayClicks.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/LinkStats$DayClicks.html",
+      "sha256": "333497a493558857467728e450448b1f139bee2ebde93729fd01e0fd60e24045"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/LinkStats$ReferrerClicks.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/LinkStats$ReferrerClicks.html",
+      "sha256": "f7b07ee2324c1c72f97eeeec978276e22128388b090e7cd0928a32a6bdce970a"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/LinkStats.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/LinkStats.html",
+      "sha256": "0f7845c4aa4000b7c42ed533b63ccd353fc5a61444ae7d717b4984ad01f78a48"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/LinkStats.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/LinkStats.java.html",
+      "sha256": "546659e18da983b15f1867e75ac736ca2d53d7faaedc98887b44bea4026927c9"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/StatsController.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/StatsController.html",
+      "sha256": "325b790971a6861abbf83a9c4d41e471c2979dc3e0d675a65992fe9a7d9c50cc"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/StatsController.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/StatsController.java.html",
+      "sha256": "7c68c9d801ff29e19fdc55000e9f5ea9a51dec2dfca6cb7dec289906979ad519"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/index.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/index.html",
+      "sha256": "e0bdc29271e49ccb72c602fd58a1426e4fc0515842bb3f667c88ff8d1dd19ce4"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.click/index.source.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.click/index.source.html",
+      "sha256": "ba5b53497ec2680f5570c57035fde597d9794f14e04d4a1d512e498f830265c4"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/CreateLinkRequest.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/CreateLinkRequest.html",
+      "sha256": "b7a8b9615ff82087e51208d776360cab87b10dc8b66778f2702e190e27a796d3"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/CreateLinkRequest.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/CreateLinkRequest.java.html",
+      "sha256": "a241ccc2b52964445d7e2c243e952eb67b9b2a75745b44a78a5824b0751a36b9"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/Link.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/Link.html",
+      "sha256": "6c7f7374a3a0d58cf6d71b1220397515b0865f3f2f79e9129fa5b65fbbf030a8"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/Link.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/Link.java.html",
+      "sha256": "f1a55d4219173ce496879f54c5b5365232c842c560246519a72371613ec1e38c"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/LinkConfig.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/LinkConfig.html",
+      "sha256": "618edb4aecd8bfbfd3342c1cd36833f5dfabe7a44a3d15121b6a277e4d0608d9"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/LinkConfig.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/LinkConfig.java.html",
+      "sha256": "24db28dbbe8fd806ff48d4f97699a2f136cb1142a0e67c2a47fd70bccd07a558"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/LinkController.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/LinkController.html",
+      "sha256": "a0b053fcf023d31dc48956c32d7d508b5f94c5852e9dbd87e0a75664a8882258"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/LinkController.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/LinkController.java.html",
+      "sha256": "cc7d55536b8e9ff2c76ce7dbfa86fe5d466b3c2157ca89a3e3e46ad537087364"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/LinkProperties.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/LinkProperties.html",
+      "sha256": "b9039de028ecf12f28f8fc358315d44288c4cbe2193f336efb71e7807b4bef7d"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/LinkProperties.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/LinkProperties.java.html",
+      "sha256": "2a4da29047b196e11624c71a1fcff02ca367300141cf918c2e8aa04e01a83bfe"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/LinkResponse.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/LinkResponse.html",
+      "sha256": "d82c22a68a8c06280884fb76a566c5a34fa5158142e51ec518353eae9f07589a"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/LinkResponse.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/LinkResponse.java.html",
+      "sha256": "bcfd1bbbb75a3f4263a3c9a372436fa192c979f9bb2026595eb1b195e3527ca3"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/LinkService.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/LinkService.html",
+      "sha256": "0e71ed6fd83d08e2a7c0034179d1d0ba61da5ad5ab01ecb838669745f5b8794e"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/LinkService.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/LinkService.java.html",
+      "sha256": "f1361080a3f61a7a177db8f20392f466a9cd9a1cdfa5370c660e33e0d4ebd18c"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/LinkSnapshot.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/LinkSnapshot.html",
+      "sha256": "31ddfd62a2dd96fce2cc034ec0a7077132813ef8bdeee86ceef096105deb80c5"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/LinkSnapshot.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/LinkSnapshot.java.html",
+      "sha256": "62d5df6950ab82ac3a5c8477c62524fc6a98b51f01884ee011766d2e834390bc"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/LinkValidation.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/LinkValidation.html",
+      "sha256": "42384350a12bdd33634bceecf752e30ba40585a95707ae49bb2ee20c15f77a92"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/LinkValidation.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/LinkValidation.java.html",
+      "sha256": "1ef5a81def7a85289632cd0198df880579babb6a65ef757cfbaba15be9c2f550"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/RedirectController.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/RedirectController.html",
+      "sha256": "19a83adfea6030eb6772c41165a03fdf10aa6ac2a0b3899fdbe0e47a5daa261f"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/RedirectController.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/RedirectController.java.html",
+      "sha256": "b58014474c3212e4e5b4e68d2b4685368de9967a59d5885e337e0dda64d2c461"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/ShortCodes.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/ShortCodes.html",
+      "sha256": "3340439a54d04cf0ca4314a445441b7bba5c5a5d0feb662a062181b63d221be9"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/ShortCodes.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/ShortCodes.java.html",
+      "sha256": "4fe9a724d75d176312e84559f1a27f6634974cc0bbf4c8e67297f21b9afc8b08"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/index.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/index.html",
+      "sha256": "32de9945e196c95205c489bf421d2fd92c65d2c4b1b78ce7d27b7013fa9ed2e7"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.link/index.source.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.link/index.source.html",
+      "sha256": "530314810a70ea9bdc9ae96094271246423c99a1a2156902ca2b17b8a5a5d750"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.ping/PingController.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.ping/PingController.html",
+      "sha256": "8243284e8b6db34ae0abb73f5221e80000235c5e5f012c3cc069799881e63f70"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.ping/PingController.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.ping/PingController.java.html",
+      "sha256": "d0d29ca629bac9bd3a9775186097e88996a40fa111b6ffac9e524cad7c570ba6"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.ping/PingResponse.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.ping/PingResponse.html",
+      "sha256": "f1e8e26266278c1b3ea2064dd3ae3602a3b27a8b64591fed94a54d7fed0d4545"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.ping/PingResponse.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.ping/PingResponse.java.html",
+      "sha256": "a5dd2d1bf053d9bf55cdc014e110501bb838fe40e4d9a3ea72bcb7d4bdfc555a"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.ping/index.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.ping/index.html",
+      "sha256": "5a180e50bbf49a1a79253647ef0e2742c293be37d2e1b7f5b6166773bd57fdf9"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.ping/index.source.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.ping/index.source.html",
+      "sha256": "d4bd6d8eefcc1a3ac44cf5efb798f36f45845cbf3c5134f9b1688b54d5d1507f"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/OpenApiConfig.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/OpenApiConfig.html",
+      "sha256": "35a352a10a94a9e282cdcf19fe3a143a88fd75d2d56b54e6928c030129ff03cb"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/OpenApiConfig.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/OpenApiConfig.java.html",
+      "sha256": "77dc434086ae45fea8dcf48386f6cd919702f33fd900f723edacb08e3c02568a"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/ProblemDetailsAdvice.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/ProblemDetailsAdvice.html",
+      "sha256": "d42fe4dfc6af2d2df3d895a24f5013e771882075872ea4eb1646701870dfbc12"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/ProblemDetailsAdvice.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/ProblemDetailsAdvice.java.html",
+      "sha256": "434b98a520706168290199827e8129a6f210034c1b29cf05b698b40adb704d87"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/Problems$FieldError.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/Problems$FieldError.html",
+      "sha256": "0fe6650c9c2634318b1f913418ebc70ee3d79289a1b5c74dfe35f1f8ae7b091c"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/Problems.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/Problems.html",
+      "sha256": "a7772de79e69dd8b3f74d4de10c4c4f7d821959deefbedd1ad3b5a30cbef3e1e"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/Problems.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/Problems.java.html",
+      "sha256": "5f8469de4056ffe9c3edaa7ff38fada47eaf2d63f9d5dbc93f0627d5e36c4b7d"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/RateLimitConfig.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/RateLimitConfig.html",
+      "sha256": "4f260b1b80ef9aa6b4d15cc1879580f37e2493c53f660c33d732bf1ab9a3f81b"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/RateLimitConfig.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/RateLimitConfig.java.html",
+      "sha256": "1f528b8decd3528b9d1cfd5b341b867044daf3e1149d7e25b13ef49116a5a6b0"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/RateLimitFilter.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/RateLimitFilter.html",
+      "sha256": "c48125bbd78829385885fc1552c8a3bbe8793f425b33ef7e58c5b0ad10cef81e"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/RateLimitFilter.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/RateLimitFilter.java.html",
+      "sha256": "238117bd7c4e8ce709d6a8a81f8bd46f8283d05654532ce684e98f5a79c1afe2"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/RateLimitProperties.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/RateLimitProperties.html",
+      "sha256": "a75fd94a32153327e0f10f3ee64cbc83805ac693338d6ad00df428b995a97286"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/RateLimitProperties.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/RateLimitProperties.java.html",
+      "sha256": "54abc710ab5526acaaad182072c70a7878bb4bfb142c1b769ccc03e66fc88910"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/RateLimiter$Buckets.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/RateLimiter$Buckets.html",
+      "sha256": "defe42c12d5f16916a72b85aab655a2e7bf6770a0e00694ec0e5f7a6eb5e4bc2"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/RateLimiter$Budget.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/RateLimiter$Budget.html",
+      "sha256": "281321196a59f3370ee488ff19cc6b7ec9937d99754a7741cfb35a5fde1d8a8d"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/RateLimiter.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/RateLimiter.html",
+      "sha256": "2c278c0b9fecb239cb2221c4a041656d3361b86af71ab3587c999f0c6d0d865d"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/RateLimiter.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/RateLimiter.java.html",
+      "sha256": "40f35831681dad559b069f572003cf12dfde147340d17db8e4288a86934cf908"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/RequestBodyLimitFilter$1.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/RequestBodyLimitFilter$1.html",
+      "sha256": "45cc80f558d1451b55bfa497d99b3e56ea99ec7ee529027c053cab6ab84e7618"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/RequestBodyLimitFilter$LimitedInputStream.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/RequestBodyLimitFilter$LimitedInputStream.html",
+      "sha256": "b52d9ada0dcaaa9fbd881d7d2b3e0019dbc9ccde5544419a404899e5f5f1c20a"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/RequestBodyLimitFilter.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/RequestBodyLimitFilter.html",
+      "sha256": "658625279535745be8c796b3b59aed07ad19bd2d862a2028834d60e6d6b80db0"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/RequestBodyLimitFilter.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/RequestBodyLimitFilter.java.html",
+      "sha256": "5edd5d9829cccaeb3cd9c17776ceb362e518904b25b9c485b7648256cd93319e"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/RequestIdFilter.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/RequestIdFilter.html",
+      "sha256": "58bffe9b1107814fd8c83592b724fa646bd333c4caad64dfcd13a8e23096c71c"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/RequestIdFilter.java.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/RequestIdFilter.java.html",
+      "sha256": "cf1013276b996fa8ab5bedcd26aa115d3fc001c6f17c985b52ffa4cc8aa52546"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/index.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/index.html",
+      "sha256": "e8ff30dd9c6fafdaec35e1d09df0b5cc4853ad988887e5f23470ffefa1e20913"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/dev.urlshort.web/index.source.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/dev.urlshort.web/index.source.html",
+      "sha256": "8d8538b63a64cf8de49612f791fe4e70c636c3248052cddd63d6b63b0586095a"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/index.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/index.html",
+      "sha256": "041a32a6982101299fcddb61c7eebec18fb761fe9af725b3ae772c1fbadb2d3d"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/jacoco-resources/branchfc.gif",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/jacoco-resources/branchfc.gif",
+      "sha256": "a90e2acee1486fcc06a9dc77dc3a2c7d1103f9f65a9c833834c22079ca446d76"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/jacoco-resources/branchnc.gif",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/jacoco-resources/branchnc.gif",
+      "sha256": "cfd1d5ad1e939c895fc6c3a4b621f5b4bec61a4b71f8386d3520f0920930ba1f"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/jacoco-resources/branchpc.gif",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/jacoco-resources/branchpc.gif",
+      "sha256": "a419dc4732e7c225b409bfd5457263de4f20b6aa9737f4636f6dfad36b194b1d"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/jacoco-resources/bundle.gif",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/jacoco-resources/bundle.gif",
+      "sha256": "22656fa2e683f8e5f7adae31f091ce045fc91f042a8fed82ee7a05fc4029e0c2"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/jacoco-resources/class.gif",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/jacoco-resources/class.gif",
+      "sha256": "7ad9ac2c3f87d220f46d077e1b03d743ba45084cbbbccc2577e18c167f0fb2b1"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/jacoco-resources/down.gif",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/jacoco-resources/down.gif",
+      "sha256": "69233accdde9fbbeef01a6bb5c117a4af85f24f7312054bccbeb0f64b7bb437c"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/jacoco-resources/greenbar.gif",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/jacoco-resources/greenbar.gif",
+      "sha256": "a29475aae8c0a107bc41459eb2ca079bc34fc5092f107a78a287c4864b325791"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/jacoco-resources/group.gif",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/jacoco-resources/group.gif",
+      "sha256": "eb39f2e57cabfd740ab8d0c5fb4b26fc5ca71b334e2cfc8d6481c34842b4c360"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/jacoco-resources/method.gif",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/jacoco-resources/method.gif",
+      "sha256": "6308ea5fba7f5e989f67e3e9bb3366f0cb4c90ab72e838af7ff813aca5aac487"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/jacoco-resources/package.gif",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/jacoco-resources/package.gif",
+      "sha256": "82577b6b416bbf65cc99bc1c249e6462ae4ac708687fe2e1428b610c049300c2"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/jacoco-resources/prettify.css",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/jacoco-resources/prettify.css",
+      "sha256": "2247d0cf27cb7fd9cd850eb33444c059f261eb63a718c26b8f357a938401c5f9"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/jacoco-resources/prettify.js",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/jacoco-resources/prettify.js",
+      "sha256": "743c6c4cab9499cd0bfe18a5a62281eccce843f47ec75eedb32eeb29c755aa68"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/jacoco-resources/redbar.gif",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/jacoco-resources/redbar.gif",
+      "sha256": "906ce7fcec0fbac1a26c16521e375f020a513f0cf87888766b69c4bf63f4d9bd"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/jacoco-resources/report.css",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/jacoco-resources/report.css",
+      "sha256": "0c464ff9ce9154fdf1a041b0efed7bc31da4a4c9744249d8ffa6b80f1c36ed9e"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/jacoco-resources/report.gif",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/jacoco-resources/report.gif",
+      "sha256": "c765cafa65ec9a3c221b46062c6ef691f2dd5ff25628ee2c65cc9fe0b74aeea6"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/jacoco-resources/session.gif",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/jacoco-resources/session.gif",
+      "sha256": "1ec062e347bc7db837b9471b6c6128e1d0a5ae8d4c6a2eaa8fee4d5cb6441dab"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/jacoco-resources/sort.gif",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/jacoco-resources/sort.gif",
+      "sha256": "1875d39ff1be841991aa768486f1bcfc0ca02969323e2d2ec52ec156bb5cf240"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/jacoco-resources/sort.js",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/jacoco-resources/sort.js",
+      "sha256": "15c9a3f8a4dac379c8521491fd7949f0b705cad53be33512eb8b0741fd1202df"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/jacoco-resources/source.gif",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/jacoco-resources/source.gif",
+      "sha256": "50257f70adf3ebe4d18bb2432a61370dac06dad7a45f235c8e5f376081251ac3"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/jacoco-resources/up.gif",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/jacoco-resources/up.gif",
+      "sha256": "e1ce2c1d5128b701f2dc5bb5f63c5c402d5d8125ad9c3ffc31c6abc7767899a0"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/html/jacoco-sessions.html",
+      "copy": "docs/qa/coverage/02-click-retention/all/html/jacoco-sessions.html",
+      "sha256": "0aa5c212f0aa1dcfb1730351a729bc0ab5bd8d82ef0cdffc5cf82e74dae76fbf"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/jacocoTestReport.csv",
+      "copy": "docs/qa/coverage/02-click-retention/all/jacocoTestReport.csv",
+      "sha256": "bb273aee84246c988b7e4e388e0c1345f684f937a200cee0f4cab88cb49cc7dd"
+    },
+    {
+      "source": ".worktrees/02-click-retention/build/reports/jacoco/all/jacocoTestReport.xml",
+      "copy": "docs/qa/coverage/02-click-retention/all/jacocoTestReport.xml",
+      "sha256": "539e0278f25a69e59257511e19ec9d32528b7d27f7a780c04f9c9026715f5b47"
+    }
+  ]
+}

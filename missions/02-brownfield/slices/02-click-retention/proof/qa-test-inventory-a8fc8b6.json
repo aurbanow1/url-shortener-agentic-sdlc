@@ -1,0 +1,1472 @@
+[
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.UrlshortApplicationTests",
+    "method": "contextLoads",
+    "source": "src/test/java/dev/urlshort/UrlshortApplicationTests.java",
+    "sourceSha256": "b658c067f57858a8dc4cdf0a88049748db3414e3ec0c8fceeb5485072394f200"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.UrlshortApplicationTests",
+    "method": "mainBootsWithoutAWebServer",
+    "source": "src/test/java/dev/urlshort/UrlshortApplicationTests.java",
+    "sourceSha256": "b658c067f57858a8dc4cdf0a88049748db3414e3ec0c8fceeb5485072394f200"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.audit.AuditLogTest",
+    "method": "theWriterOffersOnlyAppendAndItsOnlyStatementIsAnInsert",
+    "source": "src/test/java/dev/urlshort/audit/AuditLogTest.java",
+    "sourceSha256": "4ac785040c47b18eaea2c9b2014de30ceb495b3485263b02e56eb6f20b9dff12"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.audit.AuditLogTest",
+    "method": "appendWritesOneRowWithServerOwnedValues",
+    "source": "src/test/java/dev/urlshort/audit/AuditLogTest.java",
+    "sourceSha256": "4ac785040c47b18eaea2c9b2014de30ceb495b3485263b02e56eb6f20b9dff12"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickAuditColumnsTest",
+    "method": "theClickTablesGainFilledAuditColumnsAndKeepEveryV1ColumnAndConstraint",
+    "source": "src/test/java/dev/urlshort/click/ClickAuditColumnsTest.java",
+    "sourceSha256": "cd8ed9de3327d8faa1339464edbc96db16c18b968674b942d26638a8ca91d35d"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "aRunDeletesBeforeTheEarliestKeptDayAndLogsOneInfo",
+    "source": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "sourceSha256": "a879bc09205fc297b726ca9ee02086eb549800bd479b1d0ca75afd0afb2b4b9a"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "theCutoffFollowsThePeriod",
+    "source": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "sourceSha256": "a879bc09205fc297b726ca9ee02086eb549800bd479b1d0ca75afd0afb2b4b9a"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "theTickRunsOnceADayFromTenPastMidnight",
+    "source": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "sourceSha256": "a879bc09205fc297b726ca9ee02086eb549800bd479b1d0ca75afd0afb2b4b9a"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "aClockThatStepsBackRunsNothing",
+    "source": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "sourceSha256": "a879bc09205fc297b726ca9ee02086eb549800bd479b1d0ca75afd0afb2b4b9a"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "aFailedRunIsOneWarnWithTheClassOnlyAndIsNotRetriedBeforeTheNextDay",
+    "source": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "sourceSha256": "a879bc09205fc297b726ca9ee02086eb549800bd479b1d0ca75afd0afb2b4b9a"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "startRunsOnThePurgeThreadAndReturnsAfterTheRun",
+    "source": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "sourceSha256": "a879bc09205fc297b726ca9ee02086eb549800bd479b1d0ca75afd0afb2b4b9a"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "runNowRunsOnThePurgeThread",
+    "source": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "sourceSha256": "a879bc09205fc297b726ca9ee02086eb549800bd479b1d0ca75afd0afb2b4b9a"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "onHoldStartDeletesNothingAndSaysSoOnce",
+    "source": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "sourceSha256": "a879bc09205fc297b726ca9ee02086eb549800bd479b1d0ca75afd0afb2b4b9a"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aHeadRequestIsNotAClick",
+    "source": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "sourceSha256": "be5527483f25d48c789b8ca90e5c21bfe39f9c36a42687e551fc249648c7d7ba"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aRedirectIsStoredAsItsReducedFactsOnly",
+    "source": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "sourceSha256": "be5527483f25d48c789b8ca90e5c21bfe39f9c36a42687e551fc249648c7d7ba"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aFailedWriteIsOneWarnWithTheRequestIdAndNoClickValue",
+    "source": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "sourceSha256": "be5527483f25d48c789b8ca90e5c21bfe39f9c36a42687e551fc249648c7d7ba"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aClickThatCannotBeQueuedIsOneWarnAndTheRedirectGoesOn",
+    "source": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "sourceSha256": "be5527483f25d48c789b8ca90e5c21bfe39f9c36a42687e551fc249648c7d7ba"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aClickThatCannotBeReducedIsOneWarn",
+    "source": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "sourceSha256": "be5527483f25d48c789b8ca90e5c21bfe39f9c36a42687e551fc249648c7d7ba"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aFastStoreIsDrainedOnCloseAndNothingIsReported",
+    "source": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "sourceSha256": "be5527483f25d48c789b8ca90e5c21bfe39f9c36a42687e551fc249648c7d7ba"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aStuckWriteIsBoundedAndEveryUnwrittenClickIsReportedOnceBeforeCloseReturns",
+    "source": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "sourceSha256": "be5527483f25d48c789b8ca90e5c21bfe39f9c36a42687e551fc249648c7d7ba"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aClaimedClickIsNeverWrittenWhenTheWriterReachesItLater",
+    "source": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "sourceSha256": "be5527483f25d48c789b8ca90e5c21bfe39f9c36a42687e551fc249648c7d7ba"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aWriteThatFailsAfterShutdownClaimedItIsNotReportedAgain",
+    "source": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "sourceSha256": "be5527483f25d48c789b8ca90e5c21bfe39f9c36a42687e551fc249648c7d7ba"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aWriteThatCompletesAfterShutdownClaimedItIsNotReportedAgain",
+    "source": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "sourceSha256": "be5527483f25d48c789b8ca90e5c21bfe39f9c36a42687e551fc249648c7d7ba"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickSchemaTest",
+    "method": "theClickConstraintsStillWorkAfterTheDdlConnectionIsRetired",
+    "source": "src/test/java/dev/urlshort/click/ClickSchemaTest.java",
+    "sourceSha256": "fc258c308e20c06e5c4de7d812b79ab155411f60adaf105d08e99233cc20ee20"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickTest",
+    "method": "theReferrerIsReducedToItsOrigin",
+    "source": "src/test/java/dev/urlshort/click/ClickTest.java",
+    "sourceSha256": "689484e3e4fb934a14cd21c9572a3cf67f641ae404725c541a10e734fa0de400"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickTest",
+    "method": "aReferrerThatIsNotAnHttpOriginIsNone",
+    "source": "src/test/java/dev/urlshort/click/ClickTest.java",
+    "sourceSha256": "689484e3e4fb934a14cd21c9572a3cf67f641ae404725c541a10e734fa0de400"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickTest",
+    "method": "theReferrerLengthCapIs2048",
+    "source": "src/test/java/dev/urlshort/click/ClickTest.java",
+    "sourceSha256": "689484e3e4fb934a14cd21c9572a3cf67f641ae404725c541a10e734fa0de400"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickTest",
+    "method": "theUserAgentIsReducedToAClass",
+    "source": "src/test/java/dev/urlshort/click/ClickTest.java",
+    "sourceSha256": "689484e3e4fb934a14cd21c9572a3cf67f641ae404725c541a10e734fa0de400"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickTest",
+    "method": "anAbsentOrEmptyUserAgentIsUnknown",
+    "source": "src/test/java/dev/urlshort/click/ClickTest.java",
+    "sourceSha256": "689484e3e4fb934a14cd21c9572a3cf67f641ae404725c541a10e734fa0de400"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickTest",
+    "method": "rule2_aClickHoldsOnlyTheReducedFacts",
+    "source": "src/test/java/dev/urlshort/click/ClickTest.java",
+    "sourceSha256": "689484e3e4fb934a14cd21c9572a3cf67f641ae404725c541a10e734fa0de400"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.DailySaltTest",
+    "method": "sameAddressAndDayHashEquallyAndTheStampCarriesTheClocksInstant",
+    "source": "src/test/java/dev/urlshort/click/DailySaltTest.java",
+    "sourceSha256": "021016a1eaff63e1b6755cc144a345f41295bc9de4950cc97b6deeb57a3b2b02"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.DailySaltTest",
+    "method": "anotherAddressOrAnotherDayHashesDifferently",
+    "source": "src/test/java/dev/urlshort/click/DailySaltTest.java",
+    "sourceSha256": "021016a1eaff63e1b6755cc144a345f41295bc9de4950cc97b6deeb57a3b2b02"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.DailySaltTest",
+    "method": "theHashIsNeverTheUnsaltedDigest",
+    "source": "src/test/java/dev/urlshort/click/DailySaltTest.java",
+    "sourceSha256": "021016a1eaff63e1b6755cc144a345f41295bc9de4950cc97b6deeb57a3b2b02"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.DailySaltTest",
+    "method": "aSelectionMadeBeforeMidnightKeepsItsDayAndNeverReplacesTheNextDaysSalt",
+    "source": "src/test/java/dev/urlshort/click/DailySaltTest.java",
+    "sourceSha256": "021016a1eaff63e1b6755cc144a345f41295bc9de4950cc97b6deeb57a3b2b02"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.DailySaltTest",
+    "method": "aStaleExpiryIsANoOpAndTheCurrentDaysExpiryDropsTheSalt",
+    "source": "src/test/java/dev/urlshort/click/DailySaltTest.java",
+    "sourceSha256": "021016a1eaff63e1b6755cc144a345f41295bc9de4950cc97b6deeb57a3b2b02"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.DailySaltTest",
+    "method": "closeDropsTheSalt",
+    "source": "src/test/java/dev/urlshort/click/DailySaltTest.java",
+    "sourceSha256": "021016a1eaff63e1b6755cc144a345f41295bc9de4950cc97b6deeb57a3b2b02"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.DailySaltTest",
+    "method": "aSaltIsDroppedAtTheEndOfItsDayWithoutAnyFurtherClick",
+    "source": "src/test/java/dev/urlshort/click/DailySaltTest.java",
+    "sourceSha256": "021016a1eaff63e1b6755cc144a345f41295bc9de4950cc97b6deeb57a3b2b02"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.LinkStatsTest",
+    "method": "noRowsIsZeroAndTwoEmptyLists",
+    "source": "src/test/java/dev/urlshort/click/LinkStatsTest.java",
+    "sourceSha256": "4410c51a6de0ec8a934fc3871954303530e2d9aabd92889de282942a4443fb3d"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.LinkStatsTest",
+    "method": "daysAreSummedAscendingAndClicksWithoutAReferrerCountOnlyInTheTotals",
+    "source": "src/test/java/dev/urlshort/click/LinkStatsTest.java",
+    "sourceSha256": "4410c51a6de0ec8a934fc3871954303530e2d9aabd92889de282942a4443fb3d"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.LinkStatsTest",
+    "method": "referrersAreRankedByClicksThenByCodePointAndCappedAtTen",
+    "source": "src/test/java/dev/urlshort/click/LinkStatsTest.java",
+    "sourceSha256": "4410c51a6de0ec8a934fc3871954303530e2d9aabd92889de282942a4443fb3d"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "createWithoutAKeyInsertsAndAuditsTheNewLink",
+    "source": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "sourceSha256": "31e7a4a883bcc2b2c68c71f26d8b6291f28098a6bbe3176c18b93404d57ca1e1"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "createWithAnUnboundKeyBindsIt",
+    "source": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "sourceSha256": "31e7a4a883bcc2b2c68c71f26d8b6291f28098a6bbe3176c18b93404d57ca1e1"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "replayWithinTheWindowReturnsTheBoundLinkAndWritesNothing",
+    "source": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "sourceSha256": "31e7a4a883bcc2b2c68c71f26d8b6291f28098a6bbe3176c18b93404d57ca1e1"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "mismatchWithinTheWindowIs422AndKeepsTheBinding",
+    "source": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "sourceSha256": "31e7a4a883bcc2b2c68c71f26d8b6291f28098a6bbe3176c18b93404d57ca1e1"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "anExpiredKeyIsReleasedAndBindsANewLink",
+    "source": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "sourceSha256": "31e7a4a883bcc2b2c68c71f26d8b6291f28098a6bbe3176c18b93404d57ca1e1"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "readOfAnUnknownCodeIs404",
+    "source": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "sourceSha256": "31e7a4a883bcc2b2c68c71f26d8b6291f28098a6bbe3176c18b93404d57ca1e1"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "resolveSendsVisitorsToActiveLinksOnly",
+    "source": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "sourceSha256": "31e7a4a883bcc2b2c68c71f26d8b6291f28098a6bbe3176c18b93404d57ca1e1"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "retireUpdatesConditionallyAndAuditsBeforeAndAfter",
+    "source": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "sourceSha256": "31e7a4a883bcc2b2c68c71f26d8b6291f28098a6bbe3176c18b93404d57ca1e1"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "retireThatChangesNoRowIs410AndWritesNoAuditRow",
+    "source": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "sourceSha256": "31e7a4a883bcc2b2c68c71f26d8b6291f28098a6bbe3176c18b93404d57ca1e1"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkTest",
+    "method": "stateIsActiveUntilRetiredAtIsSet",
+    "source": "src/test/java/dev/urlshort/link/LinkTest.java",
+    "sourceSha256": "0948a74a8c3c38e82f93b4e07d6f26b30badf6105128264ddf5bab6027c7a856"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkValidationTest",
+    "method": "eachRejectedUrlFailsExactlyItsRule",
+    "source": "src/test/java/dev/urlshort/link/LinkValidationTest.java",
+    "sourceSha256": "e21f50308f387554026510833f7f6020ad55b86a87938e2751caa1aca3113e63"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkValidationTest",
+    "method": "validUrlsPass",
+    "source": "src/test/java/dev/urlshort/link/LinkValidationTest.java",
+    "sourceSha256": "e21f50308f387554026510833f7f6020ad55b86a87938e2751caa1aca3113e63"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkValidationTest",
+    "method": "exactly2048CharactersIsAccepted",
+    "source": "src/test/java/dev/urlshort/link/LinkValidationTest.java",
+    "sourceSha256": "e21f50308f387554026510833f7f6020ad55b86a87938e2751caa1aca3113e63"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkValidationTest",
+    "method": "malformedKeysFailFormat",
+    "source": "src/test/java/dev/urlshort/link/LinkValidationTest.java",
+    "sourceSha256": "e21f50308f387554026510833f7f6020ad55b86a87938e2751caa1aca3113e63"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkValidationTest",
+    "method": "keysLongerThan255FailFormat",
+    "source": "src/test/java/dev/urlshort/link/LinkValidationTest.java",
+    "sourceSha256": "e21f50308f387554026510833f7f6020ad55b86a87938e2751caa1aca3113e63"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkValidationTest",
+    "method": "absentOrVisibleAsciiKeysPass",
+    "source": "src/test/java/dev/urlshort/link/LinkValidationTest.java",
+    "sourceSha256": "e21f50308f387554026510833f7f6020ad55b86a87938e2751caa1aca3113e63"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.ShortCodesTest",
+    "method": "codesAreEightCharactersFromTheAlphanumericAlphabet",
+    "source": "src/test/java/dev/urlshort/link/ShortCodesTest.java",
+    "sourceSha256": "6384a432b9f8427de04fe4d6980389fd6de8c9bc7a0e2fab29a01664abfc7bb7"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.ShortCodesTest",
+    "method": "aDrawThatSpellsAReservedSegmentIsDrawnAgain",
+    "source": "src/test/java/dev/urlshort/link/ShortCodesTest.java",
+    "sourceSha256": "6384a432b9f8427de04fe4d6980389fd6de8c9bc7a0e2fab29a01664abfc7bb7"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.ping.PingControllerTest",
+    "method": "answersOkWithTheCurrentUtcInstant",
+    "source": "src/test/java/dev/urlshort/ping/PingControllerTest.java",
+    "sourceSha256": "6147eca625a4d6eb300deee6d8c0fef8801f2f08d15df7e8f6fec65155989739"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "unwrapsABodyLimitErrorRaisedInsideTheJsonReaderTo413",
+    "source": "src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java",
+    "sourceSha256": "1fd48d3ae7f1c03e4d0e53f57cc1298aad15f3a4c8e8fe1a27f0e08027cd9029"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "unreadableBodyWithoutALimitErrorStays400WithoutTheFrameworkDetail",
+    "source": "src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java",
+    "sourceSha256": "1fd48d3ae7f1c03e4d0e53f57cc1298aad15f3a4c8e8fe1a27f0e08027cd9029"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "frameworkDetailThatEchoesClientInputIsCleared",
+    "source": "src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java",
+    "sourceSha256": "1fd48d3ae7f1c03e4d0e53f57cc1298aad15f3a4c8e8fe1a27f0e08027cd9029"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "domainProblemKeepsItsErrorsAndGetsTheRequestIdAsInstance",
+    "source": "src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java",
+    "sourceSha256": "1fd48d3ae7f1c03e4d0e53f57cc1298aad15f3a4c8e8fe1a27f0e08027cd9029"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "unhandledExceptionIsABare500AndOneMessageFreeEvent",
+    "source": "src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java",
+    "sourceSha256": "1fd48d3ae7f1c03e4d0e53f57cc1298aad15f3a4c8e8fe1a27f0e08027cd9029"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "errorOriginIsNoneWhenNoFrameIsOurs",
+    "source": "src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java",
+    "sourceSha256": "1fd48d3ae7f1c03e4d0e53f57cc1298aad15f3a4c8e8fe1a27f0e08027cd9029"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "aNonProblemBodyPassesThroughUntouched",
+    "source": "src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java",
+    "sourceSha256": "1fd48d3ae7f1c03e4d0e53f57cc1298aad15f3a4c8e8fe1a27f0e08027cd9029"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.ProblemsTest",
+    "method": "validationIs400WithExactlyOneFieldError",
+    "source": "src/test/java/dev/urlshort/web/ProblemsTest.java",
+    "sourceSha256": "6c31ee2e2206d77906fe4ec9c3fc557fa1a3defb3762b3693bf0e7661de3404f"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.ProblemsTest",
+    "method": "notFoundAndGoneAreBareProblems",
+    "source": "src/test/java/dev/urlshort/web/ProblemsTest.java",
+    "sourceSha256": "6c31ee2e2206d77906fe4ec9c3fc557fa1a3defb3762b3693bf0e7661de3404f"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.ProblemsTest",
+    "method": "idempotencyMismatchIs422NamingTheHeaderAndRule",
+    "source": "src/test/java/dev/urlshort/web/ProblemsTest.java",
+    "sourceSha256": "6c31ee2e2206d77906fe4ec9c3fc557fa1a3defb3762b3693bf0e7661de3404f"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "rule1_limitedRequestsAreChargedToTheirBudget",
+    "source": "src/test/java/dev/urlshort/web/RateLimitFilterTest.java",
+    "sourceSha256": "a1066a22ed0b0d6d67078700acf5a912c08bbfa86ca5ac5e7a0801be8a588221"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "rule1_operatorSurfacesAreNeitherChargedNorLimited",
+    "source": "src/test/java/dev/urlshort/web/RateLimitFilterTest.java",
+    "sourceSha256": "a1066a22ed0b0d6d67078700acf5a912c08bbfa86ca5ac5e7a0801be8a588221"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "rule5_theClientIsThePeerOrTheRightMostUntrustedForwardedHop",
+    "source": "src/test/java/dev/urlshort/web/RateLimitFilterTest.java",
+    "sourceSha256": "a1066a22ed0b0d6d67078700acf5a912c08bbfa86ca5ac5e7a0801be8a588221"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "rule5_anAbsentOrEmptyHeaderFromATrustedProxyChargesTheProxy",
+    "source": "src/test/java/dev/urlshort/web/RateLimitFilterTest.java",
+    "sourceSha256": "a1066a22ed0b0d6d67078700acf5a912c08bbfa86ca5ac5e7a0801be8a588221"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "theFilterReadsOnlyXForwardedForAndOnlyFromATrustedPeer",
+    "source": "src/test/java/dev/urlshort/web/RateLimitFilterTest.java",
+    "sourceSha256": "a1066a22ed0b0d6d67078700acf5a912c08bbfa86ca5ac5e7a0801be8a588221"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "anEmptyBucketIsA429ProblemWithRetryAfterAndNoChain",
+    "source": "src/test/java/dev/urlshort/web/RateLimitFilterTest.java",
+    "sourceSha256": "a1066a22ed0b0d6d67078700acf5a912c08bbfa86ca5ac5e7a0801be8a588221"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "eachRejectionIsCountedOnceUnderItsBudgetOnly",
+    "source": "src/test/java/dev/urlshort/web/RateLimitFilterTest.java",
+    "sourceSha256": "a1066a22ed0b0d6d67078700acf5a912c08bbfa86ca5ac5e7a0801be8a588221"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "AC03a_anExactlyEmptyBucketRefillsOneTokenAfterExactlyOneSecond",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "sourceSha256": "6f47a822b2803c097ffbd02c522602ec8f12a1439bcf47126bc942d76fb202db"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "AC03b_retryAfterIsRoundedUpAndHonoured",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "sourceSha256": "6f47a822b2803c097ffbd02c522602ec8f12a1439bcf47126bc942d76fb202db"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "AC04_aQuietMinuteRefillsTheWholeBucket",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "sourceSha256": "6f47a822b2803c097ffbd02c522602ec8f12a1439bcf47126bc942d76fb202db"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "refusalsTakeNothing",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "sourceSha256": "6f47a822b2803c097ffbd02c522602ec8f12a1439bcf47126bc942d76fb202db"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "budgetsAndClientsAreIndependent",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "sourceSha256": "6f47a822b2803c097ffbd02c522602ec8f12a1439bcf47126bc942d76fb202db"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "retryAfterIsTheWaitForOneTokenInWholeSeconds",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "sourceSha256": "6f47a822b2803c097ffbd02c522602ec8f12a1439bcf47126bc942d76fb202db"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "aRequestOvertakenByNewerOnesDecidesOnTheTimeItReachesTheBucket",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "sourceSha256": "6f47a822b2803c097ffbd02c522602ec8f12a1439bcf47126bc942d76fb202db"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "afterABackwardClockStepTheBucketRefillsFromItsStoredTat",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "sourceSha256": "6f47a822b2803c097ffbd02c522602ec8f12a1439bcf47126bc942d76fb202db"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "fullBucketsAreReleasedByTheNextRequestButNotWhileIdle",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "sourceSha256": "6f47a822b2803c097ffbd02c522602ec8f12a1439bcf47126bc942d76fb202db"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "aBucketThatIsNotYetFullSurvivesTheRelease",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "sourceSha256": "6f47a822b2803c097ffbd02c522602ec8f12a1439bcf47126bc942d76fb202db"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "theReleaseRunsAtMostOncePerSecond",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "sourceSha256": "6f47a822b2803c097ffbd02c522602ec8f12a1439bcf47126bc942d76fb202db"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "theReleaseResumesAfterABackwardClockStep",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "sourceSha256": "6f47a822b2803c097ffbd02c522602ec8f12a1439bcf47126bc942d76fb202db"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RequestBodyLimitFilterTest",
+    "method": "aBodyOfExactlyTheLimitIsReadInFull",
+    "source": "src/test/java/dev/urlshort/web/RequestBodyLimitFilterTest.java",
+    "sourceSha256": "d2960d36ec119d921b45aa7b8a1886debd0028bb5a5988d2f1ee5523785dfccf"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RequestBodyLimitFilterTest",
+    "method": "theFirstByteOverTheLimitIs413OnTheBulkReadPath",
+    "source": "src/test/java/dev/urlshort/web/RequestBodyLimitFilterTest.java",
+    "sourceSha256": "d2960d36ec119d921b45aa7b8a1886debd0028bb5a5988d2f1ee5523785dfccf"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RequestBodyLimitFilterTest",
+    "method": "singleByteReadsCountTooAndEndOfStreamIsPassedThrough",
+    "source": "src/test/java/dev/urlshort/web/RequestBodyLimitFilterTest.java",
+    "sourceSha256": "d2960d36ec119d921b45aa7b8a1886debd0028bb5a5988d2f1ee5523785dfccf"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RequestBodyLimitFilterTest",
+    "method": "theWrappedStreamIsCreatedOnceSoTheCountCannotBeReset",
+    "source": "src/test/java/dev/urlshort/web/RequestBodyLimitFilterTest.java",
+    "sourceSha256": "d2960d36ec119d921b45aa7b8a1886debd0028bb5a5988d2f1ee5523785dfccf"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RequestBodyLimitFilterTest",
+    "method": "servletStreamStateAndListenerDelegateToTheContainerStream",
+    "source": "src/test/java/dev/urlshort/web/RequestBodyLimitFilterTest.java",
+    "sourceSha256": "d2960d36ec119d921b45aa7b8a1886debd0028bb5a5988d2f1ee5523785dfccf"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RequestIdFilterTest",
+    "method": "issuesOneIdOnHeaderAndMdcBeforeTheChainRunsAndClearsMdcAfter",
+    "source": "src/test/java/dev/urlshort/web/RequestIdFilterTest.java",
+    "sourceSha256": "9010cdf4cb8d9cd88613dc46ba4edf9ebecdc0976723bd58d25e0b88b6e4b9da"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RequestIdFilterTest",
+    "method": "ignoresInboundRequestIdAndIssuesADifferentIdPerRequest",
+    "source": "src/test/java/dev/urlshort/web/RequestIdFilterTest.java",
+    "sourceSha256": "9010cdf4cb8d9cd88613dc46ba4edf9ebecdc0976723bd58d25e0b88b6e4b9da"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RequestIdFilterTest",
+    "method": "writesOneRequestCompletedEventWithTheStatusAndTheIdButNotTheMethod",
+    "source": "src/test/java/dev/urlshort/web/RequestIdFilterTest.java",
+    "sourceSha256": "9010cdf4cb8d9cd88613dc46ba4edf9ebecdc0976723bd58d25e0b88b6e4b9da"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RequestIdFilterTest",
+    "method": "clearsMdcWhenTheChainThrows",
+    "source": "src/test/java/dev/urlshort/web/RequestIdFilterTest.java",
+    "sourceSha256": "9010cdf4cb8d9cd88613dc46ba4edf9ebecdc0976723bd58d25e0b88b6e4b9da"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.HealthJourneyTest",
+    "method": "healthEndpointReportsUp",
+    "source": "src/functionalTest/java/dev/urlshort/HealthJourneyTest.java",
+    "sourceSha256": "5d33fd886cf719dd0df0e0e5fc1e9e4183f33f9c5b6b3c0a2c3d067842144db0"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditJourneyTest",
+    "method": "AC22_createWritesExactlyOneAuditRow",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditJourneyTest.java",
+    "sourceSha256": "2454ee290815d3c8bf53ab75b4ccb4da0e1422a6c7454a0abf34db5f38a1d7c9"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditJourneyTest",
+    "method": "AC23_retireWritesExactlyOneAuditRow",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditJourneyTest.java",
+    "sourceSha256": "2454ee290815d3c8bf53ab75b4ccb4da0e1422a6c7454a0abf34db5f38a1d7c9"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditJourneyTest",
+    "method": "AC24_aFailedAuditWriteRollsTheRetireBackAndFailsClosed",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditJourneyTest.java",
+    "sourceSha256": "2454ee290815d3c8bf53ab75b4ccb4da0e1422a6c7454a0abf34db5f38a1d7c9"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditJourneyTest",
+    "method": "AC25_auditRowsAreAppendOnlyUnderEveryOperation",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditJourneyTest.java",
+    "sourceSha256": "2454ee290815d3c8bf53ab75b4ccb4da0e1422a6c7454a0abf34db5f38a1d7c9"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickPurgeFailureJourneyTest",
+    "method": "AC10_aFailedRunIsReportedAndLeavesTheServiceWorking",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickPurgeFailureJourneyTest.java",
+    "sourceSha256": "c6468c6db266ecb0f861da800b908425c1be6e01da6f168014bbd7c2b538f54b"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickPurgeFailureJourneyTest",
+    "method": "AC12_aClickThatCannotBeReducedIsOneWarnWithItsOwnReason",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickPurgeFailureJourneyTest.java",
+    "sourceSha256": "c6468c6db266ecb0f861da800b908425c1be6e01da6f168014bbd7c2b538f54b"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickPurgeHoldJourneyTest",
+    "method": "theSharedContextsHoldThePurge",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickPurgeHoldJourneyTest.java",
+    "sourceSha256": "ab3770db72238d942083bfb7bf3508be03ec36ebb6ff87c3049dcde2e5b5c2fd"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC01_aRedirectRecordsExactlyOneClickWithItsTime",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "sourceSha256": "29ba2079810bef3e10c70e62283c038dce149a0ba129724921c3151f58559227"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC02_onlyARedirectIsAClick",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "sourceSha256": "29ba2079810bef3e10c70e62283c038dce149a0ba129724921c3151f58559227"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC03_theReferrerIsStoredAsItsOriginOnly",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "sourceSha256": "29ba2079810bef3e10c70e62283c038dce149a0ba129724921c3151f58559227"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC04_theUserAgentIsStoredAsAClassOnly",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "sourceSha256": "29ba2079810bef3e10c70e62283c038dce149a0ba129724921c3151f58559227"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC05_theClientAddressIsStoredOnlyAsASaltedHashThatRotatesEveryUtcDay",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "sourceSha256": "29ba2079810bef3e10c70e62283c038dce149a0ba129724921c3151f58559227"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC06_forwardingHeadersDoNotChangeTheRecordedClient",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "sourceSha256": "29ba2079810bef3e10c70e62283c038dce149a0ba129724921c3151f58559227"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC17_theStatisticsExposeAggregatesOnly",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "sourceSha256": "29ba2079810bef3e10c70e62283c038dce149a0ba129724921c3151f58559227"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC18_noClickDataReachesTheLogs",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "sourceSha256": "29ba2079810bef3e10c70e62283c038dce149a0ba129724921c3151f58559227"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "method": "AC14_aSlowClickStoreDoesNotSlowTheRedirect",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java",
+    "sourceSha256": "b3e16802e20b4d431edbdf478642736c9547606aa910cfa2de388d49c8001ec7"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "method": "AC15_AC19_aFailingClickStoreDoesNotFailTheRedirectAndTheLossIsOneCorrelatedWarn",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java",
+    "sourceSha256": "b3e16802e20b4d431edbdf478642736c9547606aa910cfa2de388d49c8001ec7"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "method": "AC16_concurrentRedirectsLoseNoClicksAndTheRequestIsNeverReadAfterItsResponse",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java",
+    "sourceSha256": "b3e16802e20b4d431edbdf478642736c9547606aa910cfa2de388d49c8001ec7"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "method": "AC18_AC19_onTomcatClickDataStaysOutOfTheLogsAndEveryEventIsCorrelated",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java",
+    "sourceSha256": "b3e16802e20b4d431edbdf478642736c9547606aa910cfa2de388d49c8001ec7"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "method": "AC22_headOnTheStatisticsPathHasNoBodyAndRecordsNothing",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java",
+    "sourceSha256": "b3e16802e20b4d431edbdf478642736c9547606aa910cfa2de388d49c8001ec7"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionJourneyTest",
+    "method": "AC01_theBoundaryDayIsKeptAndTheDayBeforeItIsDeleted",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java",
+    "sourceSha256": "d42e733c485486e2a87feb805b8b19e8b66e03e1c11303ea983f5c2ead370428"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionJourneyTest",
+    "method": "AC02_theWindowMovesWithTheDay",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java",
+    "sourceSha256": "d42e733c485486e2a87feb805b8b19e8b66e03e1c11303ea983f5c2ead370428"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionJourneyTest",
+    "method": "AC05_statisticsCoverTheRetainedClicksOnly",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java",
+    "sourceSha256": "d42e733c485486e2a87feb805b8b19e8b66e03e1c11303ea983f5c2ead370428"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionJourneyTest",
+    "method": "AC06_linksRedirectsAndTheAuditTrailAreUntouched",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java",
+    "sourceSha256": "d42e733c485486e2a87feb805b8b19e8b66e03e1c11303ea983f5c2ead370428"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionJourneyTest",
+    "method": "AC09_eachRunLogsOneInfoWithItsCountCutoffAndPeriodAndNoClickValue",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java",
+    "sourceSha256": "d42e733c485486e2a87feb805b8b19e8b66e03e1c11303ea983f5c2ead370428"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionJourneyTest",
+    "method": "AC11_aRedirectWhileOldClicksAreBeingDeletedIsServedAndCounted",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java",
+    "sourceSha256": "d42e733c485486e2a87feb805b8b19e8b66e03e1c11303ea983f5c2ead370428"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionScheduleJourneyTest",
+    "method": "AC08_aPurgeRunsEveryUtcDayWithoutAnOperator",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionScheduleJourneyTest.java",
+    "sourceSha256": "18e8477c1c61732e76a5da75181f1ea602093b0085f6ed793a797a1ffbaf4127"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionSettingJourneyTest",
+    "method": "AC03_thePeriodIsAnOperatorSetting",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionSettingJourneyTest.java",
+    "sourceSha256": "b16fcebf4b9d691cf67caec76dba79772731ef177c39e0f0be6955db02d75515"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionStartupJourneyTest",
+    "method": "AC04_anInvalidPeriodStopsTheServiceFromStarting",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionStartupJourneyTest.java",
+    "sourceSha256": "7353af7162a4808ae238801e31623f56e257309d029f58d672f0d98a2e235dd7"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionStartupJourneyTest",
+    "method": "AC07_aPurgeRunsAtStartup",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionStartupJourneyTest.java",
+    "sourceSha256": "7353af7162a4808ae238801e31623f56e257309d029f58d672f0d98a2e235dd7"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionStartupJourneyTest",
+    "method": "AC13_AC16_anExistingDataDirectoryUpgradesInPlace",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionStartupJourneyTest.java",
+    "sourceSha256": "7353af7162a4808ae238801e31623f56e257309d029f58d672f0d98a2e235dd7"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionStartupJourneyTest",
+    "method": "AC15_aPausedPurgeDeletesNothingAndSaysSoAtEveryStart",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionStartupJourneyTest.java",
+    "sourceSha256": "7353af7162a4808ae238801e31623f56e257309d029f58d672f0d98a2e235dd7"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickSchemaJourneyTest",
+    "method": "everyUserAgentClassIsRecordedAfterThePoolRetiresItsConnections",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickSchemaJourneyTest.java",
+    "sourceSha256": "96397b99a4213b82b356b56c7366c960165325f4a229d9c61aa5cdefc5c2bf4b"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC07_aLinkWithNoClicksHasEmptyStatistics",
+    "source": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "sourceSha256": "139ff28ebc283cd7f4ee0f4ee11073fbe8460753ecd1a8a48c589ae3eefd5f33"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC08_totalClicksCountsEveryRedirect",
+    "source": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "sourceSha256": "139ff28ebc283cd7f4ee0f4ee11073fbe8460753ecd1a8a48c589ae3eefd5f33"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC09_clicksPerDayAreGroupedByUtcCalendarDay",
+    "source": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "sourceSha256": "139ff28ebc283cd7f4ee0f4ee11073fbe8460753ecd1a8a48c589ae3eefd5f33"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC10_topReferrersAreRankedAndCapped",
+    "source": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "sourceSha256": "139ff28ebc283cd7f4ee0f4ee11073fbe8460753ecd1a8a48c589ae3eefd5f33"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC12_aRetiredLinksStatisticsAreStillReadable",
+    "source": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "sourceSha256": "139ff28ebc283cd7f4ee0f4ee11073fbe8460753ecd1a8a48c589ae3eefd5f33"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC13_statisticsOfAnUnknownCodeAndWrongMethodsAreProblemDetails",
+    "source": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "sourceSha256": "139ff28ebc283cd7f4ee0f4ee11073fbe8460753ecd1a8a48c589ae3eefd5f33"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC19_theStatisticsPathAndASettledRedirectAreCorrelated",
+    "source": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "sourceSha256": "139ff28ebc283cd7f4ee0f4ee11073fbe8460753ecd1a8a48c589ae3eefd5f33"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC20_redirectAndAuditBehaviourAreUnchanged",
+    "source": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "sourceSha256": "139ff28ebc283cd7f4ee0f4ee11073fbe8460753ecd1a8a48c589ae3eefd5f33"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC21_theLiveApiDocumentDescribesTheStatisticsEndpoint",
+    "source": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "sourceSha256": "139ff28ebc283cd7f4ee0f4ee11073fbe8460753ecd1a8a48c589ae3eefd5f33"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC22_headAndOptionsKeepTheFrameworkDefaultsAndRecordNothing",
+    "source": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "sourceSha256": "139ff28ebc283cd7f4ee0f4ee11073fbe8460753ecd1a8a48c589ae3eefd5f33"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC17_aReplayReturnsTheFirstLink",
+    "source": "src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java",
+    "sourceSha256": "c9a5cbea9412358797f8180fcbe467942666f347eed8fe1ae51dada72caa31cf"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC18_sameKeyWithADifferentUrlIsRefusedAndTheBindingSurvives",
+    "source": "src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java",
+    "sourceSha256": "c9a5cbea9412358797f8180fcbe467942666f347eed8fe1ae51dada72caa31cf"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC19_aKeyIsHonouredFor24HoursAndNotLongerAndARejectionDoesNotExtendIt",
+    "source": "src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java",
+    "sourceSha256": "c9a5cbea9412358797f8180fcbe467942666f347eed8fe1ae51dada72caa31cf"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC20_aMalformedKeyIsRefused",
+    "source": "src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java",
+    "sourceSha256": "c9a5cbea9412358797f8180fcbe467942666f347eed8fe1ae51dada72caa31cf"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC20_aKeyOf255VisibleCharactersIsAccepted",
+    "source": "src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java",
+    "sourceSha256": "c9a5cbea9412358797f8180fcbe467942666f347eed8fe1ae51dada72caa31cf"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC21_aRejectedCreateDoesNotConsumeTheKey",
+    "source": "src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java",
+    "sourceSha256": "c9a5cbea9412358797f8180fcbe467942666f347eed8fe1ae51dada72caa31cf"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC01_validUrlBecomesAShortLink",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "sourceSha256": "bfbfe098891b4441ed49f92c7755d022976b80b9346c7b9d15701259219eea71"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC02_everyCreateWithoutAKeyIsANewLink",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "sourceSha256": "bfbfe098891b4441ed49f92c7755d022976b80b9346c7b9d15701259219eea71"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC03_shortUrlUsesTheShippedBaseNeverTheHostHeader",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "sourceSha256": "bfbfe098891b4441ed49f92c7755d022976b80b9346c7b9d15701259219eea71"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "sourceSha256": "bfbfe098891b4441ed49f92c7755d022976b80b9346c7b9d15701259219eea71"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC04_aUrlOfExactly2048CharactersIsAccepted",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "sourceSha256": "bfbfe098891b4441ed49f92c7755d022976b80b9346c7b9d15701259219eea71"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC05_bodyThatIsNotAJsonObjectIsRefused",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "sourceSha256": "bfbfe098891b4441ed49f92c7755d022976b80b9346c7b9d15701259219eea71"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC06_nonJsonContentTypeIsRefused",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "sourceSha256": "bfbfe098891b4441ed49f92c7755d022976b80b9346c7b9d15701259219eea71"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC07_bodyIsRefusedAtTheSixteenKibLimit",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "sourceSha256": "bfbfe098891b4441ed49f92c7755d022976b80b9346c7b9d15701259219eea71"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC16_redirectRouteDoesNotShadowTheExistingSurface",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "sourceSha256": "bfbfe098891b4441ed49f92c7755d022976b80b9346c7b9d15701259219eea71"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC08_readingALinkReturnsItsDetails",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java",
+    "sourceSha256": "19bb63e80963d558626ee4bd568f0a4a776bf0b7b8837c5a9be265fd0fd1b844"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC09_aRetiredLinkIsStillReadableWithItsState",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java",
+    "sourceSha256": "19bb63e80963d558626ee4bd568f0a4a776bf0b7b8837c5a9be265fd0fd1b844"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC10_retiringALinkIs204WithAnEmptyBody",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java",
+    "sourceSha256": "19bb63e80963d558626ee4bd568f0a4a776bf0b7b8837c5a9be265fd0fd1b844"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC11_retiringAnAlreadyRetiredLinkIs410AndNotASecondMutation",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java",
+    "sourceSha256": "19bb63e80963d558626ee4bd568f0a4a776bf0b7b8837c5a9be265fd0fd1b844"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC14_unknownCodeIs404OnEveryLinkOperation",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java",
+    "sourceSha256": "19bb63e80963d558626ee4bd568f0a4a776bf0b7b8837c5a9be265fd0fd1b844"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC15_wrongMethodIs405",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java",
+    "sourceSha256": "19bb63e80963d558626ee4bd568f0a4a776bf0b7b8837c5a9be265fd0fd1b844"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.PublicBaseUrlJourneyTest",
+    "method": "AC03_shortUrlUsesTheConfiguredBaseNeverTheHostHeader",
+    "source": "src/functionalTest/java/dev/urlshort/link/PublicBaseUrlJourneyTest.java",
+    "sourceSha256": "b772b15ffb5074050016e9f7e1966d350475bb9927ca2ac0468155d430c7de20"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.RedirectJourneyTest",
+    "method": "AC12_visitorIsRedirectedWithANonCacheable302",
+    "source": "src/functionalTest/java/dev/urlshort/link/RedirectJourneyTest.java",
+    "sourceSha256": "1ad6143131f06cc76d3daa7b58fe1a3c062eada07281936feef59ac845c576de"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.RedirectJourneyTest",
+    "method": "AC13_aRetiredLinkTellsTheVisitorItIsGone",
+    "source": "src/functionalTest/java/dev/urlshort/link/RedirectJourneyTest.java",
+    "sourceSha256": "1ad6143131f06cc76d3daa7b58fe1a3c062eada07281936feef59ac845c576de"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.RedirectJourneyTest",
+    "method": "rule7_queryStringOnTheShortLinkIsNotForwarded",
+    "source": "src/functionalTest/java/dev/urlshort/link/RedirectJourneyTest.java",
+    "sourceSha256": "1ad6143131f06cc76d3daa7b58fe1a3c062eada07281936feef59ac845c576de"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC1_pingAnswersOkAsJson",
+    "source": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "sourceSha256": "dc6b82f5e64d77b6b68dbbc0a7de92f84373db259f788dacb2765690bbe8f388"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC2_timeIsCurrentUtcInstant",
+    "source": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "sourceSha256": "dc6b82f5e64d77b6b68dbbc0a7de92f84373db259f788dacb2765690bbe8f388"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC3_everyResponseCarriesRequestId",
+    "source": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "sourceSha256": "dc6b82f5e64d77b6b68dbbc0a7de92f84373db259f788dacb2765690bbe8f388"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC4_requestIdsAreUniquePerRequest",
+    "source": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "sourceSha256": "dc6b82f5e64d77b6b68dbbc0a7de92f84373db259f788dacb2765690bbe8f388"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC5_wrongMethodIsProblemDetailWithRequestId",
+    "source": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "sourceSha256": "dc6b82f5e64d77b6b68dbbc0a7de92f84373db259f788dacb2765690bbe8f388"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC6_pingIsLoggedAsJsonWithRequestId",
+    "source": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "sourceSha256": "dc6b82f5e64d77b6b68dbbc0a7de92f84373db259f788dacb2765690bbe8f388"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC7_logEventCarriesNoClientAddressOrUserAgent",
+    "source": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "sourceSha256": "dc6b82f5e64d77b6b68dbbc0a7de92f84373db259f788dacb2765690bbe8f388"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC8_clientSuppliedRequestIdIsIgnored",
+    "source": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "sourceSha256": "dc6b82f5e64d77b6b68dbbc0a7de92f84373db259f788dacb2765690bbe8f388"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.ColdStartJourneyTest",
+    "method": "AC26_theFirstRequestOnARealServerLogsOnlyItsOwnCorrelatedEvents",
+    "source": "src/functionalTest/java/dev/urlshort/web/ColdStartJourneyTest.java",
+    "sourceSha256": "72dac075e7e9a1cf5ca92716817bee35f05734c6ba6ebed35d4132a3ce5c835b"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.DatabaseDownJourneyTest",
+    "method": "AC14_AC15_readinessFollowsTheDatabaseAndLivenessDoesNot",
+    "source": "src/functionalTest/java/dev/urlshort/web/DatabaseDownJourneyTest.java",
+    "sourceSha256": "69990b205ea0e728566020909bc480d33603eaad2add33caa7078d2c2a212ad6"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.HealthMetricsJourneyTest",
+    "method": "AC13_livenessAndReadinessAreUpWithAWorkingDatabase",
+    "source": "src/functionalTest/java/dev/urlshort/web/HealthMetricsJourneyTest.java",
+    "sourceSha256": "b26a71e0e1339a66f3bf79aba29cb3bbf43454cd08513b6ceff44a464a444a21"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.HealthMetricsJourneyTest",
+    "method": "AC15_healthBodiesDiscloseNothingAboutTheInstallation",
+    "source": "src/functionalTest/java/dev/urlshort/web/HealthMetricsJourneyTest.java",
+    "sourceSha256": "b26a71e0e1339a66f3bf79aba29cb3bbf43454cd08513b6ceff44a464a444a21"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.HealthMetricsJourneyTest",
+    "method": "AC18_redirectsAreCountedByRouteTemplate",
+    "source": "src/functionalTest/java/dev/urlshort/web/HealthMetricsJourneyTest.java",
+    "sourceSha256": "b26a71e0e1339a66f3bf79aba29cb3bbf43454cd08513b6ceff44a464a444a21"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.ObservabilityJourneyTest",
+    "method": "AC26_everyResponseCarriesARequestIdAndEveryEventOfTheRequestTheSameId",
+    "source": "src/functionalTest/java/dev/urlshort/web/ObservabilityJourneyTest.java",
+    "sourceSha256": "e03d503dd96f1cdd6e1e580be2dd4301bf42fcd64b0953ec1aa19135e9a295f2"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.ObservabilityJourneyTest",
+    "method": "AC27_noClientControlledValueReachesTheLogs",
+    "source": "src/functionalTest/java/dev/urlshort/web/ObservabilityJourneyTest.java",
+    "sourceSha256": "e03d503dd96f1cdd6e1e580be2dd4301bf42fcd64b0953ec1aa19135e9a295f2"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.ObservabilityJourneyTest",
+    "method": "AC27_aDatabaseFailureQuotingTheKeyLogsOnlyClassNames",
+    "source": "src/functionalTest/java/dev/urlshort/web/ObservabilityJourneyTest.java",
+    "sourceSha256": "e03d503dd96f1cdd6e1e580be2dd4301bf42fcd64b0953ec1aa19135e9a295f2"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.ObservabilityJourneyTest",
+    "method": "rule8_problemBodiesAndLogsNeverEchoASubmittedValue",
+    "source": "src/functionalTest/java/dev/urlshort/web/ObservabilityJourneyTest.java",
+    "sourceSha256": "e03d503dd96f1cdd6e1e580be2dd4301bf42fcd64b0953ec1aa19135e9a295f2"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.OpenApiDocumentTest",
+    "method": "NFRM3_committedDocumentEqualsTheLiveOne",
+    "source": "src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java",
+    "sourceSha256": "3a156d6ec77a8fe78128865b7e95e30b6b43b7998a0a0b7d565222220876313d"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.OpenApiDocumentTest",
+    "method": "AC28_liveDocumentDescribesTheSlice",
+    "source": "src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java",
+    "sourceSha256": "3a156d6ec77a8fe78128865b7e95e30b6b43b7998a0a0b7d565222220876313d"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.OpenApiDocumentTest",
+    "method": "AC20_everyOperationDocumentsTheTooManyRequestsProblem",
+    "source": "src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java",
+    "sourceSha256": "3a156d6ec77a8fe78128865b7e95e30b6b43b7998a0a0b7d565222220876313d"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitDefaultsTest",
+    "method": "theShippedConfigurationCarriesTheDecidedBudgets",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitDefaultsTest.java",
+    "sourceSha256": "5ac597a0ae442a82a33b201b563972d288bfe11474fb02f6774926b625c52dbb"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitDefaultsTest",
+    "method": "theSettingsRecordDefaultsToTheSameBudgets",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitDefaultsTest.java",
+    "sourceSha256": "5ac597a0ae442a82a33b201b563972d288bfe11474fb02f6774926b625c52dbb"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC01_theCreateBudgetAdmits60AndRefusesThe61st",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "sourceSha256": "71baa3a0317a88d2d17397e24819a2b044f95251d753652e635609d2bf3639fb"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC02_theRedirectBudgetAdmits600AndRefusesThe601st",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "sourceSha256": "71baa3a0317a88d2d17397e24819a2b044f95251d753652e635609d2bf3639fb"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC03a_retryAfterIsTruthfulFromAnExactlyEmptyBucket",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "sourceSha256": "71baa3a0317a88d2d17397e24819a2b044f95251d753652e635609d2bf3639fb"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC03b_retryAfterIsAnUpperBoundFromAPartlyRefilledBucket",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "sourceSha256": "71baa3a0317a88d2d17397e24819a2b044f95251d753652e635609d2bf3639fb"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC04_aFullBudgetReturnsAfterAQuietMinute",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "sourceSha256": "71baa3a0317a88d2d17397e24819a2b044f95251d753652e635609d2bf3639fb"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC05_theTwoBudgetsAreIndependent",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "sourceSha256": "71baa3a0317a88d2d17397e24819a2b044f95251d753652e635609d2bf3639fb"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC06_clientsAreIndependent",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "sourceSha256": "71baa3a0317a88d2d17397e24819a2b044f95251d753652e635609d2bf3639fb"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC07_aForgedForwardedAddressDoesNotChangeTheClient",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "sourceSha256": "71baa3a0317a88d2d17397e24819a2b044f95251d753652e635609d2bf3639fb"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC09_everyRequestInABudgetCountsAndTheLimitIsCheckedFirst",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "sourceSha256": "71baa3a0317a88d2d17397e24819a2b044f95251d753652e635609d2bf3639fb"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC11_theTooManyRequestsProblemNamesNoClient",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "sourceSha256": "71baa3a0317a88d2d17397e24819a2b044f95251d753652e635609d2bf3639fb"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC12_eachRejectionIsLoggedOnceCorrelatedAndWithoutClientValues",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "sourceSha256": "71baa3a0317a88d2d17397e24819a2b044f95251d753652e635609d2bf3639fb"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "rule1_percentEncodingDoesNotMoveARequestToTheLargerBudget",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "sourceSha256": "71baa3a0317a88d2d17397e24819a2b044f95251d753652e635609d2bf3639fb"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "rule1_operatorSurfacesAreNeverLimited",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "sourceSha256": "71baa3a0317a88d2d17397e24819a2b044f95251d753652e635609d2bf3639fb"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "rule1_aDotDotSegmentUnderAnExemptPrefixReachesNoLimitedOperation",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "sourceSha256": "71baa3a0317a88d2d17397e24819a2b044f95251d753652e635609d2bf3639fb"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC16_theMetricsSurfaceListsTheFourKindsOfMetric",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "sourceSha256": "71baa3a0317a88d2d17397e24819a2b044f95251d753652e635609d2bf3639fb"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC17_everyRejectionIsCountedOnceByBudget",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "sourceSha256": "71baa3a0317a88d2d17397e24819a2b044f95251d753652e635609d2bf3639fb"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC19_metricsAreExposedForScrapingWithoutClientOrLinkValues",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "sourceSha256": "71baa3a0317a88d2d17397e24819a2b044f95251d753652e635609d2bf3639fb"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "designDR01_anInvalidPathUnderAnExemptPrefixLogsNoSubmittedValueOnTomcat",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "sourceSha256": "71baa3a0317a88d2d17397e24819a2b044f95251d753652e635609d2bf3639fb"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC11_onTomcatThe429IsTheSameProblemMediaTypeAsEveryOtherError",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "sourceSha256": "71baa3a0317a88d2d17397e24819a2b044f95251d753652e635609d2bf3639fb"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitSettingsJourneyTest",
+    "method": "AC10_theBudgetsAreOperatorSettings",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitSettingsJourneyTest.java",
+    "sourceSha256": "97bff6d77c28960c2de49725ca2eef6550fa8f383b371e7fb7b90479b7e4098b"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.ShutdownPhaseDefaultTest",
+    "method": "theShippedGracefulShutdownPhaseIsTenSeconds",
+    "source": "src/functionalTest/java/dev/urlshort/web/ShutdownPhaseDefaultTest.java",
+    "sourceSha256": "3711da6e32df70d9e27c5fac3bf6b0c24b396a9cb63ec34c91957edc86b661b9"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.TrustedProxyJourneyTest",
+    "method": "AC08_aTrustedProxysForwardedAddressIdentifiesTheClient",
+    "source": "src/functionalTest/java/dev/urlshort/web/TrustedProxyJourneyTest.java",
+    "sourceSha256": "b2d30fdb48e26ed6d356873a0010673f699012ebdc9775538ec852f590bee487"
+  }
+]

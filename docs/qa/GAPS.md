@@ -231,3 +231,18 @@ Observation limits and compensating checks:
 | 03-dogfood-fix @4fe7042 | Some parameterized JUnit XML names identify arguments without source method | Gradle9.8/JUnit default display omits enclosing method in those XML cases | All 411 invocations green; all 233 source methods separately inventoried, every XML invocation attributed to method or green class parameterized group | Honest result-attribution boundary; no skipped or omitted source method |
 | 03-dogfood-fix @4fe7042 | Inherited gradlew.bat worktree modification is line endings only | Wrapper bump and eol attributes; later main renormalisation outside candidate | Normalized bytes equal candidate blob; worktree-note.json; exact HEAD preserved | No product change or toolchain repair by QA |
 | 03-dogfood-fix @4fe7042 | No new Docker, load, migration, Swagger rendering or natural expiry/midnight exercise | Slice fixes metadata and metric tagging; outside nine ACs | Original shipped suites run unchanged; installed retired410, mismatch422, malformed400, missing404 and create-budget429 independently checked | Explicit scope, no broader claim |
+
+## 02-click-retention — QA2, a8fc8b6 (2026-10-03)
+
+| Gap / scope | Why / evidence | Compensating check / disposition |
+|---|---|---|
+| Unit line 91.22% (447/490); branch 100% (168/168). Functional line 93.47% (458/490); branch 80.36% (135/168). | Suites exercise complementary paths; committed per-suite CSVs. | Merged canonical gate 490/490 lines and 168/168 branches, 100/100. No exclusion or lowered threshold. |
+| Proof item 9 pending X′. | X is deliberately based before audit-read's cb148c4 merge under lead NOTES §2 21:42Z. | qitem-20261003221121-7686465a returns ancestry/Flyway judgment to QA on X′ before acceptance, after authorized range-diff and fresh gate. No ancestry PASS on X. |
+| Daily/pause observations use a controlled service Clock. | SPEC AC-8/15 explicitly require the suite clock; the external harness leaves the real five-second executor and JDBC unchanged. | Autonomous no-trigger daily run observed in 3.651 real seconds; pause checked at both +60 service-second points with >5 real seconds per observation. Actual installed default startup and real environment binding verified separately. |
+| Fault/concurrency probes use disposable JDBC/HMAC controls. | A one-shot physical prepareStatement exception, actual empty keyed-hash key and old-row transaction blocker make failures reproducible. | Actual HTTP handlers, writer and global DELETE inspected; 302/current row during pending DELETE; class-only WARN and correlated reduction reason; no product/test edit. 5,000 rows is a concurrency fixture, not a performance benchmark. |
+| Large catch-up, Docker/PostgreSQL, SIGTERM while purge is running not checked here. | Outside these AC observations; design ADR-0018/0020 probes remain separate evidence. | No QA performance/shutdown-budget claim. A shutdown timeout returns without interrupting JDBC; this QA establishes only normal process cleanup. |
+| QA harness corrections before clean run. | Quoted lower-case Flyway columns; ignored its null schema-marker version; corrected stats fields to date/clicks and replay status to specified 201. Sandbox denied child binding; direct default java was JDK11. | Interrupted attempts retained; JDK21 and scoped sandbox approval used; corrected --all run passed all 249 assertions. No product defect asserted from instrument errors. |
+
+Every AC is functionally covered and independently observed by effect. No remaining
+AC verification gap or merged coverage deficit on X; custody item 9 is an explicit
+later judgment obligation, not an accepted gap or completed acceptance.

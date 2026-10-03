@@ -1,0 +1,188 @@
+{
+  "candidate": "a8fc8b6b67e3a3cbdaada43a3233191b6c7610e1",
+  "observations": [
+    {
+      "name": "baseline-f6dd29e ready",
+      "pid": 22275,
+      "argv": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/private/tmp/urlshort-qa2-retention-96nqv4hx/baseline/build/libs/urlshort.jar",
+        "--server.address=127.0.0.1",
+        "--server.port=18141",
+        "--spring.datasource.url=jdbc:h2:file:/private/tmp/urlshort-qa2-retention-96nqv4hx/effects-qheqaaex/installed-upgrade/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=10000",
+        "--urlshort.rate-limit.trusted-proxies=127.0.0.1"
+      ],
+      "env": {},
+      "at": "2026-10-03T22:10:46.498274+00:00"
+    },
+    {
+      "name": "POST /api/links",
+      "method": "POST",
+      "path": "/api/links",
+      "status": 201,
+      "headers": {
+        "x-request-id": "b5c4e21e-bfc1-4a33-bb55-ad51fa594448",
+        "location": "/api/links/3UtK44HQ",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 22:10:46 GMT"
+      },
+      "body": {
+        "code": "3UtK44HQ",
+        "shortUrl": "http://localhost:8080/3UtK44HQ",
+        "url": "https://qa.example/installed",
+        "state": "active",
+        "createdAt": "2026-10-03T22:10:46.525Z"
+      },
+      "peer": "198.51.100.10",
+      "argv": [
+        "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+        "-sS",
+        "--max-time",
+        "8",
+        "-i",
+        "-X",
+        "POST",
+        "-H",
+        "X-Forwarded-For: 198.51.100.10",
+        "-H",
+        "Content-Type: application/json",
+        "-d",
+        "{\"url\": \"https://qa.example/installed\"}",
+        "http://localhost:18141/api/links"
+      ],
+      "raw": "HTTP/1.1 201 \nX-Request-Id: b5c4e21e-bfc1-4a33-bb55-ad51fa594448\nLocation: /api/links/3UtK44HQ\nContent-Type: application/json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 22:10:46 GMT\n\n{\"code\":\"3UtK44HQ\",\"shortUrl\":\"http://localhost:8080/3UtK44HQ\",\"url\":\"https://qa.example/installed\",\"state\":\"active\",\"createdAt\":\"2026-10-03T22:10:46.525Z\"}"
+    },
+    {
+      "name": "POST /api/links",
+      "method": "POST",
+      "path": "/api/links",
+      "status": 201,
+      "headers": {
+        "x-request-id": "7afdd6b7-0fa2-4d3c-b5a2-7d8ff63c9379",
+        "location": "/api/links/V5WnR5Fp",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 22:10:46 GMT"
+      },
+      "body": {
+        "code": "V5WnR5Fp",
+        "shortUrl": "http://localhost:8080/V5WnR5Fp",
+        "url": "https://qa.example/retired",
+        "state": "active",
+        "createdAt": "2026-10-03T22:10:46.599Z"
+      },
+      "peer": "198.51.100.10",
+      "argv": [
+        "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+        "-sS",
+        "--max-time",
+        "8",
+        "-i",
+        "-X",
+        "POST",
+        "-H",
+        "X-Forwarded-For: 198.51.100.10",
+        "-H",
+        "Content-Type: application/json",
+        "-d",
+        "{\"url\": \"https://qa.example/retired\"}",
+        "http://localhost:18141/api/links"
+      ],
+      "raw": "HTTP/1.1 201 \nX-Request-Id: 7afdd6b7-0fa2-4d3c-b5a2-7d8ff63c9379\nLocation: /api/links/V5WnR5Fp\nContent-Type: application/json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 22:10:46 GMT\n\n{\"code\":\"V5WnR5Fp\",\"shortUrl\":\"http://localhost:8080/V5WnR5Fp\",\"url\":\"https://qa.example/retired\",\"state\":\"active\",\"createdAt\":\"2026-10-03T22:10:46.599Z\"}"
+    },
+    {
+      "name": "GET /3UtK44HQ",
+      "method": "GET",
+      "path": "/3UtK44HQ",
+      "status": 302,
+      "headers": {
+        "x-request-id": "fc5606e8-20fb-460b-934f-5f144583735d",
+        "location": "https://qa.example/installed",
+        "cache-control": "no-store",
+        "content-length": "0",
+        "date": "Sat, 03 Oct 2026 22:10:46 GMT"
+      },
+      "body": null,
+      "peer": "198.51.100.10",
+      "argv": [
+        "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+        "-sS",
+        "--max-time",
+        "8",
+        "-i",
+        "-X",
+        "GET",
+        "-H",
+        "X-Forwarded-For: 198.51.100.10",
+        "http://localhost:18141/3UtK44HQ"
+      ],
+      "raw": "HTTP/1.1 302 \nX-Request-Id: fc5606e8-20fb-460b-934f-5f144583735d\nLocation: https://qa.example/installed\nCache-Control: no-store\nContent-Length: 0\nDate: Sat, 03 Oct 2026 22:10:46 GMT\n\n"
+    },
+    {
+      "name": "DELETE /api/links/V5WnR5Fp",
+      "method": "DELETE",
+      "path": "/api/links/V5WnR5Fp",
+      "status": 204,
+      "headers": {
+        "x-request-id": "885e530c-3fbc-4d9e-81be-dd8474ad483c",
+        "date": "Sat, 03 Oct 2026 22:10:46 GMT"
+      },
+      "body": null,
+      "peer": "198.51.100.10",
+      "argv": [
+        "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+        "-sS",
+        "--max-time",
+        "8",
+        "-i",
+        "-X",
+        "DELETE",
+        "-H",
+        "X-Forwarded-For: 198.51.100.10",
+        "http://localhost:18141/api/links/V5WnR5Fp"
+      ],
+      "raw": "HTTP/1.1 204 \nX-Request-Id: 885e530c-3fbc-4d9e-81be-dd8474ad483c\nDate: Sat, 03 Oct 2026 22:10:46 GMT\n\n"
+    },
+    {
+      "name": "baseline-f6dd29e stopped",
+      "pid": 22275,
+      "exit": 143
+    },
+    {
+      "name": "driver stopped on error",
+      "error": "real shipped V1 V2 directory",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/02-click-retention/proof/qa_by_effect.py\", line 313, in <module>\n    directory,code,T=upgrade()\n  File \"/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/02-click-retention/proof/qa_by_effect.py\", line 165, in upgrade\n    check('real shipped V1 V2 directory', [r['version'] for r in before[6]] == ['1','2'])\n  File \"/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/02-click-retention/proof/qa_by_effect.py\", line 38, in check\n    raise AssertionError(name)\nAssertionError: real shipped V1 V2 directory\n"
+    }
+  ],
+  "checks": [
+    {
+      "name": "created https://qa.example/installed",
+      "passed": true
+    },
+    {
+      "name": "created https://qa.example/retired",
+      "passed": true
+    },
+    {
+      "name": "original retire 204",
+      "passed": true
+    },
+    {
+      "name": "real shipped V1 V2 directory",
+      "passed": false
+    },
+    {
+      "name": "all owned app processes stopped",
+      "passed": true
+    }
+  ],
+  "stopped": [
+    {
+      "name": "baseline-f6dd29e",
+      "pid": 22275,
+      "exit": 143
+    }
+  ]
+}

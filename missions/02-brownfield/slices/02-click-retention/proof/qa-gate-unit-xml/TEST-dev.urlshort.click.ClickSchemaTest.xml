@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.urlshort.click.ClickSchemaTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-03T21:45:26.747Z" hostname="Andrzejs-MacBook-Pro.local" time="0.119">
+  <properties/>
+  <testcase name="theClickConstraintsStillWorkAfterTheDdlConnectionIsRetired()" classname="dev.urlshort.click.ClickSchemaTest" time="0.119"/>
+  <system-out><![CDATA[2026-10-03T14:45:26.749-07:00  INFO 27640 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2026-10-03T14:45:26.750-07:00  INFO 27640 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-4 - Added connection conn28: url=jdbc:h2:mem:click-schema-cf87335e-5ce2-461f-a38a-5ca360135bb9 user=SA
+2026-10-03T14:45:26.751-07:00  INFO 27640 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2026-10-03T14:45:26.757-07:00  INFO 27640 --- [    Test worker] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:click-schema-cf87335e-5ce2-461f-a38a-5ca360135bb9 (H2 2.4)
+2026-10-03T14:45:26.762-07:00  WARN 27640 --- [    Test worker] o.f.c.internal.database.base.Database    : Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026-10-03T14:45:26.765-07:00  INFO 27640 --- [    Test worker] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+2026-10-03T14:45:26.765-07:00  INFO 27640 --- [    Test worker] o.f.core.internal.command.DbValidate     : Successfully validated 3 migrations (execution time 00:00.001s)
+2026-10-03T14:45:26.766-07:00  INFO 27640 --- [    Test worker] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+2026-10-03T14:45:26.793-07:00  INFO 27640 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": << Empty Schema >>
+2026-10-03T14:45:26.796-07:00  INFO 27640 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1 - create link and audit log"
+2026-10-03T14:45:26.803-07:00  INFO 27640 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "2 - create click"
+2026-10-03T14:45:26.809-07:00  INFO 27640 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "3 - add click audit columns"
+2026-10-03T14:45:26.829-07:00  INFO 27640 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Successfully applied 3 migrations to schema "PUBLIC", now at version v3 (execution time 00:00.023s)
+2026-10-03T14:45:26.835-07:00  INFO 27640 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
+2026-10-03T14:45:26.866-07:00  INFO 27640 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

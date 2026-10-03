@@ -1,0 +1,159 @@
+{
+  "columns": [
+    {
+      "table_name": "CLICK",
+      "column_name": "ID",
+      "data_type": "BIGINT",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "CLICK",
+      "column_name": "LINK_ID",
+      "data_type": "BIGINT",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "CLICK",
+      "column_name": "CLICKED_AT",
+      "data_type": "TIMESTAMP WITH TIME ZONE",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "CLICK",
+      "column_name": "CLICKED_ON",
+      "data_type": "DATE",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "CLICK",
+      "column_name": "REFERRER",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_name": "CLICK",
+      "column_name": "USER_AGENT_CLASS",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "CLICK",
+      "column_name": "CLIENT_HASH",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "CLICK",
+      "column_name": "CREATED_AT",
+      "data_type": "TIMESTAMP WITH TIME ZONE",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "table_name": "CLICK",
+      "column_name": "UPDATED_AT",
+      "data_type": "TIMESTAMP WITH TIME ZONE",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "table_name": "CLICK",
+      "column_name": "CREATED_BY",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "NO",
+      "column_default": "'anonymous'"
+    },
+    {
+      "table_name": "CLICK",
+      "column_name": "UPDATED_BY",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "NO",
+      "column_default": "'anonymous'"
+    },
+    {
+      "table_name": "USER_AGENT_CLASS",
+      "column_name": "TOKEN",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_name": "USER_AGENT_CLASS",
+      "column_name": "CREATED_AT",
+      "data_type": "TIMESTAMP WITH TIME ZONE",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "table_name": "USER_AGENT_CLASS",
+      "column_name": "UPDATED_AT",
+      "data_type": "TIMESTAMP WITH TIME ZONE",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP"
+    },
+    {
+      "table_name": "USER_AGENT_CLASS",
+      "column_name": "CREATED_BY",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "NO",
+      "column_default": "'system'"
+    },
+    {
+      "table_name": "USER_AGENT_CLASS",
+      "column_name": "UPDATED_BY",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "NO",
+      "column_default": "'system'"
+    }
+  ],
+  "newClick": {
+    "id": "108",
+    "link_id": "3",
+    "clicked_at": "2026-12-15 12:00:00+00",
+    "clicked_on": "2026-12-15",
+    "referrer": null,
+    "user_agent_class": "other",
+    "client_hash": "69a78d1e6ace2fb897979c56ad0772e8d0eaef3edac7099869ccb00232397f07",
+    "created_at": "2026-10-03 15:29:01.710718-07",
+    "updated_at": "2026-10-03 15:29:01.710718-07",
+    "created_by": "anonymous",
+    "updated_by": "anonymous"
+  },
+  "classes": [
+    {
+      "token": "bot",
+      "created_at": "2026-10-03 15:28:55.824722-07",
+      "updated_at": "2026-10-03 15:28:55.824722-07",
+      "created_by": "system",
+      "updated_by": "system"
+    },
+    {
+      "token": "browser",
+      "created_at": "2026-10-03 15:28:55.824722-07",
+      "updated_at": "2026-10-03 15:28:55.824722-07",
+      "created_by": "system",
+      "updated_by": "system"
+    },
+    {
+      "token": "other",
+      "created_at": "2026-10-03 15:28:55.824722-07",
+      "updated_at": "2026-10-03 15:28:55.824722-07",
+      "created_by": "system",
+      "updated_by": "system"
+    },
+    {
+      "token": "unknown",
+      "created_at": "2026-10-03 15:28:55.824722-07",
+      "updated_at": "2026-10-03 15:28:55.824722-07",
+      "created_by": "system",
+      "updated_by": "system"
+    }
+  ]
+}
