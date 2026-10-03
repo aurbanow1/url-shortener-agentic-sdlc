@@ -12,6 +12,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import dev.urlshort.web.RateLimitFilter;
+import io.micrometer.core.instrument.MeterRegistry;
 import jakarta.annotation.PreDestroy;
 import jakarta.servlet.http.HttpServletRequest;
 import org.jspecify.annotations.Nullable;
@@ -59,11 +61,11 @@ public class ClickRecorder {
 			}, new ThreadPoolExecutor.AbortPolicy());
 
 	@Autowired
-	ClickRecorder(ClickStore store, DailySalt salt) {
-		this(store, salt, DRAIN_DEADLINE);
+	ClickRecorder(ClickStore store, DailySalt salt, MeterRegistry registry) {
+		this(store, salt, registry, DRAIN_DEADLINE);
 	}
 
-	ClickRecorder(ClickStore store, DailySalt salt, Duration drainDeadline) {
+	ClickRecorder(ClickStore store, DailySalt salt, MeterRegistry registry, Duration drainDeadline) {
 		this.store = store;
 		this.salt = salt;
 		this.drainDeadline = drainDeadline;
@@ -75,8 +77,10 @@ public class ClickRecorder {
 	 * a click (rule 1) and records nothing.
 	 *
 	 * @param linkId the id of the link the Visitor was redirected to
-	 * @param request the redirect request; only its {@code Referer}, {@code User-Agent} and peer
-	 *        address are read, on this thread
+	 * @param request the redirect request; only its {@code Referer}, {@code User-Agent} and client are
+	 *        read, on this thread. The client is the one the rate limiter charged
+	 *        ({@link RateLimitFilter#CLIENT_ATTRIBUTE}, ADR-0015), else the peer address; it is hashed
+	 *        and never stored
 	 */
 	public void record(long linkId, HttpServletRequest request) {
 		if ("HEAD".equals(request.getMethod())) {
@@ -84,7 +88,10 @@ public class ClickRecorder {
 		}
 		ClickWrite write;
 		try {
-			DailySalt.Stamp stamp = salt.stamp(request.getRemoteAddr());
+			// the rate limiter's client (rule 6); the peer only where the limiter did not run
+			String address = request.getAttribute(RateLimitFilter.CLIENT_ATTRIBUTE) instanceof String client
+					? client : request.getRemoteAddr();
+			DailySalt.Stamp stamp = salt.stamp(address);
 			write = new ClickWrite(new Click(linkId, stamp.at(), LocalDate.ofInstant(stamp.at(), ZoneOffset.UTC),
 					Click.referrerOrigin(request.getHeader("Referer")),
 					Click.userAgentClass(request.getHeader("User-Agent")), stamp.clientHash()),
