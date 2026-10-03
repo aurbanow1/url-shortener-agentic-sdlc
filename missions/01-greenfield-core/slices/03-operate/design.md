@@ -33,7 +33,7 @@ hardening. `scripts/smoke.sh` gains the release-level checks.
 |---|---|---|---|
 | Rate-limit filter | `web.RateLimitFilter extends OncePerRequestFilter` (`@Component`, `@Order(Ordered.HIGHEST_PRECEDENCE + 2)`) | **new** | For each request: (1) the lookup path is `UrlPathHelper.defaultInstance.getLookupPathForRequest(request)`, which is decoded and has `;` content removed, the same decoded segments MVC routes on. If it is `/actuator` or starts with `/actuator/`, `/v3/api-docs`, `/swagger-ui.html` or `/swagger-ui/`, the request passes uncounted (rule 1). (2) The budget is `CREATE` when the path is `/api` or starts with `/api/`, else `REDIRECT`. (3) The client is `clientOf(request.getRemoteAddr(), request.getHeader("X-Forwarded-For"), trustedProxies)` (rule 5, below). (4) `retryAfter = limiter.tryTake(budget, client)`. If it is `0`, `chain.doFilter`. Otherwise it increments the budget's counter and writes the `429` (§2) without calling the chain. It never logs: the request's one event is `RequestIdFilter`'s `request completed` with status `429` (rule 7) **[probe O1]**. |
 | Client identity | `RateLimitFilter.clientOf(String remote, @Nullable String xff, Set<String> trusted)` (static, package-private) | **new** | If `remote` is not in `trusted`, return `remote`. Otherwise split `xff` on `,`, trim each entry, walk from the right, and return the first non-empty entry that is not in `trusted`; if there is none, or the header is absent or empty, return `remote`. `Forwarded`, `X-Real-IP` and everything else are never read. Entries are compared as text, exactly as configured. Tomcat reports IPv4 in dotted form and IPv6 in its full form, and the operator setting must use the same text (CIDR and normalisation are out of scope, A-6). |
-| Buckets | `web.RateLimiter` (`@Component`) | **new** | `long tryTake(Budget budget, String client)` → `0` (admitted) or the `Retry-After` in whole seconds (≥ 1). Per budget, a `ConcurrentHashMap<String, Long>` from client to its **theoretical arrival time** (TAT, epoch nanoseconds from the application `Clock`). With `N` per minute: emission interval `I = 60_000_000_000 / N` ns, tolerance `T = I × (N − 1)`. Under `map.compute`: `start = max(tat, now)`; `wait = start − T − now`. If `wait > 0`, the request is refused, the TAT is unchanged (a `429` takes nothing, rule 2) and the result is `Math.ceilDiv(wait, 1_000_000_000)`. Otherwise the TAT becomes `start + I` and the result is `0`. This is rule 2's bucket: capacity `N`, refill `N/60` per second, one token per admitted request. AC-3(a), AC-3(b) and AC-4 replay exactly **[probe B1–B3]**. **Release (memory bound):** a client's bucket is full again exactly when `tat ≤ now`. At most once per second (`AtomicLong nextSweep`, CAS), the limiter runs `map.values().removeIf(tat -> tat <= now)` on both maps. That is conditional on the value, so it cannot drop a bucket that `compute` updates concurrently. An entry therefore lives at most 61 s after its client's last admitted request. Memory is bounded by the distinct clients of the last 61 s, at about 200 bytes each (§6). |
+| Buckets | `web.RateLimiter` (`@Component`) | **new** | `long tryTake(Budget budget, String client)` → `0` (admitted) or the `Retry-After` in whole seconds (≥ 1). Per budget, a `ConcurrentHashMap<String, Long>` from client to its **theoretical arrival time** (TAT, epoch nanoseconds from the application `Clock`). With `N` per minute: emission interval `I = 60_000_000_000 / N` ns, tolerance `T = I × (N − 1)`. Under `map.compute`: `start = max(tat, now)`; `wait = start − T − now`. If `wait > 0`, the request is refused, the TAT is unchanged (a `429` takes nothing, rule 2) and the result is `Math.ceilDiv(wait, 1_000_000_000)`. Otherwise the TAT becomes `start + I` and the result is `0`. This is rule 2's bucket: capacity `N`, refill `N/60` per second, one token per admitted request. AC-3(a), AC-3(b) and AC-4 replay exactly **[probe B1–B3]**. **Release (memory bound):** a client's bucket is full again exactly when `tat ≤ now`. At most once per second of the same application-`Clock` time the limiter already read (`AtomicLong nextSweep`, CAS; not `System.nanoTime()`, so under a frozen suite clock the sweep never fires and the release test advances the clock), the limiter runs `map.values().removeIf(tat -> tat <= now)` on both maps. That is conditional on the value, so it cannot drop a bucket that `compute` updates concurrently. An entry therefore lives at most 61 s after its client's last admitted request. Memory is bounded by the distinct clients of the last 61 s, at about 200 bytes each (§6). |
 | Settings | `web.RateLimitProperties` (`@ConfigurationProperties("urlshort.rate-limit")`, `@Validated` record) and `web.RateLimitConfig` (`@Configuration(proxyBeanMethods = false)`, `@EnableConfigurationProperties(RateLimitProperties.class)`) | **new** | `@DefaultValue("60") @Positive int createPerMinute`, `@DefaultValue("600") @Positive int redirectPerMinute`, `@DefaultValue({}) Set<String> trustedProxies` (rule 11). Environment overrides by relaxed binding **[docs]**: `URLSHORT_RATELIMIT_CREATEPERMINUTE`, `URLSHORT_RATELIMIT_REDIRECTPERMINUTE`, `URLSHORT_RATELIMIT_TRUSTEDPROXIES` (comma-separated). |
 | Rejection counter | in `RateLimitFilter`'s constructor | **new** | `Counter.builder("urlshort.ratelimit.rejections").tag("budget", "create" / "redirect").register(registry)`, both registered at startup, so AC-17 can read either tag before the first rejection. The only tag is `budget` (rule 10). |
 | Body-limit filter | `web.RequestBodyLimitFilter` | **changed** | `@Order(Ordered.HIGHEST_PRECEDENCE + 3)` (was `+ 1`), so the limiter runs before it. Order ties are broken by registration order, which the design must not rely on. The order today, observed **[probe O1b]**: `RequestIdFilter` → `CharacterEncodingFilter` → `ServerHttpObservationFilter` → (limiter) → `RequestBodyLimitFilter`. A `413` body is never read before the charge (AC-9). |
@@ -139,11 +139,14 @@ services:
     ports:
       - "127.0.0.1:8080:8080"          # AC-22: loopback only
     read_only: true                     # AC-23: read-only root filesystem
-    tmpfs:
-      - /tmp:size=64m,mode=1777         # A-14: JVM perf data, Tomcat work dir, H2 temp files
     volumes:
       - urlshort-data:/app/data         # the only persistent writable mount
-    stop_grace_period: 20s              # AC-28: > the 10 s phase + context close (click drain, pool)
+      - type: tmpfs                     # A-14: JVM perf data, Tomcat work dir, H2 temp files
+        target: /tmp
+        tmpfs:
+          size: 67108864                # 64 MiB
+          mode: 01777
+    stop_grace_period: 20s              # AC-28: > the 10 s phase + context close (bounded click drain, pool)
     healthcheck:                        # AC-21: asks readiness, not an open port
       test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8080 && printf 'GET /actuator/health/readiness HTTP/1.0\\r\\nHost: localhost\\r\\n\\r\\n' >&3 && grep -q '\"status\":\"UP\"' <&3"]
       interval: 10s
@@ -153,6 +156,12 @@ services:
 volumes:
   urlshort-data: {}
 ```
+
+The tmpfs uses Compose's long volume syntax (options in the short `tmpfs:`
+list are not part of the Compose specification). The builder validates the
+file with `docker compose config` before the first `up`, and the quoted
+health-check command with one manual `docker compose exec urlshort bash -c
+'<the same command>'`.
 
 `Dockerfile`: unchanged in substance. It already runs as uid 10001
 (`urlshort`), uses the exec-form `ENTRYPOINT`, so the JVM is PID 1 and gets
@@ -222,7 +231,7 @@ sequenceDiagram
 
 Shutdown: `SIGTERM` → Boot's shutdown hook → web server graceful phase
 (connector paused, listening socket closed, so new connections are refused;
-in-flight requests finish, at most 10 s) → context close (`02`'s click writer
+in-flight requests finish, at most 10 s) → context close (`02`'s click writer, whose drain gets a finite deadline in `02`'s design revision for its review finding DR-01,
 drains, the pool closes) → exit. All of this sits inside compose's 20 s stop
 grace.
 
@@ -395,7 +404,7 @@ scripts/gw --log missions/01-greenfield-core/slices/03-operate/design-probe/outp
 
 | Case | Result in `design-probe/output.txt` | Design item |
 |---|---|---|
-| B1 | AC-3(a) on a frozen clock: 60 admitted, 61st `Retry-After` 1, +999 ms refused, +1 000 ms admitted, again refused | GCRA, rule 2–4 |
+| B1 | AC-3(a) on a frozen clock: 60 admitted, 61st `Retry-After` 1, +999 ms refused, +1 000 ms admitted, again refused. (The probe's bucket counts in `double` milliseconds, §1 specifies `long` nanoseconds; both are exact for 60, 600, 2 and 3 per minute, and `RateLimiterTest` replays these sequences on the real class.) | GCRA, rule 2–4 |
 | B2 | AC-3(b): after 250 ms `Retry-After` 1; after 1 s more, admitted | rule 4 |
 | B3 | AC-4: after a quiet minute 60 admitted, 61st refused; "full again" true exactly when `tat ≤ now` | release rule |
 | O0 | `PrometheusMeterRegistry` on the classpath after the online resolution | build |
@@ -470,7 +479,7 @@ customiser; the bash drain and bench modes themselves.
 | 9 | ADRs for cross-cutting choices before dependent code | ✔ ADR-0014 to ADR-0017 (the four NFR-M2 items) and the ADR-0004 amendment | §10 |
 | 10 | Review carry-overs | ✔ held request and socket drain by effect (**[probe D, P]**), with the residual stated; memory bound and release test; template/status metric support (**[probe O2, O3]**); pre-application logging (**[probe O6, O6b]**) | §1, §5, §12 |
 | 11 | Lead's grant conditions | ✔ `RateLimitDefaultsTest`; `@AfterEach clock.reset()` | §7 |
-| 12 | Coherence with `02-analytics` | ✔ the stats operation is in the create budget and gets the `429`; a `429` never reaches the click hook; the click writer's drain runs inside the 20 s stop grace (ADR-0011's bounded upgrade if needed); the suite overlay keeps `02`'s 200-redirect test under budget | §2, §4, §7 |
+| 12 | Coherence with `02-analytics` | ✔ the stats operation is in the create budget and gets the `429`; a `429` never reaches the click hook; the click writer's drain runs inside the 20 s stop grace, and its deadline is fixed by `02`'s revision for DR-01, which keeps phase + drain + pool close under 20 s; the suite overlay keeps `02`'s 200-redirect test under budget | §2, §4, §7 |
 
 ### plan-review (three lenses, by hand)
 

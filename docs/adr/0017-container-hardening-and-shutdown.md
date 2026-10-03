@@ -20,7 +20,7 @@ no accepted request reset during the drain (AC-25).
   exec-form `ENTRYPOINT` (the JVM is PID 1 and receives `SIGTERM`) and the
   database under `/app/data`.
 - `compose.yaml`: `ports: "127.0.0.1:8080:8080"`; `read_only: true`;
-  `tmpfs: /tmp:size=64m,mode=1777` for JVM perf data, Tomcat's work
+  a 64 MiB tmpfs at `/tmp` (Compose long volume syntax) for JVM perf data, Tomcat's work
   directory and H2 temp files (A-14); the named volume at `/app/data` as the
   only persistent writable mount; a health check sending
   `GET /actuator/health/readiness` over HTTP/1.0 through bash's `/dev/tcp`
@@ -29,7 +29,8 @@ no accepted request reset during the drain (AC-25).
 - `spring.lifecycle.timeout-per-shutdown-phase=10s` (was 20 s, A-15).
   Boot's Tomcat graceful shutdown pauses the connector and closes the
   listening socket, then waits for active requests. The context close that
-  follows (`02-analytics`' click-writer drain, the pool) fits in the
+  follows (`02-analytics`' click-writer drain, given a finite deadline by
+  `02`'s design revision for review finding DR-01, and the pool) fits in the
   remaining 10 s of the stop grace.
 
 ## Consequences
