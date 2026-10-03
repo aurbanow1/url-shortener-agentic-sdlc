@@ -9,6 +9,9 @@ COPY src src
 RUN ./gradlew --no-daemon bootJar -x test -x functionalTest
 
 FROM eclipse-temurin:21-jre
+# Runs as uid 10001 on a read-only root filesystem: only /app/data (a volume) and /tmp (a tmpfs) are
+# writable at run time, see compose.yaml (NFR-S5, ADR-0017). The exec-form ENTRYPOINT makes the JVM
+# PID 1, so it receives SIGTERM and drains for the 10 s shutdown phase.
 WORKDIR /app
 RUN useradd --system --uid 10001 --home /app urlshort \
  && mkdir -p /app/data && chown -R urlshort:urlshort /app
