@@ -1,0 +1,92 @@
+{
+  "candidate": "35590f06c852543c29097a42c43b7802be90ba40",
+  "clean": true,
+  "tests": {
+    "test": {
+      "tests": 200,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "functionalTest": {
+      "tests": 200,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "coverage": {
+    "unit": {
+      "LINE_MISSED": 56,
+      "LINE_COVERED": 436,
+      "BRANCH_MISSED": 6,
+      "BRANCH_COVERED": 184
+    },
+    "functional": {
+      "LINE_MISSED": 37,
+      "LINE_COVERED": 455,
+      "BRANCH_MISSED": 32,
+      "BRANCH_COVERED": 158
+    },
+    "all": {
+      "LINE_MISSED": 0,
+      "LINE_COVERED": 492,
+      "BRANCH_MISSED": 0,
+      "BRANCH_COVERED": 190
+    }
+  },
+  "qaReportHashesVerified": 348,
+  "qaReadonlySnapshotsEqual": {
+    "audit_log": 45,
+    "link": 8,
+    "click": 0
+  },
+  "unchangedOldApiPaths": [
+    "/api/links",
+    "/api/links/{code}",
+    "/api/links/{code}/stats",
+    "/api/ping",
+    "/{code}"
+  ],
+  "wholeDocumentEqualsFreshLive": true,
+  "qaExactExchange": [
+    {
+      "name": "exact-exchange-page1",
+      "status": 200,
+      "items": 2
+    },
+    {
+      "name": "exact-exchange-page2",
+      "status": 200,
+      "items": 1
+    },
+    {
+      "name": "exact-exchange-refused-page1",
+      "status": 403,
+      "items": 0
+    },
+    {
+      "name": "exact-exchange-refused-page2",
+      "status": 403,
+      "items": 0
+    }
+  ],
+  "changedFiles": [
+    "README.md",
+    "docs/api/openapi.json",
+    "src/functionalTest/java/dev/urlshort/audit/AuditAccessSettingsJourneyTest.java",
+    "src/functionalTest/java/dev/urlshort/audit/AuditForwardedHeadersJourneyTest.java",
+    "src/functionalTest/java/dev/urlshort/audit/AuditReadFailureJourneyTest.java",
+    "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "src/functionalTest/java/dev/urlshort/audit/AuditUpgradeJourneyTest.java",
+    "src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java",
+    "src/main/java/dev/urlshort/audit/AuditController.java",
+    "src/main/java/dev/urlshort/audit/AuditEntry.java",
+    "src/main/java/dev/urlshort/audit/AuditPage.java",
+    "src/main/java/dev/urlshort/audit/AuditTrail.java",
+    "src/main/java/dev/urlshort/audit/package-info.java",
+    "src/main/resources/application.properties",
+    "src/test/java/dev/urlshort/audit/AuditControllerTest.java"
+  ],
+  "instrumentCorrection": "Initial reviewer reconciliation assumed Gradle default report directories; corrected to configured test/functionalTest/all. No product edit or build rerun."
+}
