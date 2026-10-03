@@ -1,0 +1,7 @@
+OK   complete 201: expected pass, instrument pass; request chunked=True, headers held 0.51 s before the body completed; R0_OK=1 R0_RC=0 R0=curl exit 0, status 201, complete 6 ms after the stop
+OK   201 header, 100-byte body promised, 0 sent: expected reject, instrument reject; request chunked=True, headers held 0.51 s before the body completed; R0_OK=0 R0_RC=18 R0=curl exit 18, status 201, complete 6 ms after the stop
+OK   201 header, 100-byte body promised, 10 sent: expected reject, instrument reject; request chunked=True, headers held 0.50 s before the body completed; R0_OK=0 R0_RC=18 R0=curl exit 18, status 201, complete 6 ms after the stop
+OK   connection closed without a response: expected reject, instrument reject; request chunked=True, headers held 0.50 s before the body completed; R0_OK=0 R0_RC=52 R0=curl exit 52, status 000, complete 6 ms after the stop
+OK   complete 500: expected reject, instrument reject; request chunked=True, headers held 0.51 s before the body completed; R0_OK=0 R0_RC=0 R0=curl exit 0, status 500, complete 6 ms after the stop
+OK   complete 201 sent 11 s after the stop: expected reject, instrument reject; request chunked=True, headers held 0.50 s before the body completed; R0_OK=0 R0_RC=0 R0=curl exit 0, status 201, complete 11018 ms after the stop
+6/6 cases as expected

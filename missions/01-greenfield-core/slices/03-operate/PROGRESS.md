@@ -23,13 +23,13 @@
 - [ ] Release: AC-21 to AC-28 against the container and the jar (item 13)
 
 
-## Builder rework — b3370ef (2026-10-03 UTC)
+## Builder rework — 1c8b2cf (2026-10-03 UTC)
 
 - [x] CR-01/SEC-01: locked `max(tat, now)` restored, clock read inside the per-client update; the reviewer's probe gives 60 total admissions (was 120)
-- [x] CR-02: smoke R0 passes only on a complete 2xx/3xx within 10 s of the stop; the control gives 6/6 (`proof/smoke-r0-control-b3370ef.txt`); `--drain` on the jar OK
-- [x] CR-03: release resumes after a backward step; the probe gives 2 clients (was 10,002)
-- [x] Gate `check --rerun-tasks`: unit 165, functional 155, 443/443 lines, 162/162 branches (`proof/builder-check-b3370ef.txt`)
-- [ ] QA and review re-check on `b3370ef`
+- [x] CR-02: smoke R0 passes only on a complete 2xx/3xx within 10 s of the stop; the control gives 6/6 (`proof/smoke-r0-control-1c8b2cf.txt`); `--drain` on the jar OK
+- [x] CR-03: the release also runs when its deadline is more than 2 s ahead, which only a backward step produces; the probe gives 2 clients (was 10,002)
+- [x] Gate `check --rerun-tasks`: unit 165, functional 155, 443/443 lines, 162/162 branches (`proof/builder-check-1c8b2cf.txt`)
+- [ ] QA and review re-check on `1c8b2cf`
 
 ## QA — a7c533f (2026-10-03 UTC)
 
