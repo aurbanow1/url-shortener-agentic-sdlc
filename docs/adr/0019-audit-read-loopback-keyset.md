@@ -31,8 +31,13 @@ it is the table's only index.
     runs, and carry no trail content.
   - A filter would repeat the path matching for one endpoint.
 - **The rule.** A request is admitted only when all four hold:
-  - Boot's effective forwarded-header strategy is `NONE`
-    (`ServerProperties.getForwardHeadersStrategy()`, read once in the controller's constructor);
+  - nothing rewrites the peer address. Boot's effective forwarded-header strategy is `NONE`
+    (`ServerProperties.getForwardHeadersStrategy()`), **and** neither
+    `server.tomcat.remoteip.remote-ip-header` nor `server.tomcat.remoteip.protocol-header` has
+    text (`TomcatServerProperties.getRemoteip()`). These are exactly the conditions under which Boot
+    4.1.1 installs no `RemoteIpValve`: `TomcatWebServerFactoryCustomizer.customizeRemoteIpValve`
+    adds it when either header has text or the strategy resolves to native. The values are read
+    once, in the controller's constructor (code review, P7);
   - it carries no `X-Forwarded-For` header;
   - it carries no `Forwarded` header;
   - `request.getRemoteAddr()` is non-empty and
@@ -67,6 +72,17 @@ it is the table's only index.
   - The reviewer's controls had admitted forged loopback headers under both overrides. Probe P6
     measured `403` for plain and forged requests under `native`, `framework`, unset, and unset +
     `kubernetes`, and plain-only admission under `none`.
+  - **The strategy is not the valve's only trigger** (code review on `35590f0`). With the strategy
+    pinned to `none`, setting `server.tomcat.remoteip.remote-ip-header` or `…protocol-header`
+    still installs the valve. It turns a forged `X-Forwarded-For: 127.0.0.2` into the peer
+    address and removes the header, so a guard keyed on the strategy alone admitted it
+    (`docs/review/01-audit-read/proof/code-controls-35590f0.txt`).
+  - With `remote-ip-header=X-Real-IP`, a forged `X-Real-IP: 127.0.0.2` did the same, a header
+    this rule never inspects.
+  - Probe P7 (`design-probe/remote-ip-output.txt`), on a real Tomcat, ran the rule with all three
+    conditions under each of the three valve settings, `native` and `framework`. Every request was
+    `403`, the plain loopback one included. Under the pin alone, plain loopback stayed `200` and
+    forged `X-Forwarded-For` `403`.
 - **Content negotiation never precedes the rule** (design review DR-02).
   - The mapping has no `produces` condition, which had answered `406` before the guard for a
     strict `Accept`.
@@ -134,6 +150,12 @@ it is the table's only index.
   enforces the part it can see: forwarded-header handling must be off, or the read closes.
   - Setting `server.forward-headers-strategy` (or `SERVER_FORWARDHEADERSSTRATEGY`) to `native`
     or `framework` turns the audit read off: every request is `403`. It does not open it.
+  - So does setting `server.tomcat.remoteip.remote-ip-header` or
+    `server.tomcat.remoteip.protocol-header` (or `SERVER_TOMCAT_REMOTEIP_REMOTEIPHEADER`,
+    `…_PROTOCOLHEADER`) to any value.
+  - The rule mirrors Boot 4.1.1's own condition for installing the valve. A Boot upgrade that adds
+    another trigger would need adding here; the real-Tomcat journeys for the known triggers
+    catch a regression in these three, not a new trigger.
   - What the service cannot see stays the documented boundary (`docs/DESIGN.md` §3; SPEC rule 2,
     review RQ-04): a local relay that adds no forwarding header looks like a local Operator. The
     deployment must not relay `/api/audit`, or the relay must add a forwarding header, which then
@@ -150,6 +172,9 @@ it is the table's only index.
     the overrides close the read (P6).
   - A real-Tomcat journey with `spring.main.cloud-platform=kubernetes` and the shipped pin proves
     plain admission and forged refusal (P4b).
+  - Real-Tomcat journeys with the shipped pin plus `server.tomcat.remoteip.remote-ip-header` and
+    plus `server.tomcat.remoteip.protocol-header` prove those close the read too, for plain and
+    forged requests (P7). MockMvc never runs the valve, so only a real server shows it.
   - A test reads the shipped file for `none`.
   - A unit test builds the controller under each strategy.
   - Strict-`Accept` journeys cover DR-02.
@@ -160,4 +185,4 @@ it is the table's only index.
 - **Moving to PostgreSQL:** `FETCH FIRST :n ROWS ONLY` with a parameter and a backward
   primary-key scan are both supported. The identity column is portable.
 - Verified before implementation: `missions/02-brownfield/slices/01-audit-read/design-probe/output.txt`
-  (P1 to P6).
+  (P1 to P6) and `remote-ip-output.txt` (P7, after code review).
