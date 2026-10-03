@@ -1,0 +1,29 @@
+allprojects {
+    afterEvaluate {
+        tasks.register('qaLauncherCompile', JavaCompile) {
+            dependsOn tasks.named('classes')
+            source '/private/tmp/urlshort-audit-qa-7ac8af5/QaLauncher.java'
+            classpath = sourceSets.main.runtimeClasspath
+            destinationDirectory = file('/private/tmp/urlshort-audit-qa-7ac8af5/classes')
+            options.release = 21
+            doLast { file('/private/tmp/urlshort-audit-qa-7ac8af5/classpath').text = destinationDirectory.get().asFile.path + File.pathSeparator + sourceSets.main.runtimeClasspath.asPath }
+        }
+        tasks.register('qaShippedCompile', JavaCompile) {
+            dependsOn tasks.named('classes'), tasks.named('jar')
+            source fileTree('/private/tmp/urlshort-audit-qa-7ac8af5/shipped/src/functionalTest/java') { include '**/*.java' }
+            classpath = sourceSets.functionalTest.compileClasspath
+            destinationDirectory = file('/private/tmp/urlshort-audit-qa-7ac8af5/shipped-classes')
+            options.release = 21
+        }
+        tasks.register('qaShipped', Test) {
+            dependsOn tasks.named('qaShippedCompile')
+            useJUnitPlatform()
+            testClassesDirs = files('/private/tmp/urlshort-audit-qa-7ac8af5/shipped-classes')
+            classpath = files('/private/tmp/urlshort-audit-qa-7ac8af5/shipped-classes','/private/tmp/urlshort-audit-qa-7ac8af5/shipped/src/functionalTest/resources') + sourceSets.functionalTest.runtimeClasspath
+            systemProperty 'spring.profiles.active', 'functional'
+            reports.junitXml.outputLocation = file('/private/tmp/urlshort-audit-qa-7ac8af5/shipped-test-results')
+            reports.html.outputLocation = file('/private/tmp/urlshort-audit-qa-7ac8af5/shipped-test-report')
+            jacoco.destinationFile = file('/private/tmp/urlshort-audit-qa-7ac8af5/shipped.exec')
+        }
+    }
+}

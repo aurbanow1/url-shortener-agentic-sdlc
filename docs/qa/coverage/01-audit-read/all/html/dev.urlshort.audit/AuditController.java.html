@@ -15,12 +15,14 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.jspecify.annotations.Nullable;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
+import org.springframework.boot.tomcat.autoconfigure.TomcatServerProperties;
 import org.springframework.boot.web.server.autoconfigure.ServerProperties;
 import org.springframework.boot.web.server.autoconfigure.ServerProperties.ForwardHeadersStrategy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.ErrorResponseException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,11 +33,11 @@ import org.springframework.web.bind.annotation.RestController;
  * at a time. Anonymous, read-only and loopback only (NFR-S6, ADR-0019): a request is served only when
  * its peer is a loopback address, it carries no {@code X-Forwarded-For} or {@code Forwarded} header, and
  * nothing rewrites the peer from those headers (the effective forwarded-header strategy is
- * {@code NONE}). Any other request is a {@code 403} problem, decided before validation and before
+ * {@code NONE} and no {@code server.tomcat.remoteip} header is set). Any other request is a {@code 403} problem, decided before validation and before
  * content negotiation, so no setting and no {@code Accept} can open the trail.
  */
 @RestController
-// ServerProperties, which decides the guard, exists only in a servlet application
+// ServerProperties and TomcatServerProperties, which decide the guard, exist only in a servlet application
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 class AuditController {
 
@@ -55,11 +57,15 @@ class AuditController {
 	private final AuditTrail trail;
 	private final boolean peerIsConnection;
 
-<span class="fc" id="L58">	AuditController(AuditTrail trail, ServerProperties server) {</span>
-<span class="fc" id="L59">		this.trail = trail;</span>
-		// any other strategy (or Boot's platform default when unset) may rewrite the peer from a header
-<span class="fc bfc" id="L61" title="All 2 branches covered.">		this.peerIsConnection = server.getForwardHeadersStrategy() == ForwardHeadersStrategy.NONE;</span>
-<span class="fc" id="L62">	}</span>
+<span class="fc" id="L60">	AuditController(AuditTrail trail, ServerProperties server, TomcatServerProperties tomcat) {</span>
+<span class="fc" id="L61">		this.trail = trail;</span>
+		// the negation of Boot 4.1.1's condition for installing Tomcat's RemoteIpValve, which rewrites the
+		// peer from a header: any other strategy (or the platform default when unset), or either remoteip
+		// header setting. ponytail: mirrors Boot's trigger list; a Boot upgrade that adds one adds it here
+<span class="fc bfc" id="L65" title="All 2 branches covered.">		this.peerIsConnection = server.getForwardHeadersStrategy() == ForwardHeadersStrategy.NONE</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">				&amp;&amp; !StringUtils.hasText(tomcat.getRemoteip().getRemoteIpHeader())</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">				&amp;&amp; !StringUtils.hasText(tomcat.getRemoteip().getProtocolHeader());</span>
+<span class="fc" id="L68">	}</span>
 
 	@GetMapping(&quot;/api/audit&quot;)
 	@Operation(operationId = &quot;readAudit&quot;, summary = &quot;Read the audit trail, newest first (loopback only)&quot;, responses = {
@@ -78,60 +84,60 @@ class AuditController {
 			@Parameter(description = &quot;The next of the previous page&quot;) @RequestParam(name = &quot;cursor&quot;, required = false)
 			@Nullable String cursor,
 			HttpServletRequest request) {
-<span class="fc bfc" id="L81" title="All 4 branches covered.">		if (!peerIsConnection || !fromLoopback(request)) {</span>
-<span class="fc" id="L82">			throw new ErrorResponseException(HttpStatus.FORBIDDEN);</span>
+<span class="fc bfc" id="L87" title="All 4 branches covered.">		if (!peerIsConnection || !fromLoopback(request)) {</span>
+<span class="fc" id="L88">			throw new ErrorResponseException(HttpStatus.FORBIDDEN);</span>
 		}
-<span class="fc" id="L84">		int size = limit(limit);</span>
-<span class="fc bfc" id="L85" title="All 2 branches covered.">		long before = cursor == null ? Long.MAX_VALUE : position(cursor);</span>
-<span class="fc" id="L86">		return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(trail.page(size, before));</span>
+<span class="fc" id="L90">		int size = limit(limit);</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">		long before = cursor == null ? Long.MAX_VALUE : position(cursor);</span>
+<span class="fc" id="L92">		return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(trail.page(size, before));</span>
 	}
 
 	/** A loopback peer and no forwarding header: forwarding headers can only refuse (SPEC rule 2). */
 	static boolean fromLoopback(HttpServletRequest request) {
-<span class="fc" id="L91">		String peer = request.getRemoteAddr();</span>
-<span class="fc bfc" id="L92" title="All 6 branches covered.">		if (request.getHeader(&quot;X-Forwarded-For&quot;) != null || request.getHeader(&quot;Forwarded&quot;) != null || peer == null</span>
-<span class="fc bfc" id="L93" title="All 2 branches covered.">				|| peer.isEmpty()) {</span>
-<span class="fc" id="L94">			return false;</span>
+<span class="fc" id="L97">		String peer = request.getRemoteAddr();</span>
+<span class="fc bfc" id="L98" title="All 6 branches covered.">		if (request.getHeader(&quot;X-Forwarded-For&quot;) != null || request.getHeader(&quot;Forwarded&quot;) != null || peer == null</span>
+<span class="fc bfc" id="L99" title="All 2 branches covered.">				|| peer.isEmpty()) {</span>
+<span class="fc" id="L100">			return false;</span>
 		}
 		try {
 			// the servlet container gives a numeric literal, which is parsed, never resolved
-<span class="fc" id="L98">			return InetAddress.getByName(peer).isLoopbackAddress();</span>
+<span class="fc" id="L104">			return InetAddress.getByName(peer).isLoopbackAddress();</span>
 		}
-<span class="fc" id="L100">		catch (UnknownHostException ex) {</span>
-<span class="fc" id="L101">			return false;</span>
+<span class="fc" id="L106">		catch (UnknownHostException ex) {</span>
+<span class="fc" id="L107">			return false;</span>
 		}
 	}
 
 	/** {@code null} is the default; otherwise a whole number from 1 to 100. */
 	static int limit(@Nullable String value) {
-<span class="fc bfc" id="L107" title="All 2 branches covered.">		if (value == null) {</span>
-<span class="fc" id="L108">			return DEFAULT_LIMIT;</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">		if (value == null) {</span>
+<span class="fc" id="L114">			return DEFAULT_LIMIT;</span>
 		}
 		int parsed;
 		try {
-<span class="fc" id="L112">			parsed = Integer.parseInt(value);</span>
+<span class="fc" id="L118">			parsed = Integer.parseInt(value);</span>
 		}
-<span class="fc" id="L114">		catch (NumberFormatException ex) {</span>
-<span class="fc" id="L115">			throw Problems.validation(&quot;limit&quot;, &quot;format&quot;, &quot;must be a whole number&quot;);</span>
-<span class="fc" id="L116">		}</span>
-<span class="fc bfc" id="L117" title="All 4 branches covered.">		if (parsed &lt; 1 || parsed &gt; MAX_LIMIT) {</span>
-<span class="fc" id="L118">			throw Problems.validation(&quot;limit&quot;, &quot;range&quot;, &quot;must be from 1 to 100&quot;);</span>
+<span class="fc" id="L120">		catch (NumberFormatException ex) {</span>
+<span class="fc" id="L121">			throw Problems.validation(&quot;limit&quot;, &quot;format&quot;, &quot;must be a whole number&quot;);</span>
+<span class="fc" id="L122">		}</span>
+<span class="fc bfc" id="L123" title="All 4 branches covered.">		if (parsed &lt; 1 || parsed &gt; MAX_LIMIT) {</span>
+<span class="fc" id="L124">			throw Problems.validation(&quot;limit&quot;, &quot;range&quot;, &quot;must be from 1 to 100&quot;);</span>
 		}
-<span class="fc" id="L120">		return parsed;</span>
+<span class="fc" id="L126">		return parsed;</span>
 	}
 
 	/** The row id a cursor names: base64url of a positive decimal number, as {@link AuditTrail#cursorOf} writes it. */
 	static long position(String cursor) {
 		try {
-<span class="fc" id="L126">			long id = Long.parseLong(new String(Base64.getUrlDecoder().decode(cursor), StandardCharsets.US_ASCII));</span>
-<span class="fc bfc" id="L127" title="All 2 branches covered.">			if (id &gt; 0) {</span>
-<span class="fc" id="L128">				return id;</span>
+<span class="fc" id="L132">			long id = Long.parseLong(new String(Base64.getUrlDecoder().decode(cursor), StandardCharsets.US_ASCII));</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">			if (id &gt; 0) {</span>
+<span class="fc" id="L134">				return id;</span>
 			}
 		}
-<span class="fc" id="L131">		catch (IllegalArgumentException ex) {</span>
+<span class="fc" id="L137">		catch (IllegalArgumentException ex) {</span>
 			// not base64url, or not a number (NumberFormatException): answered below
-<span class="fc" id="L133">		}</span>
-<span class="fc" id="L134">		throw Problems.validation(&quot;cursor&quot;, &quot;format&quot;, &quot;must be a value returned as next&quot;);</span>
+<span class="fc" id="L139">		}</span>
+<span class="fc" id="L140">		throw Problems.validation(&quot;cursor&quot;, &quot;format&quot;, &quot;must be a value returned as next&quot;);</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

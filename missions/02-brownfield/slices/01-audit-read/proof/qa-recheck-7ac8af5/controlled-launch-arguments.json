@@ -1,0 +1,32 @@
+{
+  "main": {
+    "entry": "QaLauncher",
+    "externalClasspathFile": "/private/tmp/urlshort-audit-qa-7ac8af5/classpath",
+    "args": [
+      "--server.port=18131",
+      "--spring.datasource.url=jdbc:h2:file:/private/tmp/urlshort-audit-qa-7ac8af5/main/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+      "--logging.file.name=/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/qa-live-7ac8af5.jsonl"
+    ]
+  },
+  "nondefault-settings": {
+    "entry": "QaLauncher",
+    "args": [
+      "--server.port=18132",
+      "--spring.datasource.url=jdbc:h2:mem:qaSettings7;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+      "--urlshort.public-base-url=https://short.example.invalid",
+      "--urlshort.rate-limit.create-per-minute=120",
+      "--urlshort.rate-limit.redirect-per-minute=300",
+      "--urlshort.rate-limit.trusted-proxies=127.0.0.1,192.0.2.10",
+      "--logging.file.name=/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/qa-settings.jsonl"
+    ]
+  },
+  "observability": {
+    "entry": "QaLauncher",
+    "args": [
+      "--server.port=18131",
+      "--spring.datasource.url=jdbc:h2:mem:qaObserve7;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+      "--logging.structured.format.file=ecs",
+      "--logging.file.name=/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/qa-observability.jsonl"
+    ]
+  }
+}

@@ -18,5 +18,7 @@
 - [x] Item 8: two pages via `next`, a forwarded `403`, their log lines and a clean whole-run grep (`proof/http-*-35590f0.txt`, `log-lines-35590f0.txt`, `jar-log-35590f0.txt`)
 - [x] Item 9: no migration, as the design and plan-lock state
 - [x] Item 10 (builder half): `docs/api/openapi.json` regenerated on the candidate; QA's live-vs-committed diff is pending
-- [ ] QA on reworked candidate7ac8af5 pending. Historical35590f0 suite/coverage and upgrade evidence retained; original PASS superseded by HIGH QA-AUD-01 / CR-01, independently reproduced for explicit Tomcat remote-IP properties (AC13/14); docs/qa/01-audit-read/findings.md
-- [ ] Review: security record (item 12)
+- [x] QA on candidate7ac8af5: independent203 unit/202 functional, merged494/494 lines194/194 branches,258 HTTP captures, CR-01 fixed by installed-jar reproduction. AC-17 exact grant428e9e1 retained; proof/qa-recheck-7ac8af5/verification.json and PROOF.md QA. Historical35590f0 PASS remains superseded and item1 rejected.
+- [x] Review: security record (item12) read and accepted on exact7ac8af5 from corrected independent70b1a2d record; attributed QA receipt26, proof/qa-item12-judgment-receipt-7ac8af5.json. All13 proof items ready; integration remains the lead's step.
+- [x] Integrated — merged `--no-ff` into `main` as `cb148c4` (lead, 2026-10-03T21:52Z): branch tip, all 13 current proof judgments and the code and security re-review (`70b1a2d`) name the same `7ac8af5`; 15 files, all inside territory and grants. Gate re-run fresh on `main` (Gradle 9.8.0) with `--rerun-tasks`, 14 of 14 tasks, green (`docs/evidence/02-brownfield/integrate-01-audit-read-check-cb148c4.txt`). Tag `slice/01-audit-read/accepted` on `7ac8af5`; worktree removed.
+- [ ] Delivery stamp — after the mission's ship sign-off

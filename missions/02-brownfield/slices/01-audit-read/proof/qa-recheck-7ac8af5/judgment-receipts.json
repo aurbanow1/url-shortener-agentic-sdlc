@@ -1,0 +1,450 @@
+[
+  {
+    "item": 1,
+    "judgment": {
+      "version": 1,
+      "scope": "missions/02-brownfield/slices/01-audit-read",
+      "sequence": 14,
+      "operationId": "0cf82f5fc96cd17e5d2dba75faa089bcb2017ac0c72fa81050f6679c47615c60",
+      "itemId": "item-1a98fdd9fd350bff692f",
+      "itemRevision": "60c1617175aa4834f0dcdc559a6dfac5c88ebf15445b4f8231ab0b7bf7d8b14e",
+      "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+      "policySource": "project.yaml",
+      "previous": "1f1a05ca07d36dc528c751f28321f8a3d3c580f959c25da47e2baba0a6fdca75",
+      "actor": "qa-agent@urlshort-factory",
+      "provenance": "transport:v1",
+      "at": "2026-10-03T21:28:27.584Z",
+      "verdict": "accept",
+      "reason": "203 unit and202 functional invocations pass independently on7ac8af5; all21 ACs have named functional coverage,227 methods map both ways. AC17 has only the exact accepted enumeration grant428e9e1; held JDBC and read SQLException induction observed. CR01 explicit remoteip GET/HEAD403 verified on installed jar.",
+      "evidence": [
+        {
+          "ref": "docs/qa/coverage/01-audit-read/SUMMARY.md",
+          "sha256": "20f4e679e767948ac35299c4ceda655d757d4778f7ccfd23c01b3f1c580bfc55"
+        },
+        {
+          "ref": "docs/qa/TRACEABILITY.md",
+          "sha256": "b31ceb8ad9bdc946e16712b6a1ecfe5672b10ec7f306241792cb13d4c972a270"
+        },
+        {
+          "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/verification.json",
+          "sha256": "fdb1d554b61863bca034d8ab1267076ab371d455441ec74cea78065dac6bdc85"
+        }
+      ],
+      "subject": {
+        "kind": "commit",
+        "ref": "7ac8af56ed04c27bbefbd416b3976c544d2f274a"
+      },
+      "intent": "a8aa64d49a043a77859dc08c948728cb910f9e4bdc95d2d0d1ccf79f859b3438",
+      "id": "894c32872c139118030f9de702e066b95cef7e2243b111a8e8a1f02ca275837a"
+    }
+  },
+  {
+    "item": 2,
+    "judgment": {
+      "version": 1,
+      "scope": "missions/02-brownfield/slices/01-audit-read",
+      "sequence": 15,
+      "operationId": "c0017167397adcaa99fd24c7482a8e8867c36bc32627a3b4f4251bdb568e9432",
+      "itemId": "item-c7bc87bb634edb9adc12",
+      "itemRevision": "8f9a211503d34df560231cedb37646fafa3b04cb593ca1fadab7c01ea395a4c1",
+      "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+      "policySource": "project.yaml",
+      "previous": "9681cad1acb08663f805b600ebbff5255a46836f363eba0ecc7474f97e6b8452",
+      "actor": "qa-agent@urlshort-factory",
+      "provenance": "transport:v1",
+      "at": "2026-10-03T21:28:28.252Z",
+      "verdict": "accept",
+      "reason": "Fresh full offline gate and merged per-class CSV have494/494 lines and194/194 branches, zero exclusions or lowered thresholds.",
+      "evidence": [
+        {
+          "ref": "docs/qa/coverage/01-audit-read/all/jacocoTestReport.csv",
+          "sha256": "da4866cc281b6e29b2e604fcb79cd784292319fcb3990e58ab3f04b74135ccad"
+        },
+        {
+          "ref": "docs/qa/coverage/01-audit-read/SUMMARY.md",
+          "sha256": "20f4e679e767948ac35299c4ceda655d757d4778f7ccfd23c01b3f1c580bfc55"
+        }
+      ],
+      "subject": {
+        "kind": "commit",
+        "ref": "7ac8af56ed04c27bbefbd416b3976c544d2f274a"
+      },
+      "intent": "3a5624894874c0e751f142a61a0cb0470da9580dfcf67ebadbc4543215301185",
+      "id": "a86f856109bf945eb1881d072b48ccfeeedc8ab2d98f244a75997efaa981d009"
+    }
+  },
+  {
+    "item": 3,
+    "judgment": {
+      "version": 1,
+      "scope": "missions/02-brownfield/slices/01-audit-read",
+      "sequence": 16,
+      "operationId": "5c336a0ae42fcf670e79aad0c4a7ebfa33cb5fbc140d89a5cd79fb652addf171",
+      "itemId": "item-8b589a5d3bead31f5417",
+      "itemRevision": "bf9c76db0ee08983576ba5534dfd62403665f81cb021911858430ff7d8a8fd9f",
+      "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+      "policySource": "project.yaml",
+      "previous": "e885cfc224e3c8274ac7faaf7274f630f46e728993d30d50ce95eac56d508e74",
+      "actor": "qa-agent@urlshort-factory",
+      "provenance": "transport:v1",
+      "at": "2026-10-03T21:28:28.918Z",
+      "verdict": "accept",
+      "reason": "All348 copied report files are byte-equal to fresh candidate output and committed; unit438/494lines188/194branches, functional457/494lines162/194branches, merged100/100.",
+      "evidence": [
+        {
+          "ref": "docs/qa/coverage/01-audit-read/SUMMARY.md",
+          "sha256": "20f4e679e767948ac35299c4ceda655d757d4778f7ccfd23c01b3f1c580bfc55"
+        },
+        {
+          "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/report-copy-hashes.json",
+          "sha256": "1894339cfa570d0f53a46b7e56c5a0c3579b74438eb13000aeee1ac506ff8695"
+        }
+      ],
+      "subject": {
+        "kind": "commit",
+        "ref": "7ac8af56ed04c27bbefbd416b3976c544d2f274a"
+      },
+      "intent": "8eac86142d5beb244306953a1bce818234a4111944dddc303c8c28a2cd1889d9",
+      "id": "9156b6bfdace721490a7ffcff8b7c6a3da6c93e7c7a4a618a9b8c0e367a90cf7"
+    }
+  },
+  {
+    "item": 4,
+    "judgment": {
+      "version": 1,
+      "scope": "missions/02-brownfield/slices/01-audit-read",
+      "sequence": 17,
+      "operationId": "7081b5f881fafe7559931b2b5edeb96267b6944037bac460f40a75e04276ef70",
+      "itemId": "item-67388d5ee2d28fe87990",
+      "itemRevision": "d2ae85cb86bb45b82cf8e832fe47811dfa330737c6a26ecfb958905aef85972c",
+      "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+      "policySource": "project.yaml",
+      "previous": "2b30ad11bb0af6409d35fdb658a86f545a0147217918936d2aa77328073a06d7",
+      "actor": "qa-agent@urlshort-factory",
+      "provenance": "transport:v1",
+      "at": "2026-10-03T21:28:29.505Z",
+      "verdict": "accept",
+      "reason": "Fresh inventory227 source methods equals227 trace rows both ways; all21ACs have functional mappings and all9 business rules/FR/NFRs map, including two Tomcat trigger cases and named AC20/21 JDBC induction.",
+      "evidence": [
+        {
+          "ref": "docs/qa/TRACEABILITY.md",
+          "sha256": "b31ceb8ad9bdc946e16712b6a1ecfe5672b10ec7f306241792cb13d4c972a270"
+        },
+        {
+          "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/source-methods.json",
+          "sha256": "b68ba0582e9336840e7d7ff5211de58a52abf7d0b2ba1acc02d35aa27d908ea5"
+        }
+      ],
+      "subject": {
+        "kind": "commit",
+        "ref": "7ac8af56ed04c27bbefbd416b3976c544d2f274a"
+      },
+      "intent": "a4ee12c16cd9563d74c30ef7ea0aa0e7e1451f2584f8d57fae38d30ce1567b7e",
+      "id": "186abd8f5fa89ffa510cfeb9705410440ade16fc77470b2d5a171cd924d227ea"
+    }
+  },
+  {
+    "item": 5,
+    "judgment": {
+      "version": 1,
+      "scope": "missions/02-brownfield/slices/01-audit-read",
+      "sequence": 18,
+      "operationId": "d3423bf839eb977ff2c9b162d751e28d4246ba561c31ec43a52fef8410b0dc54",
+      "itemId": "item-2e797922f963bf3ad811",
+      "itemRevision": "a30adb5803c7e7a1e799ac26efe071a94a61cbe559e02c271efa45bcd8199ffc",
+      "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+      "policySource": "project.yaml",
+      "previous": "7eb5b91c6389576172b8e9a7e4728427bc83bc79cde594c8e9ee68fc7a4a2e4f",
+      "actor": "qa-agent@urlshort-factory",
+      "provenance": "transport:v1",
+      "at": "2026-10-03T21:28:30.143Z",
+      "verdict": "accept",
+      "reason": "Gap entry documents complementary per-suite misses, exact accepted AC17 enumeration grant, controlled peer/JDBC scope, future Boot trigger ceiling and corrected plain-file capture;23 repeated requests/24 default console JSON events compensate the capture limit. No unaccepted merged coverage or AC gap.",
+      "evidence": [
+        {
+          "ref": "docs/qa/GAPS.md",
+          "sha256": "b585e97f5b23769e4f860657b3de6c3408f8b4db1d415a4bf02bef755fa4820b"
+        },
+        {
+          "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/console-verification.json",
+          "sha256": "8afc9e4497a2dfa8f547ba85f41fa0c2fa4faff6e471b648556b99d99a79eb5d"
+        }
+      ],
+      "subject": {
+        "kind": "commit",
+        "ref": "7ac8af56ed04c27bbefbd416b3976c544d2f274a"
+      },
+      "intent": "bee91abe2958859533ca54aaac2a9b77f0b51d408dff5e03f3e224ee21b557a0",
+      "id": "f24375db032bc657fa3fe454f15b9312da5269a9df63a80f2111235d4f008359"
+    }
+  },
+  {
+    "item": 6,
+    "judgment": {
+      "version": 1,
+      "scope": "missions/02-brownfield/slices/01-audit-read",
+      "sequence": 19,
+      "operationId": "19d53baafd14208cc5d42a5ea29478fcbebe7bdd257ada23bbc64ff26fe2cfcc",
+      "itemId": "item-fe80197431d6d46ff04d",
+      "itemRevision": "5693ca8fa38394e975a31590aa12130d5b3becc8ae37dead86392455841b8fc1",
+      "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+      "policySource": "project.yaml",
+      "previous": "85a0943c02fdf50f4684c65cb330fd05c082b796b27e859b884ef74e59d12271",
+      "actor": "qa-agent@urlshort-factory",
+      "provenance": "transport:v1",
+      "at": "2026-10-03T21:28:30.730Z",
+      "verdict": "accept",
+      "reason": "Impact analysis committed a686b2a4 before initial design c1be7284; read brownfield module/endpoint/schema/data-flow/blast-radius/link-compatibility rows. Existing primary key means no migration.",
+      "evidence": [
+        {
+          "ref": "missions/02-brownfield/slices/01-audit-read/impact-analysis.md",
+          "sha256": "4441c2ea917e3f9c5f17716dab435f46744668cb53b19fb1800d2c3008859a62"
+        },
+        {
+          "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/artifact-provenance.json",
+          "sha256": "0d7819453e9c4ef93f6b3c5ac00cf59b25718ebb1922b920ad5e6d34b9f279e1"
+        }
+      ],
+      "subject": {
+        "kind": "commit",
+        "ref": "7ac8af56ed04c27bbefbd416b3976c544d2f274a"
+      },
+      "intent": "f9da27386fd27afe9839c8806d8570601fe2d432e1e8531d52103f9de74dc09a",
+      "id": "26c2fcc45bad292f68a258d8182a3688e3dbcd48ab6442f123218fbae5a04fea"
+    }
+  },
+  {
+    "item": 7,
+    "judgment": {
+      "version": 1,
+      "scope": "missions/02-brownfield/slices/01-audit-read",
+      "sequence": 20,
+      "operationId": "d3058eb5aa435f6da702013730f8bdad869ea99f7f126bd09de58e6cb70551cc",
+      "itemId": "item-4068d77c1333b52a69af",
+      "itemRevision": "0625770099a634ca57559ffc5bb1636ff40b07f51faf0d421b680d70ea8fb7ea",
+      "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+      "policySource": "project.yaml",
+      "previous": "c0fb577a471c2041f833766911737dc7507201f85d016e27a3e696e2cf394308",
+      "actor": "qa-agent@urlshort-factory",
+      "provenance": "transport:v1",
+      "at": "2026-10-03T21:28:31.741Z",
+      "verdict": "accept",
+      "reason": "Actual immutable f6dd29e jar created active/retired links,3 clicks and3 audit rows on fresh H2 directory; stopped then7ac8af5 installed on same directory. Complete statistics unchanged before verification GET, original link/audit columns identical, active302 same target, retired410; only verification GET adds fourth click.",
+      "evidence": [
+        {
+          "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/qa-http-ledger.json",
+          "sha256": "186b4f62f74ae0a39bb5c7e8324c70a99c311fb1d927ff2bc416568011d8ef87"
+        },
+        {
+          "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/qa-upgrade-before.json",
+          "sha256": "2f869617af4e16b3346bba89f82eb8201f8a19976f8f6cd7513feecf87357579"
+        },
+        {
+          "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/qa-upgrade-after.json",
+          "sha256": "f79c285276d6d089c2313420e4ec70c6003e2c7c3ef8729316b9e846ba84de0c"
+        },
+        {
+          "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/verification.json",
+          "sha256": "fdb1d554b61863bca034d8ab1267076ab371d455441ec74cea78065dac6bdc85"
+        }
+      ],
+      "subject": {
+        "kind": "commit",
+        "ref": "7ac8af56ed04c27bbefbd416b3976c544d2f274a"
+      },
+      "intent": "abe20708a4d889ef33730bb2e3ff1816f38a6dcd98c19396c8d0768f05d71c03",
+      "id": "cd9e07e3b5369884211b64165284c4428aa1ef47be105710238c1f24a417e66c"
+    }
+  },
+  {
+    "item": 8,
+    "judgment": {
+      "version": 1,
+      "scope": "missions/02-brownfield/slices/01-audit-read",
+      "sequence": 21,
+      "operationId": "0ab18f6feff42754c8fefe2ab4cebb9cc78186234a384f1476e3222b74b3d49e",
+      "itemId": "item-3fd449964ff3a7134608",
+      "itemRevision": "e84a68d225f5bd7c537ea47e4de1949977a9e6c557dba22dfc2d6c3023c26905",
+      "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+      "policySource": "project.yaml",
+      "previous": "73513ce64ae4c4fcd593d1efb0e21d70f8fd1467f005454b5b214546698b723d",
+      "actor": "qa-agent@urlshort-factory",
+      "provenance": "transport:v1",
+      "at": "2026-10-03T21:28:32.609Z",
+      "verdict": "accept",
+      "reason": "Installed7ac8af5 jar serves two200 pages via actual next, then identical second-page URI with XFF is403. All three header request IDs/statuses match unchanged default JSON console and ECS file; audit/client/cursor canaries absent whole logs. Initial plain-file run is explicitly qualified.",
+      "evidence": [
+        {
+          "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/qa-http-ledger.json",
+          "sha256": "186b4f62f74ae0a39bb5c7e8324c70a99c311fb1d927ff2bc416568011d8ef87"
+        },
+        {
+          "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/observability-console-exchange.txt",
+          "sha256": "c1674be0d50a69699e59347f3640ed1c0bb87658c7dd6610061923051850dc85"
+        },
+        {
+          "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/qa-exchange.jsonl",
+          "sha256": "814360b3d73a88753c4d6ccf420772d050c27000ad951931ce1affcb3aef57a9"
+        },
+        {
+          "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/console-verification.json",
+          "sha256": "8afc9e4497a2dfa8f547ba85f41fa0c2fa4faff6e471b648556b99d99a79eb5d"
+        }
+      ],
+      "subject": {
+        "kind": "commit",
+        "ref": "7ac8af56ed04c27bbefbd416b3976c544d2f274a"
+      },
+      "intent": "8af505d05ff93d46d2b339f219e5e7c80eb80753a334c0b797777b5ca916cb22",
+      "id": "8375a70164e06ca4b733b10273c779dbd3105d94dcee6f6757a6995b038d4484"
+    }
+  },
+  {
+    "item": 9,
+    "judgment": {
+      "version": 1,
+      "scope": "missions/02-brownfield/slices/01-audit-read",
+      "sequence": 22,
+      "operationId": "d298ff91096f11fe114101b2f56f01afbf54f0adc32e486d013d08d1f5dbc61b",
+      "itemId": "item-e4d631a3f1c0d21af5b5",
+      "itemRevision": "2c6a01baabb2b088f7424f9d30b488c288512df278c55ed17966b44e75619261",
+      "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+      "policySource": "project.yaml",
+      "previous": "97f9e1802e59c28b81ad7c4fdc08e432e298da3ad964d9c1f277aaacf7e3a16b",
+      "actor": "qa-agent@urlshort-factory",
+      "provenance": "transport:v1",
+      "at": "2026-10-03T21:28:33.481Z",
+      "verdict": "accept",
+      "reason": "N/A additive migration: direct git diff f6dd29e..7ac8af5 over migrations is empty. Design uses existing identity primary-key index, so no version allocation or rollback file is required.",
+      "evidence": [
+        {
+          "ref": "missions/02-brownfield/slices/01-audit-read/design.md",
+          "sha256": "0654b71588d3e3847fb1c7d5fcf4617733dac3a1a1d659d3e5547a5f19edf78b"
+        },
+        {
+          "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/artifact-provenance.json",
+          "sha256": "0d7819453e9c4ef93f6b3c5ac00cf59b25718ebb1922b920ad5e6d34b9f279e1"
+        }
+      ],
+      "subject": {
+        "kind": "commit",
+        "ref": "7ac8af56ed04c27bbefbd416b3976c544d2f274a"
+      },
+      "intent": "5662fabc894fa1109de6352c6248fe81844eb1a946cb9dafc31b3cb7e51778f0",
+      "id": "48c500f1b83988ffa76e48a92e0cf2105928496edf697bd7659da586d26a3bfb"
+    }
+  },
+  {
+    "item": 10,
+    "judgment": {
+      "version": 1,
+      "scope": "missions/02-brownfield/slices/01-audit-read",
+      "sequence": 23,
+      "operationId": "86f0a1305aac8aadc79cb1ad27d24dc57cf481910923cfd696249283aa76b408",
+      "itemId": "item-472cf6d38231f7ac145d",
+      "itemRevision": "0be496cfa370ed3507dacef85cb24629c9bbc3aada504a467dcc0a0315696c55",
+      "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+      "policySource": "project.yaml",
+      "previous": "405f8d7a445d7d00e4fd1af23851ec2a907cfc322a84e45c1fe450e52e6e70cb",
+      "actor": "qa-agent@urlshort-factory",
+      "provenance": "transport:v1",
+      "at": "2026-10-03T21:28:34.154Z",
+      "verdict": "accept",
+      "reason": "Entire key-sorted document from controlled app and installed candidate equals committed7ac8af5 docs/api/openapi.json. Audit page/row/query/example and200/400/403/429/500 present; every previously shipped path/response/example unchanged.",
+      "evidence": [
+        {
+          "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/api-diff.txt",
+          "sha256": "085110d034ba95be1a9d443988414be8a7b5bd155e71f8e296ea5e2bc26e9194"
+        },
+        {
+          "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/verification.json",
+          "sha256": "fdb1d554b61863bca034d8ab1267076ab371d455441ec74cea78065dac6bdc85"
+        }
+      ],
+      "subject": {
+        "kind": "commit",
+        "ref": "7ac8af56ed04c27bbefbd416b3976c544d2f274a"
+      },
+      "intent": "7b112caa73cad3ce43a9588bc8772c2c1c5b101fa08042e7388d618aa6ddc6f8",
+      "id": "1d6f7441fdad8fb3b7313115679845cea64fe13fdbfc227b006964237d19dc38"
+    }
+  },
+  {
+    "item": 11,
+    "judgment": {
+      "version": 1,
+      "scope": "missions/02-brownfield/slices/01-audit-read",
+      "sequence": 24,
+      "operationId": "a4a5366a41413a3b41fb20d3e48e3436afdc46e16c041615e0bddc40929d1f80",
+      "itemId": "item-9bac2e16e0a7e029584a",
+      "itemRevision": "f508a2c5439c7849aaafbb3fd58982b7763ea39800d251067b26b4a97ec3166e",
+      "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+      "policySource": "project.yaml",
+      "previous": "46d8b18f01bdf8e86b74045a1d7633cc556177286f2e2b0483a48ee2f0238ee2",
+      "actor": "qa-agent@urlshort-factory",
+      "provenance": "transport:v1",
+      "at": "2026-10-03T21:28:34.830Z",
+      "verdict": "accept",
+      "reason": "Indexed ADR0019 committed with design c1be7284 before dependent d183d0c code. Corrected ADR/design0052efb indexed before remoteip guard fix1fe1cbf; covers guard placement, cursor/write order, bounded paging and existing index. Lead re-lock recorded, independent design-delta review remains downstream.",
+      "evidence": [
+        {
+          "ref": "docs/adr/0019-audit-read-loopback-keyset.md",
+          "sha256": "9ec505fb12ff2884df3157776545d8a4426e6d2b13e147448fc3364d0218e350"
+        },
+        {
+          "ref": "docs/DESIGN.md",
+          "sha256": "81efea0a4508d1ba23abcf43a33e65de3e3782323bed13b3536571892f3b540f"
+        },
+        {
+          "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/artifact-provenance.json",
+          "sha256": "0d7819453e9c4ef93f6b3c5ac00cf59b25718ebb1922b920ad5e6d34b9f279e1"
+        }
+      ],
+      "subject": {
+        "kind": "commit",
+        "ref": "7ac8af56ed04c27bbefbd416b3976c544d2f274a"
+      },
+      "intent": "d6abe156cbc0656017aeaa8ad71db36a771aaa25f4f83df629a98292d09da721",
+      "id": "e3e9a08be5eb06b2fdac44e662b12557217d5075527de1f874b23a78a40ee57a"
+    }
+  },
+  {
+    "item": 13,
+    "judgment": {
+      "version": 1,
+      "scope": "missions/02-brownfield/slices/01-audit-read",
+      "sequence": 25,
+      "operationId": "af3db9c513b9f4bd3da8eee5e0c834babe2af9c56b1f158fa39ddcd346e650f9",
+      "itemId": "item-baed5a622321a623f976",
+      "itemRevision": "a4b0e2a3a7db1dc8d7d1793eeccb1dbc6c87c6bcf05396100b1dd331be480d0a",
+      "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+      "policySource": "project.yaml",
+      "previous": "8af8e576e003d3cd36c9c2bb59711cb7fd6d2dbbcd5104496d805603cb32092c",
+      "actor": "qa-agent@urlshort-factory",
+      "provenance": "transport:v1",
+      "at": "2026-10-03T21:28:35.789Z",
+      "verdict": "accept",
+      "reason": "Candidate README and DESIGN explicitly state loopback-only, no opening setting and the headerless local relay boundary: do not relay audit through a local proxy or require forwarding headers. Artifact provenance hashes the candidate document bytes.",
+      "evidence": [
+        {
+          "ref": "README.md",
+          "sha256": "7ffcda6e43b2a83fc0dd5e88c2442e3367eee6280d405228e53da6aca29d76f0"
+        },
+        {
+          "ref": "docs/DESIGN.md",
+          "sha256": "81efea0a4508d1ba23abcf43a33e65de3e3782323bed13b3536571892f3b540f"
+        },
+        {
+          "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/artifact-provenance.json",
+          "sha256": "0d7819453e9c4ef93f6b3c5ac00cf59b25718ebb1922b920ad5e6d34b9f279e1"
+        }
+      ],
+      "subject": {
+        "kind": "commit",
+        "ref": "7ac8af56ed04c27bbefbd416b3976c544d2f274a"
+      },
+      "intent": "370b885e2d684b172359b62ba87745b38aeaa351b640a39435374579e83d1f5e",
+      "id": "3d5f5bf9b9283fcf8321ab8f04a8040b34736918d6abc7d76d36b60e6a11ca0d"
+    }
+  }
+]

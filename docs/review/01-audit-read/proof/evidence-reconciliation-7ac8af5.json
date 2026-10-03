@@ -1,0 +1,71 @@
+{
+  "candidate": "7ac8af56ed04c27bbefbd416b3976c544d2f274a",
+  "clean": true,
+  "tests": {
+    "test": {
+      "tests": 203,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "functionalTest": {
+      "tests": 202,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "coverage": {
+    "unit": {
+      "LINE_MISSED": 56,
+      "LINE_COVERED": 438,
+      "BRANCH_MISSED": 6,
+      "BRANCH_COVERED": 188
+    },
+    "functional": {
+      "LINE_MISSED": 37,
+      "LINE_COVERED": 457,
+      "BRANCH_MISSED": 32,
+      "BRANCH_COVERED": 162
+    },
+    "all": {
+      "LINE_MISSED": 0,
+      "LINE_COVERED": 494,
+      "BRANCH_MISSED": 0,
+      "BRANCH_COVERED": 194
+    }
+  },
+  "qaReportHashesVerified": 348,
+  "qaReadonlyIntervals": {
+    "qa-live-real": {
+      "audit_log": 4,
+      "link": 3,
+      "click": 0
+    },
+    "qa-seed45": {
+      "audit_log": 45,
+      "link": 3,
+      "click": 0
+    },
+    "qa-readonly": {
+      "audit_log": 45,
+      "link": 3,
+      "click": 0
+    }
+  },
+  "oldApiPathsUnchanged": 5,
+  "freshLiveEqualsCommitted": true,
+  "qaCaptureCount": 258,
+  "qaInstalledConfigObservationsVerified": 36,
+  "defaultJsonConsole": {
+    "requests": 23,
+    "events": 24
+  },
+  "samePageForwardedRefusal": true,
+  "originalReviewerControlsVerified": 30,
+  "deltaFiles": [
+    "src/functionalTest/java/dev/urlshort/audit/AuditForwardedHeadersJourneyTest.java",
+    "src/main/java/dev/urlshort/audit/AuditController.java",
+    "src/test/java/dev/urlshort/audit/AuditControllerTest.java"
+  ]
+}

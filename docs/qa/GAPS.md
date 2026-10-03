@@ -144,11 +144,11 @@ branches (100%); no excluded code, changed threshold or merged coverage gap.
 | Scope | Gap or limit | Reason / evidence | Acceptance / owner |
 |---|---|---|---|
 | Per-suite coverage | Unit400/443 lines90.2935%,162/162 branches100%; functional408/443 lines92.0993%,131/162 branches80.8642% | Fresh165/155 invocations all pass; complementary suites merge to443/443 and162/162. 321 copied report files SHA-256 checked in proof/qa-report-audit-add7ab5.json | Existing NFR-M1/build gate applies100% to merged data; no waiver |
-| AC-13 | First GitHub PR gate and main CD run, artifact uploads, action/cache/wrapper-validation and Dependabot execution not observed | Agents cannot push; candidate-local checks and the contracted builder network captures are complete. No GitHub URLs fabricated. Operator records run URLs/conclusions/artifact presence in PROOF.md after the human pushes | SPEC A-5 explicit accepted pending state (D2/D13); human/operator follow-up |
+| AC-13 | **Runs occurred and succeeded according to the operator record at b6b4a29; no longer pending. QA could not fetch the run/job/artifact data directly.** | [PR ci37153245436](https://github.com/aurbanow1/url-shortener-agentic-sdlc/actions/runs/37153245436): pull_request, job gate, success. [main ci37153380482](https://github.com/aurbanow1/url-shortener-agentic-sdlc/actions/runs/37153380482): push main, success. [main cd37153380418](https://github.com/aurbanow1/url-shortener-agentic-sdlc/actions/runs/37153380418): push main, success, urlshort-jar and smoke-logs attached. Browser cache misses and gh API404 retained in docs/qa/05-ci-cd/github-access-attempts.json | Judged from the operator's committed conclusions/artifact record under the packet's explicit fallback, not QA's own GitHub fetch; follow-up docs/qa/05-ci-cd/github-run-judgment.md |
 | AC-2 / A-6; BR-6 | A deliberately failing GitHub run was not exercised; failure upload/retention checked as configuration only | Parsed gate has no -x, continue-on-error or masked exit; explicit bash; reports/smoke upload always(),30 days. Local real check exit0 is captured | SPEC A-6 permits configuration evidence, not a claim of a red GitHub run |
 | AC-12 lint | Native actionlint absent; independent YAML1.2 parse plus parsed/source AC checks used | All three candidate files parse without errors or warnings. Builder's separate actionlint1.7.12 capture and negative control retained. QA did not rerun that container | SPEC AC-12 expressly allows parsing when actionlint is not installed |
-| AC-12 image | Initial --pull --no-cache attempt stopped at Dockerfile step5; a wholly uncached image build is not claimed | Supplemental builder --pull capture on the same SHA completed with both base images pulled, all15 steps and exit0. Steps5–7 actually ran, including bootJar; other layers cached. QA read both pull digests and success; C1 image/pin attachments committed ad79bb4 | AC-12 satisfied without waiver: cache is allowed by SPEC. A fully uncached/hosted-runner build remains unobserved; AC-13 pending |
-| AC-5 / runner environment | GitHub's env.JAVA_HOME handoff and hosted Linux shell/runner not executed locally | Own installed jar smoke used local JDK21 default; parsed cd env passes JAVA_HOME; exact script unchanged. Local journey/log/shutdown observed on127.0.0.1:18105 | Actual GitHub effects remain in AC-13 pending; no clean-runner execution claim |
+| AC-12 image | Initial --pull --no-cache attempt stopped at Dockerfile step5; a wholly uncached image build is not claimed | Supplemental builder --pull capture on the same SHA completed with both base images pulled, all15 steps and exit0. Steps5–7 actually ran, including bootJar; other layers cached. QA read both pull digests and success; C1 image/pin attachments committed ad79bb4 | AC-12 satisfied without waiver: cache is allowed by SPEC. Operator now records hosted CD image-build success for AC-13; a wholly uncached build is not independently corroborated by QA |
+| AC-5 / runner environment | GitHub's env.JAVA_HOME handoff and hosted Linux shell/runner not executed locally | Own installed jar smoke used local JDK21 default; parsed cd env passes JAVA_HOME; exact script unchanged. Local journey/log/shutdown observed on127.0.0.1:18105 | Operator now records hosted CD bootJar/smoke/image steps successful (AC-13); QA did not fetch job logs or independently inspect the JAVA_HOME handoff |
 | Configuration-only traceability | Workflow ACs are file/local-command/run checks, not new product HTTP tests | SPEC explicitly selects this evidence strategy; .github-only diff leaves inherited product tests unchanged. All320 invocation names map to NFR-M1/rule1 and earlier product AC tables | Proof contract5 requires the13AC/7rule check table; no new product tests or test edits |
 
 Instrument corrections: the first QA parser invocation used the wrong local
@@ -158,3 +158,62 @@ check was denied by the sandbox; the permitted rerun verified all321 report
 hashes, PID absence and refused port. Neither supplies a product finding.
 Shared GAPS appends can change earlier receipts' evidence hashes; no judgment
 on an unassigned closed mission is made here.
+
+
+AC-13 follow-up (qitem-20261003211407-91a03acb): read the exact operator
+section at b6b4a29, checked all three recorded successful conclusions, PR gate
+job and both CD artifact names, and retained unsuccessful direct access
+attempts. Earlier pending rows are superseded by this entry. Successful main
+runs are on a3d6867 under Gradle9.8.0, after Dependabot #8; the original main
+runs on ecf8dfd were cancelled. PR gate used9.7.1. Local wrapper adoption
+f3e6b0b is context only, not a new local gate result. **A-6 remains unchanged:
+a deliberately red GitHub run was not exercised.** Artifact downloads,
+artifact-content review, hosted logs and fully uncached-build verification
+are not claimed by QA. No threshold or coverage gap changed.
+
+## Re-check 01-audit-read — candidate 7ac8af56ed04c27bbefbd416b3976c544d2f274a
+
+No merged coverage shortfall or exclusion: 494/494 lines and 194/194 branches.
+Per-suite informational misses: unit56 lines/6 branches, functional37
+lines/32 branches; the complementary suite covers every one.
+
+QA-AUD-01 / CR-01 is **fixed on this candidate**, independently observed with
+the installed jar: either explicit Tomcat remote-IP or protocol-header
+setting refuses plain and forged GET/HEAD403 with no stored canary.
+Default/empty-setting loopback200, forwarded403, and native/framework403
+controls also observed. Prior35590f0 item1 remains rejected; no waiver was
+used for that defect. Fresh regression has two real-Tomcat functional
+invocations and three unit methods. Evidence: proof/qa-recheck-7ac8af5/,
+docs/qa/01-audit-read/findings.md re-check.
+
+Qualified AC-17 result unchanged in scope: all25 shipped f6dd29e files
+verified byte-equal to Git blobs; 155 tests,153 pass and only the exact two
+enumeration failures accepted by lead grant428e9e1, transition1156. Their
+candidate versions pass. This grant permits the new audit path/operation;
+it does not authorize any behavioural regression.
+
+Observation limits and compensating checks:
+- Remote peer/IPv6 tests use the SPEC-authorized external Servlet wrapper.
+  These establish peer/header inputs seen by the service, not an actual
+  remote TCP-client boundary. Real installed Tomcat separately verifies all
+  known rewriting modes. Headerless local relays remain indistinguishable
+  from the Operator and prohibited or required to add a forwarding header.
+- The guard mirrors Boot4.1.1's RemoteIpValve trigger list. A future Boot
+  upgrade must revisit new triggers; known-trigger real-container cases
+  cannot prove future configuration semantics.
+- JDBC seeding, a held transaction and an actual SQLException are external
+  QA controls, documented in QaLauncher.java. No natural disk/H2 crash or
+  concurrent writer stress is claimed. Exact row comparisons prove the
+  held-write/read-failure outcomes; no product/test edits.
+- Capture setup error: QA added logging.file.name without an ECS file
+  encoder, so the first sink was plain text although the default console
+  was JSON. Original captures are retained under plain-file-captures/.
+  QA repeated observability/privacy and installed two-page/identical
+  forwarded-page exchange with logging.structured.format.file=ecs, leaving
+  the default console unchanged. All23 repeated requests correlate to
+  24 JSON events in both console and file. Earlier235 captures are not
+  claimed to have retained JSON correlation; whole-run privacy checked in
+  both capture sets. No AC remains unverified because of this setup error.
+- Security item12 is downstream. The existing lead sequencing obligation
+  qitem-20261003194346-b74b8081 returns the corrected independent review
+  before acceptance. QA does not judge an absent security record.

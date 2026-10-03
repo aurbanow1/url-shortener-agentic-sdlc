@@ -1,0 +1,40 @@
+2026-10-03T14:05:53.599-07:00  INFO 83264 --- [urlshort] [main] dev.urlshort.UrlshortApplication         : Starting UrlshortApplication v0.1.0 using Java 21.0.10 with PID 83264 (/private/tmp/urlshort-audit-qa-7ac8af5/candidate-7ac8af5.jar started by andrzej in /Users/andrzej/Documents/projekty/test/openrig/url-shortener)
+2026-10-03T14:05:53.604-07:00  INFO 83264 --- [urlshort] [main] dev.urlshort.UrlshortApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-10-03T14:05:54.042-07:00  INFO 83264 --- [urlshort] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2026-10-03T14:05:54.072-07:00  INFO 83264 --- [urlshort] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24 ms. Found 1 JDBC repository interface.
+2026-10-03T14:05:54.318-07:00  INFO 83264 --- [urlshort] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 18133 (http)
+2026-10-03T14:05:54.325-07:00  INFO 83264 --- [urlshort] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-03T14:05:54.326-07:00  INFO 83264 --- [urlshort] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.25]
+2026-10-03T14:05:54.340-07:00  INFO 83264 --- [urlshort] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 715 ms
+2026-10-03T14:05:54.568-07:00  INFO 83264 --- [urlshort] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-03T14:05:54.659-07:00  INFO 83264 --- [urlshort] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:file:/private/tmp/urlshort-audit-qa-7ac8af5/upgrade/urlshort user=SA
+2026-10-03T14:05:54.660-07:00  INFO 83264 --- [urlshort] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-03T14:05:54.665-07:00  INFO 83264 --- [urlshort] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:file:/private/tmp/urlshort-audit-qa-7ac8af5/upgrade/urlshort (H2 2.4)
+2026-10-03T14:05:54.685-07:00  WARN 83264 --- [urlshort] [main] o.f.c.internal.database.base.Database    : Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026-10-03T14:05:54.702-07:00  INFO 83264 --- [urlshort] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.011s)
+2026-10-03T14:05:54.706-07:00  INFO 83264 --- [urlshort] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": 2
+2026-10-03T14:05:54.708-07:00  INFO 83264 --- [urlshort] [main] o.f.core.internal.command.DbMigrate      : Schema "PUBLIC" is up to date. No migration necessary.
+2026-10-03T14:05:55.124-07:00  INFO 83264 --- [urlshort] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoints beneath base path '/actuator'
+2026-10-03T14:05:55.161-07:00  INFO 83264 --- [urlshort] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-03T14:05:55.161-07:00  INFO 83264 --- [urlshort] [main] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-03T14:05:55.162-07:00  INFO 83264 --- [urlshort] [main] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-10-03T14:05:55.163-07:00  INFO 83264 --- [urlshort] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 18133 (http) with context path '/'
+2026-10-03T14:05:55.169-07:00  INFO 83264 --- [urlshort] [main] dev.urlshort.UrlshortApplication         : Started UrlshortApplication in 1.821 seconds (process running for 2.074)
+2026-10-03T14:05:55.201-07:00  WARN 83264 --- [urlshort] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-03T14:05:55.202-07:00  WARN 83264 --- [urlshort] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-03T14:06:21.577-07:00  INFO 83264 --- [urlshort] [http-nio-18133-exec-1] dev.urlshort.web.RequestIdFilter         : request completed
+2026-10-03T14:06:21.583-07:00  INFO 83264 --- [urlshort] [http-nio-18133-exec-2] dev.urlshort.web.RequestIdFilter         : request completed
+2026-10-03T14:06:21.637-07:00  INFO 83264 --- [urlshort] [http-nio-18133-exec-3] dev.urlshort.web.RequestIdFilter         : request completed
+2026-10-03T14:06:21.641-07:00  INFO 83264 --- [urlshort] [http-nio-18133-exec-4] dev.urlshort.web.RequestIdFilter         : request completed
+2026-10-03T14:06:21.652-07:00  INFO 83264 --- [urlshort] [http-nio-18133-exec-5] dev.urlshort.web.RequestIdFilter         : request completed
+2026-10-03T14:06:21.830-07:00  INFO 83264 --- [urlshort] [http-nio-18133-exec-6] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 173 ms
+2026-10-03T14:06:21.841-07:00  INFO 83264 --- [urlshort] [http-nio-18133-exec-6] dev.urlshort.web.RequestIdFilter         : request completed
+2026-10-03T14:06:21.985-07:00  INFO 83264 --- [urlshort] [http-nio-18133-exec-7] dev.urlshort.web.RequestIdFilter         : request completed
+2026-10-03T14:06:22.130-07:00  INFO 83264 --- [urlshort] [http-nio-18133-exec-9] dev.urlshort.web.RequestIdFilter         : request completed
+2026-10-03T14:06:22.265-07:00  INFO 83264 --- [urlshort] [http-nio-18133-exec-1] dev.urlshort.web.RequestIdFilter         : request completed
+2026-10-03T14:06:22.273-07:00  INFO 83264 --- [urlshort] [http-nio-18133-exec-2] dev.urlshort.web.RequestIdFilter         : request completed
+2026-10-03T14:06:22.277-07:00  INFO 83264 --- [urlshort] [http-nio-18133-exec-3] dev.urlshort.web.RequestIdFilter         : request completed
+2026-10-03T14:07:41.767-07:00  INFO 83264 --- [urlshort] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-10-03T14:07:41.775-07:00  INFO 83264 --- [urlshort] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-10-03T14:07:41.783-07:00  INFO 83264 --- [urlshort] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-10-03T14:07:42.005-07:00  INFO 83264 --- [urlshort] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

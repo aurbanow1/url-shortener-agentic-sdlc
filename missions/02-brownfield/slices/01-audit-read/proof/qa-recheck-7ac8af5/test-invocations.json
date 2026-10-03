@@ -1,0 +1,2031 @@
+{
+  "unit": [
+    {
+      "class": "dev.urlshort.UrlshortApplicationTests",
+      "name": "mainBootsWithoutAWebServer()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.UrlshortApplicationTests",
+      "name": "contextLoads()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[1] header = \"X-Forwarded-For\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[2] header = \"Forwarded\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "aRemoteIpHeaderSettingClosesTheEndpoint()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "limitDefaultsTo50AndAcceptsItsBounds()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[1] value = \"***\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[2] value = \"MA\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[3] value = \"LTE\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[4] value = \"eDE\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[5] value = \"\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "aMissingPeerIsRefused()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[1] peer = \"192.0.2.10\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[2] peer = \"10.0.0.7\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[3] peer = \"::ffff:192.0.2.10\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[4] peer = \"fe80::1\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[5] peer = \"0.0.0.0\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[6] peer = \"::\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[7] peer = \"\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[8] peer = \"1::2::3\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "emptyRemoteIpSettingsKeepTheEndpointOpen()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[1] peer = \"127.0.0.1\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[2] peer = \"127.0.0.2\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[3] peer = \"127.255.255.254\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[4] peer = \"::1\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[5] peer = \"0:0:0:0:0:0:0:1\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[6] peer = \"::ffff:127.0.0.1\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "anUnsetStrategyClosesTheEndpoint()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "theShippedStrategyAdmitsALoopbackRequest()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[1] strategy = NATIVE",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[2] strategy = FRAMEWORK",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[1] value = \"0\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[2] value = \"101\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[3] value = \"-1\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "aCursorIsTheBase64urlOfAPositiveId()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "aProtocolHeaderSettingClosesTheEndpoint()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[1] value = \"ten\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[2] value = \"\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[3] value = \"1.5\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditControllerTest",
+      "name": "[4] value = \"99999999999\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditLogTest",
+      "name": "theWriterOffersOnlyAppendAndItsOnlyStatementIsAnInsert()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditLogTest",
+      "name": "appendWritesOneRowWithServerOwnedValues()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecorderTest",
+      "name": "aFastStoreIsDrainedOnCloseAndNothingIsReported()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecorderTest",
+      "name": "aRedirectIsStoredAsItsReducedFactsOnly()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecorderTest",
+      "name": "aWriteThatCompletesAfterShutdownClaimedItIsNotReportedAgain()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecorderTest",
+      "name": "aFailedWriteIsOneWarnWithTheRequestIdAndNoClickValue()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecorderTest",
+      "name": "aHeadRequestIsNotAClick()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecorderTest",
+      "name": "aClaimedClickIsNeverWrittenWhenTheWriterReachesItLater()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecorderTest",
+      "name": "aClickThatCannotBeReducedIsOneWarn()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecorderTest",
+      "name": "aClickThatCannotBeQueuedIsOneWarnAndTheRedirectGoesOn()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecorderTest",
+      "name": "aWriteThatFailsAfterShutdownClaimedItIsNotReportedAgain()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecorderTest",
+      "name": "aStuckWriteIsBoundedAndEveryUnwrittenClickIsReportedOnceBeforeCloseReturns()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickSchemaTest",
+      "name": "theClickConstraintsStillWorkAfterTheDdlConnectionIsRetired()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "rule2_aClickHoldsOnlyTheReducedFacts()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[1] header = null",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[2] header = \"\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[1] header = null",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[2] header = \"android-app://com.example.app/\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[3] header = \"not a url\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[4] header = \"ftp://files.example/x\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[5] header = \"/relative/path\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[6] header = \"http:///no-host\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[7] header = \"mailto:someone@example.com\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[1] header = \"https://News.Example/a/refpathcanary?t=refquerycanary#reffragcanary\", origin = \"https://news.example\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[2] header = \"http://blog.example:8081/post\", origin = \"http://blog.example:8081\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[3] header = \"https://refusercanary:pw@forum.example/x\", origin = \"https://forum.example\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[4] header = \"http://x.example:80/\", origin = \"http://x.example\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[5] header = \"https://x.example:443/\", origin = \"https://x.example\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[6] header = \"http://x.example:443/\", origin = \"http://x.example:443\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[7] header = \"https://x.example:80/\", origin = \"https://x.example:80\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[8] header = \"HTTPS://X.EXAMPLE/\", origin = \"https://x.example\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[9] header = \"http://[::1]:8080/\", origin = \"http://[::1]:8080\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[1] header = \"Mozilla/5.0 (X11; Linux x86_64) uacanary Firefox/131.0\", userAgentClass = \"browser\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[2] header = \"Mozilla/5.0 (compatible; Googlebot/2.1; uacanary)\", userAgentClass = \"bot\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[3] header = \"uacanary-crawler/1.0\", userAgentClass = \"bot\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[4] header = \"uacanary-spider\", userAgentClass = \"bot\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[5] header = \"curl/8.7.1 uacanary\", userAgentClass = \"other\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[6] header = \"SOME-BOT\", userAgentClass = \"bot\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[7] header = \"mozilla/5.0\", userAgentClass = \"other\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[1] length = 2048",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickTest",
+      "name": "[2] length = 2049",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.DailySaltTest",
+      "name": "closeDropsTheSalt()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.DailySaltTest",
+      "name": "theHashIsNeverTheUnsaltedDigest()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.DailySaltTest",
+      "name": "aSaltIsDroppedAtTheEndOfItsDayWithoutAnyFurtherClick()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.DailySaltTest",
+      "name": "anotherAddressOrAnotherDayHashesDifferently()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.DailySaltTest",
+      "name": "aStaleExpiryIsANoOpAndTheCurrentDaysExpiryDropsTheSalt()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.DailySaltTest",
+      "name": "aSelectionMadeBeforeMidnightKeepsItsDayAndNeverReplacesTheNextDaysSalt()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.DailySaltTest",
+      "name": "sameAddressAndDayHashEquallyAndTheStampCarriesTheClocksInstant()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.LinkStatsTest",
+      "name": "noRowsIsZeroAndTwoEmptyLists()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.LinkStatsTest",
+      "name": "daysAreSummedAscendingAndClicksWithoutAReferrerCountOnlyInTheTotals()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.LinkStatsTest",
+      "name": "referrersAreRankedByClicksThenByCodePointAndCappedAtTen()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkServiceTest",
+      "name": "resolveSendsVisitorsToActiveLinksOnly()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkServiceTest",
+      "name": "createWithAnUnboundKeyBindsIt()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkServiceTest",
+      "name": "retireUpdatesConditionallyAndAuditsBeforeAndAfter()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkServiceTest",
+      "name": "retireThatChangesNoRowIs410AndWritesNoAuditRow()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkServiceTest",
+      "name": "createWithoutAKeyInsertsAndAuditsTheNewLink()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkServiceTest",
+      "name": "mismatchWithinTheWindowIs422AndKeepsTheBinding()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkServiceTest",
+      "name": "replayWithinTheWindowReturnsTheBoundLinkAndWritesNothing()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkServiceTest",
+      "name": "anExpiredKeyIsReleasedAndBindsANewLink()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkServiceTest",
+      "name": "readOfAnUnknownCodeIs404()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkTest",
+      "name": "stateIsActiveUntilRetiredAtIsSet()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[1] key = \"\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[2] key = \"has space\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[3] key = \"caf\u00e9\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[4] key = \"tab\\there\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[1] url = null, rule = \"required\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[2] url = \"\", rule = \"required\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[3] url = \"   \", rule = \"required\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[4] url = \"https://example.com/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\u2026\", rule = \"too-long\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[5] url = \"javascript:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\u2026\", rule = \"too-long\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[6] url = \"javascript:alert(1)\", rule = \"scheme\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[7] url = \"data:text/html,hi\", rule = \"scheme\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[8] url = \"file:///etc/passwd\", rule = \"scheme\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[9] url = \"ftp://example.com/\", rule = \"scheme\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[10] url = \"example.com/path\", rule = \"scheme\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[11] url = \" https://example.com/\", rule = \"scheme\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[12] url = \"https://\", rule = \"malformed\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[13] url = \"https://exa mple.com/\", rule = \"malformed\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[14] url = \"https://[bad/\", rule = \"malformed\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[15] url = \"https://example.com/ \", rule = \"malformed\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[16] url = \"https://example.com/\\r\\nSet-Cookie:x\", rule = \"malformed\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[17] url = \"https://ex\u00e4mple.com/\", rule = \"malformed\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[18] url = \"https:///no-host\", rule = \"malformed\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[19] url = \"https://user:secret@example.com/\", rule = \"credentials\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[20] url = \"https://user@example.com/\", rule = \"credentials\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[1] url = \"https://example.com/some/path?q=1\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[2] url = \"http://example.com/\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[3] url = \"HTTPS://EXAMPLE.COM/\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[4] url = \"http://localhost:8080/\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[5] url = \"https://example.com/p?q=a%20b#frag\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[1] length = 256",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[2] length = 1000",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[1] key = null",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[2] key = \"k\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[3] key = \"!~\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[4] key = \"550e8400-e29b-41d4-a716-446655440000\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkValidationTest",
+      "name": "[1] length = 2048",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.ShortCodesTest",
+      "name": "aDrawThatSpellsAReservedSegmentIsDrawnAgain()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.ShortCodesTest",
+      "name": "codesAreEightCharactersFromTheAlphanumericAlphabet()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.ping.PingControllerTest",
+      "name": "answersOkWithTheCurrentUtcInstant()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+      "name": "errorOriginIsNoneWhenNoFrameIsOurs()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+      "name": "frameworkDetailThatEchoesClientInputIsCleared()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+      "name": "aNonProblemBodyPassesThroughUntouched()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+      "name": "unreadableBodyWithoutALimitErrorStays400WithoutTheFrameworkDetail()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+      "name": "unhandledExceptionIsABare500AndOneMessageFreeEvent()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+      "name": "domainProblemKeepsItsErrorsAndGetsTheRequestIdAsInstance()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+      "name": "unwrapsABodyLimitErrorRaisedInsideTheJsonReaderTo413()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ProblemsTest",
+      "name": "validationIs400WithExactlyOneFieldError()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ProblemsTest",
+      "name": "idempotencyMismatchIs422NamingTheHeaderAndRule()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ProblemsTest",
+      "name": "notFoundAndGoneAreBareProblems()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[1] forwardedFor = null",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[2] forwardedFor = \"\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[1] remote = \"10.9.9.9\", forwardedFor = \"203.0.113.7\", client = \"203.0.113.7\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[2] remote = \"10.9.9.9\", forwardedFor = \"198.51.100.1, 203.0.113.7\", client = \"203.0.113.7\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[3] remote = \"10.9.9.9\", forwardedFor = null, client = \"10.9.9.9\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[4] remote = \"10.0.0.5\", forwardedFor = \"203.0.113.7\", client = \"10.0.0.5\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[5] remote = \"10.9.9.9\", forwardedFor = \" 203.0.113.7 ,  \", client = \"203.0.113.7\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[6] remote = \"10.9.9.9\", forwardedFor = \"203.0.113.7, 10.9.9.9\", client = \"203.0.113.7\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[7] remote = \"10.9.9.9\", forwardedFor = \"10.9.9.9, 10.9.9.9\", client = \"10.9.9.9\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[8] remote = \"10.9.9.9\", forwardedFor = \" , \", client = \"10.9.9.9\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[1] uri = \"/actuator\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[2] uri = \"/actuator/health\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[3] uri = \"/actuator/prometheus\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[4] uri = \"/v3/api-docs\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[5] uri = \"/v3/api-docs/swagger-config\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[6] uri = \"/swagger-ui.html\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[7] uri = \"/swagger-ui/index.html\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "theFilterReadsOnlyXForwardedForAndOnlyFromATrustedPeer()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "anEmptyBucketIsA429ProblemWithRetryAfterAndNoChain()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "eachRejectionIsCountedOnceUnderItsBudgetOnly()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[1] uri = \"/api\", budget = \"CREATE\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[2] uri = \"/api/\", budget = \"CREATE\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[3] uri = \"/api/links\", budget = \"CREATE\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[4] uri = \"/api/links/Abc12345/stats\", budget = \"CREATE\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[5] uri = \"/api/ping\", budget = \"CREATE\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[6] uri = \"/%61pi/links\", budget = \"CREATE\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[7] uri = \"/apix\", budget = \"REDIRECT\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[8] uri = \"/Abc12345\", budget = \"REDIRECT\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[9] uri = \"/\", budget = \"REDIRECT\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[10] uri = \"/favicon.ico\", budget = \"REDIRECT\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[11] uri = \"/actuatorx\", budget = \"REDIRECT\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitFilterTest",
+      "name": "[12] uri = \"/swagger-uix\", budget = \"REDIRECT\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimiterTest",
+      "name": "budgetsAndClientsAreIndependent()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimiterTest",
+      "name": "theReleaseResumesAfterABackwardClockStep()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimiterTest",
+      "name": "refusalsTakeNothing()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimiterTest",
+      "name": "afterABackwardClockStepTheBucketRefillsFromItsStoredTat()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimiterTest",
+      "name": "AC04_aQuietMinuteRefillsTheWholeBucket()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimiterTest",
+      "name": "fullBucketsAreReleasedByTheNextRequestButNotWhileIdle()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimiterTest",
+      "name": "retryAfterIsTheWaitForOneTokenInWholeSeconds()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimiterTest",
+      "name": "aRequestOvertakenByNewerOnesDecidesOnTheTimeItReachesTheBucket()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimiterTest",
+      "name": "theReleaseRunsAtMostOncePerSecond()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimiterTest",
+      "name": "AC03a_anExactlyEmptyBucketRefillsOneTokenAfterExactlyOneSecond()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimiterTest",
+      "name": "aBucketThatIsNotYetFullSurvivesTheRelease()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimiterTest",
+      "name": "AC03b_retryAfterIsRoundedUpAndHonoured()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RequestBodyLimitFilterTest",
+      "name": "theFirstByteOverTheLimitIs413OnTheBulkReadPath()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RequestBodyLimitFilterTest",
+      "name": "servletStreamStateAndListenerDelegateToTheContainerStream()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RequestBodyLimitFilterTest",
+      "name": "aBodyOfExactlyTheLimitIsReadInFull()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RequestBodyLimitFilterTest",
+      "name": "singleByteReadsCountTooAndEndOfStreamIsPassedThrough()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RequestBodyLimitFilterTest",
+      "name": "theWrappedStreamIsCreatedOnceSoTheCountCannotBeReset()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RequestIdFilterTest",
+      "name": "ignoresInboundRequestIdAndIssuesADifferentIdPerRequest()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RequestIdFilterTest",
+      "name": "clearsMdcWhenTheChainThrows()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RequestIdFilterTest",
+      "name": "issuesOneIdOnHeaderAndMdcBeforeTheChainRunsAndClearsMdcAfter()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RequestIdFilterTest",
+      "name": "writesOneRequestCompletedEventWithTheStatusAndTheIdButNotTheMethod()",
+      "result": "PASS"
+    }
+  ],
+  "functional": [
+    {
+      "class": "dev.urlshort.HealthJourneyTest",
+      "name": "healthEndpointReportsUp()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditAccessSettingsJourneyTest",
+      "name": "aPlainLoopbackReadStillWorksUnderTheseSettings()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditAccessSettingsJourneyTest",
+      "name": "[1] address = \"127.0.0.1\", header = \"X-Forwarded-For\", value = \"198.51.100.9\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditAccessSettingsJourneyTest",
+      "name": "[2] address = \"127.0.0.1\", header = \"X-Forwarded-For\", value = \"127.0.0.1\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditAccessSettingsJourneyTest",
+      "name": "[3] address = \"127.0.0.1\", header = \"Forwarded\", value = \"for=198.51.100.9\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditAccessSettingsJourneyTest",
+      "name": "[4] address = \"192.0.2.10\", header = \"X-Forwarded-For\", value = \"127.0.0.1\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditAccessSettingsJourneyTest",
+      "name": "[5] address = \"192.0.2.10\", header = null, value = null",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditForwardedHeadersJourneyTest",
+      "name": "[1] setting = \"server.tomcat.remoteip.remote-ip-header=x-forwarded-for\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditForwardedHeadersJourneyTest",
+      "name": "[2] setting = \"server.tomcat.remoteip.protocol-header=x-forwarded-proto\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditForwardedHeadersJourneyTest",
+      "name": "onADetectedCloudPlatformThePinKeepsAForgedLoopbackHeaderOut()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditForwardedHeadersJourneyTest",
+      "name": "theShippedFilePinsTheForwardedHeaderStrategyOff()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditForwardedHeadersJourneyTest",
+      "name": "[1] strategy = \"native\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditForwardedHeadersJourneyTest",
+      "name": "[2] strategy = \"framework\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditJourneyTest",
+      "name": "AC22_createWritesExactlyOneAuditRow()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditJourneyTest",
+      "name": "AC24_aFailedAuditWriteRollsTheRetireBackAndFailsClosed()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditJourneyTest",
+      "name": "AC25_auditRowsAreAppendOnlyUnderEveryOperation()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditJourneyTest",
+      "name": "AC23_retireWritesExactlyOneAuditRow()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadFailureJourneyTest",
+      "name": "AC21_aFailedReadIsA500ProblemNeverAnEmptyOrPartialPage(CapturedOutput)",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "AC04_rowsComeNewestFirstInTheOrderTheyWereWritten()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "AC19_theLiveApiDocumentDescribesTheAuditRead()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "AC01_anEmptyTrailIsAnEmptyPage()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "[1] query = \"limit=0\", field = \"limit\", rule = \"range\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "[2] query = \"limit=101\", field = \"limit\", rule = \"range\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "[3] query = \"limit=ten\", field = \"limit\", rule = \"format\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "[4] query = \"cursor=***\", field = \"cursor\", rule = \"format\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "[1] address = \"127.0.0.1\", header = \"X-Forwarded-For\", value = \"198.51.100.9\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "[2] address = \"127.0.0.1\", header = \"X-Forwarded-For\", value = \"127.0.0.1\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "[3] address = \"127.0.0.1\", header = \"Forwarded\", value = \"for=198.51.100.9\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "[4] address = \"192.0.2.10\", header = \"X-Forwarded-For\", value = \"127.0.0.1\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "AC20_aTraversalAcrossAnInFlightWriteNeitherRepeatsNorSkipsCommittedRows()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "AC07_theDefaultAndMaximumPageSizes()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "AC03_aRetireRowCarriesBeforeAndAfter()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "AC02_aCreateRowIsReadableAsWritten()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "AC08_pagingIsStableWhileRowsAreWritten()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "[1] address = \"127.0.0.1\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "[2] address = \"127.0.0.2\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "[3] address = \"::1\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "[4] address = \"::ffff:127.0.0.1\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "[1] accept = \"text/html\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "[2] accept = \"application/problem+json\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "[3] accept = \"*/*\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "AC16_auditContentAndClientValuesStayOutOfTheLogs(CapturedOutput)",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "[1] address = \"192.0.2.10\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "[2] address = \"10.0.0.7\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "[1] scenario = \"200 page\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "[2] scenario = \"400 invalid limit\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "[3] scenario = \"403 non-loopback\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "[4] scenario = \"405 wrong method\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "AC05_everyFieldMatchesTheStoredRow()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "AC06_pagesFollowNextToTheEnd()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditReadJourneyTest",
+      "name": "AC10_readingChangesNothing()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.audit.AuditUpgradeJourneyTest",
+      "name": "AC18_anExistingDatabaseUpgradesInPlaceAndKeepsItsLinksAndRows()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "name": "[1] userAgent = \"Mozilla/5.0 (X11; Linux x86_64) uacanary Firefox/131.0\", userAgentClass = \"browser\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "name": "[2] userAgent = \"Mozilla/5.0 (compatible; Googlebot/2.1; uacanary)\", userAgentClass = \"bot\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "name": "[3] userAgent = \"uacanary-crawler/1.0\", userAgentClass = \"bot\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "name": "[4] userAgent = \"uacanary-spider\", userAgentClass = \"bot\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "name": "[5] userAgent = \"curl/8.7.1 uacanary\", userAgentClass = \"other\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "name": "[6] userAgent = null, userAgentClass = \"unknown\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "name": "[7] userAgent = \"\", userAgentClass = \"unknown\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "name": "AC05_theClientAddressIsStoredOnlyAsASaltedHashThatRotatesEveryUtcDay()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "name": "AC18_noClickDataReachesTheLogs(CapturedOutput)",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "name": "AC06_forwardingHeadersDoNotChangeTheRecordedClient()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "name": "[1] referer = \"https://News.Example/a/refpathcanary?t=refquerycanary#reffragcanary\", stored = \"https://news.example\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "name": "[2] referer = \"http://blog.example:8081/post\", stored = \"http://blog.example:8081\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "name": "[3] referer = \"https://refusercanary:pw@forum.example/x\", stored = \"https://forum.example\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "name": "[4] referer = null, stored = null",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "name": "[5] referer = \"android-app://com.example.app/\", stored = null",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "name": "[6] referer = \"not a url\", stored = null",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "name": "[7] referer = \"https://long.example/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\u2026\", stored = null",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "name": "AC02_onlyARedirectIsAClick()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "name": "AC01_aRedirectRecordsExactlyOneClickWithItsTime()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "name": "AC17_theStatisticsExposeAggregatesOnly()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+      "name": "AC15_AC19_aFailingClickStoreDoesNotFailTheRedirectAndTheLossIsOneCorrelatedWarn(CapturedOutput)",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+      "name": "AC16_concurrentRedirectsLoseNoClicksAndTheRequestIsNeverReadAfterItsResponse()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+      "name": "AC22_headOnTheStatisticsPathHasNoBodyAndRecordsNothing()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+      "name": "AC14_aSlowClickStoreDoesNotSlowTheRedirect()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+      "name": "AC18_AC19_onTomcatClickDataStaysOutOfTheLogsAndEveryEventIsCorrelated(CapturedOutput)",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.ClickSchemaJourneyTest",
+      "name": "everyUserAgentClassIsRecordedAfterThePoolRetiresItsConnections()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "name": "AC07_aLinkWithNoClicksHasEmptyStatistics()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "name": "AC21_theLiveApiDocumentDescribesTheStatisticsEndpoint()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "name": "AC20_redirectAndAuditBehaviourAreUnchanged()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "name": "AC12_aRetiredLinksStatisticsAreStillReadable()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "name": "AC08_totalClicksCountsEveryRedirect()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "name": "AC19_theStatisticsPathAndASettledRedirectAreCorrelated(CapturedOutput)",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "name": "AC09_clicksPerDayAreGroupedByUtcCalendarDay()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "name": "AC10_topReferrersAreRankedAndCapped()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "name": "AC22_headAndOptionsKeepTheFrameworkDefaultsAndRecordNothing()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "name": "[1] method = \"GET\", code = \"nosuchcode1\", status = 404",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "name": "[2] method = \"GET\", code = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\", status = 404",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "name": "[3] method = \"POST\", code = null, status = 405",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "name": "[4] method = \"DELETE\", code = null, status = 405",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.IdempotencyJourneyTest",
+      "name": "AC17_aReplayReturnsTheFirstLink()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.IdempotencyJourneyTest",
+      "name": "AC18_sameKeyWithADifferentUrlIsRefusedAndTheBindingSurvives()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.IdempotencyJourneyTest",
+      "name": "AC21_aRejectedCreateDoesNotConsumeTheKey()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.IdempotencyJourneyTest",
+      "name": "AC20_aKeyOf255VisibleCharactersIsAccepted()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.IdempotencyJourneyTest",
+      "name": "AC19_aKeyIsHonouredFor24HoursAndNotLongerAndARejectionDoesNotExtendIt()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.IdempotencyJourneyTest",
+      "name": "[1] key = \"\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.IdempotencyJourneyTest",
+      "name": "[2] key = \"kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.IdempotencyJourneyTest",
+      "name": "[3] key = \"has space\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.IdempotencyJourneyTest",
+      "name": "[4] key = \"caf\u00e9\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "AC02_everyCreateWithoutAKeyIsANewLink()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "AC16_redirectRouteDoesNotShadowTheExistingSurface()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "AC01_validUrlBecomesAShortLink()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "AC03_shortUrlUsesTheShippedBaseNeverTheHostHeader()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "[1] raw = \"\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "[2] raw = \"{\\\"url\\\": \"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "[3] raw = \"[\\\"https://example.com/\\\"]\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "[4] raw = \"{\\\"url\\\": {\\\"a\\\": 1}}\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "AC06_nonJsonContentTypeIsRefused()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "AC04_aUrlOfExactly2048CharactersIsAccepted()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "[1] \"required\": present=false value=<null>",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "[2] \"required\": present=true value=<null>",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "[3] \"required\": present=true value=<\"\">",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "[4] \"required\": present=true value=<\"   \">",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "[5] \"too-long\": present=true value=<\"https://example.com/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\u2026\">",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "[6] \"scheme\": present=true value=<\"javascript:alert(1)\">",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "[7] \"scheme\": present=true value=<\"data:text/html,hi\">",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "[8] \"scheme\": present=true value=<\"file:///etc/passwd\">",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "[9] \"scheme\": present=true value=<\"ftp://example.com/\">",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "[10] \"scheme\": present=true value=<\"example.com/path\">",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "[11] \"scheme\": present=true value=<\" https://example.com/\">",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "[12] \"malformed\": present=true value=<\"https://\">",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "[13] \"malformed\": present=true value=<\"https://exa mple.com/\">",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "[14] \"malformed\": present=true value=<\"https://[bad/\">",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "[15] \"malformed\": present=true value=<\"https://example.com/ \">",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "[16] \"credentials\": present=true value=<\"https://user:secret@example.com/\">",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "[17] \"credentials\": present=true value=<\"https://user@example.com/\">",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "name": "AC07_bodyIsRefusedAtTheSixteenKibLimit()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+      "name": "AC09_aRetiredLinkIsStillReadableWithItsState()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+      "name": "[1] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@5017c959",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+      "name": "[2] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@6761d30a",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+      "name": "[3] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@675d1eca",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+      "name": "[4] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@6c23d037",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+      "name": "[5] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@b39b963",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+      "name": "AC08_readingALinkReturnsItsDetails()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+      "name": "AC11_retiringAnAlreadyRetiredLinkIs410AndNotASecondMutation()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+      "name": "AC10_retiringALinkIs204WithAnEmptyBody()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+      "name": "AC15_wrongMethodIs405()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.PublicBaseUrlJourneyTest",
+      "name": "AC03_shortUrlUsesTheConfiguredBaseNeverTheHostHeader()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.RedirectJourneyTest",
+      "name": "rule7_queryStringOnTheShortLinkIsNotForwarded()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.RedirectJourneyTest",
+      "name": "AC12_visitorIsRedirectedWithANonCacheable302()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.link.RedirectJourneyTest",
+      "name": "AC13_aRetiredLinkTellsTheVisitorItIsGone()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.ping.PingJourneyTest",
+      "name": "AC5_wrongMethodIsProblemDetailWithRequestId()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.ping.PingJourneyTest",
+      "name": "AC7_logEventCarriesNoClientAddressOrUserAgent(CapturedOutput)",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.ping.PingJourneyTest",
+      "name": "AC1_pingAnswersOkAsJson()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.ping.PingJourneyTest",
+      "name": "AC2_timeIsCurrentUtcInstant()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.ping.PingJourneyTest",
+      "name": "AC4_requestIdsAreUniquePerRequest()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.ping.PingJourneyTest",
+      "name": "AC6_pingIsLoggedAsJsonWithRequestId(CapturedOutput)",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.ping.PingJourneyTest",
+      "name": "AC8_clientSuppliedRequestIdIsIgnored(CapturedOutput)",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.ping.PingJourneyTest",
+      "name": "AC3_everyResponseCarriesRequestId()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ColdStartJourneyTest",
+      "name": "AC26_theFirstRequestOnARealServerLogsOnlyItsOwnCorrelatedEvents(CapturedOutput)",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.DatabaseDownJourneyTest",
+      "name": "AC14_AC15_readinessFollowsTheDatabaseAndLivenessDoesNot()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.HealthMetricsJourneyTest",
+      "name": "AC18_redirectsAreCountedByRouteTemplate()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.HealthMetricsJourneyTest",
+      "name": "AC15_healthBodiesDiscloseNothingAboutTheInstallation()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.HealthMetricsJourneyTest",
+      "name": "AC13_livenessAndReadinessAreUpWithAWorkingDatabase()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "name": "AC27_noClientControlledValueReachesTheLogs(CapturedOutput)",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "name": "AC27_aDatabaseFailureQuotingTheKeyLogsOnlyClassNames(CapturedOutput)",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "name": "[1] scenario = \"201 create\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "name": "[2] scenario = \"200 read\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "name": "[3] scenario = \"204 retire\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "name": "[4] scenario = \"302 redirect\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "name": "[5] scenario = \"404 unknown code\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "name": "[6] scenario = \"410 retired\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "name": "[7] scenario = \"400 invalid url\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "name": "[8] scenario = \"405 wrong method\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "name": "[9] scenario = \"413 oversized body\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "name": "[10] scenario = \"415 wrong content type\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "name": "[11] scenario = \"422 key mismatch\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "name": "[12] scenario = \"500 induced audit failure\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "name": "[1] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@a0a1862, status = 415, canary = \"canaryctcbefbaaaf\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "name": "[2] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@65119a1d, status = 404, canary = \"canarypathcbefbaaafxxxxxxxxxxxxxxxxxxxxxxxxxx\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "name": "[3] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@5e4d6760, status = 404, canary = \"canaryicocbefbaaaf\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "name": "[4] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@38dd88cb, status = 404, canary = \"Cn741d3d16142b44da8b8e65\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "name": "[5] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@5e2b2cb8, status = 404, canary = \"Cvc2891f13d6e84859a26a9a\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "name": "[6] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@3f050f7, status = 405, canary = \"CANARYMETHODCBEFBAAAF\"",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.OpenApiDocumentTest",
+      "name": "AC28_liveDocumentDescribesTheSlice()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.OpenApiDocumentTest",
+      "name": "NFRM3_committedDocumentEqualsTheLiveOne()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.OpenApiDocumentTest",
+      "name": "AC20_everyOperationDocumentsTheTooManyRequestsProblem()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitDefaultsTest",
+      "name": "theShippedConfigurationCarriesTheDecidedBudgets()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitDefaultsTest",
+      "name": "theSettingsRecordDefaultsToTheSameBudgets()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "name": "rule1_percentEncodingDoesNotMoveARequestToTheLargerBudget()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "name": "designDR01_anInvalidPathUnderAnExemptPrefixLogsNoSubmittedValueOnTomcat(CapturedOutput)",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "name": "AC19_metricsAreExposedForScrapingWithoutClientOrLinkValues()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "name": "AC07_aForgedForwardedAddressDoesNotChangeTheClient()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "name": "AC01_theCreateBudgetAdmits60AndRefusesThe61st()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "name": "AC09_everyRequestInABudgetCountsAndTheLimitIsCheckedFirst()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "name": "rule1_operatorSurfacesAreNeverLimited()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "name": "AC11_theTooManyRequestsProblemNamesNoClient()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "name": "AC11_onTomcatThe429IsTheSameProblemMediaTypeAsEveryOtherError()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "name": "AC12_eachRejectionIsLoggedOnceCorrelatedAndWithoutClientValues(CapturedOutput)",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "name": "AC03a_retryAfterIsTruthfulFromAnExactlyEmptyBucket()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "name": "AC05_theTwoBudgetsAreIndependent()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "name": "rule1_aDotDotSegmentUnderAnExemptPrefixReachesNoLimitedOperation()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "name": "AC03b_retryAfterIsAnUpperBoundFromAPartlyRefilledBucket()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "name": "AC04_aFullBudgetReturnsAfterAQuietMinute()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "name": "AC02_theRedirectBudgetAdmits600AndRefusesThe601st()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "name": "AC16_theMetricsSurfaceListsTheFourKindsOfMetric()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "name": "AC06_clientsAreIndependent()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "name": "AC17_everyRejectionIsCountedOnceByBudget()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitSettingsJourneyTest",
+      "name": "AC10_theBudgetsAreOperatorSettings()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.ShutdownPhaseDefaultTest",
+      "name": "theShippedGracefulShutdownPhaseIsTenSeconds()",
+      "result": "PASS"
+    },
+    {
+      "class": "dev.urlshort.web.TrustedProxyJourneyTest",
+      "name": "AC08_aTrustedProxysForwardedAddressIdentifiesTheClient()",
+      "result": "PASS"
+    }
+  ]
+}

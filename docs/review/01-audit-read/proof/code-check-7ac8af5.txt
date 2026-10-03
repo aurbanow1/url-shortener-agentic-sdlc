@@ -1,0 +1,56 @@
+> Task :compileJava
+> Task :processResources
+> Task :classes
+> Task :jar
+> Task :compileTestJava
+> Task :processTestResources
+> Task :testClasses
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+2026-10-03T14:31:26.054-07:00  INFO 76312 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-10-03T14:31:26.054-07:00  INFO 76312 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-10-03T14:31:26.056-07:00  INFO 76312 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2026-10-03T14:31:26.057-07:00  INFO 76312 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+> Task :test
+> Task :compileFunctionalTestJava
+> Task :processFunctionalTestResources
+> Task :functionalTestClasses
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+{"@timestamp":"2026-10-03T21:31:51.436574Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.436934Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.437829Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-2 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.438069Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-2 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.439012Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-8 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.439292Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-8 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.440138Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-9 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.440327Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-9 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.441071Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-10 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.441251Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-10 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.441515Z","log":{"level":"INFO","logger":"org.springframework.boot.tomcat.GracefulShutdown"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Commencing graceful shutdown. Waiting for active requests to complete","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.443844Z","log":{"level":"INFO","logger":"org.springframework.boot.tomcat.GracefulShutdown"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Graceful shutdown complete","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.445028Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-12 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.445267Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-12 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.448846Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-13 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.449069Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-13 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.449363Z","log":{"level":"INFO","logger":"org.springframework.boot.tomcat.GracefulShutdown"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Commencing graceful shutdown. Waiting for active requests to complete","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.450246Z","log":{"level":"INFO","logger":"org.springframework.boot.tomcat.GracefulShutdown"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Graceful shutdown complete","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.451082Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-14 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.451230Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-14 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.453891Z","log":{"level":"INFO","logger":"org.springframework.boot.tomcat.GracefulShutdown"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Commencing graceful shutdown. Waiting for active requests to complete","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.454739Z","log":{"level":"INFO","logger":"org.springframework.boot.tomcat.GracefulShutdown"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Graceful shutdown complete","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.455608Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-16 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.455884Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-16 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.458247Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-17 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.468133Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-17 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.469156Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-18 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:31:51.489108Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":76911,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-18 - Shutdown completed.","ecs":{"version":"8.11"}}
+> Task :functionalTest
+> Task :jacocoTestCoverageVerification
+> Task :jacocoTestReport
+> Task :jacocoFunctionalTestReport
+> Task :jacocoAllReport
+> Task :javadoc
+> Task :check
+
+BUILD SUCCESSFUL in 39s
+14 actionable tasks: 14 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html

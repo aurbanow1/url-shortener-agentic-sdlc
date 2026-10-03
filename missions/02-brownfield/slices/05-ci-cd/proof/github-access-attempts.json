@@ -1,0 +1,91 @@
+{
+  "browser": {
+    "run_urls": [
+      "https://github.com/aurbanow1/url-shortener-agentic-sdlc/actions/runs/37153245436",
+      "https://github.com/aurbanow1/url-shortener-agentic-sdlc/actions/runs/37153380482",
+      "https://github.com/aurbanow1/url-shortener-agentic-sdlc/actions/runs/37153380418"
+    ],
+    "results": [
+      "Failed to fetch: Cache miss",
+      "Failed to fetch: Cache miss",
+      "Failed to fetch: Cache miss"
+    ]
+  },
+  "github_cli": [
+    {
+      "key": "pr-run",
+      "path": "repos/aurbanow1/url-shortener-agentic-sdlc/actions/runs/37153245436",
+      "jq": "{id,html_url,event,head_branch,head_sha,status,conclusion,path,created_at,updated_at}",
+      "result": {
+        "chunk_id": "e9d442",
+        "wall_time_seconds": 0.389989375,
+        "exit_code": 1,
+        "original_token_count": 39,
+        "output": "gh: Not Found (HTTP 404)\n{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/actions/workflow-runs#get-a-workflow-run\",\"status\":\"404\"}"
+      }
+    },
+    {
+      "key": "main-ci-run",
+      "path": "repos/aurbanow1/url-shortener-agentic-sdlc/actions/runs/37153380482",
+      "jq": "{id,html_url,event,head_branch,head_sha,status,conclusion,path,created_at,updated_at}",
+      "result": {
+        "chunk_id": "8c7e0d",
+        "wall_time_seconds": 0.348099584,
+        "exit_code": 1,
+        "original_token_count": 39,
+        "output": "gh: Not Found (HTTP 404)\n{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/actions/workflow-runs#get-a-workflow-run\",\"status\":\"404\"}"
+      }
+    },
+    {
+      "key": "main-cd-run",
+      "path": "repos/aurbanow1/url-shortener-agentic-sdlc/actions/runs/37153380418",
+      "jq": "{id,html_url,event,head_branch,head_sha,status,conclusion,path,created_at,updated_at}",
+      "result": {
+        "chunk_id": "df486c",
+        "wall_time_seconds": 0.360606334,
+        "exit_code": 1,
+        "original_token_count": 39,
+        "output": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/actions/workflow-runs#get-a-workflow-run\",\"status\":\"404\"}gh: Not Found (HTTP 404)\n"
+      }
+    },
+    {
+      "key": "pr-jobs",
+      "path": "repos/aurbanow1/url-shortener-agentic-sdlc/actions/runs/37153245436/jobs",
+      "jq": "{total_count,jobs:[.jobs[]|{id,name,status,conclusion,html_url,started_at,completed_at}]}",
+      "result": {
+        "chunk_id": "f55568",
+        "wall_time_seconds": 0.320277,
+        "exit_code": 1,
+        "original_token_count": 42,
+        "output": "gh: Not Found (HTTP 404)\n{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/actions/workflow-jobs#list-jobs-for-a-workflow-run\",\"status\":\"404\"}"
+      }
+    },
+    {
+      "key": "cd-jobs",
+      "path": "repos/aurbanow1/url-shortener-agentic-sdlc/actions/runs/37153380418/jobs",
+      "jq": "{total_count,jobs:[.jobs[]|{id,name,status,conclusion,html_url,started_at,completed_at,steps:[.steps[]|{name,status,conclusion}]}]}",
+      "result": {
+        "chunk_id": "ae0314",
+        "wall_time_seconds": 0.342445083,
+        "exit_code": 1,
+        "original_token_count": 42,
+        "output": "gh: Not Found (HTTP 404)\n{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/actions/workflow-jobs#list-jobs-for-a-workflow-run\",\"status\":\"404\"}"
+      }
+    },
+    {
+      "key": "cd-artifacts",
+      "path": "repos/aurbanow1/url-shortener-agentic-sdlc/actions/runs/37153380418/artifacts",
+      "jq": "{total_count,artifacts:[.artifacts[]|{id,name,size_in_bytes,expired,created_at,expires_at}]}",
+      "result": {
+        "chunk_id": "cb1381",
+        "wall_time_seconds": 0.608160916,
+        "exit_code": 1,
+        "original_token_count": 40,
+        "output": "gh: Not Found (HTTP 404)\n{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/actions/artifacts#list-workflow-run-artifacts\",\"status\":\"404\"}"
+      }
+    }
+  ],
+  "direct_success_verified": false,
+  "source_used": "Operator record in PROOF.md, commit b6b4a29fedeaaef8a5903891178a3e02383de4f8, as expressly permitted by qitem-20261003211407-91a03acb",
+  "recorded_at": "2026-10-03T21:19:57.777345+00:00"
+}

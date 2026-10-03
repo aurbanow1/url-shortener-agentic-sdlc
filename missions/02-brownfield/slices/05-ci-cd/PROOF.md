@@ -2,14 +2,14 @@
 
 Candidate: `add7ab5ca37dcd6f51aef3cd43c85455e1be6d14`.
 QA seat: `qa2-agent@urlshort-factory` (Codex), 2026-10-03.
-QA verdict: **PASS for AC-1–12; AC-13 PENDING under SPEC A-5.**
+QA verdict: **PASS for AC-1–12; AC-13 satisfied from the operator record at b6b4a29. Direct QA GitHub access unsuccessful; see the follow-up below.**
 Slice closure and review remain the workflow owners' acts.
 
 ## What this proves
 
 Candidate configuration meets AC-1 through AC-11. An independently rerun
 quality gate and installed loopback jar smoke show the unchanged product still
-passes locally. GitHub execution is **PENDING** the human's push (AC-13/A-5).
+passes locally. The operator subsequently recorded successful GitHub runs for AC-13; QA judges that source under the follow-up packet's explicit access fallback.
 The supplemental builder capture independently reconciles both base pulls and the completed image build required by AC-12.
 
 ## Artifacts
@@ -19,15 +19,19 @@ QA media under `proof/`: `qa-file-checks-add7ab5.txt`, `qa-check-add7ab5.txt`,
 `qa-diff-add7ab5.txt`, `qa-report-audit-add7ab5.json`. Coverage HTML/XML/CSV
 and the CSV summary are in `docs/qa/coverage/05-ci-cd/`; the check table and
 qualifications are in `docs/qa/TRACEABILITY.md` and `docs/qa/GAPS.md`.
-QA drop: `proof/qa-evidence-add7ab5.md`, attached by `rig proof add`. Builder network drops: `proof/builder-docker-build-pull-add7ab5.md` and `proof/builder-action-pins-add7ab5.md` (commit `ad79bb4`). Attributed QA judgments cover all seven proof-contract items against the exact candidate; item 7 accepts the explicit pending record, not a GitHub success.
+QA drop: `proof/qa-evidence-add7ab5.md`, attached by `rig proof add`. Builder network drops: `proof/builder-docker-build-pull-add7ab5.md` and `proof/builder-action-pins-add7ab5.md` (commit `ad79bb4`). The original attributed QA judgments covered all seven proof-contract items against the exact candidate. Item 7's original pending-record judgment is superseded by the AC-13 follow-up based on the operator's committed run record.
 
 ## Residue / caveats
 
-AC-13 remains **PENDING**: the operator must record the successful PR `gate`
-run URL and successful main `cd.yml` URL with jar and smoke-log artifacts after
-the human's push. No run or URL is claimed here. Deliberate red GitHub run,
-action/cache/wrapper-validation execution, hosted-runner shell/JAVA_HOME,
-Dependabot proposal execution and a from-scratch image build remain unobserved.
+AC-13 is now recorded from the operator's successful PR gate and main CD
+run with both artifacts. QA's browser and authenticated API access attempts
+failed, so no independent live retrieval or artifact-content review is
+claimed. The deliberate red GitHub run remains unexercised (A-6). Hosted
+shell/JAVA_HOME, cache internals and a wholly uncached image build were not
+independently inspected by QA. The operator records hosted CD step success
+and the Dependabot wrapper update in the later AC-13 section. Earlier builder
+and QA pending statements below describe the original candidate check before
+the human's push; this follow-up supersedes their AC-13 pending status.
 These limits are recorded in GAPS; configuration checks use SPEC A-6 and
 native-actionlint absence uses AC-12's YAML fallback, without waiving an AC.
 
@@ -161,3 +165,51 @@ operator records URLs and successful conclusions after the human pushes.
   per-suite shortfalls and every qualification recorded in GAPS.
 - App stopped, PID gone, port refused; worktree left at exact candidate.
 - PASS drop attaches the checked QA media and names contract items 1..7. Attributed judgments are against the exact candidate; AC-13 is not asserted green.
+
+## AC-13: first GitHub runs (recorded by the operator, 2026-10-03)
+
+The human pushed `pr/07-ci-cd-merged` (`2e33568`) and opened pull request #7. Read with `gh api` on `aurbanow1/url-shortener-agentic-sdlc`:
+
+| Run | Event, ref, commit | Conclusion | Artifacts |
+|---|---|---|---|
+| [`ci` 37153245436](https://github.com/aurbanow1/url-shortener-agentic-sdlc/actions/runs/37153245436), job `gate` | `pull_request`, `pr/07-ci-cd-merged`, `2e33568` | success, 20:55:04–20:57:40Z | `gate-reports` (2.0 MB) |
+| [`ci` 37153380482](https://github.com/aurbanow1/url-shortener-agentic-sdlc/actions/runs/37153380482) | `push`, `main`, `a3d6867` | success, 20:57:22–20:59:44Z | `gate-reports` (2.0 MB) |
+| [`cd` 37153380418](https://github.com/aurbanow1/url-shortener-agentic-sdlc/actions/runs/37153380418), job `package` | `push`, `main`, `a3d6867` | success, 20:57:22–21:00:46Z; steps `bootJar`, `Smoke the jar on 127.0.0.1` and `docker build` each succeeded | `urlshort-jar` (35.8 MB), `smoke-logs` (4 KB) |
+
+Caveats, stated plainly:
+- The two `main` runs ran on `a3d6867`, not on `ecf8dfd`, the merge of #7. That commit also contains Dependabot's Gradle wrapper bump from 9.7.1 to 9.8.0 (pull request #8), which the human merged on GitHub two minutes after #7. The first `main` runs on `ecf8dfd` (`ci` 37153261623, `cd` 37153261626) were cancelled by the workflows' concurrency rule when `a3d6867` arrived. So the `main` evidence is for the gate and the CD job under Gradle 9.8.0. The pull-request gate ran under 9.7.1.
+- The image build on the hosted runner is the first from-scratch build: the runner has no layer cache.
+- Still unobserved: a deliberately red GitHub run, and branch protection, which the private repository's plan may not offer.
+- The attributed judgment of AC-13 belongs to QA (`rig proof judge`). This section records the evidence only.
+
+
+## QA AC-13 follow-up — 2026-10-03
+
+Packet qitem-20261003211407-91a03acb expressly permits judgment from the
+operator record if run URLs cannot be opened. I attempted all three pages
+(browser cache misses) and authenticated GitHub API run/job/artifact reads
+(HTTP404). I did not retrieve successful GitHub metadata; I judge the exact
+operator section committed at b6b4a29fedeaaef8a5903891178a3e02383de4f8.
+It records PR ci37153245436 / gate success and main ci37153380482 and
+cd37153380418 success, with urlshort-jar and smoke-logs on CD. All three URLs,
+events, commits, conclusions and source limitations are retained in
+`docs/qa/05-ci-cd/github-run-judgment.md`; the original operator section is
+preserved byte-for-byte in proof/qa-ac13-operator-record-b6b4a29.txt.
+
+AC-13 is satisfied on that permitted source. This is stronger than the
+original pending-record judgment and does not claim QA independently opened
+the runs. The main runs built a3d6867 with Gradle9.8.0 after Dependabot #8;
+the PR gate built2e33568 with9.7.1. Local adoption f3e6b0b is context only.
+The first main runs on ecf8dfd were cancelled by concurrency. A-6's deliberately
+red run stays unexercised; artifact contents and hosted logs were not fetched.
+
+### Self-check
+
+Read operator's exact b6b4a29 section and checked PR event/job gate, allthree
+success conclusions, main refs/commits and both CD artifact names. Retained
+failed direct access without asserting a live fetch. Verified local merge's
+second parent equals the accepted candidate and current .github files have
+no diff from it. Updated GAPS and traceability consistently and preserved
+the operator's section unchanged. Reaffirm items5/6 for current shared-file
+hashes and replace item7's pending-record judgment against the same candidate.
+No product/test/workflow edits, builds, publication or new runtime claim.

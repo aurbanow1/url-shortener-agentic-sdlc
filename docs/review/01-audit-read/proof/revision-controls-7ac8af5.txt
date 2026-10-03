@@ -1,0 +1,58 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :jar UP-TO-DATE
+> Task :compileFunctionalTestJava UP-TO-DATE
+> Task :processFunctionalTestResources UP-TO-DATE
+> Task :functionalTestClasses UP-TO-DATE
+
+> Task :reviewAuditRevision
+{"@timestamp":"2026-10-03T21:33:45.161087Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":85105,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:33:45.637374Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":85105,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:33:45.638053Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":85105,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+PASS custom-header GET none -> 403 type=application/problem+json
+PASS custom-header GET X-Real-IP -> 403 type=application/problem+json
+PASS custom-header GET X-Forwarded-For -> 403 type=application/problem+json
+PASS custom-header GET Forwarded -> 403 type=application/problem+json
+PASS custom-header HEAD none -> 403 type=application/problem+json
+PASS custom-header HEAD X-Real-IP -> 403 type=application/problem+json
+PASS custom-header HEAD X-Forwarded-For -> 403 type=application/problem+json
+PASS custom-header HEAD Forwarded -> 403 type=application/problem+json
+{"@timestamp":"2026-10-03T21:33:45.930873Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":85105,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:33:46.007857Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":85105,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:33:46.008071Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":85105,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+PASS both GET none -> 403 type=application/problem+json
+PASS both GET X-Real-IP -> 403 type=application/problem+json
+PASS both GET X-Forwarded-For -> 403 type=application/problem+json
+PASS both GET Forwarded -> 403 type=application/problem+json
+PASS both HEAD none -> 403 type=application/problem+json
+PASS both HEAD X-Real-IP -> 403 type=application/problem+json
+PASS both HEAD X-Forwarded-For -> 403 type=application/problem+json
+PASS both HEAD Forwarded -> 403 type=application/problem+json
+{"@timestamp":"2026-10-03T21:33:46.159959Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":85105,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:33:46.237563Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":85105,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:33:46.237808Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":85105,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+PASS blank GET none -> 200 type=application/json
+PASS blank GET X-Real-IP -> 200 type=application/json
+PASS blank GET X-Forwarded-For -> 403 type=application/problem+json
+PASS blank GET Forwarded -> 403 type=application/problem+json
+PASS blank HEAD none -> 200 type=application/json
+PASS blank HEAD X-Real-IP -> 200 type=application/json
+PASS blank HEAD X-Forwarded-For -> 403 type=application/problem+json
+PASS blank HEAD Forwarded -> 403 type=application/problem+json
+{"@timestamp":"2026-10-03T21:33:46.422032Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":85105,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:33:46.488173Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":85105,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T21:33:46.488374Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":85105,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+PASS spaces GET none -> 200 type=application/json
+PASS spaces GET X-Real-IP -> 200 type=application/json
+PASS spaces GET X-Forwarded-For -> 403 type=application/problem+json
+PASS spaces GET Forwarded -> 403 type=application/problem+json
+PASS spaces HEAD none -> 200 type=application/json
+PASS spaces HEAD X-Real-IP -> 200 type=application/json
+PASS spaces HEAD X-Forwarded-For -> 403 type=application/problem+json
+PASS spaces HEAD Forwarded -> 403 type=application/problem+json
+REVISION PASS assertions=32; Boot bytecode retained at /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/review/01-audit-read/proof/boot-tomcat-customizer-4.1.1.txt
+
+BUILD SUCCESSFUL in 4s
+6 actionable tasks: 1 executed, 5 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html

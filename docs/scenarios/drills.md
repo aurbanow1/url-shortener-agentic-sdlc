@@ -1,4 +1,12 @@
-# Fault-injection drills
+# Fault-injection drills — DRAFT additions
+
+**DRAFT:** mission-02 additions below are a 2026-10-03 21:17Z groundwork
+snapshot for `qitem-20261003211439-20ea2949`. The previously recorded drill
+observations remain historical evidence. The natural review loop is still
+awaiting QA/re-review; this draft supplies no final release-SHA claim.
+
+Routing follow-up `qitem-20261003212424-b5b3c5ff` adds the audit-columns design
+move, corroborated by its live trace and the two packet histories below.
 
 Deliberate exercises of the governance paths, run by the Release & Reliability
 Agent (mission 02 unless noted) so that retry, rollback, fallback and safe-stop
@@ -19,6 +27,7 @@ normal work are listed separately at the bottom.
 
 | When | Slice | What failed | How it was handled | Evidence |
 |---|---|---|---|---|
+| **Natural failure — DRAFT**, 2026-10-03 20:13–20:21Z | 02-brownfield / 01-audit-read | **CR-01 HIGH**, candidate `35590f0`, review `3aae382`: either Tomcat remoteip header setting activates peer rewriting with strategy NONE; a forged loopback XFF returns audit content on GET and HEAD (`200` instead of `403`). The green gate omitted that configuration axis. | Design correction `0052efb` negates the full known valve condition; the lead re-locked it (action `01M41PCN4N25BR55E2ST2KKSRZ`). Live trace: QA handoff 19:59:38Z → `code_review failed` 20:16:20Z → `implement handoff` 20:21:54Z → QA on `7ac8af5`. Builder sequence `ea7e6f4` (red tests), `1fe1cbf` (guard), `7ac8af5` (HEAD cases). QA/re-review still pending at this snapshot. **This is a review rejection, not DRILL 1**, which requires a QA rejection. | [Code review](../review/01-audit-read/01-code-review.md), [security review](../review/01-audit-read/02-security-review.md), [control output](../review/01-audit-read/proof/code-controls-35590f0.txt), [QA findings](../qa/01-audit-read/findings.md), [design](../../missions/02-brownfield/slices/01-audit-read/design.md), [builder proof](../../missions/02-brownfield/slices/01-audit-read/PROOF.md), [lead re-lock/notes](../../missions/02-brownfield/NOTES.md). Instance/packet receipts below. |
 | 2026-10-03 14:57Z | 01-greenfield-core / 03-operate (mission `release_prep`) | AC-28's held request R0, sent through the published port `127.0.0.1:8080`, got an empty reply about 10.4 s after `docker compose restart` in 6 of 6 runs: the container log shows it dispatched, its body's second part never reached Tomcat, and the 10 s phase timed out ("Graceful shutdown aborted with one or more requests still active"). The same held request sent from a container in the service's network namespace completed `201` 3.7 s into the drain (2 of 2 observed; only the second run's output and log are retained), and the jar drain passed 3 of 3 | not judged a pass and not routed as `failed` (the service side drains correctly); filed to the orchestration lead as `qitem-20261003151205-a94f1d92`, who kept AC-28 as written (recorded NOT MET on this host; the human decides at ship sign-off) and asked for a time-boxed isolation: the same held request through Docker's own published port inside the VM (`docker run --network host`, `127.0.0.1:8080` in the VM) completed `201` 3.6 s and 4.0 s into the drain (2 of 2), so the cut is in the macOS-to-VM host forwarder (Lima), not in Docker's Linux port publish or the service; `03-operate` proof item 13 stays with its judge; `--restart` now judges R0 at the end so the persistence and load checks still report, and still ends `SMOKE FAIL` | `missions/01-greenfield-core/release/smoke-restart-container-f090103*.txt`, `container-restart-log-f090103.jsonl`, `r0-in-namespace-control-f090103.txt`, `container-control-log-f090103.jsonl`, `r0-vm-published-port-f090103-run1.txt`, `-run2.txt`, `container-vm-path-log-f090103.jsonl` |
 | 2026-10-03 00:30Z | 00-hello / 01-ping (qa_check) | QA Agent (Codex) passed the gate (6 unit + 9 functional, 15/15 lines) but failed the candidate on a live capture: the ECS event's `process.thread.name` carries Tomcat's bound address `127.0.0.1`, which on loopback equals the client address, violating AC-7 literally | `qa_check --exit failed` routed a new packet to `implement` (hop 8) with `docs/qa/01-ping/findings.md`; QA explicitly refused to narrow the locked AC and named the disposition (satisfy literally, or clarify through the lead); operator advised the one-property exclusion of the thread name | `docs/qa/01-ping/findings.md`, `missions/00-hello/slices/01-ping/proof/qa-*.txt`, trail entry 00:30:03Z |
 | 2026-10-02 22:59Z | 00-hello / 01-ping (design_review) | Review Agent (Codex) found HIGH DR-01 with an empirical Gradle probe: the suite-level `application.properties` files created at bootstrap shadow the production one on the test classpath, so the design's proposed one-line deletion would leave both the ECS log format (AC-6) and the problem-details switch (AC-5) unset | `design_review --exit failed` routed a new packet to `design` (hop 3); the Design Agent must replace the mechanism and hand off for re-review; ledger row written; 9/9 delivered files reviewed | `docs/review/01-ping/design-review.md`, `docs/review/01-ping/proof/`, `docs/review/REVIEW-LEDGER.md`, trail entry 22:59:11Z |
@@ -27,3 +36,53 @@ normal work are listed separately at the bottom.
 | 2026-10-02 22:21–22:23Z | 00-hello / 01-ping (design step) | design-agent sat at a Claude Code WebFetch permission prompt (Spring Boot 4.1 release notes); packet idle 10 min | OpenRig stuck-sweep created `qitem-recovery-a562baedab298be5` for the orchestration lead; the lead diagnosed the root cause (operator-only prompt) and parked the finding on the underlying packet; operator approved the fetch and allow-listed documentation domains in `.claude/settings.json` | `docs/evidence/00-hello/packets/qitem-recovery-a562baedab298be5.*`, commit `4b67617` |
 | 2026-10-03 00:46Z | 00-hello / 01-ping (builder idle while QA re-checked `f286a10`) | n/a — operator-initiated seat replacement: the Development Agent's model changed from Fable 5.1 to Opus 5.5 mid-mission (D6); the launch reported `runtime identity requires attention: foreground command '2.1.288' does not positively identify runtime claude-code` | `rig seat set-model development-agent@urlshort-factory --model claude-opus-5-5` (audited `node.model_changed`), then `rig seat launch --fresh --stop` only after confirming the seat held no packet and the worktree was clean; the fresh occupant reached `startup=ready`, `activity=idle` and the identity warning cleared on its own. If QA routes the slice back to `implement`, the new occupant orients from `PROGRESS.md`, `NOTES.md` and the packet — continuity from files, not from the predecessor's context | `ps` shows `claude --model claude-opus-5-5 --name development-agent@urlshort-factory`; `rig ps --nodes --rig urlshort-factory --json` reports `model=claude-opus-5-5`; audit events `node.model_changed`, `seat.fresh_launched` |
 | 2026-10-03 00:59Z | 00-hello / 01-ping (QA idle after PASS on `f286a10`; slice in `code_review`) | n/a — operator-initiated seat replacement: the QA Agent's model changed from GPT-6-Astra to GPT-6.1-Sol (D6). The `rig seat launch --fresh --stop` call timed out at the CLI after 5 s and reported its outcome as UNKNOWN | the relaunch was gated on `activity=idle` and zero owned packets; after the timeout the effect was checked before any retry: exactly one new `codex` process (started 00:59:12Z), `rig seat status` running/ready, status bar `GPT-6.1-Sol xhigh` — the launch had succeeded, so no retry was issued (a blind retry would have produced a second occupant) | `rig ps --nodes --rig urlshort-factory --json` shows `model=gpt-6.1-sol`; `rig capture qa-agent@urlshort-factory` status bar; audit events `node.model_changed`, `seat.fresh_launched` |
+
+## Natural routing events — DRAFT, not drills
+
+These were capacity/stacking decisions during ordinary work, with live seats;
+they do not claim dead-owner recovery. Read the instance traces first, then
+join the named old/new packets to their queue transitions. The trace's trail
+records step closures and current custody; it does not itself contain a
+separate historical `route` event. The packet transitions supply the exact
+actor, time and old/new ownership. No further moves are inferred.
+
+| Time (UTC), scope | Recorded operation | Observed effect and evidence |
+|---|---|---|
+| 2026-10-03 **18:43:36**, mission 02 / `02-click-retention` | `rig workflow route` by **operator-human@kernel**, `development-agent` → `dev2-agent`, same `implement` step | Instance `01M4170AA9E72WW1BXEA5PX0AP` has the plan-lock handoff to old packet `qitem-20261003183953-9526315e`; transition **1177** closes it as handed-off to dev2, and **1178** creates `qitem-20261003184336-f1b2d2a0`. The trace now names that packet's owner as dev2 and records its implement waits, beginning 19:12Z. Reason in the transition: second builder added at the human's request while the first builds audit-read. [Mission-02 NOTES, 18:50Z](../../missions/02-brownfield/NOTES.md). |
+| 2026-10-03 **19:01:48**, mission 02 / `04-audit-columns` | `rig workflow route` by **operator-human@kernel**, `design2-agent` → `design-agent`, same `design` step | Instance `01M41HG4P6DEVAKTCJC6J9QAWP` records requirements-review handoff to design2 on old packet `qitem-20261003190115-8ce22243`. Transition **1235** closes that unclaimed packet as handed-off to design-agent; **1236** creates `qitem-20261003190148-7795836d`. Design-agent claims it at 19:02:00Z (**1237**) and hands off at **19:09:48Z** (**1248**); the trace's design closure names design-agent and that new packet. Reason: load balance while design2 designs CI/CD and design-agent is idle. [Mission-02 NOTES, 21:24Z correction](../../missions/02-brownfield/NOTES.md). |
+| 2026-10-03 **20:03:31**, mission 03 / `01-analytics-v2` (cross-mission context for the mission-02 stack) | `rig workflow route` by **orchestration-lead@urlshort-factory**, `development-agent` → `dev2-agent`, same `implement` step | Instance `01M416Z3CM54YQTX93V4KG0CPS` has the plan-lock handoff to `qitem-20261003200325-7115d4e3`; transition **1339** closes it as handed-off to dev2, and **1340** creates `qitem-20261003200331-90c97f87`. The trace names dev2 on that implement packet and records its 20:30:43Z wait on click-retention. Reason: the human's option 2 stacks analytics-v2 on click-retention under one builder; the first builder owns dogfood-fix. [Mission-03 NOTES, 20:03Z](../../missions/03-ambiguous-analytics/NOTES.md), [mission-02 builder note](../../missions/02-brownfield/NOTES.md). |
+
+### Source receipts read for this draft
+
+The identifiers above are durable queue/workflow references. These read-only
+commands reproduce the inspected sources; final exports/indexing belong to
+release prep and evidence export, and have not been refreshed by this packet.
+
+```sh
+rig workflow trace 01M416ZY5N11CDGZBM2DT4GAXS --json
+rig workflow trace 01M4170AA9E72WW1BXEA5PX0AP --json
+rig workflow trace 01M41HG4P6DEVAKTCJC6J9QAWP --json
+rig workflow trace 01M416Z3CM54YQTX93V4KG0CPS --json
+rig queue transitions qitem-20261003183953-9526315e --json
+rig queue transitions qitem-20261003184336-f1b2d2a0 --json
+rig queue transitions qitem-20261003190115-8ce22243 --json
+rig queue transitions qitem-20261003190148-7795836d --json
+rig queue transitions qitem-20261003200325-7115d4e3 --json
+rig queue transitions qitem-20261003200331-90c97f87 --json
+```
+
+The natural review loop's packets are QA `qitem-20261003185423-545a1365`,
+review `qitem-20261003195938-d8b8a9c3`, remediation
+`qitem-20261003201620-c74de839`, and re-QA `qitem-20261003202154-65e6d10f`.
+The last packet is still in progress at this snapshot; no completed
+remediation verdict or failed QA exit is asserted.
+
+### Self-check — draft additions
+
+Read all four live traces, the six routing packet transition histories,
+the CR-01 review/control, builder commits/proof and both missions' NOTES.
+Recorded the three corroborated route moves, with exact transition ids;
+kept their natural coordination scope separate from deliberate drills.
+The review rejection remains natural and open through re-QA, and DRILL 1
+remains parked on its own item. No drill was rerun, product changed, or final
+release proof claimed for this documentation packet.

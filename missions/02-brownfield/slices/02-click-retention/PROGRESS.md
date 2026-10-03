@@ -7,6 +7,6 @@
 
 ## Acceptance
 
-- [ ] Implementation complete — steps 1–4 and V3 done at `056c8db`; step 5 (`application.properties`, README) waits for `01-audit-read`'s merge
-- [x] Tests passing — `scripts/gw check` green at `056c8db` (174 unit / 172 functional, 100 % line and branch); re-run on the candidate after the rebase
+- [x] Implementation complete — candidate `a8fc8b6` (steps 1–5 and V3); base before `01-audit-read`'s merge by the 21:42Z custody change; the rebase onto that merge (X′) follows as a separate item
+- [x] Tests passing — `scripts/gw check --rerun-tasks` green at `a8fc8b6` (174 unit / 172 functional, 100 % line and branch); re-run on X′ at integrate
 - [ ] Review approved

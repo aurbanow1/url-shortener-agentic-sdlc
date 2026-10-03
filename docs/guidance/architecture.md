@@ -94,3 +94,47 @@ Draw mechanism, not decoration: a context/container view of the service (once, i
 ## 10. Trade-offs: say them out loud
 
 Every design records the alternatives it rejected and why, in a short table (`option | why not now | what would change the decision`). Reviewers judge the reasoning, not the taste.
+
+## 11. Cross-cutting concerns register (owner: `design-agent`)
+
+A concern that more than one slice touches is settled **once**: one ADR, one
+code path. Every later design reuses that path or amends the ADR, and never
+re-derives the concern locally. The run showed why this matters. "Who is the
+client, and which proxy is trusted" was decided separately by the rate
+limiter, the audit read's loopback guard and the analytics visitor identity.
+Per-slice reviews judged each on its own. The gap between them surfaced
+late: once at wave review (W2-02), and once as a code-review security finding
+after QA had passed the slice (`01-audit-read` CR-01).
+
+Verified against `main` at `0d92000` (product code of mission 01 plus `05-ci-cd`) on 2026-10-03.
+*(designed)* marks a locked design that is not merged yet. **Drift on `main`** names code
+that does not follow its row today, with the slice or backlog item that closes it.
+
+| Concern | Settled by | The one code path | Rule for a new design |
+|---|---|---|---|
+| Client identity and proxy trust: peer address, `X-Forwarded-For`, trusted proxies, Tomcat `remoteip`, `server.forward-headers-strategy` | ADR-0015; ADR-0019 for the audit read's loopback rule *(designed, `01-audit-read`)* | `web/RateLimitFilter.clientOf(remote, forwardedFor, trusted)`, package-private and static, is "who is the client". On `main` its only caller is the limiter. The audit read's guard *(designed)* refuses whenever a setting can rewrite the peer. **Drift on `main`:** `click/ClickRecorder` hashes `request.getRemoteAddr()`, not the limiter's client (wave finding W2-02), which `01-analytics-v2` *(designed)* closes | Inside `web/`, reuse `clientOf`; elsewhere, take the limiter's resolved client, never re-derive it. Any new trust or loopback rule amends ADR-0015 (or the ADR it settles in, as ADR-0019 did) and lists every setting that can rewrite the peer. In Boot 4.1.1 those are `server.forward-headers-strategy` (`native`, or unset on a detected cloud platform), `server.tomcat.remoteip.remote-ip-header` and `server.tomcat.remoteip.protocol-header` (`docs/DESIGN.md` §4). |
+| Time | ADR-0005 (the application `Clock`); ADR-0013 (a click's UTC day computed in Java and stored); ADR-0018 *(designed)* (the purge on that clock) | the single `java.time.Clock` bean, `Clock.tickMillis(ZoneOffset.UTC)` in `link/LinkConfig`, injected into `LinkService`, `AuditLog`, `DailySalt` and `RateLimiter`; UTC days everywhere. **Drift on `main`:** `ping/PingController` calls `Instant.now()` (`01-ping` predates the bean) | Inject the `Clock`; never call `now()` directly; state which UTC day a rule uses. |
+| Schema change | ADR-0005; ADR-0020 *(designed)* | Flyway `src/main/resources/db/migration/V<n>__*.sql`. `main` has V1 and V2; V3 and V4 are designed. The lead assigns `<n>` at plan-lock (ordered custody) | Expand only, with a written rollback; take the number the lead assigns. |
+| Audit columns | the human's policy (`databases.md` §2); ADR-0020 *(designed)* | `created_at`/`updated_at`, plus `created_by`/`updated_by` where an actor exists, on every table. **Drift on `main`:** only `link.created_at` exists. `click`, `user_agent_class`, `link` and `audit_log` are open `docs/qa/GAPS.md` rows, closed by V3 (`02-click-retention`) and V4 (`04-audit-columns`), both *(designed)* | A new table carries them from its first migration. |
+| Error shape | ADR-0002 (amended) | `web/ProblemDetailsAdvice` extends Spring's `ResponseEntityExceptionHandler`, so Boot's own problem-details handler backs off. It renders every problem raised in MVC, with `web/Problems` building the domain failures. One problem is written outside MVC: `web/RateLimitFilter`'s `429`, a bare `ProblemDetail` with the same `instance` rule (ADR-0014) | No new error body shape. A field-level failure is an `errors` element `{field, rule, message}`; any other new member amends ADR-0002. |
+| Request id and logging | ADR-0003, ADR-0004 | `web/RequestIdFilter` (`X-Request-Id`, MDC `requestId`); ECS JSON (`logging.structured.format.console=ecs`) with no client PII; work done for a request on another thread restores `requestId` (`ClickRecorder`) | New log events carry `requestId` and no raw IP or user agent. |
+| Audit trail writes | ADR-0008 | `audit/AuditLog.append`, called inside the `@Transactional` `LinkService.create` and `retire` | Every state change a client can observe writes its audit row in that transaction. Housekeeping that changes no representation (releasing an expired idempotency key) is not audited (ADR-0008). |
+| Client hashing for analytics | ADR-0012 | `click/DailySalt`, a daily salt that is never exposed (its input address: the Client identity row) | Distinct-visitor logic uses the day's hash only within its UTC day. |
+| Metrics and health exposure | ADR-0016 | Actuator with `management.endpoints.web.exposure.include=health,info,metrics,prometheus`; the Prometheus registry; `urlshort.ratelimit.rejections{budget}` | A new metric follows `urlshort.<feature>.<thing>`; exposure changes amend ADR-0016. |
+| API document | ADR-0010 | `web/OpenApiConfig`; `OpenApiDocumentTest` writes the live document to `build/openapi/openapi.json` and fails unless the committed `docs/api/openapi.json` equals it | One slice at a time holds it (ordered custody). |
+| CI/CD | D14, `ci-cd.md` | `.github/workflows/ci.yml` (job `gate`, `./gradlew check`), `cd.yml` and `.github/dependabot.yml` | A new or changed workflow keeps `ci-cd.md` §3 and passes its §6 checklist at code review. |
+
+**Owner duty.** `design-agent@urlshort-factory` keeps this register current.
+When a design adds or changes a concern, the designer files a plain queue
+item to `design-agent` with the design path and the register row it touches.
+`design-agent` answers with a one-paragraph consistency verdict, in
+`docs/review/<slice>/architecture-consistency.md`, before the design's review.
+A design that touches no registered concern needs no request; its
+`## Self-check` says so in one line.
+
+**Checks.**
+- `design_review` fails (HIGH) a design that redefines a registered concern
+  without amending the settling ADR, or that misses a consistency verdict it
+  needed.
+- `wave_review` walks this table across everything the wave merged and
+  records one line per concern: consistent, or the drift found.

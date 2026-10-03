@@ -129,6 +129,140 @@ re-locked design response `0052efb` (§1 guard, §7 test (d)).
 
 ## QA
 
+### Re-check 7ac8af56ed04c27bbefbd416b3976c544d2f274a
+
+Independent Codex QA, 2026-10-03, packet qitem-20261003202154-65e6d10f,
+instance01M416ZY5N11CDGZBM2DT4GAXS. **PASS within the locked SPEC and the
+accepted AC-17 grant.** QA-AUD-01/CR-01 is fixed by independent installed-jar
+reproduction. Product worktree HEAD equals the named candidate and is clean.
+No product code, build file or tests edited by QA.
+
+Fresh offline check --rerun-tasks: **203 unit / 202 functional**, no
+failures/errors/skips, all14 tasks executed, Javadoc green. CSV totals:
+unit438/494 lines (88.66%),188/194 branches (96.91%); functional457/494
+(92.51%),162/194 (83.51%); merged494/494 and194/194 (100% each). All348 copied
+HTML/XML/CSV report hashes verified. Summary:
+docs/qa/coverage/01-audit-read/SUMMARY.md. Gate log:
+proof/qa-check-7ac8af5.txt. All following fresh captures live under
+proof/qa-recheck-7ac8af5/; earlier35590f0 evidence remains historical.
+
+| Acceptance criteria | Independently observed effect |
+|---|---|
+| AC-1 | Empty200 application/json, exact items[]/next:null. |
+| AC-2,3,4,5 | Create A/B/C, retire A; four rows in retireA,C,B,A write order; all eight fields equal actual SQL rows, create/retire request IDs and before/after content agree; create time lies within client interval. |
+| AC-6 | Three20/20/5 pages via returned next, final null; every field equals all45 SQL rows in descending identity order while seeded times run oppositely. |
+| AC-7 | Seed150: default50 and maximum100, both with next. |
+| AC-8 | Seed30, first10, five real HTTP creates, continuation returns only original30 once; fresh35 starts with five new writes. |
+| AC-9 | limit0/101/ten and cursor*** each400 with one static field/rule, also negative cursor and overflowing limit; strict Accept still safe problem. |
+| AC-10 | Traverse45 twice; POST/PUT/PATCH/DELETE405. Three stable intervals compare all audit/link/click rows byte-equal before/after; no read audit rows. |
+| AC-11,12 | Controlled192.0.2.10/10.0.0.7 GET/HEAD403; four loopback representations200; no forbidden trail/client echo. |
+| AC-13,14 | Default/trusted-proxy profiles refuse required forwarded inputs before validation. Installed jars prove both explicit Tomcat header triggers and native/framework close plain/forged GET/HEAD403 without canary; default/empty settings plain200, forwarded403. Six configuration variants each contain an actual created audit row. Non-default public base, budgets and trusted proxies do not open the read. |
+| AC-15,16 | 23 repeated obs- requests match24 JSON events in unchanged default console and ECS file sink; 200/400/403/405/500 covered. Whole-run logs in both capture sets omit audit/client/cursor/SQL canaries. Original plain-file capture limitation is disclosed below. |
+| AC-17 | Original25 shipped files equal f6dd29e blobs. Replay155 tests:153 pass, only two expressly authorized enumeration failures; candidate versions pass. Grant428e9e1, transition1156. No claim of155 unchanged assertions green. |
+| AC-18 | Shipped immutable f6dd29e jar writes fresh H2 directory: active/retired links,3 clicks,3 audit rows. Stop, candidate jar on SAME directory; statistics captured before verification GET remain exactly equal, audit/link columns preserved,302 same target and410. Only verification GET adds fourth click. |
+| AC-19 | Whole key-sorted live document from fixture and installed candidate equals candidate docs/api/openapi.json; every shipped path/response/example unchanged; audit queries, row/page example,200/400/403/429/500 documented. |
+| AC-20 | Actual JDBC INSERT held uncommitted after30 fixture rows; first10 read, transaction committed, continuation original30 once; fresh31 includes held write first. |
+| AC-21 | External DataSource wrapper throws actual SQLException during audit-read preparation. Safe500 with no page, SQL/message/cursor/audit content; next read after removing flag200. Repeated JSON error/completion events correlate to response ID. |
+
+Raw HTTP and shipped XML bytes are retained in hashed archives; displayed
+headers/HEAD bodies and failure XML normalize only line endings/trailing
+whitespace, independently checked against originals.
+
+258 HTTP captures and1,482 reconciliation assertions are recorded in
+verification.json; all raw curl headers/bodies/requests are archived and
+their bytes/hash checked. Installed jar provenance:
+candidate SHA25648fca1b85ef5e78f0b74e15b5f24d9f612bab544bc53dd6b4d5cba46f9b28a7f;
+baseline SHA25661d9ce3417be75abdcac463f2171409905ceb6be6ef0f4d988378c9d11ff9377.
+Installed-launch-arguments.json names each profile. Exact actual exchange:
+obs-exchange-page1/page2/samepage-forwarded returns200/200/403 on two pages
+via next and the IDENTICAL second-page URI. Default JSON console and file
+events independently match these response IDs/statuses.
+
+All227 source test methods map both ways in TRACEABILITY (103 unit,
+124 functional), including all21 ACs and9 business rules; full original
+class XML plus invocation inventory retained. Artifact provenance verifies
+impact analysis precedes design, indexed ADR0019 precedes dependent code,
+re-lock0052efb precedes fix1fe1cbf, empty migration diff and documented
+loopback/local-relay boundary. No separate design approval is invented here;
+the lead re-lock stands and independent reviewer evaluates its delta.
+
+**Limits and capture correction.** The external QaLauncher controls only
+fixture rows, actual JDBC held-write/failure inputs and Servlet peers,
+as SPEC authorizes; real remote TCP peers, natural disk failures, sustained
+concurrent stress, Docker and future Boot forwarding triggers were not
+tested. The preserved immutable shipped jar is reused with its prior
+source-product provenance and rechecked hash; it was not rebuilt from a
+possibly newer main. No migration was added, so rollback execution is N/A.
+
+QA initially added logging.file.name without an ECS file encoder. The first
+file sink was plain text while the default console was JSON; original
+captures are retained under plain-file-captures/. QA repeated observability
+and the installed two-page/forwarded-page exchange with
+logging.structured.format.file=ecs, keeping the default console unchanged.
+Those23 requests and all24 request events match in both retained default
+console and file logs. Earlier235 exchanges are not claimed to have
+retained JSON correlation. Privacy canary checks cover all whole-run logs.
+GAPS records the correction, per-suite misses, accepted enumeration grant,
+input scope and Boot-trigger upgrade ceiling. No material AC remains
+unverified within its specified scope.
+
+Items1–11 and13 are covered by this QA drop and accepted by fresh
+commit-subject receipts14–25, preserved in
+proof/qa-recheck-7ac8af5/judgment-receipts.json; every cited hash was checked
+against current committed bytes. **Item12 remains pending** corrected independent
+security review, under existing lead sequencing obligation
+qitem-20261003194346-b74b8081. The earlier35590f0 rejection is preserved.
+
+#### Self-check — re-check7ac8af5
+
+- EveryAC exercised by effect with AC-17's exact recorded grant; invalid input,
+  duplicates/conflict, missing/retired links, wrong methods, remote/forwarded
+  denial, both Tomcat trigger overrides, rate429 and SQL500 tried.
+- Coverage read from merged CSV, all copied hashes checked; all227 methods
+  mapped, functional evidence for everyAC, gap entry written.
+- Actual installed same-directory upgrade, exact live/committed API equality,
+  identical page URI403 and default JSON console correlation inspected.
+- Proof drop names items1–11,13; independent security item12 deferred honestly.
+- All app ports18131/18132/18133/18134 refuse connections; worktree remains
+  clean at exact candidateSHA. No product/build/test edits.
+
+
+### Security record completion — 7ac8af5, receipt26
+
+Packet qitem-20261003214437-dba5ead9, 2026-10-03. The independent corrected
+security record is now available at70b1a2d, with explicit item12 rows.
+QA read its exact-candidate re-review and the independent0052efb design
+acceptance; parsed all30 original control outcomes and32 additional
+controls, and reconciled36 prior independent QA installed-jar outcomes.
+The observed statuses, safe refusal bodies and empty HEAD bodies agree.
+No new product change, app start or suite rerun is claimed for this narrow
+record judgment; the existing independent full QA remains applicable.
+
+Item12 **accepted against commit7ac8af56ed04c27bbefbd416b3976c544d2f274a**:
+attributed receipt26, id2dfc1507553fedb9594b92ac1cd3a1b12041c37a8c4237b7a6aebf5f7049ac43.
+Record checks, proof drop, judgment and ready snapshot are
+proof/qa-item12-{record-check,security,judgment-receipt,readiness}-7ac8af5.
+All13 items are accepted/current and34 cited evidence hashes match bytes.
+This supersedes the earlier pending-item12 status; other QA findings and
+capture qualifications remain unchanged.
+
+#### Self-check — security-record judgment
+
+- Read the actual committed record, explicit contract row and raw controls,
+  rather than treating the review PASS message as the receipt.
+- Exact unchanged clean candidate, security record bytes match70b1a2d;
+  every cited hash current, all13 proof states accepted.
+- Scope preserved: the service-observed peer/header inputs and known Boot
+  triggers; headerless local relays must exclude this route or retain a
+  forwarding header. No external TCP/IPv6, authentication or future-trigger
+  guarantee inferred.
+- No source/build/test/reviewer artifact edited. Item12 proof drop made;
+  attributed receipt committed with explicit paths before returning the
+  sequencing packet to the lead.
+
+### Historical QA — 35590f0 (superseded)
+
+
 **Correction on candidate35590f0:** the original PASS below is superseded.
 Review found HIGH CR-01 and QA independently reproduced both explicit Tomcat
 RemoteIpValve overrides with the original jar: forwarded GET200 with audit

@@ -1,0 +1,81 @@
+{
+  "remoteip-default": {
+    "jar": "/private/tmp/urlshort-audit-qa-7ac8af5/candidate-7ac8af5.jar",
+    "args": [
+      "--server.port=18132",
+      "--spring.datasource.url=jdbc:h2:mem:qaremoteip-default;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+      "--logging.file.name=/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/qa-remoteip-default.jsonl"
+    ]
+  },
+  "remoteip-ipheader": {
+    "jar": "/private/tmp/urlshort-audit-qa-7ac8af5/candidate-7ac8af5.jar",
+    "args": [
+      "--server.port=18132",
+      "--spring.datasource.url=jdbc:h2:mem:qaremoteip-ipheader;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+      "--logging.file.name=/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/qa-remoteip-ipheader.jsonl",
+      "--server.tomcat.remoteip.remote-ip-header=X-Forwarded-For"
+    ]
+  },
+  "remoteip-protoheader": {
+    "jar": "/private/tmp/urlshort-audit-qa-7ac8af5/candidate-7ac8af5.jar",
+    "args": [
+      "--server.port=18132",
+      "--spring.datasource.url=jdbc:h2:mem:qaremoteip-protoheader;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+      "--logging.file.name=/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/qa-remoteip-protoheader.jsonl",
+      "--server.tomcat.remoteip.protocol-header=X-Forwarded-Proto"
+    ]
+  },
+  "strategy-native": {
+    "jar": "/private/tmp/urlshort-audit-qa-7ac8af5/candidate-7ac8af5.jar",
+    "args": [
+      "--server.port=18132",
+      "--spring.datasource.url=jdbc:h2:mem:qastrategy-native;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+      "--logging.file.name=/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/qa-strategy-native.jsonl",
+      "--server.forward-headers-strategy=native"
+    ]
+  },
+  "strategy-framework": {
+    "jar": "/private/tmp/urlshort-audit-qa-7ac8af5/candidate-7ac8af5.jar",
+    "args": [
+      "--server.port=18132",
+      "--spring.datasource.url=jdbc:h2:mem:qastrategy-framework;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+      "--logging.file.name=/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/qa-strategy-framework.jsonl",
+      "--server.forward-headers-strategy=framework"
+    ]
+  },
+  "remoteip-empty": {
+    "jar": "/private/tmp/urlshort-audit-qa-7ac8af5/candidate-7ac8af5.jar",
+    "args": [
+      "--server.port=18132",
+      "--spring.datasource.url=jdbc:h2:mem:qaremoteip-empty;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+      "--logging.file.name=/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/qa-remoteip-empty.jsonl",
+      "--server.tomcat.remoteip.remote-ip-header=",
+      "--server.tomcat.remoteip.protocol-header="
+    ]
+  },
+  "upgrade-shipped": {
+    "jar": "/private/tmp/urlshort-audit-qa-35590f0/shipped-f6dd29e.jar",
+    "args": [
+      "--server.port=18133",
+      "--spring.datasource.url=jdbc:h2:file:/private/tmp/urlshort-audit-qa-7ac8af5/upgrade/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+      "--logging.file.name=/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/qa-upgrade-shipped.jsonl"
+    ]
+  },
+  "upgrade-candidate": {
+    "jar": "/private/tmp/urlshort-audit-qa-7ac8af5/candidate-7ac8af5.jar",
+    "args": [
+      "--server.port=18133",
+      "--spring.datasource.url=jdbc:h2:file:/private/tmp/urlshort-audit-qa-7ac8af5/upgrade/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+      "--logging.file.name=/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/qa-upgrade-candidate.jsonl"
+    ]
+  },
+  "exchange": {
+    "jar": "/private/tmp/urlshort-audit-qa-7ac8af5/candidate-7ac8af5.jar",
+    "args": [
+      "--server.port=18132",
+      "--spring.datasource.url=jdbc:h2:mem:qaexchange;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+      "--logging.file.name=/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/qa-exchange.jsonl",
+      "--logging.structured.format.file=ecs"
+    ]
+  }
+}
