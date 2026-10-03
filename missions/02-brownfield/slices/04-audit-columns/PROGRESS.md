@@ -7,11 +7,12 @@
 
 ## Acceptance
 
-- [ ] Implementation complete — built test-first as `49f0cee` on `main` `583278c`; the candidate is the rebase onto `02-click-retention`'s merge, which is pending (builder, 2026-10-03)
-- [ ] Tests passing — `check --rerun-tasks` on `49f0cee`: unit 208/208, functional 211/211, 496/496 lines, 194/194 branches (`proof/builder-check-49f0cee.txt`); to be re-run on the rebased candidate
+- [x] Implementation complete — candidate `305f804`, rebased onto `02-click-retention`'s merge `ed2b940` (`main` `2566c38`); V4 follows V3 (builder, 2026-10-03)
+- [x] Tests passing — `check --rerun-tasks` on `305f804`: unit 218/218, functional 233/233, 557/557 lines, 200/200 branches (`proof/builder-check-305f804.txt`; builder run, QA re-runs independently)
 - [ ] Review approved
 
 ## Builder
 
 - [x] Test first: `8f72b2f` red (`proof/builder-red-functional.txt`, `builder-red-unit.txt`), then `49f0cee` green
-- [ ] Rebase onto `02-click-retention`'s merge commit, confirm V4 is the next Flyway number, re-run `check`, run the by-effect upgrade, hand off that SHA
+- [x] Rebased onto `02-click-retention`'s merge. V4 is the next Flyway number. Two shipped tests pinned to V3 under the lead's grant `132a884`. `check` re-run green.
+- [x] By-effect upgrade from the real `f6dd29e` jar (`proof/upgrade-0` to `upgrade-4`, `jar-log-upgrade.txt`)

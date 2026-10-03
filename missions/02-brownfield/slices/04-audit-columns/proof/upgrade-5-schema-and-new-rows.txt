@@ -1,0 +1,36 @@
+TABLE_NAME | COLUMN_NAME     | DATA_TYPE                | CHARACTER_MAXIMUM_LENGTH | IS_NULLABLE | COLUMN_DEFAULT
+AUDIT_LOG  | ID              | BIGINT                   | null                     | NO          | null
+AUDIT_LOG  | OCCURRED_AT     | TIMESTAMP WITH TIME ZONE | null                     | NO          | null
+AUDIT_LOG  | ACTOR           | CHARACTER VARYING        | 64                       | NO          | null
+AUDIT_LOG  | ACTION          | CHARACTER VARYING        | 64                       | NO          | null
+AUDIT_LOG  | ENTITY          | CHARACTER VARYING        | 32                       | NO          | null
+AUDIT_LOG  | ENTITY_ID       | CHARACTER VARYING        | 64                       | NO          | null
+AUDIT_LOG  | REQUEST_ID      | CHARACTER VARYING        | 64                       | NO          | null
+AUDIT_LOG  | BEFORE_STATE    | CHARACTER VARYING        | 4096                     | YES         | null
+AUDIT_LOG  | AFTER_STATE     | CHARACTER VARYING        | 4096                     | NO          | null
+AUDIT_LOG  | CREATED_AT      | TIMESTAMP WITH TIME ZONE | null                     | NO          | CURRENT_TIMESTAMP
+AUDIT_LOG  | UPDATED_AT      | TIMESTAMP WITH TIME ZONE | null                     | NO          | CURRENT_TIMESTAMP
+AUDIT_LOG  | CREATED_BY      | CHARACTER VARYING        | 64                       | NO          | 'anonymous'
+AUDIT_LOG  | UPDATED_BY      | CHARACTER VARYING        | 64                       | NO          | 'anonymous'
+LINK       | ID              | BIGINT                   | null                     | NO          | null
+LINK       | CODE            | CHARACTER VARYING        | 32                       | NO          | null
+LINK       | URL             | CHARACTER VARYING        | 2048                     | NO          | null
+LINK       | CREATED_AT      | TIMESTAMP WITH TIME ZONE | null                     | NO          | null
+LINK       | RETIRED_AT      | TIMESTAMP WITH TIME ZONE | null                     | YES         | null
+LINK       | IDEMPOTENCY_KEY | CHARACTER VARYING        | 255                      | YES         | null
+LINK       | UPDATED_AT      | TIMESTAMP WITH TIME ZONE | null                     | NO          | CURRENT_TIMESTAMP
+LINK       | CREATED_BY      | CHARACTER VARYING        | 64                       | NO          | 'anonymous'
+LINK       | UPDATED_BY      | CHARACTER VARYING        | 64                       | NO          | 'anonymous'
+(22 rows, 14 ms)
+CODE     | CREATED_AT                 | RETIRED_AT                 | UPDATED_AT                 | CREATED_BY | UPDATED_BY
+UMH8eWrN | 2026-10-03 16:11:55.378-07 | null                       | 2026-10-03 16:11:55.378-07 | anonymous  | anonymous
+y3zlxoFh | 2026-10-03 16:11:55.84-07  | 2026-10-03 16:11:59.997-07 | 2026-10-03 16:11:59.997-07 | anonymous  | anonymous
+s8mxUyiD | 2026-10-03 16:17:16.13-07  | 2026-10-03 16:17:20.406-07 | 2026-10-03 16:17:20.406-07 | anonymous  | anonymous
+(3 rows, 0 ms)
+ID | ACTION      | ENTITY_ID | OCCURRED_AT                | ACTOR     | CREATED_AT                    | UPDATED_AT                    | CREATED_BY | UPDATED_BY
+1  | link.create | UMH8eWrN  | 2026-10-03 23:11:55.645+00 | anonymous | 2026-10-03 23:11:55.645+00    | 2026-10-03 23:11:55.645+00    | anonymous  | anonymous
+2  | link.create | y3zlxoFh  | 2026-10-03 23:11:55.841+00 | anonymous | 2026-10-03 23:11:55.841+00    | 2026-10-03 23:11:55.841+00    | anonymous  | anonymous
+3  | link.retire | y3zlxoFh  | 2026-10-03 23:12:00.003+00 | anonymous | 2026-10-03 23:12:00.003+00    | 2026-10-03 23:12:00.003+00    | anonymous  | anonymous
+4  | link.create | s8mxUyiD  | 2026-10-03 23:17:16.164+00 | anonymous | 2026-10-03 16:17:16.156331-07 | 2026-10-03 16:17:16.156331-07 | anonymous  | anonymous
+5  | link.retire | s8mxUyiD  | 2026-10-03 23:17:20.407+00 | anonymous | 2026-10-03 16:17:20.407604-07 | 2026-10-03 16:17:20.407604-07 | anonymous  | anonymous
+(5 rows, 0 ms)

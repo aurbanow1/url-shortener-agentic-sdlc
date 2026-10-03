@@ -1,0 +1,7 @@
+HTTP/1.1 200 
+X-Request-Id: f249059f-a789-4525-82a8-46b05c17cda8
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 23:12:48 GMT
+
+{"items":[{"occurredAt":"2026-10-03T23:12:00.003Z","actor":"anonymous","action":"link.retire","entity":"link","entityId":"y3zlxoFh","requestId":"eb83bbef-32c9-4a53-84eb-243b88432bd4","before":{"url":"https://example.com/retired","state":"active"},"after":{"url":"https://example.com/retired","state":"retired"}},{"occurredAt":"2026-10-03T23:11:55.841Z","actor":"anonymous","action":"link.create","entity":"link","entityId":"y3zlxoFh","requestId":"7c4f006b-9346-48c0-8bc1-661882363551","before":null,"after":{"url":"https://example.com/retired","state":"active"}},{"occurredAt":"2026-10-03T23:11:55.645Z","actor":"anonymous","action":"link.create","entity":"link","entityId":"UMH8eWrN","requestId":"7a489c8f-3690-4529-b329-de22280c47be","before":null,"after":{"url":"https://example.com/active","state":"active"}}],"next":null}
