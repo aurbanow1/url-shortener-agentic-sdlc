@@ -19,4 +19,5 @@
 - [x] Audit rows for the captured create and retire (`proof/audit-rows-a922f49.txt`)
 - [x] `docs/api/openapi.json` committed, generated key-sorted by `OpenApiDocumentTest`, drift fails the suite
 - [x] QA: 72 unit / 87 functional invocations pass independently; merged coverage 185/185 lines, 56/56 branches; reports copied, traceability and GAPS row complete; live-vs-committed API document diff empty; independent HTTP/log/audit/rollback/append-only captures (`PROOF.md` §QA, candidate `a922f49`, 2026-10-03)
+- [x] QA: attributed acceptance judgments for proof items 1–12 recorded against commit `a922f49144049db0228c316c474ac6e890742fa5` (`proof/judgments/00000001.md`–`00000012.md`); items 13–14 remain pending for later records, tracked by `qitem-20261003072643-917956c7`
 - [ ] Code review / security review: NFR-A2 and NFR-S4 records
