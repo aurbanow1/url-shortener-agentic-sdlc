@@ -1,5 +1,8 @@
 # 03-operate — requirements review
 
+**Latest verdict: PASS** on `b53372f5c25746e76e19cbf7e6401a23610ef7de`;
+see the re-review below. The initial findings and evidence are preserved.
+
 - Candidate: `da719376088098b0fb17413d6e0897f2c593e6a6` (`docs(03-operate): requirements`).
 - Reviewer: `review2-agent@urlshort-factory` (Codex); 2026-10-03 UTC.
 - Packet: `qitem-20261003081312-64ea3c87`; instance `01M40CPBYR97637QGHT57BNEBY`.
@@ -111,3 +114,46 @@ those outcomes or open another review assignment.
 - Each finding has severity, source location, evidence and a required change.
 - Verdict follows the severity rule: one HIGH blocks; two MEDIUM do not.
 - Review ledger row appended. Edits are confined to `docs/review/`.
+
+## Re-review b53372f5c25746e76e19cbf7e6401a23610ef7de
+
+2026-10-03 UTC, `review2-agent@urlshort-factory` (Codex), packet
+`qitem-20261003082131-b709b118`. **PASS — RQ-01, RQ-02 and RQ-03 fixed.**
+No open findings or new findings from the fixes. Hand off to design.
+
+Read the producer's response and the complete candidate diff. The only changed
+file is `missions/01-greenfield-core/slices/03-operate/SPEC.md`; one file changed,
+one reviewed, PASS. Its working bytes equal the exact candidate blob. This is
+a findings-and-fixes re-review; settled allocation and scope were not reopened.
+
+| Finding | Resolution | Evidence in revised SPEC |
+|---|---|---|
+| RQ-01 (HIGH) | Fixed | AC-25 at line 248 requires a known in-flight R0 to complete normally within 10 s, a refused connection during drain, and zero post-acceptance resets/EOF/timeouts. A-16 identifies direct-socket observation rather than relying on an intervening port proxy. AC-28 at line 263 retains compose-restart evidence and a container stop timeout longer than the application phase. Rule 13 and the traceability/gaps/release proof items include these obligations. The prior synthetic trace now fails because its lost accepted request counts as a failure. |
+| RQ-02 (MEDIUM) | Fixed | AC-3(a) at line 111 explicitly starts at default rate with exactly zero tokens and a frozen clock. AC-3(b) checks rounded waiting from 0.250 tokens with no intervening consumption and permits earlier admission. Exact rational arithmetic gives the stated outcomes. |
+| RQ-03 (MEDIUM) | Fixed | Rule 6 at line 275 scopes the response ban to 429 and explicitly preserves admitted create/read URL bodies and redirect Location. Logging and metric privacy remain bound by inherited rule 10, this slice's rule 10, and AC-19. |
+
+Fresh local verification (Python 3, candidate byte comparison, AC inventory,
+exact-rational refill model and the synthetic acceptance predicate):
+
+```text
+Candidate: b53372f5c25746e76e19cbf7e6401a23610ef7de
+SPEC matches candidate; one changed file; AC-1..AC-28 contiguous and unique.
+AC-3(a) exact-empty default setup: [429, 201, 429]
+AC-3(b): 0.250 tokens, rounded S=1, tokens after S=1.250 -> admitted.
+Revised AC-25 rejects prior synthetic trace: accepted failures=1
+```
+
+### Re-review self-check and limits
+
+- Full revision read, all three responses checked at source, exact candidate
+  verified, and the added AC-28 traced through allocation and proof obligations.
+- No product gate, container run or live socket-drain experiment was performed
+  for this SPEC-only revision. The result is requirements readiness, not proof
+  that the unbuilt slice already satisfies the requirements.
+- Design must establish the held-request mechanism and socket/drain probe
+  behavior by effect, as the author's self-check explicitly requires. This
+  review does not verify the prose's general claim about Docker port proxies;
+  observing the application's socket directly avoids relying on that claim.
+- Existing memory-bound, metric-support, server-logging and release-measurement
+  obligations remain. No additional human decision or review gate was added.
+- Ledger row appended; edits confined to `docs/review/`.
