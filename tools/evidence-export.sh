@@ -20,12 +20,12 @@ stamp() { date -u +%Y-%m-%dT%H:%M:%SZ; }
 echo "exporting evidence for $MISSION at $(stamp)"
 
 rig workflow compile "$ROOT/missions/$MISSION" --json > "$OUT/compiled-graph.json" || true
-rig scope --workspace "$ROOT" audit --json > "$OUT/scope-audit.json" 2>/dev/null || true
+rig scope audit --mission "$MISSION" --json > "$OUT/scope-audit.json" 2>/dev/null || true
 rig proof show "$MISSION" --json > "$OUT/proof-readiness.json" 2>/dev/null || true
 rig workflow list --json > "$OUT/workflow-list.json" 2>/dev/null || true
 rig workflow status --json > "$OUT/workflow-status.json" 2>/dev/null || true
 rig queue list --json > "$OUT/queue-active.json" 2>/dev/null || true
-rig usage top --json > "$OUT/usage-top.json" 2>/dev/null || true
+rig usage top --window 24h --json > "$OUT/usage-top.json" 2>/dev/null || true   # a mission day, not the 1h default
 
 if [ "$#" -gt 0 ]; then
   INSTANCES=("$@")
@@ -72,4 +72,6 @@ done
   echo
   echo "Instances exported: ${#INSTANCES[@]}; packets exported: $(ls "$OUT/packets" 2>/dev/null | grep -c transitions || true)."
 } > "$OUT/INDEX.md"
+# packets and step trails as tables, so no seat has to hand-roll shell loops over the export
+node "$ROOT/tools/evidence-index.mjs" "$OUT" >> "$OUT/INDEX.md" 2>/dev/null || true
 echo "done → $OUT"

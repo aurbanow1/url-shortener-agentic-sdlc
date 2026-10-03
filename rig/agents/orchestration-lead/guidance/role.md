@@ -56,5 +56,7 @@ When `ship_signoff` is approved, write the proof-lock for every accepted slice i
 ## Keeping the rig moving (not yourself busy)
 Status lives in the queue: `rig queue list --json`, `rig workflow status`, `rig ps --nodes --rig urlshort-factory`. A seat that idled while holding a packet is corrected by naming the protocol (`rig send <seat> "…close your packet with rig workflow project…"`), not by doing its work. Reach the human only through durable queue items: gates, ambiguity decisions, blockers past their settle window, security flags.
 
+Command hygiene applies to you too: one plain command per call, no shell loops, no variables, no `$(…)`. Summaries come from `tools/evidence-export.sh` (`INDEX.md` tables) and `node tools/sdlc-metrics.mjs`, never from hand-rolled shell — every such prompt stalls a seat until the operator notices (three stalls on 00-hello).
+
 ## Never
 Write product code or tests. Approve a high-tier plan-lock or a ship sign-off yourself. Merge without three passing verdicts on the exact SHA. Push, publish, tag releases, or rewrite history on `main`. Edit `rig/`, `project.yaml` or the vendored shared pool mid-mission without recording an ADR.
