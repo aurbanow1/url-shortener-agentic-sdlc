@@ -1,0 +1,121 @@
+Capture formatting: CRLF and status-line trailing spaces normalized; header values and bodies preserved.
+
+=== read ===
+Command: scripts/http --silent --show-error --include --max-time 10 http://127.0.0.1:18101/api/links/ol6zJ8PI
+Exit: 0
+HTTP/1.1 200
+X-Request-Id: 07a03f70-23fb-4524-92c5-6c1bbdf0654d
+Content-Type: application/json
+Content-Length: 183
+Date: Sat, 03 Oct 2026 07:46:09 GMT
+
+{"code":"ol6zJ8PI","shortUrl":"http://localhost:8080/ol6zJ8PI","url":"https://example.com/Review?q=review-query-a922#fragment","state":"active","createdAt":"2026-10-03T07:45:19.576Z"}
+
+=== redirect ===
+Command: scripts/http --silent --show-error --include --max-time 10 --header 'Accept: text/html' --header 'Origin: https://untrusted.invalid' 'http://127.0.0.1:18101/ol6zJ8PI?ignored=review-extra-a922'
+Exit: 0
+HTTP/1.1 302
+X-Request-Id: 496dc8ff-b2ae-4b86-89e5-b95679ea6914
+Location: https://example.com/Review?q=review-query-a922#fragment
+Cache-Control: no-store
+Content-Length: 0
+Date: Sat, 03 Oct 2026 07:46:09 GMT
+
+=== actuator-index ===
+Command: scripts/http --silent --show-error --include --max-time 10 http://127.0.0.1:18101/actuator
+Exit: 0
+HTTP/1.1 200
+X-Request-Id: ca1e5545-81f3-4692-aab1-222821e5c44e
+Content-Type: application/vnd.spring-boot.actuator.v3+json
+Content-Length: 516
+Date: Sat, 03 Oct 2026 07:46:09 GMT
+
+{"_links":{"self":{"href":"http://127.0.0.1:18101/actuator","templated":false},"info":{"href":"http://127.0.0.1:18101/actuator/info","templated":false},"health":{"href":"http://127.0.0.1:18101/actuator/health","templated":false},"health-path":{"href":"http://127.0.0.1:18101/actuator/health/{*path}","templated":true},"metrics-requiredMetricName":{"href":"http://127.0.0.1:18101/actuator/metrics/{requiredMetricName}","templated":true},"metrics":{"href":"http://127.0.0.1:18101/actuator/metrics","templated":false}}}
+
+=== actuator-env ===
+Command: scripts/http --silent --show-error --include --max-time 10 http://127.0.0.1:18101/actuator/env
+Exit: 0
+HTTP/1.1 404
+X-Request-Id: a8ea3f76-152b-4b8e-a9db-cb79b72cda76
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:46:09 GMT
+
+{"instance":"urn:uuid:a8ea3f76-152b-4b8e-a9db-cb79b72cda76","status":404,"title":"Not Found"}
+
+=== h2-console ===
+Command: scripts/http --silent --show-error --include --max-time 10 http://127.0.0.1:18101/h2-console
+Exit: 0
+HTTP/1.1 404
+X-Request-Id: 413417a5-4cbb-4524-a37e-196c27a7dd20
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:46:10 GMT
+
+{"instance":"urn:uuid:413417a5-4cbb-4524-a37e-196c27a7dd20","status":404,"title":"Not Found"}
+
+=== wrong-method ===
+Command: scripts/http --silent --show-error --include --max-time 10 --request REVIEWMETHODCANARY http://127.0.0.1:18101/api/links
+Exit: 0
+HTTP/1.1 405
+X-Request-Id: 6d0f6b90-3021-435a-909f-d18dd263de8f
+Allow: POST
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:46:10 GMT
+
+{"instance":"urn:uuid:6d0f6b90-3021-435a-909f-d18dd263de8f","status":405,"title":"Method Not Allowed"}
+
+=== invalid-target ===
+Command: scripts/http --silent --show-error --include --max-time 10 --request POST --header 'Content-Type: application/json' --data-binary '{"url":"javascript:review-schema-canary-a922"}' http://127.0.0.1:18101/api/links
+Exit: 0
+HTTP/1.1 400
+X-Request-Id: 3d6c1d1a-4100-46cb-b1c5-a8980c9038a9
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:46:10 GMT
+Connection: close
+
+{"instance":"urn:uuid:3d6c1d1a-4100-46cb-b1c5-a8980c9038a9","status":400,"title":"Bad Request","errors":[{"field":"url","rule":"scheme","message":"url must start with http:// or https://"}]}
+
+=== bad-media ===
+Command: scripts/http --silent --show-error --include --max-time 10 --request POST --header 'Content-Type: text/plain; note=review-media-canary-a922' --data-binary x http://127.0.0.1:18101/api/links
+Exit: 0
+HTTP/1.1 415
+X-Request-Id: 4a569dc6-840b-47d8-9cd4-e98d853b9e00
+Accept: application/json
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:46:10 GMT
+
+{"instance":"urn:uuid:4a569dc6-840b-47d8-9cd4-e98d853b9e00","status":415,"title":"Unsupported Media Type"}
+
+=== replay-with-spoofed-headers ===
+Command: scripts/http --silent --show-error --include --max-time 10 --request POST --header 'Content-Type: application/json' --header 'Host: review-host-canary.invalid' --header 'X-Forwarded-Host: review-forward-canary.invalid' --header 'X-Request-Id: review-inbound-a922' --header 'User-Agent: review-agent-canary-a922' --header 'Idempotency-Key: review-key-a922' --data-binary '{"url":"https://example.com/Review?q=review-query-a922#fragment"}' http://127.0.0.1:18101/api/links
+Exit: 0
+HTTP/1.1 201
+X-Request-Id: df420ef7-edea-4e72-9e09-68dfbb2235b6
+Location: /api/links/ol6zJ8PI
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:47:07 GMT
+
+{"code":"ol6zJ8PI","shortUrl":"http://localhost:8080/ol6zJ8PI","url":"https://example.com/Review?q=review-query-a922#fragment","state":"active","createdAt":"2026-10-03T07:45:19.576Z"}
+
+=== retire ===
+Command: scripts/http --silent --show-error --include --max-time 10 --request DELETE http://127.0.0.1:18101/api/links/ol6zJ8PI
+Exit: 0
+HTTP/1.1 204
+X-Request-Id: 984ee4b2-550c-4b6f-8c65-469c21f1638d
+Date: Sat, 03 Oct 2026 07:47:07 GMT
+
+=== retired-redirect ===
+Command: scripts/http --silent --show-error --include --max-time 10 --header 'Accept: text/html' http://127.0.0.1:18101/ol6zJ8PI
+Exit: 0
+HTTP/1.1 410
+X-Request-Id: 2daaff8e-42b2-4890-98af-34f0955c048a
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:47:07 GMT
+
+{"instance":"urn:uuid:2daaff8e-42b2-4890-98af-34f0955c048a","status":410,"title":"Gone"}

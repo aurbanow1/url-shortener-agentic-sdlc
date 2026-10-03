@@ -1,0 +1,10 @@
+{
+  "candidate": "a922f49144049db0228c316c474ac6e890742fa5",
+  "trackedSecretPatternHits": [],
+  "note": "Reviewed all 48 changed files as well; no credential/private key/token identified. Blank embedded H2 password is the shipped local default. Release scanner remains required.",
+  "auditReferences": [
+    "a922f49144049db0228c316c474ac6e890742fa5:src/main/java/dev/urlshort/audit/AuditLog.java:13: * Appends one row to {@code audit_log} per successful mutation. Insert-only by construction: this",
+    "a922f49144049db0228c316c474ac6e890742fa5:src/main/java/dev/urlshort/audit/AuditLog.java:25:\tstatic final String INSERT = \"INSERT INTO audit_log\"",
+    "a922f49144049db0228c316c474ac6e890742fa5:src/main/java/dev/urlshort/audit/package-info.java:5: * <p>Belongs here: the {@code audit_log} table and its insert-only writer. Does not belong here:"
+  ]
+}
