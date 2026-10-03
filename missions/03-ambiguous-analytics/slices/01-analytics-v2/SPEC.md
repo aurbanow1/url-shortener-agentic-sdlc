@@ -31,8 +31,8 @@ answer. Nothing is designed or built before then (mission plan-lock,
 
 ## Decision requested (parked on `human@kernel`)
 
-Answer per question with a letter, for example `Q1 B, Q2 B, Q3 A, Q4 A,
-Q5 A, Q6 A`, or "accept all recommended". Free text overrides any option.
+Answer per question with a letter, or "accept all recommended", which means
+`Q1 B, Q2 B, Q3 B, Q4 A, Q5 A, Q6 A`. Free text overrides any option.
 Every recommendation is the narrowest option that still answers "better
 analytics". An option marked **(+slice)** is a second buildable outcome, and
 the orchestration lead would add a slice for it (mission SPEC, "Re-planning,
