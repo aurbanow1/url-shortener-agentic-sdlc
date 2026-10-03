@@ -157,11 +157,15 @@ wait_healthy() {
 }
 
 load_loop() { # base code out-file stop-file: one redirect per connection, about 8 per second (inside the 600/min budget)
-	local status
+	local status rc
 	while [ -f "$4" ]; do
-		# exactly one row per attempt: curl's -w already prints 000 when no response arrives
-		status="$("$HTTP" -s -o /dev/null -w '%{http_code}' -H 'Connection: close' "$1/$2" 2>/dev/null)" || true
-		echo "${status:-000}" >> "$3"
+		# exactly one row per attempt: 000 when no response arrived (curl's -w prints it), cut<status> when a
+		# response started but curl failed (e.g. exit 18, body cut short): an incomplete response is a failure
+		rc=0
+		status="$("$HTTP" -s -o /dev/null -w '%{http_code}' -H 'Connection: close' "$1/$2" 2>/dev/null)" || rc=$?
+		status="${status:-000}"
+		if [ "$rc" != 0 ] && [ "$status" != 000 ]; then status="cut$status"; fi
+		echo "$status" >> "$3"
 		sleep 0.1
 	done
 }
@@ -196,7 +200,7 @@ restart_under_load() { # base code location body label command...
 	rm -f "$WORK/r0.fifo"
 	bad="$(grep -c -v -E '^(000|[23][0-9][0-9])$' "$statuses" || true)" # grep -c exits 1 on a zero count
 	refused="$(grep -c '^000$' "$statuses" || true)"
-	echo "$label: R0 $R0; $(wc -l < "$statuses" | tr -d ' ') load requests; non-2xx/3xx responses: $bad; connection failures through the port proxy (reported, not judged): $refused"
+	echo "$label: R0 $R0; $(wc -l < "$statuses" | tr -d ' ') load requests; responses outside 2xx/3xx or cut short: $bad; connection failures through the port proxy (reported, not judged): $refused"
 	[ "$bad" = "0" ] || fail "$label: $bad responses outside 2xx/3xx: $(grep -v -E '^(000|[23][0-9][0-9])$' "$statuses" | sort | uniq -c | tr '\n' ' ')"
 	check_link "$base" "$code" "$location" "$body"
 }

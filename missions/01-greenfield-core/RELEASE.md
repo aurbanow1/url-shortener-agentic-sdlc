@@ -32,7 +32,7 @@ runtime dependencies. The secret scan found no credential in the repository.
 
 **The one item that needs the human's judgment: AC-28 is NOT MET on this host.**
 During `docker compose restart`, a request still sending its body through the
-published port `127.0.0.1:8080` is cut (empty reply after the 10 s phase, 5 of 5 runs).
+published port `127.0.0.1:8080` is cut (empty reply after the 10 s phase, 6 of 6 runs).
 The service is not at fault on the evidence: the same request completes `201` when
 sent inside the Docker VM through Docker's own published port (2 of 2) and from the
 container's network namespace (2 of 2 observed, 1 retained as evidence), and the jar's drain passes 3 of 3. The cut
@@ -104,7 +104,7 @@ such host, so the hold waits on new infrastructure and one more `release_prep` +
 | Tests from that run | unit 165 (18 classes), functional 155 (22 classes); 0 failures, 0 errors, 0 skipped (JUnit XML under `build/test-results`) |
 | Coverage from that run | merged report `build/reports/jacoco/all`: lines 442/442, branches 162/162, methods 134/134, classes 41/41; `jacocoTestCoverageVerification` passed, no exclusion |
 | Jar | `build/libs/urlshort.jar`, version 0.1.0, 39 613 260 bytes, git blob `1aaf1fc92b909e220fcefebc1c547611685ff891` |
-| Image | `urlshort:local`, id `sha256:a38050b05d9090ec83cba905dda98f81c7573550c53710e89230fbba12ee3c33` (562 MB), built by `docker compose build` from the same tree ([log](release/docker-build-8e9c065.txt)); its jar is built inside the image from the same sources and was not compared byte for byte with the host jar |
+| Image | `urlshort:local`, id `sha256:a38050b05d9090ec83cba905dda98f81c7573550c53710e89230fbba12ee3c33` (562 MB), built by `docker compose build` from the same tree ([log](release/docker-build-8e9c065.txt)); its jar is built inside the image from the same sources and was not compared byte for byte with the host jar. Every container check in §3 except restart run 6 ran on this image. Removing the rollback-rehearsal image (§8) also removed build-cache layers it shared, so the run-6 `docker compose up --build` rebuilt `urlshort:local` as `sha256:396f4178335c…` from unchanged inputs (`git diff --stat 8e9c065 HEAD` over product, build and container files empty); the ids differ because the image was rebuilt, not because anything in it was meant to change. No image is published; whoever ships builds from the source |
 | Toolchain | OpenJDK 21 (Homebrew `openjdk@21`), Gradle 9.7.1, Spring Boot 4.1.1, H2 2.4.240, Flyway 12.4.0, Docker Engine 28.4.0 (Ubuntu 24.04 in a Lima VM) with Compose 5.1.3, curl 8.7.1, Node 24.18.0, OpenRig 0.6.3; host macOS 15.2, Apple M4 Pro, 14 cores, 24 GiB |
 
 ## 3. Installed smoke
@@ -181,6 +181,7 @@ issued), runs `docker compose restart`, then `docker compose down` (no `-v`) and
 | [3](release/smoke-restart-container-f090103-run3.txt) | exit 52 at 10 393 ms | 148 (the file says 250 rows) | 0 | 102 (the file says 204 rows) | `302` to the same target, `GET /api/links/{code}` unchanged, both |
 | [4](release/smoke-restart-container-f090103-run4.txt) | exit 52 at 10 370 ms | 148 (251 rows) | 0 | 103 (206 rows) | same, both |
 | [5](release/smoke-restart-container-f090103-run5.txt) ([log](release/container-restart-log-f090103-run5.jsonl)) | exit 52 at 10 663 ms | 149 | 0 | 105 | same, both |
+| [6](release/smoke-restart-container-f090103-run6.txt) ([log](release/container-restart-log-f090103-run6.jsonl)) | exit 52 at 10 514 ms | 149 | 0 (including cut-short responses) | 103 | same, both |
 
 Counting correction (release review): in runs 3 and 4 the load loop wrote two
 `000` rows for every attempt that got no response (curl's `-w` output, then the
@@ -189,9 +190,20 @@ figures above subtract one row per failed attempt (rows minus half the `000`
 rows). The loop now writes exactly one row per attempt, and run 5, with the fixed
 script, gives figures of the same size (149 attempts, 105 failures).
 
-**AC-24 passes** (3 of 3 runs that reached it). **AC-28: stop timeout 20 s > 10 s
+Second correction (re-review RR-03): the run-5 loop discarded curl's exit code, so
+a response cut short after its status line (curl exit 18) would have counted as a
+good `200`. The loop now records such an attempt as `cut<status>`, which counts as a
+judged failure (an incomplete response is not a complete 2xx/3xx); an attempt with
+no response stays `000`, reported and not judged. Run 6 uses this loop: 149
+attempts, 0 responses outside 2xx/3xx and 0 cut short, 103 connection failures,
+R0 cut again. Runs 1–5 are kept as recorded. Run 6 ran on image
+`396f4178335c`, rebuilt from the same inputs (see §2). `docs/qa/GAPS.md` describes
+runs 1–5 (QA2 judged item 13 on that record) and is not edited again for run 6,
+which changes no conclusion.
+
+**AC-24 passes** (4 of 4 runs that reached it). **AC-28: stop timeout 20 s > 10 s
 passes; 0 responses outside 2xx/3xx passes; connection failures reported; R0
-fails 5 of 5. AC-28 is NOT MET on this host.**
+fails 6 of 6. AC-28 is NOT MET on this host.**
 
 The container log of run 4 ([log](release/container-restart-log-f090103.jsonl))
 shows R0 dispatched: `Commencing graceful shutdown` at 15:02:29.748Z, then
@@ -261,7 +273,7 @@ create p95 2.7 ms) but they do not count.
 
 | Path for R0 during `docker compose restart` | Result | Evidence |
 |---|---|---|
-| macOS host → `127.0.0.1:8080` (Lima forwarder → VM → Docker port publish → container) | cut, 5 of 5 | §3.3 |
+| macOS host → `127.0.0.1:8080` (Lima forwarder → VM → Docker port publish → container) | cut, 6 of 6 | §3.3 |
 | inside the VM → VM's `127.0.0.1:8080` (Docker port publish → container), `docker run --network host` | `201` 3.6 s and 4.0 s into the drain, then `Graceful shutdown complete`, 2 of 2 | [run 1](release/r0-vm-published-port-f090103-run1.txt), [run 2](release/r0-vm-published-port-f090103-run2.txt), [log](release/container-vm-path-log-f090103.jsonl) |
 | inside the container's network namespace, `docker run --network container:…` | `201` 3.7 s into the drain, then `Graceful shutdown complete`. Observed 2 of 2, but only the second run is evidence: the first run's output file was overwritten by the second and its container log was replaced by the next `down`/`up`, so the first rests on the author's observation alone | [output](release/r0-in-namespace-control-f090103.txt), [log](release/container-control-log-f090103.jsonl) |
 
