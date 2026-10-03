@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RateLimitProperties.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">urlshort</a> &gt; <a href="index.source.html" class="el_package">dev.urlshort.web</a> &gt; <span class="el_source">RateLimitProperties.java</span></div><h1>RateLimitProperties.java</h1><pre class="source lang-java linenums">package dev.urlshort.web;
+
+import java.util.Set;
+
+import jakarta.validation.constraints.Positive;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+import org.springframework.validation.annotation.Validated;
+
+/**
+ * The Operator's rate-limit settings (business rule 11, NFR-R2); environment variables
+ * {@code URLSHORT_RATELIMIT_CREATEPERMINUTE}, {@code URLSHORT_RATELIMIT_REDIRECTPERMINUTE} and
+ * {@code URLSHORT_RATELIMIT_TRUSTEDPROXIES} (comma-separated). Decision record: ADR-0014, ADR-0015.
+ *
+ * @param createPerMinute the budget for every request under {@code /api}, per client
+ * @param redirectPerMinute the budget for every other limited request, per client
+ * @param trustedProxies peer addresses, written exactly as the server reports them, whose
+ *        {@code X-Forwarded-For} is believed; empty by default
+ */
+@ConfigurationProperties(&quot;urlshort.rate-limit&quot;)
+@Validated
+<span class="fc" id="L22">record RateLimitProperties(@DefaultValue(&quot;60&quot;) @Positive int createPerMinute,</span>
+		@DefaultValue(&quot;600&quot;) @Positive int redirectPerMinute, @DefaultValue({}) Set&lt;String&gt; trustedProxies) {
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

@@ -1,0 +1,8 @@
+.github/workflows/control.yml:14:24: "github.event.pull_request.title" is potentially untrusted. avoid using it directly in inline scripts. instead, pass it through an environment variable. see https://docs.github.com/en/actions/reference/security/secure-use#good-practices-for-mitigating-script-injection-attacks for more details [expression]
+   |
+14 |       - run: echo "${{ github.event.pull_request.title }}"
+   |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.github/workflows/control.yml:15:9: shellcheck reported issue in this script: SC2086:info:1:6: Double quote to prevent globbing and word splitting [shellcheck]
+   |
+15 |       - run: echo $UNQUOTED_VARIABLE | tee out.txt
+   |         ^~~~
