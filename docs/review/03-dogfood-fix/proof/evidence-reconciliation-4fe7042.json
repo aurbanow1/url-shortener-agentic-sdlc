@@ -1,0 +1,134 @@
+{
+  "candidate": "4fe70427bd0d182e886d6a19b217daa1d9e39f5d",
+  "baseline": "15db6c5",
+  "inheritedDiff": "gradlew.bat line endings only",
+  "freshTests": {
+    "unit": {
+      "tests": 204,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "functional": {
+      "tests": 207,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "coverage": {
+    "unit": {
+      "LINE_MISSED": 67,
+      "LINE_COVERED": 441,
+      "BRANCH_MISSED": 6,
+      "BRANCH_COVERED": 188
+    },
+    "functional": {
+      "LINE_MISSED": 37,
+      "LINE_COVERED": 471,
+      "BRANCH_MISSED": 32,
+      "BRANCH_COVERED": 162
+    },
+    "all": {
+      "LINE_MISSED": 0,
+      "LINE_COVERED": 508,
+      "BRANCH_MISSED": 0,
+      "BRANCH_COVERED": 194
+    }
+  },
+  "qaReportHashes": 354,
+  "retainedRawFilesVerified": 532,
+  "fullWireComparisons": [
+    {
+      "case": "bad-create",
+      "status": 400,
+      "normalizedBody": {
+        "status": 400,
+        "title": "Bad Request",
+        "errors": [
+          {
+            "field": "url",
+            "rule": "scheme",
+            "message": "url must start with http:// or https://"
+          }
+        ]
+      }
+    },
+    {
+      "case": "mismatch",
+      "status": 422,
+      "normalizedBody": {
+        "status": 422,
+        "title": "Unprocessable Content",
+        "errors": [
+          {
+            "field": "Idempotency-Key",
+            "rule": "mismatch",
+            "message": "Idempotency-Key was already used with a different url"
+          }
+        ]
+      }
+    },
+    {
+      "case": "unknown",
+      "status": 404,
+      "normalizedBody": {
+        "status": 404,
+        "title": "Not Found"
+      }
+    },
+    {
+      "case": "gone",
+      "status": 410,
+      "normalizedBody": {
+        "status": 410,
+        "title": "Gone"
+      }
+    },
+    {
+      "case": "burst-89",
+      "status": 429,
+      "normalizedBody": {
+        "status": 429,
+        "title": "Too Many Requests"
+      }
+    },
+    {
+      "case": "bad-audit",
+      "status": 400,
+      "normalizedBody": {
+        "status": 400,
+        "title": "Bad Request",
+        "errors": [
+          {
+            "field": "limit",
+            "rule": "range",
+            "message": "must be from 1 to 100"
+          }
+        ]
+      }
+    }
+  ],
+  "oneProblemSchemaReferences": 22,
+  "requestLogPairs": {
+    "base": 104,
+    "candidate": 104
+  },
+  "historicalRedTests": {
+    "schema": [
+      "AC2_problemBodiesConformToTheDocumentedSchema()",
+      "AC1_problemSchemaDocumentsErrorsAndNoProperties()"
+    ],
+    "metrics": [
+      "AC6_diskGaugesCarryNoInstallationPath()",
+      "AC6_theScrapeCarriesNoInstallationPath()"
+    ]
+  },
+  "originalTests": {
+    "unit": 203,
+    "functional": 202
+  },
+  "sourceMethodsInTraceability": 233,
+  "apiDiffOnlyProblemSchemas": true,
+  "metrics": "both gauges positive, no path; old selector 200 to 404"
+}
