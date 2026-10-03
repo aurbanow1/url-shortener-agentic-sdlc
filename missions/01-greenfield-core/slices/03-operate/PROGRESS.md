@@ -37,3 +37,15 @@
 Pending records are retained by lead obligation `qitem-20261003120849-f4cbfa97` (`docs/qa/03-operate/proof-sequencing.md`). Bench input rate remains below 100/20; no numeric latency-target judgment.
 
 The scope audit reports no 03-operate findings. Receipt 00000012 reaffirms item 6 after adding the required C1 header to the instrument disclosure; observed effects are unchanged.
+
+
+## Review follow-up — 43cccf5
+
+Current candidate a7c533f returned to implement on HIGH CR-01/SEC-01 and CR-02; CR-03 MEDIUM accompanies the limiter repair. Historical QA captures/gate remain evidence for their observed axes.
+
+- [x] Prior QA shutdown claim corrected: the shipped script reported PASS but did not establish a complete R0 body.
+- [x] Item 12 acceptance withdrawn: receipt `proof/judgments/00000013.md`; NOT-CLEAR drop `proof/qa-review-followup-a7c533f.md`.
+- [ ] Repaired candidate QA, only after an assigned handoff packet.
+- [ ] Review memory item 11 and release item 13 still unaccepted.
+
+Only items 1–10 retain their narrower accepted artifact/test/effect claims; candidate remains not-ready.

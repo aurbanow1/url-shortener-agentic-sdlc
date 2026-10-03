@@ -4,7 +4,7 @@
 >
 > **HOW (the drop verb, not hand-placement):** put media files under `proof/`, then ATTACH them with `rig proof add OPR.99.0.2.3 --artifact-type qa --verdict PASS --candidate-sha <tip> --money-evidence "<one line>" --evidences "1" --media "screenshot-01.png"` — the drop writes the C1 header the Living Notes DELIVERED pairing joins on. Hand-placing files without a drop leaves the deliverable unpaired and `unverified`.
 
-Closure: pending integration/release. Independent QA verdict on a7c533f: PASS for the assigned in-suite boundary (2026-10-03 UTC).
+Current status: review FAIL at 43cccf5; returned to implement. Historical QA PASS on a7c533f is superseded; smoke proof item 12 withdrawn in receipt 00000013 (2026-10-03 UTC).
 
 ## What this proves
 
@@ -181,10 +181,9 @@ Plain-jar smoke passed; public URL, data location, budgets and trusted-proxy
 settings were observably overridden through the environment (AC-26 support).
 The actual file database appeared at the overridden location.
 
-`--drain` passed: held R0 201 within **1 s**, new connection refused, 82 load
-attempts comprising **62 complete / 20 refused / 0 boundary losses / 0 failures**;
-no dispatched-but-undelivered request. This supports AC-25, whose final release
-record remains pending. The functional configuration assertion pins 10 s.
+The shipped `--drain` script reported PASS: held R0 status 201 within **1 s**, new connection refused, 82 load
+attempts reported as **62 ok / 20 refused / 0 boundary losses / 0 failures**;
+its own reconciliation reported no dispatched-but-undelivered request. CR-02 later proved that this predicate can credit a header-only response: **complete body delivery was not independently verified and is not established by this result**. The final AC-25 release record remains pending. The functional configuration assertion pins 10 s.
 
 The 60-second `--bench` mode executed and reports all requested fields (item
 12): **4,948 redirects / 82.5 req/s**, p95 2.3 ms, p99 4.1 ms; **990 creates /
@@ -230,3 +229,20 @@ review, item 13 after release_prep. The lead's commit `1248441` preserves the
 QA Agent 2 mission NOTES entry unchanged.
 
 The scope audit reports no 03-operate findings. Receipt 00000012 reaffirms item 6 after adding the required C1 header to the instrument disclosure; observed effects are unchanged.
+
+
+### Review follow-up — 43cccf5
+
+Independent review returned a7c533f to implement on CR-01/SEC-01 (120 admissions
+in 1 ms from ordinary request-time reordering) and CR-02 (header-only 201
+accepted by the R0 instrument), with CR-03 cleanup rollback MEDIUM. The
+historical sequential/test/coverage observations stand; they do not establish
+concurrent budget preservation or complete shutdown responses. QA withdrew
+item 12 in `proof/judgments/00000013.md`; item 11 remains unaccepted and item
+13 is release-owned. Current candidate is not merge-ready.
+
+`docs/qa/03-operate/review-followup-a7c533f.md` and the NOT-CLEAR proof drop
+`proof/qa-review-followup-a7c533f.md` explain the correction. QA read the two
+reports and probe outputs; it did not rerun the probes or check another
+candidate without a packet. Re-check must cover reordered timestamps, rollback
+cleanup, complete-body/truncation predicates and the total shutdown deadline.
