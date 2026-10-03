@@ -26,7 +26,10 @@ tier_reason: new security-relevant surface, the rate limiter with its trusted-pr
 # Wave w2 with 02-analytics: territories disjoint at any moment; the grants below name the reason.
 # SERIALIZATION POINT (decomposition review DC-01): docs/api/openapi.json has one holder at a time.
 # In w2 the grant is ordered: 02-analytics holds it until 02's merge into main; 03 holds it from
-# then on. 03's implement step therefore hands off a candidate that descends from 02's merge
+# then on. 02 merges at its own integrate step on its own three verdicts, without waiting for 03
+# (the schedule is acyclic: merge 02, hand off 03, prove 03, merge 03); wave_integration launches
+# w3 only when both slices are accepted (decomposition review DC-02).
+# 03's implement step therefore hands off a candidate that descends from 02's merge
 # commit, with the document regenerated on that base (so it carries 02's stats endpoint and 03's
 # 429 response on every operation). If 03's build is otherwise done before 02 has merged, the
 # builder exits waiting --blocked-on 02's frontier packet with the continuation "rebase onto
