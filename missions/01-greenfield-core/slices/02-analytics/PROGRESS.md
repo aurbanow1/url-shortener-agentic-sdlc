@@ -9,7 +9,9 @@
 
 - [x] Implementation complete — candidate `862c52e` on `slice/02-analytics` (builder, 2026-10-03)
 - [x] Tests passing — `scripts/gw --offline check --rerun-tasks` on `862c52e`: unit 121/121, functional 126/126, merged coverage 100 % line and branch, Javadoc gate green (`proof/builder-check-862c52e.txt`; builder run, QA re-runs independently)
-- [ ] Review approved
+- [x] Review approved — combined code and security re-review PASS on `5b3490c` (`docs/review/02-analytics/01-code-review.md`, `02-security-review.md`, evidence `4074673`; the first round's HIGH, a timing-dependent `DailySaltTest` case, fixed in test setup only)
+- [x] Integrated — merged `--no-ff` into `main` as `091ff46` (orchestration lead, 2026-10-03T11:29Z); `scripts/gw --offline check --rerun-tasks` green on `main` after the merge (`docs/evidence/01-greenfield-core/integrate-02-analytics-check-091ff46.txt`); tag `slice/02-analytics/accepted` on `5b3490c`; worktree removed
+- [ ] Delivery stamp — after the mission's ship sign-off, once proof item 12 is re-affirmed (its 11:17Z judgment cites review files the re-review appended; asked of `qa-agent` as `qitem-20261003112820-9f4000bb`) and item 13 is judged after `release_prep` (`qitem-20261003103240-18e29a17`)
 
 ## Builder-side proof-contract items
 
