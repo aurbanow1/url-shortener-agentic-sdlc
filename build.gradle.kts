@@ -144,8 +144,17 @@ tasks.jacocoTestCoverageVerification {
 	}
 }
 
+// Javadoc is part of the gate (docs/guidance/java-spring.md §8): a missing or
+// malformed contract comment fails check like a failing test.
+tasks.javadoc {
+	(options as StandardJavadocDocletOptions).apply {
+		addBooleanOption("Xdoclint:all", true)
+		addBooleanOption("Werror", true)
+	}
+}
+
 tasks.check {
-	dependsOn(functionalTest, tasks.jacocoTestReport, jacocoFunctionalTestReport, jacocoAllReport, tasks.jacocoTestCoverageVerification)
+	dependsOn(functionalTest, tasks.jacocoTestReport, jacocoFunctionalTestReport, jacocoAllReport, tasks.jacocoTestCoverageVerification, tasks.javadoc)
 }
 
 tasks.bootJar {
