@@ -1,0 +1,14 @@
+Candidate SPEC: 411a50cc35fb3b889346888bfa7a5e8f529f5470
+Shipped schema: src/main/resources/db/migration/V1__create_link_and_audit_log.sql
+Command (exit 0):
+/opt/homebrew/opt/openjdk@21/bin/java --class-path .gradle-home/caches/modules-2/files-2.1/com.h2database/h2/2.4.240/686180ad33981ad943fdc0ab381e619b2c2fdfe5/h2-2.4.240.jar docs/review/01-audit-read/proof/AuditCommitOrderProbe.java
+
+H2 2.4.240 (2025-09-22)
+Append order A then B; commit order B then A
+After only B commits: 2:B
+After A commits: 2:B, 1:A
+Newest commit first would require A then B. Identity descending gives B then A.
+Both occurred_at values equal; shipped columns do not record commit order.
+
+This demonstrates a requirements conflict, not a defect in an unbuilt read endpoint.
+The probe uses only an in-memory database; no product/test files or owner data change.
