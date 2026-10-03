@@ -45,7 +45,7 @@ This section is builder evidence, not a verdict.
 | `check --rerun-tasks` on `a47bee7` | **failed**: `UrlshortApplicationTests.mainBootsWithoutAWebServer` had no `ServerProperties` bean, so `35590f0` | `proof/builder-check-a47bee7.txt` |
 | `scripts/gw --offline check --rerun-tasks` on `35590f0`, after the last code edit | BUILD SUCCESSFUL; **unit 200/200, functional 200/200**, 0 skipped; merged JaCoCo **492/492 lines, 190/190 branches**; `javadoc` green | `proof/builder-check-35590f0.txt` |
 | AC-17: `f6dd29e`'s `src/functionalTest` checked out unchanged onto `35590f0` in a scratch worktree (the five new journeys removed; `git diff f6dd29e -- src/functionalTest` empty), `functionalTest` | 155 run, **exactly 2 failed**: `OpenApiDocumentTest.AC28_liveDocumentDescribesTheSlice` (line 71, exact path list) and `AC20_everyOperationDocumentsTheTooManyRequestsProblem` (line 116, six operations). Both are the granted enumeration assertions; every behavioural test passed unchanged | `proof/ac17-shipped-suite-on-35590f0.txt` |
-| `git diff f6dd29e a47bee7 -- docs/api/openapi.json` | additions only: every earlier operation is byte-identical (AC-19's "unchanged") | the commit |
+| `git diff --stat f6dd29e slice/01-audit-read -- docs/api/openapi.json` | 192 insertions, 0 deletions: every earlier operation is byte-identical (AC-19's "unchanged") | the command's output |
 
 ### Verified by effect (real jars, real Tomcat, file H2)
 
@@ -96,5 +96,5 @@ This section is builder evidence, not a verdict.
   - AC-20's induction is a held JDBC transaction on a second connection;
   - AC-17 is the shipped-suite run above.
 
-  All were watched failing first (the red runs).
+  The journeys were watched failing by behaviour (47 of 52 in `builder-red-functional.txt`). The unit tests were red only as compile failures (`builder-red-tests.txt`).
 - **Gate:** `--offline check --rerun-tasks` ran after the last code edit, on `35590f0`.
