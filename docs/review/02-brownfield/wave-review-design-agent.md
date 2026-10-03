@@ -75,6 +75,12 @@ the independent one.
 | W2P-07 | INFO | `git log 8e9c065..ed2b940 -- scripts/smoke.sh` | `scripts/smoke.sh`'s `--jar` mode, which `cd.yml` runs on every `main` push, came from mission 01's release commits on `main`, not from a slice, and was reviewed in mission 01's release review. Mission 02's CD therefore depends on a script no mission 02 slice owns | Record only. The next slice that changes `smoke.sh` runs the CD job's command locally before handoff |
 | W2P-08 | INFO | `audit/AuditController` (`TomcatServerProperties`, `ponytail:` comment); ADR-0019 *Consequences* | The guard mirrors Boot 4.1.1's three valve triggers. A Boot upgrade that adds a trigger would reopen the read, and no test would notice, because the real-Tomcat journeys cover the known three | Already a named ceiling in ADR-0019 and the code. Add to the Boot-upgrade checklist when one exists: re-read `TomcatWebServerFactoryCustomizer.customizeRemoteIpValve` |
 
+**Added after the draft:** a finding from the review agent's vantage against my wording.
+
+| Id | Severity | Evidence | Finding | Disposition / repair |
+|---|---|---|---|---|
+| W2P-09 | MEDIUM | `ClickRecorder.close` (`shutdownNow()` after a failed `awaitTermination`); `ClickPurge.close` (waits only); ADR-0011 lines 57–61 | **(mine, found by `review-agent`, 23:30Z)** My register row *Background work* (`5f90090`), `DESIGN.md`'s *Asynchronous work* row, ADR-0011's `02-click-retention` amendment and ADR-0018's shutdown consequence all said neither background job interrupts a JDBC call. That is true only for the purge. The writer interrupts its thread after the 5 s drain, and reports a running insert as `shutdown deadline, outcome unknown` | **Fixed:** register and `DESIGN.md` at `2d3de57`; both ADRs at `bfc642d`, with the lead's OK, as wording only. No design or behaviour change |
+
 **Carried drift on `main`, not new:**
 - `ClickRecorder` hashes the raw peer (W2D-03), which `01-analytics-v2` closes;
 - `PingController.Instant.now()`, on the lead's backlog as `qitem-20261003213157-c0a336f9`.
