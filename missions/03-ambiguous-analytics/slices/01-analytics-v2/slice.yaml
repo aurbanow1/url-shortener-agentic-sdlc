@@ -71,6 +71,15 @@ territory:
   # rebase onto main. CUSTODY: mission 02's 04-audit-columns also holds src/functionalTest/.../audit/;
   # whichever of the two merges second rebases onto the other's merge.
   - src/functionalTest/java/dev/urlshort/audit/AuditUpgradeJourneyTest.java
+# AC-14 READING (lead, 2026-10-03T23:35Z, qa-agent question qitem-20261003232953-089d2fd3): AC-14 holds
+# this slice to the f6dd29e functional suite. Replayed literally on ec466da, 153/155 pass; the two
+# failures are OpenApiDocumentTest's path list (AC28_liveDocumentDescribesTheSlice, "/api/audit") and
+# operation count (AC20_..., 7). Mission 02's 01-audit-read made both by its own AC-19 under the
+# lead's grant 428e9e1 and merged them (cb148c4); this slice adds no path or operation and does not
+# touch that test, and main's two updated assertions pass on ec466da. So the audit-read grant carries
+# forward: these two enumerations are excused under AC-14 as another merged slice's change, not this
+# slice's. Every other f6dd29e assertion still binds, except the per-day shape updates AC-14 names.
+# Not a GAPS.md row: nothing goes unchecked, the current assertions are stricter than the original.
 # NOT in territory: link/ (the redirect hook from 02-analytics stays as it is; any change there is
 # a design-time grant, as the hook was for 02), the rest of web/, audit/ (except the one granted
 # test assertion above).
