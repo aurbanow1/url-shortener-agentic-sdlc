@@ -109,7 +109,7 @@ url-shortener/
     └── adr/  diagrams/  guidance/  scenarios/  review/  qa/  metrics/  evidence/
 ```
 
-The assignment PDF is **not** committed (it is marked Schwab Internal).
+The assignment PDF is **not** committed (it carries a confidentiality classification).
 
 ## 5. Graph topology — three levels
 
@@ -273,7 +273,7 @@ Spikes (facts that must be verified by running, ~1 h, in a scratch directory):
 | Compaction loses context mid-slice | OpenRig compaction-restore skill + NOTES.md discipline; everything durable lives on disk or in the queue |
 | Metrics trivially all-green | drills in mission 02 + natural QA loops recorded honestly |
 | Evaluator cannot run OpenRig | two-leg runnability (§0), committed evidence, bundle, screenshots |
-| Confidentiality (PDF is Schwab Internal) | private repo only; no artifact publishing; PDF excluded from the repo |
+| Confidentiality (the PDF is classified) | private repo only; no artifact publishing; PDF excluded from the repo |
 | Scope creep / "moon base" | smallest working outcome first (OpenRig's doghouse rule); docs explain, never pad |
 
 ## 10. Decisions (recorded 2026-10-02)
