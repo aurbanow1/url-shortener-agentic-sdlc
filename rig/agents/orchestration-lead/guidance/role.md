@@ -32,14 +32,14 @@ For each wave in the wave map, in order:
 4. When every slice of the wave is accepted, continue with the next wave; after the last wave exit `handoff` to `wave_review`.
 
 ## Integrate (slice step)
-Preconditions, read from the three result notes: qa_check, code_review and security_review all passed **the same candidate SHA**. Then, in the main checkout:
+Preconditions, read from the two result notes: qa_check (with the proof-contract judgments recorded) and code_review (code + security, both files) passed **the same candidate SHA**. Then, in the main checkout:
 ```sh
 git merge --no-ff slice/<slice> -m "feat(<slice>): <outcome in one line>"
 scripts/gw check
 git tag slice/<slice>/accepted
 git worktree remove .worktrees/<slice>
 ```
-If the gate goes red on `main`: `git revert -m 1 HEAD`, write the rollback into the slice `PROOF.md` (what failed, revert SHA), exit `failed`. Otherwise exit `handoff` to `slice_accept` with the merge SHA in the result note.
+If the gate goes red on `main`: `git revert -m 1 HEAD`, write the rollback into the slice `PROOF.md` (what failed, revert SHA), exit `failed`. Otherwise bring the slice `PROGRESS.md` current and exit `done` with the merge SHA in the result note; the slice is closed, delivery stamps follow the mission's ship sign-off.
 
 ## Delegated plan-lock (low-tier slices)
 The gate item routes to you as handler. Read the locked set (`SPEC.md`, `design.md`), apply `plan-review`, then close the gate item the way `rig queue show <gate-qitem> --full` instructs (a handler gate is closed by its handler; put your one-line reasoning in the closure note). The design agent then records the stamp on your behalf. Never delegate a high-tier gate to yourself.

@@ -1,0 +1,171 @@
+# urlshort-slice-delegated-b — identical to urlshort-slice-delegated except that the
+# QA and review roles resolve to the second judge seats (qa2-agent, review2-agent),
+# so two slices of one wave can be checked concurrently. Any other change must be
+# made in all three files.
+workflow:
+  id: urlshort-slice-delegated-b
+  version: 1
+  objective: >-
+    Take one low-tier slice from intent to an accepted, merged candidate with
+    the plan-lock delegated to the orchestration lead; every other step
+    (including the per-chunk reviews) is identical to urlshort-slice.
+  target:
+    rig: urlshort-factory
+  entry:
+    role: requirements
+  coordination_terminal_turn_rule: hot_potato
+  exception_routing:
+    default: orchestrator
+    orchestrator_role: orchestrator
+  roles:
+    requirements:
+      preferred_targets: [requirements-agent@urlshort-factory]
+    design:
+      preferred_targets: [design-agent@urlshort-factory]
+    development:
+      preferred_targets: [development-agent@urlshort-factory]
+    qa:
+      preferred_targets: [qa2-agent@urlshort-factory]
+    requirements_review:
+      preferred_targets: [review2-agent@urlshort-factory]
+    design_review:
+      preferred_targets: [review2-agent@urlshort-factory]
+    code_review:
+      preferred_targets: [review2-agent@urlshort-factory]
+    integrator:
+      preferred_targets: [orchestration-lead@urlshort-factory]
+    orchestrator:
+      preferred_targets: [orchestration-lead@urlshort-factory]
+  steps:
+    - id: requirements
+      actor_role: requirements
+      objective: >-
+        Write the slice SPEC.md: user stories, GIVEN/WHEN/THEN acceptance
+        criteria, business rules, scope, ambiguity log, proof contract. Park a
+        real ambiguity on the human; otherwise record safe defaults.
+      allowed_exits: [handoff, waiting, failed]
+      next_hop:
+        mode: require
+        suggested_roles: [requirements_review]
+    - id: requirements_review
+      actor_role: requirements_review
+      objective: >-
+        Independent review of SPEC.md before anything is designed: every
+        acceptance criterion observable from the public surface, error and
+        privacy paths present, ambiguity-log resolutions sound, proof contract
+        complete, no design leaked in. Findings carry severity; MUST-FIX or
+        HIGH routes back to requirements.
+      allowed_exits: [handoff, waiting, failed]
+      next_hop:
+        mode: require
+        suggested_roles: [design]
+        on:
+          failed: requirements
+    - id: design
+      actor_role: design
+      objective: >-
+        Write design.md (API contract, data model and migration, sequence,
+        logging/audit events, threat model), ADRs for cross-cutting decisions,
+        and an impact analysis for brownfield slices.
+      allowed_exits: [handoff, waiting, failed]
+      next_hop:
+        mode: require
+        suggested_roles: [design_review]
+    - id: design_review
+      actor_role: design_review
+      objective: >-
+        Independent review of design.md (and impact-analysis.md on brownfield
+        slices) against the SPEC: every acceptance criterion reachable, error
+        contract explicit, data model and migration reversible, threat model
+        covering every new entry point, smallest structure that satisfies the
+        SPEC. MUST-FIX or HIGH routes back to design; otherwise the locked set
+        proceeds to plan_lock.
+      allowed_exits: [handoff, waiting, failed]
+      next_hop:
+        on:
+          handoff: plan_lock
+          failed: design
+    - id: plan_lock
+      actor_role: design
+      objective: >-
+        Hold the locked artifact set (SPEC.md + design.md) at the delegated
+        plan-lock gate (orchestration lead). After the decision is recorded,
+        stamp the plan-lock on behalf of the approver and release the builder.
+      allowed_exits: [handoff, waiting, failed]
+      gate:
+        target: orchestrator
+        summary: "Low-tier slice plan ready — orchestration lead approves SPEC.md + design.md (delegated plan-lock)."
+        evidence_ref: SPEC.md
+      next_hop:
+        mode: require
+        suggested_roles: [development]
+    - id: implement
+      actor_role: development
+      objective: >-
+        In the slice worktree, implement the locked set test-first: failing
+        unit and functional tests, then the smallest correct change with
+        ProblemDetail errors, structured logging, audit records and Flyway
+        migrations; ./gradlew check green; conventional commits; builder
+        evidence in PROOF.md. Hand off the exact candidate SHA.
+      allowed_exits: [handoff, waiting, failed]
+      next_hop:
+        mode: require
+        suggested_roles: [qa]
+    - id: qa_check
+      actor_role: qa
+      objective: >-
+        Verify the candidate by effect: run the suites and the public journey,
+        produce unit and functional coverage reports, the acceptance-criteria
+        traceability table and the gap list, record proof drops. On PASS,
+        record the attributed judgment on every proof-contract item against
+        the candidate SHA (rig proof judge) so acceptance needs no extra hop.
+        A failing check is the artifact's verdict and routes back to implement.
+      allowed_exits: [handoff, waiting, failed]
+      next_hop:
+        mode: require
+        suggested_roles: [code_review]
+        on:
+          failed: implement
+    - id: code_review
+      actor_role: code_review
+      objective: >-
+        Independent review of the exact candidate against SPEC and design:
+        every changed file read, findings with severity and evidence, anti-slop
+        and drift checks, review ledger updated — and a review of the QA
+        evidence itself (traceability complete, coverage honest, gaps real).
+        In the same packet, the security & compliance review of the same
+        candidate: shortener-specific checklist (open redirect, scheme
+        allow-list, injection, rate-limit bypass, PII and log hygiene, error
+        leakage, exposure), dependency check, verdict on the threat model —
+        written as 01-code-review.md and 02-security-review.md with one exit.
+        MUST-FIX or HIGH in either routes back to implement.
+      allowed_exits: [handoff, waiting, failed]
+      next_hop:
+        mode: require
+        suggested_roles: [integrator]
+        on:
+          failed: implement
+    - id: integrate
+      actor_role: integrator
+      objective: >-
+        Confirm the QA and review verdicts name the same candidate SHA and the
+        proof-contract judgments are recorded, merge the slice branch into main
+        with --no-ff, re-run the gate on main, tag the accepted candidate, remove
+        the worktree, bring PROGRESS.md current and close the slice; delivery
+        stamps follow the mission's ship sign-off. A red main is reverted and
+        recorded.
+      allowed_exits: [done, waiting, failed]
+      next_hop:
+        mode: forbid
+  invariants:
+    continuation_required: true
+    preserve_lineage: true
+    closure_required: true
+    allowed_exits: [handoff, waiting, done, failed]
+  loop_guards:
+    max_hops: 30
+    spawn_budget: 0
+  closure:
+    success: Slice merged into main with all proof-contract items accepted.
+    degraded: Slice stopped with a named blocker, a parked decision, or a bounded max_hops trip awaiting resume.
+    failed: A step failed as an exception; the finding and owner are preserved and routed through the orchestrator.
