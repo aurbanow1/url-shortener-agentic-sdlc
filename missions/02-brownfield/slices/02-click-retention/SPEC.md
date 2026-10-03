@@ -9,6 +9,16 @@ verified: 2026-10-03 against scaffold (rig scope create)
 created: 2026-10-03
 intent: "An Operator can rely on clicks older than the retention period (90 days by default, an operator setting) being deleted on schedule, so click data stops growing without bound and no visit is kept longer than decided."
 depends_on: []
+approved-spec-by: orchestration-lead@urlshort-factory
+approved-spec-at: 2026-10-03T18:39:02.708Z
+locked-artifacts:
+  - name: SPEC.md
+    path: SPEC.md
+    kind: spec
+  - name: design.md
+    path: design.md
+    kind: spec
+provenance: transport:v1
 ---
 
 # Slice 02 — Click Retention
