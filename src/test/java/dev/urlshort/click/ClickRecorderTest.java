@@ -131,7 +131,7 @@ class ClickRecorderTest {
 		recorder.record(1L, request("GET", "req-salt"));
 
 		assertThat(events.list).singleElement().satisfies(
-				event -> assertThat(keyValues(event)).containsEntry("reason", "rejected").containsEntry("errorType",
+				event -> assertThat(keyValues(event)).containsEntry("reason", "reduction failed").containsEntry("errorType",
 						GeneralSecurityException.class.getName()));
 		verify(store, never()).insert(any());
 	}
