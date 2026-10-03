@@ -455,6 +455,9 @@ erDiagram
         timestamptz created_at
         timestamptz retired_at
         varchar(255) idempotency_key UK
+        timestamptz updated_at "V4, designed: service clock"
+        varchar(64) created_by "V4, designed: anonymous"
+        varchar(64) updated_by "V4, designed: anonymous"
     }
     AUDIT_LOG {
         bigint id PK
@@ -466,6 +469,10 @@ erDiagram
         varchar(64) request_id
         varchar(4096) before_state
         varchar(4096) after_state
+        timestamptz created_at "V4, designed: database clock"
+        timestamptz updated_at "V4, designed: equals created_at"
+        varchar(64) created_by "V4, designed: = actor"
+        varchar(64) updated_by "V4, designed: = actor"
     }
     CLICK {
         bigint id PK
@@ -522,11 +529,22 @@ erDiagram
     for classes), all `NOT NULL` with defaults, so writers keep their v1 column lists;
   - pre-existing clicks are backfilled from `clicked_at`;
   - `clicked_at` stays the click's time on the service clock.
-  - `link` and `audit_log` get the same columns in `04-audit-columns`.
+  - ***04-audit-columns (designed)***, V4 (ADR-0020 amendment):
+    - `link` keeps `created_at` and gains `updated_at` (service clock), stamped by its three writes:
+      the retire's conditional `UPDATE`, and `LinkRepository.stamp` after the create's insert and
+      after a key release. It also gains `created_by`/`updated_by` (`anonymous`).
+    - `audit_log` gains row-write `created_at`/`updated_at` (database clock; `occurred_at` stays the
+      event time) and `created_by`/`updated_by` equal to `actor`.
+    - Backfill: links to `COALESCE(retired_at, created_at)`; audit rows to
+      `LEAST(occurred_at, upgrade)`.
+    - No response reads a new column: the `Link` record does not map them, and the audit read
+      names its columns.
 - Queries and their indexes are listed per slice in its `design.md` §3.
 - Rollback of V1: `DROP TABLE audit_log; DROP TABLE link;`. Rollback of V2:
   `DROP TABLE click; DROP TABLE user_agent_class;` (click history only). Rollback of V3: drop the
   eight audit columns and V3's `flyway_schema_history` row (the statements are in its header).
+  Rollback of V4: drop the seven audit columns of `link` and `audit_log` and V4's history row (its
+  header).
 
 The audit-read slice (mission 02) adds no table.
 
@@ -575,7 +593,7 @@ The audit-read slice (mission 02) adds no table.
 | [0017](adr/0017-container-hardening-and-shutdown.md) | Container hardening; 10 s graceful shutdown inside a 20 s stop grace | 03-operate | accepted at plan-lock 2026-10-03 |
 | [0018](adr/0018-click-retention-daily-purge.md) | Click retention: one `DELETE` per run, at startup (before readiness) and daily at 00:10Z, decided on the application clock; `urlshort.click.retention-days` (90) | 02-click-retention | proposed (design 2026-10-03) |
 | [0019](adr/0019-audit-read-loopback-keyset.md) | Audit read: loopback peer with forwarding headers refused, `server.forward-headers-strategy=none` pinned, keyset pages by write sequence (`id`), base64url cursor, no index | 01-audit-read | proposed (design 2026-10-03) |
-| [0020](adr/0020-audit-columns-expand-migration.md) | Audit columns: database-clock defaults, constant actors (`anonymous`, `system`), backfill from domain time, one expand migration per table set with a written rollback | 02-click-retention; the pattern for 04-audit-columns | proposed (design 2026-10-03) |
+| [0020](adr/0020-audit-columns-expand-migration.md) | Audit columns: database-clock defaults, constant actors (`anonymous`, `system`), backfill from domain time, one expand migration per table set with a written rollback | 02-click-retention; amended by 04-audit-columns (`link` keeps `created_at`, `updated_at` on the service clock stamped by its three writes) | proposed (design 2026-10-03) |
 
 Pending, each lands with the slice that introduces the concern: the
 production profile's API-document exposure is still open (`/v3/api-docs`
@@ -598,3 +616,4 @@ and `/swagger-ui.html` stay on and unlimited).
 | 2026-10-03 | 01-audit-read (design review DR-01, DR-02) | The audit read admits only while Boot's effective forwarded-header strategy is `NONE`, so an override closes it rather than opening it. No `produces` condition: a `200` is `application/json` whatever the `Accept`, after the guard and the validation. ADR-0019 revised |
 | 2026-10-03 | 02-click-retention (design review DR-01 to DR-04) | `urlshort.click.purge-enabled`, an operator hold (WARN at every start naming the setting), set `false` in the functional overlay so no shared test context purges. V3 expand migration: audit columns on `click` and `user_agent_class`, with defaults, a backfill and a written rollback (the human's policy; ADR-0020). AC-4 asserted on the failure-analysis event only |
 | 2026-10-03 | 01-analytics-v2 (design, mission 03) | Each statistics `clicksPerDay` element gains `uniqueVisitors` and `botClicks`, from one `UNION ALL` statement. The click's hashed client is the rate limiter's client, through `RateLimitFilter.CLIENT_ATTRIBUTE` (granted `web/` change). Counters `urlshort.clicks.recorded` and `urlshort.clicks.lost{reason}`. No migration. ADR-0013, ADR-0015 and ADR-0016 amended |
+| 2026-10-03 | 04-audit-columns (design) | V4 expand migration: `link` gains `updated_at` (service clock), stamped by its three writes, and `created_by`/`updated_by`; `audit_log` gains row-write `created_at`/`updated_at` (database clock) and `created_by`/`updated_by` = `actor`. Backfilled, with a written rollback. `LinkRepository.stamp` and an inline stamp in `retire`. No response, record or document change. ADR-0020 amended |

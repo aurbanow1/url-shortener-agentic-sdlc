@@ -1,4 +1,4 @@
-%% urlshort — entity relationship diagram (kept current by the Design Agent; last: 02-click-retention design, V3 audit columns, not yet merged)
+%% urlshort — entity relationship diagram (kept current by the Design Agent; last: 04-audit-columns design, V3 and V4 audit columns, not yet merged)
 %% No foreign key between link and audit_log by design: audit_log identifies its subject by (entity, entity_id = code)
 %% and must outlive any future deletion of the subject (ADR-0008). click references link by id and goes with it (ADR-0013).
 erDiagram
@@ -9,6 +9,9 @@ erDiagram
         timestamptz created_at "application Clock, ms; also the idempotency binding time"
         timestamptz retired_at "NULL = active; set once by DELETE"
         varchar(255) idempotency_key UK "nullable; bound by the 201 that created the row"
+        timestamptz updated_at "V4 (designed): service clock; create, retire, key release"
+        varchar(64) created_by "V4 (designed): anonymous"
+        varchar(64) updated_by "V4 (designed): anonymous"
     }
     AUDIT_LOG {
         bigint id PK "GENERATED ALWAYS AS IDENTITY"
@@ -20,6 +23,10 @@ erDiagram
         varchar(64) request_id "X-Request-Id of the mutating request"
         varchar(4096) before_state "JSON {url,state}; NULL on create"
         varchar(4096) after_state "JSON {url,state}"
+        timestamptz created_at "V4 (designed): row written, database clock"
+        timestamptz updated_at "V4 (designed): equals created_at (append-only)"
+        varchar(64) created_by "V4 (designed): equals actor"
+        varchar(64) updated_by "V4 (designed): equals actor"
     }
     CLICK {
         bigint id PK "GENERATED ALWAYS AS IDENTITY"

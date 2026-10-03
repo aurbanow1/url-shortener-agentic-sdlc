@@ -1,6 +1,6 @@
 # ADR-0020 — Audit columns: database-clock defaults, constant actors, one expand migration per table set
 
-- Status: proposed by `02-click-retention` (2026-10-03); accepted at that slice's plan-lock
+- Status: proposed by `02-click-retention` (2026-10-03); accepted at that slice's plan-lock; amendment proposed by `04-audit-columns` (see *Amendment*)
 - Date: 2026-10-03
 - Slice: `02-click-retention` (mission 02); the pattern for `04-audit-columns` (`link`, `audit_log`)
 
@@ -68,3 +68,36 @@ in the next migration that touches it, as an expand migration with a written rol
 - Verified before implementation:
   `missions/02-brownfield/slices/02-click-retention/design-probe/output-6.txt` (M1–M5), on H2 2.4.240
   through Flyway, with the exact `design-probe/migration/V3__add_click_audit_columns.sql`.
+
+## Amendment — `04-audit-columns` (2026-10-03, proposed; accepted at that slice's plan-lock)
+
+`link` and `audit_log` get the columns in `V4__add_link_audit_columns.sql`, the next number after
+V3. Where they depart from the click pattern, and why (SPEC `04-audit-columns` rules 1 to 6):
+
+- **`link.created_at` is reused.** It is the shipped creation time on the service clock, exposed as
+  `createdAt` and the start of the key window. A second creation column would duplicate it.
+- **`link.updated_at` is on the service clock and stamped by the application,** not left to a
+  database default, so a link row has one clock.
+  - The three link writes stamp it in their own transaction with their own instant: the retire's
+    conditional `UPDATE` sets it with `retired_at`, and `LinkRepository.stamp(id, at)` runs after
+    the create's insert and after a key release.
+  - Its `DEFAULT CURRENT_TIMESTAMP` only fills rows inserted without it (v1-shaped test inserts).
+  - The `Link` record does not map the new columns, so the shipped tests and every response stay
+    unchanged.
+- **`audit_log` follows the click pattern:**
+  - `created_at`/`updated_at` from the database clock, with `occurred_at` keeping the event's
+    service-clock time;
+  - `created_by`/`updated_by` defaulting to `'anonymous'`, which equals the literal actor
+    `AuditLog` writes. A writer with another actor must set them.
+  - Rows stay append-only, so `updated_* = created_*` for life.
+- **Actor columns are `VARCHAR(64)`,** `audit_log.actor`'s width, so `created_by = actor` always
+  fits.
+- **Backfill.**
+  - Links: `updated_at = COALESCE(retired_at, created_at)`, the latest known write; a key release
+    before V4 left no time.
+  - Audit rows: `created_at = updated_at = LEAST(occurred_at, CURRENT_TIMESTAMP)`, so no row claims
+    a write after the upgrade, and `created_by = updated_by = actor`.
+- **Cost:** 6.2 s for 100 000 links and 150 000 audit rows. Rollback: the seven columns and V4's
+  history row, run in the probe.
+- Verified before implementation:
+  `missions/02-brownfield/slices/04-audit-columns/design-probe/output.txt` (K1–K5).
