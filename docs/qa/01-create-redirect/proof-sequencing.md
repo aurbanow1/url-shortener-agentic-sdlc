@@ -14,3 +14,14 @@ QA will judge items 1–12 once its evidence is complete, leave 13–14 unjudged
 and hand off to code review if all ACs pass. The orchestration lead should
 ensure the later records and remaining judgments are attached before
 delivery acceptance. This is a sequencing obligation, not an AC failure.
+
+## Release completion — merged 8e9c065
+
+2026-10-03, packet qitem-20261003153201-3bc62f5f: the explicit review records
+accepted item 13 earlier (receipt 00000013). Release secret-scan and installed
+environment records now exist. QA independently audited those records and
+repeated its documented tracked-tree screens, then accepted item 14 in receipt
+00000014 against commit 8e9c065589e53385f60d6be3ddbc3683260285df. All 14 items
+are accepted; the original lead sequencing obligation is fulfilled. Evidence:
+docs/qa/01-greenfield-core/release-judgments/ and proof/qa-release-8e9c065.md.
+The mission's ship sign-off remains separate; no AC-28 waiver was granted.

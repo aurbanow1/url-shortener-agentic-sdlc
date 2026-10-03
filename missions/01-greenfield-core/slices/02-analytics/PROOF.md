@@ -287,3 +287,32 @@ Item 12 has recorded independent security evidence and a fresh QA probe.
 Item 13 remains explicitly pending. Apps stopped, temporary constraint gone,
 no product/test edits by QA; new proof and judgments use the candidate SHA.
 
+## QA release judgment — merged 8e9c065
+
+QA Agent/Codex, 2026-10-03; packet qitem-20261003153201-3bc62f5f.
+I audited the corrected open-loop release bench, load instrument and complete
+JSON/status/click counts. At 100.0 GET/s with creates, p95 2.2 ms; separate
+GET/HEAD runs p95 1.7/1.8 ms. Zero bad responses; stored total 12,000 equals
+all GETs. The separate-run percentile difference is a proxy, not isolated
+added cost. Final GAPS 367567e states that limit under proof item 13's explicit
+allowance. No isolated numerical-cost guarantee, capacity claim or waiver.
+Receipt proof/judgments/00000025.md accepts that measurement/disclosure
+requirement against 8e9c065589e53385f60d6be3ddbc3683260285df.
+
+Receipts 00000026–00000029 re-affirm items 1, 4, 5 and 10 after shared-document
+changes: full analytics table unchanged (138 methods, all 22 ACs/nine rules),
+all earlier gap rows retained, ADR contents/index/chronology intact. Independent
+earlier gate and merged release check records read; no new test run claimed.
+All 13 items derive accepted/ready. Evidence and pinned audit:
+docs/qa/01-greenfield-core/release-judgments/; additive QA drop
+proof/qa-release-8e9c065.md names items 1, 4, 5, 10 and 13.
+
+### Self-check
+
+Read exact contract and prior judgments; checked complete raw log and stats,
+corrected/discarded-run separation, due-time instrument and zero bad responses;
+compared the entire analytics table, old gap rows, unchanged ADRs and index
+chronology; checked built/merged input equality and current evidence hashes.
+Final GAPS was committed before judging. No product/test/build/release change
+or extra app/load/container run; separate dogfood apps stopped. No AC-28 waiver
+or delivery stamp; the human's mission ship sign-off remains outstanding.

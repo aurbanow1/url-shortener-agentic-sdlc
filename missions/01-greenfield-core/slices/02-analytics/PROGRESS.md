@@ -11,7 +11,7 @@
 - [x] Tests passing — `scripts/gw --offline check --rerun-tasks` on `862c52e`: unit 121/121, functional 126/126, merged coverage 100 % line and branch, Javadoc gate green (`proof/builder-check-862c52e.txt`; builder run, QA re-runs independently)
 - [x] Review approved — combined code and security re-review PASS on `5b3490c` (`docs/review/02-analytics/01-code-review.md`, `02-security-review.md`, evidence `4074673`; the first round's HIGH, a timing-dependent `DailySaltTest` case, fixed in test setup only)
 - [x] Integrated — merged `--no-ff` into `main` as `091ff46` (orchestration lead, 2026-10-03T11:29Z); `scripts/gw --offline check --rerun-tasks` green on `main` after the merge (`docs/evidence/01-greenfield-core/integrate-02-analytics-check-091ff46.txt`); tag `slice/02-analytics/accepted` on `5b3490c`; worktree removed
-- [ ] Delivery stamp — after the mission's ship sign-off, once item 13 is judged after `release_prep` (`qitem-20261003103240-18e29a17`). Item 12 re-affirmed by `qa-agent` at 11:31Z (`qitem-20261003112820-9f4000bb`), so items 1–12 are accepted on `5b3490c`
+- [ ] Delivery stamp — remains the mission's ship sign-off; item 13 accepted after release measurement/disclosure, with four shared-document judgments re-affirmed against merged `8e9c065` (receipts 00000025–00000029). This supplies no ship approval or AC-28 waiver
 
 ## Builder-side proof-contract items
 
@@ -22,7 +22,7 @@
 - [x] `docs/diagrams/erd.mmd` shows `click` and its relation to `link` (on `main`, by the design step)
 - [x] QA: coverage reports, traceability, GAPS row (NFR-L3), live-vs-committed API document diff, independent captures — independent 121/126, 359/359 lines, 118/118 branches on 862c52e; PROOF.md §QA
 - [x] Design/security review record on salt handling (rule 4), security evidence a3092bd; fresh QA actual-class probe on 5b3490c
-- [ ] Release bench for NFR-L3
+- [x] Release bench for NFR-L3 — corrected open-loop measurements and 12,000 stored GET clicks audited; isolated added-cost p95 remains unestablished and is explicitly disclosed in final GAPS `367567e`, as proof item 13 allows
 
 ## QA acceptance
 
@@ -30,10 +30,11 @@
 - [x] Live HTTP, stored clicks, correlated JSON logs and unchanged audit/link snapshots checked independently
 - [x] Apps stopped, worktree clean at the exact candidate, isolated database constraint removed
 - [x] Proof item 12: explicit design/security salt records plus fresh actual-class expiry/close probe
-- [ ] Proof item 13: release-level latency measurement; pending gap allowed by the locked SPEC
+- [x] Proof item 13: release-level latency measurement and disclosed isolation limit; accepted by receipt `proof/judgments/00000025.md` on merged `8e9c065`, without a numerical-cost guarantee or waiver
 
-Later records tracked by lead continuation qitem-20261003103240-18e29a17;
-see docs/qa/02-analytics/proof-sequencing.md. Item 13 remains pending.
+Lead continuation qitem-20261003103240-18e29a17's assigned release judgment is complete;
+see docs/qa/02-analytics/proof-sequencing.md. Receipts 00000026–00000029 re-affirm
+items 1, 4, 5 and 10 after shared-document changes; all 13 items are accepted.
 
 ## Re-check after CR-01
 

@@ -214,3 +214,27 @@ items depend on future records and are left unjudged. Lead follow-up:
   Candidate worktree is clean at the exact candidate SHA; product/test
   sources untouched. Temporary baseline checkout removed; builder database
   preserved. Complete proof items 13–14 remain for their owning later steps.
+
+## QA release judgment — merged 8e9c065
+
+QA Agent/Codex, 2026-10-03; packet qitem-20261003153201-3bc62f5f.
+Item 13's independent review evidence was accepted previously. The explicit
+NFR-S4 review records and release secret-scan/environment records now exist.
+I read their observed effects, independently repeated documented committed-tree
+signature and literal-assignment screens, and checked the built/merged product
+input equality. No credential identified within those methods; installed
+shortUrl confirms URLSHORT_PUBLIC_BASE_URL. No universal, full-history,
+untracked-file or image scan claim. Receipt proof/judgments/00000014.md accepts
+item 14 against 8e9c065589e53385f60d6be3ddbc3683260285df; all 14 items derive
+accepted/ready. Evidence and hashes: docs/qa/01-greenfield-core/release-judgments/;
+additive QA drop proof/qa-release-8e9c065.md covers item 14.
+
+### Self-check
+
+Read exact contract, explicit independent review rows and raw installed smoke;
+ran and inspected committed-tree screens, including variable-read matches;
+compared merged/built product inputs and current evidence hashes; attributed
+the receipt to the merged subject. No fresh build/app/benchmark or product edit
+in this judgment task. Separate packaged dogfood is recorded at
+docs/qa/01-greenfield-core/dogfood.md and all its apps were stopped.
+Delivery stamp/ship gate and failed 03-operate AC-28 remain separate.
