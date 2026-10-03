@@ -32,7 +32,7 @@ runtime dependencies. The secret scan found no credential in the repository.
 
 **The one item that needs the human's judgment: AC-28 is NOT MET on this host.**
 During `docker compose restart`, a request still sending its body through the
-published port `127.0.0.1:8080` is cut (empty reply after the 10 s phase, 4 of 4 runs).
+published port `127.0.0.1:8080` is cut (empty reply after the 10 s phase, 5 of 5 runs).
 The service is not at fault on the evidence: the same request completes `201` when
 sent inside the Docker VM through Docker's own published port (2 of 2) and from the
 container's network namespace (2 of 2), and the jar's drain passes 3 of 3. The cut
@@ -168,16 +168,24 @@ holds R0 (a create whose chunked body is completed 0.5 s after the restart is
 issued), runs `docker compose restart`, then `docker compose down` (no `-v`) and
 `up`.
 
-| Run | R0 | Load responses outside 2xx/3xx | Connection failures through the port proxy (reported) | Link after restart and after down/up |
-|---|---|---|---|---|
-| [1](release/smoke-restart-container-f090103.txt) | curl exit 52 (empty reply) 10 485 ms after the stop | not reached (script stopped at R0, before this step's change) | — | — |
-| [2](release/smoke-restart-container-f090103-run2.txt) | exit 52 at 10 489 ms | not reached | — | — |
-| [3](release/smoke-restart-container-f090103-run3.txt) | exit 52 at 10 393 ms | 0 of 250 | 204 | `302` to the same target, `GET /api/links/{code}` unchanged, both |
-| [4](release/smoke-restart-container-f090103-run4.txt) | exit 52 at 10 370 ms | 0 of 251 | 206 | same, both |
+| Run | R0 | Load attempts | Responses outside 2xx/3xx | Connection failures through the port proxy (reported) | Link after restart and after down/up |
+|---|---|---|---|---|---|
+| [1](release/smoke-restart-container-f090103.txt) | curl exit 52 (empty reply) 10 485 ms after the stop | not reached (script stopped at R0, before this step's change) | — | — | — |
+| [2](release/smoke-restart-container-f090103-run2.txt) | exit 52 at 10 489 ms | not reached | — | — | — |
+| [3](release/smoke-restart-container-f090103-run3.txt) | exit 52 at 10 393 ms | 148 (the file says 250 rows) | 0 | 102 (the file says 204 rows) | `302` to the same target, `GET /api/links/{code}` unchanged, both |
+| [4](release/smoke-restart-container-f090103-run4.txt) | exit 52 at 10 370 ms | 148 (251 rows) | 0 | 103 (206 rows) | same, both |
+| [5](release/smoke-restart-container-f090103-run5.txt) ([log](release/container-restart-log-f090103-run5.jsonl)) | exit 52 at 10 663 ms | 149 | 0 | 105 | same, both |
 
-**AC-24 passes** (2 of 2 runs that reached it). **AC-28: stop timeout 20 s > 10 s
+Counting correction (release review): in runs 3 and 4 the load loop wrote two
+`000` rows for every attempt that got no response (curl's `-w` output, then the
+`echo 000` fallback), so their printed totals are rows, not requests. The corrected
+figures above subtract one row per failed attempt (rows minus half the `000`
+rows). The loop now writes exactly one row per attempt, and run 5, with the fixed
+script, gives figures of the same size (149 attempts, 105 failures).
+
+**AC-24 passes** (3 of 3 runs that reached it). **AC-28: stop timeout 20 s > 10 s
 passes; 0 responses outside 2xx/3xx passes; connection failures reported; R0
-fails 4 of 4. AC-28 is NOT MET on this host.**
+fails 5 of 5. AC-28 is NOT MET on this host.**
 
 The container log of run 4 ([log](release/container-restart-log-f090103.jsonl))
 shows R0 dispatched: `Commencing graceful shutdown` at 15:02:29.748Z, then
@@ -247,7 +255,7 @@ create p95 2.7 ms) but they do not count.
 
 | Path for R0 during `docker compose restart` | Result | Evidence |
 |---|---|---|
-| macOS host → `127.0.0.1:8080` (Lima forwarder → VM → Docker port publish → container) | cut, 4 of 4 | §3.3 |
+| macOS host → `127.0.0.1:8080` (Lima forwarder → VM → Docker port publish → container) | cut, 5 of 5 | §3.3 |
 | inside the VM → VM's `127.0.0.1:8080` (Docker port publish → container), `docker run --network host` | `201` 3.6 s and 4.0 s into the drain, then `Graceful shutdown complete`, 2 of 2 | [run 1](release/r0-vm-published-port-f090103-run1.txt), [run 2](release/r0-vm-published-port-f090103-run2.txt), [log](release/container-vm-path-log-f090103.jsonl) |
 | inside the container's network namespace, `docker run --network container:…` | `201` 3.7 s into the drain, then `Graceful shutdown complete`, 2 of 2 (first run's log was replaced by the next `down`/`up`) | [output](release/r0-in-namespace-control-f090103.txt), [log](release/container-control-log-f090103.jsonl) |
 

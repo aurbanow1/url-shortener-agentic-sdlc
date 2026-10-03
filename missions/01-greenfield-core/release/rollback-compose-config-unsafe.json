@@ -1,0 +1,56 @@
+{
+  "name": "url-shortener",
+  "networks": {
+    "default": {
+      "name": "url-shortener_default",
+      "ipam": {}
+    }
+  },
+  "services": {
+    "urlshort": {
+      "build": {
+        "context": "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/rollback-rehearsal-02",
+        "dockerfile": "Dockerfile"
+      },
+      "command": null,
+      "entrypoint": null,
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "bash",
+          "-c",
+          "exec 3\u003c\u003e/dev/tcp/127.0.0.1/8080"
+        ],
+        "timeout": "3s",
+        "interval": "10s",
+        "retries": 6,
+        "start_period": "20s"
+      },
+      "image": "urlshort:local",
+      "networks": {
+        "default": null
+      },
+      "ports": [
+        {
+          "mode": "ingress",
+          "target": 8080,
+          "published": "8080",
+          "protocol": "tcp"
+        }
+      ],
+      "volumes": [
+        {
+          "type": "volume",
+          "source": "urlshort-data",
+          "target": "/app/data",
+          "volume": {}
+        }
+      ]
+    }
+  },
+  "volumes": {
+    "urlshort-data": {
+      "name": "url-shortener_urlshort-data"
+    }
+  }
+}

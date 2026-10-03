@@ -157,8 +157,11 @@ wait_healthy() {
 }
 
 load_loop() { # base code out-file stop-file: one redirect per connection, about 8 per second (inside the 600/min budget)
+	local status
 	while [ -f "$4" ]; do
-		"$HTTP" -s -o /dev/null -w '%{http_code}\n' -H 'Connection: close' "$1/$2" >> "$3" 2>/dev/null || echo 000 >> "$3"
+		# exactly one row per attempt: curl's -w already prints 000 when no response arrives
+		status="$("$HTTP" -s -o /dev/null -w '%{http_code}' -H 'Connection: close' "$1/$2" 2>/dev/null)" || true
+		echo "${status:-000}" >> "$3"
 		sleep 0.1
 	done
 }
