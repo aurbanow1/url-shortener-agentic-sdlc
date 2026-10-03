@@ -36,12 +36,17 @@ territory:
   - src/functionalTest/java/dev/urlshort/audit/
   # the audit endpoint's entry if the design exposes it as a public API path.
   - docs/api/openapi.json
-  # the index its pagination needs over audit_log (first w1 holder of the next V number).
+  # Plan-lock 2026-10-03T18:30Z: NOT used. The design needs no index (the primary key serves the
+  # keyset walk, probe P5) and takes no Flyway number; 02-click-retention takes V3. Kept listed only
+  # so the territory history stays readable; the builder adds no migration.
   - src/main/resources/db/migration/
-  # management address/port if the design exposes the audit read as an actuator endpoint bound to
-  # loopback instead of a public API path. The design chooses; both options keep the loopback-only
-  # default testable by effect against a non-loopback bind. ORDERED GRANT, first w1 holder.
+  # ORDERED GRANT, first w1 holder: one setting, server.forward-headers-strategy=none (design §1,
+  # ADR-0019). 02-click-retention holds the file after this slice's merge.
   - src/main/resources/application.properties
+  # GRANT at plan-lock (lead, 2026-10-03T18:30Z, design §9 request): one line in the README endpoint
+  # list, GET /api/audit marked loopback only. ORDERED, first holder; 02-click-retention's own README
+  # line rebases onto this slice's merge.
+  - README.md
 execution:
   actor_role: requirements
   depends_on: []
