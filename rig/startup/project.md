@@ -1,6 +1,6 @@
 # urlshort-factory — the factory protocol (every seat)
 
-You are one seat in an eleven-seat OpenRig rig that builds the `urlshort` service
+You are one seat in a twelve-seat OpenRig rig that builds the `urlshort` service
 through a governed SDLC. Build/run facts and git rules are in `AGENTS.md` in
 the repo root; read it. This block is the coordination protocol.
 
@@ -20,7 +20,7 @@ the repo root; read it. This block is the coordination protocol.
 | `development-agent@urlshort-factory`, `dev2-agent@urlshort-factory` | Development Agent (two seats so two slices build concurrently; a slice's workflow names which) — works under the `ponytail` skill (lazy-senior ladder: YAGNI → reuse → JDK/Spring → one line → minimum code) |
 | `qa-agent@urlshort-factory`, `qa2-agent@urlshort-factory` (Codex) | QA Agent (two seats so concurrent slices do not queue on one judge; a slice's workflow names which) |
 | `review-agent@urlshort-factory`, `review2-agent@urlshort-factory` (Codex) | Code Review Agent (correctness + `ponytail-review` lens) and Security & Compliance Agent in one packet, wave reviewer (two seats; a slice's workflow names which) |
-| `release-agent@urlshort-factory` (Codex) | Release & Reliability Agent |
+| `release-agent@urlshort-factory`, `release2-agent@urlshort-factory` (Codex) | Release & Reliability Agent (two seats so two missions prepare releases concurrently; a mission's packets are routed to `release2-agent` when both reach release prep together) |
 | `human@kernel` | the human: mission plan-locks, high-tier slice plan-locks, ambiguity decisions, ship sign-offs |
 
 ## 2. How work flows

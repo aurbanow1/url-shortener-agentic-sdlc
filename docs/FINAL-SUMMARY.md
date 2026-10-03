@@ -18,7 +18,7 @@ Two deliverables in one repository:
   `scripts/gw check` → `java -jar build/libs/urlshort.jar` or
   `docker compose up --build` (`README.md`).
 - **The factory** — the orchestration layer that built it on OpenRig 0.6.3: a
-  rig of eleven seats (five on Claude Opus 5.5, six on OpenAI models: QA, review, requirements and release), three
+  rig of twelve seats (five on Claude Opus 5.5, seven on OpenAI models: QA, review, requirements and release), three
   slice workflows and a mission lifecycle with entry/exit gates, independent
   review after every producing step, human checkpoints, bounded retries,
   rollback, safe-stop and dynamic re-planning (`docs/ARCHITECTURE.md`,

@@ -1,0 +1,11 @@
+id: release2
+label: Release (second seat)
+summary: Second Release & Reliability Agent seat (Codex, GPT-6.1-Sol, xhigh) so two missions' release preparation runs concurrently; mission packets are routed to it with rig workflow route when both missions reach release_prep together.
+members:
+  - id: agent
+    label: Release & Reliability Agent 2
+    agent_ref: "local:agents/release-agent"
+    runtime: codex
+    profile: default
+    cwd: "/Users/andrzej/Documents/projekty/test/openrig/url-shortener"  # absolute: rig expand resolves a relative cwd against --rig-root, not the repo
+edges: []

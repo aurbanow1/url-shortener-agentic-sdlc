@@ -155,6 +155,18 @@ pods:
         cwd: "."
     edges: []
 
+  - id: release2
+    label: Release (second seat)
+    summary: Second Release & Reliability Agent seat (Codex) so two missions prepare releases concurrently; packets routed to it with rig workflow route.
+    members:
+      - id: agent
+        label: Release & Reliability Agent 2
+        agent_ref: "local:agents/release-agent"
+        runtime: codex
+        profile: default
+        cwd: "."
+    edges: []
+
 # Coordination shape, not hierarchy. delegates_to orders launch (lead first);
 # can_observe lets evaluators read the builder's pane/transcript; escalates_to
 # is the exception dial. The lead is the only path to the human.
@@ -169,6 +181,7 @@ edges:
   - { kind: delegates_to, from: orchestration.lead, to: design2.agent }
   - { kind: delegates_to, from: orchestration.lead, to: dev2.agent }
   - { kind: delegates_to, from: orchestration.lead, to: release.agent }
+  - { kind: delegates_to, from: orchestration.lead, to: release2.agent }
   - { kind: collaborates_with, from: requirements.agent, to: design.agent }
   - { kind: collaborates_with, from: requirements.agent, to: design2.agent }
   - { kind: can_observe, from: qa.agent, to: development.agent }
@@ -180,6 +193,7 @@ edges:
   - { kind: can_observe, from: qa2.agent, to: dev2.agent }
   - { kind: can_observe, from: review2.agent, to: dev2.agent }
   - { kind: can_observe, from: release.agent, to: review.agent }
+  - { kind: can_observe, from: release2.agent, to: review.agent }
   - { kind: escalates_to, from: requirements.agent, to: orchestration.lead }
   - { kind: escalates_to, from: design.agent, to: orchestration.lead }
   - { kind: escalates_to, from: design2.agent, to: orchestration.lead }
@@ -188,3 +202,4 @@ edges:
   - { kind: escalates_to, from: qa.agent, to: orchestration.lead }
   - { kind: escalates_to, from: review.agent, to: orchestration.lead }
   - { kind: escalates_to, from: release.agent, to: orchestration.lead }
+  - { kind: escalates_to, from: release2.agent, to: orchestration.lead }

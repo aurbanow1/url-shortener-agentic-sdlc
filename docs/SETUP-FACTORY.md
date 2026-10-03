@@ -47,7 +47,7 @@ OpenRig pins a seat's *model* in its agent spec (`defaults.model`); `rig seat se
 | design-agent, design2-agent | Claude Code | Claude Opus 5.5 (pinned in its agent spec) | xhigh (operator sends `rig send --raw design-agent@urlshort-factory "/effort xhigh"` after each launch) |
 | orchestration-lead | Claude Code | Claude Opus 5.5 (pinned) | high (project default; D12) |
 | requirements-agent | Codex | GPT-6-Astra (pinned in its agent spec, D17) | xhigh (`~/.codex/config.toml`) |
-| release-agent | Codex | GPT-6.1-Sol (pinned in its agent spec, D17) | xhigh (`~/.codex/config.toml`) |
+| release-agent, release2-agent | Codex | GPT-6.1-Sol (pinned in its agent spec, D17) | xhigh (`~/.codex/config.toml`) |
 | development-agent, dev2-agent | Claude Code | Claude Opus 5.5 (pinned in `rig/agents/development-agent/agent.yaml`) | high |
 | qa-agent, qa2-agent | Codex | GPT-6.1-Sol (pinned in `rig/agents/qa-agent/agent.yaml`) | xhigh |
 | review-agent, review2-agent | Codex | GPT-6-Astra | xhigh |
@@ -58,7 +58,7 @@ Verify after launch: `ps -axo args= | grep -- --model` lists the pinned Claude s
 
 ```sh
 rig up rig/rig.yaml --cwd "$PWD" --plan     # preview
-rig up rig/rig.yaml --cwd "$PWD"            # boots 11 seats; each posts "<seat> READY" in the chatroom
+rig up rig/rig.yaml --cwd "$PWD"            # boots 12 seats; each posts "<seat> READY" in the chatroom
 rig ps --nodes --rig urlshort-factory
 rig chatroom history urlshort-factory
 ```
