@@ -1,0 +1,3 @@
+312 captured responses each have a unique server request id and exactly one matching JSON request-completed event/status.
+One failed insert has exactly one additional WARN (click lost), the same request id, safe reason and exception class, no throwable/message/client value. First OpenAPI generation has one additional correlated INFO (initialization duration); no other captured request has an additional event.
+All parsed application log lines in both live runs contain none of the supplied canaries, addresses, hashes or referring origins. Startup events are outside request correlation. One uncaptured direct curl instrument check is retained in the full run log.

@@ -83,3 +83,128 @@ on its own (100 % line and branch merged, Javadoc gate):
 - **Every AC has a named test:** AC01–AC22 in the journey classes, AC-11 inside AC-08/09/10, AC-20 in `StatsJourneyTest`. Watched failing first: the recording and statistics journeys (the two red runs above). **Not watched failing:** `ClickResilienceJourneyTest` (AC-14, AC-15, AC-16, the Tomcat rows of AC-18, AC-19 and AC-22) and `ClickSchemaJourneyTest` were written in commit 4 against working code. AC-14's non-blocking redirect, AC-15's fail-open WARN and AC-16's count under concurrency are behaviour those classes prove for the first time, not re-runs of a MockMvc red. Commit 1's unit tests were red only as compile failures, as on slice 01.
 - **One flaky test was found and fixed at the root:** the 1 ms clock-shift race (deviation 6). It was not retried away.
 
+## QA
+
+Seat `qa-agent@urlshort-factory` (Codex), 2026-10-03 UTC; packet
+`qitem-20261003101510-d5f18be9`. Independent verdict: **PASS for qa_check** on
+`862c52eea8294e438b1f98b832ae4f64f7a16923`. The worktree already matched that exact
+SHA and was clean; no checkout, product-code, test or build-setting edit was needed.
+
+### Verified by effect
+
+- Fresh `../../scripts/gw --offline check --rerun-tasks`, captured with the wrapper's
+  `--log` flag: **121 unit / 126 functional invocations**, no failures/errors/skips,
+  Javadoc green. The copied CSVs give merged **359/359 lines and 118/118 branches**.
+  Unit-only: 325/359 lines, 118/118 branches; functional-only: 324/359 lines,
+  92/118 branches. See `docs/qa/coverage/02-analytics/SUMMARY.md`.
+- Started the candidate twice on **127.0.0.1:18092**, with an isolated
+  `build/qa-h2/urlshort` file database. **312 recorded HTTP exchanges** and
+  offline exports prove the live effects below; the builder's `data/` was preserved.
+- AC-1/8: the representative link's three separate browser redirects each carried
+  its own server request id, unchanged Location and no-store. Statistics showed
+  exactly three clicks. All three stored times were within their client intervals
+  at seconds precision; each record had the same reduced origin, browser class and
+  non-empty 64-hex hash. A separate link counted exactly seven redirects.
+- AC-2: retired/unknown GET, redirect HEAD/POST, link reads and statistics reads
+  added no click. The empty active/retired links had zero stored rows.
+- AC-3/4: all seven referrer rows and seven UA rows were sent to Tomcat and their
+  exported records matched the SPEC's exact reductions. This includes garbage,
+  android-app, userinfo, non-default port, length >2048, browser/bot/crawler/spider,
+  other and missing/empty UA. Curl suppresses an empty UA header; the distinct
+  missing-versus-empty cases are also asserted by the functional table.
+- AC-5/6: live rows contained no raw address or canary, and no hash equaled
+  unsalted SHA-256 of the loopback client. A no-forwarding/spoofed-forwarding pair
+  kept the same hash. The SPEC-authorized functional Clock and per-request peers
+  prove both example addresses, day-D equality, different-address inequality,
+  day-D+1 rotation and unsalted hex/Base64 negatives. I inspected those concrete
+  stored-row assertions and their fresh results; no natural midnight was crossed.
+- AC-7/9/10/11: empty stats were exact zero/empty arrays. The live 26-click ranking
+  matched all ten origins and counts, including code-point ties and omitted direct
+  traffic; all checked totals equaled the day sums. UTC boundary grouping and
+  omitted zero days were observed through the controlled functional clock:
+  October 1 = 2, October 2 = 3, October 4 = 1, total 6.
+- AC-12/13/22: retirement preserved four clicks after another 410. Unknown/40-letter
+  codes returned 404; POST/DELETE stats returned 405, all sanitized problem details
+  with the response request id in instance and no submitted code. HEAD/OPTIONS
+  kept framework statuses and Allow, and statistics stayed at three. The Tomcat
+  functional test asserts HEAD's empty body; MockMvc's retained HEAD body is not
+  used as that evidence.
+- AC-14: freshly ran the real-server slow-store journey, with the spy configured
+  to sleep two seconds on a click write during the twenty sequential redirects.
+  Every reply was 302 with unchanged Location/no-store and arrived in <250 ms.
+  This is the SPEC's authorized injection, not a measured added p95.
+- AC-15/19: independently installed a temporary CHECK in the stopped disposable
+  H2 database to reject only the dedicated failure link's click, then restarted
+  the unchanged candidate. Its redirect still returned 302/Location/no-store,
+  stats and export had zero clicks, and exactly one asynchronous WARN contained
+  the same request id, safe reason and exception class. No exception message,
+  throwable or client value appeared. The temporary CHECK was subsequently
+  removed; INFORMATION_SCHEMA reported zero remaining QA constraints.
+- AC-16: twenty concurrent clients sent ten redirects each through scripts/http.
+  Every response was 302 with the original redirect headers; statistics and the
+  export both had **exactly 200 clicks**, all with reduced referrer/browser class.
+- AC-17/18/19: stats exposed only the exact aggregate members. Every one of the
+  312 captured response ids had one matching JSON completion/status. There were
+  only two additional correlated events: the failed-write WARN and first OpenAPI
+  generation's initialization INFO. Both full live run logs and all stored clicks
+  contained none of the supplied canaries/raw addresses/hashes/referring origins
+  where prohibited. `qa-correlated-events-862c52e.jsonl` holds 314 events.
+- AC-20: **all 24 audit rows and 22 link rows were identical** before and after
+  the recording/statistics/failure journey. The unchanged inherited redirect
+  tests also ran again. Clicks, reads, error paths and idempotency replay/conflict
+  added no audit row.
+- AC-21: live API JSON equaled the candidate-committed document after recursive
+  key sorting; stats GET has the four-field schema/example and problem-typed 404.
+  Every prior operation's response document matched base `6d7f6bb`.
+- Checked all 20 candidate diff paths; the two shared-file changes stayed within
+  their grants. ADR-0011/12/13 and their DESIGN index existed on main before the
+  first dependent code commit: initial design `20211ad` at 09:41Z, latest lock
+  `4cfb745` at 09:48Z, first code `2499505` at 09:57Z. This is document/code
+  chronology, not a claim that the docs-only main commits are branch ancestors.
+  The ERD shows CLICK → LINK and the class lookup FK.
+
+### Evidence and limits
+
+Raw requests, response headers/bodies and client intervals:
+`proof/qa-http-862c52e.json`; clicks:
+`proof/qa-clicks-862c52e.csv`; audit/link before/after CSVs; both
+`qa-*-bootrun-862c52e.txt` logs; storage/correlation/OpenAPI comparison files;
+JUnit invocation inventory and gate log. Reports, all **138 source test methods**
+(69 per suite), all 22 ACs and all nine rules are mapped in `docs/qa/`.
+
+The inherited surface answers invalid URL input with 400, and replays the original
+idempotent create with 201. I corrected probe expectations for those statuses;
+the retained responses and unchanged snapshots show the actual contract. A link
+read requested as text/html answered its expected content-negotiation 406; the
+AC-2 read was then sent with the normal JSON-compatible Accept. macOS curl wrote
+client plist diagnostics for malformed JSON; parsing starts at the HTTP status
+line, and those diagnostics are separate from application logs.
+
+Proof items **1–11** have QA evidence. **12** remains pending until the following
+security review records salt handling; its design portion is already in
+`docs/review/02-analytics/design-review.md`. **13** remains release_prep's
+NFR-L3 measurement. The locked SPEC permits that pending numeric gap and
+`GAPS.md` names it with AC-14's compensating check. Lead continuation
+`qitem-20261003103240-18e29a17` points to
+`docs/qa/02-analytics/proof-sequencing.md`; future records are not accepted early.
+
+Not checked here: the ≤2 ms added p95, a natural UTC midnight, PostgreSQL,
+the packaged release artifact, deployment, or exhaustive thread scheduling.
+A-9 proxy alignment and CR-01 remain the lead's existing backlog. Custom-alias,
+expiry and rate-limit features are outside this candidate; the inherited
+idempotency expiry boundary did run in the full suite.
+
+### Self-check
+
+- Every AC was compared with an observed HTTP/storage/log effect; controlled
+  clock/peer/slow-write cases use the mechanisms explicitly named in the SPEC.
+  Material failure cases were tried, including real H2 insert rejection.
+- Read merged CSV counters, copied HTML/XML/CSV for all three reports, mapped
+  every source test to an AC/business rule and every AC to a functional test.
+- GAPS records suite-only misses, pending release latency and non-HTTP salt
+  review; no exclusion or threshold reduction was added.
+- QA proof drop names items 1–11; attributed judgments use the exact candidate
+  subject. Items 12/13 have a durable continuation, not invented evidence.
+- Both app processes stopped, health connection refused, disposable constraint
+  removed, builder database preserved. Worktree clean at the candidate SHA.
+
