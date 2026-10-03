@@ -273,3 +273,9 @@ Context and observations that help the mission but do not change its
   table unchanged; that table is not a QA2 product judgment. A6 red run stays
   unexercised. Receipt commit and close of manual follow-up packet complete
   this assigned obligation; no new build or product test was warranted.
+
+- QA2 manual AC-13 follow-up qitem-20261003211407-91a03acb closed done after
+  evidence2f97eee and receipts42e2573 were committed. Final observed readiness
+  ready7/7, no issues; source remains explicitly operator record b6b4a29,
+  with unsuccessful direct QA access retained. Lead informed of the outcome
+  and unchanged QA1 table retained by the shared TRACE file commit.
