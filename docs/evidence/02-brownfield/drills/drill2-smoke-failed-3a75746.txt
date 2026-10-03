@@ -1,0 +1,6 @@
+# health, liveness and readiness
+# ping: 200 application/json, {status:ok,time}, server-issued X-Request-Id
+# ping wrong method: 405 application/problem+json, still carries X-Request-Id, no trace
+# create: 201 with code and a shortUrl ending in it
+# redirect: 302 to the stored url, not cacheable
+SMOKE FAIL: redirect has no Cache-Control: no-store
