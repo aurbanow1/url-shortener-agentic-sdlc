@@ -49,8 +49,20 @@ territory:
   - docs/diagrams/erd.mmd
   # Only if the decision needs an operator setting (for example a retention period).
   - src/main/resources/application.properties
+  # DESIGN-TIME GRANT (lead, 2026-10-03T18:36Z, design-agent request of 18:31Z; SPEC A-7, rule 6):
+  # uniques count the client the limiter already resolves under ADR-0015 (clientOf), so one rule and
+  # one operator setting govern both. Additive only: clientOf becomes public, a public constant
+  # CLIENT_ATTRIBUTE is added, and the filter sets that request attribute before it charges the
+  # budget. The limiter's decisions do not change, and every existing RateLimitFilterTest case
+  # passes unchanged (new cases may be added). getRemoteAddr is never rewritten, so the audit
+  # read's loopback check (ADR-0019) is untouched. ClickRecorder falls back to getRemoteAddr when
+  # the attribute is absent. No other web/ file. Holders: none in flight (mission 01's 03-operate
+  # is merged); mission 02's 03-dogfood-fix (W2-01, W2-03) sets its web/ territory at its
+  # requirements step and must leave these two files out, or the later plan-lock orders custody.
+  - src/main/java/dev/urlshort/web/RateLimitFilter.java
+  - src/test/java/dev/urlshort/web/RateLimitFilterTest.java
 # NOT in territory: link/ (the redirect hook from 02-analytics stays as it is; any change there is
-# a design-time grant, as the hook was for 02), web/, audit/.
+# a design-time grant, as the hook was for 02), the rest of web/, audit/.
 execution:
   actor_role: requirements
   depends_on: []
