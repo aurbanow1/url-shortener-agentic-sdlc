@@ -1,0 +1,954 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :jar UP-TO-DATE
+> Task :compileFunctionalTestJava UP-TO-DATE
+> Task :processFunctionalTestResources UP-TO-DATE
+> Task :functionalTestClasses UP-TO-DATE
+
+> Task :designDogfoodTestProbeClasses
+warning: unknown enum constant Status.STABLE
+  reason: class file for org.apiguardian.api.API$Status not found
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+Note: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/03-dogfood-fix/design-probe/DogfoodRegressionProbeTest.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+4 warnings
+
+> Task :designDogfoodTestProbe
+
+DogfoodRegressionProbeTest STANDARD_OUT
+    12:25:18.538 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [dev.urlshort.web.DogfoodRegressionProbeTest]: DogfoodRegressionProbeTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+    12:25:18.628 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.web.DogfoodRegressionProbeTest
+    12:25:18.678 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [dev.urlshort.web.DogfoodRegressionProbeTest]: DogfoodRegressionProbeTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+    12:25:18.679 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.web.DogfoodRegressionProbeTest
+    {"@timestamp":"2026-10-03T19:25:18.898171Z","log":{"level":"INFO","logger":"dev.urlshort.web.DogfoodRegressionProbeTest"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Starting DogfoodRegressionProbeTest using Java 21.0.10 with PID 16260 (started by andrzej in /Users/andrzej/Documents/projekty/test/openrig/url-shortener)","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:18.902045Z","log":{"level":"INFO","logger":"dev.urlshort.web.DogfoodRegressionProbeTest"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"The following 1 profile is active: \"functional\"","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:19.540772Z","log":{"level":"INFO","logger":"org.springframework.data.repository.config.RepositoryConfigurationDelegate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Bootstrapping Spring Data JDBC repositories in DEFAULT mode.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:19.589398Z","log":{"level":"INFO","logger":"org.springframework.data.repository.config.RepositoryConfigurationDelegate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Finished Spring Data repository scanning in 40 ms. Found 1 JDBC repository interface.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:20.017272Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Starting...","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:20.192087Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.pool.HikariPool"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:urlshort-functional user=SA","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:20.193265Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Start completed.","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:20.201271Z","log":{"level":"INFO","logger":"org.flywaydb.core.FlywayExecutor"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Database: jdbc:h2:mem:urlshort-functional (H2 2.4)","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:20.289042Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:20.343708Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Schema history table \"PUBLIC\".\"flyway_schema_history\" does not exist yet","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:20.345927Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbValidate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Successfully validated 2 migrations (execution time 00:00.015s)","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:20.357413Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Creating Schema History table \"PUBLIC\".\"flyway_schema_history\" ...","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:20.388633Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Current version of schema \"PUBLIC\": << Empty Schema >>","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:20.393884Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Migrating schema \"PUBLIC\" to version \"1 - create link and audit log\"","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:20.407220Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Migrating schema \"PUBLIC\" to version \"2 - create click\"","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:20.417712Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Successfully applied 2 migrations to schema \"PUBLIC\", now at version v2 (execution time 00:00.011s)","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:21.120327Z","log":{"level":"INFO","logger":"org.springframework.boot.test.mock.web.SpringBootMockServletContext"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Spring TestDispatcherServlet ''","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:21.120656Z","log":{"level":"INFO","logger":"org.springframework.test.web.servlet.TestDispatcherServlet"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Servlet ''","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:21.122441Z","log":{"level":"INFO","logger":"org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Exposing 3 endpoints beneath base path '/actuator'","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:21.126223Z","log":{"level":"INFO","logger":"org.springframework.test.web.servlet.TestDispatcherServlet"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Completed initialization in 5 ms","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:21.156950Z","log":{"level":"INFO","logger":"dev.urlshort.web.DogfoodRegressionProbeTest"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Started DogfoodRegressionProbeTest in 2.443 seconds (process running for 8.315)","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:21.186269Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:21.186527Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+
+DogfoodRegressionProbeTest > T2_shippedFailsAc1() STANDARD_ERROR
+    Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+    WARNING: A Java agent has been loaded dynamically (/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.gradle-home/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.18.11/82212e5b3633e7a65fca8bec525762cfb6c9bae4/byte-buddy-agent-1.18.11.jar)
+    WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+    WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+    WARNING: Dynamic loading of agents will be disallowed by default in a future release
+
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+
+> Task :designDogfoodTestProbe
+
+DogfoodRegressionProbeTest > T2_shippedFailsAc1() STANDARD_OUT
+    {"@timestamp":"2026-10-03T19:25:21.867760Z","log":{"level":"INFO","logger":"org.springdoc.api.AbstractOpenApiResource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Init duration for springdoc-openapi is: 214 ms","requestId":"4afe4b03-78da-4e66-b71f-af64e0de521d","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:21.897605Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"4afe4b03-78da-4e66-b71f-af64e0de521d","status":200,"ecs":{"version":"8.11"}}
+
+    MockHttpServletRequest:
+          HTTP Method = GET
+          Request URI = /v3/api-docs
+           Parameters = {}
+              Headers = []
+                 Body = null
+        Session Attrs = {}
+
+    Handler:
+                 Type = org.springdoc.webmvc.api.OpenApiWebMvcResource
+               Method = org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
+
+    Async:
+        Async started = false
+         Async result = null
+
+    Resolved Exception:
+                 Type = null
+
+    ModelAndView:
+            View name = null
+                 View = null
+                Model = null
+
+    FlashMap:
+           Attributes = null
+
+    MockHttpServletResponse:
+               Status = 200
+        Error message = null
+              Headers = [X-Request-Id:"4afe4b03-78da-4e66-b71f-af64e0de521d", Content-Type:"application/json", Content-Length:"9602"]
+         Content type = application/json
+                 Body = {"openapi":"3.1.0","info":{"description":"Create, read and retire short links; visitors are redirected with 302.","title":"urlshort","version":"1"},"servers":[{"url":"/"}],"paths":{"/api/links":{"post":{"description":"Without Idempotency-Key every call creates a new link. With a key, a repeat with the same url within 24 h of the first 201 returns that link (current state); a different url is 422.","operationId":"createLink","parameters":[{"description":"1 to 255 visible ASCII characters; makes a retried create return the first link","in":"header","name":"Idempotency-Key","required":false,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"examples":{"create":{"description":"create","value":{"url":"https://example.com/some/path?q=1"}}},"schema":{"$ref":"#/components/schemas/CreateLinkRequest"}}},"required":true},"responses":{"201":{"content":{"application/json":{"examples":{"created":{"description":"created","value":{"code":"Ab3dE9fG","shortUrl":"http://localhost:8080/Ab3dE9fG","url":"https://example.com/some/path?q=1","state":"active","createdAt":"2026-10-03T05:12:42.133Z"}}},"schema":{"$ref":"#/components/schemas/LinkResponse"}}},"description":"Created, or replayed for the same key and url","headers":{"Location":{"description":"/api/links/{code}","schema":{"type":"string"},"style":"simple"}}},"400":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Invalid url or Idempotency-Key (errors[] names field and rule), or a body that is not a JSON object"},"413":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Body larger than 16 384 bytes"},"415":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Content-Type is not application/json"},"422":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Idempotency-Key already used with a different url"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}},"500":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Nothing was stored"}},"summary":"Create a short link for an http(s) URL","tags":["link-controller"]}},"/api/links/{code}":{"delete":{"operationId":"retireLink","parameters":[{"in":"path","name":"code","required":true,"schema":{"type":"string"}}],"responses":{"204":{"description":"Retired"},"404":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"No link has this code"},"410":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Already retired"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}},"500":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Nothing was changed"}},"summary":"Retire a link; visitors then get 410 and the record is kept","tags":["link-controller"]},"get":{"operationId":"readLink","parameters":[{"in":"path","name":"code","required":true,"schema":{"type":"string"}}],"responses":{"200":{"content":{"application/json":{"examples":{"link":{"description":"link","value":{"code":"Ab3dE9fG","shortUrl":"http://localhost:8080/Ab3dE9fG","url":"https://example.com/some/path?q=1","state":"active","createdAt":"2026-10-03T05:12:42.133Z"}}},"schema":{"$ref":"#/components/schemas/LinkResponse"}}},"description":"The link; state is active or retired"},"404":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"No link has this code"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}}},"summary":"Read a link by its code","tags":["link-controller"]}},"/api/links/{code}/stats":{"get":{"operationId":"stats","parameters":[{"in":"path","name":"code","required":true,"schema":{"type":"string"}}],"responses":{"200":{"content":{"application/json":{"examples":{"stats":{"description":"stats","value":{"code":"Ab3dE9fG","totalClicks":6,"clicksPerDay":[{"date":"2026-10-01","clicks":2},{"date":"2026-10-02","clicks":3},{"date":"2026-10-04","clicks":1}],"topReferrers":[{"referrer":"https://a.example","clicks":5}]}}},"schema":{"$ref":"#/components/schemas/LinkStats"}}},"description":"Total clicks, clicks per UTC day and the top 10 referrer origins"},"404":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"No link has this code"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}}},"summary":"Read a link's click statistics","tags":["stats-controller"]}},"/api/ping":{"get":{"operationId":"ping","responses":{"200":{"content":{"*/*":{"schema":{"$ref":"#/components/schemas/PingResponse"}}},"description":"OK"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}}},"tags":["ping-controller"]}},"/{code}":{"get":{"operationId":"redirect","parameters":[{"in":"path","name":"code","required":true,"schema":{"type":"string"}}],"responses":{"302":{"description":"Redirect to the stored url, not cacheable","headers":{"Cache-Control":{"description":"no-store","schema":{"type":"string"},"style":"simple"},"Location":{"description":"The stored url, byte for byte","schema":{"type":"string"},"style":"simple"}}},"404":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"No link has this code"},"410":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"The link was retired"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}}},"summary":"Open a short link","tags":["redirect-controller"]}}},"components":{"schemas":{"CreateLinkRequest":{"type":"object","properties":{"url":{"type":"string"}}},"DayClicks":{"type":"object","properties":{"clicks":{"type":"integer","format":"int64"},"date":{"type":"string","format":"date"}}},"LinkResponse":{"type":"object","properties":{"code":{"type":"string"},"createdAt":{"type":"string","format":"date-time"},"shortUrl":{"type":"string"},"state":{"type":"string"},"url":{"type":"string"}}},"LinkStats":{"type":"object","properties":{"clicksPerDay":{"type":"array","items":{"$ref":"#/components/schemas/DayClicks"}},"code":{"type":"string"},"topReferrers":{"type":"array","items":{"$ref":"#/components/schemas/ReferrerClicks"}},"totalClicks":{"type":"integer","format":"int64"}}},"PingResponse":{"type":"object","properties":{"status":{"type":"string"},"time":{"type":"string"}}},"ProblemDetail":{"type":"object","properties":{"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"properties":{"type":"object","additionalProperties":{}},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"type":{"type":"string","format":"uri"}}},"ReferrerClicks":{"type":"object","properties":{"clicks":{"type":"integer","format":"int64"},"referrer":{"type":"string"}}}}}}
+        Forwarded URL = null
+       Redirected URL = null
+              Cookies = []
+
+DogfoodRegressionProbeTest > T2_shippedFailsAc1() FAILED
+    java.lang.AssertionError: [ProblemDetail documents the errors member the service sends and no properties member] 
+    Expecting actual:
+      ["detail", "instance", "properties", "status", "title", "type"]
+    to contain exactly in any order:
+      ["detail", "errors", "instance", "status", "title", "type"]
+    elements not found:
+      ["errors"]
+    and elements not expected:
+      ["properties"]
+        at dev.urlshort.web.DogfoodRegressionProbeTest.assertProblemSchemaMatchesTheWire(DogfoodRegressionProbeTest.java:168)
+        at dev.urlshort.web.DogfoodRegressionProbeTest.T2_shippedFailsAc1(DogfoodRegressionProbeTest.java:75)
+
+DogfoodRegressionProbeTest > T2_shippedFailsAc6() STANDARD_OUT
+    {"@timestamp":"2026-10-03T19:25:21.956747Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"f55ccc3a-48a9-46f1-8fd4-f52c21be88a4","status":200,"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:21.976379Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"1ffa2aac-1d06-4114-84f9-b5c14dbd38a9","status":200,"ecs":{"version":"8.11"}}
+
+    MockHttpServletRequest:
+          HTTP Method = GET
+          Request URI = /v3/api-docs
+           Parameters = {}
+              Headers = []
+                 Body = null
+        Session Attrs = {}
+
+    Handler:
+                 Type = org.springdoc.webmvc.api.OpenApiWebMvcResource
+               Method = org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
+
+    Async:
+        Async started = false
+         Async result = null
+
+    Resolved Exception:
+                 Type = null
+
+    ModelAndView:
+            View name = null
+                 View = null
+                Model = null
+
+    FlashMap:
+           Attributes = null
+
+    MockHttpServletResponse:
+               Status = 200
+        Error message = null
+              Headers = [X-Request-Id:"f55ccc3a-48a9-46f1-8fd4-f52c21be88a4", Content-Type:"application/json", Content-Length:"9602"]
+         Content type = application/json
+                 Body = {"openapi":"3.1.0","info":{"description":"Create, read and retire short links; visitors are redirected with 302.","title":"urlshort","version":"1"},"servers":[{"url":"/"}],"paths":{"/api/links":{"post":{"description":"Without Idempotency-Key every call creates a new link. With a key, a repeat with the same url within 24 h of the first 201 returns that link (current state); a different url is 422.","operationId":"createLink","parameters":[{"description":"1 to 255 visible ASCII characters; makes a retried create return the first link","in":"header","name":"Idempotency-Key","required":false,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"examples":{"create":{"description":"create","value":{"url":"https://example.com/some/path?q=1"}}},"schema":{"$ref":"#/components/schemas/CreateLinkRequest"}}},"required":true},"responses":{"201":{"content":{"application/json":{"examples":{"created":{"description":"created","value":{"code":"Ab3dE9fG","shortUrl":"http://localhost:8080/Ab3dE9fG","url":"https://example.com/some/path?q=1","state":"active","createdAt":"2026-10-03T05:12:42.133Z"}}},"schema":{"$ref":"#/components/schemas/LinkResponse"}}},"description":"Created, or replayed for the same key and url","headers":{"Location":{"description":"/api/links/{code}","schema":{"type":"string"},"style":"simple"}}},"400":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Invalid url or Idempotency-Key (errors[] names field and rule), or a body that is not a JSON object"},"413":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Body larger than 16 384 bytes"},"415":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Content-Type is not application/json"},"422":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Idempotency-Key already used with a different url"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}},"500":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Nothing was stored"}},"summary":"Create a short link for an http(s) URL","tags":["link-controller"]}},"/api/links/{code}":{"delete":{"operationId":"retireLink","parameters":[{"in":"path","name":"code","required":true,"schema":{"type":"string"}}],"responses":{"204":{"description":"Retired"},"404":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"No link has this code"},"410":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Already retired"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}},"500":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Nothing was changed"}},"summary":"Retire a link; visitors then get 410 and the record is kept","tags":["link-controller"]},"get":{"operationId":"readLink","parameters":[{"in":"path","name":"code","required":true,"schema":{"type":"string"}}],"responses":{"200":{"content":{"application/json":{"examples":{"link":{"description":"link","value":{"code":"Ab3dE9fG","shortUrl":"http://localhost:8080/Ab3dE9fG","url":"https://example.com/some/path?q=1","state":"active","createdAt":"2026-10-03T05:12:42.133Z"}}},"schema":{"$ref":"#/components/schemas/LinkResponse"}}},"description":"The link; state is active or retired"},"404":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"No link has this code"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}}},"summary":"Read a link by its code","tags":["link-controller"]}},"/api/links/{code}/stats":{"get":{"operationId":"stats","parameters":[{"in":"path","name":"code","required":true,"schema":{"type":"string"}}],"responses":{"200":{"content":{"application/json":{"examples":{"stats":{"description":"stats","value":{"code":"Ab3dE9fG","totalClicks":6,"clicksPerDay":[{"date":"2026-10-01","clicks":2},{"date":"2026-10-02","clicks":3},{"date":"2026-10-04","clicks":1}],"topReferrers":[{"referrer":"https://a.example","clicks":5}]}}},"schema":{"$ref":"#/components/schemas/LinkStats"}}},"description":"Total clicks, clicks per UTC day and the top 10 referrer origins"},"404":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"No link has this code"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}}},"summary":"Read a link's click statistics","tags":["stats-controller"]}},"/api/ping":{"get":{"operationId":"ping","responses":{"200":{"content":{"*/*":{"schema":{"$ref":"#/components/schemas/PingResponse"}}},"description":"OK"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}}},"tags":["ping-controller"]}},"/{code}":{"get":{"operationId":"redirect","parameters":[{"in":"path","name":"code","required":true,"schema":{"type":"string"}}],"responses":{"302":{"description":"Redirect to the stored url, not cacheable","headers":{"Cache-Control":{"description":"no-store","schema":{"type":"string"},"style":"simple"},"Location":{"description":"The stored url, byte for byte","schema":{"type":"string"},"style":"simple"}}},"404":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"No link has this code"},"410":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"The link was retired"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}}},"summary":"Open a short link","tags":["redirect-controller"]}}},"components":{"schemas":{"CreateLinkRequest":{"type":"object","properties":{"url":{"type":"string"}}},"DayClicks":{"type":"object","properties":{"clicks":{"type":"integer","format":"int64"},"date":{"type":"string","format":"date"}}},"LinkResponse":{"type":"object","properties":{"code":{"type":"string"},"createdAt":{"type":"string","format":"date-time"},"shortUrl":{"type":"string"},"state":{"type":"string"},"url":{"type":"string"}}},"LinkStats":{"type":"object","properties":{"clicksPerDay":{"type":"array","items":{"$ref":"#/components/schemas/DayClicks"}},"code":{"type":"string"},"topReferrers":{"type":"array","items":{"$ref":"#/components/schemas/ReferrerClicks"}},"totalClicks":{"type":"integer","format":"int64"}}},"PingResponse":{"type":"object","properties":{"status":{"type":"string"},"time":{"type":"string"}}},"ProblemDetail":{"type":"object","properties":{"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"properties":{"type":"object","additionalProperties":{}},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"type":{"type":"string","format":"uri"}}},"ReferrerClicks":{"type":"object","properties":{"clicks":{"type":"integer","format":"int64"},"referrer":{"type":"string"}}}}}}
+        Forwarded URL = null
+       Redirected URL = null
+              Cookies = []
+
+    MockHttpServletRequest:
+          HTTP Method = GET
+          Request URI = /actuator/metrics/disk.free
+           Parameters = {}
+              Headers = []
+                 Body = null
+        Session Attrs = {}
+
+    Handler:
+                 Type = org.springframework.boot.webmvc.actuate.endpoint.web.AbstractWebMvcEndpointHandlerMapping$OperationHandler
+               Method = Actuator web endpoint 'metrics-requiredMetricName'
+
+    Async:
+        Async started = false
+         Async result = null
+
+    Resolved Exception:
+                 Type = null
+
+    ModelAndView:
+            View name = null
+                 View = null
+                Model = null
+
+    FlashMap:
+           Attributes = null
+
+    MockHttpServletResponse:
+               Status = 200
+        Error message = null
+              Headers = [X-Request-Id:"1ffa2aac-1d06-4114-84f9-b5c14dbd38a9", Content-Disposition:"inline;filename=f.txt", Content-Type:"application/vnd.spring-boot.actuator.v3+json"]
+         Content type = application/vnd.spring-boot.actuator.v3+json
+                 Body = {"availableTags":[{"tag":"path","values":["/Users/andrzej/Documents/projekty/test/openrig/url-shortener/."]}],"baseUnit":"bytes","description":"Usable space for path","measurements":[{"statistic":"VALUE","value":3.740196864E10}],"name":"disk.free"}
+        Forwarded URL = null
+       Redirected URL = null
+              Cookies = []
+
+DogfoodRegressionProbeTest > T2_shippedFailsAc6() FAILED
+    java.lang.AssertionError: [disk.free carries no path tag] 
+    Expecting
+      ["path"]
+    not to contain
+      ["path"]
+    but found
+      ["path"]
+        at dev.urlshort.web.DogfoodRegressionProbeTest.assertDiskGaugesCarryNoPath(DogfoodRegressionProbeTest.java:232)
+        at dev.urlshort.web.DogfoodRegressionProbeTest.T2_shippedFailsAc6(DogfoodRegressionProbeTest.java:80)
+
+DogfoodRegressionProbeTest > T1_shippedScrapeUnderMockMvcWithoutAutoConfigureMetrics() STANDARD_OUT
+    {"@timestamp":"2026-10-03T19:25:21.990548Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"2b806984-ab8a-4b95-9b7a-ec38d7e2668f","status":200,"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:21.999560Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"4f55c82a-3ecd-4d7a-a033-3fa09f635d68","status":404,"ecs":{"version":"8.11"}}
+    T1 /actuator/prometheus status in the plain functional context: 404
+
+DogfoodRegressionProbeTest > T1_shippedScrapeUnderMockMvcWithoutAutoConfigureMetrics() PASSED
+
+DogfoodRegressionProbeTest > ShippedScrape STANDARD_OUT
+    {"@timestamp":"2026-10-03T19:25:22.002430Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.web.DogfoodRegressionProbeTest$ShippedScrape]: ShippedScrape does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.003979Z","log":{"level":"INFO","logger":"org.springframework.boot.test.context.SpringBootTestContextBootstrapper"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.web.DogfoodRegressionProbeTest$ShippedScrape","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.004511Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.web.DogfoodRegressionProbeTest$ShippedScrape]: ShippedScrape does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.004736Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.web.DogfoodRegressionProbeTest]: DogfoodRegressionProbeTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.005528Z","log":{"level":"INFO","logger":"org.springframework.boot.test.context.SpringBootTestContextBootstrapper"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.web.DogfoodRegressionProbeTest$ShippedScrape","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.015331Z","log":{"level":"INFO","logger":"dev.urlshort.web.DogfoodRegressionProbeTest$ShippedScrape"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Starting DogfoodRegressionProbeTest.ShippedScrape using Java 21.0.10 with PID 16260 (started by andrzej in /Users/andrzej/Documents/projekty/test/openrig/url-shortener)","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.015589Z","log":{"level":"INFO","logger":"dev.urlshort.web.DogfoodRegressionProbeTest$ShippedScrape"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"The following 1 profile is active: \"functional\"","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.101264Z","log":{"level":"INFO","logger":"org.springframework.data.repository.config.RepositoryConfigurationDelegate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Bootstrapping Spring Data JDBC repositories in DEFAULT mode.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.105079Z","log":{"level":"INFO","logger":"org.springframework.data.repository.config.RepositoryConfigurationDelegate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Finished Spring Data repository scanning in 2 ms. Found 1 JDBC repository interface.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.142911Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-2 - Starting...","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.143720Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.pool.HikariPool"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-2 - Added connection conn10: url=jdbc:h2:mem:urlshort-functional user=SA","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.143867Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-2 - Start completed.","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.144060Z","log":{"level":"INFO","logger":"org.flywaydb.core.FlywayExecutor"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Database: jdbc:h2:mem:urlshort-functional (H2 2.4)","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.145862Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.148171Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbValidate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Successfully validated 2 migrations (execution time 00:00.001s)","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.149603Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Current version of schema \"PUBLIC\": 2","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.149920Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Schema \"PUBLIC\" is up to date. No migration necessary.","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.274111Z","log":{"level":"INFO","logger":"org.springframework.boot.test.mock.web.SpringBootMockServletContext"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Spring TestDispatcherServlet ''","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.274359Z","log":{"level":"INFO","logger":"org.springframework.test.web.servlet.TestDispatcherServlet"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Servlet ''","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.274949Z","log":{"level":"INFO","logger":"org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Exposing 4 endpoints beneath base path '/actuator'","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.276777Z","log":{"level":"INFO","logger":"org.springframework.test.web.servlet.TestDispatcherServlet"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Completed initialization in 2 ms","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.287285Z","log":{"level":"INFO","logger":"dev.urlshort.web.DogfoodRegressionProbeTest$ShippedScrape"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Started DogfoodRegressionProbeTest.ShippedScrape in 0.281 seconds (process running for 9.446)","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.287935Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.288054Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+
+DogfoodRegressionProbeTest > ShippedScrape > T5_shippedFailsAc6OnTheScrape() STANDARD_OUT
+    {"@timestamp":"2026-10-03T19:25:22.360994Z","log":{"level":"INFO","logger":"org.springdoc.api.AbstractOpenApiResource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Init duration for springdoc-openapi is: 67 ms","requestId":"905269a4-ff9b-4725-b1fa-91b06ba2b755","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.363064Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"905269a4-ff9b-4725-b1fa-91b06ba2b755","status":200,"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.377554Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"b2d70413-417a-4d80-9897-d6d01a9040ee","status":200,"ecs":{"version":"8.11"}}
+    T5 scrape disk samples: [disk_free_bytes{path="/Users/andrzej/Documents/projekty/test/openrig/url-shortener/."} 3.740196864E10, disk_total_bytes{path="/Users/andrzej/Documents/projekty/test/openrig/url-shortener/."} 4.94384795648E11]
+
+    MockHttpServletRequest:
+          HTTP Method = GET
+          Request URI = /v3/api-docs
+           Parameters = {}
+              Headers = []
+                 Body = null
+        Session Attrs = {}
+
+    Handler:
+                 Type = org.springdoc.webmvc.api.OpenApiWebMvcResource
+               Method = org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
+
+    Async:
+        Async started = false
+         Async result = null
+
+    Resolved Exception:
+                 Type = null
+
+    ModelAndView:
+            View name = null
+                 View = null
+                Model = null
+
+    FlashMap:
+           Attributes = null
+
+    MockHttpServletResponse:
+               Status = 200
+        Error message = null
+              Headers = [X-Request-Id:"905269a4-ff9b-4725-b1fa-91b06ba2b755", Content-Type:"application/json", Content-Length:"9602"]
+         Content type = application/json
+                 Body = {"openapi":"3.1.0","info":{"description":"Create, read and retire short links; visitors are redirected with 302.","title":"urlshort","version":"1"},"servers":[{"url":"/"}],"paths":{"/api/links":{"post":{"description":"Without Idempotency-Key every call creates a new link. With a key, a repeat with the same url within 24 h of the first 201 returns that link (current state); a different url is 422.","operationId":"createLink","parameters":[{"description":"1 to 255 visible ASCII characters; makes a retried create return the first link","in":"header","name":"Idempotency-Key","required":false,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"examples":{"create":{"description":"create","value":{"url":"https://example.com/some/path?q=1"}}},"schema":{"$ref":"#/components/schemas/CreateLinkRequest"}}},"required":true},"responses":{"201":{"content":{"application/json":{"examples":{"created":{"description":"created","value":{"code":"Ab3dE9fG","shortUrl":"http://localhost:8080/Ab3dE9fG","url":"https://example.com/some/path?q=1","state":"active","createdAt":"2026-10-03T05:12:42.133Z"}}},"schema":{"$ref":"#/components/schemas/LinkResponse"}}},"description":"Created, or replayed for the same key and url","headers":{"Location":{"description":"/api/links/{code}","schema":{"type":"string"},"style":"simple"}}},"400":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Invalid url or Idempotency-Key (errors[] names field and rule), or a body that is not a JSON object"},"413":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Body larger than 16 384 bytes"},"415":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Content-Type is not application/json"},"422":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Idempotency-Key already used with a different url"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}},"500":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Nothing was stored"}},"summary":"Create a short link for an http(s) URL","tags":["link-controller"]}},"/api/links/{code}":{"delete":{"operationId":"retireLink","parameters":[{"in":"path","name":"code","required":true,"schema":{"type":"string"}}],"responses":{"204":{"description":"Retired"},"404":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"No link has this code"},"410":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Already retired"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}},"500":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Nothing was changed"}},"summary":"Retire a link; visitors then get 410 and the record is kept","tags":["link-controller"]},"get":{"operationId":"readLink","parameters":[{"in":"path","name":"code","required":true,"schema":{"type":"string"}}],"responses":{"200":{"content":{"application/json":{"examples":{"link":{"description":"link","value":{"code":"Ab3dE9fG","shortUrl":"http://localhost:8080/Ab3dE9fG","url":"https://example.com/some/path?q=1","state":"active","createdAt":"2026-10-03T05:12:42.133Z"}}},"schema":{"$ref":"#/components/schemas/LinkResponse"}}},"description":"The link; state is active or retired"},"404":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"No link has this code"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}}},"summary":"Read a link by its code","tags":["link-controller"]}},"/api/links/{code}/stats":{"get":{"operationId":"stats","parameters":[{"in":"path","name":"code","required":true,"schema":{"type":"string"}}],"responses":{"200":{"content":{"application/json":{"examples":{"stats":{"description":"stats","value":{"code":"Ab3dE9fG","totalClicks":6,"clicksPerDay":[{"date":"2026-10-01","clicks":2},{"date":"2026-10-02","clicks":3},{"date":"2026-10-04","clicks":1}],"topReferrers":[{"referrer":"https://a.example","clicks":5}]}}},"schema":{"$ref":"#/components/schemas/LinkStats"}}},"description":"Total clicks, clicks per UTC day and the top 10 referrer origins"},"404":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"No link has this code"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}}},"summary":"Read a link's click statistics","tags":["stats-controller"]}},"/api/ping":{"get":{"operationId":"ping","responses":{"200":{"content":{"*/*":{"schema":{"$ref":"#/components/schemas/PingResponse"}}},"description":"OK"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}}},"tags":["ping-controller"]}},"/{code}":{"get":{"operationId":"redirect","parameters":[{"in":"path","name":"code","required":true,"schema":{"type":"string"}}],"responses":{"302":{"description":"Redirect to the stored url, not cacheable","headers":{"Cache-Control":{"description":"no-store","schema":{"type":"string"},"style":"simple"},"Location":{"description":"The stored url, byte for byte","schema":{"type":"string"},"style":"simple"}}},"404":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"No link has this code"},"410":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"The link was retired"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}}},"summary":"Open a short link","tags":["redirect-controller"]}}},"components":{"schemas":{"CreateLinkRequest":{"type":"object","properties":{"url":{"type":"string"}}},"DayClicks":{"type":"object","properties":{"clicks":{"type":"integer","format":"int64"},"date":{"type":"string","format":"date"}}},"LinkResponse":{"type":"object","properties":{"code":{"type":"string"},"createdAt":{"type":"string","format":"date-time"},"shortUrl":{"type":"string"},"state":{"type":"string"},"url":{"type":"string"}}},"LinkStats":{"type":"object","properties":{"clicksPerDay":{"type":"array","items":{"$ref":"#/components/schemas/DayClicks"}},"code":{"type":"string"},"topReferrers":{"type":"array","items":{"$ref":"#/components/schemas/ReferrerClicks"}},"totalClicks":{"type":"integer","format":"int64"}}},"PingResponse":{"type":"object","properties":{"status":{"type":"string"},"time":{"type":"string"}}},"ProblemDetail":{"type":"object","properties":{"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"properties":{"type":"object","additionalProperties":{}},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"type":{"type":"string","format":"uri"}}},"ReferrerClicks":{"type":"object","properties":{"clicks":{"type":"integer","format":"int64"},"referrer":{"type":"string"}}}}}}
+        Forwarded URL = null
+       Redirected URL = null
+              Cookies = []
+
+    MockHttpServletRequest:
+          HTTP Method = GET
+          Request URI = /actuator/prometheus
+           Parameters = {}
+              Headers = []
+                 Body = null
+        Session Attrs = {}
+
+    Handler:
+                 Type = org.springframework.boot.webmvc.actuate.endpoint.web.AbstractWebMvcEndpointHandlerMapping$OperationHandler
+               Method = Actuator web endpoint 'prometheus'
+
+    Async:
+        Async started = false
+         Async result = null
+
+    Resolved Exception:
+                 Type = null
+
+    ModelAndView:
+            View name = null
+                 View = null
+                Model = null
+
+    FlashMap:
+           Attributes = null
+
+    MockHttpServletResponse:
+               Status = 200
+        Error message = null
+              Headers = [X-Request-Id:"b2d70413-417a-4d80-9897-d6d01a9040ee", Content-Type:"text/plain;version=0.0.4;charset=utf-8", Content-Length:"14848"]
+         Content type = text/plain;version=0.0.4;charset=utf-8
+                 Body = # HELP application_ready_time_seconds Time taken for the application to be ready to service requests
+    # TYPE application_ready_time_seconds gauge
+    application_ready_time_seconds{main_application_class="dev.urlshort.web.DogfoodRegressionProbeTest$ShippedScrape"} 0.281
+    # HELP application_started_time_seconds Time taken to start the application
+    # TYPE application_started_time_seconds gauge
+    application_started_time_seconds{main_application_class="dev.urlshort.web.DogfoodRegressionProbeTest$ShippedScrape"} 0.281
+    # HELP disk_free_bytes Usable space for path
+    # TYPE disk_free_bytes gauge
+    disk_free_bytes{path="/Users/andrzej/Documents/projekty/test/openrig/url-shortener/."} 3.740196864E10
+    # HELP disk_total_bytes Total space for path
+    # TYPE disk_total_bytes gauge
+    disk_total_bytes{path="/Users/andrzej/Documents/projekty/test/openrig/url-shortener/."} 4.94384795648E11
+    # HELP executor_active_threads The approximate number of threads that are actively executing tasks
+    # TYPE executor_active_threads gauge
+    executor_active_threads{name="applicationTaskExecutor"} 0.0
+    # HELP executor_completed_tasks_total The approximate total number of tasks that have completed execution
+    # TYPE executor_completed_tasks_total counter
+    executor_completed_tasks_total{name="applicationTaskExecutor"} 0.0
+    # HELP executor_pool_core_threads The core number of threads for the pool
+    # TYPE executor_pool_core_threads gauge
+    executor_pool_core_threads{name="applicationTaskExecutor"} 8.0
+    # HELP executor_pool_max_threads The maximum allowed number of threads in the pool
+    # TYPE executor_pool_max_threads gauge
+    executor_pool_max_threads{name="applicationTaskExecutor"} 2.147483647E9
+    # HELP executor_pool_size_threads The current number of threads in the pool
+    # TYPE executor_pool_size_threads gauge
+    executor_pool_size_threads{name="applicationTaskExecutor"} 0.0
+    # HELP executor_queue_remaining_tasks The number of additional elements that this queue can ideally accept without blocking
+    # TYPE executor_queue_remaining_tasks gauge
+    executor_queue_remaining_tasks{name="applicationTaskExecutor"} 2.147483647E9
+    # HELP executor_queued_tasks The approximate number of tasks that are queued for execution
+    # TYPE executor_queued_tasks gauge
+    executor_queued_tasks{name="applicationTaskExecutor"} 0.0
+    # HELP hikaricp_connections Total connections
+    # TYPE hikaricp_connections gauge
+    hikaricp_connections{pool="HikariPool-2"} 6.0
+    # HELP hikaricp_connections_acquire_seconds Connection acquire time
+    # TYPE hikaricp_connections_acquire_seconds summary
+    hikaricp_connections_acquire_seconds_count{pool="HikariPool-2"} 0
+    hikaricp_connections_acquire_seconds_sum{pool="HikariPool-2"} 0.0
+    # HELP hikaricp_connections_acquire_seconds_max Connection acquire time
+    # TYPE hikaricp_connections_acquire_seconds_max gauge
+    hikaricp_connections_acquire_seconds_max{pool="HikariPool-2"} 0.0
+    # HELP hikaricp_connections_active Active connections
+    # TYPE hikaricp_connections_active gauge
+    hikaricp_connections_active{pool="HikariPool-2"} 0.0
+    # HELP hikaricp_connections_creation_seconds Connection creation time
+    # TYPE hikaricp_connections_creation_seconds summary
+    hikaricp_connections_creation_seconds_count{pool="HikariPool-2"} 2
+    hikaricp_connections_creation_seconds_sum{pool="HikariPool-2"} 0.001
+    # HELP hikaricp_connections_creation_seconds_max Connection creation time
+    # TYPE hikaricp_connections_creation_seconds_max gauge
+    hikaricp_connections_creation_seconds_max{pool="HikariPool-2"} 0.001
+    # HELP hikaricp_connections_idle Idle connections
+    # TYPE hikaricp_connections_idle gauge
+    hikaricp_connections_idle{pool="HikariPool-2"} 6.0
+    # HELP hikaricp_connections_max Max connections
+    # TYPE hikaricp_connections_max gauge
+    hikaricp_connections_max{pool="HikariPool-2"} 10.0
+    # HELP hikaricp_connections_min Min connections
+    # TYPE hikaricp_connections_min gauge
+    hikaricp_connections_min{pool="HikariPool-2"} 10.0
+    # HELP hikaricp_connections_pending Pending threads
+    # TYPE hikaricp_connections_pending gauge
+    hikaricp_connections_pending{pool="HikariPool-2"} 0.0
+    # HELP hikaricp_connections_timeout_total Connection timeout total count
+    # TYPE hikaricp_connections_timeout_total counter
+    hikaricp_connections_timeout_total{pool="HikariPool-2"} 0.0
+    # HELP hikaricp_connections_usage_seconds Connection usage time
+    # TYPE hikaricp_connections_usage_seconds summary
+    hikaricp_connections_usage_seconds_count{pool="HikariPool-2"} 0
+    hikaricp_connections_usage_seconds_sum{pool="HikariPool-2"} 0.0
+    # HELP hikaricp_connections_usage_seconds_max Connection usage time
+    # TYPE hikaricp_connections_usage_seconds_max gauge
+    hikaricp_connections_usage_seconds_max{pool="HikariPool-2"} 0.0
+    # HELP http_server_requests_active_seconds  
+    # TYPE http_server_requests_active_seconds summary
+    http_server_requests_active_seconds_count{exception="none",method="GET",outcome="SUCCESS",status="200",uri="UNKNOWN"} 1
+    http_server_requests_active_seconds_sum{exception="none",method="GET",outcome="SUCCESS",status="200",uri="UNKNOWN"} 0.005635208
+    # HELP http_server_requests_active_seconds_max  
+    # TYPE http_server_requests_active_seconds_max gauge
+    http_server_requests_active_seconds_max{exception="none",method="GET",outcome="SUCCESS",status="200",uri="UNKNOWN"} 0.005644875
+    # HELP http_server_requests_seconds  
+    # TYPE http_server_requests_seconds summary
+    http_server_requests_seconds_count{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/v3/api-docs"} 1
+    http_server_requests_seconds_sum{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/v3/api-docs"} 0.071967625
+    # HELP http_server_requests_seconds_max  
+    # TYPE http_server_requests_seconds_max gauge
+    http_server_requests_seconds_max{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/v3/api-docs"} 0.071967625
+    # HELP jdbc_connections_active Current number of active connections that have been allocated from the data source.
+    # TYPE jdbc_connections_active gauge
+    jdbc_connections_active{name="dataSource"} 0.0
+    # HELP jdbc_connections_idle Number of established but idle connections.
+    # TYPE jdbc_connections_idle gauge
+    jdbc_connections_idle{name="dataSource"} 6.0
+    # HELP jdbc_connections_max Maximum number of active connections that can be allocated at the same time.
+    # TYPE jdbc_connections_max gauge
+    jdbc_connections_max{name="dataSource"} 10.0
+    # HELP jdbc_connections_min Minimum number of idle connections in the pool.
+    # TYPE jdbc_connections_min gauge
+    jdbc_connections_min{name="dataSource"} 10.0
+    # HELP jvm_info JVM version info
+    # TYPE jvm_info gauge
+    jvm_info{runtime="OpenJDK Runtime Environment",vendor="Homebrew",version="21.0.10"} 1
+    # HELP jvm_buffer_count_buffers An estimate of the number of buffers in the pool
+    # TYPE jvm_buffer_count_buffers gauge
+    jvm_buffer_count_buffers{id="direct"} 3.0
+    jvm_buffer_count_buffers{id="mapped"} 0.0
+    jvm_buffer_count_buffers{id="mapped - 'non-volatile memory'"} 0.0
+    # HELP jvm_buffer_memory_used_bytes An estimate of the memory that the Java virtual machine is using for this buffer pool
+    # TYPE jvm_buffer_memory_used_bytes gauge
+    jvm_buffer_memory_used_bytes{id="direct"} 69631.0
+    jvm_buffer_memory_used_bytes{id="mapped"} 0.0
+    jvm_buffer_memory_used_bytes{id="mapped - 'non-volatile memory'"} 0.0
+    # HELP jvm_buffer_total_capacity_bytes An estimate of the total capacity of the buffers in this pool
+    # TYPE jvm_buffer_total_capacity_bytes gauge
+    jvm_buffer_total_capacity_bytes{id="direct"} 69631.0
+    jvm_buffer_total_capacity_bytes{id="mapped"} 0.0
+    jvm_buffer_total_capacity_bytes{id="mapped - 'non-volatile memory'"} 0.0
+    # HELP jvm_classes_loaded_classes The number of classes that are currently loaded in the Java virtual machine
+    # TYPE jvm_classes_loaded_classes gauge
+    jvm_classes_loaded_classes 17460.0
+    # HELP jvm_classes_loaded_count_classes_total The number of classes loaded in the Java virtual machine
+    # TYPE jvm_classes_loaded_count_classes_total counter
+    jvm_classes_loaded_count_classes_total 17458.0
+    # HELP jvm_classes_unloaded_classes_total The number of classes unloaded in the Java virtual machine
+    # TYPE jvm_classes_unloaded_classes_total counter
+    jvm_classes_unloaded_classes_total 0.0
+    # HELP jvm_compilation_time_ms_total The approximate accumulated elapsed time spent in compilation
+    # TYPE jvm_compilation_time_ms_total counter
+    jvm_compilation_time_ms_total{compiler="HotSpot 64-Bit Tiered Compilers"} 5656.0
+    # HELP jvm_gc_live_data_size_bytes Size of long-lived heap memory pool after reclamation
+    # TYPE jvm_gc_live_data_size_bytes gauge
+    jvm_gc_live_data_size_bytes 0.0
+    # HELP jvm_gc_max_data_size_bytes Max size of long-lived heap memory pool
+    # TYPE jvm_gc_max_data_size_bytes gauge
+    jvm_gc_max_data_size_bytes 5.36870912E8
+    # HELP jvm_gc_memory_allocated_bytes_total Incremented for an increase in the size of the (young) heap memory pool after one GC to before the next
+    # TYPE jvm_gc_memory_allocated_bytes_total counter
+    jvm_gc_memory_allocated_bytes_total 0.0
+    # HELP jvm_gc_memory_promoted_bytes_total Count of positive increases in the size of the old generation memory pool before GC to after GC
+    # TYPE jvm_gc_memory_promoted_bytes_total counter
+    jvm_gc_memory_promoted_bytes_total 0.0
+    # HELP jvm_gc_overhead An approximation of the percent of CPU time used by GC activities over the last lookback period or since monitoring began, whichever is shorter, in the range [0..1]
+    # TYPE jvm_gc_overhead gauge
+    jvm_gc_overhead 0.0
+    # HELP jvm_memory_committed_bytes The amount of memory in bytes that is committed for the Java virtual machine to use
+    # TYPE jvm_memory_committed_bytes gauge
+    jvm_memory_committed_bytes{area="heap",id="G1 Eden Space"} 5.6623104E7
+    jvm_memory_committed_bytes{area="heap",id="G1 Old Gen"} 5.0331648E7
+    jvm_memory_committed_bytes{area="heap",id="G1 Survivor Space"} 7340032.0
+    jvm_memory_committed_bytes{area="nonheap",id="CodeHeap 'non-nmethods'"} 2555904.0
+    jvm_memory_committed_bytes{area="nonheap",id="CodeHeap 'non-profiled nmethods'"} 4128768.0
+    jvm_memory_committed_bytes{area="nonheap",id="CodeHeap 'profiled nmethods'"} 1.9922944E7
+    jvm_memory_committed_bytes{area="nonheap",id="Compressed Class Space"} 1.1927552E7
+    jvm_memory_committed_bytes{area="nonheap",id="Metaspace"} 9.4306304E7
+    # HELP jvm_memory_max_bytes The maximum amount of memory in bytes that can be used for memory management
+    # TYPE jvm_memory_max_bytes gauge
+    jvm_memory_max_bytes{area="heap",id="G1 Eden Space"} -1.0
+    jvm_memory_max_bytes{area="heap",id="G1 Old Gen"} 5.36870912E8
+    jvm_memory_max_bytes{area="heap",id="G1 Survivor Space"} -1.0
+    jvm_memory_max_bytes{area="nonheap",id="CodeHeap 'non-nmethods'"} 5849088.0
+    jvm_memory_max_bytes{area="nonheap",id="CodeHeap 'non-profiled nmethods'"} 1.22912768E8
+    jvm_memory_max_bytes{area="nonheap",id="CodeHeap 'profiled nmethods'"} 1.22896384E8
+    jvm_memory_max_bytes{area="nonheap",id="Compressed Class Space"} 1.073741824E9
+    jvm_memory_max_bytes{area="nonheap",id="Metaspace"} -1.0
+    # HELP jvm_memory_usage_after_gc The percentage of long-lived heap pool used after the last GC event, in the range [0..1]
+    # TYPE jvm_memory_usage_after_gc gauge
+    jvm_memory_usage_after_gc{area="heap",pool="long-lived"} 0.0
+    # HELP jvm_memory_used_bytes The amount of used memory
+    # TYPE jvm_memory_used_bytes gauge
+    jvm_memory_used_bytes{area="heap",id="G1 Eden Space"} 4.6137344E7
+    jvm_memory_used_bytes{area="heap",id="G1 Old Gen"} 4.4250408E7
+    jvm_memory_used_bytes{area="heap",id="G1 Survivor Space"} 6875904.0
+    jvm_memory_used_bytes{area="nonheap",id="CodeHeap 'non-nmethods'"} 1631360.0
+    jvm_memory_used_bytes{area="nonheap",id="CodeHeap 'non-profiled nmethods'"} 4105088.0
+    jvm_memory_used_bytes{area="nonheap",id="CodeHeap 'profiled nmethods'"} 1.9897856E7
+    jvm_memory_used_bytes{area="nonheap",id="Compressed Class Space"} 1.1390952E7
+    jvm_memory_used_bytes{area="nonheap",id="Metaspace"} 9.3188352E7
+    # HELP jvm_threads_daemon_threads The current number of live daemon threads
+    # TYPE jvm_threads_daemon_threads gauge
+    jvm_threads_daemon_threads 11.0
+    # HELP jvm_threads_live_threads The current number of live threads including both daemon and non-daemon threads
+    # TYPE jvm_threads_live_threads gauge
+    jvm_threads_live_threads 15.0
+    # HELP jvm_threads_peak_threads The peak live thread count since the Java virtual machine started or peak was reset
+    # TYPE jvm_threads_peak_threads gauge
+    jvm_threads_peak_threads 15.0
+    # HELP jvm_threads_started_threads_total The total number of application threads started in the JVM
+    # TYPE jvm_threads_started_threads_total counter
+    jvm_threads_started_threads_total 22.0
+    # HELP jvm_threads_states_threads The current number of threads
+    # TYPE jvm_threads_states_threads gauge
+    jvm_threads_states_threads{state="blocked"} 0.0
+    jvm_threads_states_threads{state="new"} 0.0
+    jvm_threads_states_threads{state="runnable"} 6.0
+    jvm_threads_states_threads{state="terminated"} 0.0
+    jvm_threads_states_threads{state="timed-waiting"} 6.0
+    jvm_threads_states_threads{state="waiting"} 3.0
+    # HELP logback_events_total Number of log events that were enabled by the effective log level
+    # TYPE logback_events_total counter
+    logback_events_total{level="debug"} 0.0
+    logback_events_total{level="error"} 0.0
+    logback_events_total{level="info"} 3.0
+    logback_events_total{level="trace"} 0.0
+    logback_events_total{level="warn"} 2.0
+    # HELP process_cpu_time_ns_total The "cpu time" used by the Java Virtual Machine process
+    # TYPE process_cpu_time_ns_total counter
+    process_cpu_time_ns_total 1.02807E10
+    # HELP process_cpu_usage The "recent cpu usage" for the Java Virtual Machine process
+    # TYPE process_cpu_usage gauge
+    process_cpu_usage 0.0
+    # HELP process_files_max_files The maximum file descriptor count
+    # TYPE process_files_max_files gauge
+    process_files_max_files 1048576.0
+    # HELP process_files_open_files The open file descriptor count
+    # TYPE process_files_open_files gauge
+    process_files_open_files 191.0
+    # HELP process_start_time_seconds Start time of the process since unix epoch.
+    # TYPE process_start_time_seconds gauge
+    process_start_time_seconds 1.791055512857E9
+    # HELP process_uptime_seconds The uptime of the Java virtual machine
+    # TYPE process_uptime_seconds gauge
+    process_uptime_seconds 9.53
+    # HELP system_cpu_count The number of processors available to the Java virtual machine
+    # TYPE system_cpu_count gauge
+    system_cpu_count 14.0
+    # HELP system_cpu_usage The "recent cpu usage" of the system the application is running in
+    # TYPE system_cpu_usage gauge
+    system_cpu_usage 0.0
+    # HELP system_load_average_1m The sum of the number of runnable entities queued to available processors and the number of runnable entities running on the available processors averaged over a period of time
+    # TYPE system_load_average_1m gauge
+    system_load_average_1m 4.8505859375
+    # HELP urlshort_ratelimit_rejections_total Requests answered 429 because the client's bucket was empty
+    # TYPE urlshort_ratelimit_rejections_total counter
+    urlshort_ratelimit_rejections_total{budget="create"} 0.0
+    urlshort_ratelimit_rejections_total{budget="redirect"} 0.0
+
+        Forwarded URL = null
+       Redirected URL = null
+              Cookies = []
+
+DogfoodRegressionProbeTest > ShippedScrape > T5_shippedFailsAc6OnTheScrape() FAILED
+    java.lang.AssertionError: [the scrape carries no path label] 
+    Expecting actual:
+      "# HELP application_ready_time_seconds Time taken for the application to be ready to service requests
+    # TYPE application_ready_time_seconds gauge
+    application_ready_time_seconds{main_application_class="dev.urlshort.web.DogfoodRegressionProbeTest$ShippedScrape"} 0.281
+    # HELP application_started_time_seconds Time taken to start the application
+    # TYPE application_started_time_seconds gauge
+    application_started_time_seconds{main_application_class="dev.urlshort.web.DogfoodRegressionProbeTest$ShippedScrape"} 0.281
+    # HELP disk_free_bytes Usable space for path
+    # TYPE disk_free_bytes gauge
+    disk_free_bytes{path="/Users/andrzej/Documents/projekty/test/openrig/url-shortener/."} 3.740196864E10
+    # HELP disk_total_bytes Total space for path
+    # TYPE disk_total_bytes gauge
+    disk_total_bytes{path="/Users/andrzej/Documents/projekty/test/openrig/url-shortener/."} 4.94384795648E11
+    # HELP executor_active_threads The approximate number of threads that are actively executing tasks
+    # TYPE executor_active_threads gauge
+    executor_active_threads{name="applicationTaskExecutor"} 0.0
+    # HELP executor_completed_tasks_total The approximate total number of tasks that have completed execution
+    # TYPE executor_completed_tasks_total counter
+    executor_completed_tasks_total{name="applicationTaskExecutor"} 0.0
+    # HELP executor_pool_core_threads The core number of threads for the pool
+    # TYPE executor_pool_core_threads gauge
+    executor_pool_core_threads{name="applicationTaskExecutor"} 8.0
+    # HELP executor_pool_max_threads The maximum allowed number of threads in the pool
+    # TYPE executor_pool_max_threads gauge
+    executor_pool_max_threads{name="applicationTaskExecutor"} 2.147483647E9
+    # HELP executor_pool_size_threads The current number of threads in the pool
+    # TYPE executor_pool_size_threads gauge
+    executor_pool_size_threads{name="applicationTaskExecutor"} 0.0
+    # HELP executor_queue_remaining_tasks The number of additional elements that this queue can ideally accept without blocking
+    # TYPE executor_queue_remaining_tasks gauge
+    executor_queue_remaining_tasks{name="applicationTaskExecutor"} 2.147483647E9
+    # HELP executor_queued_tasks The approximate number of tasks that are queued for execution
+    # TYPE executor_queued_tasks gauge
+    executor_queued_tasks{name="applicationTaskExecutor"} 0.0
+    # HELP hikaricp_connections Total connections
+    # TYPE hikaricp_connections gauge
+    hikaricp_connections{pool="HikariPool-2"} 6.0
+    # HELP hikaricp_connections_acquire_seconds Connection acquire time
+    # TYPE hikaricp_connections_acquire_seconds summary
+    hikaricp_connections_acquire_seconds_count{pool="HikariPool-2"} 0
+    hikaricp_connections_acquire_seconds_sum{pool="HikariPool-2"} 0.0
+    # HELP hikaricp_connections_acquire_seconds_max Connection acquire time
+    # TYPE hikaricp_connections_acquire_seconds_max gauge
+    hikaricp_connections_acquire_seconds_max{pool="HikariPool-2"} 0.0
+    # HELP hikaricp_connections_active Active connections
+    # TYPE hikaricp_connections_active gauge
+    hikaricp_connections_active{pool="HikariPool-2"} 0.0
+    # HELP hikaricp_connections_creation_seconds Connection creation time
+    # TYPE hikaricp_connections_creation_seconds summary
+    hikaricp_connections_creation_seconds_count{pool="HikariPool-2"} 2
+    hikaricp_connections_creation_seconds_sum{pool="HikariPool-2"} 0.001
+    # HELP hikaricp_connections_creation_seconds_max Connection creation time
+    # TYPE hikaricp_connections_creation_seconds_max gauge
+    hikaricp_connections_creation_seconds_max{pool="HikariPool-2"} 0.001
+    # HELP hikaricp_connections_idle Idle connections
+    # TYPE hikaricp_connections_idle gauge
+    hikaricp_connections_idle{pool="HikariPool-2"} 6.0
+    # HELP hikaricp_connections_max Max connections
+    # TYPE hikaricp_connections_max gauge
+    hikaricp_connections_max{pool="HikariPool-2"} 10.0
+    # HELP hikaricp_connections_min Min connections
+    # TYPE hikaricp_connections_min gauge
+    hikaricp_connections_min{pool="HikariPool-2"} 10.0
+    # HELP hikaricp_connections_pending Pending threads
+    # TYPE hikaricp_connections_pending gauge
+    hikaricp_connections_pending{pool="HikariPool-2"} 0.0
+    # HELP hikaricp_connections_timeout_total Connection timeout total count
+    # TYPE hikaricp_connections_timeout_total counter
+    hikaricp_connections_timeout_total{pool="HikariPool-2"} 0.0
+    # HELP hikaricp_connections_usage_seconds Connection usage time
+    # TYPE hikaricp_connections_usage_seconds summary
+    hikaricp_connections_usage_seconds_count{pool="HikariPool-2"} 0
+    hikaricp_connections_usage_seconds_sum{pool="HikariPool-2"} 0.0
+    # HELP hikaricp_connections_usage_seconds_max Connection usage time
+    # TYPE hikaricp_connections_usage_seconds_max gauge
+    hikaricp_connections_usage_seconds_max{pool="HikariPool-2"} 0.0
+    # HELP http_server_requests_active_seconds  
+    # TYPE http_server_requests_active_seconds summary
+    http_server_requests_active_seconds_count{exception="none",method="GET",outcome="SUCCESS",status="200",uri="UNKNOWN"} 1
+    http_server_requests_active_seconds_sum{exception="none",method="GET",outcome="SUCCESS",status="200",uri="UNKNOWN"} 0.005635208
+    # HELP http_server_requests_active_seconds_max  
+    # TYPE http_server_requests_active_seconds_max gauge
+    http_server_requests_active_seconds_max{exception="none",method="GET",outcome="SUCCESS",status="200",uri="UNKNOWN"} 0.005644875
+    # HELP http_server_requests_seconds  
+    # TYPE http_server_requests_seconds summary
+    http_server_requests_seconds_count{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/v3/api-docs"} 1
+    http_server_requests_seconds_sum{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/v3/api-docs"} 0.071967625
+    # HELP http_server_requests_seconds_max  
+    # TYPE http_server_requests_seconds_max gauge
+    http_server_requests_seconds_max{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/v3/api-docs"} 0.071967625
+    # HELP jdbc_connections_active Current number of active connections that have been allocated from the data source.
+    # TYPE jdbc_connections_active gauge
+    jdbc_connections_active{name="dataSource"} 0.0
+    # HELP jdbc_connections_idle Number of established but idle connections.
+    # TYPE jdbc_connections_idle gauge
+    jdbc_connections_idle{name="dataSource"} 6.0
+    # HELP jdbc_connections_max Maximum number of active connections that can be allocated at the same time.
+    # TYPE jdbc_connections_max gauge
+    jdbc_connections_max{name="dataSource"} 10.0
+    # HELP jdbc_connections_min Minimum number of idle connections in the pool.
+    # TYPE jdbc_connections_min gauge
+    jdbc_connections_min{name="dataSource"} 10.0
+    # HELP jvm_info JVM version info
+    # TYPE jvm_info gauge
+    jvm_info{runtime="OpenJDK Runtime Environment",vendor="Homebrew",version="21.0.10"} 1
+    # HELP jvm_buffer_count_buffers An estimate of the number of buffers in the pool
+    # TYPE jvm_buffer_count_buffers gauge
+    jvm_buffer_count_buffers{id="direct"} 3.0
+    jvm_buffer_count_buffers{id="mapped"} 0.0
+    jvm_buffer_count_buffers{id="mapped - 'non-volatile memory'"} 0.0
+    # HELP jvm_buffer_memory_used_bytes An estimate of the memory that the Java virtual machine is using for this buffer pool
+    # TYPE jvm_buffer_memory_used_bytes gauge
+    jvm_buffer_memory_used_bytes{id="direct"} 69631.0
+    jvm_buffer_memory_used_bytes{id="mapped"} 0.0
+    jvm_buffer_memory_used_bytes{id="mapped - 'non-volatile memory'"} 0.0
+    # HELP jvm_buffer_total_capacity_bytes An estimate of the total capacity of the buffers in this pool
+    # TYPE jvm_buffer_total_capacity_bytes gauge
+    jvm_buffer_total_capacity_bytes{id="direct"} 69631.0
+    jvm_buffer_total_capacity_bytes{id="mapped"} 0.0
+    jvm_buffer_total_capacity_bytes{id="mapped - 'non-volatile memory'"} 0.0
+    # HELP jvm_classes_loaded_classes The number of classes that are currently loaded in the Java virtual machine
+    # TYPE jvm_classes_loaded_classes gauge
+    jvm_classes_loaded_classes 17460.0
+    # HELP jvm_classes_loaded_count_classes_total The number of classes loaded in the Java virtual machine
+    # TYPE jvm_classes_loaded_count_classes_total counter
+    jvm_classes_loaded_count_classes_total 17458.0
+    # HELP jvm_classes_unloaded_classes_total The number of classes unloaded in the Java virtual machine
+    # TYPE jvm_classes_unloaded_classes_total counter
+    jvm_classes_unloaded_classes_total 0.0
+    # HELP jvm_compilation_time_ms_total The approximate accumulated elapsed time spent in compilation
+    # TYPE jvm_compilation_time_ms_total counter
+    jvm_compilation_time_ms_total{compiler="HotSpot 64-Bit Tiered Compilers"} 5656.0
+    # HELP jvm_gc_live_data_size_bytes Size of long-lived heap memory pool after reclamation
+    # TYPE jvm_gc_live_data_size_bytes gauge
+    jvm_gc_live_data_size_bytes 0.0
+    # HELP jvm_gc_max_data_size_bytes Max size of long-lived heap memory pool
+    # TYPE jvm_gc_max_data_size_bytes gauge
+    jvm_gc_max_data_size_bytes 5.36870912E8
+    # HELP jvm_gc_memory_allocated_bytes_total Incremented for an increase in the size of the (young) heap memory pool after one GC to before the next
+    # TYPE jvm_gc_memory_allocated_bytes_total counter
+    jvm_gc_memory_allocated_bytes_total 0.0
+    # HELP jvm_gc_memory_promoted_bytes_total Count of positive increases in the size of the old generation memory pool before GC to after GC
+    # TYPE jvm_gc_memory_promoted_bytes_total counter
+    jvm_gc_memory_promoted_bytes_total 0.0
+    # HELP jvm_gc_overhead An approximation of the percent of CPU time used by GC activities over the last lookback period or since monitoring began, whichever is shorter, in the range [0..1]
+    # TYPE jvm_gc_overhead gauge
+    jvm_gc_overhead 0.0
+    # HELP jvm_memory_committed_bytes The amount of memory in bytes that is committed for the Java virtual machine to use
+    # TYPE jvm_memory_committed_bytes gauge
+    jvm_memory_committed_bytes{area="heap",id="G1 Eden Space"} 5.6623104E7
+    jvm_memory_committed_bytes{area="heap",id="G1 Old Gen"} 5.0331648E7
+    jvm_memory_committed_bytes{area="heap",id="G1 Survivor Space"} 7340032.0
+    jvm_memory_committed_bytes{area="nonheap",id="CodeHeap 'non-nmethods'"} 2555904.0
+    jvm_memory_committed_bytes{area="nonheap",id="CodeHeap 'non-profiled nmethods'"} 4128768.0
+    jvm_memory_committed_bytes{area="nonheap",id="CodeHeap 'profiled nmethods'"} 1.9922944E7
+    jvm_memory_committed_bytes{area="nonheap",id="Compressed Class Space"} 1.1927552E7
+    jvm_memory_committed_bytes{area="nonheap",id="Metaspace"} 9.4306304E7
+    # HELP jvm_memory_max_bytes The maximum amount of memory in bytes that can be used for memory management
+    # TYPE jvm_memory_max_bytes gauge
+    jvm_memory_max_bytes{area="heap",id="G1 Eden Space"} -1.0
+    jvm_memory_max_bytes{area="heap",id="G1 Old Gen"} 5.36870912E8
+    jvm_memory_max_bytes{area="heap",id="G1 Survivor Space"} -1.0
+    jvm_memory_max_bytes{area="nonheap",id="CodeHeap 'non-nmethods'"} 5849088.0
+    jvm_memory_max_bytes{area="nonheap",id="CodeHeap 'non-profiled nmethods'"} 1.22912768E8
+    jvm_memory_max_bytes{area="nonheap",id="CodeHeap 'profiled nmethods'"} 1.22896384E8
+    jvm_memory_max_bytes{area="nonheap",id="Compressed Class Space"} 1.073741824E9
+    jvm_memory_max_bytes{area="nonheap",id="Metaspace"} -1.0
+    # HELP jvm_memory_usage_after_gc The percentage of long-lived heap pool used after the last GC event, in the range [0..1]
+    # TYPE jvm_memory_usage_after_gc gauge
+    jvm_memory_usage_after_gc{area="heap",pool="long-lived"} 0.0
+    # HELP jvm_memory_used_bytes The amount of used memory
+    # TYPE jvm_memory_used_bytes gauge
+    jvm_memory_used_bytes{area="heap",id="G1 Eden Space"} 4.6137344E7
+    jvm_memory_used_bytes{area="heap",id="G1 Old Gen"} 4.4250408E7
+    jvm_memory_used_bytes{area="heap",id="G1 Survivor Space"} 6875904.0
+    jvm_memory_used_bytes{area="nonheap",id="CodeHeap 'non-nmethods'"} 1631360.0
+    jvm_memory_used_bytes{area="nonheap",id="CodeHeap 'non-profiled nmethods'"} 4105088.0
+    jvm_memory_used_bytes{area="nonheap",id="CodeHeap 'profiled nmethods'"} 1.9897856E7
+    jvm_memory_used_bytes{area="nonheap",id="Compressed Class Space"} 1.1390952E7
+    jvm_memory_used_bytes{area="nonheap",id="Metaspace"} 9.3188352E7
+    # HELP jvm_threads_daemon_threads The current number of live daemon threads
+    # TYPE jvm_threads_daemon_threads gauge
+    jvm_threads_daemon_threads 11.0
+    # HELP jvm_threads_live_threads The current number of live threads including both daemon and non-daemon threads
+    # TYPE jvm_threads_live_threads gauge
+    jvm_threads_live_threads 15.0
+    # HELP jvm_threads_peak_threads The peak live thread count since the Java virtual machine started or peak was reset
+    # TYPE jvm_threads_peak_threads gauge
+    jvm_threads_peak_threads 15.0
+    # HELP jvm_threads_started_threads_total The total number of application threads started in the JVM
+    # TYPE jvm_threads_started_threads_total counter
+    jvm_threads_started_threads_total 22.0
+    # HELP jvm_threads_states_threads The current number of threads
+    # TYPE jvm_threads_states_threads gauge
+    jvm_threads_states_threads{state="blocked"} 0.0
+    jvm_threads_states_threads{state="new"} 0.0
+    jvm_threads_states_threads{state="runnable"} 6.0
+    jvm_threads_states_threads{state="terminated"} 0.0
+    jvm_threads_states_threads{state="timed-waiting"} 6.0
+    jvm_threads_states_threads{state="waiting"} 3.0
+    # HELP logback_events_total Number of log events that were enabled by the effective log level
+    # TYPE logback_events_total counter
+    logback_events_total{level="debug"} 0.0
+    logback_events_total{level="error"} 0.0
+    logback_events_total{level="info"} 3.0
+    logback_events_total{level="trace"} 0.0
+    logback_events_total{level="warn"} 2.0
+    # HELP process_cpu_time_ns_total The "cpu time" used by the Java Virtual Machine process
+    # TYPE process_cpu_time_ns_total counter
+    process_cpu_time_ns_total 1.02807E10
+    # HELP process_cpu_usage The "recent cpu usage" for the Java Virtual Machine process
+    # TYPE process_cpu_usage gauge
+    process_cpu_usage 0.0
+    # HELP process_files_max_files The maximum file descriptor count
+    # TYPE process_files_max_files gauge
+    process_files_max_files 1048576.0
+    # HELP process_files_open_files The open file descriptor count
+    # TYPE process_files_open_files gauge
+    process_files_open_files 191.0
+    # HELP process_start_time_seconds Start time of the process since unix epoch.
+    # TYPE process_start_time_seconds gauge
+    process_start_time_seconds 1.791055512857E9
+    # HELP process_uptime_seconds The uptime of the Java virtual machine
+    # TYPE process_uptime_seconds gauge
+    process_uptime_seconds 9.53
+    # HELP system_cpu_count The number of processors available to the Java virtual machine
+    # TYPE system_cpu_count gauge
+    system_cpu_count 14.0
+    # HELP system_cpu_usage The "recent cpu usage" of the system the application is running in
+    # TYPE system_cpu_usage gauge
+    system_cpu_usage 0.0
+    # HELP system_load_average_1m The sum of the number of runnable entities queued to available processors and the number of runnable entities running on the available processors averaged over a period of time
+    # TYPE system_load_average_1m gauge
+    system_load_average_1m 4.8505859375
+    # HELP urlshort_ratelimit_rejections_total Requests answered 429 because the client's bucket was empty
+    # TYPE urlshort_ratelimit_rejections_total counter
+    urlshort_ratelimit_rejections_total{budget="create"} 0.0
+    urlshort_ratelimit_rejections_total{budget="redirect"} 0.0
+    "
+    not to contain:
+      "path=""
+        at dev.urlshort.web.DogfoodRegressionProbeTest.assertScrapeCarriesNoPath(DogfoodRegressionProbeTest.java:219)
+        at dev.urlshort.web.DogfoodRegressionProbeTest$ShippedScrape.T5_shippedFailsAc6OnTheScrape(DogfoodRegressionProbeTest.java:89)
+
+DogfoodRegressionProbeTest > Fixed STANDARD_OUT
+    {"@timestamp":"2026-10-03T19:25:22.387692Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.web.DogfoodRegressionProbeTest$Fixed]: Fixed does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.388522Z","log":{"level":"INFO","logger":"org.springframework.boot.test.context.SpringBootTestContextBootstrapper"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.web.DogfoodRegressionProbeTest$Fixed","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.388922Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.web.DogfoodRegressionProbeTest$Fixed]: Fixed does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.389074Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.web.DogfoodRegressionProbeTest]: DogfoodRegressionProbeTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.389605Z","log":{"level":"INFO","logger":"org.springframework.boot.test.context.SpringBootTestContextBootstrapper"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.web.DogfoodRegressionProbeTest$Fixed","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.402956Z","log":{"level":"INFO","logger":"dev.urlshort.web.DogfoodRegressionProbeTest$Fixed"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Starting DogfoodRegressionProbeTest.Fixed using Java 21.0.10 with PID 16260 (started by andrzej in /Users/andrzej/Documents/projekty/test/openrig/url-shortener)","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.403163Z","log":{"level":"INFO","logger":"dev.urlshort.web.DogfoodRegressionProbeTest$Fixed"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"The following 1 profile is active: \"functional\"","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.469825Z","log":{"level":"INFO","logger":"org.springframework.data.repository.config.RepositoryConfigurationDelegate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Bootstrapping Spring Data JDBC repositories in DEFAULT mode.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.473037Z","log":{"level":"INFO","logger":"org.springframework.data.repository.config.RepositoryConfigurationDelegate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Finished Spring Data repository scanning in 2 ms. Found 1 JDBC repository interface.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.503460Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-3 - Starting...","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.504017Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.pool.HikariPool"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-3 - Added connection conn20: url=jdbc:h2:mem:urlshort-functional user=SA","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.504190Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-3 - Start completed.","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.504341Z","log":{"level":"INFO","logger":"org.flywaydb.core.FlywayExecutor"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Database: jdbc:h2:mem:urlshort-functional (H2 2.4)","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.506068Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.507942Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbValidate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Successfully validated 2 migrations (execution time 00:00.000s)","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.509136Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Current version of schema \"PUBLIC\": 2","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.509357Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Schema \"PUBLIC\" is up to date. No migration necessary.","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.591744Z","log":{"level":"INFO","logger":"org.springframework.boot.test.mock.web.SpringBootMockServletContext"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Spring TestDispatcherServlet ''","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.592107Z","log":{"level":"INFO","logger":"org.springframework.test.web.servlet.TestDispatcherServlet"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Servlet ''","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.592699Z","log":{"level":"INFO","logger":"org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Exposing 3 endpoints beneath base path '/actuator'","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.594017Z","log":{"level":"INFO","logger":"org.springframework.test.web.servlet.TestDispatcherServlet"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Completed initialization in 2 ms","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.599399Z","log":{"level":"INFO","logger":"dev.urlshort.web.DogfoodRegressionProbeTest$Fixed"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Started DogfoodRegressionProbeTest.Fixed in 0.208 seconds (process running for 9.758)","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.599912Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.600036Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+
+DogfoodRegressionProbeTest > Fixed > T3_fixedPassesAc1() STANDARD_OUT
+    {"@timestamp":"2026-10-03T19:25:22.662821Z","log":{"level":"INFO","logger":"org.springdoc.api.AbstractOpenApiResource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Init duration for springdoc-openapi is: 59 ms","requestId":"bfb7e02e-a775-4b7c-8ca9-4e6e5d0f00ee","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.668515Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"bfb7e02e-a775-4b7c-8ca9-4e6e5d0f00ee","status":200,"ecs":{"version":"8.11"}}
+
+DogfoodRegressionProbeTest > Fixed > T3_fixedPassesAc1() PASSED
+
+DogfoodRegressionProbeTest > Fixed > T3_fixedPassesAc6() STANDARD_OUT
+    {"@timestamp":"2026-10-03T19:25:22.675598Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"63194d6b-53a0-4520-bc60-641ca5624d2f","status":200,"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.681644Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"f8655787-90cd-4b8e-a6e0-4e425b174a0e","status":200,"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.686292Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"b594e5a9-1dc3-4b79-83ec-bd2de9af4418","status":200,"ecs":{"version":"8.11"}}
+
+DogfoodRegressionProbeTest > Fixed > T3_fixedPassesAc6() PASSED
+
+DogfoodRegressionProbeTest > Fixed > T3_fixedPassesAc2WithoutThe429() STANDARD_OUT
+    {"@timestamp":"2026-10-03T19:25:22.694232Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"fcf04b0d-172d-43ba-a180-e0f64e27820b","status":200,"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.765215Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"d976ebd7-29bd-413f-80c5-206bd2869681","status":201,"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.774488Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"5d16e197-5e3c-4a28-959a-aef9a7da928f","status":204,"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.779249Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"e48beb23-9b16-4aef-9bab-fa078e045e6a","status":400,"ecs":{"version":"8.11"}}
+    T3/T4 400 members [errors, instance, status, title] conform
+    {"@timestamp":"2026-10-03T19:25:22.783654Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"6d799ee3-d218-443e-8f7b-729871d45acb","status":422,"ecs":{"version":"8.11"}}
+    T3/T4 422 members [errors, instance, status, title] conform
+    {"@timestamp":"2026-10-03T19:25:22.786454Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"e3251561-78a2-40ff-a372-4c468ccecef2","status":404,"ecs":{"version":"8.11"}}
+    T3/T4 404 members [instance, status, title] conform
+    {"@timestamp":"2026-10-03T19:25:22.788527Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"23a87373-47a6-4158-a8ec-11d89b1a1628","status":410,"ecs":{"version":"8.11"}}
+    T3/T4 410 members [instance, status, title] conform
+
+DogfoodRegressionProbeTest > Fixed > T3_fixedPassesAc2WithoutThe429() PASSED
+
+DogfoodRegressionProbeTest > Fixed > FixedScrape STANDARD_OUT
+    {"@timestamp":"2026-10-03T19:25:22.790547Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.web.DogfoodRegressionProbeTest$Fixed$FixedScrape]: FixedScrape does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.792113Z","log":{"level":"INFO","logger":"org.springframework.boot.test.context.SpringBootTestContextBootstrapper"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.web.DogfoodRegressionProbeTest$Fixed$FixedScrape","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.792552Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.web.DogfoodRegressionProbeTest$Fixed$FixedScrape]: FixedScrape does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.792698Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.web.DogfoodRegressionProbeTest$Fixed]: Fixed does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.792816Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.web.DogfoodRegressionProbeTest]: DogfoodRegressionProbeTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.793462Z","log":{"level":"INFO","logger":"org.springframework.boot.test.context.SpringBootTestContextBootstrapper"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.web.DogfoodRegressionProbeTest$Fixed$FixedScrape","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.802500Z","log":{"level":"INFO","logger":"dev.urlshort.web.DogfoodRegressionProbeTest$Fixed$FixedScrape"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Starting DogfoodRegressionProbeTest.Fixed.FixedScrape using Java 21.0.10 with PID 16260 (started by andrzej in /Users/andrzej/Documents/projekty/test/openrig/url-shortener)","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.802695Z","log":{"level":"INFO","logger":"dev.urlshort.web.DogfoodRegressionProbeTest$Fixed$FixedScrape"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"The following 1 profile is active: \"functional\"","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.865339Z","log":{"level":"INFO","logger":"org.springframework.data.repository.config.RepositoryConfigurationDelegate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Bootstrapping Spring Data JDBC repositories in DEFAULT mode.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.868428Z","log":{"level":"INFO","logger":"org.springframework.data.repository.config.RepositoryConfigurationDelegate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Finished Spring Data repository scanning in 2 ms. Found 1 JDBC repository interface.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.900220Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-4 - Starting...","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.900878Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.pool.HikariPool"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-4 - Added connection conn30: url=jdbc:h2:mem:urlshort-functional user=SA","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.901012Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-4 - Start completed.","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.901181Z","log":{"level":"INFO","logger":"org.flywaydb.core.FlywayExecutor"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Database: jdbc:h2:mem:urlshort-functional (H2 2.4)","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.902928Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.904776Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbValidate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Successfully validated 2 migrations (execution time 00:00.001s)","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.906034Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Current version of schema \"PUBLIC\": 2","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.906239Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Schema \"PUBLIC\" is up to date. No migration necessary.","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.983726Z","log":{"level":"INFO","logger":"org.springframework.boot.test.mock.web.SpringBootMockServletContext"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Spring TestDispatcherServlet ''","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.983896Z","log":{"level":"INFO","logger":"org.springframework.test.web.servlet.TestDispatcherServlet"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Servlet ''","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.984378Z","log":{"level":"INFO","logger":"org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Exposing 4 endpoints beneath base path '/actuator'","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.985671Z","log":{"level":"INFO","logger":"org.springframework.test.web.servlet.TestDispatcherServlet"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Completed initialization in 2 ms","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.991892Z","log":{"level":"INFO","logger":"dev.urlshort.web.DogfoodRegressionProbeTest$Fixed$FixedScrape"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Started DogfoodRegressionProbeTest.Fixed.FixedScrape in 0.196 seconds (process running for 10.15)","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.992391Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:22.992474Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+
+DogfoodRegressionProbeTest > Fixed > FixedScrape > T5_fixedPassesAc6OnTheScrape() STANDARD_OUT
+    {"@timestamp":"2026-10-03T19:25:23.049872Z","log":{"level":"INFO","logger":"org.springdoc.api.AbstractOpenApiResource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Init duration for springdoc-openapi is: 53 ms","requestId":"c3e1fd32-8786-4253-b5d0-9d3fbbaa0321","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.051569Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"c3e1fd32-8786-4253-b5d0-9d3fbbaa0321","status":200,"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.055966Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"d1bdd4bd-f986-441d-a894-fa771e00e717","status":200,"ecs":{"version":"8.11"}}
+    T5 fixed-scrape context has the filter bean: true, the customiser bean: true, registries: [prometheusMeterRegistry], disk.free tags: []
+    {"@timestamp":"2026-10-03T19:25:23.061876Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"e2021c63-9256-4c4c-90eb-d85120478b66","status":200,"ecs":{"version":"8.11"}}
+    T5 scrape disk samples: [disk_free_bytes 3.740196864E10, disk_total_bytes 4.94384795648E11]
+
+DogfoodRegressionProbeTest > Fixed > FixedScrape > T5_fixedPassesAc6OnTheScrape() PASSED
+
+DogfoodRegressionProbeTest > Fixed > OverTheCreateBudget STANDARD_OUT
+    {"@timestamp":"2026-10-03T19:25:23.065021Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.web.DogfoodRegressionProbeTest$Fixed$OverTheCreateBudget]: OverTheCreateBudget does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.065649Z","log":{"level":"INFO","logger":"org.springframework.boot.test.context.SpringBootTestContextBootstrapper"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.web.DogfoodRegressionProbeTest$Fixed$OverTheCreateBudget","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.066064Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.web.DogfoodRegressionProbeTest$Fixed$OverTheCreateBudget]: OverTheCreateBudget does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.066207Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.web.DogfoodRegressionProbeTest$Fixed]: Fixed does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.066320Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.web.DogfoodRegressionProbeTest]: DogfoodRegressionProbeTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.066776Z","log":{"level":"INFO","logger":"org.springframework.boot.test.context.SpringBootTestContextBootstrapper"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.web.DogfoodRegressionProbeTest$Fixed$OverTheCreateBudget","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.075548Z","log":{"level":"INFO","logger":"dev.urlshort.web.DogfoodRegressionProbeTest$Fixed$OverTheCreateBudget"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Starting DogfoodRegressionProbeTest.Fixed.OverTheCreateBudget using Java 21.0.10 with PID 16260 (started by andrzej in /Users/andrzej/Documents/projekty/test/openrig/url-shortener)","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.075735Z","log":{"level":"INFO","logger":"dev.urlshort.web.DogfoodRegressionProbeTest$Fixed$OverTheCreateBudget"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"The following 1 profile is active: \"functional\"","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.130483Z","log":{"level":"INFO","logger":"org.springframework.data.repository.config.RepositoryConfigurationDelegate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Bootstrapping Spring Data JDBC repositories in DEFAULT mode.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.133254Z","log":{"level":"INFO","logger":"org.springframework.data.repository.config.RepositoryConfigurationDelegate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Finished Spring Data repository scanning in 2 ms. Found 1 JDBC repository interface.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.167936Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-5 - Starting...","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.168638Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.pool.HikariPool"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-5 - Added connection conn37: url=jdbc:h2:mem:urlshort-functional user=SA","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.168742Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-5 - Start completed.","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.168888Z","log":{"level":"INFO","logger":"org.flywaydb.core.FlywayExecutor"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Database: jdbc:h2:mem:urlshort-functional (H2 2.4)","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.170396Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.172457Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbValidate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Successfully validated 2 migrations (execution time 00:00.001s)","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.173573Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Current version of schema \"PUBLIC\": 2","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.173780Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Schema \"PUBLIC\" is up to date. No migration necessary.","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.250228Z","log":{"level":"INFO","logger":"org.springframework.boot.test.mock.web.SpringBootMockServletContext"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Spring TestDispatcherServlet ''","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.250454Z","log":{"level":"INFO","logger":"org.springframework.test.web.servlet.TestDispatcherServlet"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Servlet ''","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.250930Z","log":{"level":"INFO","logger":"org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Exposing 3 endpoints beneath base path '/actuator'","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.252223Z","log":{"level":"INFO","logger":"org.springframework.test.web.servlet.TestDispatcherServlet"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Completed initialization in 2 ms","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.257300Z","log":{"level":"INFO","logger":"dev.urlshort.web.DogfoodRegressionProbeTest$Fixed$OverTheCreateBudget"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Started DogfoodRegressionProbeTest.Fixed.OverTheCreateBudget in 0.189 seconds (process running for 10.416)","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.257809Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.257895Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+
+DogfoodRegressionProbeTest > Fixed > OverTheCreateBudget > T4_the429ConformsToo() STANDARD_OUT
+    {"@timestamp":"2026-10-03T19:25:23.315338Z","log":{"level":"INFO","logger":"org.springdoc.api.AbstractOpenApiResource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Init duration for springdoc-openapi is: 54 ms","requestId":"f61b4932-8baa-4039-9eab-45a425cb45eb","ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.316868Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"f61b4932-8baa-4039-9eab-45a425cb45eb","status":200,"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.323277Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"8b4947ab-db67-43fc-9402-2c8c3b89665b","status":201,"ecs":{"version":"8.11"}}
+    {"@timestamp":"2026-10-03T19:25:23.324853Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"579ff169-8675-4a1e-a5d6-799c2b609a88","status":429,"ecs":{"version":"8.11"}}
+    T3/T4 429 members [instance, status, title] conform
+    T4 429 produced in the nested low-budget context; outer document fetched: [detail, errors, instance, status, title, type]
+
+DogfoodRegressionProbeTest > Fixed > OverTheCreateBudget > T4_the429ConformsToo() PASSED
+
+{"@timestamp":"2026-10-03T19:25:23.335349Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T19:25:23.336900Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T19:25:23.339256Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-2 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T19:25:23.339733Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-2 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T19:25:23.340887Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-3 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T19:25:23.341255Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-3 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T19:25:23.342400Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-4 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T19:25:23.342662Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-4 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T19:25:23.343805Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-5 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T19:25:23.376627Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":16260,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-5 - Shutdown completed.","ecs":{"version":"8.11"}}
+
+> Task :designDogfoodTestProbe
+
+9 tests completed, 3 failed
+There were failing tests. See the report at: file:///Users/andrzej/Documents/projekty/test/openrig/url-shortener/build/reports/tests/designDogfoodTestProbe/index.html
+
+[Incubating] Problems report is available at: file:///Users/andrzej/Documents/projekty/test/openrig/url-shortener/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.7.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 11s
+7 actionable tasks: 2 executed, 5 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html

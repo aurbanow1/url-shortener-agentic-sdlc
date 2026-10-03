@@ -1,0 +1,17 @@
+// Design probe for 03-dogfood-fix (design.md section 12, rows D0-D3).
+// Run from the repo root, no product, test or build file changes:
+//   scripts/gw --log missions/02-brownfield/slices/03-dogfood-fix/design-probe/output.txt \
+//       --offline -I missions/02-brownfield/slices/03-dogfood-fix/design-probe/dogfood-probe.gradle designDogfoodProbe
+gradle.projectsEvaluated {
+    def project = gradle.rootProject
+    def functional = project.sourceSets.functionalTest
+    project.tasks.register('designDogfoodProbe', JavaExec) {
+        dependsOn project.tasks.named('functionalTestClasses')
+        javaLauncher.set(project.javaToolchains.launcherFor {
+            languageVersion = JavaLanguageVersion.of(21)
+        })
+        classpath = functional.runtimeClasspath
+        mainClass = project.file('missions/02-brownfield/slices/03-dogfood-fix/design-probe/DogfoodProbe.java').absolutePath
+        systemProperty 'spring.profiles.active', 'functional'
+    }
+}
