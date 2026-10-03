@@ -364,7 +364,7 @@ Source: `docs/diagrams/ci-cd-sequence.mmd`.
 | Threat | Mitigation | Residual |
 |---|---|---|
 | **Tampering, supply chain:** a moved action tag runs new code | every `uses:` is a 40-hex commit with its tag comment, checked against the builder's `ls-remote` capture (AC-9); updates arrive as Dependabot pull requests through the gate | a malicious commit at the pinned SHA itself (the pin is to a reviewed release, not an audit) |
-| **Tampering:** a pull request swaps `gradle-wrapper.jar` | `setup-gradle` validates every wrapper jar against Gradle's published checksums by default; the build stops on a mismatch | the distribution zip has no `distributionSha256Sum` in `gradle-wrapper.properties` (out of territory); `validateDistributionUrl=true` and HTTPS to `services.gradle.org` remain |
+| **Tampering:** a pull request swaps `gradle-wrapper.jar` | `setup-gradle` validates every wrapper jar against Gradle's published checksums by default; the build stops on a mismatch | the distribution zip has no `distributionSha256Sum` in `gradle-wrapper.properties` (out of territory); `validateDistributionUrl=true` and HTTPS to `services.gradle.org` remain. If AC-13's first `gate` fails in the `setup-gradle` step on wrapper validation, the committed `gradle-wrapper.jar` is not an official release jar. That is a finding outside this territory, not a flaky gate |
 | **Tampering:** a pull request poisons the dependency cache `main` reads | `setup-gradle` writes the cache only on the default branch; GitHub scopes caches by branch, so `main` never restores a cache a pull request wrote | — |
 | **Elevation:** a job uses the token to write | `permissions: contents: read` at the top, no job-level grant (AC-7); `persist-credentials: false`; no `pull_request_target` | the read token can still read the private repository's contents during the job, as any checkout does |
 | **Elevation / injection:** event text in a shell | no `run:` block contains a `${{ }}` expression at all; the only expressions are `github.workflow`/`github.ref` in `concurrency` and `env.JAVA_HOME` in a step's `env:` (AC-8) | — |
@@ -520,6 +520,9 @@ Documentation read on 2026-10-03 (quoted, because the design rests on it):
   repository. The probe ran aarch64 with the Temurin image's Ubuntu userland on 4 CPUs. That is
   AC-13's first run;
 - `pipefail` under GitHub's runner;
+- the `URLSHORT_JAVA_HOME: ${{ env.JAVA_HOME }}` path: L2 used the `PATH` fallback. If that value is
+  ever empty or wrong, `java_bin()` finds no executable `$home/bin/java` and falls back to `java`
+  on `PATH` (`smoke.sh:28–31`), which is the path L2 exercised;
 - `setup-gradle`'s cache and wrapper validation in action;
 - a Dependabot run.
 
