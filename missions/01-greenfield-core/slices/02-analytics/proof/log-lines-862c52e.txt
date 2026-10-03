@@ -1,0 +1,20 @@
+# JSON log lines for the captured redirects, their click recording, and the statistics read
+# (AC-18, AC-19's 200 and settled-302 rows, by effect on Tomcat; W1-02)
+# Candidate 862c52e, shipped logging configuration (ECS). Full run log: bootrun-log-862c52e.txt.
+#
+# Each request wrote exactly one event, `request completed`, whose requestId equals its captured
+# X-Request-Id; recording a click writes no event (only a lost click would, as one WARN).
+#   302 redirect 1  http-302-redirect-1-862c52e.txt  6c2c9d06-7441-4294-b833-03fe3bfcec8a
+#   302 redirect 2  http-302-redirect-2-862c52e.txt  ff1a6892-595c-496a-8828-02ba223ea214
+#   302 redirect 3  http-302-redirect-3-862c52e.txt  3d729486-774e-4d95-a515-b3b75eed65dc
+#   200 statistics  http-200-stats-862c52e.txt       b3b4df7b-1995-4211-acd7-cd848bbf9655
+#
+# Privacy check over the whole run log:
+#   grep -c -E "proofuacanary|proofpathcanary|proofquerycanary|proof\.example|192\.0\.2\.88|127\.0\.0\.1|0:0:0:0:0:0:0:1|curl/" -> 0
+#   grep -c "<the stored client hash>" -> 0
+# So no user agent, referrer (whole or origin), forwarding value, client address or client hash was logged.
+
+{"@timestamp":"2026-10-03T10:07:58.969755Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":14874,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"6c2c9d06-7441-4294-b833-03fe3bfcec8a","status":302,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T10:08:01.075876Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":14874,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"ff1a6892-595c-496a-8828-02ba223ea214","status":302,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T10:08:03.106271Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":14874,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"3d729486-774e-4d95-a515-b3b75eed65dc","status":302,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T10:08:04.169770Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":14874,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"b3b4df7b-1995-4211-acd7-cd848bbf9655","status":200,"ecs":{"version":"8.11"}}

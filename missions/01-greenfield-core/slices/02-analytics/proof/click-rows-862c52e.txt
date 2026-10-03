@@ -1,0 +1,24 @@
+# Stored click records for the captured redirects (AC-3, AC-4, AC-5 by effect, one client, one day)
+# Candidate 862c52e, `scripts/gw --offline bootRun --args=--server.port=18082` in .worktrees/02-analytics
+# (file database ./data/urlshort), app stopped, then:
+# java -cp h2-2.4.240.jar org.h2.tools.Shell -url "jdbc:h2:file:./data/urlshort;MODE=PostgreSQL" -user sa -sql "..."
+#
+# The three redirects (http-302-redirect-{1,2,3}-862c52e.txt) each sent
+#   User-Agent: Mozilla/5.0 proofuacanary
+#   Referer: https://Proof.Example/proofpathcanary?q=proofquerycanary
+#   X-Forwarded-For: 192.0.2.88
+# from the loopback client 127.0.0.1.
+
+SELECT c.id, c.link_id, c.clicked_at, c.clicked_on, c.referrer, c.user_agent_class, c.client_hash FROM click c JOIN link l ON l.id = c.link_id WHERE l.code = 'JUyeve8W' ORDER BY c.id;
+
+ID | LINK_ID | CLICKED_AT                 | CLICKED_ON | REFERRER              | USER_AGENT_CLASS | CLIENT_HASH
+1  | 1       | 2026-10-03 10:07:58.963+00 | 2026-10-03 | https://proof.example | browser          | e22c03de5fbb194266a63bfa7e5ceea0cde01978a4aadf2305fdb7b6208d635a
+2  | 1       | 2026-10-03 10:08:01.074+00 | 2026-10-03 | https://proof.example | browser          | e22c03de5fbb194266a63bfa7e5ceea0cde01978a4aadf2305fdb7b6208d635a
+3  | 1       | 2026-10-03 10:08:03.105+00 | 2026-10-03 | https://proof.example | browser          | e22c03de5fbb194266a63bfa7e5ceea0cde01978a4aadf2305fdb7b6208d635a
+(3 rows, 5 ms)
+
+# Read: the table has no column for the raw address, the user agent, the referrer path or query, a
+# forwarding value or the request id, so none can be stored (rule 2); the referrer is the lowercase
+# origin; the class is `browser`; the hash is 64 hex characters, equal within the UTC day; no row holds
+# 127.0.0.1, 192.0.2.88, proofuacanary, proofpathcanary or proofquerycanary. Hash rotation across UTC
+# midnight and a second address are proven by ClickRecordingJourneyTest.AC05 on the suite clock.
