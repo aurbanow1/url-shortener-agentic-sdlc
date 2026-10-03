@@ -239,3 +239,14 @@ Context and observations that help the mission but do not change its
   shared GAPS/TRACEABILITY appends may stale older shared-file receipt hashes;
   those unassigned scopes are not rejudged here. No app is left running and
   the worktree remains clean at the named candidate.
+
+
+- 2026-10-03 — QA2 AC-13 follow-up packet qitem-20261003211407-91a03acb:
+  read operator record b6b4a29; PR gate37153245436 and main CI37153380482 /
+  CD37153380418 success, CD artifacts urlshort-jar and smoke-logs. Browser
+  cache misses and authenticated API404 prevented direct verification;
+  explicit packet fallback uses the operator source, qualified in judgment.
+  Exact section and failures retained. Main runs use Gradle9.8.0/a3d6867;
+  local f3e6b0b context only. GAPS/TRACE rows updated; A6 red run still
+  unexercised. Reaffirm5/6 current shared-file hashes and replace7 pending
+  judgment on original candidate add7ab5; no product/build changes.
