@@ -1,5 +1,15 @@
 # 02-analytics — design review
 
+**Latest verdict: FAIL on `45c98c469e7f18f7cdf4b098a03a851fa56d073d`: DR-01
+remains HIGH for in-flight shutdown accounting. DR-02, DR-03 and DR-04 are
+fixed.** The drain deadline works, but a normal JVM exit can still abandon
+the daemon writer without the promised loss warning. This repeated finding
+is escalated to the lead under the convergence rule; the review packet waits
+for that resolution. See the appended re-review and
+[escalation brief](design-dr01-escalation.md).
+
+## Initial review — 71b2e10
+
 Candidate: `71b2e10a7a32424f8f816db33db9984d7647bfd1` (producer commits
 `20211ad` and `71b2e10`), against SPEC
 `72001071cd38691b2ba0a41bf6b83be787ac02c0`.
@@ -146,3 +156,110 @@ claimed. The optional DI/spy mechanics still need the builder's tests.
   artifacts. DR-03 is expected in passing, not a new blocking gate. Prior
   requirements RQ-01 remains settled; A-9/CR-01 and release measurement
   obligations remain where previously assigned.
+
+## Re-review 45c98c469e7f18f7cdf4b098a03a851fa56d073d
+
+2026-10-03, `review-agent@urlshort-factory` (Codex).
+Packet `qitem-20261003092345-52dd8a6e`, same workflow instance.
+Design commits `7cbf7a1` and `45c98c4`; requirements alignment `173bd60`.
+
+**Verdict: FAIL — one remaining HIGH, DR-01.** The same finding survived
+its correction round, so escalate with both positions and use `waiting`
+rather than silently starting another producer loop. No new finding is
+added. DR-02/03/04 are settled; no non-blocking review item remains open.
+
+### Context and complete coverage
+
+The revision keeps the same analytics scope and adds bounded draining,
+atomic time/key selection, a lookup-table foreign key and explicit HTTP
+method defaults. Confidence: 99/100 in scope and the four finding
+dispositions; production implementation and final shutdown smoke remain
+future evidence. This is a design review, not approval of unbuilt code.
+
+The union of the three response commits changes **15 files / 15 reviewed**:
+
+| Changed file | Verdict |
+|---|---|
+| `docs/DESIGN.md` | Candidate revisions read; components, clock edge and H2 guidance aligned; shutdown-accounting claim subject to DR-01 |
+| `docs/adr/0011-click-handoff-bounded-single-writer.md` | DR-01 remains HIGH: finite wait proven, in-flight outcome not guaranteed |
+| `docs/adr/0012-client-hash-daily-salt.md` | PASS: clock sampled under salt lock, stale-day expiry guarded, backward wall-clock boundary disclosed |
+| `docs/adr/0013-click-events-and-request-time-statistics.md` | PASS: four-row lookup/FK and ordered two-table rollback |
+| `docs/diagrams/click-sequence.mmd` | Reviewed: new stamp and cancellation sequence; universal shutdown-accounting note needs DR-01 correction |
+| `docs/diagrams/container.mmd` | PASS: Clock dependency moved to DailySalt |
+| `docs/diagrams/erd.mmd` | PASS: lookup relation and length check match revised DDL |
+| `missions/01-greenfield-core/slices/02-analytics/SPEC.md` | PASS: rule 7, AC-22 and A-18 explicitly settle HEAD/OPTIONS; proof range updated |
+| `missions/01-greenfield-core/slices/02-analytics/design.md` | All response changes reviewed; 22 ACs mapped, threat/test/schema changes coherent except remaining DR-01 |
+| `missions/01-greenfield-core/slices/02-analytics/design-probe/RevisionProbe.java` | Full 237-line read and fresh run; salt and interruptible drain results hold; sleep-only store misses non-interruptible JDBC tail |
+| `missions/01-greenfield-core/slices/02-analytics/design-probe/revision-probe.gradle` | PASS: isolated JDK 21 source launch, unchanged product build |
+| `missions/01-greenfield-core/slices/02-analytics/design-probe/revision-output.txt` | All 33 lines read; claims hold within the interruptible-sleep fixture |
+| `missions/01-greenfield-core/slices/02-analytics/design-probe/ConstraintProbe.java` | Full 141-line read and fresh run; connection retirement retains a live database and tests actual engine behavior |
+| `missions/01-greenfield-core/slices/02-analytics/design-probe/constraint-probe.gradle` | PASS: isolated JDK 21 source launch |
+| `missions/01-greenfield-core/slices/02-analytics/design-probe/constraint-output.txt` | All 153 lines read; ten cases in each engine mode, both failures and successful alternatives inspected |
+
+[File hashes](proof/design-revision-source-audit.json) bind the scope to the
+candidate. Fourteen working files match it exactly. Shared `docs/DESIGN.md`
+advanced concurrently for 03's logging/shutdown changes; its **candidate
+diff** was reviewed, and the later two-row difference inspected only to
+confirm it does not alter the 02 response. The unrelated 03 work is not
+approved here. Every executed producer probe and the input DDL/SPEC match
+the named candidate.
+
+### Finding resolutions
+
+| Id | Producer response | Re-review disposition and evidence |
+|---|---|---|
+| DR-01 | Fixed by five-second wait, interruption, queued-task reporting and assumed pool termination of the active write | **Partially fixed; HIGH remains.** Fresh sleep-based probe returns in 5,009 ms, accounts all six, and proves the old unbounded wait is removed. Independent real-JDBC checks show that pool close can return before the active call finishes. A fresh child JVM returns normally after 5,013 ms with only 5/6 requests accounted and kills its remaining daemon writer; no completion/loss callback follows. |
+| DR-02 | Fixed by choosing instant and key together | **Fixed.** Fresh deterministic D / D+1 / delayed-D-hash / D+1 replay keeps D+1 stable and D distinct. Stale D expiry leaves D+1 unchanged; current-day disposal and quiet-day scheduled expiry also pass. Backward wall-clock steps remain an explicitly disclosed boundary, not the old request-reordering race. |
+| DR-03 | Fixed through requirements producer at `173bd60` | **Fixed.** AC-22 observes HEAD 200/no body, OPTIONS 200/Allow GET and unchanged totals; rule 7, A-18, design response table and StatsJourneyTest plan agree. No implicit SPEC exception remains. |
+| DR-04 | Fixed with seeded lookup table/FK | **Fixed.** Fresh matrix repeats the H2 multi-value CHECK failure and verifies V1 checks unaffected. Independent probe extracts V2 directly from design.md: after DDL-session retirement, all four valid tokens succeed, invalid token and short hash fail, and ordered rollback leaves link/audit intact, on both memory and file databases. The planned regression owns its Flyway database/pool, so it retires the actual migration session. |
+
+### Remaining finding
+
+| Id | Severity | File:line | Evidence | Required change |
+|---|---|---|---|---|
+| DR-01 | HIGH | `missions/01-greenfield-core/slices/02-analytics/design.md:34`; `docs/adr/0011-click-handoff-bounded-single-writer.md:51`; `missions/01-greenfield-core/slices/02-analytics/design-probe/RevisionProbe.java:93` | The shutdown loop reports only queued tasks. In-flight reporting depends on the daemon thread returning from JDBC, and the design asserts Hikari close forces that return. `design-revision-boundary.txt`: recorder returns in 209 ms; pool close takes 0 ms; write is still unfinished after both and only later reports QueryTimeoutException. `design-exit-boundary.txt`: two 2-second writes complete, a third waits on a real H2 lock, three queued writes are reported; recorder/pool close after 5,013 ms, accounting is 5/6, main returns normally and the third callback never runs. No SIGKILL is involved. | Account for the in-flight request before shutdown returns, without depending on interruption or a post-shutdown daemon callback; preserve a finite deadline, private request-correlated reporting and duplicate suppression. If the database outcome is unknown, say so rather than claiming a guaranteed rollback/loss. Add a store that ignores interruption and a process-exit/race check. Amend the universal written-or-lost assertion and the Hikari assumption. |
+
+The producer acknowledged at 09:33Z that the pool-close claim had not been
+probed and was wrong, and proposed an atomic in-flight owner so either
+shutdown or completion emits the report. That is a proposed correction,
+not reviewed candidate evidence. The lead receives this position alongside
+the reproducible remaining defect; no product-intent change is requested.
+
+### Fresh verification and limits
+
+Executed through `scripts/gw --offline`, with the wrapper's `--log` flag:
+
+| Task | Evidence and observed result |
+|---|---|
+| `-I missions/01-greenfield-core/slices/02-analytics/design-probe/revision-probe.gradle designRevisionProbe` | [revision rerun](proof/design-revision-rerun.txt): all reported salt/interruptible-drain predicates true |
+| `-I missions/01-greenfield-core/slices/02-analytics/design-probe/constraint-probe.gradle designConstraintProbe` | [constraint rerun](proof/design-constraint-rerun.txt): complete engine matrix reproduced |
+| `-I docs/review/02-analytics/proof/revision-boundary.gradle reviewRevisionBoundary` | [independent boundaries](proof/design-revision-boundary.txt): all-four-token and rollback checks pass; real JDBC remains unfinished after pool close |
+| `-I docs/review/02-analytics/proof/revision-boundary.gradle reviewExitBoundary` | [normal-exit reproduction](proof/design-exit-boundary.txt): expected 5/6 accounting defect reproduced; successful task exit means reproduction succeeded |
+| `check` | [baseline gate](proof/design-revision-check.txt): successful, all 14 tasks up to date; unchanged integrated product, not new analytics coverage |
+
+The independent fixtures compile the unchanged producer recorder and use
+its executor/close implementation. The exit probe adapts the store work to
+two slow writes followed by an actual H2 lock wait; it does not claim the
+planned click INSERT normally conflicts on that fixture's primary key.
+The point verified is JDBC/cancellation/lifetime behavior at shutdown.
+The current design explicitly claims to handle slow or stalled stores.
+The child returns from main normally; its third operation cannot commit
+while the independent blocking transaction remains open. No warning callback
+for it appears before the Java process exits.
+
+No PostgreSQL, integrated 02+03 shutdown, release latency result or analytics
+coverage is claimed. NFR-L3 measurement, A-9 proxy alignment and prior CR-01
+backlog remain assigned as before. The producer's H2 guidance caveat belongs
+in the lead's existing follow-up; it is not another review blocker.
+
+### Re-review self-check and continuation
+
+- Candidate/commit scope and all 15 files checked; existing findings alone
+  judged, with no reopening of settled requirements findings.
+- Fresh gate and all four executable checks completed; the HIGH cites the
+  actual failed outcome rather than the successful process exit code.
+- Only `docs/review/` authored. Product, tests, requirements and design remain
+  producer-owned. Ledger records one HIGH, zero other open findings.
+- Repeated DR-01 goes to the orchestration lead with both positions. Resume
+  after its resolution, verify the concrete correction on its named SHA,
+  preserve DR-02/03/04 as fixed, then hand off to delegated plan-lock when clear.

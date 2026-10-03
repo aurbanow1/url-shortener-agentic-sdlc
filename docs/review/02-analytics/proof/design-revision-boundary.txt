@@ -1,0 +1,32 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :jar UP-TO-DATE
+> Task :compileFunctionalTestJava UP-TO-DATE
+> Task :processFunctionalTestResources UP-TO-DATE
+> Task :functionalTestClasses UP-TO-DATE
+> Task :compileReviewRevisionBoundary
+
+> Task :reviewRevisionBoundary
+02:32:30.079 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Starting...
+02:32:30.167 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:review-revised-154487936513708 user=SA
+02:32:30.171 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Start completed.
+REVIEW mem exact documented V2 after DDL-session retirement: allFourClasses=true invalidClassAndHashRejected=true rollbackLeavesV1=true
+02:32:30.263 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown initiated...
+02:32:30.284 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown completed.
+02:32:30.285 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Starting...
+02:32:30.298 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-2 - Added connection conn3: url=jdbc:h2:file:./build/review-revised-154488191520541 user=SA
+02:32:30.298 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Start completed.
+REVIEW file exact documented V2 after DDL-session retirement: allFourClasses=true invalidClassAndHashRejected=true rollbackLeavesV1=true
+02:32:30.342 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Shutdown initiated...
+02:32:30.373 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Shutdown completed.
+02:32:30.373 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-3 - Starting...
+02:32:30.374 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-3 - Added connection conn6: url=jdbc:h2:mem:review-jdbc-lock-154488280199500 user=SA
+02:32:30.374 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-3 - Start completed.
+02:32:30.695 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-3 - Shutdown initiated...
+02:32:30.696 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-3 - Shutdown completed.
+REVIEW blocked H2 JDBC: recorderCloseMs=209 unfinishedAtRecorderReturn=true poolCloseMs=0 unfinishedAfterPoolClose=true writeSettled=true outcome=QueryTimeoutException
+
+BUILD SUCCESSFUL in 3s
+7 actionable tasks: 2 executed, 5 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html

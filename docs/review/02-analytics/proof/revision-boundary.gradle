@@ -1,0 +1,27 @@
+// Re-review only; compiles unchanged producer mechanisms with independent boundary checks.
+gradle.projectsEvaluated {
+    def p = gradle.rootProject
+    def functional = p.sourceSets.functionalTest
+    def compileProbe = p.tasks.register('compileReviewRevisionBoundary', JavaCompile) {
+        dependsOn p.tasks.named('functionalTestClasses')
+        source p.file('missions/01-greenfield-core/slices/02-analytics/design-probe/RevisionProbe.java')
+        source p.file('missions/01-greenfield-core/slices/02-analytics/design-probe/ConstraintProbe.java')
+        source p.file('docs/review/02-analytics/proof/RevisionBoundaryProbe.java')
+        source p.file('docs/review/02-analytics/proof/ExitBoundaryProbe.java')
+        classpath = functional.runtimeClasspath
+        destinationDirectory.set(p.layout.buildDirectory.dir('review-revision-boundary'))
+        javaCompiler.set(p.javaToolchains.compilerFor { languageVersion = JavaLanguageVersion.of(21) })
+    }
+    p.tasks.register('reviewRevisionBoundary', JavaExec) {
+        dependsOn compileProbe
+        javaLauncher.set(p.javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) })
+        classpath = p.files(compileProbe.flatMap { it.destinationDirectory }) + functional.runtimeClasspath
+        mainClass = 'RevisionBoundaryProbe'
+    }
+    p.tasks.register('reviewExitBoundary', JavaExec) {
+        dependsOn compileProbe
+        javaLauncher.set(p.javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) })
+        classpath = p.files(compileProbe.flatMap { it.destinationDirectory }) + functional.runtimeClasspath
+        mainClass = 'ExitBoundaryProbe'
+    }
+}
