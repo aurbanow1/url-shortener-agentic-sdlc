@@ -1,0 +1,40 @@
+{
+  "candidate": "35590f06c852543c29097a42c43b7802be90ba40\n",
+  "assertions": [
+    "AC-1 empty exact page",
+    "AC-2/3 create/retire audited request headers and stored values",
+    "AC-4 write sequence",
+    "AC-10 twice read + POST/PUT/PATCH/DELETE405 + HEAD/OPTIONS",
+    "Inherited bad URL400/retired410/missing404",
+    "AC-2/3/5: all real row fields, UTC timestamps, headers, before/after and 45 stored rows compared exactly",
+    "AC-6: 45 rows produce20/20/5 unique descending write positions",
+    "AC-7:150 rows default50/max100 with next",
+    "AC-8:30 originals unchanged across five new writes; fresh35 newest5",
+    "AC-20: actual held JDBC insert committed after first10; continuation original30 only; fresh31 exactly once",
+    "AC-10: all stored tables byte-equal before/after read intervals",
+    "AC-9 static400onefield errors including overflow",
+    "AC-10 traverseall45 twice +four405s all tables unchanged",
+    "AC-11/12 remoteGETHEADdenied;fourloopbacksallowed under controlledpeerinputs",
+    "AC-13 forwardedheaderpresence including empty/case denied before badquery/Accept",
+    "AC-21 actual JDBC SQLException yields safe500 and recovery200",
+    "Valid HTMLAccept still JSON;unknownquery ignored",
+    "Rule9 rapid90auditGETburst captured; paced61observed200becausecontinuousrefill (not a fixedwindow)",
+    "AC-13/14 settings profile: nondefaultbaseURL/budgets/trustedloopback+remote; local plain200; five forwarded/remoteGETHEADvariants403",
+    "AC-14 nativeheaderstrategy:plainGETHEAD and forgedheader requests403; realTomcatcontexts",
+    "AC-14 frameworkheaderstrategy realTomcat:plainGETHEAD and forgedheaders403",
+    "AC-18 installedf6dd29e→35590f0 SAMEdirectory: audit/linkrowsbyteidentical;stats2/1unchanged;active302exactLocation;retired410;HEADnoclick;verificationGETonly+1click",
+    "AC-19 all oldOpenAPIoperations/responses unchanged; candidateinstalledAPIequalscontrolledappAPI",
+    "Wellformedneverissuedpositivecursor200emptypage"
+  ],
+  "burst": {
+    "start": "2026-10-03T19:25:52.604Z",
+    "end": "2026-10-03T19:25:52.943Z"
+  },
+  "limits": [
+    "Controlled Servlet peer inputs, not actual remote TCP clients",
+    "QA JDBC fixture reset is explicit setup; unchanged snapshots compare each read-only interval",
+    "Two original OpenAPI enumeration failures authorized by grant428e9e1;153otheroriginal tests pass",
+    "Initial no-source Gradle probe and unsupported QA database case-folding are instrument errors, retained",
+    "Security review item12 is downstream, not supplied by this QA check"
+  ]
+}

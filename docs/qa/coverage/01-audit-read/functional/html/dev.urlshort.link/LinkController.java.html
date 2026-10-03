@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LinkController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">urlshort</a> &gt; <a href="index.source.html" class="el_package">dev.urlshort.link</a> &gt; <span class="el_source">LinkController.java</span></div><h1>LinkController.java</h1><pre class="source lang-java linenums">package dev.urlshort.link;
+
+import java.net.URI;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.headers.Header;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.jspecify.annotations.Nullable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ProblemDetail;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * The Creator's API under {@code /api/links}: create, read and retire. HTTP in and out only; the
+ * rules live in {@link LinkValidation} and {@link LinkService}. Every error is a problem detail
+ * rendered by the web package's advice. {@code Host} and forwarding headers are never read (AC-3).
+ */
+@RestController
+@RequestMapping(&quot;/api/links&quot;)
+class LinkController {
+
+	static final String PROBLEM = &quot;application/problem+json&quot;;
+	static final String LINK_EXAMPLE = &quot;{\&quot;code\&quot;:\&quot;Ab3dE9fG\&quot;,\&quot;shortUrl\&quot;:\&quot;http://localhost:8080/Ab3dE9fG\&quot;,&quot;
+			+ &quot;\&quot;url\&quot;:\&quot;https://example.com/some/path?q=1\&quot;,\&quot;state\&quot;:\&quot;active\&quot;,\&quot;createdAt\&quot;:\&quot;2026-10-03T05:12:42.133Z\&quot;}&quot;;
+
+	private final LinkService links;
+	private final LinkProperties properties;
+
+<span class="fc" id="L43">	LinkController(LinkService links, LinkProperties properties) {</span>
+<span class="fc" id="L44">		this.links = links;</span>
+<span class="fc" id="L45">		this.properties = properties;</span>
+<span class="fc" id="L46">	}</span>
+
+	/** AC-1 to AC-7, AC-17 to AC-21: {@code 201} with {@code Location: /api/links/&lt;code&gt;}. */
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+	@Operation(summary = &quot;Create a short link for an http(s) URL&quot;,
+			description = &quot;Without Idempotency-Key every call creates a new link. With a key, a repeat with the same &quot;
+					+ &quot;url within 24 h of the first 201 returns that link (current state); a different url is 422.&quot;,
+			requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(required = true,
+					content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
+							schema = @Schema(implementation = CreateLinkRequest.class),
+							examples = @ExampleObject(name = &quot;create&quot;,
+									value = &quot;{\&quot;url\&quot;:\&quot;https://example.com/some/path?q=1\&quot;}&quot;))),
+			responses = {
+				@ApiResponse(responseCode = &quot;201&quot;, description = &quot;Created, or replayed for the same key and url&quot;,
+						headers = @Header(name = &quot;Location&quot;, description = &quot;/api/links/{code}&quot;,
+								schema = @Schema(type = &quot;string&quot;)),
+						content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
+								schema = @Schema(implementation = LinkResponse.class),
+								examples = @ExampleObject(name = &quot;created&quot;, value = LINK_EXAMPLE))),
+				@ApiResponse(responseCode = &quot;400&quot;, description = &quot;Invalid url or Idempotency-Key (errors[] names field &quot;
+						+ &quot;and rule), or a body that is not a JSON object&quot;, content = @Content(mediaType = PROBLEM,
+								schema = @Schema(implementation = ProblemDetail.class))),
+				@ApiResponse(responseCode = &quot;413&quot;, description = &quot;Body larger than 16 384 bytes&quot;,
+						content = @Content(mediaType = PROBLEM, schema = @Schema(implementation = ProblemDetail.class))),
+				@ApiResponse(responseCode = &quot;415&quot;, description = &quot;Content-Type is not application/json&quot;,
+						content = @Content(mediaType = PROBLEM, schema = @Schema(implementation = ProblemDetail.class))),
+				@ApiResponse(responseCode = &quot;422&quot;, description = &quot;Idempotency-Key already used with a different url&quot;,
+						content = @Content(mediaType = PROBLEM, schema = @Schema(implementation = ProblemDetail.class))),
+				@ApiResponse(responseCode = &quot;500&quot;, description = &quot;Nothing was stored&quot;,
+						content = @Content(mediaType = PROBLEM, schema = @Schema(implementation = ProblemDetail.class))) })
+	ResponseEntity&lt;LinkResponse&gt; createLink(@RequestBody CreateLinkRequest request,
+			@Parameter(description = &quot;1 to 255 visible ASCII characters; makes a retried create return the first link&quot;)
+			@RequestHeader(name = &quot;Idempotency-Key&quot;, required = false) @Nullable String idempotencyKey) {
+<span class="fc" id="L79">		String url = request.url();</span>
+<span class="fc" id="L80">		LinkValidation.validateUrl(url);</span>
+<span class="fc" id="L81">		LinkValidation.validateIdempotencyKey(idempotencyKey);</span>
+<span class="fc" id="L82">		Link link = links.create(url, idempotencyKey);</span>
+<span class="fc" id="L83">		return ResponseEntity.created(URI.create(&quot;/api/links/&quot; + link.code())).body(response(link));</span>
+	}
+
+	/** AC-8, AC-9, AC-14: the current representation, retired links included. */
+	@GetMapping(&quot;/{code:[A-Za-z0-9]{6,32}}&quot;)
+	@Operation(summary = &quot;Read a link by its code&quot;, responses = {
+		@ApiResponse(responseCode = &quot;200&quot;, description = &quot;The link; state is active or retired&quot;,
+				content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
+						schema = @Schema(implementation = LinkResponse.class),
+						examples = @ExampleObject(name = &quot;link&quot;, value = LINK_EXAMPLE))),
+		@ApiResponse(responseCode = &quot;404&quot;, description = &quot;No link has this code&quot;,
+				content = @Content(mediaType = PROBLEM, schema = @Schema(implementation = ProblemDetail.class))) })
+	LinkResponse readLink(@PathVariable String code) {
+<span class="fc" id="L96">		return response(links.read(code));</span>
+	}
+
+	/** AC-10, AC-11, AC-14: {@code 204}; {@code 410} when already retired. */
+	@DeleteMapping(&quot;/{code:[A-Za-z0-9]{6,32}}&quot;)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@Operation(summary = &quot;Retire a link; visitors then get 410 and the record is kept&quot;, responses = {
+		@ApiResponse(responseCode = &quot;204&quot;, description = &quot;Retired&quot;),
+		@ApiResponse(responseCode = &quot;404&quot;, description = &quot;No link has this code&quot;,
+				content = @Content(mediaType = PROBLEM, schema = @Schema(implementation = ProblemDetail.class))),
+		@ApiResponse(responseCode = &quot;410&quot;, description = &quot;Already retired&quot;,
+				content = @Content(mediaType = PROBLEM, schema = @Schema(implementation = ProblemDetail.class))),
+		@ApiResponse(responseCode = &quot;500&quot;, description = &quot;Nothing was changed&quot;,
+				content = @Content(mediaType = PROBLEM, schema = @Schema(implementation = ProblemDetail.class))) })
+	void retireLink(@PathVariable String code) {
+<span class="fc" id="L111">		links.retire(code);</span>
+<span class="fc" id="L112">	}</span>
+
+	private LinkResponse response(Link link) {
+<span class="fc" id="L115">		return LinkResponse.of(link, properties.publicBaseUrl());</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

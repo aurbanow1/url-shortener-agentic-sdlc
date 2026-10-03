@@ -150,3 +150,26 @@ Context and observations that help the mission but do not change its
   - By effect: an upgrade from the real `f6dd29e` jar, and two pages, a `403` and the log lines on the candidate jar. Dropped as `proof/builder-evidence-35590f0.md` (items 7, 8).
   - Nine design deviations, with their reasons, in `PROOF.md` §Builder. Notably: the `JsonNode` schema needs `implementation = Object.class` on OpenAPI 3.1, and the override cases run on real Tomcat.
   - Handed to `qa_check`.
+
+## 5. QA Agent
+
+- 2026-10-03 — `01-audit-read` QA on packet `qitem-20261003185423-545a1365`,
+  instance `01M416ZY5N11CDGZBM2DT4GAXS`, exact candidate
+  `35590f06c852543c29097a42c43b7802be90ba40`, clean product worktree.
+  Independent offline gate: 200 unit / 200 functional, all green, merged CSV
+  492/492 lines and 190/190 branches. Reports copied and all 348 hashes verified.
+  267 curl captures, 272 correlated request log events, real JDBC held write
+  and read failure, actual shipped-to-candidate jar upgrade on one directory.
+  All 21 ACs observed within their SPEC scope; AC-17 has exactly the accepted
+  two enumeration failures in the unchanged original 155-test replay, with
+  the other 153 passing. Candidate versions pass; grant `428e9e1`, transition
+  1156. Every 223 named source test mapped; GAPS records the qualifications.
+  Proof: slice `PROOF.md` QA, `proof/qa-verification-35590f0.json`, coverage
+  `docs/qa/coverage/01-audit-read/SUMMARY.md`. No product/build/test edits.
+- Contract items 1–11 and 13 covered by QA for this candidate; their attributed
+  judgments are recorded before handoff. Item 12 requires
+  the independent downstream security-review record, so it is deliberately
+  deferred under lead obligation `qitem-20261003194346-b74b8081`, with the
+  continuation in `proof/qa-proof-sequencing-35590f0.md`. Lead returns it to QA
+  before acceptance; a changed product candidate follows the normal QA loop.
+  All localhost QA apps stopped, ports 18131/18132/18133 refuse connections.

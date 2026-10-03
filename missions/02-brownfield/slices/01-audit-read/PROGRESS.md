@@ -18,5 +18,5 @@
 - [x] Item 8: two pages via `next`, a forwarded `403`, their log lines and a clean whole-run grep (`proof/http-*-35590f0.txt`, `log-lines-35590f0.txt`, `jar-log-35590f0.txt`)
 - [x] Item 9: no migration, as the design and plan-lock state
 - [x] Item 10 (builder half): `docs/api/openapi.json` regenerated on the candidate; QA's live-vs-committed diff is pending
-- [ ] QA: coverage reports, traceability, `GAPS.md` row, API-document diff
+- [x] QA: coverage reports, all223 named-test traceability, `GAPS.md` limits/grant, empty whole API-document diff; independent200unit/200functional, merged492/492lines190/190branches, all21AC effects (AC17 under grant428e9e1); proof/qa-verification-35590f0.json
 - [ ] Review: security record (item 12)

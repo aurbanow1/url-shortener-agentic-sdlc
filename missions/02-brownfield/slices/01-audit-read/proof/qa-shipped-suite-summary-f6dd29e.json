@@ -1,0 +1,1107 @@
+{
+  "count": 155,
+  "failures": [
+    {
+      "class": "dev.urlshort.web.OpenApiDocumentTest",
+      "method": "AC28_liveDocumentDescribesTheSlice()",
+      "failed": true,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.OpenApiDocumentTest",
+      "method": "AC20_everyOperationDocumentsTheTooManyRequestsProblem()",
+      "failed": true,
+      "error": false,
+      "skipped": false
+    }
+  ],
+  "skipped": 0,
+  "tests": [
+    {
+      "class": "dev.urlshort.HealthJourneyTest",
+      "method": "healthEndpointReportsUp()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.audit.AuditJourneyTest",
+      "method": "AC22_createWritesExactlyOneAuditRow()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.audit.AuditJourneyTest",
+      "method": "AC24_aFailedAuditWriteRollsTheRetireBackAndFailsClosed()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.audit.AuditJourneyTest",
+      "method": "AC25_auditRowsAreAppendOnlyUnderEveryOperation()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.audit.AuditJourneyTest",
+      "method": "AC23_retireWritesExactlyOneAuditRow()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "method": "[1] userAgent = \"Mozilla/5.0 (X11; Linux x86_64) uacanary Firefox/131.0\", userAgentClass = \"browser\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "method": "[2] userAgent = \"Mozilla/5.0 (compatible; Googlebot/2.1; uacanary)\", userAgentClass = \"bot\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "method": "[3] userAgent = \"uacanary-crawler/1.0\", userAgentClass = \"bot\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "method": "[4] userAgent = \"uacanary-spider\", userAgentClass = \"bot\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "method": "[5] userAgent = \"curl/8.7.1 uacanary\", userAgentClass = \"other\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "method": "[6] userAgent = null, userAgentClass = \"unknown\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "method": "[7] userAgent = \"\", userAgentClass = \"unknown\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "method": "AC05_theClientAddressIsStoredOnlyAsASaltedHashThatRotatesEveryUtcDay()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "method": "AC18_noClickDataReachesTheLogs(CapturedOutput)",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "method": "AC06_forwardingHeadersDoNotChangeTheRecordedClient()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "method": "[1] referer = \"https://News.Example/a/refpathcanary?t=refquerycanary#reffragcanary\", stored = \"https://news.example\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "method": "[2] referer = \"http://blog.example:8081/post\", stored = \"http://blog.example:8081\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "method": "[3] referer = \"https://refusercanary:pw@forum.example/x\", stored = \"https://forum.example\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "method": "[4] referer = null, stored = null",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "method": "[5] referer = \"android-app://com.example.app/\", stored = null",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "method": "[6] referer = \"not a url\", stored = null",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "method": "[7] referer = \"https://long.example/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\u2026\", stored = null",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "method": "AC02_onlyARedirectIsAClick()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "method": "AC01_aRedirectRecordsExactlyOneClickWithItsTime()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+      "method": "AC17_theStatisticsExposeAggregatesOnly()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+      "method": "AC15_AC19_aFailingClickStoreDoesNotFailTheRedirectAndTheLossIsOneCorrelatedWarn(CapturedOutput)",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+      "method": "AC16_concurrentRedirectsLoseNoClicksAndTheRequestIsNeverReadAfterItsResponse()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+      "method": "AC22_headOnTheStatisticsPathHasNoBodyAndRecordsNothing()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+      "method": "AC14_aSlowClickStoreDoesNotSlowTheRedirect()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+      "method": "AC18_AC19_onTomcatClickDataStaysOutOfTheLogsAndEveryEventIsCorrelated(CapturedOutput)",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.ClickSchemaJourneyTest",
+      "method": "everyUserAgentClassIsRecordedAfterThePoolRetiresItsConnections()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "method": "AC07_aLinkWithNoClicksHasEmptyStatistics()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "method": "AC21_theLiveApiDocumentDescribesTheStatisticsEndpoint()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "method": "AC20_redirectAndAuditBehaviourAreUnchanged()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "method": "AC12_aRetiredLinksStatisticsAreStillReadable()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "method": "AC08_totalClicksCountsEveryRedirect()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "method": "AC19_theStatisticsPathAndASettledRedirectAreCorrelated(CapturedOutput)",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "method": "AC09_clicksPerDayAreGroupedByUtcCalendarDay()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "method": "AC10_topReferrersAreRankedAndCapped()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "method": "AC22_headAndOptionsKeepTheFrameworkDefaultsAndRecordNothing()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "method": "[1] method = \"GET\", code = \"nosuchcode1\", status = 404",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "method": "[2] method = \"GET\", code = \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\", status = 404",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "method": "[3] method = \"POST\", code = null, status = 405",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.click.StatsJourneyTest",
+      "method": "[4] method = \"DELETE\", code = null, status = 405",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.IdempotencyJourneyTest",
+      "method": "AC17_aReplayReturnsTheFirstLink()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.IdempotencyJourneyTest",
+      "method": "AC18_sameKeyWithADifferentUrlIsRefusedAndTheBindingSurvives()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.IdempotencyJourneyTest",
+      "method": "AC21_aRejectedCreateDoesNotConsumeTheKey()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.IdempotencyJourneyTest",
+      "method": "AC20_aKeyOf255VisibleCharactersIsAccepted()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.IdempotencyJourneyTest",
+      "method": "AC19_aKeyIsHonouredFor24HoursAndNotLongerAndARejectionDoesNotExtendIt()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.IdempotencyJourneyTest",
+      "method": "[1] key = \"\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.IdempotencyJourneyTest",
+      "method": "[2] key = \"kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.IdempotencyJourneyTest",
+      "method": "[3] key = \"has space\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.IdempotencyJourneyTest",
+      "method": "[4] key = \"caf\u00e9\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "AC02_everyCreateWithoutAKeyIsANewLink()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "AC16_redirectRouteDoesNotShadowTheExistingSurface()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "AC01_validUrlBecomesAShortLink()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "AC03_shortUrlUsesTheShippedBaseNeverTheHostHeader()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "[1] raw = \"\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "[2] raw = \"{\\\"url\\\": \"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "[3] raw = \"[\\\"https://example.com/\\\"]\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "[4] raw = \"{\\\"url\\\": {\\\"a\\\": 1}}\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "AC06_nonJsonContentTypeIsRefused()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "AC04_aUrlOfExactly2048CharactersIsAccepted()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "[1] \"required\": present=false value=<null>",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "[2] \"required\": present=true value=<null>",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "[3] \"required\": present=true value=<\"\">",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "[4] \"required\": present=true value=<\"   \">",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "[5] \"too-long\": present=true value=<\"https://example.com/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\u2026\">",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "[6] \"scheme\": present=true value=<\"javascript:alert(1)\">",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "[7] \"scheme\": present=true value=<\"data:text/html,hi\">",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "[8] \"scheme\": present=true value=<\"file:///etc/passwd\">",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "[9] \"scheme\": present=true value=<\"ftp://example.com/\">",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "[10] \"scheme\": present=true value=<\"example.com/path\">",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "[11] \"scheme\": present=true value=<\" https://example.com/\">",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "[12] \"malformed\": present=true value=<\"https://\">",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "[13] \"malformed\": present=true value=<\"https://exa mple.com/\">",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "[14] \"malformed\": present=true value=<\"https://[bad/\">",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "[15] \"malformed\": present=true value=<\"https://example.com/ \">",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "[16] \"credentials\": present=true value=<\"https://user:secret@example.com/\">",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "[17] \"credentials\": present=true value=<\"https://user@example.com/\">",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkCreateJourneyTest",
+      "method": "AC07_bodyIsRefusedAtTheSixteenKibLimit()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+      "method": "AC09_aRetiredLinkIsStillReadableWithItsState()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+      "method": "[1] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@4f5976eb",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+      "method": "[2] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@78b17d40",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+      "method": "[3] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@1946f26",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+      "method": "[4] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@6c199c1d",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+      "method": "[5] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@29ad54b8",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+      "method": "AC08_readingALinkReturnsItsDetails()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+      "method": "AC11_retiringAnAlreadyRetiredLinkIs410AndNotASecondMutation()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+      "method": "AC10_retiringALinkIs204WithAnEmptyBody()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+      "method": "AC15_wrongMethodIs405()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.PublicBaseUrlJourneyTest",
+      "method": "AC03_shortUrlUsesTheConfiguredBaseNeverTheHostHeader()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.RedirectJourneyTest",
+      "method": "rule7_queryStringOnTheShortLinkIsNotForwarded()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.RedirectJourneyTest",
+      "method": "AC12_visitorIsRedirectedWithANonCacheable302()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.link.RedirectJourneyTest",
+      "method": "AC13_aRetiredLinkTellsTheVisitorItIsGone()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.ping.PingJourneyTest",
+      "method": "AC5_wrongMethodIsProblemDetailWithRequestId()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.ping.PingJourneyTest",
+      "method": "AC7_logEventCarriesNoClientAddressOrUserAgent(CapturedOutput)",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.ping.PingJourneyTest",
+      "method": "AC1_pingAnswersOkAsJson()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.ping.PingJourneyTest",
+      "method": "AC2_timeIsCurrentUtcInstant()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.ping.PingJourneyTest",
+      "method": "AC4_requestIdsAreUniquePerRequest()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.ping.PingJourneyTest",
+      "method": "AC6_pingIsLoggedAsJsonWithRequestId(CapturedOutput)",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.ping.PingJourneyTest",
+      "method": "AC8_clientSuppliedRequestIdIsIgnored(CapturedOutput)",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.ping.PingJourneyTest",
+      "method": "AC3_everyResponseCarriesRequestId()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.ColdStartJourneyTest",
+      "method": "AC26_theFirstRequestOnARealServerLogsOnlyItsOwnCorrelatedEvents(CapturedOutput)",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.DatabaseDownJourneyTest",
+      "method": "AC14_AC15_readinessFollowsTheDatabaseAndLivenessDoesNot()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.HealthMetricsJourneyTest",
+      "method": "AC18_redirectsAreCountedByRouteTemplate()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.HealthMetricsJourneyTest",
+      "method": "AC15_healthBodiesDiscloseNothingAboutTheInstallation()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.HealthMetricsJourneyTest",
+      "method": "AC13_livenessAndReadinessAreUpWithAWorkingDatabase()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "method": "AC27_noClientControlledValueReachesTheLogs(CapturedOutput)",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "method": "AC27_aDatabaseFailureQuotingTheKeyLogsOnlyClassNames(CapturedOutput)",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "method": "[1] scenario = \"201 create\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "method": "[2] scenario = \"200 read\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "method": "[3] scenario = \"204 retire\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "method": "[4] scenario = \"302 redirect\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "method": "[5] scenario = \"404 unknown code\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "method": "[6] scenario = \"410 retired\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "method": "[7] scenario = \"400 invalid url\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "method": "[8] scenario = \"405 wrong method\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "method": "[9] scenario = \"413 oversized body\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "method": "[10] scenario = \"415 wrong content type\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "method": "[11] scenario = \"422 key mismatch\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "method": "[12] scenario = \"500 induced audit failure\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "method": "[1] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@3bae341, status = 415, canary = \"canaryctcbbadffffebdffc\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "method": "[2] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@268f8cc2, status = 404, canary = \"canarypathcbbadffffebdffcxxxxxxxxxxxxxxxxxxxx\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "method": "[3] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@7c74afce, status = 404, canary = \"canaryicocbbadffffebdffc\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "method": "[4] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@657a617f, status = 404, canary = \"Cn44d2adf6829248ba997710\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "method": "[5] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@6d1f4ba2, status = 404, canary = \"Cv0422d59bc8f94c359b3424\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.ObservabilityJourneyTest",
+      "method": "[6] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@65e681ac, status = 405, canary = \"CANARYMETHODCBBADFFFFEBDFFC\"",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.OpenApiDocumentTest",
+      "method": "AC28_liveDocumentDescribesTheSlice()",
+      "failed": true,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.OpenApiDocumentTest",
+      "method": "NFRM3_committedDocumentEqualsTheLiveOne()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.OpenApiDocumentTest",
+      "method": "AC20_everyOperationDocumentsTheTooManyRequestsProblem()",
+      "failed": true,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitDefaultsTest",
+      "method": "theShippedConfigurationCarriesTheDecidedBudgets()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitDefaultsTest",
+      "method": "theSettingsRecordDefaultsToTheSameBudgets()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "method": "rule1_percentEncodingDoesNotMoveARequestToTheLargerBudget()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "method": "designDR01_anInvalidPathUnderAnExemptPrefixLogsNoSubmittedValueOnTomcat(CapturedOutput)",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "method": "AC19_metricsAreExposedForScrapingWithoutClientOrLinkValues()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "method": "AC07_aForgedForwardedAddressDoesNotChangeTheClient()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "method": "AC01_theCreateBudgetAdmits60AndRefusesThe61st()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "method": "AC09_everyRequestInABudgetCountsAndTheLimitIsCheckedFirst()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "method": "rule1_operatorSurfacesAreNeverLimited()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "method": "AC11_theTooManyRequestsProblemNamesNoClient()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "method": "AC11_onTomcatThe429IsTheSameProblemMediaTypeAsEveryOtherError()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "method": "AC12_eachRejectionIsLoggedOnceCorrelatedAndWithoutClientValues(CapturedOutput)",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "method": "AC03a_retryAfterIsTruthfulFromAnExactlyEmptyBucket()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "method": "AC05_theTwoBudgetsAreIndependent()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "method": "rule1_aDotDotSegmentUnderAnExemptPrefixReachesNoLimitedOperation()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "method": "AC03b_retryAfterIsAnUpperBoundFromAPartlyRefilledBucket()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "method": "AC04_aFullBudgetReturnsAfterAQuietMinute()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "method": "AC02_theRedirectBudgetAdmits600AndRefusesThe601st()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "method": "AC16_theMetricsSurfaceListsTheFourKindsOfMetric()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "method": "AC06_clientsAreIndependent()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "method": "AC17_everyRejectionIsCountedOnceByBudget()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.RateLimitSettingsJourneyTest",
+      "method": "AC10_theBudgetsAreOperatorSettings()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.ShutdownPhaseDefaultTest",
+      "method": "theShippedGracefulShutdownPhaseIsTenSeconds()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    },
+    {
+      "class": "dev.urlshort.web.TrustedProxyJourneyTest",
+      "method": "AC08_aTrustedProxysForwardedAddressIdentifiesTheClient()",
+      "failed": false,
+      "error": false,
+      "skipped": false
+    }
+  ]
+}

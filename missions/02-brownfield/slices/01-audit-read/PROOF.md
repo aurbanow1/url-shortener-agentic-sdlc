@@ -98,3 +98,127 @@ This section is builder evidence, not a verdict.
 
   The journeys were watched failing by behaviour (47 of 52 in `builder-red-functional.txt`). The unit tests were red only as compile failures (`builder-red-tests.txt`).
 - **Gate:** `--offline check --rerun-tasks` ran after the last code edit, on `35590f0`.
+
+## QA
+
+Independent Codex QA, 2026-10-03. Packet `qitem-20261003185423-545a1365`,
+instance `01M416ZY5N11CDGZBM2DT4GAXS`. Product worktree HEAD was and remains
+`35590f06c852543c29097a42c43b7802be90ba40`, clean. No product, build file or
+test edited by QA. Verdict: **PASS within the locked SPEC and recorded AC-17
+grant**. The independent security-review record (contract item 12) is still
+downstream; lead obligation `qitem-20261003194346-b74b8081` routes it back for
+its judgment before acceptance. Items 1–11 and 13 are covered here.
+
+### Fresh gate and coverage
+
+Ran `../../scripts/gw --log ../../missions/02-brownfield/slices/01-audit-read/proof/qa-check-35590f0.txt --offline check --rerun-tasks`
+in the exact candidate worktree. Exit 0, all 14 tasks executed, Javadoc green,
+200 unit and 200 functional invocations, zero failures/errors/skips.
+Read the per-class CSV: unit 436/492 lines and 184/190 branches; functional
+455/492 and 158/190; merged **492/492 lines, 190/190 branches**. All 348 report
+files copied byte-for-byte to `docs/qa/coverage/01-audit-read/{unit,functional,all}`
+and independently reconciled against `qa-report-copy-hashes-35590f0.json`.
+Per-suite percentages are reported, not represented as separate 100% gates.
+
+Replayed the original `f6dd29e` functional sources via an external Gradle init
+script, compiling unchanged sources against candidate classes. Git-blob
+SHA-256 checks cover all 25 original files. Actual result: **155 invocations,
+153 pass, exactly the two granted OpenApiDocumentTest enumeration failures**,
+zero errors/skips. Their candidate versions pass in the full 200-test gate.
+Grant: `qitem-20261003182833-40a842ff`, transition 1156, commit `428e9e1`.
+`qa-shipped-suite-35590f0.txt`, original XML, source hashes and summary are the
+evidence; no claim that all 155 original assertions pass unchanged.
+
+Exact original shipped-suite XML is archived in
+`qa-shipped-xml-raw-f6dd29e.tar.gz` with its hash manifest; displayed copies
+only strip trailing line whitespace from Gradle's failure-message text.
+
+### Observed acceptance criteria
+
+Every request used loopback-only `scripts/http` curl. Headers, bodies, sent
+JSON and request metadata are under `proof/qa-http/` and the ledger. Exact
+original curl bytes are archived in `qa-http-raw-35590f0.tar.gz`, with SHA-256
+manifest; displayed header files only have CRLF/trailing blank normalization.
+HEAD captures use curl's HEAD mode and contain headers alone, never JSON.
+
+| AC | Effect independently observed | Evidence |
+|---|---|---|
+| 1 | Empty store: 200, exactly items=[] and next=null | fixed-ac01-empty |
+| 2 | Real create: exact eight audit fields, anonymous/link.create/link, before=null, after target and active state; audit UTC instant within curl interval and requestId equals create header | fixed-ac02-create-A/B/C; qa-live-real-before.json |
+| 3 | Real retire: before active, after retired, requestId equals retire header; original create follows | ac03-retire-A; ac04-order-read-1 |
+| 4 | Retire A, create C, B, A; seeded timestamps move backwards while rows remain ordered by increasing write position, not wall-clock time | ac04-order-read-*; ac06-page-* |
+| 5 | All eight fields compared to every stored row, including parsed before/after; no numeric store id exposed | real snapshots and all 45-row traversals; qa-verify-35590f0.py |
+| 6 | 45 committed rows:20,20,5, unique and newest-first; last next=null | ac06-page-1/2/3; seed45 snapshots |
+| 7 | 150 committed rows:default50 and limit100, both next non-null | ac07-default/max |
+| 8 | First10 of original30, five real creates, continuation returns all and only originals once; fresh35 begins with the five new rows | ac08-first/new-*/continuation-*/fresh; qa-ac08-before.json |
+| 9 | 0/101 range errors, ten/overflow format errors, malformed/nonpositive cursors format errors; one static field/rule message, 400 problem regardless of Accept | ac09-* |
+| 10 | All45 traversed twice; POST/PUT/PATCH/DELETE405. Audit/link/click snapshots identical before and after. GET/HEAD/OPTIONS behavior inspected separately | ac10-pass*/allpages-*; qa-readonly-before/after.json; head-local/options-local |
+| 11 | Controlled192.0.2.10 and10.0.0.7:GET/HEAD403, no rows, counts, peer or audit content | ac11-* |
+| 12 | Controlled127.0.0.1/.2, ::1 and ::ffff:127.0.0.1 all200 | ac12-* |
+| 13 | All required forwarding cases refused under default and trusted-loopback settings; empty/case-varied headers also refuse; guard precedes invalid query and HTML Accept | ac13-*; settings-* |
+| 14 | Nondefault base URL, raised budgets, trusted loopback plus remote peer:plain local200, remote/forged GET/HEAD403. Native/framework strategy overrides also403 on real Tomcat | settings-*, native-*, framework-* |
+| 15 | All267 captures have server-issued X-Request-Id; all272 JSON request events reconcile to headers and completion status, including200/400/403/405/429/500 | qa-request-log-lines-35590f0.json; qa-verification-35590f0.json |
+| 16 | Target/query, stored payload, cursor, User-Agent, peer, forwarding and induced-SQL-message canaries absent from whole-run JSON logs; target remains in allowed audit response | qa-verify-35590f0.py; qa-*.jsonl |
+| 17 | Original155-test replay has153passes plus exactly the two expressly granted enumeration failures; old live OpenAPI operations, parameters, responses and examples unchanged | qa-shipped-*; qa-api-diff-35590f0.txt |
+| 18 | Actual shipped jar creates active/retired links, three clicks and three mutation rows; stop; candidate jar uses identical H2 directory. All stored link/audit columns preserved, full statistics2/1 unchanged before verification, active302 exact Location, retired410; HEAD no click, verificationGET adds only fourth click | qa-upgrade-before/after.json; qa-http/upgrade-*; qa-artifact-provenance-35590f0.json |
+| 19 | Entire candidate live document equals committed candidate JSON; audit limit/cursor, example, 200/400/403/429/500 documented; all existing operation objects equal shipped live document | live-api-document, upgrade-candidate-api; qa-api-diff-35590f0.txt |
+| 20 | Real JDBC transaction held uncommitted after30 originals; read10, commit, continue all originals exactly once, held row at most once; fresh31 contains it first | ac20-*; qa-ac20-before/after.json; qa-instrument-QaLauncher.java |
+| 21 | Actual SELECT preparation throws SQLException; 500 problem contains only instance/status/title, no page/content/cursor/SQL/class; correlated events omit exception message; removing fault gives200 | ac21-store-failed/recovered; qa-live-correct-35590f0.jsonl |
+
+Rule 9 also observed independently: a rapid 90-read audit burst in 0.17s
+admitted the first 60 (200), then refused the remaining 30 (429) with positive
+Retry-After. A preceding paced 61-read probe allowed continuous GCRA refill;
+it is retained, not misrepresented as an exhausted-bucket check. Duplicate
+idempotent create returned201 with the same code; conflicting key422, bad
+URL400, missing redirect404 and retired410 were also observed.
+
+### Instruments, artifact checks and limits
+
+The controlled app runs the unchanged candidate classes on real Tomcat with
+the disclosed external `QaLauncher` and Gradle init script. The filter supplies
+per-request Servlet peer inputs (SPEC-authorized); the DataSource wrapper
+arranges fixture resets, a real held JDBC write and a deliberate SQLException.
+They supply no new product endpoint or product code. Fixture resets are
+explicit setup; read-only claims compare stable before/after intervals.
+The installed upgrade uses the two unmodified jars, with no QA filter.
+
+Both jars were built through `scripts/gw --offline bootJar`; root product/build
+inputs were independently compared to `f6dd29e` before using its jar. Saved jar
+hashes and sizes are in `qa-artifact-provenance-35590f0.json`. The migration diff
+against shipped V1/V2 is empty. Impact analysis was first added at `a686b2a`,
+before design and ADR0019 at `c1be728`, before dependent implementation;
+ADR0019 was already indexed in DESIGN at that commit. Its modules/endpoints/
+schema/flows/blast-radius/compatibility/risk rows were read. Its outdated
+"tests unchanged" claim is explicitly superseded by the named enumeration
+grant. README names loopback-only/no-opening-setting; DESIGN §3 states the
+headerless local-relay boundary and not to relay or to add a refused header.
+
+Not checked: actual non-loopback TCP clients, actual IPv6 sockets, headerless
+local relays, natural hardware/OS store failures, crash recovery, broad
+concurrency/latency, or container upgrade. Controlled peer evidence is qualified
+to the address and header inputs the service receives, as the SPEC requires.
+No authentication or end-to-end proxy guarantee is claimed. Security item12
+requires the separate review, not this QA authorship.
+
+Initial instrument failures are retained in GAPS and raw evidence: no-source
+test setup and unsupported QA H2 case folding. Both were corrected outside
+product and supplied no passing proof. The reconciler's date-format handling
+and old in-memory ledger contamination were corrected against raw files;
+the current slice ledger is independently reconciled, not assumed complete.
+
+## Self-check (QA)
+
+- Read the builder proof, then ran the full candidate gate and each AC's effects
+  independently; checked all new failure paths and inherited bad-input,
+  duplicate, retirement and rate-limit paths.
+- Read merged CSV totals directly; verified all348 copied report hashes.
+- Traceability maps all223 named source methods both ways, all21 ACs and
+  rules1–9, with FR/NFR ids and explicit AC20/21 induction mechanisms.
+- GAPS entry records per-suite misses, accepted AC17 enumeration scope,
+  controlled-peer/JDBC limits and downstream item12; no merged shortfall.
+- Reconciled all267 raw HTTP captures with272 request events and whole-run
+  privacy canaries; 1,621 durable verification assertions passed.
+- Proof drop names items1–11 and13. Item12 remains unjudged under the durable
+  sequencing obligation, not counted as this step's security-review proof.
+- All QA apps stopped gracefully; localhost ports18131/18132/18133 refused
+  connections afterwards. Worktree remains clean at the exact candidate SHA.

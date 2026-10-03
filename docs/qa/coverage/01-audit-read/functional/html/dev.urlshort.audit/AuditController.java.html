@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuditController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">urlshort</a> &gt; <a href="index.source.html" class="el_package">dev.urlshort.audit</a> &gt; <span class="el_source">AuditController.java</span></div><h1>AuditController.java</h1><pre class="source lang-java linenums">package dev.urlshort.audit;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
+import dev.urlshort.web.Problems;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import org.jspecify.annotations.Nullable;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
+import org.springframework.boot.web.server.autoconfigure.ServerProperties;
+import org.springframework.boot.web.server.autoconfigure.ServerProperties.ForwardHeadersStrategy;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ProblemDetail;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.ErrorResponseException;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * {@code GET /api/audit}: the Operator's read of the audit trail (FR-17), newest first, one keyset page
+ * at a time. Anonymous, read-only and loopback only (NFR-S6, ADR-0019): a request is served only when
+ * its peer is a loopback address, it carries no {@code X-Forwarded-For} or {@code Forwarded} header, and
+ * nothing rewrites the peer from those headers (the effective forwarded-header strategy is
+ * {@code NONE}). Any other request is a {@code 403} problem, decided before validation and before
+ * content negotiation, so no setting and no {@code Accept} can open the trail.
+ */
+@RestController
+// ServerProperties, which decides the guard, exists only in a servlet application
+@ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
+class AuditController {
+
+	static final int DEFAULT_LIMIT = 50;
+	static final int MAX_LIMIT = 100;
+
+	private static final String EXAMPLE = &quot;{\&quot;items\&quot;:[{\&quot;occurredAt\&quot;:\&quot;2026-10-03T17:29:41.033Z\&quot;,\&quot;actor\&quot;:\&quot;anonymous\&quot;,&quot;
+			+ &quot;\&quot;action\&quot;:\&quot;link.retire\&quot;,\&quot;entity\&quot;:\&quot;link\&quot;,\&quot;entityId\&quot;:\&quot;jHkOIMpK\&quot;,&quot;
+			+ &quot;\&quot;requestId\&quot;:\&quot;140fc9de-5b8e-4c43-9d55-2f0b1e1c7a10\&quot;,&quot;
+			+ &quot;\&quot;before\&quot;:{\&quot;url\&quot;:\&quot;https://example.com/\&quot;,\&quot;state\&quot;:\&quot;active\&quot;},&quot;
+			+ &quot;\&quot;after\&quot;:{\&quot;url\&quot;:\&quot;https://example.com/\&quot;,\&quot;state\&quot;:\&quot;retired\&quot;}},&quot;
+			+ &quot;{\&quot;occurredAt\&quot;:\&quot;2026-10-03T17:28:02.512Z\&quot;,\&quot;actor\&quot;:\&quot;anonymous\&quot;,\&quot;action\&quot;:\&quot;link.create\&quot;,&quot;
+			+ &quot;\&quot;entity\&quot;:\&quot;link\&quot;,\&quot;entityId\&quot;:\&quot;jHkOIMpK\&quot;,\&quot;requestId\&quot;:\&quot;0d6a1f3e-9c27-4b1a-8e5f-6a4c3b2d1e0f\&quot;,&quot;
+			+ &quot;\&quot;before\&quot;:null,\&quot;after\&quot;:{\&quot;url\&quot;:\&quot;https://example.com/\&quot;,\&quot;state\&quot;:\&quot;active\&quot;}}],\&quot;next\&quot;:\&quot;MTI\&quot;}&quot;;
+	private static final String PROBLEM_JSON = &quot;application/problem+json&quot;;
+
+	private final AuditTrail trail;
+	private final boolean peerIsConnection;
+
+<span class="fc" id="L58">	AuditController(AuditTrail trail, ServerProperties server) {</span>
+<span class="fc" id="L59">		this.trail = trail;</span>
+		// any other strategy (or Boot's platform default when unset) may rewrite the peer from a header
+<span class="fc bfc" id="L61" title="All 2 branches covered.">		this.peerIsConnection = server.getForwardHeadersStrategy() == ForwardHeadersStrategy.NONE;</span>
+<span class="fc" id="L62">	}</span>
+
+	@GetMapping(&quot;/api/audit&quot;)
+	@Operation(operationId = &quot;readAudit&quot;, summary = &quot;Read the audit trail, newest first (loopback only)&quot;, responses = {
+		@ApiResponse(responseCode = &quot;200&quot;, description = &quot;One page of audit rows, newest first, and the cursor of the next&quot;,
+				content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = AuditPage.class),
+						examples = @ExampleObject(name = &quot;page&quot;, value = EXAMPLE))),
+		@ApiResponse(responseCode = &quot;400&quot;, description = &quot;limit or cursor is malformed&quot;, content = @Content(
+				mediaType = PROBLEM_JSON, schema = @Schema(implementation = ProblemDetail.class))),
+		@ApiResponse(responseCode = &quot;403&quot;, description = &quot;Not a loopback client, or a forwarding header is present&quot;,
+				content = @Content(mediaType = PROBLEM_JSON, schema = @Schema(implementation = ProblemDetail.class))),
+		@ApiResponse(responseCode = &quot;500&quot;, description = &quot;The trail could not be read&quot;, content = @Content(
+				mediaType = PROBLEM_JSON, schema = @Schema(implementation = ProblemDetail.class))) })
+	ResponseEntity&lt;AuditPage&gt; page(
+			@Parameter(description = &quot;Rows per page&quot;, schema = @Schema(type = &quot;integer&quot;, minimum = &quot;1&quot;, maximum = &quot;100&quot;,
+					defaultValue = &quot;50&quot;)) @RequestParam(name = &quot;limit&quot;, required = false) @Nullable String limit,
+			@Parameter(description = &quot;The next of the previous page&quot;) @RequestParam(name = &quot;cursor&quot;, required = false)
+			@Nullable String cursor,
+			HttpServletRequest request) {
+<span class="fc bfc" id="L81" title="All 4 branches covered.">		if (!peerIsConnection || !fromLoopback(request)) {</span>
+<span class="fc" id="L82">			throw new ErrorResponseException(HttpStatus.FORBIDDEN);</span>
+		}
+<span class="fc" id="L84">		int size = limit(limit);</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">		long before = cursor == null ? Long.MAX_VALUE : position(cursor);</span>
+<span class="fc" id="L86">		return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(trail.page(size, before));</span>
+	}
+
+	/** A loopback peer and no forwarding header: forwarding headers can only refuse (SPEC rule 2). */
+	static boolean fromLoopback(HttpServletRequest request) {
+<span class="fc" id="L91">		String peer = request.getRemoteAddr();</span>
+<span class="pc bpc" id="L92" title="1 of 6 branches missed.">		if (request.getHeader(&quot;X-Forwarded-For&quot;) != null || request.getHeader(&quot;Forwarded&quot;) != null || peer == null</span>
+<span class="pc bpc" id="L93" title="1 of 2 branches missed.">				|| peer.isEmpty()) {</span>
+<span class="fc" id="L94">			return false;</span>
+		}
+		try {
+			// the servlet container gives a numeric literal, which is parsed, never resolved
+<span class="fc" id="L98">			return InetAddress.getByName(peer).isLoopbackAddress();</span>
+		}
+<span class="nc" id="L100">		catch (UnknownHostException ex) {</span>
+<span class="nc" id="L101">			return false;</span>
+		}
+	}
+
+	/** {@code null} is the default; otherwise a whole number from 1 to 100. */
+	static int limit(@Nullable String value) {
+<span class="fc bfc" id="L107" title="All 2 branches covered.">		if (value == null) {</span>
+<span class="fc" id="L108">			return DEFAULT_LIMIT;</span>
+		}
+		int parsed;
+		try {
+<span class="fc" id="L112">			parsed = Integer.parseInt(value);</span>
+		}
+<span class="fc" id="L114">		catch (NumberFormatException ex) {</span>
+<span class="fc" id="L115">			throw Problems.validation(&quot;limit&quot;, &quot;format&quot;, &quot;must be a whole number&quot;);</span>
+<span class="fc" id="L116">		}</span>
+<span class="fc bfc" id="L117" title="All 4 branches covered.">		if (parsed &lt; 1 || parsed &gt; MAX_LIMIT) {</span>
+<span class="fc" id="L118">			throw Problems.validation(&quot;limit&quot;, &quot;range&quot;, &quot;must be from 1 to 100&quot;);</span>
+		}
+<span class="fc" id="L120">		return parsed;</span>
+	}
+
+	/** The row id a cursor names: base64url of a positive decimal number, as {@link AuditTrail#cursorOf} writes it. */
+	static long position(String cursor) {
+		try {
+<span class="fc" id="L126">			long id = Long.parseLong(new String(Base64.getUrlDecoder().decode(cursor), StandardCharsets.US_ASCII));</span>
+<span class="pc bpc" id="L127" title="1 of 2 branches missed.">			if (id &gt; 0) {</span>
+<span class="fc" id="L128">				return id;</span>
+			}
+		}
+<span class="fc" id="L131">		catch (IllegalArgumentException ex) {</span>
+			// not base64url, or not a number (NumberFormatException): answered below
+<span class="nc" id="L133">		}</span>
+<span class="fc" id="L134">		throw Problems.validation(&quot;cursor&quot;, &quot;format&quot;, &quot;must be a value returned as next&quot;);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

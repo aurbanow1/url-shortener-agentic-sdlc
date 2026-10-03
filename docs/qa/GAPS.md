@@ -92,3 +92,29 @@ and V2__create_click.sql at 8e9c065; four tables and their existing/missing
 columns match these four rows. This is a GAPS-only documentation change, with
 no migration, app, build or proof judgment. Changed hashes of closed mission-01
 GAPS-citing receipts are factory backlog; no reaffirmation is made here.
+
+## 01-audit-read — candidate 35590f06c852543c29097a42c43b7802be90ba40
+
+Independent QA, 2026-10-03. No merged coverage shortfall, exclusion, threshold
+change or product defect found. Qualified checks and downstream evidence are
+explicit below; earlier mission rows remain their own records.
+
+| Scope | Gap or limit | Reason and compensating evidence | Acceptance / owner |
+|---|---|---|---|
+| Per-suite coverage | Unit 436/492 lines (88.62%), 184/190 branches (96.84%); functional 455/492 lines (92.48%), 158/190 branches (83.16%) | Separate suites exercise complementary paths; direct merged CSV is 492/492 and 190/190. Fresh 200/200 and 200/200 invocations; copied HTML/XML/CSV hashes reconciled in proof/qa-verification-35590f0.json | SPEC NFR-M1 requires merged 100%; per-suite percentages informational; no waiver |
+| AC-17 / FR-13 | Two unchanged shipped assertions fail solely because the API enumeration gains the audit operation | Original f6dd29e sources copied without edits and Git-blob hashes checked; 155 tests:153 pass, exactly OpenApiDocumentTest#AC28_liveDocumentDescribesTheSlice and #AC20_everyOperationDocumentsTheTooManyRequestsProblem fail. Their candidate versions pass in the full gate; all existing live operations/responses/examples equal the shipped jar document | Accepted lead grant qitem-20261003182833-40a842ff transition1156, commit428e9e1; only these two enumeration additions allowed. All155original assertions are not claimed green |
+| AC-11..14 / NFR-S6 | Remote and IPv6/mapped peer classification is controlled Servlet input, not actual remote TCP traffic | SPEC expressly permits per-request peers; QA curl drives unchanged candidate handlers through a disclosed filter, covers remote GET/HEAD, all four loopback spellings, forwarded/empty headers, trusted-proxy settings and precedence. Native/framework overrides also refused on real Tomcat; all actual servers bound to127.0.0.1 | Qualification required by rule2; headerless local relay remains indistinguishable from Operator and is prohibited/documented by deployment boundary |
+| AC-20/21 | Concurrent write and store fault deliberately induced | Actual JDBC autoCommit=false INSERT held across first page, then committed: original30 exactly once and fresh31. QA DataSource connection wrapper induces SQLException on actual audit SELECT preparation: safe500, correlated sanitized events, recovery200. Functional AC-21 uses an AuditTrail spy, independently supplemented by this JDBC effect | SPEC permits induction; no natural hardware failure, cross-process concurrency or crash-recovery claim |
+| Proof item12 | Independent security-review record follows QA in this workflow | QA access/privacy effects are complete, but its own observations do not author the downstream review. Items1..11 and13 can be judged against this SHA; item12 must return after security review, before final acceptance | Sequencing obligation in proof/qa-proof-sequencing-35590f0.md routed to orchestration lead; no premature acceptance |
+
+Instrument history retained: first temporary shipped-suite invocation had
+NO-SOURCE because Python tar extraction failed; it supplies no test proof.
+After safe extraction the real155-test replay ran. First live fixture used
+an unsupported QA DATABASE_TO_LOWER option and create returned safe500;
+that run was stopped, the documented H2 settings used on a fresh directory,
+and all journeys repeated. Date/string normalization and stale in-memory
+ledger entries were corrected in the evidence reconciler; raw current-slice
+captures are independently archived. The paced61-read probe returned200
+because GCRA refills continuously; a0.17s90-read burst then proved the first60
+admitted and following30 refused with Retry-After. These are instrument and
+probe corrections, not hidden product reruns or accepted product defects.
