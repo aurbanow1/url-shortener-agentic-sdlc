@@ -63,7 +63,15 @@ delegated slice plan-locks (lead) · one focused convergence escalation · wave
 review from two vantages · release review FAIL → rework → PASS · ship sign-off
 (human) with an explicit, recorded exception.
 
-## Metrics `[final]`
+## Metrics
 
-Copied from `docs/metrics/README.md` at mission close: instances, step success
-rate, retries, rollbacks, MTTR, end-to-end latency per slice, human wait.
+From `docs/metrics/README.md` (generated 2026-10-03T17:44:03.313Z from the workflow trails and queue transitions exported under `docs/evidence/01-greenfield-core/`):
+
+| Instance | E2E latency | Hops | Closures | Retries | Rollbacks | Human wait | MTTR |
+|---|---|---|---|---|---|---|---|
+| mission lifecycle `01-greenfield-core` | 14.1 h | 8 | 41 | 0 | 2 | 33 min | – |
+| `01-create-redirect` | 3.3 h | 12 | 13 | 6 | 1 | 0 s | 17 min |
+| `02-analytics` | 3.4 h | 13 | 16 | 7 | 0 | 0 s | 36 min |
+| `03-operate` | 5.9 h | 15 | 22 | 10 | 1 | 0 s | 36 min |
+
+Retries count failed verdicts plus step re-entries (the review loops listed above); the two rollbacks are the integrator's rehearsed reverts, not reverts of `main`. Human wait is the time packets spent parked on `human@kernel` — the mission plan-lock and the ship sign-off — reported separately from agent throughput.
