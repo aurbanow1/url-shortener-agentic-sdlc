@@ -33,7 +33,7 @@ The gate is `scripts/gw check`: both suites green and JaCoCo at 100 % line and b
 - 100 % line and branch, merged across `test` and `functionalTest`, enforced by `jacocoTestCoverageVerification`.
 - Per-suite reports are informational: the unit suite is not expected to cover controllers, nor the functional suite every domain branch. The merged number is the gate.
 - An uncovered line is either a missing test or dead code. Decide which; write the test or delete the code. Exclusions are not configured by builders; a genuinely untestable line is a `docs/qa/GAPS.md` entry with the compensating manual check, approved in review.
-- **Functional coverage** is a separate view: `docs/qa/TRACEABILITY.md` maps every AC and business rule to the tests that prove it, and every test back. Both directions complete, or there is a gap entry.
+- **Functional coverage** is a separate view: `docs/qa/TRACEABILITY.md` maps every AC and business rule to the tests that prove it, and every test back; each row also carries the `docs/REQUIREMENTS.md` id (`FR-n`/`NFR-n`) the AC serves, so product requirements trace to tests in one hop. Both directions complete, or there is a gap entry.
 
 ## 4. Verifying by effect (the `qa_check` step)
 

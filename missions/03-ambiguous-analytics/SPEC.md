@@ -14,6 +14,10 @@ depends_on: ["OPR.99.0.2"]
 
 Marketing says the analytics are not good enough; turn that ambiguous ask into a decided, built and proven improvement by surfacing the real questions (what is counted, retention, privacy, who reads it) to the human before building, and re-plan when the answer changes the design.
 
+## Requirements in scope
+
+From `docs/REQUIREMENTS.md`: FR-16 and FR-8 (v2); NFR-P2 revisited, O3 (new metrics), L1 if the redirect path changes. Decisions come out of the slice's ambiguity log and the human decision gate.
+
 ## Slices
 
 [List notable slices and their state]

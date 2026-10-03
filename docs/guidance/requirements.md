@@ -9,6 +9,7 @@ In this order, always (the projection and the audits depend on the headings):
 
 1. **Intent** — one or two sentences: who feels what pain, what changes for them. Verbatim from the slice's `intent:` frontmatter plus the "why now".
 2. **Mini-requirements**
+   - *Requirements covered* — the `docs/REQUIREMENTS.md` ids this slice implements (`FR-n`, `NFR-n`); every allocated id gets at least one AC
    - *Personas* — the roles that touch this slice (primary / secondary). A persona is someone with a goal, not a system.
    - *User stories* — `As a <persona>, I want <capability>, so that <outcome>`. One story per outcome. If a story needs "and", split it.
    - *Acceptance criteria* — numbered `AC-n`, `GIVEN / WHEN / THEN`, each one behaviour, each observable from the public surface (HTTP status, headers, body fields, a log line, a stored row) — never "the service shall handle errors gracefully".
@@ -64,7 +65,7 @@ Record under `## Self-check` in the SPEC, one honest line each:
 
 ## 6. Reviewing a SPEC (for `requirements_review`)
 
-Fail (HIGH) when: an AC is not testable from outside; a failure path or privacy obligation is missing; an ambiguity was resolved by widening scope; a design decision is embedded; the proof contract omits coverage/traceability/gaps. Record everything else as MEDIUM/LOW with the fix.
+Fail (HIGH) when: an FR/NFR id allocated to the slice (mission brief → `docs/REQUIREMENTS.md`) has no AC; an AC is not testable from outside; a failure path or privacy obligation is missing; an ambiguity was resolved by widening scope; a design decision is embedded; the proof contract omits coverage/traceability/gaps. Record everything else as MEDIUM/LOW with the fix.
 
 ## 7. Anti-patterns seen in the wild
 

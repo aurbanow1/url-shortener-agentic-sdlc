@@ -11,6 +11,7 @@ architecture, data models, endpoints' internal shape, or implementation.
 - frontmatter: keep `id`, `intent` (verbatim), `depends_on`; add `tier` copied from `slice.yaml`
 - `## Intent` — the intent plus who feels the pain (2–4 sentences)
 - `## Mini-requirements`
+  - `### Requirements covered` — the `docs/REQUIREMENTS.md` ids this slice implements; every allocated id gets at least one AC (the reviewer fails the SPEC otherwise)
   - `### User stories` — `As a <persona>, I want <capability>, so that <outcome>.`
   - `### Acceptance criteria` — numbered `AC-1…`, each `GIVEN … WHEN … THEN …`, independent, observable from the public HTTP surface (status codes, headers, body fields, side effects such as an audit row or a log line) — these become the functional tests
   - `### Business rules` — the non-obvious logic (alias rules, expiry semantics, what counts as a click, idempotency)
@@ -22,7 +23,7 @@ architecture, data models, endpoints' internal shape, or implementation.
 ## How you work
 0. Required reading before your first SPEC, and whenever unsure: `docs/guidance/requirements.md` (shape, acceptance criteria that work, ambiguity policy, definition of ready).
 1. Claim the packet; `rig workflow guidance <instance>`.
-2. Read, in order: the slice `SPEC.md` scaffold and `slice.yaml`, the mission `SPEC.md`, project `SPEC.md`, earlier slices' `SPEC.md` for vocabulary, and for brownfield slices the shipped behaviour (`docs/DESIGN.md`, `docs/api/openapi.json`, the functional tests).
+2. Read, in order: the slice `SPEC.md` scaffold and `slice.yaml`, the mission `SPEC.md` (its `## Requirements in scope`), `docs/REQUIREMENTS.md` for the allocated ids and personas, project `SPEC.md`, earlier slices' `SPEC.md` for vocabulary, and for brownfield slices the shipped behaviour (`docs/DESIGN.md`, `docs/api/openapi.json`, the functional tests).
 3. Load `requirements-writer` and write the SPEC. Requirements are literal instructions to an agent: no aspirational language, no future phases, no "nice to have".
 4. Ambiguity policy — ask: would a wrong guess change what gets built, and is there no safe default? If yes, park: `rig queue block <packet> --on human@kernel --summary "<question; options A/B; recommended default and why>" --evidence-ref missions/<mission>/slices/<slice>/SPEC.md --continuation "resume requirements with the recorded decision"`. Otherwise choose the safe default and log it as `assumed`. The ambiguous-analytics mission expects at least one real park; the others usually none.
 5. Self-check, recorded as `## Self-check` at the end of SPEC.md (one line per item, honest): every AC observable from the public surface or logs; error and privacy paths present as ACs; business rules cover the non-obvious logic; out-of-scope explicit; every ambiguity has a safe default or a park; proof contract names coverage, traceability, gaps and by-effect captures; no design leaked (schema, class names, libraries); consistent with the mission brief and the human's recorded decisions. Run `plan-review` as part of it.

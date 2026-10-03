@@ -14,6 +14,10 @@ depends_on: ["OPR.99.0.2"]
 
 Extend the shipped shortener with link expiry and custom aliases and fix a defect found by using it, without breaking existing links; demonstrates codebase reasoning, migration with rollback, and the retry, rollback, fallback and safe-stop paths through labelled fault-injection drills.
 
+## Requirements in scope
+
+From `docs/REQUIREMENTS.md`: FR-11 … FR-15 (FR-13 applies to every slice through the impact analysis); NFR-S2, X2, and P2 if the purge was not delivered in mission 01.
+
 ## Slices
 
 [List notable slices and their state]
