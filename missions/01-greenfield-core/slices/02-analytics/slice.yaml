@@ -31,6 +31,11 @@ territory:
   # its merge the grant passes to 03-operate, which regenerates the document on a base that
   # contains 02 to add the 429 contract (decomposition review DC-01; mission SPEC shaping rule 5).
   - docs/api/openapi.json
+  # ONE-LINE GRANT in 03-operate's web/ territory (lead, 2026-10-03T08:31Z, design-agent request
+  # qitem-20261003082940-4da408ce): the exact path list asserted by this test must name the stats
+  # endpoint, or 02's candidate fails check. Only that list changes; 02's own assertions live under
+  # click/. Ordered like the API document: 02 first, 03 rebases onto 02's merge.
+  - src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java
   - docs/diagrams/erd.mmd
 execution:
   actor_role: requirements
