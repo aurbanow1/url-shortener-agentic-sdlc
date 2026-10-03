@@ -1,0 +1,189 @@
+# Impact analysis — 02-click-retention
+
+Written before `design.md` (`docs/guidance/brownfield.md` §2) by `design-agent@urlshort-factory`,
+2026-10-03, for SPEC `69680e4` (requirements PASS on `ee7a4de`; RQ-01 fixed in passing at `96221e8`, the AC-4 wording at `69680e4`).
+
+**Baseline.** `main` at `a74a2fe`, whose product code is byte-identical to `f6dd29e`, the SPEC's baseline.
+`git diff --stat f6dd29e main -- src build.gradle.kts …` lists only `scripts/smoke.sh`. I built that
+jar, ran it on an empty data directory, and created a link, redirected through it and read its
+statistics. I then stopped it and read the database. Commands and output:
+[`design-probe/baseline-f6dd29e.txt`](design-probe/baseline-f6dd29e.txt). The purge mechanics
+were measured on H2 file databases of 1.3 million clicks:
+[`design-probe/output.txt`](design-probe/output.txt) (one link),
+[`design-probe/output-2.txt`](design-probe/output-2.txt) (2 000 links) and
+[`design-probe/output-3.txt`](design-probe/output-3.txt) (a shutdown that outlasts the purge's
+close deadline) and [`design-probe/output-4.txt`](design-probe/output-4.txt) (a process exit
+in the middle of a run). The first attempt, whose batch form stalled, is
+[`design-probe/output-first-attempt.txt`](design-probe/output-first-attempt.txt). The rows are
+named in design §12.
+
+## Change in one sentence
+
+Click rows whose stored UTC day is older than the retention period are deleted. The period is
+an operator setting with a 90-day default. The purge runs once at startup and once every UTC day. A
+click lost because its reduction failed reports its own `click lost` reason. Requirements:
+NFR-P2; FR-13; FR-15 in passing, through wave-review finding W2-05.
+
+## Impacted modules
+
+Found with `grep -rln -e ClickRecorder -e ClickStore -e "FROM click" -e "INTO click" -e DailySalt src`.
+
+| Class or file | Change | Who calls it, and what it calls |
+|---|---|---|
+| `click.ClickPurge` | **new** package-private `@Component`: the startup run, a daily run at 00:10Z decided on the application `Clock`, one daemon thread | Spring calls it on `ApplicationReadyEvent` and at close; it calls `ClickStore` and reads `Clock` (`link.LinkConfig`'s bean) |
+| `click.ClickRetentionProperties` | **new** `@ConfigurationProperties` record: `urlshort.click.retention-days`, default 90, positive | bound by Boot; read by `ClickPurge` |
+| `click.ClickStore` | **one method added**: delete the clicks before a day | existing callers are unchanged: `ClickRecorder` (`insert`) and `StatsController` (`findLinkId`, `countByDayAndReferrer`); new caller `ClickPurge` |
+| `click.ClickRecorder` | **one string**: a failure while reducing a click reports reason `reduction failed` instead of `rejected` (`ClickRecorder.java:93`) | called only by `link.RedirectController.java:46`, which is unchanged |
+| `src/main/resources/application.properties` | **one setting** with its comment: `urlshort.click.retention-days=90` | Boot; second holder after `01-audit-read` merges (ordered custody) |
+| `click.package-info` | the package description gains retention | — |
+
+Unchanged, read to confirm: `click.StatsController`, `click.LinkStats` (fold the remaining
+rows), `click.DailySalt`, `click.Click`, `link.RedirectController`. **Not touched:** `link/`,
+`audit/`, `web/`, `db/migration/` (no schema change, below), `docs/api/openapi.json`.
+
+## Impacted endpoints
+
+None. `GET /{code}`, `GET /api/links/{code}/stats` and the `/actuator/*` endpoints keep their
+methods, paths, status codes, headers and bodies. Statistics keep their four fields. Their values
+now cover only the retained window (AC-5), and a link whose clicks are all purged answers `200`
+with `0` and empty arrays (AC-6). The baseline showed that this is already the shape of a link
+with no clicks. No metric is added. The API document is not regenerated.
+
+## Impacted schema and data
+
+- **Rows.** The purge deletes `click` rows with `clicked_on < today − P`. `link`, `audit_log`,
+  `user_agent_class` and `flyway_schema_history` are not touched: the statement names only
+  `click`, and deleting a child never cascades to a parent.
+- **No migration.** The purge's statement scans the table. The probe measured the alternatives,
+  and an index on `clicked_on` bought nothing worth a migration (design §3, probe L1–L10). This
+  slice takes no Flyway number, so the next number stays with `01-audit-read`.
+  - Single `DELETE` of 1 000 000 of 1 300 000 rows: 7.9 s without the index, 9.5 s with it.
+  - The same in 10 000-row batches: 43 s either way.
+  - Creating the index on 1.3 million rows: 1.5 s.
+- **Volume.** In steady state a run deletes one day of clicks, about 1/91 of the table at the
+  default. A larger run happens only when the period is lowered (90 → 7 deletes about 92 % at the
+  next run) or after a long outage.
+- **Expand → migrate → contract.** Not applicable: no schema change.
+- **Rollback.** `git revert` of the merge commit restores v1's behaviour, with no schema to undo.
+  Deleted rows cannot be recovered; deletion is the requirement. To keep an undo before lowering
+  the period, the Operator copies `data/` while the service is stopped (`docs/guidance/databases.md`
+  §5). `docs/DESIGN.md` §3 says so next to the setting.
+
+## Impacted data flows
+
+| Flow | Before | After |
+|---|---|---|
+| Redirect → click recording | request thread reduces, `click-writer` inserts | unchanged; a click inserted while a purge deletes is committed independently. MVCC: probe L1–L10, redirect p95 ≤ 2.5 ms during deletion of 1 000 000 rows, every redirect's click stored |
+| Statistics | one grouped query over the link's rows | unchanged query; fewer rows after a purge |
+| Audit | one row per link mutation | unchanged; a purge writes no audit row (SPEC A-4) |
+| Startup | Flyway, then readiness | Flyway, then **the startup run on the `click-purge` thread, finished before Boot reports readiness**, then readiness |
+| Daily | — | every 5 s the purge thread reads the application clock; at the first tick on or after 00:10Z of a UTC day later than the last run's day, it runs once |
+| Shutdown | graceful phase, click drain ≤ 5 s, pool close | unchanged order; at close the purge thread takes no new run, and a running statement is awaited for up to 3 s and never interrupted. A statement still running when the process exits is undone by H2 when the file next opens (design §1, probe D2, D3, D4) |
+
+The sequence delta is design §4 (`docs/diagrams/purge-sequence.mmd`).
+
+## Blast radius
+
+| If this is wrong | Worst case | Detection |
+|---|---|---|
+| The cutoff is wrong (an off-by-one, the wrong zone, the period read wrongly) | clicks deleted before their 90 days, irreversibly | boundary tests AC-1 to AC-3 on clicks recorded through real redirects at shifted days; the INFO event names `cutoff` and `retentionDays` on every run |
+| The host clock jumps forward | one run deletes up to the jump's worth of days early; a clock years ahead deletes every click | INFO `cutoff`; accepted residual (design §6): the Operator owns the host clock, and a backward step deletes nothing |
+| The period is set too low by mistake | the next run, including the startup run, deletes everything older | the setting is validated (positive whole days, AC-4); `docs/DESIGN.md` states the effect and the backup step |
+| The purge fails every day | clicks kept longer than decided | one WARN `click purge failed` per failed run (AC-10) |
+| The purge slows the Visitor | redirect latency | `http.server.requests` on `/actuator/prometheus`; probe evidence; AC-11 |
+| The startup run is slow | readiness later by the run's length (about 8 s per million deleted rows) | readiness probe; the INFO event's timestamp |
+| A shipped test is disturbed by a background run | a flaky functional suite (FR-13, AC-14) | the full suite on the candidate; the analysis below |
+
+## Compatibility (FR-13)
+
+- **Links and codes.** No link row is read, written or deleted by the purge.
+- **Stored rows.** Clicks within the period are unchanged. Clicks beyond it are deleted by the
+  first startup run on an upgraded directory (AC-13). The baseline service writes only
+  `clicked_on = today`, so a real `f6dd29e` directory holds no click beyond the period. AC-13's
+  directory gets its old clicks by backdated inserts after the shipped jar has written links,
+  audit rows and today's clicks (design §7).
+- **Clients.** The statistics shape is unchanged.
+- **Operators.** One new optional setting with the decided default; an existing deployment needs no change.
+- **Proof.** The functional suite as it stood at `f6dd29e` passes unchanged (AC-14). The test
+  impact below explains why each shipped test that stores clicks or captures logs is unaffected.
+
+## Test impact
+
+**Added.**
+- Functional classes for the purge journeys, each on its own in-memory database and context, so
+  no other journey moves their clock and their deletions never reach the shared database. They
+  cover AC-1 to AC-13 and are listed in design §7.
+- Unit tests: `ClickPurgeTest` (the tick decision, the events, close) and the AC-12 case.
+
+**Changed, one unit test, by intent.**
+`ClickRecorderTest.aClickThatCannotBeReducedIsOneWarn` asserts reason `rejected` for a reduction
+failure. W2-05 and AC-12 change that reason, so the assertion becomes `reduction failed`. The
+stub, the request and the other assertions stay as they are.
+
+**Functional suite: unchanged (AC-14).** A purge runs only (a) once when a context starts,
+synchronously, before the first test of the classes that use it, and (b) when the context's clock
+reaches 00:10Z of a UTC day later than its last run. The second needs a forward shift of a day, or
+real time passing 00:10Z. The table covers every shipped test that stores clicks, captures
+the log or moves the clock.
+
+| Shipped test | What it does | Why the purge does not disturb it |
+|---|---|---|
+| `ClickRecordingJourneyTest` | records clicks with the clock set to 2026-09-01 and 2026-09-02, asserts them in the same test | the clock is set into the past, so no run is due during the test; a run at another context's start happens between classes. After 2026-11-30 those dates are beyond the period, still only between classes |
+| `StatsJourneyTest` | records on 2026-10-01, -02 and -04 and reads statistics in the same test | when run before 2026-10-04 the shift to 2026-10-04T12:00Z makes a run due: its cutoff is 2026-07-06, older than every row of the test. Later the shift is into the past and nothing runs |
+| `ClickResilienceJourneyTest` | `@MockitoSpyBean ClickStore`, stubs `insert` only, no `verify` on the store | the purge's call to the spy goes to the real method; nothing counts store interactions |
+| `ClickSchemaJourneyTest` | reads the rows it just wrote | its rows are today's |
+| `IdempotencyJourneyTest` | shifts the shared clock by +23 h, +24 h ± 1 s, sends creates | a run may become due during the +24 h shift (cutoff `T+1−90`); no shipped test holds clicks that old across it |
+| `ColdStartJourneyTest`, `ObservabilityJourneyTest`, `PingJourneyTest` | every line captured while a request runs must carry that request's id | the startup run (and its INFO line) finishes before readiness, so before any test method; no tick runs unless due, and these tests do not shift the clock |
+| `RateLimitJourneyTest`, `TrustedProxyJourneyTest`, `RateLimitSettingsJourneyTest` | freeze the clock and step it by seconds | never a UTC day forward; nothing becomes due |
+
+**Residual, recorded rather than engineered away.** A suite run that crosses 00:10Z UTC sees
+one run per live cached context at that minute. A log-window test whose window coincides with it
+would capture an INFO line without a request id. The probability is small (a window of
+milliseconds against a run of milliseconds, once a day), and the alternative is a test-only switch
+on production code. I chose the residual. QA's `GAPS.md` row carries it if it ever shows.
+
+**Removed.** None.
+
+## Observability impact
+
+- New events on the `click-purge` thread, without `requestId` (SPEC rule 6, not a request):
+  - INFO `clicks purged` with `deleted`, `cutoff` (the earliest UTC day kept) and `retentionDays`;
+  - WARN `click purge failed` with `cutoff`, `retentionDays` and `errorType`.
+
+  No message or stack trace, and no click value, link code or id (AC-9, AC-10).
+- New `click lost` reason `reduction failed` (AC-12). `rejected` keeps its meaning: a full or
+  closed queue.
+- New startup failure: an invalid period stops the service with Boot's failure analysis. It names
+  the setting, the rejected value and its origin, and nothing else (probe A4; design §2).
+- No metric, health or dashboard change. There is no runbook file in the repository. The
+  operator-facing facts go into `docs/DESIGN.md` §3, which is mine: the setting, the run time, the
+  events and the backup step. `README.md` lists every operator setting and is outside this
+  slice's territory, so design §9 asks the lead for a one-line grant.
+
+## Risks and mitigations, ranked
+
+| # | Risk | Mitigation | Owner step |
+|---|---|---|---|
+| 1 | Clicks deleted early, irreversibly | cutoff = the application clock's UTC day minus P, delete `<` it (A-1); boundary ACs through real redirects at shifted days; the statement names only `click`; the setting validated at startup | design → QA (AC-1 to AC-4) → security review |
+| 2 | A shipped test made flaky by background runs | synchronous startup run; runs only when due; the purge journeys on their own databases; the residual named above | design → QA (full suite, twice) |
+| 3 | The purge slows redirects or click writes | MVCC measured: no stall in any of ten variants; AC-11 in the suite | design probe → QA → release bench (NFR-L1) |
+| 4 | A run in progress at shutdown delays the stop or damages the file | measured: the running statement is awaited for up to 3 s and never interrupted (D2, D3). Clicks queued before the stop are written (D3, 20 of 20). A process exit in the middle of a 1 000 000-row DELETE leaves a consistent file with the delete undone, so the next startup run repeats it (D4; reopening took 4 s). A long run can meet a stop only in a catch-up, and a catch-up happens in the startup run | design probe → release (`--drain`) |
+| 5 | Ordered custody with `01-audit-read` (`application.properties`) | the candidate descends from `01-audit-read`'s merge; this slice takes no Flyway number | integrate (ancestry check) |
+| 6 | Mission 03 changes retention | **checked**: the human chose Q4 A at 16:10:30Z (transition 876 on `qitem-20261003154347-19e96a75`, "accept all recommended: … Q4 A …"), the 90-day delete as built here; the lead re-checks at plan-lock | lead (plan-lock) |
+
+## Self-check
+
+- Baseline observed by effect on the shipped jar, not from memory: status codes, headers, rows,
+  indexes, plan and log events are in `baseline-f6dd29e.txt`.
+- Every class the change touches, and every class that calls or reads one of them, is in the
+  module table. The `grep` that produced the list is quoted.
+- Endpoints: none changed, checked against the baseline responses.
+- Schema: no change. The reason is measured, not assumed (probe L0 to L10).
+- Data flows: each existing flow is checked, and the two new flows (startup, daily) are named.
+- Blast radius: each failure has a worst case and a detector.
+- Compatibility: every shipped test that stores clicks, captures logs or moves the clock is listed,
+  with the reason it passes unchanged. The one changed unit test is changed by intent.
+- Observability: every new event, field and failure text is named. The README grant is requested,
+  not assumed.
+- Not verified here: the full shipped functional suite against a candidate. No candidate exists
+  yet, so that is AC-14, QA's.

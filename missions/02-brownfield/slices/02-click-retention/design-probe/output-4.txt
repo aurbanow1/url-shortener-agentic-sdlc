@@ -1,0 +1,17 @@
+PROBE day T = 2026-10-03, JVM max heap 1024 MB
+10:16:00.879 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:h2:file:/Users/andrzej/Documents/projekty/test/openrig/url-shortener/build/retention-probe/base/urlshort (H2 2.4)
+10:16:00.905 [main] WARN org.flywaydb.core.internal.database.base.Database -- Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+10:16:00.919 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+10:16:00.920 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 2 migrations (execution time 00:00.006s)
+10:16:00.923 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+10:16:00.941 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "PUBLIC": << Empty Schema >>
+10:16:00.944 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "1 - create link and audit log"
+10:16:00.954 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "2 - create click"
+10:16:00.962 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 2 migrations to schema "PUBLIC", now at version v2 (execution time 00:00.009s)
+BASE 1 000 000 clicks on 2026-03-17..2026-07-04 and 300 000 on 2026-07-05..2026-10-02 for link probeHot1, inserted in day order, in 5122 ms; file 286 MB
+{"@timestamp":"2026-10-03T17:16:08.013227Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":96851,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T17:16:08.612454Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":96851,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T17:16:08.613227Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":96851,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+D4 child: System.exit(0) 1 s into the DELETE; Spring's shutdown hook closes the context
+D4 child exited 0 after 6532 ms; the file reopened in 4006 ms; old left 1000000, kept 300000, day T 0
+PROBE done

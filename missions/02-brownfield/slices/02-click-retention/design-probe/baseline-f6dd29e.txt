@@ -1,0 +1,56 @@
+Shipped baseline observed before the impact analysis (docs/guidance/brownfield.md section 1)
+Observer: design-agent@urlshort-factory, 2026-10-03T16:50Z
+
+Build: scripts/gw --offline -q bootJar on main a74a2fe. Product code there equals f6dd29e (the SPEC's baseline):
+  git diff --stat f6dd29e main -- src build.gradle.kts settings.gradle.kts gradle scripts/smoke.sh compose.yaml Dockerfile
+  -> scripts/smoke.sh | 11 +++++++++--  (no src/ or build change)
+
+Run: java -jar build/libs/urlshort.jar --server.port=18097 --spring.datasource.url=jdbc:h2:file:<scratch>/data/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE
+  (fresh data directory; JDK 21.0.10)
+
+$ scripts/http -s http://localhost:18097/actuator/health/readiness
+{"status":"UP"}
+
+$ scripts/http -s -i -X POST -H "Content-Type: application/json" -d {"url":"https://example.org/retention-baseline"} http://localhost:18097/api/links
+HTTP/1.1 201
+X-Request-Id: f8db1ae6-1c15-47ed-84fc-0c5ddf4f0117
+Location: /api/links/v9xplAD2
+{"code":"v9xplAD2","shortUrl":"http://localhost:8080/v9xplAD2","url":"https://example.org/retention-baseline","state":"active","createdAt":"2026-10-03T16:50:29.141Z"}
+
+$ scripts/http -s -i -H "Referer: https://news.example.com/a/b?q=1" -H "User-Agent: Mozilla/5.0 Firefox/130" http://localhost:18097/v9xplAD2
+HTTP/1.1 302
+X-Request-Id: 29f89fd4-1090-47d9-bcb4-438d931c7a5f
+Location: https://example.org/retention-baseline
+Cache-Control: no-store
+Content-Length: 0
+
+$ scripts/http -s http://localhost:18097/api/links/v9xplAD2/stats
+{"code":"v9xplAD2","totalClicks":1,"clicksPerDay":[{"date":"2026-10-03","clicks":1}],"topReferrers":[{"referrer":"https://news.example.com","clicks":1}]}
+
+Stopped with SIGTERM (exit 143 after "Graceful shutdown complete", "HikariPool-1 - Shutdown completed.").
+Then, with H2 2.4.240's Shell on the closed file:
+
+SELECT "version", "description", "success" FROM "flyway_schema_history" ORDER BY "installed_rank";
+  null | << Flyway Schema History table created >> | TRUE
+  1    | create link and audit log                 | TRUE
+  2    | create click                              | TRUE
+SELECT id, link_id, clicked_at, clicked_on, referrer, user_agent_class, LENGTH(client_hash) FROM click;
+  1 | 1 | 2026-10-03 16:50:32.833+00 | 2026-10-03 | https://news.example.com | browser | 64
+SELECT index_name, table_name FROM information_schema.indexes WHERE table_name = 'CLICK';
+  PRIMARY_KEY_3, FK_CLICK_LINK_INDEX_3, FK_CLICK_USER_AGENT_CLASS_INDEX_3, IX_CLICK_LINK_DAY
+EXPLAIN SELECT id FROM click WHERE clicked_on < DATE '2026-07-05' FETCH FIRST 10000 ROWS ONLY;
+  SELECT "ID" FROM "PUBLIC"."CLICK" /* PUBLIC.IX_CLICK_LINK_DAY: CLICKED_ON < DATE '2026-07-05' */
+  WHERE "CLICKED_ON" < DATE '2026-07-05' FETCH FIRST 10000 ROWS ONLY
+  (the composite index is walked from its start; clicked_on is its second column, so this is a scan, not a seek)
+SELECT COUNT(*) FROM audit_log;
+  1
+
+Log stream of the run (ECS JSON, 36 lines), messages by count: 4 x "request completed" (readiness, create,
+redirect, stats; one per request, with requestId), Flyway "Successfully applied 2 migrations", startup and
+shutdown lines. A recorded click writes no event; nothing names a click value, the address or the user agent.
+
+What this establishes for the change:
+- one row per 302, its UTC day stored in clicked_on (the purge's key), referrer reduced to an origin;
+- no index starts with clicked_on; the purge's range must be served by a scan of ix_click_link_day or of the table;
+- statistics are computed per request from the stored rows, so deleting rows changes them and nothing else;
+- the audit trail has one row per link mutation and no relation to click rows.

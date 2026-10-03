@@ -1,0 +1,32 @@
+// Design probe for 02-click-retention (design.md section 12 names what each case proves).
+// Run from the repo root, no product, test or build file changes:
+//   scripts/gw --log missions/02-brownfield/slices/02-click-retention/design-probe/output.txt \
+//       --offline -I missions/02-brownfield/slices/02-click-retention/design-probe/retention-probe.gradle designRetentionProbe
+// then, for a shutdown that outlasts the purge's close deadline (output-3.txt):
+//   scripts/gw --log missions/02-brownfield/slices/02-click-retention/design-probe/output-3.txt \
+//       --offline -I missions/02-brownfield/slices/02-click-retention/design-probe/retention-probe.gradle designRetentionProbe -PprobePart=3
+// then, for a process exit (Spring's shutdown hook) in the middle of a single-statement run (output-4.txt):
+//   scripts/gw --log missions/02-brownfield/slices/02-click-retention/design-probe/output-4.txt \
+//       --offline -I missions/02-brownfield/slices/02-click-retention/design-probe/retention-probe.gradle designRetentionProbe -PprobePart=4
+// and, for the many-link load variants:
+//   scripts/gw --log missions/02-brownfield/slices/02-click-retention/design-probe/output-2.txt \
+//       --offline -I missions/02-brownfield/slices/02-click-retention/design-probe/retention-probe.gradle designRetentionProbe -PprobePart=2
+// One JavaExec task on the functional runtime classpath (shipped main code and resources, the functional
+// profile overlay and FunctionalClock). Scratch databases go under build/retention-probe/.
+gradle.projectsEvaluated {
+    def project = gradle.rootProject
+    def functional = project.sourceSets.functionalTest
+    project.tasks.register('designRetentionProbe', JavaExec) {
+        dependsOn project.tasks.named('functionalTestClasses')
+        javaLauncher.set(project.javaToolchains.launcherFor {
+            languageVersion = JavaLanguageVersion.of(21)
+        })
+        classpath = functional.runtimeClasspath
+        mainClass = project.file('missions/02-brownfield/slices/02-click-retention/design-probe/RetentionProbe.java').absolutePath
+        systemProperty 'spring.profiles.active', 'functional'
+        // -PprobePart=2 runs only the many-link load variants (output-2.txt)
+        systemProperty 'probe.part', project.findProperty('probePart') ?: '1'
+        systemProperty 'probe.source', project.file('missions/02-brownfield/slices/02-click-retention/design-probe/RetentionProbe.java').absolutePath
+        maxHeapSize = '1g'
+    }
+}
