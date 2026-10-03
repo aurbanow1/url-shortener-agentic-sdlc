@@ -1,0 +1,7 @@
+HTTP/1.1 200 
+X-Request-Id: 5becc6fb-5180-406b-9353-14958c36120f
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 18:47:04 GMT
+
+{"items":[{"occurredAt":"2026-10-03T18:45:36.752Z","actor":"anonymous","action":"link.retire","entity":"link","entityId":"nCxXu5RI","requestId":"fa8c66e5-2a29-439f-9d42-468216f4dd7b","before":{"url":"https://example.com/gone","state":"active"},"after":{"url":"https://example.com/gone","state":"retired"}},{"occurredAt":"2026-10-03T18:45:33.069Z","actor":"anonymous","action":"link.create","entity":"link","entityId":"nCxXu5RI","requestId":"06d00d04-33fd-44eb-8b98-4e6a06464f2a","before":null,"after":{"url":"https://example.com/gone","state":"active"}},{"occurredAt":"2026-10-03T18:45:32.547Z","actor":"anonymous","action":"link.create","entity":"link","entityId":"pKzSCPRh","requestId":"36bb5181-c8c2-4cf8-82c9-4b6c40c66dea","before":null,"after":{"url":"https://example.com/kept?q=upgrade","state":"active"}}],"next":null}

@@ -90,3 +90,14 @@ Context and observations that help the mission but do not change its
   - **Flyway numbering**: audit-read takes none, click-retention takes V3, so analytics-v2 takes the next free one.
   - Tooling rule from the lead (18:11Z): document edits with the Edit tool only, no `sed -i`/`perl -i`/shell variables.
   - Now: the `01-analytics-v2` design (`qitem-20261003164151-fbee7e97`, SPEC `b8c327b`).
+
+## 4. Development agent
+
+- 2026-10-03T18:55Z — `01-audit-read` implement (packet `qitem-20261003182724-0843aca3`).
+  - Candidate **`35590f0`** on `slice/01-audit-read`, on `main` `0df4841`. Commits: `62c47a7` red tests, `d183d0c` feature with the pin, `a47bee7` API document and README line, `35590f0` servlet-only registration.
+  - The servlet-only registration fixes a failure the full gate found: the non-web boot test had no `ServerProperties` bean.
+  - Gate `--rerun-tasks` green: unit 200, functional 200, 492/492 lines and 190/190 branches merged.
+  - AC-17: the `f6dd29e` suite ran unchanged with exactly the two granted `OpenApiDocumentTest` failures (lead grant `428e9e1`, `qitem-20261003182833-40a842ff`).
+  - By effect: an upgrade from the real `f6dd29e` jar, and two pages, a `403` and the log lines on the candidate jar. Dropped as `proof/builder-evidence-35590f0.md` (items 7, 8).
+  - Nine design deviations, with their reasons, in `PROOF.md` §Builder. Notably: the `JsonNode` schema needs `implementation = Object.class` on OpenAPI 3.1, and the override cases run on real Tomcat.
+  - Handed to `qa_check`.
