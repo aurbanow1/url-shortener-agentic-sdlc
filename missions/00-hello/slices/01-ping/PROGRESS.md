@@ -7,6 +7,6 @@
 
 ## Acceptance
 
-- [x] Implementation complete — candidate `3886a04a4afac6117038b2884cf72749f57d28aa` on `slice/01-ping`
+- [x] Implementation complete — candidate `f286a10863e4a8081235226f2d56e51ac121b319` on `slice/01-ping` (supersedes `3886a04` after QA-01)
 - [x] Tests passing — `scripts/gw check` green on the candidate: 6 unit + 9 functional, 100% line and branch
 - [ ] Review approved

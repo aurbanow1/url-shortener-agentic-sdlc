@@ -192,3 +192,71 @@ QA pre-handoff check:
   judgments or locked-document edits performed.
 - App stopped and graceful shutdown observed. Worktree remains clean at the
   exact candidate. No product code, tests or build files edited.
+
+## Builder re-check after QA-01
+
+Development agent, 2026-10-03. New candidate
+`f286a10863e4a8081235226f2d56e51ac121b319` on `slice/01-ping`: the three earlier
+commits plus `f286a10`, which excludes `process.thread.name` from the structured
+JSON log (one property line in `src/main/resources/application.properties`,
+granted at `5befb22`) and adds the AC-7 assertion that the ping event has no
+such member. Lead decision recorded on the implement packet (transition 126):
+AC-7 stays as locked, no SPEC change.
+
+### Finding addressed
+
+- **QA-01, fixed.** Cause accepted: Tomcat names worker threads after the bound
+  address, so with `server.address` set the ECS `process.thread.name` member
+  carried the listener's IP on every event, and on a loopback-bound run that
+  string coincides with the client's address. Property key verified in the
+  Boot 4.1.1 configuration metadata: `logging.structured.json.exclude`,
+  "member paths that should be excluded from structured logging JSON". After
+  the change the event's `process` member is `{"pid":<n>,"thread":{}}`: the
+  empty `thread` object remains, the name is gone.
+
+### Commands run and their outcome
+
+| Step | Command | Outcome |
+|---|---|---|
+| Red, assertion before the property | `scripts/gw --offline -p .worktrees/01-ping functionalTest --tests dev.urlshort.ping.PingJourneyTest` | 8 tests, 1 failed: `AC7_logEventCarriesNoClientAddressOrUserAgent` at the new assertion, `process.thread.name` present. |
+| Gate on the candidate | `scripts/gw --offline -p .worktrees/01-ping check --rerun-tasks` | BUILD SUCCESSFUL in 19s, all 13 tasks executed; 6 unit + 9 functional, 15/15 lines, 0 of 0 branches. Log: `proof/builder-check-f286a10.txt`. |
+
+### Verified by effect, loopback-bound
+
+App started from the candidate with
+`scripts/gw --offline -p .worktrees/01-ping bootRun --args="--server.address=127.0.0.1 --server.port=18082"`
+(pid 10917), exercised through `scripts/http`, stopped with SIGTERM.
+
+- `proof/ping-get-exchange-f286a10.txt`: `GET /api/ping` with
+  `User-Agent: canary-ua-bootrun-f286a10` and
+  `X-Request-Id: canary-rid-bootrun-f286a10`. Response `200`,
+  `application/json`, `X-Request-Id: 73fa1c4b-e359-4f7f-87ec-40cc5f570dcb`
+  (not the canary), body `{"status":"ok","time":"2026-10-03T00:37:52.911465Z"}`.
+  AC-1, AC-2, AC-3, AC-8.
+- `proof/ping-post-405-exchange-f286a10.txt`: `POST /api/ping`. `405`,
+  `application/problem+json`, `X-Request-Id` present, no stack trace. AC-5.
+- `proof/ping-log-line-f286a10.json`: the one stdout line carrying that request
+  id, verbatim. One JSON object, `requestId` equal to the header,
+  `"process":{"pid":10917,"thread":{}}`, no `process.thread.name`. AC-6, AC-7.
+- `grep -n "canary\|127.0.0.1\|::1\|0:0:0:0:0:0:0:1"` over the whole
+  loopback-bound bootRun stdout, startup through shutdown: no match. With the
+  server bound to `127.0.0.1`, no log line carries that address in any form.
+  AC-7 and proof item 7 as locked.
+
+### Not verified
+
+As before: AC-4 only through its functional test and the differing ids of the
+two captures; `HEAD`, `OPTIONS`, unknown paths, `Accept` negotiation; the
+packaged jar. Contract items 1 to 5 remain QA's.
+
+### Self-check
+
+- Diff of `f286a10` against `3886a04` re-read: one property line and seven
+  test lines. The assertion sits inside the AC-7 journey, the AC it serves,
+  and was watched failing for the right reason. No other file touched; the
+  granted file carries exactly the one line.
+- Ladder: a platform property, no code, no filter machinery, no new
+  dependency. No `ponytail:` comment because nothing is simplified below the
+  SPEC.
+- `check --rerun-tasks` ran after the last edit; no edit since. Worktree clean
+  at `f286a10`.
