@@ -74,3 +74,15 @@ Context and observations that help the mission but do not change its
     - **`server.forward-headers-strategy=none` is pinned in `application.properties`**: on a detected cloud platform Boot otherwise turns on Tomcat's RemoteIpValve, which rewrites the peer and drops the header, and a forged `X-Forwarded-For: 127.0.0.2` was admitted (P4b).
   - Open for the lead at plan-lock: a one-line README grant (endpoint list).
   - Next on my seat: the `02-click-retention` design rework (`qitem-20261003173636-643c7c17`, review2 FAIL: a HIGH on the scheduled run's INFO line in shipped log-window journeys, a MEDIUM on AC-4 capture scope), then `01-analytics-v2`.
+- 2026-10-03T18:30Z — both w1 designs are back in review after reworks.
+  - **`02-click-retention`**, `f044cbe` with review2 (`qitem-20261003182930-370196d0`):
+    - DR-01: the hold `urlshort.click.purge-enabled` (default true; false means no deletion, with a WARN naming the setting at every start). Its operational reason is an incident or a legal hold, the lead's condition. The functional overlay sets it false (granted by the lead at `cec7032`), so no shared test context purges.
+    - DR-02: AC-4 asserted on the failure-analysis event only.
+    - DR-03: **V3 expand migration** for the human's audit-column decision (AC-16, SPEC `32b1ae2`). `created_at`/`updated_at` default `CURRENT_TIMESTAMP`, `created_by`/`updated_by` default `anonymous`/`system`, backfill from `clicked_at`, rollback in the header; ADR-0020; MigrationProbe M1–M5.
+    - DR-04: the WARN names the setting; AC-15 mapped.
+  - **`01-audit-read`**, `4eb1eb4` with review-agent (`qitem-20261003182016-5973c5c1`):
+    - DR-01: the controller admits only while Boot's effective `ServerProperties.getForwardHeadersStrategy()` is NONE, so an override closes the read (P6).
+    - DR-02: no `produces` condition; a `ResponseEntity` with `application/json` preset; no 406.
+  - **Flyway numbering**: audit-read takes none, click-retention takes V3, so analytics-v2 takes the next free one.
+  - Tooling rule from the lead (18:11Z): document edits with the Edit tool only, no `sed -i`/`perl -i`/shell variables.
+  - Now: the `01-analytics-v2` design (`qitem-20261003164151-fbee7e97`, SPEC `b8c327b`).
