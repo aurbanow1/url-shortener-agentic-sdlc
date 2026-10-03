@@ -67,3 +67,28 @@ Evidence under `missions/01-greenfield-core/release/`; narrative in `missions/01
 | Slice | Gap | Why | Compensating check | Status |
 |---|---|---|---|---|
 | 02-analytics @8e9c065 | NFR-L3: an isolated added click-recording p95 is not established by the release bench | The corrected sequential 60 s GET and HEAD runs measure separate response distributions. GET-minus-HEAD p95 is a comparison proxy, not a paired counterfactual or an isolated added-cost quantile; the earlier release row's "isolated" claim is limited accordingly | Open-loop GET with creates: 100.0/s, p95 2.2 ms; GET alone: 100.0/s, p95 1.7 ms; HEAD alone: 100.0/s, p95 1.8 ms; zero bad responses and exactly 12,000 GET clicks stored. QA independently reconciled all 19,205 completions, the 12,000-click statistics and the load tool's due-time measurement; AC-14's independent slow-store check remains applicable | Proof item 13's measurement/disclosure requirement is satisfied under its explicit allowance for an unisolated share. No isolated numerical-cost or capacity claim, threshold change or waiver. Audit: docs/qa/01-greenfield-core/release-judgments/audit-8e9c065.json |
+
+## Deferred audit columns — human decision 2026-10-03
+
+Human decision relayed in qitem-20261003175330-fb054f2f; QA documentation packet
+qitem-20261003175815-19647350. Policy: docs/guidance/databases.md §2 and §8.
+The shipped V1/V2 schema at 8e9c065 predates the policy. Every table requires
+timezone-aware, non-null created_at/updated_at and actor columns where an actor
+exists; updated_at is maintained on every write. These rows remain open until
+their assigned slices merge. Migration effects and backfills are not yet verified.
+
+| Table / shipped subject | Gap | Why | Planned migration and verification | Status |
+|---|---|---|---|---|
+| click @8e9c065 | Missing created_at, updated_at, created_by and updated_by; clicked_at is the event timestamp, not the row-audit timestamp | Human audit-column policy applies to event tables; the Visitor's actor is anonymous | 02-brownfield / 02-click-retention, w1: **V3 expand migration**, SPEC 32b1ae2 AC-16. Preserve existing columns, backfill all four new columns, verify timezone-aware non-null timestamps with updated_at = created_at for insert-only rows and actor columns anonymous; preserve clicked_at and privacy reductions | **OPEN until 02-click-retention merges** |
+| user_agent_class @8e9c065 | Missing created_at, updated_at, created_by and updated_by | Human audit-column policy applies to reference tables; seeded rows have actor system | 02-brownfield / 02-click-retention, w1: **V3 expand migration**, SPEC 32b1ae2 AC-16. Preserve tokens/constraints, backfill all four new columns, verify timezone-aware non-null timestamps and created_by = updated_by = system; updated_at = created_at for existing seed rows | **OPEN until 02-click-retention merges** |
+| link @8e9c065 | created_at already exists (timezone-aware, non-null, without a database default); missing updated_at, created_by and updated_by | Human policy requires complete row-audit columns and maintenance on every write | 02-brownfield / 04-audit-columns, w2: **expand migration using the next free Flyway number after V3**. Retain existing created_at values, supply the policy's insert default/maintenance, backfill missing columns, verify actor columns and updated_at on subsequent link writes; existing links retain their meaning | **OPEN until 04-audit-columns merges** |
+| audit_log @8e9c065 | Missing created_at, updated_at, created_by and updated_by; existing occurred_at/actor remain domain-event fields | Human audit-column policy applies to append-only audit tables too | 02-brownfield / 04-audit-columns, w2: **expand migration using the next free Flyway number after V3**. Preserve existing audit fields, backfill row-audit columns, verify inserts set updated_at = created_at and maintain actor columns; **audit_log stays append-only, with no application UPDATE/DELETE path** | **OPEN until 04-audit-columns merges** |
+
+### Self-check
+
+Read the human decision, policy, 02-click-retention AC-16 and 04-audit-columns
+allocation. Inspected the exact shipped DDL in V1__create_link_and_audit_log.sql
+and V2__create_click.sql at 8e9c065; four tables and their existing/missing
+columns match these four rows. This is a GAPS-only documentation change, with
+no migration, app, build or proof judgment. Changed hashes of closed mission-01
+GAPS-citing receipts are factory backlog; no reaffirmation is made here.
