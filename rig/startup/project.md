@@ -18,8 +18,8 @@ the repo root; read it. This block is the coordination protocol.
 | `requirements-agent@urlshort-factory` | Requirements Agent |
 | `design-agent@urlshort-factory` | Design Agent (also second vantage in wave review) |
 | `development-agent@urlshort-factory` | Development Agent — works under the `ponytail` skill (lazy-senior ladder: YAGNI → reuse → JDK/Spring → one line → minimum code) |
-| `qa-agent@urlshort-factory` (Codex) | QA Agent |
-| `review-agent@urlshort-factory` (Codex) | Code Review Agent (correctness + `ponytail-review` over-engineering lens), Security & Compliance Agent, wave reviewer |
+| `qa-agent@urlshort-factory`, `qa2-agent@urlshort-factory` (Codex) | QA Agent (two seats so concurrent slices do not queue on one judge; a slice's workflow names which) |
+| `review-agent@urlshort-factory`, `review2-agent@urlshort-factory` (Codex) | Code Review Agent (correctness + `ponytail-review` lens) and Security & Compliance Agent in one packet, wave reviewer (two seats; a slice's workflow names which) |
 | `release-agent@urlshort-factory` | Release & Reliability Agent |
 | `human@kernel` | the human: mission plan-locks, high-tier slice plan-locks, ambiguity decisions, ship sign-offs |
 
