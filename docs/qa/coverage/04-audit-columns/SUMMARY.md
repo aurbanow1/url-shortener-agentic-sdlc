@@ -5,7 +5,7 @@ Worktree `.worktrees/04-audit-columns` remained clean at that SHA throughout; th
 from retention merge `ed2b940` and baseline `main` `2566c38`. No product, test, build or migration edit by QA.
 
 `../../scripts/gw --log <root>/docs/qa/04-audit-columns/check-qa-305f804.txt --offline check --rerun-tasks`
-passed: **218 unit + 233 functional**, zero failures/errors/skips, all14 tasks executed, Javadoc green.
+passed: **218 unit + 233 functional**, zero failures/errors/skips, all 14 tasks executed, Javadoc green.
 Only fresh `test.exec` and `functionalTest.exec` existed when merged verification ran.
 Counts are independently summed from the saved JUnit XML (`proof/qa-junit/`, `qa-junit-summary.json`).
 
@@ -15,10 +15,10 @@ Counts are independently summed from the saved JUnit XML (`proof/qa-junit/`, `qa
 | functional | 523/557 | 93.90% | 166/200 | 83.00% |
 | all | 557/557 | 100.00% | 200/200 | 100.00% |
 
-All366 HTML/XML/CSV files copied from the fresh reports into `unit/`, `functional/` and `all/`;
-SHA-256 manifest `proof/qa-report-hashes.json` rechecked366/366. Percentages calculated from CSV
+All 366 HTML/XML/CSV files copied from the fresh reports into `unit/`, `functional/` and `all/`;
+SHA-256 manifest `proof/qa-report-hashes.json` rechecked 366/366. Percentages calculated from CSV
 covered/missed sums, not averaged class percentages. Complementary per-suite misses are recorded
-in `docs/qa/GAPS.md`; merged gate100/100 with no exclusion or threshold change.
+in `docs/qa/GAPS.md`; merged gate 100/100 with no exclusion or threshold change.
 
 The clean full by-effect run is [`summary.json`](../../../../missions/02-brownfield/slices/04-audit-columns/proof/qa-305f804/run-20261003T234116500899Z/summary.json), with
 **94 HTTP requests / 787 assertions**, all passing, and94/94 response IDs joined to their own
@@ -53,7 +53,7 @@ one stopped f6 link timestamp backdated two days to exercise real shipped expiry
 and one explicitly synthetic future audit event. No product/test changes. All seven app processes
 stopped; rollback touched only a copy. AC1/11 use the SPEC/design-authorized unit migration tests plus
 real-server/JDBC functional captures, not a claimed JUnit functional rollback test. Parameterized
-report names identify41 methods only at their green class group; other230 methods have individual
+report names identify41 methods only at their green class group; other 230 methods have individual
 XML attribution. PostgreSQL, Docker and large-directory migration timing not independently checked.
 
 Interrupted QA setup runs are retained under `proof/qa-305f804/`; only the final run above claims

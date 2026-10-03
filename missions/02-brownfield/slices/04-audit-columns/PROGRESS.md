@@ -20,7 +20,9 @@
 
 ## QA — 2026-10-03T23:47Z
 
-- [x] Independent exact-candidate gate:218 unit +233 functional; zero failures/errors/skips; merged557/557 lines200/200 branches.
+- [x] Independent exact-candidate gate:218 unit + 233 functional; zero failures/errors/skips; merged 557/557 lines 200/200 branches.
 - [x] Every AC observed independently:94 HTTP requests,787 assertions; real f6 upgrade, literal rollback on copy and candidate reapply;7 apps stopped.
-- [x]366 coverage report hashes;271-method traceability; gaps/fixture scope recorded; baseline213/224 inherited invocations passed with only grant132a884's two migration pins.
+- [x]366 coverage report hashes;271-method traceability; gaps/fixture scope recorded; baseline213/224 inherited invocations passed with only grant 132a884's two migration pins.
 - [x] QA proof and contract1–4,6–9 evidence recorded; contract5 merge-time GAPS closure routed to lead. Downstream code/security review remains pending.
+
+- [x] Attributed receipts 2,3,5,6,7,8,9,10 accept contract1–4,6–9 against exact305f804. Lead confirmed qitem-20261003234855-d2ef129b sequencing at23:49Z; item5 returns after merge and final interim-row GAPS closure. QA handoff may proceed; slice acceptance remains pending.

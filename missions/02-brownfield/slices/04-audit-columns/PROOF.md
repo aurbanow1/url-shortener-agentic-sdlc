@@ -107,7 +107,7 @@ On a copy of that upgraded directory (`rollback-data`):
 
 QA2 `qa2-agent@urlshort-factory` (Codex), 2026-10-03T23:47Z, packet `qitem-20261003232046-aa44c49f`.
 **PASS** on exact `305f8045d45b19a9e3287d5fe3508af6e04db9a4`; fresh independent gate218 unit/233 functional, zero failures/errors/skips,
-merged557/557 lines200/200 branches. No product or test edit. Read SPEC, design, impact analysis,
+merged 557/557 lines 200/200 branches. No product or test edit. Read SPEC, design, impact analysis,
 builder proof, prior independent design review and QA guide before judging effects.
 
 Own complete run: `missions/02-brownfield/slices/04-audit-columns/proof/qa-305f804/run-20261003T234116500899Z/summary.json` (94 curl requests,787 assertions). Every response ID joins
@@ -124,13 +124,13 @@ retained. By-effect evidence is independently produced; builder captures are not
 |5–6 | Replay201/mismatch422/read200/redirect302/repeat410 leave stamps/trail intact; actual JDBC audit failure500 rolls back every link field; audit rows stay append-only (`AC5-real-jdbc-rollback.json`, HTTP and SQL assertions) |
 |7 | Real f6 jar writes active/retired/released links; candidate starts on same directory; all old values unchanged, old stamps correctly backfilled, future-event cap observed (`upgrade-before-f6.json`, `upgrade-after-candidate.json`) |
 |8 | Exact five-field link/four-field stats/eight-field audit bodies; correct status/Location/media/empty redirects; no added field/header/log; named SELECT/OpenAPI unchanged (`qa-evidence-recheck.json`, HTTP captures) |
-|9 |59 baseline source/resource hashes:57 unchanged and2 authorized assertion-preserving V3 pins; all213/224 inherited invocations green;271 mapped methods (`qa-baseline-file-hashes.json`, `qa-junit-summary.json`) |
+|9 |59 baseline source/resource hashes:57 unchanged and2 authorized assertion-preserving V3 pins; all 213/224 inherited invocations green;271 mapped methods (`qa-baseline-file-hashes.json`, `qa-junit-summary.json`) |
 |10 | UA/key/address/URL/request-ID canaries absent from audit columns; staticanonymous actor; no raw client values in logs (`AC10-audit-columns.json`, full JSON logs) |
 |11 | Exact literal header eight SQL statements; rollback only on stopped copy restores prior schema/constraints/all legacy data; real candidate reapply successful (`rollback-literal-header.json`, `rollback-after.json`, `rollback-reapplied.json`) |
 
 All captures in table except static/JUnit files are in the complete run directory. Prior32-control
 design review read and ran the exact same migration/header; candidate/design migration bytes equal,
-so contract8's recorded review exists before the downstream implementation review. Contract9's
+so contract 8's recorded review exists before the downstream implementation review. Contract 9's
 impact analysis precedes design; plan-lock recheck recorded in slice.yaml and exact candidate named
 SELECT/ancestry/nextV4 independently confirmed. Interim policy gap closes at merge, not at QA.
 
@@ -138,13 +138,15 @@ SELECT/ancestry/nextV4 independently confirmed. Interim policy gap closes at mer
 
 - Every AC exercised by effect; all failure cases including bad input, duplicates, expired key,
   repeated retire, actual audit-store failure and default-budget429 checked.94 response/log joins.
-- CSVs independently read: per-suite87.97/97 and93.90/83; merged100/100.366 report hashes match.
-- All271 test methods map to an AC/BR, every AC has named evidence;41 class-only parameterized XML
+- CSVs independently read: per-suite87.97/97 and93.90/83; merged 100/100.366 report hashes match.
+- All 271 test methods map to an AC/BR, every AC has named evidence;41 class-only parameterized XML
   attributions explicitly qualified. AC1/11 unit allowance and real functional rollback compensate
   the absence of a JUnit functional rollback method as permitted by the locked SPEC/design.
-- GAPS entry written; no exclusion or threshold reduction. Original437 invocations passed with
+- GAPS entry written; no exclusion or threshold reduction. Original 437 invocations passed with
   only the granted2 migration pins; no assertion change. Original code/docs remain read-only.
 - Proof drop covers1–4 and6–9 with candidate judgments before handoff; item5 requires the future merge-time interim-gap closure and is routed durably to the lead.
-- All7 app processes stopped; candidate remains clean at exact SHA; rollback only on copied database.
+- All 7 app processes stopped; candidate remains clean at exact SHA; rollback only on copied database.
 - Not checked: PostgreSQL, Docker, large-directory migration timing; normal shutdown is the only
   shutdown claim. Interrupted QA instrument runs preserved; only the complete final run is claimed.
+
+Current accepted receipts: 2,3,5,6,7,8,9,10 (item1 receipt9 reaffirms final summary formatting; item4 receipt10 reaffirms another slice append to shared TRACEABILITY while this slice section stayed byte-identical; earlier receipts retained as history). Items1–4,6–9 accepted against305f804; item5 pending under lead-confirmed qitem-20261003234855-d2ef129b.
