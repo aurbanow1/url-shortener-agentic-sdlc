@@ -1,0 +1,65 @@
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  515.1kB
+Step 1/15 : FROM eclipse-temurin:21-jdk AS build
+ ---> 3e3c176ffed1
+Step 2/15 : WORKDIR /src
+ ---> Using cache
+ ---> 987647ebf665
+Step 3/15 : COPY gradlew settings.gradle.kts build.gradle.kts ./
+ ---> Using cache
+ ---> a072e296491d
+Step 4/15 : COPY gradle gradle
+ ---> Using cache
+ ---> 60340a965c37
+Step 5/15 : RUN ./gradlew --no-daemon --version >/dev/null
+ ---> Running in b627e1e84a26
+ ---> Removed intermediate container b627e1e84a26
+ ---> ced50ffed993
+Step 6/15 : COPY src src
+ ---> 42dbfee929c3
+Step 7/15 : RUN ./gradlew --no-daemon bootJar -x test -x functionalTest
+ ---> Running in 727b2d31d798
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.7.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :compileJava
+> Task :processResources
+> Task :classes
+> Task :resolveMainClassName
+> Task :bootJar
+
+BUILD SUCCESSFUL in 53s
+4 actionable tasks: 4 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html
+ ---> Removed intermediate container 727b2d31d798
+ ---> f9b9a0b1696b
+Step 8/15 : FROM eclipse-temurin:21-jre
+ ---> cff19e621568
+Step 9/15 : WORKDIR /app
+ ---> Using cache
+ ---> cd973f9347a0
+Step 10/15 : RUN useradd --system --uid 10001 --home /app urlshort  && mkdir -p /app/data && chown -R urlshort:urlshort /app
+ ---> Using cache
+ ---> 22c12e573c93
+Step 11/15 : COPY --from=build /src/build/libs/urlshort.jar /app/urlshort.jar
+ ---> d28182153671
+Step 12/15 : USER urlshort
+ ---> Running in 27e924853ea0
+ ---> Removed intermediate container 27e924853ea0
+ ---> f0842c658c84
+Step 13/15 : EXPOSE 8080
+ ---> Running in 4a6d260eaf29
+ ---> Removed intermediate container 4a6d260eaf29
+ ---> 206a81213d5a
+Step 14/15 : ENV SPRING_DATASOURCE_URL="jdbc:h2:file:/app/data/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE"     JAVA_TOOL_OPTIONS="-XX:MaxRAMPercentage=75"
+ ---> Running in 61dabff3856c
+ ---> Removed intermediate container 61dabff3856c
+ ---> 170185a6f793
+Step 15/15 : ENTRYPOINT ["java", "-jar", "/app/urlshort.jar"]
+ ---> Running in b8db8a4e2eae
+ ---> Removed intermediate container b8db8a4e2eae
+ ---> ba871448858d
+Successfully built ba871448858d
+Successfully tagged urlshort:rollback-rehearsal

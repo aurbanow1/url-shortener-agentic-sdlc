@@ -76,9 +76,11 @@ MEDIUM (W2-01) and four LOWs routed to the lead (`qitem-20261003142206-ff6ad817`
   never accepted are counted boundary losses, not failures. Measured here: 0 boundary
   losses in 3 jar drains (§3.4).
 
-**Rollback in one line.** `git revert -m 1 8e9c065` (rehearsed, gate green) removes
-`03-operate` with no data impact; reverting further means keeping the V1/V2 migration
-files, because Flyway Community cannot undo them (§8).
+**Rollback in one line.** `git revert -m 1 8e9c065` with the compose port pinned back
+to `127.0.0.1` (the plain revert would publish on every interface) removes
+`03-operate` with no data impact; rehearsed end to end, gate green, container bound to
+loopback, a pre-existing link intact. Reverting further means keeping the V1/V2
+migration files, because Flyway Community cannot undo them (§8).
 
 **Recommended default: approve**, shipping `8e9c065` with AC-28's port-path R0 clause
 recorded as a disclosed host gap of this laptop's Docker forwarder, after the three
@@ -473,21 +475,35 @@ severe finding goes to the lead.
 
 ## 8. Rollback
 
-**Rehearsed once** (drill row in [`../../docs/scenarios/drills.md`](../../docs/scenarios/drills.md)):
-`git worktree add --detach .worktrees/rollback-rehearsal-01 f090103`, then
-`git -C .worktrees/rollback-rehearsal-01 revert -m 1 --no-edit 8e9c065` applied
-cleanly as `e6f062a` (26 files, +43/−2043), and the gate on the reverted tree passed
-(14 of 14 tasks, lines 358/358, branches 118/118,
-[log](release/rollback-rehearsal-check-e6f062a.txt)). Worktree removed; `main` untouched.
+**Never run the plain revert's `compose.yaml`.** Reverting `8e9c065` restores the
+pre-`03-operate` compose file, which publishes `"8080:8080"` on every interface
+([resolved config](release/rollback-compose-config-unsafe.json): no `host_ip`). The
+recipe below pins the port to loopback before anything is started (release review
+RR-01).
 
 Rollback is the integrator's act on `main`, newest slice first:
 
-1. **`03-operate`**: `git revert -m 1 8e9c065589e53385f60d6be3ddbc3683260285df`, then
-   `scripts/gw check`. Removes the limiter, operator settings, container hardening
-   and the `429` contract. No migration, **no data lost**. `scripts/smoke.sh` changed again in
-   this step, so the revert on today's `main` may conflict on that file (the
-   rehearsal ran on `f090103`, before this change); keep the current file, whose
-   operate checks then fail as expected.
+1. **`03-operate`** (rehearsed, below):
+
+   ```sh
+   cp -R data data.before-rollback       # jar installs; for the container, back up the urlshort-data volume first (not rehearsed)
+   git revert -m 1 --no-commit 8e9c065589e53385f60d6be3ddbc3683260285df
+   git checkout HEAD -- scripts/smoke.sh # the revert conflicts here: keep the current smoke tooling
+   sed -i '' 's/- "8080:8080"/- "127.0.0.1:8080:8080"/' compose.yaml   # GNU sed: sed -i '…'
+   docker compose config --format json | grep '"host_ip": "127.0.0.1"' # must match before going on
+   git add compose.yaml scripts/smoke.sh
+   git commit --no-edit
+   scripts/gw check
+   docker compose up -d --build          # same directory = same project = same urlshort-data volume
+   docker compose port urlshort 8080     # must print 127.0.0.1:8080
+   scripts/smoke.sh http://127.0.0.1:8080
+   ```
+
+   Removes the limiter, operator settings, container hardening (non-root is kept by
+   the older `Dockerfile`; the read-only root, tmpfs and 20 s stop grace go) and the
+   `429` contract. No migration, **no data lost**. `slice 01` and `slice 02` never
+   touched `compose.yaml` or the `Dockerfile` (`git diff --stat 7636264 091ff46 --
+   compose.yaml Dockerfile` is empty), so the loopback pin survives steps 2 and 3.
 2. **`02-analytics`**: `git revert -m 1 091ff46`. Removes click recording, statistics
    and `V2__create_click.sql`. **Not rehearsed.** Flyway Community has no undo: an
    existing database still lists V2 as applied, and Flyway's validation fails at
@@ -506,14 +522,50 @@ link, click and audit row with it. Copy the file or volume before any rollback;
 there is no other backup.
 
 **Artifacts.** The jar is a build output; the image is local only (`urlshort:local`),
-nothing was pushed. Rebuild from the reverted commit with `scripts/gw bootJar` or
-`docker compose up -d --build` (the volume survives).
+nothing was pushed. Rebuild from the reverted commit with `scripts/gw bootJar` (run it
+with `--server.address=127.0.0.1`) or the compose commands in step 1, never with an
+unpinned `compose.yaml`. Rolling forward is `git revert` of the revert commit, then
+`docker compose up -d --build` from the same directory: the volume survives.
+
+**Rehearsals.**
+
+- *Source and gate* (first): `git worktree add --detach .worktrees/rollback-rehearsal-01 f090103`,
+  `git -C … revert -m 1 --no-edit 8e9c065` applied cleanly as `e6f062a` (26 files,
+  +43/−2043); gate on the reverted tree green, 14 of 14 tasks, lines 358/358, branches
+  118/118 ([log](release/rollback-rehearsal-check-e6f062a.txt)).
+- *Operational recipe of step 1* (after release review RR-01), on a throwaway
+  worktree at `f6dd29e` and the throwaway `url-shortener_urlshort-data` volume:
+  the revert conflicted on `scripts/smoke.sh` as predicted and was resolved by
+  keeping the current file; the port was pinned; commit `8104e05` (product inputs
+  identical to `e6f062a`, so the gate above applies). Before the rollback, the
+  current release stack created link `sgjjgNZ4`
+  ([before](release/rollback-link-before.json)). The first build of the rolled-back
+  image failed when the Gradle distribution download inside the build timed out
+  ([log](release/rollback-docker-build-8104e05-attempt1-failed.txt)); the retry
+  succeeded ([log](release/rollback-docker-build-8104e05.txt)).
+  `docker compose -p url-shortener -f <worktree>/compose.yaml up -d --build`
+  ([output](release/rollback-compose-up-8104e05.txt)) recreated the container on the
+  same volume: `docker compose port` → `127.0.0.1:8080`; `docker compose ps` →
+  `Up (healthy) 127.0.0.1:8080->8080/tcp`; on the Mac only `127.0.0.1:8080` listens
+  (`lsof`: Lima's `ssh` forwarder). `GET /sgjjgNZ4` → `302`
+  `Location: https://example.com/survives-rollback`; `GET /api/links/sgjjgNZ4` → `200`,
+  byte-identical to the body at creation ([after](release/rollback-link-after.json),
+  `diff` empty). Rolling forward with `docker compose up -d --build` from `main`
+  (image `a38050b05d90` again) kept the link byte-identical too
+  ([after roll-forward](release/rollforward-link-after.json)). Teardown:
+  `docker compose down -v`, rehearsal image removed, worktree removed; `main`
+  untouched. [Rolled-back container log](release/rollback-container-log-8104e05.jsonl).
+- Steps 2 and 3 are **not rehearsed** (they need the migration-file restore above).
 
 **Verification after a rollback.** `scripts/gw check` green on the reverted `main`;
-then `scripts/smoke.sh` against the rebuilt artifact. After step 1 the smoke's
-metric-name check for `urlshort.ratelimit.rejections` and the `--inspect`/`--restart`
-modes fail as expected while the journey passes; after step 2 the stats step fails;
-after step 3 only health, ping and OpenAPI remain.
+then `scripts/smoke.sh http://127.0.0.1:8080` against the rebuilt artifact. After
+step 1, observed in the rehearsal ([output](release/rollback-smoke-8104e05.txt)):
+health with liveness/readiness, ping, the whole create → redirect → read → stats →
+invalid create → 404 → retire → 410 journey pass, and the smoke stops at
+`SMOKE FAIL: metric urlshort.ratelimit.rejections not listed`, the first
+`03-operate` surface; Prometheus, `--inspect` and `--restart` then fail as expected.
+Expected but not run: after step 2 the stats step fails; after step 3 only health,
+ping and OpenAPI remain.
 
 **Factory.** If the human holds the ship gate, the packet stays parked; this step
 waits on what the human asks for. No workflow rollback is needed.
@@ -539,5 +591,8 @@ waits on what the human asks for. No workflow rollback is needed.
 - §7 Gaps: every mission-01 row of `docs/qa/GAPS.md` has a disposition here (the
   file holds the verbatim text); wave findings W2-01 to W2-05, limits and backlog
   carry an owner or a routed item.
-- §8 Rollback: the first revert rehearsed with a green gate; the two migration-carrying
-  reverts described step by step but **not rehearsed**; data loss stated.
+- §8 Rollback: step 1 rehearsed twice, for the gate and as the operational recipe
+  (loopback binding, the same data volume, a pre-existing link before and after, the
+  smoke's expected stop, roll-forward); the two migration-carrying reverts described
+  step by step but **not rehearsed**; data loss stated. The volume backup command for
+  the container path is not given or rehearsed.

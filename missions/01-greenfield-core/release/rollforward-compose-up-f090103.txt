@@ -1,0 +1,69 @@
+time="2026-10-03T09:13:51-07:00" level=warning msg="Docker Compose requires buildx plugin to be installed"
+ Image urlshort:local Building 
+ Image urlshort:local Building 
+Sending build context to Docker daemon  170.5kB
+Step 1/16 : FROM eclipse-temurin:21-jdk AS build
+ ---> 3e3c176ffed1
+Step 2/16 : WORKDIR /src
+ ---> Using cache
+ ---> 987647ebf665
+Step 3/16 : COPY gradlew settings.gradle.kts build.gradle.kts ./
+ ---> Using cache
+ ---> c8d136c6db13
+Step 4/16 : COPY gradle gradle
+ ---> Using cache
+ ---> d1eae771a498
+Step 5/16 : RUN ./gradlew --no-daemon --version >/dev/null
+ ---> Using cache
+ ---> 364e8a08c955
+Step 6/16 : COPY src src
+ ---> e16f559cc719
+Step 7/16 : RUN ./gradlew --no-daemon bootJar -x test -x functionalTest
+ ---> Running in ce7bccd4ddf3
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.7.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :compileJava
+> Task :processResources
+> Task :classes
+> Task :resolveMainClassName
+> Task :bootJar
+
+BUILD SUCCESSFUL in 49s
+4 actionable tasks: 4 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html
+ ---> Removed intermediate container ce7bccd4ddf3
+ ---> dc0230971f14
+Step 8/16 : FROM eclipse-temurin:21-jre
+ ---> cff19e621568
+Step 9/16 : WORKDIR /app
+ ---> Using cache
+ ---> cd973f9347a0
+Step 10/16 : RUN useradd --system --uid 10001 --home /app urlshort  && mkdir -p /app/data && chown -R urlshort:urlshort /app
+ ---> Using cache
+ ---> 22c12e573c93
+Step 11/16 : COPY --from=build /src/build/libs/urlshort.jar /app/urlshort.jar
+ ---> Using cache
+ ---> 59eb0abcc343
+Step 12/16 : USER urlshort
+ ---> Using cache
+ ---> eebc2103bd0d
+Step 13/16 : EXPOSE 8080
+ ---> Using cache
+ ---> cb01631d70fe
+Step 14/16 : ENV SPRING_DATASOURCE_URL="jdbc:h2:file:/app/data/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE"     JAVA_TOOL_OPTIONS="-XX:MaxRAMPercentage=75"
+ ---> Using cache
+ ---> 0b4492af89f8
+Step 15/16 : ENTRYPOINT ["java", "-jar", "/app/urlshort.jar"]
+ ---> Using cache
+ ---> 380b5027bb52
+Step 16/16 : LABEL com.docker.compose.image.builder=classic
+ ---> Using cache
+ ---> a38050b05d90
+Successfully built a38050b05d90
+Successfully tagged urlshort:local
+ Image urlshort:local Built 
+ Image urlshort:local Built 
+ Container url-shortener-urlshort-1 Recreate 
+ Container url-shortener-urlshort-1 Recreated 
+ Container url-shortener-urlshort-1 Starting 
+ Container url-shortener-urlshort-1 Started 
