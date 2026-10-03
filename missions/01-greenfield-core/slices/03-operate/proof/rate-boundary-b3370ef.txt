@@ -1,0 +1,12 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :compileReviewRateBoundary UP-TO-DATE
+
+> Task :reviewRateBoundary
+REORDER wallClockAdvance=1ms clockMovedBackward=false before=60 exhaustedRetryAfter=1 olderRetryAfter=1 laterAdmissions=0 totalAdmissions=60 expectedMaximum=60
+ROLLBACK_MEMORY clientsAfter61SecondsAndRequest=2 oldFullClients=10000 cleanupDeadlineStillInFuture=true
+
+BUILD SUCCESSFUL in 696ms
+4 actionable tasks: 1 executed, 3 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html
