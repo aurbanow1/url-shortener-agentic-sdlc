@@ -261,7 +261,7 @@ signal).
 | Denial of service | One client floods creates or redirects | per-client buckets, 60/min and 600/min; checked before any body is read (rule 3, AC-9) | distributed floods from many addresses (rate limiting per client only; NFR-R4 single node) |
 | Denial of service | Limiter memory with many distinct clients | entries released once full (≤ 61 s after the last admitted request); bound = distinct clients in the last 61 s × ~200 B per budget; sweep O(n) at most once a second; unit test proves release | a very large number of distinct real peers per minute; bounded by connection rate |
 | Denial of service | Unlimited operator paths | exempt by rule 1 (A-7) | accepted by the SPEC |
-| Denial of service | Deploy kills in-flight requests | graceful 10 s phase; listening socket closed first; compose stop grace 20 s | **measured residual:** under a closed loop of about 3 500 new connections per second, 2 connections per stop are reset after the kernel accepted them (Tomcat's acceptor stops before the socket closes); at 100 req/s, 0 in 10 stops (**[probe D1, D2, P1–P10]**). Estimated at about 0.06 per stop at 100 req/s. See §12 for AC-25 |
+| Denial of service | Deploy kills in-flight requests | graceful 10 s phase; listening socket closed first; compose stop grace 20 s | **measured residual:** under a closed loop of about 3 500 to 5 000 new connections per second, 2 to 5 connections per stop are reset after the kernel accepted them (Tomcat's acceptor stops before the socket closes); at 100 req/s, 0 in 10 stops in each of three runs (**[probe D1, D2, P1–P10]**). Estimated at about 0.1 per stop at 100 req/s. See §12 for AC-25 |
 | Elevation of privilege | A compromised process writes to the image or the host | non-root uid 10001; read-only root; only `/app/data` (named volume) and a 64 MB tmpfs `/tmp` writable; loopback publish | no `cap_drop`/`no-new-privileges` (§11) |
 
 ## 7. Test strategy hints
@@ -408,7 +408,7 @@ scripts/gw --log missions/01-greenfield-core/slices/03-operate/design-probe/outp
 | O5b | `DataSourceHealthIndicator` WARN with the throwable and the request's id, once per health request | §5 accepted exception |
 | O6 | malformed request target, bad method, 9 KB header: Tomcat answers `400` itself; its INFO line **contains the request-target canary** and no `requestId` | A-17 finding |
 | O6b | the same in a fresh context with `Http11Processor` at WARN: no line, no canary | §1 shipped setting |
-| D1, D2 | drain under a closed loop (4 clients, about 3 500 new connections/s): `R0` (a create with a half-sent body) → `201` 0.5 s after the stop; probe connect at +0.5 s **refused**; context closed in about 0.55 s; **2 failures after acceptance per stop** (resets or end of stream) | AC-25 residual |
+| D1, D2 | drain under a closed loop (4 clients, about 3 500 to 5 000 new connections/s): `R0` (a create with a half-sent body) → `201` 0.5 s after the stop; probe connect at +0.5 s **refused**; context closed in about 0.55 s; **2 and 4 failures after acceptance** (resets or end of stream) in the recorded run, 2 to 5 per stop across the three runs | AC-25 residual |
 | P1–P10 | drain at 100 req/s (5 paced clients): `R0` → `201` every time; probe refused every time; about 45–50 refusals before acceptance per stop; **0 failures after acceptance in 10 stops** | AC-25 |
 
 **AC-25, read honestly.** The predicate "zero failures after acceptance"
@@ -416,8 +416,8 @@ holds at NFR-L1's 100 req/s in all ten stops, and the smoke drain paces its
 load below that (about 20 req/s per loop). It is not a guarantee. The closed
 loop shows that Tomcat's acceptor stops a moment before the listening socket
 closes, and a connection the kernel accepts in that window is reset. The
-closed-loop counts put the window near 0.6 ms, which is about 0.06 expected
-failures per stop at 100 req/s and about 0.01 at 20 req/s. The SPEC's
+closed-loop counts put the window near 1 ms, which is about 0.1 expected
+failures per stop at 100 req/s and about 0.02 at 20 req/s. The SPEC's
 self-check names exactly this risk and leaves it to the design to show by
 effect at the load client's rate, or to the review to bring a different
 predicate. This is that evidence. If a single reset appears at
@@ -452,7 +452,7 @@ customiser; the bash drain and bench modes themselves.
 
 - 2026-10-03 08:45Z — design packet `qitem-20261003082416-b1057e7a` claimed after `02-analytics`' design handoff; SPEC `b53372f` (re-review PASS, evidence `46864cc`).
 - 2026-10-03 08:49Z — two test-side grants requested (`qitem-20261003084948-76a4a31d`); granted 08:50Z with two conditions: prove the shipped default budgets (`RateLimitDefaultsTest`) and reset every frozen clock in `@AfterEach` (§7.2).
-- 2026-10-03 08:55Z–09:00Z — design probe run twice. In the first run the probe passed settings as builder default properties, which the shipped file outranked, so `/actuator/prometheus` stayed unexposed. The recorded second run passes them as arguments and adds the paced drain cycles.
+- 2026-10-03 08:55Z–09:06Z — design probe run four times. In the first run the probe passed settings as builder default properties, which the shipped file outranked, so `/actuator/prometheus` stayed unexposed. The second passes them as arguments and adds the paced drain cycles. Its output, committed in `dca64fb`, was 11.6 MB of per-request log lines from the load clients. The third and fourth runs quiet the request and ping loggers in the drain contexts only (they judge HTTP outcomes, not logs). The recorded output is the fourth run, 163 KB, with the same verdicts.
 - 2026-10-03 — design written; ADR-0014 to ADR-0017 and a third ADR-0004 amendment drafted; `docs/DESIGN.md`, `container.mmd` and `ratelimit-sequence.mmd` updated. No question parked on `human@kernel`. Handed to `design_review`.
 
 ## Self-check

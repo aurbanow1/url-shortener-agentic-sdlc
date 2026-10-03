@@ -38,10 +38,10 @@ no accepted request reset during the drain (AC-25).
   completes `201`, and a new connection 0.5 s after the stop is refused. At
   100 req/s, none of 10 stops reset an accepted connection.
 - **Residual:** under a closed loop of about 3 500 new connections per
-  second, about 2 connections per stop are reset after the kernel accepted
+  second, 2 to 5 connections per stop are reset after the kernel accepted
   them. Tomcat's acceptor stops a moment before the listening socket closes.
-  That puts the window near 0.6 ms: about 0.06 expected failures per stop
-  at 100 req/s, 0.01 at 20 req/s. AC-25's "zero after acceptance" holds at
+  That puts the window near 1 ms: about 0.1 expected failures per stop at
+  100 req/s, 0.02 at 20 req/s. AC-25's "zero after acceptance" holds at
   the smoke load rate but is not a guarantee. A reset at `release_prep` is
   this race and is recorded with its rate.
 - Not added: `cap_drop: [ALL]` and `no-new-privileges`. They are cheap but

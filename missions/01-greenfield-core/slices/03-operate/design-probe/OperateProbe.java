@@ -273,7 +273,10 @@ public class OperateProbe {
 	}
 
 	static void drainCycle(String label, int clients, long periodMs) throws Exception {
-		ConfigurableApplicationContext ctx = start(QUIET_PARSER);
+		// The drain cycles judge HTTP outcomes, not logs; without this, each load request's
+		// "request completed" and "ping" lines make the recorded output megabytes long.
+		ConfigurableApplicationContext ctx = start(QUIET_PARSER, "--logging.level.dev.urlshort.web.RequestIdFilter=warn",
+				"--logging.level.dev.urlshort.ping=warn");
 		int port = port(ctx);
 		AtomicBoolean loading = new AtomicBoolean(true);
 		AtomicInteger ok = new AtomicInteger();
