@@ -71,7 +71,16 @@ territory:
   # A freeze() mode on the shared suite clock for the limiter's exact-step criteria; reset() also
   # unfreezes, and every test that freezes resets in @AfterEach. Existing callers unchanged.
   - src/functionalTest/java/dev/urlshort/link/FunctionalClock.java
-# NOT in territory: link/ (production code), click/, db/migration/.
+  # TEST-SIDE GRANT (lead, 2026-10-03T12:40Z, development-agent request qitem-20261003123330-f28e75db,
+  # for code review CR-01): under the locked limiter rule start = max(tat, now), a request sent at a
+  # shifted clock leaves its peer's bucket ahead after reset(), so later 127.0.0.1 requests answer 429.
+  # Only change: the requests sent at a shifted instant go out from a dedicated peer address
+  # (a .with(peer(...)) post-processor); no assertion, setup or timing change. The address is used by no
+  # other test and is not a review canary (10.77.77.77, 192.0.2.201). Both slices that own these files
+  # are merged and no other slice holds them.
+  - src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java
+  - src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java
+# NOT in territory: link/ (production code), click/ (except the one test above), db/migration/.
 execution:
   actor_role: requirements
   depends_on: [01-create-redirect]
