@@ -16,8 +16,11 @@
 # -> 0. The create sent User-Agent canary-ua-builder-a922f49, Idempotency-Key canary-key-builder-a922f49-2
 # and a url with query canaryquerybuilder; the redirect sent the same User-Agent; the 400 sent
 # javascript:alert(canaryjsbuilder). curl's own User-Agent (curl/...) and the loopback client address
-# are absent too. Every line after `Started UrlshortApplication` carries requestId; the DispatcherServlet
-# initialised before `Tomcat started` (line 27 vs 30), so the first request logged no uncorrelated line.
+# are absent too. Every line written while a request was in flight carries that request's id (run log
+# lines 34-44, one per request). Lines 32-33 are two springdoc startup WARNs (api-docs and swagger-ui
+# enabled by default) without requestId, written at 07:08:43.535, 13 s before the first request, so in
+# no request's window. The DispatcherServlet initialised before `Tomcat started` (line 27 vs 30), so
+# the first request logged no uncorrelated line.
 
 {"@timestamp":"2026-10-03T07:09:12.377340Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":82750,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"4f2ba114-cfce-4146-9ba6-ab88baccf4b4","status":201,"ecs":{"version":"8.11"}}
 {"@timestamp":"2026-10-03T07:09:16.793353Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":82750,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"36c3bf3c-cfb4-4da8-ba21-78e8dcc18d65","status":200,"ecs":{"version":"8.11"}}

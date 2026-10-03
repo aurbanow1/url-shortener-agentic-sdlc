@@ -79,6 +79,7 @@ red for the feature.
 - **The API document's `ProblemDetail` schema is springdoc's reflection of the class.** It shows a nested `properties` member, whereas the runtime body has the extension (`errors`) at the top level. `errors[]` has no schema of its own. AC-28 does not ask for one; the rule tokens are documented in the SPEC.
 - **`DELETE /api/links/<segment that is not a code>` answers 405, not 404.** The static resource handler accepts only GET and HEAD. This is outside every AC (AC-14's `DELETE` uses a well-formed code); recorded as an observation.
 - **A same-key race and a code collision each answer 500.** Both are by design (`// ponytail:` comments in `LinkService` and `ShortCodes`; ADR-0007, ADR-0009). The unique constraint still guarantees at most one link per key. A true concurrent race was not exercised; the same failure was induced through the spy.
+- **springdoc startup WARNs (INFO for `03-operate`).** At startup springdoc writes two WARN lines without `requestId`, recommending that `/v3/api-docs` and `/swagger-ui.html` be disabled in production. They are startup lines, outside any request window (`proof/log-lines-a922f49.txt`). Exposing them in production is `03-operate`'s decision (design §2.7).
 - **Not done by me:** the copies to `docs/qa/coverage/…`, `TRACEABILITY.md` and `GAPS.md` (QA's step), the code review's NFR-A2 and NFR-S4 records, and the release-prep secret scan.
 
 ## Self-check
