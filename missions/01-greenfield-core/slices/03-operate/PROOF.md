@@ -405,3 +405,17 @@ candidate-attributed judgments cover **1–10 and 12**; **11** needs the coming
 code/security re-review and **13** the release record under accepted lead
 obligation `qitem-20261003120849-f4cbfa97`. No review or release approval is
 inferred from this QA PASS.
+
+#### Attributed judgments — re-check
+
+Evidence commit **`f7ee87e`** contains the fresh coverage, captures,
+traceability and limitations. Receipts `proof/judgments/00000014.md` through
+`00000024.md` accept items **1–10 and 12**, attributed to
+`qa2-agent@urlshort-factory` against exact commit
+`1c8b2cff20ad8b73a060bc817c8d0011782f876f`. This deliberately replaces the
+older candidate's narrower judgments and withdrawn smoke item with newly
+observed evidence. Fresh `rig proof show` confirms each accepted, no issues,
+and only **11/13 pending**. Overall readiness remains correctly `not-ready`.
+The scope audit has no findings for 03-operate; unrelated 02's existing C1
+warning was not edited during this assigned slice check. Review2 receives
+the exact candidate and this record for independent re-review.

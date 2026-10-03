@@ -11,7 +11,7 @@ Context and observations that help the mission but do not change its
 
 ## 1. Top of mind
 
-- QA2 current `03-operate`: assigned re-check `qitem-20261003130258-8d163c70`, exact candidate `1c8b2cf`; independent 165/155 gate, 443/443 lines and 162/162 branches, full 2,303 HTTP exchanges and corrected limiter/R0 probes pass. Evidence/receipts are being committed for handoff to review2. Items 11/13 still belong to later review/release evidence under accepted obligation qitem-20261003120849-f4cbfa97; supported host locale and below-target bench are explicit limits.
+- QA2 current `03-operate`: re-check complete for `qitem-20261003130258-8d163c70`, exact candidate `1c8b2cf`; independent 165/155 gate, 443/443 lines and 162/162 branches, full 2,303 HTTP exchanges and corrected limiter/R0 probes pass. Evidence at f7ee87e; receipts 00000014–00000024 accept 1–10 and 12, no issues. Next action is authored handoff to review2. Items 11/13 still belong to later review/release evidence under accepted obligation qitem-20261003120849-f4cbfa97; supported host locale and below-target bench are explicit limits.
 
 - Lifecycle instance: `01M3ZXEXAMS945ZS0QZ26KZK1V` (`lifecycle-urlshort-01-greenfield-core`), lifecycle operation key `urlshort-01-greenfield-core-lifecycle-1`, created by `operator-human@kernel` 2026-10-03T03:38:25Z on the ten-step authored graph (`decompose → decomposition_review → mission_plan_lock → wave_integration → wave_review → release_prep → release_review → ship_signoff → evidence_export → mission_close`).
 - Entry packet (decompose): `qitem-20261003033825-0148d3da`, owner orchestration lead, claimed 03:38:35Z.

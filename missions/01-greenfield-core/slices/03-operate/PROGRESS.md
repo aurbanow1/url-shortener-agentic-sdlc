@@ -68,10 +68,15 @@ Only items 1–10 retain their narrower accepted artifact/test/effect claims; ca
 - [x] Unmodified jar smoke/env overrides, 60-second bench and drain observed; R0 complete 201 at 532 ms, probe refused, 62 ok / 16 refused / 0 losses / 0 failures.
 - [x] Initial unsupported macOS C.UTF-8/Perl setup failure retained; supported C locale independently verified, strict controls reject setup failures as evidence. LOW QA-OPR-03 recorded.
 - [x] Apps stopped; product paths untouched; candidate worktree exact and clean.
-- [ ] Current QA drop and attributed receipts for items 1–10 and 12 committed.
+- [x] Current QA drop `proof/qa-evidence-1c8b2cf.md` and coverage/captures committed at `f7ee87e`; attributed receipts `00000014.md`–`00000024.md` accept items 1–10 and 12 on exact candidate 1c8b2cf.
 - [ ] Item 11: new code/security review records; item 13: final release/container/workload judgment, retained by lead obligation qitem-20261003120849-f4cbfa97.
 
 Fresh bench rate 82.1 redirects/s / 16.4 creates/s remains below 100/20;
 NFR-L1/L2 unclaimed. QA PASS is for the assigned boundary; independent
 re-review and release remain required. Backward Clock steps fail closed
 outside the contract under lead transition 726, not a granted extra budget.
+
+Fresh `rig proof show` confirms those eleven items accepted by QA2 against
+the exact SHA, no issues, and only items 11/13 pending. Readiness remains
+`not-ready` until their later records; the scope audit has no 03-operate
+findings. Next action is the authored QA handoff to review2.
