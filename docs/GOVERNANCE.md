@@ -38,4 +38,4 @@ exports against these rows.
 
 - OpenRig 0.6.3's workflow runtime holds **one live packet per instance**; intra-instance fan-out is not claimed. Parallelism is across slice instances and across seats (pipeline overlap).
 - The human registry supports only Slack bindings in this version; the human is reached through parked packets and Mission Control, not notifications.
-- Codex seats run sandboxed without network; advisory-database dependency checks run at release prep on a Claude seat.
+- Codex seats run sandboxed without network; advisory-database dependency checks run at release prep on a Claude seat (`tools/dep-advisories.mjs` → OSV `querybatch`). The only data that leaves the machine is the list of resolved open-source dependency coordinates; no project content, logs or evidence are sent anywhere, and the seats' deny lists still forbid push/publish.
