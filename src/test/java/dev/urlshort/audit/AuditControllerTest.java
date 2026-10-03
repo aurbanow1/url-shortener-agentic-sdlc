@@ -122,7 +122,8 @@ class AuditControllerTest {
 			assertThat(errors).singleElement().satisfies(error -> {
 				assertThat(error.field()).isEqualTo(field);
 				assertThat(error.rule()).isEqualTo(rule);
-				if (!value.isEmpty()) {
+				// a single character ("0") can occur in the static text itself ("1 to 100")
+				if (value.length() > 1) {
 					assertThat(error.message()).doesNotContain(value);
 				}
 			});

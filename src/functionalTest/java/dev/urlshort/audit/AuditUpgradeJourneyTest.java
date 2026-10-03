@@ -51,13 +51,14 @@ class AuditUpgradeJourneyTest {
 		try (ConfigurableApplicationContext app = start(url)) {
 			String base = base(app);
 
+			// statistics first: the redirect below records a click of its own
+			assertThat(json.readTree(get(base + "/api/links/" + ACTIVE + "/stats").body())).isEqualTo(json.readTree(
+					"{\"code\":\"" + ACTIVE + "\",\"totalClicks\":3,\"clicksPerDay\":[{\"date\":\"2026-10-01\",\"clicks\":3}],"
+							+ "\"topReferrers\":[{\"referrer\":\"https://ref.example\",\"clicks\":2}]}"));
 			HttpResponse<String> redirect = get(base + "/" + ACTIVE);
 			assertThat(redirect.statusCode()).isEqualTo(302);
 			assertThat(redirect.headers().firstValue("Location")).hasValue(KEPT);
 			assertThat(get(base + "/" + RETIRED).statusCode()).isEqualTo(410);
-			assertThat(json.readTree(get(base + "/api/links/" + ACTIVE + "/stats").body())).isEqualTo(json.readTree(
-					"{\"code\":\"" + ACTIVE + "\",\"totalClicks\":3,\"clicksPerDay\":[{\"date\":\"2026-10-01\",\"clicks\":3}],"
-							+ "\"topReferrers\":[{\"referrer\":\"https://ref.example\",\"clicks\":2}]}"));
 
 			JsonNode page = json.readTree(get(base + "/api/audit").body());
 			assertThat(page.get("next").isNull()).isTrue();

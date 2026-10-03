@@ -396,6 +396,9 @@ class AuditReadJourneyTest {
 		JsonNode row = document.at("/components/schemas/AuditEntry/properties");
 		assertThat(row.propertyNames()).containsExactlyInAnyOrder("occurredAt", "actor", "action", "entity", "entityId",
 				"requestId", "before", "after");
+		// before and after are JSON objects (rule 3), not the stored strings
+		assertThat(row.get("after").get("type").toString()).contains("object").doesNotContain("string");
+		assertThat(row.get("before").get("type").toString()).contains("object").contains("null").doesNotContain("string");
 		assertThat(document.at("/components/schemas/AuditPage/properties").propertyNames()).containsExactlyInAnyOrder("items", "next");
 	}
 
