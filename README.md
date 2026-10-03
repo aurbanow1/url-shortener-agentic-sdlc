@@ -9,16 +9,21 @@ product and the factory that built it, plus the evidence trail of every stage.
 ```sh
 scripts/gw check               # unit + functional suites, JaCoCo 100% line/branch gate (JDK 21 pinned)
 scripts/gw bootJar && java -jar build/libs/urlshort.jar
-# health: http://localhost:8080/actuator/health   OpenAPI: http://localhost:8080/v3/api-docs
+scripts/smoke.sh               # health → GET /api/ping → POST 405 problem detail → OpenAPI, against the running instance
+# health: http://localhost:8080/actuator/health   ping: http://localhost:8080/api/ping   OpenAPI: http://localhost:8080/v3/api-docs
 ```
 
-`scripts/smoke.sh` exercises the public journey against a running instance.
+As a container: `docker compose up -d --build` (multi-stage `Dockerfile`, JRE 21,
+H2 file database in the `urlshort-data` volume; `compose.yaml` publishes port
+8080 on all interfaces), then `scripts/smoke.sh`. What shipped in each mission,
+with its evidence and known gaps, is in `missions/<mission>/RELEASE.md`.
 
 ## Read the SDLC evidence (no OpenRig needed)
 
 | Question | Where |
 |---|---|
 | What was asked, decided, built, reviewed, proven? | `missions/<mission>/slices/<slice>/{SPEC.md,design.md,PROOF.md,proof/}` |
+| What shipped, installed-smoke and advisory results, known gaps, rollback | `missions/<mission>/RELEASE.md` |
 | How is the factory designed and governed? | `PLAN.md`, `docs/ARCHITECTURE.md`, `docs/GOVERNANCE.md`, `rig/` |
 | Code review results and resolutions | `docs/review/` |
 | Coverage reports, traceability, honest gaps | `docs/qa/` |

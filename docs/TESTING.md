@@ -9,9 +9,10 @@ what the honest limits are.
 
 | Suite | Location | What it proves | Runs in |
 |---|---|---|---|
-| Unit (`test`) | `src/test/java` | domain logic in isolation: code generation, validation, expiry rules, hashing, filters | `scripts/gw test` (seconds) |
-| Functional (`functionalTest`) | `src/functionalTest/java` | the public HTTP journeys end to end — `@SpringBootTest` + `MockMvc` against a temporary H2 database with Flyway applied; one test per acceptance criterion, named after it (`AC03_duplicateAliasReturns409Problem`) | `scripts/gw functionalTest` |
+| Unit (`test`) | `src/test/java` | a rule or component in isolation, no Spring context (today: the request-id filter lifecycle, the ping controller, application bootstrap; later: code generation, validation, expiry rules, hashing) | `scripts/gw test` (seconds) |
+| Functional (`functionalTest`) | `src/functionalTest/java` | the public HTTP journeys end to end — `@SpringBootTest` + `MockMvc` under the `functional` profile against an in-memory H2 database with Flyway applied; one test per acceptance criterion, named after it (`AC5_wrongMethodIsProblemDetailWithRequestId`) | `scripts/gw functionalTest` |
 | Installed smoke | `scripts/smoke.sh` | a *running* instance (jar or container) answers the journey as a user would | release prep |
+| Dependency advisories | `tools/dep-advisories.mjs` | the resolved runtime classpath checked against the OSV database; raw response kept under the mission's `release/` | release prep (needs network) |
 
 **The gate.** `scripts/gw check` runs both suites and `jacocoTestCoverageVerification`
 over their merged execution data with `LINE` and `BRANCH` minimum `1.0`. A
@@ -65,15 +66,21 @@ every mission:
   exported to `docs/evidence/<mission>/` (`tools/evidence-export.sh`);
 - `tools/sdlc-metrics.mjs` derives success rate, retries, rollbacks, MTTR,
   latency and human wait from those records;
-- the dry-run mission `00-hello` exercised every step and all three human gates
-  before any product work; the brownfield mission adds fault-injection drills
-  for the retry, rollback, fallback and safe-stop paths (`docs/scenarios/drills.md`).
+- the dry-run mission `00-hello` carries one endpoint through every step and
+  all three human gates (mission plan-lock, slice plan-lock, ship sign-off)
+  before any product work; its release record is `missions/00-hello/RELEASE.md`.
+  The brownfield mission adds fault-injection drills for the retry, rollback,
+  fallback and safe-stop paths (`docs/scenarios/drills.md`).
 
 ## 5. Limits (stated, not hidden)
 
-- Functional tests use `MockMvc` (servlet layer in-process); the installed smoke
-  is the only test that crosses a real socket and the container boundary.
-- The H2 database in tests is in-memory; the product's file-mode H2 is covered
-  by the smoke run and by Flyway's migration history.
+- Functional tests use `MockMvc` (servlet layer in-process), which cannot see
+  servlet-container metadata: finding QA-01 (`docs/qa/01-ping/findings.md`) was
+  visible only on a live Tomcat. Real sockets are crossed by QA's by-effect
+  captures against `bootRun` and by the installed smoke against the jar and the
+  container; only the smoke crosses the container boundary.
+- The H2 database in tests is in-memory; the product's file-mode H2 is exercised
+  by the installed smoke, which runs the jar with its shipped datasource. No
+  Flyway migration exists yet, so migration history is not yet evidence.
 - Coverage measures the production code under `src/main`; Gradle build logic
   and shell tooling (`scripts/`, `tools/`) are exercised by use, not by tests.

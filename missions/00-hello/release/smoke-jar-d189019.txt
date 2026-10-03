@@ -1,0 +1,5 @@
+# health
+# ping: 200 application/json, {status:ok,time}, server-issued X-Request-Id
+# ping wrong method: 405 application/problem+json, still carries X-Request-Id, no trace
+# openapi
+SMOKE OK against http://127.0.0.1:18091

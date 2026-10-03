@@ -31,7 +31,7 @@ specs resolve from the repo alone.
 ## Permissions (what the seats may do without asking)
 
 - Rig posture: `permission_policy: builtin:standard` (Claude `acceptEdits`, Codex `workspace-write`).
-- Claude seats: `.claude/settings.json` (committed) allows `rig`, `git`, `./gradlew`, `java`, read-only shell tools, localhost `curl`, `docker compose`; **denies** `git push`, `git reset --hard`, `git clean -f`, `rm -rf`, `docker push`.
+- Claude seats: `.claude/settings.json` (committed) allows `rig`, `git`, `scripts/*`, `tools/*`, `java`, `node`, read-only shell tools, `docker compose|build|run|stop|rm|logs`; **denies** `git push`, `git reset --hard`, `git clean -f`, `rm -rf`, `docker push`. Seats reach the running app only through `scripts/http` (refuses non-loopback URLs) and run Gradle only through `scripts/gw` (`--log <file>` replaces shell redirection).
 - Codex seats: `.codex/rules/urlshort.rules` (project layer) allows the same families and marks `git push`, `git reset --hard`, `git clean`, `docker push` **forbidden**; a forbidden rule overrides any user-level allow. Verify: `codex execpolicy check --pretty --rules "$PWD/.codex/rules/urlshort.rules" git push origin main`.
 - Nothing is published by an agent: no remote is configured, and ship sign-off is a human gate.
 
@@ -123,4 +123,5 @@ rig down urlshort-factory --snapshot   # safe-stop everything (restorable with r
 
 `tools/evidence-export.sh <mission>` writes the raw audit trail to
 `docs/evidence/<mission>/`; `node tools/sdlc-metrics.mjs` derives the
-reliability metrics into `docs/metrics/`.
+reliability metrics into `docs/metrics/`; `node tools/dep-advisories.mjs`
+checks the resolved runtime classpath against OSV at release prep.

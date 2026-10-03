@@ -1,0 +1,69 @@
+--progress is a global compose flag, better use `docker compose --progress xx build ...
+time="2026-10-02T19:10:31-07:00" level=warning msg="Docker Compose requires buildx plugin to be installed"
+ Image urlshort:local Building 
+ Image urlshort:local Building 
+Sending build context to Docker daemon  97.63kB
+Step 1/16 : FROM eclipse-temurin:21-jdk AS build
+ ---> 3e3c176ffed1
+Step 2/16 : WORKDIR /src
+ ---> Using cache
+ ---> 987647ebf665
+Step 3/16 : COPY gradlew settings.gradle.kts build.gradle.kts ./
+ ---> a07c5948dbb5
+Step 4/16 : COPY gradle gradle
+ ---> cb2236c777dc
+Step 5/16 : RUN ./gradlew --no-daemon --version >/dev/null
+ ---> Running in 2dbdd2728891
+ ---> Removed intermediate container 2dbdd2728891
+ ---> 289ccecd2f14
+Step 6/16 : COPY src src
+ ---> ab9918fa5f41
+Step 7/16 : RUN ./gradlew --no-daemon bootJar -x test -x functionalTest
+ ---> Running in f8580d2b1723
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.7.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :compileJava
+> Task :processResources
+> Task :classes
+> Task :resolveMainClassName
+> Task :bootJar
+
+BUILD SUCCESSFUL in 1m 10s
+4 actionable tasks: 4 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html
+ ---> Removed intermediate container f8580d2b1723
+ ---> 478eaf5b961a
+Step 8/16 : FROM eclipse-temurin:21-jre
+ ---> cff19e621568
+Step 9/16 : WORKDIR /app
+ ---> Using cache
+ ---> cd973f9347a0
+Step 10/16 : RUN useradd --system --uid 10001 --home /app urlshort  && mkdir -p /app/data && chown -R urlshort:urlshort /app
+ ---> Using cache
+ ---> 22c12e573c93
+Step 11/16 : COPY --from=build /src/build/libs/urlshort.jar /app/urlshort.jar
+ ---> 467dc7625a85
+Step 12/16 : USER urlshort
+ ---> Running in e9767455936a
+ ---> Removed intermediate container e9767455936a
+ ---> a10ed77dd6be
+Step 13/16 : EXPOSE 8080
+ ---> Running in 3657bdd712fe
+ ---> Removed intermediate container 3657bdd712fe
+ ---> cc436632964c
+Step 14/16 : ENV SPRING_DATASOURCE_URL="jdbc:h2:file:/app/data/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE"     JAVA_TOOL_OPTIONS="-XX:MaxRAMPercentage=75"
+ ---> Running in 21dba1dd5f82
+ ---> Removed intermediate container 21dba1dd5f82
+ ---> 7197e44d86cd
+Step 15/16 : ENTRYPOINT ["java", "-jar", "/app/urlshort.jar"]
+ ---> Running in 928f43ed02db
+ ---> Removed intermediate container 928f43ed02db
+ ---> b22d6510957e
+Step 16/16 : LABEL com.docker.compose.image.builder=classic
+ ---> Running in 6d19dde5772a
+ ---> Removed intermediate container 6d19dde5772a
+ ---> db744838ce54
+Successfully built db744838ce54
+Successfully tagged urlshort:local
+ Image urlshort:local Built 
+ Image urlshort:local Built 
