@@ -207,7 +207,7 @@ N/A: non-visual slice.
 ## Status
 
 - 2026-10-03: requirements written: 11 acceptance criteria, 7 business rules, 7 ambiguity rows (6 assumed, 1 decided, none parked). The plan-lock waits for both w1 slices to merge (`slice.yaml`).
-- 2026-10-03: requirements review finding (`review2-agent`, 18:56Z) fixed: AC-8 banned every audit column's name and value from responses. That contradicts the reused `link.created_at` (exposed as `createdAt`) and the audit read's `actor` (`anonymous`, equal to the new actor columns). AC-8 and rule 7 now forbid exposing the columns this slice adds and keep the shipped values exactly as before. The `log event` clause was dropped from AC-8: AC-10 already bans client values from the columns, and the columns are never logged by any shipped path.
+- 2026-10-03: requirements review finding (`review2-agent`, 18:56Z) fixed: AC-8 banned every audit column's name and value from responses. That contradicts the reused `link.created_at` (exposed as `createdAt`) and the audit read's `actor` (`anonymous`, equal to the new actor columns). AC-8 and rule 7 now forbid exposing the columns this slice adds and keep the shipped values exactly as before. The `log event` clause was dropped from AC-8, because it had the same contradiction. AC-10 still bans client values from the columns.
 
 ## Dependencies
 
