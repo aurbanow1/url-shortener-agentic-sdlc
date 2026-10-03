@@ -44,7 +44,7 @@ OpenRig pins a seat's *model* in its agent spec (`defaults.model`); `rig seat se
 
 | Seat | Runtime | Model | Effort |
 |---|---|---|---|
-| design-agent | Claude Code | Claude Opus 5.5 (pinned in its agent spec) | xhigh (operator sends `rig send --raw design-agent@urlshort-factory "/effort xhigh"` after each launch) |
+| design-agent, design2-agent | Claude Code | Claude Opus 5.5 (pinned in its agent spec) | xhigh (operator sends `rig send --raw design-agent@urlshort-factory "/effort xhigh"` after each launch) |
 | orchestration-lead | Claude Code | Claude Opus 5.5 (pinned) | high (project default; D12) |
 | requirements-agent, release-agent | Claude Code | Claude Opus 5.5 (pinned in each agent spec) | high (project `.claude/settings.json`) |
 | development-agent, dev2-agent | Claude Code | Claude Opus 5.5 (pinned in `rig/agents/development-agent/agent.yaml`) | high |
@@ -57,7 +57,7 @@ Verify after launch: `ps -axo args= | grep -- --model` lists the pinned Claude s
 
 ```sh
 rig up rig/rig.yaml --cwd "$PWD" --plan     # preview
-rig up rig/rig.yaml --cwd "$PWD"            # boots 10 seats; each posts "<seat> READY" in the chatroom
+rig up rig/rig.yaml --cwd "$PWD"            # boots 11 seats; each posts "<seat> READY" in the chatroom
 rig ps --nodes --rig urlshort-factory
 rig chatroom history urlshort-factory
 ```

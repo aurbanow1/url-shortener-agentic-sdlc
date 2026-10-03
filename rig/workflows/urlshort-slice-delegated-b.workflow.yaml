@@ -1,6 +1,7 @@
 # urlshort-slice-delegated-b — identical to urlshort-slice-delegated except that the
-# development, QA and review roles resolve to the second seats (dev2-agent, qa2-agent,
-# review2-agent), so two slices of one wave build and are checked concurrently.
+# design, development, QA and review roles resolve to the second seats (design2-agent,
+# dev2-agent, qa2-agent, review2-agent), so two slices of one wave are designed, built
+# and checked concurrently.
 # Any other change must be made in all three files.
 workflow:
   id: urlshort-slice-delegated-b
@@ -21,7 +22,7 @@ workflow:
     requirements:
       preferred_targets: [requirements-agent@urlshort-factory]
     design:
-      preferred_targets: [design-agent@urlshort-factory]
+      preferred_targets: [design2-agent@urlshort-factory]
     development:
       preferred_targets: [dev2-agent@urlshort-factory]
     qa:

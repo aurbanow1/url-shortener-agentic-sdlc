@@ -26,9 +26,17 @@ tier_reason: delegated plan-lock (D11), as the operator suggested when relaying 
 # operator adds its URL once green. Action versions are pinned by SHA, resolved with
 # git ls-remote --tags https://github.com/<owner>/<action> on a Claude seat (Codex seats have no
 # network). CI uses ./gradlew, not scripts/gw (which pins a local Homebrew JDK).
-# WAVE w2, beside 03-dogfood-fix and 04-audit-columns: its territory (.github/) is disjoint from
-# every src/ territory in flight and from both w2 partners. It runs after w1 so it does not disturb
-# w1's builds, and its first CI run checks main as w1 left it.
+# WAVE w2 (wave map v4, 18:50Z): launched during w1 builds, at the operator's suggestion after the
+# second builder was added (qitem-20261003184357-822e2d22), and built and integrated without waiting
+# for w1. Why that is safe: its territory (.github/) is disjoint from every src/ territory in flight,
+# it changes no product behaviour, and the first GitHub run is whenever the human pushes, not tied
+# to w1's merges. Its local verification (docs/guidance/ci-cd.md section 4) runs against main as it
+# stands when the builder runs it.
+# Launch on rig/workflows/urlshort-slice-delegated-b.workflow.yaml (dev2-agent, qa2-agent,
+# review2-agent); qa2-agent is this slice's proof judge.
+proofPolicy:
+  judges:
+    - qa2-agent@urlshort-factory
 # scripts/smoke.sh is NOT in territory: cd.yml calls it as shipped; if a mode it needs is missing,
 # that is a grant request at plan-lock.
 territory:
@@ -36,4 +44,4 @@ territory:
 # NOT in territory: src/, scripts/, build.gradle.kts, Dockerfile, compose.yaml, docs/api/.
 execution:
   actor_role: requirements
-  depends_on: [01-audit-read, 02-click-retention]
+  depends_on: []

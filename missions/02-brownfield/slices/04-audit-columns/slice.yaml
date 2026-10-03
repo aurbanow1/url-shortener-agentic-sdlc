@@ -30,6 +30,10 @@ tier_reason: delegated plan-lock (D11). One expand migration with a written roll
 # next free Flyway number after 02-click-retention's V3. Mission 03's 01-analytics-v2 also uses the
 # migration sequence; its plan-lock orders it against this slice (the later plan-lock takes the
 # next free number and rebases).
+# WAVE MAP v4 (18:50Z): requirements and design start during w1 builds; the lead holds the
+# plan-lock gate until both w1 slices are merged, and the plan-lock requires impact-analysis.md
+# re-checked against the merged main (01-audit-read changes audit/). The worktree is created at
+# plan-lock, from the merged main. Design follows ADR-0020's pattern and assumes V4 after V3.
 # Launch on rig/workflows/urlshort-slice-delegated-b.workflow.yaml (QA qa2-agent, review
 # review2-agent), so w2's two slices do not queue on one judge; qa2-agent is this slice's proof judge.
 proofPolicy:

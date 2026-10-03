@@ -62,7 +62,8 @@ application sees them.
 ## Amendment — `01-analytics-v2` (2026-10-03, proposed; accepted at that slice's plan-lock)
 
 Two counters make the analytics' own data loss scrapeable (NFR-O3, mission 03 SPEC rule 10):
-- **`urlshort.clicks.recorded`**, incremented by the click writer after a successful insert;
+- **`urlshort.clicks.recorded`**, incremented by the click writer whenever an insert returns,
+  including one whose report shutdown already claimed (it can still commit);
 - **`urlshort.clicks.lost`**, tag `reason`, incremented beside every `click lost` event with that
   event's static token: `rejected`, `reduction failed` (from `02-click-retention`), `write failed`,
   `shutdown deadline`, `shutdown deadline, outcome unknown`.

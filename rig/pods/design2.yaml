@@ -1,0 +1,11 @@
+id: design2
+label: Design (second seat)
+summary: Second Design Agent seat (Claude) so two slice designs proceed concurrently instead of queueing on one designer; selected by the urlshort-slice-delegated-b workflow.
+members:
+  - id: agent
+    label: Design Agent 2
+    agent_ref: "local:agents/design-agent"
+    runtime: claude-code
+    profile: default
+    cwd: "/Users/andrzej/Documents/projekty/test/openrig/url-shortener"  # absolute: rig expand resolves a relative cwd against --rig-root, not the repo
+edges: []
