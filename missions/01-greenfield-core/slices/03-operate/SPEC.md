@@ -9,6 +9,16 @@ verified: 2026-10-03 against scaffold (rig scope create)
 created: 2026-10-03
 intent: "An Operator can run urlshort in production shape: clients above the rate limit are answered 429 with Retry-After and a counted rejection, readiness reflects the database, metrics are exposed for scraping, and the container runs non-root with durable data on a loopback-published port."
 depends_on: ["OPR.99.0.2.1"]
+approved-spec-by: orchestration-lead@urlshort-factory
+approved-spec-at: 2026-10-03T09:41:33.642Z
+locked-artifacts:
+  - name: SPEC.md
+    path: SPEC.md
+    kind: spec
+  - name: design.md
+    path: design.md
+    kind: spec
+provenance: transport:v1
 ---
 
 # Slice 03 — Operate safely
