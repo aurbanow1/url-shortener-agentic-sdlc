@@ -25,8 +25,13 @@ tier_reason: delegated plan-lock by the human's fast-plan decision of 2026-10-03
 # BROWNFIELD: design writes impact-analysis.md over the code the defect touches before design.md.
 # TERRITORY: not predictable before the defect is known, so it is set at the requirements step
 # from the defect report and adopted with rig workflow revise (the receipt goes in
-# docs/evidence/02-brownfield/). The slice runs alone in wave w2, after both w1 slices are merged,
-# so disjointness holds by construction.
+# docs/evidence/02-brownfield/). It runs in wave w2 beside 04-audit-columns and 05-ci-cd, whose
+# territories are disjoint from web/ and docs/api/openapi.json.
+# WAVE MAP v4 (18:50Z): requirements and design start during w1 builds; the lead holds the
+# plan-lock gate until both w1 slices are merged, and the plan-lock requires impact-analysis.md
+# re-checked against the merged main (01-audit-read regenerates docs/api/openapi.json). The
+# worktree is created at plan-lock, from the merged main. web/RateLimitFilter.java and its unit
+# test are granted to mission 03's 01-analytics-v2 (c78500e): leave them out of this territory.
 territory: []
 execution:
   actor_role: requirements
