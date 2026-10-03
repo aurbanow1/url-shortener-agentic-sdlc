@@ -35,6 +35,167 @@ public class RevisionProbe {
 		drain(Duration.ofMillis(500), 6, 2000);
 		drain(Duration.ofSeconds(5), 6, 0);
 		salt();
+		ownership();
+		// Normal process exit: main returns now; the writer of the latch-blocked case is a daemon thread
+		// still stuck in its store. Every click was already reported by close() before it returned.
+	}
+
+	// ---------------------------------------------------------------- DR-01, second round: per-click ownership
+
+	static final int QUEUED = 0, RUNNING = 1, DONE = 2, CLAIMED = 3;
+
+	/** A queued write whose report is owned by whoever moves its state first (worker or shutdown). */
+	static final class OwnedWrite implements Runnable {
+		final String requestId;
+		final AtomicInteger state = new AtomicInteger(QUEUED);
+		final OwnedRecorder recorder;
+
+		OwnedWrite(String requestId, OwnedRecorder recorder) {
+			this.requestId = requestId;
+			this.recorder = recorder;
+		}
+
+		@Override
+		public void run() {
+			recorder.write(this);
+		}
+	}
+
+	/** The store ignores interrupts: it waits on a latch, as an H2 lock wait does. */
+	static final class OwnedRecorder {
+		final java.util.concurrent.CountDownLatch release = new java.util.concurrent.CountDownLatch(1);
+		final boolean failAfterRelease;
+		final Duration deadline;
+		final java.util.Set<OwnedWrite> outstanding = java.util.concurrent.ConcurrentHashMap.newKeySet();
+		final List<String> written = java.util.Collections.synchronizedList(new ArrayList<>());
+		final List<Lost> reported = java.util.Collections.synchronizedList(new ArrayList<>());
+		final ThreadPoolExecutor writer = new ThreadPoolExecutor(1, 1, 0, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<>(10_000),
+				r -> {
+					Thread t = new Thread(r, "click-writer");
+					t.setDaemon(true);
+					return t;
+				}, new ThreadPoolExecutor.AbortPolicy());
+
+		OwnedRecorder(Duration deadline, boolean failAfterRelease) {
+			this.deadline = deadline;
+			this.failAfterRelease = failAfterRelease;
+		}
+
+		void record(String requestId) {
+			OwnedWrite w = new OwnedWrite(requestId, this);
+			outstanding.add(w);
+			writer.execute(w);
+		}
+
+		void write(OwnedWrite w) {
+			if (!w.state.compareAndSet(QUEUED, RUNNING)) {
+				return; // shutdown already owns this click's report
+			}
+			try {
+				boolean interrupted = false;
+				while (true) { // an interruption-ignoring store
+					try {
+						release.await();
+						break;
+					}
+					catch (InterruptedException e) {
+						interrupted = true;
+					}
+				}
+				if (interrupted) {
+					Thread.currentThread().interrupt();
+				}
+				if (failAfterRelease) {
+					throw new IllegalStateException("store failed");
+				}
+				if (w.state.compareAndSet(RUNNING, DONE)) {
+					written.add(w.requestId);
+				}
+				else {
+					written.add(w.requestId + " (committed after shutdown reported it as outcome unknown)");
+				}
+			}
+			catch (RuntimeException e) {
+				if (w.state.compareAndSet(RUNNING, DONE)) {
+					reported.add(new Lost(w.requestId, "write failed"));
+				}
+			}
+			finally {
+				outstanding.remove(w);
+			}
+		}
+
+		/** Package-private in the design: what close() does after the deadline. */
+		void claimOutstanding() {
+			for (OwnedWrite w : outstanding) {
+				if (w.state.compareAndSet(QUEUED, CLAIMED)) {
+					reported.add(new Lost(w.requestId, "shutdown deadline"));
+				}
+				else if (w.state.compareAndSet(RUNNING, CLAIMED)) {
+					reported.add(new Lost(w.requestId, "shutdown deadline, outcome unknown"));
+				}
+			}
+		}
+
+		void close() throws InterruptedException {
+			writer.shutdown();
+			if (writer.awaitTermination(deadline.toMillis(), TimeUnit.MILLISECONDS)) {
+				return;
+			}
+			writer.shutdownNow();
+			claimOutstanding();
+		}
+	}
+
+	static void ownership() throws Exception {
+		// 1. The reviewer's case: the write in flight ignores interrupts; close() must still report it.
+		OwnedRecorder r = new OwnedRecorder(Duration.ofMillis(300), false);
+		for (int i = 1; i <= 6; i++) {
+			r.record("req-" + i);
+		}
+		long t0 = System.nanoTime();
+		r.close();
+		long ms = (System.nanoTime() - t0) / 1_000_000;
+		List<Lost> atClose = new ArrayList<>(r.reported);
+		out("DR-01 ownership: interruption-ignoring store, deadline 300 ms, 6 clicks",
+				"close returned after " + ms + " ms; reported at close=" + atClose + "\n    VERDICT allSixAccountedWhenCloseReturns="
+						+ (atClose.size() + r.written.size() == 6) + " inFlightReportedAsUnknown="
+						+ atClose.stream().anyMatch(l -> l.reason().endsWith("outcome unknown")));
+		r.release.countDown(); // the stuck write commits later
+		Thread.sleep(100);
+		out("DR-01 ownership: the stuck write commits after shutdown", "written=" + r.written + " reports=" + r.reported.size()
+				+ "\n    VERDICT noDuplicateReport=" + (r.reported.size() == atClose.size()));
+
+		// 2. Same, but the store fails after shutdown claimed the click: the worker must not report again.
+		OwnedRecorder f = new OwnedRecorder(Duration.ofMillis(300), true);
+		for (int i = 1; i <= 3; i++) {
+			f.record("req-" + i);
+		}
+		f.close();
+		int claimed = f.reported.size();
+		f.release.countDown();
+		Thread.sleep(100);
+		out("DR-01 ownership: the stuck write fails after shutdown", "reports at close=" + claimed + " after=" + f.reported.size()
+				+ "\n    VERDICT failureSuppressedAfterClaim=" + (claimed == 3 && f.reported.size() == 3));
+
+		// 3. Start race, deterministic: shutdown claims a click the worker has dequeued but not started.
+		OwnedRecorder s = new OwnedRecorder(Duration.ofMillis(300), false);
+		OwnedWrite w = new OwnedWrite("req-race", s);
+		s.outstanding.add(w);
+		s.claimOutstanding(); // shutdown wins the race
+		s.write(w); // the worker starts afterwards
+		out("DR-01 ownership: shutdown claims before the worker starts", "reports=" + s.reported + " written=" + s.written
+				+ "\n    VERDICT reportedOnceNeverWritten=" + (s.reported.size() == 1 && s.written.isEmpty()));
+
+		// 4. Completion race, deterministic: the worker finishes before shutdown looks.
+		OwnedRecorder c = new OwnedRecorder(Duration.ofMillis(300), false);
+		c.release.countDown();
+		OwnedWrite done = new OwnedWrite("req-done", c);
+		c.outstanding.add(done);
+		c.write(done);
+		c.claimOutstanding();
+		out("DR-01 ownership: the worker completes before shutdown claims", "reports=" + c.reported + " written=" + c.written
+				+ "\n    VERDICT writtenNotReported=" + (c.reported.isEmpty() && c.written.size() == 1));
 	}
 
 	// ---------------------------------------------------------------- DR-01

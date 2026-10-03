@@ -39,28 +39,41 @@ hook in `link/`, but not `application.properties` or `build.gradle.kts`.
   any `RuntimeException`, including `RejectedExecutionException` from a full
   or closed queue, logs `click lost` (reason `rejected`) and returns. The
   writer task catches a failed insert the same way (reason `write failed`).
-  Nothing is retried. The WARN carries `requestId`, `reason` and, when
-  there is an exception, `errorType` (its class name), never the
-  exception's message. A driver message can quote the bound client hash or
+  Nothing is retried. The WARN carries `requestId`, `reason` (`rejected`,
+  `write failed`, `shutdown deadline` or `shutdown deadline, outcome
+  unknown`) and, when there is an exception, `errorType` (its class name),
+  never the exception's message. A driver message can quote the bound client hash or
   referrer (the lesson of `01-create-redirect`'s DR-01).
 - **Correlation after the response.** The writer task puts the captured
   request id into the MDC for its duration and removes it in `finally`
   (ADR-0004 amendment).
-- **Shutdown, bounded.** `@PreDestroy close()` calls `shutdown()` and then
-  waits at most 5 s (`awaitTermination`). If writes remain, `shutdownNow()`
-  interrupts the one in flight, which completes or reports `write failed`,
-  and returns the queued tasks. Each task is a `ClickWrite(click,
-  requestId)` record, so each reports one `click lost` with reason
-  `shutdown deadline` and its own request id. A `settle()` task found there
-  is cancelled. The recorder depends on the store and so on the
-  `DataSource`, which Spring therefore destroys after the recorder.
-  Shutdown cannot be held by a slow or stalled store, and every click is
-  written or reported exactly once. The first draft called
-  `ExecutorService.close()`, which has no deadline. The design review
-  measured a six-write backlog holding context close to about 12 s (DR-01).
-  5 s fits `03-operate`'s budget: a 10 s shutdown phase, then the drain and
-  the pool close, inside a 20 s stop grace. An abrupt stop loses what is
-  queued (A-11).
+- **Shutdown, bounded, every click accounted before `close()` returns.**
+  Each queued `ClickWrite` carries an atomic state (`QUEUED`, `RUNNING`,
+  `DONE`, or `CLAIMED` by shutdown) and sits in a set of outstanding clicks
+  from `record` until the worker finishes it. Whoever moves a click's
+  state first with `compareAndSet` owns its report.
+  - `@PreDestroy close()` calls `shutdown()` and waits at most 5 s
+    (`awaitTermination`).
+  - If writes remain, `shutdownNow()` stops the worker and any `settle()`
+    task found is cancelled. Then shutdown claims every outstanding click:
+    a queued one is reported `click lost`, reason `shutdown deadline`; one
+    being written is reported `shutdown deadline, outcome unknown`, because
+    an H2 write can ignore the interrupt and still commit later. Each report
+    carries the click's own request id.
+  - A worker that later finishes or fails finds the claim and reports
+    nothing; a worker that had not yet started finds it and skips the
+    write.
+
+  Every report is made inside `close()`, so a normal JVM exit afterwards
+  cannot lose one even while the daemon writer is still stuck. The
+  recorder depends on the store and so on the `DataSource`, which Spring
+  destroys after the recorder. The first draft called
+  `ExecutorService.close()`, which has no deadline (design review DR-01: a
+  six-write backlog held context close for about 12 s). The second relied
+  on the pool close to end a stuck write, and the re-review disproved that:
+  a child JVM exited with 5 of 6 clicks accounted. 5 s fits `03-operate`'s
+  budget of a 10 s shutdown phase, then the drain and the pool close, inside
+  a 20 s stop grace. An abrupt stop loses what is queued (A-11).
 - **A test seam, not a feature.** A package-private `settle()` submits an
   empty task and waits up to 10 s. With one FIFO writer, that means every
   earlier click has been written or lost. It is the "flush" the SPEC's
