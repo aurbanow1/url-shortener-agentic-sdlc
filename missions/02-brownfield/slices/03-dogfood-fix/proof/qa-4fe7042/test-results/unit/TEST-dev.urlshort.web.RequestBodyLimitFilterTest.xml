@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.urlshort.web.RequestBodyLimitFilterTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-03T21:56:27.249Z" hostname="Andrzejs-MacBook-Pro.local" time="0.009">
+  <properties/>
+  <testcase name="theFirstByteOverTheLimitIs413OnTheBulkReadPath()" classname="dev.urlshort.web.RequestBodyLimitFilterTest" time="0.003"/>
+  <testcase name="servletStreamStateAndListenerDelegateToTheContainerStream()" classname="dev.urlshort.web.RequestBodyLimitFilterTest" time="0.0"/>
+  <testcase name="aBodyOfExactlyTheLimitIsReadInFull()" classname="dev.urlshort.web.RequestBodyLimitFilterTest" time="0.001"/>
+  <testcase name="singleByteReadsCountTooAndEndOfStreamIsPassedThrough()" classname="dev.urlshort.web.RequestBodyLimitFilterTest" time="0.003"/>
+  <testcase name="theWrappedStreamIsCreatedOnceSoTheCountCannotBeReset()" classname="dev.urlshort.web.RequestBodyLimitFilterTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OpenApiConfig.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">urlshort</a> &gt; <a href="index.source.html" class="el_package">dev.urlshort.web</a> &gt; <span class="el_source">OpenApiConfig.java</span></div><h1>OpenApiConfig.java</h1><pre class="source lang-java linenums">package dev.urlshort.web;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
+
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.examples.Example;
+import io.swagger.v3.oas.models.headers.Header;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.media.ArraySchema;
+import io.swagger.v3.oas.models.media.Content;
+import io.swagger.v3.oas.models.media.IntegerSchema;
+import io.swagger.v3.oas.models.media.MediaType;
+import io.swagger.v3.oas.models.media.ObjectSchema;
+import io.swagger.v3.oas.models.media.Schema;
+import io.swagger.v3.oas.models.media.StringSchema;
+import io.swagger.v3.oas.models.responses.ApiResponse;
+import io.swagger.v3.oas.models.servers.Server;
+import org.springdoc.core.customizers.OpenApiCustomizer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * Fixed metadata for the live {@code /v3/api-docs} document. The {@code servers} member is pinned to
+ * {@code /} because springdoc would otherwise write the request's own host and port, which differs
+ * between test and real runs; that keeps the committed {@code docs/api/openapi.json} equal to the live
+ * document (NFR-M3, ADR-0010). Every operation also documents the rate limiter's {@code 429}, because
+ * the limiter charges every non-operator request (slice 03-operate, AC-20, ADR-0014). The problem schema
+ * is corrected to the bodies the service sends (ADR-0010 amendment).
+ */
+@Configuration(proxyBeanMethods = false)
+<span class="fc" id="L33">class OpenApiConfig {</span>
+
+	@Bean
+	OpenAPI openApi() {
+<span class="fc" id="L37">		return new OpenAPI()</span>
+<span class="fc" id="L38">				.info(new Info().title(&quot;urlshort&quot;).version(&quot;1&quot;)</span>
+<span class="fc" id="L39">						.description(&quot;Create, read and retire short links; visitors are redirected with 302.&quot;))</span>
+<span class="fc" id="L40">				.servers(List.of(new Server().url(&quot;/&quot;)));</span>
+	}
+
+	@Bean
+	OpenApiCustomizer tooManyRequests() {
+<span class="pc" id="L45">		return openApi -&gt; openApi.getPaths().values().forEach(path -&gt; path.readOperations().forEach(operation -&gt;</span>
+<span class="nc" id="L46">				operation.getResponses().addApiResponse(&quot;429&quot;, new ApiResponse()</span>
+<span class="nc" id="L47">						.description(&quot;Too many requests from this client; retry after Retry-After seconds&quot;)</span>
+<span class="nc" id="L48">						.addHeaderObject(&quot;Retry-After&quot;, new Header()</span>
+<span class="nc" id="L49">								.description(&quot;Whole seconds until this client's next request is admitted&quot;)</span>
+<span class="nc" id="L50">								.schema(new IntegerSchema().minimum(BigDecimal.ONE)))</span>
+<span class="nc" id="L51">						.content(new Content().addMediaType(&quot;application/problem+json&quot;, new MediaType()</span>
+<span class="nc" id="L52">								.schema(new Schema&lt;&gt;().$ref(&quot;#/components/schemas/ProblemDetail&quot;))</span>
+<span class="nc" id="L53">								.addExamples(&quot;tooManyRequests&quot;, new Example().value(Map.of(</span>
+										&quot;instance&quot;, &quot;urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10&quot;,
+<span class="nc" id="L55">										&quot;status&quot;, 429, &quot;title&quot;, &quot;Too Many Requests&quot;))))))));</span>
+	}
+
+	/**
+	 * Every problem response references the one {@code ProblemDetail} component, which springdoc derives
+	 * from Spring's class: it documents the {@code properties} map that Boot's Jackson mix-in flattens on
+	 * the wire, and not the {@code errors} array that validation and idempotency-mismatch problems carry.
+	 * This replaces the one with the other, so the document describes the bodies the service sends.
+	 */
+	@Bean
+	OpenApiCustomizer problemSchemaMatchesTheWire() {
+<span class="fc" id="L66">		return openApi -&gt; {</span>
+<span class="nc" id="L67">			Schema&lt;?&gt; problem = openApi.getComponents().getSchemas().get(&quot;ProblemDetail&quot;);</span>
+<span class="nc" id="L68">			problem.getProperties().remove(&quot;properties&quot;);</span>
+<span class="nc" id="L69">			problem.addProperty(&quot;errors&quot;, new ArraySchema().items(new Schema&lt;&gt;().$ref(&quot;#/components/schemas/ProblemFieldError&quot;))</span>
+<span class="nc" id="L70">					.description(&quot;Present on 400 validation and 422 idempotency-mismatch problems only&quot;));</span>
+<span class="nc" id="L71">			ObjectSchema fieldError = new ObjectSchema();</span>
+<span class="nc" id="L72">			fieldError.addProperty(&quot;field&quot;, new StringSchema());</span>
+<span class="nc" id="L73">			fieldError.addProperty(&quot;rule&quot;, new StringSchema());</span>
+<span class="nc" id="L74">			fieldError.addProperty(&quot;message&quot;, new StringSchema());</span>
+<span class="nc" id="L75">			fieldError.setRequired(List.of(&quot;field&quot;, &quot;rule&quot;, &quot;message&quot;));</span>
+<span class="nc" id="L76">			openApi.getComponents().addSchemas(&quot;ProblemFieldError&quot;, fieldError);</span>
+<span class="nc" id="L77">		};</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

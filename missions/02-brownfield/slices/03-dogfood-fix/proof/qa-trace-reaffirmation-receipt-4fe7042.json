@@ -1,0 +1,564 @@
+{
+  "judgment": {
+    "version": 1,
+    "scope": "missions/02-brownfield/slices/03-dogfood-fix",
+    "sequence": 9,
+    "operationId": "268f913ffa7b40220999e3bd065fc38090dde1ee383e7b6f08e322cb2bdf9864",
+    "itemId": "item-d1fc4bd08a7891268040",
+    "itemRevision": "1ff9e51ab0660f2009355eeac0b75b073974dc67b7ef3f78b86674c2f1855217",
+    "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+    "policySource": "project.yaml",
+    "previous": "0ecdd0a90a950a46e04becba468637f471e96e93f294a725c8e19cf9ec162007",
+    "actor": "qa-agent@urlshort-factory",
+    "provenance": "transport:v1",
+    "at": "2026-10-03T22:31:57.139Z",
+    "verdict": "accept",
+    "reason": "Shared TRACEABILITY append changed its whole-file hash during receipt commit. Independently compared current dogfood-fix table with committed33c5b44: exactly unchanged, all9 ACs/5 rules and233 source rows still present with requirement IDs. Prior fresh411 green invocations and explicit parameterized-group limitation remain applicable; no product changes or duplicate testing. Reaffirm current full-file hash.",
+    "evidence": [
+      {
+        "ref": "docs/qa/TRACEABILITY.md",
+        "sha256": "4c25c8e7b438f1b53b0d42a0a11be18b91d6b5003805432a4903e77fdf572450"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-trace-reaffirmation-4fe7042.json",
+        "sha256": "d395fca70abb15baa1e11f6189fb70ddf76336f200e5866e85f192e45bd68a05"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/source-methods.json",
+        "sha256": "0ea09e87f31fa53e4b204a7d8dc10764328cbdf512006e3fd9d6ccfa1c13d2af"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/document-checks.json",
+        "sha256": "6c6f34f6bd0bb617ecf3097494f18ccf09497b6711f1749fd8179040c3185b13"
+      }
+    ],
+    "subject": {
+      "kind": "commit",
+      "ref": "4fe70427bd0d182e886d6a19b217daa1d9e39f5d"
+    },
+    "intent": "44e93fd63a7a0b41938312e39cb20345acf58d01aec50fe50cfcdb19cdb1d0a0",
+    "id": "cefc9454ef5e6b5299f8cfe8e2fedab02e8e571cada89dbd9a849a9b5493f6f1"
+  },
+  "readiness": {
+    "configured": true,
+    "revision": "56699de13b76e3388b85d3ee6f5d4f697a3117510bb97e06b48d68920a848254",
+    "state": "ready",
+    "history": [
+      {
+        "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/judgments/00000001.md",
+        "id": "87a2a4a582ea7e42bfdf78a77d9c3285f594b2bf2a4097aa94cac702ad0b56d2",
+        "itemId": "item-d2d7f5af42794d8f22a7",
+        "verdict": "accept",
+        "previous": null
+      },
+      {
+        "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/judgments/00000002.md",
+        "id": "06379094ce8d63479da64ad737134e82d30b8f0f0f6b3c59d5743fd351b8fc2a",
+        "itemId": "item-5a17c9e2c44e782040e7",
+        "verdict": "accept",
+        "previous": null
+      },
+      {
+        "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/judgments/00000003.md",
+        "id": "d61b37913d35880c3cfb894941ffe3811c4b6e9da89e14a44c630e666025aabe",
+        "itemId": "item-35cafbf1019d8f3b8c3b",
+        "verdict": "accept",
+        "previous": null
+      },
+      {
+        "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/judgments/00000004.md",
+        "id": "97b9c53c8d7c4aef7f2557c5f6ef033a947ab30d346079d8c139c0ad0d8fe725",
+        "itemId": "item-935f21031b47dc6de57c",
+        "verdict": "accept",
+        "previous": null
+      },
+      {
+        "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/judgments/00000005.md",
+        "id": "0ecdd0a90a950a46e04becba468637f471e96e93f294a725c8e19cf9ec162007",
+        "itemId": "item-d1fc4bd08a7891268040",
+        "verdict": "accept",
+        "previous": null
+      },
+      {
+        "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/judgments/00000006.md",
+        "id": "2625312acdbb3e67377213bc956d2566b188f2ea685cb2cdcf15ccfcfc4a13fa",
+        "itemId": "item-02635d20ee6a836164b8",
+        "verdict": "accept",
+        "previous": null
+      },
+      {
+        "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/judgments/00000007.md",
+        "id": "e69b2bc67def3487d4df3414a12933be48ddf605f845451a17b859c605d1648c",
+        "itemId": "item-921886e0b037eab8eddc",
+        "verdict": "accept",
+        "previous": null
+      },
+      {
+        "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/judgments/00000008.md",
+        "id": "8ea614014affefb28a46eb865e7f11928b4badb245121d53d8b89e2983e61c35",
+        "itemId": "item-67f777c970ae088c773a",
+        "verdict": "accept",
+        "previous": null
+      },
+      {
+        "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/judgments/00000009.md",
+        "id": "cefc9454ef5e6b5299f8cfe8e2fedab02e8e571cada89dbd9a849a9b5493f6f1",
+        "itemId": "item-d1fc4bd08a7891268040",
+        "verdict": "accept",
+        "previous": "0ecdd0a90a950a46e04becba468637f471e96e93f294a725c8e19cf9ec162007"
+      }
+    ],
+    "items": [
+      {
+        "id": "item-d2d7f5af42794d8f22a7",
+        "text": "AC-1 to AC-9 are each covered by a named test or a recorded check, green on the candidate SHA with `scripts/gw check`.",
+        "index": 1,
+        "source": {
+          "file": "SPEC.md",
+          "line": 184
+        },
+        "revision": "c9124502de4acf89e55e0c3a2abe34edd93bff5d316aed6a8104452c79405ccf",
+        "state": "accepted",
+        "reason": "Independent exact-candidate gate 204 unit/207 functional and unchanged baseline203/202 all green; all9 AC effects or SPEC-authorized recorded checks verified. Six full error bodies match baseline, corrected live/committed schema matches, pathless numeric gauges and historical red controls observed; no source/build/test edits. Qualifications in GAPS and QA section preserved.",
+        "judgment": {
+          "version": 1,
+          "scope": "missions/02-brownfield/slices/03-dogfood-fix",
+          "sequence": 1,
+          "operationId": "0e5db002f3caa870a39243f0dd271b859f4e024af025d7dcd7e8b99bea4949df",
+          "itemId": "item-d2d7f5af42794d8f22a7",
+          "itemRevision": "c9124502de4acf89e55e0c3a2abe34edd93bff5d316aed6a8104452c79405ccf",
+          "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+          "policySource": "project.yaml",
+          "previous": null,
+          "actor": "qa-agent@urlshort-factory",
+          "provenance": "transport:v1",
+          "at": "2026-10-03T22:27:08.221Z",
+          "verdict": "accept",
+          "reason": "Independent exact-candidate gate 204 unit/207 functional and unchanged baseline203/202 all green; all9 AC effects or SPEC-authorized recorded checks verified. Six full error bodies match baseline, corrected live/committed schema matches, pathless numeric gauges and historical red controls observed; no source/build/test edits. Qualifications in GAPS and QA section preserved.",
+          "evidence": [
+            {
+              "ref": "docs/qa/coverage/03-dogfood-fix/SUMMARY.md",
+              "sha256": "d9fb8d66d34e829cc0f1c8c14c32a188f39ae81f46a0fe841bd5ac2ce5c92aec"
+            },
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/verification.json",
+              "sha256": "e65230904433fabdb01a2825d95eb0d12cea619721259050fca24621d8d04373"
+            },
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/document-checks.json",
+              "sha256": "6c6f34f6bd0bb617ecf3097494f18ccf09497b6711f1749fd8179040c3185b13"
+            }
+          ],
+          "subject": {
+            "kind": "commit",
+            "ref": "4fe70427bd0d182e886d6a19b217daa1d9e39f5d"
+          },
+          "intent": "3cc78eb86f0a1b47ba4a1239b73f6a1f78c7c4771eb7433adc3246f21f293861",
+          "id": "87a2a4a582ea7e42bfdf78a77d9c3285f594b2bf2a4097aa94cac702ad0b56d2"
+        }
+      },
+      {
+        "id": "item-5a17c9e2c44e782040e7",
+        "text": "`proof/` holds both regression tests' failing runs on the unfixed code, with the commit SHAs that show test before fix (AC-5, AC-6; FR-14).",
+        "index": 2,
+        "source": {
+          "file": "SPEC.md",
+          "line": 185
+        },
+        "revision": "866507c2b41ee83394b117ac16abb14e9eddf7c1a4774faf7819a192e5da6a98",
+        "state": "accepted",
+        "reason": "Independently reran rebased test-only cce7cf7: the two schema assertions fail naming errors/properties; independently reran72dfffb: endpoint and scrape assertions fail naming path. Fresh candidate gate passes both. Git ancestry confirms test commits precede their fixes; original builder red records remain.",
+        "judgment": {
+          "version": 1,
+          "scope": "missions/02-brownfield/slices/03-dogfood-fix",
+          "sequence": 2,
+          "operationId": "18df31948f3327da57e2f3d8ab74411574b046d4db065a396ff39076e7033e28",
+          "itemId": "item-5a17c9e2c44e782040e7",
+          "itemRevision": "866507c2b41ee83394b117ac16abb14e9eddf7c1a4774faf7819a192e5da6a98",
+          "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+          "policySource": "project.yaml",
+          "previous": null,
+          "actor": "qa-agent@urlshort-factory",
+          "provenance": "transport:v1",
+          "at": "2026-10-03T22:27:57.444Z",
+          "verdict": "accept",
+          "reason": "Independently reran rebased test-only cce7cf7: the two schema assertions fail naming errors/properties; independently reran72dfffb: endpoint and scrape assertions fail naming path. Fresh candidate gate passes both. Git ancestry confirms test commits precede their fixes; original builder red records remain.",
+          "evidence": [
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/red-openapi-cce7cf7.txt",
+              "sha256": "5bc421b525766390f182bb86f907d35cb1a29883d3dd1d040799b959e585beb2"
+            },
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/red-metrics-72dfffb.txt",
+              "sha256": "0c1a5c63e0a3c9f83a129418b5b0343f6cbde9c87e4aa2159acd804edd273cff"
+            },
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/regression-red-controls.json",
+              "sha256": "ee931c1509ebc7fe2a27ec9e01e11748680e871cfc955d406bb01045d974c5ce"
+            },
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/history-and-document-checks.json",
+              "sha256": "f5b2a3719c7c5dc278175a24f3c51018df7e23725dfacdcbb704d005c215901c"
+            }
+          ],
+          "subject": {
+            "kind": "commit",
+            "ref": "4fe70427bd0d182e886d6a19b217daa1d9e39f5d"
+          },
+          "intent": "3b3ebd8f7a3c32ccdc6f718083466e518dc1b9e2026eb08a9033e121ffc1cbb8",
+          "id": "06379094ce8d63479da64ad737134e82d30b8f0f0f6b3c59d5743fd351b8fc2a"
+        }
+      },
+      {
+        "id": "item-35cafbf1019d8f3b8c3b",
+        "text": "`scripts/gw check` reports 100 % line and 100 % branch coverage on the merged unit and functional data (NFR-M1).",
+        "index": 3,
+        "source": {
+          "file": "SPEC.md",
+          "line": 186
+        },
+        "revision": "473286441bba1b8bceae95b95195b8ead20e09e5ed76adf5ac03f5cd1a005807",
+        "state": "accepted",
+        "reason": "Fresh exact-candidate offline check executes all 14 tasks and passes coverage verification. Independently summed merged CSV: 508 covered/0 missed lines and 194 covered/0 missed branches, 100% both. Informational per-suite misses disclosed, no exclusion or threshold change.",
+        "judgment": {
+          "version": 1,
+          "scope": "missions/02-brownfield/slices/03-dogfood-fix",
+          "sequence": 3,
+          "operationId": "f424d3ea69396d42706f21da42f32ad2cba11e3f18603578b839413226501c4c",
+          "itemId": "item-35cafbf1019d8f3b8c3b",
+          "itemRevision": "473286441bba1b8bceae95b95195b8ead20e09e5ed76adf5ac03f5cd1a005807",
+          "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+          "policySource": "project.yaml",
+          "previous": null,
+          "actor": "qa-agent@urlshort-factory",
+          "provenance": "transport:v1",
+          "at": "2026-10-03T22:28:44.295Z",
+          "verdict": "accept",
+          "reason": "Fresh exact-candidate offline check executes all 14 tasks and passes coverage verification. Independently summed merged CSV: 508 covered/0 missed lines and 194 covered/0 missed branches, 100% both. Informational per-suite misses disclosed, no exclusion or threshold change.",
+          "evidence": [
+            {
+              "ref": "docs/qa/coverage/03-dogfood-fix/SUMMARY.md",
+              "sha256": "d9fb8d66d34e829cc0f1c8c14c32a188f39ae81f46a0fe841bd5ac2ce5c92aec"
+            },
+            {
+              "ref": "docs/qa/coverage/03-dogfood-fix/all/jacocoTestReport.csv",
+              "sha256": "80e7004828e63f1eb1ac8132995996b45114a59aee09d1f4a6adcffe63baf943"
+            },
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-check-4fe7042.txt",
+              "sha256": "752f69db6364001a78040a8381f4df17db34ec8d68ef3a0405b9ff007bbc13d0"
+            },
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/coverage.json",
+              "sha256": "908e8aef61568c67802511dc58349324793841974c12a8a937ad7b9fae518bb7"
+            }
+          ],
+          "subject": {
+            "kind": "commit",
+            "ref": "4fe70427bd0d182e886d6a19b217daa1d9e39f5d"
+          },
+          "intent": "9f35623057ee01583828d19ade25c42dd13462b6b3f0f9ee21b75fbea9c94b76",
+          "id": "d61b37913d35880c3cfb894941ffe3811c4b6e9da89e14a44c630e666025aabe"
+        }
+      },
+      {
+        "id": "item-935f21031b47dc6de57c",
+        "text": "Unit and functional JaCoCo reports committed under `docs/qa/coverage/03-dogfood-fix/unit/` and `docs/qa/coverage/03-dogfood-fix/functional/`.",
+        "index": 4,
+        "source": {
+          "file": "SPEC.md",
+          "line": 187
+        },
+        "revision": "208885e95ff87375f59ecb673397239e04fd854076351a2a4a39ad1367ecd774",
+        "state": "accepted",
+        "reason": "Unit, functional and merged HTML/XML/CSV reports committed in evidence 33c5b44 under the required directories. All 354 copied report hashes independently checked; both suite index pages and CSVs present.",
+        "judgment": {
+          "version": 1,
+          "scope": "missions/02-brownfield/slices/03-dogfood-fix",
+          "sequence": 4,
+          "operationId": "91dd341d0afb2af7a7eabc717a90cb528e8b3c10cf729f41630fc3524f6c5a25",
+          "itemId": "item-935f21031b47dc6de57c",
+          "itemRevision": "208885e95ff87375f59ecb673397239e04fd854076351a2a4a39ad1367ecd774",
+          "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+          "policySource": "project.yaml",
+          "previous": null,
+          "actor": "qa-agent@urlshort-factory",
+          "provenance": "transport:v1",
+          "at": "2026-10-03T22:28:44.963Z",
+          "verdict": "accept",
+          "reason": "Unit, functional and merged HTML/XML/CSV reports committed in evidence 33c5b44 under the required directories. All 354 copied report hashes independently checked; both suite index pages and CSVs present.",
+          "evidence": [
+            {
+              "ref": "docs/qa/coverage/03-dogfood-fix/unit/html/index.html",
+              "sha256": "0e84bb1c70cb1eca543fff86204ba8110784780f6244b0237b3295b939d72377"
+            },
+            {
+              "ref": "docs/qa/coverage/03-dogfood-fix/unit/jacocoTestReport.csv",
+              "sha256": "3a5c63c3539787712dcad47d391fa0a60793851ad950e0163cfd156213f76fb7"
+            },
+            {
+              "ref": "docs/qa/coverage/03-dogfood-fix/functional/html/index.html",
+              "sha256": "17ce9124d70a0c71d534a3d6f5bb1dbf95c5aedb9c22a6562e47482ced2e5c84"
+            },
+            {
+              "ref": "docs/qa/coverage/03-dogfood-fix/functional/jacocoTestReport.csv",
+              "sha256": "b54e2409ad65932fae46a6febe47f47a9a455a32040eac810caaa174d1794b2d"
+            },
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/report-hashes.json",
+              "sha256": "55390dc129484e6fe546e2b63a93c29c855f98769027b10dfa385471bdb1e469"
+            }
+          ],
+          "subject": {
+            "kind": "commit",
+            "ref": "4fe70427bd0d182e886d6a19b217daa1d9e39f5d"
+          },
+          "intent": "eb51e61f9de208b232cbf192c65d4e9cbd5438afa0cac24ae389cc70e39e0c65",
+          "id": "97b9c53c8d7c4aef7f2557c5f6ef033a947ab30d346079d8c139c0ad0d8fe725"
+        }
+      },
+      {
+        "id": "item-d1fc4bd08a7891268040",
+        "text": "`docs/qa/TRACEABILITY.md` holds a table for `03-dogfood-fix` mapping AC-1 to AC-9 and rules 1 to 5 to their tests or checks, with the requirement id beside each AC.",
+        "index": 5,
+        "source": {
+          "file": "SPEC.md",
+          "line": 188
+        },
+        "revision": "1ff9e51ab0660f2009355eeac0b75b073974dc67b7ef3f78b86674c2f1855217",
+        "state": "accepted",
+        "reason": "Shared TRACEABILITY append changed its whole-file hash during receipt commit. Independently compared current dogfood-fix table with committed33c5b44: exactly unchanged, all9 ACs/5 rules and233 source rows still present with requirement IDs. Prior fresh411 green invocations and explicit parameterized-group limitation remain applicable; no product changes or duplicate testing. Reaffirm current full-file hash.",
+        "judgment": {
+          "version": 1,
+          "scope": "missions/02-brownfield/slices/03-dogfood-fix",
+          "sequence": 9,
+          "operationId": "268f913ffa7b40220999e3bd065fc38090dde1ee383e7b6f08e322cb2bdf9864",
+          "itemId": "item-d1fc4bd08a7891268040",
+          "itemRevision": "1ff9e51ab0660f2009355eeac0b75b073974dc67b7ef3f78b86674c2f1855217",
+          "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+          "policySource": "project.yaml",
+          "previous": "0ecdd0a90a950a46e04becba468637f471e96e93f294a725c8e19cf9ec162007",
+          "actor": "qa-agent@urlshort-factory",
+          "provenance": "transport:v1",
+          "at": "2026-10-03T22:31:57.139Z",
+          "verdict": "accept",
+          "reason": "Shared TRACEABILITY append changed its whole-file hash during receipt commit. Independently compared current dogfood-fix table with committed33c5b44: exactly unchanged, all9 ACs/5 rules and233 source rows still present with requirement IDs. Prior fresh411 green invocations and explicit parameterized-group limitation remain applicable; no product changes or duplicate testing. Reaffirm current full-file hash.",
+          "evidence": [
+            {
+              "ref": "docs/qa/TRACEABILITY.md",
+              "sha256": "4c25c8e7b438f1b53b0d42a0a11be18b91d6b5003805432a4903e77fdf572450"
+            },
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-trace-reaffirmation-4fe7042.json",
+              "sha256": "d395fca70abb15baa1e11f6189fb70ddf76336f200e5866e85f192e45bd68a05"
+            },
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/source-methods.json",
+              "sha256": "0ea09e87f31fa53e4b204a7d8dc10764328cbdf512006e3fd9d6ccfa1c13d2af"
+            },
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/document-checks.json",
+              "sha256": "6c6f34f6bd0bb617ecf3097494f18ccf09497b6711f1749fd8179040c3185b13"
+            }
+          ],
+          "subject": {
+            "kind": "commit",
+            "ref": "4fe70427bd0d182e886d6a19b217daa1d9e39f5d"
+          },
+          "intent": "44e93fd63a7a0b41938312e39cb20345acf58d01aec50fe50cfcdb19cdb1d0a0",
+          "id": "cefc9454ef5e6b5299f8cfe8e2fedab02e8e571cada89dbd9a849a9b5493f6f1"
+        }
+      },
+      {
+        "id": "item-02635d20ee6a836164b8",
+        "text": "`docs/qa/GAPS.md` holds a row for `03-dogfood-fix` (\"None for this slice\" or each honest gap), and the QA-OPR-02 row is closed (AC-7).",
+        "index": 6,
+        "source": {
+          "file": "SPEC.md",
+          "line": 189
+        },
+        "revision": "671a86f7df359fd1cad8773315f9d360bcae5904b06e8cbc00c60c6f43241e72",
+        "state": "accepted",
+        "reason": "Current GAPS includes this slice, informational per-suite misses and honest recorded-check, single-disk-path, selector, parameterized-attribution and inherited-wrapper limits. QA-OPR-02 row closed by installed effects; W2-01 fixed with no open row. No unmet required AC or merged-coverage waiver.",
+        "judgment": {
+          "version": 1,
+          "scope": "missions/02-brownfield/slices/03-dogfood-fix",
+          "sequence": 6,
+          "operationId": "e08e07e6a324bd7137903c1a314fef652c47de26f01ef815a7bafe1abc729380",
+          "itemId": "item-02635d20ee6a836164b8",
+          "itemRevision": "671a86f7df359fd1cad8773315f9d360bcae5904b06e8cbc00c60c6f43241e72",
+          "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+          "policySource": "project.yaml",
+          "previous": null,
+          "actor": "qa-agent@urlshort-factory",
+          "provenance": "transport:v1",
+          "at": "2026-10-03T22:28:46.163Z",
+          "verdict": "accept",
+          "reason": "Current GAPS includes this slice, informational per-suite misses and honest recorded-check, single-disk-path, selector, parameterized-attribution and inherited-wrapper limits. QA-OPR-02 row closed by installed effects; W2-01 fixed with no open row. No unmet required AC or merged-coverage waiver.",
+          "evidence": [
+            {
+              "ref": "docs/qa/GAPS.md",
+              "sha256": "cd951c55357c6c19ae116ad5faab317b46d95c8bcb771490804987b3f0b53b45"
+            },
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/document-checks.json",
+              "sha256": "6c6f34f6bd0bb617ecf3097494f18ccf09497b6711f1749fd8179040c3185b13"
+            },
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/http/candidate-disk-free.body",
+              "sha256": "c80c53ac129f96f5d6a68c711f391bdbc2650eff2d7cc065b81d98a3fea2e11f"
+            },
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/http/candidate-prometheus.body",
+              "sha256": "e0a926bc812885d71db2e05f5cd3d02bccea3f78ea98be4c0492650470a8ebc9"
+            }
+          ],
+          "subject": {
+            "kind": "commit",
+            "ref": "4fe70427bd0d182e886d6a19b217daa1d9e39f5d"
+          },
+          "intent": "c94e731bb7f3d45253ad63aa76adb3d9f6ecd0c2218c40ff01b9b0f276bdb05a",
+          "id": "2625312acdbb3e67377213bc956d2566b188f2ea685cb2cdcf15ccfcfc4a13fa"
+        }
+      },
+      {
+        "id": "item-921886e0b037eab8eddc",
+        "text": "`proof/` holds a by-effect capture from the running jar. It shows: a `400` invalid-create exchange beside the live `ProblemDetail` schema (W2-01, the dogfood reproduction, now consistent), the key-sorted diff of committed against live documents (empty), and a Prometheus scrape plus `/actuator/metrics/disk.free` with no path (W2-03).",
+        "index": 7,
+        "source": {
+          "file": "SPEC.md",
+          "line": 190
+        },
+        "revision": "6f3ac94e41024a87b9f2f8a5efddba38007482256b4e94836bfba7a44fba94ed",
+        "state": "accepted",
+        "reason": "Installed exact-candidate jar: invalid-create 400 has one documented errors item; live schema has optional errors and no properties. Whole live/committed equality produces empty normalized diff. Anonymous scrape and disk.free have no path tag or known absolute working directory, gauges retain numeric values. Raw bytes retained; response/log/audit correlations checked; app stopped.",
+        "judgment": {
+          "version": 1,
+          "scope": "missions/02-brownfield/slices/03-dogfood-fix",
+          "sequence": 7,
+          "operationId": "3d97190c8bdf8e0d249832086ca480b33b6ac5f85b4b2fb775a8f95534a3a7db",
+          "itemId": "item-921886e0b037eab8eddc",
+          "itemRevision": "6f3ac94e41024a87b9f2f8a5efddba38007482256b4e94836bfba7a44fba94ed",
+          "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+          "policySource": "project.yaml",
+          "previous": null,
+          "actor": "qa-agent@urlshort-factory",
+          "provenance": "transport:v1",
+          "at": "2026-10-03T22:28:46.798Z",
+          "verdict": "accept",
+          "reason": "Installed exact-candidate jar: invalid-create 400 has one documented errors item; live schema has optional errors and no properties. Whole live/committed equality produces empty normalized diff. Anonymous scrape and disk.free have no path tag or known absolute working directory, gauges retain numeric values. Raw bytes retained; response/log/audit correlations checked; app stopped.",
+          "evidence": [
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/http/candidate-bad-create.headers",
+              "sha256": "fb48a33962c5585a202553e4f2e10e95044cf06d18c3766e6b9ffacc98d5ccd1"
+            },
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/http/candidate-bad-create.body",
+              "sha256": "cd141266a07c04cffe199b3de68d85e07cec12983d9385386e67234f03182de0"
+            },
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/after-schema.json",
+              "sha256": "8fe6ed30940840a9a1b09cf8daded413fd5def739ae46c660d12b118decea187"
+            },
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/committed-vs-live.diff",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/http/candidate-prometheus.body",
+              "sha256": "e0a926bc812885d71db2e05f5cd3d02bccea3f78ea98be4c0492650470a8ebc9"
+            },
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/http/candidate-disk-free.body",
+              "sha256": "c80c53ac129f96f5d6a68c711f391bdbc2650eff2d7cc065b81d98a3fea2e11f"
+            },
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/installed-launch-arguments.json",
+              "sha256": "2ff5d5e155c5db33379d0b5c4a21290f4d24cea8d9d224effdaecd5d03b16b4f"
+            },
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/request-log-correlation.json",
+              "sha256": "95260887b519a69145eeef671c992f563736642bdee81b1f696feee84db03669"
+            },
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/ports-stopped.json",
+              "sha256": "1b1609d02778208dd425fa6016cb2bab5ce871dabf080779ce285e97223041c6"
+            }
+          ],
+          "subject": {
+            "kind": "commit",
+            "ref": "4fe70427bd0d182e886d6a19b217daa1d9e39f5d"
+          },
+          "intent": "e179f742fb7ae34ae58070b4d7807982867916487ed927643b1f1b102b2b6529",
+          "id": "e69b2bc67def3487d4df3414a12933be48ddf605f845451a17b859c605d1648c"
+        }
+      },
+      {
+        "id": "item-67f777c970ae088c773a",
+        "text": "The ADR amendments named under *Non-functional* exist and are indexed in `docs/DESIGN.md` §7 before the commits that depend on them.",
+        "index": 8,
+        "source": {
+          "file": "SPEC.md",
+          "line": 191
+        },
+        "revision": "b7c40b37991e2f4250ae6e32e848eb4f02524417b98d25d2aef637e9c7821b38",
+        "state": "accepted",
+        "reason": "Read ADR-0010 amendment defining optional typed errors/no properties and ADR-0016 amendment removing path tags while preserving gauges, naming selector and second-volume limits. Both indexed in DESIGN section 7 at design 0d000da and clarification 0982cb5, ancestors of dependent commits; historical bytes/ancestry independently checked.",
+        "judgment": {
+          "version": 1,
+          "scope": "missions/02-brownfield/slices/03-dogfood-fix",
+          "sequence": 8,
+          "operationId": "4c1864c7e5f8707db245f64f13e23c723ecae88a2090da3b8247e92b70760e6f",
+          "itemId": "item-67f777c970ae088c773a",
+          "itemRevision": "b7c40b37991e2f4250ae6e32e848eb4f02524417b98d25d2aef637e9c7821b38",
+          "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+          "policySource": "project.yaml",
+          "previous": null,
+          "actor": "qa-agent@urlshort-factory",
+          "provenance": "transport:v1",
+          "at": "2026-10-03T22:28:47.710Z",
+          "verdict": "accept",
+          "reason": "Read ADR-0010 amendment defining optional typed errors/no properties and ADR-0016 amendment removing path tags while preserving gauges, naming selector and second-volume limits. Both indexed in DESIGN section 7 at design 0d000da and clarification 0982cb5, ancestors of dependent commits; historical bytes/ancestry independently checked.",
+          "evidence": [
+            {
+              "ref": "docs/adr/0010-committed-openapi-document.md",
+              "sha256": "816c5ff47fc82ef1aea95a29b9ee5a761454170c45a341adde73e732b0cc7049"
+            },
+            {
+              "ref": "docs/adr/0016-metrics-and-health-exposure.md",
+              "sha256": "6bc468239684632f3310dd6a806e7f19de26e82d11d8e7985b604d205a0d6594"
+            },
+            {
+              "ref": "docs/DESIGN.md",
+              "sha256": "81efea0a4508d1ba23abcf43a33e65de3e3782323bed13b3536571892f3b540f"
+            },
+            {
+              "ref": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/history-and-document-checks.json",
+              "sha256": "f5b2a3719c7c5dc278175a24f3c51018df7e23725dfacdcbb704d005c215901c"
+            }
+          ],
+          "subject": {
+            "kind": "commit",
+            "ref": "4fe70427bd0d182e886d6a19b217daa1d9e39f5d"
+          },
+          "intent": "1f6cc7652a7719e3bb3ac23633a0aa751091dbc9746ebb3a9f1fedea49c9fcf9",
+          "id": "8ea614014affefb28a46eb865e7f11928b4badb245121d53d8b89e2983e61c35"
+        }
+      }
+    ],
+    "issues": [],
+    "policy": {
+      "judges": [
+        "qa-agent@urlshort-factory"
+      ],
+      "source": "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/project.yaml",
+      "revision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f"
+    },
+    "attention": {
+      "scope": "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/03-dogfood-fix",
+      "revision": "56699de13b76e3388b85d3ee6f5d4f697a3117510bb97e06b48d68920a848254"
+    }
+  },
+  "replayed": false,
+  "notification": "emitted"
+}

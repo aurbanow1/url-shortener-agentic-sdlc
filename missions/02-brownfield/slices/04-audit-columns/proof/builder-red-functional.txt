@@ -1,0 +1,55 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :jar UP-TO-DATE
+> Task :compileFunctionalTestJava
+> Task :processFunctionalTestResources UP-TO-DATE
+> Task :functionalTestClasses
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+
+> Task :functionalTest
+
+LinkAuditColumnsJourneyTest > AC04_releasingAnExpiredKeyIsAWrite() FAILED
+    org.opentest4j.AssertionFailedError at LinkAuditColumnsJourneyTest.java:110
+
+LinkAuditColumnsJourneyTest > AC05_requestsThatChangeNothingStampNothing() FAILED
+    org.springframework.jdbc.BadSqlGrammarException at LinkAuditColumnsJourneyTest.java:228
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at LinkAuditColumnsJourneyTest.java:228
+
+LinkAuditColumnsJourneyTest > AC03_aRetireMovesTheLinksUpdateStampOnly() FAILED
+    org.opentest4j.AssertionFailedError at LinkAuditColumnsJourneyTest.java:93
+
+LinkAuditColumnsJourneyTest > AC06_auditRowsAreNeverUpdated() FAILED
+    org.springframework.jdbc.BadSqlGrammarException at LinkAuditColumnsJourneyTest.java:155
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at LinkAuditColumnsJourneyTest.java:155
+
+LinkAuditColumnsJourneyTest > AC02_aCreateStampsTheNewLinkAndItsAuditRow() FAILED
+    org.opentest4j.AssertionFailedError at LinkAuditColumnsJourneyTest.java:77
+
+LinkAuditColumnsJourneyTest > AC10_theAuditColumnsHoldNoClientValue() FAILED
+    org.springframework.jdbc.BadSqlGrammarException at LinkAuditColumnsJourneyTest.java:202
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at LinkAuditColumnsJourneyTest.java:202
+
+LinkUpgradeJourneyTest > AC07_anExistingDatabaseUpgradesInPlace() FAILED
+    org.springframework.dao.EmptyResultDataAccessException at LinkUpgradeJourneyTest.java:69
+
+{"@timestamp":"2026-10-03T22:42:01.424070Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":38074,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:42:01.424712Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":38074,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:42:01.428453Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":38074,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-3 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:42:01.429050Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":38074,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-3 - Shutdown completed.","ecs":{"version":"8.11"}}
+
+> Task :functionalTest FAILED
+
+9 tests completed, 7 failed
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':functionalTest'.
+> There were failing tests. See the report at: file:///Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/04-audit-columns/build/reports/tests/functionalTest/index.html
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 11s
+6 actionable tasks: 2 executed, 4 up-to-date

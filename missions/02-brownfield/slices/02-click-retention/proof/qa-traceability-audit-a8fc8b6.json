@@ -1,0 +1,1276 @@
+{
+  "candidate": "a8fc8b6b67e3a3cbdaada43a3233191b6c7610e1",
+  "mappedMethods": 210,
+  "unitMethods": 97,
+  "functionalMethods": 113,
+  "functionalCoverageByAC": {
+    "1": [
+      "click.ClickRecordingJourneyTest#AC01_aRedirectRecordsExactlyOneClickWithItsTime",
+      "click.ClickRetentionJourneyTest#AC01_theBoundaryDayIsKeptAndTheDayBeforeItIsDeleted",
+      "click.ClickSchemaJourneyTest#everyUserAgentClassIsRecordedAfterThePoolRetiresItsConnections",
+      "link.LinkCreateJourneyTest#AC01_validUrlBecomesAShortLink",
+      "ping.PingJourneyTest#AC1_pingAnswersOkAsJson",
+      "web.RateLimitDefaultsTest#theShippedConfigurationCarriesTheDecidedBudgets",
+      "web.RateLimitDefaultsTest#theSettingsRecordDefaultsToTheSameBudgets",
+      "web.RateLimitJourneyTest#AC01_theCreateBudgetAdmits60AndRefusesThe61st"
+    ],
+    "2": [
+      "click.ClickRecordingJourneyTest#AC02_onlyARedirectIsAClick",
+      "click.ClickRetentionJourneyTest#AC02_theWindowMovesWithTheDay",
+      "link.LinkCreateJourneyTest#AC02_everyCreateWithoutAKeyIsANewLink",
+      "ping.PingJourneyTest#AC2_timeIsCurrentUtcInstant",
+      "web.RateLimitDefaultsTest#theShippedConfigurationCarriesTheDecidedBudgets",
+      "web.RateLimitDefaultsTest#theSettingsRecordDefaultsToTheSameBudgets",
+      "web.RateLimitJourneyTest#AC02_theRedirectBudgetAdmits600AndRefusesThe601st"
+    ],
+    "3": [
+      "click.ClickRecordingJourneyTest#AC03_theReferrerIsStoredAsItsOriginOnly",
+      "click.ClickRetentionSettingJourneyTest#AC03_thePeriodIsAnOperatorSetting",
+      "link.LinkCreateJourneyTest#AC03_shortUrlUsesTheShippedBaseNeverTheHostHeader",
+      "link.PublicBaseUrlJourneyTest#AC03_shortUrlUsesTheConfiguredBaseNeverTheHostHeader",
+      "ping.PingJourneyTest#AC3_everyResponseCarriesRequestId",
+      "web.RateLimitJourneyTest#AC03a_retryAfterIsTruthfulFromAnExactlyEmptyBucket",
+      "web.RateLimitJourneyTest#AC03b_retryAfterIsAnUpperBoundFromAPartlyRefilledBucket"
+    ],
+    "4": [
+      "click.ClickRecordingJourneyTest#AC04_theUserAgentIsStoredAsAClassOnly",
+      "click.ClickRetentionStartupJourneyTest#AC04_anInvalidPeriodStopsTheServiceFromStarting",
+      "click.ClickSchemaJourneyTest#everyUserAgentClassIsRecordedAfterThePoolRetiresItsConnections",
+      "link.LinkCreateJourneyTest#AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule",
+      "link.LinkCreateJourneyTest#AC04_aUrlOfExactly2048CharactersIsAccepted",
+      "ping.PingJourneyTest#AC4_requestIdsAreUniquePerRequest",
+      "web.RateLimitJourneyTest#AC04_aFullBudgetReturnsAfterAQuietMinute"
+    ],
+    "5": [
+      "click.ClickRecordingJourneyTest#AC05_theClientAddressIsStoredOnlyAsASaltedHashThatRotatesEveryUtcDay",
+      "click.ClickRetentionJourneyTest#AC05_statisticsCoverTheRetainedClicksOnly",
+      "link.LinkCreateJourneyTest#AC05_bodyThatIsNotAJsonObjectIsRefused",
+      "ping.PingJourneyTest#AC5_wrongMethodIsProblemDetailWithRequestId",
+      "web.RateLimitJourneyTest#AC05_theTwoBudgetsAreIndependent"
+    ],
+    "6": [
+      "click.ClickRecordingJourneyTest#AC06_forwardingHeadersDoNotChangeTheRecordedClient",
+      "click.ClickRetentionJourneyTest#AC06_linksRedirectsAndTheAuditTrailAreUntouched",
+      "link.LinkCreateJourneyTest#AC06_nonJsonContentTypeIsRefused",
+      "ping.PingJourneyTest#AC6_pingIsLoggedAsJsonWithRequestId",
+      "web.RateLimitJourneyTest#AC06_clientsAreIndependent"
+    ],
+    "7": [
+      "click.ClickRetentionStartupJourneyTest#AC07_aPurgeRunsAtStartup",
+      "click.StatsJourneyTest#AC07_aLinkWithNoClicksHasEmptyStatistics",
+      "link.LinkCreateJourneyTest#AC07_bodyIsRefusedAtTheSixteenKibLimit",
+      "ping.PingJourneyTest#AC7_logEventCarriesNoClientAddressOrUserAgent",
+      "web.RateLimitJourneyTest#AC07_aForgedForwardedAddressDoesNotChangeTheClient"
+    ],
+    "8": [
+      "click.ClickRetentionScheduleJourneyTest#AC08_aPurgeRunsEveryUtcDayWithoutAnOperator",
+      "click.StatsJourneyTest#AC08_totalClicksCountsEveryRedirect",
+      "link.LinkReadRetireJourneyTest#AC08_readingALinkReturnsItsDetails",
+      "ping.PingJourneyTest#AC8_clientSuppliedRequestIdIsIgnored",
+      "web.TrustedProxyJourneyTest#AC08_aTrustedProxysForwardedAddressIdentifiesTheClient"
+    ],
+    "9": [
+      "click.ClickRetentionJourneyTest#AC09_eachRunLogsOneInfoWithItsCountCutoffAndPeriodAndNoClickValue",
+      "click.StatsJourneyTest#AC09_clicksPerDayAreGroupedByUtcCalendarDay",
+      "link.LinkReadRetireJourneyTest#AC09_aRetiredLinkIsStillReadableWithItsState",
+      "web.RateLimitJourneyTest#AC09_everyRequestInABudgetCountsAndTheLimitIsCheckedFirst"
+    ],
+    "10": [
+      "click.ClickPurgeFailureJourneyTest#AC10_aFailedRunIsReportedAndLeavesTheServiceWorking",
+      "click.StatsJourneyTest#AC10_topReferrersAreRankedAndCapped",
+      "link.LinkReadRetireJourneyTest#AC10_retiringALinkIs204WithAnEmptyBody",
+      "web.RateLimitDefaultsTest#theShippedConfigurationCarriesTheDecidedBudgets",
+      "web.RateLimitDefaultsTest#theSettingsRecordDefaultsToTheSameBudgets",
+      "web.RateLimitSettingsJourneyTest#AC10_theBudgetsAreOperatorSettings"
+    ],
+    "11": [
+      "click.ClickRetentionJourneyTest#AC11_aRedirectWhileOldClicksAreBeingDeletedIsServedAndCounted",
+      "click.StatsJourneyTest#AC08_totalClicksCountsEveryRedirect",
+      "click.StatsJourneyTest#AC09_clicksPerDayAreGroupedByUtcCalendarDay",
+      "click.StatsJourneyTest#AC10_topReferrersAreRankedAndCapped",
+      "link.LinkReadRetireJourneyTest#AC11_retiringAnAlreadyRetiredLinkIs410AndNotASecondMutation",
+      "web.RateLimitJourneyTest#AC11_theTooManyRequestsProblemNamesNoClient",
+      "web.RateLimitJourneyTest#AC11_onTomcatThe429IsTheSameProblemMediaTypeAsEveryOtherError"
+    ],
+    "12": [
+      "click.ClickPurgeFailureJourneyTest#AC12_aClickThatCannotBeReducedIsOneWarnWithItsOwnReason",
+      "click.StatsJourneyTest#AC12_aRetiredLinksStatisticsAreStillReadable",
+      "link.RedirectJourneyTest#AC12_visitorIsRedirectedWithANonCacheable302",
+      "link.RedirectJourneyTest#rule7_queryStringOnTheShortLinkIsNotForwarded",
+      "web.RateLimitJourneyTest#AC12_eachRejectionIsLoggedOnceCorrelatedAndWithoutClientValues"
+    ],
+    "13": [
+      "click.ClickRetentionStartupJourneyTest#AC13_AC16_anExistingDataDirectoryUpgradesInPlace",
+      "click.StatsJourneyTest#AC13_statisticsOfAnUnknownCodeAndWrongMethodsAreProblemDetails",
+      "link.RedirectJourneyTest#AC13_aRetiredLinkTellsTheVisitorItIsGone",
+      "web.HealthMetricsJourneyTest#AC13_livenessAndReadinessAreUpWithAWorkingDatabase"
+    ],
+    "14": [
+      "HealthJourneyTest#healthEndpointReportsUp",
+      "audit.AuditJourneyTest#AC22_createWritesExactlyOneAuditRow",
+      "audit.AuditJourneyTest#AC23_retireWritesExactlyOneAuditRow",
+      "audit.AuditJourneyTest#AC24_aFailedAuditWriteRollsTheRetireBackAndFailsClosed",
+      "audit.AuditJourneyTest#AC25_auditRowsAreAppendOnlyUnderEveryOperation",
+      "click.ClickPurgeHoldJourneyTest#theSharedContextsHoldThePurge",
+      "click.ClickRecordingJourneyTest#AC01_aRedirectRecordsExactlyOneClickWithItsTime",
+      "click.ClickRecordingJourneyTest#AC02_onlyARedirectIsAClick",
+      "click.ClickRecordingJourneyTest#AC03_theReferrerIsStoredAsItsOriginOnly",
+      "click.ClickRecordingJourneyTest#AC04_theUserAgentIsStoredAsAClassOnly",
+      "click.ClickRecordingJourneyTest#AC05_theClientAddressIsStoredOnlyAsASaltedHashThatRotatesEveryUtcDay",
+      "click.ClickRecordingJourneyTest#AC06_forwardingHeadersDoNotChangeTheRecordedClient",
+      "click.ClickRecordingJourneyTest#AC17_theStatisticsExposeAggregatesOnly",
+      "click.ClickRecordingJourneyTest#AC18_noClickDataReachesTheLogs",
+      "click.ClickResilienceJourneyTest#AC14_aSlowClickStoreDoesNotSlowTheRedirect",
+      "click.ClickResilienceJourneyTest#AC15_AC19_aFailingClickStoreDoesNotFailTheRedirectAndTheLossIsOneCorrelatedWarn",
+      "click.ClickResilienceJourneyTest#AC16_concurrentRedirectsLoseNoClicksAndTheRequestIsNeverReadAfterItsResponse",
+      "click.ClickResilienceJourneyTest#AC18_AC19_onTomcatClickDataStaysOutOfTheLogsAndEveryEventIsCorrelated",
+      "click.ClickResilienceJourneyTest#AC22_headOnTheStatisticsPathHasNoBodyAndRecordsNothing",
+      "click.ClickSchemaJourneyTest#everyUserAgentClassIsRecordedAfterThePoolRetiresItsConnections",
+      "click.StatsJourneyTest#AC07_aLinkWithNoClicksHasEmptyStatistics",
+      "click.StatsJourneyTest#AC08_totalClicksCountsEveryRedirect",
+      "click.StatsJourneyTest#AC09_clicksPerDayAreGroupedByUtcCalendarDay",
+      "click.StatsJourneyTest#AC10_topReferrersAreRankedAndCapped",
+      "click.StatsJourneyTest#AC12_aRetiredLinksStatisticsAreStillReadable",
+      "click.StatsJourneyTest#AC13_statisticsOfAnUnknownCodeAndWrongMethodsAreProblemDetails",
+      "click.StatsJourneyTest#AC19_theStatisticsPathAndASettledRedirectAreCorrelated",
+      "click.StatsJourneyTest#AC20_redirectAndAuditBehaviourAreUnchanged",
+      "click.StatsJourneyTest#AC21_theLiveApiDocumentDescribesTheStatisticsEndpoint",
+      "click.StatsJourneyTest#AC22_headAndOptionsKeepTheFrameworkDefaultsAndRecordNothing",
+      "link.IdempotencyJourneyTest#AC17_aReplayReturnsTheFirstLink",
+      "link.IdempotencyJourneyTest#AC18_sameKeyWithADifferentUrlIsRefusedAndTheBindingSurvives",
+      "link.IdempotencyJourneyTest#AC19_aKeyIsHonouredFor24HoursAndNotLongerAndARejectionDoesNotExtendIt",
+      "link.IdempotencyJourneyTest#AC20_aMalformedKeyIsRefused",
+      "link.IdempotencyJourneyTest#AC20_aKeyOf255VisibleCharactersIsAccepted",
+      "link.IdempotencyJourneyTest#AC21_aRejectedCreateDoesNotConsumeTheKey",
+      "link.LinkCreateJourneyTest#AC01_validUrlBecomesAShortLink",
+      "link.LinkCreateJourneyTest#AC02_everyCreateWithoutAKeyIsANewLink",
+      "link.LinkCreateJourneyTest#AC03_shortUrlUsesTheShippedBaseNeverTheHostHeader",
+      "link.LinkCreateJourneyTest#AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule",
+      "link.LinkCreateJourneyTest#AC04_aUrlOfExactly2048CharactersIsAccepted",
+      "link.LinkCreateJourneyTest#AC05_bodyThatIsNotAJsonObjectIsRefused",
+      "link.LinkCreateJourneyTest#AC06_nonJsonContentTypeIsRefused",
+      "link.LinkCreateJourneyTest#AC07_bodyIsRefusedAtTheSixteenKibLimit",
+      "link.LinkCreateJourneyTest#AC16_redirectRouteDoesNotShadowTheExistingSurface",
+      "link.LinkReadRetireJourneyTest#AC08_readingALinkReturnsItsDetails",
+      "link.LinkReadRetireJourneyTest#AC09_aRetiredLinkIsStillReadableWithItsState",
+      "link.LinkReadRetireJourneyTest#AC10_retiringALinkIs204WithAnEmptyBody",
+      "link.LinkReadRetireJourneyTest#AC11_retiringAnAlreadyRetiredLinkIs410AndNotASecondMutation",
+      "link.LinkReadRetireJourneyTest#AC14_unknownCodeIs404OnEveryLinkOperation",
+      "link.LinkReadRetireJourneyTest#AC15_wrongMethodIs405",
+      "link.PublicBaseUrlJourneyTest#AC03_shortUrlUsesTheConfiguredBaseNeverTheHostHeader",
+      "link.RedirectJourneyTest#AC12_visitorIsRedirectedWithANonCacheable302",
+      "link.RedirectJourneyTest#AC13_aRetiredLinkTellsTheVisitorItIsGone",
+      "link.RedirectJourneyTest#rule7_queryStringOnTheShortLinkIsNotForwarded",
+      "ping.PingJourneyTest#AC1_pingAnswersOkAsJson",
+      "ping.PingJourneyTest#AC2_timeIsCurrentUtcInstant",
+      "ping.PingJourneyTest#AC3_everyResponseCarriesRequestId",
+      "ping.PingJourneyTest#AC4_requestIdsAreUniquePerRequest",
+      "ping.PingJourneyTest#AC5_wrongMethodIsProblemDetailWithRequestId",
+      "ping.PingJourneyTest#AC6_pingIsLoggedAsJsonWithRequestId",
+      "ping.PingJourneyTest#AC7_logEventCarriesNoClientAddressOrUserAgent",
+      "ping.PingJourneyTest#AC8_clientSuppliedRequestIdIsIgnored",
+      "web.ColdStartJourneyTest#AC26_theFirstRequestOnARealServerLogsOnlyItsOwnCorrelatedEvents",
+      "web.DatabaseDownJourneyTest#AC14_AC15_readinessFollowsTheDatabaseAndLivenessDoesNot",
+      "web.HealthMetricsJourneyTest#AC13_livenessAndReadinessAreUpWithAWorkingDatabase",
+      "web.HealthMetricsJourneyTest#AC15_healthBodiesDiscloseNothingAboutTheInstallation",
+      "web.HealthMetricsJourneyTest#AC18_redirectsAreCountedByRouteTemplate",
+      "web.ObservabilityJourneyTest#AC26_everyResponseCarriesARequestIdAndEveryEventOfTheRequestTheSameId",
+      "web.ObservabilityJourneyTest#AC27_noClientControlledValueReachesTheLogs",
+      "web.ObservabilityJourneyTest#AC27_aDatabaseFailureQuotingTheKeyLogsOnlyClassNames",
+      "web.ObservabilityJourneyTest#rule8_problemBodiesAndLogsNeverEchoASubmittedValue",
+      "web.OpenApiDocumentTest#NFRM3_committedDocumentEqualsTheLiveOne",
+      "web.OpenApiDocumentTest#AC28_liveDocumentDescribesTheSlice",
+      "web.OpenApiDocumentTest#AC20_everyOperationDocumentsTheTooManyRequestsProblem",
+      "web.RateLimitDefaultsTest#theShippedConfigurationCarriesTheDecidedBudgets",
+      "web.RateLimitDefaultsTest#theSettingsRecordDefaultsToTheSameBudgets",
+      "web.RateLimitJourneyTest#AC01_theCreateBudgetAdmits60AndRefusesThe61st",
+      "web.RateLimitJourneyTest#AC02_theRedirectBudgetAdmits600AndRefusesThe601st",
+      "web.RateLimitJourneyTest#AC03a_retryAfterIsTruthfulFromAnExactlyEmptyBucket",
+      "web.RateLimitJourneyTest#AC03b_retryAfterIsAnUpperBoundFromAPartlyRefilledBucket",
+      "web.RateLimitJourneyTest#AC04_aFullBudgetReturnsAfterAQuietMinute",
+      "web.RateLimitJourneyTest#AC05_theTwoBudgetsAreIndependent",
+      "web.RateLimitJourneyTest#AC06_clientsAreIndependent",
+      "web.RateLimitJourneyTest#AC07_aForgedForwardedAddressDoesNotChangeTheClient",
+      "web.RateLimitJourneyTest#AC09_everyRequestInABudgetCountsAndTheLimitIsCheckedFirst",
+      "web.RateLimitJourneyTest#AC11_theTooManyRequestsProblemNamesNoClient",
+      "web.RateLimitJourneyTest#AC12_eachRejectionIsLoggedOnceCorrelatedAndWithoutClientValues",
+      "web.RateLimitJourneyTest#rule1_percentEncodingDoesNotMoveARequestToTheLargerBudget",
+      "web.RateLimitJourneyTest#rule1_operatorSurfacesAreNeverLimited",
+      "web.RateLimitJourneyTest#rule1_aDotDotSegmentUnderAnExemptPrefixReachesNoLimitedOperation",
+      "web.RateLimitJourneyTest#AC16_theMetricsSurfaceListsTheFourKindsOfMetric",
+      "web.RateLimitJourneyTest#AC17_everyRejectionIsCountedOnceByBudget",
+      "web.RateLimitJourneyTest#AC19_metricsAreExposedForScrapingWithoutClientOrLinkValues",
+      "web.RateLimitJourneyTest#designDR01_anInvalidPathUnderAnExemptPrefixLogsNoSubmittedValueOnTomcat",
+      "web.RateLimitJourneyTest#AC11_onTomcatThe429IsTheSameProblemMediaTypeAsEveryOtherError",
+      "web.RateLimitSettingsJourneyTest#AC10_theBudgetsAreOperatorSettings",
+      "web.ShutdownPhaseDefaultTest#theShippedGracefulShutdownPhaseIsTenSeconds",
+      "web.TrustedProxyJourneyTest#AC08_aTrustedProxysForwardedAddressIdentifiesTheClient"
+    ],
+    "15": [
+      "click.ClickPurgeHoldJourneyTest#theSharedContextsHoldThePurge",
+      "click.ClickResilienceJourneyTest#AC15_AC19_aFailingClickStoreDoesNotFailTheRedirectAndTheLossIsOneCorrelatedWarn",
+      "click.ClickRetentionStartupJourneyTest#AC15_aPausedPurgeDeletesNothingAndSaysSoAtEveryStart",
+      "link.LinkReadRetireJourneyTest#AC15_wrongMethodIs405",
+      "web.DatabaseDownJourneyTest#AC14_AC15_readinessFollowsTheDatabaseAndLivenessDoesNot",
+      "web.HealthMetricsJourneyTest#AC15_healthBodiesDiscloseNothingAboutTheInstallation"
+    ],
+    "16": [
+      "click.ClickResilienceJourneyTest#AC16_concurrentRedirectsLoseNoClicksAndTheRequestIsNeverReadAfterItsResponse",
+      "click.ClickRetentionStartupJourneyTest#AC13_AC16_anExistingDataDirectoryUpgradesInPlace",
+      "link.LinkCreateJourneyTest#AC16_redirectRouteDoesNotShadowTheExistingSurface",
+      "web.RateLimitJourneyTest#AC16_theMetricsSurfaceListsTheFourKindsOfMetric"
+    ]
+  },
+  "methods": [
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-4 startup prerequisite; coverage gate (baseline)",
+      "test": "UrlshortApplicationTests#contextLoads",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-4 startup prerequisite; coverage gate (baseline main entry point)",
+      "test": "UrlshortApplicationTests#mainBootsWithoutAWebServer",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-9; AC-22, AC-23, AC-25; NFR-A1, NFR-A2",
+      "test": "audit.AuditLogTest#theWriterOffersOnlyAppendAndItsOnlyStatementIsAnInsert",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-9; AC-22, AC-23, AC-25; NFR-A1, NFR-A2",
+      "test": "audit.AuditLogTest#appendWritesOneRowWithServerOwnedValues",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-13, AC-16; NFR-X2, FR-13, audit-column policy",
+      "test": "click.ClickAuditColumnsTest#theClickTablesGainFilledAuditColumnsAndKeepEveryV1ColumnAndConstraint",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-1, AC-9; BR-2, BR-6; NFR-P2/O2",
+      "test": "click.ClickPurgeTest#aRunDeletesBeforeTheEarliestKeptDayAndLogsOneInfo",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-3; BR-1, BR-2; NFR-P2",
+      "test": "click.ClickPurgeTest#theCutoffFollowsThePeriod",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-8; BR-3; NFR-P2",
+      "test": "click.ClickPurgeTest#theTickRunsOnceADayFromTenPastMidnight",
+      "suite": "unit"
+    },
+    {
+      "requirement": "BR-3; NFR-P2; backward-clock rule",
+      "test": "click.ClickPurgeTest#aClockThatStepsBackRunsNothing",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-10; BR-3, BR-6; NFR-P2/O2",
+      "test": "click.ClickPurgeTest#aFailedRunIsOneWarnWithTheClassOnlyAndIsNotRetriedBeforeTheNextDay",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-7; BR-3, BR-5; NFR-P2",
+      "test": "click.ClickPurgeTest#startRunsOnThePurgeThreadAndReturnsAfterTheRun",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-1, AC-2; BR-3, BR-5; NFR-P2",
+      "test": "click.ClickPurgeTest#runNowRunsOnThePurgeThread",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-15; BR-3, BR-6; NFR-P2",
+      "test": "click.ClickPurgeTest#onHoldStartDeletesNothingAndSaysSoOnce",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting",
+      "test": "click.ClickRecorderTest#aHeadRequestIsNotAClick",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting",
+      "test": "click.ClickRecorderTest#aRedirectIsStoredAsItsReducedFactsOnly",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting",
+      "test": "click.ClickRecorderTest#aFailedWriteIsOneWarnWithTheRequestIdAndNoClickValue",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting",
+      "test": "click.ClickRecorderTest#aClickThatCannotBeQueuedIsOneWarnAndTheRedirectGoesOn",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-12; BR-7; FR-15, NFR-O1/O2",
+      "test": "click.ClickRecorderTest#aClickThatCannotBeReducedIsOneWarn",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting",
+      "test": "click.ClickRecorderTest#aFastStoreIsDrainedOnCloseAndNothingIsReported",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting",
+      "test": "click.ClickRecorderTest#aStuckWriteIsBoundedAndEveryUnwrittenClickIsReportedOnceBeforeCloseReturns",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting",
+      "test": "click.ClickRecorderTest#aClaimedClickIsNeverWrittenWhenTheWriterReachesItLater",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting",
+      "test": "click.ClickRecorderTest#aWriteThatFailsAfterShutdownClaimedItIsNotReportedAgain",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting",
+      "test": "click.ClickRecorderTest#aWriteThatCompletesAfterShutdownClaimedItIsNotReportedAgain",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-1, AC-4; BR-2, BR-4; NFR-P1; migration constraints after DDL connection retirement",
+      "test": "click.ClickSchemaTest#theClickConstraintsStillWorkAfterTheDdlConnectionIsRetired",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-3, AC-4; BR-2, BR-3, BR-4; FR-7, NFR-P1",
+      "test": "click.ClickTest#theReferrerIsReducedToItsOrigin",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-3, AC-4; BR-2, BR-3, BR-4; FR-7, NFR-P1",
+      "test": "click.ClickTest#aReferrerThatIsNotAnHttpOriginIsNone",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-3, AC-4; BR-2, BR-3, BR-4; FR-7, NFR-P1",
+      "test": "click.ClickTest#theReferrerLengthCapIs2048",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-3, AC-4; BR-2, BR-3, BR-4; FR-7, NFR-P1",
+      "test": "click.ClickTest#theUserAgentIsReducedToAClass",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-3, AC-4; BR-2, BR-3, BR-4; FR-7, NFR-P1",
+      "test": "click.ClickTest#anAbsentOrEmptyUserAgentIsUnknown",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-3, AC-4; BR-2, BR-3, BR-4; FR-7, NFR-P1",
+      "test": "click.ClickTest#rule2_aClickHoldsOnlyTheReducedFacts",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-5; BR-4; NFR-P1; salt lifetime and midnight ownership",
+      "test": "click.DailySaltTest#sameAddressAndDayHashEquallyAndTheStampCarriesTheClocksInstant",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-5; BR-4; NFR-P1; salt lifetime and midnight ownership",
+      "test": "click.DailySaltTest#anotherAddressOrAnotherDayHashesDifferently",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-5; BR-4; NFR-P1; salt lifetime and midnight ownership",
+      "test": "click.DailySaltTest#theHashIsNeverTheUnsaltedDigest",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-5; BR-4; NFR-P1; salt lifetime and midnight ownership",
+      "test": "click.DailySaltTest#aSelectionMadeBeforeMidnightKeepsItsDayAndNeverReplacesTheNextDaysSalt",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-5; BR-4; NFR-P1; salt lifetime and midnight ownership",
+      "test": "click.DailySaltTest#aStaleExpiryIsANoOpAndTheCurrentDaysExpiryDropsTheSalt",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-5; BR-4; NFR-P1; salt lifetime and midnight ownership",
+      "test": "click.DailySaltTest#closeDropsTheSalt",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-5; BR-4; NFR-P1; salt lifetime and midnight ownership",
+      "test": "click.DailySaltTest#aSaltIsDroppedAtTheEndOfItsDayWithoutAnyFurtherClick",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-7, AC-9, AC-10, AC-11; BR-3, BR-7; FR-8",
+      "test": "click.LinkStatsTest#noRowsIsZeroAndTwoEmptyLists",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-7, AC-9, AC-10, AC-11; BR-3, BR-7; FR-8",
+      "test": "click.LinkStatsTest#daysAreSummedAscendingAndClicksWithoutAReferrerCountOnlyInTheTotals",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-7, AC-9, AC-10, AC-11; BR-3, BR-7; FR-8",
+      "test": "click.LinkStatsTest#referrersAreRankedByClicksThenByCodePointAndCappedAtTen",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1",
+      "test": "link.LinkServiceTest#createWithoutAKeyInsertsAndAuditsTheNewLink",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1",
+      "test": "link.LinkServiceTest#createWithAnUnboundKeyBindsIt",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1",
+      "test": "link.LinkServiceTest#replayWithinTheWindowReturnsTheBoundLinkAndWritesNothing",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1",
+      "test": "link.LinkServiceTest#mismatchWithinTheWindowIs422AndKeepsTheBinding",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1",
+      "test": "link.LinkServiceTest#anExpiredKeyIsReleasedAndBindsANewLink",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1",
+      "test": "link.LinkServiceTest#readOfAnUnknownCodeIs404",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1",
+      "test": "link.LinkServiceTest#resolveSendsVisitorsToActiveLinksOnly",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1",
+      "test": "link.LinkServiceTest#retireUpdatesConditionallyAndAuditsBeforeAndAfter",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1",
+      "test": "link.LinkServiceTest#retireThatChangesNoRowIs410AndWritesNoAuditRow",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-6; FR-4",
+      "test": "link.LinkTest#stateIsActiveUntilRetiredAtIsSet",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-3, BR-5, BR-8; AC-4, AC-20; FR-5, NFR-S1",
+      "test": "link.LinkValidationTest#eachRejectedUrlFailsExactlyItsRule",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-3, BR-5, BR-8; AC-4, AC-20; FR-5, NFR-S1",
+      "test": "link.LinkValidationTest#validUrlsPass",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-3, BR-5, BR-8; AC-4, AC-20; FR-5, NFR-S1",
+      "test": "link.LinkValidationTest#exactly2048CharactersIsAccepted",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-3, BR-5, BR-8; AC-4, AC-20; FR-5, NFR-S1",
+      "test": "link.LinkValidationTest#malformedKeysFailFormat",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-3, BR-5, BR-8; AC-4, AC-20; FR-5, NFR-S1",
+      "test": "link.LinkValidationTest#keysLongerThan255FailFormat",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-3, BR-5, BR-8; AC-4, AC-20; FR-5, NFR-S1",
+      "test": "link.LinkValidationTest#absentOrVisibleAsciiKeysPass",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-1; FR-1",
+      "test": "link.ShortCodesTest#codesAreEightCharactersFromTheAlphanumericAlphabet",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-1; FR-1",
+      "test": "link.ShortCodesTest#aDrawThatSpellsAReservedSegmentIsDrawnAgain",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-1, AC-2; BR-4, BR-5, BR-6",
+      "test": "ping.PingControllerTest#answersOkWithTheCurrentUtcInstant",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-8, BR-10; AC-5, AC-7, AC-24, AC-26, AC-27; NFR-R6",
+      "test": "web.ProblemDetailsAdviceTest#unwrapsABodyLimitErrorRaisedInsideTheJsonReaderTo413",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-8, BR-10; AC-5, AC-7, AC-24, AC-26, AC-27; NFR-R6",
+      "test": "web.ProblemDetailsAdviceTest#unreadableBodyWithoutALimitErrorStays400WithoutTheFrameworkDetail",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-8, BR-10; AC-5, AC-7, AC-24, AC-26, AC-27; NFR-R6",
+      "test": "web.ProblemDetailsAdviceTest#frameworkDetailThatEchoesClientInputIsCleared",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-8, BR-10; AC-5, AC-7, AC-24, AC-26, AC-27; NFR-R6",
+      "test": "web.ProblemDetailsAdviceTest#domainProblemKeepsItsErrorsAndGetsTheRequestIdAsInstance",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-8, BR-10; AC-5, AC-7, AC-24, AC-26, AC-27; NFR-R6",
+      "test": "web.ProblemDetailsAdviceTest#unhandledExceptionIsABare500AndOneMessageFreeEvent",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-8, BR-10; AC-5, AC-7, AC-24, AC-26, AC-27; NFR-R6",
+      "test": "web.ProblemDetailsAdviceTest#errorOriginIsNoneWhenNoFrameIsOurs",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-8, BR-10; AC-5, AC-7, AC-24, AC-26, AC-27; NFR-R6",
+      "test": "web.ProblemDetailsAdviceTest#aNonProblemBodyPassesThroughUntouched",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-8; AC-4, AC-14, AC-18, AC-20; FR-5, FR-6, FR-9",
+      "test": "web.ProblemsTest#validationIs400WithExactlyOneFieldError",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-8; AC-4, AC-14, AC-18, AC-20; FR-5, FR-6, FR-9",
+      "test": "web.ProblemsTest#notFoundAndGoneAreBareProblems",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-8; AC-4, AC-14, AC-18, AC-20; FR-5, FR-6, FR-9",
+      "test": "web.ProblemsTest#idempotencyMismatchIs422NamingTheHeaderAndRule",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-1; request classification/exemptions; NFR-R2",
+      "test": "web.RateLimitFilterTest#rule1_limitedRequestsAreChargedToTheirBudget",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-1; request classification/exemptions; NFR-R2",
+      "test": "web.RateLimitFilterTest#rule1_operatorSurfacesAreNeitherChargedNorLimited",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-7, AC-8; BR-5; NFR-R2",
+      "test": "web.RateLimitFilterTest#rule5_theClientIsThePeerOrTheRightMostUntrustedForwardedHop",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-7, AC-8; BR-5; NFR-R2",
+      "test": "web.RateLimitFilterTest#rule5_anAbsentOrEmptyHeaderFromATrustedProxyChargesTheProxy",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-7, AC-8; BR-5; NFR-R2",
+      "test": "web.RateLimitFilterTest#theFilterReadsOnlyXForwardedForAndOnlyFromATrustedPeer",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-11; BR-3, BR-4, BR-6; FR-10, NFR-R2, NFR-P1",
+      "test": "web.RateLimitFilterTest#anEmptyBucketIsA429ProblemWithRetryAfterAndNoChain",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-17; BR-6, BR-10; FR-10, NFR-O3",
+      "test": "web.RateLimitFilterTest#eachRejectionIsCountedOnceUnderItsBudgetOnly",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-3; BR-2, BR-3, BR-4; FR-10, NFR-R2",
+      "test": "web.RateLimiterTest#AC03a_anExactlyEmptyBucketRefillsOneTokenAfterExactlyOneSecond",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-3; BR-2, BR-3, BR-4; FR-10, NFR-R2",
+      "test": "web.RateLimiterTest#AC03b_retryAfterIsRoundedUpAndHonoured",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-4; BR-2; NFR-R2",
+      "test": "web.RateLimiterTest#AC04_aQuietMinuteRefillsTheWholeBucket",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-3, AC-9; BR-2, BR-3; FR-10, NFR-R2",
+      "test": "web.RateLimiterTest#refusalsTakeNothing",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-5, AC-6; BR-1, BR-2; NFR-R2",
+      "test": "web.RateLimiterTest#budgetsAndClientsAreIndependent",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-3; BR-4; FR-10, NFR-R2",
+      "test": "web.RateLimiterTest#retryAfterIsTheWaitForOneTokenInWholeSeconds",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-1, AC-3; BR-2, BR-3, BR-4; FR-10, NFR-R2; CR-01/SEC-01 ordering regression",
+      "test": "web.RateLimiterTest#aRequestOvertakenByNewerOnesDecidesOnTheTimeItReachesTheBucket",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-2; NFR-R2; disclosed fail-closed backward-clock limit, lead transition 726",
+      "test": "web.RateLimiterTest#afterABackwardClockStepTheBucketRefillsFromItsStoredTat",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-8; non-functional limiter memory bound; NFR-R2",
+      "test": "web.RateLimiterTest#fullBucketsAreReleasedByTheNextRequestButNotWhileIdle",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-2, BR-8; non-functional limiter memory bound; NFR-R2",
+      "test": "web.RateLimiterTest#aBucketThatIsNotYetFullSurvivesTheRelease",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-8; non-functional limiter memory bound; NFR-R2",
+      "test": "web.RateLimiterTest#theReleaseRunsAtMostOncePerSecond",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-8; NFR-R2; CR-03 rollback cleanup regression",
+      "test": "web.RateLimiterTest#theReleaseResumesAfterABackwardClockStep",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-7; NFR-S3; body-limit stream mechanics",
+      "test": "web.RequestBodyLimitFilterTest#aBodyOfExactlyTheLimitIsReadInFull",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-7; NFR-S3; body-limit stream mechanics",
+      "test": "web.RequestBodyLimitFilterTest#theFirstByteOverTheLimitIs413OnTheBulkReadPath",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-7; NFR-S3; body-limit stream mechanics",
+      "test": "web.RequestBodyLimitFilterTest#singleByteReadsCountTooAndEndOfStreamIsPassedThrough",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-7; NFR-S3; body-limit stream mechanics",
+      "test": "web.RequestBodyLimitFilterTest#theWrappedStreamIsCreatedOnceSoTheCountCannotBeReset",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-7; NFR-S3; body-limit stream mechanics",
+      "test": "web.RequestBodyLimitFilterTest#servletStreamStateAndListenerDelegateToTheContainerStream",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-3, AC-6; BR-2, BR-3, BR-8 (MDC lifecycle)",
+      "test": "web.RequestIdFilterTest#issuesOneIdOnHeaderAndMdcBeforeTheChainRunsAndClearsMdcAfter",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-4, AC-8; BR-1, BR-2",
+      "test": "web.RequestIdFilterTest#ignoresInboundRequestIdAndIssuesADifferentIdPerRequest",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-10; AC-26, AC-27; NFR-O1, NFR-O2",
+      "test": "web.RequestIdFilterTest#writesOneRequestCompletedEventWithTheStatusAndTheIdButNotTheMethod",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-1, BR-8 (request context isolated after failure)",
+      "test": "web.RequestIdFilterTest#clearsMdcWhenTheChainThrows",
+      "suite": "unit"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-4 (baseline health responsibility)",
+      "test": "HealthJourneyTest#healthEndpointReportsUp",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-22; NFR-A1; BR-9, BR-12",
+      "test": "audit.AuditJourneyTest#AC22_createWritesExactlyOneAuditRow",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-23; NFR-A1; BR-6, BR-9, BR-12",
+      "test": "audit.AuditJourneyTest#AC23_retireWritesExactlyOneAuditRow",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-24; NFR-A1, NFR-R6; BR-6, BR-8, BR-9, BR-10",
+      "test": "audit.AuditJourneyTest#AC24_aFailedAuditWriteRollsTheRetireBackAndFailsClosed",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-25; NFR-A2; BR-9",
+      "test": "audit.AuditJourneyTest#AC25_auditRowsAreAppendOnlyUnderEveryOperation",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-10 / NFR-P2, NFR-O2; BR-3, BR-6",
+      "test": "click.ClickPurgeFailureJourneyTest#AC10_aFailedRunIsReportedAndLeavesTheServiceWorking",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-12 / FR-15, NFR-O1/O2; BR-7",
+      "test": "click.ClickPurgeFailureJourneyTest#AC12_aClickThatCannotBeReducedIsOneWarnWithItsOwnReason",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14, AC-15; BR-3; FR-13, NFR-P2",
+      "test": "click.ClickPurgeHoldJourneyTest#theSharedContextsHoldThePurge",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-1; BR-1, BR-2, BR-6; FR-7",
+      "test": "click.ClickRecordingJourneyTest#AC01_aRedirectRecordsExactlyOneClickWithItsTime",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-2; BR-1; FR-7",
+      "test": "click.ClickRecordingJourneyTest#AC02_onlyARedirectIsAClick",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-3; BR-2, BR-3; FR-7, NFR-P1",
+      "test": "click.ClickRecordingJourneyTest#AC03_theReferrerIsStoredAsItsOriginOnly",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-4; BR-2, BR-4; FR-7, NFR-P1",
+      "test": "click.ClickRecordingJourneyTest#AC04_theUserAgentIsStoredAsAClassOnly",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-5; BR-2, BR-4; FR-7, NFR-P1",
+      "test": "click.ClickRecordingJourneyTest#AC05_theClientAddressIsStoredOnlyAsASaltedHashThatRotatesEveryUtcDay",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-6; BR-4; FR-7, NFR-P1",
+      "test": "click.ClickRecordingJourneyTest#AC06_forwardingHeadersDoNotChangeTheRecordedClient",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-17; BR-2, BR-7; NFR-P1",
+      "test": "click.ClickRecordingJourneyTest#AC17_theStatisticsExposeAggregatesOnly",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-18; BR-9; NFR-O2, NFR-P1",
+      "test": "click.ClickRecordingJourneyTest#AC18_noClickDataReachesTheLogs",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-14; BR-5; FR-7, NFR-L3",
+      "test": "click.ClickResilienceJourneyTest#AC14_aSlowClickStoreDoesNotSlowTheRedirect",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-15; BR-5, BR-9; FR-7, NFR-L3",
+      "test": "click.ClickResilienceJourneyTest#AC15_AC19_aFailingClickStoreDoesNotFailTheRedirectAndTheLossIsOneCorrelatedWarn",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-16; BR-1, BR-2, BR-6; FR-7",
+      "test": "click.ClickResilienceJourneyTest#AC16_concurrentRedirectsLoseNoClicksAndTheRequestIsNeverReadAfterItsResponse",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-18; BR-9; NFR-O2, NFR-P1",
+      "test": "click.ClickResilienceJourneyTest#AC18_AC19_onTomcatClickDataStaysOutOfTheLogsAndEveryEventIsCorrelated",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-22; BR-1, BR-7; FR-8",
+      "test": "click.ClickResilienceJourneyTest#AC22_headOnTheStatisticsPathHasNoBodyAndRecordsNothing",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-1 / NFR-P2; BR-2",
+      "test": "click.ClickRetentionJourneyTest#AC01_theBoundaryDayIsKeptAndTheDayBeforeItIsDeleted",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-2 / NFR-P2; BR-2",
+      "test": "click.ClickRetentionJourneyTest#AC02_theWindowMovesWithTheDay",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-5 / FR-13, NFR-P2; BR-4",
+      "test": "click.ClickRetentionJourneyTest#AC05_statisticsCoverTheRetainedClicksOnly",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-6 / FR-13; BR-4",
+      "test": "click.ClickRetentionJourneyTest#AC06_linksRedirectsAndTheAuditTrailAreUntouched",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-9 / NFR-P2, NFR-O2; BR-6",
+      "test": "click.ClickRetentionJourneyTest#AC09_eachRunLogsOneInfoWithItsCountCutoffAndPeriodAndNoClickValue",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-11 / FR-13; BR-5",
+      "test": "click.ClickRetentionJourneyTest#AC11_aRedirectWhileOldClicksAreBeingDeletedIsServedAndCounted",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-8 / NFR-P2; BR-3",
+      "test": "click.ClickRetentionScheduleJourneyTest#AC08_aPurgeRunsEveryUtcDayWithoutAnOperator",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-3 / NFR-P2; BR-1, BR-2",
+      "test": "click.ClickRetentionSettingJourneyTest#AC03_thePeriodIsAnOperatorSetting",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-4 / NFR-P2; BR-1",
+      "test": "click.ClickRetentionStartupJourneyTest#AC04_anInvalidPeriodStopsTheServiceFromStarting",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-7 / NFR-P2; BR-3",
+      "test": "click.ClickRetentionStartupJourneyTest#AC07_aPurgeRunsAtStartup",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-13 / FR-13, NFR-X2, audit-column policy; BR-4; AC-16 / NFR-X2, audit-column policy",
+      "test": "click.ClickRetentionStartupJourneyTest#AC13_AC16_anExistingDataDirectoryUpgradesInPlace",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-15 / NFR-P2; BR-3, BR-6",
+      "test": "click.ClickRetentionStartupJourneyTest#AC15_aPausedPurgeDeletesNothingAndSaysSoAtEveryStart",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-1, AC-4; BR-2, BR-4; FR-7, NFR-P1; pooled-connection retirement smoke",
+      "test": "click.ClickSchemaJourneyTest#everyUserAgentClassIsRecordedAfterThePoolRetiresItsConnections",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-7; BR-7; FR-8",
+      "test": "click.StatsJourneyTest#AC07_aLinkWithNoClicksHasEmptyStatistics",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-8, AC-11; BR-1, BR-7; FR-8",
+      "test": "click.StatsJourneyTest#AC08_totalClicksCountsEveryRedirect",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-9, AC-11; BR-2, BR-7; FR-8",
+      "test": "click.StatsJourneyTest#AC09_clicksPerDayAreGroupedByUtcCalendarDay",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-10, AC-11; BR-3, BR-7; FR-8",
+      "test": "click.StatsJourneyTest#AC10_topReferrersAreRankedAndCapped",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-12; BR-1, BR-7, BR-8; FR-8",
+      "test": "click.StatsJourneyTest#AC12_aRetiredLinksStatisticsAreStillReadable",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-13; BR-7, BR-9; FR-8",
+      "test": "click.StatsJourneyTest#AC13_statisticsOfAnUnknownCodeAndWrongMethodsAreProblemDetails",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-19; BR-9; NFR-O1, NFR-O2",
+      "test": "click.StatsJourneyTest#AC19_theStatisticsPathAndASettledRedirectAreCorrelated",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-20; BR-8; FR-2, FR-4, FR-6, NFR-A1 regression",
+      "test": "click.StatsJourneyTest#AC20_redirectAndAuditBehaviourAreUnchanged",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-21; BR-7; NFR-M3",
+      "test": "click.StatsJourneyTest#AC21_theLiveApiDocumentDescribesTheStatisticsEndpoint",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-22; BR-1, BR-7; FR-8",
+      "test": "click.StatsJourneyTest#AC22_headAndOptionsKeepTheFrameworkDefaultsAndRecordNothing",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-17; FR-9; BR-5, BR-9",
+      "test": "link.IdempotencyJourneyTest#AC17_aReplayReturnsTheFirstLink",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-18; FR-9, NFR-R5; BR-5, BR-8, BR-9",
+      "test": "link.IdempotencyJourneyTest#AC18_sameKeyWithADifferentUrlIsRefusedAndTheBindingSurvives",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-19; NFR-R5; BR-5",
+      "test": "link.IdempotencyJourneyTest#AC19_aKeyIsHonouredFor24HoursAndNotLongerAndARejectionDoesNotExtendIt",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-20; FR-9, FR-5; BR-5, BR-8",
+      "test": "link.IdempotencyJourneyTest#AC20_aMalformedKeyIsRefused",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-20; FR-9, FR-5; BR-5, BR-8",
+      "test": "link.IdempotencyJourneyTest#AC20_aKeyOf255VisibleCharactersIsAccepted",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-21; FR-9; BR-5",
+      "test": "link.IdempotencyJourneyTest#AC21_aRejectedCreateDoesNotConsumeTheKey",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-1; FR-1; BR-1, BR-2, BR-11, BR-12",
+      "test": "link.LinkCreateJourneyTest#AC01_validUrlBecomesAShortLink",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-2; FR-1; BR-1, BR-4",
+      "test": "link.LinkCreateJourneyTest#AC02_everyCreateWithoutAKeyIsANewLink",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-3; FR-1, NFR-S4; BR-11",
+      "test": "link.LinkCreateJourneyTest#AC03_shortUrlUsesTheShippedBaseNeverTheHostHeader",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-4; FR-5, NFR-S1; BR-3, BR-8",
+      "test": "link.LinkCreateJourneyTest#AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-4; FR-5, NFR-S1; BR-3, BR-8",
+      "test": "link.LinkCreateJourneyTest#AC04_aUrlOfExactly2048CharactersIsAccepted",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-5; FR-5; BR-8",
+      "test": "link.LinkCreateJourneyTest#AC05_bodyThatIsNotAJsonObjectIsRefused",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-6; FR-5, NFR-S3; BR-8",
+      "test": "link.LinkCreateJourneyTest#AC06_nonJsonContentTypeIsRefused",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-7; NFR-S3; BR-8",
+      "test": "link.LinkCreateJourneyTest#AC07_bodyIsRefusedAtTheSixteenKibLimit",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-16; FR-6 (surface regression); BR-1",
+      "test": "link.LinkCreateJourneyTest#AC16_redirectRouteDoesNotShadowTheExistingSurface",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-8; FR-3; BR-2, BR-6, BR-11, BR-12",
+      "test": "link.LinkReadRetireJourneyTest#AC08_readingALinkReturnsItsDetails",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-9; FR-3, FR-4; BR-6",
+      "test": "link.LinkReadRetireJourneyTest#AC09_aRetiredLinkIsStillReadableWithItsState",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-10; FR-4; BR-6, BR-9",
+      "test": "link.LinkReadRetireJourneyTest#AC10_retiringALinkIs204WithAnEmptyBody",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-11; FR-4; BR-6, BR-9",
+      "test": "link.LinkReadRetireJourneyTest#AC11_retiringAnAlreadyRetiredLinkIs410AndNotASecondMutation",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-14; FR-6; BR-8",
+      "test": "link.LinkReadRetireJourneyTest#AC14_unknownCodeIs404OnEveryLinkOperation",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-15; FR-6; BR-8",
+      "test": "link.LinkReadRetireJourneyTest#AC15_wrongMethodIs405",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-3; FR-1, NFR-S4; BR-11",
+      "test": "link.PublicBaseUrlJourneyTest#AC03_shortUrlUsesTheConfiguredBaseNeverTheHostHeader",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-12; FR-2; BR-2, BR-7",
+      "test": "link.RedirectJourneyTest#AC12_visitorIsRedirectedWithANonCacheable302",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-13; FR-4; BR-6, BR-8",
+      "test": "link.RedirectJourneyTest#AC13_aRetiredLinkTellsTheVisitorItIsGone",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-7; AC-12; FR-2",
+      "test": "link.RedirectJourneyTest#rule7_queryStringOnTheShortLinkIsNotForwarded",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-1; BR-4, BR-6",
+      "test": "ping.PingJourneyTest#AC1_pingAnswersOkAsJson",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-2; BR-5",
+      "test": "ping.PingJourneyTest#AC2_timeIsCurrentUtcInstant",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-3; BR-2, BR-3",
+      "test": "ping.PingJourneyTest#AC3_everyResponseCarriesRequestId",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-4; BR-2",
+      "test": "ping.PingJourneyTest#AC4_requestIdsAreUniquePerRequest",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-5; BR-3, BR-7",
+      "test": "ping.PingJourneyTest#AC5_wrongMethodIsProblemDetailWithRequestId",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-6; BR-8",
+      "test": "ping.PingJourneyTest#AC6_pingIsLoggedAsJsonWithRequestId",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-7; BR-1, logging obligation",
+      "test": "ping.PingJourneyTest#AC7_logEventCarriesNoClientAddressOrUserAgent",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-8; BR-1",
+      "test": "ping.PingJourneyTest#AC8_clientSuppliedRequestIdIsIgnored",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-26; NFR-O1, NFR-O2; BR-10",
+      "test": "web.ColdStartJourneyTest#AC26_theFirstRequestOnARealServerLogsOnlyItsOwnCorrelatedEvents",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-14, AC-15; BR-9; NFR-R1",
+      "test": "web.DatabaseDownJourneyTest#AC14_AC15_readinessFollowsTheDatabaseAndLivenessDoesNot",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-13; BR-9; NFR-R1",
+      "test": "web.HealthMetricsJourneyTest#AC13_livenessAndReadinessAreUpWithAWorkingDatabase",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-15; BR-9; NFR-R1",
+      "test": "web.HealthMetricsJourneyTest#AC15_healthBodiesDiscloseNothingAboutTheInstallation",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-18; BR-10; NFR-O3",
+      "test": "web.HealthMetricsJourneyTest#AC18_redirectsAreCountedByRouteTemplate",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-26; NFR-O1, NFR-O2; BR-10",
+      "test": "web.ObservabilityJourneyTest#AC26_everyResponseCarriesARequestIdAndEveryEventOfTheRequestTheSameId",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-27; NFR-O2; BR-10",
+      "test": "web.ObservabilityJourneyTest#AC27_noClientControlledValueReachesTheLogs",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-27; NFR-O2; BR-10",
+      "test": "web.ObservabilityJourneyTest#AC27_aDatabaseFailureQuotingTheKeyLogsOnlyClassNames",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-8, BR-10; AC-27; FR-5, FR-6, NFR-O2",
+      "test": "web.ObservabilityJourneyTest#rule8_problemBodiesAndLogsNeverEchoASubmittedValue",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-28; NFR-M3; proof item 10",
+      "test": "web.OpenApiDocumentTest#NFRM3_committedDocumentEqualsTheLiveOne",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-28; NFR-M3",
+      "test": "web.OpenApiDocumentTest#AC28_liveDocumentDescribesTheSlice",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-20; BR-1; FR-10, NFR-M3",
+      "test": "web.OpenApiDocumentTest#AC20_everyOperationDocumentsTheTooManyRequestsProblem",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-10; BR-11; NFR-R2",
+      "test": "web.RateLimitDefaultsTest#theShippedConfigurationCarriesTheDecidedBudgets",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-10; BR-11; NFR-R2",
+      "test": "web.RateLimitDefaultsTest#theSettingsRecordDefaultsToTheSameBudgets",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-1; BR-2, BR-3; FR-10, NFR-R2",
+      "test": "web.RateLimitJourneyTest#AC01_theCreateBudgetAdmits60AndRefusesThe61st",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-2; BR-1, BR-2; FR-10, NFR-R2",
+      "test": "web.RateLimitJourneyTest#AC02_theRedirectBudgetAdmits600AndRefusesThe601st",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-3; BR-2, BR-3, BR-4; FR-10, NFR-R2",
+      "test": "web.RateLimitJourneyTest#AC03a_retryAfterIsTruthfulFromAnExactlyEmptyBucket",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-3; BR-2, BR-3, BR-4; FR-10, NFR-R2",
+      "test": "web.RateLimitJourneyTest#AC03b_retryAfterIsAnUpperBoundFromAPartlyRefilledBucket",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-4; BR-2; NFR-R2",
+      "test": "web.RateLimitJourneyTest#AC04_aFullBudgetReturnsAfterAQuietMinute",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-5; BR-1, BR-2; NFR-R2",
+      "test": "web.RateLimitJourneyTest#AC05_theTwoBudgetsAreIndependent",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-6; BR-2; NFR-R2",
+      "test": "web.RateLimitJourneyTest#AC06_clientsAreIndependent",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-7; BR-5; NFR-R2",
+      "test": "web.RateLimitJourneyTest#AC07_aForgedForwardedAddressDoesNotChangeTheClient",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-9; BR-3, BR-4; FR-10, NFR-R2",
+      "test": "web.RateLimitJourneyTest#AC09_everyRequestInABudgetCountsAndTheLimitIsCheckedFirst",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-11; BR-6; FR-10, NFR-O1, NFR-P1",
+      "test": "web.RateLimitJourneyTest#AC11_theTooManyRequestsProblemNamesNoClient",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-12; BR-6, BR-7; NFR-O1/O2, NFR-P1",
+      "test": "web.RateLimitJourneyTest#AC12_eachRejectionIsLoggedOnceCorrelatedAndWithoutClientValues",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-1; request classification/exemptions; NFR-R2",
+      "test": "web.RateLimitJourneyTest#rule1_percentEncodingDoesNotMoveARequestToTheLargerBudget",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-1; request classification/exemptions; NFR-R2",
+      "test": "web.RateLimitJourneyTest#rule1_operatorSurfacesAreNeverLimited",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-1; request classification/exemptions; NFR-R2",
+      "test": "web.RateLimitJourneyTest#rule1_aDotDotSegmentUnderAnExemptPrefixReachesNoLimitedOperation",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-16; BR-10; NFR-O3",
+      "test": "web.RateLimitJourneyTest#AC16_theMetricsSurfaceListsTheFourKindsOfMetric",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-17; BR-6, BR-10; FR-10, NFR-O3",
+      "test": "web.RateLimitJourneyTest#AC17_everyRejectionIsCountedOnceByBudget",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-19; BR-6, BR-10; NFR-O3, NFR-P1",
+      "test": "web.RateLimitJourneyTest#AC19_metricsAreExposedForScrapingWithoutClientOrLinkValues",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: BR-1, BR-6; design DR-01; NFR-O1/O2, NFR-P1",
+      "test": "web.RateLimitJourneyTest#designDR01_anInvalidPathUnderAnExemptPrefixLogsNoSubmittedValueOnTomcat",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-11; BR-6; FR-10, NFR-O1, NFR-P1",
+      "test": "web.RateLimitJourneyTest#AC11_onTomcatThe429IsTheSameProblemMediaTypeAsEveryOtherError",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-10; BR-11; NFR-R2",
+      "test": "web.RateLimitSettingsJourneyTest#AC10_theBudgetsAreOperatorSettings",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-25, AC-28; BR-13; NFR-R3 (configuration prerequisite only)",
+      "test": "web.ShutdownPhaseDefaultTest#theShippedGracefulShutdownPhaseIsTenSeconds",
+      "suite": "functional"
+    },
+    {
+      "requirement": "AC-14 / FR-13 regression; inherited: AC-8; BR-5; NFR-R2",
+      "test": "web.TrustedProxyJourneyTest#AC08_aTrustedProxysForwardedAddressIdentifiesTheClient",
+      "suite": "functional"
+    }
+  ]
+}

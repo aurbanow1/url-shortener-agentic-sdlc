@@ -1,0 +1,31 @@
+// External QA harness and unchanged f6dd29e functional-suite replay. No product/test source edits.
+gradle.projectsEvaluated {
+    def p = gradle.rootProject
+    def evidence = new File('/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/02-click-retention/proof')
+    def scratch = new File('/private/tmp/urlshort-qa2-retention-96nqv4hx')
+    p.tasks.register('compileQaRetention', JavaCompile) {
+        dependsOn p.tasks.named('classes')
+        source = new File(evidence,'QaRetentionRunner.java')
+        classpath = p.sourceSets.main.runtimeClasspath
+        destinationDirectory = new File(scratch,'qa-classes')
+        options.release = 21
+        doLast {
+            new File(scratch,'classpath.txt').text = destinationDirectory.get().asFile.path + File.pathSeparator + p.sourceSets.main.runtimeClasspath.asPath
+        }
+    }
+    def original = p.sourceSets.create('qaShipped') {
+        java.srcDirs = [new File(scratch,'baseline/src/functionalTest/java')]
+        resources.srcDirs = [p.file('src/functionalTest/resources')]
+        compileClasspath = p.sourceSets.main.output + p.configurations.functionalTestCompileClasspath
+        runtimeClasspath = output + p.sourceSets.main.output + p.configurations.functionalTestRuntimeClasspath
+    }
+    p.tasks.register('qaShippedTest', Test) {
+        dependsOn p.tasks.named('qaShippedClasses')
+        testClassesDirs = original.output.classesDirs
+        classpath = original.runtimeClasspath
+        useJUnitPlatform()
+        systemProperty 'spring.profiles.active', 'functional'
+        reports.junitXml.outputLocation = new File(evidence,'qa-original-suite-xml')
+        reports.html.outputLocation = new File(evidence,'qa-original-suite-html')
+    }
+}

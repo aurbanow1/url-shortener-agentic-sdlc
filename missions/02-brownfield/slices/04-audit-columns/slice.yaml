@@ -30,10 +30,15 @@ tier_reason: delegated plan-lock (D11). One expand migration with a written roll
 # next free Flyway number after 02-click-retention's V3. Mission 03's 01-analytics-v2 also uses the
 # migration sequence; its plan-lock orders it against this slice (the later plan-lock takes the
 # next free number and rebases).
-# WAVE MAP v4 (18:50Z): requirements and design start during w1 builds; the lead holds the
-# plan-lock gate until both w1 slices are merged, and the plan-lock requires impact-analysis.md
-# re-checked against the merged main (01-audit-read changes audit/). The worktree is created at
-# plan-lock, from the merged main. Design follows ADR-0020's pattern and assumes V4 after V3.
+# PLAN-LOCKED 22:35Z (stamp 01M41YFQDEASSA54AM6HTA2V0M), released at 01-audit-read's merge
+# (cb148c4) rather than both w1 merges, once development-agent was free (mission 02 NOTES 22:35Z).
+# The impact analysis was re-checked against the merged main: link/ and AuditLog unchanged since
+# 646512e; AuditTrail.PAGE names its columns, so V4's audit_log columns cannot reach GET /api/audit.
+# The worktree starts from main 583278c, which has audit-read but not V3. V4 touches no click
+# table, so the design's target("3") comparisons hold on it. The handed-off candidate descends from
+# 02-click-retention's MERGE COMMIT on main (rebase after it, confirm V4 is the next number,
+# re-run check); if done first, the builder exits waiting on click-retention's live frontier. The
+# integrator checks git merge-base --is-ancestor. Built by development-agent (routed from dev2).
 # Launch on rig/workflows/urlshort-slice-delegated-b.workflow.yaml (QA qa2-agent, review
 # review2-agent), so w2's two slices do not queue on one judge; qa2-agent is this slice's proof judge.
 proofPolicy:

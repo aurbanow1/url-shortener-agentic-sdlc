@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Click.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">urlshort</a> &gt; <a href="index.source.html" class="el_package">dev.urlshort.click</a> &gt; <span class="el_source">Click.java</span></div><h1>Click.java</h1><pre class="source lang-java linenums">package dev.urlshort.click;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.Locale;
+
+import org.jspecify.annotations.Nullable;
+
+/**
+ * One click as stored: rule 2's four facts, already reduced on the request thread, plus the UTC day
+ * the statistics group by (derived from {@code clickedAt}, ADR-0013).
+ *
+ * @param linkId the redirected link's id
+ * @param clickedAt the service clock's instant of the redirect
+ * @param clickedOn the UTC day of {@code clickedAt}
+ * @param referrer the referrer origin, or {@code null} when there is none (rule 3)
+ * @param userAgentClass {@code browser}, {@code bot}, {@code other} or {@code unknown} (rule 4)
+ * @param clientHash the HMAC of the client address under the day's salt, 64 hex characters
+ */
+<span class="fc" id="L22">record Click(long linkId, Instant clickedAt, LocalDate clickedOn, @Nullable String referrer, String userAgentClass,</span>
+		String clientHash) {
+
+	static final int MAX_REFERER_LENGTH = 2048;
+
+	/**
+	 * Rule 3: lowercase scheme, {@code ://}, lowercase host and a non-default port, for an absolute
+	 * {@code http(s)} URL of at most 2 048 characters with a host; {@code null} otherwise. Path, query,
+	 * fragment and userinfo are dropped.
+	 */
+	static @Nullable String referrerOrigin(@Nullable String header) {
+<span class="fc bfc" id="L33" title="All 4 branches covered.">		if (header == null || header.length() &gt; MAX_REFERER_LENGTH) {</span>
+<span class="fc" id="L34">			return null;</span>
+		}
+		URI uri;
+		try {
+<span class="fc" id="L38">			uri = new URI(header);</span>
+		}
+<span class="fc" id="L40">		catch (URISyntaxException ex) {</span>
+<span class="fc" id="L41">			return null;</span>
+<span class="fc" id="L42">		}</span>
+<span class="fc" id="L43">		String scheme = uri.getScheme();</span>
+<span class="fc" id="L44">		String host = uri.getHost();</span>
+<span class="fc bfc" id="L45" title="All 4 branches covered.">		if (scheme == null || host == null) {</span>
+<span class="fc" id="L46">			return null;</span>
+		}
+<span class="fc" id="L48">		scheme = scheme.toLowerCase(Locale.ROOT);</span>
+<span class="fc" id="L49">		boolean http = scheme.equals(&quot;http&quot;);</span>
+<span class="fc bfc" id="L50" title="All 4 branches covered.">		if (!http &amp;&amp; !scheme.equals(&quot;https&quot;)) {</span>
+<span class="fc" id="L51">			return null;</span>
+		}
+<span class="fc" id="L53">		int port = uri.getPort();</span>
+<span class="fc bfc" id="L54" title="All 6 branches covered.">		boolean defaultPort = port == -1 || port == (http ? 80 : 443);</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">		return scheme + &quot;://&quot; + host.toLowerCase(Locale.ROOT) + (defaultPort ? &quot;&quot; : &quot;:&quot; + port);</span>
+	}
+
+	/** Rule 4, in order: absent or empty, then bot words (any case), then {@code Mozilla/}, then other. */
+	static String userAgentClass(@Nullable String header) {
+<span class="fc bfc" id="L60" title="All 4 branches covered.">		if (header == null || header.isEmpty()) {</span>
+<span class="fc" id="L61">			return &quot;unknown&quot;;</span>
+		}
+<span class="fc" id="L63">		String lower = header.toLowerCase(Locale.ROOT);</span>
+<span class="fc bfc" id="L64" title="All 6 branches covered.">		if (lower.contains(&quot;bot&quot;) || lower.contains(&quot;crawler&quot;) || lower.contains(&quot;spider&quot;)) {</span>
+<span class="fc" id="L65">			return &quot;bot&quot;;</span>
+		}
+<span class="fc bfc" id="L67" title="All 2 branches covered.">		return header.startsWith(&quot;Mozilla/&quot;) ? &quot;browser&quot; : &quot;other&quot;;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

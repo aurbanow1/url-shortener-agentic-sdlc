@@ -61,8 +61,19 @@ territory:
   # requirements step and must leave these two files out, or the later plan-lock orders custody.
   - src/main/java/dev/urlshort/web/RateLimitFilter.java
   - src/test/java/dev/urlshort/web/RateLimitFilterTest.java
+  # TEST-SIDE GRANT (lead, 2026-10-03T21:57Z, dev2-agent request qitem-20261003215452-d915f3ab, found
+  # by a trial rebase onto 01-audit-read's merge cb148c4): one expected body in
+  # AuditUpgradeJourneyTest.AC18_anExistingDatabaseUpgradesInPlaceAndKeepsItsLinksAndRows (lines
+  # 54-56 at cb148c4), whose single clicksPerDay element gains "uniqueVisitors":1,"botClicks":0.
+  # Nothing else in the test changes. It is the same exact-shape update AC-14 allows for
+  # StatsJourneyTest and ClickRecordingJourneyTest; the impact analysis could not name it because the
+  # test did not exist on main. Named in PROOF.md as an AC-14 shape update. Applied in the final
+  # rebase onto main. CUSTODY: mission 02's 04-audit-columns also holds src/functionalTest/.../audit/;
+  # whichever of the two merges second rebases onto the other's merge.
+  - src/functionalTest/java/dev/urlshort/audit/AuditUpgradeJourneyTest.java
 # NOT in territory: link/ (the redirect hook from 02-analytics stays as it is; any change there is
-# a design-time grant, as the hook was for 02), the rest of web/, audit/.
+# a design-time grant, as the hook was for 02), the rest of web/, audit/ (except the one granted
+# test assertion above).
 execution:
   actor_role: requirements
   depends_on: []

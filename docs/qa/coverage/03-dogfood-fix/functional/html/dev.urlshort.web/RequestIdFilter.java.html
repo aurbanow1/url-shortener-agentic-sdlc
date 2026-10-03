@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RequestIdFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">urlshort</a> &gt; <a href="index.source.html" class="el_package">dev.urlshort.web</a> &gt; <span class="el_source">RequestIdFilter.java</span></div><h1>RequestIdFilter.java</h1><pre class="source lang-java linenums">package dev.urlshort.web;
+
+import java.io.IOException;
+import java.util.UUID;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+/**
+ * Issues a fresh server-side id for every request, exposes it as the {@code X-Request-Id}
+ * response header before the chain runs and makes it available to log events through the MDC key
+ * {@code requestId}. Inbound correlation headers are deliberately never read.
+ *
+ * &lt;p&gt;Runs first in the chain ({@link Ordered#HIGHEST_PRECEDENCE}) so the id exists on every
+ * response, error paths included. When the chain returns or throws it writes one INFO event
+ * {@code request completed} carrying {@code requestId} and the response {@code status} and nothing
+ * client-controlled, then removes the MDC key (business rule 10, AC-26). Decision records: ADR-0003
+ * and ADR-0004.
+ */
+@Component
+@Order(Ordered.HIGHEST_PRECEDENCE)
+public class RequestIdFilter extends OncePerRequestFilter {
+
+<span class="fc" id="L33">	private static final Logger log = LoggerFactory.getLogger(RequestIdFilter.class);</span>
+	private static final String HEADER = &quot;X-Request-Id&quot;;
+	private static final String MDC_KEY = &quot;requestId&quot;;
+
+	/** Stateless; created by Spring and registered for every request. */
+<span class="fc" id="L38">	public RequestIdFilter() {</span>
+<span class="fc" id="L39">	}</span>
+
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+			throws ServletException, IOException {
+<span class="fc" id="L44">		String requestId = UUID.randomUUID().toString();</span>
+<span class="fc" id="L45">		response.setHeader(HEADER, requestId);</span>
+<span class="fc" id="L46">		MDC.put(MDC_KEY, requestId);</span>
+		try {
+<span class="fc" id="L48">			chain.doFilter(request, response);</span>
+		}
+		finally {
+			// the one event every request writes, also on paths no controller reaches (404, 405, 413, 415);
+			// the method is not logged because it is a client-chosen token (ADR-0004)
+<span class="fc" id="L53">			log.atInfo().setMessage(&quot;request completed&quot;).addKeyValue(&quot;status&quot;, response.getStatus()).log();</span>
+<span class="fc" id="L54">			MDC.remove(MDC_KEY);</span>
+		}
+<span class="fc" id="L56">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

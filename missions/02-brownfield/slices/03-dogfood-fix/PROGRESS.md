@@ -7,8 +7,8 @@
 
 ## Acceptance
 
-- [ ] Implementation complete — built and green as `5233c29`, stacked on `01-audit-read` `35590f0`. The final candidate is the rebase onto audit-read's merge commit, which is not on `main` yet (builder, 2026-10-03)
-- [ ] Tests passing — `check --rerun-tasks` on the stacked `5233c29`: unit 201/201, functional 205/205, 506/506 lines, 190/190 branches (`proof/builder-check-5233c29.txt`); to be re-run on the rebased candidate
+- [x] Implementation complete — candidate `4fe7042`, rebased onto `01-audit-read`'s merge `cb148c4` and `main` `15db6c5` (builder, 2026-10-03)
+- [x] Tests passing — `check --rerun-tasks` on `4fe7042`: unit 204/204, functional 207/207, 508/508 lines, 194/194 branches (`proof/builder-check-4fe7042.txt`; builder run, QA re-runs independently)
 - [ ] Review approved
 
 ## Builder
@@ -18,4 +18,19 @@
 - [x] Test first, W2-03: `3224036` (test), red in `proof/red-w2-03-metrics.txt`, `red-w2-03-report.xml` and `red-w2-03-scrape-report.xml`, then `5233c29` (fix and `MetricsConfigTest`)
 - [x] AC-8 `README.md` check: lines 12, 18 and 39 mention metrics generically. No line describes a problem member, the problem schema or a metric tag, so no change is needed.
 - [x] AC-9, additions only: `git diff --stat 35590f0 5233c29` on `OpenApiDocumentTest` and `HealthMetricsJourneyTest` shows 143 insertions and 0 deletions
-- [ ] Rebase onto `01-audit-read`'s merge commit, regenerate `docs/api/openapi.json`, re-run `check`, hand off that SHA
+- [x] Rebased onto `01-audit-read`'s merge commit (and `main` `15db6c5`). The regenerated `docs/api/openapi.json` was unchanged. `check` was re-run; handed off as `4fe7042`.
+
+
+## QA
+
+- [x] All nine ACs/five rules independently verified on exact 4fe7042.
+- [x] Fresh 204 unit/207 functional; unchanged merged-baseline 203/202 green.
+- [x] Merged 508/508 lines194/194 branches;354 copied report hashes checked.
+- [x] Full six-case wire equality, live/committed schema equality, pathless numeric gauges, JSON logs and audit effects captured from real jars.
+- [x] Independent red controls cce7cf7/72dfffb; ADR chronology/index and README check recorded.
+- [x] All 233 source methods mapped; gap row written, QA-OPR-02 closed.
+- [x] Apps stopped; exact candidate preserved, inherited gradlew.bat line endings disclosed.
+- [x] All eight attributed proof receipts recorded; evidence committed and ready for qa_check handoff.
+- [x] Review approved: code and security review PASS on `4fe7042` (`review-agent`, `f49e393`; no findings).
+- [x] Integrated: merged `--no-ff` into `main` as `5c264db` (lead, 2026-10-03T22:49Z). The branch tip, all 8 current proof judgments (ready) and the review name the same `4fe7042`, which descends from `01-audit-read`'s merge `cb148c4`. 6 files, exactly the narrowed territory. Gate re-run fresh on `main` with `--rerun-tasks`, 14 of 14 tasks, green (`docs/evidence/02-brownfield/integrate-03-dogfood-fix-check-5c264db.txt`). Tag `slice/03-dogfood-fix/accepted` on `4fe7042`; worktree removed (only `gradlew.bat` line-ending noise discarded, fixed on `main` at `9bbf6e5`).
+- [ ] Delivery stamp: after the mission's ship sign-off

@@ -1,0 +1,79 @@
+{
+  "before": {
+    "properties": {
+      "detail": {
+        "type": "string"
+      },
+      "instance": {
+        "format": "uri",
+        "type": "string"
+      },
+      "properties": {
+        "additionalProperties": {},
+        "type": "object"
+      },
+      "status": {
+        "format": "int32",
+        "type": "integer"
+      },
+      "title": {
+        "type": "string"
+      },
+      "type": {
+        "format": "uri",
+        "type": "string"
+      }
+    },
+    "type": "object"
+  },
+  "after": {
+    "type": "object",
+    "properties": {
+      "detail": {
+        "type": "string"
+      },
+      "errors": {
+        "type": "array",
+        "description": "Present on 400 validation and 422 idempotency-mismatch problems only",
+        "items": {
+          "$ref": "#/components/schemas/ProblemFieldError"
+        }
+      },
+      "instance": {
+        "type": "string",
+        "format": "uri"
+      },
+      "status": {
+        "type": "integer",
+        "format": "int32"
+      },
+      "title": {
+        "type": "string"
+      },
+      "type": {
+        "type": "string",
+        "format": "uri"
+      }
+    }
+  },
+  "errorsItem": {
+    "type": "object",
+    "properties": {
+      "field": {
+        "type": "string"
+      },
+      "message": {
+        "type": "string"
+      },
+      "rule": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "field",
+      "message",
+      "rule"
+    ]
+  },
+  "unchangedDocumentOutsideThoseComponents": true
+}

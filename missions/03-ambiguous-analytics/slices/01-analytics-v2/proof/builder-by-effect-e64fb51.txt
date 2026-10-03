@@ -1,0 +1,46 @@
+01-analytics-v2 — builder by-effect check on e64fb51 (dev2-agent, 2026-10-03 21:55Z)
+Interim: e64fb51 is the stacked tip (on 02-click-retention a8fc8b6), not the final candidate; the
+captures are retaken on the rebased candidate before handoff. Proof-contract items 7 and 8 in shape.
+
+Every request reaches the service from 127.0.0.1 over loopback, so distinct clients cannot come from
+distinct peers here. The service is started with 127.0.0.1 as its trusted proxy, and each client is
+named in X-Forwarded-For. That also exercises rule 6 on the real service: the click's client is the
+rate limiter's client.
+
+$ java -jar .worktrees/01-analytics-v2/build/libs/urlshort.jar --server.address=127.0.0.1 --server.port=18095 \
+    --urlshort.rate-limit.trusted-proxies=127.0.0.1 --spring.datasource.url=jdbc:h2:file:<scratch>/v2-data/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE
+$ scripts/http -s http://127.0.0.1:18095/actuator/health/readiness
+{"status":"UP"}
+$ scripts/http -s -X POST -H "Content-Type: application/json" -d '{"url":"https://example.com/v2-effect"}' http://127.0.0.1:18095/api/links
+{"code":"Uk1tbwSU","shortUrl":"http://localhost:8080/Uk1tbwSU","url":"https://example.com/v2-effect","state":"active","createdAt":"2026-10-03T21:55:20.269Z"}
+$ scripts/http -s -o /dev/null -w "%{http_code} " -H "X-Forwarded-For: 203.0.113.1" -H "User-Agent: Mozilla/5.0 Firefox/131.0" http://127.0.0.1:18095/Uk1tbwSU http://127.0.0.1:18095/Uk1tbwSU
+302 302
+$ scripts/http -s -o /dev/null -w "%{http_code} " -H "X-Forwarded-For: 203.0.113.2" -H "User-Agent: Mozilla/5.0 (compatible; Googlebot/2.1)" http://127.0.0.1:18095/Uk1tbwSU
+302
+$ scripts/http -s -o /dev/null -w "%{http_code} " -H "X-Forwarded-For: 203.0.113.3" -H "User-Agent: Mozilla/5.0 Firefox/131.0" http://127.0.0.1:18095/Uk1tbwSU
+302
+
+== Statistics (AC-1, AC-2, AC-4 by effect) ==
+$ scripts/http -s http://127.0.0.1:18095/api/links/Uk1tbwSU/stats
+{"code":"Uk1tbwSU","totalClicks":4,"clicksPerDay":[{"date":"2026-10-03","clicks":4,"uniqueVisitors":3,"botClicks":1}],"topReferrers":[]}
+-> 4 clicks, 3 distinct clients (one opened twice), 1 bot. The body has no address, hash, user-agent class or forwarded value.
+
+== Prometheus excerpt (AC-11 by effect) ==
+$ scripts/http -s http://127.0.0.1:18095/actuator/prometheus | grep "urlshort_clicks"
+# HELP urlshort_clicks_lost_total Clicks reported by a click lost event
+# TYPE urlshort_clicks_lost_total counter
+urlshort_clicks_lost_total{reason="reduction failed"} 0.0
+urlshort_clicks_lost_total{reason="rejected"} 0.0
+urlshort_clicks_lost_total{reason="shutdown deadline"} 0.0
+urlshort_clicks_lost_total{reason="shutdown deadline, outcome unknown"} 0.0
+urlshort_clicks_lost_total{reason="write failed"} 0.0
+# HELP urlshort_clicks_recorded_total Clicks written to the click store
+# TYPE urlshort_clicks_recorded_total counter
+urlshort_clicks_recorded_total 4.0
+-> both families. The only tag is reason, from the static vocabulary, every reason present at zero. recorded equals the 4 stored clicks.
+
+== The jar's log ==
+$ grep -c "203.0.113" <jar log>    -> 0   (no forwarded client value in any log line)
+$ grep -c "requestId" <jar log>    -> 8   (the request lines carry their request id)
+
+Stopped. Not covered here: the loss path (AC-10, functional ClickMetricsJourneyTest makes the store fail).

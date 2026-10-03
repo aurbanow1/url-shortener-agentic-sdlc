@@ -9,6 +9,16 @@ verified: 2026-10-03 against scaffold (rig scope create)
 created: 2026-10-03
 intent: "Every shipped table that records links and the audit trail carries the audit columns the human decided (created_at, updated_at, and created_by/updated_by where an actor exists), added by one expand migration with a written rollback, with existing links and audit rows unchanged in meaning."
 depends_on: []
+approved-spec-by: orchestration-lead@urlshort-factory
+approved-spec-at: 2026-10-03T22:34:49.645Z
+locked-artifacts:
+  - name: SPEC.md
+    path: SPEC.md
+    kind: spec
+  - name: design.md
+    path: design.md
+    kind: spec
+provenance: transport:v1
 ---
 
 # Slice 04 — Audit Columns

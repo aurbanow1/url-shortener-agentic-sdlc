@@ -4,33 +4,42 @@
 >
 > **HOW (the drop verb, not hand-placement):** put media files under `proof/`, then ATTACH them with `rig proof add OPR.99.0.3.3 --artifact-type qa --verdict PASS --candidate-sha <tip> --money-evidence "<one line>" --evidences "1" --media "screenshot-01.png"` — the drop writes the C1 header the Living Notes DELIVERED pairing joins on. Hand-placing files without a drop leaves the deliverable unpaired and `unverified`.
 
-Closed by: <seat>   Date: <date>   Verdict: <pass | pass-with-residue | ...>
+QA checked by: qa-agent@urlshort-factory (Codex),2026-10-03.
+QA verdict: PASS on 4fe7042; integration and independent review follow.
 
 ## What this proves
 
-<1-3 sentences: the claim the slice made, now demonstrated>
+The API document describes existing validation errors without changing
+problem responses. Anonymous disk metrics retain values while removing the
+installation path. Independent evidence covers all nine ACs and five rules.
 
 ## Artifacts (media in proof/)
 
-Dropped via `rig proof add … --evidences … --media …` (one drop per verdict; media attached, never only hand-listed):
+QA drop proof/qa-pass-4fe7042.md is attached through rig proof add,
+covers items 1–8. Independent evidence: proof/qa-4fe7042/, gate
+proof/qa-check-4fe7042.txt, reports/CSV summary
+docs/qa/coverage/03-dogfood-fix/.
 
-- proof/screenshot-01.png — <what it shows>
-- proof/capture-behavior.gif — <what it shows>
-- proof/command-output.txt — <what it proves>
+## Residue / caveats
 
-## Residue / caveats (if any)
-
-<documented residue: what's not covered + where it's tracked>
+Default single-disk-path scope, removed-selector compatibility and inherited
+Windows-wrapper line endings are disclosed in GAPS and QA below.
+No merged coverage shortfall or required AC failure.
 
 ## Builder
 
 Seat `development-agent@urlshort-factory` (Claude), 2026-10-03, packet `qitem-20261003200223-d361adc6`.
 This section is builder evidence, not a verdict.
 
-**Status: built on the stacked base, not yet a candidate.** `slice/03-dogfood-fix` is stacked on
-`01-audit-read`'s `35590f0`, which is in code review. Code review reported a HIGH on it at 20:07Z,
-and its packet exit is pending. The plan-lock requires a rebase onto audit-read's merge commit, a
-regenerated document and a fresh gate before handoff. This section records the work up to that point.
+**Candidate:** `4fe70427bd0d182e886d6a19b217daa1d9e39f5d`. The branch was built stacked on `35590f0`,
+then rebased onto `01-audit-read`'s merge `cb148c4` and onto `main` `15db6c5` (docs only after the
+merge). The rebase was clean. `git merge-base --is-ancestor cb148c4 4fe7042` succeeds.
+Regenerating `docs/api/openapi.json` on this base gave no difference, because the live document
+already equals the committed one.
+
+Rebased SHAs: `9b2788a`→`cce7cf7`, `edc1815`→`a28a20a`, `3224036`→`72dfffb`, `5233c29`→`4fe7042`. The
+table and the red runs below name the pre-rebase SHAs. Those red runs ran on the stacked base, whose
+product code differs from `cb148c4` only by audit-read's CR-01 guard, which these tests do not touch.
 
 | SHA | Commit |
 |---|---|
@@ -47,7 +56,9 @@ regenerated document and a fresh gate before handoff. This section records the w
 | the same on `edc1815`, before regenerating | AC-1 and AC-2 green; only `NFRM3` red, because the committed document was stale | — |
 | `git diff docs/api/openapi.json` after regenerating | only `components.schemas.ProblemDetail` (`properties` removed, `errors` added) and the new `ProblemFieldError` (AC-3) | `edc1815` |
 | `functionalTest --tests '*HealthMetricsJourneyTest*'` on `3224036` | red. "[disk.free carries no path tag] Expecting ["path"] not to contain ["path"]". The scrape: "[the scrape carries no path label]" | `proof/red-w2-03-metrics.txt`, `proof/red-w2-03-report.xml`, `proof/red-w2-03-scrape-report.xml` |
-| `scripts/gw --offline check --rerun-tasks` on `5233c29` | BUILD SUCCESSFUL; **unit 201/201, functional 205/205**; merged **506/506 lines, 190/190 branches**; `javadoc` green | `proof/builder-check-5233c29.txt` |
+| `scripts/gw --offline check --rerun-tasks` on `5233c29` (stacked) | BUILD SUCCESSFUL; unit 201/201, functional 205/205; merged 506/506 lines, 190/190 branches | `proof/builder-check-5233c29.txt` |
+| `scripts/gw --offline check --rerun-tasks` on the candidate `4fe7042`, after the rebase | BUILD SUCCESSFUL; **unit 204/204, functional 207/207**; merged **508/508 lines, 194/194 branches**; `javadoc` green | `proof/builder-check-4fe7042.txt` |
+| `git diff --stat cb148c4 4fe7042 -- src docs/api README.md` | only the territory: `OpenApiConfig`, the new `MetricsConfig` and `MetricsConfigTest`, `openapi.json`, and the two tests (+102 and +41 lines, 0 removed) | — |
 
 ### Deviations from design.md
 
@@ -57,7 +68,7 @@ regenerated document and a fresh gate before handoff. This section records the w
 
 ### Not verified, and residual risks
 
-- **Not yet done:** the rebase onto `01-audit-read`'s merge commit, the document regenerated there, and the gate on that SHA. If code review changes audit-read (its HIGH at 20:07Z), this branch absorbs that change on the rebase.
+- **Repository line endings, not this slice:** `gradlew.bat` shows as modified in every checkout of `main` after the wrapper bump `f3e6b0b`. It has `text eol=crlf` attributes, but the committed blob does not match its normalised form, so the "modification" is line endings only. I did not commit it. To rebase, I hid it with a temporary `--assume-unchanged` flag in this worktree, then cleared the flag. Reported to the lead.
 - **Jar-level captures** (proof contract item 7: the `400` beside the live schema, the committed-vs-live diff, a path-free scrape) are QA's, per the design's §7.
 - **AC-4** (the wire unchanged, as full bodies compared between `main` and the candidate jars) is QA's recorded check. By construction, no request-path code changed.
 
@@ -66,4 +77,108 @@ regenerated document and a fresh gate before handoff. This section records the w
 - **Test before fix**, each pair in its own commits, and each red run captured with messages that name `errors`/`properties` and `path`.
 - **Territory:** `OpenApiConfig`, the new `MetricsConfig` and `MetricsConfigTest`, additions to `OpenApiDocumentTest` and `HealthMetricsJourneyTest`, and `openapi.json`. Nothing in `Problems`, `ProblemDetailsAdvice`, `RateLimitFilter`, `application.properties`, `click/`, `link/` or `audit/`.
 - **AC-9:** the two shipped tests only gained lines (143 insertions, 0 deletions).
-- **Gate** on the stacked tip, after the last code edit. It must be re-run after the rebase.
+- **Gate** re-run on the rebased candidate `4fe7042` after the last change, green.
+
+
+## QA — independent check of 4fe70427bd0d182e886d6a19b217daa1d9e39f5d
+
+Seat qa-agent@urlshort-factory (Codex), packet qitem-20261003215524-d56667a8,
+instance 01M41HGF6AHB6AZR3Q0KQ8MQR7. Primary worktree HEAD equals packet SHA.
+QA authored no product, build or test change.
+
+**Observed by effect.** Fresh offline check executes all 14 tasks:
+204 unit/207 functional, no failures/errors/skips; Javadoc/verification green.
+Copied CSVs: unit 441/508 lines188/194 branches; functional 471/508 lines162/194
+branches; merged 508/508 and194/194. All 354 copied report hashes checked.
+
+| AC | Independent observation |
+|---|---|
+| 1 | Live ProblemDetail optional errors array of ProblemFieldError; exactly required string field/rule/message; no properties; five other property schemas unchanged. |
+| 2 | Real jars: invalid create400, same-key different-URL422, unknown-code404, retired redirect410, over-create-budget429, malformed audit400. Every body field documented; both400s and422 one errors item; other statuses omit it. Default60-create budget gives30 captured429 refusals per jar with positive Retry-After. |
+| 3 | Whole candidate live/committed document equality; empty committed-vs-live.diff. Baseline live also matches committed doc. Paths/operations/responses/headers/examples identical outside two problem components; all 22 problem refs use one schema. |
+| 4 | Six full semantic bodies including title and every field/rule/message, status/content type match baseline jar; only instance/request IDs differ. wire-comparison.json retains both normalized values. |
+| 5 | Independently checked out cce7cf7 and reran OpenApiDocumentTest: exactly two assertions fail naming missing errors/extra properties; fresh candidate green. History establishes test before a28a20a fix. |
+| 6 | Baseline scrape/disk metric endpoints reproduce known absolute path. Candidate no sample path tag, no known cwd anywhere in scrape, no path availableTags; both gauges numeric/positive. Independent72dfffb run: exactly endpoint/scrape assertions fail on path; candidate passes after 4fe7042. |
+| 7 | QA closes QA-OPR-02 original row with installed evidence, appends honest qualifications. W2-01 recorded fixed; no open W2-01 row. |
+| 8 | Read DESIGN error/API/metric descriptions, ADR-0010/0016 amendments/§7 index, README smoke/endpoints/documentation lines12/18/39. Descriptions match wire/schema/pathless gauges; README needs no correction. ADR design 0d000da/clarification 0982cb5 precede dependent commits by ancestry. |
+| 9 | Extracted all 50 original test/resource files from 15db6c5 with Git-blob hashes; external QA init tasks compile against candidate classes and run203 unit/202 functional unchanged, all green. Shipped test diffs add102+41 lines only; new27-line unit test allowed; no other shipped test changes. |
+
+**Logs and audit effects.** All 208 HTTP captures have a unique UUID response
+header and one completion/status in default JSON console and ECS file log.
+Create/retire audit rows from functional audit endpoint match response IDs,
+code and before/after states; replay adds no row. No peer/URL/user-agent
+canary in either whole-run log. Added sink was ECS from startup, default
+console checked separately. Raw transport/JUnit/console bytes archived and
+hashed before whitespace-only display normalization; verify.py checks it.
+
+**Limits.** Recorded Git/document checks expressly allowed by SPEC, not
+claimed as JUnit-only. Parameterized XML names omit source methods; every233
+named method has a row and green class-group attribution where needed,
+all 411 invocations retained. No second disk path configured; adding one
+requires non-sensitive tag per ADR-0016. Old path selector now404,
+deliberately documented; unfiltered gauges200. No new Docker/load/migration/
+Swagger rendering or natural-clock-boundary proof. Baseline source/build
+hashes match15db6c5; jar built from later docs-only main6140c3c. Inherited
+candidate gradlew.bat difference only line endings; QA neither repairs nor
+commits it.
+
+### Self-check
+
+- Every AC checked through promised effect; six failure cases captured from
+  both installed jars, full values compared.
+- Fresh gate and unchanged original suites independently green; coverage
+  read from three CSVs, merged 100%line/branch.
+- All 233 source methods mapped both ways; parameterized-group boundary named.
+- GAPS entry written, QA-OPR-02 closed; README check recorded.
+- Both historical regressions independently RED before fixes; ADR
+  amendments/index precede dependent code.
+- Proof drop covers items 1–8 with --evidences and retained media; attributed
+  candidate judgments recorded after evidence commit 33c5b44.
+- Both apps stopped (exit130/SIGINT); ports18151/18152 refuse connections.
+  Primary worktree exact 4fe7042, inherited wrapper-line-ending noise only;
+  no authored source/build/test edit.
+
+
+### Attributed QA receipts
+
+Evidence commit 33c5b44; items 1–8 accepted against exact 4fe7042 by
+qa-agent in receipts 00000001..00000008. All eight live states accepted,
+readiness ready, no issues; all 36 evidence-reference hashes independently
+match. Full receipts in proof/qa-judgment-receipts-4fe7042.json,
+hash audit in proof/qa-receipt-audit-4fe7042.json. Receipt files and this
+record committed with explicit paths; independent review is next.
+
+
+### Shared TRACE append before handoff
+
+QA2 appended its click-retention table while receipt commit a9ea9bf was
+finishing. Dogfood-fix table is byte-identical to evidence33c5b44, all233
+source rows and all9AC/5rules intact. Item5 reaffirmed by receipt9 against
+current full-file hash; historical receipt5 remains. Current readiness8/8,
+all37 cited-reference hashes match (31 distinct files), captured in
+proof/qa-final-proof-readiness-4fe7042.json and
+proof/qa-final-receipt-audit-4fe7042.json. The other lane pending append is
+preserved without staging it; QA2 was informed. Lead final living-document
+reconciliation remains required after remaining merges. No test rerun or
+product change was needed for this append.
+
+
+### Shared GAPS reaffirmation — review follow-up
+
+Packet qitem-20261003224103-2a21b284; exact candidate remains 4fe7042.
+Independently checked GAPS delta from 583278c to 84d3604: only the retention
+lane section was appended. This slice section, QA-OPR-02 closure and all
+scope qualifications are byte-identical; W2-01 remains fixed.
+Item 6 reaffirmed by receipt 10, id
+bb093f3c67fcf76936c991dfda4beebc29f0708f45a156fbb1f1f2cb2b99e8b4.
+Historical receipt 6 remains. Readiness restored to eight accepted items,
+no issues; all 38 current cited-reference hashes match (32 distinct files).
+Evidence: proof/qa-gap-reaffirmation-4fe7042.json,
+qa-gap-reaffirmation-receipt-4fe7042.json and
+qa-gap-reaffirmation-hash-audit-4fe7042.json.
+
+Self-check: read the actual shared-file delta and unchanged qualifications;
+checked exact worktree HEAD and every current receipt hash. Narrow evidence
+reaffirmation only: no new build, app start or product/test/build edit.
+Independent review/integration may proceed; final shared-document
+reconciliation after remaining merges stays with the lead obligation.

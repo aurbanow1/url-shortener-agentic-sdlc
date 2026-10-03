@@ -1431,3 +1431,508 @@ and QA's audit burst (first60=200, next30=429 with Retry-After). All source
 methods are mapped both ways, verified against a fresh inventory rather
 than assumed from the previous table. Item12 awaits corrected independent
 security review.
+
+
+## 03-dogfood-fix — candidate 4fe70427bd0d182e886d6a19b217daa1d9e39f5d
+
+Independent QA: nine ACs/five rules; fresh 204 unit/207 functional and unchanged
+baseline 203 unit/202 functional all green. All 104 unit/129 functional named
+source methods inventoried in proof/qa-4fe7042/source-methods.json.
+SPEC permits recorded checks for document/history effects; GAPS names them
+and the parameterized XML attribution boundary.
+
+| AC / rule / requirement | Test class#method or recorded check | Suite | Result |
+|---|---|---|---|
+| AC-1; FR-14; BR-2, BR-3 | web.OpenApiDocumentTest#AC1_problemSchemaDocumentsErrorsAndNoProperties | functional | PASS |
+| AC-2; FR-14; BR-2, BR-3 | web.OpenApiDocumentTest#AC2_problemBodiesConformToTheDocumentedSchema; web.OpenApiDocumentTest$OverTheCreateBudget#AC2_theTooManyRequestsProblemConformsToo | functional | PASS |
+| AC-3; NFR-M3, FR-13; BR-3 | web.OpenApiDocumentTest#NFRM3_committedDocumentEqualsTheLiveOne; verify.py recorded whole-document comparison | functional + installed jar / recorded check | PASS; live=committed, only ProblemDetail/item diff |
+| AC-4; FR-13; BR-2 | verify.py recorded six-case full-value comparison; wire-comparison.json | installed baseline/candidate jars | PASS; only instance/request IDs excluded |
+| AC-5; FR-14; BR-1 | OpenApiDocumentTest AC-1/AC-2 atcce7cf7; red-openapi-results/ and history-and-document-checks.json | historical functional + Git check | Expected two RED before fix; candidate GREEN |
+| AC-6; FR-14, FR-15; BR-1, BR-4 | web.HealthMetricsJourneyTest#AC6_diskGaugesCarryNoInstallationPath; web.HealthMetricsJourneyTest$AnonymousScrape#AC6_theScrapeCarriesNoInstallationPath; web.MetricsConfigTest#onlyThePathTagIsDropped; red-metrics-results/ at 72dfffb | functional + unit + installed jars + history | PASS; pre-fix RED, gauges remain numeric |
+| AC-7; FR-15 | QA recorded GAPS.md check; QA-OPR-02 closed and W2-01 fixed rows; installed AC-1/AC-6 effects | recorded document check + jars | PASS |
+| AC-8; FR-15; NFR-M2 | verify.py recorded DESIGN/README read; history-and-document-checks.json; ADR-0010/0016 ancestry/index | recorded document/Git check | PASS; README consistent without edit |
+| AC-9; FR-13; BR-5 | All source methods below; shipped-suites.txt and shipped-*-results/; source-change-check.json | unit + functional + unchanged baseline suites | PASS 204/207 candidate; PASS 203/202 original; additions only |
+| BR-1; FR-14 | AC-5/AC-6 historical failures preceding fixes; candidate versions pass | functional + Git check | PASS |
+| BR-2; FR-14, FR-13 | AC2 functional cases; AC4 six full body comparisons | functional + installed jars | PASS |
+| BR-3; FR-14, NFR-M3 | AC-1/AC-2 schema tests; verify.py all 22 problem response refs | functional + live schema check | PASS |
+| BR-4; FR-15 | Both AC6 functional tests; disk and scrape installed captures | functional + installed jars | PASS |
+| BR-5; FR-13 | MetricsConfigTest#onlyThePathTagIsDropped; original suites and source-change-check.json | unit + functional + source check | PASS |
+
+Every current source test maps back to AC-9 / BR-5 / FR-13 below. New
+regression methods also map to specific ACs. Inherited test names retain
+their original slice numbering; these rows assert regression on this
+candidate and do not renumber original ACs.
+
+| AC / rule / requirement | Test class#method | Suite | Result |
+|---|---|---|---|
+| AC-9; BR-5; FR-13 | UrlshortApplicationTests#contextLoads | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | UrlshortApplicationTests#mainBootsWithoutAWebServer | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditControllerTest#loopbackPeersAreAdmitted | unit | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | audit.AuditControllerTest#otherPeersAreRefused | unit | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | audit.AuditControllerTest#aMissingPeerIsRefused | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditControllerTest#aForwardingHeaderRefusesEvenFromLoopback | unit | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | audit.AuditControllerTest#theShippedStrategyAdmitsALoopbackRequest | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditControllerTest#anyOtherStrategyClosesTheEndpoint | unit | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | audit.AuditControllerTest#anUnsetStrategyClosesTheEndpoint | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditControllerTest#aRemoteIpHeaderSettingClosesTheEndpoint | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditControllerTest#aProtocolHeaderSettingClosesTheEndpoint | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditControllerTest#emptyRemoteIpSettingsKeepTheEndpointOpen | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditControllerTest#limitDefaultsTo50AndAcceptsItsBounds | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditControllerTest#limitOutsideItsRangeIsARangeProblem | unit | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | audit.AuditControllerTest#aLimitThatIsNotAWholeNumberIsAFormatProblem | unit | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | audit.AuditControllerTest#aCursorIsTheBase64urlOfAPositiveId | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditControllerTest#aMalformedCursorIsAFormatProblem | unit | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | audit.AuditLogTest#theWriterOffersOnlyAppendAndItsOnlyStatementIsAnInsert | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditLogTest#appendWritesOneRowWithServerOwnedValues | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickRecorderTest#aHeadRequestIsNotAClick | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickRecorderTest#aRedirectIsStoredAsItsReducedFactsOnly | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickRecorderTest#aFailedWriteIsOneWarnWithTheRequestIdAndNoClickValue | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickRecorderTest#aClickThatCannotBeQueuedIsOneWarnAndTheRedirectGoesOn | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickRecorderTest#aClickThatCannotBeReducedIsOneWarn | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickRecorderTest#aFastStoreIsDrainedOnCloseAndNothingIsReported | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickRecorderTest#aStuckWriteIsBoundedAndEveryUnwrittenClickIsReportedOnceBeforeCloseReturns | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickRecorderTest#aClaimedClickIsNeverWrittenWhenTheWriterReachesItLater | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickRecorderTest#aWriteThatFailsAfterShutdownClaimedItIsNotReportedAgain | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickRecorderTest#aWriteThatCompletesAfterShutdownClaimedItIsNotReportedAgain | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickSchemaTest#theClickConstraintsStillWorkAfterTheDdlConnectionIsRetired | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickTest#theReferrerIsReducedToItsOrigin | unit | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | click.ClickTest#aReferrerThatIsNotAnHttpOriginIsNone | unit | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | click.ClickTest#theReferrerLengthCapIs2048 | unit | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | click.ClickTest#theUserAgentIsReducedToAClass | unit | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | click.ClickTest#anAbsentOrEmptyUserAgentIsUnknown | unit | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | click.ClickTest#rule2_aClickHoldsOnlyTheReducedFacts | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.DailySaltTest#sameAddressAndDayHashEquallyAndTheStampCarriesTheClocksInstant | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.DailySaltTest#anotherAddressOrAnotherDayHashesDifferently | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.DailySaltTest#theHashIsNeverTheUnsaltedDigest | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.DailySaltTest#aSelectionMadeBeforeMidnightKeepsItsDayAndNeverReplacesTheNextDaysSalt | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.DailySaltTest#aStaleExpiryIsANoOpAndTheCurrentDaysExpiryDropsTheSalt | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.DailySaltTest#closeDropsTheSalt | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.DailySaltTest#aSaltIsDroppedAtTheEndOfItsDayWithoutAnyFurtherClick | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.LinkStatsTest#noRowsIsZeroAndTwoEmptyLists | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.LinkStatsTest#daysAreSummedAscendingAndClicksWithoutAReferrerCountOnlyInTheTotals | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.LinkStatsTest#referrersAreRankedByClicksThenByCodePointAndCappedAtTen | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.LinkServiceTest#createWithoutAKeyInsertsAndAuditsTheNewLink | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.LinkServiceTest#createWithAnUnboundKeyBindsIt | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.LinkServiceTest#replayWithinTheWindowReturnsTheBoundLinkAndWritesNothing | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.LinkServiceTest#mismatchWithinTheWindowIs422AndKeepsTheBinding | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.LinkServiceTest#anExpiredKeyIsReleasedAndBindsANewLink | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.LinkServiceTest#readOfAnUnknownCodeIs404 | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.LinkServiceTest#resolveSendsVisitorsToActiveLinksOnly | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.LinkServiceTest#retireUpdatesConditionallyAndAuditsBeforeAndAfter | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.LinkServiceTest#retireThatChangesNoRowIs410AndWritesNoAuditRow | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.LinkTest#stateIsActiveUntilRetiredAtIsSet | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.LinkValidationTest#eachRejectedUrlFailsExactlyItsRule | unit | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | link.LinkValidationTest#validUrlsPass | unit | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | link.LinkValidationTest#exactly2048CharactersIsAccepted | unit | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | link.LinkValidationTest#malformedKeysFailFormat | unit | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | link.LinkValidationTest#keysLongerThan255FailFormat | unit | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | link.LinkValidationTest#absentOrVisibleAsciiKeysPass | unit | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | link.ShortCodesTest#codesAreEightCharactersFromTheAlphanumericAlphabet | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.ShortCodesTest#aDrawThatSpellsAReservedSegmentIsDrawnAgain | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | ping.PingControllerTest#answersOkWithTheCurrentUtcInstant | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13; AC-6; BR-4; FR-14, FR-15 | web.MetricsConfigTest#onlyThePathTagIsDropped | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.ProblemDetailsAdviceTest#unwrapsABodyLimitErrorRaisedInsideTheJsonReaderTo413 | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.ProblemDetailsAdviceTest#unreadableBodyWithoutALimitErrorStays400WithoutTheFrameworkDetail | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.ProblemDetailsAdviceTest#frameworkDetailThatEchoesClientInputIsCleared | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.ProblemDetailsAdviceTest#domainProblemKeepsItsErrorsAndGetsTheRequestIdAsInstance | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.ProblemDetailsAdviceTest#unhandledExceptionIsABare500AndOneMessageFreeEvent | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.ProblemDetailsAdviceTest#errorOriginIsNoneWhenNoFrameIsOurs | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.ProblemDetailsAdviceTest#aNonProblemBodyPassesThroughUntouched | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.ProblemsTest#validationIs400WithExactlyOneFieldError | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.ProblemsTest#notFoundAndGoneAreBareProblems | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.ProblemsTest#idempotencyMismatchIs422NamingTheHeaderAndRule | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitFilterTest#rule1_limitedRequestsAreChargedToTheirBudget | unit | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | web.RateLimitFilterTest#rule1_operatorSurfacesAreNeitherChargedNorLimited | unit | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | web.RateLimitFilterTest#rule5_theClientIsThePeerOrTheRightMostUntrustedForwardedHop | unit | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | web.RateLimitFilterTest#rule5_anAbsentOrEmptyHeaderFromATrustedProxyChargesTheProxy | unit | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | web.RateLimitFilterTest#theFilterReadsOnlyXForwardedForAndOnlyFromATrustedPeer | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitFilterTest#anEmptyBucketIsA429ProblemWithRetryAfterAndNoChain | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitFilterTest#eachRejectionIsCountedOnceUnderItsBudgetOnly | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimiterTest#AC03a_anExactlyEmptyBucketRefillsOneTokenAfterExactlyOneSecond | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimiterTest#AC03b_retryAfterIsRoundedUpAndHonoured | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimiterTest#AC04_aQuietMinuteRefillsTheWholeBucket | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimiterTest#refusalsTakeNothing | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimiterTest#budgetsAndClientsAreIndependent | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimiterTest#retryAfterIsTheWaitForOneTokenInWholeSeconds | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimiterTest#aRequestOvertakenByNewerOnesDecidesOnTheTimeItReachesTheBucket | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimiterTest#afterABackwardClockStepTheBucketRefillsFromItsStoredTat | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimiterTest#fullBucketsAreReleasedByTheNextRequestButNotWhileIdle | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimiterTest#aBucketThatIsNotYetFullSurvivesTheRelease | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimiterTest#theReleaseRunsAtMostOncePerSecond | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimiterTest#theReleaseResumesAfterABackwardClockStep | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RequestBodyLimitFilterTest#aBodyOfExactlyTheLimitIsReadInFull | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RequestBodyLimitFilterTest#theFirstByteOverTheLimitIs413OnTheBulkReadPath | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RequestBodyLimitFilterTest#singleByteReadsCountTooAndEndOfStreamIsPassedThrough | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RequestBodyLimitFilterTest#theWrappedStreamIsCreatedOnceSoTheCountCannotBeReset | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RequestBodyLimitFilterTest#servletStreamStateAndListenerDelegateToTheContainerStream | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RequestIdFilterTest#issuesOneIdOnHeaderAndMdcBeforeTheChainRunsAndClearsMdcAfter | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RequestIdFilterTest#ignoresInboundRequestIdAndIssuesADifferentIdPerRequest | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RequestIdFilterTest#writesOneRequestCompletedEventWithTheStatusAndTheIdButNotTheMethod | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RequestIdFilterTest#clearsMdcWhenTheChainThrows | unit | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | HealthJourneyTest#healthEndpointReportsUp | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditAccessSettingsJourneyTest#AC13_AC14_noSettingOpensTheEndpointBeyondLoopback | functional | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | audit.AuditAccessSettingsJourneyTest#aPlainLoopbackReadStillWorksUnderTheseSettings | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditForwardedHeadersJourneyTest#theShippedFilePinsTheForwardedHeaderStrategyOff | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditForwardedHeadersJourneyTest#onADetectedCloudPlatformThePinKeepsAForgedLoopbackHeaderOut | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditForwardedHeadersJourneyTest#anOverrideOfThePinClosesTheEndpoint | functional | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | audit.AuditForwardedHeadersJourneyTest#aTomcatRemoteIpSettingClosesTheEndpoint | functional | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | audit.AuditJourneyTest#AC22_createWritesExactlyOneAuditRow | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditJourneyTest#AC23_retireWritesExactlyOneAuditRow | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditJourneyTest#AC24_aFailedAuditWriteRollsTheRetireBackAndFailsClosed | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditJourneyTest#AC25_auditRowsAreAppendOnlyUnderEveryOperation | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditReadFailureJourneyTest#AC21_aFailedReadIsA500ProblemNeverAnEmptyOrPartialPage | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC01_anEmptyTrailIsAnEmptyPage | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC02_aCreateRowIsReadableAsWritten | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC03_aRetireRowCarriesBeforeAndAfter | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC04_rowsComeNewestFirstInTheOrderTheyWereWritten | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC05_everyFieldMatchesTheStoredRow | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC06_pagesFollowNextToTheEnd | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC07_theDefaultAndMaximumPageSizes | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC08_pagingIsStableWhileRowsAreWritten | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC09_invalidPagingParametersAreRefusedNamingTheField | functional | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC10_readingChangesNothing | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC11_aNonLoopbackClientIsRefused | functional | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC12_everyLoopbackAddressIsAdmitted | functional | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC13_forwardingHeadersNeverGrantAccess | functional | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#theGuardAndTheValidationComeBeforeContentNegotiation | functional | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC15_requestCorrelationOnTheNewPaths | functional | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC16_auditContentAndClientValuesStayOutOfTheLogs | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC19_theLiveApiDocumentDescribesTheAuditRead | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC20_aTraversalAcrossAnInFlightWriteNeitherRepeatsNorSkipsCommittedRows | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | audit.AuditUpgradeJourneyTest#AC18_anExistingDatabaseUpgradesInPlaceAndKeepsItsLinksAndRows | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickRecordingJourneyTest#AC01_aRedirectRecordsExactlyOneClickWithItsTime | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickRecordingJourneyTest#AC02_onlyARedirectIsAClick | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickRecordingJourneyTest#AC03_theReferrerIsStoredAsItsOriginOnly | functional | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | click.ClickRecordingJourneyTest#AC04_theUserAgentIsStoredAsAClassOnly | functional | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | click.ClickRecordingJourneyTest#AC05_theClientAddressIsStoredOnlyAsASaltedHashThatRotatesEveryUtcDay | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickRecordingJourneyTest#AC06_forwardingHeadersDoNotChangeTheRecordedClient | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickRecordingJourneyTest#AC17_theStatisticsExposeAggregatesOnly | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickRecordingJourneyTest#AC18_noClickDataReachesTheLogs | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickResilienceJourneyTest#AC14_aSlowClickStoreDoesNotSlowTheRedirect | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickResilienceJourneyTest#AC15_AC19_aFailingClickStoreDoesNotFailTheRedirectAndTheLossIsOneCorrelatedWarn | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickResilienceJourneyTest#AC16_concurrentRedirectsLoseNoClicksAndTheRequestIsNeverReadAfterItsResponse | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickResilienceJourneyTest#AC18_AC19_onTomcatClickDataStaysOutOfTheLogsAndEveryEventIsCorrelated | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickResilienceJourneyTest#AC22_headOnTheStatisticsPathHasNoBodyAndRecordsNothing | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.ClickSchemaJourneyTest#everyUserAgentClassIsRecordedAfterThePoolRetiresItsConnections | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.StatsJourneyTest#AC07_aLinkWithNoClicksHasEmptyStatistics | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.StatsJourneyTest#AC08_totalClicksCountsEveryRedirect | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.StatsJourneyTest#AC09_clicksPerDayAreGroupedByUtcCalendarDay | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.StatsJourneyTest#AC10_topReferrersAreRankedAndCapped | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.StatsJourneyTest#AC12_aRetiredLinksStatisticsAreStillReadable | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.StatsJourneyTest#AC13_statisticsOfAnUnknownCodeAndWrongMethodsAreProblemDetails | functional | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | click.StatsJourneyTest#AC19_theStatisticsPathAndASettledRedirectAreCorrelated | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.StatsJourneyTest#AC20_redirectAndAuditBehaviourAreUnchanged | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.StatsJourneyTest#AC21_theLiveApiDocumentDescribesTheStatisticsEndpoint | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | click.StatsJourneyTest#AC22_headAndOptionsKeepTheFrameworkDefaultsAndRecordNothing | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.IdempotencyJourneyTest#AC17_aReplayReturnsTheFirstLink | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.IdempotencyJourneyTest#AC18_sameKeyWithADifferentUrlIsRefusedAndTheBindingSurvives | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.IdempotencyJourneyTest#AC19_aKeyIsHonouredFor24HoursAndNotLongerAndARejectionDoesNotExtendIt | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.IdempotencyJourneyTest#AC20_aMalformedKeyIsRefused | functional | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | link.IdempotencyJourneyTest#AC20_aKeyOf255VisibleCharactersIsAccepted | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.IdempotencyJourneyTest#AC21_aRejectedCreateDoesNotConsumeTheKey | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.LinkCreateJourneyTest#AC01_validUrlBecomesAShortLink | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.LinkCreateJourneyTest#AC02_everyCreateWithoutAKeyIsANewLink | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.LinkCreateJourneyTest#AC03_shortUrlUsesTheShippedBaseNeverTheHostHeader | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.LinkCreateJourneyTest#AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule | functional | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | link.LinkCreateJourneyTest#AC04_aUrlOfExactly2048CharactersIsAccepted | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.LinkCreateJourneyTest#AC05_bodyThatIsNotAJsonObjectIsRefused | functional | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | link.LinkCreateJourneyTest#AC06_nonJsonContentTypeIsRefused | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.LinkCreateJourneyTest#AC07_bodyIsRefusedAtTheSixteenKibLimit | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.LinkCreateJourneyTest#AC16_redirectRouteDoesNotShadowTheExistingSurface | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.LinkReadRetireJourneyTest#AC08_readingALinkReturnsItsDetails | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.LinkReadRetireJourneyTest#AC09_aRetiredLinkIsStillReadableWithItsState | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.LinkReadRetireJourneyTest#AC10_retiringALinkIs204WithAnEmptyBody | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.LinkReadRetireJourneyTest#AC11_retiringAnAlreadyRetiredLinkIs410AndNotASecondMutation | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.LinkReadRetireJourneyTest#AC14_unknownCodeIs404OnEveryLinkOperation | functional | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | link.LinkReadRetireJourneyTest#AC15_wrongMethodIs405 | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.PublicBaseUrlJourneyTest#AC03_shortUrlUsesTheConfiguredBaseNeverTheHostHeader | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.RedirectJourneyTest#AC12_visitorIsRedirectedWithANonCacheable302 | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.RedirectJourneyTest#AC13_aRetiredLinkTellsTheVisitorItIsGone | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | link.RedirectJourneyTest#rule7_queryStringOnTheShortLinkIsNotForwarded | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | ping.PingJourneyTest#AC1_pingAnswersOkAsJson | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | ping.PingJourneyTest#AC2_timeIsCurrentUtcInstant | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | ping.PingJourneyTest#AC3_everyResponseCarriesRequestId | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | ping.PingJourneyTest#AC4_requestIdsAreUniquePerRequest | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | ping.PingJourneyTest#AC5_wrongMethodIsProblemDetailWithRequestId | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | ping.PingJourneyTest#AC6_pingIsLoggedAsJsonWithRequestId | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | ping.PingJourneyTest#AC7_logEventCarriesNoClientAddressOrUserAgent | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | ping.PingJourneyTest#AC8_clientSuppliedRequestIdIsIgnored | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.ColdStartJourneyTest#AC26_theFirstRequestOnARealServerLogsOnlyItsOwnCorrelatedEvents | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.DatabaseDownJourneyTest#AC14_AC15_readinessFollowsTheDatabaseAndLivenessDoesNot | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.HealthMetricsJourneyTest#AC13_livenessAndReadinessAreUpWithAWorkingDatabase | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.HealthMetricsJourneyTest#AC15_healthBodiesDiscloseNothingAboutTheInstallation | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.HealthMetricsJourneyTest#AC18_redirectsAreCountedByRouteTemplate | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13; AC-6; BR-4; FR-14, FR-15 | web.HealthMetricsJourneyTest#AC6_diskGaugesCarryNoInstallationPath | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13; AC-6; BR-4; FR-14, FR-15 | web.HealthMetricsJourneyTest$AnonymousScrape#AC6_theScrapeCarriesNoInstallationPath | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.ObservabilityJourneyTest#AC26_everyResponseCarriesARequestIdAndEveryEventOfTheRequestTheSameId | functional | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13 | web.ObservabilityJourneyTest#AC27_noClientControlledValueReachesTheLogs | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.ObservabilityJourneyTest#AC27_aDatabaseFailureQuotingTheKeyLogsOnlyClassNames | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.ObservabilityJourneyTest#rule8_problemBodiesAndLogsNeverEchoASubmittedValue | functional | PASS on 4fe7042; green class parameterized group, XML omits method |
+| AC-9; BR-5; FR-13; AC-3; NFR-M3 | web.OpenApiDocumentTest#NFRM3_committedDocumentEqualsTheLiveOne | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.OpenApiDocumentTest#AC28_liveDocumentDescribesTheSlice | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.OpenApiDocumentTest#AC20_everyOperationDocumentsTheTooManyRequestsProblem | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13; AC-1; BR-2, BR-3; FR-14 | web.OpenApiDocumentTest#AC1_problemSchemaDocumentsErrorsAndNoProperties | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13; AC-2; BR-2, BR-3; FR-14 | web.OpenApiDocumentTest#AC2_problemBodiesConformToTheDocumentedSchema | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13; AC-2; BR-2, BR-3; FR-14 | web.OpenApiDocumentTest$OverTheCreateBudget#AC2_theTooManyRequestsProblemConformsToo | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitDefaultsTest#theShippedConfigurationCarriesTheDecidedBudgets | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitDefaultsTest#theSettingsRecordDefaultsToTheSameBudgets | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitJourneyTest#AC01_theCreateBudgetAdmits60AndRefusesThe61st | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitJourneyTest#AC02_theRedirectBudgetAdmits600AndRefusesThe601st | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitJourneyTest#AC03a_retryAfterIsTruthfulFromAnExactlyEmptyBucket | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitJourneyTest#AC03b_retryAfterIsAnUpperBoundFromAPartlyRefilledBucket | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitJourneyTest#AC04_aFullBudgetReturnsAfterAQuietMinute | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitJourneyTest#AC05_theTwoBudgetsAreIndependent | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitJourneyTest#AC06_clientsAreIndependent | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitJourneyTest#AC07_aForgedForwardedAddressDoesNotChangeTheClient | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitJourneyTest#AC09_everyRequestInABudgetCountsAndTheLimitIsCheckedFirst | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitJourneyTest#AC11_theTooManyRequestsProblemNamesNoClient | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitJourneyTest#AC12_eachRejectionIsLoggedOnceCorrelatedAndWithoutClientValues | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitJourneyTest#rule1_percentEncodingDoesNotMoveARequestToTheLargerBudget | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitJourneyTest#rule1_operatorSurfacesAreNeverLimited | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitJourneyTest#rule1_aDotDotSegmentUnderAnExemptPrefixReachesNoLimitedOperation | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitJourneyTest#AC16_theMetricsSurfaceListsTheFourKindsOfMetric | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitJourneyTest#AC17_everyRejectionIsCountedOnceByBudget | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitJourneyTest#AC19_metricsAreExposedForScrapingWithoutClientOrLinkValues | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitJourneyTest#designDR01_anInvalidPathUnderAnExemptPrefixLogsNoSubmittedValueOnTomcat | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitJourneyTest#AC11_onTomcatThe429IsTheSameProblemMediaTypeAsEveryOtherError | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.RateLimitSettingsJourneyTest#AC10_theBudgetsAreOperatorSettings | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.ShutdownPhaseDefaultTest#theShippedGracefulShutdownPhaseIsTenSeconds | functional | PASS on 4fe7042 |
+| AC-9; BR-5; FR-13 | web.TrustedProxyJourneyTest#AC08_aTrustedProxysForwardedAddressIdentifiesTheClient | functional | PASS on 4fe7042 |
+
+Reverse inventory: every fresh XML invocation maps to a source method or its
+class's parameterized group; every named source method appears above.
+Parameterized-group attribution is disclosed, not a unique per-method XML
+join. All 233 method rows and all 411 invocation results retained.
+
+## 02-click-retention — candidate a8fc8b6b67e3a3cbdaada43a3233191b6c7610e1
+
+QA2, 2026-10-03. Fresh canonical gate: 174 unit / 172 functional invocations,
+0 failures/errors/skips; merged 490/490 lines and 168/168 branches. Independent
+replay of all 155 f6dd29e functional invocations passed with unchanged Java
+sources and only the granted candidate profile pause overlay.
+
+All 210 source test methods (97 unit, 113 functional) map below. Parameterized
+invocations explain the higher gate counts. Existing behavior keeps its earlier
+AC/rule attribution under this slice's AC-14 regression promise; AC numbers in
+the inherited clause belong to the named earlier slices. The changed reduction
+assertion is mapped directly to current AC-12. Every current AC has functional
+coverage, and all seven current business rules map directly.
+
+| AC / requirement / business rule | Test class#method | Suite | Result |
+|---|---|---|---|
+| AC-14 / FR-13 regression; inherited: BR-4 startup prerequisite; coverage gate (baseline) | UrlshortApplicationTests#contextLoads | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-4 startup prerequisite; coverage gate (baseline main entry point) | UrlshortApplicationTests#mainBootsWithoutAWebServer | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-9; AC-22, AC-23, AC-25; NFR-A1, NFR-A2 | audit.AuditLogTest#theWriterOffersOnlyAppendAndItsOnlyStatementIsAnInsert | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-9; AC-22, AC-23, AC-25; NFR-A1, NFR-A2 | audit.AuditLogTest#appendWritesOneRowWithServerOwnedValues | unit | PASS on a8fc8b6 |
+| AC-13, AC-16; NFR-X2, FR-13, audit-column policy | click.ClickAuditColumnsTest#theClickTablesGainFilledAuditColumnsAndKeepEveryV1ColumnAndConstraint | unit | PASS on a8fc8b6 |
+| AC-1, AC-9; BR-2, BR-6; NFR-P2/O2 | click.ClickPurgeTest#aRunDeletesBeforeTheEarliestKeptDayAndLogsOneInfo | unit | PASS on a8fc8b6 |
+| AC-3; BR-1, BR-2; NFR-P2 | click.ClickPurgeTest#theCutoffFollowsThePeriod | unit | PASS on a8fc8b6 |
+| AC-8; BR-3; NFR-P2 | click.ClickPurgeTest#theTickRunsOnceADayFromTenPastMidnight | unit | PASS on a8fc8b6 |
+| BR-3; NFR-P2; backward-clock rule | click.ClickPurgeTest#aClockThatStepsBackRunsNothing | unit | PASS on a8fc8b6 |
+| AC-10; BR-3, BR-6; NFR-P2/O2 | click.ClickPurgeTest#aFailedRunIsOneWarnWithTheClassOnlyAndIsNotRetriedBeforeTheNextDay | unit | PASS on a8fc8b6 |
+| AC-7; BR-3, BR-5; NFR-P2 | click.ClickPurgeTest#startRunsOnThePurgeThreadAndReturnsAfterTheRun | unit | PASS on a8fc8b6 |
+| AC-1, AC-2; BR-3, BR-5; NFR-P2 | click.ClickPurgeTest#runNowRunsOnThePurgeThread | unit | PASS on a8fc8b6 |
+| AC-15; BR-3, BR-6; NFR-P2 | click.ClickPurgeTest#onHoldStartDeletesNothingAndSaysSoOnce | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting | click.ClickRecorderTest#aHeadRequestIsNotAClick | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting | click.ClickRecorderTest#aRedirectIsStoredAsItsReducedFactsOnly | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting | click.ClickRecorderTest#aFailedWriteIsOneWarnWithTheRequestIdAndNoClickValue | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting | click.ClickRecorderTest#aClickThatCannotBeQueuedIsOneWarnAndTheRedirectGoesOn | unit | PASS on a8fc8b6 |
+| AC-12; BR-7; FR-15, NFR-O1/O2 | click.ClickRecorderTest#aClickThatCannotBeReducedIsOneWarn | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting | click.ClickRecorderTest#aFastStoreIsDrainedOnCloseAndNothingIsReported | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting | click.ClickRecorderTest#aStuckWriteIsBoundedAndEveryUnwrittenClickIsReportedOnceBeforeCloseReturns | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting | click.ClickRecorderTest#aClaimedClickIsNeverWrittenWhenTheWriterReachesItLater | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting | click.ClickRecorderTest#aWriteThatFailsAfterShutdownClaimedItIsNotReportedAgain | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting | click.ClickRecorderTest#aWriteThatCompletesAfterShutdownClaimedItIsNotReportedAgain | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-1, AC-4; BR-2, BR-4; NFR-P1; migration constraints after DDL connection retirement | click.ClickSchemaTest#theClickConstraintsStillWorkAfterTheDdlConnectionIsRetired | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-3, AC-4; BR-2, BR-3, BR-4; FR-7, NFR-P1 | click.ClickTest#theReferrerIsReducedToItsOrigin | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-3, AC-4; BR-2, BR-3, BR-4; FR-7, NFR-P1 | click.ClickTest#aReferrerThatIsNotAnHttpOriginIsNone | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-3, AC-4; BR-2, BR-3, BR-4; FR-7, NFR-P1 | click.ClickTest#theReferrerLengthCapIs2048 | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-3, AC-4; BR-2, BR-3, BR-4; FR-7, NFR-P1 | click.ClickTest#theUserAgentIsReducedToAClass | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-3, AC-4; BR-2, BR-3, BR-4; FR-7, NFR-P1 | click.ClickTest#anAbsentOrEmptyUserAgentIsUnknown | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-3, AC-4; BR-2, BR-3, BR-4; FR-7, NFR-P1 | click.ClickTest#rule2_aClickHoldsOnlyTheReducedFacts | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-5; BR-4; NFR-P1; salt lifetime and midnight ownership | click.DailySaltTest#sameAddressAndDayHashEquallyAndTheStampCarriesTheClocksInstant | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-5; BR-4; NFR-P1; salt lifetime and midnight ownership | click.DailySaltTest#anotherAddressOrAnotherDayHashesDifferently | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-5; BR-4; NFR-P1; salt lifetime and midnight ownership | click.DailySaltTest#theHashIsNeverTheUnsaltedDigest | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-5; BR-4; NFR-P1; salt lifetime and midnight ownership | click.DailySaltTest#aSelectionMadeBeforeMidnightKeepsItsDayAndNeverReplacesTheNextDaysSalt | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-5; BR-4; NFR-P1; salt lifetime and midnight ownership | click.DailySaltTest#aStaleExpiryIsANoOpAndTheCurrentDaysExpiryDropsTheSalt | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-5; BR-4; NFR-P1; salt lifetime and midnight ownership | click.DailySaltTest#closeDropsTheSalt | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-5; BR-4; NFR-P1; salt lifetime and midnight ownership | click.DailySaltTest#aSaltIsDroppedAtTheEndOfItsDayWithoutAnyFurtherClick | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-7, AC-9, AC-10, AC-11; BR-3, BR-7; FR-8 | click.LinkStatsTest#noRowsIsZeroAndTwoEmptyLists | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-7, AC-9, AC-10, AC-11; BR-3, BR-7; FR-8 | click.LinkStatsTest#daysAreSummedAscendingAndClicksWithoutAReferrerCountOnlyInTheTotals | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-7, AC-9, AC-10, AC-11; BR-3, BR-7; FR-8 | click.LinkStatsTest#referrersAreRankedByClicksThenByCodePointAndCappedAtTen | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1 | link.LinkServiceTest#createWithoutAKeyInsertsAndAuditsTheNewLink | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1 | link.LinkServiceTest#createWithAnUnboundKeyBindsIt | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1 | link.LinkServiceTest#replayWithinTheWindowReturnsTheBoundLinkAndWritesNothing | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1 | link.LinkServiceTest#mismatchWithinTheWindowIs422AndKeepsTheBinding | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1 | link.LinkServiceTest#anExpiredKeyIsReleasedAndBindsANewLink | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1 | link.LinkServiceTest#readOfAnUnknownCodeIs404 | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1 | link.LinkServiceTest#resolveSendsVisitorsToActiveLinksOnly | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1 | link.LinkServiceTest#retireUpdatesConditionallyAndAuditsBeforeAndAfter | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1 | link.LinkServiceTest#retireThatChangesNoRowIs410AndWritesNoAuditRow | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-6; FR-4 | link.LinkTest#stateIsActiveUntilRetiredAtIsSet | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-3, BR-5, BR-8; AC-4, AC-20; FR-5, NFR-S1 | link.LinkValidationTest#eachRejectedUrlFailsExactlyItsRule | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-3, BR-5, BR-8; AC-4, AC-20; FR-5, NFR-S1 | link.LinkValidationTest#validUrlsPass | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-3, BR-5, BR-8; AC-4, AC-20; FR-5, NFR-S1 | link.LinkValidationTest#exactly2048CharactersIsAccepted | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-3, BR-5, BR-8; AC-4, AC-20; FR-5, NFR-S1 | link.LinkValidationTest#malformedKeysFailFormat | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-3, BR-5, BR-8; AC-4, AC-20; FR-5, NFR-S1 | link.LinkValidationTest#keysLongerThan255FailFormat | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-3, BR-5, BR-8; AC-4, AC-20; FR-5, NFR-S1 | link.LinkValidationTest#absentOrVisibleAsciiKeysPass | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-1; FR-1 | link.ShortCodesTest#codesAreEightCharactersFromTheAlphanumericAlphabet | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-1; FR-1 | link.ShortCodesTest#aDrawThatSpellsAReservedSegmentIsDrawnAgain | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-1, AC-2; BR-4, BR-5, BR-6 | ping.PingControllerTest#answersOkWithTheCurrentUtcInstant | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-8, BR-10; AC-5, AC-7, AC-24, AC-26, AC-27; NFR-R6 | web.ProblemDetailsAdviceTest#unwrapsABodyLimitErrorRaisedInsideTheJsonReaderTo413 | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-8, BR-10; AC-5, AC-7, AC-24, AC-26, AC-27; NFR-R6 | web.ProblemDetailsAdviceTest#unreadableBodyWithoutALimitErrorStays400WithoutTheFrameworkDetail | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-8, BR-10; AC-5, AC-7, AC-24, AC-26, AC-27; NFR-R6 | web.ProblemDetailsAdviceTest#frameworkDetailThatEchoesClientInputIsCleared | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-8, BR-10; AC-5, AC-7, AC-24, AC-26, AC-27; NFR-R6 | web.ProblemDetailsAdviceTest#domainProblemKeepsItsErrorsAndGetsTheRequestIdAsInstance | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-8, BR-10; AC-5, AC-7, AC-24, AC-26, AC-27; NFR-R6 | web.ProblemDetailsAdviceTest#unhandledExceptionIsABare500AndOneMessageFreeEvent | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-8, BR-10; AC-5, AC-7, AC-24, AC-26, AC-27; NFR-R6 | web.ProblemDetailsAdviceTest#errorOriginIsNoneWhenNoFrameIsOurs | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-8, BR-10; AC-5, AC-7, AC-24, AC-26, AC-27; NFR-R6 | web.ProblemDetailsAdviceTest#aNonProblemBodyPassesThroughUntouched | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-8; AC-4, AC-14, AC-18, AC-20; FR-5, FR-6, FR-9 | web.ProblemsTest#validationIs400WithExactlyOneFieldError | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-8; AC-4, AC-14, AC-18, AC-20; FR-5, FR-6, FR-9 | web.ProblemsTest#notFoundAndGoneAreBareProblems | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-8; AC-4, AC-14, AC-18, AC-20; FR-5, FR-6, FR-9 | web.ProblemsTest#idempotencyMismatchIs422NamingTheHeaderAndRule | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-1; request classification/exemptions; NFR-R2 | web.RateLimitFilterTest#rule1_limitedRequestsAreChargedToTheirBudget | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-1; request classification/exemptions; NFR-R2 | web.RateLimitFilterTest#rule1_operatorSurfacesAreNeitherChargedNorLimited | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-7, AC-8; BR-5; NFR-R2 | web.RateLimitFilterTest#rule5_theClientIsThePeerOrTheRightMostUntrustedForwardedHop | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-7, AC-8; BR-5; NFR-R2 | web.RateLimitFilterTest#rule5_anAbsentOrEmptyHeaderFromATrustedProxyChargesTheProxy | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-7, AC-8; BR-5; NFR-R2 | web.RateLimitFilterTest#theFilterReadsOnlyXForwardedForAndOnlyFromATrustedPeer | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-11; BR-3, BR-4, BR-6; FR-10, NFR-R2, NFR-P1 | web.RateLimitFilterTest#anEmptyBucketIsA429ProblemWithRetryAfterAndNoChain | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-17; BR-6, BR-10; FR-10, NFR-O3 | web.RateLimitFilterTest#eachRejectionIsCountedOnceUnderItsBudgetOnly | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-3; BR-2, BR-3, BR-4; FR-10, NFR-R2 | web.RateLimiterTest#AC03a_anExactlyEmptyBucketRefillsOneTokenAfterExactlyOneSecond | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-3; BR-2, BR-3, BR-4; FR-10, NFR-R2 | web.RateLimiterTest#AC03b_retryAfterIsRoundedUpAndHonoured | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-4; BR-2; NFR-R2 | web.RateLimiterTest#AC04_aQuietMinuteRefillsTheWholeBucket | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-3, AC-9; BR-2, BR-3; FR-10, NFR-R2 | web.RateLimiterTest#refusalsTakeNothing | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-5, AC-6; BR-1, BR-2; NFR-R2 | web.RateLimiterTest#budgetsAndClientsAreIndependent | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-3; BR-4; FR-10, NFR-R2 | web.RateLimiterTest#retryAfterIsTheWaitForOneTokenInWholeSeconds | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-1, AC-3; BR-2, BR-3, BR-4; FR-10, NFR-R2; CR-01/SEC-01 ordering regression | web.RateLimiterTest#aRequestOvertakenByNewerOnesDecidesOnTheTimeItReachesTheBucket | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-2; NFR-R2; disclosed fail-closed backward-clock limit, lead transition 726 | web.RateLimiterTest#afterABackwardClockStepTheBucketRefillsFromItsStoredTat | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-8; non-functional limiter memory bound; NFR-R2 | web.RateLimiterTest#fullBucketsAreReleasedByTheNextRequestButNotWhileIdle | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-2, BR-8; non-functional limiter memory bound; NFR-R2 | web.RateLimiterTest#aBucketThatIsNotYetFullSurvivesTheRelease | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-8; non-functional limiter memory bound; NFR-R2 | web.RateLimiterTest#theReleaseRunsAtMostOncePerSecond | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-8; NFR-R2; CR-03 rollback cleanup regression | web.RateLimiterTest#theReleaseResumesAfterABackwardClockStep | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-7; NFR-S3; body-limit stream mechanics | web.RequestBodyLimitFilterTest#aBodyOfExactlyTheLimitIsReadInFull | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-7; NFR-S3; body-limit stream mechanics | web.RequestBodyLimitFilterTest#theFirstByteOverTheLimitIs413OnTheBulkReadPath | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-7; NFR-S3; body-limit stream mechanics | web.RequestBodyLimitFilterTest#singleByteReadsCountTooAndEndOfStreamIsPassedThrough | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-7; NFR-S3; body-limit stream mechanics | web.RequestBodyLimitFilterTest#theWrappedStreamIsCreatedOnceSoTheCountCannotBeReset | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-7; NFR-S3; body-limit stream mechanics | web.RequestBodyLimitFilterTest#servletStreamStateAndListenerDelegateToTheContainerStream | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-3, AC-6; BR-2, BR-3, BR-8 (MDC lifecycle) | web.RequestIdFilterTest#issuesOneIdOnHeaderAndMdcBeforeTheChainRunsAndClearsMdcAfter | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-4, AC-8; BR-1, BR-2 | web.RequestIdFilterTest#ignoresInboundRequestIdAndIssuesADifferentIdPerRequest | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-10; AC-26, AC-27; NFR-O1, NFR-O2 | web.RequestIdFilterTest#writesOneRequestCompletedEventWithTheStatusAndTheIdButNotTheMethod | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-1, BR-8 (request context isolated after failure) | web.RequestIdFilterTest#clearsMdcWhenTheChainThrows | unit | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-4 (baseline health responsibility) | HealthJourneyTest#healthEndpointReportsUp | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-22; NFR-A1; BR-9, BR-12 | audit.AuditJourneyTest#AC22_createWritesExactlyOneAuditRow | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-23; NFR-A1; BR-6, BR-9, BR-12 | audit.AuditJourneyTest#AC23_retireWritesExactlyOneAuditRow | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-24; NFR-A1, NFR-R6; BR-6, BR-8, BR-9, BR-10 | audit.AuditJourneyTest#AC24_aFailedAuditWriteRollsTheRetireBackAndFailsClosed | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-25; NFR-A2; BR-9 | audit.AuditJourneyTest#AC25_auditRowsAreAppendOnlyUnderEveryOperation | functional | PASS on a8fc8b6 |
+| AC-10 / NFR-P2, NFR-O2; BR-3, BR-6 | click.ClickPurgeFailureJourneyTest#AC10_aFailedRunIsReportedAndLeavesTheServiceWorking | functional | PASS on a8fc8b6 |
+| AC-12 / FR-15, NFR-O1/O2; BR-7 | click.ClickPurgeFailureJourneyTest#AC12_aClickThatCannotBeReducedIsOneWarnWithItsOwnReason | functional | PASS on a8fc8b6 |
+| AC-14, AC-15; BR-3; FR-13, NFR-P2 | click.ClickPurgeHoldJourneyTest#theSharedContextsHoldThePurge | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-1; BR-1, BR-2, BR-6; FR-7 | click.ClickRecordingJourneyTest#AC01_aRedirectRecordsExactlyOneClickWithItsTime | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-2; BR-1; FR-7 | click.ClickRecordingJourneyTest#AC02_onlyARedirectIsAClick | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-3; BR-2, BR-3; FR-7, NFR-P1 | click.ClickRecordingJourneyTest#AC03_theReferrerIsStoredAsItsOriginOnly | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-4; BR-2, BR-4; FR-7, NFR-P1 | click.ClickRecordingJourneyTest#AC04_theUserAgentIsStoredAsAClassOnly | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-5; BR-2, BR-4; FR-7, NFR-P1 | click.ClickRecordingJourneyTest#AC05_theClientAddressIsStoredOnlyAsASaltedHashThatRotatesEveryUtcDay | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-6; BR-4; FR-7, NFR-P1 | click.ClickRecordingJourneyTest#AC06_forwardingHeadersDoNotChangeTheRecordedClient | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-17; BR-2, BR-7; NFR-P1 | click.ClickRecordingJourneyTest#AC17_theStatisticsExposeAggregatesOnly | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-18; BR-9; NFR-O2, NFR-P1 | click.ClickRecordingJourneyTest#AC18_noClickDataReachesTheLogs | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-14; BR-5; FR-7, NFR-L3 | click.ClickResilienceJourneyTest#AC14_aSlowClickStoreDoesNotSlowTheRedirect | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-15; BR-5, BR-9; FR-7, NFR-L3 | click.ClickResilienceJourneyTest#AC15_AC19_aFailingClickStoreDoesNotFailTheRedirectAndTheLossIsOneCorrelatedWarn | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-16; BR-1, BR-2, BR-6; FR-7 | click.ClickResilienceJourneyTest#AC16_concurrentRedirectsLoseNoClicksAndTheRequestIsNeverReadAfterItsResponse | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-18; BR-9; NFR-O2, NFR-P1 | click.ClickResilienceJourneyTest#AC18_AC19_onTomcatClickDataStaysOutOfTheLogsAndEveryEventIsCorrelated | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-22; BR-1, BR-7; FR-8 | click.ClickResilienceJourneyTest#AC22_headOnTheStatisticsPathHasNoBodyAndRecordsNothing | functional | PASS on a8fc8b6 |
+| AC-1 / NFR-P2; BR-2 | click.ClickRetentionJourneyTest#AC01_theBoundaryDayIsKeptAndTheDayBeforeItIsDeleted | functional | PASS on a8fc8b6 |
+| AC-2 / NFR-P2; BR-2 | click.ClickRetentionJourneyTest#AC02_theWindowMovesWithTheDay | functional | PASS on a8fc8b6 |
+| AC-5 / FR-13, NFR-P2; BR-4 | click.ClickRetentionJourneyTest#AC05_statisticsCoverTheRetainedClicksOnly | functional | PASS on a8fc8b6 |
+| AC-6 / FR-13; BR-4 | click.ClickRetentionJourneyTest#AC06_linksRedirectsAndTheAuditTrailAreUntouched | functional | PASS on a8fc8b6 |
+| AC-9 / NFR-P2, NFR-O2; BR-6 | click.ClickRetentionJourneyTest#AC09_eachRunLogsOneInfoWithItsCountCutoffAndPeriodAndNoClickValue | functional | PASS on a8fc8b6 |
+| AC-11 / FR-13; BR-5 | click.ClickRetentionJourneyTest#AC11_aRedirectWhileOldClicksAreBeingDeletedIsServedAndCounted | functional | PASS on a8fc8b6 |
+| AC-8 / NFR-P2; BR-3 | click.ClickRetentionScheduleJourneyTest#AC08_aPurgeRunsEveryUtcDayWithoutAnOperator | functional | PASS on a8fc8b6 |
+| AC-3 / NFR-P2; BR-1, BR-2 | click.ClickRetentionSettingJourneyTest#AC03_thePeriodIsAnOperatorSetting | functional | PASS on a8fc8b6 |
+| AC-4 / NFR-P2; BR-1 | click.ClickRetentionStartupJourneyTest#AC04_anInvalidPeriodStopsTheServiceFromStarting | functional | PASS on a8fc8b6 |
+| AC-7 / NFR-P2; BR-3 | click.ClickRetentionStartupJourneyTest#AC07_aPurgeRunsAtStartup | functional | PASS on a8fc8b6 |
+| AC-13 / FR-13, NFR-X2, audit-column policy; BR-4; AC-16 / NFR-X2, audit-column policy | click.ClickRetentionStartupJourneyTest#AC13_AC16_anExistingDataDirectoryUpgradesInPlace | functional | PASS on a8fc8b6 |
+| AC-15 / NFR-P2; BR-3, BR-6 | click.ClickRetentionStartupJourneyTest#AC15_aPausedPurgeDeletesNothingAndSaysSoAtEveryStart | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-1, AC-4; BR-2, BR-4; FR-7, NFR-P1; pooled-connection retirement smoke | click.ClickSchemaJourneyTest#everyUserAgentClassIsRecordedAfterThePoolRetiresItsConnections | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-7; BR-7; FR-8 | click.StatsJourneyTest#AC07_aLinkWithNoClicksHasEmptyStatistics | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-8, AC-11; BR-1, BR-7; FR-8 | click.StatsJourneyTest#AC08_totalClicksCountsEveryRedirect | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-9, AC-11; BR-2, BR-7; FR-8 | click.StatsJourneyTest#AC09_clicksPerDayAreGroupedByUtcCalendarDay | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-10, AC-11; BR-3, BR-7; FR-8 | click.StatsJourneyTest#AC10_topReferrersAreRankedAndCapped | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-12; BR-1, BR-7, BR-8; FR-8 | click.StatsJourneyTest#AC12_aRetiredLinksStatisticsAreStillReadable | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-13; BR-7, BR-9; FR-8 | click.StatsJourneyTest#AC13_statisticsOfAnUnknownCodeAndWrongMethodsAreProblemDetails | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-19; BR-9; NFR-O1, NFR-O2 | click.StatsJourneyTest#AC19_theStatisticsPathAndASettledRedirectAreCorrelated | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-20; BR-8; FR-2, FR-4, FR-6, NFR-A1 regression | click.StatsJourneyTest#AC20_redirectAndAuditBehaviourAreUnchanged | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-21; BR-7; NFR-M3 | click.StatsJourneyTest#AC21_theLiveApiDocumentDescribesTheStatisticsEndpoint | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-22; BR-1, BR-7; FR-8 | click.StatsJourneyTest#AC22_headAndOptionsKeepTheFrameworkDefaultsAndRecordNothing | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-17; FR-9; BR-5, BR-9 | link.IdempotencyJourneyTest#AC17_aReplayReturnsTheFirstLink | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-18; FR-9, NFR-R5; BR-5, BR-8, BR-9 | link.IdempotencyJourneyTest#AC18_sameKeyWithADifferentUrlIsRefusedAndTheBindingSurvives | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-19; NFR-R5; BR-5 | link.IdempotencyJourneyTest#AC19_aKeyIsHonouredFor24HoursAndNotLongerAndARejectionDoesNotExtendIt | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-20; FR-9, FR-5; BR-5, BR-8 | link.IdempotencyJourneyTest#AC20_aMalformedKeyIsRefused | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-20; FR-9, FR-5; BR-5, BR-8 | link.IdempotencyJourneyTest#AC20_aKeyOf255VisibleCharactersIsAccepted | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-21; FR-9; BR-5 | link.IdempotencyJourneyTest#AC21_aRejectedCreateDoesNotConsumeTheKey | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-1; FR-1; BR-1, BR-2, BR-11, BR-12 | link.LinkCreateJourneyTest#AC01_validUrlBecomesAShortLink | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-2; FR-1; BR-1, BR-4 | link.LinkCreateJourneyTest#AC02_everyCreateWithoutAKeyIsANewLink | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-3; FR-1, NFR-S4; BR-11 | link.LinkCreateJourneyTest#AC03_shortUrlUsesTheShippedBaseNeverTheHostHeader | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-4; FR-5, NFR-S1; BR-3, BR-8 | link.LinkCreateJourneyTest#AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-4; FR-5, NFR-S1; BR-3, BR-8 | link.LinkCreateJourneyTest#AC04_aUrlOfExactly2048CharactersIsAccepted | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-5; FR-5; BR-8 | link.LinkCreateJourneyTest#AC05_bodyThatIsNotAJsonObjectIsRefused | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-6; FR-5, NFR-S3; BR-8 | link.LinkCreateJourneyTest#AC06_nonJsonContentTypeIsRefused | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-7; NFR-S3; BR-8 | link.LinkCreateJourneyTest#AC07_bodyIsRefusedAtTheSixteenKibLimit | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-16; FR-6 (surface regression); BR-1 | link.LinkCreateJourneyTest#AC16_redirectRouteDoesNotShadowTheExistingSurface | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-8; FR-3; BR-2, BR-6, BR-11, BR-12 | link.LinkReadRetireJourneyTest#AC08_readingALinkReturnsItsDetails | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-9; FR-3, FR-4; BR-6 | link.LinkReadRetireJourneyTest#AC09_aRetiredLinkIsStillReadableWithItsState | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-10; FR-4; BR-6, BR-9 | link.LinkReadRetireJourneyTest#AC10_retiringALinkIs204WithAnEmptyBody | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-11; FR-4; BR-6, BR-9 | link.LinkReadRetireJourneyTest#AC11_retiringAnAlreadyRetiredLinkIs410AndNotASecondMutation | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-14; FR-6; BR-8 | link.LinkReadRetireJourneyTest#AC14_unknownCodeIs404OnEveryLinkOperation | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-15; FR-6; BR-8 | link.LinkReadRetireJourneyTest#AC15_wrongMethodIs405 | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-3; FR-1, NFR-S4; BR-11 | link.PublicBaseUrlJourneyTest#AC03_shortUrlUsesTheConfiguredBaseNeverTheHostHeader | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-12; FR-2; BR-2, BR-7 | link.RedirectJourneyTest#AC12_visitorIsRedirectedWithANonCacheable302 | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-13; FR-4; BR-6, BR-8 | link.RedirectJourneyTest#AC13_aRetiredLinkTellsTheVisitorItIsGone | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-7; AC-12; FR-2 | link.RedirectJourneyTest#rule7_queryStringOnTheShortLinkIsNotForwarded | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-1; BR-4, BR-6 | ping.PingJourneyTest#AC1_pingAnswersOkAsJson | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-2; BR-5 | ping.PingJourneyTest#AC2_timeIsCurrentUtcInstant | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-3; BR-2, BR-3 | ping.PingJourneyTest#AC3_everyResponseCarriesRequestId | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-4; BR-2 | ping.PingJourneyTest#AC4_requestIdsAreUniquePerRequest | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-5; BR-3, BR-7 | ping.PingJourneyTest#AC5_wrongMethodIsProblemDetailWithRequestId | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-6; BR-8 | ping.PingJourneyTest#AC6_pingIsLoggedAsJsonWithRequestId | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-7; BR-1, logging obligation | ping.PingJourneyTest#AC7_logEventCarriesNoClientAddressOrUserAgent | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-8; BR-1 | ping.PingJourneyTest#AC8_clientSuppliedRequestIdIsIgnored | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-26; NFR-O1, NFR-O2; BR-10 | web.ColdStartJourneyTest#AC26_theFirstRequestOnARealServerLogsOnlyItsOwnCorrelatedEvents | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-14, AC-15; BR-9; NFR-R1 | web.DatabaseDownJourneyTest#AC14_AC15_readinessFollowsTheDatabaseAndLivenessDoesNot | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-13; BR-9; NFR-R1 | web.HealthMetricsJourneyTest#AC13_livenessAndReadinessAreUpWithAWorkingDatabase | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-15; BR-9; NFR-R1 | web.HealthMetricsJourneyTest#AC15_healthBodiesDiscloseNothingAboutTheInstallation | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-18; BR-10; NFR-O3 | web.HealthMetricsJourneyTest#AC18_redirectsAreCountedByRouteTemplate | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-26; NFR-O1, NFR-O2; BR-10 | web.ObservabilityJourneyTest#AC26_everyResponseCarriesARequestIdAndEveryEventOfTheRequestTheSameId | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-27; NFR-O2; BR-10 | web.ObservabilityJourneyTest#AC27_noClientControlledValueReachesTheLogs | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-27; NFR-O2; BR-10 | web.ObservabilityJourneyTest#AC27_aDatabaseFailureQuotingTheKeyLogsOnlyClassNames | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-8, BR-10; AC-27; FR-5, FR-6, NFR-O2 | web.ObservabilityJourneyTest#rule8_problemBodiesAndLogsNeverEchoASubmittedValue | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-28; NFR-M3; proof item 10 | web.OpenApiDocumentTest#NFRM3_committedDocumentEqualsTheLiveOne | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-28; NFR-M3 | web.OpenApiDocumentTest#AC28_liveDocumentDescribesTheSlice | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-20; BR-1; FR-10, NFR-M3 | web.OpenApiDocumentTest#AC20_everyOperationDocumentsTheTooManyRequestsProblem | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-10; BR-11; NFR-R2 | web.RateLimitDefaultsTest#theShippedConfigurationCarriesTheDecidedBudgets | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-1, AC-2, AC-10; BR-11; NFR-R2 | web.RateLimitDefaultsTest#theSettingsRecordDefaultsToTheSameBudgets | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-1; BR-2, BR-3; FR-10, NFR-R2 | web.RateLimitJourneyTest#AC01_theCreateBudgetAdmits60AndRefusesThe61st | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-2; BR-1, BR-2; FR-10, NFR-R2 | web.RateLimitJourneyTest#AC02_theRedirectBudgetAdmits600AndRefusesThe601st | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-3; BR-2, BR-3, BR-4; FR-10, NFR-R2 | web.RateLimitJourneyTest#AC03a_retryAfterIsTruthfulFromAnExactlyEmptyBucket | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-3; BR-2, BR-3, BR-4; FR-10, NFR-R2 | web.RateLimitJourneyTest#AC03b_retryAfterIsAnUpperBoundFromAPartlyRefilledBucket | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-4; BR-2; NFR-R2 | web.RateLimitJourneyTest#AC04_aFullBudgetReturnsAfterAQuietMinute | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-5; BR-1, BR-2; NFR-R2 | web.RateLimitJourneyTest#AC05_theTwoBudgetsAreIndependent | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-6; BR-2; NFR-R2 | web.RateLimitJourneyTest#AC06_clientsAreIndependent | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-7; BR-5; NFR-R2 | web.RateLimitJourneyTest#AC07_aForgedForwardedAddressDoesNotChangeTheClient | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-9; BR-3, BR-4; FR-10, NFR-R2 | web.RateLimitJourneyTest#AC09_everyRequestInABudgetCountsAndTheLimitIsCheckedFirst | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-11; BR-6; FR-10, NFR-O1, NFR-P1 | web.RateLimitJourneyTest#AC11_theTooManyRequestsProblemNamesNoClient | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-12; BR-6, BR-7; NFR-O1/O2, NFR-P1 | web.RateLimitJourneyTest#AC12_eachRejectionIsLoggedOnceCorrelatedAndWithoutClientValues | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-1; request classification/exemptions; NFR-R2 | web.RateLimitJourneyTest#rule1_percentEncodingDoesNotMoveARequestToTheLargerBudget | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-1; request classification/exemptions; NFR-R2 | web.RateLimitJourneyTest#rule1_operatorSurfacesAreNeverLimited | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-1; request classification/exemptions; NFR-R2 | web.RateLimitJourneyTest#rule1_aDotDotSegmentUnderAnExemptPrefixReachesNoLimitedOperation | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-16; BR-10; NFR-O3 | web.RateLimitJourneyTest#AC16_theMetricsSurfaceListsTheFourKindsOfMetric | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-17; BR-6, BR-10; FR-10, NFR-O3 | web.RateLimitJourneyTest#AC17_everyRejectionIsCountedOnceByBudget | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-19; BR-6, BR-10; NFR-O3, NFR-P1 | web.RateLimitJourneyTest#AC19_metricsAreExposedForScrapingWithoutClientOrLinkValues | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: BR-1, BR-6; design DR-01; NFR-O1/O2, NFR-P1 | web.RateLimitJourneyTest#designDR01_anInvalidPathUnderAnExemptPrefixLogsNoSubmittedValueOnTomcat | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-11; BR-6; FR-10, NFR-O1, NFR-P1 | web.RateLimitJourneyTest#AC11_onTomcatThe429IsTheSameProblemMediaTypeAsEveryOtherError | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-10; BR-11; NFR-R2 | web.RateLimitSettingsJourneyTest#AC10_theBudgetsAreOperatorSettings | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-25, AC-28; BR-13; NFR-R3 (configuration prerequisite only) | web.ShutdownPhaseDefaultTest#theShippedGracefulShutdownPhaseIsTenSeconds | functional | PASS on a8fc8b6 |
+| AC-14 / FR-13 regression; inherited: AC-8; BR-5; NFR-R2 | web.TrustedProxyJourneyTest#AC08_aTrustedProxysForwardedAddressIdentifiesTheClient | functional | PASS on a8fc8b6 |
+
+By-effect HTTP, JDBC rows, JSON events, controlled-clock and installed-directory
+checks are recorded in the slice QA proof and `proof/qa-effects-final-a8fc8b6/`.
+The external instrumentation changes no product or canonical test source.
+Proof item 9 stays pending X′ under the lead's recorded 21:42Z custody exception;
+it is tracked by qitem-20261003221121-7686465a before acceptance.

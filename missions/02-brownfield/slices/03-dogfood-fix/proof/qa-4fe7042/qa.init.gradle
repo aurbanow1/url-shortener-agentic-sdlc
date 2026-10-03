@@ -1,0 +1,23 @@
+allprojects {
+  afterEvaluate {
+    ['Unit':'test','Functional':'functionalTest'].each { suffix, sourceName ->
+      tasks.register('qaBase'+suffix+'Compile', JavaCompile) {
+        dependsOn tasks.named('classes'), tasks.named('jar')
+        source fileTree('/private/tmp/urlshort-dogfood-qa-4fe7042/shipped/src/'+sourceName+'/java') { include '**/*.java' }
+        classpath = sourceSets[sourceName].compileClasspath
+        destinationDirectory = file('/private/tmp/urlshort-dogfood-qa-4fe7042/base-'+sourceName+'-classes')
+        options.release = 21
+      }
+      tasks.register('qaBase'+suffix, Test) {
+        dependsOn tasks.named('qaBase'+suffix+'Compile')
+        useJUnitPlatform()
+        testClassesDirs = files('/private/tmp/urlshort-dogfood-qa-4fe7042/base-'+sourceName+'-classes')
+        classpath = files('/private/tmp/urlshort-dogfood-qa-4fe7042/base-'+sourceName+'-classes','/private/tmp/urlshort-dogfood-qa-4fe7042/shipped/src/'+sourceName+'/resources') + sourceSets[sourceName].runtimeClasspath
+        if (sourceName=='functionalTest') systemProperty 'spring.profiles.active','functional'
+        reports.junitXml.outputLocation = file('/private/tmp/urlshort-dogfood-qa-4fe7042/base-'+sourceName+'-results')
+        reports.html.outputLocation = file('/private/tmp/urlshort-dogfood-qa-4fe7042/base-'+sourceName+'-report')
+        jacoco.destinationFile = file('/private/tmp/urlshort-dogfood-qa-4fe7042/base-'+sourceName+'.exec')
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+
+> Task :compileTestJava FAILED
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/04-audit-columns/src/test/java/dev/urlshort/link/LinkServiceStampTest.java:41: error: cannot find symbol
+		order.verify(links).stamp(7L, NOW);
+		                   ^
+  symbol:   method stamp(long,Instant)
+  location: interface LinkRepository
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/04-audit-columns/src/test/java/dev/urlshort/link/LinkServiceStampTest.java:55: error: cannot find symbol
+		order.verify(links).stamp(3L, NOW);
+		                   ^
+  symbol:   method stamp(long,Instant)
+  location: interface LinkRepository
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/04-audit-columns/src/test/java/dev/urlshort/link/LinkServiceStampTest.java:57: error: cannot find symbol
+		order.verify(links).stamp(8L, NOW);
+		                   ^
+  symbol:   method stamp(long,Instant)
+  location: interface LinkRepository
+3 errors
+
+[Incubating] Problems report is available at: file:///Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/04-audit-columns/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileTestJava' (registered by plugin class 'org.gradle.api.plugins.JavaBasePlugin').
+> Compilation failed; see the compiler output below.
+  /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/04-audit-columns/src/test/java/dev/urlshort/link/LinkServiceStampTest.java:41: error: cannot find symbol
+  		order.verify(links).stamp(7L, NOW);
+  		                   ^
+    symbol:   method stamp(long,Instant)
+    location: interface LinkRepository
+  /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/04-audit-columns/src/test/java/dev/urlshort/link/LinkServiceStampTest.java:55: error: cannot find symbol
+  		order.verify(links).stamp(3L, NOW);
+  		                   ^
+    symbol:   method stamp(long,Instant)
+    location: interface LinkRepository
+  /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/04-audit-columns/src/test/java/dev/urlshort/link/LinkServiceStampTest.java:57: error: cannot find symbol
+  		order.verify(links).stamp(8L, NOW);
+  		                   ^
+    symbol:   method stamp(long,Instant)
+    location: interface LinkRepository
+  3 errors
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 1s
+3 actionable tasks: 1 executed, 2 up-to-date

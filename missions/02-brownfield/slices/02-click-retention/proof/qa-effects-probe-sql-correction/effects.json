@@ -1,0 +1,186 @@
+{
+  "candidate": "a8fc8b6b67e3a3cbdaada43a3233191b6c7610e1",
+  "observations": [
+    {
+      "name": "baseline-f6dd29e ready",
+      "pid": 2108,
+      "argv": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/private/tmp/urlshort-qa2-retention-96nqv4hx/baseline/build/libs/urlshort.jar",
+        "--server.address=127.0.0.1",
+        "--server.port=18141",
+        "--spring.datasource.url=jdbc:h2:file:/private/tmp/urlshort-qa2-retention-96nqv4hx/installed-upgrade/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=10000",
+        "--urlshort.rate-limit.trusted-proxies=127.0.0.1",
+        "--urlshort.rate-limit.create-per-minute=100000",
+        "--urlshort.rate-limit.redirect-per-minute=100000"
+      ],
+      "env": {},
+      "at": "2026-10-03T22:05:16.280098+00:00"
+    },
+    {
+      "name": "POST /api/links",
+      "method": "POST",
+      "path": "/api/links",
+      "status": 201,
+      "headers": {
+        "x-request-id": "478d2872-d60e-42c6-a294-c9135708998c",
+        "location": "/api/links/E4iqp9uw",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 22:05:16 GMT"
+      },
+      "body": {
+        "code": "E4iqp9uw",
+        "shortUrl": "http://localhost:8080/E4iqp9uw",
+        "url": "https://qa.example/installed",
+        "state": "active",
+        "createdAt": "2026-10-03T22:05:16.303Z"
+      },
+      "peer": "198.51.100.10",
+      "argv": [
+        "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+        "-sS",
+        "--max-time",
+        "8",
+        "-i",
+        "-X",
+        "POST",
+        "-H",
+        "X-Forwarded-For: 198.51.100.10",
+        "-H",
+        "Content-Type: application/json",
+        "-d",
+        "{\"url\": \"https://qa.example/installed\"}",
+        "http://localhost:18141/api/links"
+      ],
+      "raw": "HTTP/1.1 201 \nX-Request-Id: 478d2872-d60e-42c6-a294-c9135708998c\nLocation: /api/links/E4iqp9uw\nContent-Type: application/json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 22:05:16 GMT\n\n{\"code\":\"E4iqp9uw\",\"shortUrl\":\"http://localhost:8080/E4iqp9uw\",\"url\":\"https://qa.example/installed\",\"state\":\"active\",\"createdAt\":\"2026-10-03T22:05:16.303Z\"}"
+    },
+    {
+      "name": "POST /api/links",
+      "method": "POST",
+      "path": "/api/links",
+      "status": 201,
+      "headers": {
+        "x-request-id": "15b964dd-0127-46b6-8ef6-e80c162b25a6",
+        "location": "/api/links/GzBXT9D3",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 22:05:16 GMT"
+      },
+      "body": {
+        "code": "GzBXT9D3",
+        "shortUrl": "http://localhost:8080/GzBXT9D3",
+        "url": "https://qa.example/retired",
+        "state": "active",
+        "createdAt": "2026-10-03T22:05:16.370Z"
+      },
+      "peer": "198.51.100.10",
+      "argv": [
+        "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+        "-sS",
+        "--max-time",
+        "8",
+        "-i",
+        "-X",
+        "POST",
+        "-H",
+        "X-Forwarded-For: 198.51.100.10",
+        "-H",
+        "Content-Type: application/json",
+        "-d",
+        "{\"url\": \"https://qa.example/retired\"}",
+        "http://localhost:18141/api/links"
+      ],
+      "raw": "HTTP/1.1 201 \nX-Request-Id: 15b964dd-0127-46b6-8ef6-e80c162b25a6\nLocation: /api/links/GzBXT9D3\nContent-Type: application/json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 22:05:16 GMT\n\n{\"code\":\"GzBXT9D3\",\"shortUrl\":\"http://localhost:8080/GzBXT9D3\",\"url\":\"https://qa.example/retired\",\"state\":\"active\",\"createdAt\":\"2026-10-03T22:05:16.370Z\"}"
+    },
+    {
+      "name": "GET /E4iqp9uw",
+      "method": "GET",
+      "path": "/E4iqp9uw",
+      "status": 302,
+      "headers": {
+        "x-request-id": "29edf6c1-5449-41ba-b7bd-5196057c73da",
+        "location": "https://qa.example/installed",
+        "cache-control": "no-store",
+        "content-length": "0",
+        "date": "Sat, 03 Oct 2026 22:05:16 GMT"
+      },
+      "body": null,
+      "peer": "198.51.100.10",
+      "argv": [
+        "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+        "-sS",
+        "--max-time",
+        "8",
+        "-i",
+        "-X",
+        "GET",
+        "-H",
+        "X-Forwarded-For: 198.51.100.10",
+        "http://localhost:18141/E4iqp9uw"
+      ],
+      "raw": "HTTP/1.1 302 \nX-Request-Id: 29edf6c1-5449-41ba-b7bd-5196057c73da\nLocation: https://qa.example/installed\nCache-Control: no-store\nContent-Length: 0\nDate: Sat, 03 Oct 2026 22:05:16 GMT\n\n"
+    },
+    {
+      "name": "DELETE /api/links/GzBXT9D3",
+      "method": "DELETE",
+      "path": "/api/links/GzBXT9D3",
+      "status": 204,
+      "headers": {
+        "x-request-id": "3b09d4fb-ee36-4365-ac84-ff01ffb78352",
+        "date": "Sat, 03 Oct 2026 22:05:16 GMT"
+      },
+      "body": null,
+      "peer": "198.51.100.10",
+      "argv": [
+        "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+        "-sS",
+        "--max-time",
+        "8",
+        "-i",
+        "-X",
+        "DELETE",
+        "-H",
+        "X-Forwarded-For: 198.51.100.10",
+        "http://localhost:18141/api/links/GzBXT9D3"
+      ],
+      "raw": "HTTP/1.1 204 \nX-Request-Id: 3b09d4fb-ee36-4365-ac84-ff01ffb78352\nDate: Sat, 03 Oct 2026 22:05:16 GMT\n\n"
+    },
+    {
+      "name": "baseline-f6dd29e stopped",
+      "pid": 2108,
+      "exit": 143
+    },
+    {
+      "name": "driver stopped on error",
+      "error": "Exception in thread \"main\" org.h2.jdbc.JdbcSQLSyntaxErrorException: Column \"VERSION\" not found; SQL statement:\nSELECT version,success FROM \"flyway_schema_history\" ORDER BY \"installed_rank\" [42122-240]\n\tat org.h2.message.DbException.getJdbcSQLException(DbException.java:514)\n\tat org.h2.message.DbException.getJdbcSQLException(DbException.java:489)\n\tat org.h2.message.DbException.get(DbException.java:223)\n\tat org.h2.message.DbException.get(DbException.java:199)\n\tat org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)\n\tat org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)\n\tat org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)\n\tat org.h2.command.query.Select.optimizeExpressionsAndPreserveAliases(Select.java:1320)\n\tat org.h2.command.query.Select.prepareExpressions(Select.java:1207)\n\tat org.h2.command.query.Query.prepare(Query.java:235)\n\tat org.h2.command.Parser.prepareCommand(Parser.java:492)\n\tat org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:647)\n\tat org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:563)\n\tat org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1160)\n\tat org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)\n\tat org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)\n\tat dev.urlshort.click.QaRetentionRunner.sql(QaRetentionRunner.java:73)\n\tat dev.urlshort.click.QaRetentionRunner.main(QaRetentionRunner.java:122)\n",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/02-click-retention/proof/qa_by_effect.py\", line 310, in <module>\n    directory,code,T=upgrade()\n  File \"/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/02-click-retention/proof/qa_by_effect.py\", line 161, in upgrade\n    before = offline(directory, SNAPSHOT, 'upgrade-before')\n  File \"/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/02-click-retention/proof/qa_by_effect.py\", line 112, in offline\n    if p.returncode: raise RuntimeError(p.stdout + p.stderr)\nRuntimeError: Exception in thread \"main\" org.h2.jdbc.JdbcSQLSyntaxErrorException: Column \"VERSION\" not found; SQL statement:\nSELECT version,success FROM \"flyway_schema_history\" ORDER BY \"installed_rank\" [42122-240]\n\tat org.h2.message.DbException.getJdbcSQLException(DbException.java:514)\n\tat org.h2.message.DbException.getJdbcSQLException(DbException.java:489)\n\tat org.h2.message.DbException.get(DbException.java:223)\n\tat org.h2.message.DbException.get(DbException.java:199)\n\tat org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)\n\tat org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)\n\tat org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)\n\tat org.h2.command.query.Select.optimizeExpressionsAndPreserveAliases(Select.java:1320)\n\tat org.h2.command.query.Select.prepareExpressions(Select.java:1207)\n\tat org.h2.command.query.Query.prepare(Query.java:235)\n\tat org.h2.command.Parser.prepareCommand(Parser.java:492)\n\tat org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:647)\n\tat org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:563)\n\tat org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1160)\n\tat org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)\n\tat org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)\n\tat dev.urlshort.click.QaRetentionRunner.sql(QaRetentionRunner.java:73)\n\tat dev.urlshort.click.QaRetentionRunner.main(QaRetentionRunner.java:122)\n\n"
+    }
+  ],
+  "checks": [
+    {
+      "name": "created https://qa.example/installed",
+      "passed": true
+    },
+    {
+      "name": "created https://qa.example/retired",
+      "passed": true
+    },
+    {
+      "name": "original retire 204",
+      "passed": true
+    },
+    {
+      "name": "all owned app processes stopped",
+      "passed": true
+    }
+  ],
+  "stopped": [
+    {
+      "name": "baseline-f6dd29e",
+      "pid": 2108,
+      "exit": 143
+    }
+  ]
+}

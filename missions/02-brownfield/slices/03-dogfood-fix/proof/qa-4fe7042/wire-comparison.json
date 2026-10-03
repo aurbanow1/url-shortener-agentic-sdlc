@@ -1,0 +1,158 @@
+[
+  {
+    "case": "bad-create",
+    "base": {
+      "status": 400,
+      "contentType": "application/problem+json",
+      "body": {
+        "status": 400,
+        "title": "Bad Request",
+        "errors": [
+          {
+            "field": "url",
+            "rule": "scheme",
+            "message": "url must start with http:// or https://"
+          }
+        ]
+      }
+    },
+    "candidate": {
+      "status": 400,
+      "contentType": "application/problem+json",
+      "body": {
+        "status": 400,
+        "title": "Bad Request",
+        "errors": [
+          {
+            "field": "url",
+            "rule": "scheme",
+            "message": "url must start with http:// or https://"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case": "mismatch",
+    "base": {
+      "status": 422,
+      "contentType": "application/problem+json",
+      "body": {
+        "status": 422,
+        "title": "Unprocessable Content",
+        "errors": [
+          {
+            "field": "Idempotency-Key",
+            "rule": "mismatch",
+            "message": "Idempotency-Key was already used with a different url"
+          }
+        ]
+      }
+    },
+    "candidate": {
+      "status": 422,
+      "contentType": "application/problem+json",
+      "body": {
+        "status": 422,
+        "title": "Unprocessable Content",
+        "errors": [
+          {
+            "field": "Idempotency-Key",
+            "rule": "mismatch",
+            "message": "Idempotency-Key was already used with a different url"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case": "unknown",
+    "base": {
+      "status": 404,
+      "contentType": "application/problem+json",
+      "body": {
+        "status": 404,
+        "title": "Not Found"
+      }
+    },
+    "candidate": {
+      "status": 404,
+      "contentType": "application/problem+json",
+      "body": {
+        "status": 404,
+        "title": "Not Found"
+      }
+    }
+  },
+  {
+    "case": "gone",
+    "base": {
+      "status": 410,
+      "contentType": "application/problem+json",
+      "body": {
+        "status": 410,
+        "title": "Gone"
+      }
+    },
+    "candidate": {
+      "status": 410,
+      "contentType": "application/problem+json",
+      "body": {
+        "status": 410,
+        "title": "Gone"
+      }
+    }
+  },
+  {
+    "case": "burst-89",
+    "base": {
+      "status": 429,
+      "contentType": "application/problem+json",
+      "body": {
+        "status": 429,
+        "title": "Too Many Requests"
+      }
+    },
+    "candidate": {
+      "status": 429,
+      "contentType": "application/problem+json",
+      "body": {
+        "status": 429,
+        "title": "Too Many Requests"
+      }
+    }
+  },
+  {
+    "case": "bad-audit",
+    "base": {
+      "status": 400,
+      "contentType": "application/problem+json",
+      "body": {
+        "status": 400,
+        "title": "Bad Request",
+        "errors": [
+          {
+            "field": "limit",
+            "rule": "range",
+            "message": "must be from 1 to 100"
+          }
+        ]
+      }
+    },
+    "candidate": {
+      "status": 400,
+      "contentType": "application/problem+json",
+      "body": {
+        "status": 400,
+        "title": "Bad Request",
+        "errors": [
+          {
+            "field": "limit",
+            "rule": "range",
+            "message": "must be from 1 to 100"
+          }
+        ]
+      }
+    }
+  }
+]

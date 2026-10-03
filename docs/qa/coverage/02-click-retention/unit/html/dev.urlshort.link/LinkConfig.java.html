@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LinkConfig.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">urlshort</a> &gt; <a href="index.source.html" class="el_package">dev.urlshort.link</a> &gt; <span class="el_source">LinkConfig.java</span></div><h1>LinkConfig.java</h1><pre class="source lang-java linenums">package dev.urlshort.link;
+
+import java.security.SecureRandom;
+import java.time.Clock;
+import java.time.ZoneOffset;
+
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * Beans the link feature needs: its settings, the application clock (millisecond UTC ticks, so an
+ * instant returned in a {@code 201} equals the one read back from the database) and the random
+ * source for short codes (ADR-0005, ADR-0007).
+ */
+@Configuration(proxyBeanMethods = false)
+@EnableConfigurationProperties(LinkProperties.class)
+<span class="fc" id="L18">class LinkConfig {</span>
+
+	@Bean
+	Clock clock() {
+<span class="fc" id="L22">		return Clock.tickMillis(ZoneOffset.UTC);</span>
+	}
+
+	@Bean
+	SecureRandom secureRandom() {
+<span class="fc" id="L27">		return new SecureRandom();</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

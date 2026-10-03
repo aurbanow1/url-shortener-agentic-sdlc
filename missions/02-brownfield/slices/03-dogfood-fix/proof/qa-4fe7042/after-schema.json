@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "properties": {
+    "detail": {
+      "type": "string"
+    },
+    "errors": {
+      "type": "array",
+      "description": "Present on 400 validation and 422 idempotency-mismatch problems only",
+      "items": {
+        "$ref": "#/components/schemas/ProblemFieldError"
+      }
+    },
+    "instance": {
+      "type": "string",
+      "format": "uri"
+    },
+    "status": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "title": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

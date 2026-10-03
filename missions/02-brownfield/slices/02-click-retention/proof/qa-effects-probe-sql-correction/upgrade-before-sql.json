@@ -1,0 +1,9 @@
+[
+  "SELECT * FROM link ORDER BY id",
+  "SELECT * FROM audit_log ORDER BY id",
+  "SELECT id,link_id,clicked_at,clicked_on,referrer,user_agent_class,client_hash FROM click ORDER BY id",
+  "SELECT token FROM user_agent_class ORDER BY token",
+  "SELECT table_name,column_name,data_type,is_nullable,column_default FROM information_schema.columns WHERE table_schema='PUBLIC' AND table_name IN ('CLICK','USER_AGENT_CLASS') ORDER BY table_name,ordinal_position",
+  "SELECT table_name,constraint_type FROM information_schema.table_constraints WHERE table_schema='PUBLIC' AND table_name IN ('CLICK','USER_AGENT_CLASS') ORDER BY table_name,constraint_type",
+  "SELECT version,success FROM \"flyway_schema_history\" ORDER BY \"installed_rank\""
+]

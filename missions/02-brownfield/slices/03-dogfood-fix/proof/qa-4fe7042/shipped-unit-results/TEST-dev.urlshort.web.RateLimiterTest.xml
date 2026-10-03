@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.urlshort.web.RateLimiterTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2026-10-03T21:59:34.289Z" hostname="Andrzejs-MacBook-Pro.local" time="0.043">
+  <properties/>
+  <testcase name="budgetsAndClientsAreIndependent()" classname="dev.urlshort.web.RateLimiterTest" time="0.005"/>
+  <testcase name="theReleaseResumesAfterABackwardClockStep()" classname="dev.urlshort.web.RateLimiterTest" time="0.016"/>
+  <testcase name="refusalsTakeNothing()" classname="dev.urlshort.web.RateLimiterTest" time="0.0"/>
+  <testcase name="afterABackwardClockStepTheBucketRefillsFromItsStoredTat()" classname="dev.urlshort.web.RateLimiterTest" time="0.0"/>
+  <testcase name="AC04_aQuietMinuteRefillsTheWholeBucket()" classname="dev.urlshort.web.RateLimiterTest" time="0.0"/>
+  <testcase name="fullBucketsAreReleasedByTheNextRequestButNotWhileIdle()" classname="dev.urlshort.web.RateLimiterTest" time="0.019"/>
+  <testcase name="retryAfterIsTheWaitForOneTokenInWholeSeconds()" classname="dev.urlshort.web.RateLimiterTest" time="0.0"/>
+  <testcase name="aRequestOvertakenByNewerOnesDecidesOnTheTimeItReachesTheBucket()" classname="dev.urlshort.web.RateLimiterTest" time="0.001"/>
+  <testcase name="theReleaseRunsAtMostOncePerSecond()" classname="dev.urlshort.web.RateLimiterTest" time="0.0"/>
+  <testcase name="AC03a_anExactlyEmptyBucketRefillsOneTokenAfterExactlyOneSecond()" classname="dev.urlshort.web.RateLimiterTest" time="0.0"/>
+  <testcase name="aBucketThatIsNotYetFullSurvivesTheRelease()" classname="dev.urlshort.web.RateLimiterTest" time="0.0"/>
+  <testcase name="AC03b_retryAfterIsRoundedUpAndHonoured()" classname="dev.urlshort.web.RateLimiterTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

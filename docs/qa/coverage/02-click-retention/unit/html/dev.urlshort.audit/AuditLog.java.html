@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuditLog.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">urlshort</a> &gt; <a href="index.source.html" class="el_package">dev.urlshort.audit</a> &gt; <span class="el_source">AuditLog.java</span></div><h1>AuditLog.java</h1><pre class="source lang-java linenums">package dev.urlshort.audit;
+
+import java.time.Clock;
+import java.time.ZoneOffset;
+
+import org.jspecify.annotations.Nullable;
+import org.slf4j.MDC;
+import org.springframework.jdbc.core.simple.JdbcClient;
+import org.springframework.stereotype.Component;
+import tools.jackson.databind.json.JsonMapper;
+
+/**
+ * Appends one row to {@code audit_log} per successful mutation. Insert-only by construction: this
+ * class holds the application's only statement on the table, an {@code INSERT}, so no code path can
+ * update or delete a row (NFR-A2).
+ *
+ * &lt;p&gt;Callers invoke {@link #append} inside the transaction of the change it records; a failure here
+ * propagates and rolls the change back (NFR-A1, AC-24). The actor is always {@code anonymous}
+ * (NFR-S6), the request id is the {@code X-Request-Id} of the current request, read from the MDC,
+ * and the time comes from the application clock. Decision record: ADR-0008.
+ */
+@Component
+public class AuditLog {
+
+	static final String INSERT = &quot;INSERT INTO audit_log&quot;
+			+ &quot; (occurred_at, actor, action, entity, entity_id, request_id, before_state, after_state)&quot;
+			+ &quot; VALUES (:occurredAt, 'anonymous', :action, :entity, :entityId, :requestId, :before, :after)&quot;;
+
+	private final JdbcClient jdbc;
+	private final JsonMapper json;
+	private final Clock clock;
+
+	/**
+	 * Creates the writer.
+	 *
+	 * @param jdbc the context's JDBC client, bound to the caller's transaction
+	 * @param json serialises the before and after states
+	 * @param clock the application clock that stamps {@code occurred_at}
+	 */
+<span class="fc" id="L40">	public AuditLog(JdbcClient jdbc, JsonMapper json, Clock clock) {</span>
+<span class="fc" id="L41">		this.jdbc = jdbc;</span>
+<span class="fc" id="L42">		this.json = json;</span>
+<span class="fc" id="L43">		this.clock = clock;</span>
+<span class="fc" id="L44">	}</span>
+
+	/**
+	 * Records one mutation in the current transaction.
+	 *
+	 * @param action what happened, for example {@code link.create}
+	 * @param entity the kind of thing changed, for example {@code link}
+	 * @param entityId the public identifier of the thing changed, for example the short code
+	 * @param before the state before the change, serialised as JSON; {@code null} when the change
+	 *        created the thing (stored as SQL {@code NULL})
+	 * @param after the state after the change, serialised as JSON
+	 * @throws org.springframework.dao.DataAccessException when the row cannot be written; the caller's
+	 *         transaction then rolls back
+	 */
+	public void append(String action, String entity, String entityId, @Nullable Object before, Object after) {
+<span class="fc" id="L59">		jdbc.sql(INSERT)</span>
+<span class="fc" id="L60">				.param(&quot;occurredAt&quot;, clock.instant().atOffset(ZoneOffset.UTC))</span>
+<span class="fc" id="L61">				.param(&quot;action&quot;, action)</span>
+<span class="fc" id="L62">				.param(&quot;entity&quot;, entity)</span>
+<span class="fc" id="L63">				.param(&quot;entityId&quot;, entityId)</span>
+<span class="fc" id="L64">				.param(&quot;requestId&quot;, MDC.get(&quot;requestId&quot;))</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">				.param(&quot;before&quot;, before == null ? null : json.writeValueAsString(before))</span>
+<span class="fc" id="L66">				.param(&quot;after&quot;, json.writeValueAsString(after))</span>
+<span class="fc" id="L67">				.update();</span>
+<span class="fc" id="L68">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

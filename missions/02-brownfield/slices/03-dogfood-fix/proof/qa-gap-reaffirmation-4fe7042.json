@@ -1,0 +1,35 @@
+{
+  "candidate": "4fe70427bd0d182e886d6a19b217daa1d9e39f5d",
+  "packet": "qitem-20261003224103-2a21b284",
+  "oldEvidenceCommit": "583278c",
+  "appendCommit": "84d3604",
+  "mainAtCheck": "68962b509873d721f4543f75a6b5250757d77a7e",
+  "appendOnly": true,
+  "dogfoodSectionUnchanged": true,
+  "QA_OPR_02_ClosureUnchanged": true,
+  "W2_01_NotOpen": true,
+  "qualificationsPreserved": [
+    "complementary per-suite coverage",
+    "recorded Git/document checks",
+    "single-disk-path ceiling",
+    "removed path selector compatibility",
+    "parameterized XML class-group attribution",
+    "inherited wrapper line endings",
+    "no broader Docker/load/migration/Swagger/natural-clock claim"
+  ],
+  "oldFullFileHash": "cd951c55357c6c19ae116ad5faab317b46d95c8bcb771490804987b3f0b53b45",
+  "currentFullFileHash": "ab9983a9a8f61754263aaf662e274a6354807f3f18191e1903a08ea9ab63f207",
+  "ownSectionHash": "d611ea4328f23bf323e56c1c35bc9e3990cac327b364bf5b1b17c7a1461e6305",
+  "closureRow": "| 03-operate @1c8b2cf | Anonymous disk-gauge working-directory path | Existing LOW observation W2-03 / QA-OPR-02, fixed by 03-dogfood-fix | Independent baseline reproduces path; exact 4fe7042 jar scrape and disk.free/disk.total retain values with no path, known working-directory path absent; proof/qa-4fe7042/http/ under 03-dogfood-fix and coverage/03-dogfood-fix/SUMMARY.md | **CLOSED by 03-dogfood-fix @4fe7042**; original observation retained as history |",
+  "delta": "\n## 02-click-retention \u2014 QA2, a8fc8b6 (2026-10-03)\n\n| Gap / scope | Why / evidence | Compensating check / disposition |\n|---|---|---|\n| Unit line 91.22% (447/490); branch 100% (168/168). Functional line 93.47% (458/490); branch 80.36% (135/168). | Suites exercise complementary paths; committed per-suite CSVs. | Merged canonical gate 490/490 lines and 168/168 branches, 100/100. No exclusion or lowered threshold. |\n| Proof item 9 pending X\u2032. | X is deliberately based before audit-read's cb148c4 merge under lead NOTES \u00a72 21:42Z. | qitem-20261003221121-7686465a returns ancestry/Flyway judgment to QA on X\u2032 before acceptance, after authorized range-diff and fresh gate. No ancestry PASS on X. |\n| Daily/pause observations use a controlled service Clock. | SPEC AC-8/15 explicitly require the suite clock; the external harness leaves the real five-second executor and JDBC unchanged. | Autonomous no-trigger daily run observed in 3.651 real seconds; pause checked at both +60 service-second points with >5 real seconds per observation. Actual installed default startup and real environment binding verified separately. |\n| Fault/concurrency probes use disposable JDBC/HMAC controls. | A one-shot physical prepareStatement exception, actual empty keyed-hash key and old-row transaction blocker make failures reproducible. | Actual HTTP handlers, writer and global DELETE inspected; 302/current row during pending DELETE; class-only WARN and correlated reduction reason; no product/test edit. 5,000 rows is a concurrency fixture, not a performance benchmark. |\n| Large catch-up, Docker/PostgreSQL, SIGTERM while purge is running not checked here. | Outside these AC observations; design ADR-0018/0020 probes remain separate evidence. | No QA performance/shutdown-budget claim. A shutdown timeout returns without interrupting JDBC; this QA establishes only normal process cleanup. |\n| QA harness corrections before clean run. | Quoted lower-case Flyway columns; ignored its null schema-marker version; corrected stats fields to date/clicks and replay status to specified 201. Sandbox denied child binding; direct default java was JDK11. | Interrupted attempts retained; JDK21 and scoped sandbox approval used; corrected --all run passed all 249 assertions. No product defect asserted from instrument errors. |\n\nEvery AC is functionally covered and independently observed by effect. No remaining\nAC verification gap or merged coverage deficit on X; custody item 9 is an explicit\nlater judgment obligation, not an accepted gap or completed acceptance.\n",
+  "onlyChangedReceiptReference": [
+    {
+      "item": 6,
+      "ref": "docs/qa/GAPS.md",
+      "recorded": "cd951c55357c6c19ae116ad5faab317b46d95c8bcb771490804987b3f0b53b45",
+      "current": "ab9983a9a8f61754263aaf662e274a6354807f3f18191e1903a08ea9ab63f207"
+    }
+  ],
+  "unchangedEvidenceReferences": 36,
+  "scope": "Narrow documentation-hash reaffirmation; no new suite or installed-app run, no product/build/test edit."
+}

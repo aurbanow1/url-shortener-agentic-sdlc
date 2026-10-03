@@ -141,13 +141,16 @@
           "detail" : {
             "type" : "string"
           },
+          "errors" : {
+            "description" : "Present on 400 validation and 422 idempotency-mismatch problems only",
+            "items" : {
+              "$ref" : "#/components/schemas/ProblemFieldError"
+            },
+            "type" : "array"
+          },
           "instance" : {
             "format" : "uri",
             "type" : "string"
-          },
-          "properties" : {
-            "additionalProperties" : { },
-            "type" : "object"
           },
           "status" : {
             "format" : "int32",
@@ -161,6 +164,21 @@
             "type" : "string"
           }
         },
+        "type" : "object"
+      },
+      "ProblemFieldError" : {
+        "properties" : {
+          "field" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "rule" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "field", "message", "rule" ],
         "type" : "object"
       },
       "ReferrerClicks" : {

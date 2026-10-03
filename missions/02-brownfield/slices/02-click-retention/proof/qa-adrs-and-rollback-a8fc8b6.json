@@ -1,0 +1,63 @@
+{
+  "candidate": "a8fc8b6b67e3a3cbdaada43a3233191b6c7610e1",
+  "oldBase": "16312da",
+  "adrs": [
+    {
+      "path": "docs/adr/0018-click-retention-daily-purge.md",
+      "atOldBaseSha256": "c5b685dfa7eda19e3fc16e8756e7fc07709a788a36758e5992f0a7df17449ca8",
+      "currentSha256": "c5b685dfa7eda19e3fc16e8756e7fc07709a788a36758e5992f0a7df17449ca8",
+      "existsAndIndexedAtOldBase": true,
+      "history": [
+        "7fbdcf48b823fda3826e4b0a55de752bece90a36 2026-10-03T10:23:55-07:00 docs(02-click-retention): design of the daily click purge",
+        "59c8762e660cd0b9a83e08a8dbf28b7ac9746e6c 2026-10-03T11:14:44-07:00 docs(02-click-retention): answer design review DR-01 and DR-02"
+      ]
+    },
+    {
+      "path": "docs/adr/0020-audit-columns-expand-migration.md",
+      "atOldBaseSha256": "c4f0525983042c98e5f4edbc5950031cfb3ecde0d8bca2795346605d79742f1d",
+      "currentSha256": "70e7a6c93e2349d33d6f2ebb911cd1ec3dd10b006bfdb49e5867e52b71531d87",
+      "existsAndIndexedAtOldBase": true,
+      "history": [
+        "f044cbe0f4528c287e95fcb5e24298add35240af 2026-10-03T11:29:21-07:00 docs(02-click-retention): answer design re-review DR-03 and DR-04",
+        "5a6d16824c8e7f071ebfca4ef8f0b17ce44d5e04 2026-10-03T12:09:37-07:00 docs(04-audit-columns): design of the link and audit_log audit columns"
+      ]
+    },
+    {
+      "path": "docs/adr/0011-click-handoff-bounded-single-writer.md",
+      "atOldBaseSha256": "4c510cdaff06c2c49d47d6e36a0bb9607588c35051047dcf929949b805d34201",
+      "currentSha256": "4c510cdaff06c2c49d47d6e36a0bb9607588c35051047dcf929949b805d34201",
+      "existsAndIndexedAtOldBase": true,
+      "history": [
+        "20211add75c0316b133dc0cd5a02c8bae86d586d 2026-10-03T01:41:09-07:00 docs(02-analytics): design",
+        "71b2e10a7a32424f8f816db33db9984d7647bfd1 2026-10-03T01:45:10-07:00 docs(02-analytics): qualify the session-zone observation and the shutdown drain",
+        "7cbf7a1ad5fc734f8864ea575606baa2b8632074 2026-10-03T02:21:08-07:00 docs(02-analytics): design revision for review findings DR-01 to DR-04",
+        "b26cbbf904f999b46859c85be5eed72c85653e89 2026-10-03T02:41:20-07:00 docs(02-analytics): every click accounted before close returns (DR-01, second round)",
+        "4cfb7450c3ba254a9c4607f8d7a96bb73785e835 2026-10-03T02:48:45-07:00 docs(02-analytics): plan-lock approved; ADR-0011 to ADR-0017 accepted",
+        "7fbdcf48b823fda3826e4b0a55de752bece90a36 2026-10-03T10:23:55-07:00 docs(02-click-retention): design of the daily click purge"
+      ]
+    },
+    {
+      "path": "docs/adr/0013-click-events-and-request-time-statistics.md",
+      "atOldBaseSha256": "96e0db69ab128352668c254f909ad204f60a64623fa96f097bb31da515d55518",
+      "currentSha256": "96e0db69ab128352668c254f909ad204f60a64623fa96f097bb31da515d55518",
+      "existsAndIndexedAtOldBase": true,
+      "history": [
+        "20211add75c0316b133dc0cd5a02c8bae86d586d 2026-10-03T01:41:09-07:00 docs(02-analytics): design",
+        "71b2e10a7a32424f8f816db33db9984d7647bfd1 2026-10-03T01:45:10-07:00 docs(02-analytics): qualify the session-zone observation and the shutdown drain",
+        "7cbf7a1ad5fc734f8864ea575606baa2b8632074 2026-10-03T02:21:08-07:00 docs(02-analytics): design revision for review findings DR-01 to DR-04",
+        "4cfb7450c3ba254a9c4607f8d7a96bb73785e835 2026-10-03T02:48:45-07:00 docs(02-analytics): plan-lock approved; ADR-0011 to ADR-0017 accepted",
+        "7fbdcf48b823fda3826e4b0a55de752bece90a36 2026-10-03T10:23:55-07:00 docs(02-click-retention): design of the daily click purge",
+        "aa36c8ba1a0596ff754bdb5048e55f86ce0cfe9f 2026-10-03T11:39:43-07:00 docs(01-analytics-v2): design of unique visitors, bot clicks, aligned click identity and click counters"
+      ]
+    }
+  ],
+  "rollback": {
+    "candidateEqualsIndependentlyReviewedSql": true,
+    "sha256": "908715401b5c84aa8b4d1525b91a9bd472d2a9ada605a8dbd5651ff1fdfc5fb6",
+    "dropsExactlyEightAddedColumns": true,
+    "historyDeleteVersion": "3",
+    "review": "docs/review/02-click-retention/design-review.md",
+    "independentControl": "docs/review/02-click-retention/proof/migration-rereview-f044cbe.txt",
+    "independentAssertions": 29
+  }
+}

@@ -5,11 +5,15 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 import java.net.InetAddress;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.micrometer.metrics.test.autoconfigure.AutoConfigureMetrics;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
@@ -80,6 +84,43 @@ class HealthMetricsJourneyTest {
 			}
 		}
 		throw new AssertionError("no COUNT measurement: " + metric);
+	}
+
+	// ------------------------------------------------------------------ slice 03-dogfood-fix, W2-03
+
+	/** AC-6 on the metrics endpoint: the disk gauges keep their values and carry no filesystem path. */
+	@Test
+	void AC6_diskGaugesCarryNoInstallationPath() throws Exception {
+		String workingDirectory = Path.of("").toAbsolutePath().toString();
+		for (String name : List.of("disk.free", "disk.total")) {
+			MockHttpServletResponse response = mockMvc.perform(get("/actuator/metrics/" + name)).andReturn().getResponse();
+			assertThat(response.getStatus()).as(name).isEqualTo(200);
+			String body = response.getContentAsString();
+			JsonNode metric = jsonMapper.readTree(body);
+			List<String> tags = new ArrayList<>();
+			metric.get("availableTags").forEach(tag -> tags.add(tag.get("tag").asString()));
+			assertThat(tags).as("%s carries no path tag", name).doesNotContain("path");
+			assertThat(body).as("%s does not disclose the working directory", name).doesNotContain(workingDirectory);
+			assertThat(metric.at("/measurements/0/value").asDouble()).as("%s still has a value", name).isPositive();
+		}
+	}
+
+	/** AC-6 on the anonymous scrape, which Boot's test support serves only with metrics export on. */
+	@Nested
+	@AutoConfigureMetrics
+	class AnonymousScrape {
+
+		@Test
+		void AC6_theScrapeCarriesNoInstallationPath() throws Exception {
+			MockHttpServletResponse response = mockMvc.perform(get("/actuator/prometheus")).andReturn().getResponse();
+
+			assertThat(response.getStatus()).isEqualTo(200);
+			List<String> disk = response.getContentAsString().lines().filter(line -> line.startsWith("disk_")).toList();
+			assertThat(disk).as("disk free and total gauges").anyMatch(line -> line.startsWith("disk_free_bytes"))
+					.anyMatch(line -> line.startsWith("disk_total_bytes"));
+			assertThat(response.getContentAsString()).as("the scrape carries no path label").doesNotContain("path=\"")
+					.doesNotContain(Path.of("").toAbsolutePath().toString());
+		}
 	}
 
 	static void assertNoInstallationDetails(JsonMapper jsonMapper, String body) throws Exception {

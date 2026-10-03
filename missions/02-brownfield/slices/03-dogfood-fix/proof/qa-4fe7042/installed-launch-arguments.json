@@ -1,0 +1,32 @@
+{
+  "executable": "/opt/homebrew/opt/openjdk@21/bin/java",
+  "workingDirectory": "/private/tmp/urlshort-dogfood-qa-4fe7042",
+  "jars": [
+    {
+      "label": "base",
+      "port": 18151,
+      "pid": 80182,
+      "jar": "/private/tmp/urlshort-dogfood-qa-4fe7042/base.jar",
+      "arguments": [
+        "--server.port=18151",
+        "--spring.datasource.url=jdbc:h2:mem:dogbase;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+        "--logging.structured.format.file=ecs",
+        "--logging.file.name=/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/base.jsonl"
+      ],
+      "stop": "PTY SIGINT; exit130; both ports refused; ports-stopped.json"
+    },
+    {
+      "label": "candidate",
+      "port": 18152,
+      "pid": 80227,
+      "jar": "/private/tmp/urlshort-dogfood-qa-4fe7042/candidate.jar",
+      "arguments": [
+        "--server.port=18152",
+        "--spring.datasource.url=jdbc:h2:mem:dogcandidate;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+        "--logging.structured.format.file=ecs",
+        "--logging.file.name=/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/candidate.jsonl"
+      ],
+      "stop": "PTY SIGINT; exit130; both ports refused; ports-stopped.json"
+    }
+  ]
+}
