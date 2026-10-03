@@ -1,0 +1,26 @@
+// Run only through scripts/gw --offline -I <this file> reviewDesignBoundary.
+gradle.projectsEvaluated {
+    def p = gradle.rootProject
+    def functional = p.sourceSets.functionalTest
+    def compileProbe = p.tasks.register('compileReviewDesignBoundary', JavaCompile) {
+        dependsOn p.tasks.named('functionalTestClasses')
+        source p.file('missions/01-greenfield-core/slices/02-analytics/design-probe/ClickProbe.java')
+        source p.file('docs/review/02-analytics/proof/DesignBoundaryProbe.java')
+        source p.file('docs/review/02-analytics/proof/H2ConstraintProbe.java')
+        classpath = functional.runtimeClasspath
+        destinationDirectory.set(p.layout.buildDirectory.dir('review-design-boundary'))
+        javaCompiler.set(p.javaToolchains.compilerFor { languageVersion = JavaLanguageVersion.of(21) })
+    }
+    p.tasks.register('reviewDesignBoundary', JavaExec) {
+        dependsOn compileProbe
+        javaLauncher.set(p.javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) })
+        classpath = p.files(compileProbe.flatMap { it.destinationDirectory }) + functional.runtimeClasspath
+        mainClass = 'DesignBoundaryProbe'
+    }
+    p.tasks.register('reviewH2Constraint', JavaExec) {
+        dependsOn compileProbe
+        javaLauncher.set(p.javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) })
+        classpath = p.files(compileProbe.flatMap { it.destinationDirectory }) + functional.runtimeClasspath
+        mainClass = 'H2ConstraintProbe'
+    }
+}

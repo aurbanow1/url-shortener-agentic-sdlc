@@ -1,0 +1,594 @@
+{
+  "candidate": "71b2e10a7a32424f8f816db33db9984d7647bfd1",
+  "scope": "producer design commits 20211ad and 71b2e10",
+  "files": [
+    {
+      "path": "docs/DESIGN.md",
+      "bytes": 31944,
+      "lines": 419,
+      "sha256": "bd7cd9940c3da2fe48d3048aeae9f064b8c2741b351ca914d7f97865469d0e83",
+      "matches_candidate": true
+    },
+    {
+      "path": "docs/adr/0004-structured-ecs-logs-no-client-pii.md",
+      "bytes": 6256,
+      "lines": 112,
+      "sha256": "8d5cf77495ed0e2fd17f202df90f8432adef3121d1f36dde81451a1d26c7fff1",
+      "matches_candidate": true
+    },
+    {
+      "path": "docs/adr/0011-click-handoff-bounded-single-writer.md",
+      "bytes": 4482,
+      "lines": 77,
+      "sha256": "e8af1832ccf9437e0102020e1bed9a952c5b511146b77dc6ac49a2386a01c1ad",
+      "matches_candidate": true
+    },
+    {
+      "path": "docs/adr/0012-client-hash-daily-salt.md",
+      "bytes": 3018,
+      "lines": 57,
+      "sha256": "f67fd07d7437233bbe58e495b494213e2a6be030ad9d6651cbd7e191149ea2c5",
+      "matches_candidate": true
+    },
+    {
+      "path": "docs/adr/0013-click-events-and-request-time-statistics.md",
+      "bytes": 3330,
+      "lines": 61,
+      "sha256": "05fdcbb07ca44faf4d8c28a4b2c159a113b50d0236a8b0fe2ba996eaac0c9adb",
+      "matches_candidate": true
+    },
+    {
+      "path": "docs/diagrams/click-sequence.mmd",
+      "bytes": 1889,
+      "lines": 51,
+      "sha256": "d726f3a3fc4f3e3a1ef4fc172c6a8f315efe6c118a13556e48fb6ec81cce1135",
+      "matches_candidate": true
+    },
+    {
+      "path": "docs/diagrams/container.mmd",
+      "bytes": 1948,
+      "lines": 50,
+      "sha256": "0c607c9b815564fd405a9ce8693e31550e679e3ad84eccb998e5c953704f5a5b",
+      "matches_candidate": true
+    },
+    {
+      "path": "docs/diagrams/erd.mmd",
+      "bytes": 1889,
+      "lines": 34,
+      "sha256": "67a2a88236ee5a16037a71d169048314b207b8b76393f4f0527883be384fc19a",
+      "matches_candidate": true
+    },
+    {
+      "path": "missions/01-greenfield-core/slices/02-analytics/design-probe/ClickProbe.java",
+      "bytes": 23903,
+      "lines": 570,
+      "sha256": "8b095bfcf2b9a9768262bf0bd291c287e466bf377c7418228c5aaeaea8d39a88",
+      "matches_candidate": true
+    },
+    {
+      "path": "missions/01-greenfield-core/slices/02-analytics/design-probe/click-probe.gradle",
+      "bytes": 1174,
+      "lines": 19,
+      "sha256": "436c4889e5bf04783f48d0ccd4c83e6ee7b3830bdc836e3bce1294bd1054b7f7",
+      "matches_candidate": true
+    },
+    {
+      "path": "missions/01-greenfield-core/slices/02-analytics/design-probe/output.txt",
+      "bytes": 391329,
+      "lines": 1303,
+      "sha256": "dea983a66bceeeb2129e320b0119f303dfc6faa9722e2cec4169f3308ec1f81c",
+      "matches_candidate": true
+    },
+    {
+      "path": "missions/01-greenfield-core/slices/02-analytics/design.md",
+      "bytes": 50697,
+      "lines": 625,
+      "sha256": "523700a5438aa7e22eed93105ae58d0cf88c5b21c4096a97577e619797c34e83",
+      "matches_candidate": true
+    }
+  ],
+  "producer_log": {
+    "total_lines": 1303,
+    "json_events": 1260,
+    "other_lines": 43,
+    "patterns": [
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "ClickProbe",
+        "message": "Starting ClickProbe using Java 21.0.10 with PID 33534 (/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/01-greenfield-core/slices/02-analytics/design-probe/ClickProbe.java started by andrzej in /Users/andrzej/Documents/projekty/test/openrig/url-shortener)",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service",
+          "tags"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "ClickProbe",
+        "message": "The following 1 profile is active: \"functional\"",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service",
+          "tags"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "org.springframework.data.repository.config.RepositoryConfigurationDelegate",
+        "message": "Bootstrapping Spring Data JDBC repositories in DEFAULT mode.",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service",
+          "tags"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "org.springframework.data.repository.config.RepositoryConfigurationDelegate",
+        "message": "Finished Spring Data repository scanning in 18 ms. Found 1 JDBC repository interface.",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service",
+          "tags"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "org.springframework.boot.tomcat.TomcatWebServer",
+        "message": "Tomcat initialized with port 0 (http)",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service",
+          "tags"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "org.apache.catalina.core.StandardService",
+        "message": "Starting service [Tomcat]",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "org.apache.catalina.core.StandardEngine",
+        "message": "Starting Servlet engine: [Apache Tomcat/11.0.25]",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "org.springframework.boot.web.context.servlet.WebApplicationContextInitializer",
+        "message": "Root WebApplicationContext: initialization completed in 583 ms",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service",
+          "tags"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "com.zaxxer.hikari.HikariDataSource",
+        "message": "HikariPool-1 - Starting...",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "com.zaxxer.hikari.pool.HikariPool",
+        "message": "HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:urlshort-functional user=SA",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "com.zaxxer.hikari.HikariDataSource",
+        "message": "HikariPool-1 - Start completed.",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "org.flywaydb.core.FlywayExecutor",
+        "message": "Database: jdbc:h2:mem:urlshort-functional (H2 2.4)",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "WARN",
+        "logger": "org.flywaydb.core.internal.database.base.Database",
+        "message": "Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory",
+        "message": "Schema history table \"PUBLIC\".\"flyway_schema_history\" does not exist yet",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "org.flywaydb.core.internal.command.DbValidate",
+        "message": "Successfully validated 1 migration (execution time 00:00.004s)",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory",
+        "message": "Creating Schema History table \"PUBLIC\".\"flyway_schema_history\" ...",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "org.flywaydb.core.internal.command.DbMigrate",
+        "message": "Current version of schema \"PUBLIC\": << Empty Schema >>",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "org.flywaydb.core.internal.command.DbMigrate",
+        "message": "Migrating schema \"PUBLIC\" to version \"1 - create link and audit log\"",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "org.flywaydb.core.internal.command.DbMigrate",
+        "message": "Successfully applied 1 migration to schema \"PUBLIC\", now at version v1 (execution time 00:00.003s)",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver",
+        "message": "Exposing 3 endpoints beneath base path '/actuator'",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service",
+          "tags"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]",
+        "message": "Initializing Spring DispatcherServlet 'dispatcherServlet'",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "org.springframework.web.servlet.DispatcherServlet",
+        "message": "Initializing Servlet 'dispatcherServlet'",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service",
+          "tags"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "org.springframework.web.servlet.DispatcherServlet",
+        "message": "Completed initialization in 1 ms",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service",
+          "tags"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "org.springframework.boot.tomcat.TomcatWebServer",
+        "message": "Tomcat started on port 65503 (http) with context path '/'",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service",
+          "tags"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "ClickProbe",
+        "message": "Started ClickProbe in 1.368 seconds (process running for 1.979)",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service",
+          "tags"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "WARN",
+        "logger": "org.springdoc.core.events.SpringDocAppInitializer",
+        "message": "SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "WARN",
+        "logger": "org.springdoc.core.events.SpringDocAppInitializer",
+        "message": "SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service"
+        ]
+      },
+      {
+        "count": 1227,
+        "level": "INFO",
+        "logger": "dev.urlshort.web.RequestIdFilter",
+        "message": "request completed",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "requestId",
+          "service",
+          "status"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "WARN",
+        "logger": "ClickProbe$ProbeRecorder",
+        "message": "click lost",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "errorType",
+          "log",
+          "message",
+          "process",
+          "requestId",
+          "service"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "org.springdoc.api.AbstractOpenApiResource",
+        "message": "Init duration for springdoc-openapi is: 126 ms",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "requestId",
+          "service"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "org.springframework.boot.tomcat.GracefulShutdown",
+        "message": "Commencing graceful shutdown. Waiting for active requests to complete",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service",
+          "tags"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "org.springframework.boot.tomcat.GracefulShutdown",
+        "message": "Graceful shutdown complete",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service",
+          "tags"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "com.zaxxer.hikari.HikariDataSource",
+        "message": "HikariPool-1 - Shutdown initiated...",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service"
+        ]
+      },
+      {
+        "count": 1,
+        "level": "INFO",
+        "logger": "com.zaxxer.hikari.HikariDataSource",
+        "message": "HikariPool-1 - Shutdown completed.",
+        "fields": [
+          "@timestamp",
+          "ecs",
+          "log",
+          "message",
+          "process",
+          "service"
+        ]
+      }
+    ]
+  },
+  "own_baseline_gate": "design-check.txt: exit 0, 14 tasks up-to-date",
+  "own_boundary_probe": "design-boundary.txt: sameDayHashStable=false; Spring phase timeout 10s; context close 12050 ms; 6 persisted rows; exit 0 means defects reproduced",
+  "own_h2_constraint_probe": "design-h2-constraint.txt: memory and file H2 2.4.240, valid insert passes before Hikari connection retirement and fails afterward with 23514/90098; count remains 1"
+}

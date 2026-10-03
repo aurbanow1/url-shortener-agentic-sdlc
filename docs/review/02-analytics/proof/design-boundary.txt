@@ -1,0 +1,23 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :jar UP-TO-DATE
+> Task :compileFunctionalTestJava UP-TO-DATE
+> Task :processFunctionalTestResources UP-TO-DATE
+> Task :functionalTestClasses UP-TO-DATE
+> Task :compileReviewDesignBoundary
+
+> Task :reviewDesignBoundary
+BOUNDARY salt D+1 / stale D / D+1: sameDayHashStable=false
+01:53:18.655 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Starting...
+01:53:18.731 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:review-design-boundary user=SA
+01:53:18.734 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Start completed.
+BOUNDARY six 2s writes, Spring phase timeout 10s: contextCloseStillRunningAfter10s=true queued=0
+BOUNDARY shutdown finished=true elapsedMs=12050 persisted=6
+01:53:30.916 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown initiated...
+01:53:30.917 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown completed.
+BOUNDARY reproduced both candidate defects; no product/test source modified
+
+BUILD SUCCESSFUL in 13s
+7 actionable tasks: 2 executed, 5 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html

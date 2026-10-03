@@ -1,0 +1,46 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :jar UP-TO-DATE
+> Task :compileFunctionalTestJava UP-TO-DATE
+> Task :processFunctionalTestResources UP-TO-DATE
+> Task :functionalTestClasses UP-TO-DATE
+> Task :compileReviewDesignBoundary
+
+> Task :reviewH2Constraint
+CONSTRAINT mode=memory
+01:58:20.719 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Starting...
+01:58:20.793 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:review-constraint user=SA
+01:58:20.797 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Start completed.
+CONSTRAINT valid insert before pool retirement=PASS
+CONSTRAINT replaced physical connections using Hikari softEvictConnections
+CONSTRAINT valid insert after pool retirement=FAIL DataIntegrityViolationException
+CONSTRAINT cause=DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO click (link_id,clicked_at,clicked_on,referrer,user_agent_class,client_hash) VALUES (1,?,?,NULL,'browser',?)]; Check constraint invalid: "CK_CLICK_USER_AGENT_CLASS: "; SQL statement:
+INSERT INTO click (link_id,clicked_at,clicked_on,referrer,user_agent_class,client_hash) VALUES (1,?,?,NULL,'browser',?) [23514-240]
+CONSTRAINT cause=JdbcSQLIntegrityConstraintViolationException: Check constraint invalid: "CK_CLICK_USER_AGENT_CLASS: "; SQL statement:
+INSERT INTO click (link_id,clicked_at,clicked_on,referrer,user_agent_class,client_hash) VALUES (1,?,?,NULL,'browser',?) [23514-240]
+CONSTRAINT cause=DbException: The database has been closed [90098-240]
+CONSTRAINT cause=JdbcSQLNonTransientConnectionException: The database has been closed [90098-240]
+CONSTRAINT rows=1
+01:58:20.847 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown initiated...
+01:58:20.877 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown completed.
+CONSTRAINT mode=file
+01:58:20.878 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Starting...
+01:58:20.891 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-2 - Added connection conn3: url=jdbc:h2:file:./build/review-constraint-152438745094125 user=SA
+01:58:20.891 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Start completed.
+CONSTRAINT valid insert before pool retirement=PASS
+CONSTRAINT replaced physical connections using Hikari softEvictConnections
+CONSTRAINT valid insert after pool retirement=FAIL DataIntegrityViolationException
+CONSTRAINT cause=DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO click (link_id,clicked_at,clicked_on,referrer,user_agent_class,client_hash) VALUES (1,?,?,NULL,'browser',?)]; Check constraint invalid: "CK_CLICK_USER_AGENT_CLASS: "; SQL statement:
+INSERT INTO click (link_id,clicked_at,clicked_on,referrer,user_agent_class,client_hash) VALUES (1,?,?,NULL,'browser',?) [23514-240]
+CONSTRAINT cause=JdbcSQLIntegrityConstraintViolationException: Check constraint invalid: "CK_CLICK_USER_AGENT_CLASS: "; SQL statement:
+INSERT INTO click (link_id,clicked_at,clicked_on,referrer,user_agent_class,client_hash) VALUES (1,?,?,NULL,'browser',?) [23514-240]
+CONSTRAINT cause=DbException: The database has been closed [90098-240]
+CONSTRAINT cause=JdbcSQLNonTransientConnectionException: The database has been closed [90098-240]
+CONSTRAINT rows=1
+01:58:20.932 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Shutdown initiated...
+01:58:20.971 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Shutdown completed.
+
+BUILD SUCCESSFUL in 1s
+7 actionable tasks: 2 executed, 5 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html
