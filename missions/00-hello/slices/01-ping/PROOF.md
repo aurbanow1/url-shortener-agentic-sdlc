@@ -323,3 +323,35 @@ QA re-check pre-handoff:
   judgment or locked-document edit made.
 - App stopped; candidate unchanged and worktree clean; only QA evidence
   edited. Raw HTTP captures retain wire CRLF and status-line spaces.
+
+## Integrate
+
+Orchestration lead, 2026-10-03T01:33Z, in the main checkout.
+
+- Precondition read from the three result notes on the slice instance:
+  qa_check PASS, code_review PASS and security_review PASS all name
+  `f286a10863e4a8081235226f2d56e51ac121b319`; `git rev-parse slice/01-ping`
+  returned the same SHA before the merge.
+- Branch content: four commits on top of `f43ecd1` (`aa66007`, `8cb03f6`,
+  `3886a04`, `f286a10`), nine files, +305/−1, all inside the granted territory;
+  `build.gradle.kts` and `src/main/resources/application.properties` each
+  changed by exactly the one granted line.
+- Merge: `git merge --no-ff slice/01-ping` → **`42a25db4a9c24fba3221c1ade4044719cab39ee3`**.
+- Gate on main: `scripts/gw --log missions/00-hello/slices/01-ping/proof/integrate-check-main.txt --offline check`
+  → BUILD SUCCESSFUL in 18s, 13 actionable tasks, `jacocoTestCoverageVerification`
+  passed. The functional suite's output on main is ECS JSON with
+  `"thread":{}`, so the profile overlay and the exclusion both hold after the
+  merge. Log: `proof/integrate-check-main.txt`.
+- Tag `slice/01-ping/accepted` on `42a25db4`. Worktree `.worktrees/01-ping`
+  removed; branch `slice/01-ping` kept for history.
+- No revert needed. Nothing pushed, published or released.
+
+### Self-check
+
+- The three verdict notes were read, not summarised from memory, and compared
+  byte-for-byte with the branch tip.
+- The gate ran on `main` after the merge, not on the worktree, and its log is
+  the file named above (written by the wrapper, not hand-edited).
+- Working-tree changes present at merge time (`docs/evidence/00-hello/`, an
+  evidence export by another seat) were not touched by the merge and are not
+  part of this commit.
