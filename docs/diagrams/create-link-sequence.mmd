@@ -36,11 +36,12 @@ sequenceDiagram
     S->>R: save(Link(code=ShortCodes.next(), url=U, createdAt=now, key=K))
     S->>A: append("link.create","link",C,null,{url,state:active})
     A->>A: INSERT audit_log (actor anonymous, request_id = MDC requestId, occurred_at = clock)
-    alt audit insert fails
+    alt audit insert fails (or the insert loses a same-key race)
         A-->>S: DataAccessException → rollback
         S-->>E: exception
-        E-->>C: 500 problem detail (nothing stored)
+        E->>E: ERROR "request failed" {errorChain, errorOrigin} (no message, no stack trace)
+        E-->>C: 500 problem detail, instance urn:uuid:R (nothing stored)
     end
     S-->>LC: link
     LC-->>C: 201 Location /api/links/C {code,shortUrl,url,state,createdAt}
-    F->>F: INFO "request completed" {method,status}; MDC.remove
+    F->>F: INFO "request completed" {status}; MDC.remove

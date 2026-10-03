@@ -1,6 +1,6 @@
 # ADR-0004 — Structured ECS JSON logs with no client PII
 
-- Status: accepted
+- Status: accepted; amended 2026-10-03 by `01-create-redirect` (see *Amendment*)
 - Date: 2026-10-02
 - Slice: `01-ping`
 
@@ -57,3 +57,37 @@ would hide the JSON contract from the tests that are supposed to prove it.
   Environment-level properties affect it. With the shipped file loaded as the
   suite's base, the functional suite logs ECS JSON from its first context and
   no per-test-class override is needed or allowed.
+
+## Amendment — `01-create-redirect` (2026-10-03)
+
+The first slice that parses client input and talks to a database found three
+ways a client value or an uncorrelated line could reach the log stream (design
+review DR-01 and DR-04, plus one found while fixing them). The rule above is
+unchanged. These are the decisions that keep it true:
+
+- **Never pass a throwable to a logger on a request path.** A throwable
+  renders as `error.message` and `error.stack_trace`, and driver messages
+  quote bound values: an H2 unique violation names the duplicate
+  `Idempotency-Key` (`docs/review/01-create-redirect/proof/design-boundary-probe.txt:51`).
+  The one ERROR event, `request failed` (ADR-0002), carries `errorChain` (the
+  cause chain's class names) and `errorOrigin` (the first `dev.urlshort.`
+  stack frame) as SLF4J key-values. Class names and code locations are the
+  only exception data that reaches the log.
+- **The per-request event logs `status` only.** The HTTP method is not
+  logged: Tomcat accepts any token as a method, so it is client-controlled.
+- **Framework categories that echo request data are raised.**
+  `logging.level.org.springframework.web.servlet.PageNotFound=error` (shipped),
+  because `ResponseEntityExceptionHandler` WARNs `Request method '<token>' is
+  not supported` there.
+- **Every line written inside a request carries `requestId`, including the
+  first request after startup.** `spring.mvc.servlet.load-on-startup=1`
+  (shipped) initialises the DispatcherServlet before Tomcat accepts
+  connections. Its three INFO lines would otherwise be written inside the
+  first request, before the request-id filter runs.
+
+Consequences: an Operator has no stack trace for a `500` under the default
+configuration (ADR-0002, *Consequences of the amendment*). Verified by effect:
+`missions/01-greenfield-core/slices/01-create-redirect/design-probe/revision-output.txt`.
+H2's own trace file (`data/*.trace.db`) is not this service's log stream; its
+default level keeps integrity violations out of it (`01-create-redirect`
+design §6).

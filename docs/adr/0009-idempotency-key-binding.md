@@ -41,7 +41,9 @@ the key space is global; the key is 1–255 visible ASCII characters.
   link (AC-18, AC-19).
 - **Concurrency.** The unique constraint is the guarantee: of two creates that
   both see no binding, the second insert fails and that request answers
-  `500` (fail closed, nothing stored); the client's next retry replays. No
+  `500` (fail closed, nothing stored); the client's next retry replays. The
+  driver's message for that failure quotes the key, so the `500` event logs
+  exception classes only (ADR-0002, ADR-0004 amendments). No
   in-service retry: catching the violation inside the `@Transactional` method
   cannot work because the repository's own transactional proxy has already
   marked the shared transaction rollback-only, and a second transaction is

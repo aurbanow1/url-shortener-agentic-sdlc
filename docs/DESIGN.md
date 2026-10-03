@@ -5,7 +5,7 @@ slice. Slice-level detail lives in `missions/<m>/slices/<s>/design.md`;
 decisions live in [`adr/`](adr/). Diagrams in [`diagrams/`](diagrams/) are the
 single source for the pictures below.
 
-Last updated: 2026-10-03, slice `01-create-redirect` (design; not yet merged).
+Last updated: 2026-10-03, slice `01-create-redirect` (design, revised after design review DR-01..DR-04; not yet merged).
 `main` still carries only `01-ping`; everything marked *01-create-redirect*
 below describes the design under review, so that the builder, the reviewers
 and later slices read one picture.
@@ -59,9 +59,9 @@ Source: `diagrams/container.mmd`.
 | Package | Class | Since | Role |
 |---|---|---|---|
 | `dev.urlshort` | `UrlshortApplication` | bootstrap | Spring Boot entry point (Javadoc added by 01-create-redirect; no beans) |
-| `dev.urlshort.web` | `RequestIdFilter` | 01-ping; event added 01-create-redirect | one id per request; `X-Request-Id` header; MDC `requestId`; one INFO `request completed` event (`method`, `status`) per request |
+| `dev.urlshort.web` | `RequestIdFilter` | 01-ping; event added 01-create-redirect | one id per request; `X-Request-Id` header; MDC `requestId`; one INFO `request completed` event (`status` only; the method token is client input) per request |
 | `dev.urlshort.web` | `RequestBodyLimitFilter` | 01-create-redirect | counting request stream; `413` on the 16 385th body byte, declared or chunked |
-| `dev.urlshort.web` | `ProblemDetailsAdvice` | 01-create-redirect | the one advice: extends `ResponseEntityExceptionHandler` (Boot's handler backs off); catch-all `500`; unwraps a limit raised inside Jackson |
+| `dev.urlshort.web` | `ProblemDetailsAdvice` | 01-create-redirect | the one advice: extends `ResponseEntityExceptionHandler` (Boot's handler backs off); catch-all `500` whose ERROR event carries class chain + one code frame, never the throwable; unwraps a limit raised inside Jackson; `createResponseEntity` override clears `detail` and sets `instance` = `urn:uuid:<request id>` on every problem |
 | `dev.urlshort.web` | `Problems` | 01-create-redirect | factories for `ErrorResponseException`s: `validation` (`400` + `errors[]`), `notFound`, `gone`, `idempotencyMismatch` (`422` + `errors[]`) |
 | `dev.urlshort.web` | `OpenApiConfig` | 01-create-redirect | `OpenAPI` bean: info, fixed `servers: [/]` |
 | `dev.urlshort.link` | `LinkController`, `RedirectController` | 01-create-redirect | `POST /api/links`, `GET`/`DELETE /api/links/{code}`; `GET /{code}` → `302` (the redirect method is the seam for `02-analytics`) |
@@ -84,10 +84,10 @@ exists.
 | Concern | Contract | Decided in |
 |---|---|---|
 | Request correlation | Response header `X-Request-Id`, server-issued per request, inbound ignored; MDC key `requestId`; one INFO event per request from the filter | ADR-0003; 01-create-redirect design §5 |
-| Errors | Every non-2xx/3xx is an RFC 9457 `ProblemDetail`, `application/problem+json`, regardless of `Accept`; `type` `about:blank`, `title` = reason phrase, `instance` = request path; validation and `422` add `errors: [{field, rule, message}]`; the `500` body is bare and the only path that logs a stack trace; one advice extending `ResponseEntityExceptionHandler` | ADR-0002 (amended 2026-10-03) |
+| Errors | Every non-2xx/3xx is an RFC 9457 `ProblemDetail`, `application/problem+json`, regardless of `Accept`, built from server-owned values only: `type` `about:blank`, `title` = reason phrase, `instance` = `urn:uuid:<X-Request-Id>`, **no `detail`** (framework wording quotes paths, methods and header values); validation and `422` add `errors: [{field, rule, message}]` with static messages; the `500` body is bare; framework headers (`Allow`, `Accept`) kept; one advice extending `ResponseEntityExceptionHandler` | ADR-0002 (amended 2026-10-03) |
 | Domain failures | `ErrorResponseException` built by `web.Problems`; no project exception hierarchy | ADR-0002 amendment |
 | Request limits | JSON bodies ≤ 16 384 bytes (`RequestBodyLimitFilter`, `413`); no multipart (`spring.servlet.multipart.enabled=false`, `415`); headers at Tomcat defaults | 01-create-redirect design §1, §2 (NFR-S3) |
-| Logging | ECS JSON, one object per line, MDC and SLF4J key-value pairs as top-level members; never client IP, `User-Agent`, target URL, idempotency key or any copied inbound header value; `process.thread.name` excluded | ADR-0004 |
+| Logging | ECS JSON, one object per line, MDC and SLF4J key-value pairs as top-level members; never client IP, `User-Agent`, target URL, idempotency key, method token or any copied inbound header value; `process.thread.name` excluded; **no throwable is ever passed to a logger on a request path** (the `500` event carries `errorChain` + `errorOrigin`); `PageNotFound` category at ERROR; DispatcherServlet initialised at startup (`spring.mvc.servlet.load-on-startup=1`) so the first request writes no uncorrelated line | ADR-0004 (amended 2026-10-03) |
 | Persistence | H2 file DB under `data/` in PostgreSQL mode; Flyway-owned schema `V<n>__<verb>_<noun>.sql`; Spring Data JDBC records + targeted `@Modifying` updates; `JdbcClient` for single-statement writers; portable SQL; reserved-word-safe names | ADR-0005 |
 | Time | Every stored or returned instant comes from the `Clock` bean `Clock.tickMillis(UTC)` (`link.LinkConfig`); tests replace the bean; no database-side business time | ADR-0005 |
 | Audit | One `audit_log` row per mutation in the same transaction; insert-only writer; actor `anonymous`; `before_state`/`after_state` JSON text | ADR-0008 |
@@ -97,7 +97,7 @@ exists.
 | Configuration | `@ConfigurationProperties` records with defaults; first operator setting `urlshort.public-base-url` (default `http://localhost:8080`, env `URLSHORT_PUBLIC_BASE_URL`); `Host`/forwarding headers never used | 01-create-redirect design §2.7 |
 | API document | `docs/api/openapi.json` generated by the functional suite, key-sorted, fixed `servers`; the suite fails on drift; `springdoc.override-with-generic-response=false` (no untyped generic error entries from the advice) and `springdoc.writer-with-order-by-keys=true` shipped; `/v3/api-docs` and `/swagger-ui.html` on in every profile until `03-operate` decides the production profile | ADR-0010 |
 | Documentation | Javadoc on every public type and public/protected method, `package-info.java` per feature package, `javadoc -Xdoclint:all -Werror` in `check` | `docs/guidance/java-spring.md` §8 (human decision 2026-10-03) |
-| Tests | unit suite `test` (plain-text logs), functional suite `functionalTest` (`@SpringBootTest` + `MockMvc`, shipped `application.properties` plus the `functional` profile overlay, real Flyway on in-memory H2, suite-controlled `Clock`), 100 % line + branch gate on merged data | ADR-0001, ADR-0004, `TESTING.md` |
+| Tests | unit suite `test` (plain-text logs), functional suite `functionalTest` (`@SpringBootTest` + `MockMvc`, shipped `application.properties` plus the `functional` profile overlay, real Flyway on in-memory H2, suite-controlled `Clock`; one `RANDOM_PORT` class guards the first real request's log correlation, which MockMvc cannot see), 100 % line + branch gate on merged data | ADR-0001, ADR-0004, `TESTING.md` |
 
 ## 4. Stack conventions (Spring Boot 4.1.1)
 
@@ -137,6 +137,26 @@ Web MVC and errors
   on the auto-configured `JsonMapper`, so `ProblemDetail.setProperty(...)`
   values render as top-level members and `type` is omitted when
   `about:blank`. **[jar, probe]**
+- `HttpEntityMethodProcessor` fills a `ProblemDetail`'s `instance` with the
+  request URI **only when it is null**; a value set earlier survives.
+  `ResponseEntityExceptionHandler.handleExceptionInternal` ends in the
+  protected `createResponseEntity(body, headers, status, request)` for every
+  exception it renders, so overriding that one method sees every problem
+  body (domain, framework, `500`). **[jar, probe]**
+- `ResponseEntityExceptionHandler` logs in two places: the `405` handler WARNs
+  `ex.getMessage()` (`Request method '<token>' is not supported`) on category
+  `org.springframework.web.servlet.PageNotFound`, and `handleExceptionInternal`
+  WARNs `"Response already committed. Ignoring: " + ex` on the subclass's own
+  category. With status `500` and a **null** body it also sets
+  `jakarta.servlet.error.exception` on the request. **[jar]**
+- The DispatcherServlet initialises lazily on the first request (Boot
+  default `spring.mvc.servlet.load-on-startup=-1`); its three INFO lines are
+  then written inside that request before any filter runs. `1` moves them
+  before `Tomcat started`. MockMvc never shows the lazy path. **[jar, probe]**
+- Spring 7 resolves `@PathVariable`/`@RequestParam` names only from
+  `-parameters` (no bytecode fallback). The Boot Gradle plugin adds the flag
+  to compilation; Java source-file mode (the design probes) does not.
+  **[probe; docs]**
 - `HttpStatus.CONTENT_TOO_LARGE` (413) and `UNPROCESSABLE_CONTENT` (422) are
   the current names; `PAYLOAD_TOO_LARGE` and `UNPROCESSABLE_ENTITY` remain as
   deprecated twins. **[jar]**
@@ -176,6 +196,10 @@ Testing
   **is** picked up by the application's component scan (only
   `@TestConfiguration` is excluded); the functional suite uses this on purpose
   for its controllable `Clock`. **[docs; design choice, 01-create-redirect]**
+- Bean-definition overriding is off: a test `@Bean` with the same name as a
+  production bean fails the context with `BeanDefinitionOverrideException`
+  before `@Primary` is considered. Give the replacement a distinct name
+  (`functionalClock`) and `@Primary`. **[probe: `docs/review/01-create-redirect/proof/design-boundary-probe.txt:59–66`]**
 - Gradle JVM test suites: `functionalTest` runs after `test`; both write
   `build/jacoco/*.exec`; the gate verifies the merged data. **[build.gradle.kts]**
 - A test suite's `application.properties` **shadows** the shipped one: Boot
@@ -215,6 +239,13 @@ Logging
   is added as a top-level member**; a logged throwable renders as `error.type`,
   `error.message` and a single-line `error.stack_trace`. Customise with
   `logging.structured.json.{include,exclude,rename,add}`. **[jar, probe]**
+  Because a throwable's message is printed verbatim and driver messages
+  quote bound values, this service never passes a throwable to a logger on a
+  request path (ADR-0004 amendment).
+- H2 writes its own trace file next to a file database (`data/*.trace.db`)
+  at level ERROR by default; it traces `23xxx` integrity violations at INFO
+  (so they are not written) and other SQL errors at ERROR.
+  **[jar: `org.h2.message.TraceObject.logAndConvert`]**
 - This service **excludes `process.thread.name`**
   (`logging.structured.json.exclude=process.thread.name`, shipped
   `application.properties`): Tomcat puts the bound address into worker-thread
@@ -305,9 +336,9 @@ adds no table.
 | ADR | Title | Introduced by | Status |
 |---|---|---|---|
 | [0001](adr/0001-spring-boot-4-java-21-gradle.md) | Spring Boot 4.1 on Java 21, built with Gradle | bootstrap, recorded by 01-ping | accepted |
-| [0002](adr/0002-problem-details-via-platform-handler.md) | Errors are RFC 9457 problem details, produced by the platform handler; amended: one project advice, `ErrorResponseException` domain failures, `errors[]`, catch-all `500` | 01-ping; amended by 01-create-redirect | accepted, amended 2026-10-03 |
+| [0002](adr/0002-problem-details-via-platform-handler.md) | Errors are RFC 9457 problem details, produced by the platform handler; amended: one project advice, `ErrorResponseException` domain failures, `errors[]`, no `detail` and request-id `instance` on every problem, catch-all `500` that never logs the throwable | 01-ping; amended by 01-create-redirect | accepted, amended 2026-10-03 |
 | [0003](adr/0003-request-id-server-issued.md) | Request id: server-issued `X-Request-Id`, MDC `requestId`, inbound ignored | 01-ping | accepted |
-| [0004](adr/0004-structured-ecs-logs-no-client-pii.md) | Structured ECS JSON logs with no client PII | 01-ping | accepted |
+| [0004](adr/0004-structured-ecs-logs-no-client-pii.md) | Structured ECS JSON logs with no client PII; amended: no throwable logged on a request path, `status`-only request event, `PageNotFound` at ERROR, servlet initialised at startup | 01-ping; amended by 01-create-redirect | accepted, amended 2026-10-03 |
 | [0005](adr/0005-persistence-h2-flyway-spring-data-jdbc.md) | Persistence: H2 in PostgreSQL mode, Flyway-owned schema, Spring Data JDBC and `JdbcClient`; application `Clock` | 01-create-redirect | proposed (accepted at plan-lock) |
 | [0006](adr/0006-redirect-302-no-store.md) | Redirects are `302` with `Cache-Control: no-store` and a verbatim `Location` | 01-create-redirect | proposed |
 | [0007](adr/0007-short-code-generation.md) | Short codes: 8 random `[A-Za-z0-9]`, unique by constraint, reserved segments refused | 01-create-redirect | proposed |
@@ -327,3 +358,4 @@ profile and container hardening (`03-operate`).
 | 2026-10-02 | 01-ping (design review DR-01) | Functional suite configuration becomes a profile overlay (`application-functional.properties` + `functional` profile from the Gradle task) so the shipped `application.properties` is the base in HTTP journeys |
 | 2026-10-03 | 01-ping (QA finding QA-01) | Shipped configuration excludes `process.thread.name` from structured log events; the server bind address no longer appears in any log line |
 | 2026-10-03 | 01-create-redirect (design) | First schema (`link`, `audit_log`, V1); `link/` feature (create, read, retire, redirect, idempotency); `audit/` insert-only writer; `web/` gains `Problems`, `ProblemDetailsAdvice` (replaces Boot's handler, catch-all `500`), `RequestBodyLimitFilter`, `OpenApiConfig`, and a per-request log event in `RequestIdFilter`; `Clock` bean; first operator setting; committed `docs/api/openapi.json`; Javadoc gate in `check`; ADR-0005..0010 and the ADR-0002 amendment |
+| 2026-10-03 | 01-create-redirect (design review DR-01..DR-04) | Problem bodies lose `detail` and take `instance` = `urn:uuid:<request id>` (one `createResponseEntity` override); the `500` event logs class chain + one frame instead of the throwable; request event logs `status` only; shipped `spring.mvc.servlet.load-on-startup=1` and `PageNotFound` at ERROR; functional clock bean renamed `functionalClock`; ADR-0004 amended, ADR-0002 amendment revised |
