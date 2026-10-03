@@ -19,6 +19,14 @@ repositories {
 	mavenCentral()
 }
 
+// Boot 4.1.1 manages Tomcat 11.0.24, Jackson 3.1.5 and Jackson 2 2.21.5, all with
+// published OSV advisories (missions/00-hello/RELEASE.md §4). Raise the BOM
+// properties to the fixed patch releases; drop each line once Boot manages
+// that version or newer.
+extra["tomcat.version"] = "11.0.25"
+extra["jackson-bom.version"] = "3.1.7"
+extra["jackson-2-bom.version"] = "2.21.7"
+
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
