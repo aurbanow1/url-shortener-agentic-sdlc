@@ -1,0 +1,64 @@
+12:05:43.573 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:h2:file:/Users/andrzej/Documents/projekty/test/openrig/url-shortener/build/link-migration-probe/k1/urlshort (H2 2.4)
+12:05:43.601 [main] WARN org.flywaydb.core.internal.database.base.Database -- Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+12:05:43.614 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+12:05:43.615 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 4 migrations (execution time 00:00.006s)
+12:05:43.620 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+12:05:43.636 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "PUBLIC": << Empty Schema >>
+12:05:43.640 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "1 - create link and audit log"
+12:05:43.651 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "2 - create click"
+12:05:43.659 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "3 - add click audit columns"
+12:05:43.681 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "4 - add link audit columns"
+12:05:43.695 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 4 migrations to schema "PUBLIC", now at version v4 (execution time 00:00.039s)
+K1 fresh database: history [1|true; 2|true; 3|true; 4|true]
+K1 LINK [ID|BIGINT|null|NO|null; CODE|CHARACTER VARYING|32|NO|null; URL|CHARACTER VARYING|2048|NO|null; CREATED_AT|TIMESTAMP WITH TIME ZONE|null|NO|null; RETIRED_AT|TIMESTAMP WITH TIME ZONE|null|YES|null; IDEMPOTENCY_KEY|CHARACTER VARYING|255|YES|null; UPDATED_AT|TIMESTAMP WITH TIME ZONE|null|NO|CURRENT_TIMESTAMP; CREATED_BY|CHARACTER VARYING|64|NO|'anonymous'; UPDATED_BY|CHARACTER VARYING|64|NO|'anonymous']
+K1 AUDIT_LOG [ID|BIGINT|null|NO|null; OCCURRED_AT|TIMESTAMP WITH TIME ZONE|null|NO|null; ACTOR|CHARACTER VARYING|64|NO|null; ACTION|CHARACTER VARYING|64|NO|null; ENTITY|CHARACTER VARYING|32|NO|null; ENTITY_ID|CHARACTER VARYING|64|NO|null; REQUEST_ID|CHARACTER VARYING|64|NO|null; BEFORE_STATE|CHARACTER VARYING|4096|YES|null; AFTER_STATE|CHARACTER VARYING|4096|NO|null; CREATED_AT|TIMESTAMP WITH TIME ZONE|null|NO|CURRENT_TIMESTAMP; UPDATED_AT|TIMESTAMP WITH TIME ZONE|null|NO|CURRENT_TIMESTAMP; CREATED_BY|CHARACTER VARYING|64|NO|'anonymous'; UPDATED_BY|CHARACTER VARYING|64|NO|'anonymous']
+12:05:43.723 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:h2:file:/Users/andrzej/Documents/projekty/test/openrig/url-shortener/build/link-migration-probe/k2/urlshort (H2 2.4)
+12:05:43.726 [main] WARN org.flywaydb.core.internal.database.base.Database -- Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+12:05:43.729 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+12:05:43.729 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 4 migrations (execution time 00:00.001s)
+12:05:43.729 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+12:05:43.732 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "PUBLIC": << Empty Schema >>
+12:05:43.733 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "1 - create link and audit log"
+12:05:43.736 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "2 - create click"
+12:05:43.739 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "3 - add click audit columns"
+12:05:43.750 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 3 migrations to schema "PUBLIC", now at version v3 (execution time 00:00.011s)
+12:05:43.759 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:h2:file:/Users/andrzej/Documents/projekty/test/openrig/url-shortener/build/link-migration-probe/k2/urlshort (H2 2.4)
+12:05:43.761 [main] WARN org.flywaydb.core.internal.database.base.Database -- Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+12:05:43.764 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 4 migrations (execution time 00:00.001s)
+12:05:43.765 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "PUBLIC": 3
+12:05:43.766 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "4 - add link audit columns"
+12:05:43.775 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 1 migration to schema "PUBLIC", now at version v4 (execution time 00:00.008s)
+K2 V3 directory upgraded: history [1|true; 2|true; 3|true; 4|true]; the upgrade began at 2026-10-03T19:05:43.756225Z
+K2 shipped columns unchanged: link true, audit_log true; constraints unchanged true [LINK|CK_LINK_CODE_LENGTH|CHECK; LINK|CK_LINK_URL_NOT_EMPTY|CHECK; LINK|UQ_LINK_CODE|UNIQUE; LINK|UQ_LINK_IDEMPOTENCY_KEY|UNIQUE]
+K2 links: [probeAct1|2026-09-01T10:00Z|null|2026-09-01T10:00Z|anonymous|anonymous|true; probeRet1|2026-09-01T10:00Z|2026-09-20T15:30Z|2026-09-20T15:30Z|anonymous|anonymous|true; probeRel1|2026-09-01T10:00Z|null|2026-09-01T10:00Z|anonymous|anonymous|true]
+K2 audit rows: [probeAct1|link.create|2026-09-01T10:00Z|2026-09-01T10:00Z|true|true|true; probeRet1|link.create|2026-09-01T10:00Z|2026-09-01T10:00Z|true|true|true; probeRet1|link.retire|2026-09-20T15:30Z|2026-09-20T15:30Z|true|true|true; probeFut1|link.create|2026-10-04T19:05:43.751729Z|2026-10-03T12:05:43.774796-07:00|true|true|true]
+K3 v1-shaped link insert (as ClickSchemaTest and ObservabilityJourneyTest do): [true|anonymous|anonymous]
+K3 the unchanged AuditLog insert: [true|anonymous|anonymous|anonymous]
+K3b key release + stamp at 2026-10-04T09:00:00Z: [probeAct1|2026-09-01T10:00Z|2026-10-04T09:00Z|null]; retire at 2026-10-05T09:00:00Z changed 1 row, a second retire 0: [probeRel1|2026-09-01T10:00Z|2026-10-05T09:00Z|2026-10-05T09:00Z]
+K1b V3 schema kept for the rollback check: 603 chars
+K4 after the written rollback: schema equals V3 true, constraints equal true; history [1|true; 2|true; 3|true]
+12:05:43.808 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:h2:file:/Users/andrzej/Documents/projekty/test/openrig/url-shortener/build/link-migration-probe/k2/urlshort (H2 2.4)
+12:05:43.810 [main] WARN org.flywaydb.core.internal.database.base.Database -- Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+12:05:43.813 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 4 migrations (execution time 00:00.001s)
+12:05:43.814 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "PUBLIC": 3
+12:05:43.815 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "4 - add link audit columns"
+12:05:43.823 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 1 migration to schema "PUBLIC", now at version v4 (execution time 00:00.007s)
+K4 re-applied: history [1|true; 2|true; 3|true; 4|true]; [4|4]
+12:05:43.888 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:h2:file:/Users/andrzej/Documents/projekty/test/openrig/url-shortener/build/link-migration-probe/k5/urlshort (H2 2.4)
+12:05:43.890 [main] WARN org.flywaydb.core.internal.database.base.Database -- Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+12:05:43.892 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+12:05:43.892 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 4 migrations (execution time 00:00.000s)
+12:05:43.893 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+12:05:43.895 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "PUBLIC": << Empty Schema >>
+12:05:43.895 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "1 - create link and audit log"
+12:05:43.898 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "2 - create click"
+12:05:43.900 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "3 - add click audit columns"
+12:05:43.909 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 3 migrations to schema "PUBLIC", now at version v3 (execution time 00:00.009s)
+12:05:45.185 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:h2:file:/Users/andrzej/Documents/projekty/test/openrig/url-shortener/build/link-migration-probe/k5/urlshort (H2 2.4)
+12:05:45.186 [main] WARN org.flywaydb.core.internal.database.base.Database -- Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+12:05:45.188 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 4 migrations (execution time 00:00.001s)
+12:05:45.189 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "PUBLIC": 3
+12:05:45.189 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "4 - add link audit columns"
+12:05:51.333 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 1 migration to schema "PUBLIC", now at version v4 (execution time 00:05.334s)
+K5 V4 on 100 000 links and 150 000 audit rows: 6153 ms wall; [100000|150000]
+PROBE done
