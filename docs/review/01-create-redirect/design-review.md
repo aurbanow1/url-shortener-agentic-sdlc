@@ -125,3 +125,85 @@ Clock checks use two minimal configurations with the proposed method names.
   report are confined to `docs/review/`.
 - Ledger row appended. Exit `failed` to the design producer on DR-01/DR-02;
   the next pass resolves each response rather than reopening settled checks.
+
+## Re-review 6367fa05bb16a6e843ba38301c1ecfcbb364e00d
+
+**PASS — DR-01 through DR-04 fixed; no open findings.** Reviewed by
+review-agent@urlshort-factory (Codex), 2026-10-03, on packet
+`qitem-20261003062552-16fc9d48`. This verdict supersedes the initial FAIL above.
+
+The revision consists of `d93e7d5` plus the builder-note correction `6367fa0`.
+The approved SPEC remains byte-for-byte unchanged from `0acbc9d`. At execution,
+the main checkout differed from this candidate only in mission NOTES; all
+reviewed files and the probe's product/build inputs matched the candidate.
+Confidence is high in the four resolutions and their design-level mechanisms;
+feature implementation and full acceptance evidence remain ahead of this gate.
+
+### Issue resolution
+
+Locations refer to the revised candidate; `design.md` is in the slice directory.
+
+| Finding | Resolution | Evidence |
+|---|---|---|
+| DR-01 HIGH | **Fixed.** The 500 event records bounded exception class names and one code location, never the throwable or exception messages. Completion events omit the client-selected method, and the framework's method-echoing WARN is suppressed. ADR-0002/0004/0009 and the system design agree. | `design.md:449`, `:466`, `:594`; fresh probe R7 produces a real H2 unique violation and R8 an exception chain with message canaries: neither leaks to body or logs. Each has one safe failure event and one completion event. The proposed feature test additionally verifies transaction rollback. |
+| DR-02 HIGH | **Fixed.** One final response hook clears detail and replaces instance with a server-generated request-id URN; static typed validation extensions and response headers remain intact. | `design.md:211`, `:570`; fresh R1–R6/R9 cover media-type, unknown-path, domain-error and method cases. Every body omits detail and uses the response request id as instance; 415 retains Accept and 405 retains Allow. |
+| DR-03 MEDIUM | **Fixed.** The primary functional clock bean has a distinct name, `functionalClock`. | `design.md:54`, `:592`; this is the exact distinct-name configuration already verified by the independent control in `proof/design-boundary-probe.txt:66`. No new clock experiment is claimed. |
+| DR-04 MEDIUM | **Fixed.** Eager servlet initialization moves bootstrap messages before traffic; the test strategy adds a first real-request check and waits for the completion event. | `design.md:51`, `:571`, `:595`; fresh probe initialization precedes Tomcat startup, and R1 captures only its correctly correlated completion event. |
+
+No finding is disputed or withdrawn. Both MEDIUM items are resolved in this
+revision; none is deferred to backlog. No settled check is reopened. The fixes
+retain the existing scope, data model, rollback and AC-to-suite mapping, and
+add no dependency or architectural layer. D11 in mission NOTES delegates this
+slice's plan-lock to the orchestration lead; the earlier human-gate description
+above is historical.
+
+### Revision coverage ledger
+
+All **9/9** producer files changed since the original candidate were read,
+including the full new probe and its captured output. Reviewer artifacts and
+the orchestration lead's unrelated NOTES updates are outside this revision.
+
+| Changed file | Verdict |
+|---|---|
+| `docs/DESIGN.md` | Pass: error and logging contracts match the revision |
+| `docs/adr/0002-problem-details-via-platform-handler.md` | Pass: shared no-echo response hook and safe failure metadata |
+| `docs/adr/0004-structured-ecs-logs-no-client-pii.md` | Pass: logging tradeoff, method suppression and eager initialization explicit |
+| `docs/adr/0009-idempotency-key-binding.md` | Pass: race failure retains its existing semantics with safe diagnostics |
+| `docs/diagrams/create-link-sequence.mmd` | Pass: failure event aligned with the text |
+| `missions/01-greenfield-core/slices/01-create-redirect/design-probe/RevisionProbe.java` | Pass: nine mechanism cases, actual H2 failure and bounded request captures; not a full feature suite |
+| `missions/01-greenfield-core/slices/01-create-redirect/design-probe/revision-output.txt` | Pass: all recorded cases inspected and independently parsed |
+| `missions/01-greenfield-core/slices/01-create-redirect/design-probe/revision-probe.gradle` | Pass: pinned Java 21 and existing functional runtime classpath; no dependency addition |
+| `missions/01-greenfield-core/slices/01-create-redirect/design.md` | Pass: all four responses resolved, regression strategy and evidence limits explicit |
+
+### Verification and limits
+
+Fresh reviewer execution, after inspecting the producer's probe source:
+
+```sh
+scripts/gw --log docs/review/01-create-redirect/proof/design-rereview-6367fa0.txt --offline -I missions/01-greenfield-core/slices/01-create-redirect/design-probe/revision-probe.gradle designRevisionProbe
+```
+
+Exit 0, BUILD SUCCESSFUL, six tasks (one executed, five up-to-date). The probe
+prints verdicts rather than enforcing assertions, so its exit code was not
+used alone. A separate parser checked both the author's record and the fresh
+record: nine expected statuses (415/404/404/404/405/405/500/500/413), problem
+media type, exact instance/request-id equality, no detail or canary values,
+safe 500 metadata, preserved Allow/Accept, and 11/11 correlated JSON request
+events. Initialization occurred before Tomcat started and the first request.
+
+This verifies the revised advice/configuration mechanism on real loopback
+Tomcat with in-memory H2. It does not implement the feature or prove its
+transactions, full functional clock wiring, generated OpenAPI, typed field
+errors or final cold-start test. Those remain explicit builder/QA obligations;
+the existing independent clock control and original body-limit checks remain
+supporting evidence. The baseline quality gate was already run in the initial
+review; its unchanged product inputs did not warrant another baseline run.
+
+### Self-check
+
+- Candidate and unchanged SPEC verified; all nine revision files read.
+- Each producer response judged against its original finding and observed
+  behavior; the fresh output agrees with the recorded evidence.
+- No product, test, SPEC or design edited. Only review evidence/report/ledger
+  are added by this pass; rig-managed files remain untouched.
+- Ledger appended; exit `handoff` to plan-lock with no open review findings.
