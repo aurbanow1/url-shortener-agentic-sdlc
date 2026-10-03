@@ -1,0 +1,22 @@
+// scripts/gw --log docs/review/02-click-retention/proof/design-controls.txt --offline -I docs/review/02-click-retention/proof/review-retention.gradle reviewRetention
+// Add -PreviewCase=invalid for the shipped startup-logging control.
+gradle.projectsEvaluated {
+    def p = gradle.rootProject
+    def out = p.layout.buildDirectory.dir('review-retention-classes')
+    def compile = p.tasks.register('compileReviewRetention', JavaCompile) {
+        dependsOn p.tasks.named('functionalTestClasses')
+        source = p.files('docs/review/02-click-retention/proof/ReviewRetentionProbe.java',
+            'missions/02-brownfield/slices/02-click-retention/design-probe/RetentionProbe.java')
+        classpath = p.sourceSets.functionalTest.runtimeClasspath
+        destinationDirectory = out
+        javaCompiler = p.javaToolchains.compilerFor { languageVersion = JavaLanguageVersion.of(21) }
+    }
+    p.tasks.register('reviewRetention', JavaExec) {
+        dependsOn compile
+        javaLauncher = p.javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) }
+        classpath = p.files(out) + p.sourceSets.functionalTest.runtimeClasspath
+        mainClass = 'ReviewRetentionProbe'
+        systemProperty 'spring.profiles.active', 'functional'
+        args p.findProperty('reviewCase') ?: 'schedule'
+    }
+}

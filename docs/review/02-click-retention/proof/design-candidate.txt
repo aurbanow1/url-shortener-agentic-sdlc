@@ -1,0 +1,24 @@
+Candidate design: be803067cd5901d320a03bf3900fe6e4abc19830
+SPEC: 69680e4e025824cfd321d13b698f933191699c0c
+Review target: 18 handed-off design/impact/probe files from commits 16f3de0, 7fbdcf4, be80306.
+Format: candidate SHA256 | working copy matches candidate | path
+8fcbcaea987aa120ad4c6a704f0c6e880e797bc1e0001865374b06789844badf | True | docs/DESIGN.md
+4c510cdaff06c2c49d47d6e36a0bb9607588c35051047dcf929949b805d34201 | True | docs/adr/0011-click-handoff-bounded-single-writer.md
+28fe3744a25254276c2ac1aed65bcf7150b9cf72cfdedb32126788dc9d3d5d1c | True | docs/adr/0013-click-events-and-request-time-statistics.md
+e680506977c266de95fbb344115dc3c6d4efe2be4cc93278a19d7c2d97d5573b | True | docs/adr/0018-click-retention-daily-purge.md
+af38fc6fd39eee109435c3f9a0661693584688686e5e08d8ee1caebe13bce36c | True | docs/diagrams/container.mmd
+ac7ddcdbb6e7a8c6a149844c8e03ee23dbdcd880bd1bd99ebfe7bc23730d760b | True | docs/diagrams/purge-sequence.mmd
+bcece6cadcc4176842a69d01f2a7ea63eee2a5eca030cfa52ca66384ced5a77c | False | missions/02-brownfield/NOTES.md
+595fc6766f46421ea14dc2d2d4b7a879af860d59cdb53408b87783bb2df8c4da | True | missions/02-brownfield/slices/02-click-retention/design-probe/RetentionProbe.java
+b316cc32016ab080746225b0d8e46c93bb5eb1e248f062548f40fcad8db038da | True | missions/02-brownfield/slices/02-click-retention/design-probe/baseline-f6dd29e.txt
+a386e64b830aa0eac14693831a4293a7db5bce402c173a5eb0a701c4ac8214cb | True | missions/02-brownfield/slices/02-click-retention/design-probe/batch-subquery-jstack.txt
+57bdf8ebbded2bae49afd017180312941b941fda9a7bec681d18a22e8adcae33 | True | missions/02-brownfield/slices/02-click-retention/design-probe/output-2.txt
+a24e27af046ed90369b8503eeb83a2bd8242798bb41c4d5f8c3cc8f495a20844 | True | missions/02-brownfield/slices/02-click-retention/design-probe/output-3.txt
+261e2a0478065427843e138c4ae4256cedc538d53c0623f7bfc4888a0725eb8c | True | missions/02-brownfield/slices/02-click-retention/design-probe/output-4.txt
+cd39829b600ef20191efb8f228c2845d83f63c5da64bbb3f15a12916b5b2f1e6 | True | missions/02-brownfield/slices/02-click-retention/design-probe/output-first-attempt.txt
+bc42fc7ae29e582a024b13ff83c3e2b8f1554d61403bde2030235c2d7399a4b4 | True | missions/02-brownfield/slices/02-click-retention/design-probe/output.txt
+51f6f20ac46ce2336de77eea48829376b69151415b1afae01e6d1ffbffc4ef51 | True | missions/02-brownfield/slices/02-click-retention/design-probe/retention-probe.gradle
+c9f07018108e24dfd6d649a8c2b38725eb6555a6dd3d022909733f2eefd5f061 | True | missions/02-brownfield/slices/02-click-retention/design.md
+2026d6e3a5c39ad3b3418fac292ef311bbef05f48ad4686b67b88b8a6ad276b9 | True | missions/02-brownfield/slices/02-click-retention/impact-analysis.md
+NOTES.md is concurrently updated by other seats; reviewed only the handed-off commit delta, not their later additions.
+Product delta versus baseline f6dd29e (empty output means unchanged):
