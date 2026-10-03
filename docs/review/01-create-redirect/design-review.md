@@ -125,4 +125,3 @@ Clock checks use two minimal configurations with the proposed method names.
   report are confined to `docs/review/`.
 - Ledger row appended. Exit `failed` to the design producer on DR-01/DR-02;
   the next pass resolves each response rather than reopening settled checks.
-

@@ -109,4 +109,3 @@ public class DesignBoundaryProbe {
         public Instant instant() { return Clock.tickMillis(ZoneOffset.UTC).instant(); }
     }
 }
-
