@@ -1,0 +1,318 @@
+test dev.urlshort.UrlshortApplicationTests#mainBootsWithoutAWebServer()
+test dev.urlshort.UrlshortApplicationTests#contextLoads()
+test dev.urlshort.audit.AuditLogTest#theWriterOffersOnlyAppendAndItsOnlyStatementIsAnInsert()
+test dev.urlshort.audit.AuditLogTest#appendWritesOneRowWithServerOwnedValues()
+test dev.urlshort.click.ClickRecorderTest#aFastStoreIsDrainedOnCloseAndNothingIsReported()
+test dev.urlshort.click.ClickRecorderTest#aRedirectIsStoredAsItsReducedFactsOnly()
+test dev.urlshort.click.ClickRecorderTest#aWriteThatCompletesAfterShutdownClaimedItIsNotReportedAgain()
+test dev.urlshort.click.ClickRecorderTest#aFailedWriteIsOneWarnWithTheRequestIdAndNoClickValue()
+test dev.urlshort.click.ClickRecorderTest#aHeadRequestIsNotAClick()
+test dev.urlshort.click.ClickRecorderTest#aClaimedClickIsNeverWrittenWhenTheWriterReachesItLater()
+test dev.urlshort.click.ClickRecorderTest#aClickThatCannotBeReducedIsOneWarn()
+test dev.urlshort.click.ClickRecorderTest#aClickThatCannotBeQueuedIsOneWarnAndTheRedirectGoesOn()
+test dev.urlshort.click.ClickRecorderTest#aWriteThatFailsAfterShutdownClaimedItIsNotReportedAgain()
+test dev.urlshort.click.ClickRecorderTest#aStuckWriteIsBoundedAndEveryUnwrittenClickIsReportedOnceBeforeCloseReturns()
+test dev.urlshort.click.ClickSchemaTest#theClickConstraintsStillWorkAfterTheDdlConnectionIsRetired()
+test dev.urlshort.click.ClickTest#rule2_aClickHoldsOnlyTheReducedFacts()
+test dev.urlshort.click.ClickTest#[1] header = null
+test dev.urlshort.click.ClickTest#[2] header = ""
+test dev.urlshort.click.ClickTest#[1] header = null
+test dev.urlshort.click.ClickTest#[2] header = "android-app://com.example.app/"
+test dev.urlshort.click.ClickTest#[3] header = "not a url"
+test dev.urlshort.click.ClickTest#[4] header = "ftp://files.example/x"
+test dev.urlshort.click.ClickTest#[5] header = "/relative/path"
+test dev.urlshort.click.ClickTest#[6] header = "http:///no-host"
+test dev.urlshort.click.ClickTest#[7] header = "mailto:someone@example.com"
+test dev.urlshort.click.ClickTest#[1] header = "https://News.Example/a/refpathcanary?t=refquerycanary#reffragcanary", origin = "https://news.example"
+test dev.urlshort.click.ClickTest#[2] header = "http://blog.example:8081/post", origin = "http://blog.example:8081"
+test dev.urlshort.click.ClickTest#[3] header = "https://refusercanary:pw@forum.example/x", origin = "https://forum.example"
+test dev.urlshort.click.ClickTest#[4] header = "http://x.example:80/", origin = "http://x.example"
+test dev.urlshort.click.ClickTest#[5] header = "https://x.example:443/", origin = "https://x.example"
+test dev.urlshort.click.ClickTest#[6] header = "http://x.example:443/", origin = "http://x.example:443"
+test dev.urlshort.click.ClickTest#[7] header = "https://x.example:80/", origin = "https://x.example:80"
+test dev.urlshort.click.ClickTest#[8] header = "HTTPS://X.EXAMPLE/", origin = "https://x.example"
+test dev.urlshort.click.ClickTest#[9] header = "http://[::1]:8080/", origin = "http://[::1]:8080"
+test dev.urlshort.click.ClickTest#[1] header = "Mozilla/5.0 (X11; Linux x86_64) uacanary Firefox/131.0", userAgentClass = "browser"
+test dev.urlshort.click.ClickTest#[2] header = "Mozilla/5.0 (compatible; Googlebot/2.1; uacanary)", userAgentClass = "bot"
+test dev.urlshort.click.ClickTest#[3] header = "uacanary-crawler/1.0", userAgentClass = "bot"
+test dev.urlshort.click.ClickTest#[4] header = "uacanary-spider", userAgentClass = "bot"
+test dev.urlshort.click.ClickTest#[5] header = "curl/8.7.1 uacanary", userAgentClass = "other"
+test dev.urlshort.click.ClickTest#[6] header = "SOME-BOT", userAgentClass = "bot"
+test dev.urlshort.click.ClickTest#[7] header = "mozilla/5.0", userAgentClass = "other"
+test dev.urlshort.click.ClickTest#[1] length = 2048
+test dev.urlshort.click.ClickTest#[2] length = 2049
+test dev.urlshort.click.DailySaltTest#closeDropsTheSalt()
+test dev.urlshort.click.DailySaltTest#theHashIsNeverTheUnsaltedDigest()
+test dev.urlshort.click.DailySaltTest#aSaltIsDroppedAtTheEndOfItsDayWithoutAnyFurtherClick()
+test dev.urlshort.click.DailySaltTest#anotherAddressOrAnotherDayHashesDifferently()
+test dev.urlshort.click.DailySaltTest#aStaleExpiryIsANoOpAndTheCurrentDaysExpiryDropsTheSalt()
+test dev.urlshort.click.DailySaltTest#aSelectionMadeBeforeMidnightKeepsItsDayAndNeverReplacesTheNextDaysSalt()
+test dev.urlshort.click.DailySaltTest#sameAddressAndDayHashEquallyAndTheStampCarriesTheClocksInstant()
+test dev.urlshort.click.LinkStatsTest#noRowsIsZeroAndTwoEmptyLists()
+test dev.urlshort.click.LinkStatsTest#daysAreSummedAscendingAndClicksWithoutAReferrerCountOnlyInTheTotals()
+test dev.urlshort.click.LinkStatsTest#referrersAreRankedByClicksThenByCodePointAndCappedAtTen()
+test dev.urlshort.link.LinkServiceTest#resolveSendsVisitorsToActiveLinksOnly()
+test dev.urlshort.link.LinkServiceTest#createWithAnUnboundKeyBindsIt()
+test dev.urlshort.link.LinkServiceTest#retireUpdatesConditionallyAndAuditsBeforeAndAfter()
+test dev.urlshort.link.LinkServiceTest#retireThatChangesNoRowIs410AndWritesNoAuditRow()
+test dev.urlshort.link.LinkServiceTest#createWithoutAKeyInsertsAndAuditsTheNewLink()
+test dev.urlshort.link.LinkServiceTest#mismatchWithinTheWindowIs422AndKeepsTheBinding()
+test dev.urlshort.link.LinkServiceTest#replayWithinTheWindowReturnsTheBoundLinkAndWritesNothing()
+test dev.urlshort.link.LinkServiceTest#anExpiredKeyIsReleasedAndBindsANewLink()
+test dev.urlshort.link.LinkServiceTest#readOfAnUnknownCodeIs404()
+test dev.urlshort.link.LinkTest#stateIsActiveUntilRetiredAtIsSet()
+test dev.urlshort.link.LinkValidationTest#[1] key = ""
+test dev.urlshort.link.LinkValidationTest#[2] key = "has space"
+test dev.urlshort.link.LinkValidationTest#[3] key = "café"
+test dev.urlshort.link.LinkValidationTest#[4] key = "tab\there"
+test dev.urlshort.link.LinkValidationTest#[1] url = null, rule = "required"
+test dev.urlshort.link.LinkValidationTest#[2] url = "", rule = "required"
+test dev.urlshort.link.LinkValidationTest#[3] url = "   ", rule = "required"
+test dev.urlshort.link.LinkValidationTest#[4] url = "https://example.com/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa…", rule = "too-long"
+test dev.urlshort.link.LinkValidationTest#[5] url = "javascript:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa…", rule = "too-long"
+test dev.urlshort.link.LinkValidationTest#[6] url = "javascript:alert(1)", rule = "scheme"
+test dev.urlshort.link.LinkValidationTest#[7] url = "data:text/html,hi", rule = "scheme"
+test dev.urlshort.link.LinkValidationTest#[8] url = "file:///etc/passwd", rule = "scheme"
+test dev.urlshort.link.LinkValidationTest#[9] url = "ftp://example.com/", rule = "scheme"
+test dev.urlshort.link.LinkValidationTest#[10] url = "example.com/path", rule = "scheme"
+test dev.urlshort.link.LinkValidationTest#[11] url = " https://example.com/", rule = "scheme"
+test dev.urlshort.link.LinkValidationTest#[12] url = "https://", rule = "malformed"
+test dev.urlshort.link.LinkValidationTest#[13] url = "https://exa mple.com/", rule = "malformed"
+test dev.urlshort.link.LinkValidationTest#[14] url = "https://[bad/", rule = "malformed"
+test dev.urlshort.link.LinkValidationTest#[15] url = "https://example.com/ ", rule = "malformed"
+test dev.urlshort.link.LinkValidationTest#[16] url = "https://example.com/\r\nSet-Cookie:x", rule = "malformed"
+test dev.urlshort.link.LinkValidationTest#[17] url = "https://exämple.com/", rule = "malformed"
+test dev.urlshort.link.LinkValidationTest#[18] url = "https:///no-host", rule = "malformed"
+test dev.urlshort.link.LinkValidationTest#[19] url = "https://user:secret@example.com/", rule = "credentials"
+test dev.urlshort.link.LinkValidationTest#[20] url = "https://user@example.com/", rule = "credentials"
+test dev.urlshort.link.LinkValidationTest#[1] url = "https://example.com/some/path?q=1"
+test dev.urlshort.link.LinkValidationTest#[2] url = "http://example.com/"
+test dev.urlshort.link.LinkValidationTest#[3] url = "HTTPS://EXAMPLE.COM/"
+test dev.urlshort.link.LinkValidationTest#[4] url = "http://localhost:8080/"
+test dev.urlshort.link.LinkValidationTest#[5] url = "https://example.com/p?q=a%20b#frag"
+test dev.urlshort.link.LinkValidationTest#[1] length = 256
+test dev.urlshort.link.LinkValidationTest#[2] length = 1000
+test dev.urlshort.link.LinkValidationTest#[1] key = null
+test dev.urlshort.link.LinkValidationTest#[2] key = "k"
+test dev.urlshort.link.LinkValidationTest#[3] key = "!~"
+test dev.urlshort.link.LinkValidationTest#[4] key = "550e8400-e29b-41d4-a716-446655440000"
+test dev.urlshort.link.LinkValidationTest#[1] length = 2048
+test dev.urlshort.link.ShortCodesTest#aDrawThatSpellsAReservedSegmentIsDrawnAgain()
+test dev.urlshort.link.ShortCodesTest#codesAreEightCharactersFromTheAlphanumericAlphabet()
+test dev.urlshort.ping.PingControllerTest#answersOkWithTheCurrentUtcInstant()
+test dev.urlshort.web.ProblemDetailsAdviceTest#errorOriginIsNoneWhenNoFrameIsOurs()
+test dev.urlshort.web.ProblemDetailsAdviceTest#frameworkDetailThatEchoesClientInputIsCleared()
+test dev.urlshort.web.ProblemDetailsAdviceTest#aNonProblemBodyPassesThroughUntouched()
+test dev.urlshort.web.ProblemDetailsAdviceTest#unreadableBodyWithoutALimitErrorStays400WithoutTheFrameworkDetail()
+test dev.urlshort.web.ProblemDetailsAdviceTest#unhandledExceptionIsABare500AndOneMessageFreeEvent()
+test dev.urlshort.web.ProblemDetailsAdviceTest#domainProblemKeepsItsErrorsAndGetsTheRequestIdAsInstance()
+test dev.urlshort.web.ProblemDetailsAdviceTest#unwrapsABodyLimitErrorRaisedInsideTheJsonReaderTo413()
+test dev.urlshort.web.ProblemsTest#validationIs400WithExactlyOneFieldError()
+test dev.urlshort.web.ProblemsTest#idempotencyMismatchIs422NamingTheHeaderAndRule()
+test dev.urlshort.web.ProblemsTest#notFoundAndGoneAreBareProblems()
+test dev.urlshort.web.RateLimitFilterTest#[1] forwardedFor = null
+test dev.urlshort.web.RateLimitFilterTest#[2] forwardedFor = ""
+test dev.urlshort.web.RateLimitFilterTest#[1] remote = "10.9.9.9", forwardedFor = "203.0.113.7", client = "203.0.113.7"
+test dev.urlshort.web.RateLimitFilterTest#[2] remote = "10.9.9.9", forwardedFor = "198.51.100.1, 203.0.113.7", client = "203.0.113.7"
+test dev.urlshort.web.RateLimitFilterTest#[3] remote = "10.9.9.9", forwardedFor = null, client = "10.9.9.9"
+test dev.urlshort.web.RateLimitFilterTest#[4] remote = "10.0.0.5", forwardedFor = "203.0.113.7", client = "10.0.0.5"
+test dev.urlshort.web.RateLimitFilterTest#[5] remote = "10.9.9.9", forwardedFor = " 203.0.113.7 ,  ", client = "203.0.113.7"
+test dev.urlshort.web.RateLimitFilterTest#[6] remote = "10.9.9.9", forwardedFor = "203.0.113.7, 10.9.9.9", client = "203.0.113.7"
+test dev.urlshort.web.RateLimitFilterTest#[7] remote = "10.9.9.9", forwardedFor = "10.9.9.9, 10.9.9.9", client = "10.9.9.9"
+test dev.urlshort.web.RateLimitFilterTest#[8] remote = "10.9.9.9", forwardedFor = " , ", client = "10.9.9.9"
+test dev.urlshort.web.RateLimitFilterTest#[1] uri = "/actuator"
+test dev.urlshort.web.RateLimitFilterTest#[2] uri = "/actuator/health"
+test dev.urlshort.web.RateLimitFilterTest#[3] uri = "/actuator/prometheus"
+test dev.urlshort.web.RateLimitFilterTest#[4] uri = "/v3/api-docs"
+test dev.urlshort.web.RateLimitFilterTest#[5] uri = "/v3/api-docs/swagger-config"
+test dev.urlshort.web.RateLimitFilterTest#[6] uri = "/swagger-ui.html"
+test dev.urlshort.web.RateLimitFilterTest#[7] uri = "/swagger-ui/index.html"
+test dev.urlshort.web.RateLimitFilterTest#theFilterReadsOnlyXForwardedForAndOnlyFromATrustedPeer()
+test dev.urlshort.web.RateLimitFilterTest#anEmptyBucketIsA429ProblemWithRetryAfterAndNoChain()
+test dev.urlshort.web.RateLimitFilterTest#eachRejectionIsCountedOnceUnderItsBudgetOnly()
+test dev.urlshort.web.RateLimitFilterTest#[1] uri = "/api", budget = "CREATE"
+test dev.urlshort.web.RateLimitFilterTest#[2] uri = "/api/", budget = "CREATE"
+test dev.urlshort.web.RateLimitFilterTest#[3] uri = "/api/links", budget = "CREATE"
+test dev.urlshort.web.RateLimitFilterTest#[4] uri = "/api/links/Abc12345/stats", budget = "CREATE"
+test dev.urlshort.web.RateLimitFilterTest#[5] uri = "/api/ping", budget = "CREATE"
+test dev.urlshort.web.RateLimitFilterTest#[6] uri = "/%61pi/links", budget = "CREATE"
+test dev.urlshort.web.RateLimitFilterTest#[7] uri = "/apix", budget = "REDIRECT"
+test dev.urlshort.web.RateLimitFilterTest#[8] uri = "/Abc12345", budget = "REDIRECT"
+test dev.urlshort.web.RateLimitFilterTest#[9] uri = "/", budget = "REDIRECT"
+test dev.urlshort.web.RateLimitFilterTest#[10] uri = "/favicon.ico", budget = "REDIRECT"
+test dev.urlshort.web.RateLimitFilterTest#[11] uri = "/actuatorx", budget = "REDIRECT"
+test dev.urlshort.web.RateLimitFilterTest#[12] uri = "/swagger-uix", budget = "REDIRECT"
+test dev.urlshort.web.RateLimiterTest#budgetsAndClientsAreIndependent()
+test dev.urlshort.web.RateLimiterTest#aBackwardClockStepStartsTheClientFreshInsteadOfLockingItOut()
+test dev.urlshort.web.RateLimiterTest#refusalsTakeNothing()
+test dev.urlshort.web.RateLimiterTest#AC04_aQuietMinuteRefillsTheWholeBucket()
+test dev.urlshort.web.RateLimiterTest#fullBucketsAreReleasedByTheNextRequestButNotWhileIdle()
+test dev.urlshort.web.RateLimiterTest#retryAfterIsTheWaitForOneTokenInWholeSeconds()
+test dev.urlshort.web.RateLimiterTest#theReleaseRunsAtMostOncePerSecond()
+test dev.urlshort.web.RateLimiterTest#AC03a_anExactlyEmptyBucketRefillsOneTokenAfterExactlyOneSecond()
+test dev.urlshort.web.RateLimiterTest#aBucketThatIsNotYetFullSurvivesTheRelease()
+test dev.urlshort.web.RateLimiterTest#AC03b_retryAfterIsRoundedUpAndHonoured()
+test dev.urlshort.web.RequestBodyLimitFilterTest#theFirstByteOverTheLimitIs413OnTheBulkReadPath()
+test dev.urlshort.web.RequestBodyLimitFilterTest#servletStreamStateAndListenerDelegateToTheContainerStream()
+test dev.urlshort.web.RequestBodyLimitFilterTest#aBodyOfExactlyTheLimitIsReadInFull()
+test dev.urlshort.web.RequestBodyLimitFilterTest#singleByteReadsCountTooAndEndOfStreamIsPassedThrough()
+test dev.urlshort.web.RequestBodyLimitFilterTest#theWrappedStreamIsCreatedOnceSoTheCountCannotBeReset()
+test dev.urlshort.web.RequestIdFilterTest#ignoresInboundRequestIdAndIssuesADifferentIdPerRequest()
+test dev.urlshort.web.RequestIdFilterTest#clearsMdcWhenTheChainThrows()
+test dev.urlshort.web.RequestIdFilterTest#issuesOneIdOnHeaderAndMdcBeforeTheChainRunsAndClearsMdcAfter()
+test dev.urlshort.web.RequestIdFilterTest#writesOneRequestCompletedEventWithTheStatusAndTheIdButNotTheMethod()
+functionalTest dev.urlshort.HealthJourneyTest#healthEndpointReportsUp()
+functionalTest dev.urlshort.audit.AuditJourneyTest#AC22_createWritesExactlyOneAuditRow()
+functionalTest dev.urlshort.audit.AuditJourneyTest#AC24_aFailedAuditWriteRollsTheRetireBackAndFailsClosed()
+functionalTest dev.urlshort.audit.AuditJourneyTest#AC25_auditRowsAreAppendOnlyUnderEveryOperation()
+functionalTest dev.urlshort.audit.AuditJourneyTest#AC23_retireWritesExactlyOneAuditRow()
+functionalTest dev.urlshort.click.ClickRecordingJourneyTest#[1] userAgent = "Mozilla/5.0 (X11; Linux x86_64) uacanary Firefox/131.0", userAgentClass = "browser"
+functionalTest dev.urlshort.click.ClickRecordingJourneyTest#[2] userAgent = "Mozilla/5.0 (compatible; Googlebot/2.1; uacanary)", userAgentClass = "bot"
+functionalTest dev.urlshort.click.ClickRecordingJourneyTest#[3] userAgent = "uacanary-crawler/1.0", userAgentClass = "bot"
+functionalTest dev.urlshort.click.ClickRecordingJourneyTest#[4] userAgent = "uacanary-spider", userAgentClass = "bot"
+functionalTest dev.urlshort.click.ClickRecordingJourneyTest#[5] userAgent = "curl/8.7.1 uacanary", userAgentClass = "other"
+functionalTest dev.urlshort.click.ClickRecordingJourneyTest#[6] userAgent = null, userAgentClass = "unknown"
+functionalTest dev.urlshort.click.ClickRecordingJourneyTest#[7] userAgent = "", userAgentClass = "unknown"
+functionalTest dev.urlshort.click.ClickRecordingJourneyTest#AC05_theClientAddressIsStoredOnlyAsASaltedHashThatRotatesEveryUtcDay()
+functionalTest dev.urlshort.click.ClickRecordingJourneyTest#AC18_noClickDataReachesTheLogs(CapturedOutput)
+functionalTest dev.urlshort.click.ClickRecordingJourneyTest#AC06_forwardingHeadersDoNotChangeTheRecordedClient()
+functionalTest dev.urlshort.click.ClickRecordingJourneyTest#[1] referer = "https://News.Example/a/refpathcanary?t=refquerycanary#reffragcanary", stored = "https://news.example"
+functionalTest dev.urlshort.click.ClickRecordingJourneyTest#[2] referer = "http://blog.example:8081/post", stored = "http://blog.example:8081"
+functionalTest dev.urlshort.click.ClickRecordingJourneyTest#[3] referer = "https://refusercanary:pw@forum.example/x", stored = "https://forum.example"
+functionalTest dev.urlshort.click.ClickRecordingJourneyTest#[4] referer = null, stored = null
+functionalTest dev.urlshort.click.ClickRecordingJourneyTest#[5] referer = "android-app://com.example.app/", stored = null
+functionalTest dev.urlshort.click.ClickRecordingJourneyTest#[6] referer = "not a url", stored = null
+functionalTest dev.urlshort.click.ClickRecordingJourneyTest#[7] referer = "https://long.example/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa…", stored = null
+functionalTest dev.urlshort.click.ClickRecordingJourneyTest#AC02_onlyARedirectIsAClick()
+functionalTest dev.urlshort.click.ClickRecordingJourneyTest#AC01_aRedirectRecordsExactlyOneClickWithItsTime()
+functionalTest dev.urlshort.click.ClickRecordingJourneyTest#AC17_theStatisticsExposeAggregatesOnly()
+functionalTest dev.urlshort.click.ClickResilienceJourneyTest#AC15_AC19_aFailingClickStoreDoesNotFailTheRedirectAndTheLossIsOneCorrelatedWarn(CapturedOutput)
+functionalTest dev.urlshort.click.ClickResilienceJourneyTest#AC16_concurrentRedirectsLoseNoClicksAndTheRequestIsNeverReadAfterItsResponse()
+functionalTest dev.urlshort.click.ClickResilienceJourneyTest#AC22_headOnTheStatisticsPathHasNoBodyAndRecordsNothing()
+functionalTest dev.urlshort.click.ClickResilienceJourneyTest#AC14_aSlowClickStoreDoesNotSlowTheRedirect()
+functionalTest dev.urlshort.click.ClickResilienceJourneyTest#AC18_AC19_onTomcatClickDataStaysOutOfTheLogsAndEveryEventIsCorrelated(CapturedOutput)
+functionalTest dev.urlshort.click.ClickSchemaJourneyTest#everyUserAgentClassIsRecordedAfterThePoolRetiresItsConnections()
+functionalTest dev.urlshort.click.StatsJourneyTest#AC07_aLinkWithNoClicksHasEmptyStatistics()
+functionalTest dev.urlshort.click.StatsJourneyTest#AC21_theLiveApiDocumentDescribesTheStatisticsEndpoint()
+functionalTest dev.urlshort.click.StatsJourneyTest#AC20_redirectAndAuditBehaviourAreUnchanged()
+functionalTest dev.urlshort.click.StatsJourneyTest#AC12_aRetiredLinksStatisticsAreStillReadable()
+functionalTest dev.urlshort.click.StatsJourneyTest#AC08_totalClicksCountsEveryRedirect()
+functionalTest dev.urlshort.click.StatsJourneyTest#AC19_theStatisticsPathAndASettledRedirectAreCorrelated(CapturedOutput)
+functionalTest dev.urlshort.click.StatsJourneyTest#AC09_clicksPerDayAreGroupedByUtcCalendarDay()
+functionalTest dev.urlshort.click.StatsJourneyTest#AC10_topReferrersAreRankedAndCapped()
+functionalTest dev.urlshort.click.StatsJourneyTest#AC22_headAndOptionsKeepTheFrameworkDefaultsAndRecordNothing()
+functionalTest dev.urlshort.click.StatsJourneyTest#[1] method = "GET", code = "nosuchcode1", status = 404
+functionalTest dev.urlshort.click.StatsJourneyTest#[2] method = "GET", code = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", status = 404
+functionalTest dev.urlshort.click.StatsJourneyTest#[3] method = "POST", code = null, status = 405
+functionalTest dev.urlshort.click.StatsJourneyTest#[4] method = "DELETE", code = null, status = 405
+functionalTest dev.urlshort.link.IdempotencyJourneyTest#AC17_aReplayReturnsTheFirstLink()
+functionalTest dev.urlshort.link.IdempotencyJourneyTest#AC18_sameKeyWithADifferentUrlIsRefusedAndTheBindingSurvives()
+functionalTest dev.urlshort.link.IdempotencyJourneyTest#AC21_aRejectedCreateDoesNotConsumeTheKey()
+functionalTest dev.urlshort.link.IdempotencyJourneyTest#AC20_aKeyOf255VisibleCharactersIsAccepted()
+functionalTest dev.urlshort.link.IdempotencyJourneyTest#AC19_aKeyIsHonouredFor24HoursAndNotLongerAndARejectionDoesNotExtendIt()
+functionalTest dev.urlshort.link.IdempotencyJourneyTest#[1] key = ""
+functionalTest dev.urlshort.link.IdempotencyJourneyTest#[2] key = "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+functionalTest dev.urlshort.link.IdempotencyJourneyTest#[3] key = "has space"
+functionalTest dev.urlshort.link.IdempotencyJourneyTest#[4] key = "café"
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#AC02_everyCreateWithoutAKeyIsANewLink()
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#AC16_redirectRouteDoesNotShadowTheExistingSurface()
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#AC01_validUrlBecomesAShortLink()
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#AC03_shortUrlUsesTheShippedBaseNeverTheHostHeader()
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#[1] raw = ""
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#[2] raw = "{\"url\": "
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#[3] raw = "[\"https://example.com/\"]"
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#[4] raw = "{\"url\": {\"a\": 1}}"
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#AC06_nonJsonContentTypeIsRefused()
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#AC04_aUrlOfExactly2048CharactersIsAccepted()
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#[1] "required": present=false value=<null>
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#[2] "required": present=true value=<null>
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#[3] "required": present=true value=<"">
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#[4] "required": present=true value=<"   ">
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#[5] "too-long": present=true value=<"https://example.com/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa…">
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#[6] "scheme": present=true value=<"javascript:alert(1)">
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#[7] "scheme": present=true value=<"data:text/html,hi">
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#[8] "scheme": present=true value=<"file:///etc/passwd">
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#[9] "scheme": present=true value=<"ftp://example.com/">
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#[10] "scheme": present=true value=<"example.com/path">
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#[11] "scheme": present=true value=<" https://example.com/">
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#[12] "malformed": present=true value=<"https://">
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#[13] "malformed": present=true value=<"https://exa mple.com/">
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#[14] "malformed": present=true value=<"https://[bad/">
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#[15] "malformed": present=true value=<"https://example.com/ ">
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#[16] "credentials": present=true value=<"https://user:secret@example.com/">
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#[17] "credentials": present=true value=<"https://user@example.com/">
+functionalTest dev.urlshort.link.LinkCreateJourneyTest#AC07_bodyIsRefusedAtTheSixteenKibLimit()
+functionalTest dev.urlshort.link.LinkReadRetireJourneyTest#AC09_aRetiredLinkIsStillReadableWithItsState()
+functionalTest dev.urlshort.link.LinkReadRetireJourneyTest#[1] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@4f875a4c
+functionalTest dev.urlshort.link.LinkReadRetireJourneyTest#[2] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@21a4dd24
+functionalTest dev.urlshort.link.LinkReadRetireJourneyTest#[3] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@6dc959ac
+functionalTest dev.urlshort.link.LinkReadRetireJourneyTest#[4] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@1af1b4aa
+functionalTest dev.urlshort.link.LinkReadRetireJourneyTest#[5] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@d2a278f
+functionalTest dev.urlshort.link.LinkReadRetireJourneyTest#AC08_readingALinkReturnsItsDetails()
+functionalTest dev.urlshort.link.LinkReadRetireJourneyTest#AC11_retiringAnAlreadyRetiredLinkIs410AndNotASecondMutation()
+functionalTest dev.urlshort.link.LinkReadRetireJourneyTest#AC10_retiringALinkIs204WithAnEmptyBody()
+functionalTest dev.urlshort.link.LinkReadRetireJourneyTest#AC15_wrongMethodIs405()
+functionalTest dev.urlshort.link.PublicBaseUrlJourneyTest#AC03_shortUrlUsesTheConfiguredBaseNeverTheHostHeader()
+functionalTest dev.urlshort.link.RedirectJourneyTest#rule7_queryStringOnTheShortLinkIsNotForwarded()
+functionalTest dev.urlshort.link.RedirectJourneyTest#AC12_visitorIsRedirectedWithANonCacheable302()
+functionalTest dev.urlshort.link.RedirectJourneyTest#AC13_aRetiredLinkTellsTheVisitorItIsGone()
+functionalTest dev.urlshort.ping.PingJourneyTest#AC5_wrongMethodIsProblemDetailWithRequestId()
+functionalTest dev.urlshort.ping.PingJourneyTest#AC7_logEventCarriesNoClientAddressOrUserAgent(CapturedOutput)
+functionalTest dev.urlshort.ping.PingJourneyTest#AC1_pingAnswersOkAsJson()
+functionalTest dev.urlshort.ping.PingJourneyTest#AC2_timeIsCurrentUtcInstant()
+functionalTest dev.urlshort.ping.PingJourneyTest#AC4_requestIdsAreUniquePerRequest()
+functionalTest dev.urlshort.ping.PingJourneyTest#AC6_pingIsLoggedAsJsonWithRequestId(CapturedOutput)
+functionalTest dev.urlshort.ping.PingJourneyTest#AC8_clientSuppliedRequestIdIsIgnored(CapturedOutput)
+functionalTest dev.urlshort.ping.PingJourneyTest#AC3_everyResponseCarriesRequestId()
+functionalTest dev.urlshort.web.ColdStartJourneyTest#AC26_theFirstRequestOnARealServerLogsOnlyItsOwnCorrelatedEvents(CapturedOutput)
+functionalTest dev.urlshort.web.DatabaseDownJourneyTest#AC14_AC15_readinessFollowsTheDatabaseAndLivenessDoesNot()
+functionalTest dev.urlshort.web.HealthMetricsJourneyTest#AC18_redirectsAreCountedByRouteTemplate()
+functionalTest dev.urlshort.web.HealthMetricsJourneyTest#AC15_healthBodiesDiscloseNothingAboutTheInstallation()
+functionalTest dev.urlshort.web.HealthMetricsJourneyTest#AC13_livenessAndReadinessAreUpWithAWorkingDatabase()
+functionalTest dev.urlshort.web.ObservabilityJourneyTest#AC27_noClientControlledValueReachesTheLogs(CapturedOutput)
+functionalTest dev.urlshort.web.ObservabilityJourneyTest#AC27_aDatabaseFailureQuotingTheKeyLogsOnlyClassNames(CapturedOutput)
+functionalTest dev.urlshort.web.ObservabilityJourneyTest#[1] scenario = "201 create"
+functionalTest dev.urlshort.web.ObservabilityJourneyTest#[2] scenario = "200 read"
+functionalTest dev.urlshort.web.ObservabilityJourneyTest#[3] scenario = "204 retire"
+functionalTest dev.urlshort.web.ObservabilityJourneyTest#[4] scenario = "302 redirect"
+functionalTest dev.urlshort.web.ObservabilityJourneyTest#[5] scenario = "404 unknown code"
+functionalTest dev.urlshort.web.ObservabilityJourneyTest#[6] scenario = "410 retired"
+functionalTest dev.urlshort.web.ObservabilityJourneyTest#[7] scenario = "400 invalid url"
+functionalTest dev.urlshort.web.ObservabilityJourneyTest#[8] scenario = "405 wrong method"
+functionalTest dev.urlshort.web.ObservabilityJourneyTest#[9] scenario = "413 oversized body"
+functionalTest dev.urlshort.web.ObservabilityJourneyTest#[10] scenario = "415 wrong content type"
+functionalTest dev.urlshort.web.ObservabilityJourneyTest#[11] scenario = "422 key mismatch"
+functionalTest dev.urlshort.web.ObservabilityJourneyTest#[12] scenario = "500 induced audit failure"
+functionalTest dev.urlshort.web.ObservabilityJourneyTest#[1] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@399cfab0, status = 415, canary = "canaryctcfcbfecdebab"
+functionalTest dev.urlshort.web.ObservabilityJourneyTest#[2] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@30f5d039, status = 404, canary = "canarypathcfcbfecdebabxxxxxxxxxxxxxxxxxxxxxxx"
+functionalTest dev.urlshort.web.ObservabilityJourneyTest#[3] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@fb5e105, status = 404, canary = "canaryicocfcbfecdebab"
+functionalTest dev.urlshort.web.ObservabilityJourneyTest#[4] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@3bfe547e, status = 404, canary = "Cn0a76de78a24f44878864ef"
+functionalTest dev.urlshort.web.ObservabilityJourneyTest#[5] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@7fc4205a, status = 404, canary = "Cv74ae37a12cda4503a52c5a"
+functionalTest dev.urlshort.web.ObservabilityJourneyTest#[6] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@5445dea7, status = 405, canary = "CANARYMETHODCFCBFECDEBAB"
+functionalTest dev.urlshort.web.OpenApiDocumentTest#AC28_liveDocumentDescribesTheSlice()
+functionalTest dev.urlshort.web.OpenApiDocumentTest#NFRM3_committedDocumentEqualsTheLiveOne()
+functionalTest dev.urlshort.web.OpenApiDocumentTest#AC20_everyOperationDocumentsTheTooManyRequestsProblem()
+functionalTest dev.urlshort.web.RateLimitDefaultsTest#theShippedConfigurationCarriesTheDecidedBudgets()
+functionalTest dev.urlshort.web.RateLimitDefaultsTest#theSettingsRecordDefaultsToTheSameBudgets()
+functionalTest dev.urlshort.web.RateLimitJourneyTest#rule1_percentEncodingDoesNotMoveARequestToTheLargerBudget()
+functionalTest dev.urlshort.web.RateLimitJourneyTest#designDR01_anInvalidPathUnderAnExemptPrefixLogsNoSubmittedValueOnTomcat(CapturedOutput)
+functionalTest dev.urlshort.web.RateLimitJourneyTest#AC19_metricsAreExposedForScrapingWithoutClientOrLinkValues()
+functionalTest dev.urlshort.web.RateLimitJourneyTest#AC07_aForgedForwardedAddressDoesNotChangeTheClient()
+functionalTest dev.urlshort.web.RateLimitJourneyTest#AC01_theCreateBudgetAdmits60AndRefusesThe61st()
+functionalTest dev.urlshort.web.RateLimitJourneyTest#AC09_everyRequestInABudgetCountsAndTheLimitIsCheckedFirst()
+functionalTest dev.urlshort.web.RateLimitJourneyTest#rule1_operatorSurfacesAreNeverLimited()
+functionalTest dev.urlshort.web.RateLimitJourneyTest#AC11_theTooManyRequestsProblemNamesNoClient()
+functionalTest dev.urlshort.web.RateLimitJourneyTest#AC11_onTomcatThe429IsTheSameProblemMediaTypeAsEveryOtherError()
+functionalTest dev.urlshort.web.RateLimitJourneyTest#AC12_eachRejectionIsLoggedOnceCorrelatedAndWithoutClientValues(CapturedOutput)
+functionalTest dev.urlshort.web.RateLimitJourneyTest#AC03a_retryAfterIsTruthfulFromAnExactlyEmptyBucket()
+functionalTest dev.urlshort.web.RateLimitJourneyTest#AC05_theTwoBudgetsAreIndependent()
+functionalTest dev.urlshort.web.RateLimitJourneyTest#rule1_aDotDotSegmentUnderAnExemptPrefixReachesNoLimitedOperation()
+functionalTest dev.urlshort.web.RateLimitJourneyTest#AC03b_retryAfterIsAnUpperBoundFromAPartlyRefilledBucket()
+functionalTest dev.urlshort.web.RateLimitJourneyTest#AC04_aFullBudgetReturnsAfterAQuietMinute()
+functionalTest dev.urlshort.web.RateLimitJourneyTest#AC02_theRedirectBudgetAdmits600AndRefusesThe601st()
+functionalTest dev.urlshort.web.RateLimitJourneyTest#AC16_theMetricsSurfaceListsTheFourKindsOfMetric()
+functionalTest dev.urlshort.web.RateLimitJourneyTest#AC06_clientsAreIndependent()
+functionalTest dev.urlshort.web.RateLimitJourneyTest#AC17_everyRejectionIsCountedOnceByBudget()
+functionalTest dev.urlshort.web.RateLimitSettingsJourneyTest#AC10_theBudgetsAreOperatorSettings()
+functionalTest dev.urlshort.web.ShutdownPhaseDefaultTest#theShippedGracefulShutdownPhaseIsTenSeconds()
+functionalTest dev.urlshort.web.TrustedProxyJourneyTest#AC08_aTrustedProxysForwardedAddressIdentifiesTheClient()

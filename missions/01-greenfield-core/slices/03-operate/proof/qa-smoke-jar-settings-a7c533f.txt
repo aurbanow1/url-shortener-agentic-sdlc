@@ -1,0 +1,7 @@
+# health, liveness and readiness
+# ping: 200 application/json, {status:ok,time}, server-issued X-Request-Id
+# ping wrong method: 405 application/problem+json, still carries X-Request-Id, no trace
+# metrics: request timer, rejection counter, pool gauges
+# prometheus scrape
+# openapi
+SMOKE OK against http://127.0.0.1:60211

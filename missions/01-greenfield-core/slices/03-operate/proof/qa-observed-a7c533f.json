@@ -1,0 +1,127 @@
+[
+  {
+    "criterion": "AC-1",
+    "result": "PASS",
+    "effect": "60 x 201, 61st 429; exactly 60 new audit rows on real H2"
+  },
+  {
+    "criterion": "AC-2",
+    "result": "PASS",
+    "effect": "600 x 302, 601st 429; no Location"
+  },
+  {
+    "criterion": "AC-3",
+    "result": "PASS",
+    "effect": "999 ms refused, 1000 ms admitted exactly once; rounded-up Retry-After honored"
+  },
+  {
+    "criterion": "AC-4",
+    "result": "PASS",
+    "effect": "quiet minute restores exactly 60 tokens"
+  },
+  {
+    "criterion": "AC-5",
+    "result": "PASS",
+    "effect": "exhausted create still redirects; exhausted redirect still creates"
+  },
+  {
+    "criterion": "AC-6",
+    "result": "PASS",
+    "effect": "controlled request peer gets an independent bucket (SPEC suite mechanism)"
+  },
+  {
+    "criterion": "AC-7",
+    "result": "PASS",
+    "effect": "forged XFF/Forwarded/X-Real-IP never move default client budget"
+  },
+  {
+    "criterion": "AC-9",
+    "result": "PASS",
+    "effect": "60 invalid requests consume tokens; valid/oversized then 429; rejection consumes no token"
+  },
+  {
+    "criterion": "AC-11",
+    "result": "PASS",
+    "effect": "exact problem media/body, whole-second retry, server id, no client/canaries"
+  },
+  {
+    "criterion": "AC-13",
+    "result": "PASS",
+    "effect": "health/liveness/readiness 200 and status UP"
+  },
+  {
+    "criterion": "AC-14",
+    "result": "PASS",
+    "effect": "DataSource unavailable: readiness 503 DOWN, liveness 200 UP; restored readiness 200 UP"
+  },
+  {
+    "criterion": "AC-15",
+    "result": "PASS",
+    "effect": "health bodies contain status and optional group names, no installation details"
+  },
+  {
+    "criterion": "AC-16",
+    "result": "PASS",
+    "effect": "timer, rejection counter, active and idle pool gauges listed"
+  },
+  {
+    "criterion": "AC-17",
+    "result": "PASS",
+    "effect": "exact +2 create/+3 redirect rejections, only budget tag"
+  },
+  {
+    "criterion": "AC-18",
+    "result": "PASS",
+    "effect": "redirect count +4, uri template /{code:[A-Za-z0-9]{6,32}}"
+  },
+  {
+    "criterion": "AC-19",
+    "result": "PASS",
+    "effect": "Prometheus families present, client/code/URL/path canaries absent"
+  },
+  {
+    "criterion": "AC-20",
+    "result": "PASS",
+    "effect": "six operations carry 429, integer Retry-After, example; document comparison"
+  },
+  {
+    "criterion": "BR-1/3",
+    "result": "PASS",
+    "effect": "all API operations share create budget, encoded API path charged, operator paths exempt"
+  },
+  {
+    "criterion": "Inherited failure paths",
+    "result": "PASS",
+    "effect": "400 invalid URL, 405 method, 404 missing, 413 body cap, idempotent replay, 422 mismatch, 204 retire, 410 retired redirect; 24h idempotency expiry releases key"
+  },
+  {
+    "criterion": "AC-12",
+    "result": "PASS",
+    "effect": "26 rejected exchanges each correlate to exactly one JSON event; no client/canary in full log"
+  },
+  {
+    "criterion": "AC-8",
+    "result": "PASS",
+    "effect": "trusted real loopback proxy uses right-most untrusted XFF; absent/controlled untrusted peers independent"
+  },
+  {
+    "criterion": "AC-10",
+    "result": "PASS",
+    "effect": "real environment settings: creates 201/201/429, redirects 302/302/302/429"
+  },
+  {
+    "criterion": "AC-26 supplemental jar",
+    "result": "PASS",
+    "effect": "unmodified java -jar: public URL, 2-token create budget, trusted-proxy environment and data-path override all observed; smoke passes"
+  },
+  {
+    "criterion": "Proof item 12",
+    "result": "PASS",
+    "effect": "60s bench mode executed on unmodified jar; mode output captured, no release target verdict"
+  },
+  {
+    "criterion": "AC-25 supplemental jar",
+    "result": "PASS",
+    "effect": "R0: 'HTTP/1.1 201 ' within 1 s of SIGTERM; probe connection: refused\nload: 82 requests by 2 clients at about 20 req/s each; ok 62; refused before acceptance 20; boundary losses (cut off, never dispatched) 0; failures 0 (of which dispatched but undelivered 0)\nSMOKE DRAIN OK (/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/03-operate/build/libs/urlshort.jar)"
+  }
+]

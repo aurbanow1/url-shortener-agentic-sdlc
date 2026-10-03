@@ -1,0 +1,47 @@
+[
+  {
+    "criterion": "AC-1",
+    "result": "PASS",
+    "effect": "60 x 201, 61st 429; exactly 60 new audit rows on real H2"
+  },
+  {
+    "criterion": "AC-2",
+    "result": "PASS",
+    "effect": "600 x 302, 601st 429; no Location"
+  },
+  {
+    "criterion": "AC-3",
+    "result": "PASS",
+    "effect": "999 ms refused, 1000 ms admitted exactly once; rounded-up Retry-After honored"
+  },
+  {
+    "criterion": "AC-4",
+    "result": "PASS",
+    "effect": "quiet minute restores exactly 60 tokens"
+  },
+  {
+    "criterion": "AC-5",
+    "result": "PASS",
+    "effect": "exhausted create still redirects; exhausted redirect still creates"
+  },
+  {
+    "criterion": "AC-6",
+    "result": "PASS",
+    "effect": "controlled request peer gets an independent bucket (SPEC suite mechanism)"
+  },
+  {
+    "criterion": "AC-7",
+    "result": "PASS",
+    "effect": "forged XFF/Forwarded/X-Real-IP never move default client budget"
+  },
+  {
+    "criterion": "AC-9",
+    "result": "PASS",
+    "effect": "60 invalid requests consume tokens; valid/oversized then 429; rejection consumes no token"
+  },
+  {
+    "criterion": "AC-11",
+    "result": "PASS",
+    "effect": "exact problem media/body, whole-second retry, server id, no client/canaries"
+  }
+]

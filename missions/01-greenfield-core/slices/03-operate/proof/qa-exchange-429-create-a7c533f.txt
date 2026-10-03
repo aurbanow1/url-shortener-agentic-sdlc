@@ -1,0 +1,10 @@
+Command arguments: ["/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http", "--max-time", "5", "--path-as-is", "-sS", "-i", "-X", "POST", "-H", "Content-Type: application/json", "--data-binary", "{\"url\": \"https://example.com/qa03\"}", "http://127.0.0.1:57858/api/links"]
+
+HTTP/1.1 429
+X-Request-Id: 970cabff-c5b9-44a4-9657-220e3f7c8628
+Retry-After: 1
+Content-Type: application/problem+json
+Content-Length: 101
+Date: Sat, 03 Oct 2026 11:58:22 GMT
+
+{"instance":"urn:uuid:970cabff-c5b9-44a4-9657-220e3f7c8628","status":429,"title":"Too Many Requests"}

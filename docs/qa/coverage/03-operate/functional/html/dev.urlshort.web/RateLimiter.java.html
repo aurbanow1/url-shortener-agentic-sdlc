@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RateLimiter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">urlshort</a> &gt; <a href="index.source.html" class="el_package">dev.urlshort.web</a> &gt; <span class="el_source">RateLimiter.java</span></div><h1>RateLimiter.java</h1><pre class="source lang-java linenums">package dev.urlshort.web;
+
+import java.time.Clock;
+import java.time.Instant;
+import java.util.EnumMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
+
+import org.springframework.stereotype.Component;
+
+/**
+ * Per-client token buckets for the two budgets (business rules 2 to 4, 8; ADR-0014). Each bucket is
+ * stored in its GCRA form, one theoretical arrival time (TAT) per client: with {@code N} tokens per
+ * minute the emission interval is {@code I = 60 s / N} and the tolerance {@code T = I × (N − 1)}, so a
+ * bucket holds {@code N} tokens, refills {@code N / 60} per second, and is full again exactly when
+ * {@code TAT ≤ now}.
+ *
+ * &lt;p&gt;State is in memory, per instance, and bounded: at most once per second of application-clock
+ * time, a call releases every client whose bucket is full again, so after any such call only clients
+ * admitted in the previous 61 s remain. While no limited request arrives nothing is added or
+ * removed. Thread-safe: each bucket changes under {@link ConcurrentHashMap#compute}, and the release
+ * removes an entry only while it still holds the value it tested.
+ *
+ * &lt;p&gt;The application clock is the wall clock, which can step backwards. A legitimate TAT is never more
+ * than one full bucket ahead of now, so a TAT further ahead is treated as a fresh client: a backward
+ * step of an hour must not refuse every recent client for an hour.
+ */
+@Component
+class RateLimiter {
+
+	private static final long SECOND = 1_000_000_000L;
+
+	private final Clock clock;
+<span class="fc" id="L36">	private final Map&lt;Budget, Buckets&gt; buckets = new EnumMap&lt;&gt;(Budget.class);</span>
+<span class="fc" id="L37">	private final AtomicLong nextSweep = new AtomicLong(Long.MIN_VALUE);</span>
+
+<span class="fc" id="L39">	RateLimiter(RateLimitProperties properties, Clock clock) {</span>
+<span class="fc" id="L40">		this.clock = clock;</span>
+<span class="fc" id="L41">		buckets.put(Budget.CREATE, new Buckets(properties.createPerMinute()));</span>
+<span class="fc" id="L42">		buckets.put(Budget.REDIRECT, new Buckets(properties.redirectPerMinute()));</span>
+<span class="fc" id="L43">	}</span>
+
+	/**
+	 * Takes one token from the client's bucket in {@code budget}.
+	 *
+	 * @return {@code 0} when admitted; otherwise the {@code Retry-After} in whole seconds, at least
+	 *         {@code 1}: the time until the bucket holds a token again, rounded up. A refusal takes
+	 *         nothing.
+	 */
+	long tryTake(Budget budget, String client) {
+<span class="fc" id="L53">		Instant instant = clock.instant();</span>
+<span class="fc" id="L54">		long now = Math.addExact(Math.multiplyExact(instant.getEpochSecond(), SECOND), instant.getNano());</span>
+<span class="fc" id="L55">		releaseFullBuckets(now);</span>
+<span class="fc" id="L56">		return buckets.get(budget).tryTake(client, now);</span>
+	}
+
+	/** The number of clients currently held for {@code budget}; for the memory-bound tests. */
+	int clients(Budget budget) {
+<span class="nc" id="L61">		return buckets.get(budget).tats.size();</span>
+	}
+
+	private void releaseFullBuckets(long now) {
+<span class="fc bfc" id="L65" title="All 4 branches covered.">		if (nextSweep.getAndUpdate(next -&gt; now &gt;= next ? now + SECOND : next) &lt;= now) {</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">			buckets.values().forEach(b -&gt; b.tats.values().removeIf(tat -&gt; tat &lt;= now));</span>
+		}
+<span class="fc" id="L68">	}</span>
+
+	/** The two budgets of business rule 1; the lower-case name is the counter's {@code budget} tag. */
+<span class="fc" id="L71">	enum Budget {</span>
+<span class="fc" id="L72">		CREATE, REDIRECT;</span>
+
+		String tag() {
+<span class="fc" id="L75">			return name().toLowerCase(Locale.ROOT);</span>
+		}
+	}
+
+	private static final class Buckets {
+
+		private final long interval;
+		private final long tolerance;
+<span class="fc" id="L83">		private final ConcurrentHashMap&lt;String, Long&gt; tats = new ConcurrentHashMap&lt;&gt;();</span>
+
+<span class="fc" id="L85">		Buckets(int perMinute) {</span>
+<span class="fc" id="L86">			interval = 60 * SECOND / perMinute;</span>
+<span class="fc" id="L87">			tolerance = interval * (perMinute - 1);</span>
+<span class="fc" id="L88">		}</span>
+
+		long tryTake(String client, long now) {
+<span class="fc" id="L91">			long[] retryAfter = new long[1];</span>
+<span class="fc" id="L92">			tats.compute(client, (key, tat) -&gt; {</span>
+				// a TAT more than one full bucket ahead can only follow a backward clock step; start the
+				// client fresh rather than lock it out for the length of the step
+<span class="fc bfc" id="L95" title="All 4 branches covered.">				long start = tat == null || tat &gt; now + tolerance + interval ? now : Math.max(tat, now);</span>
+<span class="fc" id="L96">				long wait = start - tolerance - now;</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">				if (wait &gt; 0) {</span>
+<span class="fc" id="L98">					retryAfter[0] = Math.ceilDiv(wait, SECOND);</span>
+<span class="fc" id="L99">					return tat;</span>
+				}
+<span class="fc" id="L101">				return start + interval;</span>
+			});
+<span class="fc" id="L103">			return retryAfter[0];</span>
+		}
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

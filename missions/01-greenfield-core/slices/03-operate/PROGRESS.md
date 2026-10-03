@@ -21,3 +21,17 @@
 - [ ] QA: coverage reports, traceability, GAPS rows for AC-21 to AC-28, API-document diff
 - [ ] Review: limiter memory bound and privacy record (item 11)
 - [ ] Release: AC-21 to AC-28 against the container and the jar (item 13)
+
+
+## QA — a7c533f (2026-10-03 UTC)
+
+- [x] Fresh independent gate: unit 163 / functional 155, zero failures/errors/skips; merged 441/441 lines and 160/160 branches; Javadoc passed.
+- [x] All AC-1–AC-20 observed independently in 2,303 real HTTP exchanges, with controlled mechanisms disclosed; no product edits.
+- [x] Coverage copies/hashes, all 184-method/318-invocation traceability, individual release gap rows and exact live API diff recorded.
+- [x] Plain jar env/smoke/60 s bench/drain observed; apps stopped; candidate worktree clean and unchanged.
+- [x] QA proof drop `proof/qa-evidence-a7c533f.md` covers items 1–10 and 12.
+- [ ] Attributed judgments for items 1–10 and 12 (recorded next, before handoff).
+- [ ] Item 11: code/security review records.
+- [ ] Item 13: release AC-21–AC-28, container inspect/restarts and specified-rate latency judgment.
+
+Pending records are retained by lead obligation `qitem-20261003120849-f4cbfa97` (`docs/qa/03-operate/proof-sequencing.md`). Bench input rate remains below 100/20; no numeric latency-target judgment.

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LinkStats.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">urlshort</a> &gt; <a href="index.source.html" class="el_package">dev.urlshort.click</a> &gt; <span class="el_source">LinkStats.java</span></div><h1>LinkStats.java</h1><pre class="source lang-java linenums">package dev.urlshort.click;
+
+import java.time.LocalDate;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+import dev.urlshort.click.ClickStore.DayReferrerCount;
+
+/**
+ * A link's click statistics, exactly business rule 7's four members (AC-7, AC-17): aggregates only,
+ * no hash, class or referrer path.
+ *
+ * @param code the link's code
+ * @param totalClicks every click recorded for the link
+ * @param clicksPerDay one element per UTC day with at least one click, ascending
+ * @param topReferrers at most {@value #TOP_REFERRERS} referrer origins, by clicks descending, then by
+ *        origin ascending by code point
+ */
+<span class="fc" id="L22">record LinkStats(String code, long totalClicks, List&lt;DayClicks&gt; clicksPerDay, List&lt;ReferrerClicks&gt; topReferrers) {</span>
+
+	static final int TOP_REFERRERS = 10;
+
+	/**
+	 * Folds the grouped (day, referrer) counts of one statement, so the three figures agree with each
+	 * other (AC-11). Clicks without a referrer count in the total and per day only. Ranking happens
+	 * here, not in SQL, so the tie order never depends on a database collation.
+	 */
+	static LinkStats of(String code, List&lt;DayReferrerCount&gt; rows) {
+<span class="fc" id="L32">		long total = 0;</span>
+<span class="fc" id="L33">		Map&lt;LocalDate, Long&gt; perDay = new TreeMap&lt;&gt;();</span>
+<span class="fc" id="L34">		Map&lt;String, Long&gt; perReferrer = new HashMap&lt;&gt;();</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">		for (DayReferrerCount row : rows) {</span>
+<span class="fc" id="L36">			total += row.clicks();</span>
+<span class="fc" id="L37">			perDay.merge(row.day(), row.clicks(), Long::sum);</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">			if (row.referrer() != null) {</span>
+<span class="fc" id="L39">				perReferrer.merge(row.referrer(), row.clicks(), Long::sum);</span>
+			}
+<span class="fc" id="L41">		}</span>
+<span class="fc" id="L42">		List&lt;DayClicks&gt; days = perDay.entrySet().stream().map(e -&gt; new DayClicks(e.getKey(), e.getValue())).toList();</span>
+<span class="fc" id="L43">		List&lt;ReferrerClicks&gt; top = perReferrer.entrySet().stream()</span>
+<span class="fc" id="L44">				.sorted(Map.Entry.&lt;String, Long&gt;comparingByValue(Comparator.reverseOrder())</span>
+<span class="fc" id="L45">						.thenComparing(Map.Entry.comparingByKey()))</span>
+<span class="fc" id="L46">				.limit(TOP_REFERRERS).map(e -&gt; new ReferrerClicks(e.getKey(), e.getValue())).toList();</span>
+<span class="fc" id="L47">		return new LinkStats(code, total, days, top);</span>
+	}
+
+	/**
+	 * Clicks on one UTC day.
+	 *
+	 * @param date the day, rendered {@code YYYY-MM-DD}
+	 * @param clicks clicks recorded on it
+	 */
+<span class="fc" id="L56">	record DayClicks(LocalDate date, long clicks) {</span>
+	}
+
+	/**
+	 * Clicks from one referrer origin.
+	 *
+	 * @param referrer the origin, {@code scheme://host[:port]}
+	 * @param clicks clicks it referred
+	 */
+<span class="fc" id="L65">	record ReferrerClicks(String referrer, long clicks) {</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

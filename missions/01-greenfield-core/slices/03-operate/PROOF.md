@@ -4,23 +4,22 @@
 >
 > **HOW (the drop verb, not hand-placement):** put media files under `proof/`, then ATTACH them with `rig proof add OPR.99.0.2.3 --artifact-type qa --verdict PASS --candidate-sha <tip> --money-evidence "<one line>" --evidences "1" --media "screenshot-01.png"` — the drop writes the C1 header the Living Notes DELIVERED pairing joins on. Hand-placing files without a drop leaves the deliverable unpaired and `unverified`.
 
-Closed by: <seat>   Date: <date>   Verdict: <pass | pass-with-residue | ...>
+Closure: pending integration/release. Independent QA verdict on a7c533f: PASS for the assigned in-suite boundary (2026-10-03 UTC).
 
 ## What this proves
 
-<1-3 sentences: the claim the slice made, now demonstrated>
+The candidate limits client requests with a correlated, private 429; health follows the database; metrics and the API document expose the promised contract. Independent QA observed all AC-1–AC-20, with a fresh 100% merged coverage gate. Container and release workload judgments remain pending under the locked SPEC.
 
 ## Artifacts (media in proof/)
 
 Dropped via `rig proof add … --evidences … --media …` (one drop per verdict; media attached, never only hand-listed):
 
-- proof/screenshot-01.png — <what it shows>
-- proof/capture-behavior.gif — <what it shows>
-- proof/command-output.txt — <what it proves>
+- Builder drop: `proof/builder-evidence-a7c533f.md`.
+- QA drop: `proof/qa-evidence-a7c533f.md`; coverage, captures and limits are detailed below.
 
 ## Residue / caveats (if any)
 
-<documented residue: what's not covered + where it's tracked>
+Proof item 11 awaits code/security review and item 13 awaits release. `docs/qa/03-operate/proof-sequencing.md` and `docs/qa/GAPS.md` retain those obligations. QA bench offered rate is below the specified workload; its latency numbers are not a release verdict.
 
 ## Builder
 
@@ -95,3 +94,124 @@ Each commit passed `scripts/gw --offline check` on its own before the rebase, an
 - **Ladder applied.** No new library beyond the BOM's Prometheus registry; no timer thread, no interceptor, no `RemoteIpValve`. One map per budget, one `long` per client.
 - **Every in-suite AC has a named test:** AC01–AC12 and AC16–AC19 in `RateLimitJourneyTest`; AC08 in `TrustedProxyJourneyTest`; AC10 in `RateLimitSettingsJourneyTest`; AC13, AC15 and AC18 in `HealthMetricsJourneyTest`; AC14 and AC15 in `DatabaseDownJourneyTest`; AC20 in `OpenApiDocumentTest`. Watched failing first: the red runs above. The limiter and filter unit tests were red only as compile failures. AC-13, AC-16, AC-17 and AC-18 already passed before step 3's configuration, because health and metrics were already exposed. The step-3 red was in readiness, Prometheus, the DR-01 log and the phase.
 - **Gate:** `--offline check --rerun-tasks` ran after the last code edit, on `a7c533f`.
+
+
+## QA
+
+Seat `qa2-agent@urlshort-factory` (Codex), 2026-10-03 UTC; packet
+`qitem-20261003114044-007e2031`. Independent verdict: **PASS for AC-1–AC-20
+and the assigned QA boundary**, on exact candidate
+`a7c533ffef55650e5b422377ffe0c4e38d41400c`. Not slice closure or a release verdict.
+
+### Build, coverage and traceability
+
+- Worktree HEAD equaled the packet candidate before and after; clean throughout.
+  No `src/`, tests, build or product configuration edited by QA.
+- Fresh `../../scripts/gw --log ../../docs/qa/03-operate/check-a7c533f.txt --offline check --rerun-tasks`
+  executed all 14 tasks: BUILD SUCCESSFUL, 163 unit / 155 functional invocations,
+  zero failures/errors/skips, Javadoc and coverage verification passed.
+- CSV totals: unit 398/441 lines and 160/160 branches; functional 406/441 and
+  129/160; merged **441/441 lines and 160/160 branches**. Copies include all
+  HTML/XML/CSV reports, 321 verified hashes, under `docs/qa/coverage/03-operate/`.
+- `docs/qa/TRACEABILITY.md` maps all **184 source methods** plus all eight
+  release criteria; complete method/invocation inventories are in proof/.
+  Inherited methods ran again on this candidate; their original slice's AC/rule
+  numbers remain explicit. Every current AC-1–AC-20 has a functional method.
+- `GAPS.md` contains no in-suite or merged-coverage gap, and individually names
+  AC-21–AC-28 with their pending release checks and supplemental observations.
+
+### Independently observed effects
+
+The runner recorded **2,303 real HTTP exchanges** via `scripts/http`, real
+Tomcat and migrated file H2. `proof/qa-http-a7c533f.json` retains arguments,
+status lines, headers and bodies; `qa-observed-a7c533f.json` names each effect.
+`qa-instrument-a7c533f.md` discloses the temporary primary Clock, controlled
+request peers and reversible DataSource failure switch. These are test controls,
+not additions to the product jar. No real alternate-TCP-peer or natural outage
+claim is made. All original SPEC-fixed peers and clocks also passed freshly in
+functional tests.
+
+- **AC-1/2:** exactly 60 creates then 429, with exactly 60 new create audit rows;
+  exactly 600 redirects then 429 without Location. Real H2 before/after exports
+  substantiate the storage effect.
+- **AC-3/4:** at an empty create bucket, 999 ms is refused, 1000 ms admits one,
+  immediate repetition is refused; rounded-up Retry-After admits the retry;
+  a quiet controlled minute restores exactly 60 tokens.
+- **AC-5/6/7/8/10:** budgets and controlled peers stay independent; changing
+  XFF/Forwarded/X-Real-IP cannot evade default limits. A configured trusted real
+  loopback peer uses the right-most untrusted XFF; absent header/untrusted
+  controlled peer remains independent. Environment-configured 2/3 budgets
+  produce 201/201/429 and 302/302/302/429.
+- **AC-9:** 60 invalid URL bodies consume create tokens; valid and oversized
+  follow-ups are both 429; rejection consumes no token. Encoded `/api` remains
+  charged to the tighter budget, all six API operations really produce 429,
+  and operator paths remain accessible after both buckets are exhausted.
+- **AC-11/12:** exact problem media/body, delta Retry-After, server request id,
+  no errors/detail or submitted value. **30/30** captured 429s across the
+  controlled and plain-jar runs correlate to **exactly one** JSON event each,
+  with the same request id and status. `qa-correlated-429-a7c533f.jsonl` is the
+  retained correlation evidence; the default run's complete log has zero
+  client/forwarded/UA/rejected-URL/inbound-id canary matches.
+- **AC-13/14/15:** healthy probes 200 UP; while the controlled actual datasource
+  refuses connections, readiness/root health 503 DOWN and liveness 200 UP;
+  restored datasource restores readiness. All bodies contain only status and
+  optional liveness/readiness group names, no installation details.
+- **AC-16/17/18/19:** timer/rejection/pool metric names present; +2 create and +3
+  redirect rejections add exactly those counts, with only a budget tag. Four
+  redirects increment the 302 count by four under `/{code:[A-Za-z0-9]{6,32}}`.
+  Prometheus includes the promised families and none of the code, path, raw
+  address, forwarded, UA or target-URL canaries.
+- **AC-20 / items 8–10:** all six operations document 429, integer Retry-After
+  and an example. Whole live/committed documents are equal after key sorting,
+  with no normalization (`qa-openapi-a7c533f.diff` is empty). Candidate descends
+  from 02's merge `091ff46`; ADR-0014–0017 and their index were accepted before
+  the commits that depend on them (`qa-ancestry-a7c533f.txt`).
+- **Storage/privacy:** final exports contain 308 links, 309 audit rows and 1,806
+  reduced clicks, with zero searched raw peer/forwarded/rejection-canary
+  matches. The limiter adds no storage table. Admitted target URLs remain in
+  link/audit records as required. Inherited failure paths were also observed:
+  invalid URL 400, wrong method 405, missing link 404, oversized body 413,
+  duplicate replay 201, key mismatch 422, retire 204/410, and a new key binding
+  after controlled 24-hour idempotency expiry.
+
+### Supplemental installed-artifact observations and limits
+
+Separate **unmodified `java -jar`** runs on loopback used no test controls.
+Plain-jar smoke passed; public URL, data location, budgets and trusted-proxy
+settings were observably overridden through the environment (AC-26 support).
+The actual file database appeared at the overridden location.
+
+`--drain` passed: held R0 201 within **1 s**, new connection refused, 82 load
+attempts comprising **62 complete / 20 refused / 0 boundary losses / 0 failures**;
+no dispatched-but-undelivered request. This supports AC-25, whose final release
+record remains pending. The functional configuration assertion pins 10 s.
+
+The 60-second `--bench` mode executed and reports all requested fields (item
+12): **4,948 redirects / 82.5 req/s**, p95 2.3 ms, p99 4.1 ms; **990 creates /
+16.5 req/s**, p95 2.4 ms; zero non-2xx/3xx responses. This is **below the specified
+100/20 input rates**, so it does not prove NFR-L1/L2. Fixed post-request sleeps
+reduce achieved load. QA-OPR-01 and the release gap retain the required rate and
+numeric judgment; no lowered target or waiver.
+
+QA `docker compose config --quiet` exited 0. No container was started, so
+AC-21–AC-24/AC-28 and container hardening/restart were **not observed**. The
+locked SPEC makes them release-level; item 13 remains unaccepted until its
+required RELEASE.md/inspect/restart/bench records exist. Item 11 requires the
+following independent code/security review records and is likewise pending.
+The anonymous Prometheus disk gauges disclose a working-directory path
+(QA-OPR-02 LOW); this is outside AC-19's prohibited values and recorded for review.
+
+The first two instrument attempts stopped on disclosed QA setup/assertion
+limits, not candidate failures (macOS source-address bind; permitted root-health
+`groups` member). Their captures are retained; see `qa-instrument-a7c533f.md`.
+
+### Self-check
+
+Every in-suite AC exercised by observed HTTP/storage/log/metric effects;
+material failure cases tried; exact controlled mechanisms disclosed; merged
+CSV totals read and 321 copied-file hashes checked; all 184 methods/318
+invocations and release checks mapped; gap rows written; proof drop covers
+only items 1–10 and 12; items 11/13 retained durably for later records. Apps
+stopped (process receipt plus jar drain result), builder data preserved, exact
+candidate unchanged and clean. No container, offered-rate latency-target,
+natural wall-clock/outage or downstream-review claim.
