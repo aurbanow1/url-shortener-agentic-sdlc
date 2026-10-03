@@ -1,0 +1,39 @@
+schema: openrig.slice/v0alpha1
+kind: slice
+composition:
+  mission: ../../mission.yaml
+  slice_markdown:
+    spec: SPEC.md
+    progress: PROGRESS.md
+    proof: PROOF.md
+metadata:
+  id: 05-ci-cd
+# Gate tier decides the workflow variant: high -> urlshort-slice, low -> urlshort-slice-delegated.
+# Since D11 both route the slice plan-lock to the orchestration lead.
+tier: low
+tier_reason: delegated plan-lock (D11), as the operator suggested when relaying D14. CI configuration only, with no product behaviour change; nothing is published (cd.yml builds and smokes, never pushes). The independent review checks the workflow rules of docs/guidance/ci-cd.md section 6.
+# ORIGIN: human decision D14 (2026-10-03, PLAN.md section 10), relayed by the operator on
+# qitem-20261003182906-74ccb677: every repository has CI/CD in GitHub Actions. Guide:
+# docs/guidance/ci-cd.md (ed1d314): section 2 the two required workflows, section 3 the rules, section 4
+# how to verify before the first GitHub run, section 6 the review checklist.
+# DELIVERABLES: .github/workflows/ci.yml (gate: ./gradlew check after actions/setup-java Temurin 21, on
+# every pull request with no branch filter, because the mirror lands stacked pull requests (D13), on
+# push to main, and on workflow_dispatch); .github/workflows/cd.yml (bootJar, the jar smoked on
+# 127.0.0.1 with scripts/smoke.sh, docker build, artefacts uploaded, nothing pushed);
+# .github/dependabot.yml.
+# CONSTRAINTS from the operator: seats cannot push, so the first GitHub run happens when the human
+# pushes the stacked branch that carries the merge; PROOF.md records that run as pending and the
+# operator adds its URL once green. Action versions are pinned by SHA, resolved with
+# git ls-remote --tags https://github.com/<owner>/<action> on a Claude seat (Codex seats have no
+# network). CI uses ./gradlew, not scripts/gw (which pins a local Homebrew JDK).
+# WAVE w2, beside 03-dogfood-fix and 04-audit-columns: its territory (.github/) is disjoint from
+# every src/ territory in flight and from both w2 partners. It runs after w1 so it does not disturb
+# w1's builds, and its first CI run checks main as w1 left it.
+# scripts/smoke.sh is NOT in territory: cd.yml calls it as shipped; if a mode it needs is missing,
+# that is a grant request at plan-lock.
+territory:
+  - .github/
+# NOT in territory: src/, scripts/, build.gradle.kts, Dockerfile, compose.yaml, docs/api/.
+execution:
+  actor_role: requirements
+  depends_on: [01-audit-read, 02-click-retention]

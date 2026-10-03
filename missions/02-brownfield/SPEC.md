@@ -7,9 +7,9 @@ created: 2026-10-02
 intent: "Change the shipped shortener safely: add an operator-facing, loopback-only audit-read endpoint over the existing audit table (impact analysis first), purge clicks past the retention period, fix a defect found by using the service with a regression test first, and prove retry, rollback, fallback and safe-stop with recorded drills — without breaking existing links."
 depends_on: ["OPR.99.0.2"]
 approved-spec-by: orchestration-lead@urlshort-factory
-approved-spec-at: 2026-10-03T17:57:58.458Z
+approved-spec-at: 2026-10-03T18:30:12.064Z
 provenance: transport:v1
-approved-spec-priors: 1
+approved-spec-priors: 2
 ---
 
 # Mission — Brownfield: enhance and fix the shipped shortener
@@ -114,6 +114,7 @@ The durable trigger for each is a queue item to `release-agent@urlshort-factory`
 - `02-click-retention` (`OPR.99.0.3.2`) — Click retention purge. Low. w1, second holder; `-b` judges. Scaffolded.
 - `03-dogfood-fix` (`OPR.99.0.3.3`) — Dogfood defect fix. Low. w2, beside `04-audit-columns` since 18:00Z (disjoint territory). Its defect is W2-01 from mission 01's dogfood report (`305dce5`); territory set at requirements.
 - `04-audit-columns` (`OPR.99.0.3.4`) — Audit columns on `link` and `audit_log`. Low. w2, `-b` judges. Added after the plan-lock; see the amendment below.
+- `05-ci-cd` (`OPR.99.0.3.5`) — CI/CD in GitHub Actions (`ci.yml`, `cd.yml`, `dependabot.yml`). Low. w2, default judges, territory `.github/`. Added after the plan-lock by human decision D14; see the second amendment below.
 
 ## Amendment after the plan-lock (2026-10-03T18:00Z)
 
@@ -124,6 +125,10 @@ The durable trigger for each is a queue item to `release-agent@urlshort-factory`
 - A fourth slice, `04-audit-columns`, carries `link` and `audit_log` in w2, beside `03-dogfood-fix`, under the human's "or a tiny follow-on slice". `audit_log` stays append-only (NFR-A2): no update path is added. It was not folded into `01-audit-read`, which takes no migration and is in design review on the critical path.
 - Correction to the brief: `01-audit-read`'s design needs no index, so it takes no migration number; `02-click-retention` is w1's first migration holder (V3), and `04-audit-columns` takes the next free number after it.
 - Outcome, amended: four slices in two waves, plus the four labelled drills. Wave map v2: `docs/evidence/02-brownfield/wave-map.md`; revision receipt 3, `revision-16e704f86a7699ab5f0f0cea`.
+
+## Second amendment after the plan-lock (2026-10-03T18:33Z)
+
+**Human decision D14** (2026-10-03, `PLAN.md` §10, relayed by the operator on `qitem-20261003182906-74ccb677`): every repository has CI/CD in GitHub Actions (`docs/guidance/ci-cd.md`, `ed1d314`). The operator asked for a low-tier slice with the delegated plan-lock in mission 02's next wave, kept disjoint from the `src/` territories in flight. **Applied:** `05-ci-cd` adds `.github/workflows/ci.yml`, `.github/workflows/cd.yml` and `.github/dependabot.yml` in w2. No product behaviour changes and nothing is published. Seats cannot push, so the first GitHub run is the human's push and stays pending in PROOF until the operator records it. Outcome, amended: five slices in two waves, plus the four labelled drills. Wave map v3.
 
 ## Status
 
