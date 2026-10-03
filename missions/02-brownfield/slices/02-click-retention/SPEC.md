@@ -86,7 +86,7 @@ Stored click rows are inspected by the suite, as in `02-analytics`.
 - **AC-4 — An invalid period stops the service from starting.** [NFR-P2]
   GIVEN the retention period setting is `0`, `-5`, or `ninety`
   WHEN the service starts
-  THEN it does not start (startup fails before any request is served), the failure names the setting without echoing anything else, and no click is deleted.
+  THEN it does not start (startup fails before any request is served), the failure names the setting and the rejected value and echoes no other configuration value (in particular not the datasource URL or a credential), and no click is deleted.
 
 - **AC-5 — Statistics cover the retained clicks only.** [NFR-P2, FR-13]
   GIVEN a link whose clicks span UTC days `T−95` to `T` with distinct referrer origins on the oldest days, and its statistics recorded before the purge
@@ -146,7 +146,7 @@ Stored click rows are inspected by the suite, as in `02-analytics`.
 
 ### Business rules
 
-1. **Retention period.** A positive whole number of days, default `90` (NFR-P2, decided). It is an operator setting overridable by an environment variable; the design records its name in `docs/DESIGN.md`. Any other value stops the service at startup with an error that names the setting. There is no silent fallback to the default and no "zero means keep nothing".
+1. **Retention period.** A positive whole number of days, default `90` (NFR-P2, decided). It is an operator setting overridable by an environment variable; the design records its name in `docs/DESIGN.md`. Any other value stops the service at startup with an error that names the setting and the rejected value, and no other configuration value. There is no silent fallback to the default and no "zero means keep nothing".
 2. **What is deleted.** On UTC day `T`, with period `P`, the purge deletes every click whose stored UTC day is earlier than `T − P`. The click's stored UTC day is the day v1 already records for it (ADR-0013). The day `T − P` itself is kept, so every click is kept for at least `P` full days and deleted by the first run after its day leaves the window. Nothing is aggregated or kept in another form. Deletion removes the row.
 3. **When it runs.** Once shortly after startup (AC-7), and once every UTC day at a fixed time that the design records (AC-8). A run that fails is retried by the next scheduled run, with no tighter retry loop. Runs never overlap.
 4. **What it touches.** Click rows only. Links, audit rows, the redirect and the statistics contract are unchanged. Statistics are computed over the clicks that remain, so after a purge they cover the retained window (AC-5). The purge is not a mutation of a link: it writes no audit row. The run's log event is its record (A-4).
@@ -231,11 +231,14 @@ N/A: non-visual slice.
 
 - 2026-10-03: requirements review **PASS** on `ee7a4de` (`docs/review/02-click-retention/requirements-review.md`, evidence `735abe2`), with one MEDIUM finding, RQ-01. Fixed in passing (see *Review response*).
 
+- 2026-10-03: AC-4 and rule 1 clarified during design (see *Review response*, D-AC4).
+
 ## Review response
 
 | Id | Severity | Response |
 |---|---|---|
 | RQ-01 | MEDIUM | **Fixed.** AC-6's verification redirect recorded a new click before the statistics read, so `totalClicks` `0` could not hold. The statistics are now read first (empty), then `GET /C` is opened, then after recording settles the statistics show that one click on day `T`. No other AC, rule or ambiguity row changed. |
+| D-AC4 | design note | **Fixed.** "Names the setting without echoing anything else" could not hold: Spring Boot's startup failure report names the setting and repeats the operator's rejected value and where it came from (command line or environment variable), and nothing else (design probe rows A4, `design-probe/output.txt`). The rejected value is the operator's own input, not client data, and helps them fix it. AC-4 and rule 1 now say: the failure names the setting and the rejected value and echoes no other configuration value. The property may be printed as `retention-days` or `retentionDays` depending on the failure kind; both name the setting. No other AC, rule or ambiguity row changed. |
 
 ## Dependencies
 
