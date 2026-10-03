@@ -31,3 +31,6 @@
 - [x] All 233 source methods mapped; gap row written, QA-OPR-02 closed.
 - [x] Apps stopped; exact candidate preserved, inherited gradlew.bat line endings disclosed.
 - [x] All eight attributed proof receipts recorded; evidence committed and ready for qa_check handoff.
+- [x] Review approved: code and security review PASS on `4fe7042` (`review-agent`, `f49e393`; no findings).
+- [x] Integrated: merged `--no-ff` into `main` as `5c264db` (lead, 2026-10-03T22:49Z). The branch tip, all 8 current proof judgments (ready) and the review name the same `4fe7042`, which descends from `01-audit-read`'s merge `cb148c4`. 6 files, exactly the narrowed territory. Gate re-run fresh on `main` with `--rerun-tasks`, 14 of 14 tasks, green (`docs/evidence/02-brownfield/integrate-03-dogfood-fix-check-5c264db.txt`). Tag `slice/03-dogfood-fix/accepted` on `4fe7042`; worktree removed (only `gradlew.bat` line-ending noise discarded, fixed on `main` at `9bbf6e5`).
+- [ ] Delivery stamp: after the mission's ship sign-off
