@@ -99,17 +99,17 @@ class IdempotencyJourneyTest {
 		String code = code(create(key, "https://example.com/window"));
 
 		clock.shift(Duration.ofHours(23));
-		assertThat(create(key, "https://example.com/other").getStatus()).isEqualTo(422);
+		assertThat(createAtShiftedClock(key, "https://example.com/other").getStatus()).isEqualTo(422);
 
 		clock.reset();
 		clock.shift(Duration.ofHours(24).minusSeconds(1));
-		MockHttpServletResponse inside = create(key, "https://example.com/window");
+		MockHttpServletResponse inside = createAtShiftedClock(key, "https://example.com/window");
 		assertThat(inside.getStatus()).isEqualTo(201);
 		assertThat(code(inside)).isEqualTo(code);
 
 		clock.reset();
 		clock.shift(Duration.ofHours(24).plusSeconds(1));
-		MockHttpServletResponse after = create(key, "https://example.com/window");
+		MockHttpServletResponse after = createAtShiftedClock(key, "https://example.com/window");
 		assertThat(after.getStatus()).isEqualTo(201);
 		assertThat(code(after)).isNotEqualTo(code);
 	}
@@ -158,6 +158,16 @@ class IdempotencyJourneyTest {
 	private MockHttpServletResponse create(String key, String url) throws Exception {
 		return mockMvc.perform(post("/api/links").header(KEY, key).contentType(MediaType.APPLICATION_JSON)
 				.content(body(url))).andReturn().getResponse();
+	}
+
+	// the rate limiter keeps a client's bucket at the latest time it was used, so requests at a shifted
+	// clock come from their own peer instead of leaving the shared 127.0.0.1 refused after reset()
+	private MockHttpServletResponse createAtShiftedClock(String key, String url) throws Exception {
+		return mockMvc.perform(post("/api/links").header(KEY, key).contentType(MediaType.APPLICATION_JSON)
+				.content(body(url)).with(request -> {
+					request.setRemoteAddr("10.0.30.1");
+					return request;
+				})).andReturn().getResponse();
 	}
 
 	private String body(String url) {

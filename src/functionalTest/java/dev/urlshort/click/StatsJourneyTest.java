@@ -1,6 +1,7 @@
 package dev.urlshort.click;
 
 import static dev.urlshort.click.ClickRecordingJourneyTest.BROWSER_ACCEPT;
+import static dev.urlshort.click.ClickRecordingJourneyTest.peer;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -45,6 +46,10 @@ import tools.jackson.databind.json.JsonMapper;
 class StatsJourneyTest {
 
 	private static final String REQUEST_ID = "X-Request-Id";
+
+	// the rate limiter keeps a client's bucket at the latest time it was used, so requests at a shifted
+	// clock come from their own peer instead of leaving the shared 127.0.0.1 refused after reset()
+	private static final String SHIFTED_PEER = "10.0.31.1";
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -100,7 +105,10 @@ class StatsJourneyTest {
 		openAt(code, "2026-10-04T12:00:00Z", 1);
 		recorder.settle();
 
-		JsonNode stats = body(code);
+		MockHttpServletResponse response = mockMvc.perform(get("/api/links/" + code + "/stats")
+				.with(peer(SHIFTED_PEER))).andReturn().getResponse();
+		assertThat(response.getStatus()).isEqualTo(200);
+		JsonNode stats = jsonMapper.readTree(response.getContentAsString());
 
 		assertThat(stats.get("clicksPerDay")).isEqualTo(jsonMapper.readTree("[{\"date\":\"2026-10-01\",\"clicks\":2},"
 				+ "{\"date\":\"2026-10-02\",\"clicks\":3},{\"date\":\"2026-10-04\",\"clicks\":1}]"));
@@ -282,7 +290,8 @@ class StatsJourneyTest {
 		// from the suite clock's own millisecond tick, so elapsed real time can only move it later
 		clock.shift(Duration.between(clock.instant(), Instant.parse(instant)));
 		for (int i = 0; i < times; i++) {
-			open(code, null);
+			assertThat(mockMvc.perform(get("/" + code).header("Accept", BROWSER_ACCEPT).with(peer(SHIFTED_PEER)))
+					.andReturn().getResponse().getStatus()).isEqualTo(302);
 		}
 	}
 
