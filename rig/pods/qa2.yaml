@@ -1,0 +1,11 @@
+id: qa2
+label: QA (second seat)
+summary: Second QA Agent seat (Codex) so two slices of one wave are verified concurrently; selected by the urlshort-slice-delegated-b workflow.
+members:
+  - id: agent
+    label: QA Agent 2
+    agent_ref: "local:agents/qa-agent"
+    runtime: codex
+    profile: default
+    cwd: "."
+edges: []

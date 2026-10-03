@@ -1,0 +1,11 @@
+id: review2
+label: Review (second seat)
+summary: Second Review seat (Codex) — code + security review in one packet, independent of the builder; selected by the urlshort-slice-delegated-b workflow.
+members:
+  - id: agent
+    label: Review Agent 2
+    agent_ref: "local:agents/review-agent"
+    runtime: codex
+    profile: default
+    cwd: "."
+edges: []
