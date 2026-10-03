@@ -67,3 +67,17 @@ Fresh command: `scripts/gw --offline dependencies --configuration runtimeClasspa
 No security findings. Retained click growth/referrer cardinality, unauthenticated aggregate access, future throttling/proxy alignment, per-loss WARN volume, queued-click losses at shutdown and the outcome-unknown in-flight report are explicit design trade-offs. Numerical added redirect p95 awaits release measurement (GAPS.md); offline dependency resolution does not substitute for advisory lookup. No PostgreSQL, packaged image or adversarial process-memory test is claimed.
 
 Exact candidate and all 20 files reviewed; each checklist item recorded with pass/n-a and evidence; fresh gate, actual-class salt disposal probe, offline dependency tree and raw-QA reconciliation complete. Two review rows appended to REVIEW-LEDGER.md. No product/test/SPEC/design edits or service left running. **Security PASS; combined exit failed solely for code CR-01.**
+
+## Re-review 5b3490c65915cf42594a4720350950bcefd2d7d0
+
+2026-10-03 UTC, review-agent@urlshort-factory (Codex), packet `qitem-20261003112133-94584287`. **Current security verdict: PASS, no findings; combined handoff to integrate.** Code CR-01 is fixed, as recorded in the code re-review.
+
+The only changed file is `src/test/java/dev/urlshort/click/DailySaltTest.java` (four setup/comment lines, fully read). Production/resources, functional tests, build configuration and OpenAPI have identical Git objects to the security-reviewed candidate; evidence in `proof/recheck-audit-5b3490c.txt`. Every checklist row and dependency inventory above is reaffirmed on that explicit equivalence, with the same residuals and no new online advisory-scan claim.
+
+| Explicit re-check | Status | Evidence |
+|---|---|---|
+| **Proof item 12: daily salt location, secrecy, UTC-day-end and close disposal** | **pass** | Actual candidate `DailySalt` is unchanged: one private 32-byte managed salt, never logged/stored/exposed; scheduled guarded expiry and close both zero/drop it. The reviewer reran `reviewSaltLifetime` on this SHA: no-click expiry cleared both fields and zeroed the old array; close was idempotent and stale expiry harmless. `proof/code-security-recheck-5b3490c.txt`. Original transient-key-copy/process-memory boundaries remain explicit. |
+| New test setup preserves the privacy regression | pass | Isolated midnight test 1/1 green, full gate 121/126 green, all original midnight assertions and independent real scheduled-expiry test retained; no product/privacy behavior weakened |
+| Fresh QA effects and evidence attribution | pass | Independently reconciled 13 journey responses/15 events/one safe WARN, three reduced rows, unchanged link/audit snapshots and live API. Two setup requests excluded from QA's fresh correlation claim; prior comprehensive effects adopted only by exact source equivalence. QA judgments 1–12 now name this candidate; item 13 remains pending release measurement |
+
+Self-check: SHA matches QA; clean worktree; delta 1/1 reviewed and prior 20/20 coverage retained. Fresh full gate and actual-class security probe passed. No security finding reopened and no new finding introduced. Both re-review ledger rows appended; no product/test changes by reviewer. Release advisory/secret scans, NFR-L3 measurement, later retention/rate limiting/proxy alignment remain outside this slice's completed contract.

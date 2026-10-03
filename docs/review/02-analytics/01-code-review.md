@@ -85,3 +85,36 @@ The shipped consequence is an unreliable privacy regression and a failing suppor
 **Not ready: return to implement for CR-01.** No new non-blocking findings. Existing NFR-L3 release measurement, later retention, A-9 proxy alignment, and the earlier slice's separate CR-01 ProblemDetail-schema backlog remain where the SPEC placed them; this report's CR-01 is local to 02-analytics.
 
 Exact SHA verified, clean candidate, 20/20 files read, full gate freshly executed, defect reproduced and cited, QA captures/counters audited, both review files and both ledger rows recorded. Security has no blocking finding. All authored files are under `docs/review/`; no product, test, SPEC or design edits. Combined packet exits `failed` with this report as evidence.
+
+## Re-review 5b3490c65915cf42594a4720350950bcefd2d7d0
+
+2026-10-03 UTC, review-agent@urlshort-factory (Codex), packet `qitem-20261003112133-94584287`. **Current code verdict: PASS; CR-01 fixed, no open findings.**
+
+Read the producer's response in PROOF.md, QA's re-check/SUMMARY, current traceability/gaps/proof sequencing, the complete four-line delta, and the whole changed file. Scope is the finding and repair; the prior 20-file review remains applicable. Exact Git object comparison confirms production/resources, all functional tests, build configuration and API JSON are unchanged (`proof/recheck-audit-5b3490c.txt`). Confidence in the scoped resolution: 99/100.
+
+| Finding | Resolution | Evidence |
+|---|---|---|
+| CR-01 (HIGH) | **fixed** | `DailySaltTest.java:63–66` creates D's salt at noon before advancing the controlled clock to the original midnight selections. Its real timer is now hours away, so it cannot invalidate the baseline between selections. Every original ownership/rotation assertion and the separate real scheduled-expiry test remain unchanged. No sleep, assertion weakening, expiry override or product change. The original isolated command now passes 1/1 in a fresh test process; log/XML are `proof/salt-midnight-isolated-5b3490c.*`. |
+
+| Changed file since reviewed candidate 862c52e | Verdict |
+|---|---|
+| `src/test/java/dev/urlshort/click/DailySaltTest.java` | PASS — full file read; four setup/comment lines repair the reproduced race |
+
+Fresh commands from the exact candidate worktree:
+
+```sh
+scripts/gw --log ../../docs/review/02-analytics/proof/salt-midnight-isolated-5b3490c.txt --offline test --tests '*DailySaltTest.aSelectionMadeBeforeMidnightKeepsItsDayAndNeverReplacesTheNextDaysSalt' --rerun-tasks
+scripts/gw --log ../../docs/review/02-analytics/proof/code-security-recheck-5b3490c.txt --offline -I ../../docs/review/02-analytics/proof/salt-lifetime.gradle check reviewSaltLifetime --rerun-tasks
+```
+
+Both passed. Full run executed 16 tasks, **121 unit / 126 functional**, zero failures/errors/skips, Javadoc and **100% line/branch gate**. Fresh merged XML: 358 distinct lines / 118 branches, all covered; per-class CSV sum remains 359 lines as explained above. Actual-class salt expiry/close probe also passed.
+
+Independent QA audit confirmed all 138 method mappings unchanged, the new 13 journey responses correlated to 15 events including one safe loss WARN, three reduced click rows, identical two-row link/audit snapshots, and live API equality. QA explicitly excludes its two setup-create exchanges from the fresh correlation claim because a completion line was not retained; the complete earlier evidence is adopted through verified source identity, not relabeled. This honest capture limit does not invalidate the fresh AC-19 journey or inherited comprehensive checks. Proof items 1–12 are accepted by QA on this SHA; item 13 remains the authorized release-level NFR-L3 measurement/gap.
+
+### Ponytail review
+
+Lean already. Ship.
+
+### Re-review self-check and merge readiness
+
+Candidate matches QA and worktree is clean. Delta 1/1 read; prior total 20/20 retained by exact equivalence for unchanged files. Original failure command and full gate rerun; producer response accepted as fixed; no new findings. Security remains PASS on this same SHA. Two re-review ledger rows appended. Only review artifacts edited. **Ready for integration; combined packet exits handoff.** Existing release advisory/secret checks, numerical p95, later retention and proxy alignment remain scoped as before.
