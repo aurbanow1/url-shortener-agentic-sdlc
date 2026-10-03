@@ -1,0 +1,11 @@
+gradle.projectsEvaluated {
+    def p = gradle.rootProject
+    p.tasks.register('pathReviewProbe', JavaExec) {
+        dependsOn p.tasks.named('functionalTestClasses')
+        javaLauncher.set(p.javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) })
+        classpath = p.sourceSets.functionalTest.runtimeClasspath
+        mainClass = p.file('docs/review/03-operate/proof/PathReviewProbe.java').absolutePath
+        if (p.hasProperty('quietPaths')) args 'quiet'
+        systemProperty 'spring.profiles.active', 'functional'
+    }
+}
