@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.jspecify.annotations.Nullable;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.web.server.autoconfigure.ServerProperties;
 import org.springframework.boot.web.server.autoconfigure.ServerProperties.ForwardHeadersStrategy;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,8 @@ import org.springframework.web.bind.annotation.RestController;
  * content negotiation, so no setting and no {@code Accept} can open the trail.
  */
 @RestController
+// ServerProperties, which decides the guard, exists only in a servlet application
+@ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 class AuditController {
 
 	static final int DEFAULT_LIMIT = 50;
