@@ -48,13 +48,13 @@ accepted), `dropped` (with the decision reference).
 | FR-8 | An Analyst can read per-link statistics: total clicks, clicks per day, top referrers. | `stated` §2 "analytics"; the exact shape beyond these three is `assumed` and is the subject of mission 03 | 01 → analytics (v1) · 03 → analytics v2 | baseline |
 | FR-9 | Creates may carry an `Idempotency-Key`; a retried create with the same key returns the first result instead of a second link. | `stated` §2 "reliability features" + `derived` (clients retry; duplicates are a reliability defect) | 01 → reliability | baseline |
 | FR-10 | Requests above the rate limit (NFR-R2) are answered `429` as a problem detail with `Retry-After`. | `stated` §2 "reliability features" | 01 → reliability | baseline |
-| FR-11 | A Creator may choose a custom alias instead of a generated code; aliases are unique, limited to a safe charset and length, and reserved words (`api`, `actuator`, `health`, …) are refused. | `derived` from §3 "enhancements" (the brownfield enhancement) + §6 "secure" | 02 → expiry + alias | baseline |
-| FR-12 | A Creator may set an expiry time; after it, visitors get `410 Gone` and statistics still work. | `derived` from §3 "enhancements" | 02 → expiry + alias | baseline |
+| FR-11 | A Creator may choose a custom alias instead of a generated code; aliases are unique, limited to a safe charset and length, and reserved words (`api`, `actuator`, `health`, …) are refused. | `derived` from §3 "enhancements" (the brownfield enhancement) + §6 "secure" | dropped | dropped (fast plan, `qitem-20261003052736-7830d02a`, 2026-10-03) |
+| FR-12 | A Creator may set an expiry time; after it, visitors get `410 Gone` and statistics still work. | `derived` from §3 "enhancements" | dropped | dropped (fast plan, `qitem-20261003052736-7830d02a`, 2026-10-03) |
 | FR-13 | Existing links keep working unchanged across every brownfield change (schema migration included). | `stated` §3 "brownfield … refactors, bug fixes" + §6 "safe change management" | 02 → every slice (impact analysis) | baseline |
 | FR-14 | A defect found by using the shipped service is fixed with a regression test written first. | `stated` §3 "bug fixes" | 02 → bug fix | baseline |
 | FR-15 | Test and documentation improvements on the shipped code are a first-class change: gaps in `docs/qa/GAPS.md` are closed or re-justified, and `README`/`docs/DESIGN.md` match the shipped behaviour. | `stated` §3 "test and documentation improvements" | 02 → bug fix slice (test/doc improvement items) | baseline |
 | FR-16 | "Better analytics" is turned into decided requirements: what is counted (unique vs raw clicks), retention, privacy, and who reads it (API vs report) are each resolved as `decided` / `assumed` / `parked on human` before anything is built. | `stated` §3 "ambiguous requirements" + §4.1 | 03 → analytics v2 | baseline |
-| FR-17 | An Operator can read the audit trail of mutations (who/what/when/before/after/request id) through a read-only, paginated endpoint. | `derived` from NFR-A1 (an audit log nobody can read is not audit-grade) | 01 → reliability (or 02 if time-boxed out; recorded either way) | baseline |
+| FR-17 | An Operator can read the audit trail of mutations (who/what/when/before/after/request id) through a read-only, paginated endpoint. | `derived` from NFR-A1 (an audit log nobody can read is not audit-grade) | 02 → audit-read (moved out of mission 01 by the fast plan, `qitem-20261003052736-7830d02a`, 2026-10-03; the brownfield enhancement slice) | baseline |
 
 ## 3. Non-functional requirements
 
@@ -77,7 +77,7 @@ says so — a gap is recorded, not a checkmark.
 | NFR-R6 | Fail closed | an internal error is a `500` problem detail without stack trace or class names; nothing is swallowed | `derived` §4.5 | functional test with an injected failure | baseline |
 | **Security** | | | | | |
 | NFR-S1 | Target URL allow-list | only `http`/`https`, max 2 048 chars, no credentials in the URL, no private/loopback hosts when a server-side fetch is ever added (none is planned) | `derived` §6 "secure" | functional tests per rejected class | baseline |
-| NFR-S2 | Alias rules | `[A-Za-z0-9_-]{4,32}`, case-sensitive match, reserved list refused, no path separators | `decided (qitem-20261003042553-03ac8b4b)` (charset/length), was `assumed`; built in mission 02 | functional tests | baseline |
+| NFR-S2 | Alias rules | `[A-Za-z0-9_-]{4,32}`, case-sensitive match, reserved list refused, no path separators | `decided (qitem-20261003042553-03ac8b4b)` (charset/length), was `assumed`; FR-11 dropped by the fast plan (`qitem-20261003052736-7830d02a`) | none | dropped |
 | NFR-S3 | Request limits | JSON body ≤ 16 KiB, headers at Tomcat defaults, no multipart | `decided (qitem-20261003042553-03ac8b4b)`, was `assumed` | functional test (`413`) | baseline |
 | NFR-S4 | No secrets in the repository; configuration by environment variables with safe defaults | always | `derived` §6 | review checklist; `gitleaks`-style grep in release prep | baseline |
 | NFR-S5 | Process least privilege | non-root container user, read-only filesystem except `data/` | `derived` §6 | Dockerfile review + `docker inspect` in release smoke | baseline |
@@ -108,14 +108,17 @@ operator chooses) · a web UI · link preview / server-side fetching of targets 
 horizontal scaling and HA (NFR-R4 states the ceiling) · GDPR workflows beyond
 NFR-P1/P2 (no data-subject request endpoint) · QR codes, link bundles, A/B
 redirects. Anything on this list that a mission wants back goes through the
-ambiguity log and a human decision.
+ambiguity log and a human decision. Dropped from the plan by the human's fast
+plan of 2026-10-03 (`qitem-20261003052736-7830d02a`): custom aliases and link
+expiry (FR-11, FR-12, NFR-S2); the brownfield enhancement is the audit-trail
+read (FR-17) instead.
 
 ## 5. Allocation summary
 
 | Mission | FRs | NFRs | Decided by |
 |---|---|---|---|
-| 01 greenfield core | FR-1…FR-10, FR-17 | L1–L3, R1–R6, S1, S3–S6, P1, O1–O3, A1–A2, M1–M3, X1 | mission-01 plan-lock confirms the `assumed` rows |
-| 02 brownfield | FR-11…FR-15 (+ FR-13 impact analysis on every slice) | S2, X2, P2 purge if not done in 01 | mission-02 plan-lock |
+| 01 greenfield core | FR-1…FR-10 | L1–L3, R1–R6, S1, S3–S5, P1, O1–O3, A1–A2, M1–M3, X1 | mission-01 plan-lock confirmed the `assumed` rows (2026-10-03T04:39Z); the fast plan (`qitem-20261003052736-7830d02a`) moved FR-17 and S6 to mission 02 |
+| 02 brownfield | FR-13…FR-15, FR-17 (FR-13 impact analysis on every slice; FR-11, FR-12 dropped) | S6, X2, P2 purge if not done in 01 (S2 dropped) | mission-02 plan-lock |
 | 03 ambiguous analytics | FR-16, FR-8 v2 | P2 (retention revisited), O3 (new metrics), possibly L1 | human decision gate inside the slice |
 
 Counts (by the first tag in each row at baseline): **15 stated**, **21 derived**, **8 assumed** of 44 rows. The eight
