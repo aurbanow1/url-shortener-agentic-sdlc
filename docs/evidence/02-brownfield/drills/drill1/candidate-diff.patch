@@ -1,0 +1,50 @@
+diff --git a/docs/evidence/02-brownfield/drills/drill1-candidate.json b/docs/evidence/02-brownfield/drills/drill1-candidate.json
+index 5c9575c..a35e02e 100644
+--- a/docs/evidence/02-brownfield/drills/drill1-candidate.json
++++ b/docs/evidence/02-brownfield/drills/drill1-candidate.json
+@@ -1,4 +1,4 @@
+ {
+   "drill": "DRILL 1",
+-  "status": "BROKEN"
++  "status": "READY"
+ }
+diff --git a/docs/evidence/02-brownfield/drills/drill1-notes.md b/docs/evidence/02-brownfield/drills/drill1-notes.md
+index b55cda4..e9523b1 100644
+--- a/docs/evidence/02-brownfield/drills/drill1-notes.md
++++ b/docs/evidence/02-brownfield/drills/drill1-notes.md
+@@ -23,14 +23,30 @@ work to `implement`; the drill worker changes the value to `READY` in a new
+ commit and hands that commit to QA for an independent re-check. QA's `done`
+ exit is appropriate only for the corrected candidate that meets the rule.
+ 
+-The orchestration lead routes each generated `qa_check` packet to
+-`qa2-agent@urlshort-factory`; the release agent supplies its packet id.
+-Neither the author nor a self-check supplies the independent QA verdict.
++The lead's 23:23Z instruction supersedes the initial proposal to route QA to
++qa2. Both checks remain with the default owner, `qa-agent@urlshort-factory`,
++and product QA takes priority. Neither the author nor a self-check supplies
++the independent QA verdict.
++
++## Independent rejection and remediation
++
++QA inspected initial commit `594c9c9756e3a32a309d7a47dd91497ddcc31134`
++and recorded MUST-FIX `DRILL1-01`: expected `READY`, observed `BROKEN`.
++Its receipt is `docs/evidence/02-brownfield/drills/drill1-qa-594c9c9.md`
++in the main checkout. The actual `qa_check failed` exit was authored by
++`qa-agent@urlshort-factory` at 2026-10-03 23:29:04.090Z on packet
++`qitem-20261003232132-8f1e1f16`; the generated back-edge is implement packet
++`qitem-20261003232904-3c07d8d6`.
++
++The worker reproduced the committed `BROKEN` value and changed only that
++candidate field to `READY`. This new commit answers `DRILL1-01`; it requires
++a fresh independent QA check before the instance can close. No QA pass is
++claimed here.
+ 
+ ## Self-check
+ 
+-The author reads the committed JSON and verifies that it parses and that the
+-deliberately defective status is `BROKEN`. The two-file Git diff stays under
++The author reads the corrected JSON and verifies that it parses as the exact
++object `{"drill":"DRILL 1","status":"READY"}`. The two-file Git diff stays under
+ `docs/evidence/02-brownfield/drills/` on the throwaway branch. Product builds,
+ HTTP, smoke, coverage and release readiness are outside this plain-file drill;
+ none is claimed. The final hop/packet record will be exported to the main
