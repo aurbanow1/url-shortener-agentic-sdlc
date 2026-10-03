@@ -78,7 +78,8 @@ class RateLimitFilter extends OncePerRequestFilter {
 		response.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
 		response.setHeader(HttpHeaders.RETRY_AFTER, Long.toString(retryAfter));
 		response.setContentType("application/problem+json");
-		response.getWriter().write(json.writeValueAsString(problem));
+		// bytes, not getWriter(): the writer makes Tomcat append ";charset=ISO-8859-1", unlike every other problem
+		response.getOutputStream().write(json.writeValueAsBytes(problem));
 	}
 
 	/** Probes, scrapers and the API document are never limited (business rule 1, A-7). */

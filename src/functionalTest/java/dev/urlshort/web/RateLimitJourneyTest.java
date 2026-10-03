@@ -352,6 +352,27 @@ class RateLimitJourneyTest {
 		assertThat(window).doesNotContain("pii-canary").doesNotContain(CANARY_PEER);
 	}
 
+	@Test
+	void AC11_onTomcatThe429IsTheSameProblemMediaTypeAsEveryOtherError() throws Exception {
+		java.net.http.HttpClient http = java.net.http.HttpClient.newHttpClient();
+		java.net.http.HttpRequest create = java.net.http.HttpRequest.newBuilder(
+				URI.create("http://localhost:" + port + "/api/links")).header("Content-Type", "application/json")
+				.POST(java.net.http.HttpRequest.BodyPublishers.ofString(json("https://example.com/tomcat-429"))).build();
+
+		java.net.http.HttpResponse<String> response = null;
+		for (int i = 0; i <= 60; i++) {
+			response = http.send(create, java.net.http.HttpResponse.BodyHandlers.ofString());
+			if (response.statusCode() == 429) {
+				break;
+			}
+		}
+
+		assertThat(response.statusCode()).isEqualTo(429);
+		assertThat(response.headers().firstValue("Content-Type")).contains(PROBLEM_JSON);
+		assertThat(response.headers().firstValue("Retry-After").orElseThrow()).matches("[1-9][0-9]*");
+		assertThat(jsonMapper.readTree(response.body()).get("status").asInt()).isEqualTo(429);
+	}
+
 	private static String awaitTwoCompletions(CapturedOutput output, int windowStart) {
 		java.time.Instant deadline = java.time.Instant.now().plusSeconds(5);
 		String window = output.getAll().substring(windowStart);
