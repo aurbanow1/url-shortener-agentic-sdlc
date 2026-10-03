@@ -5,19 +5,22 @@ slice. Slice-level detail lives in `missions/<m>/slices/<s>/design.md`;
 decisions live in [`adr/`](adr/). Diagrams in [`diagrams/`](diagrams/) are the
 single source for the pictures below.
 
-Last updated: 2026-10-03, slice `02-analytics` (design; not yet merged).
+Last updated: 2026-10-03, slice `03-operate` (design; not yet merged).
 `main` carries `01-ping` and `01-create-redirect` (merged as `16c355f`);
-everything marked *02-analytics* below describes the design under review, so
-that the builder, the reviewers and `03-operate` read one picture.
+everything marked *02-analytics* or *03-operate* below describes a design
+under review (wave `w2`), so that the builders and the reviewers read one
+picture.
 
 ## 1. System view
 
 ```mermaid
 flowchart LR
-    C[Creator / Visitor / Analyst / Operator]
-    subgraph urlshort [urlshort · Spring Boot 4.1 · Java 21]
+    C[Creator / Visitor / Analyst / Operator<br/>container: 127.0.0.1:8080 only]
+    subgraph urlshort [urlshort · Spring Boot 4.1 · Java 21 · uid 10001 · read-only root + tmpfs /tmp]
         F1[RequestIdFilter<br/>web · highest precedence<br/>X-Request-Id · MDC · request event]
-        F2[RequestBodyLimitFilter<br/>web · 16 KiB counting stream]
+        OB[ServerHttpObservationFilter<br/>Boot · http.server.requests]
+        RL[RateLimitFilter + RateLimiter<br/>web · +2 · per-client GCRA<br/>create 60/min · redirect 600/min · 429]
+        F2[RequestBodyLimitFilter<br/>web · +3 · 16 KiB counting stream]
         D[DispatcherServlet]
         LC[LinkController<br/>link · /api/links]
         RC[RedirectController<br/>link · /{code} · click hook]
@@ -31,13 +34,14 @@ flowchart LR
         SC[StatsController<br/>click · /api/links/{code}/stats]
         P[PingController<br/>ping]
         E[ProblemDetailsAdvice<br/>web · extends ResponseEntityExceptionHandler]
-        A[Actuator<br/>health · info · metrics]
+        A[Actuator · not limited<br/>health liveness/readiness+db · info · metrics · prometheus]
         O[springdoc OpenAPI<br/>OpenApiConfig: servers /]
         K[(Clock · tickMillis UTC)]
     end
     L[(stdout · ECS JSON lines)]
     H[(H2 file DB · data/<br/>Flyway V1: link, audit_log<br/>V2: click)]
-    C -->|HTTP| F1 --> F2 --> D
+    C -->|HTTP| F1 --> OB --> RL --> F2 --> D
+    RL -.->|429 problem+json, Retry-After| C
     D --> LC
     D --> RC
     D --> SC
@@ -56,6 +60,7 @@ flowchart LR
     S --- K
     AU --- K
     CR --- K
+    RL --- K
     C -->|/actuator/*| A
     C -->|/v3/api-docs| O
     F1 -->|INFO request completed · MDC requestId| L
@@ -72,10 +77,11 @@ Source: `diagrams/container.mmd`.
 |---|---|---|---|
 | `dev.urlshort` | `UrlshortApplication` | bootstrap | Spring Boot entry point (Javadoc added by 01-create-redirect; no beans) |
 | `dev.urlshort.web` | `RequestIdFilter` | 01-ping; event added 01-create-redirect | one id per request; `X-Request-Id` header; MDC `requestId`; one INFO `request completed` event (`status` only; the method token is client input) per request |
-| `dev.urlshort.web` | `RequestBodyLimitFilter` | 01-create-redirect | counting request stream; `413` on the 16 385th body byte, declared or chunked |
+| `dev.urlshort.web` | `RequestBodyLimitFilter` | 01-create-redirect; order `+3` from 03-operate | counting request stream; `413` on the 16 385th body byte, declared or chunked |
+| `dev.urlshort.web` | `RateLimitFilter`, `RateLimiter`, `RateLimitProperties`, `RateLimitConfig` | *03-operate* | filter at `HIGHEST_PRECEDENCE + 2` (after request id and Boot's observation filter): operator paths exempt, `/api…` → create budget (60/min), the rest → redirect budget (600/min), client = peer or right-most untrusted `X-Forwarded-For` behind a listed proxy; GCRA bucket per client and budget (one `long`), released when full; writes the `429` problem itself; counter `urlshort.ratelimit.rejections{budget}` |
 | `dev.urlshort.web` | `ProblemDetailsAdvice` | 01-create-redirect | the one advice: extends `ResponseEntityExceptionHandler` (Boot's handler backs off); catch-all `500` whose ERROR event carries class chain + one code frame, never the throwable; unwraps a limit raised inside Jackson; `createResponseEntity` override clears `detail` and sets `instance` = `urn:uuid:<request id>` on every problem |
 | `dev.urlshort.web` | `Problems` | 01-create-redirect | factories for `ErrorResponseException`s: `validation` (`400` + `errors[]`), `notFound`, `gone`, `idempotencyMismatch` (`422` + `errors[]`) |
-| `dev.urlshort.web` | `OpenApiConfig` | 01-create-redirect | `OpenAPI` bean: info, fixed `servers: [/]` |
+| `dev.urlshort.web` | `OpenApiConfig` | 01-create-redirect; customiser 03-operate | `OpenAPI` bean: info, fixed `servers: [/]`; *03-operate*: an `OpenApiCustomizer` adding the `429` (problem media type, integer `Retry-After`, an example) to every operation |
 | `dev.urlshort.link` | `LinkController`, `RedirectController` | 01-create-redirect; click hook 02-analytics | `POST /api/links`, `GET`/`DELETE /api/links/{code}`; `GET /{code}` → `302`, calling `ClickRecorder.record(link.id, request)` after `resolve` |
 | `dev.urlshort.link` | `LinkService` | 01-create-redirect | use cases and transaction boundary: create (with idempotency), read, resolve, retire; writes the audit row |
 | `dev.urlshort.link` | `LinkRepository` | 01-create-redirect | `Repository<Link, Long>` exposing `save`, `findByCode`, `findByIdempotencyKey`, conditional `retire`, `releaseIdempotencyKey` |
@@ -105,7 +111,7 @@ package-private).
 | Errors | Every non-2xx/3xx is an RFC 9457 `ProblemDetail`, `application/problem+json`, regardless of `Accept`, built from server-owned values only: `type` `about:blank`, `title` = reason phrase, `instance` = `urn:uuid:<X-Request-Id>`, **no `detail`** (framework wording quotes paths, methods and header values); validation and `422` add `errors: [{field, rule, message}]` with static messages; the `500` body is bare; framework headers (`Allow`, `Accept`) kept; one advice extending `ResponseEntityExceptionHandler` | ADR-0002 (amended 2026-10-03) |
 | Domain failures | `ErrorResponseException` built by `web.Problems`; no project exception hierarchy | ADR-0002 amendment |
 | Request limits | JSON bodies ≤ 16 384 bytes (`RequestBodyLimitFilter`, `413`); no multipart (`spring.servlet.multipart.enabled=false`, `415`); headers at Tomcat defaults | 01-create-redirect design §1, §2 (NFR-S3) |
-| Logging | ECS JSON, one object per line, MDC and SLF4J key-value pairs as top-level members; never client IP, `User-Agent`, target URL, idempotency key, method token or any copied inbound header value; `process.thread.name` excluded; **no throwable is ever passed to a logger on a request path** (the `500` event carries `errorChain` + `errorOrigin`); `PageNotFound` category at ERROR; DispatcherServlet initialised at startup (`spring.mvc.servlet.load-on-startup=1`) so the first request writes no uncorrelated line; work done for a request on another thread (click writes, *02-analytics*) restores `requestId` in the MDC for its duration and logs exceptions by class name only | ADR-0004 (amended 2026-10-03; second amendment proposed by 02-analytics) |
+| Logging | ECS JSON, one object per line, MDC and SLF4J key-value pairs as top-level members; never client IP, `User-Agent`, target URL, idempotency key, method token or any copied inbound header value; `process.thread.name` excluded; **no throwable is ever passed to a logger on a request path** (the `500` event carries `errorChain` + `errorOrigin`); `PageNotFound` category at ERROR; DispatcherServlet initialised at startup (`spring.mvc.servlet.load-on-startup=1`) so the first request writes no uncorrelated line; work done for a request on another thread (click writes, *02-analytics*) restores `requestId` in the MDC for its duration and logs exceptions by class name only; *03-operate*: Tomcat's request-parse errors not logged (`Http11Processor=warn`, they carried client bytes), and `DataSourceHealthIndicator`'s WARN is the one accepted framework throwable on a request path | ADR-0004 (amended 2026-10-03; second and third amendments proposed by 02-analytics and 03-operate) |
 | Privacy of Visitor data *(02-analytics)* | A click stores four reduced facts only: referrer origin (lowercase scheme and host, non-default port) or none; user-agent class `browser`/`bot`/`other`/`unknown`; HMAC-SHA256 of the peer address under a random salt per UTC day, held in memory and dropped at the day's end; the instant (and its UTC day). Never stored or logged: raw address, `User-Agent`, referrer path/query/fragment/userinfo, forwarding headers, request id. Statistics expose aggregates only | ADR-0012, ADR-0013; 02-analytics SPEC rules 2–4, 9 |
 | Asynchronous work *(02-analytics)* | Only click writes, on one bounded writer thread owned by `ClickRecorder` (no `@Async`, no scheduler framework); the request thread never waits on it; fail open; a salt's expiry uses `CompletableFuture.delayedExecutor` | ADR-0011, ADR-0012 |
 | Persistence | H2 file DB under `data/` in PostgreSQL mode; Flyway-owned schema `V<n>__<verb>_<noun>.sql`; Spring Data JDBC records + targeted `@Modifying` updates; `JdbcClient` for single-statement writers; portable SQL; reserved-word-safe names | ADR-0005 |
@@ -114,7 +120,12 @@ package-private).
 | Idempotency | `Idempotency-Key` on `POST /api/links`; bound on the `link` row by its `201`; 24 h from `created_at`; replay `201` current representation; mismatch `422`; failures never bind; race decided by `UNIQUE` | ADR-0009 |
 | Redirect | `302`, `Cache-Control: no-store`, `Location` = stored URL byte for byte | ADR-0006 |
 | Short codes | 8 × `[A-Za-z0-9]` from `SecureRandom`; reserved first segments refused; `UNIQUE (code)` | ADR-0007 |
-| Configuration | `@ConfigurationProperties` records with defaults; first operator setting `urlshort.public-base-url` (default `http://localhost:8080`, env `URLSHORT_PUBLIC_BASE_URL`); `Host`/forwarding headers never used | 01-create-redirect design §2.7 |
+| Configuration | `@ConfigurationProperties` records with defaults; first operator setting `urlshort.public-base-url` (default `http://localhost:8080`, env `URLSHORT_PUBLIC_BASE_URL`); `Host`/forwarding headers never used for it; *03-operate*: `urlshort.rate-limit.create-per-minute` (60, `URLSHORT_RATELIMIT_CREATEPERMINUTE`), `…redirect-per-minute` (600), `…trusted-proxies` (empty, comma-separated exact addresses) | 01-create-redirect design §2.7; ADR-0014 |
+| Rate limiting *(03-operate)* | Every request except `/actuator/**`, `/v3/api-docs/**`, `/swagger-ui.html`, `/swagger-ui/**` is charged before anything else (any outcome counts, a `429` takes nothing); `429` problem detail with `Retry-After` in whole seconds ≥ 1 and no client value; one log event per rejection (the filter's); state in memory per instance, released when full | ADR-0014 |
+| Client identity *(03-operate)* | Peer address; `X-Forwarded-For` only when the peer is a listed trusted proxy, right-most untrusted entry; no other header; `getRemoteAddr()` itself is not rewritten (A-9 on the lead's backlog) | ADR-0015 |
+| Health *(03-operate)* | Liveness = `livenessState`; readiness = `readinessState` + `db` (`503 DOWN` while the database does not answer); bodies status only (`show-details=never`) | ADR-0016 |
+| Metrics *(03-operate)* | Prometheus registry, `/actuator/prometheus`; `http.server.requests` with route-template tags (`UNKNOWN` for non-standard methods and filter `429`s); `urlshort.ratelimit.rejections{budget}`; pool gauges `hikaricp.connections.active` / `.idle`; no client, code, URL or header value in any tag | ADR-0016 |
+| Container and shutdown *(03-operate)* | uid 10001; read-only root + 64 MB tmpfs `/tmp`; named volume `/app/data`; `127.0.0.1:8080`; health check = readiness; `spring.lifecycle.timeout-per-shutdown-phase=10s` inside `stop_grace_period: 20s`; listening socket closed at the stop, in-flight requests finish | ADR-0017 |
 | API document | `docs/api/openapi.json` generated by the functional suite, key-sorted, fixed `servers`; the suite fails on drift; `springdoc.override-with-generic-response=false` (no untyped generic error entries from the advice) and `springdoc.writer-with-order-by-keys=true` shipped; `/v3/api-docs` and `/swagger-ui.html` on in every profile until `03-operate` decides the production profile | ADR-0010 |
 | Documentation | Javadoc on every public type and public/protected method, `package-info.java` per feature package, `javadoc -Xdoclint:all -Werror` in `check` | `docs/guidance/java-spring.md` §8 (human decision 2026-10-03) |
 | Tests | unit suite `test` (plain-text logs), functional suite `functionalTest` (`@SpringBootTest` + `MockMvc`, shipped `application.properties` plus the `functional` profile overlay, real Flyway on in-memory H2, suite-controlled `Clock`; one `RANDOM_PORT` class guards the first real request's log correlation, which MockMvc cannot see; *02-analytics* adds one `RANDOM_PORT` class with a `ClickStore` spy for the slow, failing and concurrent store and request recycling, kept off the cold-start context), 100 % line + branch gate on merged data | ADR-0001, ADR-0004, `TESTING.md` |
@@ -138,6 +149,16 @@ Build and modules
   `spring-boot-data-jdbc(-test)`, `spring-boot-flyway`, `spring-boot-jackson`,
   Spring Data JDBC 4.1.1, springdoc 3.1.1. **[jar]**
 - Java baseline for this project is 21 via toolchain. **[build.gradle.kts]**
+- The Prometheus scrape endpoint needs only `io.micrometer:micrometer-registry-prometheus`
+  (Boot BOM: 1.17.1, with `io.prometheus:prometheus-metrics-*` 1.7.0); the
+  auto-configuration is in `spring-boot-micrometer-metrics`, which the
+  actuator starter already brings. The artifacts were resolved online into
+  the shared `.gradle-home` on 2026-10-03, so offline seats can build.
+  **[jar, probe: `03-operate` O0, O3]**
+- `SpringApplicationBuilder.properties(...)` sets *default* properties, which
+  the shipped `application.properties` outranks; probes and tests pass
+  overrides as command-line arguments or inline test properties. **[probe:
+  `03-operate`, first run]**
 - springdoc 3.1.1 serialises the API document with **Jackson 2**
   (`com.fasterxml`), which is why a Jackson 2 version constraint is part of the
   dependency overrides; application code uses Jackson 3 only. **[jar]**
@@ -188,6 +209,28 @@ Web MVC and errors
 - No Boot or Tomcat property bounds a JSON request body (`maxPostSize` applies
   to form parameters only); the request body limit is a servlet filter. The
   multipart property is still named `spring.servlet.multipart.enabled`. **[jar]**
+- Filter order on this stack (outermost first): `RequestIdFilter`
+  (`HIGHEST_PRECEDENCE`) → Boot's `CharacterEncodingFilter` →
+  `ServerHttpObservationFilter` → filters at `+1` and above by their order;
+  equal orders fall back to registration order, so give each project filter
+  its own value. **[probe: `03-operate/design-probe` O1b]**
+- `ServerHttpObservationFilter` tags `uri` with the route template (regex
+  included: `/{code:[A-Za-z0-9]{6,32}}`), `/**` for a no-handler `404`,
+  `UNKNOWN` for a response written by an earlier filter, and `method`
+  `UNKNOWN` for a non-standard method token. **[probe: `03-operate` O2, O3]**
+- A `ProblemDetail` serialised by the context's `JsonMapper` bean outside MVC
+  has the same shape as the advice's (`type` omitted, mixin applied).
+  **[probe: `03-operate` O1]**
+- Tomcat logs its first request-parse error per connector at INFO
+  (`org.apache.coyote.http11.Http11Processor`), including the offending
+  request bytes, with no request id; later ones at DEBUG. **[probe:
+  `03-operate` O6]**
+- Graceful shutdown (Boot 4.1.1, Tomcat): `Connector.pause()` +
+  `closeServerSocketGraceful()`, then a 50 ms poll until no request is active
+  or the phase ends. New connections are refused after the stop; an accepted
+  request whose body is still arriving completes. Under extreme connection
+  rates a connection the kernel accepted just before the close is reset.
+  **[jar; probe: `03-operate` D, P]**
 - A `@GetMapping` handler also serves `HEAD` (it runs, the body is dropped):
   code that must act only on a real `GET` checks `request.getMethod()`.
   springdoc ignores an `HttpServletRequest` handler parameter, so adding one
@@ -384,6 +427,8 @@ The audit-read slice (mission 02) adds no table.
 - Redirect with click recording (fail open, async write) and the statistics
   read: `diagrams/click-sequence.mmd` (inline in
   `missions/01-greenfield-core/slices/02-analytics/design.md` §4).
+- Rate limit on every request: `diagrams/ratelimit-sequence.mmd` (inline in
+  `missions/01-greenfield-core/slices/03-operate/design.md` §4).
 
 ## 7. ADR index
 
@@ -392,7 +437,7 @@ The audit-read slice (mission 02) adds no table.
 | [0001](adr/0001-spring-boot-4-java-21-gradle.md) | Spring Boot 4.1 on Java 21, built with Gradle | bootstrap, recorded by 01-ping | accepted |
 | [0002](adr/0002-problem-details-via-platform-handler.md) | Errors are RFC 9457 problem details, produced by the platform handler; amended: one project advice, `ErrorResponseException` domain failures, `errors[]`, no `detail` and request-id `instance` on every problem, catch-all `500` that never logs the throwable | 01-ping; amended by 01-create-redirect | accepted, amended 2026-10-03 |
 | [0003](adr/0003-request-id-server-issued.md) | Request id: server-issued `X-Request-Id`, MDC `requestId`, inbound ignored | 01-ping | accepted |
-| [0004](adr/0004-structured-ecs-logs-no-client-pii.md) | Structured ECS JSON logs with no client PII; amended: no throwable logged on a request path, `status`-only request event, `PageNotFound` at ERROR, servlet initialised at startup; second amendment: work on another thread restores `requestId` | 01-ping; amended by 01-create-redirect and 02-analytics | accepted, amended 2026-10-03; second amendment proposed |
+| [0004](adr/0004-structured-ecs-logs-no-client-pii.md) | Structured ECS JSON logs with no client PII; amended: no throwable logged on a request path, `status`-only request event, `PageNotFound` at ERROR, servlet initialised at startup; second amendment: work on another thread restores `requestId`; third: Tomcat parse errors quiet, the DB-health WARN accepted | 01-ping; amended by 01-create-redirect, 02-analytics and 03-operate | accepted, amended 2026-10-03; second and third amendments proposed |
 | [0005](adr/0005-persistence-h2-flyway-spring-data-jdbc.md) | Persistence: H2 in PostgreSQL mode, Flyway-owned schema, Spring Data JDBC and `JdbcClient`; application `Clock` | 01-create-redirect | accepted at plan-lock 2026-10-03 |
 | [0006](adr/0006-redirect-302-no-store.md) | Redirects are `302` with `Cache-Control: no-store` and a verbatim `Location` | 01-create-redirect | accepted at plan-lock 2026-10-03 |
 | [0007](adr/0007-short-code-generation.md) | Short codes: 8 random `[A-Za-z0-9]`, unique by constraint, reserved segments refused | 01-create-redirect | accepted at plan-lock 2026-10-03 |
@@ -402,10 +447,15 @@ The audit-read slice (mission 02) adds no table.
 | [0011](adr/0011-click-handoff-bounded-single-writer.md) | Click recording: reduced on the request thread, written by one bounded writer, fail open | 02-analytics | proposed |
 | [0012](adr/0012-client-hash-daily-salt.md) | Client hash: HMAC-SHA256 under a random salt per UTC day, in memory, dropped at the day's end | 02-analytics | proposed |
 | [0013](adr/0013-click-events-and-request-time-statistics.md) | Clicks as reduced event rows; statistics per request from one grouped query | 02-analytics | proposed |
+| [0014](adr/0014-rate-limit-filter-gcra.md) | Rate limit: one servlet filter, two per-client budgets, GCRA buckets in memory | 03-operate | proposed |
+| [0015](adr/0015-client-identity-trusted-proxies.md) | Client identity: peer address, or right-most untrusted `X-Forwarded-For` behind a listed proxy | 03-operate | proposed |
+| [0016](adr/0016-metrics-and-health-exposure.md) | Prometheus metrics, readiness with the database, status-only health, quiet parser errors | 03-operate | proposed |
+| [0017](adr/0017-container-hardening-and-shutdown.md) | Container hardening; 10 s graceful shutdown inside a 20 s stop grace | 03-operate | proposed |
 
-Pending, each lands with the slice that introduces the concern: rate
-limiting, the trusted-proxy rule, the production profile and container
-hardening (`03-operate`, from ADR-0014); click retention (NFR-P2, mission 02).
+Pending, each lands with the slice that introduces the concern: click
+retention (NFR-P2, mission 02); the production profile's API-document
+exposure is still open (`/v3/api-docs` and `/swagger-ui.html` stay on and
+unlimited).
 
 ## 8. Change log
 
@@ -417,3 +467,4 @@ hardening (`03-operate`, from ADR-0014); click retention (NFR-P2, mission 02).
 | 2026-10-03 | 01-create-redirect (design) | First schema (`link`, `audit_log`, V1); `link/` feature (create, read, retire, redirect, idempotency); `audit/` insert-only writer; `web/` gains `Problems`, `ProblemDetailsAdvice` (replaces Boot's handler, catch-all `500`), `RequestBodyLimitFilter`, `OpenApiConfig`, and a per-request log event in `RequestIdFilter`; `Clock` bean; first operator setting; committed `docs/api/openapi.json`; Javadoc gate in `check`; ADR-0005..0010 and the ADR-0002 amendment |
 | 2026-10-03 | 01-create-redirect (design review DR-01..DR-04) | Problem bodies lose `detail` and take `instance` = `urn:uuid:<request id>` (one `createResponseEntity` override); the `500` event logs class chain + one frame instead of the throwable; request event logs `status` only; shipped `spring.mvc.servlet.load-on-startup=1` and `PageNotFound` at ERROR; functional clock bean renamed `functionalClock`; ADR-0004 amended, ADR-0002 amendment revised |
 | 2026-10-03 | 02-analytics (design) | `click/` feature: the redirect hook (`HEAD` skipped), request-thread reduction, `DailySalt` HMAC, one bounded writer thread with fail-open WARN, `GET /api/links/{code}/stats` from one grouped query; `click` table (V2) with FK to `link`; ADR-0011..0013 and a second ADR-0004 amendment; `docs/api/openapi.json` gains the statistics operation |
+| 2026-10-03 | 03-operate (design) | `web.RateLimitFilter` + `RateLimiter` (per-client GCRA, two budgets, `429` problem detail, rejection counter, trusted-proxy rule); `RequestBodyLimitFilter` to order `+3`; Prometheus registry and `/actuator/prometheus`; readiness includes the database; status-only health; Tomcat parse errors no longer logged; 10 s shutdown phase; compose: read-only root, tmpfs, loopback publish, readiness health check, 20 s stop grace; `scripts/smoke.sh` `--restart`, `--drain`, `--bench`; `429` on every documented operation; ADR-0014..0017 and a third ADR-0004 amendment |

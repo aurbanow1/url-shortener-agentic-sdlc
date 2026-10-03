@@ -1,0 +1,22 @@
+// Design probe for 03-operate (design.md section 12 names what each case proves).
+// Run from the repo root, no product, test or build file changes:
+//   scripts/gw --log missions/01-greenfield-core/slices/03-operate/design-probe/output.txt \
+//       -I missions/01-greenfield-core/slices/03-operate/design-probe/operate-probe.gradle designOperateProbe
+// One JavaExec task on the functional runtime classpath (shipped main code + resources, functional
+// profile overlay for the in-memory H2) plus the Prometheus registry the design adds, resolved through
+// the Boot BOM. Without network (--offline) the registry is absent and case O3 reports 404.
+gradle.projectsEvaluated {
+    def project = gradle.rootProject
+    def functional = project.sourceSets.functionalTest
+    def extra = project.configurations.create('designOperateProbeExtra')
+    project.dependencies.add('designOperateProbeExtra', 'io.micrometer:micrometer-registry-prometheus')
+    project.tasks.register('designOperateProbe', JavaExec) {
+        dependsOn project.tasks.named('functionalTestClasses')
+        javaLauncher.set(project.javaToolchains.launcherFor {
+            languageVersion = JavaLanguageVersion.of(21)
+        })
+        classpath = functional.runtimeClasspath + extra
+        mainClass = project.file('missions/01-greenfield-core/slices/03-operate/design-probe/OperateProbe.java').absolutePath
+        systemProperty 'spring.profiles.active', 'functional'
+    }
+}

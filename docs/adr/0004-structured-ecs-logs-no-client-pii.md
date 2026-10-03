@@ -1,6 +1,6 @@
 # ADR-0004 — Structured ECS JSON logs with no client PII
 
-- Status: accepted; amended 2026-10-03 by `01-create-redirect`; second amendment proposed by `02-analytics` (see *Amendment* sections)
+- Status: accepted; amended 2026-10-03 by `01-create-redirect`; second and third amendments proposed by `02-analytics` and `03-operate` (see *Amendment* sections)
 - Date: 2026-10-02
 - Slice: `01-ping`
 
@@ -110,3 +110,21 @@ recording (ADR-0011).
 Verified by effect:
 `missions/01-greenfield-core/slices/02-analytics/design-probe/output.txt`
 (C8).
+
+## Amendment — `03-operate` (2026-10-03, proposed with that slice's design)
+
+- **Tomcat's request-parse errors are not logged:**
+  `logging.level.org.apache.coyote.http11.Http11Processor=warn` (shipped).
+  Tomcat logs its first parse error at INFO with the offending bytes, so a
+  client's request target reached the log, outside any request id.
+- **The rate limiter logs nothing.** A `429`'s one event is
+  `request completed` with status `429`.
+- **One accepted framework throwable on a request path:**
+  `DataSourceHealthIndicator`'s WARN when the database check fails. The
+  request is a health probe with no client value, and the exception's
+  description of the database is the Operator's reason for a `503`
+  readiness (ADR-0016).
+
+Verified by effect:
+`missions/01-greenfield-core/slices/03-operate/design-probe/output.txt`
+(O1, O5b, O6, O6b).

@@ -1,9 +1,11 @@
-%% urlshort — container view (kept current by the Design Agent; last: 02-analytics design, not yet merged)
+%% urlshort — container view (kept current by the Design Agent; last: 03-operate design, 02-analytics and 03-operate not yet merged)
 flowchart LR
-    C[Creator / Visitor / Analyst / Operator]
-    subgraph urlshort [urlshort · Spring Boot 4.1 · Java 21]
+    C[Creator / Visitor / Analyst / Operator<br/>container: 127.0.0.1:8080 only]
+    subgraph urlshort [urlshort · Spring Boot 4.1 · Java 21 · uid 10001 · read-only root + tmpfs /tmp]
         F1[RequestIdFilter<br/>web · highest precedence<br/>X-Request-Id · MDC · request event]
-        F2[RequestBodyLimitFilter<br/>web · 16 KiB counting stream]
+        OB[ServerHttpObservationFilter<br/>Boot · http.server.requests]
+        RL[RateLimitFilter + RateLimiter<br/>web · +2 · per-client GCRA<br/>create 60/min · redirect 600/min · 429]
+        F2[RequestBodyLimitFilter<br/>web · +3 · 16 KiB counting stream]
         D[DispatcherServlet]
         LC[LinkController<br/>link · /api/links]
         RC[RedirectController<br/>link · /{code} · click hook]
@@ -17,13 +19,14 @@ flowchart LR
         SC[StatsController<br/>click · /api/links/{code}/stats]
         P[PingController<br/>ping]
         E[ProblemDetailsAdvice<br/>web · extends ResponseEntityExceptionHandler]
-        A[Actuator<br/>health · info · metrics]
+        A[Actuator · not limited<br/>health liveness/readiness+db · info · metrics · prometheus]
         O[springdoc OpenAPI<br/>OpenApiConfig: servers /]
         K[(Clock · tickMillis UTC)]
     end
     L[(stdout · ECS JSON lines)]
     H[(H2 file DB · data/<br/>Flyway V1: link, audit_log<br/>V2: click)]
-    C -->|HTTP| F1 --> F2 --> D
+    C -->|HTTP| F1 --> OB --> RL --> F2 --> D
+    RL -.->|429 problem+json, Retry-After| C
     D --> LC
     D --> RC
     D --> SC
@@ -42,6 +45,7 @@ flowchart LR
     S --- K
     AU --- K
     CR --- K
+    RL --- K
     C -->|/actuator/*| A
     C -->|/v3/api-docs| O
     F1 -->|INFO request completed · MDC requestId| L

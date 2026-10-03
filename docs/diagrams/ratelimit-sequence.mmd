@@ -1,0 +1,31 @@
+%% urlshort — per-client rate limit (03-operate design.md §4)
+sequenceDiagram
+    autonumber
+    participant C as Client (peer P, optional X-Forwarded-For)
+    participant F as RequestIdFilter
+    participant O as ServerHttpObservationFilter (Boot)
+    participant RL as RateLimitFilter
+    participant L as RateLimiter (two maps client→TAT)
+    participant B as RequestBodyLimitFilter → DispatcherServlet
+    participant M as MeterRegistry
+
+    C->>F: request
+    F->>F: X-Request-Id R, MDC requestId=R
+    F->>O: chain (timer starts)
+    O->>RL: chain
+    alt lookup path under /actuator, /v3/api-docs, /swagger-ui*
+        RL->>B: chain (not charged)
+    else limited
+        RL->>RL: budget = /api… ? CREATE : REDIRECT; client = clientOf(P, XFF, trusted)
+        RL->>L: tryTake(budget, client)
+        alt admitted (0)
+            L-->>RL: 0 (TAT advanced)
+            RL->>B: chain: 2xx…5xx as before
+        else empty bucket
+            L-->>RL: Retry-After S (TAT unchanged)
+            RL->>M: urlshort.ratelimit.rejections{budget}++
+            RL-->>C: 429 problem+json, Retry-After: S, instance urn:uuid:R
+        end
+    end
+    O->>O: http.server.requests{uri template or UNKNOWN, status}
+    F->>F: INFO "request completed" {status}; MDC.remove
