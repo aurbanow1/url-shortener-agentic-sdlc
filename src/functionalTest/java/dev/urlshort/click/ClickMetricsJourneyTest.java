@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.micrometer.metrics.test.autoconfigure.AutoConfigureMetrics;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.dao.DataAccessResourceFailureException;
@@ -27,10 +28,12 @@ import tools.jackson.databind.json.JsonMapper;
 /**
  * The click counters (AC-10, AC-11; business rule 10; ADR-0016 amendment): {@code urlshort.clicks.recorded}
  * grows by every stored click, {@code urlshort.clicks.lost} by every {@code click lost} event under that
- * event's {@code reason}, and the scrape names no client. Same real-Tomcat context and {@link ClickStore}
- * spy as {@code ClickResilienceJourneyTest} (v1's AC-15 mechanism).
+ * event's {@code reason}, and the scrape names no client. A real Tomcat with a {@link ClickStore} spy, as
+ * in {@code ClickResilienceJourneyTest} (v1's AC-15 mechanism); {@code @AutoConfigureMetrics} turns on the
+ * Prometheus export that Boot's test support otherwise leaves off, as in {@code RateLimitJourneyTest}.
  */
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@AutoConfigureMetrics
 class ClickMetricsJourneyTest {
 
 	private static final Set<String> REASONS = Set.of("rejected", "reduction failed", "write failed",
@@ -84,8 +87,12 @@ class ClickMetricsJourneyTest {
 		send("/" + code);
 		recorder.settle();
 
-		String scrape = send("/actuator/prometheus").body();
+		HttpResponse<String> response = send("/actuator/prometheus");
+		String scrape = response.body();
 
+		assertThat(response.statusCode()).as(scrape.substring(0, Math.min(300, scrape.length()))).isEqualTo(200);
+		assertThat(response.headers().firstValue("Content-Type")).hasValueSatisfying(
+				type -> assertThat(type).startsWith("text/plain"));
 		List<String> lines = scrape.lines().filter(line -> line.startsWith("urlshort_clicks_")).toList();
 		assertThat(lines).anyMatch(line -> line.startsWith("urlshort_clicks_recorded_total "));
 		assertThat(lines).filteredOn(line -> line.startsWith("urlshort_clicks_lost_total")).hasSize(REASONS.size())

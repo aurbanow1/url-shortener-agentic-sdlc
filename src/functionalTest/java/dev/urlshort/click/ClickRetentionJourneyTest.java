@@ -164,7 +164,7 @@ class ClickRetentionJourneyTest {
 		assertThat(redirect.getHeader("Location")).isEqualTo("https://example.com/only-old");
 		assertThat(one.get("totalClicks").asLong()).isEqualTo(1);
 		assertThat(one.get("clicksPerDay")).containsExactly(
-				jsonMapper.readTree("{\"date\":\"" + T + "\",\"clicks\":1}"));
+				jsonMapper.readTree("{\"date\":\"" + T + "\",\"clicks\":1,\"uniqueVisitors\":1,\"botClicks\":0}"));
 		assertThat(read.getStatus()).isEqualTo(200);
 		assertThat(jsonMapper.readTree(read.getContentAsString())).isEqualTo(created);
 		assertThat(jdbc.sql("SELECT * FROM audit_log ORDER BY id").query().listOfRows()).isEqualTo(audit);
@@ -223,7 +223,7 @@ class ClickRetentionJourneyTest {
 			assertThat(redirect(code, peer).getStatus()).isEqualTo(302);
 			recorder.settle();
 			assertThat(stats(code, peer).get("clicksPerDay")).contains(
-					jsonMapper.readTree("{\"date\":\"" + T + "\",\"clicks\":1}"));
+					jsonMapper.readTree("{\"date\":\"" + T + "\",\"clicks\":1,\"uniqueVisitors\":1,\"botClicks\":0}"));
 			deleting.rollback();
 		}
 
@@ -249,7 +249,8 @@ class ClickRetentionJourneyTest {
 
 		assertThat(startedDuringRun).as("redirects started before the run ended").isPositive();
 		assertThat(stats(code, peer).get("clicksPerDay")).containsExactly(
-				jsonMapper.readTree("{\"date\":\"" + T + "\",\"clicks\":" + (sent + 1) + "}"));
+				jsonMapper.readTree("{\"date\":\"" + T + "\",\"clicks\":" + (sent + 1)
+						+ ",\"uniqueVisitors\":1,\"botClicks\":0}"));
 	}
 
 	/** Records {@code times} clicks on each day, at noon of this context's clock, from {@code peer}. */
