@@ -1,0 +1,15 @@
+# scripts/smoke.sh --drain build/libs/urlshort.jar 18093   (AC-25 mode, run by the builder on 8581a78, before the rebase onto 02)
+# The jar ran on 127.0.0.1:18093 with a temporary file database and raised budgets; two load clients sent one
+# create per connection (Connection: close) paced by 50 ms; R0 was a create with half its body sent before SIGTERM.
+# First run (not kept): the load loops died at their first refused connection under `set -e`, so refusals were
+# not counted (0 reported); fixed in the script before this run, which is the recorded one.
+
+R0: 'HTTP/1.1 201 ' within 0 s of SIGTERM; probe connection: refused
+load: 80 requests by 2 clients at about 20 req/s each; ok 62; refused before acceptance 18; boundary losses (cut off, never dispatched) 0; failures 0 (of which dispatched but undelivered 0)
+SMOKE DRAIN OK (build/libs/urlshort.jar)
+
+# Read: R0, in flight at SIGTERM, completed with 201; a new connection 0.5 s after SIGTERM was refused; every request the
+# server logged as handled (request ids from its `request completed` events, readiness probes and R0 included) reached
+# its client as a complete 2xx/3xx; 18 attempts after the listener closed were refused before acceptance (reported, not
+# judged); no backlog boundary loss occurred at this rate. "Graceful shutdown complete" was in the jar log.
+# This shows the mode works; AC-25 is judged at release_prep (SPEC proof contract), on the final candidate.
