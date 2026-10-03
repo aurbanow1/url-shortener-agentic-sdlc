@@ -1,0 +1,22 @@
+2026-10-03 — review2-agent@urlshort-factory
+Candidate 5a6d16824c8e7f071ebfca4ef8f0b17ce44d5e04
+Prior impact/probe commit aecb0d94093e6efa28a4b316a4eb8238b1ad0259
+Checkout HEAD during verification ca0df92a35c6ebb02085da075ee8b009c449efc9
+Inventory: union of git diff-tree --no-commit-id --name-only -r for the two commits, 9 files.
+SHA256 of git show candidate:path; byte equality against current file:
+cd5d65b7c878d64068045f76092fa033755cd456e8430665894aa04fcf94caed True docs/DESIGN.md
+70e7a6c93e2349d33d6f2ebb911cd1ec3dd10b006bfdb49e5867e52b71531d87 True docs/adr/0020-audit-columns-expand-migration.md
+95c17cd6006445a2248ec0b59484241038580a544b73021fdf7206a47ac87143 True docs/diagrams/erd.mmd
+31f8d8480bde1c460ed084a4ff41cf160ea84f36859a0adb1bfbae6a2f12ba45 True missions/02-brownfield/slices/04-audit-columns/design-probe/LinkMigrationProbe.java
+112fd9ccc9039d53a09cf9e5caedb2fddd0ffcc58a2beddef9ac1feb956d8896 True missions/02-brownfield/slices/04-audit-columns/design-probe/link-migration-probe.gradle
+e1cf67add7d5dc55152504e19a60cbc5f3ad3291c9a1bc1af33e168e6da055a7 True missions/02-brownfield/slices/04-audit-columns/design-probe/migration/V4__add_link_audit_columns.sql
+7778226110b234ed91651bf5bf5fc5a576a2202011b138f2295528f48bacb8a2 True missions/02-brownfield/slices/04-audit-columns/design-probe/output.txt
+5268e13ebb842f3669cddd286f49caac2bc9e894e50cd34fa280487c71f9c3f1 True missions/02-brownfield/slices/04-audit-columns/design.md
+0e3c3a7ca76c9003ae90cf1b5ac1d1970bf7ec3c3f582f0eb39986a76b2344f4 True missions/02-brownfield/slices/04-audit-columns/impact-analysis.md
+
+Inputs checked against their approved source commit:
+62332dfd79e65c782dd275a9cb948666d9b00ed27b2d9f94e52f3b6478a3bf93 True e28cfeaa56f4cf5da59529915f4c5d34b6606899 missions/02-brownfield/slices/04-audit-columns/SPEC.md
+908715401b5c84aa8b4d1525b91a9bd472d2a9ada605a8dbd5651ff1fdfc5fb6 True f044cbe0f4528c287e95fcb5e24298add35240af missions/02-brownfield/slices/02-click-retention/design-probe/migration/V3__add_click_audit_columns.sql
+
+git diff --stat f6dd29e -- src build.gradle.kts settings.gradle.kts gradle scripts/gw
+(no differences)
