@@ -18,7 +18,7 @@ PostgreSQL a configuration change, not a rewrite.
 
 - Table and column names `snake_case`, singular table names (`link`, `click`, `audit_log`).
 - Surrogate primary key `id BIGINT GENERATED ALWAYS AS IDENTITY`; natural identifiers (short `code`, `alias`) are separate columns with `UNIQUE` constraints and the right collation/case rule stated in the SPEC.
-- Every row has `created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP`; mutable rows add `updated_at`; soft deletes add `deleted_at` and every read filters on it (one place: the repository).
+- **Audit columns on every table, no exceptions** (policy 2026-10-03): `created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP` and `updated_at TIMESTAMP WITH TIME ZONE NOT NULL` (set equal to `created_at` on insert and maintained by the repository on every write — a trigger is acceptable when the engine supports it portably), plus `created_by`/`updated_by` (the acting principal: an operator, `anonymous`, or `system` for jobs) wherever an actor exists. Append-only event tables keep their domain timestamp as well (`clicked_at`, `occurred_at`) — the audit columns say when the *row* was written, the domain column says when the *event* happened. Soft deletes add `deleted_at` and every read filters on it (one place: the repository). A table that lacks these columns gets them in the next migration that touches it (expand step, with rollback); until then it is a `docs/qa/GAPS.md` entry, not a silent exception.
 - Constraints express the rules: `NOT NULL` everywhere it is true, `CHECK` for enumerations and ranges, `UNIQUE` for business keys, foreign keys with explicit `ON DELETE` behaviour. If a rule cannot be a constraint, the service enforces it inside the same transaction and a test proves the race (two inserts, one wins).
 - No JSON columns for data you will query or constrain; JSON only for genuinely opaque payloads (audit `before`/`after`).
 - Keep PII out: store salted hashes (`ip_hash`), not addresses; document the salt rotation and what becomes unlinkable.
@@ -62,6 +62,7 @@ PostgreSQL a configuration change, not a rewrite.
 
 - DDL complete with constraints, indexes justified by listed queries, rollback written.
 - Time columns are timezone-aware UTC; identifiers surrogate + unique business key.
+- Every table in the DDL has `created_at` and `updated_at` (and `created_by`/`updated_by` where an actor exists); a missing audit column is a HIGH finding unless a GAPS entry names the migration that adds it.
 - PII hashed or absent; audit row in the same transaction; retention stated.
 - Queries parameterised (Spring Data JDBC / `JdbcClient` named parameters) — no string-built SQL.
 - Portability: no vendor-only SQL without a dual-engine test.

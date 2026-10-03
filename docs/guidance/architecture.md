@@ -49,7 +49,7 @@ Check: for each endpoint, the design lists method, path, request, success respon
 - Constraints are the first line of validation: `NOT NULL`, `UNIQUE`, `CHECK`, foreign keys. Application validation gives better messages; the database guarantees truth.
 - Time is `TIMESTAMP WITH TIME ZONE` in UTC; the code uses `Instant`. A `Clock` is injected only when a test needs to control time.
 - Identifiers: surrogate `BIGINT` identity for rows; the public short code is a separate unique column; never expose row ids in URLs.
-- Every table that matters has `created_at`; mutable tables have `updated_at`; soft delete (`deleted_at`) when history or audit requires it.
+- Every table has the audit columns `created_at` and `updated_at` (and `created_by`/`updated_by` where an actor exists) — `databases.md` §2; soft delete (`deleted_at`) when history or audit requires it.
 - Audit is a table (`audit_log`: `at`, `actor`, `action`, `entity`, `entity_id`, `request_id`, `before`, `after`), written in the same transaction as the change.
 - Migrations are immutable once merged; changes are new versions; destructive changes follow expand → migrate → contract, each step its own migration with a written rollback.
 - See `databases.md` for the full checklist.
