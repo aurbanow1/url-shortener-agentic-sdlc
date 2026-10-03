@@ -133,10 +133,11 @@ contract (`01-create-redirect` rule 8; ADR-0002).
   - `src/main/java/dev/urlshort/web/OpenApiConfig.java` (the schema correction);
   - `src/main/java/dev/urlshort/web/Problems.java`, documentation annotations only, if the design documents `errors` there; its runtime behaviour must not change (AC-4);
   - `src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java` (W2-01 regression assertions, added only);
-  - `docs/api/openapi.json` (regenerated);
+  - `docs/api/openapi.json` (regenerated; ordered against mission 03's `01-analytics-v2` at the later plan-lock);
   - for W2-03, exactly one of: `src/main/resources/application.properties` (one setting, if a property drops the tag), or one new configuration class under `src/main/java/dev/urlshort/web/` with its unit test under `src/test/java/dev/urlshort/web/` (the design names both files);
   - `src/functionalTest/java/dev/urlshort/web/HealthMetricsJourneyTest.java` (W2-03 regression assertions, added only);
-  - `docs/DESIGN.md` and `README.md` (AC-8).
+  - `README.md` (AC-8). `docs/DESIGN.md` (AC-8) is updated by the design step on `main`, not by the builder.
+  - Adopted by the lead with these two adjustments (revision receipt `revision-3b78079214d42b365402e8d9`).
   - **Not:** `web/RateLimitFilter.java` and its unit test (granted to mission 03's `01-analytics-v2`, `c78500e`), `click/`, `link/`, `audit/`, `db/migration/`. `docs/qa/GAPS.md` belongs to QA (AC-7).
 
 ### Scope
