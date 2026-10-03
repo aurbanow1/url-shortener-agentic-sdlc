@@ -32,7 +32,28 @@ tier_reason: delegated plan-lock by the human's fast-plan decision of 2026-10-03
 # re-checked against the merged main (01-audit-read regenerates docs/api/openapi.json). The
 # worktree is created at plan-lock, from the merged main. web/RateLimitFilter.java and its unit
 # test are granted to mission 03's 01-analytics-v2 (c78500e): leave them out of this territory.
-territory: []
+# TERRITORY ADOPTED (lead, 2026-10-03T19:00Z, from SPEC fb489a9 Non-functional > Territory; defect
+# W2-01, with W2-03 accepted in passing, which closes GAPS QA-OPR-02).
+# W2-03 takes EXACTLY ONE of: application.properties, or one new configuration class under web/
+# plus its unit test. The design names which, and the plan-lock narrows this list to it.
+# ORDERED, after both w1 merges (this slice's plan-lock is held until then): README.md and
+# application.properties (third holder after 01-audit-read and 02-click-retention).
+# CROSS-MISSION: docs/api/openapi.json (and the API document test) are also changed by mission
+# 03's 01-analytics-v2, whose plan-lock is also held until the w1 merges. Whichever of the two is
+# plan-locked second rebases onto the other's merge and regenerates the document.
+# docs/DESIGN.md is NOT in the build territory: the design step updates it on main, as every
+# slice's design has done; the builder flags any later drift to the lead.
+territory:
+  - src/main/java/dev/urlshort/web/OpenApiConfig.java
+  # documentation annotations only
+  - src/main/java/dev/urlshort/web/Problems.java
+  - src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java
+  - src/functionalTest/java/dev/urlshort/web/HealthMetricsJourneyTest.java
+  - docs/api/openapi.json
+  - README.md
+  # W2-03 option A (the other option, a new web/ configuration class and its unit test, is named
+  # by the design and granted at plan-lock instead of this line)
+  - src/main/resources/application.properties
 execution:
   actor_role: requirements
   depends_on: []
