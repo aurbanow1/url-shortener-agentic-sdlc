@@ -1,0 +1,10 @@
+test: {'tests': 6, 'failures': 0, 'errors': 0, 'skipped': 0}
+functionalTest: {'tests': 9, 'failures': 0, 'errors': 0, 'skipped': 0}
+unit: {'LINE_MISSED': 0, 'LINE_COVERED': 15, 'BRANCH_MISSED': 0, 'BRANCH_COVERED': 0}; matches committed QA CSV
+functional: {'LINE_MISSED': 2, 'LINE_COVERED': 13, 'BRANCH_MISSED': 0, 'BRANCH_COVERED': 0}; matches committed QA CSV
+all: {'LINE_MISSED': 0, 'LINE_COVERED': 15, 'BRANCH_MISSED': 0, 'BRANCH_COVERED': 0}; matches committed QA CSV
+QA first: response/body/header checked; requestId=0c1ecb83-71a0-4a98-af62-9df9a5c5a6e0
+QA second: response/body/header checked; requestId=e1f3f111-9ecc-4a68-ad81-fc16b976f62f
+QA canaries: response/body/header checked; requestId=70bc7b91-88a5-4dbc-b783-cc6f0ad7c68b
+QA post: response/body/header checked; requestId=2922f2e6-b06f-4acc-abb7-f1a3be6a8c8d
+QA live log: matching GET events parsed; no canaries, loopback addresses or ping thread names; all four ids distinct.
