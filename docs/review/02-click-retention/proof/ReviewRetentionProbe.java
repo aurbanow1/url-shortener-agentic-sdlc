@@ -21,7 +21,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 /** Independent review controls using the handed-off design's probe component, no product edits. */
 public class ReviewRetentionProbe {
     public static void main(String[] args) throws Exception {
-        if (args.length > 0 && args[0].equals("invalid")) {
+        if (args.length > 0 && args[0].equals("hold")) {
+            RetentionProbe.ProbePurge.closeDeadlineMillis = 3000;
+            RetentionProbe.a8DailyPurgeOff();
+        } else if (args.length > 0 && args[0].equals("invalid")) {
             invalid();
         } else {
             scheduleAndCapture();

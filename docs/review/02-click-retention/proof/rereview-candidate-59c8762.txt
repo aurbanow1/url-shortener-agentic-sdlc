@@ -1,0 +1,31 @@
+Re-review candidate 59c8762e660cd0b9a83e08a8dbf28b7ac9746e6c
+Seven producer rework files; SHA256 of candidate bytes, then current working-tree match.
+1cb867f7abd014b8c436146bd324223bd9022530efed88170a21ed695721c2f4 | True | docs/DESIGN.md
+c5b685dfa7eda19e3fc16e8756e7fc07709a788a36758e5992f0a7df17449ca8 | True | docs/adr/0018-click-retention-daily-purge.md
+8ffa3d4ca764648fc28414c5c0a64ec3b08babc43736389d4e97f691e04b2f91 | True | missions/02-brownfield/slices/02-click-retention/design-probe/RetentionProbe.java
+23866f37f88abb1760bbaeb950b1ce7f9c62564f8e0214efa1081b96e38863ce | True | missions/02-brownfield/slices/02-click-retention/design-probe/output-5.txt
+b16e57a1531351184da208ec538542d74f5cd1e5ded7fa6a9cf77c9453b74150 | True | missions/02-brownfield/slices/02-click-retention/design-probe/retention-probe.gradle
+11dbc7a8f6cc5e1e8b4080e5519d5e370fb29a18c6dbd6c2dda27605802e08da | True | missions/02-brownfield/slices/02-click-retention/design.md
+0179ea0f15a79df08cdc7d630983ebaef6e8afdc97f7084ec5fc43f5d9da8a1b | True | missions/02-brownfield/slices/02-click-retention/impact-analysis.md
+Required current context: SPEC 32b1ae28e54915b80c9af9ff20cd04ec883925db; human decision qitem-20261003175330-fb054f2f; slice.yaml at 688705c; GAPS audit-column allocation 515eec0.
+
+missions/02-brownfield/slices/02-click-retention/design.md
+27: - No migration, no index and no new endpoint are needed.
+74: 			log.atWarn().setMessage("click purge off").addKeyValue("retentionDays", retentionDays).log();
+168: **No migration. This slice takes no Flyway number**, so the next one stays with `01-audit-read`
+333: | DR-01 isolation, the hold | `ClickPurgeHoldJourneyTest` in the **default** shared context (no properties of its own): seed one click at `T−100` by JDBC; move the clock to `T+1` 00:10:01Z; wait 6 s (more than one tick); reset | no `clicks purged` line in the capture; the click is still there (probe A8off: 11 s, 0 runs). Unit: `start()` with `purgeEnabled=false` logs one WARN `click purge off`, submits no run and schedules nothing |
+363: | `src/functionalTest/java/dev/urlshort/click/` | `ClickRetentionJourneyTest`, `ClickRetentionScheduleJourneyTest`, `ClickRetentionSettingJourneyTest`, `ClickRetentionStartupJourneyTest`, `ClickPurgeFailureJourneyTest`, `ClickPurgeHoldJourneyTest` |
+366: | `src/main/resources/db/migration/` | **not used**: no migration, no Flyway number |
+463: | DR-01 | HIGH | **Fixed, deterministically, with no shipped test file changed.**<br>**The fix.** A new setting `urlshort.click.purge-enabled` (default `true`). `false` is an operator **hold**: no startup run, no daily run, one WARN `click purge off` at every start. Its operational reason is pausing deletion while an incident is investigated or under a legal hold; the lead made that a condition at 17:49Z, because a switch that exists only for tests was rejected for the limiter. The functional profile's overlay sets it `false`, one line granted by the lead (slice.yaml `cec7032`).<br>**Its effect.** No shared context (default, rate-limit, click-resilience, cold-start) runs a startup run or arms a tick. The reviewer's legal overlap, a scheduled run inside `ObservabilityJourneyTest`'s window, cannot arise at any time of day or under any clock move.<br>**The purge journeys** that need autonomous runs (AC-7, AC-8, AC-13) set it `true` and close their contexts after use; the others call `runNow()`.<br>**Proof.** By effect: probe A8off (`output-5.txt`) shows 0 runs in 11 s past the next 00:10Z with the click still stored. In the suite: `ClickPurgeHoldJourneyTest` in the default context (§7).<br>**Rejected.** Filtering the purge logger in the six shipped classes that assert a request id on every line (`ObservabilityJourneyTest`, `ColdStartJourneyTest`, `PingJourneyTest`, `RateLimitJourneyTest`, `StatsJourneyTest`, `ClickResilienceJourneyTest`) would change shipped tests outside this territory. Logs are not suppressed, and no request id is attached.<br>**Also routed.** I asked requirements to note the hold under rules 1 and 3 and the overlay line under AC-14. §5, §6, §7, §9, §11 and §12 are updated, as are ADR-0018, `docs/DESIGN.md` and the impact analysis. |
+
+missions/02-brownfield/slices/02-click-retention/impact-analysis.md
+58: - **No migration.** The purge's statement scans the table. The probe measured the alternatives,
+60:   slice takes no Flyway number, so the next number stays with `01-audit-read`.
+172: | 5 | Ordered custody with `01-audit-read` (`application.properties`) | the candidate descends from `01-audit-read`'s merge; this slice takes no Flyway number | integrate (ancestry check) |
+
+missions/02-brownfield/slices/02-click-retention/SPEC.md
+129: - **AC-15 — A paused purge deletes nothing and says so at every start.** [NFR-P2]
+153: - **AC-16 — The click tables carry audit columns.** [NFR-X2, audit-column policy]
+
+Product/build delta from first-review baseline:
+(none)

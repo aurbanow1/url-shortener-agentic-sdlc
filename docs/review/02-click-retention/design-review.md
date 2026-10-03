@@ -114,3 +114,68 @@ both findings reproduced with scoped evidence and cited lines. Only review
 artifacts authored. One design-review ledger row records 0 MUST-FIX, 1 HIGH,
 1 MEDIUM, 0 LOW/INFO. **Exit failed to design**, then focused re-review of the
 responses and changed contract/test strategy. No request for a human gate here.
+
+## Re-review 59c8762e660cd0b9a83e08a8dbf28b7ac9746e6c
+
+2026-10-03, `review2-agent@urlshort-factory`; packet
+`qitem-20261003181452-6bc9f909`, same workflow instance. **FAIL — DR-01 and DR-02
+fixed; new DR-03 HIGH and DR-04 MEDIUM.** DR-03 concerns the newly allocated
+human-policy requirement, so this is not a repeated failure of DR-01 and does
+not trigger its deadlock escalation.
+
+### Scope and complete delta ledger
+
+All seven files in producer commit `59c8762` read; exact candidate fingerprints
+and the contract mismatch are recorded in
+[`proof/rereview-candidate-59c8762.txt`](proof/rereview-candidate-59c8762.txt).
+Prior unchanged design content retains the first review. Current requirements
+are SPEC **`32b1ae2`**, with AC-15 from the hold amendment and AC-16 from the human
+audit-column decision. Also read the revised manifest/grant, GAPS allocation,
+and database policy. The design's old SPEC reference does not supersede these
+handed-down requirements.
+
+| Rework file | Verdict |
+|---|---|
+| `docs/DESIGN.md` | Hold and startup-failure observation changes match DR-01/02 resolutions. |
+| `docs/adr/0018-click-retention-daily-purge.md` | Hold, operational reason and isolated test contexts recorded; migration decision still missing, DR-03. |
+| `missions/02-brownfield/slices/02-click-retention/design.md` | Original findings fixed; AC-16 missing, DR-03; AC-15 event/test detail, DR-04. |
+| `missions/02-brownfield/slices/02-click-retention/impact-analysis.md` | Overlay and context lifecycle updated; no-migration claim must change with DR-03. |
+| `missions/02-brownfield/slices/02-click-retention/design-probe/RetentionProbe.java` | Full changed portion read: bound boolean defaults true; disabled branch warns and returns before submitting work or arming the tick. |
+| `missions/02-brownfield/slices/02-click-retention/design-probe/retention-probe.gradle` | Part 5 command correctly selects hold control. |
+| `missions/02-brownfield/slices/02-click-retention/design-probe/output-5.txt` | No startup/daily run observed for disabled purge; scope is 11 seconds, not full AC-15 acceptance evidence. |
+
+### Resolutions
+
+| Finding | Resolution | Evidence |
+|---|---|---|
+| DR-01 HIGH | **Fixed.** The authorized functional overlay disables startup and scheduled work in shared contexts; enabled scheduling tests own and close their contexts. Production defaults remain enabled, the hold is observable, and the SPEC now explicitly allows it and the overlay. | `slice.yaml` grant `cec7032` as updated, SPEC AC-14/rule 3/A-9, design §§1/7. Fresh `scripts/gw --offline -I docs/review/02-click-retention/proof/review-retention.gradle reviewRetention -PreviewCase=hold`: SUCCESS; no runs after readiness or after 11 seconds beyond the next scheduled time; both seeded rows retained. Log: `proof/hold-rereview-59c8762.txt`. |
+| DR-02 MEDIUM | **Fixed.** The test now selects the failure-analysis ERROR event, while separately checking no purge event and unchanged rows. Root-WARN limitation of the earlier probe is acknowledged. | Design AC-4 row at line 322, revised SPEC AC-4 and DR-02 response. Existing independent INFO-level control already proves the scoped assertion; no changed production logging requires repeating it. |
+
+The fresh hold run uses the changed, handed-off probe component. It supports
+the design fix; it is not a completed implementation of the new AC-15 journey.
+Product sources/build are unchanged. No repeat of the baseline full gate was
+needed for this documentation-only re-review; its successful first-review
+result remains scoped to the baseline.
+
+### New findings from the revised requirements and fix
+
+| ID | Severity | File:line | Evidence / consequence | Required change |
+|---|---|---|---|---|
+| DR-03 | HIGH | `missions/02-brownfield/slices/02-click-retention/design.md:168` | Design still specifies **no migration/no Flyway number**, impact analysis line 58 agrees, and neither document supplies audit-column DDL, backfill, insertion behavior, rollback or an AC-16 test. Current SPEC `32b1ae2` AC-16 requires all four audit columns on `click` and `user_agent_class`; the manifest allocates V3 and GAPS explicitly assigns it to this slice. The exact-text check is in `proof/rereview-candidate-59c8762.txt`; the producer confirmed the omission at 18:16Z. Building this design cannot satisfy the newly assigned AC-16/AC-13. | Design the V3 expand migration, four columns/types/nullability/static actors, old-row backfill and new-row write timestamps, compatibility with existing v1-column-list inserts, written rollback and upgrade/AC-16 tests. Update the impact analysis, ADR/DESIGN contracts and custody text against current SPEC. Keep `link`/`audit_log` on the named 04-audit-columns migration. |
+| DR-04 | MEDIUM | `missions/02-brownfield/slices/02-click-retention/design.md:74` | New AC-15 requires the startup WARN to name the disabling setting. The proposed and freshly observed event is only `message="click purge off", retentionDays=90`; it never names `urlshort.click.purge-enabled`. The proposed hold journey at line 333 seeds after context startup and observes six seconds, whereas AC-15 includes old data present before startup and observations 60 seconds after readiness and the scheduled time. Core hold behavior works, but its operator message and acceptance plan are incomplete. | Include the setting name/state in the WARN with static text/fields. Map a named test explicitly to AC-15, with pre-existing old rows before startup and the two required observation points; keep the shorter isolation probe as supporting evidence. Fix in passing during DR-03 rework. |
+
+The GAPS rows validly track the shipped tables until their assigned migrations
+merge. They assign V3 to this slice; they do not defer this slice's AC-16.
+The human policy was read from `qitem-20261003175330-fb054f2f` and database
+guidance §§2/8 before this review. No new finding is raised on the unchanged
+`link` or `audit_log` schema, which has a named follow-on migration.
+
+### Re-review self-check and exit
+
+Seven producer delta files reviewed, current requirements/allocation checked,
+hold control run and read, original findings explicitly resolved. Only review
+evidence changed; no product/test/SPEC/design edit. One new ledger row records
+0 MUST-FIX, 1 HIGH, 1 MEDIUM, 0 LOW/INFO. **Exit failed to design** for DR-03;
+DR-04 expected fixed in the same revision. Next review is scoped to those
+responses and the added migration design; DR-01/02 stay settled absent new
+evidence.
