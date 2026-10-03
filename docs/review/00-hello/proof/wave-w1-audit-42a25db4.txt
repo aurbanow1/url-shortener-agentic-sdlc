@@ -1,0 +1,25 @@
+Wave w1 subject: 42a25db4a9c24fba3221c1ade4044719cab39ee3; audited main HEAD: 2bd7c68b83ec430583f5f22b3536ca1209e910fd
+Product/test/build inputs identical from accepted candidate to merge to current main/worktree; wrapper unchanged since merge.
+test: {"tests": 6, "failures": 0, "errors": 0, "skipped": 0}; all methods present in current traceability
+  PASS UrlshortApplicationTests#mainBootsWithoutAWebServer
+  PASS UrlshortApplicationTests#contextLoads
+  PASS ping.PingControllerTest#answersOkWithTheCurrentUtcInstant
+  PASS web.RequestIdFilterTest#ignoresInboundRequestIdAndIssuesADifferentIdPerRequest
+  PASS web.RequestIdFilterTest#clearsMdcWhenTheChainThrows
+  PASS web.RequestIdFilterTest#issuesOneIdOnHeaderAndMdcBeforeTheChainRunsAndClearsMdcAfter
+functionalTest: {"tests": 9, "failures": 0, "errors": 0, "skipped": 0}; all methods present in current traceability
+  PASS HealthJourneyTest#healthEndpointReportsUp
+  PASS ping.PingJourneyTest#AC5_wrongMethodIsProblemDetailWithRequestId
+  PASS ping.PingJourneyTest#AC7_logEventCarriesNoClientAddressOrUserAgent
+  PASS ping.PingJourneyTest#AC1_pingAnswersOkAsJson
+  PASS ping.PingJourneyTest#AC2_timeIsCurrentUtcInstant
+  PASS ping.PingJourneyTest#AC4_requestIdsAreUniquePerRequest
+  PASS ping.PingJourneyTest#AC6_pingIsLoggedAsJsonWithRequestId
+  PASS ping.PingJourneyTest#AC8_clientSuppliedRequestIdIsIgnored
+  PASS ping.PingJourneyTest#AC3_everyResponseCarriesRequestId
+unit CSV: missed/covered lines, missed/covered branches = (0, 15, 0, 0); byte-identical to committed candidate CSV
+functional CSV: missed/covered lines, missed/covered branches = (2, 13, 0, 0); byte-identical to committed candidate CSV
+all CSV: missed/covered lines, missed/covered branches = (0, 15, 0, 0); byte-identical to committed candidate CSV
+Merged lines 15/15; zero branches. Functional-only lines 13/15. No new live server, packaged-artifact check or advisory lookup in this pass.
+Current generated reports may be from the design-agent subsequent identical main rerun; both independent gate logs record all 13 tasks executed. No claim of exclusive report ownership.
+Audit PASS. Own gate log: wave-w1-check-42a25db4.txt (exit 0; 20s; 13/13 tasks).

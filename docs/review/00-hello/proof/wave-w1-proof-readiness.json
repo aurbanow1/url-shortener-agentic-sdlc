@@ -1,0 +1,77 @@
+{
+  "command": "rig proof show 00-hello/slices/01-ping --json",
+  "state": "ready",
+  "issues": [],
+  "judgments": [
+    {
+      "state": "accepted",
+      "sequence": 8,
+      "actor": "qa-agent@urlshort-factory",
+      "subject": {
+        "kind": "commit",
+        "ref": "42a25db4a9c24fba3221c1ade4044719cab39ee3"
+      },
+      "reason": "Fresh main check executed all 13 tasks: 6 unit and 9 functional tests, no failures/errors/skips; all eight named AC journeys pass. Audited inputs identical from reviewed branch through merge to tested main."
+    },
+    {
+      "state": "accepted",
+      "sequence": 9,
+      "actor": "qa-agent@urlshort-factory",
+      "subject": {
+        "kind": "commit",
+        "ref": "42a25db4a9c24fba3221c1ade4044719cab39ee3"
+      },
+      "reason": "Fresh merged CSV has 0 missed and 15 covered lines; 0 missed and 0 covered branches. JaCoCo coverage verification passes unchanged. No exclusions; zero branches is a vacuous threshold result."
+    },
+    {
+      "state": "accepted",
+      "sequence": 10,
+      "actor": "qa-agent@urlshort-factory",
+      "subject": {
+        "kind": "commit",
+        "ref": "42a25db4a9c24fba3221c1ade4044719cab39ee3"
+      },
+      "reason": "Unit and functional HTML/XML/CSV entry points are tracked in git. Fresh main CSVs match committed candidate CSVs byte for byte; reports remain available under docs/qa/coverage/01-ping."
+    },
+    {
+      "state": "accepted",
+      "sequence": 11,
+      "actor": "qa-agent@urlshort-factory",
+      "subject": {
+        "kind": "commit",
+        "ref": "42a25db4a9c24fba3221c1ade4044719cab39ee3"
+      },
+      "reason": "Current re-check traceability maps all AC-1 through AC-8 and BR-1 through BR-8. Every one of the 15 fresh executed methods appears in the table; eight AC methods are functional journeys."
+    },
+    {
+      "state": "accepted",
+      "sequence": 12,
+      "actor": "qa-agent@urlshort-factory",
+      "subject": {
+        "kind": "commit",
+        "ref": "42a25db4a9c24fba3221c1ade4044719cab39ee3"
+      },
+      "reason": "Read the f286a10 GAPS entry: no open merged coverage or AC gap. Functional-only 13/15 shortfall and resolved QA-01 remain explicit, with compensating unit coverage and prior live re-check."
+    },
+    {
+      "state": "accepted",
+      "sequence": 13,
+      "actor": "qa-agent@urlshort-factory",
+      "subject": {
+        "kind": "commit",
+        "ref": "42a25db4a9c24fba3221c1ade4044719cab39ee3"
+      },
+      "reason": "Independently parsed the saved QA live GET: HTTP 200 application/json, exactly status=ok and time, Z instant within recorded bounds, valid 36-character X-Request-Id. Product inputs are unchanged through merge."
+    },
+    {
+      "state": "accepted",
+      "sequence": 14,
+      "actor": "qa-agent@urlshort-factory",
+      "subject": {
+        "kind": "commit",
+        "ref": "42a25db4a9c24fba3221c1ade4044719cab39ee3"
+      },
+      "reason": "Independently parsed the saved single JSON event, found it verbatim in the complete live log, and matched requestId to the captured first GET header. No checked address/canary/user-agent content or thread name; inputs unchanged through merge."
+    }
+  ]
+}
