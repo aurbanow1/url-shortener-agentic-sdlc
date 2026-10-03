@@ -72,7 +72,8 @@ Recorded 2026-10-03T01:52Z before the handoff to `wave_review`.
 - Reverts needed: none.
 - Human decisions honoured: mission plan-lock (one slice, one wave, minimal filter) and slice plan-lock (SPEC `4e581cc` + design `d0521de`); neither locked artifact edited after its stamp.
 - Exceptions handled and recorded: two bounded loops (design review DR-01, QA-01), one permission-prompt stall, two territory grants and one lead decision, all in `NOTES.md` §2.
-- Open items carried forward: unit-suite properties shadowing (backlog); release-time network advisory checks (review agent's note for release). The ADR-0004 / `docs/DESIGN.md` thread-name example reconciliation closed at `23f7a8c`.
+- Open items carried forward: unit-suite properties shadowing (backlog); release-time network advisory checks (review agent's note for release, now run: see below). The ADR-0004 / `docs/DESIGN.md` thread-name example reconciliation closed at `23f7a8c`.
+- Release prep security flag (2026-10-03T02:16Z): OSV advisories on managed transitive dependencies (Tomcat 11.0.24, Jackson 3.1.5 and 2.21.5), none reachable on the current localhost-only surface with no client input. Lead accepts the release agent's default: known gap in `RELEASE.md` for the ship decision; dependency-upgrade slice first in mission 01, before any JSON-body slice. Details and evidence paths in `NOTES.md` §2.
 - Wave review outcome (2026-10-03T02:01Z): PASS from both vantages on `42a25db4`; two LOW follow-ups, W1-01 (OpenAPI export ownership, to the first mission-01 API slice) and W1-02 (real-server journey for log-privacy criteria), recorded as backlog in `NOTES.md` §2.
 
 ## Slices
