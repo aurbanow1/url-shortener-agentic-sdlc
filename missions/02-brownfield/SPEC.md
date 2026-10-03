@@ -7,8 +7,9 @@ created: 2026-10-02
 intent: "Change the shipped shortener safely: add an operator-facing, loopback-only audit-read endpoint over the existing audit table (impact analysis first), purge clicks past the retention period, fix a defect found by using the service with a regression test first, and prove retry, rollback, fallback and safe-stop with recorded drills — without breaking existing links."
 depends_on: ["OPR.99.0.2"]
 approved-spec-by: orchestration-lead@urlshort-factory
-approved-spec-at: 2026-10-03T15:40:44.103Z
+approved-spec-at: 2026-10-03T17:57:58.458Z
 provenance: transport:v1
+approved-spec-priors: 1
 ---
 
 # Mission — Brownfield: enhance and fix the shipped shortener
@@ -111,12 +112,25 @@ The durable trigger for each is a queue item to `release-agent@urlshort-factory`
 
 - `01-audit-read` (`OPR.99.0.3.1`) — Audit trail read. Low (fast plan). w1, first holder of `application.properties` and the next migration number. Scaffolded (moved from mission 01).
 - `02-click-retention` (`OPR.99.0.3.2`) — Click retention purge. Low. w1, second holder; `-b` judges. Scaffolded.
-- `03-dogfood-fix` (`OPR.99.0.3.3`) — Dogfood defect fix. Low. w2, alone. Scaffolded; territory set at requirements.
+- `03-dogfood-fix` (`OPR.99.0.3.3`) — Dogfood defect fix. Low. w2, beside `04-audit-columns` since 18:00Z (disjoint territory). Its defect is W2-01 from mission 01's dogfood report (`305dce5`); territory set at requirements.
+- `04-audit-columns` (`OPR.99.0.3.4`) — Audit columns on `link` and `audit_log`. Low. w2, `-b` judges. Added after the plan-lock; see the amendment below.
+
+## Amendment after the plan-lock (2026-10-03T18:00Z)
+
+**Human decision** (2026-10-03, relayed by the operator on `qitem-20261003175330-fb054f2f`): every database table carries audit columns, `created_at` and `updated_at` (TIMESTAMP WITH TIME ZONE NOT NULL; `updated_at` maintained on every write) plus `created_by`/`updated_by` wherever an actor exists (`docs/guidance/databases.md` §2 and the §8 review check). Routing ordered in the same text: new tables comply at design time; existing tables get the columns through an expand migration with a written rollback (NFR-X2) in the slice that next touches them, with "click under 02-click-retention, link/audit_log/user_agent_class under whichever mission-02 slice you choose or a tiny follow-on slice"; anything deferred is a `docs/qa/GAPS.md` entry naming its migration.
+
+**Applied by the orchestration lead:**
+- `02-click-retention` takes V3, an expand migration for `click` **and** `user_agent_class`. `user_agent_class` is created in V2 with `click` and lives in `click/`, so the same migration covers it; the human listed it with link and audit_log, and this reading is recorded here.
+- A fourth slice, `04-audit-columns`, carries `link` and `audit_log` in w2, beside `03-dogfood-fix`, under the human's "or a tiny follow-on slice". `audit_log` stays append-only (NFR-A2): no update path is added. It was not folded into `01-audit-read`, which takes no migration and is in design review on the critical path.
+- Correction to the brief: `01-audit-read`'s design needs no index, so it takes no migration number; `02-click-retention` is w1's first migration holder (V3), and `04-audit-columns` takes the next free number after it.
+- Outcome, amended: four slices in two waves, plus the four labelled drills. Wave map v2: `docs/evidence/02-brownfield/wave-map.md`; revision receipt 3, `revision-16e704f86a7699ab5f0f0cea`.
 
 ## Status
 
 - 2026-10-03T11:51Z — lifecycle instance `01M40SN34E37K96B38JPG9K41X` created by the operator; decompose claimed by the orchestration lead.
 - 2026-10-03 — decomposed into three slices in two waves with four labelled drills; intent rewritten (aliases and expiry dropped, purge added); handed to `decomposition_review`.
+- 2026-10-03T15:40Z — mission plan-lock approved by the human ("three slices in two waves as briefed, with the four labelled drills; purge stays here with the 90-day default as an operator setting").
+- 2026-10-03T18:00Z — amended under the human's audit-column decision: `04-audit-columns` added to w2; mission plan-lock re-stamped on the human's behalf.
 
 ---
 

@@ -30,9 +30,12 @@ proofPolicy:
 # (aggregate instead of delete) becomes a mission-03 slice.
 # BROWNFIELD: design writes impact-analysis.md over the shipped click table, the click writer and
 # the statistics query (02-analytics, merged 091ff46) before design.md (docs/guidance/brownfield.md).
-# Wave w1 with 01-audit-read. ORDERED CUSTODY of two shared items: 01-audit-read holds
-# src/main/resources/application.properties and the next Flyway version number first; this slice
-# holds them from 01-audit-read's merge, so its implement handoff descends from that merge commit
+# Wave w1 with 01-audit-read. ORDERED CUSTODY of the shared items: 01-audit-read holds
+# src/main/resources/application.properties (and README.md, if both plan-locks grant its one-line
+# endpoint row) first; this slice holds them from 01-audit-read's merge, so its implement handoff
+# descends from that merge commit. Correction 2026-10-03T18:00Z: 01-audit-read's design takes no
+# migration, so this slice is the first migration holder in w1 and takes V3; the ancestry rule
+# still applies for the shared files
 # (the integrator checks git merge-base --is-ancestor). If its build is otherwise done earlier, the
 # builder exits waiting blocked on 01-audit-read's frontier packet with the continuation "rebase onto
 # main, take the next V number, hand off". w1 launches only after mission 01's 03-operate is
@@ -41,12 +44,16 @@ territory:
   - src/main/java/dev/urlshort/click/
   - src/test/java/dev/urlshort/click/
   - src/functionalTest/java/dev/urlshort/click/
-  # Only if the purge needs an index on the click day (V number taken after 01-audit-read's).
+  # Takes V3 (01-audit-read takes no migration; its design needs no index): an expand migration with
+  # a written rollback giving click and user_agent_class the audit columns the human decided on
+  # 2026-10-03 (qitem-20261003175330-fb054f2f, docs/guidance/databases.md section 2), plus an index on
+  # the click day only if the purge needs one. link and audit_log get theirs in 04-audit-columns (w2).
   - src/main/resources/db/migration/
   # ORDERED GRANT, second holder after 01-audit-read's merge: the retention-period setting.
   - src/main/resources/application.properties
   # TEST-SIDE GRANT (lead, 2026-10-03T17:50Z, design-agent request for design review DR-01): one
-  # line, urlshort.click.daily-purge=false with a comment, so no shared functional context arms the
+  # line, urlshort.click.purge-enabled=false with a comment (the switch was renamed in the design
+  # rework from daily-purge; it is an operator hold that pauses all deletion), so no shared functional context arms the
   # daily purge tick whose INFO line would break the shipped journeys that assert a request id on
   # every captured log line. The AC-8 journey turns the daily run back on in its own context. No
   # other change to this file; no other slice holds it (03-operate, its last holder, is merged).

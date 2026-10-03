@@ -1,0 +1,49 @@
+schema: openrig.slice/v0alpha1
+kind: slice
+composition:
+  mission: ../../mission.yaml
+  slice_markdown:
+    spec: SPEC.md
+    progress: PROGRESS.md
+    proof: PROOF.md
+metadata:
+  id: 04-audit-columns
+# Gate tier decides the workflow variant: high -> urlshort-slice, low -> urlshort-slice-delegated.
+# Since D11 both route the slice plan-lock to the orchestration lead.
+tier: low
+tier_reason: delegated plan-lock (D11). One expand migration with a written rollback and the repository code that maintains the new columns; no endpoint, contract or behaviour change for clients. The lead's plan review weighs what decomposition guide section 4 calls high, a schema change on shipped tables, and the independent design and security reviews cover it.
+# ORIGIN: human decision of 2026-10-03, relayed by the operator on qitem-20261003175330-fb054f2f:
+# every table carries audit columns (created_at, updated_at, and created_by/updated_by where an
+# actor exists); docs/guidance/databases.md section 2 and the section 8 review check. The human's
+# text lets the lead place link/audit_log/user_agent_class "under whichever mission-02 slice you
+# choose or a tiny follow-on slice". This is that follow-on slice, for link and audit_log only:
+# user_agent_class is created in V2 with click and lives in click/, so 02-click-retention's expand
+# migration covers it together with click.
+# Requirements allocated: the audit-column policy (databases.md section 2) for link and audit_log;
+# NFR-X2 (versioned migration with a written rollback); FR-13 (existing links behave exactly as
+# before); NFR-A2 (audit_log stays append-only: no update path is added, and updated_at equals
+# created_at for every audit row); cross-cutting M1 M2.
+# BROWNFIELD: design writes impact-analysis.md over link/ and audit/ (V1, the repositories, the
+# audit writer) before design.md, including the backfill of existing rows.
+# WAVE w2, alongside 03-dogfood-fix (dogfood touches web/ and docs/api/openapi.json; this touches
+# link/, audit/ and db/migration; disjoint). It runs after both w1 slices are merged and takes the
+# next free Flyway number after 02-click-retention's V3. Mission 03's 01-analytics-v2 also uses the
+# migration sequence; its plan-lock orders it against this slice (the later plan-lock takes the
+# next free number and rebases).
+# Launch on rig/workflows/urlshort-slice-delegated-b.workflow.yaml (QA qa2-agent, review
+# review2-agent), so w2's two slices do not queue on one judge; qa2-agent is this slice's proof judge.
+proofPolicy:
+  judges:
+    - qa2-agent@urlshort-factory
+territory:
+  - src/main/java/dev/urlshort/link/
+  - src/test/java/dev/urlshort/link/
+  - src/functionalTest/java/dev/urlshort/link/
+  - src/main/java/dev/urlshort/audit/
+  - src/test/java/dev/urlshort/audit/
+  - src/functionalTest/java/dev/urlshort/audit/
+  - src/main/resources/db/migration/
+# NOT in territory: click/ (02-click-retention's), web/, docs/api/openapi.json (no contract change).
+execution:
+  actor_role: requirements
+  depends_on: [01-audit-read, 02-click-retention]
