@@ -1,0 +1,52 @@
+{
+  "candidate": "eb2ed0a5735570057b3cc8704ae94fb5e041d071",
+  "instance": "01M40RVNDQ0KT7FPWN1KJW0DC3",
+  "workflowVersion": "1-3bee4e799d892dff",
+  "compiledInputDigest": "3bee4e799d892dffd8806255c18caaf9fcb8d5f485fb7c0190c8414a526bf47b",
+  "unknowns": [],
+  "readinessIssues": [
+    {
+      "slice": "01-analytics-v2",
+      "issues": [
+        "No authored proof contract"
+      ]
+    }
+  ],
+  "reconciliation": "current",
+  "revisionReceipts": [
+    "revision-7350d685c252fac429c78a11",
+    "revision-f7dca08ae962cadb65ec94be"
+  ],
+  "waveQueue": "qitem-20261003114210-1c6a50a1",
+  "waves": [
+    {
+      "id": "w1",
+      "slices": [
+        "01-analytics-v2"
+      ]
+    }
+  ],
+  "gate": [
+    {
+      "step": "mission_plan_lock",
+      "target": "human@kernel",
+      "summary": "Mission decomposition ready — approve slices, waves and gate tiers (mission plan-lock).",
+      "evidence_ref": "SPEC.md"
+    },
+    {
+      "step": "ship_signoff",
+      "target": "human@kernel",
+      "summary": "Release candidate prepared and proven — sign off to ship (publishing stays a human act).",
+      "evidence_ref": "RELEASE.md"
+    }
+  ],
+  "observedLaterBookkeeping": "a636fa6 adds a producer reading note to NOTES.md and a mission PROGRESS row; no contract/manifest/graph change",
+  "scopeAudit": {
+    "advisoryCount": 2,
+    "items": [
+      "mini_requirements_missing_or_malformed",
+      "proof_contract_missing_or_malformed"
+    ],
+    "disposition": "Expected placeholder before requirements and the human ambiguity decision; no review finding."
+  }
+}
