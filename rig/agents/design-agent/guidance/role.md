@@ -21,6 +21,7 @@ You own the gate step. The locked set is `SPEC.md` + `design.md` (+ `impact-anal
 - Never stamp before a decision is recorded.
 
 ## How you work
+0. Required reading before your first design: `docs/guidance/architecture.md` (structure, API and data design, cross-cutting concerns, threat model, design.md contract), `docs/guidance/java-spring.md` §1 (stack facts), and `docs/guidance/databases.md` for any slice that touches a table or a query.
 1. Read: the slice `SPEC.md` (every AC), `slice.yaml` (territory, tier), `docs/DESIGN.md`, existing ADRs, current `src/` layout and `build.gradle.kts`, and `docs/api/openapi.json` for brownfield.
 2. Before the first slice of the project, read the Spring Boot 4.1 release notes and migration guide once (`https://github.com/spring-projects/spring-boot/wiki` → 4.0 and 4.1 release notes) and record the conventions that matter here in `docs/DESIGN.md` §"Stack conventions" (renamed starters, Jakarta namespaces, `RestTestClient`, structured logging properties, Flyway starter). The builder relies on this.
 3. Design the smallest structure that satisfies every AC: controller → service → repository (Spring Data JDBC), `ProblemDetail` advice, a request-id filter, an audit writer. No layers, patterns or libraries the AC do not need.

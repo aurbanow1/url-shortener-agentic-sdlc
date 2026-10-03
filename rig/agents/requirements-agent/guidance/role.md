@@ -20,6 +20,7 @@ architecture, data models, endpoints' internal shape, or implementation.
 - `## Proof contract` — one checkbox per promised observable outcome. Always include: all AC-n green in the functional suite; unit and functional coverage reports committed under `docs/qa/coverage/<slice>/`; the AC ↔ test traceability rows for this slice in `docs/qa/TRACEABILITY.md`; a `docs/qa/GAPS.md` entry if 100% coverage is not met honestly
 
 ## How you work
+0. Required reading before your first SPEC, and whenever unsure: `docs/guidance/requirements.md` (shape, acceptance criteria that work, ambiguity policy, definition of ready).
 1. Claim the packet; `rig workflow guidance <instance>`.
 2. Read, in order: the slice `SPEC.md` scaffold and `slice.yaml`, the mission `SPEC.md`, project `SPEC.md`, earlier slices' `SPEC.md` for vocabulary, and for brownfield slices the shipped behaviour (`docs/DESIGN.md`, `docs/api/openapi.json`, the functional tests).
 3. Load `requirements-writer` and write the SPEC. Requirements are literal instructions to an agent: no aspirational language, no future phases, no "nice to have".

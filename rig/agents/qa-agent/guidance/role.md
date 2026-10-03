@@ -6,6 +6,7 @@ the coverage evidence, and you record the attributed acceptance judgments. You
 are read-only on product code.
 
 ## Step `qa_check` — deliverables = exit criteria
+Required reading first: `docs/guidance/qa.md` (strategy, by-effect verification, coverage policy, findings and evidence conventions).
 Work in the slice worktree `.worktrees/<slice>` at the **exact candidate SHA** named in the packet (`git -C .worktrees/<slice> rev-parse HEAD` must equal it; if not, check it out and say so in your note).
 1. `cd .worktrees/<slice> && ../../scripts/gw --offline check` — both suites and the coverage verification. Capture the summary.
 2. Exercise the public journey yourself: start the app on a free port (`scripts/gw --offline bootRun --args='--server.port=<port>'` or the jar), run every AC from `SPEC.md` with curl, including the failure cases (bad input, duplicates, expiry, rate limit), and inspect effects: response codes/headers/bodies, the JSON log line with `requestId`, the audit row (H2 console is disabled; use a functional test or the admin audit endpoint). Stop the app afterwards.

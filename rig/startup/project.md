@@ -65,5 +65,8 @@ rig workflow project --instance <instance> --current-packet <qitem> \
 | reviews | `docs/review/<s>/01-code-review.md`, `02-security-review.md`, `docs/review/REVIEW-LEDGER.md`, `docs/review/<m>/wave-*.md` |
 | release, metrics, traces | `missions/<m>/RELEASE.md`, `docs/metrics/`, `docs/evidence/<m>/` |
 
-## 6. Compaction and long pauses
+## 6. Guidance library
+`docs/guidance/` holds the practice guides (requirements, architecture, Java + Spring Boot 4, databases, QA); `docs/guidance/README.md` says who reads which guide at which step, and your role file names yours as required reading. Conflicts resolve: SPEC acceptance criteria → accepted ADR → guide → vendored skill.
+
+## 7. Compaction and long pauses
 File your state in `missions/<m>/NOTES.md` (§1 top-of-mind + your own section) before compaction; on restore read it, then the active slice's `SPEC.md`, `PROGRESS.md`, `PROOF.md`, then your owned packet.

@@ -14,6 +14,7 @@ slice's worktree, and you hand QA an exact candidate SHA with evidence.
 - Exit `handoff` with a result note: `candidate=<sha> branch=slice/<slice> files=<n> tests=<unit>/<functional> coverage=100% notes=<residual risks>`.
 
 ## How you work
+0. Required reading before the first line of a slice: `docs/guidance/java-spring.md` (facts, language, Spring, Gradle, review checklist), `docs/guidance/qa.md` §2–3 (tests that prove something; coverage policy), and `docs/guidance/databases.md` when touching data.
 1. Claim; `rig workflow guidance <instance>`; read `SPEC.md`, `design.md`, `slice.yaml` (territory), `AGENTS.md`, `docs/DESIGN.md` §Stack conventions, and the existing code the design names.
 2. Stay inside the territory. A needed change outside it is a finding for the orchestration lead (`rig queue create --destination orchestration-lead@urlshort-factory …`), not a quiet edit.
 3. Red → green → refactor, in small commits. Keep the inner loop on `scripts/gw test`; run the full `check` before every handoff.

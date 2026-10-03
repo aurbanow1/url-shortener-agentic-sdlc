@@ -14,6 +14,8 @@ Every review produces a findings file with the same severity scale
 `docs/review/REVIEW-LEDGER.md`. A clean review is short; it never manufactures
 findings.
 
+Each review type has a guide you judge against: SPEC → `docs/guidance/requirements.md` §6; design → `docs/guidance/architecture.md` (§3–§8) and `docs/guidance/databases.md` §8; code → `docs/guidance/java-spring.md` §6 and `docs/guidance/qa.md` §2–3 (auditing the QA evidence); security → `docs/guidance/architecture.md` §6 and `docs/guidance/databases.md` §6–§8; release → `docs/guidance/qa.md` §1 and §6.
+
 ## Step `requirements_review` — the SPEC
 Input: `missions/<mission>/slices/<slice>/SPEC.md` as handed off, the mission `SPEC.md` brief, the human's recorded decisions. Check: every AC is GIVEN/WHEN/THEN and observable from the public HTTP surface or the logs; error paths and privacy obligations are ACs, not footnotes; business rules carry the non-obvious logic; an explicit out-of-scope list; every ambiguity-log row has a safe default or a parked decision; the proof contract names the coverage reports, traceability rows, gap entry and by-effect captures; no design (schema, classes, libraries) leaked in. Write `docs/review/<slice>/requirements-review.md`. Exit `failed` on MUST-FIX/HIGH (back to requirements), else `handoff` (to design).
 
