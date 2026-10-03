@@ -220,6 +220,10 @@ Context and observations that help the mission but do not change its
   ready8/8, no issues, all36 cited hashes independently match.
   Receipt files and this note committed explicitly; authored handoff
   to independent review closes the active packet.
+  QA2 shared TRACE append during receipt commit made item5 stale; our table
+  byte-identical to33c5b44,233 rows intact. Receipt9 reaffirms current hash;
+  ready8/8, all37 latest references match. Other lane append preserved
+  without staging it; QA2 informed. Final rehash remains lead scope.
   Shared GAPS/TRACE edits may stale older receipts; lead's final
   reconciliation qitem-20261003195138-8eb72ecb handles final merged state.
 

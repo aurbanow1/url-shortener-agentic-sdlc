@@ -147,3 +147,17 @@ readiness ready, no issues; all 36 evidence-reference hashes independently
 match. Full receipts in proof/qa-judgment-receipts-4fe7042.json,
 hash audit in proof/qa-receipt-audit-4fe7042.json. Receipt files and this
 record committed with explicit paths; independent review is next.
+
+
+### Shared TRACE append before handoff
+
+QA2 appended its click-retention table while receipt commit a9ea9bf was
+finishing. Dogfood-fix table is byte-identical to evidence33c5b44, all233
+source rows and all9AC/5rules intact. Item5 reaffirmed by receipt9 against
+current full-file hash; historical receipt5 remains. Current readiness8/8,
+all37 cited-reference hashes match (31 distinct files), captured in
+proof/qa-final-proof-readiness-4fe7042.json and
+proof/qa-final-receipt-audit-4fe7042.json. The other lane pending append is
+preserved without staging it; QA2 was informed. Lead final living-document
+reconciliation remains required after remaining merges. No test rerun or
+product change was needed for this append.
