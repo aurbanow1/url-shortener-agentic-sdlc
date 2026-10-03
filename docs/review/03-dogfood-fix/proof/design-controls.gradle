@@ -1,0 +1,20 @@
+gradle.projectsEvaluated {
+    def p = gradle.rootProject
+    def functional = p.sourceSets.functionalTest
+    def classes = p.layout.buildDirectory.dir('review/03-dogfood-fix')
+    def compile = p.tasks.register('reviewDogfoodControlsCompile', JavaCompile) {
+        dependsOn p.tasks.named('functionalTestClasses')
+        source = p.files('docs/review/03-dogfood-fix/proof/DesignControls.java',
+                'missions/02-brownfield/slices/03-dogfood-fix/design-probe/DogfoodProbe.java')
+        classpath = functional.runtimeClasspath
+        destinationDirectory = classes
+        javaCompiler.set(p.javaToolchains.compilerFor { languageVersion = JavaLanguageVersion.of(21) })
+    }
+    p.tasks.register('reviewDogfoodControls', JavaExec) {
+        dependsOn compile
+        classpath = p.files(classes) + functional.runtimeClasspath
+        mainClass = 'DesignControls'
+        javaLauncher.set(p.javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) })
+        systemProperty 'spring.profiles.active', 'functional'
+    }
+}

@@ -1,0 +1,63 @@
+{
+  "note": "Intentional red controls: all three shipped-defect assertions fail; six other cases pass. Gradle ignoreFailures=true; successful task exit alone is not proof.",
+  "tests": [
+    {
+      "class": "dev.urlshort.web.DogfoodRegressionProbeTest$Fixed$FixedScrape",
+      "name": "T5_fixedPassesAc6OnTheScrape()",
+      "outcome": "passed",
+      "failureType": null
+    },
+    {
+      "class": "dev.urlshort.web.DogfoodRegressionProbeTest$Fixed$OverTheCreateBudget",
+      "name": "T4_the429ConformsToo()",
+      "outcome": "passed",
+      "failureType": null
+    },
+    {
+      "class": "dev.urlshort.web.DogfoodRegressionProbeTest$Fixed",
+      "name": "T3_fixedPassesAc1()",
+      "outcome": "passed",
+      "failureType": null
+    },
+    {
+      "class": "dev.urlshort.web.DogfoodRegressionProbeTest$Fixed",
+      "name": "T3_fixedPassesAc6()",
+      "outcome": "passed",
+      "failureType": null
+    },
+    {
+      "class": "dev.urlshort.web.DogfoodRegressionProbeTest$Fixed",
+      "name": "T3_fixedPassesAc2WithoutThe429()",
+      "outcome": "passed",
+      "failureType": null
+    },
+    {
+      "class": "dev.urlshort.web.DogfoodRegressionProbeTest$ShippedScrape",
+      "name": "T5_shippedFailsAc6OnTheScrape()",
+      "outcome": "failed",
+      "failureType": "java.lang.AssertionError"
+    },
+    {
+      "class": "dev.urlshort.web.DogfoodRegressionProbeTest",
+      "name": "T2_shippedFailsAc1()",
+      "outcome": "failed",
+      "failureType": "java.lang.AssertionError"
+    },
+    {
+      "class": "dev.urlshort.web.DogfoodRegressionProbeTest",
+      "name": "T2_shippedFailsAc6()",
+      "outcome": "failed",
+      "failureType": "java.lang.AssertionError"
+    },
+    {
+      "class": "dev.urlshort.web.DogfoodRegressionProbeTest",
+      "name": "T1_shippedScrapeUnderMockMvcWithoutAutoConfigureMetrics()",
+      "outcome": "passed",
+      "failureType": null
+    }
+  ],
+  "displayLog": {
+    "originalSha256": "e35b4b5da955b9fcb43fb7d5b5b02f4c45c9b6b3f53c922d630689352d5ba55d",
+    "normalization": "Trailing whitespace stripped from 11 lines; all lines retained."
+  }
+}
