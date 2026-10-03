@@ -114,7 +114,7 @@ mission 01). Stored rows are inspected by the suite, as in `02-analytics` and
 - **AC-8 — No response, document or log shows the new columns.** [FR-13]
   GIVEN links created and retired after the upgrade
   WHEN a client creates a link, reads it with `GET /api/links/<code>`, opens `GET /<code>`, reads its statistics, and an Operator reads `GET /api/audit`
-  THEN each response has exactly the status, headers and body fields it had before this slice (`01-create-redirect`, `02-analytics` and `01-audit-read` contracts). In particular each `GET /api/audit` row has exactly rule 3's eight fields of `01-audit-read`. No response body, header or log event contains an audit column's name or value. `docs/api/openapi.json` is unchanged.
+  THEN each response has exactly the status, headers and body fields it had before this slice (`01-create-redirect`, `02-analytics` and `01-audit-read` contracts). In particular each `GET /api/audit` row has exactly rule 3's eight fields of `01-audit-read`. No response body or header gains a member, header or value read from a column this slice adds (`link.updated_at`, `link.created_by`, `link.updated_by`, and the four new `audit_log` columns). In particular, after a retire `GET /api/links/<code>` still shows the link's shipped `createdAt` and no update time. Values already exposed stay exactly as before: `createdAt` (the reused `link.created_at`) and the audit row's `actor`. `docs/api/openapi.json` is unchanged.
 
 - **AC-9 — The shipped suite passes unchanged.** [FR-13]
   GIVEN the unit and functional suites as they stand on the merged `main` this slice starts from
@@ -136,7 +136,7 @@ mission 01). Stored rows are inspected by the suite, as in `02-analytics` and
 4. **The audit trail is append-only.** An audit row is written once and never updated, so `updated_at` = `created_at` and `updated_by` = `created_by` for its whole life (NFR-A2). No update or delete path is added for the new columns.
 5. **Expand only, one migration.** One new versioned migration with the next free Flyway number. V4 is assumed, after `02-click-retention`'s V3, and the plan-lock confirms it. It adds the columns and fills pre-existing rows (rule 6). It drops, renames or retypes nothing, and its header carries a rollback that removes only what it added (AC-11).
 6. **Backfill.** A pre-existing link's `updated_at` is its latest known write time: `retired_at` when retired, otherwise `created_at`. A key release left no time, so this is the best known value. Its actors are `anonymous`. A pre-existing audit row's `created_at` and `updated_at` are equal and no later than the upgrade, and its actors equal its `actor`. The exact time value is the design's, recorded in the migration header (ADR-0020 uses the event time).
-7. **Invisible to clients.** No endpoint, response field, header, log event or API document changes. The audit read's row representation stays exactly `01-audit-read` rule 3's eight fields. The audit columns are for operators reading rows, never for logic.
+7. **Invisible to clients.** No endpoint, response field, header or API document changes, and no column this slice adds is read into a response. Shipped values that coincide with an audit column (`createdAt`, the audit row's `actor`) are exposed exactly as before. The audit read's row representation stays exactly `01-audit-read` rule 3's eight fields. The audit columns are for operators reading rows, never for logic.
 
 ### Non-functional
 
@@ -207,6 +207,7 @@ N/A: non-visual slice.
 ## Status
 
 - 2026-10-03: requirements written: 11 acceptance criteria, 7 business rules, 7 ambiguity rows (6 assumed, 1 decided, none parked). The plan-lock waits for both w1 slices to merge (`slice.yaml`).
+- 2026-10-03: requirements review finding (`review2-agent`, 18:56Z) fixed: AC-8 banned every audit column's name and value from responses. That contradicts the reused `link.created_at` (exposed as `createdAt`) and the audit read's `actor` (`anonymous`, equal to the new actor columns). AC-8 and rule 7 now forbid exposing the columns this slice adds and keep the shipped values exactly as before. The `log event` clause was dropped from AC-8: AC-10 already bans client values from the columns, and the columns are never logged by any shipped path.
 
 ## Dependencies
 
