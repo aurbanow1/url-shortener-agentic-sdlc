@@ -143,7 +143,9 @@ class StatsV2JourneyTest {
 		String code = create("https://example.com/v2-no-proxy");
 		List<String> forwarded = List.of("192.0.2.81", "192.0.2.82, 198.51.100.83", "203.0.113.84");
 		for (String value : forwarded) {
-			open(code, "203.0.113.77", BROWSER, value);
+			// the SPEC's 203.0.113.77 is v1's AC-5 peer, which that test sends from a September clock;
+			// sending from it at today's clock first would leave its bucket ahead and refuse AC-5
+			open(code, "203.0.113.87", BROWSER, value);
 		}
 		recorder.settle();
 
