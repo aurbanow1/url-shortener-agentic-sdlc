@@ -1,0 +1,56 @@
+schema: openrig.slice/v0alpha1
+kind: slice
+composition:
+  mission: ../../mission.yaml
+  slice_markdown:
+    spec: SPEC.md
+    progress: PROGRESS.md
+    proof: PROOF.md
+metadata:
+  id: 01-analytics-v2
+# Gate tier decides the workflow variant: high -> urlshort-slice, low -> urlshort-slice-delegated.
+# Since human decision D11 (2026-10-03) both variants route the slice plan-lock to the
+# orchestration lead; the human keeps mission plan-locks, ambiguity decisions and ship sign-offs.
+tier: high
+tier_reason: ambiguous scope by design (docs/guidance/decomposition.md section 4) - the mission exists to turn "marketing says the analytics are not good enough" into decided requirements, and the answer may add a migration (a new aggregate or a retention change on the click table) and changes what the privacy-sensitive client hash may be used for (NFR-P1, P2). The human's checkpoint for this slice is the ambiguity park at its requirements step, where the product decision actually sits (FR-16 requires every open question to be decided, assumed or parked on the human before anything is built); the slice plan-lock handler is the orchestration lead by D11.
+# Requirements allocated (docs/REQUIREMENTS.md section 5, mission 03): FR-16, FR-8 (v2);
+# NFR-P2 (retention, revisited), NFR-O3 (new metrics), NFR-L1 (only if the redirect path changes);
+# cross-cutting M1 M2 M3 O1 O2.
+# The shipped v1 to improve on: missions/01-greenfield-core/slices/02-analytics (click events,
+# per-link totals, per-day counts, top referrers, privacy-safe daily-salted hashing; merged as
+# 091ff46; ADR-0011..0013).
+# DECISION FIRST: the requirements step writes the ambiguity log (what is counted: raw vs unique,
+# bots; retention; privacy: what the hashed address may be used for; who reads it: API, report,
+# dashboard; time zones) with options, a recommended default and the consequence of each, and
+# parks it on human@kernel (rig queue block ... --on human@kernel). Nothing is designed or built
+# before the decision is recorded.
+# RE-PLAN AFTER THE DECISION: the decision lands before this slice's plan-lock, so a SPEC change is
+# the normal requirements loop. If the decided scope needs more than one buildable outcome, the
+# lead adds slices (rig scope slice create + rig workflow revise + a new wave-map version) and
+# records the receipt in docs/evidence/03-ambiguous-analytics/ (decomposition.md section 7).
+# CROSS-MISSION COUPLING (mission 02): mission 02 builds the NFR-P2 90-day purge on click/
+# (it was not delivered in mission 01). If both missions build at once they share click/ and the
+# next Flyway version number. Default: this slice's plan-lock checks main's migration head and any
+# in-flight mission-02 territory; the later plan-lock takes the next free V number and the later
+# implement rebases onto main. If the human's retention answer here changes NFR-P2, it feeds
+# mission 02's purge if that is not yet built.
+# BROWNFIELD: the slice changes shipped code (click/, merged 091ff46), so its design step writes
+# impact-analysis.md over v1 (02-analytics design.md, ADR-0011..0013) before design.md
+# (docs/guidance/brownfield.md); the territory below is then confirmed or extended by grant.
+# Territory is a prediction (the decision is not made yet); design may request a grant.
+territory:
+  - src/main/java/dev/urlshort/click/
+  - src/test/java/dev/urlshort/click/
+  - src/functionalTest/java/dev/urlshort/click/
+  # Only if the decision adds or changes stored data (V3 or later; the number is set at plan-lock).
+  - src/main/resources/db/migration/
+  # The statistics operation changes if the decided figures change the response.
+  - docs/api/openapi.json
+  - docs/diagrams/erd.mmd
+  # Only if the decision needs an operator setting (for example a retention period).
+  - src/main/resources/application.properties
+# NOT in territory: link/ (the redirect hook from 02-analytics stays as it is; any change there is
+# a design-time grant, as the hook was for 02), web/, audit/.
+execution:
+  actor_role: requirements
+  depends_on: []

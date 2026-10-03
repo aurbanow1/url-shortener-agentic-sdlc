@@ -8,5 +8,9 @@ lifecycle:
 composition:
   mission_markdown:
     spec: SPEC.md
-  slices: []
+  slices:
+    - ref: slices/01-analytics-v2/slice.yaml
+      order: 10
+      active: true
+
 # Optional team and SDLC sections are added here.
