@@ -41,6 +41,11 @@ tier_reason: delegated plan-lock by the human's fast-plan decision of 2026-10-03
 # Launch note (fast plan item 4): instantiate this slice with
 # rig/workflows/urlshort-slice-delegated-b.workflow.yaml (routes qa and review to the second
 # judge seats), so 02 and 03 do not queue on one judge.
+# The -b variant's QA seat is qa2-agent, so this slice names it as its proof judge; the
+# project-level policy names only qa-agent, and the nearest policy wins.
+proofPolicy:
+  judges:
+    - qa2-agent@urlshort-factory
 territory:
   # the rate-limit filter lives beside the request-id filter (cross-cutting HTTP concerns).
   - src/main/java/dev/urlshort/web/
