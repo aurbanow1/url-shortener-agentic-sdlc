@@ -1,0 +1,264 @@
+[
+  {
+    "label": "create",
+    "path": "/api/links",
+    "method": "POST",
+    "client": "198.51.100.100",
+    "status": 201,
+    "exit": 0,
+    "headers": {
+      "x-request-id": "78fb16ee-7878-4ab6-957a-6462a31ea859",
+      "location": "/api/links/b9fd7hEq",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 14:08:14 GMT"
+    },
+    "body": "{\"code\":\"b9fd7hEq\",\"shortUrl\":\"http://localhost:8080/b9fd7hEq\",\"url\":\"https://example.com/wave2?private-target-canary=1\",\"state\":\"active\",\"createdAt\":\"2026-10-03T14:08:14.754Z\"}"
+  },
+  {
+    "label": "replay",
+    "path": "/api/links",
+    "method": "POST",
+    "client": "198.51.100.100",
+    "status": 201,
+    "exit": 0,
+    "headers": {
+      "x-request-id": "982fd9fc-281e-464c-a8f8-af2a527ac522",
+      "location": "/api/links/b9fd7hEq",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 14:08:14 GMT"
+    },
+    "body": "{\"code\":\"b9fd7hEq\",\"shortUrl\":\"http://localhost:8080/b9fd7hEq\",\"url\":\"https://example.com/wave2?private-target-canary=1\",\"state\":\"active\",\"createdAt\":\"2026-10-03T14:08:14.754Z\"}"
+  },
+  {
+    "label": "validation-errors",
+    "path": "/api/links",
+    "method": "POST",
+    "client": "198.51.100.100",
+    "status": 400,
+    "exit": 0,
+    "headers": {
+      "x-request-id": "c1bd0869-1d24-437f-a073-269018ebcf20",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 14:08:14 GMT",
+      "connection": "close"
+    },
+    "body": "{\"instance\":\"urn:uuid:c1bd0869-1d24-437f-a073-269018ebcf20\",\"status\":400,\"title\":\"Bad Request\",\"errors\":[{\"field\":\"url\",\"rule\":\"scheme\",\"message\":\"url must start with http:// or https://\"}]}"
+  },
+  {
+    "label": "read",
+    "path": "/api/links/b9fd7hEq",
+    "method": "GET",
+    "client": "198.51.100.100",
+    "status": 200,
+    "exit": 0,
+    "headers": {
+      "x-request-id": "7f63b24e-e0cc-48e9-920a-0439ba5c3a42",
+      "content-type": "application/json",
+      "content-length": "177",
+      "date": "Sat, 03 Oct 2026 14:08:14 GMT"
+    },
+    "body": "{\"code\":\"b9fd7hEq\",\"shortUrl\":\"http://localhost:8080/b9fd7hEq\",\"url\":\"https://example.com/wave2?private-target-canary=1\",\"state\":\"active\",\"createdAt\":\"2026-10-03T14:08:14.754Z\"}"
+  },
+  {
+    "label": "limit-before-body-cap",
+    "path": "/api/links",
+    "method": "POST",
+    "client": "198.51.100.100",
+    "status": 429,
+    "exit": 0,
+    "headers": {
+      "x-request-id": "588862a7-f894-44bc-ae53-7f6fb5bbb449",
+      "retry-after": "15",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "Sat, 03 Oct 2026 14:08:14 GMT"
+    },
+    "body": "{\"instance\":\"urn:uuid:588862a7-f894-44bc-ae53-7f6fb5bbb449\",\"status\":429,\"title\":\"Too Many Requests\"}"
+  },
+  {
+    "label": "redirect-a-0",
+    "path": "/b9fd7hEq",
+    "method": "GET",
+    "client": "198.51.100.21",
+    "status": 302,
+    "exit": 0,
+    "headers": {
+      "x-request-id": "41ce4664-dd7d-48fb-99e4-d97262ca1b32",
+      "location": "https://example.com/wave2?private-target-canary=1",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 14:08:14 GMT"
+    },
+    "body": ""
+  },
+  {
+    "label": "redirect-a-1",
+    "path": "/b9fd7hEq",
+    "method": "GET",
+    "client": "198.51.100.21",
+    "status": 302,
+    "exit": 0,
+    "headers": {
+      "x-request-id": "67b42bc3-7c87-4c00-a33d-4b892f18a0d6",
+      "location": "https://example.com/wave2?private-target-canary=1",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 14:08:14 GMT"
+    },
+    "body": ""
+  },
+  {
+    "label": "head-does-not-click",
+    "path": "/b9fd7hEq",
+    "method": "HEAD",
+    "client": "198.51.100.21",
+    "status": 302,
+    "exit": 0,
+    "headers": {
+      "x-request-id": "e263f646-0417-46c7-851b-4e14e839656c",
+      "location": "https://example.com/wave2?private-target-canary=1",
+      "cache-control": "no-store",
+      "date": "Sat, 03 Oct 2026 14:08:14 GMT"
+    },
+    "body": "HTTP/1.1 302 \nX-Request-Id: e263f646-0417-46c7-851b-4e14e839656c\nLocation: https://example.com/wave2?private-target-canary=1\nCache-Control: no-store\nDate: Sat, 03 Oct 2026 14:08:14 GMT\n\n"
+  },
+  {
+    "label": "redirect-over-limit",
+    "path": "/b9fd7hEq",
+    "method": "GET",
+    "client": "198.51.100.21",
+    "status": 429,
+    "exit": 0,
+    "headers": {
+      "x-request-id": "0380a718-40ab-4ff6-99fe-f1d7f15e332f",
+      "retry-after": "20",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "Sat, 03 Oct 2026 14:08:14 GMT"
+    },
+    "body": "{\"instance\":\"urn:uuid:0380a718-40ab-4ff6-99fe-f1d7f15e332f\",\"status\":429,\"title\":\"Too Many Requests\"}"
+  },
+  {
+    "label": "other-forwarded-client-independent",
+    "path": "/b9fd7hEq",
+    "method": "GET",
+    "client": "198.51.100.22",
+    "status": 302,
+    "exit": 0,
+    "headers": {
+      "x-request-id": "3f2c6eb3-7e85-498f-be37-a14123e413a3",
+      "location": "https://example.com/wave2?private-target-canary=1",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 14:08:14 GMT"
+    },
+    "body": ""
+  },
+  {
+    "label": "stats-0",
+    "path": "/api/links/b9fd7hEq/stats",
+    "method": "GET",
+    "client": "192.0.2.10",
+    "status": 200,
+    "exit": 0,
+    "headers": {
+      "x-request-id": "f8f83c15-fe56-4852-9b71-51356ba18502",
+      "content-type": "application/json",
+      "content-length": "151",
+      "date": "Sat, 03 Oct 2026 14:08:14 GMT"
+    },
+    "body": "{\"code\":\"b9fd7hEq\",\"totalClicks\":3,\"clicksPerDay\":[{\"date\":\"2026-10-03\",\"clicks\":3}],\"topReferrers\":[{\"referrer\":\"https://source.example\",\"clicks\":3}]}"
+  },
+  {
+    "label": "retire",
+    "path": "/api/links/b9fd7hEq",
+    "method": "DELETE",
+    "client": "192.0.2.50",
+    "status": 204,
+    "exit": 0,
+    "headers": {
+      "x-request-id": "a1587e2c-649a-49ec-902a-7169902f6f21",
+      "date": "Sat, 03 Oct 2026 14:08:14 GMT"
+    },
+    "body": ""
+  },
+  {
+    "label": "retired-redirect",
+    "path": "/b9fd7hEq",
+    "method": "GET",
+    "client": "192.0.2.51",
+    "status": 410,
+    "exit": 0,
+    "headers": {
+      "x-request-id": "4985cedf-96ed-4b17-b4a5-676082a69c20",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 14:08:14 GMT"
+    },
+    "body": "{\"instance\":\"urn:uuid:4985cedf-96ed-4b17-b4a5-676082a69c20\",\"status\":410,\"title\":\"Gone\"}"
+  },
+  {
+    "label": "retired-stats",
+    "path": "/api/links/b9fd7hEq/stats",
+    "method": "GET",
+    "client": "192.0.2.52",
+    "status": 200,
+    "exit": 0,
+    "headers": {
+      "x-request-id": "1b8a8c23-e74a-4172-bc63-5551be2a67f4",
+      "content-type": "application/json",
+      "content-length": "151",
+      "date": "Sat, 03 Oct 2026 14:08:14 GMT"
+    },
+    "body": "{\"code\":\"b9fd7hEq\",\"totalClicks\":3,\"clicksPerDay\":[{\"date\":\"2026-10-03\",\"clicks\":3}],\"topReferrers\":[{\"referrer\":\"https://source.example\",\"clicks\":3}]}"
+  },
+  {
+    "label": "bad-resource-path-private",
+    "path": "/actuator/../wave2-path-203.0.113.77",
+    "method": "GET",
+    "client": "198.51.100.100",
+    "status": 404,
+    "exit": 0,
+    "headers": {
+      "x-request-id": "b3b018ba-1e5b-4156-9589-e6377f54c81d",
+      "content-disposition": "inline;filename=f.txt",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 14:08:14 GMT"
+    },
+    "body": "{\"instance\":\"urn:uuid:b3b018ba-1e5b-4156-9589-e6377f54c81d\",\"status\":404,\"title\":\"Not Found\"}"
+  },
+  {
+    "label": "prometheus",
+    "path": "/actuator/prometheus",
+    "method": "GET",
+    "client": "198.51.100.100",
+    "status": 200,
+    "exit": 0,
+    "headers": {
+      "x-request-id": "ead17929-0d1e-45f0-808c-99c83bdefc93",
+      "content-type": "text/plain;version=0.0.4;charset=utf-8",
+      "content-length": "24159",
+      "date": "Sat, 03 Oct 2026 14:08:15 GMT"
+    },
+    "body": "# HELP application_ready_time_seconds Time taken for the application to be ready to service requests\n# TYPE application_ready_time_seconds gauge\napplication_ready_time_seconds{main_application_class=\"dev.urlshort.UrlshortApplication\"} 1.626\n# HELP application_started_time_seconds Time taken to start the application\n# TYPE application_started_time_seconds gauge\napplication_started_time_seconds{main_application_class=\"dev.urlshort.UrlshortApplication\"} 1.598\n# HELP disk_free_bytes Usable space for path\n# TYPE disk_free_bytes gauge\ndisk_free_bytes{path=\"/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.\"} 3.669106688E10\n# HELP disk_total_bytes Total space for path\n# TYPE disk_total_bytes gauge\ndisk_total_bytes{path=\"/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.\"} 4.94384795648E11\n# HELP executor_active_threads The approximate number of threads that are actively executing tasks\n# TYPE executor_active_threads gauge\nexecutor_active_threads{name=\"applicationTaskExecutor\"} 0.0\n# HELP executor_completed_tasks_total The approximate total number of tasks that have completed execution\n# TYPE executor_completed_tasks_total counter\nexecutor_completed_tasks_total{name=\"applicationTaskExecutor\"} 0.0\n# HELP executor_pool_core_threads The core number of threads for the pool\n# TYPE executor_pool_core_threads gauge\nexecutor_pool_core_threads{name=\"applicationTaskExecutor\"} 8.0\n# HELP executor_pool_max_threads The maximum allowed number of threads in the pool\n# TYPE executor_pool_max_threads gauge\nexecutor_pool_max_threads{name=\"applicationTaskExecutor\"} 2.147483647E9\n# HELP executor_pool_size_threads The current number of threads in the pool\n# TYPE executor_pool_size_threads gauge\nexecutor_pool_size_threads{name=\"applicationTaskExecutor\"} 0.0\n# HELP executor_queue_remaining_tasks The number of additional elements that this queue can ideally accept without blocking\n# TYPE executor_queue_remaining_tasks gauge\nexecutor_queue_remaining_tasks{name=\"applicationTaskExecutor\"} 2.147483647E9\n# HELP executor_queued_tasks The approximate number of tasks that are queued for execution\n# TYPE executor_queued_tasks gauge\nexecutor_queued_tasks{name=\"applicationTaskExecutor\"} 0.0\n# HELP hikaricp_connections Total connections\n# TYPE hikaricp_connections gauge\nhikaricp_connections{pool=\"HikariPool-1\"} 10.0\n# HELP hikaricp_connections_acquire_seconds Connection acquire time\n# TYPE hikaricp_connections_acquire_seconds summary\nhikaricp_connections_acquire_seconds_count{pool=\"HikariPool-1\"} 18\nhikaricp_connections_acquire_seconds_sum{pool=\"HikariPool-1\"} 0.0\n# HELP hikaricp_connections_acquire_seconds_max Connection acquire time\n# TYPE hikaricp_connections_acquire_seconds_max gauge\nhikaricp_connections_acquire_seconds_max{pool=\"HikariPool-1\"} 0.0\n# HELP hikaricp_connections_active Active connections\n# TYPE hikaricp_connections_active gauge\nhikaricp_connections_active{pool=\"HikariPool-1\"} 0.0\n# HELP hikaricp_connections_creation_seconds Connection creation time\n# TYPE hikaricp_connections_creation_seconds summary\nhikaricp_connections_creation_seconds_count{pool=\"HikariPool-1\"} 0\nhikaricp_connections_creation_seconds_sum{pool=\"HikariPool-1\"} 0.0\n# HELP hikaricp_connections_creation_seconds_max Connection creation time\n# TYPE hikaricp_connections_creation_seconds_max gauge\nhikaricp_connections_creation_seconds_max{pool=\"HikariPool-1\"} 0.0\n# HELP hikaricp_connections_idle Idle connections\n# TYPE hikaricp_connections_idle gauge\nhikaricp_connections_idle{pool=\"HikariPool-1\"} 10.0\n# HELP hikaricp_connections_max Max connections\n# TYPE hikaricp_connections_max gauge\nhikaricp_connections_max{pool=\"HikariPool-1\"} 10.0\n# HELP hikaricp_connections_min Min connections\n# TYPE hikaricp_connections_min gauge\nhikaricp_connections_min{pool=\"HikariPool-1\"} 10.0\n# HELP hikaricp_connections_pending Pending threads\n# TYPE hikaricp_connections_pending gauge\nhikaricp_connections_pending{pool=\"HikariPool-1\"} 0.0\n# HELP hikaricp_connections_timeout_total Connection timeout total count\n# TYPE hikaricp_connections_timeout_total counter\nhikaricp_connections_timeout_total{pool=\"HikariPool-1\"} 0.0\n# HELP hikaricp_connections_usage_seconds Connection usage time\n# TYPE hikaricp_connections_usage_seconds summary\nhikaricp_connections_usage_seconds_count{pool=\"HikariPool-1\"} 18\nhikaricp_connections_usage_seconds_sum{pool=\"HikariPool-1\"} 0.058\n# HELP hikaricp_connections_usage_seconds_max Connection usage time\n# TYPE hikaricp_connections_usage_seconds_max gauge\nhikaricp_connections_usage_seconds_max{pool=\"HikariPool-1\"} 0.044\n# HELP http_server_requests_active_seconds  \n# TYPE http_server_requests_active_seconds summary\nhttp_server_requests_active_seconds_count{exception=\"none\",method=\"DELETE\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0\nhttp_server_requests_active_seconds_sum{exception=\"none\",method=\"DELETE\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0.0\nhttp_server_requests_active_seconds_count{exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 1\nhttp_server_requests_active_seconds_sum{exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0.002413875\nhttp_server_requests_active_seconds_count{exception=\"none\",method=\"HEAD\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0\nhttp_server_requests_active_seconds_sum{exception=\"none\",method=\"HEAD\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0.0\nhttp_server_requests_active_seconds_count{exception=\"none\",method=\"POST\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0\nhttp_server_requests_active_seconds_sum{exception=\"none\",method=\"POST\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0.0\n# HELP http_server_requests_active_seconds_max  \n# TYPE http_server_requests_active_seconds_max gauge\nhttp_server_requests_active_seconds_max{exception=\"none\",method=\"DELETE\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0.0\nhttp_server_requests_active_seconds_max{exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0.002563916\nhttp_server_requests_active_seconds_max{exception=\"none\",method=\"HEAD\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0.0\nhttp_server_requests_active_seconds_max{exception=\"none\",method=\"POST\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0.0\n# HELP http_server_requests_seconds  \n# TYPE http_server_requests_seconds summary\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"DELETE\",outcome=\"SUCCESS\",status=\"204\",uri=\"/api/links/{code:[A-Za-z0-9]{6,32}}\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"DELETE\",outcome=\"SUCCESS\",status=\"204\",uri=\"/api/links/{code:[A-Za-z0-9]{6,32}}\"} 0.003448792\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"404\",uri=\"/**\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"404\",uri=\"/**\"} 0.007030792\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"410\",uri=\"/{code:[A-Za-z0-9]{6,32}}\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"410\",uri=\"/{code:[A-Za-z0-9]{6,32}}\"} 0.002399834\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"429\",uri=\"UNKNOWN\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"429\",uri=\"UNKNOWN\"} 2.28416E-4\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"REDIRECTION\",status=\"302\",uri=\"/{code:[A-Za-z0-9]{6,32}}\"} 3\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"REDIRECTION\",status=\"302\",uri=\"/{code:[A-Za-z0-9]{6,32}}\"} 0.010130374\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/actuator/health/**\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/actuator/health/**\"} 0.022791708\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/api/links/{code:[A-Za-z0-9]{6,32}}\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/api/links/{code:[A-Za-z0-9]{6,32}}\"} 0.003023709\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/api/links/{code:[A-Za-z0-9]{6,32}}/stats\"} 2\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/api/links/{code:[A-Za-z0-9]{6,32}}/stats\"} 0.006963458\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"HEAD\",outcome=\"REDIRECTION\",status=\"302\",uri=\"/{code:[A-Za-z0-9]{6,32}}\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"HEAD\",outcome=\"REDIRECTION\",status=\"302\",uri=\"/{code:[A-Za-z0-9]{6,32}}\"} 0.001309875\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"CLIENT_ERROR\",status=\"400\",uri=\"/api/links\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"CLIENT_ERROR\",status=\"400\",uri=\"/api/links\"} 0.010372833\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"CLIENT_ERROR\",status=\"429\",uri=\"UNKNOWN\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"CLIENT_ERROR\",status=\"429\",uri=\"UNKNOWN\"} 3.50375E-4\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"SUCCESS\",status=\"201\",uri=\"/api/links\"} 2\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"SUCCESS\",status=\"201\",uri=\"/api/links\"} 0.074845916\n# HELP http_server_requests_seconds_max  \n# TYPE http_server_requests_seconds_max gauge\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"DELETE\",outcome=\"SUCCESS\",status=\"204\",uri=\"/api/links/{code:[A-Za-z0-9]{6,32}}\"} 0.003448792\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"404\",uri=\"/**\"} 0.007030792\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"410\",uri=\"/{code:[A-Za-z0-9]{6,32}}\"} 0.002399834\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"429\",uri=\"UNKNOWN\"} 2.28416E-4\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"REDIRECTION\",status=\"302\",uri=\"/{code:[A-Za-z0-9]{6,32}}\"} 0.006968208\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/actuator/health/**\"} 0.022791708\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/api/links/{code:[A-Za-z0-9]{6,32}}\"} 0.003023709\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/api/links/{code:[A-Za-z0-9]{6,32}}/stats\"} 0.005824625\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"HEAD\",outcome=\"REDIRECTION\",status=\"302\",uri=\"/{code:[A-Za-z0-9]{6,32}}\"} 0.001309875\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"CLIENT_ERROR\",status=\"400\",uri=\"/api/links\"} 0.010372833\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"CLIENT_ERROR\",status=\"429\",uri=\"UNKNOWN\"} 3.50375E-4\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"SUCCESS\",status=\"201\",uri=\"/api/links\"} 0.069735458\n# HELP jdbc_connections_active Current number of active connections that have been allocated from the data source.\n# TYPE jdbc_connections_active gauge\njdbc_connections_active{name=\"dataSource\"} 0.0\n# HELP jdbc_connections_idle Number of established but idle connections.\n# TYPE jdbc_connections_idle gauge\njdbc_connections_idle{name=\"dataSource\"} 10.0\n# HELP jdbc_connections_max Maximum number of active connections that can be allocated at the same time.\n# TYPE jdbc_connections_max gauge\njdbc_connections_max{name=\"dataSource\"} 10.0\n# HELP jdbc_connections_min Minimum number of idle connections in the pool.\n# TYPE jdbc_connections_min gauge\njdbc_connections_min{name=\"dataSource\"} 10.0\n# HELP jvm_info JVM version info\n# TYPE jvm_info gauge\njvm_info{runtime=\"OpenJDK Runtime Environment\",vendor=\"Homebrew\",version=\"21.0.10\"} 1\n# HELP jvm_buffer_count_buffers An estimate of the number of buffers in the pool\n# TYPE jvm_buffer_count_buffers gauge\njvm_buffer_count_buffers{id=\"direct\"} 12.0\njvm_buffer_count_buffers{id=\"mapped\"} 0.0\njvm_buffer_count_buffers{id=\"mapped - 'non-volatile memory'\"} 0.0\n# HELP jvm_buffer_memory_used_bytes An estimate of the memory that the Java virtual machine is using for this buffer pool\n# TYPE jvm_buffer_memory_used_bytes gauge\njvm_buffer_memory_used_bytes{id=\"direct\"} 104448.0\njvm_buffer_memory_used_bytes{id=\"mapped\"} 0.0\njvm_buffer_memory_used_bytes{id=\"mapped - 'non-volatile memory'\"} 0.0\n# HELP jvm_buffer_total_capacity_bytes An estimate of the total capacity of the buffers in this pool\n# TYPE jvm_buffer_total_capacity_bytes gauge\njvm_buffer_total_capacity_bytes{id=\"direct\"} 104448.0\njvm_buffer_total_capacity_bytes{id=\"mapped\"} 0.0\njvm_buffer_total_capacity_bytes{id=\"mapped - 'non-volatile memory'\"} 0.0\n# HELP jvm_classes_loaded_classes The number of classes that are currently loaded in the Java virtual machine\n# TYPE jvm_classes_loaded_classes gauge\njvm_classes_loaded_classes 14596.0\n# HELP jvm_classes_loaded_count_classes_total The number of classes loaded in the Java virtual machine\n# TYPE jvm_classes_loaded_count_classes_total counter\njvm_classes_loaded_count_classes_total 14567.0\n# HELP jvm_classes_unloaded_classes_total The number of classes unloaded in the Java virtual machine\n# TYPE jvm_classes_unloaded_classes_total counter\njvm_classes_unloaded_classes_total 0.0\n# HELP jvm_compilation_time_ms_total The approximate accumulated elapsed time spent in compilation\n# TYPE jvm_compilation_time_ms_total counter\njvm_compilation_time_ms_total{compiler=\"HotSpot 64-Bit Tiered Compilers\"} 2707.0\n# HELP jvm_gc_live_data_size_bytes Size of long-lived heap memory pool after reclamation\n# TYPE jvm_gc_live_data_size_bytes gauge\njvm_gc_live_data_size_bytes 0.0\n# HELP jvm_gc_max_data_size_bytes Max size of long-lived heap memory pool\n# TYPE jvm_gc_max_data_size_bytes gauge\njvm_gc_max_data_size_bytes 6.442450944E9\n# HELP jvm_gc_memory_allocated_bytes_total Incremented for an increase in the size of the (young) heap memory pool after one GC to before the next\n# TYPE jvm_gc_memory_allocated_bytes_total counter\njvm_gc_memory_allocated_bytes_total 6.291456E7\n# HELP jvm_gc_memory_promoted_bytes_total Count of positive increases in the size of the old generation memory pool before GC to after GC\n# TYPE jvm_gc_memory_promoted_bytes_total counter\njvm_gc_memory_promoted_bytes_total 9083232.0\n# HELP jvm_gc_overhead An approximation of the percent of CPU time used by GC activities over the last lookback period or since monitoring began, whichever is shorter, in the range [0..1]\n# TYPE jvm_gc_overhead gauge\njvm_gc_overhead 0.004391223624057667\n# HELP jvm_gc_pause_seconds Time spent in GC pause\n# TYPE jvm_gc_pause_seconds summary\njvm_gc_pause_seconds_count{action=\"end of minor GC\",cause=\"G1 Evacuation Pause\",gc=\"G1 Young Generation\"} 1\njvm_gc_pause_seconds_sum{action=\"end of minor GC\",cause=\"G1 Evacuation Pause\",gc=\"G1 Young Generation\"} 0.002\n# HELP jvm_gc_pause_seconds_max Time spent in GC pause\n# TYPE jvm_gc_pause_seconds_max gauge\njvm_gc_pause_seconds_max{action=\"end of minor GC\",cause=\"G1 Evacuation Pause\",gc=\"G1 Young Generation\"} 0.002\n# HELP jvm_memory_committed_bytes The amount of memory in bytes that is committed for the Java virtual machine to use\n# TYPE jvm_memory_committed_bytes gauge\njvm_memory_committed_bytes{area=\"heap\",id=\"G1 Eden Space\"} 7.5497472E7\njvm_memory_committed_bytes{area=\"heap\",id=\"G1 Old Gen\"} 4.6137344E7\njvm_memory_committed_bytes{area=\"heap\",id=\"G1 Survivor Space\"} 4194304.0\njvm_memory_committed_bytes{area=\"nonheap\",id=\"CodeHeap 'non-nmethods'\"} 2555904.0\njvm_memory_committed_bytes{area=\"nonheap\",id=\"CodeHeap 'non-profiled nmethods'\"} 3145728.0\njvm_memory_committed_bytes{area=\"nonheap\",id=\"CodeHeap 'profiled nmethods'\"} 1.2320768E7\njvm_memory_committed_bytes{area=\"nonheap\",id=\"Compressed Class Space\"} 9699328.0\njvm_memory_committed_bytes{area=\"nonheap\",id=\"Metaspace\"} 7.077888E7\n# HELP jvm_memory_max_bytes The maximum amount of memory in bytes that can be used for memory management\n# TYPE jvm_memory_max_bytes gauge\njvm_memory_max_bytes{area=\"heap\",id=\"G1 Eden Space\"} -1.0\njvm_memory_max_bytes{area=\"heap\",id=\"G1 Old Gen\"} 6.442450944E9\njvm_memory_max_bytes{area=\"heap\",id=\"G1 Survivor Space\"} -1.0\njvm_memory_max_bytes{area=\"nonheap\",id=\"CodeHeap 'non-nmethods'\"} 5849088.0\njvm_memory_max_bytes{area=\"nonheap\",id=\"CodeHeap 'non-profiled nmethods'\"} 1.22912768E8\njvm_memory_max_bytes{area=\"nonheap\",id=\"CodeHeap 'profiled nmethods'\"} 1.22896384E8\njvm_memory_max_bytes{area=\"nonheap\",id=\"Compressed Class Space\"} 1.073741824E9\njvm_memory_max_bytes{area=\"nonheap\",id=\"Metaspace\"} -1.0\n# HELP jvm_memory_usage_after_gc The percentage of long-lived heap pool used after the last GC event, in the range [0..1]\n# TYPE jvm_memory_usage_after_gc gauge\njvm_memory_usage_after_gc{area=\"heap\",pool=\"long-lived\"} 0.0047096361716588335\n# HELP jvm_memory_used_bytes The amount of used memory\n# TYPE jvm_memory_used_bytes gauge\njvm_memory_used_bytes{area=\"heap\",id=\"G1 Eden Space\"} 1.6777216E7\njvm_memory_used_bytes{area=\"heap\",id=\"G1 Old Gen\"} 3.03416E7\njvm_memory_used_bytes{area=\"heap\",id=\"G1 Survivor Space\"} 3705264.0\njvm_memory_used_bytes{area=\"nonheap\",id=\"CodeHeap 'non-nmethods'\"} 1596416.0\njvm_memory_used_bytes{area=\"nonheap\",id=\"CodeHeap 'non-profiled nmethods'\"} 3118336.0\njvm_memory_used_bytes{area=\"nonheap\",id=\"CodeHeap 'profiled nmethods'\"} 1.2251264E7\njvm_memory_used_bytes{area=\"nonheap\",id=\"Compressed Class Space\"} 9217632.0\njvm_memory_used_bytes{area=\"nonheap\",id=\"Metaspace\"} 6.957824E7\n# HELP jvm_threads_daemon_threads The current number of live daemon threads\n# TYPE jvm_threads_daemon_threads gauge\njvm_threads_daemon_threads 25.0\n# HELP jvm_threads_live_threads The current number of live threads including both daemon and non-daemon threads\n# TYPE jvm_threads_live_threads gauge\njvm_threads_live_threads 29.0\n# HELP jvm_threads_peak_threads The peak live thread count since the Java virtual machine started or peak was reset\n# TYPE jvm_threads_peak_threads gauge\njvm_threads_peak_threads 29.0\n# HELP jvm_threads_started_threads_total The total number of application threads started in the JVM\n# TYPE jvm_threads_started_threads_total counter\njvm_threads_started_threads_total 33.0\n# HELP jvm_threads_states_threads The current number of threads\n# TYPE jvm_threads_states_threads gauge\njvm_threads_states_threads{state=\"blocked\"} 0.0\njvm_threads_states_threads{state=\"new\"} 0.0\njvm_threads_states_threads{state=\"runnable\"} 7.0\njvm_threads_states_threads{state=\"terminated\"} 0.0\njvm_threads_states_threads{state=\"timed-waiting\"} 8.0\njvm_threads_states_threads{state=\"waiting\"} 14.0\n# HELP logback_events_total Number of log events that were enabled by the effective log level\n# TYPE logback_events_total counter\nlogback_events_total{level=\"debug\"} 0.0\nlogback_events_total{level=\"error\"} 0.0\nlogback_events_total{level=\"info\"} 21.0\nlogback_events_total{level=\"trace\"} 0.0\nlogback_events_total{level=\"warn\"} 2.0\n# HELP process_cpu_time_ns_total The \"cpu time\" used by the Java Virtual Machine process\n# TYPE process_cpu_time_ns_total counter\nprocess_cpu_time_ns_total 5.168877E9\n# HELP process_cpu_usage The \"recent cpu usage\" for the Java Virtual Machine process\n# TYPE process_cpu_usage gauge\nprocess_cpu_usage 0.0\n# HELP process_files_max_files The maximum file descriptor count\n# TYPE process_files_max_files gauge\nprocess_files_max_files 1048576.0\n# HELP process_files_open_files The open file descriptor count\n# TYPE process_files_open_files gauge\nprocess_files_open_files 15.0\n# HELP process_start_time_seconds Start time of the process since unix epoch.\n# TYPE process_start_time_seconds gauge\nprocess_start_time_seconds 1.791036492805E9\n# HELP process_uptime_seconds The uptime of the Java virtual machine\n# TYPE process_uptime_seconds gauge\nprocess_uptime_seconds 2.225\n# HELP spring_data_repository_invocations_seconds Duration of repository invocations\n# TYPE spring_data_repository_invocations_seconds summary\nspring_data_repository_invocations_seconds_count{exception=\"None\",method=\"findByCode\",repository=\"LinkRepository\",state=\"SUCCESS\"} 7\nspring_data_repository_invocations_seconds_sum{exception=\"None\",method=\"findByCode\",repository=\"LinkRepository\",state=\"SUCCESS\"} 0.005245082\nspring_data_repository_invocations_seconds_count{exception=\"None\",method=\"findByIdempotencyKey\",repository=\"LinkRepository\",state=\"SUCCESS\"} 2\nspring_data_repository_invocations_seconds_sum{exception=\"None\",method=\"findByIdempotencyKey\",repository=\"LinkRepository\",state=\"SUCCESS\"} 0.025710626\nspring_data_repository_invocations_seconds_count{exception=\"None\",method=\"retire\",repository=\"LinkRepository\",state=\"SUCCESS\"} 1\nspring_data_repository_invocations_seconds_sum{exception=\"None\",method=\"retire\",repository=\"LinkRepository\",state=\"SUCCESS\"} 0.001494542\nspring_data_repository_invocations_seconds_count{exception=\"None\",method=\"save\",repository=\"LinkRepository\",state=\"SUCCESS\"} 1\nspring_data_repository_invocations_seconds_sum{exception=\"None\",method=\"save\",repository=\"LinkRepository\",state=\"SUCCESS\"} 0.016503959\n# HELP spring_data_repository_invocations_seconds_max Duration of repository invocations\n# TYPE spring_data_repository_invocations_seconds_max gauge\nspring_data_repository_invocations_seconds_max{exception=\"None\",method=\"findByCode\",repository=\"LinkRepository\",state=\"SUCCESS\"} 0.001060958\nspring_data_repository_invocations_seconds_max{exception=\"None\",method=\"findByIdempotencyKey\",repository=\"LinkRepository\",state=\"SUCCESS\"} 0.022079917\nspring_data_repository_invocations_seconds_max{exception=\"None\",method=\"retire\",repository=\"LinkRepository\",state=\"SUCCESS\"} 0.001494542\nspring_data_repository_invocations_seconds_max{exception=\"None\",method=\"save\",repository=\"LinkRepository\",state=\"SUCCESS\"} 0.016503959\n# HELP system_cpu_count The number of processors available to the Java virtual machine\n# TYPE system_cpu_count gauge\nsystem_cpu_count 14.0\n# HELP system_cpu_usage The \"recent cpu usage\" of the system the application is running in\n# TYPE system_cpu_usage gauge\nsystem_cpu_usage 0.0\n# HELP system_load_average_1m The sum of the number of runnable entities queued to available processors and the number of runnable entities running on the available processors averaged over a period of time\n# TYPE system_load_average_1m gauge\nsystem_load_average_1m 2.810546875\n# HELP tomcat_sessions_active_current_sessions  \n# TYPE tomcat_sessions_active_current_sessions gauge\ntomcat_sessions_active_current_sessions 0.0\n# HELP tomcat_sessions_active_max_sessions  \n# TYPE tomcat_sessions_active_max_sessions gauge\ntomcat_sessions_active_max_sessions 0.0\n# HELP tomcat_sessions_alive_max_seconds  \n# TYPE tomcat_sessions_alive_max_seconds gauge\ntomcat_sessions_alive_max_seconds 0.0\n# HELP tomcat_sessions_created_sessions_total  \n# TYPE tomcat_sessions_created_sessions_total counter\ntomcat_sessions_created_sessions_total 0.0\n# HELP tomcat_sessions_expired_sessions_total  \n# TYPE tomcat_sessions_expired_sessions_total counter\ntomcat_sessions_expired_sessions_total 0.0\n# HELP tomcat_sessions_rejected_sessions_total  \n# TYPE tomcat_sessions_rejected_sessions_total counter\ntomcat_sessions_rejected_sessions_total 0.0\n# HELP urlshort_ratelimit_rejections_total Requests answered 429 because the client's bucket was empty\n# TYPE urlshort_ratelimit_rejections_total counter\nurlshort_ratelimit_rejections_total{budget=\"create\"} 1.0\nurlshort_ratelimit_rejections_total{budget=\"redirect\"} 1.0\n"
+  },
+  {
+    "label": "openapi",
+    "path": "/v3/api-docs",
+    "method": "GET",
+    "client": "198.51.100.100",
+    "status": 200,
+    "exit": 0,
+    "headers": {
+      "x-request-id": "bcf5732b-abc3-4c10-8502-fd40f1daa045",
+      "content-type": "application/json",
+      "content-length": "9602",
+      "date": "Sat, 03 Oct 2026 14:08:15 GMT"
+    },
+    "body": "{\"openapi\":\"3.1.0\",\"info\":{\"description\":\"Create, read and retire short links; visitors are redirected with 302.\",\"title\":\"urlshort\",\"version\":\"1\"},\"servers\":[{\"url\":\"/\"}],\"paths\":{\"/api/links\":{\"post\":{\"description\":\"Without Idempotency-Key every call creates a new link. With a key, a repeat with the same url within 24 h of the first 201 returns that link (current state); a different url is 422.\",\"operationId\":\"createLink\",\"parameters\":[{\"description\":\"1 to 255 visible ASCII characters; makes a retried create return the first link\",\"in\":\"header\",\"name\":\"Idempotency-Key\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"requestBody\":{\"content\":{\"application/json\":{\"examples\":{\"create\":{\"description\":\"create\",\"value\":{\"url\":\"https://example.com/some/path?q=1\"}}},\"schema\":{\"$ref\":\"#/components/schemas/CreateLinkRequest\"}}},\"required\":true},\"responses\":{\"201\":{\"content\":{\"application/json\":{\"examples\":{\"created\":{\"description\":\"created\",\"value\":{\"code\":\"Ab3dE9fG\",\"shortUrl\":\"http://localhost:8080/Ab3dE9fG\",\"url\":\"https://example.com/some/path?q=1\",\"state\":\"active\",\"createdAt\":\"2026-10-03T05:12:42.133Z\"}}},\"schema\":{\"$ref\":\"#/components/schemas/LinkResponse\"}}},\"description\":\"Created, or replayed for the same key and url\",\"headers\":{\"Location\":{\"description\":\"/api/links/{code}\",\"schema\":{\"type\":\"string\"},\"style\":\"simple\"}}},\"400\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Invalid url or Idempotency-Key (errors[] names field and rule), or a body that is not a JSON object\"},\"413\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Body larger than 16 384 bytes\"},\"415\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Content-Type is not application/json\"},\"422\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Idempotency-Key already used with a different url\"},\"429\":{\"content\":{\"application/problem+json\":{\"examples\":{\"tooManyRequests\":{\"value\":{\"instance\":\"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10\",\"status\":429,\"title\":\"Too Many Requests\"}}},\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Too many requests from this client; retry after Retry-After seconds\",\"headers\":{\"Retry-After\":{\"description\":\"Whole seconds until this client's next request is admitted\",\"schema\":{\"type\":\"integer\",\"format\":\"int32\",\"minimum\":1}}}},\"500\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Nothing was stored\"}},\"summary\":\"Create a short link for an http(s) URL\",\"tags\":[\"link-controller\"]}},\"/api/links/{code}\":{\"delete\":{\"operationId\":\"retireLink\",\"parameters\":[{\"in\":\"path\",\"name\":\"code\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"204\":{\"description\":\"Retired\"},\"404\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"No link has this code\"},\"410\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Already retired\"},\"429\":{\"content\":{\"application/problem+json\":{\"examples\":{\"tooManyRequests\":{\"value\":{\"instance\":\"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10\",\"status\":429,\"title\":\"Too Many Requests\"}}},\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Too many requests from this client; retry after Retry-After seconds\",\"headers\":{\"Retry-After\":{\"description\":\"Whole seconds until this client's next request is admitted\",\"schema\":{\"type\":\"integer\",\"format\":\"int32\",\"minimum\":1}}}},\"500\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Nothing was changed\"}},\"summary\":\"Retire a link; visitors then get 410 and the record is kept\",\"tags\":[\"link-controller\"]},\"get\":{\"operationId\":\"readLink\",\"parameters\":[{\"in\":\"path\",\"name\":\"code\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"link\":{\"description\":\"link\",\"value\":{\"code\":\"Ab3dE9fG\",\"shortUrl\":\"http://localhost:8080/Ab3dE9fG\",\"url\":\"https://example.com/some/path?q=1\",\"state\":\"active\",\"createdAt\":\"2026-10-03T05:12:42.133Z\"}}},\"schema\":{\"$ref\":\"#/components/schemas/LinkResponse\"}}},\"description\":\"The link; state is active or retired\"},\"404\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"No link has this code\"},\"429\":{\"content\":{\"application/problem+json\":{\"examples\":{\"tooManyRequests\":{\"value\":{\"instance\":\"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10\",\"status\":429,\"title\":\"Too Many Requests\"}}},\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Too many requests from this client; retry after Retry-After seconds\",\"headers\":{\"Retry-After\":{\"description\":\"Whole seconds until this client's next request is admitted\",\"schema\":{\"type\":\"integer\",\"format\":\"int32\",\"minimum\":1}}}}},\"summary\":\"Read a link by its code\",\"tags\":[\"link-controller\"]}},\"/api/links/{code}/stats\":{\"get\":{\"operationId\":\"stats\",\"parameters\":[{\"in\":\"path\",\"name\":\"code\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"stats\":{\"description\":\"stats\",\"value\":{\"code\":\"Ab3dE9fG\",\"totalClicks\":6,\"clicksPerDay\":[{\"date\":\"2026-10-01\",\"clicks\":2},{\"date\":\"2026-10-02\",\"clicks\":3},{\"date\":\"2026-10-04\",\"clicks\":1}],\"topReferrers\":[{\"referrer\":\"https://a.example\",\"clicks\":5}]}}},\"schema\":{\"$ref\":\"#/components/schemas/LinkStats\"}}},\"description\":\"Total clicks, clicks per UTC day and the top 10 referrer origins\"},\"404\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"No link has this code\"},\"429\":{\"content\":{\"application/problem+json\":{\"examples\":{\"tooManyRequests\":{\"value\":{\"instance\":\"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10\",\"status\":429,\"title\":\"Too Many Requests\"}}},\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Too many requests from this client; retry after Retry-After seconds\",\"headers\":{\"Retry-After\":{\"description\":\"Whole seconds until this client's next request is admitted\",\"schema\":{\"type\":\"integer\",\"format\":\"int32\",\"minimum\":1}}}}},\"summary\":\"Read a link's click statistics\",\"tags\":[\"stats-controller\"]}},\"/api/ping\":{\"get\":{\"operationId\":\"ping\",\"responses\":{\"200\":{\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/PingResponse\"}}},\"description\":\"OK\"},\"429\":{\"content\":{\"application/problem+json\":{\"examples\":{\"tooManyRequests\":{\"value\":{\"instance\":\"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10\",\"status\":429,\"title\":\"Too Many Requests\"}}},\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Too many requests from this client; retry after Retry-After seconds\",\"headers\":{\"Retry-After\":{\"description\":\"Whole seconds until this client's next request is admitted\",\"schema\":{\"type\":\"integer\",\"format\":\"int32\",\"minimum\":1}}}}},\"tags\":[\"ping-controller\"]}},\"/{code}\":{\"get\":{\"operationId\":\"redirect\",\"parameters\":[{\"in\":\"path\",\"name\":\"code\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"302\":{\"description\":\"Redirect to the stored url, not cacheable\",\"headers\":{\"Cache-Control\":{\"description\":\"no-store\",\"schema\":{\"type\":\"string\"},\"style\":\"simple\"},\"Location\":{\"description\":\"The stored url, byte for byte\",\"schema\":{\"type\":\"string\"},\"style\":\"simple\"}}},\"404\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"No link has this code\"},\"410\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"The link was retired\"},\"429\":{\"content\":{\"application/problem+json\":{\"examples\":{\"tooManyRequests\":{\"value\":{\"instance\":\"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10\",\"status\":429,\"title\":\"Too Many Requests\"}}},\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Too many requests from this client; retry after Retry-After seconds\",\"headers\":{\"Retry-After\":{\"description\":\"Whole seconds until this client's next request is admitted\",\"schema\":{\"type\":\"integer\",\"format\":\"int32\",\"minimum\":1}}}}},\"summary\":\"Open a short link\",\"tags\":[\"redirect-controller\"]}}},\"components\":{\"schemas\":{\"CreateLinkRequest\":{\"type\":\"object\",\"properties\":{\"url\":{\"type\":\"string\"}}},\"DayClicks\":{\"type\":\"object\",\"properties\":{\"clicks\":{\"type\":\"integer\",\"format\":\"int64\"},\"date\":{\"type\":\"string\",\"format\":\"date\"}}},\"LinkResponse\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\",\"format\":\"date-time\"},\"shortUrl\":{\"type\":\"string\"},\"state\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"}}},\"LinkStats\":{\"type\":\"object\",\"properties\":{\"clicksPerDay\":{\"type\":\"array\",\"items\":{\"$ref\":\"#/components/schemas/DayClicks\"}},\"code\":{\"type\":\"string\"},\"topReferrers\":{\"type\":\"array\",\"items\":{\"$ref\":\"#/components/schemas/ReferrerClicks\"}},\"totalClicks\":{\"type\":\"integer\",\"format\":\"int64\"}}},\"PingResponse\":{\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"string\"},\"time\":{\"type\":\"string\"}}},\"ProblemDetail\":{\"type\":\"object\",\"properties\":{\"detail\":{\"type\":\"string\"},\"instance\":{\"type\":\"string\",\"format\":\"uri\"},\"properties\":{\"type\":\"object\",\"additionalProperties\":{}},\"status\":{\"type\":\"integer\",\"format\":\"int32\"},\"title\":{\"type\":\"string\"},\"type\":{\"type\":\"string\",\"format\":\"uri\"}}},\"ReferrerClicks\":{\"type\":\"object\",\"properties\":{\"clicks\":{\"type\":\"integer\",\"format\":\"int64\"},\"referrer\":{\"type\":\"string\"}}}}}}"
+  }
+]
