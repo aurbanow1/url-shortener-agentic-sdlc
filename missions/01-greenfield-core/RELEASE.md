@@ -118,6 +118,12 @@ lists the modes and host prerequisites). All its HTTP goes through `scripts/http
   persistence checks still report when R0 fails, and the run still ends `SMOKE FAIL`.
   A latent bug was fixed on the way: with every load response valid, `grep -v`
   exited 1 and `pipefail` ended the script silently after the R0 line;
+- the script was edited while this step ran: the `--restart` changes (R0 judged
+  at the end, the `grep -c` fix, the restart-window log) came after restart runs 1
+  and 2, and the `--bench` link line and header text came after the jar and drain
+  runs. Each output under `release/` was produced by the version current at that
+  time, and the default journey, `--jar`, `--drain` and `--inspect` logic did not
+  change after their runs. The committed file is the final version;
 - the Perl timestamp runs under `LC_ALL=C`, which removes QA-OPR-03's host-locale
   dependency (W2-04). On this host the inherited `en_US.UTF-8` also works:
   `perl -MTime::HiRes=time -e 'printf "%d\n", time * 1000'` printed a timestamp.
