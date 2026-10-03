@@ -7,7 +7,7 @@
 
 ## Acceptance
 
-- [ ] Scope complete (all slices shaped)
+- [x] Scope complete (all slices shaped) — one slice `01-analytics-v2`, shaped at `eb2ed0a`; pending decomposition review and the mission plan-lock. The slice's own scope is decided at its ambiguity park, and more slices may follow from that answer (mission SPEC, re-planning)
 - [ ] Implementation in progress
 - [ ] QA / review pass
 - [ ] Merge / ship
