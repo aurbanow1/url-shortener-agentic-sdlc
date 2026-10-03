@@ -1,6 +1,6 @@
 # Evidence export — 00-hello
 
-Exported 2026-10-03T03:02:14Z by tools/evidence-export.sh from OpenRig 0.6.3 (8b5e9488).
+Exported 2026-10-03T03:07:20Z by tools/evidence-export.sh from OpenRig 0.6.3 (8b5e9488).
 
 | Artifact | Governance clause (docs/GOVERNANCE.md) |
 |---|---|
@@ -18,7 +18,7 @@ Exported 2026-10-03T03:02:14Z by tools/evidence-export.sh from OpenRig 0.6.3 (8b
 
 Approval stamps are not in this export: they live in the stamped files' frontmatter (missions/<m>/SPEC.md, slices/*/SPEC.md: approved-spec-*, approved-*) with append-only audit rows daemon-side; the decision text behind each stamp is in the gate packet's transitions here.
 
-Instances exported: 2; packets exported: 23.
+Instances exported: 2; packets exported: 24.
 
 ## Packets (workflow · step · state · owner)
 
@@ -44,7 +44,8 @@ Instances exported: 2; packets exported: 23.
 | qitem-20261003015049-51d1ba00 | 00-hello | wave_review | handed-off | review-agent |
 | qitem-20261003020412-57cea2d9 | 00-hello | release_prep | handed-off | release-agent |
 | qitem-20261003023502-f807af1f | 00-hello | ship_signoff | handed-off | release-agent |
-| qitem-20261003024639-d36d76cc | 00-hello | evidence_export | in-progress | release-agent |
+| qitem-20261003024639-d36d76cc | 00-hello | evidence_export | handed-off | release-agent |
+| qitem-20261003030415-a2011998 | 00-hello | mission_close | done | orchestration-lead |
 | qitem-recovery-1500f49a88f65f64 | - | - | done | orchestration-lead |
 | qitem-recovery-a562baedab298be5 | - | - | blocked | orchestration-lead |
 
@@ -54,6 +55,8 @@ Instances exported: 2; packets exported: 23.
 
 | Closed at | Step | Exit | Packet | Actor |
 |---|---|---|---|---|
+| 2026-10-03T03:06:00.711Z | mission_close | done | qitem-20261003030415-a2011998 | orchestration-lead |
+| 2026-10-03T03:04:15.796Z | evidence_export | handoff | qitem-20261003024639-d36d76cc | release-agent |
 | 2026-10-03T02:46:39.191Z | ship_signoff | handoff | qitem-20261003023502-f807af1f | release-agent |
 | 2026-10-03T02:35:02.387Z | release_prep | handoff | qitem-20261003020412-57cea2d9 | release-agent |
 | 2026-10-03T02:04:12.497Z | wave_review | handoff | qitem-20261003015049-51d1ba00 | review-agent |
