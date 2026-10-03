@@ -8,5 +8,18 @@ lifecycle:
 composition:
   mission_markdown:
     spec: SPEC.md
-  slices: []
+  slices:
+    - ref: slices/01-create-redirect/slice.yaml
+      order: 10
+      active: true
+    - ref: slices/02-analytics/slice.yaml
+      order: 20
+      active: true
+    - ref: slices/03-operate/slice.yaml
+      order: 30
+      active: true
+    - ref: slices/04-audit-read/slice.yaml
+      order: 40
+      active: true
+
 # Optional team and SDLC sections are added here.

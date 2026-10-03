@@ -1,0 +1,50 @@
+schema: openrig.slice/v0alpha1
+kind: slice
+composition:
+  mission: ../../mission.yaml
+  slice_markdown:
+    spec: SPEC.md
+    progress: PROGRESS.md
+    proof: PROOF.md
+metadata:
+  id: 01-create-redirect
+# Gate tier decides the workflow variant: high -> urlshort-slice (human plan-lock),
+# low -> urlshort-slice-delegated (orchestration lead approves the plan-lock).
+tier: high
+tier_reason: foundation slice (first schema migration link + audit_log, the error contract, audit wiring, the committed OpenAPI export) and a new security-relevant surface (the redirect target allow-list is the open-redirect boundary). It also carries the dependency overrides that the 00-hello ship decision requires before any client input is parsed.
+# Requirements allocated (docs/REQUIREMENTS.md): FR-1 FR-2 FR-3 FR-4 FR-5 FR-6 FR-9;
+# NFR-S1 S3 S4 R5 R6 A1 A2 M3 O1 O2; cross-cutting M1 M2.
+# Inputs carried from 00-hello: backlog 1 (dependency overrides, FIRST commit, gated
+# green on its own before any feature commit; OSV re-run by the builder and the
+# release agent, since the QA sandbox has no network), backlog 2 (OpenAPI export
+# ownership, W1-01), backlog 4 (unit-suite properties overlay, optional).
+# Territory: wave w1, alone, so the wider foundation territory collides with nothing.
+territory:
+  - src/main/java/dev/urlshort/link/
+  - src/test/java/dev/urlshort/link/
+  - src/functionalTest/java/dev/urlshort/link/
+  # audit: write side only (the audit_log row and its repository); the read endpoint is slice 04.
+  - src/main/java/dev/urlshort/audit/
+  - src/test/java/dev/urlshort/audit/
+  - src/functionalTest/java/dev/urlshort/audit/
+  # web: error advice for domain exceptions (ADR-0002 keeps the platform handler until a domain exception exists).
+  - src/main/java/dev/urlshort/web/
+  - src/test/java/dev/urlshort/web/
+  - src/functionalTest/java/dev/urlshort/web/
+  # V1 migration: link and audit_log (the idempotency key as a column or its own table; design decides).
+  - src/main/resources/db/migration/
+  # NEW committed OpenAPI export (backlog W1-01). Must be deterministic and key-sorted
+  # so that later slices' additions merge textually (see mission SPEC, shaping rule 5).
+  - docs/api/openapi.json
+  # (a) dependency overrides Tomcat 11.0.25 / Jackson 3.1.7 / Jackson 2 constraint 2.21.7 as the
+  # first commit; (b) whatever the OpenAPI export mechanism needs.
+  - build.gradle.kts
+  # request body limit (NFR-S3) and link-feature defaults.
+  - src/main/resources/application.properties
+  # backlog item 4: the unit-suite file shadows the shipped one; MAY be converted to the profile
+  # pattern in passing (optional, not an acceptance criterion).
+  - src/test/resources/application.properties
+  - src/functionalTest/resources/application-functional.properties
+execution:
+  actor_role: requirements
+  depends_on: []

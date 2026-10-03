@@ -7,7 +7,7 @@
 
 ## Acceptance
 
-- [ ] Scope complete (all slices shaped)
+- [x] Scope complete (all slices shaped) — 2026-10-03, decomposed into `01-create-redirect`, `02-analytics`, `03-operate`, `04-audit-read` over waves w1/w2/w3 (wave map `qitem-20261003040319-a45c400a`); plan-lock pending
 - [ ] Implementation in progress
 - [ ] QA / review pass
 - [ ] Merge / ship

@@ -1,0 +1,43 @@
+schema: openrig.slice/v0alpha1
+kind: slice
+composition:
+  mission: ../../mission.yaml
+  slice_markdown:
+    spec: SPEC.md
+    progress: PROGRESS.md
+    proof: PROOF.md
+metadata:
+  id: 03-operate
+# Gate tier decides the workflow variant: high -> urlshort-slice (human plan-lock),
+# low -> urlshort-slice-delegated (orchestration lead approves the plan-lock).
+tier: high
+tier_reason: new security-relevant surface, the rate limiter with its trusted-proxy rule for X-Forwarded-For (decomposition guide section 4 names rate limit as high), plus container privilege changes (non-root user, read-only filesystem). No migration.
+# Requirements allocated (docs/REQUIREMENTS.md), in two groups so the SPEC does not promise
+# proofs the suites cannot give:
+#   builds and proves in-suite: FR-10, NFR-R2 (at the limit, one over, spoofed X-Forwarded-For),
+#     R1 (readiness group includes the database), O3 (metric names and the rejection counter
+#     readable through the actuator);
+#   owns the configuration / Dockerfile / compose / smoke lines, proof is release-level
+#     (installed smoke, docker inspect, restart loop, bench): R3, R4, S5, X1, L1, L2.
+#     What the slice cannot prove in-suite is recorded in docs/qa/GAPS.md, not claimed.
+#   cross-cutting: M1 M2.
+# Wave w2 with 02-analytics: territories disjoint; the grants below name the reason.
+territory:
+  # the rate-limit filter lives beside the request-id filter (cross-cutting HTTP concerns).
+  - src/main/java/dev/urlshort/web/
+  - src/test/java/dev/urlshort/web/
+  - src/functionalTest/java/dev/urlshort/web/
+  # GRANT for wave w2: readiness group, actuator exposure, rate-limit defaults. Slice 02 does not touch it.
+  - src/main/resources/application.properties
+  # GRANT for wave w2: the Micrometer Prometheus registry only. Slice 02 does not touch it.
+  - build.gradle.kts
+  - Dockerfile
+  - compose.yaml
+  # --bench mode for NFR-L1/L2; restart loop for R3/R4.
+  - scripts/smoke.sh
+# NOT in territory: link/, click/, db/migration/, docs/api/openapi.json. The 429 is produced by a
+# filter and documented in design.md and docs/DESIGN.md; this slice does not change the generated
+# API document (granted to 02 in w2), so the committed document stays consistent on main.
+execution:
+  actor_role: requirements
+  depends_on: [01-create-redirect]
