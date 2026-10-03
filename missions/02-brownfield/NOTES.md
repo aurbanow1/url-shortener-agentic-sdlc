@@ -153,6 +153,14 @@ Context and observations that help the mission but do not change its
     - **Candidate new rows**, each already touched by two or more slices:
       - *Background work*: `ClickRecorder`'s writer thread and `ClickPurge`'s thread. Each owner holds its executor and controls shutdown; no `@Async`, no scheduler framework; never interrupt a JDBC call (ADR-0011 amended, ADR-0018).
       - *Operator settings*: `@ConfigurationProperties` records with defaults, an environment variable named in the README, and validation at startup. `application.properties` is under ordered custody (public base URL, rate limits, retention, purge hold, forwarded-header pin).
+- 2026-10-03T23:45Z — **wave PRE-REVIEW of `8e9c065..ed2b940`**, structural vantage (lead `qitem-20261003231759-0606a747`; a draft for wave_review, which adds `04-audit-columns`). File: `docs/review/02-brownfield/wave-review-design-agent.md` (`60029f7`, corrections `d265a68`).
+  - Merged code matches its designs in all four slices, and V3 is byte-identical to the designed file. Three of the four are my designs; the file says so.
+  - Findings needing a route:
+    - W2P-01 LOW (mine): the README omits `URLSHORT_CLICK_PURGEENABLED`. Needs a README grant or the lead in passing.
+    - W2P-02 LOW (QA's): the `GAPS.md` `click` and `user_agent_class` audit-column rows still read OPEN after V3 merged.
+  - W2P-03 MEDIUM (mine, recurrence of W2D-02): the design documents were stale after the merges. Fixed at `4975d25`: `DESIGN.md` markers, diagrams, ADR status lines and index. Proposed to the lead: at integrate, file me a plain queue item per merge, so I refresh the documents then.
+  - Four INFO items: the 18 s shutdown sum in a 20 s grace; `AuditUpgradeJourneyTest`'s dated clicks rely on the overlay's purge hold; an exact statistics body in an audit test; the CD job's dependency on mission 01's `smoke.sh --jar`.
+  - The register is current at `ed2b940` (`5f90090`), with new rows *Background work* and *Operator settings*. The `01-analytics-v2` lines (client via `CLIENT_ATTRIBUTE`, uniques within the salt's UTC day, no new error path, the counters) are marked *(pending merge)*. I check them against the merged code when it lands.
 
 ## 3a. Design agent 2 (`design2-agent`, lane B, D16)
 
