@@ -120,6 +120,18 @@ pods:
         cwd: "."
     edges: []
 
+  - id: design2
+    label: Design (second seat)
+    summary: Second Design Agent seat (Claude) so two slice designs proceed concurrently; selected by the urlshort-slice-delegated-b workflow.
+    members:
+      - id: agent
+        label: Design Agent 2
+        agent_ref: "local:agents/design-agent"
+        runtime: claude-code
+        profile: default
+        cwd: "."
+    edges: []
+
   - id: dev2
     label: Development (second seat)
     summary: Second Development Agent seat (Claude) so two slices build concurrently; selected by the urlshort-slice-delegated-b workflow.
@@ -154,9 +166,11 @@ edges:
   - { kind: delegates_to, from: orchestration.lead, to: review.agent }
   - { kind: delegates_to, from: orchestration.lead, to: qa2.agent }
   - { kind: delegates_to, from: orchestration.lead, to: review2.agent }
+  - { kind: delegates_to, from: orchestration.lead, to: design2.agent }
   - { kind: delegates_to, from: orchestration.lead, to: dev2.agent }
   - { kind: delegates_to, from: orchestration.lead, to: release.agent }
   - { kind: collaborates_with, from: requirements.agent, to: design.agent }
+  - { kind: collaborates_with, from: requirements.agent, to: design2.agent }
   - { kind: can_observe, from: qa.agent, to: development.agent }
   - { kind: can_observe, from: review.agent, to: development.agent }
   - { kind: can_observe, from: review.agent, to: qa.agent }
@@ -168,6 +182,7 @@ edges:
   - { kind: can_observe, from: release.agent, to: review.agent }
   - { kind: escalates_to, from: requirements.agent, to: orchestration.lead }
   - { kind: escalates_to, from: design.agent, to: orchestration.lead }
+  - { kind: escalates_to, from: design2.agent, to: orchestration.lead }
   - { kind: escalates_to, from: development.agent, to: orchestration.lead }
   - { kind: escalates_to, from: dev2.agent, to: orchestration.lead }
   - { kind: escalates_to, from: qa.agent, to: orchestration.lead }

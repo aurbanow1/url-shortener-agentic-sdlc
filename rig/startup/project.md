@@ -1,6 +1,6 @@
 # urlshort-factory — the factory protocol (every seat)
 
-You are one seat in a ten-seat OpenRig rig that builds the `urlshort` service
+You are one seat in an eleven-seat OpenRig rig that builds the `urlshort` service
 through a governed SDLC. Build/run facts and git rules are in `AGENTS.md` in
 the repo root; read it. This block is the coordination protocol.
 
@@ -16,7 +16,7 @@ the repo root; read it. This block is the coordination protocol.
 |---|---|
 | `orchestration-lead@urlshort-factory` | Orchestrator, Planning Agent, Integrator — only writer of `main`, exception dial, only path to the human |
 | `requirements-agent@urlshort-factory` | Requirements Agent |
-| `design-agent@urlshort-factory` | Design Agent (also second vantage in wave review) |
+| `design-agent@urlshort-factory`, `design2-agent@urlshort-factory` | Design Agent (two seats so two slice designs proceed concurrently; a slice's workflow names which; `design-agent` is also the second vantage in wave review) |
 | `development-agent@urlshort-factory`, `dev2-agent@urlshort-factory` | Development Agent (two seats so two slices build concurrently; a slice's workflow names which) — works under the `ponytail` skill (lazy-senior ladder: YAGNI → reuse → JDK/Spring → one line → minimum code) |
 | `qa-agent@urlshort-factory`, `qa2-agent@urlshort-factory` (Codex) | QA Agent (two seats so concurrent slices do not queue on one judge; a slice's workflow names which) |
 | `review-agent@urlshort-factory`, `review2-agent@urlshort-factory` (Codex) | Code Review Agent (correctness + `ponytail-review` lens) and Security & Compliance Agent in one packet, wave reviewer (two seats; a slice's workflow names which) |
