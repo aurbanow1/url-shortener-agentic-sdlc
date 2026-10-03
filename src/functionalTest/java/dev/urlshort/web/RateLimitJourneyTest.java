@@ -16,6 +16,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.micrometer.metrics.test.autoconfigure.AutoConfigureMetrics;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.system.CapturedOutput;
@@ -31,18 +33,23 @@ import tools.jackson.databind.json.JsonMapper;
 
 /**
  * The per-client rate limit at the shipped budgets (60 creates, 600 redirects per minute): AC-1 to
- * AC-7, AC-9, AC-11, AC-12 and business rules 1 and 3. The clock is frozen per test so a budget is
+ * AC-7, AC-9, AC-11, AC-12, its metrics (AC-16, AC-17, AC-19, with the Prometheus registry exported)
+ * and business rules 1 and 3; plus design review DR-01's real-server log canary. The clock is frozen per test so a budget is
  * spent in no time; each test uses its own peer address so buckets never carry over, except AC-11
  * and AC-12, whose address the SPEC fixes and which therefore exhaust it until the first {@code 429}.
  */
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT,
 		properties = { "urlshort.rate-limit.create-per-minute=60", "urlshort.rate-limit.redirect-per-minute=600" })
 @AutoConfigureMockMvc
+@AutoConfigureMetrics
 @ExtendWith(OutputCaptureExtension.class)
 class RateLimitJourneyTest {
 
 	private static final String PROBLEM_JSON = "application/problem+json";
 	private static final String CANARY_PEER = "10.77.77.77";
+
+	@Value("${local.server.port}")
+	private int port;
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -265,6 +272,100 @@ class RateLimitJourneyTest {
 
 		assertThat(response.getStatus()).isEqualTo(404);
 		assertThat(response.getHeader("Location")).isNull();
+	}
+
+	@Test
+	void AC16_theMetricsSurfaceListsTheFourKindsOfMetric() throws Exception {
+		String code = code(create("10.0.16.0"));
+		redirect("10.0.16.0", code);
+		exhaustCreates("10.0.16.1");
+
+		JsonNode names = jsonMapper.readTree(perform(get("/actuator/metrics")).getContentAsString()).get("names");
+
+		List<String> listed = new java.util.ArrayList<>();
+		names.forEach(name -> listed.add(name.asString()));
+		assertThat(listed).contains("http.server.requests", "urlshort.ratelimit.rejections",
+				"hikaricp.connections.active", "hikaricp.connections.idle");
+	}
+
+	@Test
+	void AC17_everyRejectionIsCountedOnceByBudget() throws Exception {
+		String code = code(create("10.0.17.0"));
+		double creates = rejections("create");
+		double redirects = rejections("redirect");
+
+		exhaustCreates("10.0.17.1");
+		create("10.0.17.1");
+		exhaustRedirects("10.0.17.1", code);
+		redirect("10.0.17.1", code);
+		redirect("10.0.17.1", code);
+		create("10.0.17.2");
+		redirect("10.0.17.2", code);
+
+		assertThat(rejections("create")).isEqualTo(creates + 2);
+		assertThat(rejections("redirect")).isEqualTo(redirects + 3);
+		JsonNode tags = jsonMapper.readTree(perform(get("/actuator/metrics/urlshort.ratelimit.rejections"))
+				.getContentAsString()).get("availableTags");
+		assertThat(tags).singleElement().satisfies(tag -> {
+			assertThat(tag.get("tag").asString()).isEqualTo("budget");
+			assertThat(tag.toString()).doesNotContain("10.0.17");
+		});
+	}
+
+	@Test
+	void AC19_metricsAreExposedForScrapingWithoutClientOrLinkValues() throws Exception {
+		String target = "https://example.com/scraped-" + UUID.randomUUID();
+		String code = code(perform(post("/api/links").contentType(MediaType.APPLICATION_JSON).content(json(target))
+				.with(peer("10.0.19.0"))));
+		redirect("10.0.19.0", code);
+		perform(get("/zzCanary99").with(peer("10.0.19.0")));
+		exhaustCreates(CANARY_PEER);
+		create(CANARY_PEER);
+
+		MockHttpServletResponse scrape = perform(get("/actuator/prometheus"));
+
+		assertThat(scrape.getStatus()).isEqualTo(200);
+		assertThat(scrape.getContentType()).startsWith("text/plain");
+		String body = scrape.getContentAsString();
+		assertThat(body).contains("http_server_requests_seconds", "urlshort_ratelimit_rejections_total",
+				"hikaricp_connections_active", "hikaricp_connections_idle");
+		assertThat(body).doesNotContain(code).doesNotContain("zzCanary99").doesNotContain(CANARY_PEER)
+				.doesNotContain(target);
+	}
+
+	@Test
+	void designDR01_anInvalidPathUnderAnExemptPrefixLogsNoSubmittedValueOnTomcat(CapturedOutput output)
+			throws Exception {
+		int windowStart = output.getAll().length();
+		java.net.http.HttpClient http = java.net.http.HttpClient.newHttpClient();
+		URI target = URI.create("http://localhost:" + port + "/actuator/../pii-canary-10.77.77.77");
+
+		int get = http.send(java.net.http.HttpRequest.newBuilder(target).GET().build(),
+				java.net.http.HttpResponse.BodyHandlers.discarding()).statusCode();
+		int post = http.send(java.net.http.HttpRequest.newBuilder(target)
+				.POST(java.net.http.HttpRequest.BodyPublishers.noBody()).build(),
+				java.net.http.HttpResponse.BodyHandlers.discarding()).statusCode();
+		String window = awaitTwoCompletions(output, windowStart);
+
+		assertThat(get).isEqualTo(404);
+		assertThat(post).isIn(404, 405);
+		assertThat(window).doesNotContain("pii-canary").doesNotContain(CANARY_PEER);
+	}
+
+	private static String awaitTwoCompletions(CapturedOutput output, int windowStart) {
+		java.time.Instant deadline = java.time.Instant.now().plusSeconds(5);
+		String window = output.getAll().substring(windowStart);
+		while (window.split("request completed", -1).length < 3 && java.time.Instant.now().isBefore(deadline)) {
+			Thread.onSpinWait();
+			window = output.getAll().substring(windowStart);
+		}
+		return window;
+	}
+
+	private double rejections(String budget) throws Exception {
+		JsonNode metric = jsonMapper.readTree(perform(get("/actuator/metrics/urlshort.ratelimit.rejections")
+				.param("tag", "budget:" + budget)).getContentAsString());
+		return metric.get("measurements").get(0).get("value").asDouble();
 	}
 
 	private void assertTooManyRequests(MockHttpServletResponse refused) throws Exception {
