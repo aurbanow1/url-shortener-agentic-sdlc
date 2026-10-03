@@ -68,8 +68,14 @@ OpenApiCustomizer problemSchemaMatchesTheWire() {
 
 ## 2. API contract
 
-**The wire is unchanged (AC-4).** Every status, content type and body member is as shipped (rule 2;
-probe D2: "wire unchanged: true" over AC-2's five pre-merge requests).
+**The wire is unchanged (AC-4).** Every status, content type, body member and value is as shipped
+(rule 2). Neither fix touches a request path, so this holds by construction. Probe D2 checked only
+the shape over AC-2's five pre-merge requests: status, content type, member names, the `errors`
+count and item member names. Design review's control compared the full JSON values with only
+`instance` removed, and found them equal for all five, `title` and `errors` `field`/`rule`/`message`
+included. It also caught a changed `title` that the shape check misses
+(`docs/review/03-dogfood-fix/proof/design-controls.txt`, DR-01). QA's AC-4 check is the full-value
+one (§7).
 
 **The document's problem schema** (live `/v3/api-docs`, key-sorted as committed), from probe D1:
 
@@ -102,6 +108,10 @@ probe D2: "wire unchanged: true" over AC-2's five pre-merge requests).
 
 **Metrics.** `disk_free_bytes` and `disk_total_bytes` render without labels. `/actuator/metrics/disk.free`
 and `disk.total` show `availableTags: []`. The values are unchanged (D3).
+- A selector on the old tag stops matching. `/actuator/metrics/disk.free?tag=path:<old value>`
+  answers `200` before and `404` after; unfiltered it stays `200` (design review's control, DR-02).
+- A Prometheus query with `path="…"` likewise matches nothing. Consumers must drop the `path`
+  selector. The unfiltered gauge is the same single series.
 
 ## 3. Data model, migration and queries
 
@@ -205,7 +215,7 @@ It pins that only the `path` key is dropped.
 | AC | Check |
 |---|---|
 | AC-3 | key-sorted diff of the candidate's `docs/api/openapi.json` against the merged `main`'s: only `components.schemas.ProblemDetail` and the added `ProblemFieldError`. Probe D1 is the same comparison on the live documents |
-| AC-4 | AC-2's six requests against the merged `main`'s jar and the candidate's, compared on status, content type and members, as probe D2 does. By construction no request-path code changes |
+| AC-4 | AC-2's six requests against the merged `main`'s jar and the candidate's. Compare status, content type and the **full normalised body**: every member and every value, `title` and each `errors` item's `field`, `rule` and `message` included. Exclude only `instance` and the `X-Request-Id` header. A shape-only comparison like probe D2 does not meet AC-4 (DR-01). By construction no request-path code changes |
 | AC-5, AC-6 test first | the test commit checked out without the fix: `scripts/gw functionalTest --tests '*OpenApiDocumentTest*' --tests '*HealthMetricsJourneyTest*'`, failing run captured to `proof/` |
 | AC-7 | QA closes `GAPS.md` QA-OPR-02 with this slice's evidence, and no row lists W2-01 as open |
 | AC-8 | `docs/DESIGN.md` updated in this design step (Errors, API document, Metrics rows). The builder records the `README.md` check in `PROGRESS.md`. At design time, lines 12, 17 and 38 mention metrics generically and none describes a problem member or a tag (impact analysis) |
@@ -288,7 +298,7 @@ Two probes, with no product, test or build file changed.
 |---|---|---|---|
 | D0 | shipped service | `ProblemDetail` has `properties` (object, `additionalProperties`) and no `errors`. The wire: `400`/`422` `[errors, instance, status, title]` with items `[field, message, rule]`, and `404`/`410`/`429` `[instance, status, title]`. The scrape: 2 samples with `path="/Users/…/url-shortener/."`; `disk.free` lists the `path` tag | both defects, reproduced |
 | D1 | fixed service | the §2 schema. Paths unchanged: true; other schemas unchanged: true; schema names added: `[ProblemFieldError]` | AC-1, AC-3 |
-| D2 | AC-2's five pre-merge requests, shipped and fixed | every member and item member documented; "wire unchanged (status, content type, members, error items): true" | AC-2, AC-4 |
+| D2 | AC-2's five pre-merge requests, shipped and fixed | every member and item member documented. "Wire unchanged (status, content type, members, error items): true" compares **shape only**: member names, the `errors` count and item member names, not values | AC-2; the shape part of AC-4. Value equality: design review's control (DR-01) |
 | D3 | fixed service | `disk_free_bytes 3.7E10`, `disk_total_bytes 4.9E11`, no labels; 0 samples with a `path` label; `availableTags: []` | AC-6 |
 | T1 | plain functional context | `/actuator/prometheus` → `404` | the scrape needs `@AutoConfigureMetrics` (§7) |
 | T2 | §7's assertions, shipped | AC-1 fails: "elements not found: [errors] and elements not expected: [properties]". AC-6 fails: `[disk.free carries no path tag] … not to contain ["path"]` | AC-5, AC-6 test first |
@@ -327,12 +337,14 @@ Two probes, with no product, test or build file changed.
 
 - 2026-10-03: design written on SPEC `8b63e5b`; impact analysis first (`e8969b5`); handed to
   `design_review`.
+- 2026-10-03 19:37Z: design review by review-agent passed with no blocker; two MEDIUMs were
+  corrected in passing (*Review response*).
 
 ## Self-check
 
 - Every AC (1 to 9) and rule (1 to 5) has a mechanism and a named test or recorded check (§7).
-- Every mechanism claim was run. On a real server: the schema, the wire before and after, and the
-  scrape (D0–D3). In the suite's set-up: the failing-first messages, the nested `429` and the
+- Every mechanism claim was run. On a real server: the schema, the wire's shape before and after
+  (values were compared by design review's control, DR-01), and the scrape (D0–D3). In the suite's set-up: the failing-first messages, the nested `429` and the
   nested scrape (T1–T5).
 - The two places the shipped test classes cannot observe were found by running them, not assumed:
   the `429` under the overlay's budgets, and the `404` scrape. Both are additions.
@@ -354,3 +366,13 @@ Two probes, with no product, test or build file changed.
   without touching the wire.
 - **Creator and Operator experience.** A generated client gets a typed `errors` list and no dead
   `properties` field. The anonymous scrape no longer shows where the service is installed.
+
+## Review response (design review, review-agent, 19:37Z)
+
+The evidence is `docs/review/03-dogfood-fix/proof/design-controls.txt`. The reviewer requested no
+product change.
+
+| Finding | Severity | Response |
+|---|---|---|
+| DR-01: D2 is cited as proving AC-4, but `DogfoodProbe.wire` compares names and counts, not `title` or the `errors` values | MEDIUM | **Fixed.** D2 is now described as a shape check (§2, §12). The AC-4 check in §7 now requires QA to compare the full normalised body: every member and value, each `errors` item's `field`, `rule` and `message` included, excluding only `instance` and `X-Request-Id`. The reviewer's control made that comparison on all five pre-merge cases and found them equal. Its negative control showed a changed `title` is caught by the full comparison and missed by the shape check. The same correction is in the impact analysis |
+| DR-02: the impact analysis says a query filtered on `path` still matches, but `/actuator/metrics/disk.free?tag=path:<old value>` answers `200` before and `404` after | MEDIUM | **Fixed.** The claim was wrong. The impact analysis's *Compatibility* section, §2 *Metrics* and the ADR-0016 amendment's consequences now say: a selector on the old tag (an Actuator `tag=path:…` filter, or a PromQL `path="…"` matcher) stops matching, and consumers must drop it. The unfiltered gauge is the same single series and stays `200` |

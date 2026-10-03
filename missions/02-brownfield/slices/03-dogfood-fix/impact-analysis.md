@@ -46,9 +46,14 @@ Found by reading `OpenApiConfig`, `Problems`, the three controllers whose `@ApiR
 
 ## Impacted endpoints
 
-- **The wire:** no change. Every status, content type and body member is as before (AC-4). The probe
-  sent AC-2's five pre-merge requests to the shipped service and to the fixed one: status, content
-  type, members and `errors` item members are equal (D2, "wire unchanged: true").
+- **The wire:** no change (AC-4). No request-path code is touched.
+  - The probe sent AC-2's five pre-merge requests to the shipped service and to the fixed one.
+    Their shape is equal: status, content type, member names, `errors` count and item member names
+    (D2, "wire unchanged: true"). D2 did not compare values.
+  - Design review's control compared the full JSON values with only `instance` removed, and found
+    them equal. It also showed that a shape check misses a changed `title`
+    (`docs/review/03-dogfood-fix/proof/design-controls.txt`, DR-01).
+  - QA's AC-4 check compares full normalised bodies (design §7).
 - `GET /v3/api-docs`: `ProblemDetail` corrected, `ProblemFieldError` added; every path, operation,
   response, header and example unchanged (D1).
 - `GET /actuator/prometheus`, `GET /actuator/metrics/disk.free` and `disk.total`: the same gauges and
@@ -78,8 +83,11 @@ meter is registered.
 - **The wire is unchanged** (AC-4), so every client keeps working.
 - **Generated clients:** they gain a typed `errors` field and lose the dead `properties` field.
   That is the fix the dogfood report asks for.
-- **Metric consumers:** a query that filtered on `path` now matches the single series without it.
-  The tag's value was an installation detail on an anonymous surface.
+- **Metric consumers:** an unfiltered read of `disk.free` or `disk.total` sees the same single
+  series without the tag. A selector on the old tag stops matching:
+  `/actuator/metrics/disk.free?tag=path:<old value>` answers `200` before and `404` after (design
+  review's control, DR-02), and a PromQL `path="…"` matcher selects nothing. Consumers must remove
+  the `path` selector. The tag's value was an installation detail on an anonymous surface.
 
 ## Test impact
 

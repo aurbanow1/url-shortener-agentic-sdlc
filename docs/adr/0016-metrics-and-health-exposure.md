@@ -93,6 +93,9 @@ health bodies, and the same holds for the metrics surfaces. No Boot property rem
 
 **Consequences.**
 - No metric tag carries a filesystem path.
+- A consumer that selected the disk gauges by `path` must drop that selector. An Actuator
+  `tag=path:<value>` filter answers `404`, and a PromQL `path="…"` matcher selects nothing. The
+  unfiltered gauge is the same single series (`03-dogfood-fix` design review, DR-02).
 - If a second disk path is configured (`management.metrics.system.diskspace.paths`), its gauges
   would collide with the first. The change that adds the path also adds a non-path tag per path
   (for example `volume`).
