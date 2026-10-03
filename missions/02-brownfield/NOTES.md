@@ -174,6 +174,19 @@ Context and observations that help the mission but do not change its
 
 ## 5. QA Agent
 
+- 2026-10-03 — QA re-check complete on 7ac8af56ed04c27bbefbd416b3976c544d2f274a,
+  packet qitem-20261003202154-65e6d10f. Independent gate203/202, merged
+  494/494 lines194/194 branches;258 HTTP captures and1,436 assertions.
+  CR-01 independently fixed under both explicit Tomcat header settings;
+  fresh original155 replay has only the two accepted enumeration failures.
+  Actual same-directory shipped/candidate upgrade and all21AC effects checked.
+  Capture setup correction retained: first added file sink was plain text;
+  repeated23 requests and24 events independently correlate in default JSON
+  console and ECS file sink. Details in PROOF.md QA and GAPS.md; no product
+  edits, all app ports stopped, clean exact candidate worktree.
+  Recording fresh attributed items1–11,13 and handoff; item12 awaits
+  independent corrected review under qitem-20261003194346-b74b8081.
+
 - 2026-10-03 after review — original35590f0 QA PASS superseded by HIGH
   QA-AUD-01 / CR-01. QA independently reproduced the explicit Tomcat
   remote-ip-header and protocol-header bypass on the preserved original jar,
@@ -251,3 +264,12 @@ Context and observations that help the mission but do not change its
   local f3e6b0b context only. GAPS/TRACE rows updated; A6 red run still
   unexercised. Reaffirm5/6 current shared-file hashes and replace7 pending
   judgment on original candidate add7ab5; no product/build changes.
+
+- QA2 AC-13 evidence committed2f97eee. Attributed receipts00000008..00000010
+  accept items5/6/7 against add7ab5; ready7/7, no issues. Item7 explicitly
+  cites all three run URLs and sourceb6b4a29, with failed own page/API access
+  and the packet-authorized operator-source qualification. Shared TRACE
+  commit also retained QA1's already-present 01-audit-read re-check7ac8af5
+  table unchanged; that table is not a QA2 product judgment. A6 red run stays
+  unexercised. Receipt commit and close of manual follow-up packet complete
+  this assigned obligation; no new build or product test was warranted.
