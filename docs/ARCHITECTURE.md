@@ -31,7 +31,7 @@ policy, evidence, metrics — is authored in this repository.
 
 | Component | Path | Purpose |
 |---|---|---|
-| Rig topology | `rig/rig.yaml` | 9 seats — one per SDLC role from the brief plus a second QA and a second review seat for concurrent slices (D7); coordination edges; `builtin:standard` permission posture |
+| Rig topology | `rig/rig.yaml` | 10 seats — one per SDLC role from the brief plus second QA and review seats (D7) and a second development seat (D15) for concurrent slices; coordination edges; `builtin:standard` permission posture |
 | Role specs | `rig/agents/<role>/` | one AgentSpec per seat: `guidance/role.md` is the contract (deliverables = step exit criteria, "never" list), `startup/context.md` the first-minute checklist |
 | Factory protocol | `rig/startup/project.md` | delivered to every seat before boot: how packets are worked and closed, gate mechanics, evidence paths, command hygiene |
 | Culture | `rig/CULTURE.md` | the constitution: truth over appearance, hot-potato closure, independence where it matters, humans own approvals and publishing |
@@ -45,7 +45,7 @@ policy, evidence, metrics — is authored in this repository.
 
 ### 2.2 Roles and seats
 
-Ten workflow roles resolve onto nine seats (QA and review have two each; a slice's workflow variant names which). QA and review run on **Codex**,
+Ten workflow roles resolve onto ten seats (development, QA and review have two each; a slice's workflow variant names which). QA and review run on **Codex**,
 everything else on **Claude Code**, so no candidate is judged by the model that
 wrote it.
 
@@ -73,7 +73,7 @@ flowchart TB
 | `orchestration-lead` | Orchestrator, Planning Agent, Integrator | decomposition + wave map + compiled graph; gate briefs; serial `--no-ff` merges; exception handling (`resume` / `route` / `abort`) |
 | `requirements-agent` | Requirements Agent | `SPEC.md`: user stories, GIVEN/WHEN/THEN acceptance criteria, business rules, ambiguity log, proof contract |
 | `design-agent` | Design Agent (+ second vantage in wave review) | `design.md` with API contract, data model/migration, sequence, logging/audit events, threat model; ADRs; `docs/DESIGN.md`; brownfield impact analysis |
-| `development-agent` | Development Agent | TDD implementation in the slice worktree: ProblemDetail errors, structured logs with request id, audit log, Flyway migrations, conventional commits |
+| `development-agent`, `dev2-agent` | Development Agent (two seats) | TDD implementation in the slice worktree: ProblemDetail errors, structured logs with request id, audit log, Flyway migrations, conventional commits |
 | `qa-agent`, `qa2-agent` | QA Agent (two seats) | unit + functional coverage reports (JaCoCo), AC↔test traceability, gap list, proof drops and attributed judgments |
 | `review-agent`, `review2-agent` | Code Review Agent + Security & Compliance Agent (one packet; two seats) | findings with severity + `file:line`, review ledger, shortener security checklist, verdict on the threat model |
 | `release-agent` | Release & Reliability Agent | installed smoke, README/TESTING, `RELEASE.md`, evidence export, metrics, drills; holds the ship gate |
@@ -85,7 +85,7 @@ flowchart TB
 | `design-agent` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | **xhigh** — set per session by the operator after each launch (`rig send --raw <seat> "/effort xhigh"`, verified with `/effort status`) |
 | `orchestration-lead` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | high (D12, 2026-10-03: few short turns, backstopped by review-before-gate) |
 | `requirements-agent`, `release-agent` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | high (D7; project `.claude/settings.json`) | `defaults.model` in each agent spec (D8, 2026-10-03) |
-| `development-agent` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | high (D7) | `rig/agents/development-agent/agent.yaml` → `defaults.model`; effort from `modelSettings.claude-opus-5-5` |
+| `development-agent`, `dev2-agent` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | high (D7) | `rig/agents/development-agent/agent.yaml` → `defaults.model`; effort from `modelSettings.claude-opus-5-5` |
 | `qa-agent`, `qa2-agent` | Codex | GPT-6.1-Sol (`gpt-6.1-sol`) | xhigh | `rig/agents/qa-agent/agent.yaml` → `defaults.model`; effort from `~/.codex/config.toml` `model_reasoning_effort` |
 | `review-agent`, `review2-agent` | Codex | GPT-6-Astra (`gpt-6-astra`) | xhigh | runtime default (`~/.codex/config.toml`) |
 
