@@ -99,6 +99,34 @@ This section is builder evidence, not a verdict.
   The journeys were watched failing by behaviour (47 of 52 in `builder-red-functional.txt`). The unit tests were red only as compile failures (`builder-red-tests.txt`).
 - **Gate:** `--offline check --rerun-tasks` ran after the last code edit, on `35590f0`.
 
+### Rework — 7ac8af5 (code review CR-01)
+
+Seat `development-agent@urlshort-factory` (Claude), 2026-10-03, packet `qitem-20261003201620-c74de839`.
+**Candidate:** `7ac8af56ed04c27bbefbd416b3976c544d2f274a`, three commits on `35590f0`. It implements the
+re-locked design response `0052efb` (§1 guard, §7 test (d)).
+
+| SHA | Commit |
+|---|---|
+| `ea7e6f4` | `test`: unit cases for a remote-ip header, a protocol header and both empty. Real-Tomcat test (d) with each `server.tomcat.remoteip` setting under the shipped pin: plain and forged `X-Forwarded-For: 127.0.0.2`, against a stored canary row |
+| `1fe1cbf` | `fix`: `AuditController` also takes `TomcatServerProperties`; `peerIsConnection` is strategy `NONE` **and** neither remoteip header has text |
+| `7ac8af5` | `test`: test (d) sends `HEAD` as well as `GET`, as CR-01's required change lists |
+
+| Finding | Answer | Evidence |
+|---|---|---|
+| CR-01 HIGH | **Fixed** as design `0052efb` §1 specifies. The guard is the negation of Boot 4.1.1's whole condition for installing `RemoteIpValve`. Either remoteip setting now closes the read for every request, as `native` and `framework` already did. The shipped pin with no remoteip setting keeps plain loopback reads at `200`. **Ceiling**, named in the code and the design's §6: the guard mirrors Boot's trigger list, so a Boot upgrade that adds a trigger must be added here. | Red on `35590f0`'s code: both settings failed (`proof/builder-red-cr01-remoteip.txt`; the plain loopback read answered `200` under each). On `7ac8af5`: test (d) gets `403` and no canary for plain and forged `GET` and `HEAD` under each setting. The earlier strategy cases (`native`, `framework`, platform plus pin) still pass, and the unit tests cover each `hasText` branch. |
+
+| Command | Outcome | Record |
+|---|---|---|
+| `functionalTest --tests '*AuditForwardedHeadersJourneyTest*'` with test (d) on the `35590f0` code | 6 run, **2 failed** (both settings) | `proof/builder-red-cr01-remoteip.txt` |
+| `scripts/gw --offline check --rerun-tasks` on `1fe1cbf` | green: unit 203, functional 202, 494/494 lines, 194/194 branches | `proof/builder-check-1fe1cbf.txt` |
+| `scripts/gw --offline check --rerun-tasks` on `7ac8af5`, after the last edit | BUILD SUCCESSFUL; **unit 203/203, functional 202/202**; merged **494/494 lines, 194/194 branches**; `javadoc` green | `proof/builder-check-7ac8af5.txt` |
+
+**Not re-run on `7ac8af5`, by me:**
+- The AC-17 shipped-suite run and the two by-effect jar captures (items 7 and 8).
+- The fix only narrows when the read is admitted. No path, response shape, query or log line changed, and the shipped configuration (no remoteip setting) still admits loopback reads, which the gate's journeys show.
+- QA re-runs the exact candidate.
+- The `HEAD` cases were added after the fix, so their red on `35590f0` comes from the review's control (`docs/review/01-audit-read/proof/code-controls-35590f0.txt`), not from my run.
+
 ## QA
 
 Independent Codex QA, 2026-10-03. Packet `qitem-20261003185423-545a1365`,

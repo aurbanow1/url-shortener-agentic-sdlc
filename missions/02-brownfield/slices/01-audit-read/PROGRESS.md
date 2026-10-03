@@ -7,8 +7,8 @@
 
 ## Acceptance
 
-- [x] Implementation complete — candidate `35590f0` on `slice/01-audit-read`, on `main` `0df4841` (builder, 2026-10-03)
-- [x] Tests passing — `scripts/gw --offline check --rerun-tasks` on `35590f0`: unit 200/200, functional 200/200, 492/492 lines and 190/190 branches merged, Javadoc green (`proof/builder-check-35590f0.txt`; builder run, QA re-runs independently)
+- [x] Implementation complete — candidate `7ac8af5` on `slice/01-audit-read` (CR-01 rework on `35590f0`, which sits on `main` `0df4841`) (builder, 2026-10-03)
+- [x] Tests passing — `scripts/gw --offline check --rerun-tasks` on `7ac8af5`: unit 203/203, functional 202/202, 494/494 lines and 194/194 branches merged, Javadoc green (`proof/builder-check-7ac8af5.txt`; builder run, QA re-runs independently). Before the rework: `35590f0`, 200/200 and 200/200
 - [ ] Review approved
 
 ## Builder-side proof-contract items
