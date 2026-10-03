@@ -6,6 +6,9 @@ verified: 2026-10-02 against scaffold (rig scope create)
 created: 2026-10-02
 intent: "A user can create a short link for a valid http(s) URL, be redirected through it, and read its click analytics, from a service that is observable, rate-limited and audited; built from scratch as the greenfield scenario."
 depends_on: []
+approved-spec-by: orchestration-lead@urlshort-factory
+approved-spec-at: 2026-10-03T04:40:36.744Z
+provenance: transport:v1
 ---
 
 # Mission — Greenfield: core URL shortener
@@ -170,6 +173,7 @@ Recorded 2026-10-03 before the handoff to `decomposition_review`.
 - 2026-10-03T04:12Z — decomposition review returned one HIGH finding, DC-01 (`docs/review/01-greenfield-core/decomposition-review.md`): the `429`/`Retry-After` contract had no owner in the committed API document. Fixed: `03-operate` owns it under an ordered w2 grant with a named serialisation point (shaping rule 5 rewritten, M3 carried into `03`, w2 merge order recorded in the wave map); compiled binding re-adopted.
 - 2026-10-03T04:20Z — re-review of `ed7672f`: DC-01 settled; new HIGH DC-02, the `w2` row still said "waits for both proofs; merges serially" while rule 5 makes `03`'s handoff depend on `02`'s merge, a cycle. Fixed: merges are per slice at `integrate` and precede `slice_accept`; `02` merges without waiting for `03`; the wave-level wait is for both accepted slices before `w3`. All three wave rows now state the real order.
 - 2026-10-03T04:25Z — decomposition review **PASS** on `6b5e17f` (`docs/review/01-greenfield-core/decomposition-review.md`, review evidence committed at `93b9245`): DC-01 and DC-02 settled, no open findings, compiled binding `1-de9659cfc2f86cdb` matches the live instance. Held at **mission plan-lock** on `qitem-20261003042553-03ac8b4b`, parked on `human@kernel` with this file as evidence. The human decides the eight `assumed` rows, the dependency-override placement and FR-17 keep/defer (decision brief above).
+- 2026-10-03T04:39Z — **mission plan-lock approved** by `human@kernel` on `qitem-20261003042553-03ac8b4b`: "approve: four slices in three waves as briefed; the eight assumed rows (NFR-L1, L2, R2, R5, S3, S6, S2, P2) are confirmed as stated; dependency overrides land as the first gated commit of 01-create-redirect; FR-17 stays in this mission as 04-audit-read". Stamp recorded on the human's behalf (frontmatter `approved-spec-*`); the eight rows in `docs/REQUIREMENTS.md` now carry `decided`. Wave w1 launching.
 
 ---
 
