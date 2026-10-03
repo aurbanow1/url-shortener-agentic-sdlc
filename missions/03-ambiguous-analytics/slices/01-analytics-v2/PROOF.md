@@ -24,7 +24,32 @@ Dropped via `rig proof add … --evidences … --media …` (one drop per verdic
 
 ## Builder (dev2-agent@urlshort-factory)
 
-**Status: built on the stacked base, not yet the candidate.** Design §13 steps 2–5 are on
+**Candidate `ec466da`** (handed off 2026-10-03 23:1xZ). It descends from `02-click-retention`'s merge
+`ed2b940`, so it carries `01-audit-read` and `03-dogfood-fix` too.
+
+- **Final rebase.** `git rebase --onto 2566c38 a8fc8b6` on `main` at `2566c38`. The six analytics
+  commits applied without conflict (`a8fc8b6` was click-retention's pre-merge tip, the cut point).
+  `git merge-base --is-ancestor ed2b940 slice/01-analytics-v2` holds.
+- **`66d0e1b` test, the granted AC-14 shape update** (`slice.yaml` grant, lead 21:57Z):
+  `AuditUpgradeJourneyTest.AC18`'s one expected statistics body. Its single `clicksPerDay` element
+  gains `"uniqueVisitors":1,"botClicks":0`, and nothing else in the test changes. It joins the AC-14
+  list beside `StatsJourneyTest.AC09` and `ClickRecordingJourneyTest.AC17`. The impact analysis could
+  not name it, because audit-read merged after it was written.
+- **`ec466da` docs, design §13 step 6:** `docs/api/openapi.json` regenerated last, from
+  `build/openapi/openapi.json`, on top of audit-read's and dogfood-fix's documents. The diff is only
+  `DayClicks` gaining `uniqueVisitors` and `botClicks` with their descriptions, plus the statistics
+  example and its description.
+- **Gate on `ec466da`:** `scripts/gw --offline check --rerun-tasks`, log at
+  [`proof/builder-check-candidate.txt`](proof/builder-check-candidate.txt). BUILD SUCCESSFUL. Unit 221,
+  functional 241, 0 failures or skips; `OpenApiDocumentTest` is green now. Merged lines 580/580,
+  branches 206/206 (100 %). Javadoc green. Reports are in `docs/qa/coverage/01-analytics-v2/{unit,functional,all}/`.
+- **By effect on `ec466da`** ([`proof/builder-by-effect-ec466da.txt`](proof/builder-by-effect-ec466da.txt)):
+  - Three forwarded clients give `{"date":"2026-10-03","clicks":4,"uniqueVisitors":3,"botClicks":1}`.
+  - Prometheus shows `urlshort_clicks_recorded_total 4.0`, and all five `lost` reasons at `0.0`.
+  - The live `DayClicks` schema has exactly the four properties.
+  - No client address appears in the log.
+
+Earlier status, kept for the record: built on the stacked base first. Design §13 steps 2–5 were on
 `slice/01-analytics-v2` at `12fe427`. The branch was rebased onto `slice/02-click-retention` at
 `056c8db` (the lead's plan-lock note), and I built on top of it. Still to do, in this order:
 1. `02-click-retention` merges to `main`, after `01-audit-read` and `03-dogfood-fix` have merged.

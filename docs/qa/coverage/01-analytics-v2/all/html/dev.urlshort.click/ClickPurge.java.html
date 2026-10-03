@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClickPurge.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">urlshort</a> &gt; <a href="index.source.html" class="el_package">dev.urlshort.click</a> &gt; <span class="el_source">ClickPurge.java</span></div><h1>ClickPurge.java</h1><pre class="source lang-java linenums">package dev.urlshort.click;
+
+import java.time.Clock;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneOffset;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+import jakarta.annotation.PreDestroy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
+
+/**
+ * Deletes clicks older than the retention period (NFR-P2, business rules 2, 3 and 6; ADR-0018): once
+ * at startup, before readiness is reported, then once every UTC day at the first tick on or after
+ * {@link #DAILY_AT} (00:10Z). Every run is one {@code DELETE} of the clicks stored on a UTC day
+ * before the application clock's day minus the period, so that day itself is kept.
+ *
+ * &lt;p&gt;All runs share one daemon thread, {@code click-purge}, so they never overlap. A run writes one
+ * INFO {@code clicks purged} with its count, cutoff and period, or one WARN {@code click purge failed}
+ * with the exception's class only; neither carries a request id or a click value. A failed run is
+ * retried by the next UTC day's run, never sooner. With the operator hold
+ * ({@code urlshort.click.purge-enabled=false}) nothing runs and every start logs one WARN saying so.
+ */
+@Component
+@EnableConfigurationProperties(ClickRetentionProperties.class)
+class ClickPurge {
+
+	/** The UTC time of day from which each day's run is due; recorded in {@code docs/DESIGN.md} §3 (AC-8). */
+<span class="fc" id="L39">	static final LocalTime DAILY_AT = LocalTime.of(0, 10);</span>
+<span class="fc" id="L40">	static final Duration TICK = Duration.ofSeconds(5);</span>
+<span class="fc" id="L41">	static final Duration CLOSE_DEADLINE = Duration.ofSeconds(3);</span>
+
+<span class="fc" id="L43">	private static final Logger log = LoggerFactory.getLogger(ClickPurge.class);</span>
+
+	private final ClickStore store;
+	private final Clock clock;
+	private final int retentionDays;
+	private final boolean purgeEnabled;
+<span class="fc" id="L49">	private final ScheduledExecutorService purger = Executors.newSingleThreadScheduledExecutor(task -&gt; {</span>
+<span class="fc" id="L50">		Thread thread = new Thread(task, &quot;click-purge&quot;);</span>
+<span class="fc" id="L51">		thread.setDaemon(true);</span>
+<span class="fc" id="L52">		return thread;</span>
+	});
+	// read and written only on the purge thread (and by unit tests calling run/tick directly)
+<span class="fc" id="L55">	private LocalDate lastRunDay = LocalDate.MIN;</span>
+
+<span class="fc" id="L57">	ClickPurge(ClickStore store, Clock clock, ClickRetentionProperties properties) {</span>
+<span class="fc" id="L58">		this.store = store;</span>
+<span class="fc" id="L59">		this.clock = clock;</span>
+<span class="fc" id="L60">		this.retentionDays = properties.retentionDays();</span>
+<span class="fc" id="L61">		this.purgeEnabled = properties.purgeEnabled();</span>
+<span class="fc" id="L62">	}</span>
+
+	/** The startup run, awaited so it ends before Boot reports readiness, then the daily tick (AC-7). */
+	@EventListener(ApplicationReadyEvent.class)
+	void start() throws InterruptedException, ExecutionException {
+<span class="fc bfc" id="L67" title="All 2 branches covered.">		if (!purgeEnabled) {</span>
+<span class="fc" id="L68">			log.atWarn().setMessage(&quot;click purge paused, no click is deleted&quot;)</span>
+<span class="fc" id="L69">					.addKeyValue(&quot;setting&quot;, &quot;urlshort.click.purge-enabled&quot;).addKeyValue(&quot;retentionDays&quot;, retentionDays)</span>
+<span class="fc" id="L70">					.log();</span>
+<span class="fc" id="L71">			return;</span>
+		}
+<span class="fc" id="L73">		purger.submit(this::run).get();</span>
+<span class="fc" id="L74">		purger.scheduleWithFixedDelay(this::tick, TICK.toMillis(), TICK.toMillis(), TimeUnit.MILLISECONDS);</span>
+<span class="fc" id="L75">	}</span>
+
+	/** The run the scheduler would start, on the same thread, whatever the hold; for the functional suite. */
+	void runNow() throws Exception {
+<span class="fc" id="L79">		purger.submit(this::run).get(10, TimeUnit.SECONDS);</span>
+<span class="fc" id="L80">	}</span>
+
+	/** Runs when the UTC day is later than the last run's and the time is at or past {@link #DAILY_AT}. */
+	void tick() {
+<span class="fc" id="L84">		Instant now = clock.instant();</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">		if (LocalDate.ofInstant(now, ZoneOffset.UTC).isAfter(lastRunDay)</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">				&amp;&amp; !LocalTime.ofInstant(now, ZoneOffset.UTC).isBefore(DAILY_AT)) {</span>
+<span class="fc" id="L87">			run();</span>
+		}
+<span class="fc" id="L89">	}</span>
+
+	void run() {
+<span class="fc" id="L92">		LocalDate today = LocalDate.ofInstant(clock.instant(), ZoneOffset.UTC);</span>
+		// set before the delete, so a failed run is not retried the same day (rule 3)
+<span class="fc" id="L94">		lastRunDay = today;</span>
+<span class="fc" id="L95">		LocalDate cutoff = today.minusDays(retentionDays);</span>
+		try {
+			// ponytail: one DELETE and a table scan per run; past ~2.5 M rows in one startup run,
+			// add ix_click_day and id-range batches (ADR-0018, probe L6/L9)
+<span class="fc" id="L99">			int deleted = store.deleteBefore(cutoff);</span>
+<span class="fc" id="L100">			log.atInfo().setMessage(&quot;clicks purged&quot;).addKeyValue(&quot;deleted&quot;, deleted)</span>
+<span class="fc" id="L101">					.addKeyValue(&quot;cutoff&quot;, cutoff.toString()).addKeyValue(&quot;retentionDays&quot;, retentionDays).log();</span>
+		}
+<span class="fc" id="L103">		catch (RuntimeException ex) {</span>
+			// the class only: a driver message can quote stored values
+<span class="fc" id="L105">			log.atWarn().setMessage(&quot;click purge failed&quot;).addKeyValue(&quot;cutoff&quot;, cutoff.toString())</span>
+<span class="fc" id="L106">					.addKeyValue(&quot;retentionDays&quot;, retentionDays).addKeyValue(&quot;errorType&quot;, ex.getClass().getName())</span>
+<span class="fc" id="L107">					.log();</span>
+<span class="fc" id="L108">		}</span>
+<span class="fc" id="L109">	}</span>
+
+	/** Takes no new run and waits up to {@link #CLOSE_DEADLINE} for one in progress; never interrupts JDBC. */
+	@PreDestroy
+	void close() throws InterruptedException {
+<span class="fc" id="L114">		purger.shutdown();</span>
+<span class="fc" id="L115">		purger.awaitTermination(CLOSE_DEADLINE.toMillis(), TimeUnit.MILLISECONDS);</span>
+<span class="fc" id="L116">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

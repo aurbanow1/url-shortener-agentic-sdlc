@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StatsController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">urlshort</a> &gt; <a href="index.source.html" class="el_package">dev.urlshort.click</a> &gt; <span class="el_source">StatsController.java</span></div><h1>StatsController.java</h1><pre class="source lang-java linenums">package dev.urlshort.click;
+
+import dev.urlshort.web.Problems;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.springframework.http.MediaType;
+import org.springframework.http.ProblemDetail;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * {@code GET /api/links/{code}/stats}: the Analyst's read of a link's clicks (FR-8, AC-7 to AC-13,
+ * AC-21, AC-22). Anonymous and read-only; a retired link's statistics stay readable. {@code HEAD} and
+ * {@code OPTIONS} are the framework's; every other method is a {@code 405} problem detail.
+ */
+@RestController
+class StatsController {
+
+	private static final String EXAMPLE = &quot;{\&quot;code\&quot;:\&quot;aB3dE5fG\&quot;,\&quot;totalClicks\&quot;:6,\&quot;clicksPerDay\&quot;:[&quot;
+			+ &quot;{\&quot;date\&quot;:\&quot;2026-10-01\&quot;,\&quot;clicks\&quot;:6,\&quot;uniqueVisitors\&quot;:3,\&quot;botClicks\&quot;:1}],&quot;
+			+ &quot;\&quot;topReferrers\&quot;:[{\&quot;referrer\&quot;:\&quot;https://news.example.com\&quot;,\&quot;clicks\&quot;:4}]}&quot;;
+
+	private final ClickStore store;
+
+<span class="fc" id="L29">	StatsController(ClickStore store) {</span>
+<span class="fc" id="L30">		this.store = store;</span>
+<span class="fc" id="L31">	}</span>
+
+	@GetMapping(&quot;/api/links/{code:[A-Za-z0-9]{6,32}}/stats&quot;)
+	@Operation(summary = &quot;Read a link's click statistics&quot;, responses = {
+		@ApiResponse(responseCode = &quot;200&quot;, description = &quot;Total clicks; per UTC day the clicks, unique visitors and bot clicks; and the top 10 referrer origins&quot;,
+				content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
+						schema = @Schema(implementation = LinkStats.class),
+						examples = @ExampleObject(name = &quot;stats&quot;, value = EXAMPLE))),
+		@ApiResponse(responseCode = &quot;404&quot;, description = &quot;No link has this code&quot;, content = @Content(
+				mediaType = &quot;application/problem+json&quot;, schema = @Schema(implementation = ProblemDetail.class))) })
+	LinkStats stats(@PathVariable String code) {
+<span class="fc" id="L42">		long linkId = store.findLinkId(code).orElseThrow(Problems::notFound);</span>
+<span class="fc" id="L43">		return LinkStats.of(code, store.stats(linkId));</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

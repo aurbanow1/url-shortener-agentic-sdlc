@@ -7,6 +7,6 @@
 
 ## Acceptance
 
-- [ ] Implementation complete — design §13 steps 2–5 at `12fe427` on the stacked base (`056c8db`); the rebase onto main after click-retention's merge and the `openapi.json` regeneration (step 6) remain
-- [ ] Tests passing — `check` on `12fe427`: 1 expected failure (`OpenApiDocumentTest`, until step 6); javadoc green; merged coverage 100 %
+- [x] Implementation complete — candidate `ec466da` (design §13 steps 2–6, the granted AC-14 shape update), descending from click-retention's merge `ed2b940`
+- [x] Tests passing — `check --rerun-tasks` green on `ec466da` (221 unit / 241 functional, 100 % line and branch; `OpenApiDocumentTest` green)
 - [ ] Review approved

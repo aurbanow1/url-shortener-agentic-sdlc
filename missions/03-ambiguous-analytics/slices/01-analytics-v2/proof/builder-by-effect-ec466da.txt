@@ -1,0 +1,49 @@
+01-analytics-v2 — builder by-effect check on the candidate ec466da (dev2-agent, 2026-10-03 23:12Z)
+Proof-contract items 7 (statistics from three clients) and 8 (Prometheus excerpt), on the jar of the
+rebased candidate (main 2566c38, descending from 02-click-retention's merge ed2b940).
+
+Every request reaches the service from 127.0.0.1 over loopback, so the clients are named in
+X-Forwarded-For, with 127.0.0.1 as the trusted proxy. That exercises rule 6 on the real service.
+
+$ java -jar .worktrees/01-analytics-v2/build/libs/urlshort.jar --server.address=127.0.0.1 --server.port=18096 \
+    --urlshort.rate-limit.trusted-proxies=127.0.0.1 --spring.datasource.url=jdbc:h2:file:<scratch>/v2-candidate-data/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE
+$ scripts/http -s http://127.0.0.1:18096/actuator/health/readiness
+{"status":"UP"}
+$ scripts/http -s -X POST -H "Content-Type: application/json" -d '{"url":"https://example.com/v2-candidate"}' http://127.0.0.1:18096/api/links
+{"code":"VNlomXnn","shortUrl":"http://localhost:8080/VNlomXnn","url":"https://example.com/v2-candidate","state":"active","createdAt":"2026-10-03T23:12:14.754Z"}
+$ scripts/http -s -o /dev/null -w "%{http_code} " -H "X-Forwarded-For: 203.0.113.1" -H "User-Agent: Mozilla/5.0 Firefox/131.0" http://127.0.0.1:18096/VNlomXnn http://127.0.0.1:18096/VNlomXnn
+302 302
+$ scripts/http -s -o /dev/null -w "%{http_code} " -H "X-Forwarded-For: 203.0.113.2" -H "User-Agent: Mozilla/5.0 (compatible; Googlebot/2.1)" http://127.0.0.1:18096/VNlomXnn
+302
+$ scripts/http -s -o /dev/null -w "%{http_code} " -H "X-Forwarded-For: 203.0.113.3" -H "User-Agent: Mozilla/5.0 Firefox/131.0" http://127.0.0.1:18096/VNlomXnn
+302
+
+== Statistics (AC-1, AC-2, AC-4 by effect; proof item 7) ==
+$ scripts/http -s http://127.0.0.1:18096/api/links/VNlomXnn/stats
+{"code":"VNlomXnn","totalClicks":4,"clicksPerDay":[{"date":"2026-10-03","clicks":4,"uniqueVisitors":3,"botClicks":1}],"topReferrers":[]}
+-> 4 clicks, 3 distinct clients (203.0.113.1 opened twice), 1 bot. No address, hash, user-agent class or
+   forwarded value in the body.
+
+== Prometheus excerpt (AC-11 by effect; proof item 8) ==
+$ scripts/http -s http://127.0.0.1:18096/actuator/prometheus | grep "urlshort_clicks"
+# HELP urlshort_clicks_lost_total Clicks reported by a click lost event
+# TYPE urlshort_clicks_lost_total counter
+urlshort_clicks_lost_total{reason="reduction failed"} 0.0
+urlshort_clicks_lost_total{reason="rejected"} 0.0
+urlshort_clicks_lost_total{reason="shutdown deadline"} 0.0
+urlshort_clicks_lost_total{reason="shutdown deadline, outcome unknown"} 0.0
+urlshort_clicks_lost_total{reason="write failed"} 0.0
+# HELP urlshort_clicks_recorded_total Clicks written to the click store
+# TYPE urlshort_clicks_recorded_total counter
+urlshort_clicks_recorded_total 4.0
+
+== Live API document, the per-day element (AC-13) ==
+$ scripts/http -s http://127.0.0.1:18096/v3/api-docs | grep -o '"DayClicks":{...}'
+"DayClicks":{"type":"object","properties":{"botClicks":{"type":"integer","format":"int64","description":"Clicks whose user agent was classified bot"},"clicks":{"type":"integer","format":"int64"},"date":{"type":"string","format":"date"},"uniqueVisitors":{"type":"integer","format":"int64","description":"Distinct visitors that UTC day; never combined across days"}}
+(The committed docs/api/openapi.json equals the live document: OpenApiDocumentTest green on ec466da.)
+
+== The jar's log ==
+grep -c "203.0.113" -> 0   (no forwarded client value in any log line)
+grep -c "requestId" -> 10  (the request lines carry their request id)
+
+Stopped.
