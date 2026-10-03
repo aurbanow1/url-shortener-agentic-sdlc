@@ -1,6 +1,6 @@
 # ADR-0013 — Clicks are stored as reduced event rows; statistics are computed per request from one grouped query
 
-- Status: accepted at the `02-analytics` plan-lock (2026-10-03T09:48Z)
+- Status: accepted at the `02-analytics` plan-lock (2026-10-03T09:48Z); amendment proposed by `01-analytics-v2` (see *Amendment*)
 - Date: 2026-10-03
 - Slice: `02-analytics`
 
@@ -79,3 +79,35 @@ The purge sketched under *Consequences* is decided in ADR-0018. It is one
 `clicked_on`. The table scan was measured faster than an indexed delete for a catch-up, and within
 0.3 s of batched indexed deletes for a daily run (ADR-0018, probe L1–L10). The schema of this ADR is
 unchanged.
+
+## Amendment — `01-analytics-v2` (2026-10-03, proposed; accepted at that slice's plan-lock)
+
+The human decided that a day's figures add unique visitors and bot clicks (Q1 B, Q3 B), and that the
+hash counts distinct visitors within its own UTC day only (Q2 B, transition 876). The statistics stay
+one statement, so every figure comes from one snapshot, and they still need no summary table and no
+index:
+
+```sql
+SELECT clicked_on, referrer, COUNT(*) AS clicks, CAST(NULL AS BIGINT) AS unique_visitors,
+       CAST(NULL AS BIGINT) AS bot_clicks
+  FROM click WHERE link_id = :linkId GROUP BY clicked_on, referrer
+UNION ALL
+SELECT clicked_on, NULL, NULL, COUNT(DISTINCT client_hash),
+       SUM(CASE WHEN user_agent_class = 'bot' THEN 1 ELSE 0 END)
+  FROM click WHERE link_id = :linkId GROUP BY clicked_on
+```
+
+- **The fold** (`LinkStats.of`) takes `clicks`, `totalClicks` and `topReferrers` from the
+  referrer rows, as before (`clicks` is not null). It takes `uniqueVisitors` and `botClicks` from
+  the one day row of each day (`unique_visitors` is not null).
+- **The hash is compared only within `clicked_on`.** `DailySalt.stamp` chooses a click's instant
+  and its salt together, so a click's `clicked_on` is its salt's day (ADR-0012), and the
+  `GROUP BY clicked_on` never compares hashes of different salts. Nothing else reads `client_hash`.
+- **Why not a join** of the two groupings: H2 2.4.240 pushes the join condition into the per-day
+  subquery and evaluates it per (day, referrer) row (`01-analytics-v2` probe S2). It measured about
+  the same on one link (207 ms against 146 ms, and 209 ms against 202 ms with 300 referrers a day,
+  S3 and S5). The union keeps the plan two plain grouped range scans.
+- **Cost:** one link with 225 000 clicks over 90 days read in 146 to 202 ms cold (S3, S5). No
+  latency target is set for the read.
+- Verified before implementation: `missions/03-ambiguous-analytics/slices/01-analytics-v2/design-probe/output.txt`
+  (S1 the AC-2 to AC-5 shapes, S2 the plan, S3 and S5 cost).

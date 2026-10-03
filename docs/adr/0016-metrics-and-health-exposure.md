@@ -1,6 +1,6 @@
 # ADR-0016 — Metrics in Prometheus format, readiness with the database, status-only health, quiet parser errors
 
-- Status: accepted at the `03-operate` plan-lock (2026-10-03T09:41Z; status line set 09:48Z)
+- Status: accepted at the `03-operate` plan-lock (2026-10-03T09:41Z; status line set 09:48Z); amendment proposed by `01-analytics-v2` (see *Amendment*)
 - Date: 2026-10-03
 - Slice: `03-operate`
 
@@ -58,3 +58,16 @@ application sees them.
   `missions/01-greenfield-core/slices/03-operate/design-probe/output.txt`
   (O2, O2b, O3 tags and names; O4–O5c health; O5b the WARN; O6/O6b parser
   errors before and after).
+
+## Amendment — `01-analytics-v2` (2026-10-03, proposed; accepted at that slice's plan-lock)
+
+Two counters make the analytics' own data loss scrapeable (NFR-O3, mission 03 SPEC rule 10):
+- **`urlshort.clicks.recorded`**, incremented by the click writer after a successful insert;
+- **`urlshort.clicks.lost`**, tag `reason`, incremented beside every `click lost` event with that
+  event's static token: `rejected`, `reduction failed` (from `02-click-retention`), `write failed`,
+  `shutdown deadline`, `shutdown deadline, outcome unknown`.
+
+Both are registered by `ClickRecorder` at construction, every `reason` included, so the families
+are present at zero. They render as `urlshort_clicks_recorded_total` and
+`urlshort_clicks_lost_total{reason="…"}`; a value with a comma is quoted as it is (`01-analytics-v2`
+probe S4). No other tag exists, and no tag can carry a client value, link code, id or referrer.
