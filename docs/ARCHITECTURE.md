@@ -196,6 +196,9 @@ the system view in [`DESIGN.md`](DESIGN.md) and the decisions in
 
 ## 5. Known limits
 
+**Scalability (assignment §6).** The service keeps no state outside the database: no sessions, no in-memory caches that matter, idempotency and rate-limit state are designed to live in the store. Scaling out is therefore a deployment change — PostgreSQL instead of the embedded H2 file (the planned brownfield move, `docs/guidance/databases.md` §5) and N stateless instances behind a load balancer with a shared rate-limit store — not a rewrite. The prototype deliberately runs single-node on H2 (NFR-R4 states the ceiling; `docs/RISKS.md` records it).
+
+
 - OpenRig 0.6.3 keeps one live packet per workflow instance; intra-instance
   fan-out is not claimed.
 - The human is reached through parked packets and Mission Control; the human

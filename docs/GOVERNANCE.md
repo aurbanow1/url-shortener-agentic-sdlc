@@ -23,6 +23,8 @@ exports against these rows.
 | Dynamic re-planning when upstream outputs change | `rig workflow revise --apply` adopts compatible graph changes without replaying completed steps; SPEC changes re-open the plan-lock; demonstrated in the ambiguous mission | orchestration-lead role file, mission 03 | revise receipts, before/after `compiled-graph.json` |
 | Controlled agent autonomy | Humans own approvals and publishing; agents act under role contracts with explicit "never" lists; idle seats add no gates (proportionality) | `rig/CULTURE.md`, role files | gate records; absence of pushes/releases in `git log` |
 
+**Principle (assignment §7).** Agents execute under defined autonomy boundaries; humans own oversight, approvals and final quality. In this factory the boundaries are written down and enforced: each role's `Never` list and deliverable contract (`rig/agents/*/guidance/role.md`), the runtime permission policies (`.claude/settings.json` allow/deny, `.codex/rules`, loopback-only `scripts/http`), the gate steps that park on `human@kernel` (mission plan-lock, ambiguity decisions, ship sign-off) and the recorded delegations (slice plan-locks to the lead, D11); final quality is the human's ship sign-off over the release package, and nothing is published by an agent.
+
 ## Gate policy
 
 | Gate | Approver | Trigger |

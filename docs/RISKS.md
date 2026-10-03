@@ -46,3 +46,5 @@ that prevents or contains it, and where the evidence lives. Items marked
 - The evaluator reads the repository and may run the product, but will not run OpenRig.
 - One human decision-maker (the author) resolves all gates.
 - No network egress is needed by the product at runtime.
+
+| Single-node prototype (embedded H2 file, no replication, no HA) | accepted for the assignment; the design keeps all state in the database so the move to PostgreSQL + N stateless instances is a deployment change (NFR-R4, `docs/ARCHITECTURE.md` §5) | operator |

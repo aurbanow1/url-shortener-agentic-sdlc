@@ -47,6 +47,7 @@ final summary; this table is the map.
 | §4.6 Validation and risk control — risks, trade-offs, failure scenarios, guardrails | orchestration.md §4–§6; release.md §4–§5; architecture.md §10 | `docs/RISKS.md`, `docs/scenarios/drills.md`, permission policies (`.claude/settings.json`, `.codex/rules`), `scripts/http`, `scripts/gw` |
 | §4.7 Controlled autonomy — agents execute, humans approve | orchestration.md §8; decomposition.md §4, §6 | gate packets and `rig queue resolve` records, stamps `--on-behalf-of human@kernel`, `rig/CULTURE.md` |
 | §4.8 Final engineering summary | release.md §8 | `docs/FINAL-SUMMARY.md` |
+| §7 Expectation — agents under defined autonomy boundaries; humans own oversight, approvals, final quality | orchestration.md §8; review.md §1; `docs/GOVERNANCE.md` (principle + delegation record) | role `Never` lists, permission policies, gate packets and `rig queue resolve` records, D11 |
 | §5 Working prototype, runnable end to end | release.md §3; java-spring.md §5 | `scripts/gw check`, `java -jar build/libs/urlshort.jar`, `Dockerfile`, `compose.yaml` |
 | §5 Architecture overview | architecture.md §1–§2, §9 | `docs/ARCHITECTURE.md`, `docs/diagrams/`, `docs/adr/` |
 | §5 Three scenarios | decomposition.md; brownfield.md; requirements.md §3 (ambiguity) | missions 01–03, `docs/scenarios/*.md` |
