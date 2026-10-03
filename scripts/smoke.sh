@@ -61,24 +61,36 @@ smoke() {
 }
 
 # ---------------------------------------------------------------- held request R0
-# A real create whose body arrives slowly: Tomcat dispatches it once the headers are in, so it is
-# in flight while the server stops. Opened on fd 3; finished by r0_finish.
+# A real create whose chunked body is sent in two parts: Tomcat dispatches it once the headers are in,
+# so it is in flight while the server stops. curl judges the response: exit 0 only once all of it has
+# arrived (a short body is exit 18, a connection cut without a response 52 or 56).
 R0_BODY='{"url":"https://example.com/held-r0"}'
-r0_open() { # port
-	exec 3<>"/dev/tcp/127.0.0.1/$1"
-	printf 'POST /api/links HTTP/1.1\r\nHost: localhost\r\nContent-Type: application/json\r\nContent-Length: %d\r\nConnection: close\r\n\r\n%s' \
-		"${#R0_BODY}" "${R0_BODY:0:12}" >&3
+now_ms() { perl -MTime::HiRes=time -e 'printf "%d\n", time * 1000'; }
+r0_open() { # base-url: starts R0 and sends the first part of its body
+	mkfifo "$WORK/r0.fifo"
+	"$HTTP" -sS -X POST -T - -H 'Content-Type: application/json' -H 'Expect:' --max-time 30 \
+		-D "$WORK/r0.headers" -o "$WORK/r0.body" -w '%{http_code}' "$1/api/links" \
+		< "$WORK/r0.fifo" > "$WORK/r0.status" 2> "$WORK/r0.err" &
+	R0_PID=$!
+	exec 3> "$WORK/r0.fifo"
+	printf '%s' "${R0_BODY:0:12}" >&3
 }
-r0_finish() { # sends the rest, keeps the whole response in $WORK/r0.txt, prints the status line
-	local line="" rest
-	: > "$WORK/r0.txt"
+r0_finish() { # stop-ms: sends the rest and waits for curl. Sets R0 (a summary), R0_RC (curl's exit)
+	# and R0_OK=1 only for a complete 2xx/3xx no later than 10 s after stop-ms (AC-25, rule 13)
+	local status elapsed
+	trap '' PIPE # a write after the server cut R0 must fail, not end the script
 	printf '%s' "${R0_BODY:12}" >&3 2>/dev/null || true
-	if IFS= read -r -t 10 line <&3; then
-		printf '%s\n' "$line" >> "$WORK/r0.txt"
-		while IFS= read -r -t 2 rest <&3; do printf '%s\n' "$rest" >> "$WORK/r0.txt"; done || true
+	trap - PIPE
+	exec 3>&-
+	R0_RC=0
+	wait "$R0_PID" || R0_RC=$?
+	elapsed=$(( $(now_ms) - $1 ))
+	status="$(cat "$WORK/r0.status")"
+	R0="curl exit $R0_RC, status $status, complete ${elapsed} ms after the stop"
+	R0_OK=0
+	if [ "$R0_RC" = 0 ] && [ "$elapsed" -le 10000 ]; then
+		case "$status" in 2??|3??) R0_OK=1 ;; esac
 	fi
-	exec 3<&- 3>&- || true
-	printf '%s' "$line" | tr -d '\r'
 }
 
 # ---------------------------------------------------------------- --restart (compose)
@@ -109,24 +121,26 @@ check_link() { # base code location body
 
 restart_under_load() { # base code location body label command...
 	local base="$1" code="$2" location="$3" body="$4" label="$5"; shift 5
-	local port statuses="$WORK/statuses-$label.txt" stop="$WORK/stop-$label" r0 bad refused
-	port="${base##*:}"; port="${port%%/*}"
+	local statuses="$WORK/statuses-$label.txt" stop="$WORK/stop-$label" bad refused started
 	: > "$statuses"; touch "$stop"
 	load_loop "$base" "$code" "$statuses" "$stop" &
 	local loader=$!
 	sleep 1
-	r0_open "$port"
+	r0_open "$base"
+	sleep 0.2
+	started="$(now_ms)"
 	"$@" > "$WORK/$label.out" 2>&1 &
 	local restarter=$!
 	sleep 0.5
-	r0="$(r0_finish)"
+	r0_finish "$started"
 	wait "$restarter" || fail "$label: '$*' failed: $(cat "$WORK/$label.out")"
 	wait_healthy
 	rm -f "$stop"; wait "$loader" || true
-	echo "$r0" | grep -q '^HTTP/1\.1 2' || fail "$label: held request R0 answered '$r0', expected 2xx"
+	[ "$R0_OK" = 1 ] || fail "$label: held request R0: $R0; expected a complete 2xx/3xx within 10 s"
+	rm -f "$WORK/r0.fifo"
 	bad="$(grep -v -E '^(000|[23][0-9][0-9])$' "$statuses" | wc -l | tr -d ' ')"
 	refused="$(grep -c '^000$' "$statuses" || true)"
-	echo "$label: R0 '$r0'; $(wc -l < "$statuses" | tr -d ' ') load requests; non-2xx/3xx responses: $bad; connection failures through the port proxy (reported, not judged): $refused"
+	echo "$label: R0 $R0; $(wc -l < "$statuses" | tr -d ' ') load requests; non-2xx/3xx responses: $bad; connection failures through the port proxy (reported, not judged): $refused"
 	[ "$bad" = "0" ] || fail "$label: $bad responses outside 2xx/3xx: $(grep -v -E '^(000|[23][0-9][0-9])$' "$statuses" | sort | uniq -c | tr '\n' ' ')"
 	check_link "$base" "$code" "$location" "$body"
 }
@@ -168,7 +182,7 @@ drain_loop() { # base stop-file prefix: one create per connection, about 20 per 
 }
 
 drain_mode() {
-	local JAR="$1" PORT="${2:-18090}" BASE pid log r0 probe started ok=0 refused=0 losses=0 failures=0 requests=0
+	local JAR="$1" PORT="${2:-18090}" BASE pid log probe started ok=0 refused=0 losses=0 failures=0 requests=0 rc
 	[ -f "$JAR" ] || fail "--drain needs the jar path (scripts/gw bootJar)"
 	BASE="http://127.0.0.1:$PORT"
 	log="$WORK/jar.log"
@@ -181,8 +195,10 @@ drain_mode() {
 	pid=$!
 	local ready=""
 	for i in $(seq 1 60); do
-		# every attempt's headers are kept: a 503 before readiness was dispatched and logged too
-		ready="$("$HTTP" -s -D "$WORK/ready-$i.headers" -o /dev/null -w '%{http_code}' "$BASE/actuator/health/readiness" 2>/dev/null || true)"
+		# every complete attempt's headers are kept: a 503 before readiness was dispatched and logged too
+		rc=0
+		ready="$("$HTTP" -s -D "$WORK/ready-$i.headers" -o /dev/null -w '%{http_code}' "$BASE/actuator/health/readiness" 2>/dev/null)" || rc=$?
+		[ "$rc" = 0 ] || rm -f "$WORK/ready-$i.headers"
 		[ "$ready" = "200" ] && break
 		sleep 1
 	done
@@ -193,16 +209,16 @@ drain_mode() {
 	drain_loop "$BASE" "$WORK/drain.stop" "$WORK/b" &
 	local l2=$!
 	sleep 2
-	r0_open "$PORT"
+	r0_open "$BASE"
 	sleep 0.2
-	started=$SECONDS
+	started="$(now_ms)"
 	kill -TERM "$pid"
 	sleep 0.5
 	if (exec 4<>"/dev/tcp/127.0.0.1/$PORT") 2>/dev/null; then probe="accepted"; else probe="refused"; fi
-	r0="$(r0_finish)"
+	r0_finish "$started"
 	wait "$pid" || true
 	rm -f "$WORK/drain.stop"; wait "$l1" "$l2" || true
-	echo "R0: '$r0' within $((SECONDS - started)) s of SIGTERM; probe connection: $probe"
+	echo "R0: $R0 (SIGTERM); probe connection: $probe"
 	grep -q 'Graceful shutdown complete' "$log" || fail "no 'Graceful shutdown complete' in the jar log"
 
 	# classify every load request from evidence (AC-25): the server's request ids against complete responses
@@ -221,8 +237,9 @@ drain_mode() {
 			*) failures=$((failures + 1)); echo "failure: curl exit $code, status $status, id '$id'" ;;
 		esac
 	done
-	# the readiness probes and R0 are requests the server logged too; their complete responses count
-	cat "$WORK"/ready-*.headers "$WORK/r0.txt" 2>/dev/null | grep -i '^x-request-id:' | tr -d '\r' \
+	# the readiness probes and R0 are requests the server logged too; only their complete responses count
+	[ "$R0_RC" = 0 ] || rm -f "$WORK/r0.headers"
+	cat "$WORK"/ready-*.headers "$WORK/r0.headers" 2>/dev/null | grep -i '^x-request-id:' | tr -d '\r' \
 		| awk '{print $2}' >> "$WORK/client-ids.txt" || true
 	sort -u "$WORK/client-ids.txt" -o "$WORK/client-ids.txt"
 	local undelivered
@@ -231,7 +248,7 @@ drain_mode() {
 	failures=$((failures + undelivered))
 	echo "load: $requests requests by 2 clients at about 20 req/s each; ok $ok; refused before acceptance $refused;" \
 		"boundary losses (cut off, never dispatched) $losses; failures $failures (of which dispatched but undelivered $undelivered)"
-	echo "$r0" | grep -q '^HTTP/1\.1 2' || fail "held request R0 answered '$r0', expected 2xx"
+	[ "$R0_OK" = 1 ] || fail "held request R0: $R0; expected a complete 2xx/3xx within 10 s of SIGTERM"
 	[ "$probe" = "refused" ] || fail "a new connection during the drain was accepted"
 	[ "$failures" = "0" ] || fail "$failures dispatched requests did not complete"
 	echo "SMOKE DRAIN OK ($JAR)"
