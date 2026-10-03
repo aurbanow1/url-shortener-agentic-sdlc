@@ -1,0 +1,48 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :jar UP-TO-DATE
+> Task :compileFunctionalTestJava UP-TO-DATE
+> Task :processFunctionalTestResources UP-TO-DATE
+> Task :functionalTestClasses UP-TO-DATE
+
+> Task :designRevisionProbe
+PROBE DR-01 close() with deadline 5000 ms, 6 queued writes of 2000 ms
+    close returned after 5007 ms; written=[req-1, req-2]; lost=[Lost[requestId=req-4, reason=shutdown deadline], Lost[requestId=req-3, reason=write failed (interrupted at the deadline)], Lost[requestId=req-5, reason=shutdown deadline], Lost[requestId=req-6, reason=shutdown deadline]]
+    VERDICT boundedByDeadline=true everyClickAccountedOnce=true
+PROBE DR-01 close() with deadline 500 ms, 6 queued writes of 2000 ms
+    close returned after 504 ms; written=[]; lost=[Lost[requestId=req-2, reason=shutdown deadline], Lost[requestId=req-3, reason=shutdown deadline], Lost[requestId=req-4, reason=shutdown deadline], Lost[requestId=req-5, reason=shutdown deadline], Lost[requestId=req-6, reason=shutdown deadline], Lost[requestId=req-1, reason=write failed (interrupted at the deadline)]]
+    VERDICT boundedByDeadline=true everyClickAccountedOnce=true
+PROBE DR-01 close() with deadline 5000 ms, 6 queued writes of 0 ms
+    close returned after 0 ms; written=[req-1, req-2, req-3, req-4, req-5, req-6]; lost=[]
+    VERDICT boundedByDeadline=true everyClickAccountedOnce=true
+PROBE DR-02 reviewer's interleaving: A selects day D, B starts day D+1, A finishes, B again
+    A's click: day 2026-10-01 at 2026-10-01T23:59:59.999Z
+    VERDICT delayedHashEqualsDayDHash=true sameDayHashStableOnD+1=true D+1DiffersFromD=true
+PROBE DR-02 stale expiry callback for day D after D+1 began
+    VERDICT D+1HashUnchanged=true
+PROBE DR-02 expiry of the current day drops its salt
+    VERDICT nextStampDrawsANewSalt=true
+PROBE DR-02 clock moved back across midnight (NTP step or a test shift)
+    VERDICT newSaltForTheEarlierDay=true (documented boundary)
+PROBE DR-02 scheduled expiry at the day's end
+    VERDICT expiredWithoutAClick=true expiries=1
+PROBE DR-01 ownership: interruption-ignoring store, deadline 300 ms, 6 clicks
+    close returned after 310 ms; reported at close=[Lost[requestId=req-2, reason=shutdown deadline], Lost[requestId=req-3, reason=shutdown deadline], Lost[requestId=req-6, reason=shutdown deadline], Lost[requestId=req-5, reason=shutdown deadline], Lost[requestId=req-4, reason=shutdown deadline], Lost[requestId=req-1, reason=shutdown deadline, outcome unknown]]
+    VERDICT allSixAccountedWhenCloseReturns=true inFlightReportedAsUnknown=true
+PROBE DR-01 ownership: the stuck write commits after shutdown
+    written=[req-1 (committed after shutdown reported it as outcome unknown)] reports=6
+    VERDICT noDuplicateReport=true
+PROBE DR-01 ownership: the stuck write fails after shutdown
+    reports at close=3 after=3
+    VERDICT failureSuppressedAfterClaim=true
+PROBE DR-01 ownership: shutdown claims before the worker starts
+    reports=[Lost[requestId=req-race, reason=shutdown deadline]] written=[]
+    VERDICT reportedOnceNeverWritten=true
+PROBE DR-01 ownership: the worker completes before shutdown claims
+    reports=[] written=[req-done]
+    VERDICT writtenNotReported=true
+
+BUILD SUCCESSFUL in 8s
+6 actionable tasks: 1 executed, 5 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html

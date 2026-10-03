@@ -1,12 +1,12 @@
 # 02-analytics — design review
 
-**Latest verdict: FAIL on `45c98c469e7f18f7cdf4b098a03a851fa56d073d`: DR-01
-remains HIGH for in-flight shutdown accounting. DR-02, DR-03 and DR-04 are
-fixed.** The drain deadline works, but a normal JVM exit can still abandon
-the daemon writer without the promised loss warning. This repeated finding
-is escalated to the lead under the convergence rule; the review packet waits
-for that resolution. See the appended re-review and
-[escalation brief](design-dr01-escalation.md).
+**Latest verdict: PASS on `b26cbbf904f999b46859c85be5eed72c85653e89`: all
+four findings fixed; no open findings.** The lead-authorized DR-01 correction
+reports outstanding clicks before returning from shutdown, with an honest
+unknown outcome for the in-flight write. Fresh normal-process-exit and
+worker/shutdown checks support the correction. Hand off to delegated
+plan-lock. Earlier findings and the [escalation](design-dr01-escalation.md)
+remain below as review history.
 
 ## Initial review — 71b2e10
 
@@ -263,3 +263,73 @@ in the lead's existing follow-up; it is not another review blocker.
 - Repeated DR-01 goes to the orchestration lead with both positions. Resume
   after its resolution, verify the concrete correction on its named SHA,
   preserve DR-02/03/04 as fixed, then hand off to delegated plan-lock when clear.
+
+## Re-review b26cbbf904f999b46859c85be5eed72c85653e89
+
+2026-10-03, `review-agent@urlshort-factory` (Codex), same review packet and
+instance. Scope authorized by the lead's escalation resolution (transition
+512), handed back by design item `qitem-20261003093809-6bf44217` (transition
+525). SPEC stays `173bd60`.
+
+**Verdict: PASS — DR-01 fixed; DR-02/03/04 remain fixed.** No additional
+findings or non-blocking items. The outstanding-click state is justified by
+the reproduced shutdown problem, including a dequeued task that has not
+started; it introduces no dependency or general-purpose framework.
+
+### Context and file ledger
+
+This change concerns ownership of the shutdown report, not guaranteed
+database cancellation. Shutdown claims queued and active clicks itself;
+an active write is explicitly reported with an unknown database outcome,
+and a later worker completion does not emit another warning. Confidence:
+99/100 for the scoped design resolution, backed by source reads and fresh
+executions. Implementation-level logging and integrated shutdown proof
+remain the builder/QA obligations already in the test plan.
+
+All **5 changed files / 5 reviewed**, exact working-byte matches to the
+candidate, recorded in [the hash audit](proof/design-ownership-source-audit.json):
+
+| Changed file | Verdict |
+|---|---|
+| `docs/DESIGN.md` | PASS: outstanding ownership and unknown-outcome reason reflected in the component table |
+| `docs/adr/0011-click-handoff-bounded-single-writer.md` | PASS: five-second drain retained; incorrect pool-close dependency removed; late commit explicitly possible |
+| `missions/01-greenfield-core/slices/02-analytics/design.md` | PASS: lifecycle, private log fields, tests (a)–(g), coverage branches and review response aligned |
+| `missions/01-greenfield-core/slices/02-analytics/design-probe/RevisionProbe.java` | All added ownership code read with previously reviewed code; unchanged mechanisms executed directly by both probe harnesses |
+| `missions/01-greenfield-core/slices/02-analytics/design-probe/revision-output.txt` | All 48 lines inspected; new cases distinguish report-at-close, late success, late failure, start and completion orderings |
+
+### Resolution and fresh evidence
+
+| Finding | Status | Evidence |
+|---|---|---|
+| DR-01 | **Fixed** | Tasks are registered before submission; per-task atomic QUEUED/RUNNING/DONE/CLAIMED state lets shutdown claim even a dequeued task, or report a running task with outcome unknown. Planned rejection cleanup and cancellation of queued settle futures remain explicit. Fresh producer probe returns in 310 ms with all six reported, suppresses reports after late success/failure and passes both deterministic worker orderings. Independent child process with the actual OwnedRecorder and five-second deadline returns in 5,010 ms, six unique request ids already reported, one unknown outcome, writer still blocked; main then exits normally without releasing the store. |
+| DR-02, DR-03, DR-04 | **Remain fixed** | No changes to their mechanisms or contract; settled by the preceding re-review and not reopened. |
+
+Commands, all through `scripts/gw --offline` with wrapper logging:
+
+| Task | Result |
+|---|---|
+| `-I missions/01-greenfield-core/slices/02-analytics/design-probe/revision-probe.gradle designRevisionProbe` | [Fresh ownership rerun](proof/design-ownership-rerun.txt): all stated ownership predicates true |
+| `-I docs/review/02-analytics/proof/revision-boundary.gradle reviewOwnedExitBoundary` | [Independent output](proof/design-owned-exit-boundary.txt): 250 success and 250 failure worker/claim races, no missing/duplicate reports; six reports before normal process exit while the store remains blocked |
+| `check` | [Baseline check](proof/design-ownership-check.txt): successful, 14 tasks up to date |
+
+[OwnedExitBoundaryProbe.java](proof/OwnedExitBoundaryProbe.java) invokes the
+producer's unchanged OwnedRecorder/OwnedWrite classes. Its store is the
+producer's interruption-ignoring latch, deliberately left blocked when main
+returns. The preceding real-H2 fixture established why that behavior matters;
+this run proves reporting no longer waits for the store. It also asserts
+the five-second bound, unique ids and the explicit unknown-outcome reason.
+The concurrent runs complement the deterministic orderings; they do not
+claim exhaustive scheduling coverage or production logging verification.
+
+### Self-check and handoff
+
+- Exact candidate and complete five-file response reviewed; only DR-01 and
+  changes introduced by its correction judged.
+- Fresh executed evidence supports the verdict. The baseline gate is not
+  misrepresented as analytics implementation coverage.
+- Ledger appended with zero open findings. Only review artifacts changed.
+- Handoff to delegated plan-lock on design `b26cbbf`, SPEC `173bd60`.
+  Unknown in-flight database outcomes remain an explicit shutdown condition;
+  full implementation tests and 02+03 shutdown smoke must exercise the
+  documented behavior. NFR-L3 measurement and existing A-9/CR-01 backlog
+  ownership remain unchanged.

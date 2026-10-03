@@ -48,3 +48,13 @@ risk. Design work is now `qitem-20261003093809-6bf44217`, which must close
 with the corrected candidate and evidence. The review packet waits on that
 item. Re-review DR-01 and changes introduced by its fix only; keep
 DR-02/03/04 settled. No new review verdict is implied by this routing update.
+
+## Correction reviewed — 2026-10-03
+
+The producer closed the focused correction item at transition 525 with
+candidate `b26cbbf904f999b46859c85be5eed72c85653e89`. The appended design
+re-review records PASS: six reports exist before normal process exit while
+the store remains blocked; the in-flight outcome is explicitly unknown;
+late completion does not duplicate the report. DR-01 is now fixed and the
+review proceeds to delegated plan-lock. The earlier failed candidate and
+reproduction remain preserved as history.

@@ -8,6 +8,7 @@ gradle.projectsEvaluated {
         source p.file('missions/01-greenfield-core/slices/02-analytics/design-probe/ConstraintProbe.java')
         source p.file('docs/review/02-analytics/proof/RevisionBoundaryProbe.java')
         source p.file('docs/review/02-analytics/proof/ExitBoundaryProbe.java')
+        source p.file('docs/review/02-analytics/proof/OwnedExitBoundaryProbe.java')
         classpath = functional.runtimeClasspath
         destinationDirectory.set(p.layout.buildDirectory.dir('review-revision-boundary'))
         javaCompiler.set(p.javaToolchains.compilerFor { languageVersion = JavaLanguageVersion.of(21) })
@@ -23,5 +24,11 @@ gradle.projectsEvaluated {
         javaLauncher.set(p.javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) })
         classpath = p.files(compileProbe.flatMap { it.destinationDirectory }) + functional.runtimeClasspath
         mainClass = 'ExitBoundaryProbe'
+    }
+    p.tasks.register('reviewOwnedExitBoundary', JavaExec) {
+        dependsOn compileProbe
+        javaLauncher.set(project.javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) })
+        classpath = p.files(compileProbe.flatMap { it.destinationDirectory }) + functional.runtimeClasspath
+        mainClass = 'OwnedExitBoundaryProbe'
     }
 }
