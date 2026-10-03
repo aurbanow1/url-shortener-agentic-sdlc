@@ -156,7 +156,7 @@ Context and observations that help the mission but do not change its
   - Gate green on `5233c29`: unit 201, functional 205, 506/506 lines, 190/190 branches.
   - **Waiting** on audit-read's code-review packet `qitem-20261003195938-d8b8a9c3`. review-agent reported a HIGH at 20:07Z: the remoteip header settings re-enable peer rewriting while the strategy is `NONE`.
   - **Continuation on wake:** if audit-read comes back to implement, fix it first. Once its merge commit is on `main`: `git rebase <merge>` in `.worktrees/03-dogfood-fix`, run `OpenApiDocumentTest`, `cp build/openapi/openapi.json docs/api/openapi.json`, commit, run `check --rerun-tasks`, update PROOF/PROGRESS with the SHA, drop the proof, and hand off.
-  - The next packet is `01-analytics-v2` (`qitem-20261003200325-7115d4e3`, mission 03), not yet claimed.
+  - `01-analytics-v2` (`qitem-20261003200325-7115d4e3`, mission 03) was handed to `dev2-agent` at 20:03Z; it is not mine.
 
 ## 5. QA Agent
 
