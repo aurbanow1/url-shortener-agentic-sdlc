@@ -1,3 +1,23 @@
+---
+slice: OPR.99.0.1.1
+candidate_sha: f286a10863e4a8081235226f2d56e51ac121b319
+artifact_type: qa
+verdict: PASS
+money_evidence: All 8 ACs observed over loopback HTTP; QA-01 resolved; 6 unit
+  and 9 functional tests pass; merged coverage 15/15 lines with zero branches.
+evidences:
+  - "1"
+  - "2"
+  - "3"
+  - "4"
+  - "5"
+  - "6"
+  - "7"
+self_check: Read fresh JUnit and all CSVs, checked exact response bodies and
+  requestId-matched JSON events, found no canary or loopback address in
+  startup-through-shutdown logs, confirmed app stopped and candidate unchanged.
+---
+
 # QA coverage — 01-ping
 
 Candidate: `f286a10863e4a8081235226f2d56e51ac121b319` (`slice/01-ping`).
@@ -73,3 +93,16 @@ and docs/DESIGN.md log examples still show the excluded thread name. The
 design owner should reconcile them at integration; the locked design sample
 is historical. No AC or proof-contract item remains unverified. QA proof
 covers items 1–7; attributed acceptance judgments remain for slice_accept.
+
+## Media
+
+![qa-check-f286a10.txt](qa-check-f286a10.txt)
+![qa-tests-f286a10.txt](qa-tests-f286a10.txt)
+![qa-ping-first-f286a10.txt](qa-ping-first-f286a10.txt)
+![qa-ping-second-f286a10.txt](qa-ping-second-f286a10.txt)
+![qa-ping-canaries-f286a10.txt](qa-ping-canaries-f286a10.txt)
+![qa-ping-post-f286a10.txt](qa-ping-post-f286a10.txt)
+![qa-ping-log-line-f286a10.json](qa-ping-log-line-f286a10.json)
+![qa-http-start-f286a10.txt](qa-http-start-f286a10.txt)
+![qa-http-end-f286a10.txt](qa-http-end-f286a10.txt)
+![qa-bootrun-f286a10.txt](qa-bootrun-f286a10.txt)

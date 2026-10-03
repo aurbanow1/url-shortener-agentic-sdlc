@@ -260,3 +260,66 @@ packaged jar. Contract items 1 to 5 remain QA's.
   SPEC.
 - `check --rerun-tasks` ran after the last edit; no edit since. Worktree clean
   at `f286a10`.
+
+## QA re-check f286a10863e4a8081235226f2d56e51ac121b319
+
+QA Agent (Codex), 2026-10-03 UTC. **PASS; QA-01 resolved.** Verified the exact
+candidate before execution. Reviewed the two-file delta: the granted logging
+exclusion and its AC-7 regression assertion. No product edits by QA.
+
+Independent gate:
+`scripts/gw --log missions/00-hello/slices/01-ping/proof/qa-check-f286a10.txt --offline -p .worktrees/01-ping check --rerun-tasks`
+from main. Exit 0, 18 seconds, all 13 tasks executed. JUnit XML reports 6 unit
+and 9 functional tests, no failures/errors/skips. Coverage CSVs: unit 15/15,
+functional 13/15, merged 15/15 lines; no branches exist. Fresh HTML/XML/CSV
+reports copied to `docs/qa/coverage/01-ping/{unit,functional,all}/`.
+
+App started with the same loopback bind that exposed QA-01:
+`scripts/gw --log missions/00-hello/slices/01-ping/proof/qa-bootrun-f286a10.txt --offline -p .worktrees/01-ping bootRun --args='--server.address=127.0.0.1 --server.port=18081 --spring.datasource.url=jdbc:h2:mem:qa-ping'`.
+No logging overrides. Isolated H2 memory database. Four sequential requests
+through `scripts/http` independently exercise all eight ACs:
+
+- AC-1/2/3: `qa-ping-first-f286a10.txt`: 200 application/json, exactly two
+  fields, status=ok, time `2026-10-03T00:43:57.282696Z`; id
+  `0c1ecb83-71a0-4a98-af62-9df9a5c5a6e0` has the required shape. All GET
+  times parsed as UTC instants with seconds and fell between the recorded
+  `qa-http-start-f286a10.txt` and `qa-http-end-f286a10.txt` bounds.
+- AC-4: `qa-ping-second-f286a10.txt` returns distinct id
+  `e1f3f111-9ecc-4a68-ad81-fc16b976f62f` on the consecutive GET.
+- AC-5: `qa-ping-post-f286a10.txt` is 405 application/problem+json, body
+  status 405, title and instance, no stack trace/exception name, issued id.
+- AC-6: every matching GET log line parses as one JSON object with the
+  response's requestId. `qa-ping-log-line-f286a10.json` is the first event,
+  copied verbatim from `qa-bootrun-f286a10.txt`.
+- AC-7/8: `qa-ping-canaries-f286a10.txt` sends distinctive User-Agent and
+  inbound-id canaries. The response id is newly issued. Neither canary nor
+  `127.0.0.1`, `::1` or the expanded IPv6 loopback address occurs anywhere in
+  startup-through-shutdown output. Matching ping events have no thread-name
+  member. The former failing assertion now passes under the same bind.
+
+PID 23990 stopped with SIGTERM, graceful shutdown confirmed in the log.
+bootRun exit 143 reflects that intentional stop; the check gate exited 0.
+No audit row applies. Same out-of-scope limits as the first QA check:
+HEAD/OPTIONS, unknown paths, Accept negotiation, load, packaged jar/image,
+persistence, validation/duplicates/expiry/rate limits.
+
+Current summary, traceability and gaps reflect this candidate. The previous
+NOT-CLEAR drop and original captures remain historical. Finding QA-01 is
+closed in `docs/qa/01-ping/findings.md`; no contract waiver. The builder's
+documentation follow-up (old thread-name examples in ADR-0004 and
+docs/DESIGN.md) is carried to code review for integration; it does not change
+the observed acceptance result.
+
+## Self-check
+
+QA re-check pre-handoff:
+
+- All eight ACs exercised again on the exact candidate, including POST 405,
+  both privacy canaries and the original loopback logging failure.
+- Fresh JUnit and all three CSVs read; all test methods mapped both ways;
+  informational per-suite coverage shortfall retained; no open gap hidden.
+- PASS proof drop `proof/qa-evidence-f286a10.md` names contract items 1–7
+  and attaches the new captures; prior verdict preserved, no slice_accept
+  judgment or locked-document edit made.
+- App stopped; candidate unchanged and worktree clean; only QA evidence
+  edited. Raw HTTP captures retain wire CRLF and status-line spaces.
