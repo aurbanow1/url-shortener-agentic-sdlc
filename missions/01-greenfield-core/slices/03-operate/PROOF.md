@@ -4,7 +4,7 @@
 >
 > **HOW (the drop verb, not hand-placement):** put media files under `proof/`, then ATTACH them with `rig proof add OPR.99.0.2.3 --artifact-type qa --verdict PASS --candidate-sha <tip> --money-evidence "<one line>" --evidences "1" --media "screenshot-01.png"` — the drop writes the C1 header the Living Notes DELIVERED pairing joins on. Hand-placing files without a drop leaves the deliverable unpaired and `unverified`.
 
-Current status: QA re-check PASS on candidate 1c8b2cf; independent re-review pending. Review FAIL at 43cccf5 and the withdrawn a7c533f item 12 remain historical. No release or slice-closure verdict.
+Current status: QA and independent code/security re-review PASS on candidate 1c8b2cf, integrated by the lead as 8e9c065. Attributed items 1–12 are accepted; only release item 13 remains pending. Review FAIL at 43cccf5 and the withdrawn a7c533f item 12 remain historical. No release verdict.
 
 ## What this proves
 
@@ -20,7 +20,7 @@ Dropped via `rig proof add … --evidences … --media …` (one drop per verdic
 
 ## Residue / caveats (if any)
 
-Proof item 11 awaits code/security review and item 13 awaits release. `docs/qa/03-operate/proof-sequencing.md` and `docs/qa/GAPS.md` retain those obligations. QA bench offered rate is below the specified workload; its latency numbers are not a release verdict.
+Proof item 11 is now accepted from the completed independent re-reviews; item 13 awaits release under the retained proof-sequencing/GAPS continuation. QA bench offered rate is below the specified workload; its latency numbers are not a release verdict.
 
 ## Builder
 
@@ -419,3 +419,37 @@ and only **11/13 pending**. Overall readiness remains correctly `not-ready`.
 The scope audit has no findings for 03-operate; unrelated 02's existing C1
 warning was not edited during this assigned slice check. Review2 receives
 the exact candidate and this record for independent re-review.
+
+#### Proof item 11 — review records completed
+
+QA2, 2026-10-03T13:59Z, assigned receipt-completion packet
+`qitem-20261003135618-4e62dbf5`, under the accepted lead continuation.
+Read both complete appended code/security re-reviews at **`48381d4`**, their
+explicit positive item-11 rows, audit and actual-class probe output. Both
+name exact candidate `1c8b2cff20ad8b73a060bc817c8d0011782f876f`. Independently
+compared all 26 recorded file hashes with that candidate's Git blobs; all
+match. The worktree was verified clean at that SHA before the lead completed
+integration and removed it. `git rev-parse 8e9c065^2` now returns the exact
+candidate, so the judgment stands for the integrated candidate unchanged.
+
+Accepted the review-backed obligation: one TAT per client with opportunistic
+full-bucket reclamation under the written forward-clock contract; backwards
+steps fail closed until catch-up/restart. This does not claim an absolute
+client-cardinality cap. The reviewed class adds no identity output or storage
+sink; the new audit reconciles 2,303 responses, five logs, scrape and three
+tables with zero searched peer/forwarded canaries, retaining the submitted
+target URL exception and salted click boundary. The original probe reports
+60 reordered admissions and 2 retained clients, consistent with prior QA.
+
+Receipt **`proof/judgments/00000025.md`** accepts item 11, attributed to QA2
+against this exact candidate and hashes both review records, audit and probe.
+Fresh `rig proof show` confirms **items 1–12 accepted**, no issues, and only
+**item 13 pending**. Readiness remains `not-ready` until the release record.
+No new product suite, HTTP journey or app launch was performed for this
+receipt-completion packet; earlier QA evidence is retained without expansion.
+
+Self-check: exact candidate and review commit read; both item-11 obligations
+and clock/privacy limits inspected; all 26 Git-blob hashes verified; receipt
+actor/subject/evidence and current proof state checked; merge second parent
+verified. Product/tests and existing evidence untouched; release item 13
+remains under the lead's existing obligation without a new release acceptance.

@@ -11,7 +11,7 @@
 - [x] Tests passing — fresh independent `check --rerun-tasks` on `1c8b2cf`: unit 165/165, functional 155/155, merged 443/443 lines and 162/162 branches, Javadoc green (`docs/qa/03-operate/check-1c8b2cf.txt`)
 - [x] Review approved — combined code and security re-review PASS on `1c8b2cf` (`docs/review/03-operate/01-code-review.md`, `02-security-review.md`, evidence `48381d4`; the first round's HIGHs, the limiter's stale-time reset and the smoke script's truncated-R0 pass, fixed and re-probed; CR-03 judged against the written clock policy)
 - [x] Integrated — merged `--no-ff` into `main` as `8e9c065` (orchestration lead, 2026-10-03T13:59Z; 26 files, all inside the slice territory and its grants; the two granted test files carry only the dedicated-peer change plus two stricter status checks); `scripts/gw --offline check --rerun-tasks` green on `main` after the merge, unit 165, functional 155, 0 failures/skips, coverage verification passed (`docs/evidence/01-greenfield-core/integrate-03-operate-check-8e9c065.txt`); tag `slice/03-operate/accepted` on `1c8b2cf`; worktree removed
-- [ ] Delivery stamp — after the mission's ship sign-off, once item 11 is judged by `qa2-agent` (`qitem-20261003135618-4e62dbf5`, from the re-review rows) and item 13 after `release_prep` (`qitem-20261003120849-f4cbfa97`). Items 1–10 and 12 are accepted on `1c8b2cf`
+- [ ] Delivery stamp — after the mission's ship sign-off and item 13 after `release_prep` (`qitem-20261003120849-f4cbfa97`). Item 11 is accepted by QA2 in receipt `00000025.md`; items 1–12 are accepted on `1c8b2cf`.
 
 ## Historical builder-side proof-contract items — a7c533f
 
@@ -71,7 +71,8 @@ Only items 1–10 retain their narrower accepted artifact/test/effect claims; ca
 - [x] Initial unsupported macOS C.UTF-8/Perl setup failure retained; supported C locale independently verified, strict controls reject setup failures as evidence. LOW QA-OPR-03 recorded.
 - [x] Apps stopped; product paths untouched; candidate worktree exact and clean.
 - [x] Current QA drop `proof/qa-evidence-1c8b2cf.md` and coverage/captures committed at `f7ee87e`; attributed receipts `00000014.md`–`00000024.md` accept items 1–10 and 12 on exact candidate 1c8b2cf.
-- [ ] Item 11: new code/security review records; item 13: final release/container/workload judgment, retained by lead obligation qitem-20261003120849-f4cbfa97.
+- [x] Item 11: completed code/security re-review records inspected; attributed receipt `00000025.md` accepts exact candidate 1c8b2cf under the written clock/privacy scope.
+- [ ] Item 13: final release/container/workload judgment, retained by lead obligation qitem-20261003120849-f4cbfa97.
 
 Fresh bench rate 82.1 redirects/s / 16.4 creates/s remains below 100/20;
 NFR-L1/L2 unclaimed. QA PASS is for the assigned boundary; independent
@@ -82,3 +83,13 @@ Fresh `rig proof show` confirms those eleven items accepted by QA2 against
 the exact SHA, no issues, and only items 11/13 pending. Readiness remains
 `not-ready` until their later records; the scope audit has no 03-operate
 findings. Next action is the authored QA handoff to review2.
+
+## Review receipt completion — 2026-10-03T13:59Z
+
+- [x] Packet qitem-20261003135618-4e62dbf5: both explicit item-11 PASS re-reviews at 48381d4 read; all 26 candidate Git blobs match reviewer hashes; memory and privacy limits retained.
+- [x] Receipt 00000025 attributed to QA2 on exact 1c8b2cf; fresh proof state has items 1–12 accepted, no issues, only release item 13 pending.
+- [x] No new product QA run or app launch; product source/tests and prior evidence unchanged.
+- [x] Lead's merge 8e9c065 has exact candidate 1c8b2cf as its second parent; judgment stands for the integrated candidate.
+
+Release remains required; no absolute cardinality or final workload/container
+claim is added. The delivery stamp still follows the mission ship sign-off.
