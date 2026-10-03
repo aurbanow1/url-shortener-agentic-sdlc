@@ -51,6 +51,7 @@ Sources: PDF §4 core requirements (R1–R8), PDF §5 deliverables (D1–D5), an
 | `tools/evidence-export.sh` | **ours** | Dumps `workflow validate/compile/trace`, `queue transitions`, `scope audit`, `proof show` → `docs/evidence/` |
 | `tools/sdlc-metrics.ts` | **ours** | Derives success rate, retry/rollback frequency, MTTR, end-to-end latency per slice/mission from exported traces → `docs/metrics/` |
 | `docs/GOVERNANCE.md` | **ours** | Living version of §3: every clause of R4 → mechanism → evidence |
+| `docs/guidance/` | **ours** | Engineering practice library — requirements capture, architecture, Java + Spring Boot 4, databases, QA — each role's required reading and the standard reviews judge against |
 | Workflow runtime, queue, scope/proof, watchdog, Mission Control UI, snapshots, transcripts | OpenRig daemon | Substrate — explained in plain English in `docs/ARCHITECTURE.md` |
 
 ### Layer B — the product (URL shortener)
@@ -105,7 +106,7 @@ url-shortener/
 ├── build.gradle.kts  settings.gradle.kts  gradlew  gradle/  src/main/java  src/main/resources/db/migration  src/test/java  src/functionalTest/java  Dockerfile  compose.yaml  scripts/env.sh
 └── docs/
     ├── ARCHITECTURE.md DESIGN.md GOVERNANCE.md TESTING.md RISKS.md FINAL-SUMMARY.md SETUP-FACTORY.md AUDIT-INDEX.md
-    └── adr/  diagrams/  scenarios/  review/  qa/  metrics/  evidence/
+    └── adr/  diagrams/  guidance/  scenarios/  review/  qa/  metrics/  evidence/
 ```
 
 The assignment PDF is **not** committed (it is marked Schwab Internal).
