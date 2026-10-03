@@ -65,3 +65,4 @@ Facts first (they changed recently), then practices with their checks.
 - Calling the application `main` from a test to cover it: fine for the bootstrap, but keep `main` to one line.
 - Assuming the request id survives the error path: it does only because the filter sets the header *before* `chain.doFilter` and runs first in the chain — keep the order explicit.
 - H2 "PostgreSQL mode" is not PostgreSQL: avoid vendor SQL; keep migrations portable; plan a real PostgreSQL run before any production claim.
+- Tomcat names its worker threads after the connector's bound address (`http-nio-127.0.0.1-18081-exec-5`), and ECS structured logging emits the thread name as `process.thread.name`. A "no addresses in logs" criterion is therefore violated by server metadata as soon as the app binds to an explicit IP. Either exclude the member from the structured log or never assert address absence on a loopback-bound capture — decide at design time, not at QA (QA-01 on `01-ping`).
