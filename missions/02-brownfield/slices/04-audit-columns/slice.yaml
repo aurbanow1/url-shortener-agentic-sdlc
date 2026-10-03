@@ -52,6 +52,16 @@ territory:
   - src/test/java/dev/urlshort/audit/
   - src/functionalTest/java/dev/urlshort/audit/
   - src/main/resources/db/migration/
+  # TEST-SIDE GRANT (lead, 2026-10-03T23:12Z, development-agent request qitem-20261003231052-c29e30a9):
+  # two of 02-click-retention's merged tests treat "the latest migration" as V3, so V4 breaks them by
+  # construction. Pin each to V3, the version it is about, with no assertion changed:
+  # ClickAuditColumnsTest's second migrate gains .target("3"); ClickRetentionStartupJourneyTest's
+  # AC13_AC16 start(...) gains "--spring.flyway.target=3". Checked before granting: after start that
+  # test only reads rows and sends one redirect (no link create or retire), so V4's link stamp never
+  # runs against the V3 schema. V4's own upgrade is proven by LinkUpgradeJourneyTest and
+  # LinkAuditColumnsTest.
+  - src/test/java/dev/urlshort/click/ClickAuditColumnsTest.java
+  - src/functionalTest/java/dev/urlshort/click/ClickRetentionStartupJourneyTest.java
 # NOT in territory: click/ (02-click-retention's), web/, docs/api/openapi.json (no contract change).
 execution:
   actor_role: requirements
