@@ -58,6 +58,10 @@ that was merged, after bounded review loops (§6). The accumulated wave review
 passed on `7636264..8e9c065` from two vantages, with no MUST-FIX or HIGH, one
 MEDIUM (W2-01) and four LOWs routed to the lead (`qitem-20261003142206-ff6ad817`).
 
+**Dogfood.** QA's pass on the installed jar (`docs/qa/01-greenfield-core/dogfood.md`,
+`305dce5`) confirmed W2-01 (MEDIUM) and W2-03 (LOW) and found nothing else and nothing
+severe; both go to mission 02's `03-dogfood-fix` (§7).
+
 **Human decisions honoured** (verbatim in `NOTES.md` §1):
 - Mission plan-lock, 2026-10-03T04:39:53Z (`qitem-20261003042553-03ac8b4b`):
   "approve: four slices in three waves as briefed; the eight assumed rows (NFR-L1,
@@ -468,10 +472,12 @@ beside this list.
 - **Proof readiness not ready** (§1): three release-owned items pending, five
   re-affirmations needed.
 
-**Dogfood.** Requested from `qa-agent` as `qitem-20261003151220-a22accf5`, report
-due at `docs/qa/01-greenfield-core/dogfood.md`, with W2-01 and W2-03 pre-listed. It
-is mission 02's input for its bug-fix slice. This release does not wait on it; a
-severe finding goes to the lead.
+**Dogfood: done.** `qa-agent` ran the pass on the installed jar (requested as
+`qitem-20261003151220-a22accf5`; report
+[`../../docs/qa/01-greenfield-core/dogfood.md`](../../docs/qa/01-greenfield-core/dogfood.md),
+commit `305dce5`). W2-01 (MEDIUM) and W2-03 (LOW) were independently confirmed on the
+installed jar; no other defect and nothing severe was found. Both are routed to
+mission 02's bug-fix slice `03-dogfood-fix`.
 
 ## 8. Rollback
 
