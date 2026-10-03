@@ -117,6 +117,10 @@ Verified by effect:
   `logging.level.org.apache.coyote.http11.Http11Processor=warn` (shipped).
   Tomcat logs its first parse error at INFO with the offending bytes, so a
   client's request target reached the log, outside any request id.
+- **MVC's invalid-path WARN is not logged:**
+  `logging.level.org.springframework.web.servlet.resource.ResourceHandlerUtils=error`
+  (shipped). The resource handler WARNs the whole submitted path when it
+  refuses one (design review `03-operate` DR-01).
 - **The rate limiter logs nothing.** A `429`'s one event is
   `request completed` with status `429`.
 - **One accepted framework throwable on a request path:**

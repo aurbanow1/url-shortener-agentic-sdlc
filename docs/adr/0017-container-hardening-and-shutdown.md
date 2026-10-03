@@ -38,13 +38,32 @@ no accepted request reset during the drain (AC-25).
 - Measured on Tomcat: a request whose body is still arriving at the stop
   completes `201`, and a new connection 0.5 s after the stop is refused. At
   100 req/s, none of 10 stops reset an accepted connection.
-- **Residual:** under a closed loop of about 3 500 new connections per
-  second, 2 to 5 connections per stop are reset after the kernel accepted
-  them. Tomcat's acceptor stops a moment before the listening socket closes.
-  That puts the window near 1 ms: about 0.1 expected failures per stop at
-  100 req/s, 0.02 at 20 req/s. AC-25's "zero after acceptance" holds at
-  the smoke load rate but is not a guarantee. A reset at `release_prep` is
-  this race and is recorded with its rate.
+- **The shutdown contract (decided 09:25Z, `qitem-20261003092210-1156d6e8`;
+  SPEC rule 13, AC-25, A-16 revised at `f24f373`).** Requests the application has
+  dispatched complete within the 10 s phase with zero failures. The held
+  `R0` check stays, and new connections are refused. Connections lost from
+  the kernel backlog at listener close are counted and reported, not
+  judged. AC-28 is unchanged. The reason: the kernel completes the
+  handshake for a connection waiting in the listen backlog before the
+  application accepts it, and closing the listening socket, which refusing
+  new connections requires, resets every such connection. No
+  application-level design prevents that; Tomcat only shortens the window
+  (it stops accepting a moment before it closes). Measured: 2 to 6 per stop
+  under a closed loop of about 3 500 to 5 000 new connections per second,
+  0 in 10 stops at 100 req/s, every dispatched request completed.
+- **Each cut-off is classified from evidence** (SPEC `f24f373`, AC-25). Every
+  request handed to the application gets an id and one `request completed`
+  event from `RequestIdFilter`, the first filter. The smoke `--drain` mode
+  keeps the jar's log and the `X-Request-Id` of every complete client
+  response, and reconciles the two:
+  - an id logged with no complete response is a failure;
+  - a client cut-off when no such id exists is a boundary loss, counted and
+    reported with the load rate.
+
+  The design probe showed it by effect with counters at the same two
+  points. In the closed-loop stops, 11 143 and 15 212 requests were
+  dispatched, returned and received complete, so the 4 and 6 client
+  cut-offs were connections the server never dispatched.
 - Not added: `cap_drop: [ALL]` and `no-new-privileges`. They are cheap but
   beyond NFR-S5, and can be added if the release review asks.
 - Not run here: the compose file and the health-check command on a Docker

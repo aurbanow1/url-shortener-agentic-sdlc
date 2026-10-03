@@ -42,10 +42,15 @@ bounded. No new library is wanted, and none is in the offline build cache.
   urn:uuid:<request id>`. That is the same shape as every other error
   (ADR-0002). It logs nothing; the request's one event is the filter's
   `request completed` with status `429`.
-- **Memory bound.** A bucket is full again exactly when `TAT ≤ now`. At most
-  once per second, both maps drop such entries (a value-conditional remove,
-  safe against concurrent updates). An entry lives at most 61 s after its
-  client's last admitted request.
+- **Memory bound, released opportunistically.** A bucket is full again
+  exactly when `TAT ≤ now`. Inside `tryTake`, at most once per second of
+  application-`Clock` time, both maps drop such entries (a value-conditional
+  remove, safe against concurrent updates). After any limited request that
+  runs a sweep, the maps hold only clients admitted in the 61 s before it.
+  While no limited request arrives, nothing is added or removed, so an idle
+  service keeps its last minute of entries until the next request releases
+  them. There is no growth while idle and no timer thread (design review
+  DR-03 asked for the guarantee to be stated, not for a timer).
 - **Settings.** `urlshort.rate-limit.create-per-minute` (60),
   `redirect-per-minute` (600) and `trusted-proxies` (empty), in a validated
   `@ConfigurationProperties` record. The shipped `application.properties`

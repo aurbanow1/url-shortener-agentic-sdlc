@@ -277,6 +277,8 @@ public class OperateProbe {
 		// "request completed" and "ping" lines make the recorded output megabytes long.
 		ConfigurableApplicationContext ctx = start(QUIET_PARSER, "--logging.level.dev.urlshort.web.RequestIdFilter=warn",
 				"--logging.level.dev.urlshort.ping=warn");
+		DispatchCounter.DISPATCHED.set(0);
+		DispatchCounter.RETURNED.set(0);
 		int port = port(ctx);
 		AtomicBoolean loading = new AtomicBoolean(true);
 		AtomicInteger ok = new AtomicInteger();
@@ -366,7 +368,12 @@ public class OperateProbe {
 		out(label + ": held POST, probe connect 500 ms after the stop",
 				"R0 → " + firstLine(r0Response) + " after " + r0Ms + " ms; probe connect during drain → " + probe + "; context closed after "
 						+ closeMs + " ms\n    VERDICT loadOk=" + ok.get() + " (before stop " + okBeforeStop + ") refusedBeforeAcceptance="
-						+ refused.get() + " failuresAfterAcceptance=" + failures.get() + (failureKinds.isEmpty() ? "" : " " + failureKinds));
+						+ refused.get() + " clientCutOffs=" + failures.get() + (failureKinds.isEmpty() ? "" : " " + failureKinds)
+						+ "\n    SERVER dispatched=" + DispatchCounter.DISPATCHED.get() + " returned=" + DispatchCounter.RETURNED.get()
+						+ " completeResponsesReceived=" + ok.get() + " → every dispatched request answered completely="
+						+ (DispatchCounter.DISPATCHED.get() == ok.get() && DispatchCounter.RETURNED.get() == ok.get())
+						+ "; so the " + failures.get() + " cut-off(s) were never dispatched (boundary losses)="
+						+ (DispatchCounter.DISPATCHED.get() == ok.get()));
 	}
 
 	static ConfigurableApplicationContext start(String... more) {
@@ -443,6 +450,11 @@ public class OperateProbe {
 		}
 
 		@Bean
+		DispatchCounter dispatchCounter() {
+			return new DispatchCounter();
+		}
+
+		@Bean
 		static BeanPostProcessor failingDataSource() {
 			return new BeanPostProcessor() {
 				@Override
@@ -463,6 +475,34 @@ public class OperateProbe {
 					});
 				}
 			};
+		}
+	}
+
+	/**
+	 * Server-side evidence for AC-25's classification (SPEC f24f373): counts load requests (GET /api/ping)
+	 * the server dispatched to the filter chain and those whose chain returned, the same points at which
+	 * RequestIdFilter assigns its id and writes "request completed".
+	 */
+	@Order(Ordered.HIGHEST_PRECEDENCE + 1)
+	public static class DispatchCounter extends OncePerRequestFilter {
+		static final AtomicInteger DISPATCHED = new AtomicInteger();
+		static final AtomicInteger RETURNED = new AtomicInteger();
+
+		@Override
+		protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+				throws ServletException, IOException {
+			boolean load = "/api/ping".equals(request.getRequestURI());
+			if (load) {
+				DISPATCHED.incrementAndGet();
+			}
+			try {
+				chain.doFilter(request, response);
+			}
+			finally {
+				if (load) {
+					RETURNED.incrementAndGet();
+				}
+			}
 		}
 	}
 

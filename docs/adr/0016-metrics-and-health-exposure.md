@@ -31,6 +31,12 @@ application sees them.
 - **Health.** `management.endpoint.health.group.readiness.include=readinessState,db`.
   Liveness keeps `livenessState` only, and `show-details=never` is pinned.
   Bodies are `{"status":…}` (plus the group names on `/actuator/health`).
+- **Invalid resource paths.**
+  `logging.level.org.springframework.web.servlet.resource.ResourceHandlerUtils=error`.
+  MVC's resource handler WARNs the whole submitted path when it refuses one
+  (`/actuator/../<anything>` is exempt from the limiter and answers `404`),
+  so a client's path, IP-shaped or not, reached the log (design review
+  DR-01). The reviewer's control showed the same `404` with no log line.
 - **Parser errors.** `logging.level.org.apache.coyote.http11.Http11Processor=warn`.
   Tomcat logs its first request-parse error at INFO with the offending
   bytes, so a client's request target reached the log, without a request id.
