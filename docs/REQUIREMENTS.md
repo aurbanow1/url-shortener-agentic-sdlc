@@ -65,26 +65,26 @@ says so — a gap is recorded, not a checkmark.
 | Id | Requirement | Target / rule | Provenance | Proof | Status |
 |---|---|---|---|---|---|
 | **Performance** | | | | | |
-| NFR-L1 | Redirect latency | p95 ≤ 20 ms, p99 ≤ 50 ms at 100 req/s sustained for 60 s, single instance, H2 file DB | `assumed` (no number in the brief; chosen so a regression is visible) | **gap**: `scripts/smoke.sh` has no bench mode yet — add `--bench` in mission 01 reliability slice or record the gap in `docs/qa/GAPS.md` | baseline |
-| NFR-L2 | Create latency | p95 ≤ 50 ms at 20 req/s | `assumed` | same bench | baseline |
+| NFR-L1 | Redirect latency | p95 ≤ 20 ms, p99 ≤ 50 ms at 100 req/s sustained for 60 s, single instance, H2 file DB | `decided (qitem-20261003042553-03ac8b4b)`, was `assumed` (no number in the brief; chosen so a regression is visible) | **gap**: `scripts/smoke.sh` has no bench mode yet — add `--bench` in mission 01 reliability slice or record the gap in `docs/qa/GAPS.md` | baseline |
+| NFR-L2 | Create latency | p95 ≤ 50 ms at 20 req/s | `decided (qitem-20261003042553-03ac8b4b)`, was `assumed` | same bench | baseline |
 | NFR-L3 | Click recording must not slow the redirect | ≤ 2 ms p95 added to the redirect path | `derived` from FR-2/FR-7 (analytics must not slow visitors) | functional test with a slow-store fake + bench | baseline |
 | **Reliability** | | | | | |
 | NFR-R1 | Health: liveness and readiness probes; readiness is down until migrations ran and the DB answers | always | `stated` §2 "reliability features" | smoke script asserts `/actuator/health/{liveness,readiness}`; compose health probe | baseline |
-| NFR-R2 | Rate limit | 60 create requests / minute / client and 600 redirects / minute / client, token bucket, `429` + `Retry-After`; client = remote address behind an explicit trusted-proxy rule | `assumed` numbers; mechanism `derived` | functional tests at the limit and one over; spoofed `X-Forwarded-For` test | baseline |
+| NFR-R2 | Rate limit | 60 create requests / minute / client and 600 redirects / minute / client, token bucket, `429` + `Retry-After`; client = remote address behind an explicit trusted-proxy rule | `decided (qitem-20261003042553-03ac8b4b)` numbers, were `assumed`; mechanism `derived` | functional tests at the limit and one over; spoofed `X-Forwarded-For` test | baseline |
 | NFR-R3 | Graceful shutdown | in-flight requests complete within a 10 s phase timeout; no new connections accepted | `derived` from "reliability" | compose restart while the smoke loop runs: zero non-2xx/3xx | baseline |
 | NFR-R4 | Durability | committed links survive a process restart (H2 file on a volume); **single-node ceiling stated, not hidden**: no replication, no HA | `derived`; ceiling `assumed` acceptable for the prototype | restart test in the smoke script; ceiling recorded in `docs/RISKS.md` | baseline |
-| NFR-R5 | Idempotency | FR-9 keys are honoured for 24 h | `assumed` window | functional test | baseline |
+| NFR-R5 | Idempotency | FR-9 keys are honoured for 24 h | `decided (qitem-20261003042553-03ac8b4b)` window, was `assumed` | functional test | baseline |
 | NFR-R6 | Fail closed | an internal error is a `500` problem detail without stack trace or class names; nothing is swallowed | `derived` §4.5 | functional test with an injected failure | baseline |
 | **Security** | | | | | |
 | NFR-S1 | Target URL allow-list | only `http`/`https`, max 2 048 chars, no credentials in the URL, no private/loopback hosts when a server-side fetch is ever added (none is planned) | `derived` §6 "secure" | functional tests per rejected class | baseline |
-| NFR-S2 | Alias rules | `[A-Za-z0-9_-]{4,32}`, case-sensitive match, reserved list refused, no path separators | `assumed` (charset/length) | functional tests | baseline |
-| NFR-S3 | Request limits | JSON body ≤ 16 KiB, headers at Tomcat defaults, no multipart | `assumed` | functional test (`413`) | baseline |
+| NFR-S2 | Alias rules | `[A-Za-z0-9_-]{4,32}`, case-sensitive match, reserved list refused, no path separators | `decided (qitem-20261003042553-03ac8b4b)` (charset/length), was `assumed`; built in mission 02 | functional tests | baseline |
+| NFR-S3 | Request limits | JSON body ≤ 16 KiB, headers at Tomcat defaults, no multipart | `decided (qitem-20261003042553-03ac8b4b)`, was `assumed` | functional test (`413`) | baseline |
 | NFR-S4 | No secrets in the repository; configuration by environment variables with safe defaults | always | `derived` §6 | review checklist; `gitleaks`-style grep in release prep | baseline |
 | NFR-S5 | Process least privilege | non-root container user, read-only filesystem except `data/` | `derived` §6 | Dockerfile review + `docker inspect` in release smoke | baseline |
-| NFR-S6 | No authentication in scope | all endpoints anonymous; the audit endpoint is loopback-only by default | `assumed` (the brief names no users or tenants) — **confirm at plan-lock** | functional test that the audit endpoint refuses non-loopback binds / documented operator setting | baseline |
+| NFR-S6 | No authentication in scope | all endpoints anonymous; the audit endpoint is loopback-only by default | `decided (qitem-20261003042553-03ac8b4b)` (the brief names no users or tenants), was `assumed`; confirmed at the mission-01 plan-lock | functional test that the audit endpoint refuses non-loopback binds / documented operator setting | baseline |
 | **Privacy** | | | | | |
 | NFR-P1 | Client address and agent handling | client address stored only as a salted hash with a daily-rotated salt; raw IP, full user agent and full referrer query strings never logged or stored | `derived` §6 "secure" + good practice for click data | canary tests: unique UA/header/URL values must not appear in logs or rows | baseline |
-| NFR-P2 | Click retention | 90 days, then deleted or aggregated; enforced by a job or migration, not by hope | `assumed` number — **confirm at plan-lock**; mission 03 may change it | functional test of the purge; stated in `docs/DESIGN.md` | baseline |
+| NFR-P2 | Click retention | 90 days, then deleted or aggregated; enforced by a job or migration, not by hope | `decided (qitem-20261003042553-03ac8b4b)` number, was `assumed`; confirmed at the mission-01 plan-lock, built in mission 02; mission 03 may change it | functional test of the purge; stated in `docs/DESIGN.md` | baseline |
 | **Observability** | | | | | |
 | NFR-O1 | Request id | server-issued `X-Request-Id` on every response; inbound ids ignored; the id appears in every log event for that request | `derived` from §4.4 "audit-grade observability and traceability" | functional tests (01-ping already proves the mechanism) | **proven in 00-hello** |
 | NFR-O2 | Structured logs | JSON (ECS), one event per line, no PII (NFR-P1), no server bind address in event fields | `derived` §4.4 | log-capture tests with canaries (QA-01 lesson) | **proven in 00-hello** |
@@ -118,9 +118,11 @@ ambiguity log and a human decision.
 | 02 brownfield | FR-11…FR-15 (+ FR-13 impact analysis on every slice) | S2, X2, P2 purge if not done in 01 | mission-02 plan-lock |
 | 03 ambiguous analytics | FR-16, FR-8 v2 | P2 (retention revisited), O3 (new metrics), possibly L1 | human decision gate inside the slice |
 
-Counts (by the first tag in each row): **15 stated**, **21 derived**, **8 assumed** of 44 rows. The `assumed` rows
-are the questions for the human at the mission-01 plan-lock; until then they
-are safe defaults, not decisions.
+Counts (by the first tag in each row at baseline): **15 stated**, **21 derived**, **8 assumed** of 44 rows. The eight
+`assumed` rows (L1, L2, R2, R5, S2, S3, S6, P2) were confirmed as stated by the
+human at the mission-01 plan-lock (`qitem-20261003042553-03ac8b4b`,
+2026-10-03T04:39Z) and now carry `decided`; the original tag is kept beside it
+for provenance.
 
 ## 6. How this document is used
 
