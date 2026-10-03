@@ -91,14 +91,28 @@ class RateLimiterTest {
 	}
 
 	@Test
-	void aBackwardClockStepStartsTheClientFreshInsteadOfLockingItOut() {
-		clock.step(Duration.ofHours(24));
-		take(Budget.CREATE, "c", 60);
-		assertThat(limiter.tryTake(Budget.CREATE, "c")).isPositive();
+	void aRequestOvertakenByNewerOnesDecidesOnTheTimeItReachesTheBucket() {
+		// the overtaken request is paused at its first clock read; meanwhile, 1 ms later, 60 newer
+		// requests empty the same bucket
+		clock.onFirstRead(() -> {
+			clock.step(Duration.ofMillis(1));
+			take(Budget.CREATE, "c", 60);
+			assertThat(limiter.tryTake(Budget.CREATE, "c")).isEqualTo(1);
+		});
 
-		clock.step(Duration.ofHours(-24));
-
+		assertThat(limiter.tryTake(Budget.CREATE, "c")).as("61st admission in 1 ms").isEqualTo(1);
+		clock.step(Duration.ofSeconds(1));
 		assertThat(limiter.tryTake(Budget.CREATE, "c")).isZero();
+		assertThat(limiter.tryTake(Budget.CREATE, "c")).isEqualTo(1);
+	}
+
+	@Test
+	void afterABackwardClockStepTheBucketRefillsFromItsStoredTat() {
+		take(Budget.CREATE, "c", 60);
+
+		clock.step(Duration.ofMinutes(-1));
+
+		assertThat(limiter.tryTake(Budget.CREATE, "c")).isEqualTo(61);
 	}
 
 	@Test
@@ -140,15 +154,32 @@ class RateLimiterTest {
 		assertThat(limiter.clients(Budget.REDIRECT)).isEqualTo(1);
 	}
 
+	@Test
+	void theReleaseResumesAfterABackwardClockStep() {
+		clock.step(Duration.ofHours(1));
+		limiter.tryTake(Budget.CREATE, "before-the-step");
+		clock.step(Duration.ofHours(-1));
+		for (int i = 0; i < 10_000; i++) {
+			limiter.tryTake(Budget.CREATE, "client-" + i);
+		}
+		clock.step(Duration.ofSeconds(61));
+
+		limiter.tryTake(Budget.CREATE, "next");
+
+		assertThat(limiter.clients(Budget.CREATE)).as("only the bucket stamped before the step is not yet full")
+				.isEqualTo(2);
+	}
+
 	private void take(Budget budget, String client, int n) {
 		for (int i = 0; i < n; i++) {
 			assertThat(limiter.tryTake(budget, client)).as("token %d", i + 1).isZero();
 		}
 	}
 
-	/** A clock that moves only when told. */
+	/** A clock that moves only when told, and can run one action on its next read. */
 	private static final class SteppedClock extends Clock {
 		private Instant now;
+		private Runnable onRead;
 
 		SteppedClock(Instant start) {
 			now = start;
@@ -158,9 +189,19 @@ class RateLimiterTest {
 			now = now.plus(by);
 		}
 
+		void onFirstRead(Runnable action) {
+			onRead = action;
+		}
+
 		@Override
 		public Instant instant() {
-			return now;
+			Instant read = now;
+			Runnable action = onRead;
+			onRead = null;
+			if (action != null) {
+				action.run();
+			}
+			return read;
 		}
 
 		@Override

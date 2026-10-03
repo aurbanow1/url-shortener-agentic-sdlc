@@ -7,6 +7,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.function.LongPredicate;
+import java.util.function.LongSupplier;
 
 import org.springframework.stereotype.Component;
 
@@ -20,12 +22,13 @@ import org.springframework.stereotype.Component;
  * <p>State is in memory, per instance, and bounded: at most once per second of application-clock
  * time, a call releases every client whose bucket is full again, so after any such call only clients
  * admitted in the previous 61 s remain. While no limited request arrives nothing is added or
- * removed. Thread-safe: each bucket changes under {@link ConcurrentHashMap#compute}, and the release
- * removes an entry only while it still holds the value it tested.
+ * removed. Thread-safe: each bucket changes under {@link ConcurrentHashMap#compute}, which also reads
+ * the clock, so a request never decides on a time older than the TAT it sees; the release removes an
+ * entry only while it still holds the value it tested.
  *
- * <p>The application clock is the wall clock, which can step backwards. A legitimate TAT is never more
- * than one full bucket ahead of now, so a TAT further ahead is treated as a fresh client: a backward
- * step of an hour must not refuse every recent client for an hour.
+ * <p>The application clock is the wall clock. A backward step is outside the contract and fails closed:
+ * a client's bucket refills only from its stored TAT, so a recently active client waits up to the length
+ * of the step. The release is rescheduled at the next request after such a step.
  */
 @Component
 class RateLimiter {
@@ -50,10 +53,13 @@ class RateLimiter {
 	 *         nothing.
 	 */
 	long tryTake(Budget budget, String client) {
+		releaseFullBuckets(now());
+		return buckets.get(budget).tryTake(client, this::now);
+	}
+
+	private long now() {
 		Instant instant = clock.instant();
-		long now = Math.addExact(Math.multiplyExact(instant.getEpochSecond(), SECOND), instant.getNano());
-		releaseFullBuckets(now);
-		return buckets.get(budget).tryTake(client, now);
+		return Math.addExact(Math.multiplyExact(instant.getEpochSecond(), SECOND), instant.getNano());
 	}
 
 	/** The number of clients currently held for {@code budget}; for the memory-bound tests. */
@@ -62,7 +68,9 @@ class RateLimiter {
 	}
 
 	private void releaseFullBuckets(long now) {
-		if (nextSweep.getAndUpdate(next -> now >= next ? now + SECOND : next) <= now) {
+		// due once a second; a deadline more than a second ahead can only follow a backward clock step
+		LongPredicate due = next -> now >= next || next - now > SECOND;
+		if (due.test(nextSweep.getAndUpdate(next -> due.test(next) ? now + SECOND : next))) {
 			buckets.values().forEach(b -> b.tats.values().removeIf(tat -> tat <= now));
 		}
 	}
@@ -87,12 +95,11 @@ class RateLimiter {
 			tolerance = interval * (perMinute - 1);
 		}
 
-		long tryTake(String client, long now) {
+		long tryTake(String client, LongSupplier clock) {
 			long[] retryAfter = new long[1];
 			tats.compute(client, (key, tat) -> {
-				// a TAT more than one full bucket ahead can only follow a backward clock step; start the
-				// client fresh rather than lock it out for the length of the step
-				long start = tat == null || tat > now + tolerance + interval ? now : Math.max(tat, now);
+				long now = clock.getAsLong();
+				long start = tat == null ? now : Math.max(tat, now);
 				long wait = start - tolerance - now;
 				if (wait > 0) {
 					retryAfter[0] = Math.ceilDiv(wait, SECOND);
