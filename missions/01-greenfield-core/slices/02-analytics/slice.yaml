@@ -27,7 +27,9 @@ territory:
   # recorder. Reviewers check that the diff under link/ is that hook and nothing else.
   # Slice 03 does not touch link/.
   - src/main/java/dev/urlshort/link/
-  # GRANT for wave w2: the only w2 slice that changes the public API document (adds the stats endpoint).
+  # ORDERED GRANT for wave w2, first holder: adds the stats endpoint. 02 merges first in w2; from
+  # its merge the grant passes to 03-operate, which regenerates the document on a base that
+  # contains 02 to add the 429 contract (decomposition review DC-01; mission SPEC shaping rule 5).
   - docs/api/openapi.json
   - docs/diagrams/erd.mmd
 execution:

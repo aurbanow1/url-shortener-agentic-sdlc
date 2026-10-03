@@ -30,14 +30,14 @@ From `docs/REQUIREMENTS.md`: FR-1 … FR-10, FR-17; NFR-L1–L3, R1–R6, S1, S3
 |---|---|---|---|
 | `01-create-redirect` | FR-1, FR-2, FR-3, FR-4, FR-5, FR-6, FR-9 | S1, S3, S4, R5, R6, A1, A2, M3, O1, O2 | M1, M2 |
 | `02-analytics` | FR-7, FR-8 | P1, L3 | M1, M2, M3 (the stats endpoint joins the committed API document), O1, O2 (request id and structured log on the new endpoint) |
-| `03-operate` | FR-10 | R1, R2, R3, R4, S5, O3, X1, L1, L2 | M1, M2 |
+| `03-operate` | FR-10 | R1, R2, R3, R4, S5, O3, X1, L1, L2 | M1, M2, M3 (the `429` problem-detail response, the `Retry-After` header and examples join the committed API document on every operation) |
 | `04-audit-read` | FR-17 | S6 | M1, M2, M3, O1, O2 |
 
 Notes on the allocation:
 
 - **M1** (100 % line and branch coverage, honest gaps) and **M2** (an ADR before the code that depends on a cross-cutting decision) apply to every slice; they are listed once as cross-cutting and owned by no single slice.
 - **O1** and **O2** were proven on `00-hello`; they are allocated to `01-create-redirect`, which re-proves them on the first real endpoints, and every later endpoint-adding slice inherits the obligation.
-- **M3** (committed OpenAPI document): `01-create-redirect` owns the export mechanism and the first document (backlog W1-01); `02-analytics` and `04-audit-read` extend it, one per wave (shaping rule 5 below).
+- **M3** (committed OpenAPI document): `01-create-redirect` owns the export mechanism and the first document (backlog W1-01); `02-analytics` (stats endpoint), `03-operate` (the `429` response with `Retry-After` and examples, since a filter-produced response is still public API) and `04-audit-read` (audit endpoint) extend it, one holder of the file at a time (shaping rule 5 below).
 - **`03-operate` has two kinds of ids.** It builds and proves in-suite: FR-10, R2 (at the limit, one over, spoofed `X-Forwarded-For`), R1 (readiness group includes the database), O3 (metric names and the rejection counter readable through the actuator). It owns the configuration, `Dockerfile`, `compose.yaml` and `scripts/smoke.sh` lines for R3, R4, S5, X1, L1 and L2, whose proofs are release-level per the proof column of `docs/REQUIREMENTS.md` (installed smoke, `docker inspect`, restart loop, bench). What the slice cannot prove in-suite it records in `docs/qa/GAPS.md`; it does not claim it.
 - **R5** (idempotency keys honoured for 24 h) sits with FR-9 in `01-create-redirect`.
 - Count: 11 FR ids (FR-1…FR-10, FR-17) and 24 NFR ids (L1–L3, R1–R6, S1, S3–S6, P1, O1–O3, A1–A2, M1–M3, X1) in scope, 35 in all; 22 NFR ids sit in a slice column and M1, M2 are cross-cutting on every slice; all allocated; no slice without ids.
@@ -62,7 +62,7 @@ Notes on the allocation:
 |---|---|---|---|---|---|---|
 | 1 | `01-create-redirect` | A Creator can create, read and retire a short link for a valid http(s) URL, and a Visitor who opens it is redirected (`302`) or told it is gone (`410`), with every mutation audited, every error a problem detail, and a retried create with the same `Idempotency-Key` returning the first link. | high | foundation: first migration (`link`, `audit_log`), error contract, audit wiring, OpenAPI export; new security-relevant surface (the target allow-list is the open-redirect boundary); carries the dependency overrides | none | `link/`, `audit/` (write side), `web/` (error advice), `db/migration/` (V1), `docs/api/openapi.json` (new), `build.gradle.kts`, `application.properties`, test property overlays |
 | 2 | `02-analytics` | An Analyst can read a link's click statistics (total, per day, top referrers) because every redirect records a privacy-safe click event without slowing the Visitor. | high | adds a migration (`click` table) and decides privacy-sensitive storage under NFR-P1; the guide lists a migration as high | `01` (the `link` table and code lookup; the redirect path it hooks; the API document it extends) | `click/`, `db/migration/` (V2), `link/` **grant limited to the redirect hook**, `docs/api/openapi.json` (w2 grant), `docs/diagrams/erd.mmd` |
-| 3 | `03-operate` | An Operator can run urlshort in production shape: clients above the rate limit are answered `429` with `Retry-After` and a counted rejection, readiness reflects the database, metrics are exposed for scraping, and the container runs non-root with durable data on a loopback-published port. | high | new security-relevant surface (rate limiter with the trusted-proxy rule; the guide names rate limit as high) and container privilege changes; no migration | `01` (the endpoints it limits; the problem-detail contract it reuses for `429`) | `web/` (the filter beside the request-id filter), `application.properties` (w2 grant), `build.gradle.kts` (w2 grant, Prometheus registry only), `Dockerfile`, `compose.yaml`, `scripts/smoke.sh`; **not** `link/`, `click/`, `db/migration/`, `docs/api/openapi.json` |
+| 3 | `03-operate` | An Operator can run urlshort in production shape: clients above the rate limit are answered `429` with `Retry-After` and a counted rejection, readiness reflects the database, metrics are exposed for scraping, and the container runs non-root with durable data on a loopback-published port. | high | new security-relevant surface (rate limiter with the trusted-proxy rule; the guide names rate limit as high) and container privilege changes; no migration | `01` (the endpoints it limits; the problem-detail contract it reuses for `429`) | `web/` (the filter beside the request-id filter), `application.properties` (w2 grant), `build.gradle.kts` (w2 grant, Prometheus registry only), `Dockerfile`, `compose.yaml`, `scripts/smoke.sh`, `docs/api/openapi.json` (w2 ordered grant, second holder after `02` merges); **not** `link/`, `click/`, `db/migration/` |
 | 4 | `04-audit-read` | An Operator can read the audit trail of every mutation (who, what, when, before, after, request id) through a read-only, paginated endpoint that is loopback-only by default. | high | new security-relevant surface (operator data; loopback-only default is NFR-S6, an assumed row confirmed at this gate); the guide names audit read as high; no migration | `01` (the `audit_log` table and row shape) | `audit/` (read side), `docs/api/openapi.json` (w3 grant), `application.properties` (w3 grant) |
 
 Every slice is a vertical through controller, service, repository, migration and both test suites for its own outcome; none is a layer. Slice 1 is one endpoint over the guide's "roughly ≤ 3 endpoints" ceiling: `GET /api/links/{code}` is a read of the same row, `DELETE` is required inside the slice because `410`-on-retired is a failure path of the redirect, and `Idempotency-Key` is the create contract (putting it in a later slice would re-open `link/` and the API document in a wave that already has one contract-changing slice). The requirements agent keeps each endpoint's criteria small; if the design review judges the slice too large, the split is FR-3/FR-4 off by outcome, applied with `rig workflow revise`, never by layer.
@@ -72,7 +72,7 @@ Every slice is a vertical through controller, service, repository, migration and
 | Wave | Slices | Why together / why alone | Sync point |
 |---|---|---|---|
 | `w1` | `01-create-redirect` | the foundation everything else depends on | `wave_integration` waits for its proof, merges, then launches `w2` |
-| `w2` | `02-analytics` ∥ `03-operate` | no edge between them; disjoint territories (table below); one adds a migration and extends the API document, the other changes neither | waits for both proofs; merges serially (`02` first, then `03`), gate on `main` after each |
+| `w2` | `02-analytics` ∥ `03-operate` | no edge between them; disjoint territories at any moment (table below); both extend the API document, so that file is an ordered grant, `02` then `03` (shaping rule 5) | waits for both proofs; merges serially, `02` first, then `03`, whose candidate must descend from `02`'s merge commit; gate on `main` after each |
 | `w3` | `04-audit-read` | hard edge only to `01`, but it needs the two shared files that `02` and `03` hold in `w2` (`docs/api/openapi.json`, `application.properties`), and a third contract-changing slice would queue on the single reviewer | waits for its proof, merges, then `wave_review` |
 
 Territory check for `w2` (the only concurrent wave):
@@ -85,7 +85,7 @@ Territory check for `w2` (the only concurrent wave):
 | `src/main/resources/db/migration/` | V2 only | — |
 | `src/main/resources/application.properties` | — | grant |
 | `build.gradle.kts` | — | grant (registry line only) |
-| `docs/api/openapi.json` | grant | — |
+| `docs/api/openapi.json` | ordered grant, first holder (until `02` merges) | ordered grant, second holder (from `02`'s merge; `03`'s candidate descends from it) |
 | `Dockerfile`, `compose.yaml`, `scripts/smoke.sh` | — | owner |
 | `docs/diagrams/erd.mmd` | owner | — |
 
@@ -97,7 +97,7 @@ Documents edited on `main` by single seats (`docs/DESIGN.md`, `docs/adr/`, `docs
 2. Vertical, not horizontal: see the table.
 3. Disjoint territories inside `w2`; every shared-file grant is in `slice.yaml` with its reason.
 4. Every `depends_on` edge names a crossing artefact (table above); no edge inside a wave.
-5. **One API-document-changing slice per wave.** `docs/api/openapi.json` is generated; two branches regenerating it from one base can conflict textually and, worse, merge cleanly into a document that no longer matches the running service. So `01` (w1), `02` (w2) and `04` (w3) are the only slices that change it; `03` documents its `429` in design and `docs/DESIGN.md` and leaves the generated file alone. `01`'s design makes the export deterministic and key-sorted so that additions merge textually in later missions. If a merge still conflicts, the integrator runs `git merge --abort` and routes the slice back to `implement` for a rebase and regeneration; the three reviews re-earn their verdict on the new SHA in one short turn each.
+5. **One holder of the generated API document at a time (ordered grants).** `docs/api/openapi.json` is generated; two branches regenerating it from one base can conflict textually or, worse, merge cleanly into a document that no longer matches the running service. So the file has one holder at a time: `01` in w1; in w2 the grant is ordered, `02` (its stats endpoint) until `02` merges, then `03` (the `429` problem-detail response with `Retry-After` and examples on every operation, NFR-M3 carried through FR-10); `04` in w3. The serialisation point is `03`'s `implement` handoff: its candidate descends from `02`'s merge commit, with the document regenerated on that base so it carries both changes. If `03` is otherwise done before `02` has merged, the builder waits on `02`'s frontier packet with the continuation "rebase onto main, regenerate, hand off". The integrator checks the ancestry (`git merge-base --is-ancestor <02 merge> <03 candidate>`) before merging `03`; a candidate that predates `02`'s merge is routed back to `implement`, and the three reviews re-earn their verdict on the regenerated diff in one short turn each. QA verifies each holder's committed document against the live `/v3/api-docs` of its candidate, so the document on `main` matches the integrated service after every merge. `01`'s design makes the export deterministic and key-sorted so the regenerations diff cleanly. The arrangement does not depend on `04`: deferring it leaves the `429` contract with `03`.
 
 **Decisions the human is asked to make at this gate** (default in bold):
 
@@ -126,7 +126,7 @@ Documents edited on `main` by single seats (`docs/DESIGN.md`, `docs/adr/`, `docs
 
 - **Seat availability.** At decompose (2026-10-03T03:38Z) `rig ps --nodes` listed the orchestration lead, design, development and QA seats; the requirements, review and release seats were absent. `decomposition_review` itself waits on the review seat, and every slice waits at `requirements`. Runtime risk, not scope risk; the operator has been informed.
 - **Size of `01`.** One endpoint over the guide's ceiling, for the reasons given above; the mitigation is the FR-3/FR-4 split by outcome if the design review asks for it.
-- **The generated API document** in a concurrent wave: handled by shaping rule 5 and the integrator's abort-and-route fallback.
+- **The generated API document** in a concurrent wave: handled by shaping rule 5 (ordered grant; `03` rebases onto `02`'s merge and regenerates) and the integrator's ancestry check; the cost is at most one short re-review round on `03` if its builder hands off early, and `03` may wait on `02`'s merge if `02` loops.
 - **The dependency overrides change Tomcat and Jackson patch versions under the whole service**: gated alone as the first commit; a regression surfaces in `scripts/gw check` before any feature code is on the branch.
 - **QA's Codex sandbox has no network**: the OSV check is a builder capture and a release-prep repeat; QA verifies the resolved versions offline from the Gradle dependency report.
 - **Wall clock.** `00-hello`'s trivial slice took 3.8 h end to end; four real slices over three waves will not fit the single day `PLAN.md` hoped for, and the parallel wave does not halve the time on the single QA and single review seats. The deferral alternative (decision 3) is the lever; proportional reviews on small steps are the other.
@@ -144,7 +144,7 @@ Documents edited on `main` by single seats (`docs/DESIGN.md`, `docs/adr/`, `docs
 Recorded 2026-10-03 before the handoff to `decomposition_review`.
 
 - One buildable user outcome per slice, failure paths inside: yes; each intent is one persona's sentence, and `01` carries its `400`/`404`/`405`/`410`/`413`/`500` paths, `02` its not-found and privacy paths, `03` its at-limit/over-limit/spoofed-proxy paths, `04` its non-loopback refusal.
-- Disjoint territories within a wave, shared-file grants explicit with reasons: yes; `w2` table above, grants in each `slice.yaml` with the reason and the reviewer's check.
+- Disjoint territories within a wave, shared-file grants explicit with reasons: yes; `w2` table above, grants in each `slice.yaml` with the reason and the reviewer's check; the one file both `w2` slices change (`docs/api/openapi.json`) is an ordered grant with a named serialisation point and an integrator precondition (decomposition review DC-01).
 - Every `depends_on` edge names a crossing artefact, no edge inside a wave: yes; `02`, `03`, `04` → `01` with the artefact named; `w2` has no internal edge; `04`'s placement in `w3` is a `SOFT-AFTER` line in its `slice.yaml`, not a hard edge.
 - Tiers with reasons that hold against §4: yes; all four high, each reason quoting the §4 row it matches; none chosen to avoid a gate; the gate count is stated.
 - Every in-scope id allocated exactly once, cross-cutting noted, no orphan slice: yes; allocation table, 35 ids (11 FR, 24 NFR).
@@ -164,6 +164,7 @@ Recorded 2026-10-03 before the handoff to `decomposition_review`.
 ## Status
 
 - 2026-10-03 — decomposed into four slices over three waves; compiled graph exported to `docs/evidence/01-greenfield-core/compiled-graph.json`; handed to `decomposition_review`.
+- 2026-10-03T04:12Z — decomposition review returned one HIGH finding, DC-01 (`docs/review/01-greenfield-core/decomposition-review.md`): the `429`/`Retry-After` contract had no owner in the committed API document. Fixed: `03-operate` owns it under an ordered w2 grant with a named serialisation point (shaping rule 5 rewritten, M3 carried into `03`, w2 merge order recorded in the wave map); compiled binding re-adopted. Re-review pending.
 
 ---
 

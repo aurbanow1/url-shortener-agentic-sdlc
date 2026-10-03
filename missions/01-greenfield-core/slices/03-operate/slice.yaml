@@ -16,12 +16,25 @@ tier_reason: new security-relevant surface, the rate limiter with its trusted-pr
 # proofs the suites cannot give:
 #   builds and proves in-suite: FR-10, NFR-R2 (at the limit, one over, spoofed X-Forwarded-For),
 #     R1 (readiness group includes the database), O3 (metric names and the rejection counter
-#     readable through the actuator);
+#     readable through the actuator), and the 429 contract in the committed OpenAPI document
+#     (M3 carried through FR-10: the 429 problem-detail response, the Retry-After header and
+#     examples on every operation, verified against the integrated service's live /v3/api-docs);
 #   owns the configuration / Dockerfile / compose / smoke lines, proof is release-level
 #     (installed smoke, docker inspect, restart loop, bench): R3, R4, S5, X1, L1, L2.
 #     What the slice cannot prove in-suite is recorded in docs/qa/GAPS.md, not claimed.
-#   cross-cutting: M1 M2.
-# Wave w2 with 02-analytics: territories disjoint; the grants below name the reason.
+#   cross-cutting: M1 M2 M3.
+# Wave w2 with 02-analytics: territories disjoint at any moment; the grants below name the reason.
+# SERIALIZATION POINT (decomposition review DC-01): docs/api/openapi.json has one holder at a time.
+# In w2 the grant is ordered: 02-analytics holds it until 02's merge into main; 03 holds it from
+# then on. 03's implement step therefore hands off a candidate that descends from 02's merge
+# commit, with the document regenerated on that base (so it carries 02's stats endpoint and 03's
+# 429 response on every operation). If 03's build is otherwise done before 02 has merged, the
+# builder exits waiting --blocked-on 02's frontier packet with the continuation "rebase onto
+# main, regenerate docs/api/openapi.json, hand off". The integrator checks the ancestry
+# (git merge-base --is-ancestor <02 merge commit> <03 candidate>) before merging 03; a candidate
+# that predates 02's merge is routed back to implement, and the three reviews re-earn their
+# verdict on the regenerated diff in one short turn each. The arrangement does not depend on 04:
+# if the human defers 04-audit-read, the 429 contract still lands with 03 in w2.
 territory:
   # the rate-limit filter lives beside the request-id filter (cross-cutting HTTP concerns).
   - src/main/java/dev/urlshort/web/
@@ -35,9 +48,10 @@ territory:
   - compose.yaml
   # --bench mode for NFR-L1/L2; restart loop for R3/R4.
   - scripts/smoke.sh
-# NOT in territory: link/, click/, db/migration/, docs/api/openapi.json. The 429 is produced by a
-# filter and documented in design.md and docs/DESIGN.md; this slice does not change the generated
-# API document (granted to 02 in w2), so the committed document stays consistent on main.
+  # ORDERED GRANT for wave w2, second holder after 02's merge: the 429 problem-detail response with
+  # the Retry-After header and examples on every operation, regenerated on a base that contains 02.
+  - docs/api/openapi.json
+# NOT in territory: link/, click/, db/migration/.
 execution:
   actor_role: requirements
   depends_on: [01-create-redirect]
