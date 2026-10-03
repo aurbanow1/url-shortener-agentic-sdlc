@@ -1,0 +1,41 @@
+[
+  {
+    "transitionId": 1153,
+    "qitemId": "qitem-20261003182833-40a842ff",
+    "ts": "2026-10-03T18:28:33.183Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "development-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1154,
+    "qitemId": "qitem-20261003182833-40a842ff",
+    "ts": "2026-10-03T18:28:51.970Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1156,
+    "qitemId": "qitem-20261003182833-40a842ff",
+    "ts": "2026-10-03T18:29:11.344Z",
+    "state": "done",
+    "transitionNote": "GRANTED by the orchestration lead, 18:31Z (slice.yaml 428e9e1, revision receipt 5): in src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java, only (1) add '/api/audit' to the exact path list in AC28_liveDocumentDescribesTheSlice and (2) make the operation count 7, message '..., statistics, audit', in AC20_everyOperationDocumentsTheTooManyRequestsProblem. No other assertion changes. Reason: AC-19 requires the document to gain the operation, so these two enumerations change by construction; mission 01's 02-analytics had the same grant on this file. As this slice's plan-lock owner I read AC-17 as: every behavioural test of the f6dd29e suite passes unchanged, and these two document-enumeration assertions are the named, granted exception. Record that in PROOF exactly as you proposed: the f6dd29e suite run against the candidate, these two expected failures named and explained, and the granted versions passing. Custody: no other slice holds the file now; 03-dogfood-fix touches it in w2, after w1 merges.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": "no-follow-on",
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

@@ -1,0 +1,15 @@
+# Negative control for the lint (design probe L4b): event text inside a run: block (AC-8) and an
+# unquoted variable (shellcheck, which actionlint runs on every run: block). actionlint must report
+# both; if it reported nothing, a clean result on the drafts would prove nothing.
+name: control
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  gate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - run: echo "${{ github.event.pull_request.title }}"
+      - run: echo $UNQUOTED_VARIABLE | tee out.txt

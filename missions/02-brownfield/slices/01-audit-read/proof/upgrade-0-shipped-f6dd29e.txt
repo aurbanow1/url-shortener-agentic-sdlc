@@ -1,0 +1,33 @@
+AC-18 by effect, part 0: the shipped service writes the data directory (builder, 2026-10-03 ~18:45Z)
+
+Jar: built from f6dd29e in a scratch worktree (gradlew bootJar), run as
+  java -jar urlshort.jar --server.port=18091 --server.address=127.0.0.1
+       --spring.datasource.url=jdbc:h2:file:<scratch>/upgrade-data/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE
+
+POST /api/links {"url":"https://example.com/kept?q=upgrade"}
+  {"code":"pKzSCPRh","shortUrl":"http://localhost:8080/pKzSCPRh","url":"https://example.com/kept?q=upgrade","state":"active","createdAt":"2026-10-03T18:45:32.486Z"}
+POST /api/links {"url":"https://example.com/gone"}
+  {"code":"nCxXu5RI","shortUrl":"http://localhost:8080/nCxXu5RI","url":"https://example.com/gone","state":"active","createdAt":"2026-10-03T18:45:33.068Z"}
+DELETE /api/links/nCxXu5RI
+  204
+GET /pKzSCPRh (Referer: https://ref.example/page)
+  302 https://example.com/kept?q=upgrade
+GET /pKzSCPRh
+  302 https://example.com/kept?q=upgrade
+
+GET /api/links/pKzSCPRh/stats
+HTTP/1.1 200
+X-Request-Id: c9a9be62-3175-4bd8-a915-6b904e62cb7b
+Content-Type: application/json
+
+{"code":"pKzSCPRh","totalClicks":2,"clicksPerDay":[{"date":"2026-10-03","clicks":2}],"topReferrers":[{"referrer":"https://ref.example","clicks":1}]}
+
+GET /api/audit   (the shipped service has no audit read)
+HTTP/1.1 404
+X-Request-Id: 852cdfcc-be65-496a-804e-63a61359f627
+Content-Type: application/problem+json
+
+{"instance":"urn:uuid:852cdfcc-be65-496a-804e-63a61359f627","status":404,"title":"Not Found"}
+
+Then SIGTERM; the jar log ends with "Graceful shutdown complete" and the pool shutdown.
+The candidate jar (35590f0) was then started on the same directory: upgrade-1 to upgrade-4, jar-log-35590f0.txt.

@@ -1,0 +1,14 @@
+Requirements source inspection; final SPEC 8b63e5be8598212a9d892c2406081addc1c45d4b
+This inspects stored source/captures; it is not a new live HTTP run.
+AC inventory: 1..9; RQ-01 correction preserves the exact six request cases.
+Committed ProblemDetail members: detail, instance, properties, status, title, type
+Stored HTTP 400: docs/qa/01-greenfield-core/dogfood/exchanges/19-invalid-url.body; members=errors, instance, status, title
+Stored HTTP 422: docs/qa/01-greenfield-core/dogfood/exchanges/18-conflicting-key.body; members=errors, instance, status, title
+Stored HTTP 405: docs/qa/01-greenfield-core/dogfood/exchanges/45-wrong-ping-method.body; members=instance, status, title
+Stored HTTP 406: docs/qa/01-greenfield-core/dogfood/exchanges/47-body-needs-json.body; members=instance, status, title
+Stored HTTP 413: docs/qa/01-greenfield-core/dogfood/exchanges/74-body-above-16k.body; members=instance, status, title
+Stored HTTP 415: docs/qa/01-greenfield-core/dogfood/exchanges/41-wrong-media.body; members=instance, status, title
+Stored HTTP 500: docs/qa/01-greenfield-core/dogfood/exchanges/56-double-submit-a.body; members=instance, status, title
+Stored Prometheus capture: both disk_free_bytes and disk_total_bytes contain path labels.
+Original AC-2 omits observed 405/406/413/415/500; audit design also documents 403. Final wording scopes the evidence honestly.
+PASS: existing defects confirmed from saved captures/source; RQ-01 wording delta verified.

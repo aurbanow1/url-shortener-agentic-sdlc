@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.urlshort.audit.AuditControllerTest" tests="35" skipped="0" failures="0" errors="0" timestamp="2026-10-03T18:55:22.389Z" hostname="Andrzejs-MacBook-Pro.local" time="0.178">
+  <properties/>
+  <testcase name="[1] header = &quot;X-Forwarded-For&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.003"/>
+  <testcase name="[2] header = &quot;Forwarded&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.0"/>
+  <testcase name="limitDefaultsTo50AndAcceptsItsBounds()" classname="dev.urlshort.audit.AuditControllerTest" time="0.001"/>
+  <testcase name="[1] value = &quot;***&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.009"/>
+  <testcase name="[2] value = &quot;MA&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.0"/>
+  <testcase name="[3] value = &quot;LTE&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.0"/>
+  <testcase name="[4] value = &quot;eDE&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.0"/>
+  <testcase name="[5] value = &quot;&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.0"/>
+  <testcase name="aMissingPeerIsRefused()" classname="dev.urlshort.audit.AuditControllerTest" time="0.0"/>
+  <testcase name="[1] peer = &quot;192.0.2.10&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.0"/>
+  <testcase name="[2] peer = &quot;10.0.0.7&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.0"/>
+  <testcase name="[3] peer = &quot;::ffff:192.0.2.10&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.0"/>
+  <testcase name="[4] peer = &quot;fe80::1&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.0"/>
+  <testcase name="[5] peer = &quot;0.0.0.0&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.001"/>
+  <testcase name="[6] peer = &quot;::&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.0"/>
+  <testcase name="[7] peer = &quot;&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.0"/>
+  <testcase name="[8] peer = &quot;1::2::3&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.002"/>
+  <testcase name="[1] peer = &quot;127.0.0.1&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.0"/>
+  <testcase name="[2] peer = &quot;127.0.0.2&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.001"/>
+  <testcase name="[3] peer = &quot;127.255.255.254&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.0"/>
+  <testcase name="[4] peer = &quot;::1&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.0"/>
+  <testcase name="[5] peer = &quot;0:0:0:0:0:0:0:1&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.001"/>
+  <testcase name="[6] peer = &quot;::ffff:127.0.0.1&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.0"/>
+  <testcase name="anUnsetStrategyClosesTheEndpoint()" classname="dev.urlshort.audit.AuditControllerTest" time="0.084"/>
+  <testcase name="theShippedStrategyAdmitsALoopbackRequest()" classname="dev.urlshort.audit.AuditControllerTest" time="0.032"/>
+  <testcase name="[1] strategy = NATIVE" classname="dev.urlshort.audit.AuditControllerTest" time="0.001"/>
+  <testcase name="[2] strategy = FRAMEWORK" classname="dev.urlshort.audit.AuditControllerTest" time="0.0"/>
+  <testcase name="[1] value = &quot;0&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.001"/>
+  <testcase name="[2] value = &quot;101&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.001"/>
+  <testcase name="[3] value = &quot;-1&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.001"/>
+  <testcase name="aCursorIsTheBase64urlOfAPositiveId()" classname="dev.urlshort.audit.AuditControllerTest" time="0.002"/>
+  <testcase name="[1] value = &quot;ten&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.001"/>
+  <testcase name="[2] value = &quot;&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.001"/>
+  <testcase name="[3] value = &quot;1.5&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.0"/>
+  <testcase name="[4] value = &quot;99999999999&quot;" classname="dev.urlshort.audit.AuditControllerTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

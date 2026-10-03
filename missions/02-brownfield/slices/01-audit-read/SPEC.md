@@ -12,7 +12,7 @@ depends_on: []
 moved-on: 2026-10-03
 moved-from: 01-greenfield-core
 approved-spec-by: orchestration-lead@urlshort-factory
-approved-spec-at: 2026-10-03T18:27:13.964Z
+approved-spec-at: 2026-10-03T20:13:20.403Z
 locked-artifacts:
   - name: SPEC.md
     path: SPEC.md
@@ -21,6 +21,7 @@ locked-artifacts:
     path: design.md
     kind: spec
 provenance: transport:v1
+approved-spec-priors: 1
 ---
 
 # Slice 01 — Audit trail read (moved from mission 01 as its `04-audit-read` by the fast plan of 2026-10-03; prerequisite: mission 01 shipped the `audit_log` table)

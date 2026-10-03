@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.urlshort.web.OpenApiDocumentTest" tests="5" skipped="0" failures="2" errors="0" timestamp="2026-10-03T20:03:47.375Z" hostname="Andrzejs-MacBook-Pro.local" time="3.022">
+  <properties/>
+  <testcase name="AC2_problemBodiesConformToTheDocumentedSchema()" classname="dev.urlshort.web.OpenApiDocumentTest" time="0.805">
+    <failure message="org.opentest4j.AssertionFailedError: [400 member errors is documented] &#10;Expecting value to be true but was false" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: [400 member errors is documented] 
+Expecting value to be true but was false
+	at dev.urlshort.web.OpenApiDocumentTest.assertConformsToProblemSchema(OpenApiDocumentTest.java:210)
+	at dev.urlshort.web.OpenApiDocumentTest.AC2_problemBodiesConformToTheDocumentedSchema(OpenApiDocumentTest.java:166)
+</failure>
+  </testcase>
+  <testcase name="AC28_liveDocumentDescribesTheSlice()" classname="dev.urlshort.web.OpenApiDocumentTest" time="0.017"/>
+  <testcase name="AC1_problemSchemaDocumentsErrorsAndNoProperties()" classname="dev.urlshort.web.OpenApiDocumentTest" time="0.01">
+    <failure message="org.opentest4j.AssertionFailedError: [ProblemDetail documents the errors member the service sends and no properties member] &#10;Expecting actual:&#10;  [&quot;detail&quot;, &quot;instance&quot;, &quot;properties&quot;, &quot;status&quot;, &quot;title&quot;, &quot;type&quot;]&#10;to contain exactly (and in same order):&#10;  [&quot;detail&quot;, &quot;errors&quot;, &quot;instance&quot;, &quot;status&quot;, &quot;title&quot;, &quot;type&quot;]&#10;but some elements were not found:&#10;  [&quot;errors&quot;]&#10;and others were not expected:&#10;  [&quot;properties&quot;]&#10;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: [ProblemDetail documents the errors member the service sends and no properties member] 
+Expecting actual:
+  [&quot;detail&quot;, &quot;instance&quot;, &quot;properties&quot;, &quot;status&quot;, &quot;title&quot;, &quot;type&quot;]
+to contain exactly (and in same order):
+  [&quot;detail&quot;, &quot;errors&quot;, &quot;instance&quot;, &quot;status&quot;, &quot;title&quot;, &quot;type&quot;]
+but some elements were not found:
+  [&quot;errors&quot;]
+and others were not expected:
+  [&quot;properties&quot;]
+
+	at dev.urlshort.web.OpenApiDocumentTest.AC1_problemSchemaDocumentsErrorsAndNoProperties(OpenApiDocumentTest.java:141)
+</failure>
+  </testcase>
+  <testcase name="NFRM3_committedDocumentEqualsTheLiveOne()" classname="dev.urlshort.web.OpenApiDocumentTest" time="0.007"/>
+  <testcase name="AC20_everyOperationDocumentsTheTooManyRequestsProblem()" classname="dev.urlshort.web.OpenApiDocumentTest" time="0.007"/>
+  <system-out><![CDATA[13:03:47.475 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [dev.urlshort.web.OpenApiDocumentTest]: OpenApiDocumentTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+13:03:47.544 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.web.OpenApiDocumentTest
+13:03:47.594 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [dev.urlshort.web.OpenApiDocumentTest]: OpenApiDocumentTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+13:03:47.596 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.web.OpenApiDocumentTest
+{"@timestamp":"2026-10-03T20:03:47.784622Z","log":{"level":"INFO","logger":"dev.urlshort.web.OpenApiDocumentTest"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Starting OpenApiDocumentTest using Java 21.0.10 with PID 56314 (started by andrzej in /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/03-dogfood-fix)","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:47.788112Z","log":{"level":"INFO","logger":"dev.urlshort.web.OpenApiDocumentTest"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"The following 1 profile is active: \"functional\"","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:48.305781Z","log":{"level":"INFO","logger":"org.springframework.data.repository.config.RepositoryConfigurationDelegate"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Bootstrapping Spring Data JDBC repositories in DEFAULT mode.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:48.330842Z","log":{"level":"INFO","logger":"org.springframework.data.repository.config.RepositoryConfigurationDelegate"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Finished Spring Data repository scanning in 21 ms. Found 1 JDBC repository interface.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:48.607047Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Starting...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:48.749791Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.pool.HikariPool"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:urlshort-functional user=SA","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:48.750915Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Start completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:48.758041Z","log":{"level":"INFO","logger":"org.flywaydb.core.FlywayExecutor"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Database: jdbc:h2:mem:urlshort-functional (H2 2.4)","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:48.791157Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:48.805633Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Schema history table \"PUBLIC\".\"flyway_schema_history\" does not exist yet","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:48.807288Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbValidate"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Successfully validated 2 migrations (execution time 00:00.008s)","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:48.811712Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Creating Schema History table \"PUBLIC\".\"flyway_schema_history\" ...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:48.842446Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Current version of schema \"PUBLIC\": << Empty Schema >>","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:48.845942Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Migrating schema \"PUBLIC\" to version \"1 - create link and audit log\"","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:48.855999Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Migrating schema \"PUBLIC\" to version \"2 - create click\"","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:48.863317Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Successfully applied 2 migrations to schema \"PUBLIC\", now at version v2 (execution time 00:00.008s)","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:49.485826Z","log":{"level":"INFO","logger":"org.springframework.boot.test.mock.web.SpringBootMockServletContext"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Spring TestDispatcherServlet ''","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:49.486140Z","log":{"level":"INFO","logger":"org.springframework.test.web.servlet.TestDispatcherServlet"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Servlet ''","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:49.487762Z","log":{"level":"INFO","logger":"org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Exposing 3 endpoints beneath base path '/actuator'","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:49.491011Z","log":{"level":"INFO","logger":"org.springframework.test.web.servlet.TestDispatcherServlet"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Completed initialization in 4 ms","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:49.516277Z","log":{"level":"INFO","logger":"dev.urlshort.web.OpenApiDocumentTest"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Started OpenApiDocumentTest in 1.884 seconds (process running for 7.804)","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:49.543219Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:49.543466Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.176892Z","log":{"level":"INFO","logger":"org.springdoc.api.AbstractOpenApiResource"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Init duration for springdoc-openapi is: 218 ms","requestId":"933a73ce-44d1-4da7-ace8-a6f112a35a6b","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.197873Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"933a73ce-44d1-4da7-ace8-a6f112a35a6b","status":200,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.295770Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"d0b2ed3b-f058-40d1-bd92-45e32b38007d","status":201,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.304270Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"913e4655-16cc-414d-8187-aedb972b725e","status":204,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.310922Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"14c4c6ec-f65e-4c51-bba7-70d9a62e407b","status":400,"ecs":{"version":"8.11"}}
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /v3/api-docs
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = org.springdoc.webmvc.api.OpenApiWebMvcResource
+           Method = org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [X-Request-Id:"933a73ce-44d1-4da7-ace8-a6f112a35a6b", Content-Type:"application/json", Content-Length:"12837"]
+     Content type = application/json
+             Body = {"openapi":"3.1.0","info":{"description":"Create, read and retire short links; visitors are redirected with 302.","title":"urlshort","version":"1"},"servers":[{"url":"/"}],"paths":{"/api/audit":{"get":{"operationId":"readAudit","parameters":[{"description":"Rows per page","in":"query","name":"limit","required":false,"schema":{"type":"integer","default":50,"maximum":100,"minimum":1}},{"description":"The next of the previous page","in":"query","name":"cursor","required":false,"schema":{"type":"string"}}],"responses":{"200":{"content":{"application/json":{"examples":{"page":{"description":"page","value":{"items":[{"occurredAt":"2026-10-03T17:29:41.033Z","actor":"anonymous","action":"link.retire","entity":"link","entityId":"jHkOIMpK","requestId":"140fc9de-5b8e-4c43-9d55-2f0b1e1c7a10","before":{"url":"https://example.com/","state":"active"},"after":{"url":"https://example.com/","state":"retired"}},{"occurredAt":"2026-10-03T17:28:02.512Z","actor":"anonymous","action":"link.create","entity":"link","entityId":"jHkOIMpK","requestId":"0d6a1f3e-9c27-4b1a-8e5f-6a4c3b2d1e0f","before":null,"after":{"url":"https://example.com/","state":"active"}}],"next":"MTI"}}},"schema":{"$ref":"#/components/schemas/AuditPage"}}},"description":"One page of audit rows, newest first, and the cursor of the next"},"400":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"limit or cursor is malformed"},"403":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Not a loopback client, or a forwarding header is present"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}},"500":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"The trail could not be read"}},"summary":"Read the audit trail, newest first (loopback only)","tags":["audit-controller"]}},"/api/links":{"post":{"description":"Without Idempotency-Key every call creates a new link. With a key, a repeat with the same url within 24 h of the first 201 returns that link (current state); a different url is 422.","operationId":"createLink","parameters":[{"description":"1 to 255 visible ASCII characters; makes a retried create return the first link","in":"header","name":"Idempotency-Key","required":false,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"examples":{"create":{"description":"create","value":{"url":"https://example.com/some/path?q=1"}}},"schema":{"$ref":"#/components/schemas/CreateLinkRequest"}}},"required":true},"responses":{"201":{"content":{"application/json":{"examples":{"created":{"description":"created","value":{"code":"Ab3dE9fG","shortUrl":"http://localhost:8080/Ab3dE9fG","url":"https://example.com/some/path?q=1","state":"active","createdAt":"2026-10-03T05:12:42.133Z"}}},"schema":{"$ref":"#/components/schemas/LinkResponse"}}},"description":"Created, or replayed for the same key and url","headers":{"Location":{"description":"/api/links/{code}","schema":{"type":"string"},"style":"simple"}}},"400":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Invalid url or Idempotency-Key (errors[] names field and rule), or a body that is not a JSON object"},"413":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Body larger than 16 384 bytes"},"415":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Content-Type is not application/json"},"422":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Idempotency-Key already used with a different url"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}},"500":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Nothing was stored"}},"summary":"Create a short link for an http(s) URL","tags":["link-controller"]}},"/api/links/{code}":{"delete":{"operationId":"retireLink","parameters":[{"in":"path","name":"code","required":true,"schema":{"type":"string"}}],"responses":{"204":{"description":"Retired"},"404":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"No link has this code"},"410":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Already retired"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}},"500":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Nothing was changed"}},"summary":"Retire a link; visitors then get 410 and the record is kept","tags":["link-controller"]},"get":{"operationId":"readLink","parameters":[{"in":"path","name":"code","required":true,"schema":{"type":"string"}}],"responses":{"200":{"content":{"application/json":{"examples":{"link":{"description":"link","value":{"code":"Ab3dE9fG","shortUrl":"http://localhost:8080/Ab3dE9fG","url":"https://example.com/some/path?q=1","state":"active","createdAt":"2026-10-03T05:12:42.133Z"}}},"schema":{"$ref":"#/components/schemas/LinkResponse"}}},"description":"The link; state is active or retired"},"404":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"No link has this code"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}}},"summary":"Read a link by its code","tags":["link-controller"]}},"/api/links/{code}/stats":{"get":{"operationId":"stats","parameters":[{"in":"path","name":"code","required":true,"schema":{"type":"string"}}],"responses":{"200":{"content":{"application/json":{"examples":{"stats":{"description":"stats","value":{"code":"Ab3dE9fG","totalClicks":6,"clicksPerDay":[{"date":"2026-10-01","clicks":2},{"date":"2026-10-02","clicks":3},{"date":"2026-10-04","clicks":1}],"topReferrers":[{"referrer":"https://a.example","clicks":5}]}}},"schema":{"$ref":"#/components/schemas/LinkStats"}}},"description":"Total clicks, clicks per UTC day and the top 10 referrer origins"},"404":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"No link has this code"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}}},"summary":"Read a link's click statistics","tags":["stats-controller"]}},"/api/ping":{"get":{"operationId":"ping","responses":{"200":{"content":{"*/*":{"schema":{"$ref":"#/components/schemas/PingResponse"}}},"description":"OK"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}}},"tags":["ping-controller"]}},"/{code}":{"get":{"operationId":"redirect","parameters":[{"in":"path","name":"code","required":true,"schema":{"type":"string"}}],"responses":{"302":{"description":"Redirect to the stored url, not cacheable","headers":{"Cache-Control":{"description":"no-store","schema":{"type":"string"},"style":"simple"},"Location":{"description":"The stored url, byte for byte","schema":{"type":"string"},"style":"simple"}}},"404":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"No link has this code"},"410":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"The link was retired"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}}},"summary":"Open a short link","tags":["redirect-controller"]}}},"components":{"schemas":{"AuditEntry":{"type":"object","properties":{"action":{"type":"string","description":"What happened","example":"link.retire"},"actor":{"type":"string","description":"Who acted","example":"anonymous"},"after":{"type":"object","description":"The state after the change, as stored"},"before":{"type":["object","null"],"description":"The state before the change, as stored; null for a create"},"entity":{"type":"string","description":"The kind of thing changed","example":"link"},"entityId":{"type":"string","description":"The public identifier of the thing changed","example":"jHkOIMpK"},"occurredAt":{"type":"string","format":"date-time","description":"When the mutation happened (UTC)","example":"2026-10-03T17:29:41.033Z"},"requestId":{"type":"string","description":"The X-Request-Id of the request that made the change"}}},"AuditPage":{"type":"object","properties":{"items":{"type":"array","items":{"$ref":"#/components/schemas/AuditEntry"}},"next":{"type":["string","null"],"description":"Pass back as cursor for the next page; null on the last page"}}},"CreateLinkRequest":{"type":"object","properties":{"url":{"type":"string"}}},"DayClicks":{"type":"object","properties":{"clicks":{"type":"integer","format":"int64"},"date":{"type":"string","format":"date"}}},"LinkResponse":{"type":"object","properties":{"code":{"type":"string"},"createdAt":{"type":"string","format":"date-time"},"shortUrl":{"type":"string"},"state":{"type":"string"},"url":{"type":"string"}}},"LinkStats":{"type":"object","properties":{"clicksPerDay":{"type":"array","items":{"$ref":"#/components/schemas/DayClicks"}},"code":{"type":"string"},"topReferrers":{"type":"array","items":{"$ref":"#/components/schemas/ReferrerClicks"}},"totalClicks":{"type":"integer","format":"int64"}}},"PingResponse":{"type":"object","properties":{"status":{"type":"string"},"time":{"type":"string"}}},"ProblemDetail":{"type":"object","properties":{"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"properties":{"type":"object","additionalProperties":{}},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"type":{"type":"string","format":"uri"}}},"ReferrerClicks":{"type":"object","properties":{"clicks":{"type":"integer","format":"int64"},"referrer":{"type":"string"}}}}}}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /api/links
+       Parameters = {}
+          Headers = [Content-Type:"application/json;charset=UTF-8", Idempotency-Key:"key-babc3432-483e-48d0-898f-4c81d1715a17", Content-Length:"37"]
+             Body = {"url":"https://example.com/conform"}
+    Session Attrs = {}
+
+Handler:
+             Type = dev.urlshort.link.LinkController
+           Method = dev.urlshort.link.LinkController#createLink(CreateLinkRequest, String)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 201
+    Error message = null
+          Headers = [X-Request-Id:"d0b2ed3b-f058-40d1-bd92-45e32b38007d", Location:"/api/links/FxXuJfoj", Content-Type:"application/json"]
+     Content type = application/json
+             Body = {"code":"FxXuJfoj","shortUrl":"http://localhost:8080/FxXuJfoj","url":"https://example.com/conform","state":"active","createdAt":"2026-10-03T20:03:50.234Z"}
+    Forwarded URL = null
+   Redirected URL = /api/links/FxXuJfoj
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = DELETE
+      Request URI = /api/links/FxXuJfoj
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = dev.urlshort.link.LinkController
+           Method = dev.urlshort.link.LinkController#retireLink(String)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 204
+    Error message = null
+          Headers = [X-Request-Id:"913e4655-16cc-414d-8187-aedb972b725e"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /api/links
+       Parameters = {}
+          Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"18"]
+             Body = {"url":"ftp://x/"}
+    Session Attrs = {}
+
+Handler:
+             Type = dev.urlshort.link.LinkController
+           Method = dev.urlshort.link.LinkController#createLink(CreateLinkRequest, String)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = org.springframework.web.ErrorResponseException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = [X-Request-Id:"14c4c6ec-f65e-4c51-bba7-70d9a62e407b", Content-Type:"application/problem+json"]
+     Content type = application/problem+json
+             Body = {"instance":"urn:uuid:14c4c6ec-f65e-4c51-bba7-70d9a62e407b","status":400,"title":"Bad Request","errors":[{"field":"url","rule":"scheme","message":"url must start with http:// or https://"}]}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+{"@timestamp":"2026-10-03T20:03:50.359455Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"4965c3b6-842f-40c8-9da6-60bf76891e3e","status":200,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.375741Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"e2a83615-f8c5-4541-a5a8-d63338b1834d","status":200,"ecs":{"version":"8.11"}}
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /v3/api-docs
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = org.springdoc.webmvc.api.OpenApiWebMvcResource
+           Method = org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [X-Request-Id:"e2a83615-f8c5-4541-a5a8-d63338b1834d", Content-Type:"application/json", Content-Length:"12837"]
+     Content type = application/json
+             Body = {"openapi":"3.1.0","info":{"description":"Create, read and retire short links; visitors are redirected with 302.","title":"urlshort","version":"1"},"servers":[{"url":"/"}],"paths":{"/api/audit":{"get":{"operationId":"readAudit","parameters":[{"description":"Rows per page","in":"query","name":"limit","required":false,"schema":{"type":"integer","default":50,"maximum":100,"minimum":1}},{"description":"The next of the previous page","in":"query","name":"cursor","required":false,"schema":{"type":"string"}}],"responses":{"200":{"content":{"application/json":{"examples":{"page":{"description":"page","value":{"items":[{"occurredAt":"2026-10-03T17:29:41.033Z","actor":"anonymous","action":"link.retire","entity":"link","entityId":"jHkOIMpK","requestId":"140fc9de-5b8e-4c43-9d55-2f0b1e1c7a10","before":{"url":"https://example.com/","state":"active"},"after":{"url":"https://example.com/","state":"retired"}},{"occurredAt":"2026-10-03T17:28:02.512Z","actor":"anonymous","action":"link.create","entity":"link","entityId":"jHkOIMpK","requestId":"0d6a1f3e-9c27-4b1a-8e5f-6a4c3b2d1e0f","before":null,"after":{"url":"https://example.com/","state":"active"}}],"next":"MTI"}}},"schema":{"$ref":"#/components/schemas/AuditPage"}}},"description":"One page of audit rows, newest first, and the cursor of the next"},"400":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"limit or cursor is malformed"},"403":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Not a loopback client, or a forwarding header is present"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}},"500":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"The trail could not be read"}},"summary":"Read the audit trail, newest first (loopback only)","tags":["audit-controller"]}},"/api/links":{"post":{"description":"Without Idempotency-Key every call creates a new link. With a key, a repeat with the same url within 24 h of the first 201 returns that link (current state); a different url is 422.","operationId":"createLink","parameters":[{"description":"1 to 255 visible ASCII characters; makes a retried create return the first link","in":"header","name":"Idempotency-Key","required":false,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"examples":{"create":{"description":"create","value":{"url":"https://example.com/some/path?q=1"}}},"schema":{"$ref":"#/components/schemas/CreateLinkRequest"}}},"required":true},"responses":{"201":{"content":{"application/json":{"examples":{"created":{"description":"created","value":{"code":"Ab3dE9fG","shortUrl":"http://localhost:8080/Ab3dE9fG","url":"https://example.com/some/path?q=1","state":"active","createdAt":"2026-10-03T05:12:42.133Z"}}},"schema":{"$ref":"#/components/schemas/LinkResponse"}}},"description":"Created, or replayed for the same key and url","headers":{"Location":{"description":"/api/links/{code}","schema":{"type":"string"},"style":"simple"}}},"400":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Invalid url or Idempotency-Key (errors[] names field and rule), or a body that is not a JSON object"},"413":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Body larger than 16 384 bytes"},"415":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Content-Type is not application/json"},"422":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Idempotency-Key already used with a different url"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}},"500":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Nothing was stored"}},"summary":"Create a short link for an http(s) URL","tags":["link-controller"]}},"/api/links/{code}":{"delete":{"operationId":"retireLink","parameters":[{"in":"path","name":"code","required":true,"schema":{"type":"string"}}],"responses":{"204":{"description":"Retired"},"404":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"No link has this code"},"410":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Already retired"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}},"500":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Nothing was changed"}},"summary":"Retire a link; visitors then get 410 and the record is kept","tags":["link-controller"]},"get":{"operationId":"readLink","parameters":[{"in":"path","name":"code","required":true,"schema":{"type":"string"}}],"responses":{"200":{"content":{"application/json":{"examples":{"link":{"description":"link","value":{"code":"Ab3dE9fG","shortUrl":"http://localhost:8080/Ab3dE9fG","url":"https://example.com/some/path?q=1","state":"active","createdAt":"2026-10-03T05:12:42.133Z"}}},"schema":{"$ref":"#/components/schemas/LinkResponse"}}},"description":"The link; state is active or retired"},"404":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"No link has this code"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}}},"summary":"Read a link by its code","tags":["link-controller"]}},"/api/links/{code}/stats":{"get":{"operationId":"stats","parameters":[{"in":"path","name":"code","required":true,"schema":{"type":"string"}}],"responses":{"200":{"content":{"application/json":{"examples":{"stats":{"description":"stats","value":{"code":"Ab3dE9fG","totalClicks":6,"clicksPerDay":[{"date":"2026-10-01","clicks":2},{"date":"2026-10-02","clicks":3},{"date":"2026-10-04","clicks":1}],"topReferrers":[{"referrer":"https://a.example","clicks":5}]}}},"schema":{"$ref":"#/components/schemas/LinkStats"}}},"description":"Total clicks, clicks per UTC day and the top 10 referrer origins"},"404":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"No link has this code"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}}},"summary":"Read a link's click statistics","tags":["stats-controller"]}},"/api/ping":{"get":{"operationId":"ping","responses":{"200":{"content":{"*/*":{"schema":{"$ref":"#/components/schemas/PingResponse"}}},"description":"OK"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}}},"tags":["ping-controller"]}},"/{code}":{"get":{"operationId":"redirect","parameters":[{"in":"path","name":"code","required":true,"schema":{"type":"string"}}],"responses":{"302":{"description":"Redirect to the stored url, not cacheable","headers":{"Cache-Control":{"description":"no-store","schema":{"type":"string"},"style":"simple"},"Location":{"description":"The stored url, byte for byte","schema":{"type":"string"},"style":"simple"}}},"404":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"No link has this code"},"410":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"The link was retired"},"429":{"content":{"application/problem+json":{"examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Too many requests from this client; retry after Retry-After seconds","headers":{"Retry-After":{"description":"Whole seconds until this client's next request is admitted","schema":{"type":"integer","format":"int32","minimum":1}}}}},"summary":"Open a short link","tags":["redirect-controller"]}}},"components":{"schemas":{"AuditEntry":{"type":"object","properties":{"action":{"type":"string","description":"What happened","example":"link.retire"},"actor":{"type":"string","description":"Who acted","example":"anonymous"},"after":{"type":"object","description":"The state after the change, as stored"},"before":{"type":["object","null"],"description":"The state before the change, as stored; null for a create"},"entity":{"type":"string","description":"The kind of thing changed","example":"link"},"entityId":{"type":"string","description":"The public identifier of the thing changed","example":"jHkOIMpK"},"occurredAt":{"type":"string","format":"date-time","description":"When the mutation happened (UTC)","example":"2026-10-03T17:29:41.033Z"},"requestId":{"type":"string","description":"The X-Request-Id of the request that made the change"}}},"AuditPage":{"type":"object","properties":{"items":{"type":"array","items":{"$ref":"#/components/schemas/AuditEntry"}},"next":{"type":["string","null"],"description":"Pass back as cursor for the next page; null on the last page"}}},"CreateLinkRequest":{"type":"object","properties":{"url":{"type":"string"}}},"DayClicks":{"type":"object","properties":{"clicks":{"type":"integer","format":"int64"},"date":{"type":"string","format":"date"}}},"LinkResponse":{"type":"object","properties":{"code":{"type":"string"},"createdAt":{"type":"string","format":"date-time"},"shortUrl":{"type":"string"},"state":{"type":"string"},"url":{"type":"string"}}},"LinkStats":{"type":"object","properties":{"clicksPerDay":{"type":"array","items":{"$ref":"#/components/schemas/DayClicks"}},"code":{"type":"string"},"topReferrers":{"type":"array","items":{"$ref":"#/components/schemas/ReferrerClicks"}},"totalClicks":{"type":"integer","format":"int64"}}},"PingResponse":{"type":"object","properties":{"status":{"type":"string"},"time":{"type":"string"}}},"ProblemDetail":{"type":"object","properties":{"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"properties":{"type":"object","additionalProperties":{}},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"type":{"type":"string","format":"uri"}}},"ReferrerClicks":{"type":"object","properties":{"clicks":{"type":"integer","format":"int64"},"referrer":{"type":"string"}}}}}}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+{"@timestamp":"2026-10-03T20:03:50.386146Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"d1c9111e-29a2-4ee2-937b-b1248676c2bb","status":200,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.394023Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"c1fee92c-a7c7-4f30-9ef6-5532054846ee","status":200,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.398455Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.web.OpenApiDocumentTest$OverTheCreateBudget]: OverTheCreateBudget does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.400313Z","log":{"level":"INFO","logger":"org.springframework.boot.test.context.SpringBootTestContextBootstrapper"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.web.OpenApiDocumentTest$OverTheCreateBudget","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.400792Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.web.OpenApiDocumentTest$OverTheCreateBudget]: OverTheCreateBudget does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.400976Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.web.OpenApiDocumentTest]: OpenApiDocumentTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.401687Z","log":{"level":"INFO","logger":"org.springframework.boot.test.context.SpringBootTestContextBootstrapper"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.web.OpenApiDocumentTest$OverTheCreateBudget","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.411667Z","log":{"level":"INFO","logger":"dev.urlshort.web.OpenApiDocumentTest$OverTheCreateBudget"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Starting OpenApiDocumentTest.OverTheCreateBudget using Java 21.0.10 with PID 56314 (started by andrzej in /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/03-dogfood-fix)","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.411901Z","log":{"level":"INFO","logger":"dev.urlshort.web.OpenApiDocumentTest$OverTheCreateBudget"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"The following 1 profile is active: \"functional\"","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.481770Z","log":{"level":"INFO","logger":"org.springframework.data.repository.config.RepositoryConfigurationDelegate"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Bootstrapping Spring Data JDBC repositories in DEFAULT mode.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.485469Z","log":{"level":"INFO","logger":"org.springframework.data.repository.config.RepositoryConfigurationDelegate"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Finished Spring Data repository scanning in 2 ms. Found 1 JDBC repository interface.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.522338Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-2 - Starting...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.523097Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.pool.HikariPool"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-2 - Added connection conn10: url=jdbc:h2:mem:urlshort-functional user=SA","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.523261Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-2 - Start completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.523476Z","log":{"level":"INFO","logger":"org.flywaydb.core.FlywayExecutor"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Database: jdbc:h2:mem:urlshort-functional (H2 2.4)","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.525299Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.527380Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbValidate"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Successfully validated 2 migrations (execution time 00:00.001s)","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.528597Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Current version of schema \"PUBLIC\": 2","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.528864Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Schema \"PUBLIC\" is up to date. No migration necessary.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.617779Z","log":{"level":"INFO","logger":"org.springframework.boot.test.mock.web.SpringBootMockServletContext"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Spring TestDispatcherServlet ''","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.618014Z","log":{"level":"INFO","logger":"org.springframework.test.web.servlet.TestDispatcherServlet"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Servlet ''","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.618492Z","log":{"level":"INFO","logger":"org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Exposing 3 endpoints beneath base path '/actuator'","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.619790Z","log":{"level":"INFO","logger":"org.springframework.test.web.servlet.TestDispatcherServlet"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Completed initialization in 1 ms","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.625282Z","log":{"level":"INFO","logger":"dev.urlshort.web.OpenApiDocumentTest$OverTheCreateBudget"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Started OpenApiDocumentTest.OverTheCreateBudget in 0.222 seconds (process running for 8.913)","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.625699Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.625805Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+]]></system-out>
+  <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.gradle-home/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.18.11/82212e5b3633e7a65fca8bec525762cfb6c9bae4/byte-buddy-agent-1.18.11.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

@@ -1,0 +1,9 @@
+gradle.projectsEvaluated {
+    def project = gradle.rootProject
+    project.tasks.register('reviewStatsConsistency', JavaExec) {
+        dependsOn project.tasks.named('functionalTestClasses')
+        javaLauncher.set(project.javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) })
+        classpath = project.sourceSets.functionalTest.runtimeClasspath
+        mainClass = project.file('docs/review/01-analytics-v2/proof/StatsConsistencyProbe.java').absolutePath
+    }
+}

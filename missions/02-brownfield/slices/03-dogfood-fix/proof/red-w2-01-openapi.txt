@@ -1,0 +1,37 @@
+> Task :compileJava
+> Task :processResources
+> Task :classes
+> Task :jar
+> Task :compileFunctionalTestJava
+> Task :processFunctionalTestResources
+> Task :functionalTestClasses
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+
+> Task :functionalTest
+
+OpenApiDocumentTest > AC2_problemBodiesConformToTheDocumentedSchema() FAILED
+    org.opentest4j.AssertionFailedError at OpenApiDocumentTest.java:210
+
+OpenApiDocumentTest > AC1_problemSchemaDocumentsErrorsAndNoProperties() FAILED
+    org.opentest4j.AssertionFailedError at OpenApiDocumentTest.java:141
+
+{"@timestamp":"2026-10-03T20:03:50.724398Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.725219Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.727631Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-2 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T20:03:50.750078Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":56314,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-2 - Shutdown completed.","ecs":{"version":"8.11"}}
+
+> Task :functionalTest FAILED
+
+6 tests completed, 2 failed
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':functionalTest'.
+> There were failing tests. See the report at: file:///Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/03-dogfood-fix/build/reports/tests/functionalTest/index.html
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 10s
+6 actionable tasks: 6 executed

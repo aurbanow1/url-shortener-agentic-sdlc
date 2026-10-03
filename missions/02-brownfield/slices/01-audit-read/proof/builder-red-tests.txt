@@ -1,0 +1,242 @@
+> Task :compileJava
+> Task :processResources
+> Task :classes
+
+> Task :compileTestJava FAILED
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:105: error: cannot find symbol
+	private static AuditController controller(@Nullable ForwardHeadersStrategy strategy) {
+	               ^
+  symbol:   class AuditController
+  location: class AuditControllerTest
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:111: error: cannot find symbol
+	private static void assertForbidden(AuditController controller) {
+	                                    ^
+  symbol:   class AuditController
+  location: class AuditControllerTest
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:30: error: cannot find symbol
+		assertThat(AuditController.fromLoopback(request(peer))).isTrue();
+		           ^
+  symbol:   variable AuditController
+  location: class AuditControllerTest
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:36: error: cannot find symbol
+		assertThat(AuditController.fromLoopback(request(peer))).isFalse();
+		           ^
+  symbol:   variable AuditController
+  location: class AuditControllerTest
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:44: error: cannot find symbol
+		assertThat(AuditController.fromLoopback(request)).isFalse();
+		           ^
+  symbol:   variable AuditController
+  location: class AuditControllerTest
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:53: error: cannot find symbol
+		assertThat(AuditController.fromLoopback(request)).isFalse();
+		           ^
+  symbol:   variable AuditController
+  location: class AuditControllerTest
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:58: error: cannot find symbol
+		AuditController controller = controller(ForwardHeadersStrategy.NONE);
+		^
+  symbol:   class AuditController
+  location: class AuditControllerTest
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:76: error: cannot find symbol
+		assertThat(AuditController.limit(null)).isEqualTo(50);
+		           ^
+  symbol:   variable AuditController
+  location: class AuditControllerTest
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:77: error: cannot find symbol
+		assertThat(AuditController.limit("1")).isEqualTo(1);
+		           ^
+  symbol:   variable AuditController
+  location: class AuditControllerTest
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:78: error: cannot find symbol
+		assertThat(AuditController.limit("100")).isEqualTo(100);
+		           ^
+  symbol:   variable AuditController
+  location: class AuditControllerTest
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:84: error: cannot find symbol
+		assertProblem(() -> AuditController.limit(value), "limit", "range", value);
+		                    ^
+  symbol:   variable AuditController
+  location: class AuditControllerTest
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:90: error: cannot find symbol
+		assertProblem(() -> AuditController.limit(value), "limit", "format", value);
+		                    ^
+  symbol:   variable AuditController
+  location: class AuditControllerTest
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:95: error: cannot find symbol
+		assertThat(AuditController.position("Mw")).isEqualTo(3);
+		           ^
+  symbol:   variable AuditController
+  location: class AuditControllerTest
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:96: error: cannot find symbol
+		assertThat(AuditController.position(AuditTrail.cursorOf(9_000_000_000L))).isEqualTo(9_000_000_000L);
+		           ^
+  symbol:   variable AuditController
+  location: class AuditControllerTest
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:96: error: cannot find symbol
+		assertThat(AuditController.position(AuditTrail.cursorOf(9_000_000_000L))).isEqualTo(9_000_000_000L);
+		                                    ^
+  symbol:   variable AuditTrail
+  location: class AuditControllerTest
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:102: error: cannot find symbol
+		assertProblem(() -> AuditController.position(value), "cursor", "format", value);
+		                    ^
+  symbol:   variable AuditController
+  location: class AuditControllerTest
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:108: error: cannot find symbol
+		return new AuditController(mock(AuditTrail.class), server);
+		           ^
+  symbol:   class AuditController
+  location: class AuditControllerTest
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:108: error: cannot find symbol
+		return new AuditController(mock(AuditTrail.class), server);
+		                                ^
+  symbol:   class AuditTrail
+  location: class AuditControllerTest
+18 errors
+
+> Task :jar
+
+> Task :compileFunctionalTestJava FAILED
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditReadFailureJourneyTest.java:46: error: cannot find symbol
+	private AuditTrail trail;
+	        ^
+  symbol:   class AuditTrail
+  location: class AuditReadFailureJourneyTest
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditReadFailureJourneyTest.java:52: error: cannot find symbol
+		String cursor = AuditTrail.cursorOf(987_654_321L);
+		                ^
+  symbol:   variable AuditTrail
+  location: class AuditReadFailureJourneyTest
+2 errors
+
+[Incubating] Problems report is available at: file:///Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/build/reports/problems/problems-report.html
+
+FAILURE: Build completed with 2 failures.
+
+1: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':compileTestJava' (registered by plugin class 'org.gradle.api.plugins.JavaBasePlugin').
+> Compilation failed; see the compiler output below.
+  /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:105: error: cannot find symbol
+  	private static AuditController controller(@Nullable ForwardHeadersStrategy strategy) {
+  	               ^
+    symbol:   class AuditController
+    location: class AuditControllerTest
+  /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:111: error: cannot find symbol
+  	private static void assertForbidden(AuditController controller) {
+  	                                    ^
+    symbol:   class AuditController
+    location: class AuditControllerTest
+  /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:30: error: cannot find symbol
+  		assertThat(AuditController.fromLoopback(request(peer))).isTrue();
+  		           ^
+    symbol:   variable AuditController
+    location: class AuditControllerTest
+  /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:36: error: cannot find symbol
+  		assertThat(AuditController.fromLoopback(request(peer))).isFalse();
+  		           ^
+    symbol:   variable AuditController
+    location: class AuditControllerTest
+  /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:44: error: cannot find symbol
+  		assertThat(AuditController.fromLoopback(request)).isFalse();
+  		           ^
+    symbol:   variable AuditController
+    location: class AuditControllerTest
+  /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:53: error: cannot find symbol
+  		assertThat(AuditController.fromLoopback(request)).isFalse();
+  		           ^
+    symbol:   variable AuditController
+    location: class AuditControllerTest
+  /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:58: error: cannot find symbol
+  		AuditController controller = controller(ForwardHeadersStrategy.NONE);
+  		^
+    symbol:   class AuditController
+    location: class AuditControllerTest
+  /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:76: error: cannot find symbol
+  		assertThat(AuditController.limit(null)).isEqualTo(50);
+  		           ^
+    symbol:   variable AuditController
+    location: class AuditControllerTest
+  /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:77: error: cannot find symbol
+  		assertThat(AuditController.limit("1")).isEqualTo(1);
+  		           ^
+    symbol:   variable AuditController
+    location: class AuditControllerTest
+  /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:78: error: cannot find symbol
+  		assertThat(AuditController.limit("100")).isEqualTo(100);
+  		           ^
+    symbol:   variable AuditController
+    location: class AuditControllerTest
+  /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:84: error: cannot find symbol
+  		assertProblem(() -> AuditController.limit(value), "limit", "range", value);
+  		                    ^
+    symbol:   variable AuditController
+    location: class AuditControllerTest
+  /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:90: error: cannot find symbol
+  		assertProblem(() -> AuditController.limit(value), "limit", "format", value);
+  		                    ^
+    symbol:   variable AuditController
+    location: class AuditControllerTest
+  /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:95: error: cannot find symbol
+  		assertThat(AuditController.position("Mw")).isEqualTo(3);
+  		           ^
+    symbol:   variable AuditController
+    location: class AuditControllerTest
+  /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:96: error: cannot find symbol
+  		assertThat(AuditController.position(AuditTrail.cursorOf(9_000_000_000L))).isEqualTo(9_000_000_000L);
+  		           ^
+    symbol:   variable AuditController
+    location: class AuditControllerTest
+  /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:96: error: cannot find symbol
+  		assertThat(AuditController.position(AuditTrail.cursorOf(9_000_000_000L))).isEqualTo(9_000_000_000L);
+  		                                    ^
+    symbol:   variable AuditTrail
+    location: class AuditControllerTest
+  /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:102: error: cannot find symbol
+  		assertProblem(() -> AuditController.position(value), "cursor", "format", value);
+  		                    ^
+    symbol:   variable AuditController
+    location: class AuditControllerTest
+  /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:108: error: cannot find symbol
+  		return new AuditController(mock(AuditTrail.class), server);
+  		           ^
+    symbol:   class AuditController
+    location: class AuditControllerTest
+  /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java:108: error: cannot find symbol
+  		return new AuditController(mock(AuditTrail.class), server);
+  		                                ^
+    symbol:   class AuditTrail
+    location: class AuditControllerTest
+  18 errors
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+==============================================================================
+
+2: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':compileFunctionalTestJava' (registered by plugin class 'org.gradle.api.plugins.JavaBasePlugin').
+> Compilation failed; see the compiler output below.
+  /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditReadFailureJourneyTest.java:46: error: cannot find symbol
+  	private AuditTrail trail;
+  	        ^
+    symbol:   class AuditTrail
+    location: class AuditReadFailureJourneyTest
+  /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditReadFailureJourneyTest.java:52: error: cannot find symbol
+  		String cursor = AuditTrail.cursorOf(987_654_321L);
+  		                ^
+    symbol:   variable AuditTrail
+    location: class AuditReadFailureJourneyTest
+  2 errors
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+==============================================================================
+
+BUILD FAILED in 2s
+5 actionable tasks: 5 executed

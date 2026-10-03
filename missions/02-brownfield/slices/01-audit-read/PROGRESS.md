@@ -7,6 +7,16 @@
 
 ## Acceptance
 
-- [ ] Implementation complete
-- [ ] Tests passing
+- [x] Implementation complete — candidate `7ac8af5` on `slice/01-audit-read` (CR-01 rework on `35590f0`, which sits on `main` `0df4841`) (builder, 2026-10-03)
+- [x] Tests passing — `scripts/gw --offline check --rerun-tasks` on `7ac8af5`: unit 203/203, functional 202/202, 494/494 lines and 194/194 branches merged, Javadoc green (`proof/builder-check-7ac8af5.txt`; builder run, QA re-runs independently). Before the rework: `35590f0`, 200/200 and 200/200
 - [ ] Review approved
+
+## Builder-side proof-contract items
+
+- [x] AC-17: the `f6dd29e` functional suite run unchanged against `35590f0`, with exactly the two granted enumeration failures (`proof/ac17-shipped-suite-on-35590f0.txt`)
+- [x] Item 7: by-effect upgrade, the shipped `f6dd29e` jar then the candidate jar on one data directory (`proof/upgrade-0` to `upgrade-4`)
+- [x] Item 8: two pages via `next`, a forwarded `403`, their log lines and a clean whole-run grep (`proof/http-*-35590f0.txt`, `log-lines-35590f0.txt`, `jar-log-35590f0.txt`)
+- [x] Item 9: no migration, as the design and plan-lock state
+- [x] Item 10 (builder half): `docs/api/openapi.json` regenerated on the candidate; QA's live-vs-committed diff is pending
+- [ ] QA on reworked candidate7ac8af5 pending. Historical35590f0 suite/coverage and upgrade evidence retained; original PASS superseded by HIGH QA-AUD-01 / CR-01, independently reproduced for explicit Tomcat remote-IP properties (AC13/14); docs/qa/01-audit-read/findings.md
+- [ ] Review: security record (item 12)

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RateLimitFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">urlshort</a> &gt; <a href="index.source.html" class="el_package">dev.urlshort.web</a> &gt; <span class="el_source">RateLimitFilter.java</span></div><h1>RateLimitFilter.java</h1><pre class="source lang-java linenums">package dev.urlshort.web;
+
+import java.io.IOException;
+import java.net.URI;
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.Set;
+
+import dev.urlshort.web.RateLimiter.Budget;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.jspecify.annotations.Nullable;
+import org.slf4j.MDC;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ProblemDetail;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.util.UrlPathHelper;
+import tools.jackson.databind.json.JsonMapper;
+
+/**
+ * Charges every request except the operator surfaces to its client's bucket and answers {@code 429}
+ * when the bucket is empty (FR-10, NFR-R2, business rules 1 to 7; ADR-0014, ADR-0015).
+ *
+ * &lt;p&gt;Order: after {@link RequestIdFilter} (so the {@code 429} carries its request id) and Boot's
+ * observation filter (so {@code 429}s appear in {@code http.server.requests}), before
+ * {@link RequestBodyLimitFilter} and everything else, so a request is charged before its body,
+ * method, content type or path are examined. The {@code 429} is written here, in the same shape as
+ * every other problem body; this filter writes no log event, the request's one event is the
+ * request-id filter's {@code request completed} with status {@code 429}.
+ */
+@Component
+@Order(Ordered.HIGHEST_PRECEDENCE + 2)
+class RateLimitFilter extends OncePerRequestFilter {
+
+	private final RateLimiter limiter;
+	private final Set&lt;String&gt; trustedProxies;
+	private final JsonMapper json;
+<span class="fc" id="L46">	private final Map&lt;Budget, Counter&gt; rejections = new EnumMap&lt;&gt;(Budget.class);</span>
+
+<span class="fc" id="L48">	RateLimitFilter(RateLimiter limiter, RateLimitProperties properties, MeterRegistry registry, JsonMapper json) {</span>
+<span class="fc" id="L49">		this.limiter = limiter;</span>
+<span class="fc" id="L50">		this.trustedProxies = properties.trustedProxies();</span>
+<span class="fc" id="L51">		this.json = json;</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">		for (Budget budget : Budget.values()) {</span>
+<span class="fc" id="L53">			rejections.put(budget, Counter.builder(&quot;urlshort.ratelimit.rejections&quot;)</span>
+<span class="fc" id="L54">					.description(&quot;Requests answered 429 because the client's bucket was empty&quot;)</span>
+<span class="fc" id="L55">					.tag(&quot;budget&quot;, budget.tag()).register(registry));</span>
+		}
+<span class="fc" id="L57">	}</span>
+
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+			throws ServletException, IOException {
+		// the decoded path MVC routes on, so percent-encoding cannot move a request to the larger budget
+<span class="fc" id="L63">		String path = UrlPathHelper.defaultInstance.getLookupPathForRequest(request);</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">		if (exempt(path)) {</span>
+<span class="fc" id="L65">			chain.doFilter(request, response);</span>
+<span class="fc" id="L66">			return;</span>
+		}
+<span class="pc bpc" id="L68" title="1 of 4 branches missed.">		Budget budget = path.equals(&quot;/api&quot;) || path.startsWith(&quot;/api/&quot;) ? Budget.CREATE : Budget.REDIRECT;</span>
+<span class="fc" id="L69">		long retryAfter = limiter.tryTake(budget,</span>
+<span class="fc" id="L70">				clientOf(request.getRemoteAddr(), request.getHeader(&quot;X-Forwarded-For&quot;), trustedProxies));</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">		if (retryAfter == 0) {</span>
+<span class="fc" id="L72">			chain.doFilter(request, response);</span>
+<span class="fc" id="L73">			return;</span>
+		}
+<span class="fc" id="L75">		rejections.get(budget).increment();</span>
+<span class="fc" id="L76">		ProblemDetail problem = ProblemDetail.forStatus(HttpStatus.TOO_MANY_REQUESTS);</span>
+<span class="fc" id="L77">		problem.setInstance(URI.create(&quot;urn:uuid:&quot; + MDC.get(&quot;requestId&quot;)));</span>
+<span class="fc" id="L78">		response.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());</span>
+<span class="fc" id="L79">		response.setHeader(HttpHeaders.RETRY_AFTER, Long.toString(retryAfter));</span>
+<span class="fc" id="L80">		response.setContentType(&quot;application/problem+json&quot;);</span>
+		// bytes, not getWriter(): the writer makes Tomcat append &quot;;charset=ISO-8859-1&quot;, unlike every other problem
+<span class="fc" id="L82">		response.getOutputStream().write(json.writeValueAsBytes(problem));</span>
+<span class="fc" id="L83">	}</span>
+
+	/** Probes, scrapers and the API document are never limited (business rule 1, A-7). */
+	static boolean exempt(String path) {
+<span class="pc bpc" id="L87" title="1 of 6 branches missed.">		return path.equals(&quot;/actuator&quot;) || path.startsWith(&quot;/actuator/&quot;) || path.startsWith(&quot;/v3/api-docs&quot;)</span>
+<span class="pc bpc" id="L88" title="1 of 4 branches missed.">				|| path.equals(&quot;/swagger-ui.html&quot;) || path.startsWith(&quot;/swagger-ui/&quot;);</span>
+	}
+
+	/**
+	 * The client a request is charged to (business rule 5): the peer address, unless the peer is a
+	 * trusted proxy; then the right-most {@code X-Forwarded-For} entry that is not itself a trusted
+	 * proxy, or the peer when there is none. No other header is read.
+	 */
+	static String clientOf(String remote, @Nullable String forwardedFor, Set&lt;String&gt; trusted) {
+<span class="fc bfc" id="L97" title="All 4 branches covered.">		if (!trusted.contains(remote) || forwardedFor == null) {</span>
+<span class="fc" id="L98">			return remote;</span>
+		}
+<span class="fc" id="L100">		String[] hops = forwardedFor.split(&quot;,&quot;);</span>
+<span class="pc bpc" id="L101" title="1 of 2 branches missed.">		for (int i = hops.length - 1; i &gt;= 0; i--) {</span>
+<span class="fc" id="L102">			String hop = hops[i].trim();</span>
+<span class="pc bpc" id="L103" title="2 of 4 branches missed.">			if (!hop.isEmpty() &amp;&amp; !trusted.contains(hop)) {</span>
+<span class="fc" id="L104">				return hop;</span>
+			}
+		}
+<span class="nc" id="L107">		return remote;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

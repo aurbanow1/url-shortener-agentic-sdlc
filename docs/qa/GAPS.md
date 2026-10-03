@@ -92,3 +92,69 @@ and V2__create_click.sql at 8e9c065; four tables and their existing/missing
 columns match these four rows. This is a GAPS-only documentation change, with
 no migration, app, build or proof judgment. Changed hashes of closed mission-01
 GAPS-citing receipts are factory backlog; no reaffirmation is made here.
+
+## 01-audit-read — candidate 35590f06c852543c29097a42c43b7802be90ba40
+
+Independent QA, 2026-10-03. No merged coverage shortfall, exclusion, threshold
+change or product defect found. Qualified checks and downstream evidence are
+explicit below; earlier mission rows remain their own records.
+
+| Scope | Gap or limit | Reason and compensating evidence | Acceptance / owner |
+|---|---|---|---|
+| Per-suite coverage | Unit 436/492 lines (88.62%), 184/190 branches (96.84%); functional 455/492 lines (92.48%), 158/190 branches (83.16%) | Separate suites exercise complementary paths; direct merged CSV is 492/492 and 190/190. Fresh 200/200 and 200/200 invocations; copied HTML/XML/CSV hashes reconciled in proof/qa-verification-35590f0.json | SPEC NFR-M1 requires merged 100%; per-suite percentages informational; no waiver |
+| AC-17 / FR-13 | Two unchanged shipped assertions fail solely because the API enumeration gains the audit operation | Original f6dd29e sources copied without edits and Git-blob hashes checked; 155 tests:153 pass, exactly OpenApiDocumentTest#AC28_liveDocumentDescribesTheSlice and #AC20_everyOperationDocumentsTheTooManyRequestsProblem fail. Their candidate versions pass in the full gate; all existing live operations/responses/examples equal the shipped jar document | Accepted lead grant qitem-20261003182833-40a842ff transition1156, commit428e9e1; only these two enumeration additions allowed. All155original assertions are not claimed green |
+| AC-11..14 / NFR-S6 | Remote and IPv6/mapped peer classification is controlled Servlet input, not actual remote TCP traffic | SPEC expressly permits per-request peers; QA curl drives unchanged candidate handlers through a disclosed filter, covers remote GET/HEAD, all four loopback spellings, forwarded/empty headers, trusted-proxy settings and precedence. Native/framework overrides also refused on real Tomcat; all actual servers bound to127.0.0.1 | Qualification required by rule2; headerless local relay remains indistinguishable from Operator and is prohibited/documented by deployment boundary |
+| AC-20/21 | Concurrent write and store fault deliberately induced | Actual JDBC autoCommit=false INSERT held across first page, then committed: original30 exactly once and fresh31. QA DataSource connection wrapper induces SQLException on actual audit SELECT preparation: safe500, correlated sanitized events, recovery200. Functional AC-21 uses an AuditTrail spy, independently supplemented by this JDBC effect | SPEC permits induction; no natural hardware failure, cross-process concurrency or crash-recovery claim |
+| Proof item12 | Independent security-review record follows QA in this workflow | QA access/privacy effects are complete, but its own observations do not author the downstream review. Items1..11 and13 can be judged against this SHA; item12 must return after security review, before final acceptance | Sequencing obligation in proof/qa-proof-sequencing-35590f0.md routed to orchestration lead; no premature acceptance |
+
+Instrument history retained: first temporary shipped-suite invocation had
+NO-SOURCE because Python tar extraction failed; it supplies no test proof.
+After safe extraction the real155-test replay ran. First live fixture used
+an unsupported QA DATABASE_TO_LOWER option and create returned safe500;
+that run was stopped, the documented H2 settings used on a fresh directory,
+and all journeys repeated. Date/string normalization and stale in-memory
+ledger entries were corrected in the evidence reconciler; raw current-slice
+captures are independently archived. The paced61-read probe returned200
+because GCRA refills continuously; a0.17s90-read burst then proved the first60
+admitted and following30 refused with Retry-After. These are instrument and
+probe corrections, not hidden product reruns or accepted product defects.
+
+### 01-audit-read 35590f0 — correction after independent review
+
+The original "no product defect found" and complete AC-13/14 qualification
+above are superseded. **QA-AUD-01 HIGH:** explicit Tomcat
+remoteip.remote-ip-header or remoteip.protocol-header enables a rewrite while
+the strategy stays NONE. A loopback connection with XFF127.0.0.2 then receives
+audit content200, and HEAD200, contrary to the mandatory403. Review found it;
+QA independently reproduced both variants on the unchanged installed jar and
+the default403 control (15 correlated requests). Prior QA/native/framework
+and green functional checks omitted this configuration axis. This is an
+unaccepted product failure and test gap requiring a builder fix and new
+regression coverage, not a waiver or narrower scope. Findings and exact repro:
+docs/qa/01-audit-read/findings.md and post-review-remoteip/verification.json.
+Coverage/upgrade/read-only results remain historical evidence, not a PASS
+of all requirements; security contract item12 remains unaccepted.
+
+
+## 05-ci-cd — candidate add7ab5ca37dcd6f51aef3cd43c85455e1be6d14
+
+Independent QA2, 2026-10-03. Merged CSV coverage is 443/443 lines and 162/162
+branches (100%); no excluded code, changed threshold or merged coverage gap.
+
+| Scope | Gap or limit | Reason / evidence | Acceptance / owner |
+|---|---|---|---|
+| Per-suite coverage | Unit400/443 lines90.2935%,162/162 branches100%; functional408/443 lines92.0993%,131/162 branches80.8642% | Fresh165/155 invocations all pass; complementary suites merge to443/443 and162/162. 321 copied report files SHA-256 checked in proof/qa-report-audit-add7ab5.json | Existing NFR-M1/build gate applies100% to merged data; no waiver |
+| AC-13 | First GitHub PR gate and main CD run, artifact uploads, action/cache/wrapper-validation and Dependabot execution not observed | Agents cannot push; candidate-local checks and the contracted builder network captures are complete. No GitHub URLs fabricated. Operator records run URLs/conclusions/artifact presence in PROOF.md after the human pushes | SPEC A-5 explicit accepted pending state (D2/D13); human/operator follow-up |
+| AC-2 / A-6; BR-6 | A deliberately failing GitHub run was not exercised; failure upload/retention checked as configuration only | Parsed gate has no -x, continue-on-error or masked exit; explicit bash; reports/smoke upload always(),30 days. Local real check exit0 is captured | SPEC A-6 permits configuration evidence, not a claim of a red GitHub run |
+| AC-12 lint | Native actionlint absent; independent YAML1.2 parse plus parsed/source AC checks used | All three candidate files parse without errors or warnings. Builder's separate actionlint1.7.12 capture and negative control retained. QA did not rerun that container | SPEC AC-12 expressly allows parsing when actionlint is not installed |
+| AC-12 image | Initial --pull --no-cache attempt stopped at Dockerfile step5; a wholly uncached image build is not claimed | Supplemental builder --pull capture on the same SHA completed with both base images pulled, all15 steps and exit0. Steps5–7 actually ran, including bootJar; other layers cached. QA read both pull digests and success; C1 image/pin attachments committed ad79bb4 | AC-12 satisfied without waiver: cache is allowed by SPEC. A fully uncached/hosted-runner build remains unobserved; AC-13 pending |
+| AC-5 / runner environment | GitHub's env.JAVA_HOME handoff and hosted Linux shell/runner not executed locally | Own installed jar smoke used local JDK21 default; parsed cd env passes JAVA_HOME; exact script unchanged. Local journey/log/shutdown observed on127.0.0.1:18105 | Actual GitHub effects remain in AC-13 pending; no clean-runner execution claim |
+| Configuration-only traceability | Workflow ACs are file/local-command/run checks, not new product HTTP tests | SPEC explicitly selects this evidence strategy; .github-only diff leaves inherited product tests unchanged. All320 invocation names map to NFR-M1/rule1 and earlier product AC tables | Proof contract5 requires the13AC/7rule check table; no new product tests or test edits |
+
+Instrument corrections: the first QA parser invocation used the wrong local
+OpenRig module location and did not parse; the corrected installed path parsed
+all three files. The first report audit reached copied coverage but its ps
+check was denied by the sandbox; the permitted rerun verified all321 report
+hashes, PID absence and refused port. Neither supplies a product finding.
+Shared GAPS appends can change earlier receipts' evidence hashes; no judgment
+on an unassigned closed mission is made here.

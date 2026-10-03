@@ -1,0 +1,178 @@
+> Task :compileJava
+> Task :processResources UP-TO-DATE
+> Task :classes
+> Task :jar
+> Task :compileFunctionalTestJava
+> Task :processFunctionalTestResources
+> Task :functionalTestClasses
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+
+> Task :functionalTest
+
+AuditAccessSettingsJourneyTest > aPlainLoopbackReadStillWorksUnderTheseSettings() FAILED
+    org.opentest4j.AssertionFailedError at AuditAccessSettingsJourneyTest.java:64
+
+AuditAccessSettingsJourneyTest > AC13_AC14_noSettingOpensTheEndpointBeyondLoopback(String, String, String) > [1] address = "127.0.0.1", header = "X-Forwarded-For", value = "198.51.100.9" FAILED
+    org.opentest4j.AssertionFailedError at AuditAccessSettingsJourneyTest.java:57
+
+AuditAccessSettingsJourneyTest > AC13_AC14_noSettingOpensTheEndpointBeyondLoopback(String, String, String) > [2] address = "127.0.0.1", header = "X-Forwarded-For", value = "127.0.0.1" FAILED
+    org.opentest4j.AssertionFailedError at AuditAccessSettingsJourneyTest.java:57
+
+AuditAccessSettingsJourneyTest > AC13_AC14_noSettingOpensTheEndpointBeyondLoopback(String, String, String) > [3] address = "127.0.0.1", header = "Forwarded", value = "for=198.51.100.9" FAILED
+    org.opentest4j.AssertionFailedError at AuditAccessSettingsJourneyTest.java:57
+
+AuditAccessSettingsJourneyTest > AC13_AC14_noSettingOpensTheEndpointBeyondLoopback(String, String, String) > [4] address = "192.0.2.10", header = "X-Forwarded-For", value = "127.0.0.1" FAILED
+    org.opentest4j.AssertionFailedError at AuditAccessSettingsJourneyTest.java:57
+
+AuditAccessSettingsJourneyTest > AC13_AC14_noSettingOpensTheEndpointBeyondLoopback(String, String, String) > [5] address = "192.0.2.10", header = null, value = null FAILED
+    org.opentest4j.AssertionFailedError at AuditAccessSettingsJourneyTest.java:57
+
+AuditForwardedHeadersJourneyTest > onADetectedCloudPlatformThePinKeepsAForgedLoopbackHeaderOut() FAILED
+    org.opentest4j.AssertionFailedError at AuditForwardedHeadersJourneyTest.java:46
+
+AuditForwardedHeadersJourneyTest > theShippedFilePinsTheForwardedHeaderStrategyOff() FAILED
+    org.opentest4j.AssertionFailedError at AuditForwardedHeadersJourneyTest.java:38
+
+AuditForwardedHeadersJourneyTest > anOverrideOfThePinClosesTheEndpoint(String) > [1] strategy = "native" FAILED
+    org.opentest4j.AssertionFailedError at AuditForwardedHeadersJourneyTest.java:67
+
+AuditForwardedHeadersJourneyTest > anOverrideOfThePinClosesTheEndpoint(String) > [2] strategy = "framework" FAILED
+    org.opentest4j.AssertionFailedError at AuditForwardedHeadersJourneyTest.java:67
+
+AuditReadFailureJourneyTest > AC21_aFailedReadIsA500ProblemNeverAnEmptyOrPartialPage(CapturedOutput) FAILED
+    org.opentest4j.AssertionFailedError at AuditReadFailureJourneyTest.java:64
+
+AuditReadJourneyTest > AC04_rowsComeNewestFirstInTheOrderTheyWereWritten() FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:435
+
+AuditReadJourneyTest > AC19_theLiveApiDocumentDescribesTheAuditRead() FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:380
+
+AuditReadJourneyTest > AC01_anEmptyTrailIsAnEmptyPage() FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:83
+
+AuditReadJourneyTest > AC09_invalidPagingParametersAreRefusedNamingTheField(String, String, String) > [1] query = "limit=0", field = "limit", rule = "range" FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:218
+
+AuditReadJourneyTest > AC09_invalidPagingParametersAreRefusedNamingTheField(String, String, String) > [2] query = "limit=101", field = "limit", rule = "range" FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:218
+
+AuditReadJourneyTest > AC09_invalidPagingParametersAreRefusedNamingTheField(String, String, String) > [3] query = "limit=ten", field = "limit", rule = "format" FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:218
+
+AuditReadJourneyTest > AC09_invalidPagingParametersAreRefusedNamingTheField(String, String, String) > [4] query = "cursor=***", field = "cursor", rule = "format" FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:218
+
+AuditReadJourneyTest > AC13_forwardingHeadersNeverGrantAccess(String, String, String) > [1] address = "127.0.0.1", header = "X-Forwarded-For", value = "198.51.100.9" FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:301
+
+AuditReadJourneyTest > AC13_forwardingHeadersNeverGrantAccess(String, String, String) > [2] address = "127.0.0.1", header = "X-Forwarded-For", value = "127.0.0.1" FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:301
+
+AuditReadJourneyTest > AC13_forwardingHeadersNeverGrantAccess(String, String, String) > [3] address = "127.0.0.1", header = "Forwarded", value = "for=198.51.100.9" FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:301
+
+AuditReadJourneyTest > AC13_forwardingHeadersNeverGrantAccess(String, String, String) > [4] address = "192.0.2.10", header = "X-Forwarded-For", value = "127.0.0.1" FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:301
+
+AuditReadJourneyTest > AC20_aTraversalAcrossAnInFlightWriteNeitherRepeatsNorSkipsCommittedRows() FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:435
+
+AuditReadJourneyTest > AC07_theDefaultAndMaximumPageSizes() FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:435
+
+AuditReadJourneyTest > AC03_aRetireRowCarriesBeforeAndAfter() FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:435
+
+AuditReadJourneyTest > AC02_aCreateRowIsReadableAsWritten() FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:435
+
+AuditReadJourneyTest > AC08_pagingIsStableWhileRowsAreWritten() FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:435
+
+AuditReadJourneyTest > AC12_everyLoopbackAddressIsAdmitted(String) > [1] address = "127.0.0.1" FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:283
+
+AuditReadJourneyTest > AC12_everyLoopbackAddressIsAdmitted(String) > [2] address = "127.0.0.2" FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:283
+
+AuditReadJourneyTest > AC12_everyLoopbackAddressIsAdmitted(String) > [3] address = "::1" FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:283
+
+AuditReadJourneyTest > AC12_everyLoopbackAddressIsAdmitted(String) > [4] address = "::ffff:127.0.0.1" FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:283
+
+AuditReadJourneyTest > theGuardAndTheValidationComeBeforeContentNegotiation(String) > [1] accept = "text/html" FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:315
+
+AuditReadJourneyTest > theGuardAndTheValidationComeBeforeContentNegotiation(String) > [2] accept = "application/problem+json" FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:315
+
+AuditReadJourneyTest > theGuardAndTheValidationComeBeforeContentNegotiation(String) > [3] accept = "*/*" FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:315
+
+AuditReadJourneyTest > AC16_auditContentAndClientValuesStayOutOfTheLogs(CapturedOutput) FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:435
+
+AuditReadJourneyTest > AC11_aNonLoopbackClientIsRefused(String) > [1] address = "192.0.2.10" FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:269
+
+AuditReadJourneyTest > AC11_aNonLoopbackClientIsRefused(String) > [2] address = "10.0.0.7" FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:269
+
+AuditReadJourneyTest > AC15_requestCorrelationOnTheNewPaths(String, CapturedOutput) > [1] scenario = "200 page" FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:340
+
+AuditReadJourneyTest > AC15_requestCorrelationOnTheNewPaths(String, CapturedOutput) > [2] scenario = "400 invalid limit" FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:340
+
+AuditReadJourneyTest > AC15_requestCorrelationOnTheNewPaths(String, CapturedOutput) > [3] scenario = "403 non-loopback" FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:340
+
+AuditReadJourneyTest > AC15_requestCorrelationOnTheNewPaths(String, CapturedOutput) > [4] scenario = "405 wrong method" FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:340
+
+AuditReadJourneyTest > AC05_everyFieldMatchesTheStoredRow() FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:435
+
+AuditReadJourneyTest > AC06_pagesFollowNextToTheEnd() FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:435
+
+AuditReadJourneyTest > AC10_readingChangesNothing() FAILED
+    org.opentest4j.AssertionFailedError at AuditReadJourneyTest.java:435
+
+AuditUpgradeJourneyTest > AC18_anExistingDatabaseUpgradesInPlaceAndKeepsItsLinksAndRows() FAILED
+    org.opentest4j.AssertionFailedError at AuditUpgradeJourneyTest.java:58
+
+OpenApiDocumentTest > AC28_liveDocumentDescribesTheSlice() FAILED
+    java.lang.AssertionError at OpenApiDocumentTest.java:71
+
+OpenApiDocumentTest > AC20_everyOperationDocumentsTheTooManyRequestsProblem() FAILED
+    org.opentest4j.AssertionFailedError at OpenApiDocumentTest.java:116
+
+{"@timestamp":"2026-10-03T18:35:26.784010Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":38194,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:35:26.785127Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":38194,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:35:26.786550Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":38194,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-5 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:35:26.786856Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":38194,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-5 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:35:26.788069Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":38194,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-6 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:35:26.788353Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":38194,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-6 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:35:26.789550Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":38194,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-7 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:35:26.789842Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":38194,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-7 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:35:26.791085Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":38194,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-9 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:35:26.825440Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":38194,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-9 - Shutdown completed.","ecs":{"version":"8.11"}}
+
+> Task :functionalTest FAILED
+
+52 tests completed, 47 failed
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':functionalTest'.
+> There were failing tests. See the report at: file:///Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/build/reports/tests/functionalTest/index.html
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 15s
+6 actionable tasks: 5 executed, 1 up-to-date

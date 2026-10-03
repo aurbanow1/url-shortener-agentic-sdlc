@@ -1,0 +1,13 @@
+Independent actionlint 1.7.12, 2026-10-03, review2-agent@urlshort-factory
+Command: docker run --rm --network none --read-only --mount type=bind,source=/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/05-ci-cd/design-probe/draft,target=/repo,readonly --workdir /repo rhysd/actionlint:1.7.12 -verbose .github/workflows/ci.yml .github/workflows/cd.yml
+Exit: 0
+verbose: Linting 2 files
+verbose: Linting .github/workflows/cd.yml
+verbose: Linting .github/workflows/ci.yml
+verbose: Found 0 parse errors in 0 ms for .github/workflows/ci.yml
+verbose: Found 0 parse errors in 0 ms for .github/workflows/cd.yml
+verbose: Found total 0 errors in 30 ms for .github/workflows/ci.yml
+verbose: Found total 0 errors in 32 ms for .github/workflows/cd.yml
+verbose: Found 0 errors in 2 files
+
+Setup notes: sandbox access to the Docker socket was denied; approved escalation used. Initial auto-discovery returned exit 3 because the draft directory has no .git. Explicit filenames above linted the exact drafts; neither attempt edited them. Dependabot was parsed independently with the local YAML 1.2 parser (see design-source-check.txt).

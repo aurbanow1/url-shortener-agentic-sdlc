@@ -1,0 +1,12 @@
+# Weekly update proposals for the pinned actions and the Gradle build. Each one is a pull request
+# that the gate checks like any other change (D14; docs/guidance/ci-cd.md §3.2).
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+  - package-ecosystem: gradle
+    directory: /
+    schedule:
+      interval: weekly

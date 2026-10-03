@@ -1,0 +1,10 @@
+gradle.projectsEvaluated {
+    def p = gradle.rootProject
+    p.tasks.register('reviewAuditCode', JavaExec) {
+        dependsOn p.tasks.named('functionalTestClasses')
+        javaLauncher.set(p.javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) })
+        classpath = p.sourceSets.functionalTest.runtimeClasspath
+        mainClass = '/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/review/01-audit-read/proof/AuditCodeControls.java'
+        systemProperty 'spring.profiles.active', 'functional'
+    }
+}

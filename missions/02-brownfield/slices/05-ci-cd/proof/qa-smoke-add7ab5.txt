@@ -1,0 +1,25 @@
+QA2 candidate add7ab5ca37dcd6f51aef3cd43c85455e1be6d14
+Workdir .worktrees/05-ci-cd
+Command: scripts/smoke.sh --jar build/libs/urlshort.jar 18105 /Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/05-ci-cd/proof/qa-jar-log-add7ab5.jsonl
+Tool exec session 49840; exit 0. Stdout copied from the completed command result:
+
+# environment: URLSHORT_PUBLIC_BASE_URL=https://sho.rt.example URLSHORT_RATELIMIT_CREATEPERMINUTE=10 URLSHORT_RATELIMIT_REDIRECTPERMINUTE=100 URLSHORT_RATELIMIT_TRUSTEDPROXIES=127.0.0.1 SPRING_DATASOURCE_URL=<temp dir>
+# health, liveness and readiness
+# ping: 200 application/json, {status:ok,time}, server-issued X-Request-Id
+# ping wrong method: 405 application/problem+json, still carries X-Request-Id, no trace
+# create: 201 with code and a shortUrl ending in it
+# redirect: 302 to the stored url, not cacheable
+# read: 200, active
+# stats: the click is counted with its referrer reduced to an origin
+# invalid create: 400 problem with errors[], the input not echoed
+# unknown code: 404
+# retire: 204, then the redirect answers 410
+# metrics: request timer, rejection counter, pool gauges
+# prometheus scrape
+# openapi
+SMOKE OK against http://127.0.0.1:18105
+# AC-26: the overrides are in effect
+shortUrl from URLSHORT_PUBLIC_BASE_URL: https://sho.rt.example/f36NlVJb
+database file where SPRING_DATASOURCE_URL points: present
+forwarded client 192.0.2.10 via trusted proxy 127.0.0.1: 10 admitted, then 429 (create budget 10)
+SMOKE JAR OK (build/libs/urlshort.jar on http://127.0.0.1:18105)

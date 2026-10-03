@@ -1,0 +1,19 @@
+// Migration probe for 04-audit-columns (design.md section 3, section 12 rows K1-K5).
+// Run from the repo root, no product, test or build file changes:
+//   scripts/gw --log missions/02-brownfield/slices/04-audit-columns/design-probe/output.txt \
+//       --offline -I missions/02-brownfield/slices/04-audit-columns/design-probe/link-migration-probe.gradle designLinkMigrationProbe
+// Runs the shipped V1 and V2, 02-click-retention's designed V3 and this slice's V4 through Flyway on H2 file
+// databases under build/link-migration-probe/.
+gradle.projectsEvaluated {
+    def project = gradle.rootProject
+    def functional = project.sourceSets.functionalTest
+    project.tasks.register('designLinkMigrationProbe', JavaExec) {
+        dependsOn project.tasks.named('functionalTestClasses')
+        javaLauncher.set(project.javaToolchains.launcherFor {
+            languageVersion = JavaLanguageVersion.of(21)
+        })
+        classpath = functional.runtimeClasspath
+        mainClass = project.file('missions/02-brownfield/slices/04-audit-columns/design-probe/LinkMigrationProbe.java').absolutePath
+        maxHeapSize = '1g'
+    }
+}

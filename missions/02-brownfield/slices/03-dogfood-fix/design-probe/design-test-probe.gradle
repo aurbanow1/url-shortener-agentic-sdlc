@@ -1,0 +1,33 @@
+// JUnit design probe for 03-dogfood-fix (design.md section 12, rows T1-T5): the regression assertions of
+// design.md section 7 in the functional suite's own set-up. Run from the repo root; no product, test or
+// build file changes, classes compiled under build/design-probe/:
+//   scripts/gw --log missions/02-brownfield/slices/03-dogfood-fix/design-probe/test-output.txt \
+//       --offline -I missions/02-brownfield/slices/03-dogfood-fix/design-probe/design-test-probe.gradle designDogfoodTestProbe
+gradle.projectsEvaluated {
+    def project = gradle.rootProject
+    def functional = project.sourceSets.functionalTest
+    def classes = project.layout.buildDirectory.dir('design-probe/03-dogfood-fix')
+    def compile = project.tasks.register('designDogfoodTestProbeClasses', JavaCompile) {
+        dependsOn project.tasks.named('functionalTestClasses')
+        source = project.files('missions/02-brownfield/slices/03-dogfood-fix/design-probe/DogfoodRegressionProbeTest.java')
+        classpath = functional.runtimeClasspath
+        destinationDirectory = classes
+        javaCompiler.set(project.javaToolchains.compilerFor { languageVersion = JavaLanguageVersion.of(21) })
+        options.compilerArgs << '-parameters'
+    }
+    project.tasks.register('designDogfoodTestProbe', Test) {
+        dependsOn compile
+        testClassesDirs = project.files(classes)
+        classpath = project.files(classes) + functional.runtimeClasspath
+        useJUnitPlatform()
+        javaLauncher.set(project.javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) })
+        systemProperty 'spring.profiles.active', 'functional'
+        ignoreFailures = true
+        outputs.upToDateWhen { false }
+        testLogging {
+            events 'passed', 'failed'
+            exceptionFormat 'full'
+            showStandardStreams = true
+        }
+    }
+}

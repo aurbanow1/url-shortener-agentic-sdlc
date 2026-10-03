@@ -1,0 +1,36 @@
+2026-10-03T11:57:44.791-07:00  INFO 15638 --- [urlshort] [main] dev.urlshort.UrlshortApplication         : Starting UrlshortApplication v0.1.0 using Java 21.0.10 with PID 15638 (/Users/andrzej/Documents/projekty/test/openrig/url-shortener/build/libs/urlshort.jar started by andrzej in /Users/andrzej/Documents/projekty/test/openrig/url-shortener)
+2026-10-03T11:57:44.797-07:00  INFO 15638 --- [urlshort] [main] dev.urlshort.UrlshortApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-10-03T11:57:45.478-07:00  INFO 15638 --- [urlshort] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2026-10-03T11:57:45.501-07:00  INFO 15638 --- [urlshort] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 1 JDBC repository interface.
+2026-10-03T11:57:45.869-07:00  INFO 15638 --- [urlshort] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 18096 (http)
+2026-10-03T11:57:45.879-07:00  INFO 15638 --- [urlshort] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-03T11:57:45.880-07:00  INFO 15638 --- [urlshort] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.25]
+2026-10-03T11:57:45.897-07:00  INFO 15638 --- [urlshort] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1051 ms
+2026-10-03T11:57:46.181-07:00  INFO 15638 --- [urlshort] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-03T11:57:46.263-07:00  INFO 15638 --- [urlshort] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:review04 user=SA
+2026-10-03T11:57:46.265-07:00  INFO 15638 --- [urlshort] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-03T11:57:46.271-07:00  INFO 15638 --- [urlshort] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:review04 (H2 2.4)
+2026-10-03T11:57:46.295-07:00  WARN 15638 --- [urlshort] [main] o.f.c.internal.database.base.Database    : Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026-10-03T11:57:46.308-07:00  INFO 15638 --- [urlshort] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+2026-10-03T11:57:46.310-07:00  INFO 15638 --- [urlshort] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.007s)
+2026-10-03T11:57:46.312-07:00  INFO 15638 --- [urlshort] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+2026-10-03T11:57:46.330-07:00  INFO 15638 --- [urlshort] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": << Empty Schema >>
+2026-10-03T11:57:46.333-07:00  INFO 15638 --- [urlshort] [main] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1 - create link and audit log"
+2026-10-03T11:57:46.344-07:00  INFO 15638 --- [urlshort] [main] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "2 - create click"
+2026-10-03T11:57:46.351-07:00  INFO 15638 --- [urlshort] [main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "PUBLIC", now at version v2 (execution time 00:00.009s)
+2026-10-03T11:57:46.839-07:00  INFO 15638 --- [urlshort] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoints beneath base path '/actuator'
+2026-10-03T11:57:46.879-07:00  INFO 15638 --- [urlshort] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-03T11:57:46.879-07:00  INFO 15638 --- [urlshort] [main] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-03T11:57:46.880-07:00  INFO 15638 --- [urlshort] [main] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-10-03T11:57:46.880-07:00  INFO 15638 --- [urlshort] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 18096 (http) with context path '/'
+2026-10-03T11:57:46.885-07:00  INFO 15638 --- [urlshort] [main] dev.urlshort.UrlshortApplication         : Started UrlshortApplication in 2.394 seconds (process running for 2.68)
+2026-10-03T11:57:46.925-07:00  WARN 15638 --- [urlshort] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-03T11:57:46.926-07:00  WARN 15638 --- [urlshort] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-03T11:57:55.611-07:00  INFO 15638 --- [urlshort] [http-nio-127.0.0.1-18096-exec-1] dev.urlshort.web.RequestIdFilter         : request completed
+2026-10-03T11:57:55.752-07:00  INFO 15638 --- [urlshort] [http-nio-127.0.0.1-18096-exec-2] dev.urlshort.web.RequestIdFilter         : request completed
+2026-10-03T11:58:18.778-07:00  INFO 15638 --- [urlshort] [http-nio-127.0.0.1-18096-exec-4] dev.urlshort.web.RequestIdFilter         : request completed
+2026-10-03T11:58:18.842-07:00  INFO 15638 --- [urlshort] [http-nio-127.0.0.1-18096-exec-6] dev.urlshort.web.RequestIdFilter         : request completed
+2026-10-03T11:59:13.393-07:00  INFO 15638 --- [urlshort] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-10-03T11:59:13.400-07:00  INFO 15638 --- [urlshort] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-10-03T11:59:13.405-07:00  INFO 15638 --- [urlshort] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-10-03T11:59:13.408-07:00  INFO 15638 --- [urlshort] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

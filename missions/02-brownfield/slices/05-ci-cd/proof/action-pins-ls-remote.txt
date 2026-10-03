@@ -1,0 +1,28 @@
+05-ci-cd AC-9 — action pins re-captured by the builder (dev2-agent, networked Claude seat), 2026-10-03T19:34Z
+
+$ git ls-remote --tags https://github.com/actions/checkout | grep -E "refs/tags/v7\.0\.1(\^\{\})?$"
+3d3c42e5aac5ba805825da76410c181273ba90b1	refs/tags/v7.0.1
+
+$ git ls-remote --tags https://github.com/actions/setup-java | grep -E "refs/tags/v6\.0\.1(\^\{\})?$"
+de7274f081f381c8f8158605e0321c36c376e2e6	refs/tags/v6.0.1
+
+$ git ls-remote --tags https://github.com/gradle/actions | grep -E "refs/tags/v6\.4\.0(\^\{\})?$"
+b9bee63ef481cc545e4517ec730544a4d8b1dfa0	refs/tags/v6.4.0
+3f5f9adaf7d9fecd50b5935e54106014257a94e6	refs/tags/v6.4.0^{}
+
+$ git ls-remote --tags https://github.com/actions/upload-artifact | grep -E "refs/tags/v7\.0\.1(\^\{\})?$"
+043fb46d1a93c77aae656e7c1c64a875d1fc6a0a	refs/tags/v7.0.1
+
+$ grep -rn "uses:" .github/workflows
+ci.yml:31:      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+ci.yml:34:      - uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+ci.yml:38:      - uses: gradle/actions/setup-gradle@3f5f9adaf7d9fecd50b5935e54106014257a94e6 # v6.4.0
+ci.yml:45:        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+cd.yml:29:      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+cd.yml:32:      - uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+cd.yml:36:      - uses: gradle/actions/setup-gradle@3f5f9adaf7d9fecd50b5935e54106014257a94e6 # v6.4.0
+cd.yml:42:      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+cd.yml:58:        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+
+Result: every uses: names the commit its tag resolves to today; gradle/actions v6.4.0 is annotated, so
+the pinned commit is its peeled ^{} line. No tag has moved since the design's capture (design.md §1).

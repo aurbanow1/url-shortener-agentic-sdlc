@@ -1,0 +1,31 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :jar UP-TO-DATE
+> Task :compileFunctionalTestJava
+> Task :processFunctionalTestResources UP-TO-DATE
+> Task :functionalTestClasses
+
+> Task :functionalTest
+
+AuditForwardedHeadersJourneyTest > aTomcatRemoteIpSettingClosesTheEndpoint(String) > [1] setting = "server.tomcat.remoteip.remote-ip-header=x-forwarded-for" FAILED
+    org.opentest4j.AssertionFailedError at AuditForwardedHeadersJourneyTest.java:94
+
+AuditForwardedHeadersJourneyTest > aTomcatRemoteIpSettingClosesTheEndpoint(String) > [2] setting = "server.tomcat.remoteip.protocol-header=x-forwarded-proto" FAILED
+    org.opentest4j.AssertionFailedError at AuditForwardedHeadersJourneyTest.java:94
+
+6 tests completed, 2 failed
+
+> Task :functionalTest FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':functionalTest'.
+> There were failing tests. See the report at: file:///Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-audit-read/build/reports/tests/functionalTest/index.html
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 10s
+6 actionable tasks: 2 executed, 4 up-to-date

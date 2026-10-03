@@ -1,4 +1,4 @@
-# urlshort-factory — Codex command rules for the QA and review seats.
+# urlshort-factory — Codex command rules for the QA, review and release seats.
 # Project layer (<repo>/.codex/rules). Allows the build/inspection families
 # the seats need without approval prompts; forbids publishing and history
 # rewrites. The OpenRig launch keeps the workspace-write sandbox; these rules
@@ -28,3 +28,17 @@ prefix_rule(pattern=["scripts/smoke.sh"], decision="allow")
 prefix_rule(pattern=["tools/evidence-export.sh"], decision="allow")
 prefix_rule(pattern=["tee"], decision="allow")
 prefix_rule(pattern=["scripts/http"], decision="allow")
+# Release seat (D17): builds, inspection and the evidence/metrics tools. docker run and
+# docker compose up stay on approval so the operator can check every published port is
+# loopback-only (release.md section 3); compose.yaml itself publishes 127.0.0.1:8080.
+prefix_rule(pattern=["docker", "build"], decision="allow")
+prefix_rule(pattern=["docker", "compose", "build"], decision="allow")
+prefix_rule(pattern=["docker", "compose", "ps"], decision="allow")
+prefix_rule(pattern=["docker", "compose", "logs"], decision="allow")
+prefix_rule(pattern=["docker", "compose", "down"], decision="allow")
+prefix_rule(pattern=["docker", "images"], decision="allow")
+prefix_rule(pattern=["docker", "ps"], decision="allow")
+prefix_rule(pattern=["docker", "inspect"], decision="allow")
+prefix_rule(pattern=["node", "tools/dep-advisories.mjs"], decision="allow")
+prefix_rule(pattern=["node", "tools/sdlc-metrics.mjs"], decision="allow")
+prefix_rule(pattern=["node", "tools/evidence-index.mjs"], decision="allow")

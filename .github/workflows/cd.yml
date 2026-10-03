@@ -1,0 +1,64 @@
+# The artefact that would ship, built from the exact commit: the jar is proven to answer the
+# public journey on loopback, and the image is built. Nothing is pushed, published or deployed
+# (D14, D2; docs/guidance/ci-cd.md §2).
+name: cd
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    # Named explicitly so that GitHub runs `bash --noprofile --norc -eo pipefail`: the smoke step's
+    # `tee` must not hide the smoke's exit code.
+    shell: bash
+
+jobs:
+  package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@3f5f9adaf7d9fecd50b5935e54106014257a94e6 # v6.4.0
+        with:
+          # The MIT-licensed cache. The default provider is proprietary and only a preview for
+          # private repositories.
+          cache-provider: basic
+      - run: ./gradlew bootJar --no-daemon
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: urlshort-jar
+          path: build/libs/urlshort.jar
+          if-no-files-found: error
+          retention-days: 30
+      # The shipped --jar mode starts the jar with --server.address=127.0.0.1 on a throwaway
+      # database, runs the installed smoke, checks the environment overrides and stops the jar
+      # with SIGTERM, requiring a graceful shutdown (scripts/smoke.sh, jar_mode).
+      - name: Smoke the jar on 127.0.0.1
+        env:
+          URLSHORT_JAVA_HOME: ${{ env.JAVA_HOME }}
+        run: |
+          mkdir -p build/smoke
+          scripts/smoke.sh --jar build/libs/urlshort.jar 18091 build/smoke/jar.log 2>&1 | tee build/smoke/smoke.log
+      - if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: smoke-logs
+          path: build/smoke/
+          retention-days: 30
+      # Built on the runner and discarded: no login, no tag for a registry, no push.
+      - run: docker build --tag urlshort:cd .

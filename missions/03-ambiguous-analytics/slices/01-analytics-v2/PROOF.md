@@ -21,3 +21,55 @@ Dropped via `rig proof add … --evidences … --media …` (one drop per verdic
 ## Residue / caveats (if any)
 
 <documented residue: what's not covered + where it's tracked>
+
+## Builder (dev2-agent@urlshort-factory)
+
+**Status: built on the stacked base, not yet the candidate.** Design §13 steps 2–5 are on
+`slice/01-analytics-v2` at `12fe427`. The branch was rebased onto `slice/02-click-retention` at
+`056c8db` (the lead's plan-lock note), and I built on top of it. Still to do, in this order:
+1. `02-click-retention` merges to `main`, after `01-audit-read` and `03-dogfood-fix` have merged.
+2. `git rebase --onto main 056c8db` (or the click-retention merge commit, once it is there).
+3. Regenerate `docs/api/openapi.json` last (step 6).
+4. Run `scripts/gw check` and hand off that SHA.
+
+Commits (red first, then green):
+
+| Commit | What | Red observed |
+|---|---|---|
+| `0294f8b` test | the journeys and unit cases of design §7, and the two AC-14 shape updates (`StatsJourneyTest.AC09`, `ClickRecordingJourneyTest.AC17`) | red against signature-only stubs (not committed: a four-field `DayClicks` filled with zeros, `ClickStore.stats` without the day branch, a `MeterRegistry` constructor that registered nothing, `CLIENT_ATTRIBUTE` declared but never set). 9 of 53 unit and 11 of 55 functional tests failed on assertions (`uniqueVisitors` 0 where 3 was expected, `Wanted but not invoked: stamp("198.51.100.5")`, no `urlshort.clicks.*` meter) |
+| `3054978` test | AC-8's peer: `203.0.113.87`, not the SPEC's `203.0.113.77` | v1's `ClickRecordingJourneyTest.AC05` sends from `.77` on a September clock in the same shared context. AC-8 sending from it at today's clock first left its rate-limit bucket ahead, and AC05 answered `429`. The SPEC's peer is illustrative, as design §7 already says for AC-3 |
+| `ef2c4e0` feat | `ClickStore.stats` (the `UNION ALL`; `countByDayAndReferrer` removed), the `LinkStats` fold, the `DayClicks` `@Schema`s, the `StatsController` example | green |
+| `e8ee098` feat | `RateLimitFilter` (grant `c78500e`): `public`, `CLIENT_ATTRIBUTE`, set before charging; `ClickRecorder` hashes it, else the peer | green |
+| `39afc9c` test | `ClickMetricsJourneyTest` gains `@AutoConfigureMetrics`. Without it, Boot's test support turns the Prometheus export off, and the scrape answered `404`. `ClickRetentionJourneyTest` (click-retention, the stacked base) has three per-day assertions moved to the v2 shape | these are my test faults, found when the product went green |
+| `12fe427` feat | the two counters in `ClickRecorder`, reason constants, `package-info` (the hash's single use) | green |
+
+**Gate on `12fe427`** (`scripts/gw --offline check --continue` in the worktree): 189 functional and
+unit tests completed. **1 failure, expected:** `OpenApiDocumentTest.NFRM3_committedDocumentEqualsTheLiveOne`,
+because `DayClicks` changed and `docs/api/openapi.json` is regenerated last, after the rebase (design
+§13 step 6). Then `javadoc jacocoAllReport jacocoTestCoverageVerification -x test -x functionalTest
+--rerun-tasks` ran on that run's execution data. Javadoc passed with doclint, including the now-public
+`RateLimitFilter`. Merged coverage is lines 515/515 and branches 174/174 (100 %).
+
+**Deviations from the design, all test-side:**
+- AC-3 uses peer `203.0.113.31` and AC-8 uses `203.0.113.87` (dedicated peers, as above).
+- AC-9 and AC-12 sit in `TrustedProxyClickJourneyTest`, because AC-9's input includes AC-7's
+  proxied clients, and those need the trusted-proxy context.
+- AC-13's per-day schema check is a new test in `StatsV2JourneyTest`, so the shipped `StatsJourneyTest`
+  document test stays unchanged (AC-14).
+- **Outside the impact analysis's AC-14 list:** the three `ClickRetentionJourneyTest` assertions. That
+  test did not exist when the analysis was written; it is `02-click-retention`'s, on the stacked base.
+
+**Not yet done:** the by-effect captures (the three-peer statistics and the Prometheus excerpt).
+These run on the final rebased candidate, as do the coverage reports in
+`docs/qa/coverage/01-analytics-v2/`.
+
+## Self-check (interim)
+
+- Diff re-read against design §1. `recorded` increments right after `insert` returns, before
+  `compareAndSet` (unit: a write that returns after the claim is counted). All five `lost` counters
+  are registered at construction (unit: present at zero, one tag each). The fold has no fallback for
+  a missing day row. `countByDayAndReferrer` is deleted. `client_hash` appears only in the `COUNT(DISTINCT …)`.
+- Grant conditions: in `RateLimitFilter`, only the class modifier, the constant, the attribute line
+  and the Javadoc changed. `clientOf` and the constructor are still package-private. Every existing
+  `RateLimitFilterTest` case is unchanged, with one case added. No other `web/` file is touched.
+- No migration, no `application.properties`, no README.

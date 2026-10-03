@@ -7,8 +7,8 @@ description: >-
   holds the ship decision at the human gate. Publishes nothing.
 
 defaults:
-  runtime: claude-code
-  model: claude-opus-5-5
+  runtime: codex
+  model: gpt-6.1-sol
 
 imports:
   - ref: local:../shared

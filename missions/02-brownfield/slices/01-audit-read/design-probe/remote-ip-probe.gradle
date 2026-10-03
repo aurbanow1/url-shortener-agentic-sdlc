@@ -1,0 +1,17 @@
+// Probe for the 01-audit-read code-review finding on server.tomcat.remoteip.* (RemoteIpProbe.java).
+// Run from the repo root, no product, test or build file changes:
+//   scripts/gw --log missions/02-brownfield/slices/01-audit-read/design-probe/remote-ip-output.txt \
+//       --offline -q -I missions/02-brownfield/slices/01-audit-read/design-probe/remote-ip-probe.gradle designRemoteIpProbe
+gradle.projectsEvaluated {
+    def project = gradle.rootProject
+    def functional = project.sourceSets.functionalTest
+    project.tasks.register('designRemoteIpProbe', JavaExec) {
+        dependsOn project.tasks.named('functionalTestClasses')
+        javaLauncher.set(project.javaToolchains.launcherFor {
+            languageVersion = JavaLanguageVersion.of(21)
+        })
+        classpath = functional.runtimeClasspath
+        mainClass = project.file('missions/02-brownfield/slices/01-audit-read/design-probe/RemoteIpProbe.java').absolutePath
+        systemProperty 'spring.profiles.active', 'functional'
+    }
+}

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClickStore.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">urlshort</a> &gt; <a href="index.source.html" class="el_package">dev.urlshort.click</a> &gt; <span class="el_source">ClickStore.java</span></div><h1>ClickStore.java</h1><pre class="source lang-java linenums">package dev.urlshort.click;
+
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.util.List;
+import java.util.Optional;
+
+import org.jspecify.annotations.Nullable;
+import org.springframework.jdbc.core.simple.JdbcClient;
+import org.springframework.stereotype.Component;
+
+/**
+ * The {@code click} table (ADR-0013): one insert per recorded click, and the one grouped read the
+ * statistics are folded from. Reads {@code link} only to turn a code into its id.
+ */
+@Component
+class ClickStore {
+
+	private final JdbcClient jdbc;
+
+<span class="fc" id="L21">	ClickStore(JdbcClient jdbc) {</span>
+<span class="fc" id="L22">		this.jdbc = jdbc;</span>
+<span class="fc" id="L23">	}</span>
+
+	void insert(Click click) {
+<span class="nc" id="L26">		jdbc.sql(&quot;INSERT INTO click (link_id, clicked_at, clicked_on, referrer, user_agent_class, client_hash)&quot;</span>
+				+ &quot; VALUES (:linkId, :clickedAt, :clickedOn, :referrer, :userAgentClass, :clientHash)&quot;)
+<span class="nc" id="L28">				.param(&quot;linkId&quot;, click.linkId())</span>
+<span class="nc" id="L29">				.param(&quot;clickedAt&quot;, click.clickedAt().atOffset(ZoneOffset.UTC))</span>
+<span class="nc" id="L30">				.param(&quot;clickedOn&quot;, click.clickedOn())</span>
+<span class="nc" id="L31">				.param(&quot;referrer&quot;, click.referrer())</span>
+<span class="nc" id="L32">				.param(&quot;userAgentClass&quot;, click.userAgentClass())</span>
+<span class="nc" id="L33">				.param(&quot;clientHash&quot;, click.clientHash())</span>
+<span class="nc" id="L34">				.update();</span>
+<span class="nc" id="L35">	}</span>
+
+	/** The link's id by its code, read only to find its clicks; empty when no link has the code. */
+	Optional&lt;Long&gt; findLinkId(String code) {
+<span class="nc" id="L39">		return jdbc.sql(&quot;SELECT id FROM link WHERE code = :code&quot;).param(&quot;code&quot;, code).query(Long.class).optional();</span>
+	}
+
+	/** The link's clicks counted per (UTC day, referrer origin) in one statement (ADR-0013). */
+	List&lt;DayReferrerCount&gt; countByDayAndReferrer(long linkId) {
+<span class="nc" id="L44">		return jdbc.sql(&quot;SELECT clicked_on, referrer, COUNT(*) AS clicks FROM click WHERE link_id = :linkId&quot;</span>
+				+ &quot; GROUP BY clicked_on, referrer&quot;)
+<span class="nc" id="L46">				.param(&quot;linkId&quot;, linkId)</span>
+<span class="nc" id="L47">				.query((rs, row) -&gt; new DayReferrerCount(rs.getObject(&quot;clicked_on&quot;, LocalDate.class),</span>
+<span class="nc" id="L48">						rs.getString(&quot;referrer&quot;), rs.getLong(&quot;clicks&quot;)))</span>
+<span class="nc" id="L49">				.list();</span>
+	}
+
+	/**
+	 * One group of the statistics query.
+	 *
+	 * @param day the UTC day
+	 * @param referrer the referrer origin, or {@code null} for clicks without one
+	 * @param clicks the clicks in the group
+	 */
+<span class="fc" id="L59">	record DayReferrerCount(LocalDate day, @Nullable String referrer, long clicks) {</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

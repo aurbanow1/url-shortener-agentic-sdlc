@@ -1,0 +1,11 @@
+id: release
+label: Release
+summary: Release & Reliability Agent on Codex (GPT-6.1-Sol, xhigh) since D17; prepares each mission's release package and stops at the human's ship sign-off.
+members:
+  - id: agent
+    label: Release & Reliability Agent
+    agent_ref: "local:agents/release-agent"
+    runtime: codex
+    profile: default
+    cwd: "/Users/andrzej/Documents/projekty/test/openrig/url-shortener"  # absolute: rig expand resolves a relative cwd against --rig-root, not the repo
+edges: []

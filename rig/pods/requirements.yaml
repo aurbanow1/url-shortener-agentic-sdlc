@@ -1,0 +1,11 @@
+id: requirements
+label: Requirements
+summary: Requirements Agent on Codex (GPT-6-Astra, xhigh) since D17; writes each slice's SPEC.md.
+members:
+  - id: agent
+    label: Requirements Agent
+    agent_ref: "local:agents/requirements-agent"
+    runtime: codex
+    profile: default
+    cwd: "/Users/andrzej/Documents/projekty/test/openrig/url-shortener"  # absolute: rig expand resolves a relative cwd against --rig-root, not the repo
+edges: []

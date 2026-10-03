@@ -1,0 +1,1563 @@
+[
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.UrlshortApplicationTests",
+    "method": "contextLoads",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/UrlshortApplicationTests.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.UrlshortApplicationTests",
+    "method": "mainBootsWithoutAWebServer",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/UrlshortApplicationTests.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.audit.AuditControllerTest",
+    "method": "loopbackPeersAreAdmitted",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.audit.AuditControllerTest",
+    "method": "otherPeersAreRefused",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.audit.AuditControllerTest",
+    "method": "aMissingPeerIsRefused",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.audit.AuditControllerTest",
+    "method": "aForwardingHeaderRefusesEvenFromLoopback",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.audit.AuditControllerTest",
+    "method": "theShippedStrategyAdmitsALoopbackRequest",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.audit.AuditControllerTest",
+    "method": "anyOtherStrategyClosesTheEndpoint",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.audit.AuditControllerTest",
+    "method": "anUnsetStrategyClosesTheEndpoint",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.audit.AuditControllerTest",
+    "method": "limitDefaultsTo50AndAcceptsItsBounds",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.audit.AuditControllerTest",
+    "method": "limitOutsideItsRangeIsARangeProblem",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.audit.AuditControllerTest",
+    "method": "aLimitThatIsNotAWholeNumberIsAFormatProblem",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.audit.AuditControllerTest",
+    "method": "aCursorIsTheBase64urlOfAPositiveId",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.audit.AuditControllerTest",
+    "method": "aMalformedCursorIsAFormatProblem",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditControllerTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.audit.AuditLogTest",
+    "method": "theWriterOffersOnlyAppendAndItsOnlyStatementIsAnInsert",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditLogTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.audit.AuditLogTest",
+    "method": "appendWritesOneRowWithServerOwnedValues",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/audit/AuditLogTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aHeadRequestIsNotAClick",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/ClickRecorderTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aRedirectIsStoredAsItsReducedFactsOnly",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/ClickRecorderTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aFailedWriteIsOneWarnWithTheRequestIdAndNoClickValue",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/ClickRecorderTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aClickThatCannotBeQueuedIsOneWarnAndTheRedirectGoesOn",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/ClickRecorderTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aClickThatCannotBeReducedIsOneWarn",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/ClickRecorderTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aFastStoreIsDrainedOnCloseAndNothingIsReported",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/ClickRecorderTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aStuckWriteIsBoundedAndEveryUnwrittenClickIsReportedOnceBeforeCloseReturns",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/ClickRecorderTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aClaimedClickIsNeverWrittenWhenTheWriterReachesItLater",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/ClickRecorderTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aWriteThatFailsAfterShutdownClaimedItIsNotReportedAgain",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/ClickRecorderTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aWriteThatCompletesAfterShutdownClaimedItIsNotReportedAgain",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/ClickRecorderTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.ClickSchemaTest",
+    "method": "theClickConstraintsStillWorkAfterTheDdlConnectionIsRetired",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/ClickSchemaTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.ClickTest",
+    "method": "theReferrerIsReducedToItsOrigin",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/ClickTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.ClickTest",
+    "method": "aReferrerThatIsNotAnHttpOriginIsNone",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/ClickTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.ClickTest",
+    "method": "theReferrerLengthCapIs2048",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/ClickTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.ClickTest",
+    "method": "theUserAgentIsReducedToAClass",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/ClickTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.ClickTest",
+    "method": "anAbsentOrEmptyUserAgentIsUnknown",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/ClickTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.ClickTest",
+    "method": "rule2_aClickHoldsOnlyTheReducedFacts",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/ClickTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.DailySaltTest",
+    "method": "sameAddressAndDayHashEquallyAndTheStampCarriesTheClocksInstant",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/DailySaltTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.DailySaltTest",
+    "method": "anotherAddressOrAnotherDayHashesDifferently",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/DailySaltTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.DailySaltTest",
+    "method": "theHashIsNeverTheUnsaltedDigest",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/DailySaltTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.DailySaltTest",
+    "method": "aSelectionMadeBeforeMidnightKeepsItsDayAndNeverReplacesTheNextDaysSalt",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/DailySaltTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.DailySaltTest",
+    "method": "aStaleExpiryIsANoOpAndTheCurrentDaysExpiryDropsTheSalt",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/DailySaltTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.DailySaltTest",
+    "method": "closeDropsTheSalt",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/DailySaltTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.DailySaltTest",
+    "method": "aSaltIsDroppedAtTheEndOfItsDayWithoutAnyFurtherClick",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/DailySaltTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.LinkStatsTest",
+    "method": "noRowsIsZeroAndTwoEmptyLists",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/LinkStatsTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.LinkStatsTest",
+    "method": "daysAreSummedAscendingAndClicksWithoutAReferrerCountOnlyInTheTotals",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/LinkStatsTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.click.LinkStatsTest",
+    "method": "referrersAreRankedByClicksThenByCodePointAndCappedAtTen",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/click/LinkStatsTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.link.LinkServiceTest",
+    "method": "createWithoutAKeyInsertsAndAuditsTheNewLink",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/link/LinkServiceTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.link.LinkServiceTest",
+    "method": "createWithAnUnboundKeyBindsIt",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/link/LinkServiceTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.link.LinkServiceTest",
+    "method": "replayWithinTheWindowReturnsTheBoundLinkAndWritesNothing",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/link/LinkServiceTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.link.LinkServiceTest",
+    "method": "mismatchWithinTheWindowIs422AndKeepsTheBinding",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/link/LinkServiceTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.link.LinkServiceTest",
+    "method": "anExpiredKeyIsReleasedAndBindsANewLink",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/link/LinkServiceTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.link.LinkServiceTest",
+    "method": "readOfAnUnknownCodeIs404",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/link/LinkServiceTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.link.LinkServiceTest",
+    "method": "resolveSendsVisitorsToActiveLinksOnly",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/link/LinkServiceTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.link.LinkServiceTest",
+    "method": "retireUpdatesConditionallyAndAuditsBeforeAndAfter",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/link/LinkServiceTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.link.LinkServiceTest",
+    "method": "retireThatChangesNoRowIs410AndWritesNoAuditRow",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/link/LinkServiceTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.link.LinkTest",
+    "method": "stateIsActiveUntilRetiredAtIsSet",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/link/LinkTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.link.LinkValidationTest",
+    "method": "eachRejectedUrlFailsExactlyItsRule",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/link/LinkValidationTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.link.LinkValidationTest",
+    "method": "validUrlsPass",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/link/LinkValidationTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.link.LinkValidationTest",
+    "method": "exactly2048CharactersIsAccepted",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/link/LinkValidationTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.link.LinkValidationTest",
+    "method": "malformedKeysFailFormat",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/link/LinkValidationTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.link.LinkValidationTest",
+    "method": "keysLongerThan255FailFormat",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/link/LinkValidationTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.link.LinkValidationTest",
+    "method": "absentOrVisibleAsciiKeysPass",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/link/LinkValidationTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.link.ShortCodesTest",
+    "method": "codesAreEightCharactersFromTheAlphanumericAlphabet",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/link/ShortCodesTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.link.ShortCodesTest",
+    "method": "aDrawThatSpellsAReservedSegmentIsDrawnAgain",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/link/ShortCodesTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.ping.PingControllerTest",
+    "method": "answersOkWithTheCurrentUtcInstant",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/ping/PingControllerTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "unwrapsABodyLimitErrorRaisedInsideTheJsonReaderTo413",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "unreadableBodyWithoutALimitErrorStays400WithoutTheFrameworkDetail",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "frameworkDetailThatEchoesClientInputIsCleared",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "domainProblemKeepsItsErrorsAndGetsTheRequestIdAsInstance",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "unhandledExceptionIsABare500AndOneMessageFreeEvent",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "errorOriginIsNoneWhenNoFrameIsOurs",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "aNonProblemBodyPassesThroughUntouched",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.ProblemsTest",
+    "method": "validationIs400WithExactlyOneFieldError",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/ProblemsTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.ProblemsTest",
+    "method": "notFoundAndGoneAreBareProblems",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/ProblemsTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.ProblemsTest",
+    "method": "idempotencyMismatchIs422NamingTheHeaderAndRule",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/ProblemsTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "rule1_limitedRequestsAreChargedToTheirBudget",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RateLimitFilterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "rule1_operatorSurfacesAreNeitherChargedNorLimited",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RateLimitFilterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "rule5_theClientIsThePeerOrTheRightMostUntrustedForwardedHop",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RateLimitFilterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "rule5_anAbsentOrEmptyHeaderFromATrustedProxyChargesTheProxy",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RateLimitFilterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "theFilterReadsOnlyXForwardedForAndOnlyFromATrustedPeer",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RateLimitFilterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "anEmptyBucketIsA429ProblemWithRetryAfterAndNoChain",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RateLimitFilterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "eachRejectionIsCountedOnceUnderItsBudgetOnly",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RateLimitFilterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RateLimiterTest",
+    "method": "AC03a_anExactlyEmptyBucketRefillsOneTokenAfterExactlyOneSecond",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RateLimiterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RateLimiterTest",
+    "method": "AC03b_retryAfterIsRoundedUpAndHonoured",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RateLimiterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RateLimiterTest",
+    "method": "AC04_aQuietMinuteRefillsTheWholeBucket",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RateLimiterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RateLimiterTest",
+    "method": "refusalsTakeNothing",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RateLimiterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RateLimiterTest",
+    "method": "budgetsAndClientsAreIndependent",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RateLimiterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RateLimiterTest",
+    "method": "retryAfterIsTheWaitForOneTokenInWholeSeconds",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RateLimiterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RateLimiterTest",
+    "method": "aRequestOvertakenByNewerOnesDecidesOnTheTimeItReachesTheBucket",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RateLimiterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RateLimiterTest",
+    "method": "afterABackwardClockStepTheBucketRefillsFromItsStoredTat",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RateLimiterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RateLimiterTest",
+    "method": "fullBucketsAreReleasedByTheNextRequestButNotWhileIdle",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RateLimiterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RateLimiterTest",
+    "method": "aBucketThatIsNotYetFullSurvivesTheRelease",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RateLimiterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RateLimiterTest",
+    "method": "theReleaseRunsAtMostOncePerSecond",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RateLimiterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RateLimiterTest",
+    "method": "theReleaseResumesAfterABackwardClockStep",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RateLimiterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RequestBodyLimitFilterTest",
+    "method": "aBodyOfExactlyTheLimitIsReadInFull",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RequestBodyLimitFilterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RequestBodyLimitFilterTest",
+    "method": "theFirstByteOverTheLimitIs413OnTheBulkReadPath",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RequestBodyLimitFilterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RequestBodyLimitFilterTest",
+    "method": "singleByteReadsCountTooAndEndOfStreamIsPassedThrough",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RequestBodyLimitFilterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RequestBodyLimitFilterTest",
+    "method": "theWrappedStreamIsCreatedOnceSoTheCountCannotBeReset",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RequestBodyLimitFilterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RequestBodyLimitFilterTest",
+    "method": "servletStreamStateAndListenerDelegateToTheContainerStream",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RequestBodyLimitFilterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RequestIdFilterTest",
+    "method": "issuesOneIdOnHeaderAndMdcBeforeTheChainRunsAndClearsMdcAfter",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RequestIdFilterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RequestIdFilterTest",
+    "method": "ignoresInboundRequestIdAndIssuesADifferentIdPerRequest",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RequestIdFilterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RequestIdFilterTest",
+    "method": "writesOneRequestCompletedEventWithTheStatusAndTheIdButNotTheMethod",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RequestIdFilterTest.java"
+  },
+  {
+    "suite": "unit",
+    "cls": "dev.urlshort.web.RequestIdFilterTest",
+    "method": "clearsMdcWhenTheChainThrows",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/test/java/dev/urlshort/web/RequestIdFilterTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.HealthJourneyTest",
+    "method": "healthEndpointReportsUp",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/HealthJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditAccessSettingsJourneyTest",
+    "method": "AC13_AC14_noSettingOpensTheEndpointBeyondLoopback",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditAccessSettingsJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditAccessSettingsJourneyTest",
+    "method": "aPlainLoopbackReadStillWorksUnderTheseSettings",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditAccessSettingsJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditForwardedHeadersJourneyTest",
+    "method": "theShippedFilePinsTheForwardedHeaderStrategyOff",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditForwardedHeadersJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditForwardedHeadersJourneyTest",
+    "method": "onADetectedCloudPlatformThePinKeepsAForgedLoopbackHeaderOut",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditForwardedHeadersJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditForwardedHeadersJourneyTest",
+    "method": "anOverrideOfThePinClosesTheEndpoint",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditForwardedHeadersJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditJourneyTest",
+    "method": "AC22_createWritesExactlyOneAuditRow",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditJourneyTest",
+    "method": "AC23_retireWritesExactlyOneAuditRow",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditJourneyTest",
+    "method": "AC24_aFailedAuditWriteRollsTheRetireBackAndFailsClosed",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditJourneyTest",
+    "method": "AC25_auditRowsAreAppendOnlyUnderEveryOperation",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditReadFailureJourneyTest",
+    "method": "AC21_aFailedReadIsA500ProblemNeverAnEmptyOrPartialPage",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditReadFailureJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC01_anEmptyTrailIsAnEmptyPage",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC02_aCreateRowIsReadableAsWritten",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC03_aRetireRowCarriesBeforeAndAfter",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC04_rowsComeNewestFirstInTheOrderTheyWereWritten",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC05_everyFieldMatchesTheStoredRow",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC06_pagesFollowNextToTheEnd",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC07_theDefaultAndMaximumPageSizes",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC08_pagingIsStableWhileRowsAreWritten",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC09_invalidPagingParametersAreRefusedNamingTheField",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC10_readingChangesNothing",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC11_aNonLoopbackClientIsRefused",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC12_everyLoopbackAddressIsAdmitted",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC13_forwardingHeadersNeverGrantAccess",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "theGuardAndTheValidationComeBeforeContentNegotiation",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC15_requestCorrelationOnTheNewPaths",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC16_auditContentAndClientValuesStayOutOfTheLogs",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC19_theLiveApiDocumentDescribesTheAuditRead",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC20_aTraversalAcrossAnInFlightWriteNeitherRepeatsNorSkipsCommittedRows",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.audit.AuditUpgradeJourneyTest",
+    "method": "AC18_anExistingDatabaseUpgradesInPlaceAndKeepsItsLinksAndRows",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/audit/AuditUpgradeJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC01_aRedirectRecordsExactlyOneClickWithItsTime",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC02_onlyARedirectIsAClick",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC03_theReferrerIsStoredAsItsOriginOnly",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC04_theUserAgentIsStoredAsAClassOnly",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC05_theClientAddressIsStoredOnlyAsASaltedHashThatRotatesEveryUtcDay",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC06_forwardingHeadersDoNotChangeTheRecordedClient",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC17_theStatisticsExposeAggregatesOnly",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC18_noClickDataReachesTheLogs",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "method": "AC14_aSlowClickStoreDoesNotSlowTheRedirect",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "method": "AC15_AC19_aFailingClickStoreDoesNotFailTheRedirectAndTheLossIsOneCorrelatedWarn",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "method": "AC16_concurrentRedirectsLoseNoClicksAndTheRequestIsNeverReadAfterItsResponse",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "method": "AC18_AC19_onTomcatClickDataStaysOutOfTheLogsAndEveryEventIsCorrelated",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "method": "AC22_headOnTheStatisticsPathHasNoBodyAndRecordsNothing",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.ClickSchemaJourneyTest",
+    "method": "everyUserAgentClassIsRecordedAfterThePoolRetiresItsConnections",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/ClickSchemaJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC07_aLinkWithNoClicksHasEmptyStatistics",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC08_totalClicksCountsEveryRedirect",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC09_clicksPerDayAreGroupedByUtcCalendarDay",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC10_topReferrersAreRankedAndCapped",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC12_aRetiredLinksStatisticsAreStillReadable",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC13_statisticsOfAnUnknownCodeAndWrongMethodsAreProblemDetails",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC19_theStatisticsPathAndASettledRedirectAreCorrelated",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC20_redirectAndAuditBehaviourAreUnchanged",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC21_theLiveApiDocumentDescribesTheStatisticsEndpoint",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC22_headAndOptionsKeepTheFrameworkDefaultsAndRecordNothing",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC17_aReplayReturnsTheFirstLink",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC18_sameKeyWithADifferentUrlIsRefusedAndTheBindingSurvives",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC19_aKeyIsHonouredFor24HoursAndNotLongerAndARejectionDoesNotExtendIt",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC20_aMalformedKeyIsRefused",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC20_aKeyOf255VisibleCharactersIsAccepted",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC21_aRejectedCreateDoesNotConsumeTheKey",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC01_validUrlBecomesAShortLink",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC02_everyCreateWithoutAKeyIsANewLink",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC03_shortUrlUsesTheShippedBaseNeverTheHostHeader",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC04_aUrlOfExactly2048CharactersIsAccepted",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC05_bodyThatIsNotAJsonObjectIsRefused",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC06_nonJsonContentTypeIsRefused",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC07_bodyIsRefusedAtTheSixteenKibLimit",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC16_redirectRouteDoesNotShadowTheExistingSurface",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC08_readingALinkReturnsItsDetails",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC09_aRetiredLinkIsStillReadableWithItsState",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC10_retiringALinkIs204WithAnEmptyBody",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC11_retiringAnAlreadyRetiredLinkIs410AndNotASecondMutation",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC14_unknownCodeIs404OnEveryLinkOperation",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC15_wrongMethodIs405",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.PublicBaseUrlJourneyTest",
+    "method": "AC03_shortUrlUsesTheConfiguredBaseNeverTheHostHeader",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/PublicBaseUrlJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.RedirectJourneyTest",
+    "method": "AC12_visitorIsRedirectedWithANonCacheable302",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/RedirectJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.RedirectJourneyTest",
+    "method": "AC13_aRetiredLinkTellsTheVisitorItIsGone",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/RedirectJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.link.RedirectJourneyTest",
+    "method": "rule7_queryStringOnTheShortLinkIsNotForwarded",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/link/RedirectJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC1_pingAnswersOkAsJson",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC2_timeIsCurrentUtcInstant",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC3_everyResponseCarriesRequestId",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC4_requestIdsAreUniquePerRequest",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC5_wrongMethodIsProblemDetailWithRequestId",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC6_pingIsLoggedAsJsonWithRequestId",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC7_logEventCarriesNoClientAddressOrUserAgent",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC8_clientSuppliedRequestIdIsIgnored",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.ColdStartJourneyTest",
+    "method": "AC26_theFirstRequestOnARealServerLogsOnlyItsOwnCorrelatedEvents",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/ColdStartJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.DatabaseDownJourneyTest",
+    "method": "AC14_AC15_readinessFollowsTheDatabaseAndLivenessDoesNot",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/DatabaseDownJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.HealthMetricsJourneyTest",
+    "method": "AC13_livenessAndReadinessAreUpWithAWorkingDatabase",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/HealthMetricsJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.HealthMetricsJourneyTest",
+    "method": "AC15_healthBodiesDiscloseNothingAboutTheInstallation",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/HealthMetricsJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.HealthMetricsJourneyTest",
+    "method": "AC18_redirectsAreCountedByRouteTemplate",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/HealthMetricsJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.ObservabilityJourneyTest",
+    "method": "AC26_everyResponseCarriesARequestIdAndEveryEventOfTheRequestTheSameId",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/ObservabilityJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.ObservabilityJourneyTest",
+    "method": "AC27_noClientControlledValueReachesTheLogs",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/ObservabilityJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.ObservabilityJourneyTest",
+    "method": "AC27_aDatabaseFailureQuotingTheKeyLogsOnlyClassNames",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/ObservabilityJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.ObservabilityJourneyTest",
+    "method": "rule8_problemBodiesAndLogsNeverEchoASubmittedValue",
+    "annotation": "ParameterizedTest",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/ObservabilityJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.OpenApiDocumentTest",
+    "method": "NFRM3_committedDocumentEqualsTheLiveOne",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.OpenApiDocumentTest",
+    "method": "AC28_liveDocumentDescribesTheSlice",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.OpenApiDocumentTest",
+    "method": "AC20_everyOperationDocumentsTheTooManyRequestsProblem",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.RateLimitDefaultsTest",
+    "method": "theShippedConfigurationCarriesTheDecidedBudgets",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/RateLimitDefaultsTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.RateLimitDefaultsTest",
+    "method": "theSettingsRecordDefaultsToTheSameBudgets",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/RateLimitDefaultsTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC01_theCreateBudgetAdmits60AndRefusesThe61st",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC02_theRedirectBudgetAdmits600AndRefusesThe601st",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC03a_retryAfterIsTruthfulFromAnExactlyEmptyBucket",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC03b_retryAfterIsAnUpperBoundFromAPartlyRefilledBucket",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC04_aFullBudgetReturnsAfterAQuietMinute",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC05_theTwoBudgetsAreIndependent",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC06_clientsAreIndependent",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC07_aForgedForwardedAddressDoesNotChangeTheClient",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC09_everyRequestInABudgetCountsAndTheLimitIsCheckedFirst",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC11_theTooManyRequestsProblemNamesNoClient",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC12_eachRejectionIsLoggedOnceCorrelatedAndWithoutClientValues",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "rule1_percentEncodingDoesNotMoveARequestToTheLargerBudget",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "rule1_operatorSurfacesAreNeverLimited",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "rule1_aDotDotSegmentUnderAnExemptPrefixReachesNoLimitedOperation",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC16_theMetricsSurfaceListsTheFourKindsOfMetric",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC17_everyRejectionIsCountedOnceByBudget",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC19_metricsAreExposedForScrapingWithoutClientOrLinkValues",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "designDR01_anInvalidPathUnderAnExemptPrefixLogsNoSubmittedValueOnTomcat",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC11_onTomcatThe429IsTheSameProblemMediaTypeAsEveryOtherError",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.RateLimitSettingsJourneyTest",
+    "method": "AC10_theBudgetsAreOperatorSettings",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/RateLimitSettingsJourneyTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.ShutdownPhaseDefaultTest",
+    "method": "theShippedGracefulShutdownPhaseIsTenSeconds",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/ShutdownPhaseDefaultTest.java"
+  },
+  {
+    "suite": "functional",
+    "cls": "dev.urlshort.web.TrustedProxyJourneyTest",
+    "method": "AC08_aTrustedProxysForwardedAddressIdentifiesTheClient",
+    "annotation": "Test",
+    "path": ".worktrees/01-audit-read/src/functionalTest/java/dev/urlshort/web/TrustedProxyJourneyTest.java"
+  }
+]

@@ -1,0 +1,34 @@
+/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/03-dogfood-fix/design-probe/DogfoodProbe.java:143: warning: [unchecked] unchecked call to required(List<String>) as a member of the raw type Schema
+						.addProperty("message", new StringSchema()).required(List.of("field", "rule", "message")));
+						                                                    ^
+1 warning
+{"@timestamp":"2026-10-03T19:24:08.845346Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":12330,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T19:24:09.348163Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":12330,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T19:24:09.348949Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":12330,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+D0 shipped ProblemDetail: {"type":"object","properties":{"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"properties":{"type":"object","additionalProperties":{}},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"type":{"type":"string","format":"uri"}}}
+D0 shipped wire 400 application/problem+json members [errors, instance, status, title] errors 1 items [field, message, rule]
+D0 shipped wire 422 application/problem+json members [errors, instance, status, title] errors 1 items [field, message, rule]
+D0 shipped wire 404 application/problem+json members [instance, status, title] no errors
+D0 shipped wire 410 application/problem+json members [instance, status, title] no errors
+D0 shipped wire 429 application/problem+json members [instance, status, title] no errors
+D0 shipped scrape: disk_free_bytes{path="/Users/andrzej/Documents/projekty/test/openrig/url-shortener/."} 3.7416886272E10
+D0 shipped scrape: disk_total_bytes{path="/Users/andrzej/Documents/projekty/test/openrig/url-shortener/."} 4.94384795648E11
+D0 shipped scrape samples with a path label: 2
+D0 shipped /actuator/metrics/disk.free: {"availableTags":[{"tag":"path","values":["/Users/andrzej/Documents/projekty/test/openrig/url-shortener/."]}],"baseUnit":"bytes","description":"Usable space for path","measurements":[{"statistic":"VALUE","value":3.7416886272E10}],"name":"disk.free"}
+{"@timestamp":"2026-10-03T19:24:09.903636Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":12330,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T19:24:09.996645Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":12330,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T19:24:09.996870Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":12330,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+D1 fixed ProblemDetail: {"type":"object","properties":{"detail":{"type":"string"},"errors":{"type":"array","description":"Present on 400 validation and 422 idempotency-mismatch problems only","items":{"$ref":"#/components/schemas/ProblemFieldError"}},"instance":{"type":"string","format":"uri"},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"type":{"type":"string","format":"uri"}}}
+D1 fixed ProblemFieldError: {"type":"object","properties":{"field":{"type":"string"},"message":{"type":"string"},"rule":{"type":"string"}},"required":["field","message","rule"]}
+D1 paths unchanged: true; other schemas unchanged: true; schema names added [ProblemFieldError]
+D2 400 application/problem+json members [errors, instance, status, title] errors 1 items [field, message, rule]; members documented true, items documented true
+D2 422 application/problem+json members [errors, instance, status, title] errors 1 items [field, message, rule]; members documented true, items documented true
+D2 404 application/problem+json members [instance, status, title] no errors; members documented true, items documented true
+D2 410 application/problem+json members [instance, status, title] no errors; members documented true, items documented true
+D2 429 application/problem+json members [instance, status, title] no errors; members documented true, items documented true
+D2 wire unchanged (status, content type, members, error items): true
+D3 fixed scrape: disk_free_bytes 3.74168576E10
+D3 fixed scrape: disk_total_bytes 4.94384795648E11
+D3 fixed scrape samples with a path label: 0
+D3 fixed /actuator/metrics/disk.free: {"availableTags":[],"baseUnit":"bytes","description":"Usable space for path","measurements":[{"statistic":"VALUE","value":3.74168576E10}],"name":"disk.free"}
+PROBE done
