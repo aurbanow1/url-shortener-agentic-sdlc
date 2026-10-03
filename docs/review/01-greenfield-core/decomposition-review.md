@@ -219,3 +219,101 @@ child-workflow execution or implementation acceptance is claimed here.
 - Only `docs/review/` edited. Handoff to mission_plan_lock is a review verdict,
   not human approval: the eight assumed rows, dependency-override placement
   and FR-17 keep/defer decision still belong to the human.
+
+## Scoped re-check a7945e69c6f250870e576e55f0cdbeaab22edb20 — fast plan
+
+2026-10-03. **PASS with one MEDIUM documentation finding (DC-03); no blocking
+findings.** Assigned by ordinary queue item `qitem-20261003053449-031dfc8b`.
+This checks the human's amendment against decomposition guide §9 items 2–7;
+it does not reopen the completed lifecycle step or settled DC-01/DC-02.
+
+### Context and coverage
+
+The human's decision on `qitem-20261003052736-7830d02a` delegates subsequent
+slice plan-locks, moves audit read to mission 02, drops aliases/expiry, and
+ends mission 01 after w2. Its verbatim record and re-approval receipt agree
+with the amendment. Confidence is high in the scope, allocation and graph
+checks; this is not implementation acceptance.
+
+The candidate has 20 changed entries. This assignment covers the 17 planning
+entries below (renames count once). The three files under
+`missions/01-greenfield-core/slices/01-create-redirect/design-probe/`
+(`MechanismProbe.java`, `mechanism-probe.gradle`, `output.txt`) belong to the
+unassigned design step and are explicitly excluded, not approved. Later
+shared-checkout changes were not substituted for the candidate's amendment;
+NOTES was read from the candidate. The requirements baseline is supporting
+context from its preceding amendment, not another change in this commit.
+
+| Changed file | Verdict |
+|---|---|
+| `docs/evidence/01-greenfield-core/compiled-graph.json` | Pass — entire saved export equals fresh compile |
+| `docs/evidence/01-greenfield-core/wave-map.md` | Pass — two waves, ordered 02/03 custody; equals v3 queue body |
+| `missions/01-greenfield-core/NOTES.md` | Pass for amendment — decision, scope move and revision receipt recorded; earlier history is superseded |
+| `missions/01-greenfield-core/PROGRESS.md` | Pass — scope acceptance row explicitly amended |
+| `missions/01-greenfield-core/SPEC.md` | DC-03 — allocations and schedule pass; opening outcome still overpromises |
+| `missions/01-greenfield-core/mission.yaml` | Pass — only 01, 02 and 03 active |
+| `missions/01-greenfield-core/slices/02-analytics/SPEC.md` | Pass — placeholder tier matches manifest |
+| `missions/01-greenfield-core/slices/02-analytics/slice.yaml` | Pass — human delegation, risks and first-holder grant explicit |
+| `missions/01-greenfield-core/slices/03-operate/SPEC.md` | Pass — placeholder tier matches manifest |
+| `missions/01-greenfield-core/slices/03-operate/slice.yaml` | Pass structurally; DC-03 includes stale w3 comment |
+| `missions/01-greenfield-core/slices/04-audit-read/slice.yaml` (deleted) | Pass — removed from mission 01; successor exists |
+| `missions/02-brownfield/SPEC.md` | Pass for move record — revised allocation and future decompose obligation explicit |
+| `missions/02-brownfield/mission.yaml` | Pass — moved scaffold registered |
+| `missions/02-brownfield/slices/01-audit-read/PROGRESS.md` (renamed) | Pass for move record — unchanged empty acceptance scaffold |
+| `missions/02-brownfield/slices/01-audit-read/PROOF.md` (renamed) | Record only — empty template, including old sample dot-id; mission 02 must author its proof, no evidence accepted here |
+| `missions/02-brownfield/slices/01-audit-read/SPEC.md` (renamed) | Pass for move record — new identity, mission and prerequisite framing |
+| `missions/02-brownfield/slices/01-audit-read/slice.yaml` | Pass for move record — brownfield impact analysis required; mission prerequisite replaces sibling edge |
+
+### Checks and evidence
+
+- **§9.2, custody:** 02 owns click/V2 and the bounded redirect hook; 03 owns
+  web/config/container/smoke. `application.properties` is 03-only. OpenAPI
+  transfers from 02 to 03 at 02's merge; 03's candidate must descend from it.
+- **§9.3, schedule:** both w2 slices depend on 01; 02 can merge on its own
+  verdicts, then 03 regenerates, earns its verdicts and merges. Acceptance of
+  both leads to `wave_review`. Removing w3 introduces no cycle. DC-01/DC-02
+  remain fixed.
+- **§9.4, tiers:** both low-tier reasons cite the human decision and retain
+  migration/privacy or proxy/container risks for the lead's plan review.
+  `urlshort-slice-delegated` routes the gate to the orchestrator. Slice 01's
+  human gate and mission human gates remain. The operator's second-judge
+  variant is a launch-time obligation; this review does not claim that an
+  unlaunched 03 instance has selected it.
+- **§9.5, allocation:** 10 primary FRs, 21 primary NFRs plus common M1/M2 =
+  33 in-scope ids, with no missing or duplicate primary owner. Inherited
+  M3/O1/O2 obligations are explicit. FR-17/S6 have mission-02 ownership;
+  FR-11/FR-12/S2 are explicitly dropped in `docs/REQUIREMENTS.md` rows and
+  §4–§5. Mission 02 depends on mission 01; no dangling sibling edge remains.
+- **§9.6, graph:** fresh compile, committed export and live binding share
+  digest `c233d13f29e0aafbd82a13c1c7e24e3d57fe95a8537302e98c61cb1b9e2c6ca2`.
+  Live instance `01M3ZXEXAMS945ZS0QZ26KZK1V`, version 18, binds
+  `1-c233d13f29e0aafb`; reconciliation is current/adopted, changes and unknowns
+  empty. The map equals queue row `qitem-20261003053250-a2190c42`.
+- **§9.7, brief:** the amended tables, exclusions, gate count and status
+  state the human's decision honestly. The unamended opening prose needs the
+  bounded cleanup below; the allocation and routing are unambiguous.
+
+Receipt: `proof/decomposition-fast-plan-a7945e6.json`. These were fresh
+documentary/runtime-binding checks. No product gate was rerun for this
+planning-only assignment, and no claim is made about the unrelated probes.
+
+| Id | Severity | File:line | Evidence | Required change |
+|---|---|---|---|---|
+| DC-03 | MEDIUM | `missions/01-greenfield-core/SPEC.md:62` (also `:23`, `:25`); `missions/01-greenfield-core/slices/03-operate/slice.yaml:31` | Candidate's current Outcome still says four slices/three waves and an audit read endpoint at mission close; doghouse promises readable audit, the next paragraph assigns dropped aliases/expiry to later missions, and the manifest retains a w3-launch comment. Compare with SPEC:29, :38, :80 and :145, which correctly move audit read, end at w2 and drop aliases/expiry. A reader of the opening brief receives a larger promise than the allocated work. | In passing, update the current doghouse/outcome and future-scope sentence to three slices/two waves, audit writes now and audit read in mission 02, aliases/expiry dropped; change the stale manifest continuation to wave_review. Preserve the original decision history with explicit historical labeling. |
+
+DC-03 is non-blocking because the authoritative allocation, amended wave
+table, manifest composition and recorded human decision agree. The lead
+should fix it in passing before the next brief or release-package reuse;
+it is not a request for another human decision or another decomposition
+gate. No other new findings or backlog are introduced by this re-check.
+
+### Self-check
+
+- 17/17 assigned planning changes inspected; supporting baseline, human
+  decision and live state checked; three unrelated probe entries excluded
+  explicitly. No whole-commit code/design approval claimed.
+- Candidate SHA and fresh graph equality verified; documentary repro gives
+  exact locations. No settled finding reopened.
+- Reviewer changes are confined to `docs/review/`; ledger row appended.
+- Close the ordinary assigned queue task with this verdict; route DC-03 as
+  non-blocking follow-up to the lead, not as lifecycle rework.

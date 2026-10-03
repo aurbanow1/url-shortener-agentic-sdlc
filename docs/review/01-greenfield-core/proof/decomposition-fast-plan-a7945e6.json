@@ -1,0 +1,283 @@
+{
+  "candidate": "a7945e69c6f250870e576e55f0cdbeaab22edb20",
+  "packet": "qitem-20261003053449-031dfc8b",
+  "reviewer": "review-agent@urlshort-factory (Codex)",
+  "reviewedAtUtc": "2026-10-03",
+  "commands": [
+    "rig workflow compile missions/01-greenfield-core --operation-key urlshort-01-greenfield-core-lifecycle-1 --json",
+    "rig workflow show 01M3ZXEXAMS945ZS0QZ26KZK1V --json",
+    "rig queue show qitem-20261003053250-a2190c42 --full --json"
+  ],
+  "freshCompile": {
+    "compiledInputDigest": "c233d13f29e0aafbd82a13c1c7e24e3d57fe95a8537302e98c61cb1b9e2c6ca2",
+    "eligible": true,
+    "unknowns": [],
+    "advisories": [],
+    "sources": [
+      {
+        "kind": "project",
+        "path": "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/project.yaml",
+        "sha256": "90854ece5e82fca647fb0ce37d453f81f603b3b77bebe729dec4b2d1957bc3a5"
+      },
+      {
+        "kind": "mission",
+        "path": "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/01-greenfield-core/mission.yaml",
+        "sha256": "267bc10c4d95c6a0d99c62aedc0bc6b00152256b60c21f514562c22012db95b2"
+      },
+      {
+        "kind": "slice",
+        "path": "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/01-greenfield-core/slices/01-create-redirect/slice.yaml",
+        "sha256": "90a58d377e08ecb644cf9016d25f71d3002c470cb81c3ea69a8d5539feab5479"
+      },
+      {
+        "kind": "slice",
+        "path": "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/01-greenfield-core/slices/02-analytics/slice.yaml",
+        "sha256": "69a0753ac7de1eefd32acb9127330f1a6b9d54209aed5b3799dc385422ad1a76"
+      },
+      {
+        "kind": "slice",
+        "path": "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/01-greenfield-core/slices/03-operate/slice.yaml",
+        "sha256": "fb6551e0297a47a7e3a1d9c1711803ffbe69f7e14c7e5878c51aeb041c3b4a7e"
+      }
+    ],
+    "dependencies": [
+      {
+        "stepId": "decompose",
+        "dependsOn": []
+      },
+      {
+        "stepId": "decomposition_review",
+        "dependsOn": [
+          "decompose"
+        ]
+      },
+      {
+        "stepId": "mission_plan_lock",
+        "dependsOn": [
+          "decomposition_review"
+        ]
+      },
+      {
+        "stepId": "wave_integration",
+        "dependsOn": [
+          "mission_plan_lock"
+        ]
+      },
+      {
+        "stepId": "wave_review",
+        "dependsOn": [
+          "wave_integration"
+        ]
+      },
+      {
+        "stepId": "release_prep",
+        "dependsOn": [
+          "wave_review"
+        ]
+      },
+      {
+        "stepId": "release_review",
+        "dependsOn": [
+          "release_prep"
+        ]
+      },
+      {
+        "stepId": "ship_signoff",
+        "dependsOn": [
+          "release_review"
+        ]
+      },
+      {
+        "stepId": "evidence_export",
+        "dependsOn": [
+          "ship_signoff"
+        ]
+      },
+      {
+        "stepId": "mission_close",
+        "dependsOn": [
+          "evidence_export"
+        ]
+      }
+    ],
+    "slices": [
+      {
+        "id": "01-create-redirect",
+        "dependsOn": []
+      },
+      {
+        "id": "02-analytics",
+        "dependsOn": [
+          "01-create-redirect"
+        ]
+      },
+      {
+        "id": "03-operate",
+        "dependsOn": [
+          "01-create-redirect"
+        ]
+      }
+    ]
+  },
+  "comparisons": {
+    "completeSavedExportEqualsFreshCompile": true,
+    "compiledDigestEqualsLiveBinding": true,
+    "sourceHashesEqualLiveBinding": true,
+    "waveMapFileEqualsQueueBody": true
+  },
+  "live": {
+    "instanceId": "01M3ZXEXAMS945ZS0QZ26KZK1V",
+    "instanceVersion": 18,
+    "workflowVersion": "1-c233d13f29e0aafb",
+    "unknowns": [],
+    "reconciliation": {
+      "status": "current",
+      "adopted": true,
+      "boundDigest": "c233d13f29e0aafbd82a13c1c7e24e3d57fe95a8537302e98c61cb1b9e2c6ca2",
+      "proposedDigest": "c233d13f29e0aafbd82a13c1c7e24e3d57fe95a8537302e98c61cb1b9e2c6ca2",
+      "boundVersion": "1-c233d13f29e0aafb",
+      "proposedVersion": "1-c233d13f29e0aafb",
+      "compatible": true,
+      "expectedVersion": 18,
+      "changes": [],
+      "reasons": [],
+      "composition": {
+        "mode": "project-profile",
+        "explanation": "The project profile and mission extension/override define outer steps. Slice manifests bind sources and proof, not automatic nested children. Waves group agent planning; they do not schedule child work. Current packets and blockers carry actual custody.",
+        "boundSlices": [
+          "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/01-greenfield-core/slices/01-create-redirect/slice.yaml",
+          "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/01-greenfield-core/slices/02-analytics/slice.yaml",
+          "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/01-greenfield-core/slices/03-operate/slice.yaml"
+        ],
+        "executableSteps": [
+          {
+            "id": "decompose",
+            "dependsOn": []
+          },
+          {
+            "id": "decomposition_review",
+            "dependsOn": [
+              "decompose"
+            ]
+          },
+          {
+            "id": "mission_plan_lock",
+            "dependsOn": [
+              "decomposition_review"
+            ]
+          },
+          {
+            "id": "wave_integration",
+            "dependsOn": [
+              "mission_plan_lock"
+            ]
+          },
+          {
+            "id": "wave_review",
+            "dependsOn": [
+              "wave_integration"
+            ]
+          },
+          {
+            "id": "release_prep",
+            "dependsOn": [
+              "wave_review"
+            ]
+          },
+          {
+            "id": "release_review",
+            "dependsOn": [
+              "release_prep"
+            ]
+          },
+          {
+            "id": "ship_signoff",
+            "dependsOn": [
+              "release_review"
+            ]
+          },
+          {
+            "id": "evidence_export",
+            "dependsOn": [
+              "ship_signoff"
+            ]
+          },
+          {
+            "id": "mission_close",
+            "dependsOn": [
+              "evidence_export"
+            ]
+          }
+        ]
+      },
+      "nextAction": "rig workflow revise 01M3ZXEXAMS945ZS0QZ26KZK1V"
+    }
+  },
+  "allocation": {
+    "primaryFR": {
+      "01-create-redirect": [
+        "FR-1",
+        "FR-2",
+        "FR-3",
+        "FR-4",
+        "FR-5",
+        "FR-6",
+        "FR-9"
+      ],
+      "02-analytics": [
+        "FR-7",
+        "FR-8"
+      ],
+      "03-operate": [
+        "FR-10"
+      ]
+    },
+    "primaryNFR": {
+      "01-create-redirect": [
+        "S1",
+        "S3",
+        "S4",
+        "R5",
+        "R6",
+        "A1",
+        "A2",
+        "M3",
+        "O1",
+        "O2"
+      ],
+      "02-analytics": [
+        "P1",
+        "L3"
+      ],
+      "03-operate": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "S5",
+        "O3",
+        "X1",
+        "L1",
+        "L2"
+      ]
+    },
+    "crossCuttingNFR": [
+      "M1",
+      "M2"
+    ],
+    "movedToMission02": [
+      "FR-17",
+      "S6"
+    ],
+    "dropped": [
+      "FR-11",
+      "FR-12",
+      "S2"
+    ]
+  },
+  "limits": [
+    "Documentary decomposition checks only, not product or design-probe approval.",
+    "Second-judge child workflow selection must be verified when wave 2 is launched.",
+    "No Gradle gate rerun for this assigned planning amendment."
+  ]
+}
