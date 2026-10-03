@@ -1,6 +1,6 @@
 # ADR-0011 — Click recording: reduced on the request thread, written by one bounded writer, fail open
 
-- Status: proposed (becomes accepted at the `02-analytics` plan-lock)
+- Status: accepted at the `02-analytics` plan-lock (2026-10-03T09:48Z)
 - Date: 2026-10-03
 - Slice: `02-analytics`
 

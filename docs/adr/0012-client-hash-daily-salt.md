@@ -1,6 +1,6 @@
 # ADR-0012 — Client hash: HMAC-SHA256 under a random salt per UTC day, held in memory and dropped at the day's end
 
-- Status: proposed (becomes accepted at the `02-analytics` plan-lock)
+- Status: accepted at the `02-analytics` plan-lock (2026-10-03T09:48Z)
 - Date: 2026-10-03
 - Slice: `02-analytics`
 

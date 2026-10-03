@@ -9,6 +9,16 @@ verified: 2026-10-03 against scaffold (rig scope create)
 created: 2026-10-03
 intent: "An Analyst can read a link's click statistics (total clicks, clicks per day, top referrers) because every redirect records a privacy-safe click event without slowing the Visitor."
 depends_on: ["OPR.99.0.2.1"]
+approved-spec-by: orchestration-lead@urlshort-factory
+approved-spec-at: 2026-10-03T09:47:55.415Z
+locked-artifacts:
+  - name: SPEC.md
+    path: SPEC.md
+    kind: spec
+  - name: design.md
+    path: design.md
+    kind: spec
+provenance: transport:v1
 ---
 
 # Slice 02 — Click analytics

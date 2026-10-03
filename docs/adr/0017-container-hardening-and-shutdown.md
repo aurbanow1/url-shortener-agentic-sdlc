@@ -1,6 +1,6 @@
 # ADR-0017 — Container: non-root, read-only root, loopback publish, readiness health check; 10 s graceful shutdown inside a 20 s stop grace
 
-- Status: proposed (becomes accepted at the `03-operate` plan-lock)
+- Status: accepted at the `03-operate` plan-lock (2026-10-03T09:41Z; status line set 09:48Z)
 - Date: 2026-10-03
 - Slice: `03-operate`
 

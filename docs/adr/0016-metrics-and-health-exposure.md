@@ -1,6 +1,6 @@
 # ADR-0016 — Metrics in Prometheus format, readiness with the database, status-only health, quiet parser errors
 
-- Status: proposed (becomes accepted at the `03-operate` plan-lock)
+- Status: accepted at the `03-operate` plan-lock (2026-10-03T09:41Z; status line set 09:48Z)
 - Date: 2026-10-03
 - Slice: `03-operate`
 
