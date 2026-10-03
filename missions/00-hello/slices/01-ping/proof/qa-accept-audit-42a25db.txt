@@ -1,0 +1,34 @@
+Merge subject: 42a25db4a9c24fba3221c1ade4044719cab39ee3
+Tested main HEAD: 877d6f309c625ba73a68d9c148c914941e18deaa
+Reviewed branch candidate: f286a10863e4a8081235226f2d56e51ac121b319
+Product/test/build inputs identical: candidate -> merge -> tested main. Main advanced only by documentation.
+Fresh command: scripts/gw --log missions/00-hello/slices/01-ping/proof/qa-accept-check-42a25db.txt --offline check --rerun-tasks
+test: {'tests': 6, 'failures': 0, 'errors': 0, 'skipped': 0}; every executed method appears in current traceability
+  UrlshortApplicationTests#mainBootsWithoutAWebServer | PASS
+  UrlshortApplicationTests#contextLoads | PASS
+  ping.PingControllerTest#answersOkWithTheCurrentUtcInstant | PASS
+  web.RequestIdFilterTest#ignoresInboundRequestIdAndIssuesADifferentIdPerRequest | PASS
+  web.RequestIdFilterTest#clearsMdcWhenTheChainThrows | PASS
+  web.RequestIdFilterTest#issuesOneIdOnHeaderAndMdcBeforeTheChainRunsAndClearsMdcAfter | PASS
+functionalTest: {'tests': 9, 'failures': 0, 'errors': 0, 'skipped': 0}; every executed method appears in current traceability
+  HealthJourneyTest#healthEndpointReportsUp | PASS
+  ping.PingJourneyTest#AC5_wrongMethodIsProblemDetailWithRequestId | PASS
+  ping.PingJourneyTest#AC7_logEventCarriesNoClientAddressOrUserAgent | PASS
+  ping.PingJourneyTest#AC1_pingAnswersOkAsJson | PASS
+  ping.PingJourneyTest#AC2_timeIsCurrentUtcInstant | PASS
+  ping.PingJourneyTest#AC4_requestIdsAreUniquePerRequest | PASS
+  ping.PingJourneyTest#AC6_pingIsLoggedAsJsonWithRequestId | PASS
+  ping.PingJourneyTest#AC8_clientSuppliedRequestIdIsIgnored | PASS
+  ping.PingJourneyTest#AC3_everyResponseCarriesRequestId | PASS
+unit CSV: missed/covered lines and branches = (0, 15, 0, 0); byte-identical to committed candidate CSV
+functional CSV: missed/covered lines and branches = (2, 13, 0, 0); byte-identical to committed candidate CSV
+all CSV: missed/covered lines and branches = (0, 15, 0, 0); byte-identical to committed candidate CSV
+Unit/functional/merged HTML, XML and CSV entry points exist and are tracked. Merged lines 15/15 (100%); branches 0/0, threshold passes without an exercised-branch claim.
+GAPS retains informational functional-only 13/15 coverage and historical resolved QA-01; no open merged coverage or AC gap.
+Historical QA live first: HTTP 200, body/media type/id shape inspected; requestId=0c1ecb83-71a0-4a98-af62-9df9a5c5a6e0
+Historical QA live second: HTTP 200, body/media type/id shape inspected; requestId=e1f3f111-9ecc-4a68-ad81-fc16b976f62f
+Historical QA live canaries: HTTP 200, body/media type/id shape inspected; requestId=70bc7b91-88a5-4dbc-b783-cc6f0ad7c68b
+Historical QA live post: HTTP 405, body/media type/id shape inspected; requestId=2922f2e6-b06f-4acc-abb7-f1a3be6a8c8d
+Captured GET line is present verbatim in full log, one JSON object, id equals first response header; no checked address/canary/user-agent content. Consecutive ids differ. Original capture records graceful shutdown.
+Limit: saved pre-merge live captures independently re-parsed here; live socket requests and packaged-artifact checks were not repeated in slice_accept. Input equivalence and fresh main HTTP journeys support the merge subject.
+Acceptance audit PASS: proof items 1-7 have inspected evidence; attributed judgments are the next action.

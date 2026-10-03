@@ -4,23 +4,32 @@
 >
 > **HOW (the drop verb, not hand-placement):** put media files under `proof/`, then ATTACH them with `rig proof add OPR.99.0.1.1 --artifact-type qa --verdict PASS --candidate-sha <tip> --money-evidence "<one line>" --evidences "1" --media "screenshot-01.png"` — the drop writes the C1 header the Living Notes DELIVERED pairing joins on. Hand-placing files without a drop leaves the deliverable unpaired and `unverified`.
 
-Closed by: <seat>   Date: <date>   Verdict: <pass | pass-with-residue | ...>
+Closed by: qa-agent@urlshort-factory (Codex)   Date: 2026-10-03 UTC   Verdict: PASS
 
 ## What this proves
 
-<1-3 sentences: the claim the slice made, now demonstrated>
+The merged ping endpoint returns the specified JSON and a server-issued
+request id, retains that id on a 405 ProblemDetail, and correlates it with a
+JSON log event without client address or user-agent data. All eight ACs have
+passing functional journeys and independently captured live evidence; all
+seven proof-contract items are accepted against merge `42a25db4`.
 
 ## Artifacts (media in proof/)
 
 Dropped via `rig proof add … --evidences … --media …` (one drop per verdict; media attached, never only hand-listed):
 
-- proof/screenshot-01.png — <what it shows>
-- proof/capture-behavior.gif — <what it shows>
-- proof/command-output.txt — <what it proves>
+- `proof/qa-acceptance-42a25db.md` — QA drop covering contract items 1–7 on the merge, with fresh gate and evidence audit attached
+- `proof/judgments/00000008.md` through `00000014.md` — current attributed acceptance receipts against merge `42a25db4`; earlier receipts retained as history
+- `proof/qa-evidence-f286a10.md` — independent live HTTP and JSON-log captures on the reviewed branch candidate
 
 ## Residue / caveats (if any)
 
-<documented residue: what's not covered + where it's tracked>
+Merged line coverage is 15/15; there are zero branches. Functional-only
+coverage is 13/15, compensated by unit coverage of the main entry point and
+recorded in `docs/qa/GAPS.md`. Installed-artifact and current dependency
+advisory checks belong to release. The design-owner logging-example follow-up
+remains nonblocking; the locked design is historical. See the acceptance
+record for the tested HEAD, input equivalence and limits.
 
 ## Builder
 
@@ -355,3 +364,58 @@ Orchestration lead, 2026-10-03T01:33Z, in the main checkout.
 - Working-tree changes present at merge time (`docs/evidence/00-hello/`, an
   evidence export by another seat) were not touched by the merge and are not
   part of this commit.
+
+## QA slice acceptance
+
+QA Agent (Codex), 2026-10-03 UTC, packet
+`qitem-20261003013423-99b71ff1`. **PASS: all seven contract items accepted.**
+Subject: merge `42a25db4a9c24fba3221c1ade4044719cab39ee3`.
+
+Main was at `877d6f309c625ba73a68d9c148c914941e18deaa`, with one
+documentation commit after the merge. The shared checkout was left there;
+separate git comparisons established identical product/test/build inputs
+from reviewed candidate `f286a108` through the merge to the working checkout.
+The actual tested HEAD and comparison scope are recorded in
+`proof/qa-accept-audit-42a25db.txt`.
+
+Ran the complete main gate once with rerun-tasks, captured in
+`proof/qa-accept-check-42a25db.txt`: exit 0, 19 seconds, all 13 tasks
+executed. Fresh JUnit XML reports 6 unit and 9 functional tests with no
+failures/errors/skips, including all eight named AC journeys. Read all three
+fresh CSVs and compared them byte for byte with the committed candidate
+reports: unit 15/15, functional 13/15, merged 15/15 lines; zero branches.
+
+Independently parsed the saved pre-merge QA exchanges and complete log:
+GET body/media type/time/id, two distinct consecutive ids, POST 405
+ProblemDetail, and the first GET's single JSON event matching its header.
+Checked the canary/address absence and the recorded graceful shutdown.
+Traceability covers all eight ACs, eight business rules and all 15 methods;
+GAPS records no open merged-coverage/AC gap. These are re-inspections of
+earlier live observations, not new socket requests. No server was started
+during slice acceptance; packaged artifacts and advisories were not checked.
+
+QA proof drop `proof/qa-acceptance-42a25db.md` names items 1–7. Seven current
+`rig proof judge` receipts (`proof/judgments/00000008.md`–`00000014.md`)
+each record `accept`, the QA seat and `commit:42a25db4...`. A subsequent
+`rig proof show` reports `ready`, all seven items accepted, no issues.
+Receipts 1–7 are historical: the initial drop misstated the count of
+post-merge documentation commits as two; `git log` confirmed one. The drop
+was corrected and all judgments reaffirmed against its corrected content.
+No observed product outcome changed.
+`rig scope audit --mission 00-hello --json` reports zero findings.
+PROGRESS now records tests, both independent reviews, integration and QA
+acceptance. Delivery approval remains at mission ship sign-off.
+
+### Self-check
+
+- Read the locked SPEC and seven contract items, QA guidance, proof history
+  and independent code/security verdicts; no settled finding reopened.
+- Fresh full gate, JUnit/CSV contents, tracked report entry points and
+  traceability in both directions inspected; GAPS retains honest limits.
+- Saved HTTP/log evidence parsed by content, including failure/privacy
+  cases; source/build equivalence connects it to the merge subject.
+- Proof drop covers every item; every attributed receipt was read back and
+  current readiness is `ready`. Scope audit has zero findings.
+- No product/test/build, locked-document or threshold edits, no new server
+  and no branch/HEAD change. Only authored QA evidence and progress are
+  included in the documentation commit.
