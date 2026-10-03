@@ -59,8 +59,9 @@ reading the parsed files, AC-12 by running the same commands locally. The QA
 judge (`qa2-agent`) runs without network. The two network-dependent captures,
 the `git ls-remote` output for AC-9 and the `docker build` log for AC-12, are
 produced by the builder on a networked seat and attached under `proof/`, and
-the judge verifies against them. "The workflow files" means the three files
-under `.github/` on the candidate.
+the judge verifies against them. "The workflow files" means `ci.yml` and `cd.yml`
+on the candidate, and "the three files" means those two plus
+`.github/dependabot.yml`.
 
 #### CI: the gate on every change
 
@@ -214,6 +215,7 @@ N/A: non-visual slice.
 ## Status
 
 - 2026-10-03: requirements written: 13 acceptance criteria (12 checked on the candidate without GitHub, 1 pending the human's push), 7 business rules, 6 ambiguity rows (4 assumed, 2 decided, none parked).
+- 2026-10-03: requirements review RQ-01 (MEDIUM, `review2-agent`) fixed in passing. "The workflow files" now means `ci.yml` and `cd.yml` only, so AC-6 to AC-10 do not ask `dependabot.yml` for permissions, steps or concurrency. "The three files" names all three, for linting (AC-12). No criterion changed in substance.
 
 ## Dependencies
 
@@ -222,7 +224,7 @@ N/A: non-visual slice.
 
 ## Self-check
 
-- Every AC is observable: AC-1 to AC-11 from the workflow files a reader parses, AC-12 from commands anyone can run on the candidate, AC-13 from GitHub check runs and their URLs. None reads intent from a note.
+- Every AC is observable: AC-1 to AC-11 from the three files a reader parses, AC-12 from commands anyone can run on the candidate, AC-13 from GitHub check runs and their URLs. None reads intent from a note.
 - Error and safety paths are ACs: a failing gate cannot be masked (AC-2), red-run evidence survives (AC-3, AC-5), nothing is published (AC-6), least privilege (AC-7), no untrusted text in a shell (AC-8), supply-chain pinning (AC-9), runaway runs bounded (AC-10). There is no product privacy path, because no product code changes. AC-12's diff check proves that.
 - Business rules cover the non-obvious logic: stacked pull requests need an unfiltered trigger, the same gate with no CI-only skip, the smoke called not rewritten, a pending run stated.
 - Out of scope is explicit, including branch protection, deploys, the docker ecosystem and the release-level smoke modes.
