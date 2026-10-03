@@ -1,0 +1,19 @@
+// Migration probe for 02-click-retention design review DR-03 (design.md section 3, section 12 rows M1-M5).
+// Run from the repo root, no product, test or build file changes:
+//   scripts/gw --log missions/02-brownfield/slices/02-click-retention/design-probe/output-6.txt \
+//       --offline -I missions/02-brownfield/slices/02-click-retention/design-probe/migration-probe.gradle designMigrationProbe
+// Runs the shipped V1 and V2 plus design-probe/migration/V3__add_click_audit_columns.sql through Flyway on
+// H2 file databases under build/migration-probe/.
+gradle.projectsEvaluated {
+    def project = gradle.rootProject
+    def functional = project.sourceSets.functionalTest
+    project.tasks.register('designMigrationProbe', JavaExec) {
+        dependsOn project.tasks.named('functionalTestClasses')
+        javaLauncher.set(project.javaToolchains.launcherFor {
+            languageVersion = JavaLanguageVersion.of(21)
+        })
+        classpath = functional.runtimeClasspath
+        mainClass = project.file('missions/02-brownfield/slices/02-click-retention/design-probe/MigrationProbe.java').absolutePath
+        maxHeapSize = '1g'
+    }
+}

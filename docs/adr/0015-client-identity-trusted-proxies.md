@@ -1,6 +1,6 @@
 # ADR-0015 — Client identity: the peer address, or the right-most untrusted `X-Forwarded-For` entry behind a listed proxy
 
-- Status: accepted at the `03-operate` plan-lock (2026-10-03T09:41Z; status line set 09:48Z)
+- Status: accepted at the `03-operate` plan-lock (2026-10-03T09:41Z; status line set 09:48Z); amendment proposed by `01-analytics-v2` (see *Amendment*)
 - Date: 2026-10-03
 - Slice: `03-operate`
 
@@ -42,3 +42,30 @@ per request (AC-8).
 - A trusted proxy that passes client-supplied `X-Forwarded-For` through
   without appending would make the client's own entry right-most. Listing
   only proxies that append is the operator's responsibility.
+
+## Amendment — `01-analytics-v2` (2026-10-03, proposed; accepted at that slice's plan-lock)
+
+The click's hashed client becomes this ADR's client (wave-review finding W2-02/W2D-03, mission 03
+SPEC rule 6, A-7), so one rule and one setting govern both the rate limit and unique visitors:
+
+- **How.**
+  - `RateLimitFilter` becomes `public` and gains `public static final String CLIENT_ATTRIBUTE`.
+    After computing `clientOf(...)` for a limited request, it sets that request attribute and then
+    charges the budget. Its decisions are unchanged.
+  - `click.ClickRecorder.record` hashes the attribute when it is a `String` and
+    `request.getRemoteAddr()` otherwise. That fallback covers an exempt path or a unit test; a
+    redirect is never exempt.
+  - Granted by the lead (slice.yaml `c78500e`) on two conditions: the existing `RateLimitFilterTest`
+    cases pass unchanged, and no other `web/` file changes.
+- **Why not the request wrapper this ADR sketched.** A wrapper overriding `getRemoteAddr()` would
+  change the address for every reader of the request, not only the click recorder:
+  - `01-audit-read`'s loopback check (ADR-0019) would then see a forwarded client. It stays safe
+    only because a forwarding header refuses first, a coupling ADR-0019 had to spell out;
+  - Boot's observation and any future reader would be affected too.
+
+  The attribute is additive and read by exactly one consumer, so `getRemoteAddr()` stays the
+  connection's address everywhere.
+- **Privacy.** The attribute lives only in the request. Forwarded values are never stored or logged:
+  only the hash of the chosen client is stored, as before (NFR-P1).
+- Hashes stored before the change are not rewritten (SPEC rule 6). On the shipped deployment, which
+  lists no trusted proxy, the attribute equals the peer, so nothing changes there.

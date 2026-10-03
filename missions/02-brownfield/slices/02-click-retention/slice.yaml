@@ -58,6 +58,12 @@ territory:
   # every captured log line. The AC-8 journey turns the daily run back on in its own context. No
   # other change to this file; no other slice holds it (03-operate, its last holder, is merged).
   - src/functionalTest/resources/application-functional.properties
+  # PLAN-LOCK GRANT (lead, 2026-10-03T18:39Z, design.md section 9): one line of README.md, adding
+  # URLSHORT_CLICK_RETENTIONDAYS to the sentence listing operator settings. ORDERED, second holder
+  # after 01-audit-read's merge (its README line lands first), like application.properties.
+  - README.md
+# CROSS-MISSION CUSTODY of click/: this slice is plan-locked first and holds click/ until its merge;
+# mission 03's 01-analytics-v2 (which also changes ClickRecorder) rebases onto that merge.
 # NOT in territory: link/, audit/, web/, docs/api/openapi.json (no endpoint changes).
 execution:
   actor_role: requirements

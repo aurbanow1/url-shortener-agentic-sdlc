@@ -1,0 +1,11 @@
+id: dev2
+label: Development (second seat)
+summary: Second Development Agent seat (Claude) so two slices build concurrently instead of queueing on one builder; selected by the urlshort-slice-delegated-b workflow.
+members:
+  - id: agent
+    label: Development Agent 2
+    agent_ref: "local:agents/development-agent"
+    runtime: claude-code
+    profile: default
+    cwd: "/Users/andrzej/Documents/projekty/test/openrig/url-shortener"  # absolute: rig expand resolves a relative cwd against --rig-root, not the repo
+edges: []

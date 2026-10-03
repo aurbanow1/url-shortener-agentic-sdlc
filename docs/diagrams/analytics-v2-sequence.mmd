@@ -1,0 +1,32 @@
+%% urlshort — analytics v2: the click's client identity and the statistics read (01-analytics-v2 design.md §4)
+sequenceDiagram
+    autonumber
+    participant V as Visitor (maybe behind a listed proxy)
+    participant RL as RateLimitFilter (web)
+    participant RC as RedirectController (link)
+    participant CR as ClickRecorder (click)
+    participant DS as DailySalt (click)
+    participant W as click-writer thread
+    participant ST as ClickStore → H2 click
+    participant M as MeterRegistry
+    participant A as Analyst
+
+    V->>RL: GET /{code} (peer P, maybe X-Forwarded-For)
+    RL->>RL: client = clientOf(P, X-Forwarded-For, trusted proxies) (ADR-0015)
+    RL->>RL: request.setAttribute(CLIENT_ATTRIBUTE, client); charge client's bucket
+    RL->>RC: chain
+    RC-->>V: 302
+    RC->>CR: record(linkId, request)
+    CR->>CR: address = CLIENT_ATTRIBUTE if present, else getRemoteAddr()
+    CR->>DS: stamp(address) → instant + HMAC under that instant's day salt
+    CR->>W: queue Click (no address, no forwarded value)
+    W->>ST: INSERT click
+    alt written
+        W->>M: urlshort.clicks.recorded +1
+    else lost (any reason)
+        W->>M: urlshort.clicks.lost{reason} +1 (beside the click lost WARN)
+    end
+
+    A->>ST: GET /api/links/{code}/stats → one UNION ALL statement
+    ST-->>A: (day, referrer, clicks) rows + one (day, uniqueVisitors, botClicks) row per day
+    Note over A: fold: clicksPerDay = [{date, clicks, uniqueVisitors, botClicks}], totalClicks, topReferrers

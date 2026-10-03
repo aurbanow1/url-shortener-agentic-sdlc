@@ -179,3 +179,68 @@ evidence changed; no product/test/SPEC/design edit. One new ledger row records
 DR-04 expected fixed in the same revision. Next review is scoped to those
 responses and the added migration design; DR-01/02 stay settled absent new
 evidence.
+
+## Re-review f044cbe0f4528c287e95fcb5e24298add35240af
+
+2026-10-03, `review2-agent@urlshort-factory`; packet
+`qitem-20261003182930-370196d0`, same workflow instance. **PASS — DR-03 and DR-04
+fixed; no open findings.** DR-01/02 remain settled. Current SPEC is `32b1ae2`.
+This is approval of the design for plan-lock, not implementation acceptance.
+
+### Complete delta ledger
+
+All nine producer delta files read and byte-matched to the candidate; fingerprints:
+[`proof/rereview-candidate-f044cbe.txt`](proof/rereview-candidate-f044cbe.txt).
+Unchanged content retains the previous reviews. Confidence is high in the added
+migration mechanism and acceptance mapping; large-data startup timing remains
+limited to the author's measurements below.
+
+| Rework file | Verdict |
+|---|---|
+| `docs/DESIGN.md` | PASS: hold event, V3 contract, ERD and ADR entry match the chosen mechanism. |
+| `docs/adr/0020-audit-columns-expand-migration.md` | PASS: row/domain clocks separated, constant actors, defaults, backfill, rollback and alternatives explicit. Insert-only tables need no update trigger. |
+| `docs/diagrams/erd.mmd` | PASS: all eight new columns represented and labelled designed. |
+| `missions/02-brownfield/slices/02-click-retention/design.md` | PASS: DR-03/04 resolved; AC-13/15/16 now have concrete mechanisms and named checks. |
+| `missions/02-brownfield/slices/02-click-retention/impact-analysis.md` | PASS: V3, legacy insert compatibility, backfill, custody and rollback covered. |
+| `missions/02-brownfield/slices/02-click-retention/design-probe/MigrationProbe.java` | PASS: fresh/upgrade/connection-retirement/rollback/load controls read; printed results independently asserted below where material. |
+| `missions/02-brownfield/slices/02-click-retention/design-probe/migration-probe.gradle` | PASS: existing offline classpath, no product build change. |
+| `missions/02-brownfield/slices/02-click-retention/design-probe/migration/V3__add_click_audit_columns.sql` | PASS: exact DDL and literal rollback header exercised independently. |
+| `missions/02-brownfield/slices/02-click-retention/design-probe/output-6.txt` | PASS as scoped evidence: M1–M4 support migration behavior; M5 wall elapsed is 56,811 ms, distinct from Flyway's reported 42.041 s. |
+
+### Resolutions and evidence
+
+| Finding | Resolution | Evidence |
+|---|---|---|
+| DR-03 HIGH | **Fixed.** V3 adds the required four non-null columns to each table, fills legacy rows, gives unchanged inserts database write timestamps and static actors, and has a working rollback. No client value enters the new columns. AC-13 maps the real prior-directory upgrade and subsequent redirect; AC-16 maps schema, legacy columns/constraints and row assertions. | Design §§1/3/7, ADR-0020, exact migration lines 9–26. Fresh independent file-database control: 29 assertions PASS, including legacy column metadata/values, FK/check behavior, primary-key columns, keeper connection after Flyway retirement, reopened database, row-time/domain-time separation, literal header rollback and reapplication. |
+| DR-04 MEDIUM | **Fixed at the design boundary.** Startup WARN now says `click purge paused, no click is deleted` and names `urlshort.click.purge-enabled` in `setting`. AC-15's journey seeds expired data before startup and observes retained rows/no purge event at both required suite-clock points, 60 seconds after readiness and the next scheduled time. | Design lines 80–81, event table and AC-15 row at line 362. Prior hold mechanism control remains supporting evidence; the new message and full acceptance journey are implementation/QA obligations. |
+
+Command, run from the repository root:
+
+```text
+scripts/gw --log docs/review/02-click-retention/proof/migration-rereview-f044cbe.txt --offline -I docs/review/02-click-retention/proof/review-migration.gradle reviewMigration
+```
+
+**BUILD SUCCESSFUL**, 29 assertions. Source:
+[`proof/ReviewMigrationProbe.java`](proof/ReviewMigrationProbe.java); output:
+[`proof/migration-rereview-f044cbe.txt`](proof/migration-rereview-f044cbe.txt).
+The control uses the exact candidate SQL and extracts rollback statements from
+its header; it does not substitute a reviewer-written migration. The database
+is a new temporary file, separate from the author's probe and service data.
+
+No full product gate was rerun for this documentation-only delta; product
+sources/build are unchanged from the previously checked baseline. The new
+Flyway mechanism was executed directly. Actual HTTP upgrade evidence,
+candidate coverage and full unchanged-suite validation remain builder/QA work.
+The million-row benchmark was audited, not rerun. Its 56.8-second wall duration
+does not establish that migration **plus** startup deletion fits compose's
+80-second health window at that volume; implementation/release must measure the
+combined path before claiming that. The separate, named `04-audit-columns`
+allocation for `link` and `audit_log` remains valid.
+
+### Self-check and exit
+
+Nine changed files reviewed; exact candidate and current SPEC verified; both
+responses adjudicated; fresh assertions read after completion. Only review
+artifacts changed. Zero MUST-FIX/HIGH/MEDIUM/LOW/INFO remain open, with no new
+backlog item. **Exit handoff to plan-lock.** Ordered application-properties
+custody and the documented README grant remain the lead's plan-lock work.
