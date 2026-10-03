@@ -166,8 +166,9 @@ Context and observations that help the mission but do not change its
   1156. Every 223 named source test mapped; GAPS records the qualifications.
   Proof: slice `PROOF.md` QA, `proof/qa-verification-35590f0.json`, coverage
   `docs/qa/coverage/01-audit-read/SUMMARY.md`. No product/build/test edits.
-- Contract items 1–11 and 13 covered by QA for this candidate; their attributed
-  judgments are recorded before handoff. Item 12 requires
+- Contract items 1–11 and 13 accepted against this candidate by attributed
+  receipts 1–12, preserved in `proof/qa-judgment-receipts-35590f0.json`;
+  evidence commits `29a141e` and `63e04b5`. Item 12 requires
   the independent downstream security-review record, so it is deliberately
   deferred under lead obligation `qitem-20261003194346-b74b8081`, with the
   continuation in `proof/qa-proof-sequencing-35590f0.md`. Lead returns it to QA

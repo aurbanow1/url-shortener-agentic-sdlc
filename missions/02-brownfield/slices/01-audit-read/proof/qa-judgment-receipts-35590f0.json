@@ -1,0 +1,430 @@
+[
+  {
+    "version": 1,
+    "scope": "missions/02-brownfield/slices/01-audit-read",
+    "sequence": 1,
+    "operationId": "0fa219808bd3e0f3a589b28af233b326af973cdd1c78551ddd6628c50f02fc6d",
+    "itemId": "item-1a98fdd9fd350bff692f",
+    "itemRevision": "60c1617175aa4834f0dcdc559a6dfac5c88ebf15445b4f8231ab0b7bf7d8b14e",
+    "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+    "policySource": "project.yaml",
+    "previous": null,
+    "actor": "qa-agent@urlshort-factory",
+    "provenance": "transport:v1",
+    "at": "2026-10-03T19:54:24.280Z",
+    "verdict": "accept",
+    "reason": "Fresh 200 unit and 200 functional pass; all21 AC effects and223 named methods mapped. Original155 replay has153 passes and only the two expressly granted OpenAPI enumeration failures (428e9e1, transition1156); induction and scope limits explicit.",
+    "evidence": [
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-verification-35590f0.json",
+        "sha256": "0e00fbdf1402a8a06bb768d06a92c6b8d0982e00266fc51235aa8d6ad71687e5"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-source-methods-35590f0.json",
+        "sha256": "f4ed638f9b00f838b750143ef99c778e149dd1c64caf612b5f88c61158277882"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-grant-transitions-428e9e1.json",
+        "sha256": "5fa7ceb0827247321c3b01d85358f10e9d31c041e5085c90fa8c552c30429585"
+      }
+    ],
+    "subject": {
+      "kind": "commit",
+      "ref": "35590f06c852543c29097a42c43b7802be90ba40"
+    },
+    "intent": "00f7189be6cc8fb92ec16dc11a009d52f57248d7988a2a255275571d3f8a7e9e",
+    "id": "036719e66191bfe81006e8c83e8a4603d6e52ec88e5d9d1ac9fe0cf07e58ad32"
+  },
+  {
+    "version": 1,
+    "scope": "missions/02-brownfield/slices/01-audit-read",
+    "sequence": 2,
+    "operationId": "0c47ca47438a47a42f1878fe58c98ab377591542c306687abf437b853dfafb64",
+    "itemId": "item-c7bc87bb634edb9adc12",
+    "itemRevision": "8f9a211503d34df560231cedb37646fafa3b04cb593ca1fadab7c01ea395a4c1",
+    "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+    "policySource": "project.yaml",
+    "previous": null,
+    "actor": "qa-agent@urlshort-factory",
+    "provenance": "transport:v1",
+    "at": "2026-10-03T19:56:20.950Z",
+    "verdict": "accept",
+    "reason": "Merged candidate CSV is492/492 lines and190/190 branches; fresh offline gate exit0,200unit and200functional, no failures/errors/skips.",
+    "evidence": [
+      {
+        "ref": "docs/qa/coverage/01-audit-read/SUMMARY.md",
+        "sha256": "92c0b2dfab7f3b1611400c5387af5079950135d7b3e68e934d83b19cd27559ba"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-verification-35590f0.json",
+        "sha256": "0e00fbdf1402a8a06bb768d06a92c6b8d0982e00266fc51235aa8d6ad71687e5"
+      }
+    ],
+    "subject": {
+      "kind": "commit",
+      "ref": "35590f06c852543c29097a42c43b7802be90ba40"
+    },
+    "intent": "d79c4faf704f4d88212964d161603a5f1a0e1fb18f2ec5c715ed2850fe3883f3",
+    "id": "9681cad1acb08663f805b600ebbff5255a46836f363eba0ecc7474f97e6b8452"
+  },
+  {
+    "version": 1,
+    "scope": "missions/02-brownfield/slices/01-audit-read",
+    "sequence": 3,
+    "operationId": "1e15cfa7e5556727828cc4c3ee7f28b45820a16c317cf25b8f53837c796fd6c3",
+    "itemId": "item-8b589a5d3bead31f5417",
+    "itemRevision": "bf9c76db0ee08983576ba5534dfd62403665f81cb021911858430ff7d8a8fd9f",
+    "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+    "policySource": "project.yaml",
+    "previous": null,
+    "actor": "qa-agent@urlshort-factory",
+    "provenance": "transport:v1",
+    "at": "2026-10-03T19:57:06.230Z",
+    "verdict": "accept",
+    "reason": "All348 candidate HTML/XML/CSV report copies are committed and byte-equal to the captured reports; unit and functional directories contain their complete reports.",
+    "evidence": [
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-report-copy-hashes-35590f0.json",
+        "sha256": "2b9324bd09aaba79f5e74278706d4099c37d9e48205aeed00abc518bae6061f2"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-completeness-35590f0.json",
+        "sha256": "58ebe1a741d5af86306b9eb9adbc712d1ae7d020f518d73552399c3e6097a558"
+      },
+      {
+        "ref": "docs/qa/coverage/01-audit-read/SUMMARY.md",
+        "sha256": "92c0b2dfab7f3b1611400c5387af5079950135d7b3e68e934d83b19cd27559ba"
+      }
+    ],
+    "subject": {
+      "kind": "commit",
+      "ref": "35590f06c852543c29097a42c43b7802be90ba40"
+    },
+    "intent": "d3dec3049cf4e8432e2fa20f5580041cb2a63da4074496dbbd0485206c1e2551",
+    "id": "e885cfc224e3c8274ac7faaf7274f630f46e728993d30d50ce95eac56d508e74"
+  },
+  {
+    "version": 1,
+    "scope": "missions/02-brownfield/slices/01-audit-read",
+    "sequence": 4,
+    "operationId": "9d538984eb6efe3e242c9c078903fa5b9d84c43fb72c7997841de6acf2c4614d",
+    "itemId": "item-67388d5ee2d28fe87990",
+    "itemRevision": "d2ae85cb86bb45b82cf8e832fe47811dfa330737c6a26ecfb958905aef85972c",
+    "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+    "policySource": "project.yaml",
+    "previous": null,
+    "actor": "qa-agent@urlshort-factory",
+    "provenance": "transport:v1",
+    "at": "2026-10-03T19:57:06.563Z",
+    "verdict": "accept",
+    "reason": "All223 named source tests mapped, no omissions or duplicates; AC1 through21 and BR1 through9 carry FR/NFR ids, AC17 replay grant and AC20/21 induction mechanisms explicitly named.",
+    "evidence": [
+      {
+        "ref": "docs/qa/TRACEABILITY.md",
+        "sha256": "1ac132a8772b9550d51c80bb7a70c114e182251012aa52a6fcda00f309d57a4f"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-completeness-35590f0.json",
+        "sha256": "58ebe1a741d5af86306b9eb9adbc712d1ae7d020f518d73552399c3e6097a558"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-source-methods-35590f0.json",
+        "sha256": "f4ed638f9b00f838b750143ef99c778e149dd1c64caf612b5f88c61158277882"
+      }
+    ],
+    "subject": {
+      "kind": "commit",
+      "ref": "35590f06c852543c29097a42c43b7802be90ba40"
+    },
+    "intent": "4ff817d7d34ee85e2ec4beaa175fb4833d5d09e1ee24d1e4ace9db6d188c5c4a",
+    "id": "2b30ad11bb0af6409d35fdb658a86f545a0147217918936d2aa77328073a06d7"
+  },
+  {
+    "version": 1,
+    "scope": "missions/02-brownfield/slices/01-audit-read",
+    "sequence": 5,
+    "operationId": "74b1b8d46f7caf2c126b91a166dc62f8059096d0884ed69074e9266cc4ddb383",
+    "itemId": "item-2e797922f963bf3ad811",
+    "itemRevision": "a30adb5803c7e7a1e799ac26efe071a94a61cbe559e02c271efa45bcd8199ffc",
+    "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+    "policySource": "project.yaml",
+    "previous": null,
+    "actor": "qa-agent@urlshort-factory",
+    "provenance": "transport:v1",
+    "at": "2026-10-03T19:57:06.862Z",
+    "verdict": "accept",
+    "reason": "GAPS names informational per-suite misses, merged100%, the expressly granted AC17 enumeration scope, controlled peer/JDBC limits and downstream security item12. No silent exclusion or additional waiver.",
+    "evidence": [
+      {
+        "ref": "docs/qa/GAPS.md",
+        "sha256": "cd032646c4247829ce5b104289d3091929d77565900f41ca23869f0df5e0c36f"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-grant-transitions-428e9e1.json",
+        "sha256": "5fa7ceb0827247321c3b01d85358f10e9d31c041e5085c90fa8c552c30429585"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-proof-sequencing-35590f0.md",
+        "sha256": "b287f1b3a96540b92a0fcb913a8317b334a4d915d09484a25afbebd691538b02"
+      }
+    ],
+    "subject": {
+      "kind": "commit",
+      "ref": "35590f06c852543c29097a42c43b7802be90ba40"
+    },
+    "intent": "81c30a1f4bc4fa96bd0f06b442d439be3bac585076310bd4f78c754a6f60286f",
+    "id": "7eb5b91c6389576172b8e9a7e4728427bc83bc79cde594c8e9ee68fc7a4a2e4f"
+  },
+  {
+    "version": 1,
+    "scope": "missions/02-brownfield/slices/01-audit-read",
+    "sequence": 6,
+    "operationId": "bcc9d6090589c7cb2dfeaed6312db8ca9414fcbea03a6c9a46074ed3c3608eef",
+    "itemId": "item-fe80197431d6d46ff04d",
+    "itemRevision": "5693ca8fa38394e975a31590aa12130d5b3becc8ae37dead86392455841b8fc1",
+    "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+    "policySource": "project.yaml",
+    "previous": null,
+    "actor": "qa-agent@urlshort-factory",
+    "provenance": "transport:v1",
+    "at": "2026-10-03T19:57:07.196Z",
+    "verdict": "accept",
+    "reason": "Impact analysis added at a686b2a before design c1be728; module, endpoint, schema/data, flow, blast-radius and compatibility rows read. Test-enumeration omission explicitly superseded by later authorized two-assertion grant.",
+    "evidence": [
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/impact-analysis.md",
+        "sha256": "4441c2ea917e3f9c5f17716dab435f46744668cb53b19fb1800d2c3008859a62"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-artifact-provenance-35590f0.json",
+        "sha256": "32ce888e8171eb285a0c5c151c63a074f638cac5862a224c312439868f43a6b5"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-grant-transitions-428e9e1.json",
+        "sha256": "5fa7ceb0827247321c3b01d85358f10e9d31c041e5085c90fa8c552c30429585"
+      }
+    ],
+    "subject": {
+      "kind": "commit",
+      "ref": "35590f06c852543c29097a42c43b7802be90ba40"
+    },
+    "intent": "338169187411d6a1fabc36dbffd40aa98592fd792a5cc7900dd6b913094e3787",
+    "id": "85a0943c02fdf50f4684c65cb330fd05c082b796b27e859b884ef74e59d12271"
+  },
+  {
+    "version": 1,
+    "scope": "missions/02-brownfield/slices/01-audit-read",
+    "sequence": 7,
+    "operationId": "56c291b244bf87362c309aef7d608171220859e927179fbb85566951ba27e1ce",
+    "itemId": "item-4068d77c1333b52a69af",
+    "itemRevision": "0625770099a634ca57559ffc5bb1636ff40b07f51faf0d421b680d70ea8fb7ea",
+    "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+    "policySource": "project.yaml",
+    "previous": null,
+    "actor": "qa-agent@urlshort-factory",
+    "provenance": "transport:v1",
+    "at": "2026-10-03T19:57:07.489Z",
+    "verdict": "accept",
+    "reason": "Installed shipped jar created active/retired links and three clicks; stopped before candidate used identical H2 directory. All link/audit columns and full statistics preserved; active302 exact Location, retired410 and original rows readable; only verification GET adds fourth click.",
+    "evidence": [
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-upgrade-before.json",
+        "sha256": "269484e6709b5cd7dd048f8fc34905ca000c40570bf9716d47a59111aec0eda8"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-upgrade-after.json",
+        "sha256": "f107729844f832ccd0b394ab5ce312b7d8993fb45b5a9fb2bf78e6f6048587c2"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-http-ledger-35590f0.json",
+        "sha256": "9156337a1c58752ece9a41870f2fd2994ab31c804a161f7c2991f109b908488d"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-artifact-provenance-35590f0.json",
+        "sha256": "32ce888e8171eb285a0c5c151c63a074f638cac5862a224c312439868f43a6b5"
+      }
+    ],
+    "subject": {
+      "kind": "commit",
+      "ref": "35590f06c852543c29097a42c43b7802be90ba40"
+    },
+    "intent": "35f9b3a74c74fed31bba2f6a18fd6ca4ed4e1c9ea5457290dc9fa57cdca5d207",
+    "id": "c0fb577a471c2041f833766911737dc7507201f85d016e27a3e696e2cf394308"
+  },
+  {
+    "version": 1,
+    "scope": "missions/02-brownfield/slices/01-audit-read",
+    "sequence": 8,
+    "operationId": "3a01f433228bb139765bd55b68f721a0ad0b618d3faf13dd02ec50dea5a23b46",
+    "itemId": "item-3fd449964ff3a7134608",
+    "itemRevision": "e84a68d225f5bd7c537ea47e4de1949977a9e6c557dba22dfc2d6c3023c26905",
+    "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+    "policySource": "project.yaml",
+    "previous": null,
+    "actor": "qa-agent@urlshort-factory",
+    "provenance": "transport:v1",
+    "at": "2026-10-03T19:57:07.828Z",
+    "verdict": "accept",
+    "reason": "Installed candidate two pages via next both200; identical page URIs repeated with forwarding headers both403. Header request IDs correlate with sanitized JSON events. All271 captures and276 request events reconciled; audit/client/cursor/SQL-message canaries absent.",
+    "evidence": [
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-exact-exchange-35590f0.json",
+        "sha256": "667e73d88b8306ba5f194bcc11b7155f229dc32675a82488252fb89007244221"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-request-log-lines-35590f0.json",
+        "sha256": "e4bb5e2ecfcb1c417e72da52bdf75b2a8bf49cc940a7a445c58ad1655fb28b34"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-verification-35590f0.json",
+        "sha256": "0e00fbdf1402a8a06bb768d06a92c6b8d0982e00266fc51235aa8d6ad71687e5"
+      }
+    ],
+    "subject": {
+      "kind": "commit",
+      "ref": "35590f06c852543c29097a42c43b7802be90ba40"
+    },
+    "intent": "bd5653a04c082266f111d24b6b4cd4a40af401fff67befa37cbac7002f69b1de",
+    "id": "73513ce64ae4c4fcd593d1efb0e21d70f8fd1467f005454b5b214546698b723d"
+  },
+  {
+    "version": 1,
+    "scope": "missions/02-brownfield/slices/01-audit-read",
+    "sequence": 9,
+    "operationId": "6b70f96b41799fb8413bbbff35a55e1df59ce2f943aa48352894a085f4f15b0c",
+    "itemId": "item-e4d631a3f1c0d21af5b5",
+    "itemRevision": "2c6a01baabb2b088f7424f9d30b488c288512df278c55ed17966b44e75619261",
+    "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+    "policySource": "project.yaml",
+    "previous": null,
+    "actor": "qa-agent@urlshort-factory",
+    "provenance": "transport:v1",
+    "at": "2026-10-03T19:57:08.127Z",
+    "verdict": "accept",
+    "reason": "Not applicable: no migration diff from shipped V1/V2. Real installed upgrade preserves existing schema and stored rows; no new migration version or rollback introduced.",
+    "evidence": [
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-artifact-provenance-35590f0.json",
+        "sha256": "32ce888e8171eb285a0c5c151c63a074f638cac5862a224c312439868f43a6b5"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-upgrade-before.json",
+        "sha256": "269484e6709b5cd7dd048f8fc34905ca000c40570bf9716d47a59111aec0eda8"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-upgrade-after.json",
+        "sha256": "f107729844f832ccd0b394ab5ce312b7d8993fb45b5a9fb2bf78e6f6048587c2"
+      }
+    ],
+    "subject": {
+      "kind": "commit",
+      "ref": "35590f06c852543c29097a42c43b7802be90ba40"
+    },
+    "intent": "ec969797662bf634e233e451acfe5bc5d4b97694f48feeffa45ecfdbfefa31ca",
+    "id": "97f9e1802e59c28b81ad7c4fdc08e432e298da3ad964d9c1f277aaacf7e3a16b"
+  },
+  {
+    "version": 1,
+    "scope": "missions/02-brownfield/slices/01-audit-read",
+    "sequence": 10,
+    "operationId": "006cbd723915259578e7f5e5b39613eb61c04f6ecad99ff99f19cd6d017f21b6",
+    "itemId": "item-472cf6d38231f7ac145d",
+    "itemRevision": "0be496cfa370ed3507dacef85cb24629c9bbc3aada504a467dcc0a0315696c55",
+    "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+    "policySource": "project.yaml",
+    "previous": null,
+    "actor": "qa-agent@urlshort-factory",
+    "provenance": "transport:v1",
+    "at": "2026-10-03T19:57:08.410Z",
+    "verdict": "accept",
+    "reason": "Entire live installed and controlled candidate API JSON equals committed candidate document; empty key-sorted diff. Audit limit/cursor, example and200/400/403/429/500 documented; earlier operation objects unchanged.",
+    "evidence": [
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-api-diff-35590f0.txt",
+        "sha256": "085110d034ba95be1a9d443988414be8a7b5bd155e71f8e296ea5e2bc26e9194"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-verification-35590f0.json",
+        "sha256": "0e00fbdf1402a8a06bb768d06a92c6b8d0982e00266fc51235aa8d6ad71687e5"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-http-ledger-35590f0.json",
+        "sha256": "9156337a1c58752ece9a41870f2fd2994ab31c804a161f7c2991f109b908488d"
+      }
+    ],
+    "subject": {
+      "kind": "commit",
+      "ref": "35590f06c852543c29097a42c43b7802be90ba40"
+    },
+    "intent": "e3317d01a838c9f9893fe25f6bf6483c32e30c2ca70765e9f3bd6b3fe5d54761",
+    "id": "405f8d7a445d7d00e4fd1af23851ec2a907cfc322a84e45c1fe450e52e6e70cb"
+  },
+  {
+    "version": 1,
+    "scope": "missions/02-brownfield/slices/01-audit-read",
+    "sequence": 11,
+    "operationId": "b7017fcfcdc96802d821d90eeecb138c40600d4d4395f0555f04dd5d1696a8a5",
+    "itemId": "item-9bac2e16e0a7e029584a",
+    "itemRevision": "f508a2c5439c7849aaafbb3fd58982b7763ea39800d251067b26b4a97ec3166e",
+    "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+    "policySource": "project.yaml",
+    "previous": null,
+    "actor": "qa-agent@urlshort-factory",
+    "provenance": "transport:v1",
+    "at": "2026-10-03T19:57:08.697Z",
+    "verdict": "accept",
+    "reason": "ADR0019 exists and was indexed in DESIGN at c1be728 before dependent code. It covers loopback enforcement, forwarded-strategy fail-closed guard, keyset cursor/write sequence and no migration; historical chronology and index bytes independently checked.",
+    "evidence": [
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-artifact-provenance-35590f0.json",
+        "sha256": "32ce888e8171eb285a0c5c151c63a074f638cac5862a224c312439868f43a6b5"
+      },
+      {
+        "ref": "docs/adr/0019-audit-read-loopback-keyset.md",
+        "sha256": "c1628e29b316707d18fa3ba448e84c204463eadfc0b065689e2b4a9da336f0ac"
+      }
+    ],
+    "subject": {
+      "kind": "commit",
+      "ref": "35590f06c852543c29097a42c43b7802be90ba40"
+    },
+    "intent": "af93aeb279ef921e1a3b6b09696ff3ce9eb375f103f42682e14858b0f9bdab3c",
+    "id": "46d8b18f01bdf8e86b74045a1d7633cc556177286f2e2b0483a48ee2f0238ee2"
+  },
+  {
+    "version": 1,
+    "scope": "missions/02-brownfield/slices/01-audit-read",
+    "sequence": 12,
+    "operationId": "2b3c5ad15d1900b4f431ad72ab9cc70735ab719ba26a43b2690b7a9df5944a06",
+    "itemId": "item-baed5a622321a623f976",
+    "itemRevision": "a4b0e2a3a7db1dc8d7d1793eeccb1dbc6c87c6bcf05396100b1dd331be480d0a",
+    "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+    "policySource": "project.yaml",
+    "previous": null,
+    "actor": "qa-agent@urlshort-factory",
+    "provenance": "transport:v1",
+    "at": "2026-10-03T19:57:08.992Z",
+    "verdict": "accept",
+    "reason": "Candidate README states loopback-only/no opening setting; DESIGN section3 explicitly prohibits headerless local relay or requires a refused forwarding header. Observed settings/forwarding/HEAD/error effects agree, qualified to controlled peer inputs.",
+    "evidence": [
+      {
+        "ref": "docs/DESIGN.md",
+        "sha256": "136b47a4bed4f14a21ea11fd109732d2984609d180c20c64c5847ce2fcd7b7f9"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-PASS-35590f0.md",
+        "sha256": "a8c7d884491ac7f032dc529e00199dedb5bdcdac7b854855b7fc8120b2f151da"
+      },
+      {
+        "ref": "missions/02-brownfield/slices/01-audit-read/proof/qa-verification-35590f0.json",
+        "sha256": "0e00fbdf1402a8a06bb768d06a92c6b8d0982e00266fc51235aa8d6ad71687e5"
+      }
+    ],
+    "subject": {
+      "kind": "commit",
+      "ref": "35590f06c852543c29097a42c43b7802be90ba40"
+    },
+    "intent": "d316fef4e50a893166ac4fbff3bd3cc01d3dd15ef8195cfa1cf3f85a3ce09231",
+    "id": "8af8e576e003d3cd36c9c2bb59711cb7fd6d2dbbcd5104496d805603cb32092c"
+  }
+]

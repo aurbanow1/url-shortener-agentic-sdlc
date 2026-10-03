@@ -146,6 +146,12 @@ next and repeats each identical page URI with a forwarding header: both
 repeats return403. Their four request IDs correlate with JSON events in the
 candidate-upgrade log; the final app was stopped and its port refused.
 
+Attributed judgments: receipts 1–12 accept contract items 1–11 and 13 against
+commit 35590f06c852543c29097a42c43b7802be90ba40, preserved in
+`qa-judgment-receipts-35590f0.json`. All evidence hashes were checked after
+recording. Item 12 remains pending under the downstream sequencing obligation.
+Evidence commits: `29a141e` and `63e04b5`.
+
 | AC | Effect independently observed | Evidence |
 |---|---|---|
 | 1 | Empty store: 200, exactly items=[] and next=null | fixed-ac01-empty |
