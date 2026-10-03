@@ -1,6 +1,6 @@
 # Evidence export — 01-greenfield-core
 
-Exported 2026-10-03T15:23:54Z by tools/evidence-export.sh from OpenRig 0.6.3 (8b5e9488).
+Exported 2026-10-03T17:43:57Z by tools/evidence-export.sh from OpenRig 0.6.3 (8b5e9488).
 
 | Artifact | Governance clause (docs/GOVERNANCE.md) |
 |---|---|
@@ -18,7 +18,7 @@ Exported 2026-10-03T15:23:54Z by tools/evidence-export.sh from OpenRig 0.6.3 (8b
 
 Approval stamps are not in this export: they live in the stamped files' frontmatter (missions/<m>/SPEC.md, slices/*/SPEC.md: approved-spec-*, approved-*) with append-only audit rows daemon-side; the decision text behind each stamp is in the gate packet's transitions here.
 
-Instances exported: 8; packets exported: 88.
+Instances exported: 12; packets exported: 109.
 
 ## Packets (workflow · step · state · owner)
 
@@ -88,7 +88,7 @@ Instances exported: 8; packets exported: 88.
 | qitem-20261003094649-844b6a83 | urlshort-slice-delegated | plan_lock | handed-off | orchestration-lead |
 | qitem-20261003094850-c667801b | urlshort-slice-delegated | implement | handed-off | development-agent |
 | qitem-20261003101510-d5f18be9 | urlshort-slice-delegated | qa_check | handed-off | qa-agent |
-| qitem-20261003103240-18e29a17 | - | - | blocked | orchestration-lead |
+| qitem-20261003103240-18e29a17 | - | - | done | orchestration-lead |
 | qitem-20261003104116-a5a61dcb | urlshort-slice-delegated | code_review | done | review-agent |
 | qitem-20261003105943-d93e6776 | urlshort-slice-delegated | implement | handed-off | development-agent |
 | qitem-20261003110223-756ec012 | urlshort-slice-delegated | qa_check | handed-off | qa-agent |
@@ -98,11 +98,11 @@ Instances exported: 8; packets exported: 88.
 | qitem-20261003113714-4cbdf1e0 | 03-ambiguous-analytics | decompose | handed-off | orchestration-lead |
 | qitem-20261003114044-007e2031 | urlshort-slice-delegated-b | qa_check | handed-off | qa2-agent |
 | qitem-20261003114345-f739a1d5 | 03-ambiguous-analytics | decomposition_review | handed-off | review-agent |
-| qitem-20261003114944-9bd32a00 | 03-ambiguous-analytics | mission_plan_lock | blocked | orchestration-lead |
+| qitem-20261003114944-9bd32a00 | 03-ambiguous-analytics | mission_plan_lock | handed-off | orchestration-lead |
 | qitem-20261003115108-61e03251 | 02-brownfield | decompose | handed-off | orchestration-lead |
 | qitem-20261003115740-6f882a4a | 02-brownfield | decomposition_review | handed-off | review-agent |
-| qitem-20261003120551-4e8acd30 | 02-brownfield | mission_plan_lock | blocked | orchestration-lead |
-| qitem-20261003120849-f4cbfa97 | - | - | blocked | orchestration-lead |
+| qitem-20261003120551-4e8acd30 | 02-brownfield | mission_plan_lock | handed-off | orchestration-lead |
+| qitem-20261003120849-f4cbfa97 | - | - | done | orchestration-lead |
 | qitem-20261003121811-d329afbc | urlshort-slice-delegated-b | code_review | done | review2-agent |
 | qitem-20261003123104-ccd07ab0 | urlshort-slice-delegated-b | implement | handed-off | development-agent |
 | qitem-20261003130258-8d163c70 | urlshort-slice-delegated-b | qa_check | handed-off | qa2-agent |
@@ -110,7 +110,28 @@ Instances exported: 8; packets exported: 88.
 | qitem-20261003135618-4e62dbf5 | - | - | done | qa2-agent |
 | qitem-20261003135649-046d003e | urlshort-slice-delegated-b | integrate | done | orchestration-lead |
 | qitem-20261003135957-0f6e0c8b | 01-greenfield-core | wave_review | handed-off | review-agent |
-| qitem-20261003142414-ac899454 | 01-greenfield-core | release_prep | in-progress | release-agent |
+| qitem-20261003142414-ac899454 | 01-greenfield-core | release_prep | handed-off | release-agent |
+| qitem-20261003153114-04cfbe0a | 01-greenfield-core | release_review | handed-off | review-agent |
+| qitem-20261003154114-c0dd70b0 | 03-ambiguous-analytics | wave_integration | blocked | orchestration-lead |
+| qitem-20261003154117-c072093e | 02-brownfield | wave_integration | blocked | orchestration-lead |
+| qitem-20261003154347-19e96a75 | urlshort-slice | requirements | handed-off | requirements-agent |
+| qitem-20261003154415-a6020a5f | urlshort-slice-delegated | requirements | handed-off | requirements-agent |
+| qitem-20261003154427-8eccec4f | urlshort-slice-delegated-b | requirements | handed-off | requirements-agent |
+| qitem-20261003154828-764bc65c | urlshort-slice-delegated | requirements_review | done | review-agent |
+| qitem-20261003155116-26bce90f | urlshort-slice-delegated-b | requirements_review | handed-off | review2-agent |
+| qitem-20261003161333-c4da0117 | urlshort-slice | requirements_review | handed-off | review-agent |
+| qitem-20261003163546-70ed3e48 | urlshort-slice-delegated-b | design | handed-off | design-agent |
+| qitem-20261003163608-f96c8e6c | urlshort-slice-delegated | requirements | handed-off | requirements-agent |
+| qitem-20261003163921-0a8e2926 | urlshort-slice-delegated | requirements_review | handed-off | review-agent |
+| qitem-20261003164151-fbee7e97 | urlshort-slice | design | blocked | design-agent |
+| qitem-20261003164258-4a95943e | urlshort-slice-delegated | design | in-progress | design-agent |
+| qitem-20261003165209-ce7abb0e | 01-greenfield-core | ship_signoff | handed-off | release-agent |
+| qitem-20261003165532-4a59045f | urlshort-drill | implement | done | release-agent |
+| qitem-20261003165738-c5d9694f | urlshort-drill | implement | canceled | release-agent |
+| qitem-20261003171157-d2ed38d0 | 01-greenfield-core | evidence_export | in-progress | release-agent |
+| qitem-20261003172504-1e5d5337 | urlshort-slice-delegated-b | design_review | done | review2-agent |
+| qitem-20261003173636-643c7c17 | urlshort-slice-delegated-b | design | blocked | design-agent |
+| qitem-recovery-bbf598d71295fd69 | - | - | done | orchestration-lead |
 | qitem-recovery-bfba0b08a35bc9d8 | - | - | done | orchestration-lead |
 
 ## Step trails (closed at · step · exit · packet · actor)
@@ -164,6 +185,11 @@ Instances exported: 8; packets exported: 88.
 
 | Closed at | Step | Exit | Packet | Actor |
 |---|---|---|---|---|
+| 2026-10-03T17:12:26.612Z | evidence_export | waiting | qitem-20261003171157-d2ed38d0 | release-agent |
+| 2026-10-03T17:11:57.816Z | ship_signoff | handoff | qitem-20261003165209-ce7abb0e | release-agent |
+| 2026-10-03T16:52:09.275Z | release_review | handoff | qitem-20261003153114-04cfbe0a | review-agent |
+| 2026-10-03T15:47:51.610Z | release_review | waiting | qitem-20261003153114-04cfbe0a | review-agent |
+| 2026-10-03T15:31:14.056Z | release_prep | handoff | qitem-20261003142414-ac899454 | release-agent |
 | 2026-10-03T14:24:14.154Z | wave_review | handoff | qitem-20261003135957-0f6e0c8b | review-agent |
 | 2026-10-03T13:59:57.356Z | wave_integration | handoff | qitem-20261003044200-384e9544 | orchestration-lead |
 | 2026-10-03T11:41:04.904Z | wave_integration | waiting | qitem-20261003044200-384e9544 | orchestration-lead |
@@ -271,6 +297,7 @@ Instances exported: 8; packets exported: 88.
 
 | Closed at | Step | Exit | Packet | Actor |
 |---|---|---|---|---|
+| 2026-10-03T15:41:14.371Z | mission_plan_lock | handoff | qitem-20261003114944-9bd32a00 | orchestration-lead |
 | 2026-10-03T11:49:44.054Z | decomposition_review | handoff | qitem-20261003114345-f739a1d5 | review-agent |
 | 2026-10-03T11:43:45.395Z | decompose | handoff | qitem-20261003113714-4cbdf1e0 | orchestration-lead |
 
@@ -278,6 +305,39 @@ Instances exported: 8; packets exported: 88.
 
 | Closed at | Step | Exit | Packet | Actor |
 |---|---|---|---|---|
+| 2026-10-03T15:41:17.312Z | mission_plan_lock | handoff | qitem-20261003120551-4e8acd30 | orchestration-lead |
 | 2026-10-03T12:05:51.889Z | decomposition_review | handoff | qitem-20261003115740-6f882a4a | review-agent |
 | 2026-10-03T11:57:40.256Z | decompose | handoff | qitem-20261003115108-61e03251 | orchestration-lead |
+
+### 01M416Z3CM54YQTX93V4KG0CPS
+
+| Closed at | Step | Exit | Packet | Actor |
+|---|---|---|---|---|
+| 2026-10-03T16:41:51.871Z | requirements_review | handoff | qitem-20261003161333-c4da0117 | review-agent |
+| 2026-10-03T16:13:33.159Z | requirements | handoff | qitem-20261003154347-19e96a75 | requirements-agent |
+
+### 01M416ZY5N11CDGZBM2DT4GAXS
+
+| Closed at | Step | Exit | Packet | Actor |
+|---|---|---|---|---|
+| 2026-10-03T16:42:58.860Z | requirements_review | handoff | qitem-20261003163921-0a8e2926 | review-agent |
+| 2026-10-03T16:39:21.889Z | requirements | handoff | qitem-20261003163608-f96c8e6c | requirements-agent |
+| 2026-10-03T16:36:08.985Z | requirements_review | failed | qitem-20261003154828-764bc65c | review-agent |
+| 2026-10-03T15:48:28.989Z | requirements | handoff | qitem-20261003154415-a6020a5f | requirements-agent |
+
+### 01M4170AA9E72WW1BXEA5PX0AP
+
+| Closed at | Step | Exit | Packet | Actor |
+|---|---|---|---|---|
+| 2026-10-03T17:36:36.777Z | design_review | failed | qitem-20261003172504-1e5d5337 | review2-agent |
+| 2026-10-03T17:25:04.031Z | design | handoff | qitem-20261003163546-70ed3e48 | design-agent |
+| 2026-10-03T16:35:46.921Z | requirements_review | handoff | qitem-20261003155116-26bce90f | review2-agent |
+| 2026-10-03T15:51:16.642Z | requirements | handoff | qitem-20261003154427-8eccec4f | requirements-agent |
+
+### 01M41B1ABGY3WR0DKEPZCJE9D3
+
+| Closed at | Step | Exit | Packet | Actor |
+|---|---|---|---|---|
+| 2026-10-03T16:57:48.793Z | implement | failed | qitem-20261003165738-c5d9694f | orchestration-lead |
+| 2026-10-03T16:57:21.339Z | implement | failed | qitem-20261003165532-4a59045f | release-agent |
 

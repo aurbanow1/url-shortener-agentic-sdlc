@@ -588,6 +588,36 @@ ping and OpenAPI remain.
 **Factory.** If the human holds the ship gate, the packet stays parked; this step
 waits on what the human asks for. No workflow rollback is needed.
 
+## 9. Ship decision
+
+Added at `evidence_export`; sections 1 to 8 are the package the human signed
+(`973bc1a`, plus the dogfood line `67d168f`).
+
+Approved by `human@kernel` on gate `qitem-20261003165209-ce7abb0e` at
+2026-10-03T17:11:19Z (transition 1011): "approve: ship 8e9c065 (package 973bc1a).
+AC-28's published-port clause is accepted as a disclosed host gap of macOS Docker's
+forwarder: amend AC-28 to be measured on paths that reach the service directly (jar,
+in-VM port publish, container namespace), record the forwarder cut in GAPS and RISKS, and
+have qa2 re-judge item 13 against the amended criterion before the delivery stamps."
+
+Carried out before the stamps: AC-28 amended in `03-operate`'s SPEC (`55a197a`,
+ambiguity-log row A-19), plan-lock re-stamped (`461b689`), the forwarder cut recorded in
+`docs/RISKS.md` (`ec60d42`) and `docs/qa/GAPS.md` (`15a8f9c`), `qa2-agent` re-judged item 13
+against the amended criterion, and `qa-agent` re-affirmed the `02-analytics` items the GAPS
+change had turned `unknown` (`715cc9b`). Delivery stamps, recorded by the orchestration lead
+on the human's behalf when all three slices read ready (14/14, 13/13, 13/13 at 17:31Z):
+`01-create-redirect` 17:24:23Z action `01M41CQA0S578QM1N15KM8TP30`, `03-operate` 17:24:24Z
+action `01M41CQAB84KZC76HJYDXW4CD2`, `02-analytics` 17:31:45Z action
+`01M41D4SA9V4YKWN79SVM0T5W9` (`approved-*` in each slice `SPEC.md`).
+
+At the final evidence export (17:43Z), `02-analytics` item 10 reads `unknown` again
+because mission 02's design commit `c1be728` edited the shared `docs/DESIGN.md` that its
+judgment pins; mission 01's product did not change
+(`docs/evidence/01-greenfield-core/INDEX-notes.md`). Evidence of the whole mission:
+[`../../docs/evidence/01-greenfield-core/`](../../docs/evidence/01-greenfield-core/).
+Publishing remains a human act; no agent pushed, tagged or published anything for this
+release.
+
 ## Self-check
 
 - §1 Brief: what ships is pinned to an empty product diff; the one judgment item
@@ -612,5 +642,10 @@ waits on what the human asks for. No workflow rollback is needed.
 - §8 Rollback: step 1 rehearsed twice, for the gate and as the operational recipe
   (loopback binding, the same data volume, a pre-existing link before and after, the
   smoke's expected stop, roll-forward); the two migration-carrying reverts described
-  step by step but **not rehearsed**; data loss stated. The volume backup command for
+  step by step but **not rehearsed**; data loss stated.
+- §9 Ship decision (at `evidence_export`): decision quoted from gate transition 1011;
+  stamp times and action ids read from the lead's closure note and checked in each slice
+  `SPEC.md`; the follow-up commits verified with `git show`; proof readiness read twice
+  (ready at the stamps per the lead, one `unknown` at export with its cause traced to
+  commit `c1be728`). The volume backup command for
   the container path is not given or rehearsed.
