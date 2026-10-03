@@ -13,6 +13,17 @@ public class PingController {
 
 	private static final Logger log = LoggerFactory.getLogger(PingController.class);
 
+	/** Stateless; created by Spring. */
+	public PingController() {
+	}
+
+	/**
+	 * Liveness answer for clients (00-hello slice 01-ping, AC-1 and AC-2): writes one INFO event
+	 * {@code ping} carrying the request id from the MDC and nothing client-controlled.
+	 *
+	 * @return {@code status} {@code ok} and {@code time}, the current instant as ISO-8601 UTC with
+	 *         {@code Z}; never {@code null}
+	 */
 	@GetMapping("/api/ping")
 	public PingResponse ping() {
 		log.info("ping");

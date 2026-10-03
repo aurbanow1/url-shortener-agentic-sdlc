@@ -6,9 +6,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicReference;
 
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.read.ListAppender;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletResponse;
 import org.junit.jupiter.api.Test;
+import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.mock.web.MockFilterChain;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -51,6 +55,32 @@ class RequestIdFilterTest {
 
 		assertThat(first.getHeader(HEADER)).isNotEqualTo("canary-rid");
 		assertThat(second.getHeader(HEADER)).isNotEqualTo(first.getHeader(HEADER));
+	}
+
+	@Test
+	void writesOneRequestCompletedEventWithTheStatusAndTheIdButNotTheMethod() throws ServletException, IOException {
+		ListAppender<ILoggingEvent> events = new ListAppender<>();
+		events.start();
+		Logger logger = (Logger) LoggerFactory.getLogger(RequestIdFilter.class);
+		logger.addAppender(events);
+		MockHttpServletResponse response = new MockHttpServletResponse();
+		try {
+			filter.doFilter(new MockHttpServletRequest("CANARYMETHOD", "/api/links"), response,
+					(req, res) -> ((HttpServletResponse) res).setStatus(418));
+		}
+		finally {
+			logger.detachAppender(events);
+		}
+
+		assertThat(events.list).singleElement().satisfies(event -> {
+			assertThat(event.getFormattedMessage()).isEqualTo("request completed");
+			assertThat(event.getMDCPropertyMap()).containsEntry(MDC_KEY, response.getHeader(HEADER));
+			assertThat(event.getKeyValuePairs()).singleElement().satisfies(pair -> {
+				assertThat(pair.key).isEqualTo("status");
+				assertThat(pair.value).isEqualTo(418);
+			});
+			assertThat(event.toString()).doesNotContain("CANARYMETHOD");
+		});
 	}
 
 	@Test
