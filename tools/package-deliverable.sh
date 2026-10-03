@@ -3,13 +3,14 @@
 # included, nothing uncommitted, nothing ignored — so no PDF, no build output,
 # no Gradle home, no worktrees, no local data) plus the exported rig bundle.
 # Usage: tools/package-deliverable.sh [out-dir]   → <out-dir>/url-shortener-agentic-sdlc.zip
+# PACKAGE_ALLOW_DIRTY=1 skips the clean-tree check (test runs only; the clone still ships committed state only).
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUT="${1:-$ROOT/dist}"; mkdir -p "$OUT"
 STAGE="$(mktemp -d)"; trap 'rm -rf "$STAGE"' EXIT
 NAME=url-shortener-agentic-sdlc
 
-if [ -n "$(git -C "$ROOT" status --porcelain --untracked-files=no)" ]; then
+if [ -z "${PACKAGE_ALLOW_DIRTY:-}" ] && [ -n "$(git -C "$ROOT" status --porcelain --untracked-files=no)" ]; then
   echo "refusing: uncommitted tracked changes in $ROOT (commit or stash first)" >&2; exit 1
 fi
 
@@ -19,8 +20,7 @@ HEAD_SHA="$(git -C "$ROOT" rev-parse --short HEAD)"
 
 # the factory as a shareable artifact (best effort: the zip is complete without it)
 mkdir -p "$STAGE/$NAME/dist"
-if rig bundle create "$ROOT/rig/rig.yaml" --out "$STAGE/$NAME/dist/urlshort-factory.rigbundle" >/dev/null 2>&1 \
-   || rig bundle create "$ROOT/rig/rig.yaml" --output "$STAGE/$NAME/dist/urlshort-factory.rigbundle" >/dev/null 2>&1; then
+if rig bundle create "$ROOT/rig/rig.yaml" --output "$STAGE/$NAME/dist/urlshort-factory.rigbundle" --name urlshort-factory --rig-root "$ROOT/rig" --notes "urlshort factory at $HEAD_SHA" >/dev/null 2>&1; then
   echo "rig bundle: $STAGE/$NAME/dist/urlshort-factory.rigbundle"
 else
   echo "rig bundle: not created (rig bundle create failed or unavailable); continuing without it" >&2
