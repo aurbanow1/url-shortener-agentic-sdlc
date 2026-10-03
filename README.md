@@ -18,7 +18,7 @@ returns a `code` and `shortUrl`; `GET /{code}` redirects (302); `GET /api/links/
 `DELETE /api/links/{code}` retires the link. Health `/actuator/health`, metrics `/actuator/prometheus`,
 API document `/v3/api-docs`. Settings are environment variables (`URLSHORT_PUBLIC_BASE_URL`,
 `URLSHORT_RATELIMIT_CREATEPERMINUTE`, `URLSHORT_RATELIMIT_REDIRECTPERMINUTE`,
-`URLSHORT_RATELIMIT_TRUSTEDPROXIES`, `SPRING_DATASOURCE_URL`).
+`URLSHORT_RATELIMIT_TRUSTEDPROXIES`, `URLSHORT_CLICK_RETENTIONDAYS`, `SPRING_DATASOURCE_URL`).
 
 As a container: `docker compose up -d --build` (multi-stage `Dockerfile`, JRE 21, non-root on a
 read-only filesystem, H2 file database in the `urlshort-data` volume, published on `127.0.0.1:8080`

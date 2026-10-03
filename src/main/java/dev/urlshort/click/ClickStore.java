@@ -10,8 +10,9 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Component;
 
 /**
- * The {@code click} table (ADR-0013): one insert per recorded click, and the one grouped read the
- * statistics are folded from. Reads {@code link} only to turn a code into its id.
+ * The {@code click} table (ADR-0013): one insert per recorded click, the one grouped read the
+ * statistics are folded from, and the retention delete. Reads {@code link} only to turn a code into
+ * its id.
  */
 @Component
 class ClickStore {
@@ -32,6 +33,14 @@ class ClickStore {
 				.param("userAgentClass", click.userAgentClass())
 				.param("clientHash", click.clientHash())
 				.update();
+	}
+
+	/**
+	 * Deletes every click stored on a UTC day before {@code cutoff}, in one statement and one
+	 * transaction; a table scan by design (ADR-0018). Returns the number of clicks deleted.
+	 */
+	int deleteBefore(LocalDate cutoff) {
+		return jdbc.sql("DELETE FROM click WHERE clicked_on < :cutoff").param("cutoff", cutoff).update();
 	}
 
 	/** The link's id by its code, read only to find its clicks; empty when no link has the code. */
