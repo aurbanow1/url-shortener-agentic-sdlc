@@ -4,7 +4,7 @@
 >
 > **HOW (the drop verb, not hand-placement):** put media files under `proof/`, then ATTACH them with `rig proof add OPR.99.0.2.3 --artifact-type qa --verdict PASS --candidate-sha <tip> --money-evidence "<one line>" --evidences "1" --media "screenshot-01.png"` — the drop writes the C1 header the Living Notes DELIVERED pairing joins on. Hand-placing files without a drop leaves the deliverable unpaired and `unverified`.
 
-Current status: review FAIL at 43cccf5; returned to implement. Historical QA PASS on a7c533f is superseded; smoke proof item 12 withdrawn in receipt 00000013 (2026-10-03 UTC).
+Current status: QA re-check PASS on candidate 1c8b2cf; independent re-review pending. Review FAIL at 43cccf5 and the withdrawn a7c533f item 12 remain historical. No release or slice-closure verdict.
 
 ## What this proves
 
@@ -16,6 +16,7 @@ Dropped via `rig proof add … --evidences … --media …` (one drop per verdic
 
 - Builder drop: `proof/builder-evidence-a7c533f.md`.
 - QA drop: `proof/qa-evidence-a7c533f.md`; coverage, captures and limits are detailed below.
+- Current QA drop: `proof/qa-evidence-1c8b2cf.md`; fresh re-check below.
 
 ## Residue / caveats (if any)
 
@@ -285,3 +286,122 @@ item 12 in `proof/judgments/00000013.md`; item 11 remains unaccepted and item
 reports and probe outputs; it did not rerun the probes or check another
 candidate without a packet. Re-check must cover reordered timestamps, rollback
 cleanup, complete-body/truncation predicates and the total shutdown deadline.
+
+### QA re-check — 1c8b2cf
+
+Seat `qa2-agent@urlshort-factory` (Codex), 2026-10-03 UTC; assigned packet
+`qitem-20261003130258-8d163c70`. **PASS for AC-1–AC-20 and the assigned QA
+boundary**, exact unchanged candidate
+`1c8b2cff20ad8b73a060bc817c8d0011782f876f`. Product source, tests, build and
+configuration were not edited. I read the five-file delta, builder rework,
+review findings, and the lead's actual transition 726 granting the two test
+peers and defining backward Clock steps as outside the contract, failing closed.
+
+Fresh `../../scripts/gw --offline check --rerun-tasks` completed all 14 tasks,
+including Javadoc and merged coverage verification. JUnit XML: **165 unit /
+155 functional**, zero failures/errors/skips. CSV totals: unit 400/443 lines
+and 162/162 branches; functional 408/443 lines and 131/162 branches; merged
+**443/443 lines, 162/162 branches**. All 321 report copies match source SHA-256
+hashes; reports and summary are under `docs/qa/coverage/03-operate/`. Historical
+a7c533f copies remain retrievable in evidence commit `0b10ca9`.
+
+#### Finding effects rechecked
+
+| Finding | Independent observation | Evidence |
+|---|---|---|
+| CR-01 / SEC-01 HIGH | Ran the reviewer's actual-class init probe unchanged: ordinary 1 ms reordering admits 60 before exhaustion, the overtaken request returns retry 1, later admissions 0, total 60 instead of 120. Fresh deterministic regression also passes. | `docs/qa/03-operate/rate-boundary-1c8b2cf.txt` |
+| CR-03 MEDIUM | Same probe: after rollback, 10,000 new clients and 61 s, one request leaves 2 clients instead of 10,002. The printed `cleanupDeadlineStillInFuture=true` is a literal probe label, not a measurement. Fresh rollback/fail-closed tests pass. | same record; unit CSV and method inventory |
+| CR-02 HIGH | Re-executed actual candidate `r0_open`/`r0_finish` with eight controlled peers. Complete fixed-length and chunked 201 pass. Promised 100-byte 201 with zero/ten bytes, truncated chunked 201, no response, complete 500, and complete 201 after 11,067 ms all reject. Each request's headers preceded its completed chunked upload by at least 0.50 s. Rejections have actual curl/status/deadline verdicts; setup failure cannot count. | `docs/qa/03-operate/r0-controls-1c8b2cf.{json,txt}`; `proof/qa-r0-control-1c8b2cf.py` |
+
+The R0 control derives from the builder's six-case control, whose assertions
+I read, with independently added complete/truncated chunked cases and a
+strict harness-success check. It runs the candidate functions; synthetic
+peers verify the instrument, and the separate real-jar drain verifies its
+application use. No claim of review approval is made by this QA table.
+
+#### Public journey and stored effects
+
+Reran the full independently authored HTTP journey on this candidate's
+compiled classes/resources and freshly extracted jar libraries: **2,303
+captured exchanges**. All AC-1–AC-20 have functional tests and observed
+effects: exact 60/600 exhaustion; 999/1 ms refill and rounded Retry-After;
+quiet-minute refill; independent clients/budgets; trusted/untrusted proxy
+chains and spoofed forwarding; invalid/oversized requests charged before
+validation; exact private ProblemDetail media/body; one correlated JSON
+completion for every one of **30** captured 429s across all five apps;
+readiness DOWN with controlled JDBC failure while liveness stays UP;
+status-only health; exact rejection-count increments; template timer tags;
+Prometheus families and absence of prohibited canaries; entire live and
+committed OpenAPI documents equal with no field normalization and all six
+operations carrying 429, integer Retry-After and an example.
+
+Real migrated H2 exports hold **308 links / 309 audit rows / 1,806 reduced
+click rows**. The first 61 creates add exactly 60 audit rows. All 309 final
+audit request ids match captured successful mutations; searched client,
+forwarded, rejected URL/UA/id values are absent from final stored rows and
+all five app logs. Inherited failures were also exercised: invalid URL 400,
+wrong method 405, unknown code 404, oversized body 413, duplicate idempotent
+201, mismatched duplicate 422, retire 204, retired redirect 410, and new code
+after 24-hour key expiry. Details are in `proof/qa-http-1c8b2cf.json`,
+`qa-observed-1c8b2cf.json`, logs, snapshots and the extracted exchanges.
+
+Controls are unchanged QA-only Primary Clock, request-peer wrapper and
+DataSource availability gate, disclosed in the previous instrument record
+and preserved as `qa-control-1c8b2cf.java` / `qa-journey-1c8b2cf.py`. They
+affect only the disposable launcher; real Tomcat, candidate filters and
+migrations run. Exact SPEC peer addresses pass the functional suite. These
+are controlled observations, without a natural outage/quiet-minute or
+alternate real-TCP-peer claim. Separate unmodified jar checks prove env
+overrides, public base URL, data path, trusted proxy setting and smoke.
+
+#### Shutdown, benchmark and instrument limits
+
+The main journey completed its 24 effect groups through the fresh 60-second
+benchmark, then stopped at the new Perl timestamp's unsupported host locale.
+macOS Perl independently reproduces exit 9/panic under inherited `C.UTF-8`
+and succeeds under `C`. The first R0 controls also failed setup, so none of
+their apparent negative classifications counts. Failed output is retained
+under `docs/qa/03-operate/*-locale-failed.*`; no product or toolchain fix was
+attempted. Controls were tightened to require successful setup, and rerun
+with the supported locale. This requirement is recorded as LOW QA-OPR-03,
+not silently ignored.
+
+With supported `C`, the unchanged candidate jar's `--drain` succeeds: R0
+curl exit 0, HTTP 201 complete **532 ms** after SIGTERM; new connection refused;
+**62 complete / 16 refused / 0 boundary losses / 0 failures**, including zero
+dispatched-but-undelivered ids. This establishes the measured jar observation
+and corrected completeness predicate, not the final installed-container
+AC-25/28 verdict. `proof/qa-drain-1c8b2cf.txt` and its small runner preserve
+the command/environment. The script stops its jar; all five tracked apps
+also exited, with their process receipt retained.
+
+The new bench produced 4,925 redirects (**82.1/s**) and 987 creates
+(**16.4/s**), zero bad responses; redirect p95 2.3 ms / p99 3.8 ms, create
+p95 2.6 ms. Offered rate remains below 100/20, so NFR-L1/L2 are not judged.
+The disk-gauge working-directory path remains the existing LOW observation.
+Container AC-21–AC-24/28, final release AC-25–AC-27 judgment, Linux host Perl,
+natural Clock rollback and arbitrarily delayed concurrent sweep reads were
+not exercised. Explicit gap/release rows remain; no exclusion or waiver.
+
+All **186 source methods** (88 unit, 98 functional) and **320 invocations**
+map both ways in fresh TRACEABILITY. Gradle's parameterized display labels
+omit the owning method; the named groups were matched to source providers,
+argument labels and group sizes, with all annotated parameterized methods
+accounted for by `qa-trace-control-1c8b2cf.py`. Current trace rows retain each
+originating inherited AC/rule and every release AC. All 321 copy hashes match.
+Ancestry check with 02's `091ff46` exits 0. Accepted ADR-0014–0017 and the
+DESIGN index existed at `4cfb745`, an ancestor of first dependent code
+`a0abe1c`; fresh chronology record is `qa-adr-chronology-1c8b2cf.json`.
+
+#### Self-check
+
+Every in-suite AC observed by effect; failure, duplicate, expiry, spoof and
+privacy cases tried; merged CSV and original/copy hashes read; complete
+source-method/invocation/release trace written; gaps include the supported
+host locale and low-rate bench. Fresh reordered/cleanup probes and complete,
+truncated, failed and late R0 responses distinguish the repaired behavior.
+Apps stopped and candidate worktree remains exact/clean. QA proof drop and
+candidate-attributed judgments cover **1–10 and 12**; **11** needs the coming
+code/security re-review and **13** the release record under accepted lead
+obligation `qitem-20261003120849-f4cbfa97`. No review or release approval is
+inferred from this QA PASS.

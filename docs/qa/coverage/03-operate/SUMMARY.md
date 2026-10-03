@@ -1,44 +1,55 @@
 # QA coverage — 03-operate
 
-Candidate `a7c533ffef55650e5b422377ffe0c4e38d41400c`; independent QA by
-`qa2-agent@urlshort-factory` (Codex), 2026-10-03 UTC.
+Candidate `1c8b2cff20ad8b73a060bc817c8d0011782f876f`; independent QA re-check
+by `qa2-agent@urlshort-factory` (Codex), 2026-10-03 UTC, packet
+`qitem-20261003130258-8d163c70`.
 
-`../../scripts/gw --log ../../docs/qa/03-operate/check-a7c533f.txt --offline check --rerun-tasks`
-ran in the clean candidate worktree: **BUILD SUCCESSFUL**, all 14 tasks executed,
-Javadoc and coverage verification included. JUnit XML reports 163 unit and 155
-functional invocations, zero failures, errors or skips.
+`../../scripts/gw --log ../../docs/qa/03-operate/check-1c8b2cf.txt --offline check --rerun-tasks`
+ran in the exact clean candidate worktree: **BUILD SUCCESSFUL**, all 14 tasks
+executed, Javadoc and coverage verification included. JUnit XML: **165 unit /
+155 functional**, zero failures, errors or skips.
 
 | Suite | Lines covered / total | Line coverage | Branches covered / total | Branch coverage |
 |---|---:|---:|---:|---:|
-| Unit | 398 / 441 | 90.25% | 160 / 160 | 100.00% |
-| Functional | 406 / 441 | 92.06% | 129 / 160 | 80.63% |
-| Merged | 441 / 441 | **100.00%** | 160 / 160 | **100.00%** |
+| Unit | 400 / 443 | 90.29% | 162 / 162 | 100.00% |
+| Functional | 408 / 443 | 92.10% | 131 / 162 | 80.86% |
+| Merged | 443 / 443 | 100.00% | 162 / 162 | 100.00% |
 
-Totals were summed from the three CSVs, not inferred from build success.
-HTML/XML/CSV reports are copied under `unit/`, `functional/` and `all/`; 321
-files have independently verified copy hashes in the slice's
-`proof/qa-report-hashes-a7c533f.json`. No exclusion or threshold change.
+Totals are summed from the three CSVs. All 321 HTML/XML/CSV copies under
+`unit/`, `functional/` and `all/` match original SHA-256 hashes in the slice's
+`proof/qa-report-hashes-1c8b2cf.json`; no threshold change or exclusion.
+Historical a7c533f copies are in evidence commit `0b10ca9`.
 
-Independent observation: 2,303 recorded HTTP exchanges, all AC-1–AC-20 observed
-through real Tomcat and migrated file H2. Deterministic clock, request peers
-and a database-availability gate are explicitly disclosed in
-`missions/01-greenfield-core/slices/03-operate/PROOF.md` §QA. Unmodified jar
-smoke, environment overrides, a 60-second bench and shutdown drain were also
-run. Exact captures and instruments are under the slice's `proof/qa-*` paths.
+**QA PASS for AC-1–AC-20 and the assigned QA boundary.** Independent fresh
+HTTP run: 2,303 captured exchanges, all in-suite ACs observed, all 30 rejected
+ids correlate exactly once to safe JSON completions; real H2 audit rows and
+stored privacy effects inspected. Controlled Clock/peers/JDBC availability
+are disclosed in `PROOF.md` §QA re-check. Live and committed OpenAPI are
+identical with no field normalization. All 186 source methods / 320 JUnit
+invocations map both ways; every release AC has its check and explicit gap.
 
-The live and committed OpenAPI documents are equal after key sorting, with
-no field normalization. Candidate ancestry includes 02's merge `091ff46`.
+The reviewer's unchanged actual-class probe now admits only 60 requests in
+1 ms (was 120) and leaves 2 clients after rollback cleanup (was 10,002).
+Strict independent R0 controls give 8/8 expected verdicts, including complete
+and truncated fixed/chunked bodies, no response, 500 and an 11-second 201.
+The unmodified candidate jar drain: complete R0 201, curl exit 0 at 532 ms,
+new connection refused, 62 complete / 16 refused / 0 losses / 0 failures.
 
-**QA PASS for the assigned boundary.** Container AC-21–AC-24/AC-28 and the
-release-level judgment for AC-25–AC-27 remain pending under the locked SPEC.
-The benchmark achieved 82.5 redirects/s and 16.5 creates/s, below the required
-100/20 input rates; its latency numbers do not prove NFR-L1/L2. Proof item 11
-needs the following code/security reviews; item 13 needs release evidence.
-See `docs/qa/03-operate/proof-sequencing.md` and `docs/qa/GAPS.md`.
+The initial drain/control attempts hit this macOS host's unsupported inherited
+`C.UTF-8` locale in Perl. Failed outputs are retained; they count as no R0
+verdict. Verified `C` locale reruns pass; host requirement is LOW QA-OPR-03.
+No product or toolchain change. Unmodified jar smoke and env overrides pass.
+
+Release AC-21–AC-28 remain pending as the locked SPEC assigns. The fresh
+60-second bench achieved 82.1 redirects/s and 16.4 creates/s, below required
+100/20: numeric NFR-L1/L2 targets remain unclaimed. Proof item 11 awaits new
+code/security records; 13 awaits release. The lead already retains their
+continuation in `qitem-20261003120849-f4cbfa97`; see proof-sequencing.md and GAPS.
 
 ## Self-check
 
-Fresh gate and every in-suite AC observed; error/privacy paths tried; CSV totals
-and copy hashes read; all 184 test methods and 318 invocations accounted for;
-release gaps disclosed; captured rejections correlated to logs; apps stopped;
-product source/tests/config untouched and worktree remains at the candidate.
+Fresh full gate and every in-suite AC by effect; failures/privacy tried;
+CSV totals/copy hashes read; both-way traceability and gaps written; corrected
+shutdown predicate independently observed; all apps stopped; exact candidate
+unchanged/clean; source/tests/build untouched. Proof drop/judgments cover
+1–10 and 12; review/release judgments remain pending.

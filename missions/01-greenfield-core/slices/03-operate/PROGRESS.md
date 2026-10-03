@@ -7,11 +7,11 @@
 
 ## Acceptance
 
-- [x] Implementation complete — candidate `a7c533f` on `slice/03-operate`, descends from 02's merge `091ff46` (builder, 2026-10-03)
-- [x] Tests passing — `scripts/gw --offline check --rerun-tasks` on `a7c533f`: unit 163/163, functional 155/155, merged coverage 100 % line and branch, Javadoc green (`proof/builder-check-a7c533f.txt`; builder run, QA re-runs independently)
+- [x] Implementation complete — current candidate `1c8b2cf` on `slice/03-operate`, descends from 02's merge `091ff46`; review repairs independently rechecked by QA (2026-10-03)
+- [x] Tests passing — fresh independent `check --rerun-tasks` on `1c8b2cf`: unit 165/165, functional 155/155, merged 443/443 lines and 162/162 branches, Javadoc green (`docs/qa/03-operate/check-1c8b2cf.txt`)
 - [ ] Review approved
 
-## Builder-side proof-contract items
+## Historical builder-side proof-contract items — a7c533f
 
 - [x] Item 6: admitted create, the 429s after exhaustion, liveness and readiness UP, Prometheus excerpt with the rejection counter (`proof/http-*-a7c533f.txt`, `proof/prometheus-excerpt-a7c533f.txt`)
 - [x] Item 7: one JSON log line per captured 429, `requestId` = header, no client address, forwarded value, user agent or URL (`proof/log-lines-429-a7c533f.txt`)
@@ -57,3 +57,21 @@ Current candidate a7c533f returned to implement on HIGH CR-01/SEC-01 and CR-02; 
 - [ ] Review memory item 11 and release item 13 still unaccepted.
 
 Only items 1–10 retain their narrower accepted artifact/test/effect claims; candidate remains not-ready.
+
+## QA re-check — 1c8b2cf (2026-10-03 UTC)
+
+- [x] Fresh exact-candidate 165/155 gate, no failures/errors/skips; merged 100% line/branch; all 321 report copy hashes match.
+- [x] Unchanged reviewer limiter probe: 60 admissions under 1 ms reordering; rollback cleanup retains 2 clients.
+- [x] Strict R0 controls 8/8: complete fixed/chunked responses pass; truncation/no response/500/11-second completion reject.
+- [x] Fresh full 2,303-exchange HTTP journey, every in-suite AC observed; all 30 rejected ids correlate once; real audit/storage/privacy effects inspected; exact live/committed API match.
+- [x] All 186 source methods / 320 invocations traced both ways; every release AC and honest limitation in GAPS.
+- [x] Unmodified jar smoke/env overrides, 60-second bench and drain observed; R0 complete 201 at 532 ms, probe refused, 62 ok / 16 refused / 0 losses / 0 failures.
+- [x] Initial unsupported macOS C.UTF-8/Perl setup failure retained; supported C locale independently verified, strict controls reject setup failures as evidence. LOW QA-OPR-03 recorded.
+- [x] Apps stopped; product paths untouched; candidate worktree exact and clean.
+- [ ] Current QA drop and attributed receipts for items 1–10 and 12 committed.
+- [ ] Item 11: new code/security review records; item 13: final release/container/workload judgment, retained by lead obligation qitem-20261003120849-f4cbfa97.
+
+Fresh bench rate 82.1 redirects/s / 16.4 creates/s remains below 100/20;
+NFR-L1/L2 unclaimed. QA PASS is for the assigned boundary; independent
+re-review and release remain required. Backward Clock steps fail closed
+outside the contract under lead transition 726, not a granted extra budget.
