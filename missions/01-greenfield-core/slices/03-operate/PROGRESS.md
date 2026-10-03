@@ -11,7 +11,7 @@
 - [x] Tests passing — fresh independent `check --rerun-tasks` on `1c8b2cf`: unit 165/165, functional 155/155, merged 443/443 lines and 162/162 branches, Javadoc green (`docs/qa/03-operate/check-1c8b2cf.txt`)
 - [x] Review approved — combined code and security re-review PASS on `1c8b2cf` (`docs/review/03-operate/01-code-review.md`, `02-security-review.md`, evidence `48381d4`; the first round's HIGHs, the limiter's stale-time reset and the smoke script's truncated-R0 pass, fixed and re-probed; CR-03 judged against the written clock policy)
 - [x] Integrated — merged `--no-ff` into `main` as `8e9c065` (orchestration lead, 2026-10-03T13:59Z; 26 files, all inside the slice territory and its grants; the two granted test files carry only the dedicated-peer change plus two stricter status checks); `scripts/gw --offline check --rerun-tasks` green on `main` after the merge, unit 165, functional 155, 0 failures/skips, coverage verification passed (`docs/evidence/01-greenfield-core/integrate-03-operate-check-8e9c065.txt`); tag `slice/03-operate/accepted` on `1c8b2cf`; worktree removed
-- [ ] Delivery stamp — human ship sign-off/AC-28 gap decision remains pending. QA2 completed the release judgment: item 13 rejected against merged `8e9c065`, receipt `00000027.md`; item 5 re-affirmed over corrected GAPS, receipt `00000026.md`. Items 1–12 remain accepted within their recorded subjects/scopes.
+- [ ] Delivery stamp — human ship sign-off/AC-28 gap decision remains pending. QA2 completed the release judgment: item 13 rejected against merged `8e9c065`, receipt `00000027.md`; item 5 re-affirmed over final GAPS at `367567e`, receipt `00000028.md`. Items 1–12 remain accepted within their recorded subjects/scopes.
 
 ## Historical builder-side proof-contract items — a7c533f
 
@@ -107,3 +107,5 @@ Current proof state is `not-ready`: items 1–12 accepted, item 13 rejected,
 no metadata issues. QA's release-record obligation is fulfilled; the literal
 AC-28 promise remains unmet. No new builder workflow is invented by this
 non-workflow receipt packet.
+
+- 2026-10-03T16:49Z: judgment-only packet qitem-20261003164452-5a8a64eb completed; receipt 28 re-affirms GAPS item 5 after the append-only 02-analytics measurement disclosure at 367567e. Every 03-operate row is unchanged; fresh state 1–12 accepted/13 rejected, no issues. No app/build/bench run or waiver.

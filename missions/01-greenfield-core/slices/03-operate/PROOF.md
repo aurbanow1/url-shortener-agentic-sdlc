@@ -498,3 +498,16 @@ corrections; attributed receipts actor/subject/evidence verified with fresh
 evidence untouched. No container benchmark, capacity, native-Linux result or
 human waiver claimed. Non-workflow receipt packet closes with its completed
 judgment, without calling the release artifact a PASS.
+
+#### GAPS re-affirmation — 2026-10-03T16:49Z
+
+Assigned judgment-only packet `qitem-20261003164452-5a8a64eb`: GAPS at
+`367567e4e8503353daa6195e10de7579e9be471a` matches the working file and preserves
+every byte hashed by receipt 26, appending only the 02-analytics sequential
+GET/HEAD measurement limitation. All 03-operate checks and gaps are unchanged.
+Receipt `proof/judgments/00000028.md` re-affirms item 5 on merged `8e9c065`,
+hashing current GAPS as `187cacbf…65204d4`. Fresh attributed state is items
+1–12 accepted, item 13 rejected by receipt 27, no issues, `not-ready`.
+Self-check: prior receipt digest, append-only diff, committed/current bytes,
+receipt actor/subject/hash and live state verified; no app, build, bench,
+product change, new AC-28 judgment or waiver.
