@@ -1,0 +1,9 @@
+// Review-only: exclude the earlier auxiliary original-suite replay from this fresh gate's merge.
+gradle.projectsEvaluated {
+    def p = gradle.rootProject
+    ['jacocoTestCoverageVerification', 'jacocoAllReport'].each { name ->
+        p.tasks.named(name).configure {
+            executionData.setFrom(p.files('build/jacoco/test.exec', 'build/jacoco/functionalTest.exec'))
+        }
+    }
+}
