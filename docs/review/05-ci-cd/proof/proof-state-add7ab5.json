@@ -1,0 +1,43 @@
+{
+  "candidate": "add7ab5ca37dcd6f51aef3cd43c85455e1be6d14",
+  "state": "unknown",
+  "items": [
+    {
+      "index": 1,
+      "state": "accepted",
+      "reason": "Independently parsed YAML 1.2 and read candidate-numbered files for each AC-1 through AC-11; satisfying lines and results recorded against the exact clean candidate."
+    },
+    {
+      "index": 2,
+      "state": "accepted",
+      "reason": "Own fresh offline check passed 165 unit and 155 functional tests, merged 443/443 lines and 162/162 branches, Javadoc; own bootJar and shipped loopback smoke exited 0 and app stopped; diff only three .github files. Builder attached completed --pull image log: both base digests, all 15 steps and exit 0 read independently."
+    },
+    {
+      "index": 3,
+      "state": "accepted",
+      "reason": "Nine action references match the builder's four network tag captures, including the Gradle annotated tag's peeled SHA; matching capture is candidate-linked and attached by builder rig proof add."
+    },
+    {
+      "index": 4,
+      "state": "accepted",
+      "reason": "Fresh candidate unit/functional/merged HTML XML CSV reports committed in f10c796; all 321 source/copy hashes independently equal. CSVs give unit 90.2935/100, functional 92.0993/80.8642 and merged 100/100 under unchanged merged gate."
+    },
+    {
+      "index": 5,
+      "state": "unknown",
+      "reason": "Evidence missing or changed; inspect the retained judgment"
+    },
+    {
+      "index": 6,
+      "state": "unknown",
+      "reason": "Evidence missing or changed; inspect the retained judgment"
+    },
+    {
+      "index": 7,
+      "state": "accepted",
+      "reason": "PROOF explicitly states AC-13 PENDING until human push and requires operator PR gate/main CD successful URLs and artifacts afterwards. Accepted is the SPEC A-5 pending record; no GitHub execution or success is claimed."
+    }
+  ],
+  "issues": [],
+  "note": "git diff f10c796 -- docs/qa/GAPS.md docs/qa/TRACEABILITY.md changes only 01-audit-read sections; current 05-ci-cd content unchanged. Retained QA accepts all seven items; current hash-based projection has 5 accepted, items 5/6 unknown. This review does not rejudge QA-owned items."
+}

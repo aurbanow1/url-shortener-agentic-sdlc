@@ -1,0 +1,21 @@
+PASS 321 committed QA coverage files match stored SHA256 inventory
+PASS 186 source method names exist and have inherited trace keys
+PASS fresh reviewer test {'tests': 165, 'failures': 0, 'errors': 0, 'skipped': 0}
+PASS fresh reviewer functionalTest {'tests': 155, 'failures': 0, 'errors': 0, 'skipped': 0}
+PASS QA unit {'LINE_MISSED': 43, 'LINE_COVERED': 400, 'BRANCH_MISSED': 0, 'BRANCH_COVERED': 162}
+PASS reviewer unit {'LINE_MISSED': 43, 'LINE_COVERED': 400, 'BRANCH_MISSED': 0, 'BRANCH_COVERED': 162}
+PASS QA functional {'LINE_MISSED': 35, 'LINE_COVERED': 408, 'BRANCH_MISSED': 31, 'BRANCH_COVERED': 131}
+PASS reviewer functional {'LINE_MISSED': 35, 'LINE_COVERED': 408, 'BRANCH_MISSED': 31, 'BRANCH_COVERED': 131}
+PASS QA all {'LINE_MISSED': 0, 'LINE_COVERED': 443, 'BRANCH_MISSED': 0, 'BRANCH_COVERED': 162}
+PASS reviewer all {'LINE_MISSED': 0, 'LINE_COVERED': 443, 'BRANCH_MISSED': 0, 'BRANCH_COVERED': 162}
+PASS builder network captures match QA hashes
+QA JSON event messages: {'request completed': 29, 'Commencing graceful shutdown. Waiting for active requests to complete': 1}
+PASS QA stated privacy canaries absent and graceful shutdown present
+PASS exact locked draft 00fcb90bb5284006de4103b9970f9e809a333792511fd83486afab9f08357a01 .github/workflows/ci.yml
+PASS exact locked draft 3ca7256f6a95db153b64d68a916f4ff6b72f84b4b429d9314a99525b7b65ca33 .github/workflows/cd.yml
+PASS exact locked draft c8d99a96bec9beb72f62ba6081fbd2565e0dac12c85a778d381507bff090d360 .github/dependabot.yml
+PASS candidate exact and clean
+
+PASS reviewer invocations match QA by class/display name: test 165
+PASS reviewer invocations match QA by class/display name: functionalTest 155
+Comparison adjustment: 11 parameterized display names include object identities/random canaries; normalize only these values in the two named classes, preserving parameter index and expected HTTP status. Original exact-display-name comparison failed only on these generated values; no product test failure.
