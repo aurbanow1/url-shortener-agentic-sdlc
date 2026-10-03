@@ -174,3 +174,8 @@ range-diff and full gate on X′ are required by the lead's rule.
   deliberately unjudged until X′ under the lead's explicit exception.
 - Six healthy final-run JVMs stopped; three invalid starts exited; independent
   probes confirm ports 18141..18149 closed. Candidate worktree unchanged at X.
+
+QA evidence committed at 84d3604. Attributed receipts 1–10 accept proof items
+1–8 and 10 against X; item 7 was re-affirmed with a durable exact migration
+copy instead of a worktree evidence path. Live state is nine accepted, item 9
+pending, no issues, saved in proof/qa-judgment-state-a8fc8b6.json.
