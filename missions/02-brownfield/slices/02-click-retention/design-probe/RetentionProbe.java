@@ -114,6 +114,11 @@ public class RetentionProbe {
 			OUT.println("PROBE done");
 			System.exit(0);
 		}
+		if ("5".equals(System.getProperty("probe.part"))) {
+			a8DailyPurgeOff();
+			OUT.println("PROBE done");
+			System.exit(0);
+		}
 		if ("3".equals(System.getProperty("probe.part"))) {
 			d3ShutdownPastTheDeadline(populateBase());
 			OUT.println("PROBE done");
@@ -216,6 +221,34 @@ public class RetentionProbe {
 			clock.shift(Duration.ofDays(1));
 			await(() -> purge.runs.size() > beforeNext, 20_000);
 			OUT.println("A8h the next UTC day's run after the failure: runs=" + purge.runs);
+			clock.reset();
+		}
+	}
+
+	/**
+	 * Design-review DR-01: with urlshort.click.purge-enabled=false (a hold; the functional suite's overlay) neither the
+	 * startup run nor a tick happens, so moving the clock past the next 00:10Z runs
+	 * nothing and no purge line can land in a later request's log window.
+	 */
+	static void a8DailyPurgeOff() throws Exception {
+		ProbePurge.autoStart = true;
+		ProbePurge.syncStartup = true;
+		ProbePurge.batched = false;
+		try (ConfigurableApplicationContext ctx = start("jdbc:h2:mem:probe-a8off;MODE=PostgreSQL;DB_CLOSE_DELAY=-1",
+				"--urlshort.click.purge-enabled=false")) {
+			ProbePurge purge = ctx.getBean(ProbePurge.class);
+			FunctionalClock clock = ctx.getBean(FunctionalClock.class);
+			JdbcClient jdbc = ctx.getBean(JdbcClient.class);
+			OUT.println("A8off purge-enabled=false: runs after readiness=" + purge.runs + ", purgeEnabled bound=" + purge.purgeEnabled);
+			jdbc.sql("INSERT INTO link (code, url, created_at) VALUES ('probeOff1', 'https://example.org/off', :at)")
+					.param("at", clock.instant().atOffset(ZoneOffset.UTC)).update();
+			long link = jdbc.sql("SELECT id FROM link WHERE code = 'probeOff1'").query(Long.class).single();
+			insert(jdbc, link, T.minusDays(90), 2);
+			clock.shift(Duration.between(clock.instant(), T.plusDays(1).atTime(0, 10, 1).toInstant(ZoneOffset.UTC)));
+			Thread.sleep(11_000);
+			OUT.println("A8off suite clock at " + clock.instant() + " for 11 s (two ticks' worth), no trigger: runs=" + purge.runs
+					+ ", day " + T.minusDays(90) + " left=" + count(jdbc, "clicked_on = DATE '" + T.minusDays(90) + "'")
+					+ " (with the purge enabled, A8b deleted it after 4.9 s)");
 			clock.reset();
 		}
 	}
@@ -526,7 +559,7 @@ public class RetentionProbe {
 
 	@ConfigurationProperties("urlshort.click")
 	@Validated
-	public record RetentionProps(@DefaultValue("90") @Positive int retentionDays) {
+	public record RetentionProps(@DefaultValue("90") @Positive int retentionDays, @DefaultValue("true") boolean purgeEnabled) {
 	}
 
 	@Configuration(proxyBeanMethods = false)
@@ -535,7 +568,9 @@ public class RetentionProbe {
 
 		@Bean
 		public ProbePurge probePurge(JdbcClient jdbc, Clock clock, RetentionProps props) {
-			return new ProbePurge(jdbc, clock, props.retentionDays());
+			ProbePurge purge = new ProbePurge(jdbc, clock, props.retentionDays());
+			purge.purgeEnabled = props.purgeEnabled();
+			return purge;
 		}
 	}
 
@@ -551,6 +586,7 @@ public class RetentionProbe {
 		static volatile long closeDeadlineMillis = 10_000;
 		static final AtomicInteger starts = new AtomicInteger();
 		volatile long acceptingTrafficMillisAfterReady = -1;
+		volatile boolean purgeEnabled = true;
 
 		final JdbcClient jdbc;
 		final Clock clock;
@@ -581,6 +617,11 @@ public class RetentionProbe {
 			readyAt = System.nanoTime();
 			starts.incrementAndGet();
 			if (autoStart) {
+				if (!purgeEnabled) {
+					// DR-01, the lead's operational reason: a hold pauses every deletion, startup and daily
+					log.atWarn().setMessage("click purge off").addKeyValue("retentionDays", days).log();
+					return;
+				}
 				if (syncStartup) {
 					// the design: the startup run completes on the purge thread before Boot reports readiness
 					executor.submit(this::run).get();

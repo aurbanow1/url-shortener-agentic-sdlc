@@ -60,6 +60,15 @@ The click table (ADR-0013) stores `clicked_on`. Its only index besides the keys 
 - **Record of a run.** One INFO `clicks purged` with `deleted`, `cutoff` (the earliest UTC day kept,
   `YYYY-MM-DD`) and `retentionDays`. The event has no `requestId`, because a run is not a request.
   There is no audit row (SPEC A-4), and nothing else is logged.
+- **Hold.** `urlshort.click.purge-enabled`, environment variable `URLSHORT_CLICK_PURGEENABLED`,
+  default `true`. `false` pauses every deletion: no startup run, no daily tick, one WARN
+  `click purge off` at every start.
+  - Its reason is operational: keep clicks while an incident is investigated or under a legal
+    hold. The lead made that a condition (2026-10-03T17:49Z), because a switch that exists only
+    for tests was rejected for the rate limiter.
+  - The functional profile's overlay sets it `false`, so no shared test context ever purges
+    (design review DR-01, measured in probe A8off). The purge journeys turn it on in their own
+    contexts.
 - **Shutdown.** `@PreDestroy` stops the executor and waits up to 3 s for a run in progress. It never
   interrupts it.
   - **Budget** against compose's `stop_grace_period: 20s` (ADR-0017). After SIGTERM come the
@@ -88,6 +97,8 @@ The click table (ADR-0013) stores `clicked_on`. Its only index besides the keys 
 | An index `ix_click_day (clicked_on)` (one migration) | with one statement a catch-up got slower (9.5 s against 7.9 s, L4); with batches a steady day took 0.9 s against 1.2 s for one plain statement (L6, L7), and a catch-up 36 s against 32 s (L9, L10). Creating it on 1.3 million rows: 1.5 to 2.0 s | no measurable gain for the plain statement; costs a migration (NFR-X2) and a write on every click |
 | A startup run after readiness, on the thread, not awaited | its INFO line can land inside the capture window of the shipped log-correlation journeys (`ColdStartJourneyTest`, `ObservabilityJourneyTest`), which require every line to carry the request's id (FR-13, AC-14) | rejected; awaiting it also makes AC-7 hold before readiness |
 | A purge per request, per insert or per hour | — | more events than "one per day" (rule 3), and work on the Visitor's path |
+| Accepting a run at a real 00:10Z inside a shipped journey's log window as unlikely (the first version) | design review DR-01 reproduced the failure: six shipped classes assert a request id on every captured line | rejected; the hold in the test overlay makes it impossible |
+| Filtering `ClickPurge` events inside those six classes | changes shipped tests outside the slice; every future background job would need the same filter | rejected in favour of the hold |
 
 ## Consequences
 
@@ -115,6 +126,8 @@ The click table (ADR-0013) stores `clicked_on`. Its only index besides the keys 
 - **Shutdown.** The purge adds at most 3 s after the graceful phase. Nothing interrupts a JDBC
   call, consistent with ADR-0011's no-interrupt stance on H2.
 - **Tests.**
+  - No shared functional context purges (the hold in the overlay), so no purge line can enter a
+    shipped journey's capture window.
   - The functional suite triggers the run the scheduler would start through
     `ClickPurge.runNow()`. It is package-private and submits to the same thread.
   - AC-8 is proven without a trigger: the suite clock is moved past 00:10Z of the next day, and
@@ -124,5 +137,5 @@ The click table (ADR-0013) stores `clicked_on`. Its only index besides the keys 
   while the service is stopped before lowering the period, if an undo is wanted.
 - Verified before implementation, in `missions/02-brownfield/slices/02-click-retention/design-probe/`:
   `output.txt` (S1, A8, A4, L0–L4, D1, D2), `output-2.txt` (L5–L10, A7), `output-3.txt` (D3) and
-  `output-4.txt` (D4). The probe implements the purge as specified here, with switches for the
+  `output-4.txt` (D4) and `output-5.txt` (A8off, the hold). The probe implements the purge as specified here, with switches for the
   rejected variants.

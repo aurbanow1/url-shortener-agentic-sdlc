@@ -8,6 +8,9 @@
 // then, for a process exit (Spring's shutdown hook) in the middle of a single-statement run (output-4.txt):
 //   scripts/gw --log missions/02-brownfield/slices/02-click-retention/design-probe/output-4.txt \
 //       --offline -I missions/02-brownfield/slices/02-click-retention/design-probe/retention-probe.gradle designRetentionProbe -PprobePart=4
+// then, for the hold urlshort.click.purge-enabled=false (design review DR-01, output-5.txt):
+//   scripts/gw --log missions/02-brownfield/slices/02-click-retention/design-probe/output-5.txt \
+//       --offline -I missions/02-brownfield/slices/02-click-retention/design-probe/retention-probe.gradle designRetentionProbe -PprobePart=5
 // and, for the many-link load variants:
 //   scripts/gw --log missions/02-brownfield/slices/02-click-retention/design-probe/output-2.txt \
 //       --offline -I missions/02-brownfield/slices/02-click-retention/design-probe/retention-probe.gradle designRetentionProbe -PprobePart=2

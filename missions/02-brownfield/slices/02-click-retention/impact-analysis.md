@@ -34,7 +34,8 @@ Found with `grep -rln -e ClickRecorder -e ClickStore -e "FROM click" -e "INTO cl
 | `click.ClickRetentionProperties` | **new** `@ConfigurationProperties` record: `urlshort.click.retention-days`, default 90, positive | bound by Boot; read by `ClickPurge` |
 | `click.ClickStore` | **one method added**: delete the clicks before a day | existing callers are unchanged: `ClickRecorder` (`insert`) and `StatsController` (`findLinkId`, `countByDayAndReferrer`); new caller `ClickPurge` |
 | `click.ClickRecorder` | **one string**: a failure while reducing a click reports reason `reduction failed` instead of `rejected` (`ClickRecorder.java:93`) | called only by `link.RedirectController.java:46`, which is unchanged |
-| `src/main/resources/application.properties` | **one setting** with its comment: `urlshort.click.retention-days=90` | Boot; second holder after `01-audit-read` merges (ordered custody) |
+| `src/main/resources/application.properties` | **two settings** with their comments: `urlshort.click.retention-days=90`, and `urlshort.click.purge-enabled=true`, the operator hold (design review DR-01) | Boot; second holder after `01-audit-read` merges (ordered custody) |
+| `src/functionalTest/resources/application-functional.properties` | **one line, granted** by the lead (slice.yaml `cec7032`): `urlshort.click.purge-enabled=false` | every functional context; the purge journeys override it (design §7) |
 | `click.package-info` | the package description gains retention | — |
 
 Unchanged, read to confirm: `click.StatsController`, `click.LinkStats` (fold the remaining
@@ -120,11 +121,12 @@ The sequence delta is design §4 (`docs/diagrams/purge-sequence.mmd`).
 failure. W2-05 and AC-12 change that reason, so the assertion becomes `reduction failed`. The
 stub, the request and the other assertions stay as they are.
 
-**Functional suite: unchanged (AC-14).** A purge runs only (a) once when a context starts,
-synchronously, before the first test of the classes that use it, and (b) when the context's clock
-reaches 00:10Z of a UTC day later than its last run. The second needs a forward shift of a day, or
-real time passing 00:10Z. The table covers every shipped test that stores clicks, captures
-the log or moves the clock.
+**Functional suite: test files unchanged (AC-14); its profile overlay gains one granted line.**
+The overlay sets `urlshort.click.purge-enabled=false`, so **no shared functional context runs a
+purge**: no startup run, no daily tick. Only the purge journeys turn it on, in their own contexts
+and databases, closed after use (design §7). A purge line therefore cannot appear while a
+shipped journey runs. The table covers every shipped test that stores clicks, captures the log or
+moves the clock, and why it is unaffected.
 
 | Shipped test | What it does | Why the purge does not disturb it |
 |---|---|---|
@@ -133,14 +135,12 @@ the log or moves the clock.
 | `ClickResilienceJourneyTest` | `@MockitoSpyBean ClickStore`, stubs `insert` only, no `verify` on the store | the purge's call to the spy goes to the real method; nothing counts store interactions |
 | `ClickSchemaJourneyTest` | reads the rows it just wrote | its rows are today's |
 | `IdempotencyJourneyTest` | shifts the shared clock by +23 h, +24 h ± 1 s, sends creates | a run may become due during the +24 h shift (cutoff `T+1−90`); no shipped test holds clicks that old across it |
-| `ColdStartJourneyTest`, `ObservabilityJourneyTest`, `PingJourneyTest` | every line captured while a request runs must carry that request's id | the startup run (and its INFO line) finishes before readiness, so before any test method; no tick runs unless due, and these tests do not shift the clock |
+| `ColdStartJourneyTest`, `ObservabilityJourneyTest`, `PingJourneyTest` | every line captured while a request runs must carry that request's id | no purge runs in their contexts at all (the hold); before design review DR-01 this rested on timing, now it does not |
 | `RateLimitJourneyTest`, `TrustedProxyJourneyTest`, `RateLimitSettingsJourneyTest` | freeze the clock and step it by seconds | never a UTC day forward; nothing becomes due |
 
-**Residual, recorded rather than engineered away.** A suite run that crosses 00:10Z UTC sees
-one run per live cached context at that minute. A log-window test whose window coincides with it
-would capture an INFO line without a request id. The probability is small (a window of
-milliseconds against a run of milliseconds, once a day), and the alternative is a test-only switch
-on production code. I chose the residual. QA's `GAPS.md` row carries it if it ever shows.
+**No residual.** The first version accepted a run at a real 00:10Z inside a capture window as
+unlikely. Design review DR-01 reproduced it, and AC-14 does not allow it. The hold in the overlay
+removes the case.
 
 **Removed.** None.
 
@@ -148,7 +148,8 @@ on production code. I chose the residual. QA's `GAPS.md` row carries it if it ev
 
 - New events on the `click-purge` thread, without `requestId` (SPEC rule 6, not a request):
   - INFO `clicks purged` with `deleted`, `cutoff` (the earliest UTC day kept) and `retentionDays`;
-  - WARN `click purge failed` with `cutoff`, `retentionDays` and `errorType`.
+  - WARN `click purge failed` with `cutoff`, `retentionDays` and `errorType`;
+  - WARN `click purge off` with `retentionDays`, at every start while the hold is on.
 
   No message or stack trace, and no click value, link code or id (AC-9, AC-10).
 - New `click lost` reason `reduction failed` (AC-12). `rejected` keeps its meaning: a full or
@@ -165,7 +166,7 @@ on production code. I chose the residual. QA's `GAPS.md` row carries it if it ev
 | # | Risk | Mitigation | Owner step |
 |---|---|---|---|
 | 1 | Clicks deleted early, irreversibly | cutoff = the application clock's UTC day minus P, delete `<` it (A-1); boundary ACs through real redirects at shifted days; the statement names only `click`; the setting validated at startup | design → QA (AC-1 to AC-4) → security review |
-| 2 | A shipped test made flaky by background runs | synchronous startup run; runs only when due; the purge journeys on their own databases; the residual named above | design → QA (full suite, twice) |
+| 2 | A shipped test made flaky by background runs | no purge in any shared functional context (the hold in the overlay, DR-01); the purge journeys on their own databases, closed after use | design → QA (full suite, twice) |
 | 3 | The purge slows redirects or click writes | MVCC measured: no stall in any of ten variants; AC-11 in the suite | design probe → QA → release bench (NFR-L1) |
 | 4 | A run in progress at shutdown delays the stop or damages the file | measured: the running statement is awaited for up to 3 s and never interrupted (D2, D3). Clicks queued before the stop are written (D3, 20 of 20). A process exit in the middle of a 1 000 000-row DELETE leaves a consistent file with the delete undone, so the next startup run repeats it (D4; reopening took 4 s). A long run can meet a stop only in a catch-up, and a catch-up happens in the startup run | design probe → release (`--drain`) |
 | 5 | Ordered custody with `01-audit-read` (`application.properties`) | the candidate descends from `01-audit-read`'s merge; this slice takes no Flyway number | integrate (ancestry check) |

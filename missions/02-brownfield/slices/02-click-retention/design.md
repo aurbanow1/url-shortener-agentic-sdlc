@@ -19,6 +19,9 @@
 - After that, a 5-second tick runs it again at the first tick on or after 00:10Z of each later UTC
   day.
 - The period is `urlshort.click.retention-days` (default 90, positive), validated at startup.
+  `urlshort.click.purge-enabled=false` puts the purge on hold (no deletion, a WARN at start). The
+  functional suite's shared contexts use it, so no purge line can enter a shipped journey's log
+  window (design review DR-01).
 - Each run logs one INFO line with its count, cutoff and period; a failed run logs one WARN line
   with the exception's class.
 - No migration, no index and no new endpoint are needed.
@@ -30,12 +33,13 @@ Every mechanism claim below was run (§12).
 
 | Component | Change | Specification |
 |---|---|---|
-| `click.ClickRetentionProperties` | **new** | `@ConfigurationProperties("urlshort.click") @Validated record ClickRetentionProperties(@DefaultValue("90") @Positive int retentionDays)`, Javadoc naming `URLSHORT_CLICK_RETENTIONDAYS` and ADR-0018. Same shape as `web.RateLimitProperties`. |
+| `click.ClickRetentionProperties` | **new** | `@ConfigurationProperties("urlshort.click") @Validated record ClickRetentionProperties(@DefaultValue("90") @Positive int retentionDays, @DefaultValue("true") boolean purgeEnabled)`, Javadoc naming `URLSHORT_CLICK_RETENTIONDAYS`, `URLSHORT_CLICK_PURGEENABLED` and ADR-0018. Same shape as `web.RateLimitProperties`. **`purgeEnabled` is an operator hold:** `false` pauses every deletion, the startup run and the daily run, for example while an incident is investigated or under a legal hold. It is loud: one WARN at every start. The functional suite's shared contexts use it too (design review DR-01, §7) |
 | `click.ClickPurge` | **new**, package-private `@Component` annotated `@EnableConfigurationProperties(ClickRetentionProperties.class)` (it is the only consumer, so no separate configuration class) | Specified below. |
 | `click.ClickStore` | **one method** | `int deleteBefore(LocalDate cutoff)`: `jdbc.sql("DELETE FROM click WHERE clicked_on < :cutoff").param("cutoff", cutoff).update()`. Javadoc: one statement, one transaction, a table scan by design (ADR-0018). The class Javadoc gains "and the retention delete". |
 | `click.ClickRecorder` | **one string** (W2-05, AC-12) | `ClickRecorder.java:93`, the `catch (Exception ex)` around the reduction, logs reason `reduction failed` instead of `rejected`. `rejected` stays for a full or closed queue (`:102`). The class Javadoc's fail-open sentence names the new reason. |
 | `click.package-info` | text | "Belongs here" gains the retention purge and its setting. |
-| `src/main/resources/application.properties` | **one setting** (ordered custody: added after `01-audit-read` merges) | after the rate-limit block: a comment `# Click retention (NFR-P2): clicks older than this many UTC days are deleted at startup and daily at 00:10Z; a positive whole number. Overridable by URLSHORT_CLICK_RETENTIONDAYS (ADR-0018).` and `urlshort.click.retention-days=90` |
+| `src/main/resources/application.properties` | **one setting** (ordered custody: added after `01-audit-read` merges) | after the rate-limit block: a comment `# Click retention (NFR-P2): clicks older than this many UTC days are deleted at startup and daily at 00:10Z; a positive whole number. Overridable by URLSHORT_CLICK_RETENTIONDAYS (ADR-0018).` and `urlshort.click.retention-days=90`; then `# Hold: false pauses every deletion (startup and daily) and logs a WARN at start, e.g. while an incident is investigated or under a legal hold. Overridable by URLSHORT_CLICK_PURGEENABLED.` and `urlshort.click.purge-enabled=true` |
+| `src/functionalTest/resources/application-functional.properties` | **one line, granted** by the lead (17:49Z, slice.yaml `cec7032`; design review DR-01) | `# A purge run writes an INFO line with no request id; the shared contexts' log-window journeys require every captured line to carry one (02-click-retention DR-01). The purge journeys turn it back on.` and `urlshort.click.purge-enabled=false`. No test file changes |
 
 **`ClickPurge`**, the whole mechanism. Code sketch; the builder writes the real code, Javadoc included:
 
@@ -53,6 +57,7 @@ class ClickPurge {
 	private final ClickStore store;
 	private final Clock clock;
 	private final int retentionDays;
+	private final boolean purgeEnabled;                            // false: an operator hold, no deletion at all
 	private final ScheduledExecutorService purger = Executors.newSingleThreadScheduledExecutor(task -> {
 		Thread thread = new Thread(task, "click-purge");
 		thread.setDaemon(true);
@@ -65,6 +70,10 @@ class ClickPurge {
 	/** The startup run, finished before Boot reports readiness, then the daily tick (rule 3, AC-7). */
 	@EventListener(ApplicationReadyEvent.class)
 	void start() throws InterruptedException, ExecutionException {
+		if (!purgeEnabled) {                                         // an operator hold (and the suite's shared contexts)
+			log.atWarn().setMessage("click purge off").addKeyValue("retentionDays", retentionDays).log();
+			return;
+		}
 		purger.submit(this::run).get();
 		purger.scheduleWithFixedDelay(this::tick, TICK.toMillis(), TICK.toMillis(), TimeUnit.MILLISECONDS);
 	}
@@ -252,7 +261,8 @@ is `reduction failed`.
 | a run that completed | `dev.urlshort.click.ClickPurge`, INFO | `clicks purged` | `deleted` (rows, may be 0), `cutoff` (the earliest UTC day kept, `YYYY-MM-DD`), `retentionDays` | `requestId` (a run is not a request, rule 6), any click value, link code or id |
 | a run that failed | same, WARN | `click purge failed` | `cutoff`, `retentionDays`, `errorType` (class name) | the exception's message or stack trace (a driver message can quote values), click values, link code or id |
 | a click lost before it was queued | `dev.urlshort.click.ClickRecorder`, WARN | `click lost` | unchanged shape: `requestId`, `reason` **`reduction failed`**, `errorType` | unchanged (ADR-0004 second amendment) |
-| an invalid period | Boot's `LoggingFailureAnalysisReporter`, ERROR, at startup | `APPLICATION FAILED TO START …` | the property, the rejected value, its origin, the constraint | any other configuration value (A4) |
+| the purge on hold (`urlshort.click.purge-enabled=false`) | `dev.urlshort.click.ClickPurge`, WARN, at every start | `click purge off` | `retentionDays` | as above (A8off) |
+| an invalid period | Boot's `LoggingFailureAnalysisReporter`, ERROR, at startup | `APPLICATION FAILED TO START …` | the property, the rejected value, its origin, the constraint | any other configuration value **in this event**. Hikari's and Flyway's startup INFO lines print the JDBC URL before binding fails; that is shipped behaviour, not this slice's (design review DR-02) |
 
 Exactly one INFO or one WARN per run (AC-9, AC-10). The `click lost` reasons an Operator can
 alert on, with their full list in `docs/DESIGN.md` §2:
@@ -271,6 +281,7 @@ audit trail records mutations of links (SPEC A-4, rule 4). The INFO line is the 
 |---|---|---|---|
 | **Tampering / integrity:** clicks deleted early or the wrong rows deleted | cutoff, statement, setting | the cutoff is the application clock's UTC day minus P, deleting `<` it, so day `T−P` is kept (A-1); the statement names only `click` and binds one `LocalDate`; P is validated (AC-4); boundary tests through real redirects at shifted days (AC-1 to AC-3) | **A host clock that steps forward** deletes up to that many days early, and one set years ahead deletes every click. The Operator owns the host clock. The INFO `cutoff` shows it. A backward step deletes nothing (A8d). Accepted |
 | Tampering: a period set too low by mistake | setting | positive whole days only; `docs/DESIGN.md` §3 states the effect and the backup step | deletion is irreversible by requirement |
+| Retention not enforced: the hold left on | `purge-enabled=false` | a WARN `click purge off` at every start; `docs/DESIGN.md` §3 says clicks then grow beyond the period until the hold is lifted | the Operator's decision, by design (an incident or a legal hold) |
 | **Information disclosure:** click values or a driver message in the log | purge events | count, day, period and a class name only (§5); the WARN never carries the message (AC-10's canary) | none |
 | Information disclosure: the failure text for the setting | startup | names the setting, the operator's own value and its origin; no other configuration value (A4, D-AC4) | the rejected value appears in the Operator's own log, as AC-4 states |
 | **Denial of service:** the purge slows the Visitor | locks, CPU | MVCC: no measured stall (p95 ≤ 7.4 ms during every variant, every click stored; L1–L10); one thread; one run per day | a catch-up delays readiness by 8 to 32 s per million rows (ADR-0018 ceiling, compose's 80 s health window) |
@@ -290,38 +301,52 @@ context's clock, then `GET /{code}` from a dedicated peer (`StatsJourneyTest.ope
 `SHIFTED_PEER` pattern; mission 01 NOTES §2 12:40Z), then `ClickRecorder.settle()`. That
 proves the purge acts on the day the recorder stores, not on a hand-written fixture. Rows are
 inspected with `JdbcClient`. "Run a purge" is `ClickPurge.runNow()`, the same run on the same
-thread, except AC-7 and AC-8, which send no trigger.
+thread, except AC-7, AC-8 and AC-13, which send no trigger.
+
+**Isolation from the shipped suite (design review DR-01).** The functional profile's overlay sets
+`urlshort.click.purge-enabled=false` (granted, `cec7032`). Every shared context (the default one,
+the rate-limit contexts, the click-resilience context, the cold-start context) therefore runs no
+startup run and arms no tick. **No purge line can be written while a shipped journey captures
+the log**, whatever the time of day or however a journey moves its clock.
+
+The purge journeys that need autonomous runs set `urlshort.click.purge-enabled=true` inline: AC-7,
+AC-8 and AC-13. Their contexts are closed after their class (`@DirtiesContext`, or the
+programmatic starts closed in the test), so no armed tick outlives them. The other purge journeys
+call `runNow()`, which runs whatever the setting. No shipped test file changes.
 
 | AC / rule | Test (class: what it does) | Mechanism |
 |---|---|---|
 | AC-1, rule 2, A-1 | `ClickRetentionJourneyTest`: two clicks each on `T−91`, `T−90`, `T−89`, `T`; full rows read before; `runNow()` at `T` | the `T−91` rows are gone; the six others are equal column for column |
 | AC-2 | same class: the AC-1 fixture rebuilt, run at `T`, then the clock moved to `T+1`, `runNow()` | `T−90` gone, `T−89` and `T` kept |
-| AC-3, rule 1 | `ClickRetentionSettingJourneyTest` (`urlshort.click.retention-days=7`, `@DirtiesContext`): clicks on `T−8`, `T−7`, `T`; `runNow()` | `T−8` gone; also its startup INFO shows `retentionDays` 7 |
-| AC-4, rule 1 | `ClickRetentionStartupJourneyTest`: for `0`, `-5`, `ninety`, a temporary file database (Flyway + one link + three clicks at `T−100` by JDBC); `new SpringApplicationBuilder(UrlshortApplication.class).run("--spring.datasource.url=…", "--server.port=0", "--urlshort.click.retention-days=" + v)` throws; `OutputCaptureExtension` | the capture names `retention-days` or `retentionDays` and `v`, not the datasource URL; three clicks remain; no `clicks purged` line. **Predicted, not measured:** a failed `run` publishes `ApplicationFailedEvent`, on which Boot cleans up its logging system, inside the functional JVM where cached contexts keep logging. So the three startups stay in this one class, with `.registerShutdownHook(false)` on the builder. If later classes' log lines change format, run the three failing startups in a child JVM, as probe D4 does |
+| AC-3, rule 1 | `ClickRetentionSettingJourneyTest` (`urlshort.click.retention-days=7`, `@DirtiesContext`): clicks on `T−8`, `T−7`, `T`; `runNow()` | `T−8` gone; the run's INFO shows `retentionDays` 7 |
+| AC-4, rule 1 | `ClickRetentionStartupJourneyTest`: for `0`, `-5`, `ninety`, a temporary file database (Flyway + one link + three clicks at `T−100` by JDBC); `new SpringApplicationBuilder(UrlshortApplication.class).run("--spring.datasource.url=…", "--server.port=0", "--urlshort.click.purge-enabled=true", "--urlshort.click.retention-days=" + v)` throws; `OutputCaptureExtension` | **scoped to the failure-analysis event (DR-02):** the one ERROR line from `LoggingFailureAnalysisReporter` names `retention-days` or `retentionDays` and `v`, and holds no `jdbc:` URL or credential. The whole capture is not checked for the URL, because Hikari's and Flyway's shipped startup INFO lines print it before binding fails. Separately: three clicks remain, and the whole capture has no `clicks purged` line. **Predicted, not measured:** a failed `run` publishes `ApplicationFailedEvent`, on which Boot cleans up its logging system, inside the functional JVM where cached contexts keep logging. So the three startups stay in this one class, with `.registerShutdownHook(false)` on the builder. If later classes' log lines change format, run the three failing startups in a child JVM, as probe D4 does |
 | AC-5, rule 4 | `ClickRetentionJourneyTest`: clicks over `T−95`…`T` with origins seen only on `T−95`…`T−91`; statistics read before; `runNow()`; read again | per-day counts equal from `T−90` on, total = their sum, the old-only origins absent, the four fields unchanged |
 | AC-6, rule 4 | same class: link `C` with clicks only at `T−100`; `SELECT * FROM audit_log` before; `runNow()`; statistics → `200`, `0`, `[]`, `[]`; then `GET /C` → `302` and the same `Location`; `settle()`; statistics → total 1 with one element for `T`; `GET /api/links/C` → `200`, creation body | the audit rows are identical and their count unchanged (RQ-01 order) |
-| AC-7, rule 3 | `ClickRetentionStartupJourneyTest`: a temporary file database fully migrated, clicks at `T−100` and `T−10`; start the application with no trigger | when `run(…)` returns (readiness is reported), the `T−100` rows are already gone and `T−10` kept, which is stronger than "within 60 s"; one `clicks purged` line |
-| AC-8, rule 3 | `ClickRetentionScheduleJourneyTest` (`@DirtiesContext`): after the context starts, two clicks recorded at `T−90` and two at `T−89`; clock moved to `T+1` 00:10:01Z; **no trigger**; poll the rows for at most 60 s | `T−90` gone within the bound (A8b: 4.9 s), `T−89` kept; one `clicks purged` line with `cutoff` `T−89`. The time 00:10Z is in `docs/DESIGN.md` §3 |
+| AC-7, rule 3 | `ClickRetentionStartupJourneyTest`: a temporary file database fully migrated, clicks at `T−100` and `T−10`; start the application with `--urlshort.click.purge-enabled=true` and no trigger, close it in the test | when `run(…)` returns (readiness is reported), the `T−100` rows are already gone and `T−10` kept, which is stronger than "within 60 s"; one `clicks purged` line |
+| AC-8, rule 3 | `ClickRetentionScheduleJourneyTest` (`urlshort.click.purge-enabled=true`, own database, `@DirtiesContext`): after the context starts, two clicks recorded at `T−90` and two at `T−89`; clock moved to `T+1` 00:10:01Z; **no trigger**; poll the rows for at most 60 s | `T−90` gone within the bound (A8b: 4.9 s), `T−89` kept; one `clicks purged` line with `cutoff` `T−89`. The time 00:10Z is in `docs/DESIGN.md` §3 |
 | AC-9, rule 6 | `ClickRetentionJourneyTest` with `OutputCaptureExtension`: a run that deletes n > 0 and a run that deletes 0 | per run exactly one line with `clicks purged`, one JSON object, level INFO, `deleted`, `cutoff`, `retentionDays`; no `requestId`; the test's link code, link id, client hash, a canary referrer origin and the user-agent class are absent |
 | AC-10, rule 6 | `ClickPurgeFailureJourneyTest` (`@MockitoSpyBean ClickStore`): `doThrow(new DataAccessResourceFailureException("store down " + CANARY)).when(store).deleteBefore(any())`; `runNow()`; a redirect and a statistics read; `reset(store)`; `runNow()` | one WARN `click purge failed`, `errorType` the class name, no canary, no `error.message` or `error.stack_trace` member; `302` and `200` during the failure; the old rows deleted by the second run |
 | AC-11, rule 5 | `ClickRetentionJourneyTest`: (a) a separate connection holds an **uncommitted** `DELETE FROM click WHERE clicked_on < :cutoff` over 50 000 old clicks (inserted by `JdbcClient` batch) while `GET /L`, `settle()` and the statistics run; then roll back. (b) `runNow()` on another thread over 50 000 old clicks while redirects are sent until it ends | (a) `302`, today's click stored and visible, so no lock blocks the insert or the read, deterministically. (b) every redirect `302`, every click stored; the test asserts that at least one redirect started before the run ended |
 | AC-12, rule 7 | `ClickPurgeFailureJourneyTest` (`@MockitoSpyBean DailySalt`): `doThrow(new GeneralSecurityException("no HMAC " + CANARY)).when(salt).stamp(anyString())`; `GET /{code}` | `302`; exactly one WARN `click lost` with `requestId` = `X-Request-Id`, `reason` `reduction failed`, `errorType` `java.security.GeneralSecurityException`, no canary. Unit: `ClickRecorderTest.aClickThatCannotBeReducedIsOneWarn` now expects `reduction failed` (impact analysis) |
-| AC-13 | `ClickRetentionStartupJourneyTest`: a temporary file database at **V2** (`Flyway.configure()…target("2")`, the `f6dd29e` schema) holding links, audit rows and clicks at `T−10`, `T−90`, `T−91`, `T−120` written in the shipped shapes; full rows read; start the candidate | every migration on `main` applies with `success`; links, audit rows and the `T−10` and `T−90` clicks equal column for column; `T−91` and `T−120` gone. **By-effect proof (proof contract item 6)**: the real `f6dd29e` jar writes the directory (links, audit rows, today's clicks), then backdated clicks are inserted with H2's Shell while it is stopped (it can only write `clicked_on = today`), then the candidate jar starts on it |
-| AC-14 | the shipped functional suite, unchanged | the impact analysis lists why each test that stores clicks, captures logs or moves the clock passes |
+| AC-13 | `ClickRetentionStartupJourneyTest`: a temporary file database at **V2** (`Flyway.configure()…target("2")`, the `f6dd29e` schema) holding links, audit rows and clicks at `T−10`, `T−90`, `T−91`, `T−120` written in the shipped shapes; full rows read; start the candidate with `--urlshort.click.purge-enabled=true` | every migration on `main` applies with `success`; links, audit rows and the `T−10` and `T−90` clicks equal column for column; `T−91` and `T−120` gone. **By-effect proof (proof contract item 6)**: the real `f6dd29e` jar writes the directory (links, audit rows, today's clicks), then backdated clicks are inserted with H2's Shell while it is stopped (it can only write `clicked_on = today`), then the candidate jar starts on it |
+| AC-14 | the shipped functional suite, test files unchanged; the overlay gains the one granted line | no shared context purges (isolation above); the impact analysis lists why each test that stores clicks, captures logs or moves the clock passes |
+| DR-01 isolation, the hold | `ClickPurgeHoldJourneyTest` in the **default** shared context (no properties of its own): seed one click at `T−100` by JDBC; move the clock to `T+1` 00:10:01Z; wait 6 s (more than one tick); reset | no `clicks purged` line in the capture; the click is still there (probe A8off: 11 s, 0 runs). Unit: `start()` with `purgeEnabled=false` logs one WARN `click purge off`, submits no run and schedules nothing |
 | rule 3 (once a day, no early retry, backward step, no overlap) | unit `ClickPurgeTest`: a mock `ClickStore` and a hand-moved `Clock`; calls `tick()` and `run()` directly | before 00:10Z → no run; at 00:10Z of a later day → one run with the right cutoff; the same day again → none; a backward step → none; a failure → one WARN, no run until the next day, then a run; `start()` returns only after its run; `close()` returns |
 
 **Unit or functional for coverage.** `ClickPurge`'s branches (the tick's two conditions, success,
 failure) are covered by `ClickPurgeTest`. The executor, `start`, `runNow` and `close` are covered
 by both suites. 100 % line and branch on merged data (NFR-M1). No exclusion is expected.
 
-**Residual, named in the impact analysis.** A suite run that crosses 00:10Z UTC runs once per live
-context at that minute. That line could land in a request-capture window.
+**No residual.** The 00:10Z crossing that the first version accepted (design review DR-01) cannot
+write a line in a shared context, because none has an armed tick. The only contexts with one are
+the AC-8 class, closed after itself, and the programmatic starts of AC-7 and AC-13, closed in
+their tests. No shipped journey runs in either.
 
 ## 8. Reachability check
 
 | Mechanism | Reached by |
 |---|---|
-| `start()` | `ApplicationReadyEvent` in every context and every jar start (A7, A8a) |
+| `start()` | `ApplicationReadyEvent` in every context and every jar start (A7, A8a). With the hold on (`purge-enabled=false`, the functional overlay) it logs the WARN and returns (A8off) |
 | `tick()` → `run()` | the 5 s fixed delay after `start()` (A8b, A8f, A8h) |
 | `runNow()` | the functional suite only (package-private; the `click` package's journeys) |
 | `close()` | context close (D1–D4) |
@@ -335,8 +360,9 @@ context at that minute. That line could land in a request-capture window.
 |---|---|
 | `src/main/java/dev/urlshort/click/` | `ClickPurge`, `ClickRetentionProperties`, `ClickStore`, `ClickRecorder`, `package-info` |
 | `src/test/java/dev/urlshort/click/` | `ClickPurgeTest`; `ClickRecorderTest` (one assertion) |
-| `src/functionalTest/java/dev/urlshort/click/` | `ClickRetentionJourneyTest`, `ClickRetentionScheduleJourneyTest`, `ClickRetentionSettingJourneyTest`, `ClickRetentionStartupJourneyTest`, `ClickPurgeFailureJourneyTest` |
-| `src/main/resources/application.properties` | one setting; **second holder**, added after `01-audit-read`'s merge (the candidate descends from it) |
+| `src/functionalTest/java/dev/urlshort/click/` | `ClickRetentionJourneyTest`, `ClickRetentionScheduleJourneyTest`, `ClickRetentionSettingJourneyTest`, `ClickRetentionStartupJourneyTest`, `ClickPurgeFailureJourneyTest`, `ClickPurgeHoldJourneyTest` |
+| `src/main/resources/application.properties` | two settings; **second holder**, added after `01-audit-read`'s merge (the candidate descends from it) |
+| `src/functionalTest/resources/application-functional.properties` | **one line, granted** by the lead 17:49Z (slice.yaml `cec7032`): `urlshort.click.purge-enabled=false` (DR-01) |
 | `src/main/resources/db/migration/` | **not used**: no migration, no Flyway number |
 
 **Grant request for the lead at plan-lock.** One line of `README.md`: add
@@ -368,6 +394,7 @@ logs no client value and passes no throwable.
 | a 5 s tick deciding on the application clock | `@Scheduled` cron | follows the suite clock (AC-8 by effect); robust to clock steps and host sleep; S1 shows cron cannot | never for AC-8; a shared executor if a third job appears (ADR-0011) |
 | startup run awaited before readiness | after readiness, not awaited | shipped log-window journeys stay deterministic (FR-13); AC-7 holds before readiness | catch-up sizes approach the health window |
 | `lastRunDay` set at a run's start | retry a failed run sooner | rule 3: no tighter retry loop | — |
+| the hold `purge-enabled`, set `false` in the suite overlay | filter the purge logger in the six shipped log-window classes; a test-only switch | the setting has its own operational reason (an incident or a legal hold, the lead's condition at 17:49Z) and is loud; no shipped test file changes; isolation is deterministic (DR-01) | a hold that must survive restarts beyond configuration, for example a per-link hold |
 | 00:10Z | 00:00Z or an off-peak hour | deletes a day ten minutes after it leaves the window; stays clear of the day boundary the salt rotates on (ADR-0012) | the Operator asks for a setting |
 | a constant run time | a setting | the SPEC asks only for the period; YAGNI | an Operator needs another hour |
 | no audit row | a row per run | SPEC A-4 | FR-17's readers ask for one |
@@ -387,7 +414,8 @@ the commands.
 | A8c, A8d | two more ticks; clock stepped back 3 days | no second run that day; no run on a backward step | rule 3 |
 | A8e, A8f | day `T+2`, later than the last run's day `T+1`: clock at 00:09:56Z, then 00:10:03Z | no run at 00:09:56Z, one at 00:10:03Z. The day condition held in both, so together they isolate the time-of-day gate | the 00:10Z gate |
 | A8g, A8h | the store throws (message with a canary), one more tick, next day | one WARN with the class only; no retry that day; the next day runs | AC-10, rule 3 |
-| A4 | `0`, `-5`, `ninety` | each stops startup (`BindValidationException`, `NumberFormatException`); names the setting, echoes the value and its origin, no datasource URL; **purge started 0, old clicks 3 of 3 left** | AC-4, D-AC4 |
+| A4 | `0`, `-5`, `ninety` | each stops startup (`BindValidationException`, `NumberFormatException`); the failure-analysis event names the setting, echoes the value and its origin, no datasource URL; **purge started 0, old clicks 3 of 3 left**. **Corrected (DR-02):** the probe ran with `root=warn`, which hid Hikari's and Flyway's startup INFO lines; at shipped levels those print the JDBC URL, so "no URL" holds for the failure-analysis event only (review2's `invalid-setting-control.txt`) | AC-4, D-AC4 |
+| A8off | `urlshort.click.purge-enabled=false`; clock moved to `T+1` 00:10:01Z for 11 s, no trigger (`output-5.txt`) | one WARN `click purge off`; **no startup run, no daily run**; the `T−90` clicks still there | DR-01 isolation, the hold |
 | L0 | `DELETE … WHERE id IN (SELECT … FETCH FIRST 10000 ROWS ONLY)` | cancelled at a 20 s timeout, H2 re-runs the subquery per row (`batch-subquery-jstack.txt`) | §3 stack fact |
 | L1 / L4 | 1 000 000 of 1 300 000 old, one link, one `DELETE`, without / with `ix_click_day` | 7.9 s / 9.5 s; redirects p95 2.5 / 1.6 ms, every click stored | no stall; the index does not help |
 | L2 / L3 | same, select ≤ 10 000 ids then delete them, without / with the index | 43 s / 44 s, longest batch < 0.5 s; no stall | batches are slower |
@@ -424,6 +452,16 @@ ADR-0018 and the amendments are on `main` with this design, before any dependent
 
 - 2026-10-03 — design written on SPEC `69680e4`, impact analysis first (`16f3de0`); handed to
   `design_review`.
+- 2026-10-03 — design review **FAIL** on `be80306` (`docs/review/02-click-retention/design-review.md`):
+  DR-01 HIGH, DR-02 MEDIUM. Both fixed; see *Review response*. Rework packet
+  `qitem-20261003173636-643c7c17`.
+
+## Review response
+
+| Id | Severity | Response |
+|---|---|---|
+| DR-01 | HIGH | **Fixed, deterministically, with no shipped test file changed.**<br>**The fix.** A new setting `urlshort.click.purge-enabled` (default `true`). `false` is an operator **hold**: no startup run, no daily run, one WARN `click purge off` at every start. Its operational reason is pausing deletion while an incident is investigated or under a legal hold; the lead made that a condition at 17:49Z, because a switch that exists only for tests was rejected for the limiter. The functional profile's overlay sets it `false`, one line granted by the lead (slice.yaml `cec7032`).<br>**Its effect.** No shared context (default, rate-limit, click-resilience, cold-start) runs a startup run or arms a tick. The reviewer's legal overlap, a scheduled run inside `ObservabilityJourneyTest`'s window, cannot arise at any time of day or under any clock move.<br>**The purge journeys** that need autonomous runs (AC-7, AC-8, AC-13) set it `true` and close their contexts after use; the others call `runNow()`.<br>**Proof.** By effect: probe A8off (`output-5.txt`) shows 0 runs in 11 s past the next 00:10Z with the click still stored. In the suite: `ClickPurgeHoldJourneyTest` in the default context (§7).<br>**Rejected.** Filtering the purge logger in the six shipped classes that assert a request id on every line (`ObservabilityJourneyTest`, `ColdStartJourneyTest`, `PingJourneyTest`, `RateLimitJourneyTest`, `StatsJourneyTest`, `ClickResilienceJourneyTest`) would change shipped tests outside this territory. Logs are not suppressed, and no request id is attached.<br>**Also routed.** I asked requirements to note the hold under rules 1 and 3 and the overlay line under AC-14. §5, §6, §7, §9, §11 and §12 are updated, as are ADR-0018, `docs/DESIGN.md` and the impact analysis. |
+| DR-02 | MEDIUM | **Fixed.** AC-4's assertion is scoped to the failure-analysis ERROR event. That event names the setting and the value and holds no `jdbc:` URL or credential. Hikari's and Flyway's shipped startup INFO lines print the URL before binding fails, so the whole capture is checked only for the absence of `clicks purged`, and the rows for being unchanged (§7). The A4 probe row and §5 now say the probe ran with `root=warn` and that "no URL" holds for that event only. |
 
 ## Self-check
 
@@ -452,7 +490,6 @@ ADR-0018 and the amendments are on `main` with this design, before any dependent
   - the shipped functional suite against a real candidate (AC-14, QA);
   - PostgreSQL;
   - `SIGTERM` to the jar (release's `--drain`);
-  - the residual 00:10Z crossing in the suite;
   - whether three failed startups inside the functional JVM disturb the cached contexts' logging
     (§7 AC-4 row, with its fallback).
 
