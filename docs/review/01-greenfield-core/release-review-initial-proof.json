@@ -1,0 +1,222 @@
+{
+  "observed": "initial release-review read, 2026-10-03 ~15:32Z",
+  "revision": "c774d2627488b08180c0f6a38b6fb93e1ab11efc6c17ce14dc17698880ac757a",
+  "state": "unknown",
+  "slices": [
+    {
+      "scope": "01-create-redirect",
+      "items": [
+        {
+          "index": 1,
+          "state": "accepted",
+          "reason": "Fresh full gate: 72 unit and 87 functional invocations, no failures/errors/skips; all 28 ACs have named functional methods and independently inspected effects. Traceability maps all methods and parameterized invocations."
+        },
+        {
+          "index": 2,
+          "state": "accepted",
+          "reason": "Merged CSV counters independently read: 185/185 lines and 56/56 branches; full coverage verification passed without exclusions."
+        },
+        {
+          "index": 3,
+          "state": "accepted",
+          "reason": "All candidate unit, functional and merged HTML/XML/CSV reports committed in QA evidence commit 4966043; totals read from those CSV files."
+        },
+        {
+          "index": 4,
+          "state": "accepted",
+          "reason": "Committed traceability maps AC-1–AC-28, BR-1–BR-12 and all 42 unit/45 functional methods with requirement ids; 159 executed invocations inventoried."
+        },
+        {
+          "index": 5,
+          "state": "accepted",
+          "reason": "Committed GAPS row states None for this slice at the merged gate and AC verification; per-suite coverage differences are informational and later review records are explicitly tracked."
+        },
+        {
+          "index": 6,
+          "state": "accepted",
+          "reason": "First branch commit 20aef57 changes only build dependency pins; independent full gate passed on that commit alone. Inspected builder fresh OSV capture: 90 coordinates, required versions, zero findings."
+        },
+        {
+          "index": 7,
+          "state": "accepted",
+          "reason": "Independent live curl captures show 201/200/302/204/410/400 with status, headers and bodies, correct Location/no-store, empty retire response and sanitized browser errors."
+        },
+        {
+          "index": 8,
+          "state": "accepted",
+          "reason": "Parsed all 75 measured request windows: nonempty, every event has matching response requestId; all canaries, target and loopback client addresses absent from runtime logs. Real 500 also correlated."
+        },
+        {
+          "index": 9,
+          "state": "accepted",
+          "reason": "Independent H2 export has exactly one create and retire row for the captured link, anonymous actor, matching entity/action/requestId, correct before/after states and in-window UTC times. Rollback and append-only comparisons also passed."
+        },
+        {
+          "index": 10,
+          "state": "accepted",
+          "reason": "Candidate committed document equals independently fetched live JSON after recursive key sorting; required paths, methods, statuses, problem types, Location header and examples verified."
+        },
+        {
+          "index": 11,
+          "state": "accepted",
+          "reason": "ADRs 0005–0010 and amendments exist, are indexed and accepted before dependent code: docs creation 0aaab2f, revision d93e7d5, acceptance 0210716 precede feature commits. Inspected git chronology and DESIGN index."
+        },
+        {
+          "index": 12,
+          "state": "accepted",
+          "reason": "Fresh functional AC19 passes with FunctionalClockConfig primary FunctionalClock shift/reset at 23h, 24h−1s and 24h+1s; named method and clock mechanism are in the committed traceability row."
+        },
+        {
+          "index": 13,
+          "state": "accepted",
+          "reason": "Review evidence a80c998 explicitly records NFR-A2: no application code updates or deletes audit rows. Inspected exact candidate AuditLog and AuditLogTest: sole append operation/INSERT constant asserted, real H2 persistence test present; both unchanged after merge. Review fresh full gate passed 72 unit and 87 functional invocations, including those assertions; QA append-only snapshots independently support the outcome."
+        },
+        {
+          "index": 14,
+          "state": "pending",
+          "reason": "No current attributed judgment"
+        }
+      ]
+    },
+    {
+      "scope": "02-analytics",
+      "items": [
+        {
+          "index": 1,
+          "state": "unknown",
+          "reason": "Evidence missing or changed; inspect the retained judgment"
+        },
+        {
+          "index": 2,
+          "state": "accepted",
+          "reason": "Fresh candidate gate and copied merged CSV have 359/359 per-class lines and 118/118 branches, zero misses; root XML 358 distinct lines is the documented shared-source-line count, also 100%. No exclusion."
+        },
+        {
+          "index": 3,
+          "state": "accepted",
+          "reason": "Fresh candidate unit/functional HTML/XML/CSV reports copied, 291 files byte-checked and committed in 440c473; old report history remains in 2aedfd1."
+        },
+        {
+          "index": 4,
+          "state": "unknown",
+          "reason": "Evidence missing or changed; inspect the retained judgment"
+        },
+        {
+          "index": 5,
+          "state": "unknown",
+          "reason": "Evidence missing or changed; inspect the retained judgment"
+        },
+        {
+          "index": 6,
+          "state": "accepted",
+          "reason": "Fresh candidate capture shows three independent canary-bearing browser redirects with unique server IDs, original Location/no-store, followed by exact three-click aggregate stats and reduced origin; prior comprehensive effects adopted only through proven source equality."
+        },
+        {
+          "index": 7,
+          "state": "accepted",
+          "reason": "Fresh H2 export has exactly three representative rows: times within client intervals, UTC days, origin only, browser class, same nonempty 64-hex hash, no raw address/canary; unchanged fresh functional AC-5 proves other address/day boundaries."
+        },
+        {
+          "index": 8,
+          "state": "accepted",
+          "reason": "All 13 fresh journey responses correlate to 15 JSON events with no client canary/address/hash/referrer: one completion each plus safe failed-insert WARN and OpenAPI INFO. Three-redirect/stats representative evidence complete; two setup requests excluded from correlation claim explicitly."
+        },
+        {
+          "index": 9,
+          "state": "accepted",
+          "reason": "Fresh live OpenAPI JSON again equals candidate-committed document after key sorting; stats schema/example/problem404 and prior operation responses retained by exact document/source equality and fresh functional checks."
+        },
+        {
+          "index": 10,
+          "state": "unknown",
+          "reason": "Evidence missing or changed; inspect the retained judgment"
+        },
+        {
+          "index": 11,
+          "state": "accepted",
+          "reason": "ERD continues to show CLICK reduced fields and its LINK/user-agent lookup FKs; candidate migration/product tree unchanged and verified identical."
+        },
+        {
+          "index": 12,
+          "state": "accepted",
+          "reason": "Reaffirmed after reading current design/security records and 4074673 re-review. Explicit item-12 row and fresh actual-class probe confirm unchanged DailySalt private managed 32-byte salt, no logging/storage/HTTP exposure, quiet UTC-day expiry and close zero/drop, idempotent close and stale-expiry guard. QA independent probe agrees. Transient key copies, scheduler and process-memory limits remain explicit; review append changes evidence hash only, not product behavior."
+        },
+        {
+          "index": 13,
+          "state": "pending",
+          "reason": "No current attributed judgment"
+        }
+      ]
+    },
+    {
+      "scope": "03-operate",
+      "items": [
+        {
+          "index": 1,
+          "state": "accepted",
+          "reason": "Fresh complete gate on this exact SHA: 165 unit and 155 functional invocations, zero failures/errors/skips; all AC1-20 have named functional tests and independently observed HTTP effects."
+        },
+        {
+          "index": 2,
+          "state": "accepted",
+          "reason": "Read the merged original and copied CSV totals: 443/443 lines and 162/162 branches; fresh gate includes coverage verification with no exclusions or lowered thresholds."
+        },
+        {
+          "index": 3,
+          "state": "accepted",
+          "reason": "Evidence commit f7ee87e commits unit and functional HTML/XML/CSV for this candidate; all 321 original/copy SHA-256 hashes independently match."
+        },
+        {
+          "index": 4,
+          "state": "accepted",
+          "reason": "Fresh table maps every AC1-28 and BR1-13 to tests or release checks with requirement ids. All 186 annotated methods and 320 executed invocations map both ways; release rows remain pending."
+        },
+        {
+          "index": 5,
+          "state": "unknown",
+          "reason": "Evidence missing or changed; inspect the retained judgment"
+        },
+        {
+          "index": 6,
+          "state": "accepted",
+          "reason": "Fresh exact-candidate Tomcat/H2 HTTP effects retain admitted create, complete private 429 headers/body, UP liveness/readiness and Prometheus rejection counter. Test controls are disclosed; unmodified jar checks are separate."
+        },
+        {
+          "index": 7,
+          "state": "accepted",
+          "reason": "All 30 captured 429 ids across five apps correlate to exactly one JSON completion of status429. Full logs and final stored rows contain none of the searched client/forwarded/UA/rejected URL/id canaries."
+        },
+        {
+          "index": 8,
+          "state": "accepted",
+          "reason": "Fresh whole live OpenAPI equals the candidate committed document without field normalization; all six operations include 429, integer Retry-After and an example. Candidate includes the analytics merge."
+        },
+        {
+          "index": 9,
+          "state": "accepted",
+          "reason": "Fresh merge-base ancestor check with analytics merge091ff46 and exact candidate returns0; worktree HEAD remains the packet SHA."
+        },
+        {
+          "index": 10,
+          "state": "accepted",
+          "reason": "Fresh Git-tree inspection verifies accepted ADR0014-0017 and their DESIGN index at4cfb745, ancestor of first dependent codea0abe1c. Recorded chronology retains those exact subjects."
+        },
+        {
+          "index": 11,
+          "state": "accepted",
+          "reason": "Read both independent explicit item-11 PASS re-reviews at48381d4 on the exact candidate. Per-client TAT state and opportunistic cleanup are bounded under the recorded forward-clock policy; backward steps fail closed until catch-up/restart, with no absolute client-cardinality cap claimed. The candidate changes no identity sink; audited response/log/scrape/storage canaries are absent, preserving salted click and explicit submitted-target exceptions. All26 candidate Git blobs match reviewer hashes. Receipt completion only; release item13 remains pending."
+        },
+        {
+          "index": 12,
+          "state": "accepted",
+          "reason": "Repaired candidate has release smoke modes; fresh60s bench mode output captured. Strict actual R0 function controls8/8 reject truncation, absent/500/late responses; unmodified jar completes201 at532ms. Supported C locale and below-target workload are explicit limits; no release numerical verdict."
+        },
+        {
+          "index": 13,
+          "state": "pending",
+          "reason": "No current attributed judgment"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "200": {
+    "exit": 0,
+    "stdout": "200: 2 requests in 51 ms (offered 20 req/s for 0.1 s), achieved 38.9 req/s, non-2xx/3xx 0, p50 1.4 ms, p95 2.8 ms, p99 2.8 ms\n",
+    "stderr": ""
+  },
+  "500": {
+    "exit": 0,
+    "stdout": "500: 2 requests in 52 ms (offered 20 req/s for 0.1 s), achieved 38.8 req/s, non-2xx/3xx 2, p50 1.5 ms, p95 4.1 ms, p99 4.1 ms\n",
+    "stderr": ""
+  },
+  "truncated": {
+    "exit": 13,
+    "stdout": "",
+    "stderr": "Warning: Detected unsettled top-level await at file:///private/var/folders/1b/jc5sj1h11hl0pbwpvbd2n9n80000gn/T/release-review-bench-usdgz5m9/bench.mjs:57\nconst outcomes = await Promise.all(JSON.parse(scenariosJson).map(run));\n                 ^\n\n\n\n"
+  },
+  "oneFailedLoadAttempt": {
+    "exit": 0,
+    "statusRows": [
+      "000",
+      "000"
+    ],
+    "stderr": ""
+  }
+}

@@ -1,0 +1,1477 @@
+{
+  "target": "40067fc",
+  "baseline": "9b1ca51",
+  "counts": {
+    "other context; outside release deliverable": 3,
+    "release authored input": 9,
+    "exported engine record": 199,
+    "context documentation": 1,
+    "release evidence": 32
+  },
+  "files": [
+    {
+      "path": ".claude/settings.json",
+      "sha256": "29239b0ddc31c33d8dae69f5c9bf1875d9995fac49b25a8845a6e7d318ab67fd",
+      "scope": "other context; outside release deliverable",
+      "verdict": "CONTEXT \u2014 not a release-deliverable approval"
+    },
+    {
+      "path": "README.md",
+      "sha256": "7ffcda6e43b2a83fc0dd5e88c2442e3367eee6280d405228e53da6aca29d76f0",
+      "scope": "release authored input",
+      "verdict": "PASS \u2014 read and checked against exact sources/evidence"
+    },
+    {
+      "path": "docs/TESTING.md",
+      "sha256": "ddd1acd2aed5001d2e96fc854c5e28d26d5ccbff5db2096e9cc85fe3661ca863",
+      "scope": "release authored input",
+      "verdict": "PASS \u2014 read and checked against exact sources/evidence"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/INDEX.md",
+      "sha256": "f46686e98812ea8bfcb5cbe0d21d958b99aec1bc733997c7be7c4a65c9f73eb5",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/instances/01M3Z8AJ1EDFTHQ1HPAWPNP2YN.show.json",
+      "sha256": "93ab70396fa7c4acd45975fb4dc9162aaa0c02acdb1f5b721e1628eef494c273",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/instances/01M3Z8AJ1EDFTHQ1HPAWPNP2YN.trace.json",
+      "sha256": "796a518b44aab95389f8767dd4012280e9b797049fcdc7ad2a0f95a5fcc91600",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/instances/01M3ZA8Q39QEB3R1QDQCVTER18.show.json",
+      "sha256": "c0ce0c67d3b7a6a0eef7cfd8d226f44ccc9d87b1997cfd64283f471c4ac0f697",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/instances/01M3ZA8Q39QEB3R1QDQCVTER18.trace.json",
+      "sha256": "37d2846b2f21960b18cc8deebee427c7a9502d3fc85e5f9ac0acf2e8fca04ae2",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/instances/01M3ZXEXAMS945ZS0QZ26KZK1V.show.json",
+      "sha256": "1c990cee5c69a46835dc8af600e8274842d3d315f61a91d1e3253618cbe2634b",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/instances/01M3ZXEXAMS945ZS0QZ26KZK1V.trace.json",
+      "sha256": "154412ce20a24a1639d434f3ca9129a44daade0a3cc3a6f7d8851bff31d872c8",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/instances/01M40149S2BGCAKVK83B6VCNKG.show.json",
+      "sha256": "809af720f97b67fb9425d30a87d23f46c0dd68f20c618810af6384f4fac182b4",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/instances/01M40149S2BGCAKVK83B6VCNKG.trace.json",
+      "sha256": "0d5c818c0009fb7b55680fe6c04a6205c086cdabdbadef3b0fe46fd9e1b5552b",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/instances/01M40CP0JVZZWR8226MNN8XCCV.show.json",
+      "sha256": "fb2d6db224f35069ec66fcfd5995f9ba169429a2da30ab5acbf80adaf33f9bd7",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/instances/01M40CP0JVZZWR8226MNN8XCCV.trace.json",
+      "sha256": "a2fd414f708c2c471cc0dae878e36d36d1589542f71f5f77c4f31734b41d215c",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/instances/01M40CPBYR97637QGHT57BNEBY.show.json",
+      "sha256": "dbe3a35f375f9ba284f313a830221c168e622ac0c7047d53646a3d468081cd34",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/instances/01M40CPBYR97637QGHT57BNEBY.trace.json",
+      "sha256": "fcd3bb1112ed1059bcbf9580c66565e1ea3b164651917ed49245e2627cf5afec",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/instances/01M40RVNDQ0KT7FPWN1KJW0DC3.show.json",
+      "sha256": "9b6697e256211b2db9823cb57711d7c61833597f4aa1f62858bb6f2590503cde",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/instances/01M40RVNDQ0KT7FPWN1KJW0DC3.trace.json",
+      "sha256": "8493324cf068159e681e1cae2c42ab0aeb4dc7d94c6463db81d4aec5331c373f",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/instances/01M40SN34E37K96B38JPG9K41X.show.json",
+      "sha256": "e12f52ff5e83f685ba1c284210991a42825053e67b9d9c0dccfd51f4a6851f4f",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/instances/01M40SN34E37K96B38JPG9K41X.trace.json",
+      "sha256": "e9b2751130c96afd59cf2a8635e9c1c8a12e57f2164870b4c2c5455862df2723",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261002212902-0f6e128b.show.json",
+      "sha256": "be5fbfeaf13d9e8f2f3fdca43f8796b400ac519853c753d80502d7e0e3901541",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261002212902-0f6e128b.transitions.json",
+      "sha256": "77d5ab944bf396f032ee0f31f0285cd49d179fa478514e93c01fc749852b893c",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261002213817-6d848ac6.show.json",
+      "sha256": "74412149704f276275dd8e838f2e39546ebbfe942ab7d6181b4ff81ff08b86ef",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261002213817-6d848ac6.transitions.json",
+      "sha256": "675eeda9bbdb734c879ded46b79fbc9f19cac1c5c20f1ad74bdefe1229cadf52",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261002220222-65f568f1.show.json",
+      "sha256": "2decdb820a01bcef4e4204dcf8076dd0c511917c3aa1a714591208fd38e20553",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261002220222-65f568f1.transitions.json",
+      "sha256": "9189a6bd689f3b3c0062937256c12236426568c408650018d650cabb5365235b",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261002220259-281a4efc.show.json",
+      "sha256": "4a198039ead1af70ff2221f6ac2bab5b6f1efa8e8128433ff36261a5ad9f6cbf",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261002220259-281a4efc.transitions.json",
+      "sha256": "01ecd1c6181fc2bc17e573ccf406bde5a5159d6090ca1b2cfd243e9301decf5b",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261002221159-a35e50bc.show.json",
+      "sha256": "b0f9effe7f139a2da05e531b41b3dc53118085c7249c10ffb0b4a861c07e5ea7",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261002221159-a35e50bc.transitions.json",
+      "sha256": "3b9a3f0098032aa12916e76594b4534d150f866151042ad4c389af9999ba1c1c",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261002225126-b5c94d4f.show.json",
+      "sha256": "a8623ec31698a94a1933c6809efc6a0a0b724d8839e0c8244931e59275877a61",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261002225126-b5c94d4f.transitions.json",
+      "sha256": "ae537a49bd07631914479baec97e7668bcb7b74256442deb33aeddfa394d2f2e",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261002225911-1ad25865.show.json",
+      "sha256": "abc2dec1dd6492189580025d8c76a251484db6e002ccbd5fa9e8ee2224f26d9b",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261002225911-1ad25865.transitions.json",
+      "sha256": "17a00dd03099a87c5408fdf20bba74d32cf121e5ff9dc5e3c8ef9e72feecdd58",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261002230841-dc5cdf2b.show.json",
+      "sha256": "e4117d67a53330c17c512466b5a055606d95aadad81ae4820ae634944dc46571",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261002230841-dc5cdf2b.transitions.json",
+      "sha256": "8c07e09fd533e14c0279799bc4c368980b5be19bb6274f0a46a52f946bf5cc93",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261002231236-cdda3066.show.json",
+      "sha256": "56cf50c95e0c71e685a0eb3554d887b14d05d6e9fa705faa5789f8825722e11a",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261002231236-cdda3066.transitions.json",
+      "sha256": "0c0607b48ee2d924f18f8bcaa0ed83034eaad56951a487cfba880e31980faeab",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261002232943-d0903176.show.json",
+      "sha256": "09ba1b6e80c16db31128df1f579b96fb28db079d2209080cedfdd69c9eaccbf1",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261002232943-d0903176.transitions.json",
+      "sha256": "405142f731f312abc74ea494cdd8e4d371cade981d8c01ab6a1ff22b3a46e5cb",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261002235024-355f67c0.show.json",
+      "sha256": "1b75f21a225243c764c31b12cf28beb53c061f937e74294cfbc8cac47af7c099",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261002235024-355f67c0.transitions.json",
+      "sha256": "86304de021e0d4f90a6652d3dbeb278152f1cfa8285b47370f6f3c2ccff824b2",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003003003-9cb0ed55.show.json",
+      "sha256": "4034ed0809ae28e698cbfd1beed1df0299204e1d9b439099633716151c2e014b",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003003003-9cb0ed55.transitions.json",
+      "sha256": "92222d8fd4de3d11e2b289ffdd8c58ab69112830ba0e9f37a846fe0dee043a3e",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003004117-c920fe49.show.json",
+      "sha256": "e95ea51652c990fcaff80b00cb16c6316b8b9a67b796f9051e87c8672174a786",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003004117-c920fe49.transitions.json",
+      "sha256": "502ba9f6ef62c30bd39126075043bfa056861d9b9576d7781c0f8eaad22e6cdc",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003005806-5aaa453e.show.json",
+      "sha256": "18f58ac859f553928a8cefd5c940e6c952070b5d349f04969b78b204bfa6fbc2",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003005806-5aaa453e.transitions.json",
+      "sha256": "4a0e92a2845ce7ea1bb90d22e007a5519690bed13c23519d73e44063e846e7e0",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003010318-807bbf8a.show.json",
+      "sha256": "07acf6e971b0613f4b56640c01d051a38fd0a2db89a9422143c397e3c26049fd",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003010318-807bbf8a.transitions.json",
+      "sha256": "e26045e832b939cb552157beca169fff5b879dbe186f28c8f0b3c2135894f861",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003013220-670f8532.show.json",
+      "sha256": "d288bea3a6d72e78485e98ab000007ec593a75155aa76ee8408fe000d51f1444",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003013220-670f8532.transitions.json",
+      "sha256": "1612fd58e5d34e59be0aec8b021e1278aad33d0e9ccecc6e55ce9fbb6a3e9ccd",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003013423-99b71ff1.show.json",
+      "sha256": "386135376a637ef034f8c463faa188aa38efc51923dd1c679443ef01fd14179d",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003013423-99b71ff1.transitions.json",
+      "sha256": "ca7107438a4322909ba7f1aa63dc7ddd5371aabb814b15c7a8d9efbf7c5c8d32",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003015049-51d1ba00.show.json",
+      "sha256": "0df873a00c25a6a9bbdd838dba450ee86b2edcb4ed6fd8470549b6f14a9c342b",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003015049-51d1ba00.transitions.json",
+      "sha256": "eb6159025f0696e26c8bc27ee5485c81c8f4cd72e891fc279960b95a3fd56075",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003020412-57cea2d9.show.json",
+      "sha256": "880e4ff2c22dc8052b4db5a2c82f41ec9c8365586dec8189680742522b24c7e2",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003020412-57cea2d9.transitions.json",
+      "sha256": "a5b7940b677cc47f6f3dec7dc0bef990b4f1e621ff1b3b3c2a177ce00fa891c5",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003023502-f807af1f.show.json",
+      "sha256": "1d4a71f94b3c65aa90516d34ec4079e5b7149d7e84e80ca5c347669b554c9d49",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003023502-f807af1f.transitions.json",
+      "sha256": "6d328db6e010b36c522f553273c3ad759c45881b49975812cebf144abaaaae4b",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003024639-d36d76cc.show.json",
+      "sha256": "d07d7778ddb44a9b99f6344550fc3288f110f84f117e8e28ee70024df7cd6dbd",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003024639-d36d76cc.transitions.json",
+      "sha256": "8694c734f8efb77f2db8cfb73dc849f551e407da675f681858bbe1a31b1777af",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003030415-a2011998.show.json",
+      "sha256": "5936361b9e0dc60ada6f5cc249c373d5f6dd7862ddab8531f0515812b718dccc",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003030415-a2011998.transitions.json",
+      "sha256": "d81cfcc669cacda3fade8c7bca72c9ba769f9919211863fadf4d205d5b4884b2",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003033825-0148d3da.show.json",
+      "sha256": "2228bf77334867496530320a42c3e6ec13f1c6786317b4dd848a3b1d890a7dee",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003033825-0148d3da.transitions.json",
+      "sha256": "2ca7d5aea21809b846c40be81213a0156a114afdacb5a711aaefea23ad60bb6d",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003040709-b481dc8d.show.json",
+      "sha256": "256fbfacc8f29ab014f873407c16eb28a513501a86a34b6fa19c56d4c1b8148e",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003040709-b481dc8d.transitions.json",
+      "sha256": "4dc31907b9062f85c329867a609b5eb676a41e2a5b8591f41d39da4efba7cc97",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003042553-03ac8b4b.show.json",
+      "sha256": "3edd02568a257e107a87f5f18d49c9bd74242baeff687c6fed9b3ceca26e7c89",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003042553-03ac8b4b.transitions.json",
+      "sha256": "40d684f5c9916999438aead04119ded8b16872ad84641c3894f0384c2b073ce9",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003044200-384e9544.show.json",
+      "sha256": "89495a841388c502f95c4770cb2cd7ed3e662e0e09006186984f4e82785bc5d3",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003044200-384e9544.transitions.json",
+      "sha256": "98382922c1f43fc83799db1cec57bac792fe22c4592f02864c8c6ebbb2cf4f05",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003044232-a7194f1d.show.json",
+      "sha256": "a3b91788dfd49c17e14cb6d327d79dc71defb4ef956259707769bfa4c3aaf664",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003044232-a7194f1d.transitions.json",
+      "sha256": "ffdbbebc03b6426b1d5e66b23af359b1c43e6723c32d5beb0428afebe2a0f79b",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003050304-b7cdaab5.show.json",
+      "sha256": "76785acb68e8f7a4e6be3595cfbf3cdd3d71b27d2fdf2d76057227f4e99989ee",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003050304-b7cdaab5.transitions.json",
+      "sha256": "c25e3ec9035ae5e588855abe5dd47da31962ba4397f2601ee1b27875db74d8b3",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003050836-02bc7593.show.json",
+      "sha256": "dd235908ae837b77630896e418e9619c11fa64ddc5266100a465d9622a6ec7d4",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003050836-02bc7593.transitions.json",
+      "sha256": "1a131c9f11c29785bba2d47069b536a176853dd161bf2d713f9c8de0cc92200c",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003051110-97f19fd2.show.json",
+      "sha256": "25e989393a3049bda846f7fc1b1217d7bed61d93157ed055f2c1cb78235e369e",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003051110-97f19fd2.transitions.json",
+      "sha256": "6d52eef10e7c48229e8abf24b16145335bdcca41dce201ed7294b86ce66023f9",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003051242-83fa8c2c.show.json",
+      "sha256": "5e9ac0630d2d4275409908500a79e7fce8b24edfb3d539dc1b9300460d97e86a",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003051242-83fa8c2c.transitions.json",
+      "sha256": "8e7b3a6eb084b3a22f3faa948ca7f087ddfb9faecf9623874acbd4d9902177c0",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003051852-2c3bd470.show.json",
+      "sha256": "77e50a3f75e80b3288990b9fcc2ac25b3160467195c9c49d3e5e7b2f8391ddbd",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003051852-2c3bd470.transitions.json",
+      "sha256": "d23cd2f6dc9489f170f9409ef8037ef2d8437f33ac2cb4e9509916ca384e1c44",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003052736-7830d02a.show.json",
+      "sha256": "4b283243526e245284bdf8ee306d56f5f19b16d242d0c78e3879a0525da965de",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003052736-7830d02a.transitions.json",
+      "sha256": "a3fbe0279ff8b8638f4a3429d568a8d72342a0dcb510dab3ce6c1989b37a541f",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003054407-8b9603ab.show.json",
+      "sha256": "c299800519dc9aa778eac20c9c32a840cc9c24040905595c1385e3f23eeaa9aa",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003054407-8b9603ab.transitions.json",
+      "sha256": "54bca7c7cbee4f3aa74e5853f474f4c5311924d96a8b300e3ded8b44343fb622",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003055347-01d2d207.show.json",
+      "sha256": "9e448b84a0c7362bf6763c2c4ec0132a01475e5e2bdef6f21d280c8c147e5952",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003055347-01d2d207.transitions.json",
+      "sha256": "5de8ff2366fc51e3f6ca3e9bb950f6f7720664941a6c087393eb52c9b7fd7fb7",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003060343-3eb84b99.show.json",
+      "sha256": "2c8a3b25b17d846d350dce999236bc01ffa25c36df7175d74acec3006eeae37c",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003060343-3eb84b99.transitions.json",
+      "sha256": "417a9e97ff8a81a1b4aadf9edabaf9c3eb7af5fd32ca5454fbf0c5fe55c4d0b3",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003062552-16fc9d48.show.json",
+      "sha256": "d8d5cc1d0ff93a074bbc687ce7653dcafc84b79f5c1748c98220c918daf3204a",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003062552-16fc9d48.transitions.json",
+      "sha256": "68c210a988adc941ab5325fd4a45a5e08d64edc9b454c1d869cb09eb2981a252",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003063348-182b23df.show.json",
+      "sha256": "887c2a73363a0ebdc45be180506ef0c2bb88bca83dbea3f8033ae6430bef9153",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003063348-182b23df.transitions.json",
+      "sha256": "a56d710ec2e90d917f14a84424cfc1da33f29f37fbeaeed79484ed49712de444",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003063930-0cb9c7eb.show.json",
+      "sha256": "5edeba3bb8d54faf52b6a6c83653b4cc5c9e08ee6d65c4282fc45283c71ebc25",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003063930-0cb9c7eb.transitions.json",
+      "sha256": "33b1cafec506f3ef5a57204a774450552cd58831c21a15d28b7f9b94a3256cb9",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003071605-40d1d3aa.show.json",
+      "sha256": "89ec734f9c4b9933c88c8cfcbe77530dd5ecc8aca8d685a732ed7d564cb4a3d0",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003071605-40d1d3aa.transitions.json",
+      "sha256": "08a759fd30c035553f4f64546d9bfe9b4c3a442f4101fb54a66b983921f5deae",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003074021-e3821d80.show.json",
+      "sha256": "b57ff136093e01c32ef4579bd5064ec95900b2fb9ceb1955696c23b9e55c1c2b",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003074021-e3821d80.transitions.json",
+      "sha256": "8e898b2f3266bf12dc2bcf89acc31e0b4c65e887ebb29c1bbd8fbfb594baf8e3",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003075859-7a5a6e93.show.json",
+      "sha256": "56699ff8e86826d6f353c757a9a6584dfd1f0507745f711658f34d22beb24b82",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003075859-7a5a6e93.transitions.json",
+      "sha256": "d0f44562d6738be30ef06b2bd44cba7601b6b321d74b5381109f537b02dcaded",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003080033-20dc594e.show.json",
+      "sha256": "be01dfd1471f9214cdfcc19a5d7d13b4147b33b284b225b483e9b61e957e1c19",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003080033-20dc594e.transitions.json",
+      "sha256": "996539b1a07553ba837480eb15a6b513c8117f8e348dc26a87661d887517a8bb",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003080426-686ea065.show.json",
+      "sha256": "9d77dc022979d32877f0a18917737b1ce6d49392860633f512e1df847305774a",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003080426-686ea065.transitions.json",
+      "sha256": "7e66eefb444cf16b876a0f5a7f9ec8bc64462745f9feb9a35c4838fabf81bc4a",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003080438-4f449e0f.show.json",
+      "sha256": "b8559f91da0d9f0d4c332a8692f652b1b4e36c98e6b0b1e1cab876d2ff2a5a43",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003080438-4f449e0f.transitions.json",
+      "sha256": "6925072afdad9e19377c40d59ca7e42c5c270b62cbbdaac53e5d66db4d0b5115",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003081312-64ea3c87.show.json",
+      "sha256": "29843e519ace3110e6dcde6484f1cfe4948d38ff8b6d29a4fa0285b3a2b5c9ee",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003081312-64ea3c87.transitions.json",
+      "sha256": "6b7e41d791470cd585ffdb100f529057efcdb3b03cc1ed0c544e1801875a419c",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003081331-87faf358.show.json",
+      "sha256": "633c3711bcb14aed6bd83aac5f3dcc36285638fe3862220f0206e3ca49acdb0b",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003081331-87faf358.transitions.json",
+      "sha256": "5ab68584b2da3415feabaf01f3a2b5f7a0136fda757b8b3eadf87451579d6b3c",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003081851-f8f25b02.show.json",
+      "sha256": "f43b8ae0849ec09010bad87818cee8c67ceeee20005a13765679053b74f2b0e6",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003081851-f8f25b02.transitions.json",
+      "sha256": "4a20d90c673257cfe35c7826c68d06fce1e2a1ac49394672c488033447ff3530",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003082131-b709b118.show.json",
+      "sha256": "cb2d3e84fd09934668a1031aec4a85fa843d650ddb3294d04bcf0bf9e8dcfa6d",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003082131-b709b118.transitions.json",
+      "sha256": "440b1cd1ed16ce36fb1001670ad5b053ac8fae368e3fc573400e7173b3931d07",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003082147-22c46f0c.show.json",
+      "sha256": "06acf46db1f634c936294e6df678d2f9be64fa71942fef4547dfa4836e548e01",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003082147-22c46f0c.transitions.json",
+      "sha256": "2893948e579dc06ef2b080eb7c784e54875d509485a4f9adf88dad9fcf1acbc3",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003082416-b1057e7a.show.json",
+      "sha256": "f5ed7c223e7c4684207c8bef458b0ac78ece549d52284f2178174736946c9061",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003082416-b1057e7a.transitions.json",
+      "sha256": "f9c512edea6f724868d204aec4c54bab3f8417dd858f6157e72ff15d96104881",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003082940-4da408ce.show.json",
+      "sha256": "db8fc33938c72e9004b7f475d871ae5e0e85ff77de8682f83625633c44b47274",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003082940-4da408ce.transitions.json",
+      "sha256": "af166ddfdf63d3fe39c89f8a183838a7fb5f3ab6ddf34eecb82c3e3e22855b38",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003084518-9957256a.show.json",
+      "sha256": "53f956a4d433da21ba42fe408b2d6fd8f5fb12d13557fee6457df8c6a80e8eb3",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003084518-9957256a.transitions.json",
+      "sha256": "230e033af7cae6a0f70740cf046ee0c10ba1f8907b441cd5e3f2f56891f4a7ab",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003084948-76a4a31d.show.json",
+      "sha256": "ca196231bea27d4a46f11c0e5a508aa786cdb5494d95931328059efb2db68b70",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003084948-76a4a31d.transitions.json",
+      "sha256": "77ecfe73a20b42136a768ed3b65f2ef2075f462a61725aa74e32067bb283b787",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003090152-625de326.show.json",
+      "sha256": "3e1e282a173580c9d6925a9d956b02812af5add02a3a5313f1f706fea573c90b",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003090152-625de326.transitions.json",
+      "sha256": "b7977206caa82c9feaa08a28cd71bcb1687dcf7d7d800a86ce1e3438d8cb50d3",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003091111-32efdbe2.show.json",
+      "sha256": "514a2cf9db1a968bb78c93629ac82845b41650c4edfdbbd0fd1b903180702458",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003091111-32efdbe2.transitions.json",
+      "sha256": "75c36ce282bbe8266210c817544f440a757544e04ed619e818d047273a6c5baf",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003092226-699086e9.show.json",
+      "sha256": "c05871ec6036e33993a2e42a50f7f26993269cae30de0ec189803804a513020a",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003092226-699086e9.transitions.json",
+      "sha256": "1ba562128d8e2c0d56a16b6f43cdb712a14d427ea6350a9b8c18320736c5440f",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003092345-52dd8a6e.show.json",
+      "sha256": "ecfaba92414746271974b712a15014f9a0fd792c8b85b3c671458cf3a0fbbeda",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003092345-52dd8a6e.transitions.json",
+      "sha256": "16323be89a0445abd7faeb9d12a944d310e8f2eab628cb277eca545d3e98d5e1",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003093000-222473fe.show.json",
+      "sha256": "ecdaed1919bae6548440a82c473b522c600482e65b5b9e4a14d737e7b8402bee",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003093000-222473fe.transitions.json",
+      "sha256": "11d32fa279163cb69c9551b76e373e662cc3208e640362cec89d3cd4f9ed2782",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003094019-7bfaf4ab.show.json",
+      "sha256": "115a389b098b03324adc3438f1329558836ba97cb1a20a12c5c9e62f7a0e5fb4",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003094019-7bfaf4ab.transitions.json",
+      "sha256": "dca20d21d6cd5b82cd9e7dd2fb651b2b618c9203bda0ebb65e502eff28645e34",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003094226-6580fb8d.show.json",
+      "sha256": "3b645d24c46875a8d2aff4855c82faf0ab4172c52be189fdefd0b6d2c40e9dbe",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003094226-6580fb8d.transitions.json",
+      "sha256": "f383053dece3cfa20014f0c5366ab4ca3082210478951594e7d6d9cfa5d72e52",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003094649-844b6a83.show.json",
+      "sha256": "1697e0921b440c783c477714279bcf5c8931c28932749751cf098868c72eaca9",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003094649-844b6a83.transitions.json",
+      "sha256": "75f4df83e1d34224ea7bf5ffacaf21b1fcfe869bf87dc2487cf91f85cc885d25",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003094850-c667801b.show.json",
+      "sha256": "9b4dfdb3ca19aba6242b1b896a684f374fa4c936e4266e6b37aeb43961cf11ab",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003094850-c667801b.transitions.json",
+      "sha256": "f95d76cf82a04cbf396580d48d40bbc83fe46251d816e8f85bd9f01f6587841b",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003101510-d5f18be9.show.json",
+      "sha256": "e80fb81110af2dcdb2578ff568dd761ed91f2d1d94c866ba441131ff0ef68bd3",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003101510-d5f18be9.transitions.json",
+      "sha256": "b6eb5864f2c29bcd0d7193cc69da99870b29aff0d1e011715f52cc630af6db79",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003103240-18e29a17.show.json",
+      "sha256": "69b55896938a12733610dabd0b0f1b031c8ac282b31f31b42af2abac62fd310d",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003103240-18e29a17.transitions.json",
+      "sha256": "316e0ef13a3318f3d2157774700bf521f227134d88503bc8444865cd7d256a37",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003104116-a5a61dcb.show.json",
+      "sha256": "1d710e58d86a6a80054230489f176d31958714a5c6e048bc8b7da6eef69aee81",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003104116-a5a61dcb.transitions.json",
+      "sha256": "e2472384533766ba335df600a4005a9f7e648b01d6935fb963e79b5ff9e792ce",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003105943-d93e6776.show.json",
+      "sha256": "1c5f115ebdf640846c1c39a139a81435e3cc4ef1c33ed6ddd7f6062704bea087",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003105943-d93e6776.transitions.json",
+      "sha256": "1df36aca77dd905b8c14252f050a22f55e564a353b39285c8fe50dc4095ce462",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003110223-756ec012.show.json",
+      "sha256": "6cfc15b40fde6146d2f2de7bc0146ac45c5b336644f5744873b9b99a03865320",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003110223-756ec012.transitions.json",
+      "sha256": "01a072117a0b7e423fef600e83242882357a615e0777452ce0c0484aa9b3fefd",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003112133-94584287.show.json",
+      "sha256": "caa7587ff8fddfa8b663a4b9d61dca64d193b039e38b123fb942870fa0f7913b",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003112133-94584287.transitions.json",
+      "sha256": "b44d5c0015b5d4b52e63e67e946080e26b65bd9a7a8d5b8ed1888e72d573fb59",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003112744-2dd7d3cb.show.json",
+      "sha256": "ed4b95d56909f5be3ba7229ac08eaff7155ea7b392fcc1f65917133766a94647",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003112744-2dd7d3cb.transitions.json",
+      "sha256": "4eb80a66a2842c0650b7c551f4d1e4c55081b4a8319f6e10259b0f790875d539",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003112820-9f4000bb.show.json",
+      "sha256": "c253edd2fa399d09e525f484af92ef22fff452cdd18473a81121ab0e5fe0ae25",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003112820-9f4000bb.transitions.json",
+      "sha256": "c270da635868bc33ffb5b0bfe0bb54ff59dad92754084e55324e65b123d404bc",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003113714-4cbdf1e0.show.json",
+      "sha256": "57893fa1883540f624fd2b1409a428764928260bc88c46ef4fca3ca03cb82a5e",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003113714-4cbdf1e0.transitions.json",
+      "sha256": "5c0cf900d1eea554a4462a4d2298ae1feb3ab92d2f273d84548d7c8ac844e7e0",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003114044-007e2031.show.json",
+      "sha256": "22356832fc031a77aae9f717644591d575de49a1da4b1b24035cf6b5a4df5c20",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003114044-007e2031.transitions.json",
+      "sha256": "4487c647fcbe2e5d2359831993a764fbfc5fd713cc39e13c8cbfdf8049d9bc36",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003114345-f739a1d5.show.json",
+      "sha256": "f709642c21660db095ad13953d047335196e10d54decc43c4820299fd8024a60",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003114345-f739a1d5.transitions.json",
+      "sha256": "0e32090946c9f38bda666aedf7dad0da544344ae365d7d8f0c6ee8457b17ba90",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003114944-9bd32a00.show.json",
+      "sha256": "a1d39a2d07bf0d4fbeee357b7ce0bf36997e7ef300e3894de5fd59a39a498d8e",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003114944-9bd32a00.transitions.json",
+      "sha256": "ab929db99c724566d99d67d31b90f235fd81a1ee61b59464d681882cd25d0727",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003115108-61e03251.show.json",
+      "sha256": "df51cab140d6f3f796ec4ce6f5399963ceca8c7a0d895326be3aaa4c74524395",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003115108-61e03251.transitions.json",
+      "sha256": "a17bdb332e7e3d9a69aa0470f96211031d285a8b50402097350d7a0453ea56f0",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003115740-6f882a4a.show.json",
+      "sha256": "9fc7737a0292394f553a75358ceeb7c3f8f5ae22769b9ee2ea953998f19ec738",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003115740-6f882a4a.transitions.json",
+      "sha256": "85eb23377ffcb6834feb02f6f5ccb17fcc8bf7ccf8ab7c2dcfb271b0c096604a",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003120551-4e8acd30.show.json",
+      "sha256": "3477ef48c55a51c552923556a29563587c9cab39d6c8068e8531e0d648b53c1e",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003120551-4e8acd30.transitions.json",
+      "sha256": "16f56b49bf5a532f81b42fac4d516077eeab84f162e567bb5f0ab6455a481c54",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003120849-f4cbfa97.show.json",
+      "sha256": "4f18017dc3e2f5f895117615f728919aff947a423473d8140e81b719c1eec6db",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003120849-f4cbfa97.transitions.json",
+      "sha256": "92924de36e0989f31cba333fc8ba9225b4a6c9773678611f570d216fb6ea43bc",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003121811-d329afbc.show.json",
+      "sha256": "fdf50526992a28685d57ae72fdefb6f6e1e5f39f89236880ca8e85910536c2f5",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003121811-d329afbc.transitions.json",
+      "sha256": "952a3a1c259bfda587a2887325cb14b427a32500563344ca962fb47a887f17d7",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003123104-ccd07ab0.show.json",
+      "sha256": "7cf137233a40135a67cc64dd495e7a01952f2d9706be4ed4781db1b4e1fc91d4",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003123104-ccd07ab0.transitions.json",
+      "sha256": "a39f860d0ad2e1fd92ba3e8b5fd0fb2d9f7ae91d52eac7053e03ba0bb9e38cb2",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003130258-8d163c70.show.json",
+      "sha256": "6351e6e08a6cfdcf87409a0d5b7c1d69f279acbe4459cde44920d1cd4cf75617",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003130258-8d163c70.transitions.json",
+      "sha256": "88bf73af7f4b994b77af75b01626ab09f1ae06e251e7906325ed452c0f88472b",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003134551-e4b16c7a.show.json",
+      "sha256": "b81beb5948d7264137921ad489984aacd10ec61bc5044bd063e0505e2800d1e2",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003134551-e4b16c7a.transitions.json",
+      "sha256": "32a8f9c40a41c75e918fc63843007ea9211f9421c0fc4920f6570aaaffa11a66",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003135618-4e62dbf5.show.json",
+      "sha256": "a4175a5d437efd3a0c1c92071ead9e75fe96d3b487d4d087bd31c445a8fbcdd9",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003135618-4e62dbf5.transitions.json",
+      "sha256": "fd429c6a42a1ed385937abbb55aa7af6af5ee8b1bab63007ec828ad24352509a",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003135649-046d003e.show.json",
+      "sha256": "54da360f78ecba9899b7201d5a5a5ced4b16ecec2f02c3a3663522318aaf4f05",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003135649-046d003e.transitions.json",
+      "sha256": "c4edfcf792b3a4d3561218ab6b3dd8cce70e0c32fb283412e9f174bcd5c82af4",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003135957-0f6e0c8b.show.json",
+      "sha256": "b969ea29915ceb50d1ce6de2791ba2238bf026ba28dd22d4098b99ef63b9756a",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003135957-0f6e0c8b.transitions.json",
+      "sha256": "f80d692be04730f3fcc557e707529353ad8419e806afd9a5d36aad91c5a9712f",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003142414-ac899454.show.json",
+      "sha256": "b2e36d9a38be02fc0688815e4eb4bea3d841f2ea10c345ccfd3f3da18936a374",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-20261003142414-ac899454.transitions.json",
+      "sha256": "fbc8678bcb2ec8e60943d6bced064dc8da08e04577e395bbd589e2b07e810a38",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-recovery-bfba0b08a35bc9d8.show.json",
+      "sha256": "da23cb09933c817aad561e76e5475a306b21e7c98812dcecf8a830e35556d55f",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/packets/qitem-recovery-bfba0b08a35bc9d8.transitions.json",
+      "sha256": "7a277e35fcf91a376f07794bbfaf7c1cfb394f763aa87fa2dc62e6cd03285154",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/proof-readiness.json",
+      "sha256": "a241ddacbbe69bb2b680a6d0a403490df4bbc2bef03071de5818408cc7fd2940",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/queue-active.json",
+      "sha256": "5ff5d50bd0e259e3f0e5a5af1eed01486cc05feb2163ad2d5e0415b1d5183faa",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/scope-audit.json",
+      "sha256": "7a9688c7374213e44ae73f7192587de950dfad10ae3cf5456c61e69d1a29849e",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/usage-top.json",
+      "sha256": "f668b0bb268a0062050bb93cd8a4e63e417ad1296d86c6e903082812456d44c9",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/workflow-list.json",
+      "sha256": "38c33406dc39f45b4daf88fa65ea9ee2631e2abcf6824c5ea10813fad765b8d3",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/evidence/01-greenfield-core/workflow-status.json",
+      "sha256": "505fec4ecb234a8b4ed9fd6c6881249e853233451a998d40551c2db189e68811",
+      "scope": "exported engine record",
+      "verdict": "PASS \u2014 parsed/consumed as evidence; frozen-time metrics reproduced; prior judgments retained"
+    },
+    {
+      "path": "docs/metrics/README.md",
+      "sha256": "93ee716853ebb90b995e26b3afb891bbf67f878dd9555886c0901b28af908bd2",
+      "scope": "release authored input",
+      "verdict": "PASS \u2014 read and checked against exact sources/evidence"
+    },
+    {
+      "path": "docs/metrics/metrics.json",
+      "sha256": "d6854dcb886225f7fc00c261dfd3757cc72f6a93bc9deca03baae5e3988ebead",
+      "scope": "release authored input",
+      "verdict": "PASS \u2014 read and checked against exact sources/evidence"
+    },
+    {
+      "path": "docs/qa/GAPS.md",
+      "sha256": "7ccfc90b477b5c1df0612b190ffac6cdb090d167e03b98719c57dbfb7199ba4a",
+      "scope": "release authored input",
+      "verdict": "RR-02 \u2014 carry count correction; existing proof re-affirmation owned by QA/QA2"
+    },
+    {
+      "path": "docs/scenarios/drills.md",
+      "sha256": "945fd538594b3e057d2abacb19688f01b790dd3ba055bd9062fc6bfec732f7d4",
+      "scope": "release authored input",
+      "verdict": "PASS \u2014 read and checked against exact sources/evidence"
+    },
+    {
+      "path": "missions/01-greenfield-core/NOTES.md",
+      "sha256": "cf89e5af91b5881c916ea5bf727dd859d55bc1291b0c595b2f907b6dd7119ffd",
+      "scope": "context documentation",
+      "verdict": "CONTEXT \u2014 not a release-deliverable approval"
+    },
+    {
+      "path": "missions/01-greenfield-core/RELEASE.md",
+      "sha256": "a7572f05273a053bd99fbe4d5bfae8674a01410c21514517a01f0bf20328cd89",
+      "scope": "release authored input",
+      "verdict": "FAIL \u2014 RR-01 rollback binding; RR-02 counts; proof readiness pending"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/bench-jar-f090103-discarded-run1.txt",
+      "sha256": "f9abca2b5b9258d039ff562f98e206bfb50b3114ef94579efda1388f5bcf738b",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/bench-jar-f090103.txt",
+      "sha256": "42594b334cf5c05a103ac83a6393d35b0183f7d5870f425f81d0f5490c622322",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/bench-prometheus-f090103.txt",
+      "sha256": "826618e66cef09bff5b05ee76a4cc220799e65d4e888786642945d4f5639aa5b",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/bench-stats-7YBO6Hrx-f090103.json",
+      "sha256": "a343442a90b51ea51de8b7885799359da7f49b0b6390f89318571e4f9345c5ac",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/check-bootjar-f090103.txt",
+      "sha256": "b14866e3b7a66f82e557b6120e3f08b2ad29d0c0ea2aad539d7bf02f935dcdab",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/compose-down-f090103.txt",
+      "sha256": "79cdf50745124c1894d89298d706400c4926edc5414c40a0393f07b0da005ff6",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/compose-up-f090103.txt",
+      "sha256": "95119687e4ab7ec95ac91e0acb6468c05dfb862d91cd0516bb89c49cc7ff9134",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/container-control-log-f090103.jsonl",
+      "sha256": "29d955c7e696eef9f15635da36de3a6ff25f41b86336653fdc1cb7971034ffe5",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/container-log-f090103.jsonl",
+      "sha256": "31412775c33f2783a42e60f12535a562086b6d050000df73b235e9100596427a",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/container-prometheus-f090103.txt",
+      "sha256": "b4e135d16588cb76f49da4cab557ab7923fb4a9b5e4caa24d9567bc741799577",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/container-restart-log-f090103.jsonl",
+      "sha256": "ff7d1a66a36648f25cf9a2534b39761a3e9765412a57bf7d1f0520d4ec3633b9",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/container-vm-path-log-f090103.jsonl",
+      "sha256": "c5d38686fd4fe438424eb4e8b29bb76c386f1d730659435afb0983a5ba5c8e93",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/docker-build-8e9c065.txt",
+      "sha256": "ac5bd185cb451981d822cddb863249f9ea4cfdaca9ce419bf471afdb5d2be9a7",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/jar-ac26-log-f090103.jsonl",
+      "sha256": "ca20d83275316318c94ecde6eb6078db2576166e1ac8a70b7a86b9cd27a559f9",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/jar-bench-log-f090103.jsonl",
+      "sha256": "972190092294bf57d04bb29d510c1b447050b83caf79acc15d4967675076336c",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/jar-drain-log-f090103.jsonl",
+      "sha256": "c0422bcd639f49e8da64d13ba9366fa80b3bba3f7852e4ad719a9f37d9f14c42",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/osv-advisories-f090103.json",
+      "sha256": "60483c7c1f849c3d81ad65c018c33822c6371aad3c544ecadad13dca6cbabb56",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/r0-in-namespace-control-f090103.txt",
+      "sha256": "41b6de3d5e12370a0f1bff1d080b36f1b1b0b9e403f3c7b15b11ede0048eae2a",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/r0-vm-published-port-f090103-run1.txt",
+      "sha256": "969b15eec7888ea72e146cb14cdaafaa77d966088679b300475625045a58a504",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/r0-vm-published-port-f090103-run2.txt",
+      "sha256": "c98fb01659f32455ff3688f50bec43c0dd72e54c02f47cb86fb593e944d0821d",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/rollback-rehearsal-check-e6f062a.txt",
+      "sha256": "2cdb5d8e44148caa15412aff530a6dc70b77e9600f490c8465e41ea3cf698dd3",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/runtime-dependencies-f090103.txt",
+      "sha256": "2f09612028955259cb97b6e3faaef0f42403d91c62d2cfdb834062c8f019dc28",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-container-f090103.txt",
+      "sha256": "eb0b9f6180479c8c6d4dfd17dabf0041c14e0a45d6a1b688bce929a2b32f4151",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-drain-f090103-run2.txt",
+      "sha256": "5222623e92c547dbaef6fab88207b1b85df3302caacb6ef137a281c16a5fae77",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-drain-f090103-run3.txt",
+      "sha256": "0cd71ce4b003dc5a47e442eb4d0c16c4a48b81f78b588948861894711f0514b1",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-drain-f090103.txt",
+      "sha256": "2f972a3224703f7b475a8e204c329834a5c46abbbe5aea66cb8d668f616e05a0",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-inspect-container-f090103.txt",
+      "sha256": "27876214b05aaf097b7d57022a02e2296c778871ef3992a3ec9e4ea0b78353c1",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-jar-ac26-f090103.txt",
+      "sha256": "1a857a2cf53354edabb574d4eb40b877673c86e4cb53eeb9471fc758ca03c775",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-restart-container-f090103-run2.txt",
+      "sha256": "da04a79a8768bc290c325a573778046dc2284417518e594e5c16bdfac675353c",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-restart-container-f090103-run3.txt",
+      "sha256": "ac3cb9742ccdbddb2962a4e55b60083b726ea5175de197d6abe187ff2688311d",
+      "scope": "release evidence",
+      "verdict": "RR-02 \u2014 valid retained failure output; reported row counts are not attempt counts"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-restart-container-f090103-run4.txt",
+      "sha256": "e989c4c44e65eafd30eb17f5a00e521798dddda6f62fefbeb526a08ebfffe1ea",
+      "scope": "release evidence",
+      "verdict": "RR-02 \u2014 valid retained failure output; reported row counts are not attempt counts"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-restart-container-f090103.txt",
+      "sha256": "04276dc2eff42e5871f6784f1e119e350cff3328a16ec2f158074cc85a43ace8",
+      "scope": "release evidence",
+      "verdict": "PASS as bounded observation \u2014 read/parsed and reconciled; disclosed AC-28 failures stay failures"
+    },
+    {
+      "path": "missions/02-brownfield/NOTES.md",
+      "sha256": "edf5061f1bd570aeae66654e559273094bd9a3d7ddfd5fc40766e87c6b9c0c57",
+      "scope": "other context; outside release deliverable",
+      "verdict": "CONTEXT \u2014 not a release-deliverable approval"
+    },
+    {
+      "path": "missions/03-ambiguous-analytics/NOTES.md",
+      "sha256": "565987f7d35eb112f09747d6e1d8ada0e0e865ef65130744e7ea292c4cd62146",
+      "scope": "other context; outside release deliverable",
+      "verdict": "CONTEXT \u2014 not a release-deliverable approval"
+    },
+    {
+      "path": "scripts/smoke.sh",
+      "sha256": "34fe34eea50e0f6afa6129d389c3fa33fe4a374f4b68feed05c636c5d065de59",
+      "scope": "release authored input",
+      "verdict": "MEDIUM RR-02 \u2014 one failed attempt emits two status rows; complete source/delta read"
+    },
+    {
+      "path": "tools/bench.mjs",
+      "sha256": "9fdc92bb9b59a3d75a8b3034504faa1e3c509b08fea6ab0e9fad656b87ead55f",
+      "scope": "release authored input",
+      "verdict": "PASS \u2014 read and checked against exact sources/evidence"
+    }
+  ]
+}
