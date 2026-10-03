@@ -1,0 +1,209 @@
+{
+  "candidate": "35590f06c852543c29097a42c43b7802be90ba40",
+  "jarSHA256": "bd21c00e5e6471880153ba24bc1119992ce7e53859e513f0c4d2cbb452f29acb",
+  "java": "/opt/homebrew/opt/openjdk@21/bin/java",
+  "variants": {
+    "default": [
+      "-jar",
+      "/private/tmp/urlshort-audit-qa-35590f0/candidate-35590f0.jar",
+      "--server.address=127.0.0.1",
+      "--server.port=18134",
+      "--spring.datasource.url=jdbc:h2:mem:qa-remoteip-default;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+      "--logging.file.name=/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/01-audit-read/post-review-remoteip/default.jsonl",
+      "--logging.structured.format.file=ecs"
+    ],
+    "remoteIpHeader": [
+      "-jar",
+      "/private/tmp/urlshort-audit-qa-35590f0/candidate-35590f0.jar",
+      "--server.address=127.0.0.1",
+      "--server.port=18134",
+      "--spring.datasource.url=jdbc:h2:mem:qa-remoteip-remote-ip-header;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+      "--logging.file.name=/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/01-audit-read/post-review-remoteip/remote-ip-header.jsonl",
+      "--logging.structured.format.file=ecs",
+      "--server.tomcat.remoteip.remote-ip-header=X-Forwarded-For"
+    ],
+    "protocolHeader": [
+      "-jar",
+      "/private/tmp/urlshort-audit-qa-35590f0/candidate-35590f0.jar",
+      "--server.address=127.0.0.1",
+      "--server.port=18134",
+      "--spring.datasource.url=jdbc:h2:mem:qa-remoteip-protocol-header;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+      "--logging.file.name=/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/01-audit-read/post-review-remoteip/protocol-header.jsonl",
+      "--logging.structured.format.file=ecs",
+      "--server.tomcat.remoteip.protocol-header=X-Forwarded-Proto"
+    ]
+  },
+  "results": [
+    {
+      "variant": "default",
+      "tests": [
+        [
+          "create",
+          "POST",
+          "/api/links",
+          null
+        ],
+        [
+          "plain",
+          "GET",
+          "/api/audit",
+          null
+        ],
+        [
+          "forged-get",
+          "GET",
+          "/api/audit",
+          "X-Forwarded-For: 127.0.0.2"
+        ],
+        [
+          "remote-get",
+          "GET",
+          "/api/audit",
+          "X-Forwarded-For: 198.51.100.9"
+        ],
+        [
+          "forged-head",
+          "HEAD",
+          "/api/audit",
+          "X-Forwarded-For: 127.0.0.2"
+        ]
+      ],
+      "results": [
+        {
+          "name": "default-create",
+          "status": 201
+        },
+        {
+          "name": "default-plain",
+          "status": 200
+        },
+        {
+          "name": "default-forged-get",
+          "status": 403
+        },
+        {
+          "name": "default-remote-get",
+          "status": 403
+        },
+        {
+          "name": "default-forged-head",
+          "status": 403
+        }
+      ]
+    },
+    {
+      "variant": "remote-ip-header",
+      "tests": [
+        [
+          "create",
+          "POST",
+          "/api/links",
+          null
+        ],
+        [
+          "plain",
+          "GET",
+          "/api/audit",
+          null
+        ],
+        [
+          "forged-get",
+          "GET",
+          "/api/audit",
+          "X-Forwarded-For: 127.0.0.2"
+        ],
+        [
+          "remote-get",
+          "GET",
+          "/api/audit",
+          "X-Forwarded-For: 198.51.100.9"
+        ],
+        [
+          "forged-head",
+          "HEAD",
+          "/api/audit",
+          "X-Forwarded-For: 127.0.0.2"
+        ]
+      ],
+      "results": [
+        {
+          "name": "remote-ip-header-create",
+          "status": 201
+        },
+        {
+          "name": "remote-ip-header-plain",
+          "status": 200
+        },
+        {
+          "name": "remote-ip-header-forged-get",
+          "status": 200
+        },
+        {
+          "name": "remote-ip-header-remote-get",
+          "status": 403
+        },
+        {
+          "name": "remote-ip-header-forged-head",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "variant": "protocol-header",
+      "tests": [
+        [
+          "create",
+          "POST",
+          "/api/links",
+          null
+        ],
+        [
+          "plain",
+          "GET",
+          "/api/audit",
+          null
+        ],
+        [
+          "forged-get",
+          "GET",
+          "/api/audit",
+          "X-Forwarded-For: 127.0.0.2"
+        ],
+        [
+          "remote-get",
+          "GET",
+          "/api/audit",
+          "X-Forwarded-For: 198.51.100.9"
+        ],
+        [
+          "forged-head",
+          "HEAD",
+          "/api/audit",
+          "X-Forwarded-For: 127.0.0.2"
+        ]
+      ],
+      "results": [
+        {
+          "name": "protocol-header-create",
+          "status": 201
+        },
+        {
+          "name": "protocol-header-plain",
+          "status": 200
+        },
+        {
+          "name": "protocol-header-forged-get",
+          "status": 200
+        },
+        {
+          "name": "protocol-header-remote-get",
+          "status": 403
+        },
+        {
+          "name": "protocol-header-forged-head",
+          "status": 200
+        }
+      ]
+    }
+  ]
+}

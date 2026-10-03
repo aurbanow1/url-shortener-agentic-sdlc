@@ -171,6 +171,17 @@ Context and observations that help the mission but do not change its
 
 ## 5. QA Agent
 
+- 2026-10-03 after review — original35590f0 QA PASS superseded by HIGH
+  QA-AUD-01 / CR-01. QA independently reproduced the explicit Tomcat
+  remote-ip-header and protocol-header bypass on the preserved original jar,
+  alongside default403 controls: forwarded GET200 with audit canary and
+  HEAD200 under either override; all15 response/log correlations inspected,
+  apps stopped. AC13/14 fail; old proof item1 acceptance rejected, coverage and
+  upgrade observations retained. Evidence: docs/qa/01-audit-read/findings.md.
+  Fresh rework packet qitem-20261003202154-65e6d10f claimed, candidate
+  7ac8af56ed04c27bbefbd416b3976c544d2f274a. Finish the attributed correction
+  receipt commit, then fresh exact-candidate gate and all required effects.
+
 - 2026-10-03 — `01-audit-read` QA on packet `qitem-20261003185423-545a1365`,
   instance `01M416ZY5N11CDGZBM2DT4GAXS`, exact candidate
   `35590f06c852543c29097a42c43b7802be90ba40`, clean product worktree.

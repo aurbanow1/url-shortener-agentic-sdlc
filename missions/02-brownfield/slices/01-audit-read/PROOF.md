@@ -129,6 +129,15 @@ re-locked design response `0052efb` (§1 guard, §7 test (d)).
 
 ## QA
 
+**Correction on candidate35590f0:** the original PASS below is superseded.
+Review found HIGH CR-01 and QA independently reproduced both explicit Tomcat
+RemoteIpValve overrides with the original jar: forwarded GET200 with audit
+canary and HEAD200, default403 control. AC-13/14 are unmet. See
+docs/qa/01-audit-read/findings.md and post-review-remoteip/verification.json.
+The suite/coverage/upgrade/read-only results below remain historical facts;
+they do not establish the complete settings boundary. New candidate7ac8af5
+is handed back in qitem-20261003202154-65e6d10f and requires a fresh QA check.
+
 Independent Codex QA, 2026-10-03. Packet `qitem-20261003185423-545a1365`,
 instance `01M416ZY5N11CDGZBM2DT4GAXS`. Product worktree HEAD was and remains
 `35590f06c852543c29097a42c43b7802be90ba40`, clean. No product, build file or

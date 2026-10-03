@@ -119,6 +119,22 @@ because GCRA refills continuously; a0.17s90-read burst then proved the first60
 admitted and following30 refused with Retry-After. These are instrument and
 probe corrections, not hidden product reruns or accepted product defects.
 
+### 01-audit-read 35590f0 — correction after independent review
+
+The original "no product defect found" and complete AC-13/14 qualification
+above are superseded. **QA-AUD-01 HIGH:** explicit Tomcat
+remoteip.remote-ip-header or remoteip.protocol-header enables a rewrite while
+the strategy stays NONE. A loopback connection with XFF127.0.0.2 then receives
+audit content200, and HEAD200, contrary to the mandatory403. Review found it;
+QA independently reproduced both variants on the unchanged installed jar and
+the default403 control (15 correlated requests). Prior QA/native/framework
+and green functional checks omitted this configuration axis. This is an
+unaccepted product failure and test gap requiring a builder fix and new
+regression coverage, not a waiver or narrower scope. Findings and exact repro:
+docs/qa/01-audit-read/findings.md and post-review-remoteip/verification.json.
+Coverage/upgrade/read-only results remain historical evidence, not a PASS
+of all requirements; security contract item12 remains unaccepted.
+
 
 ## 05-ci-cd — candidate add7ab5ca37dcd6f51aef3cd43c85455e1be6d14
 

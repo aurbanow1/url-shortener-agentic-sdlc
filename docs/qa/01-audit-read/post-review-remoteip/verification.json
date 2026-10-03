@@ -1,0 +1,115 @@
+{
+  "candidate": "35590f06c852543c29097a42c43b7802be90ba40",
+  "jarSHA256": "bd21c00e5e6471880153ba24bc1119992ce7e53859e513f0c4d2cbb452f29acb",
+  "all15RequestIdsCorrelated": true,
+  "defaultForwardedRefusal": true,
+  "remoteIpHeaderAndProtocolHeaderOverrideBypass": true,
+  "appStopped": true,
+  "http": [
+    {
+      "variant": "default",
+      "name": "create",
+      "status": 201,
+      "requestId": "d82f94c1-6226-482f-abec-f023c2460702",
+      "returnedAuditCanary": true
+    },
+    {
+      "variant": "default",
+      "name": "plain",
+      "status": 200,
+      "requestId": "821c0f7a-4311-45d2-8fa9-8c79332878d8",
+      "returnedAuditCanary": true
+    },
+    {
+      "variant": "default",
+      "name": "forged-get",
+      "status": 403,
+      "requestId": "d9848e60-8823-4152-9288-17247a54e156",
+      "returnedAuditCanary": false
+    },
+    {
+      "variant": "default",
+      "name": "remote-get",
+      "status": 403,
+      "requestId": "8bfe0830-1bef-41ea-9d84-e9648f05e52d",
+      "returnedAuditCanary": false
+    },
+    {
+      "variant": "default",
+      "name": "forged-head",
+      "status": 403,
+      "requestId": "2ceaf726-2ec6-4e92-97f1-367edc295598",
+      "returnedAuditCanary": false
+    },
+    {
+      "variant": "remote-ip-header",
+      "name": "create",
+      "status": 201,
+      "requestId": "4f659554-fdbf-4360-8d2f-85e63b2d78f9",
+      "returnedAuditCanary": true
+    },
+    {
+      "variant": "remote-ip-header",
+      "name": "plain",
+      "status": 200,
+      "requestId": "f5c653f5-cbff-4fbe-ad27-21530a68aae9",
+      "returnedAuditCanary": true
+    },
+    {
+      "variant": "remote-ip-header",
+      "name": "forged-get",
+      "status": 200,
+      "requestId": "75276b19-da1f-4074-a1f0-63931909c0ef",
+      "returnedAuditCanary": true
+    },
+    {
+      "variant": "remote-ip-header",
+      "name": "remote-get",
+      "status": 403,
+      "requestId": "fdfc326d-cf01-412d-bf3e-c65538a249fc",
+      "returnedAuditCanary": false
+    },
+    {
+      "variant": "remote-ip-header",
+      "name": "forged-head",
+      "status": 200,
+      "requestId": "12e54bec-c395-454c-9273-092bb85c9b30",
+      "returnedAuditCanary": false
+    },
+    {
+      "variant": "protocol-header",
+      "name": "create",
+      "status": 201,
+      "requestId": "4eaad714-58ab-43e7-a05c-12d05cda9010",
+      "returnedAuditCanary": true
+    },
+    {
+      "variant": "protocol-header",
+      "name": "plain",
+      "status": 200,
+      "requestId": "932c81c1-8582-4aec-9718-606367074213",
+      "returnedAuditCanary": true
+    },
+    {
+      "variant": "protocol-header",
+      "name": "forged-get",
+      "status": 200,
+      "requestId": "8792452b-b0d2-4bc3-8dac-e8bdd3358807",
+      "returnedAuditCanary": true
+    },
+    {
+      "variant": "protocol-header",
+      "name": "remote-get",
+      "status": 403,
+      "requestId": "4c71e750-1098-4151-ba70-3eb982fea6ea",
+      "returnedAuditCanary": false
+    },
+    {
+      "variant": "protocol-header",
+      "name": "forged-head",
+      "status": 200,
+      "requestId": "4e881c77-570d-4d66-9853-8aceeffda20f",
+      "returnedAuditCanary": false
+    }
+  ]
+}

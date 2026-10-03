@@ -864,6 +864,17 @@ BR-1 through BR-13 remain represented; BR-12/13 require release evidence. No pro
 
 ## 01-audit-read — candidate 35590f06c852543c29097a42c43b7802be90ba40
 
+**Correction after review:** all listed candidate tests did pass, but their
+AC-13/14 configuration coverage omitted explicit Tomcat RemoteIpValve header
+properties. QA independently reproduced HIGH QA-AUD-01 on the same preserved
+jar: either remote-ip-header or protocol-header override allows a forwarded
+GET to return200 with stored audit canary and HEAD200 instead of403. Default
+controls refuse. These named tests prove the previously exercised subset;
+AC-13/14 are not fully proven or satisfied. Findings/repro/log correlation:
+docs/qa/01-audit-read/findings.md and post-review-remoteip/verification.json.
+The product fix must add real-container regression cases on a new candidate;
+no acceptance or gap waiver applies to this missing axis.
+
 Independent QA 2026-10-03: fresh offline gate, 200 unit / 200 functional invocations, zero failures/errors/skips; merged CSV 492/492 lines and 190/190 branches. All 223 source methods (100 unit, 123 functional) map below. Parameterized JUnit display names may omit their owning method; the source inventory preserves that association rather than inventing names. Full green class XML and invocation inventories are in slice proof/qa-test-results-35590f0 and qa-test-invocations-35590f0.json; named-method inventory is qa-source-methods-35590f0.json.
 
 AC-17 additionally replays the unmodified f6dd29e functional sources: 155 invocations, 153 pass, exactly the two OpenApiDocumentTest enumeration assertions fail. Their candidate versions pass. Lead grant qitem-20261003182833-40a842ff transition1156, commit428e9e1, explicitly permits only those additions. This qualified result is not a claim that all 155 original assertions are green. Every inherited functional row below is also part of this replay (apart from the two named enumeration failures). AC-18 has AuditUpgradeJourneyTest and independent installed shipped/candidate jar captures, named qa-upgrade-before/after.json and qa-http/upgrade-*.

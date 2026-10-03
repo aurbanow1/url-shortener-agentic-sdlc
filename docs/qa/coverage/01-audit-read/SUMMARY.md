@@ -1,5 +1,14 @@
 # Coverage — 01-audit-read
 
+**QA correction, 2026-10-03:** the earlier PASS is superseded for this candidate.
+Independent installed-jar repro confirms HIGH QA-AUD-01: explicit Tomcat
+remote-IP header/protocol-header properties admit a forged forwarded audit
+GET (200 with stored canary) and HEAD (200), violating AC-13/14. The gate and
+CSV numbers below remain accurate historical results; all ACs are not met.
+See docs/qa/01-audit-read/findings.md and post-review-remoteip/verification.json.
+The original observation record below describes the tested subset, not a
+complete settings boundary. A fixed candidate must return as a QA packet.
+
 Candidate: 35590f06c852543c29097a42c43b7802be90ba40. Independent offline check --rerun-tasks: 200 unit / 200 functional, zero failures, errors or skips; Javadoc green.
 
 | Suite | Lines | Line % | Branches | Branch % |

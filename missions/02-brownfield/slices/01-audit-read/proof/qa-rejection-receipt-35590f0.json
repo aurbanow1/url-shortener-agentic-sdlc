@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "scope": "missions/02-brownfield/slices/01-audit-read",
+  "sequence": 13,
+  "operationId": "2d0e74d349ffafbe59a6d81a42a73d5304d4749a225499a4353675f182d22a84",
+  "itemId": "item-1a98fdd9fd350bff692f",
+  "itemRevision": "60c1617175aa4834f0dcdc559a6dfac5c88ebf15445b4f8231ab0b7bf7d8b14e",
+  "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+  "policySource": "project.yaml",
+  "previous": "036719e66191bfe81006e8c83e8a4603d6e52ec88e5d9d1ac9fe0cf07e58ad32",
+  "actor": "qa-agent@urlshort-factory",
+  "provenance": "transport:v1",
+  "at": "2026-10-03T20:25:09.862Z",
+  "verdict": "reject",
+  "reason": "HIGH QA-AUD-01 / CR-01: independently reproduced both explicit Tomcat remote-IP properties admitting forwarded GET200 with stored canary and HEAD200, expected403. AC13/14 unmet; original PASS was incomplete despite green200/200 gate. Fresh rework candidate must be checked.",
+  "evidence": [
+    {
+      "ref": "docs/qa/01-audit-read/findings.md",
+      "sha256": "8974dc4ff347100c57df4f3e350ad238b2d48320ba9fd4676f4caa6b76a0d8c0"
+    },
+    {
+      "ref": "docs/qa/01-audit-read/post-review-remoteip/verification.json",
+      "sha256": "bc6489f2a1cd4cdcdd062c1d220a5b905d409c543cb26d8277ab19cb2c4a1482"
+    }
+  ],
+  "subject": {
+    "kind": "commit",
+    "ref": "35590f06c852543c29097a42c43b7802be90ba40"
+  },
+  "intent": "7882dfe5f3fa644008476b0c03236f4490a7fdb2bc8b28a4100421d7d9e1badd",
+  "id": "1f1a05ca07d36dc528c751f28321f8a3d3c580f959c25da47e2baba0a6fdca75"
+}

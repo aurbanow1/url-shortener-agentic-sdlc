@@ -18,5 +18,5 @@
 - [x] Item 8: two pages via `next`, a forwarded `403`, their log lines and a clean whole-run grep (`proof/http-*-35590f0.txt`, `log-lines-35590f0.txt`, `jar-log-35590f0.txt`)
 - [x] Item 9: no migration, as the design and plan-lock state
 - [x] Item 10 (builder half): `docs/api/openapi.json` regenerated on the candidate; QA's live-vs-committed diff is pending
-- [x] QA: coverage reports, all223 named-test traceability, `GAPS.md` limits/grant, empty whole API-document diff; independent200unit/200functional, merged492/492lines190/190branches, all21AC effects (AC17 under grant428e9e1); proof/qa-verification-35590f0.json
+- [ ] QA on reworked candidate7ac8af5 pending. Historical35590f0 suite/coverage and upgrade evidence retained; original PASS superseded by HIGH QA-AUD-01 / CR-01, independently reproduced for explicit Tomcat remote-IP properties (AC13/14); docs/qa/01-audit-read/findings.md
 - [ ] Review: security record (item 12)
