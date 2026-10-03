@@ -1,0 +1,131 @@
+{
+  "actor": "qa2-agent@urlshort-factory",
+  "packet": "qitem-20261003171429-897aa374",
+  "subject": "commit:8e9c065589e53385f60d6be3ddbc3683260285df",
+  "human_gate": "qitem-20261003165209-ce7abb0e",
+  "human_transition": 1011,
+  "amendment_commit": "55a197a419e009c7ffe67441cf55123bd8864576",
+  "release_package": "973bc1a5e7b4464acdf7d93834839d064acd2e46",
+  "original_raw_file_hashes_reverified": 26,
+  "unchanged_product_input_paths": [
+    "src",
+    "build.gradle.kts",
+    "settings.gradle.kts",
+    "Dockerfile",
+    "compose.yaml",
+    "gradle",
+    "gradlew",
+    ".dockerignore",
+    "docs/api"
+  ],
+  "direct_path_controls": [
+    {
+      "capture": "missions/01-greenfield-core/release/r0-vm-published-port-f090103-run1.txt",
+      "request_id": "b4992254-038f-4762-b711-be642efa4344",
+      "status": 201,
+      "complete_chunked_body": {
+        "code": "dtrlkQPb",
+        "shortUrl": "http://localhost:8080/dtrlkQPb",
+        "url": "https://example.com/held-r0",
+        "state": "active",
+        "createdAt": "2026-10-03T15:14:10.353Z"
+      },
+      "reader_exit": 0,
+      "logged_complete_ms_after_shutdown_start": 3642.658,
+      "graceful_shutdown_complete_ms": 3687.788
+    },
+    {
+      "capture": "missions/01-greenfield-core/release/r0-vm-published-port-f090103-run2.txt",
+      "request_id": "7d73b01f-a942-4862-b954-1e9c205b8baa",
+      "status": 201,
+      "complete_chunked_body": {
+        "code": "RSC3Yj5x",
+        "shortUrl": "http://localhost:8080/RSC3Yj5x",
+        "url": "https://example.com/held-r0",
+        "state": "active",
+        "createdAt": "2026-10-03T15:16:03.198Z"
+      },
+      "reader_exit": 0,
+      "logged_complete_ms_after_shutdown_start": 4200.785,
+      "graceful_shutdown_complete_ms": 4234.751
+    },
+    {
+      "capture": "missions/01-greenfield-core/release/r0-in-namespace-control-f090103.txt",
+      "request_id": "32113e20-24cf-4568-93ae-e352d6391028",
+      "status": 201,
+      "complete_chunked_body": {
+        "code": "TbLmFFaX",
+        "shortUrl": "http://localhost:8080/TbLmFFaX",
+        "url": "https://example.com/held-r0",
+        "state": "active",
+        "createdAt": "2026-10-03T15:03:05.421Z"
+      },
+      "reader_exit": 0,
+      "logged_complete_ms_after_shutdown_start": 3798.916,
+      "graceful_shutdown_complete_ms": 3816.244
+    }
+  ],
+  "timestamp_precision": "Nanosecond log timestamps truncated to microseconds for Python datetime parsing; phase durations rounded to milliseconds",
+  "namespace_limit": "One retained control, two reported observations; first capture and log overwritten and not credited independently",
+  "jar_drain_runs": 3,
+  "restart_run6": {
+    "attempts": 149,
+    "received_non_2xx_3xx_or_cut_short": 0,
+    "proxy_connection_failures": 103,
+    "held_host_R0_curl_exit": 52,
+    "held_host_R0_status": 0,
+    "held_host_R0_elapsed_ms": 10514
+  },
+  "host_gap": "Six failed recorded R0 host-port runs; human accepted gap, no successful host response claimed",
+  "file_hashes": [
+    {
+      "path": "missions/01-greenfield-core/release/smoke-restart-container-f090103-run6.txt",
+      "sha256": "bc4519eaea2f59efc3bc112fa2bb6f057eb494dafed309b2ee47b7d9e81fb423"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/container-restart-log-f090103-run6.jsonl",
+      "sha256": "08ba98fb13596d52f98c87f5c6cb4900c609a8be99b99bd81f9623c3a0c3866b"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/r0-vm-published-port-f090103-run1.txt",
+      "sha256": "969b15eec7888ea72e146cb14cdaafaa77d966088679b300475625045a58a504"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/r0-vm-published-port-f090103-run2.txt",
+      "sha256": "c98fb01659f32455ff3688f50bec43c0dd72e54c02f47cb86fb593e944d0821d"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/r0-in-namespace-control-f090103.txt",
+      "sha256": "41b6de3d5e12370a0f1bff1d080b36f1b1b0b9e403f3c7b15b11ede0048eae2a"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/container-vm-path-log-f090103.jsonl",
+      "sha256": "c5d38686fd4fe438424eb4e8b29bb76c386f1d730659435afb0983a5ba5c8e93"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/container-control-log-f090103.jsonl",
+      "sha256": "29d955c7e696eef9f15635da36de3a6ff25f41b86336653fdc1cb7971034ffe5"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-inspect-container-f090103.txt",
+      "sha256": "27876214b05aaf097b7d57022a02e2296c778871ef3992a3ec9e4ea0b78353c1"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/bench-jar-f090103.txt",
+      "sha256": "42594b334cf5c05a103ac83a6393d35b0183f7d5870f425f81d0f5490c622322"
+    },
+    {
+      "path": "docs/qa/GAPS.md",
+      "sha256": "c3be44240a44b68ab2c875fcf30a855ef91172c976539d804f7c87c7e601c06a"
+    },
+    {
+      "path": "docs/RISKS.md",
+      "sha256": "3d2b140725cbf445970e187ad433ed0d67cb73f98d18c485190e2e359cfc787a"
+    },
+    {
+      "path": "missions/01-greenfield-core/slices/03-operate/SPEC.md",
+      "sha256": "40de86b064eb47d07bd8527b80834cd507ef0907b7cf253b6ba6067f6ec47797"
+    }
+  ],
+  "no_new_app_build_bench_run": true
+}
