@@ -1,0 +1,41 @@
+%% urlshort — audit trail read (01-audit-read design.md §4)
+sequenceDiagram
+    autonumber
+    participant O as Operator (curl on the host)
+    participant F as RequestIdFilter (web)
+    participant RL as RateLimitFilter (web, create budget)
+    participant AC as AuditController (audit)
+    participant AT as AuditTrail (audit)
+    participant H as H2 audit_log
+    participant E as ProblemDetailsAdvice (web)
+    participant L as stdout (ECS JSON)
+
+    O->>F: GET /api/audit?limit=20&cursor=Mw
+    F->>F: X-Request-Id R, MDC requestId
+    F->>RL: charge the client's /api budget
+    alt budget spent
+        RL-->>O: 429 problem (Retry-After)
+    else admitted
+        RL->>AC: page(limit, cursor, request)
+        alt X-Forwarded-For or Forwarded present, or peer not loopback
+            AC->>E: ErrorResponseException(403)
+            E-->>O: 403 problem {instance urn:uuid:R, status, title} (HEAD: no body)
+        else limit or cursor malformed
+            AC->>E: Problems.validation(field, rule, static message)
+            E-->>O: 400 problem with errors[{field, rule, message}], no submitted value
+        else
+            AC->>AT: page(limit, before = cursor id or Long.MAX_VALUE)
+            AT->>H: SELECT … WHERE id < :before ORDER BY id DESC FETCH FIRST limit+1 (primary key, backwards)
+            alt the store fails
+                H-->>AT: DataAccessException
+                AT-->>E: (propagates)
+                E->>L: ERROR "request failed" {requestId R, errorChain, errorOrigin}
+                E-->>O: 500 problem, no items or next
+            else
+                H-->>AT: up to limit+1 rows
+                AT-->>AC: AuditPage(items ≤ limit, next = base64url(last id) if a further row came, else null)
+                AC-->>O: 200 application/json {"items": […], "next": …}
+            end
+        end
+    end
+    F->>L: INFO "request completed" {requestId R, status}

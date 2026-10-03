@@ -1,4 +1,4 @@
-%% urlshort — container view (kept current by the Design Agent; last: 02-click-retention design, ClickPurge not yet merged)
+%% urlshort — container view (kept current by the Design Agent; last: 01-audit-read design; ClickPurge and the audit read not yet merged)
 flowchart LR
     C[Creator / Visitor / Analyst / Operator<br/>container: 127.0.0.1:8080 only]
     subgraph urlshort [urlshort · Spring Boot 4.1 · Java 21 · uid 10001 · read-only root + tmpfs /tmp]
@@ -13,6 +13,7 @@ flowchart LR
         S[LinkService<br/>@Transactional]
         R[LinkRepository<br/>Spring Data JDBC]
         AU[AuditLog<br/>audit · insert-only JdbcClient]
+        AR[AuditController + AuditTrail · designed<br/>audit · /api/audit · loopback only<br/>keyset pages by id]
         CR[ClickRecorder<br/>click · reduce on request thread<br/>queue 10 000 · one click-writer]
         DS[DailySalt<br/>click · HMAC · salt per UTC day, in memory]
         CS[ClickStore<br/>click · JdbcClient]
@@ -43,6 +44,8 @@ flowchart LR
     CP -->|DELETE rows with clicked_on before today − P| CS
     S --> R --> H
     S --> AU --> H
+    D --> AR
+    AR -->|SELECT newest first| H
     CS --> H
     S --- K
     AU --- K

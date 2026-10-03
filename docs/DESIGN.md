@@ -5,11 +5,12 @@ slice. Slice-level detail lives in `missions/<m>/slices/<s>/design.md`;
 decisions live in [`adr/`](adr/). Diagrams in [`diagrams/`](diagrams/) are the
 single source for the pictures below.
 
-Last updated: 2026-10-03, mission 02 `02-click-retention` design.
+Last updated: 2026-10-03, mission 02 designs of `02-click-retention` and `01-audit-read`.
 `main` carries `01-ping`, `01-create-redirect` (`16c355f`), `02-analytics`
 (`091ff46`) and `03-operate` (`8e9c065`). Everything below describes merged
-code, except items marked ***02-click-retention (designed)***: those are
-the locked or proposed design of a slice in flight and are not merged yet.
+code, except items marked ***02-click-retention (designed)*** or
+***01-audit-read (designed)***: those are the locked or proposed design of
+a slice in flight and are not merged yet.
 An italic slice name (*02-analytics*, *03-operate*) marks the slice that
 introduced an item.
 
@@ -30,6 +31,7 @@ flowchart LR
         S[LinkService<br/>@Transactional]
         R[LinkRepository<br/>Spring Data JDBC]
         AU[AuditLog<br/>audit · insert-only JdbcClient]
+        AR[AuditController + AuditTrail · designed<br/>audit · /api/audit · loopback only<br/>keyset pages by id]
         CR[ClickRecorder<br/>click · reduce on request thread<br/>queue 10 000 · one click-writer]
         DS[DailySalt<br/>click · HMAC · salt per UTC day, in memory]
         CS[ClickStore<br/>click · JdbcClient]
@@ -60,6 +62,8 @@ flowchart LR
     CP -->|DELETE rows with clicked_on before today − P| CS
     S --> R --> H
     S --> AU --> H
+    D --> AR
+    AR -->|SELECT newest first| H
     CS --> H
     S --- K
     AU --- K
@@ -95,6 +99,7 @@ Source: `diagrams/container.mmd`.
 | `dev.urlshort.link` | `LinkValidation`, `ShortCodes` | 01-create-redirect | ordered target/key validation; 8-char `SecureRandom` codes with the reserved set |
 | `dev.urlshort.link` | `LinkProperties`, `LinkConfig` | 01-create-redirect | `urlshort.public-base-url`; the `Clock` and `SecureRandom` beans |
 | `dev.urlshort.audit` | `AuditLog` | 01-create-redirect | insert-only writer for `audit_log` (`JdbcClient`); actor `anonymous`, `request_id` from the MDC |
+| `dev.urlshort.audit` | `AuditController`, `AuditTrail`, `AuditEntry`, `AuditPage` | ***01-audit-read (designed)*** | `GET /api/audit`. It first refuses (`403`) any forwarding header or a peer that is not loopback. Then it validates `limit` (1–100, default 50) and `cursor` (base64url of an `id`), `400` per field. It reads `limit + 1` rows `WHERE id < :before ORDER BY id DESC` and returns `{"items": […], "next": …}`. `AuditTrail` holds the read's only statement, a `SELECT` (ADR-0019) |
 | `dev.urlshort.click` | `ClickRecorder` (public) | 02-analytics | the hook's target: skips `HEAD`; reduces the request to a `Click` on the request thread; one bounded writer thread (queue 10 000, abort on full); fail open with one `WARN click lost` per lost click. The reasons: `rejected` (a full or closed queue); **`reduction failed`** (hashing or building the click threw before it was queued; *02-click-retention (designed)*, W2-05; until it merges this case reports `rejected`); `write failed`; `shutdown deadline`; `shutdown deadline, outcome unknown`; restores `requestId` on the writer thread; drains for at most 5 s on close, then claims every unfinished click (per-click atomic ownership), so all are reported before `close()` returns |
 | `dev.urlshort.click` | `Click`, `DailySalt` | 02-analytics | the stored facts and the referrer-origin and user-agent-class reductions; `stamp(address)` chooses the click's instant and the day's key in one locked step, then HMAC-SHA256; a random salt per UTC day, in memory, dropped at the day's end |
 | `dev.urlshort.click` | `ClickStore`, `StatsController`, `LinkStats` | 02-analytics | one insert, code → link id, one grouped query; `GET /api/links/{code}/stats`; the fold into total, per day and top 10 referrers; ***02-click-retention (designed)***: `ClickStore.deleteBefore(day)` |
@@ -128,9 +133,10 @@ package-private).
 | Idempotency | `Idempotency-Key` on `POST /api/links`; bound on the `link` row by its `201`; 24 h from `created_at`; replay `201` current representation; mismatch `422`; failures never bind; race decided by `UNIQUE` | ADR-0009 |
 | Redirect | `302`, `Cache-Control: no-store`, `Location` = stored URL byte for byte | ADR-0006 |
 | Short codes | 8 × `[A-Za-z0-9]` from `SecureRandom`; reserved first segments refused; `UNIQUE (code)` | ADR-0007 |
-| Configuration | `@ConfigurationProperties` records with defaults; first operator setting `urlshort.public-base-url` (default `http://localhost:8080`, env `URLSHORT_PUBLIC_BASE_URL`); `Host`/forwarding headers never used for it; *03-operate*: `urlshort.rate-limit.create-per-minute` (60, `URLSHORT_RATELIMIT_CREATEPERMINUTE`), `…redirect-per-minute` (600), `…trusted-proxies` (empty, comma-separated exact addresses); ***02-click-retention (designed)***: `urlshort.click.retention-days` (90, `URLSHORT_CLICK_RETENTIONDAYS`, Retention row) | 01-create-redirect design §2.7; ADR-0014; ADR-0018 |
+| Configuration | `@ConfigurationProperties` records with defaults; first operator setting `urlshort.public-base-url` (default `http://localhost:8080`, env `URLSHORT_PUBLIC_BASE_URL`); `Host`/forwarding headers never used for it; *03-operate*: `urlshort.rate-limit.create-per-minute` (60, `URLSHORT_RATELIMIT_CREATEPERMINUTE`), `…redirect-per-minute` (600), `…trusted-proxies` (empty, comma-separated exact addresses); ***02-click-retention (designed)***: `urlshort.click.retention-days` (90, `URLSHORT_CLICK_RETENTIONDAYS`, Retention row); ***01-audit-read (designed)***: `server.forward-headers-strategy=none` pinned, as part of the audit read's loopback rule (Audit read row), not an operator knob | 01-create-redirect design §2.7; ADR-0014; ADR-0018; ADR-0019 |
 | Rate limiting *(03-operate)* | Every request except `/actuator/**`, `/v3/api-docs/**`, `/swagger-ui.html`, `/swagger-ui/**` is charged before anything else (any outcome counts, a `429` takes nothing); `429` problem detail with `Retry-After` in whole seconds ≥ 1 and no client value; one log event per rejection (the filter's); state in memory per instance, released when full | ADR-0014 |
-| Client identity *(03-operate)* | Peer address; `X-Forwarded-For` only when the peer is a listed trusted proxy, right-most untrusted entry; no other header; `getRemoteAddr()` itself is not rewritten (A-9 on the lead's backlog) | ADR-0015 |
+| Client identity *(03-operate)* | Peer address; `X-Forwarded-For` only when the peer is a listed trusted proxy, right-most untrusted entry; no other header; `getRemoteAddr()` itself is not rewritten (A-9 on the lead's backlog). ***01-audit-read (designed)***: `server.forward-headers-strategy=none` is pinned in the shipped file. Without it, Boot turns on Tomcat's `RemoteIpValve` on a detected cloud platform, which rewrites `getRemoteAddr()` and removes `X-Forwarded-For` (probe P4) | ADR-0015, ADR-0019 |
+| Audit read ***01-audit-read (designed)*** | **`GET /api/audit`**, anonymous and read-only. It is served **only to a loopback peer** (`127.0.0.0/8`, `::1`, IPv4-mapped `127.x`) **sending neither `X-Forwarded-For` nor `Forwarded`**; everything else is `403` with nothing about the trail. **No setting opens it beyond loopback.** **Trust boundary for the Operator:** the service sees only the connection address and the headers. Do not relay `/api/audit` through a local proxy, or have the proxy add a forwarding header, which then refuses. Do not set `server.forward-headers-strategy`, or `SERVER_FORWARDHEADERSSTRATEGY`, to anything but `none`. Pages are newest first by write sequence (`id`), which is not commit order: `limit` 1–100 (50), `cursor` = the previous page's `next`. A traversal returns every row committed before its first page exactly once and never repeats a row; a row written during it may be missing, and a fresh traversal has it. Under the `/api` rate budget. A failed read is a `500`, never an empty page | ADR-0019; SPEC `01-audit-read` rules 1–9 |
 | Health *(03-operate)* | Liveness = `livenessState`; readiness = `readinessState` + `db` (`503 DOWN` while the database does not answer); bodies status only (`show-details=never`) | ADR-0016 |
 | Metrics *(03-operate)* | Prometheus registry, `/actuator/prometheus`; `http.server.requests` with route-template tags (`UNKNOWN` for non-standard methods and filter `429`s); `urlshort.ratelimit.rejections{budget}`; pool gauges `hikaricp.connections.active` / `.idle`; no client, code, URL or header value in any tag | ADR-0016 |
 | Container and shutdown *(03-operate)* | uid 10001; read-only root + 64 MB tmpfs `/tmp`; named volume `/app/data`; `127.0.0.1:8080`; health check = readiness; `spring.lifecycle.timeout-per-shutdown-phase=10s` inside `stop_grace_period: 20s`; listening socket closed at the stop; every dispatched request completes; connections the kernel completed in the backlog but the server never accepted are boundary losses, counted and reported (SPEC `f24f373`), classified by request-id reconciliation | ADR-0017 |
@@ -402,6 +408,21 @@ Time
   (1 ms after a 33 s listener returned). Awaiting work there delays readiness by its length.
   A configuration-binding failure prevents the event, so no such listener runs.
   **[probe: `02-click-retention` A7, A4]**
+- **Boot enables forwarded-header handling by itself on a detected cloud platform.** With
+  `server.forward-headers-strategy` unset and `spring.main.cloud-platform=kubernetes` (or a
+  detected `KUBERNETES_SERVICE_HOST`), Tomcat's `RemoteIpValve` rewrites `getRemoteAddr()` from
+  `X-Forwarded-For` and removes the header before the application sees the request. Its default
+  internal-proxy list includes `127/8` and `10/8`. MockMvc never runs the valve, so only a
+  real-server test sees it. Pin `none` wherever the application reads the peer address itself.
+  **[probe: `01-audit-read` P4, P4b]**
+- `InetAddress.getByName("::ffff:127.0.0.1")` returns an `Inet4Address` (`127.0.0.1`), so
+  `isLoopbackAddress()` covers IPv4-mapped loopback; `getByName` on Tomcat's numeric
+  `getRemoteAddr()` parses a literal and resolves nothing. **[probe: `01-audit-read` P1]**
+- H2 2.4.240 walks a primary key backwards for `ORDER BY id DESC FETCH FIRST n ROWS ONLY`
+  (`/* index sorted */`), with or without `WHERE id < ?`. It reads `n + 1` rows at any depth.
+  **[probe: `01-audit-read` P5]**
+- Jackson 3 under Boot 4.1 serialises `null` record components (`"next": null`,
+  `"before": null`); no inclusion setting is configured. **[probe: `01-audit-read` P2a, P2b]**
 - Boot's failure analysis for an invalid `@Validated @ConfigurationProperties` record prints the
   property, the rejected value and its origin. A failed constraint names the property in camelCase
   (`urlshort.click.retentionDays`), a failed conversion in kebab case (`…retention-days`).
@@ -455,8 +476,10 @@ erDiagram
   `created_at` is also the idempotency binding time. Constraints:
   `uq_link_code`, `uq_link_idempotency_key`, `LENGTH(code) >= 6`, `url <> ''`.
 - `audit_log`: the write side of the audit trail (ADR-0008); no foreign key
-  by design; no secondary index until the read slice (mission 02,
-  `01-audit-read`) needs one.
+  by design; no secondary index. ***01-audit-read (designed)***: the read
+  pages by the primary key, walked backwards, at `limit + 1` rows per page
+  at any depth (ADR-0019, probe P5). That makes the index `01-create-redirect`
+  expected unnecessary; no migration.
 - `click` *(02-analytics)*: one row per `302` redirect, reduced before it is
   written (no raw address, user agent, referrer path or request id);
   `clicked_on` is the UTC day of `clicked_at`, computed in Java because a SQL
@@ -492,6 +515,9 @@ The audit-read slice (mission 02) adds no table.
 - Click purge: the startup run, the daily tick, a failure and shutdown, ***02-click-retention
   (designed)***: `diagrams/purge-sequence.mmd` (inline in
   `missions/02-brownfield/slices/02-click-retention/design.md` §4).
+- Audit trail read: the loopback refusal, validation, a keyset page and a store failure,
+  ***01-audit-read (designed)***: `diagrams/audit-read-sequence.mmd` (inline in
+  `missions/02-brownfield/slices/01-audit-read/design.md` §4).
 
 ## 7. ADR index
 
@@ -515,6 +541,7 @@ The audit-read slice (mission 02) adds no table.
 | [0016](adr/0016-metrics-and-health-exposure.md) | Prometheus metrics, readiness with the database, status-only health, quiet parser errors | 03-operate | accepted at plan-lock 2026-10-03 |
 | [0017](adr/0017-container-hardening-and-shutdown.md) | Container hardening; 10 s graceful shutdown inside a 20 s stop grace | 03-operate | accepted at plan-lock 2026-10-03 |
 | [0018](adr/0018-click-retention-daily-purge.md) | Click retention: one `DELETE` per run, at startup (before readiness) and daily at 00:10Z, decided on the application clock; `urlshort.click.retention-days` (90) | 02-click-retention | proposed (design 2026-10-03) |
+| [0019](adr/0019-audit-read-loopback-keyset.md) | Audit read: loopback peer with forwarding headers refused, `server.forward-headers-strategy=none` pinned, keyset pages by write sequence (`id`), base64url cursor, no index | 01-audit-read | proposed (design 2026-10-03) |
 
 Pending, each lands with the slice that introduces the concern: the
 production profile's API-document exposure is still open (`/v3/api-docs`
@@ -533,3 +560,4 @@ and `/swagger-ui.html` stay on and unlimited).
 | 2026-10-03 | 02-analytics (design review DR-01..DR-04) | the click writer drains for at most 5 s at close and reports each unwritten click; `DailySalt.stamp` chooses the instant and the key in one locked step; the user-agent class becomes a lookup-table FK (`user_agent_class`) because H2 2.4.240 breaks multi-value `CHECK`s after connection retirement; stats `HEAD`/`OPTIONS` at framework defaults (SPEC `173bd60`, AC-22); ADR-0011..0013 revised |
 | 2026-10-03 | 03-operate (design) | `web.RateLimitFilter` + `RateLimiter` (per-client GCRA, two budgets, `429` problem detail, rejection counter, trusted-proxy rule); `RequestBodyLimitFilter` to order `+3`; Prometheus registry and `/actuator/prometheus`; readiness includes the database; status-only health; Tomcat parse errors no longer logged; 10 s shutdown phase; compose: read-only root, tmpfs, loopback publish, readiness health check, 20 s stop grace; `scripts/smoke.sh` `--restart`, `--drain`, `--bench`; `429` on every documented operation; ADR-0014..0017 and a third ADR-0004 amendment |
 | 2026-10-03 | 02-click-retention (design) | `click.ClickPurge` + `ClickRetentionProperties`: clicks older than `urlshort.click.retention-days` (90, `URLSHORT_CLICK_RETENTIONDAYS`) deleted by one `DELETE` per run, at startup before readiness and daily at 00:10Z on a 5 s tick of the application clock, one INFO or WARN per run, a 3 s non-interrupting close; `ClickStore.deleteBefore`; `click lost` reason `reduction failed` (W2-05); no schema change; ADR-0018, ADR-0011 amendment, ADR-0013 note; stack facts on H2 batched deletes, MVCC under a large delete, Spring's scheduler and the clock, readiness after `ApplicationReadyEvent`; stale ADR-0004 status text corrected |
+| 2026-10-03 | 01-audit-read (design) | `audit.AuditController` + `AuditTrail`: `GET /api/audit`. The loopback peer is admitted only without forwarding headers (`403` otherwise). `limit` and `cursor` are validated per field. Keyset pages run newest first by `id` with `limit + 1` reads and a base64url cursor. No index and no migration. `server.forward-headers-strategy=none` is pinned because Boot enables Tomcat's `RemoteIpValve` on a detected cloud platform. One operation in the API document. ADR-0019. Stack facts on forwarded headers, IPv4-mapped loopback, H2's backwards primary-key walk and Jackson nulls |
