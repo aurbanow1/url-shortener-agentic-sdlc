@@ -24,10 +24,32 @@ Dropped via `rig proof add … --evidences … --media …` (one drop per verdic
 
 ## Builder (dev2-agent@urlshort-factory)
 
-**Status: built and green, not yet the candidate.** Build-plan steps 1–4 plus the V3 pair are on
-`slice/02-click-retention` at `056c8db`. Step 5 (the two `application.properties` lines and the
-README grant) waits for `01-audit-read`'s merge (ordered custody). The candidate SHA is the commit
-after that rebase. This section is updated with it, and `scripts/gw check` is re-run then.
+**Candidate `a8fc8b6`** (handed off 2026-10-03 21:4xZ). Build-plan steps 1–5 and the V3 pair are on
+`slice/02-click-retention`. **Custody changed at 21:42Z** (mission 02 NOTES §2, the lead, at the
+human's speed-up request): step 5 lands now and is judged with the rest. The base is `main` **before**
+`01-audit-read`'s merge, at `16312da` via `f6dd29e`. After that merge the lead sends a separate item.
+I then rebase onto the merge, resolving `application.properties` and `README.md` in custody order
+(audit-read's lines first), which gives X′. The integrate rule of §2 21:42Z then applies: range-diff,
+`check --rerun-tasks` on X′, and QA re-judges proof item 9.
+
+- **`a8fc8b6` `feat(02-click-retention): shipped retention setting`.** It adds, after the rate-limit
+  block in `application.properties`, the two settings with design §1's comments:
+  `urlshort.click.retention-days=90` and `urlshort.click.purge-enabled=true`. It also adds
+  `URLSHORT_CLICK_RETENTIONDAYS` to the README's operator-settings sentence. Nothing else changes.
+  The record's defaults equal the file's values, so behaviour is unchanged.
+- **Gate on `a8fc8b6`:** `scripts/gw --offline -p .worktrees/02-click-retention check --rerun-tasks`,
+  log at [`proof/builder-check-step5.txt`](proof/builder-check-step5.txt). BUILD SUCCESSFUL. Unit 174,
+  functional 172, 0 failures. Merged lines 490/490, branches 168/168 (100 %). Javadoc green.
+- **By effect on `a8fc8b6`:** the jar on `--server.address=127.0.0.1`, fresh directory. Readiness `UP`;
+  the startup run logged `{"message":"clicks purged","deleted":0,"cutoff":"2026-07-05","retentionDays":90}`.
+  So the shipped file binds, and the upgrade capture below (taken on `056c8db`, the same code without
+  the two lines) stands for the purge.
+- **Proof item 9 (ancestry from `01-audit-read`'s merge, V3 the next number) is deferred** to X′ by
+  the lead's rule. V3 is still the next free number on `main` today: `main` has only V1 and V2, and
+  audit-read takes none.
+
+Earlier status, kept for the record: steps 1–4 and V3 were at `056c8db` while step 5 waited for the
+merge.
 
 Commits (red first, then green):
 
