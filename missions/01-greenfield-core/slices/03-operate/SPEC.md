@@ -10,7 +10,7 @@ created: 2026-10-03
 intent: "An Operator can run urlshort in production shape: clients above the rate limit are answered 429 with Retry-After and a counted rejection, readiness reflects the database, metrics are exposed for scraping, and the container runs non-root with durable data on a loopback-published port."
 depends_on: ["OPR.99.0.2.1"]
 approved-spec-by: orchestration-lead@urlshort-factory
-approved-spec-at: 2026-10-03T09:42:06.438Z
+approved-spec-at: 2026-10-03T17:14:05.676Z
 locked-artifacts:
   - name: SPEC.md
     path: SPEC.md
@@ -19,7 +19,7 @@ locked-artifacts:
     path: design.md
     kind: spec
 provenance: transport:v1
-approved-spec-priors: 1
+approved-spec-priors: 2
 ---
 
 # Slice 03 — Operate safely
