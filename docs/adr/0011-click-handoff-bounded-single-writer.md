@@ -37,23 +37,30 @@ hook in `link/`, but not `application.properties` or `build.gradle.kts`.
   slowest.
 - **Fail open, one WARN per lost click.** `record`'s whole body is one `try`:
   any `RuntimeException`, including `RejectedExecutionException` from a full
-  or closed queue, logs `click lost` and returns. The writer task catches a
-  failed insert the same way. Nothing is retried. The WARN carries
-  `requestId` and `errorType` (the exception's class name) and never the
+  or closed queue, logs `click lost` (reason `rejected`) and returns. The
+  writer task catches a failed insert the same way (reason `write failed`).
+  Nothing is retried. The WARN carries `requestId`, `reason` and, when
+  there is an exception, `errorType` (its class name), never the
   exception's message. A driver message can quote the bound client hash or
   referrer (the lesson of `01-create-redirect`'s DR-01).
 - **Correlation after the response.** The writer task puts the captured
   request id into the MDC for its duration and removes it in `finally`
   (ADR-0004 amendment).
-- **Shutdown.** `@PreDestroy close()` calls `ExecutorService.close()`, which
-  drains the queue. The recorder depends on the store and so on the
-  `DataSource`, which Spring therefore destroys after the recorder. An
-  abrupt stop loses what is queued (A-11). `close()` has no timeout of its
-  own. In practice it is bounded by the queue size times the time a write
-  takes to succeed or fail, and the embedded store does either at once. If
-  `03-operate`'s shutdown evidence shows a tail, the upgrade is
-  `shutdown()` + `awaitTermination(n)` + `shutdownNow()` with one WARN per
-  unwritten click.
+- **Shutdown, bounded.** `@PreDestroy close()` calls `shutdown()` and then
+  waits at most 5 s (`awaitTermination`). If writes remain, `shutdownNow()`
+  interrupts the one in flight, which completes or reports `write failed`,
+  and returns the queued tasks. Each task is a `ClickWrite(click,
+  requestId)` record, so each reports one `click lost` with reason
+  `shutdown deadline` and its own request id. A `settle()` task found there
+  is cancelled. The recorder depends on the store and so on the
+  `DataSource`, which Spring therefore destroys after the recorder.
+  Shutdown cannot be held by a slow or stalled store, and every click is
+  written or reported exactly once. The first draft called
+  `ExecutorService.close()`, which has no deadline. The design review
+  measured a six-write backlog holding context close to about 12 s (DR-01).
+  5 s fits `03-operate`'s budget: a 10 s shutdown phase, then the drain and
+  the pool close, inside a 20 s stop grace. An abrupt stop loses what is
+  queued (A-11).
 - **A test seam, not a feature.** A package-private `settle()` submits an
   empty task and waits up to 10 s. With one FIFO writer, that means every
   earlier click has been written or lost. It is the "flush" the SPEC's
@@ -74,4 +81,6 @@ hook in `link/`, but not `application.properties` or `build.gradle.kts`.
   configuration; until then the executor is one field in `ClickRecorder`.
 - Verified on Tomcat before implementation:
   `missions/01-greenfield-core/slices/02-analytics/design-probe/output.txt`
-  (C2 `HEAD`, C4 hook time, C7 slow store, C8 failing store).
+  (C2 `HEAD`, C4 hook time, C7 slow store, C8 failing store). The bounded
+  close is in `…/design-probe/revision-output.txt` (DR-01: the reviewer's
+  six 2-s writes, close returned at 5 006 ms, every click accounted once).

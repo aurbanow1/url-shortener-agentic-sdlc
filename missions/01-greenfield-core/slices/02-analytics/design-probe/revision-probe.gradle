@@ -1,0 +1,16 @@
+// Revision probe for 02-analytics design review DR-01 and DR-02 (design.md section 12).
+// Run from the repo root, no product, test or build file changes:
+//   scripts/gw --log missions/01-greenfield-core/slices/02-analytics/design-probe/revision-output.txt \
+//       --offline -I missions/01-greenfield-core/slices/02-analytics/design-probe/revision-probe.gradle designRevisionProbe
+gradle.projectsEvaluated {
+    def project = gradle.rootProject
+    def functional = project.sourceSets.functionalTest
+    project.tasks.register('designRevisionProbe', JavaExec) {
+        dependsOn project.tasks.named('functionalTestClasses')
+        javaLauncher.set(project.javaToolchains.launcherFor {
+            languageVersion = JavaLanguageVersion.of(21)
+        })
+        classpath = functional.runtimeClasspath
+        mainClass = project.file('missions/01-greenfield-core/slices/02-analytics/design-probe/RevisionProbe.java').absolutePath
+    }
+}

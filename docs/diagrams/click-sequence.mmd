@@ -24,12 +24,13 @@ sequenceDiagram
     alt HEAD
         CR-->>RC: return (not a click)
     else GET
-        CR->>CR: now = clock.instant(); origin(Referer); class(User-Agent)
-        CR->>DS: hash(peer address, now)
-        DS-->>CR: HMAC-SHA256 under the day's salt (64 hex)
-        CR->>Q: execute(write(Click, R))
+        CR->>CR: origin(Referer); class(User-Agent)
+        CR->>DS: stamp(peer address)
+        DS->>DS: under the lock: at = clock.instant(); rotate if at's day changed; copy key
+        DS-->>CR: (at, HMAC-SHA256 under at's day salt, 64 hex)
+        CR->>Q: execute(ClickWrite(Click, R))
         alt queue full or closed
-            CR->>CR: WARN "click lost" {requestId R, errorType}
+            CR->>CR: WARN "click lost" {requestId R, reason rejected, errorType}
         end
     end
     RC-->>V: 302 Location: <url>, Cache-Control: no-store
@@ -37,9 +38,10 @@ sequenceDiagram
     Q->>Q: MDC requestId=R (restored on the writer thread)
     Q->>ST: insert(Click)
     alt write fails
-        Q->>Q: WARN "click lost" {requestId R, errorType}; nothing stored
+        Q->>Q: WARN "click lost" {requestId R, reason write failed, errorType}; nothing stored
     end
     Q->>Q: MDC.remove
+    Note over Q: at shutdown: drain up to 5 s, then each unwritten ClickWrite → WARN "click lost" {its requestId, reason shutdown deadline}
 
     A->>SC: GET /api/links/C/stats
     SC->>ST: findLinkId(C)

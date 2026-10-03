@@ -1,0 +1,153 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :jar UP-TO-DATE
+> Task :compileFunctionalTestJava UP-TO-DATE
+> Task :processFunctionalTestResources UP-TO-DATE
+> Task :functionalTestClasses UP-TO-DATE
+
+> Task :designConstraintProbe
+02:15:22.193 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Starting...
+02:15:22.257 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:constraint-153460040735625 user=SA
+02:15:22.260 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Start completed.
+PROBE mem | V1 link (shipped): LENGTH(code) >= 6 and url <> ''
+    valid before retirement=accepted | valid after retirement=accepted | invalid after retirement=rejected (Check constraint violation: "CK_LINK_CODE_LENGTH: "; SQL statement:)
+02:15:22.299 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown initiated...
+02:15:22.334 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-1 - Shutdown completed.
+02:15:22.334 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Starting...
+02:15:22.335 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-2 - Added connection conn3: url=jdbc:h2:mem:constraint-153460239557500 user=SA
+02:15:22.336 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Start completed.
+PROBE mem | V1 link (shipped), url rule alone: url <> ''
+    valid before retirement=accepted | valid after retirement=accepted | invalid after retirement=rejected (Check constraint violation: "CK_LINK_URL_NOT_EMPTY: "; SQL statement:)
+02:15:22.372 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Shutdown initiated...
+02:15:22.404 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-2 - Shutdown completed.
+02:15:22.404 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-3 - Starting...
+02:15:22.406 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-3 - Added connection conn6: url=jdbc:h2:mem:constraint-153460309611750 user=SA
+02:15:22.406 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-3 - Start completed.
+PROBE mem | CHECK (c = 'browser') (one equality)
+    valid before retirement=accepted | valid after retirement=accepted | invalid after retirement=rejected (Check constraint violation: "CK_T: "; SQL statement:)
+02:15:22.447 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-3 - Shutdown initiated...
+02:15:22.483 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-3 - Shutdown completed.
+02:15:22.483 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-4 - Starting...
+02:15:22.484 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-4 - Added connection conn9: url=jdbc:h2:mem:constraint-153460388349666 user=SA
+02:15:22.484 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-4 - Start completed.
+PROBE mem | CHECK (c <> 'nope') (one inequality)
+    valid before retirement=accepted | valid after retirement=accepted | invalid after retirement=rejected (Check constraint violation: "CK_T: "; SQL statement:)
+02:15:22.522 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-4 - Shutdown initiated...
+02:15:22.554 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-4 - Shutdown completed.
+02:15:22.554 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-5 - Starting...
+02:15:22.555 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-5 - Added connection conn12: url=jdbc:h2:mem:constraint-153460459511125 user=SA
+02:15:22.555 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-5 - Start completed.
+PROBE mem | CHECK (c IN ('browser','bot','other','unknown'))
+    valid before retirement=accepted | valid after retirement=rejected (DATABASE CLOSED: The database has been closed [90098-240]) | invalid after retirement=rejected (DATABASE CLOSED: The database has been closed [90098-240])
+02:15:22.597 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-5 - Shutdown initiated...
+02:15:22.632 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-5 - Shutdown completed.
+02:15:22.632 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-6 - Starting...
+02:15:22.633 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-6 - Added connection conn15: url=jdbc:h2:mem:constraint-153460537546791 user=SA
+02:15:22.633 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-6 - Start completed.
+PROBE mem | CHECK (c = 'browser' OR c = 'bot' OR ...)
+    valid before retirement=accepted | valid after retirement=rejected (DATABASE CLOSED: The database has been closed [90098-240]) | invalid after retirement=rejected (DATABASE CLOSED: The database has been closed [90098-240])
+02:15:22.669 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-6 - Shutdown initiated...
+02:15:22.706 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-6 - Shutdown completed.
+02:15:22.707 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-7 - Starting...
+02:15:22.707 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-7 - Added connection conn18: url=jdbc:h2:mem:constraint-153460611903416 user=SA
+02:15:22.708 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-7 - Start completed.
+PROBE mem | CHECK (LENGTH(h) = 64)
+    valid before retirement=accepted | valid after retirement=accepted | invalid after retirement=rejected (Check constraint violation: "CK_T: "; SQL statement:)
+02:15:22.742 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-7 - Shutdown initiated...
+02:15:22.782 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-7 - Shutdown completed.
+02:15:22.782 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-8 - Starting...
+02:15:22.783 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-8 - Added connection conn21: url=jdbc:h2:mem:constraint-153460687558208 user=SA
+02:15:22.783 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-8 - Start completed.
+PROBE mem | revised V2 (V1 + user_agent_class lookup + click with FK and LENGTH check): valid click / unknown class
+    valid before retirement=accepted | valid after retirement=accepted | invalid after retirement=rejected (Referential integrity constraint violation: "FK_CLICK_USER_AGENT_CLASS: PUBLIC.CLICK FOREIGN KEY(USER_AGENT_CLASS) REFERENCES PUBLIC.USER_AGENT_CLASS(TOKEN) ('tablet')"; SQL statement:)
+02:15:22.815 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-8 - Shutdown initiated...
+02:15:22.848 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-8 - Shutdown completed.
+02:15:22.848 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-9 - Starting...
+02:15:22.849 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-9 - Added connection conn24: url=jdbc:h2:mem:constraint-153460753550583 user=SA
+02:15:22.849 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-9 - Start completed.
+PROBE mem | revised V2: valid click / short hash
+    valid before retirement=accepted | valid after retirement=accepted | invalid after retirement=rejected (Check constraint violation: "CK_CLICK_CLIENT_HASH_LENGTH: "; SQL statement:)
+02:15:22.882 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-9 - Shutdown initiated...
+02:15:22.914 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-9 - Shutdown completed.
+02:15:22.914 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-10 - Starting...
+02:15:22.915 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-10 - Added connection conn27: url=jdbc:h2:mem:constraint-153460819699208 user=SA
+02:15:22.915 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-10 - Start completed.
+PROBE mem | FOREIGN KEY to a four-row lookup table (no CHECK)
+    valid before retirement=accepted | valid after retirement=accepted | invalid after retirement=rejected (Referential integrity constraint violation: "FK_T: PUBLIC.T FOREIGN KEY(C) REFERENCES PUBLIC.UA(NAME) ('nope')"; SQL statement:)
+02:15:22.951 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-10 - Shutdown initiated...
+02:15:22.991 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-10 - Shutdown completed.
+02:15:22.991 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-11 - Starting...
+02:15:23.001 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-11 - Added connection conn30: url=jdbc:h2:file:./build/constraint-probe-153460896165708 user=SA
+02:15:23.001 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-11 - Start completed.
+PROBE file | V1 link (shipped): LENGTH(code) >= 6 and url <> ''
+    valid before retirement=accepted | valid after retirement=accepted | invalid after retirement=rejected (Check constraint violation: "CK_LINK_CODE_LENGTH: "; SQL statement:)
+02:15:23.042 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-11 - Shutdown initiated...
+02:15:23.079 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-11 - Shutdown completed.
+02:15:23.079 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-12 - Starting...
+02:15:23.081 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-12 - Added connection conn33: url=jdbc:h2:file:./build/constraint-probe-153460984765541 user=SA
+02:15:23.081 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-12 - Start completed.
+PROBE file | V1 link (shipped), url rule alone: url <> ''
+    valid before retirement=accepted | valid after retirement=accepted | invalid after retirement=rejected (Check constraint violation: "CK_LINK_URL_NOT_EMPTY: "; SQL statement:)
+02:15:23.118 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-12 - Shutdown initiated...
+02:15:23.157 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-12 - Shutdown completed.
+02:15:23.157 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-13 - Starting...
+02:15:23.159 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-13 - Added connection conn36: url=jdbc:h2:file:./build/constraint-probe-153461062830833 user=SA
+02:15:23.159 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-13 - Start completed.
+PROBE file | CHECK (c = 'browser') (one equality)
+    valid before retirement=accepted | valid after retirement=accepted | invalid after retirement=rejected (Check constraint violation: "CK_T: "; SQL statement:)
+02:15:23.199 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-13 - Shutdown initiated...
+02:15:23.231 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-13 - Shutdown completed.
+02:15:23.231 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-14 - Starting...
+02:15:23.233 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-14 - Added connection conn39: url=jdbc:h2:file:./build/constraint-probe-153461136317375 user=SA
+02:15:23.233 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-14 - Start completed.
+PROBE file | CHECK (c <> 'nope') (one inequality)
+    valid before retirement=accepted | valid after retirement=accepted | invalid after retirement=rejected (Check constraint violation: "CK_T: "; SQL statement:)
+02:15:23.273 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-14 - Shutdown initiated...
+02:15:23.311 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-14 - Shutdown completed.
+02:15:23.311 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-15 - Starting...
+02:15:23.313 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-15 - Added connection conn42: url=jdbc:h2:file:./build/constraint-probe-153461216464666 user=SA
+02:15:23.313 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-15 - Start completed.
+PROBE file | CHECK (c IN ('browser','bot','other','unknown'))
+    valid before retirement=accepted | valid after retirement=rejected (DATABASE CLOSED: The database has been closed [90098-240]) | invalid after retirement=rejected (DATABASE CLOSED: The database has been closed [90098-240])
+02:15:23.345 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-15 - Shutdown initiated...
+02:15:23.385 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-15 - Shutdown completed.
+02:15:23.385 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-16 - Starting...
+02:15:23.386 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-16 - Added connection conn45: url=jdbc:h2:file:./build/constraint-probe-153461290093250 user=SA
+02:15:23.387 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-16 - Start completed.
+PROBE file | CHECK (c = 'browser' OR c = 'bot' OR ...)
+    valid before retirement=accepted | valid after retirement=rejected (DATABASE CLOSED: The database has been closed [90098-240]) | invalid after retirement=rejected (DATABASE CLOSED: The database has been closed [90098-240])
+02:15:23.418 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-16 - Shutdown initiated...
+02:15:23.449 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-16 - Shutdown completed.
+02:15:23.450 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-17 - Starting...
+02:15:23.451 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-17 - Added connection conn48: url=jdbc:h2:file:./build/constraint-probe-153461354898375 user=SA
+02:15:23.451 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-17 - Start completed.
+PROBE file | CHECK (LENGTH(h) = 64)
+    valid before retirement=accepted | valid after retirement=accepted | invalid after retirement=rejected (Check constraint violation: "CK_T: "; SQL statement:)
+02:15:23.493 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-17 - Shutdown initiated...
+02:15:23.529 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-17 - Shutdown completed.
+02:15:23.529 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-18 - Starting...
+02:15:23.530 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-18 - Added connection conn51: url=jdbc:h2:file:./build/constraint-probe-153461434139083 user=SA
+02:15:23.530 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-18 - Start completed.
+PROBE file | revised V2 (V1 + user_agent_class lookup + click with FK and LENGTH check): valid click / unknown class
+    valid before retirement=accepted | valid after retirement=accepted | invalid after retirement=rejected (Referential integrity constraint violation: "FK_CLICK_USER_AGENT_CLASS: PUBLIC.CLICK FOREIGN KEY(USER_AGENT_CLASS) REFERENCES PUBLIC.USER_AGENT_CLASS(TOKEN) ('tablet')"; SQL statement:)
+02:15:23.568 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-18 - Shutdown initiated...
+02:15:23.608 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-18 - Shutdown completed.
+02:15:23.608 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-19 - Starting...
+02:15:23.609 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-19 - Added connection conn54: url=jdbc:h2:file:./build/constraint-probe-153461513254500 user=SA
+02:15:23.610 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-19 - Start completed.
+PROBE file | revised V2: valid click / short hash
+    valid before retirement=accepted | valid after retirement=accepted | invalid after retirement=rejected (Check constraint violation: "CK_CLICK_CLIENT_HASH_LENGTH: "; SQL statement:)
+02:15:23.651 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-19 - Shutdown initiated...
+02:15:23.687 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-19 - Shutdown completed.
+02:15:23.687 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-20 - Starting...
+02:15:23.689 [main] INFO com.zaxxer.hikari.pool.HikariPool -- HikariPool-20 - Added connection conn57: url=jdbc:h2:file:./build/constraint-probe-153461592620625 user=SA
+02:15:23.689 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-20 - Start completed.
+PROBE file | FOREIGN KEY to a four-row lookup table (no CHECK)
+    valid before retirement=accepted | valid after retirement=accepted | invalid after retirement=rejected (Referential integrity constraint violation: "FK_T: PUBLIC.T FOREIGN KEY(C) REFERENCES PUBLIC.UA(NAME) ('nope')"; SQL statement:)
+02:15:23.725 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-20 - Shutdown initiated...
+02:15:23.763 [main] INFO com.zaxxer.hikari.HikariDataSource -- HikariPool-20 - Shutdown completed.
+
+BUILD SUCCESSFUL in 2s
+6 actionable tasks: 1 executed, 5 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html

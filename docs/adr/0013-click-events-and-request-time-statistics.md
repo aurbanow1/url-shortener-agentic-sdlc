@@ -18,10 +18,19 @@ come from event rows at request time or from a summary table.
 - **Table `click`** (`V2__create_click.sql`): `id` identity; `link_id`
   `NOT NULL` with `FOREIGN KEY → link(id) ON DELETE CASCADE`;
   `clicked_at TIMESTAMP WITH TIME ZONE`; `clicked_on DATE`; `referrer
-  VARCHAR(2048)` (origin or `NULL`); `user_agent_class VARCHAR(16)` with a
-  `CHECK` on the four tokens; `client_hash VARCHAR(64)` with a length
-  `CHECK`; index `ix_click_link_day (link_id, clicked_on)`. There is no
-  column for any raw value and none for the request id.
+  VARCHAR(2048)` (origin or `NULL`); `user_agent_class VARCHAR(16)`
+  referencing the four-row lookup table `user_agent_class (token)`;
+  `client_hash VARCHAR(64)` with a `LENGTH` check; index
+  `ix_click_link_day (link_id, clicked_on)`. There is no column for any raw
+  value and none for the request id.
+- **The closed set is a lookup table, not `CHECK (… IN …)`.** On H2 2.4.240
+  a `CHECK` built from a multi-value condition (an `IN` list, or equalities
+  joined by `OR`) answers "The database has been closed" (`90098`) for every
+  insert once the pooled connection that created it has been retired.
+  Hikari's `maxLifetime` does that after 30 minutes. Single comparisons,
+  `LENGTH` checks and foreign keys keep working, and so do V1's two shipped
+  checks (design review DR-04; constraint probe, memory and file
+  databases). Later migrations follow the same rule (`docs/DESIGN.md` §4).
 - **The UTC day is computed in Java and stored.** `clicked_on =
   LocalDate.ofInstant(clicked_at, UTC)` is written alongside the instant.
   A SQL day over `clicked_at` depends on the parameter binding and the
@@ -54,8 +63,11 @@ come from event rows at request time or from a summary table.
   distinct `client_hash` per day from the same rows.
 - Moving to PostgreSQL needs no change here: the DDL is portable, no
   database time function is used and no collation is relied on.
-- Rollback: `DROP TABLE click;` removes click history only.
+- Rollback: `DROP TABLE click; DROP TABLE user_agent_class;` removes click
+  history only.
 - Verified before implementation:
   `missions/01-greenfield-core/slices/02-analytics/design-probe/output.txt`
   (C0 DDL, C3 the session-zone instant under a `Timestamp` binding, C5 the
-  fold, C6 H2's ordering for comparison).
+  fold, C6 H2's ordering for comparison) and
+  `…/design-probe/constraint-output.txt` (every constraint form before and
+  after connection retirement, including the revised V2).

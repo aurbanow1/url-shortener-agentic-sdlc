@@ -89,8 +89,8 @@ Source: `diagrams/container.mmd`.
 | `dev.urlshort.link` | `LinkValidation`, `ShortCodes` | 01-create-redirect | ordered target/key validation; 8-char `SecureRandom` codes with the reserved set |
 | `dev.urlshort.link` | `LinkProperties`, `LinkConfig` | 01-create-redirect | `urlshort.public-base-url`; the `Clock` and `SecureRandom` beans |
 | `dev.urlshort.audit` | `AuditLog` | 01-create-redirect | insert-only writer for `audit_log` (`JdbcClient`); actor `anonymous`, `request_id` from the MDC |
-| `dev.urlshort.click` | `ClickRecorder` (public) | 02-analytics | the hook's target: skips `HEAD`; reduces the request to a `Click` on the request thread; one bounded writer thread (queue 10 000, abort on full); fail open with one `WARN click lost` per lost click; restores `requestId` on the writer thread; drains on close |
-| `dev.urlshort.click` | `Click`, `DailySalt` | 02-analytics | the stored facts and the referrer-origin and user-agent-class reductions; HMAC-SHA256 under a random salt per UTC day, in memory, dropped at the day's end |
+| `dev.urlshort.click` | `ClickRecorder` (public) | 02-analytics | the hook's target: skips `HEAD`; reduces the request to a `Click` on the request thread; one bounded writer thread (queue 10 000, abort on full); fail open with one `WARN click lost` per lost click (reason `rejected`, `write failed` or `shutdown deadline`); restores `requestId` on the writer thread; drains for at most 5 s on close |
+| `dev.urlshort.click` | `Click`, `DailySalt` | 02-analytics | the stored facts and the referrer-origin and user-agent-class reductions; `stamp(address)` chooses the click's instant and the day's key in one locked step, then HMAC-SHA256; a random salt per UTC day, in memory, dropped at the day's end |
 | `dev.urlshort.click` | `ClickStore`, `StatsController`, `LinkStats` | 02-analytics | one insert, code → link id, one grouped query; `GET /api/links/{code}/stats`; the fold into total, per day and top 10 referrers |
 | `dev.urlshort.ping` | `PingController`, `PingResponse` | 01-ping | `GET /api/ping` → `{"status":"ok","time":"<ISO-8601 UTC>"}` |
 | platform | Actuator, springdoc, Flyway, H2, Spring Data JDBC | bootstrap | operations surface, API document, schema ownership, storage, mapping |
@@ -348,6 +348,15 @@ Persistence
   behaviour under an `OffsetDateTime` binding (`atOffset(UTC)`, as
   `AuditLog` binds) was not run. Either way: compute UTC days in Java and
   store them when grouping by day. **[probe: `02-analytics/design-probe` C3]**
+- **H2 2.4.240: no multi-value `CHECK`.** A `CHECK` built from an `IN` list
+  or from equalities joined by `OR` fails every insert with "The database
+  has been closed" (`90098`) once the pooled connection that ran its DDL is
+  retired, which Hikari's `maxLifetime` does after 30 minutes. Single
+  comparisons (`=`, `<>`), `LENGTH(…)` checks and foreign keys keep working;
+  V1's `ck_link_code_length` and `ck_link_url_not_empty` were verified. Use a
+  lookup table with a foreign key for a closed set. **[probe:
+  `02-analytics/design-probe` constraint probe, memory and file databases;
+  found by design review `02-analytics` DR-04]**
 - H2 reserved words that bite: `KEY`, `VALUE`; keywords to avoid as column
   names on either engine: `AT`, `BEFORE`, `AFTER`. **[H2 grammar]**
 
@@ -389,11 +398,15 @@ erDiagram
         timestamptz clicked_at
         date clicked_on
         varchar(2048) referrer
-        varchar(16) user_agent_class
+        varchar(16) user_agent_class FK
         varchar(64) client_hash
+    }
+    USER_AGENT_CLASS {
+        varchar(16) token PK
     }
     LINK ||..o{ AUDIT_LOG : "entity_id = code (no FK)"
     LINK ||--o{ CLICK : "link_id (FK, ON DELETE CASCADE)"
+    USER_AGENT_CLASS ||--o{ CLICK : "user_agent_class (FK)"
 ```
 
 - `link`: the Creator's resource. `retired_at IS NULL` means `active`;
@@ -406,14 +419,16 @@ erDiagram
 - `click` *(02-analytics)*: one row per `302` redirect, reduced before it is
   written (no raw address, user agent, referrer path or request id);
   `clicked_on` is the UTC day of `clicked_at`, computed in Java because a SQL
-  day depends on the binding and the session zone; `CHECK`s on the user-agent class
-  and the 64-character hash; index `ix_click_link_day (link_id, clicked_on)`
+  day depends on the binding and the session zone; the user-agent class is a
+  foreign key to the four-row `user_agent_class` table (a multi-value
+  `CHECK` breaks on H2 2.4.240, §4) and the 64-character hash a `LENGTH`
+  check; index `ix_click_link_day (link_id, clicked_on)`
   for the statistics query; statistics are computed per request from one
   grouped query (ADR-0013). NFR-P2's purge (mission 02) is a `DELETE` by
   `clicked_on`, no schema change.
 - Queries and their indexes are listed per slice in its `design.md` §3.
 - Rollback of V1: `DROP TABLE audit_log; DROP TABLE link;`. Rollback of V2:
-  `DROP TABLE click;` (click history only).
+  `DROP TABLE click; DROP TABLE user_agent_class;` (click history only).
 
 The audit-read slice (mission 02) adds no table.
 
@@ -467,4 +482,5 @@ unlimited).
 | 2026-10-03 | 01-create-redirect (design) | First schema (`link`, `audit_log`, V1); `link/` feature (create, read, retire, redirect, idempotency); `audit/` insert-only writer; `web/` gains `Problems`, `ProblemDetailsAdvice` (replaces Boot's handler, catch-all `500`), `RequestBodyLimitFilter`, `OpenApiConfig`, and a per-request log event in `RequestIdFilter`; `Clock` bean; first operator setting; committed `docs/api/openapi.json`; Javadoc gate in `check`; ADR-0005..0010 and the ADR-0002 amendment |
 | 2026-10-03 | 01-create-redirect (design review DR-01..DR-04) | Problem bodies lose `detail` and take `instance` = `urn:uuid:<request id>` (one `createResponseEntity` override); the `500` event logs class chain + one frame instead of the throwable; request event logs `status` only; shipped `spring.mvc.servlet.load-on-startup=1` and `PageNotFound` at ERROR; functional clock bean renamed `functionalClock`; ADR-0004 amended, ADR-0002 amendment revised |
 | 2026-10-03 | 02-analytics (design) | `click/` feature: the redirect hook (`HEAD` skipped), request-thread reduction, `DailySalt` HMAC, one bounded writer thread with fail-open WARN, `GET /api/links/{code}/stats` from one grouped query; `click` table (V2) with FK to `link`; ADR-0011..0013 and a second ADR-0004 amendment; `docs/api/openapi.json` gains the statistics operation |
+| 2026-10-03 | 02-analytics (design review DR-01..DR-04) | the click writer drains for at most 5 s at close and reports each unwritten click; `DailySalt.stamp` chooses the instant and the key in one locked step; the user-agent class becomes a lookup-table FK (`user_agent_class`) because H2 2.4.240 breaks multi-value `CHECK`s after connection retirement; stats `HEAD`/`OPTIONS` at framework defaults (SPEC `173bd60`, AC-22); ADR-0011..0013 revised |
 | 2026-10-03 | 03-operate (design) | `web.RateLimitFilter` + `RateLimiter` (per-client GCRA, two budgets, `429` problem detail, rejection counter, trusted-proxy rule); `RequestBodyLimitFilter` to order `+3`; Prometheus registry and `/actuator/prometheus`; readiness includes the database; status-only health; Tomcat parse errors no longer logged; 10 s shutdown phase; compose: read-only root, tmpfs, loopback publish, readiness health check, 20 s stop grace; `scripts/smoke.sh` `--restart`, `--drain`, `--bench`; `429` on every documented operation; ADR-0014..0017 and a third ADR-0004 amendment |

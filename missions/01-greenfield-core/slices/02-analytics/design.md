@@ -2,16 +2,17 @@
 slice: 02-analytics
 mission: 01-greenfield-core
 spec: SPEC.md
-spec_candidate: 7200107
+spec_candidate: 173bd60
 status: proposed
 created: 2026-10-03
 ---
 
 # Design — Slice 02 Click analytics
 
-Reader: the Development Agent, with `SPEC.md` (candidate `7200107`; the ACs,
-rules and ambiguity rows are identical to the reviewed `488788f`) open beside
-this file. This is the smallest structure that reaches AC-1 to AC-21 and rules
+Reader: the Development Agent, with `SPEC.md` (candidate `173bd60`: the
+reviewed `488788f` plus RQ-01's label fix at `7200107` and, for design review
+DR-03, rule 7's HEAD/OPTIONS wording, new AC-22 and A-18) open beside this
+file. This is the smallest structure that reaches AC-1 to AC-22 and rules
 1 to 9 on top of the merged `01-create-redirect` (`16c355f`). Tags as in slice
 01: **[probe]** = run on Tomcat by `design-probe/ClickProbe.java` (§12),
 **[jar]** = read from the 4.1.1 / 7.0.9 class files, **[docs]** = reference
@@ -30,9 +31,9 @@ table, no scheduler framework, no new dependency, no new property.
 | Component | Package / class | New or changed | Responsibility |
 |---|---|---|---|
 | Click feature package | `dev.urlshort.click` (`package-info.java`) | **new** | Records clicks and serves their statistics. Owns the `click` table. Reads `link` only to turn a code into its id (see "Link lookup" below). |
-| Recorder (the hook's target) | `click.ClickRecorder` (**public**, `@Component`; its constructor stays package-private because it takes the package-private `ClickStore` and `DailySalt`) | **new** | `public void record(long linkId, HttpServletRequest request)`, called by the redirect on the request thread. Returns at once for `HEAD` (rule 1; the `GET` mapping also serves `HEAD` **[probe C2]**). Otherwise it reads `MDC.get("requestId")`, `clock.instant()`, `Referer`, `User-Agent` and `getRemoteAddr()`, builds the reduced `Click` and calls `writer.execute(...)`. The whole body sits in one `try`: any `RuntimeException`, including `RejectedExecutionException` from a full or closed queue, becomes one `click lost` WARN and the method returns normally (rule 5). The writer is `new ThreadPoolExecutor(1, 1, 0, MILLISECONDS, new ArrayBlockingQueue<>(QUEUE_CAPACITY), daemon thread "click-writer", new AbortPolicy())` with `QUEUE_CAPACITY = 10_000`. Each task puts the captured request id into the MDC, calls `store.insert(click)`, turns a `RuntimeException` into one `click lost` WARN, and removes the MDC key in `finally`. `void settle()` (package-private, for the functional suite) submits an empty task and waits for it up to 10 s; with one FIFO writer, that means every earlier click is written or lost. `@PreDestroy void close()` calls `writer.close()`, which drains the queue before the `DataSource` goes away (the recorder depends on the store, so Spring destroys it first). |
+| Recorder (the hook's target) | `click.ClickRecorder` (**public**, `@Component`; its constructor stays package-private because it takes the package-private `ClickStore` and `DailySalt`) | **new** | `public void record(long linkId, HttpServletRequest request)`, called by the redirect on the request thread. Returns at once for `HEAD` (rule 1; the `GET` mapping also serves `HEAD` **[probe C2]**). Otherwise it reads `MDC.get("requestId")`, `Referer`, `User-Agent` and `getRemoteAddr()`, takes the click's instant and hash together from `salt.stamp(address)` (below), builds the reduced `Click` and calls `writer.execute(new ClickWrite(click, requestId))`. The whole body sits in one `try`: any `RuntimeException`, including `RejectedExecutionException` from a full or closed queue, becomes one `click lost` WARN (reason `rejected`) and the method returns normally (rule 5). The writer is `new ThreadPoolExecutor(1, 1, 0, MILLISECONDS, new ArrayBlockingQueue<>(QUEUE_CAPACITY), daemon thread "click-writer", new AbortPolicy())` with `QUEUE_CAPACITY = 10_000`. Each task is a `record ClickWrite(Click click, String requestId) implements Runnable`, so a task cancelled at shutdown can still be accounted for. Its `run` puts the request id into the MDC, calls `store.insert(click)`, turns a `RuntimeException` into one `click lost` WARN (reason `write failed`), and removes the MDC key in `finally`. `void settle()` (package-private, for the functional suite) submits an empty task and waits for it up to 10 s; with one FIFO writer, that means every earlier click is written or lost. **`@PreDestroy void close()` is bounded (DR-01):** `writer.shutdown()`; if `awaitTermination(DRAIN_DEADLINE)` (5 s) returns false, `writer.shutdownNow()` interrupts the write in flight and returns the queued tasks. Each returned `ClickWrite` logs one `click lost` (reason `shutdown deadline`, its own request id); any other returned task (a `settle()` waiting behind a blocked write) is cancelled with `Future.cancel(false)`. The interrupted write either completes or fails into its own `write failed` WARN. Every click is therefore written or reported exactly once, and `close()` returns within the deadline **[revision probe DR-01]**. The recorder depends on the store, so Spring destroys it before the `DataSource`. A package-private constructor takes the deadline (unit tests use 200 ms); the `@Autowired` one passes `DRAIN_DEADLINE`. |
 | Click record + reductions | `click.Click` | **new** | `record Click(long linkId, Instant clickedAt, LocalDate clickedOn, @Nullable String referrer, String userAgentClass, String clientHash)`. These are rule 2's facts, plus `clickedOn` = `LocalDate.ofInstant(clickedAt, UTC)`, the grouping key decided by the application, not the database (§3). Two static pure functions: `@Nullable String referrerOrigin(@Nullable String header)` (rule 3: `null` when absent, longer than 2 048, unparseable by `java.net.URI`, scheme not `http`/`https` ignoring case, or no host; otherwise lowercase scheme + `://` + lowercase host + `:port` unless the port is absent or the scheme's default) and `String userAgentClass(@Nullable String header)` (rule 4's order: absent or empty → `unknown`; lowercase contains `bot`, `crawler` or `spider` → `bot`; starts with `Mozilla/` → `browser`; else `other`). |
-| Daily salt | `click.DailySalt` (`@Component`) | **new** | `String hash(String address, Instant at)`: HMAC-SHA256 of the address's UTF-8 bytes under the salt of `at`'s UTC day, as 64 lowercase hex characters. The salt is 32 bytes from the application's `SecureRandom` bean, held in one field, and never logged, returned or stored. Under the object's lock: if `at`'s day differs from the held salt's day, zero the old bytes, draw a new salt for that day, and schedule `expire(day)` at that day's end with `CompletableFuture.delayedExecutor(Duration.between(at, dayEnd))`. The `SecretKeySpec` is built under the same lock (it copies the key); the HMAC runs outside it. `expire(day)` zeroes and drops the salt if it still belongs to `day`, so a salt never outlives its UTC day, even when no click arrives after midnight **[probe S2]**. `@PreDestroy close()` drops it too. ADR-0012. |
+| Daily salt | `click.DailySalt` (`@Component`; `Clock`, `SecureRandom`) | **new** | `Stamp stamp(String address)` with `record Stamp(Instant at, String clientHash)`: the click's instant and the HMAC-SHA256 of the address's UTF-8 bytes under that instant's UTC-day salt, as 64 lowercase hex characters. The salt is 32 bytes from the application's `SecureRandom` bean, held in one field, and never logged, returned or stored. **The instant and the key are chosen in one locked step (DR-02).** Under the object's lock: `at = clock.instant()`; if `at`'s day differs from the held salt's day, zero the old bytes, draw a new salt for that day, and schedule `expire(day)` at that day's end with `CompletableFuture.delayedExecutor(Duration.between(at, dayEnd))`; then copy the key into a `SecretKeySpec`. The HMAC runs outside the lock. Time is read inside the lock, so no request can carry an older day into the lock after a newer day has rotated the salt. A request that chose day D just before midnight finishes with D's key copy, and day D+1's salt is never replaced **[revision probe DR-02]**. `expire(day)` zeroes and drops the salt only if it still belongs to `day`, so a stale callback is a no-op and a salt never outlives its UTC day, even with no click after midnight **[probe S2, revision probe DR-02]**. `@PreDestroy close()` drops it too. The one remaining boundary: if the clock itself moves back across midnight (an NTP step, or the suite's clock shifts), the earlier day gets a fresh salt. ADR-0012. |
 | Store | `click.ClickStore` (`@Component`, `JdbcClient`; not `@Repository`, whose exception-translation proxy `JdbcClient` does not need and which would sit between the spy of §7 and the class) | **new** | `void insert(Click)` (one `INSERT`, instants bound as `atOffset(UTC)` like `AuditLog`); `Optional<Long> findLinkId(String code)`; `List<DayReferrerCount> countByDayAndReferrer(long linkId)`, one grouped `SELECT` (§3), with nested `record DayReferrerCount(LocalDate day, @Nullable String referrer, long clicks)`. Package-private. |
 | Statistics endpoint | `click.StatsController` (`@RestController`) | **new** | `GET /api/links/{code:[A-Za-z0-9]{6,32}}/stats` → `200 LinkStats`; `Problems.notFound()` when `findLinkId` is empty. springdoc annotations for AC-21 (§2). |
 | Statistics body | `click.LinkStats` | **new** | `record LinkStats(String code, long totalClicks, List<DayClicks> clicksPerDay, List<ReferrerClicks> topReferrers)` with nested `record DayClicks(LocalDate date, long clicks)` and `record ReferrerClicks(String referrer, long clicks)`; `static LinkStats of(String code, List<DayReferrerCount> rows)` folds the grouped rows: total = sum of all rows; per day = sum per day in a `TreeMap` (ascending); per referrer = sum per non-null referrer, sorted by `clicks` descending then `referrer` by `String.compareTo`, first `TOP_REFERRERS = 10`. Pure; unit-tested. |
@@ -111,10 +112,14 @@ read-only, no parameters (rule 7).
 | no link has the code (AC-13) | `404` problem detail | bare | `Problems.notFound()` |
 | segment cannot be a code, e.g. 40 letters (AC-13) | `404` problem detail | bare | no handler → `NoResourceFoundException` (framework) |
 | `POST`, `DELETE`, `PUT`, `PATCH` on the path (AC-13) | `405` problem detail, `Allow: GET` | bare | parent handler |
+| `HEAD` on the path (AC-22, rule 7 at `173bd60`) | `200`, the `GET` headers, no body | — | framework: the `GET` mapping serves `HEAD` |
+| `OPTIONS` on the path (AC-22) | `200` with `Allow` containing `GET` | — | framework (`dispatchOptionsRequest`) |
 
-A never-clicked link answers `200` with `0`, `[]`, `[]` (AC-7). `HEAD` on
-the path is served from the `GET` mapping (framework default); it is not a
-click, because the hook sits only on the redirect.
+A never-clicked link answers `200` with `0`, `[]`, `[]` (AC-7). `HEAD` and
+`OPTIONS` stay at the framework defaults, as the SPEC's rule 7 now states
+(DR-03, A-18). Neither is a click, because the hook sits only on the
+redirect, so neither changes `totalClicks` (AC-22). No handler is added for
+them, so the API document gains no operation for either.
 
 springdoc: `@Operation(summary = "Read a link's click statistics")`;
 `@ApiResponse(responseCode = "200", content = @Content(mediaType =
@@ -137,12 +142,22 @@ which is consistent with rule 1.
 ## 3. Data model & migration
 
 `V2__create_click.sql` (runs on H2 in PostgreSQL mode and on PostgreSQL; no
-vendor syntax; DDL executed on H2 by the probe **[probe C0]**):
+vendor syntax; DDL executed on H2 by the probes, and verified to keep
+accepting valid rows and rejecting invalid ones after the pooled connection
+that ran it is retired **[constraint probe]**):
 
 ```sql
 -- V2: click events for analytics (02-analytics), reduced before they are written:
 -- no raw address, user agent, referrer path or request id is ever stored (NFR-P1).
--- rollback: DROP TABLE click;  -- destroys every click row; link and audit_log are untouched
+-- The closed set of user-agent classes is a lookup table, not CHECK (... IN ...): on H2 2.4.240 a
+-- CHECK built from a multi-value condition stops working once the connection that created it closes.
+-- rollback: DROP TABLE click; DROP TABLE user_agent_class;  -- click history only; V1 untouched
+
+CREATE TABLE user_agent_class (
+    token VARCHAR(16) PRIMARY KEY
+);
+
+INSERT INTO user_agent_class (token) VALUES ('browser'), ('bot'), ('other'), ('unknown');
 
 CREATE TABLE click (
     id               BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -153,12 +168,35 @@ CREATE TABLE click (
     user_agent_class VARCHAR(16)   NOT NULL,
     client_hash      VARCHAR(64)   NOT NULL,
     CONSTRAINT fk_click_link FOREIGN KEY (link_id) REFERENCES link (id) ON DELETE CASCADE,
-    CONSTRAINT ck_click_user_agent_class CHECK (user_agent_class IN ('browser', 'bot', 'other', 'unknown')),
+    CONSTRAINT fk_click_user_agent_class FOREIGN KEY (user_agent_class) REFERENCES user_agent_class (token),
     CONSTRAINT ck_click_client_hash_length CHECK (LENGTH(client_hash) = 64)
 );
 
 CREATE INDEX ix_click_link_day ON click (link_id, clicked_on);
 ```
+
+**Why a lookup table (DR-04).** On H2 2.4.240, `CHECK (c IN (...))` and its
+`c = 'a' OR c = 'b' …` spelling both answer "The database has been closed"
+(`90098`) for every insert once the pooled connection that ran the DDL is
+retired. Hikari retires every connection after 30 minutes (`maxLifetime`), so
+in production every click would fail open into a WARN from then on. The
+constraint probe ran each candidate on in-memory and file databases, retiring
+the pool with `softEvictConnections()` while a second connection kept the
+database open (the reviewer's method):
+
+| Form | Valid insert after retirement | Invalid insert after retirement |
+|---|---|---|
+| `CHECK (c IN ('browser', …))` | **rejected, `90098`** | rejected, `90098` |
+| `CHECK (c = 'browser' OR c = 'bot' …)` | **rejected, `90098`** | rejected, `90098` |
+| `CHECK (c = 'browser')`, `CHECK (c <> 'nope')`, `CHECK (LENGTH(h) = 64)` | accepted | rejected by the check |
+| `FOREIGN KEY (c) REFERENCES user_agent_class (token)` | accepted | rejected by the FK |
+| **V1's shipped `ck_link_code_length` and `ck_link_url_not_empty`**, each tested alone | accepted | rejected by the check |
+| **this V2** (FK + `LENGTH` check), valid click / unknown class / short hash | accepted | rejected (FK; check) |
+
+So the shipped `link` table is not affected. Only multi-value conditions
+are. The FK costs one primary-key lookup in a four-row table per insert.
+H2 also indexes the referencing column; PostgreSQL does not, and needs no
+index there because nothing deletes a class.
 
 Design notes (ADR-0013):
 
@@ -177,8 +215,9 @@ Design notes (ADR-0013):
   only `Click`'s constructor call in `ClickRecorder` writes it.
 - **`referrer` is the origin or `NULL`**, `VARCHAR(2048)` because an origin is
   never longer than the header it came from (rule 3 caps that at 2 048).
-  `user_agent_class` is one of four tokens, enforced by a `CHECK`.
-  `client_hash` is exactly 64 hex characters, also enforced by a `CHECK`.
+  `user_agent_class` is one of four tokens, enforced by the foreign key to
+  `user_agent_class`. `client_hash` is exactly 64 hex characters, enforced by
+  a `LENGTH` check.
   There is no request id column (A-16) and no column for any raw value.
 - **Foreign key with `ON DELETE CASCADE`.** A click means nothing without its
   link. Nothing deletes links today (retire is a timestamp), and if a future
@@ -194,7 +233,7 @@ Queries and their indexes:
 
 | Query | Where | Index |
 |---|---|---|
-| `INSERT INTO click (link_id, clicked_at, clicked_on, referrer, user_agent_class, client_hash) VALUES (…)` | writer thread | — (the FK check uses `link`'s primary key) |
+| `INSERT INTO click (link_id, clicked_at, clicked_on, referrer, user_agent_class, client_hash) VALUES (…)` | writer thread | — (the FK checks use the primary keys of `link` and `user_agent_class`) |
 | `SELECT id FROM link WHERE code = :code` | statistics | `uq_link_code` |
 | `SELECT clicked_on, referrer, COUNT(*) AS clicks FROM click WHERE link_id = :linkId GROUP BY clicked_on, referrer` | statistics | `ix_click_link_day` (range on the leading `link_id`) |
 
@@ -209,9 +248,10 @@ not depend on a database collation. H2's own `ORDER BY` happens to give the
 same order **[probe C6]**, but PostgreSQL with a linguistic collation would
 not.
 
-Rollback of V2: `DROP TABLE click;` (the index goes with it). This is an
-additive table on an existing baseline. Rolling back loses only click history
-and touches nothing that V1 owns.
+Rollback of V2: `DROP TABLE click; DROP TABLE user_agent_class;` (in that
+order; the index goes with its table). These are additive tables on an
+existing baseline. Rolling back loses only click history and touches nothing
+that V1 owns.
 
 ## 4. Sequences
 
@@ -243,12 +283,13 @@ sequenceDiagram
     alt HEAD
         CR-->>RC: return (not a click)
     else GET
-        CR->>CR: now = clock.instant(); origin(Referer); class(User-Agent)
-        CR->>DS: hash(peer address, now)
-        DS-->>CR: HMAC-SHA256 under the day's salt (64 hex)
-        CR->>Q: execute(write(Click, R))
+        CR->>CR: origin(Referer); class(User-Agent)
+        CR->>DS: stamp(peer address)
+        DS->>DS: under the lock: at = clock.instant(); rotate if at's day changed; copy key
+        DS-->>CR: (at, HMAC-SHA256 under at's day salt, 64 hex)
+        CR->>Q: execute(ClickWrite(Click, R))
         alt queue full or closed
-            CR->>CR: WARN "click lost" {requestId R, errorType}
+            CR->>CR: WARN "click lost" {requestId R, reason rejected, errorType}
         end
     end
     RC-->>V: 302 Location: <url>, Cache-Control: no-store
@@ -256,9 +297,10 @@ sequenceDiagram
     Q->>Q: MDC requestId=R (restored on the writer thread)
     Q->>ST: insert(Click)
     alt write fails
-        Q->>Q: WARN "click lost" {requestId R, errorType}; nothing stored
+        Q->>Q: WARN "click lost" {requestId R, reason write failed, errorType}; nothing stored
     end
     Q->>Q: MDC.remove
+    Note over Q: at shutdown: drain up to 5 s, then each unwritten ClickWrite → WARN "click lost" {its requestId, reason shutdown deadline}
 
     A->>SC: GET /api/links/C/stats
     SC->>ST: findLinkId(C)
@@ -274,12 +316,14 @@ sequenceDiagram
 
 | Event | Logger | Level | `message` | Fields | Must never appear |
 |---|---|---|---|---|---|
-| click lost | `dev.urlshort.click.ClickRecorder` | WARN | `click lost` | `requestId` (the redirect's, from the MDC on the request thread or restored on the writer thread); `errorType`, the class name of the exception (`java.util.concurrent.RejectedExecutionException` for a full or closed queue, the `DataAccessException` subclass for a failed write) | the exception's message or stack trace (a driver message can quote the bound `client_hash` or `referrer`, DR-01), the client address, its hash, the `User-Agent`, the `Referer` whole or as origin, any forwarding value, the link id |
+| click lost | `dev.urlshort.click.ClickRecorder` | WARN | `click lost` | `requestId` (the redirect's: from the MDC on the request thread, restored on the writer thread, or carried by the cancelled `ClickWrite` at shutdown); `reason`: `rejected` (full or closed queue), `write failed` (the insert threw, including an interrupt at the shutdown deadline) or `shutdown deadline` (still queued when the 5 s drain ended); `errorType`, the exception's class name, when there is one | the exception's message or stack trace (a driver message can quote the bound `client_hash` or `referrer`, DR-01), the client address, its hash, the `User-Agent`, the `Referer` whole or as origin, any forwarding value, the link id |
 | request completed | `dev.urlshort.web.RequestIdFilter` | INFO | unchanged (slice 01) | `requestId`, `status`, for the statistics endpoint too | as slice 01 |
 
 A recorded click logs nothing, and a statistics read logs only the filter's
 event. Exactly one WARN per lost click (rule 5): each lost click passes
-through exactly one of the two `catch` blocks, and neither path retries. Work
+through exactly one of three places (the request-thread `catch`, the
+writer-thread `catch`, or the shutdown loop over the cancelled tasks), and
+none of them retries. Work
 done for a request on the writer thread puts the request id back into the
 MDC for the length of that task. That is the cross-cutting rule this slice
 adds to ADR-0004 (amendment, §10). Overload is visible as a run of `click
@@ -306,15 +350,18 @@ in process memory.
 |---|---|---|---|
 | Spoofing | A client forges `X-Forwarded-For`/`Forwarded` to change its recorded identity | `getRemoteAddr()` only; no header is read for identity (rule 4, AC-6) | trusted-proxy alignment is `03-operate` / lead backlog (A-9) |
 | Spoofing | Scripts inflate a link's clicks | raw clicks are the decided semantics (A-3, FR-16 in mission 03) | per-client rate limit is `03-operate` |
-| Tampering | SQL injection through `Referer` or `User-Agent` | nothing raw is stored; the origin is rebuilt from `java.net.URI` parts, the class is one of four constants (also a `CHECK`); every statement binds named parameters | none |
+| Tampering | SQL injection through `Referer` or `User-Agent` | nothing raw is stored; the origin is rebuilt from `java.net.URI` parts, the class is one of four constants (also a foreign key to `user_agent_class`); every statement binds named parameters | none |
 | Tampering | Referrer spam: fake origins pushed into `topReferrers` | the origin only, never a path; statistics show what clients sent, by design | rate limit (`03-operate`); accepted for an analytics read |
 | Repudiation | A click without a trace | clicks are not audited by rule (rule 8); a lost click leaves a WARN with the request id | accepted by the SPEC |
 | Information disclosure | Raw address, `User-Agent`, referrer path/query/fragment/userinfo or forwarding values stored | reduced on the request thread before the queue; the row has exactly the reduced columns; AC-3 to AC-6 canaries; real-server test checks stored rows | none |
 | Information disclosure | Address recovered from its hash (IPv4 is only 2³² values) | HMAC-SHA256 under a 32-byte random salt held only in memory; the salt is never logged, returned or stored; it is zeroed and dropped at its UTC day's end by a scheduled expiry even when no click follows (**[probe S2]**); a restart draws a new one; the hash is never exposed (AC-17). Within its day the salt lives in the heap, so whoever can read process memory can test addresses for that day | process compromise is out of scope; `03-operate` runs the container non-root |
 | Information disclosure | Statistics reveal individuals | aggregates only: four members, no hash, no class, origins only (AC-17); anonymous by NFR-S6, so anyone with a code reads its statistics, which are as public as the short link | accepted (NFR-S6) |
 | Information disclosure | Click data in logs | no click value is passed to a logger; the lost-click WARN logs the exception class, never its message (**[probe C8]**: a message quoting the hash stayed out); AC-18 canaries on MockMvc and on Tomcat | none |
-| Information disclosure | Driver messages in H2's trace file (`data/*.trace.db`) | a failed click insert is either an integrity violation (`23xxx`: FK, `CHECK`), traced below H2's default level, or a connection failure with no values; `22001` (value too long) cannot occur because every column is at least as wide as its validated input | as slice 01 §6 (`TRACE_LEVEL_FILE` is `03-operate`'s) |
+| Information disclosure | Driver messages in H2's trace file (`data/*.trace.db`) | a failed click insert is either an integrity violation (`23xxx`: the FKs, the `LENGTH` check), traced below H2's default level, or a connection failure with no values; `22001` (value too long) cannot occur because every column is at least as wide as its validated input | as slice 01 §6 (`TRACE_LEVEL_FILE` is `03-operate`'s) |
 | Denial of service | A slow or failing click store slows or fails redirects | fail open: the redirect only enqueues; a full or closed queue drops with a WARN; AC-14, AC-15 | none |
+| Denial of service | A slow or stalled store holds process shutdown (DR-01) | the drain at close is bounded at 5 s; unwritten clicks are cancelled and each reported once; `03-operate`'s 10 s phase + 5 s drain + pool close fit its 20 s stop grace (**[revision probe DR-01]**: 6 writes of 2 s, `close()` returned at 5 006 ms) | clicks still queued at the deadline are lost, each with its WARN (rule 5) |
+| Denial of service | A pool connection is retired and the click constraints stop working (DR-04) | no multi-value `CHECK`; the closed set is a lookup-table FK, the hash length a `LENGTH` check; both verified after retirement (**[constraint probe]**) | none |
+| Information disclosure | A delayed request rotates the salt back into an expired day (DR-02) | instant and key chosen in one locked step; an expiry acts only on its own day (**[revision probe DR-02]**) | a clock that itself jumps back across midnight draws a fresh salt for the earlier day (documented) |
 | Denial of service | Memory through the queue | bounded at 10 000 tasks; each holds about 2.3 KB at worst (a 2 048-character origin, the hash, the request id), so about 23 MB at the bound | none beyond the bound |
 | Denial of service | WARN flood when every click is lost | one line per lost click, required by rule 5 | bounded by `03-operate`'s rate limit |
 | Denial of service | Statistics cost grows with distinct (day, origin) pairs, inflatable by referrer spam | one indexed range scan per read; rows grouped in SQL | rate limit (`03-operate`); NFR-P2 purge (mission 02) |
@@ -331,8 +378,9 @@ named after it, tabled ACs as one `@ParameterizedTest`:
 | Class | Context | ACs |
 |---|---|---|
 | `ClickRecordingJourneyTest` | base (MockMvc) | AC-1 (**polls** the store every 50 ms up to rule 6's 5 s; this is the visibility bound's test, then `settle()` and still exactly one), AC-2 (table; `settle()` then none), AC-3 (table), AC-4 (table), AC-5 (`setRemoteAddr` per request, `FunctionalClock`), AC-6, AC-17, AC-18 |
-| `StatsJourneyTest` | base (MockMvc) | AC-7, AC-8, AC-9 (`FunctionalClock`), AC-10, AC-11 (over the bodies of AC-8, AC-9, AC-10), AC-12, AC-13 (table), AC-19 rows `200`, `404`, `405` and settled `302`, AC-20, AC-21 (`GET /v3/api-docs`: the stats path, its `200` schema with four properties (springdoc emits a `$ref` to `components/schemas/LinkStats`; resolve it) and an example, its `404` as `application/problem+json`; every path of slice 01's AC-28 still present) |
+| `StatsJourneyTest` | base (MockMvc) | AC-7, AC-8, AC-9 (`FunctionalClock`), AC-10, AC-11 (over the bodies of AC-8, AC-9, AC-10), AC-12, AC-13 (table), AC-19 rows `200`, `404`, `405` and settled `302`, AC-20, AC-22 (`HEAD` → `200` with no body, `OPTIONS` → `200` with `Allow` containing `GET`, `totalClicks` unchanged after both), AC-21 (`GET /v3/api-docs`: the stats path, its `200` schema with four properties (springdoc emits a `$ref` to `components/schemas/LinkStats`; resolve it) and an example, its `404` as `application/problem+json`; every path of slice 01's AC-28 still present) |
 | `ClickResilienceJourneyTest` | **own**: `@SpringBootTest(webEnvironment = RANDOM_PORT)` + `@MockitoSpyBean ClickStore` | AC-14 and AC-15 over real HTTP; AC-16 (200 redirects from 20 threads over real HTTP); AC-19's failing-store row; the W1-02 real-server journey (below) |
+| `ClickSchemaJourneyTest` | base | DR-04's regression with the real V2 migration: `((HikariDataSource) dataSource).getHikariPoolMXBean().softEvictConnections()` (the connection that ran Flyway is retired, as `maxLifetime` would do after 30 min); then a redirect with each of the four user-agent classes is recorded (settled, four rows), and direct inserts with class `tablet` or a 3-character hash are rejected |
 
 Plus the granted line in `web/OpenApiDocumentTest` (§1) and the regenerated
 `docs/api/openapi.json`. Slice 01's own tests (AC-12 to AC-14 among them)
@@ -359,8 +407,8 @@ Unit (`src/test/java/dev/urlshort/click/`, no Spring context):
 | Class | What it proves |
 |---|---|
 | `ClickTest` | `referrerOrigin`: every AC-3 row; explicit default ports (`http://x:80`, `https://x:443`) dropped; non-default kept; uppercase scheme accepted and lowercased; IPv6 host kept in brackets; `ftp://`, relative, `http:///x` → `null`; exactly 2 048 characters parsed, 2 049 → `null`. `userAgentClass`: every AC-4 row plus `BOT` in capitals and `mozilla/` lowercase → `other` |
-| `DailySaltTest` | same address and day → equal; other address → different; next day → different; never the unsalted SHA-256 hex or Base64 of the address; 64 lowercase hex; `expire(day)` then the same address and day → a **different** hash (the salt was dropped, so dropping is observable without an accessor); `expire(otherDay)` → unchanged; `close()` drops; a salt created at `23:59:59.900Z` is gone after its expiry fires (wait ≤ 2 s) |
-| `ClickRecorderTest` | with a mock `ClickStore` and `MockHttpServletRequest`: `HEAD` → no `insert`; `GET` → one `insert` whose `Click` has the reduced values and no raw ones (after `settle()`); store throws `new DataAccessResourceFailureException("…<canary>…")` → one WARN `click lost` with `requestId` restored and `errorType`, without the canary, and the MDC is empty afterwards; after `close()`, `record` → one WARN with `errorType` `RejectedExecutionException` and no exception escapes; `close()` drains what was queued |
+| `DailySaltTest` | with a mutable test clock: same address and day → equal; other address → different; next day → different; never the unsalted SHA-256 hex or Base64 of the address; 64 lowercase hex; each `Stamp`'s instant is the clock's; **the reviewer's interleaving** (DR-02): a selection made at `23:59:59.999Z` of day D finishes after a stamp at `00:00:00.000Z` of D+1, then D+1 is stamped again → the delayed hash equals D's, and both D+1 hashes are equal (no replacement); **a stale `expire(D)` after D+1 began** → D+1's hash unchanged; `expire(currentDay)` → the next stamp draws a new salt (dropping is observable without an accessor); `close()` drops; a salt created at `23:59:59.900Z` is gone after its scheduled expiry fires (wait ≤ 2 s). The interleaving needs the locked step exposed package-private (`select()` returning the instant, day and key copy; `stamp` = `select` + HMAC) |
+| `ClickRecorderTest` | with a mock `ClickStore`, a fixed `DailySalt` and `MockHttpServletRequest`: `HEAD` → no `insert`; `GET` → one `insert` whose `Click` has the reduced values and no raw ones (after `settle()`); store throws `new DataAccessResourceFailureException("…<canary>…")` → one WARN `click lost`, reason `write failed`, with `requestId` restored and `errorType`, without the canary, and the MDC is empty afterwards; after `close()`, `record` → one WARN, reason `rejected`, `errorType` `RejectedExecutionException`, and no exception escapes; **bounded close (DR-01)**: deadline 200 ms, a store that blocks until interrupted, five queued clicks → `close()` returns within about 200 ms, the in-flight click reports `write failed`, the four queued ones each report `shutdown deadline` with their own request ids (five WARNs, five ids, no duplicates); with a fast store, `close()` writes everything and reports nothing |
 | `LinkStatsTest` | no rows → `0`, `[]`, `[]`; per-day ascending; `null` referrer counted in the total and per day, absent from the top; ties by code point (`d1`, `d10`, `d11`, `d2`); cap at 10; total = sum of per day |
 
 ### 7.2 Mechanisms the tests depend on
@@ -381,24 +429,27 @@ Unit (`src/test/java/dev/urlshort/click/`, no Spring context):
   `ColdStartJourneyTest` does.
 - **Why no click write fails in the base context**, which matters for slice
   01's `ObservabilityJourneyTest`, which asserts every line in its windows
-  carries its own id. The FK cannot fail, because the id comes from a link
-  `resolve` just read and links are never deleted. The `CHECK`s cannot fail,
-  because the class is one of the four constants and the hash is always 64
-  hex characters. The queue cannot fill at suite volume. So no foreign WARN
-  can appear in those windows.
+  carries its own id. The link FK cannot fail, because the id comes from a
+  link `resolve` just read and links are never deleted. The class FK and the
+  hash check cannot fail, because the class is one of the four seeded tokens
+  and the hash is always 64 hex characters. Unlike the first design's
+  `IN`-list `CHECK`, both keep working after a pooled connection is retired
+  (DR-04, **[constraint probe]**, `ClickSchemaJourneyTest`). The queue cannot
+  fill at suite volume. So no foreign WARN can appear in those windows.
 - **Client addresses (AC-5, AC-6, AC-18):** MockMvc
   `.with(r -> { r.setRemoteAddr("203.0.113.77"); return r; })`, the pattern
   of slice 01's `ObservabilityJourneyTest`.
 - **Absolute instants (AC-5, AC-9)** with the offset `FunctionalClock`
   (`src/functionalTest/java/dev/urlshort/link/`, used, not changed):
   `clock.reset(); clock.shift(Duration.between(Instant.now(), target));`, then
-  the redirect. Real time keeps running between the shift and the hook's
-  `clock.instant()`, which is milliseconds. So `23:59:59Z` lands at
+  the redirect. Real time keeps running between the shift and
+  `DailySalt.stamp`'s `clock.instant()`, which is milliseconds. So `23:59:59Z` lands at
   `23:59:59.00x`, still that day and that second, and the test shifts again
   for each target instead of relying on elapsed time. `@AfterEach` resets
-  the clock. AC-5's day `D` is any past day (for example `2026-09-01`); the
-  salt follows the instant it is given, so going back to `D` and then to
-  `D+1` draws the two salts the test needs.
+  the clock. AC-5's day `D` is any past day (for example `2026-09-01`). Moving
+  the suite clock back to `D` is the documented "clock moved back" boundary,
+  which draws a fresh salt for `D`; moving on to `D+1` draws the next. Those
+  are the two salts the test needs.
 - **Slow and failing store (AC-14, AC-15)** with `@MockitoSpyBean ClickStore
   store`. For AC-14,
   `doAnswer(inv -> { Thread.sleep(2000); return inv.callRealMethod(); }).when(store).insert(any())`,
@@ -435,7 +486,12 @@ the null-referrer branch of the fold (`LinkStatsTest`, AC-10). The `host ==
 null` test in `referrerOrigin` is the only host check: `java.net.URI` never
 returns an empty host, so an `isEmpty()` branch would be unreachable.
 `close()` is unit-tested because the functional contexts close after
-JaCoCo's agent may already have dumped. Expected `docs/qa/GAPS.md` row: the
+JaCoCo's agent may already have dumped. Both `awaitTermination` outcomes are
+covered by the fast-store and blocking-store cases. The shutdown loop's
+non-`ClickWrite` branch is covered too: a `settle()` task can sit queued
+behind a blocked write, so the loop cancels it (`Future.cancel(false)`), and
+the bounded-close test calls `settle()` from a helper thread first, which
+then returns at once. Expected `docs/qa/GAPS.md` row: the
 NFR-L3 number until the release bench measures it (SPEC proof contract), and
 nothing else.
 
@@ -447,7 +503,7 @@ nothing else.
 | AC-2 | `resolve` throws before the hook (`404`/`410`); `HEAD` skipped; `405`, reads and stats never call the hook | yes | ✔ |
 | AC-3 | `Click.referrerOrigin` | — | `Referer` ✔ |
 | AC-4 | `Click.userAgentClass` | — | `User-Agent` ✔ |
-| AC-5 | `DailySalt.hash` (HMAC, day salt, rotation) | — | peer address, salt ✔ |
+| AC-5 | `DailySalt.stamp` (instant and key in one locked step, HMAC, day salt, rotation) | — | peer address, salt ✔ |
 | AC-6 | `getRemoteAddr()` only | — | forwarding headers ✔ |
 | AC-7, AC-8, AC-9, AC-10, AC-11, AC-12 | `StatsController` → `findLinkId` → `countByDayAndReferrer` → `LinkStats.of` | — | stats path ✔ |
 | AC-13 | `Problems.notFound()`; no handler; parent `405` | yes | ✔ |
@@ -458,6 +514,7 @@ nothing else.
 | AC-19 | filter event; MDC restored on the writer thread | — | logs ✔ |
 | AC-20 | no `audit/` call anywhere in `click/`; the redirect contract untouched | — | ✔ |
 | AC-21 | `StatsController` annotations; `OpenApiDocumentTest` line | — | ✔ |
+| AC-22 | framework `HEAD` (from the `GET` mapping) and `OPTIONS`; no hook on the stats path | — | stats path ✔ |
 | rules 1–9 | 1: hook placement + `HEAD` skip; 2: `Click` + V2 columns; 3: `referrerOrigin`; 4: `getRemoteAddr` + `DailySalt` + `userAgentClass`; 5: queue + two catches; 6: one writer, AC-1's poll; 7: `LinkStats`; 8: hook after `resolve`, no audit; 9: §5 | — | — |
 
 ## 9. Territory (`slice.yaml` at revision receipt 8)
@@ -481,9 +538,9 @@ on `main`, not slice code.
 
 | ADR | Decision | Status |
 |---|---|---|
-| [ADR-0011](../../../../docs/adr/0011-click-handoff-bounded-single-writer.md) | clicks are reduced on the request thread and handed to a bounded queue (10 000) with one writer thread; fail open: a full or closed queue or a failed write loses that click with one WARN carrying the request id; the writer restores the request id in the MDC; `close()` drains at shutdown; abrupt stops may lose queued clicks (A-11) | proposed |
-| [ADR-0012](../../../../docs/adr/0012-client-hash-daily-salt.md) | the client hash is HMAC-SHA256 under a 32-byte random salt per UTC day, held only in memory, zeroed and dropped at the day's end by a scheduled expiry; a restart draws a new salt | proposed |
-| [ADR-0013](../../../../docs/adr/0013-click-events-and-request-time-statistics.md) | one row per click with a stored UTC day; statistics computed per request from one grouped query, ranked in Java; FK `ON DELETE CASCADE`; NFR-P2 purge needs no schema change | proposed |
+| [ADR-0011](../../../../docs/adr/0011-click-handoff-bounded-single-writer.md) | clicks are reduced on the request thread and handed to a bounded queue (10 000) with one writer thread; fail open: a full or closed queue or a failed write loses that click with one WARN carrying the request id; the writer restores the request id in the MDC; `close()` drains for at most 5 s, then cancels and reports each unwritten click once (DR-01); abrupt stops may lose queued clicks (A-11) | proposed, revised after design review |
+| [ADR-0012](../../../../docs/adr/0012-client-hash-daily-salt.md) | the client hash is HMAC-SHA256 under a 32-byte random salt per UTC day, held only in memory, zeroed and dropped at the day's end by a scheduled expiry; the instant and the key are chosen in one locked step (DR-02); a restart draws a new salt | proposed, revised after design review |
+| [ADR-0013](../../../../docs/adr/0013-click-events-and-request-time-statistics.md) | one row per click with a stored UTC day; the closed set of user-agent classes as a lookup-table FK, not a multi-value `CHECK` (DR-04); statistics computed per request from one grouped query, ranked in Java; FK `ON DELETE CASCADE`; NFR-P2 purge needs no schema change | proposed, revised after design review |
 | [ADR-0004](../../../../docs/adr/0004-structured-ecs-logs-no-client-pii.md) (amended) | work done for a request on another thread restores `requestId` in the MDC for its duration; its events follow the same content rules | amended 2026-10-03 |
 
 ADR numbers 0014 onward are left for `03-operate`, whose design follows this
@@ -502,7 +559,11 @@ one.
 | Lazy salt rotation only (on the next click) | on a quiet day the salt would stay in memory past midnight (rule 4) | — |
 | A summary table updated per click | a second write on every click, and rows are needed anyway for uniques and purge | statistics reads becoming the bottleneck |
 | Day grouped in SQL from `clicked_at` | the result depends on the binding and the session time zone (with a `Timestamp` binding, `-07:00` came back from H2), and the function differs between H2 and PostgreSQL | a database-side UTC function both engines share |
-| Bounded drain at shutdown (`shutdown()` + `awaitTermination(n)` + `shutdownNow()`, one WARN per unwritten click) | `ExecutorService.close()` is one line and in practice is bounded by queue size × the time a write takes to succeed or fail. The embedded store either writes in microseconds or fails at once | `03-operate`'s shutdown evidence (AC-25, 10 s) showing a tail from the drain |
+| `ExecutorService.close()` (unbounded drain), as in the first design | the design review showed a slow store holding shutdown past 10 s (six 2-s writes ended at about 12 s), and a stalled store would hold it indefinitely (DR-01) | — |
+| A drain deadline longer than 5 s | `03-operate`'s 10 s shutdown phase plus the drain plus the pool close must fit its 20 s stop grace; 5 s leaves room and drains thousands of normal writes | a measured backlog at shutdown that 5 s cannot clear under normal load |
+| Keep the closed set as `CHECK (… IN …)` and recycle no connections | relies on the creating connection living forever; Hikari's `maxLifetime` retires it after 30 minutes, so clicks would start failing open in production (DR-04) | an H2 fix, re-verified by the constraint probe |
+| No database constraint on the class (application only) | the four tokens are constants in code, but a constraint keeps any other writer, now or later, honest; the lookup FK is verified and costs a four-row primary-key probe | — |
+| Handle a delayed request by hashing it with the current day's salt, or a one-off salt | the first links one day's click to another day's hashes; the second breaks same-day stability; reading the clock inside the lock removes the case instead (DR-02) | — |
 | `ORDER BY … LIMIT 10` in SQL for the top referrers | the tie order would follow the database collation (PostgreSQL's linguistic collations ignore punctuation); separate statements could also break AC-11 under concurrent writes | an index-only path for very high-cardinality referrers |
 | A public lookup in `link/` (code → id) | outside the `link/` grant; the FK already ties `click` to `link.id` | a third feature needing the same lookup |
 | Recording the click from a servlet filter or interceptor after the response | it would have to infer "this was a `302` of the redirect route" from status and path, and would see `HEAD` and `429`s too; the hook knows | — |
@@ -525,7 +586,7 @@ scripts/gw --log missions/01-greenfield-core/slices/02-analytics/design-probe/ou
 
 | Case | Result in `design-probe/output.txt` | Design item |
 |---|---|---|
-| C0 | V2 DDL (table, FK `ON DELETE CASCADE`, both `CHECK`s, index) runs on H2 in PostgreSQL mode | §3 |
+| C0 | the first design's V2 DDL (table, FK `ON DELETE CASCADE`, both `CHECK`s, index) runs on H2 in PostgreSQL mode. That is true but not enough: its `IN`-list check fails once the creating connection is retired (DR-04, superseded by the constraint probe below) | §3 |
 | C1 | link created through the shipped `POST /api/links`; its id read by code | link lookup |
 | C2 | `HEAD` on the `@GetMapping` route: `302`, handler invoked once, no click stored | rule 1, AC-2 |
 | C3 | one redirect with `Referer`, `User-Agent` and `X-Forwarded-For` canaries: `302`, `no-store`; stored row `REFERRER=https://news.example`, `USER_AGENT_CLASS=browser`, a 64-hex hash, no canary, no address; the only log line in the window is `request completed` | AC-3, AC-4, AC-6, AC-18 |
@@ -537,6 +598,28 @@ scripts/gw --log missions/01-greenfield-core/slices/02-analytics/design-probe/ou
 | C9 | springdoc lists only the `code` path parameter for a handler that also takes `HttpServletRequest` | §1 hook |
 | S1 | HMAC daily salt: same address and day equal, other address differs, next day differs, not the unsalted SHA-256 (hex or Base64), 64 characters | AC-5 |
 | S2 | a salt created 0.5 s before UTC midnight is gone 1.5 s later with no further click | rule 4 disposal |
+
+**Revision probes (design review DR-01, DR-02, DR-04).** The reviewer's own
+probes reproduced the three defects against the first design
+(`docs/review/02-analytics/proof/design-boundary.txt`,
+`design-h2-constraint.txt`). These two probes run the revised mechanisms:
+
+```sh
+scripts/gw --log missions/01-greenfield-core/slices/02-analytics/design-probe/revision-output.txt \
+    --offline -I missions/01-greenfield-core/slices/02-analytics/design-probe/revision-probe.gradle designRevisionProbe
+scripts/gw --log missions/01-greenfield-core/slices/02-analytics/design-probe/constraint-output.txt \
+    --offline -I missions/01-greenfield-core/slices/02-analytics/design-probe/constraint-probe.gradle designConstraintProbe
+```
+
+| Case | Result | Finding |
+|---|---|---|
+| DR-01, 5 s deadline, six 2-s writes (the reviewer's setup) | `close()` returned after 5 006 ms; written `req-1`, `req-2`; `req-3` interrupted (write failed); `req-4`…`req-6` shutdown deadline; every click accounted once | DR-01 |
+| DR-01, 500 ms deadline | returned after 504 ms; one interrupted, five cancelled; every click accounted once | DR-01 |
+| DR-01, fast store | returned at once, all six written, nothing lost | DR-01 |
+| DR-02, the reviewer's interleaving | the delayed request's hash equals day D's; day D+1 hashed twice gives the same value; D+1 differs from D | DR-02 |
+| DR-02, stale `expire(D)` after D+1 began | D+1's hash unchanged | DR-02 |
+| DR-02, `expire` of the current day; clock moved back across midnight; scheduled expiry | next stamp draws a new salt; the earlier day gets a fresh salt (the documented boundary); the salt is gone at the day's end without a click | DR-02 |
+| constraint probe, memory and file | the table in §3: multi-value `CHECK`s fail with `90098` after retirement, single comparisons, `LENGTH`, FKs and V1's shipped checks keep working; the revised V2 accepts a valid click and rejects an unknown class and a short hash after retirement | DR-04 |
 
 Not verified by me, left to the builder's tests: `@MockitoSpyBean` on a
 package-private `@Component` in a `RANDOM_PORT` context; MockMvc per-request
@@ -561,8 +644,9 @@ Test-first inside each commit; `scripts/gw check` green on every commit:
    `countByDayAndReferrer`, `LinkStats`, `StatsController`, `LinkStatsTest`,
    `StatsJourneyTest`, the granted `OpenApiDocumentTest` line, the
    regenerated `docs/api/openapi.json`.
-4. `test(02-analytics): slow, failing and concurrent stores on Tomcat`:
-   `ClickResilienceJourneyTest`.
+4. `test(02-analytics): slow, failing and concurrent stores on Tomcat, and
+   the schema after connection retirement`: `ClickResilienceJourneyTest`,
+   `ClickSchemaJourneyTest`.
 5. Traceability, coverage reports, `GAPS.md` (NFR-L3 row), proof captures
    (SPEC proof contract), the ERD.
 
@@ -576,7 +660,24 @@ click recording and per-link statistics) and the boundary (the one hook in
 - 2026-10-03 08:22Z — design packet `qitem-20261003082147-22c46f0c` claimed; SPEC `488788f` reviewed PASS (RQ-01 MEDIUM, capture labels), updated in passing at `7200107` (labels only).
 - 2026-10-03 08:29Z — territory request and w2 sequencing to the lead (`qitem-20261003082940-4da408ce`); decided 08:30Z: the one-line `OpenApiDocumentTest` grant, `slice.yaml` revision receipt 8; `02` designed before `03`.
 - 2026-10-03 08:33Z — design probe run (`design-probe/output.txt`, cases C0–C9, S1, S2).
-- 2026-10-03 — design written; ADR-0011 to ADR-0013 and the ADR-0004 amendment drafted; `docs/DESIGN.md`, `erd.mmd`, `container.mmd` and `click-sequence.mmd` updated. No question parked on `human@kernel`. Handed to `design_review`.
+- 2026-10-03 — design written; ADR-0011 to ADR-0013 and the ADR-0004 amendment drafted; `docs/DESIGN.md`, `erd.mmd`, `container.mmd` and `click-sequence.mmd` updated. No question parked on `human@kernel`. Handed to `design_review` at `71b2e10`.
+- 2026-10-03 09:01Z — design review **FAIL** on `71b2e10` (`docs/review/02-analytics/design-review.md`, evidence `38c1001`): DR-01, DR-02, DR-04 HIGH; DR-03 MEDIUM. Rework packet `qitem-20261003090152-625de326` claimed 09:11Z, after `03-operate`'s design handoff (the lead's suggested order).
+- 2026-10-03 09:13Z–09:15Z — DR-03 routed to the requirements agent (`qitem-20261003091357-40bfa3a7`) as a SPEC alignment; done at `173bd60` (rule 7, AC-22, A-18).
+- 2026-10-03 09:15Z–09:20Z — constraint probe (`constraint-output.txt`) and revision probe (`revision-output.txt`) run. The constraint probe ran twice: the second run separated V1's two checks and single comparisons from the failing multi-value forms. Design revised; ADR-0011 to ADR-0013 revised; `docs/DESIGN.md`, `erd.mmd`, `click-sequence.mmd` aligned. Handed back to `design_review`.
+
+## Review response
+
+Review `docs/review/02-analytics/design-review.md` on candidate `71b2e10`:
+FAIL on DR-01, DR-02 and DR-04 (HIGH), with DR-03 (MEDIUM). Every finding is
+answered below; none is disputed. The reviewer's reproductions were right on
+all three HIGHs.
+
+| Id | Severity | Response | Where | Evidence |
+|---|---|---|---|---|
+| DR-01 | HIGH | **Fixed.** `close()` drains for at most `DRAIN_DEADLINE` (5 s), then `shutdownNow()`: the write in flight is interrupted (it completes or reports `write failed`), and every still-queued `ClickWrite` reports one `click lost` with reason `shutdown deadline` and its own request id. Shutdown is bounded whatever the store does, and every click is written or reported exactly once. 5 s fits `03-operate`'s budget (10 s phase + drain + pool close < 20 s stop grace). A unit test with a blocking store proves the bound and the accounting | §1, §5, §6, §7.1, §7.3, §11; ADR-0011 | revision probe DR-01 (5 006 ms with the reviewer's six 2-s writes; 504 ms with a 500 ms deadline) |
+| DR-02 | HIGH | **Fixed** by removing the case. `DailySalt.stamp(address)` reads the clock, picks or rotates the day's salt and copies the key in one locked step, and the recorder takes the click's instant from it. No request can carry an older day into the lock after a newer day rotated the salt, so day D+1's key is never replaced. `expire(day)` acts only on its own day, so a stale callback is a no-op. The remaining boundary is a clock that itself moves back across midnight, which draws a fresh salt for the earlier day; it is written down. Rule 4's same-day stability holds, and no old salt is retained | §1, §4, §6, §7.1, §7.2, §11; ADR-0012 | revision probe DR-02 (the reviewer's interleaving: same-day hashes equal; stale expiry no-op) |
+| DR-03 | MEDIUM | **Fixed in the SPEC**, as the reviewer allowed: rule 7 at `173bd60` keeps `HEAD` and `OPTIONS` at the framework defaults, A-18 records it, and AC-22 checks both and that `totalClicks` is unchanged. The design states the contract (§2.1) and adds AC-22 to `StatsJourneyTest` | §2.1, §7.1, §8 | SPEC `173bd60` |
+| DR-04 | HIGH | **Fixed.** The closed set of user-agent classes is a four-row `user_agent_class` table referenced by a foreign key; the hash length stays a `LENGTH` check. Both keep accepting valid rows and rejecting invalid ones after the pooled connection that ran the DDL is retired, on memory and file databases. Only multi-value `CHECK`s (`IN`, `OR` of equalities) are affected on H2 2.4.240; V1's shipped checks were tested alone and keep working, so `01-create-redirect` is not affected. `ClickSchemaJourneyTest` retires the pool in the suite and records all four classes | §3, §6, §7.1, §7.2, §11; ADR-0013; `docs/DESIGN.md` §4 | constraint probe (memory and file, eight forms) |
 
 ## Self-check
 
@@ -585,18 +686,19 @@ what was executed is the probe in §12 and the jar and source reads named.
 
 | # | Item | Result | Where |
 |---|---|---|---|
-| 1 | Every AC reachable, component named | ✔ 21 ACs and 9 rules, each with its class and method | §8 |
+| 1 | Every AC reachable, component named | ✔ 22 ACs and 9 rules, each with its class and method | §8 |
 | 2 | Every error AC an explicit problem detail | ✔ `404` (two producers), `405`; inherited shape (no `detail`, request-id `instance`), so AC-13's "no code in the body" holds without new code | §2 |
-| 3 | Migration has a written rollback | ✔ `DROP TABLE click;`, scope stated | §3 |
-| 4 | Log/audit events PII-free | ✔ one new event (`click lost`) with class name and request id only; no event on success; no audit by rule 8; exception messages never logged | §5 |
-| 5 | Threat model covers every new entry point | ✔ three redirect headers and the peer address, forwarding headers, the stats path, the table, the salt in memory; 16 rows | §6 |
-| 6 | Test strategy maps each AC to a suite and names the mechanisms | ✔ three journey classes, four unit classes; settle, polling for rule 6, clock instants, remote addresses, spy reset, concurrency, contexts | §7 |
+| 3 | Migration has a written rollback | ✔ `DROP TABLE click; DROP TABLE user_agent_class;`, order and scope stated; the constraints verified after connection retirement | §3 |
+| 4 | Log/audit events PII-free | ✔ one new event (`click lost`) with request id, reason and exception class only; no event on success; no audit by rule 8; exception messages never logged | §5 |
+| 5 | Threat model covers every new entry point | ✔ three redirect headers and the peer address, forwarding headers, the stats path, the table, the salt in memory, shutdown, pooled connections; 19 rows | §6 |
+| 6 | Test strategy maps each AC to a suite and names the mechanisms | ✔ four journey classes, four unit classes; settle, polling for rule 6, clock instants, remote addresses, spy reset, concurrency, contexts, connection retirement, bounded close, the midnight interleaving | §7 |
 | 7 | No structure beyond the SPEC | ✔ no summary table, no `@Async`, no scheduler framework, no new dependency or property, no service class; every "no" in §11 | §1, §11 |
 | 8 | Territory respected | ✔ every path in `slice.yaml`; the `web/` test line by the lead's grant; `link/` limited to the hook | §9 |
 | 9 | ADRs for cross-cutting choices before dependent code | ✔ three new ADRs (handoff and overload; hash and salt; storage and aggregation) and the ADR-0004 amendment, indexed in `docs/DESIGN.md` §7 | §10 |
 | 10 | Requirements review carry-overs | ✔ all nine rules designed; overload (§1, §5, ADR-0011); five-second visibility with its own test (AC-1 polls); salt disposal (`expire` at day end, **[probe S2]**); correlated private async logs (§5, AC-19); RQ-01 is the SPEC's (done at `7200107`); A-9 and CR-01 stay lead backlog; NFR-L3's number stays a release measurement or a `GAPS.md` row | §1, §5, §7, §12 |
 | 11 | W1-02 weighed and decided | ✔ one real-server class, folded into the spy context, with the request-recycling check | §7.1 |
-| 12 | Coherence with `03-operate` | ✔ `getRemoteAddr()` so a trusted-proxy rewrite flows through; a `429` is never a click; `03` rebases onto `02` for the document and the test line; ADR numbers from 0014 left to `03` | §1, §2.2, §9, §10 |
+| 12 | Coherence with `03-operate` | ✔ `getRemoteAddr()` so a trusted-proxy rewrite flows through; a `429` is never a click; `03` rebases onto `02` for the document and the test line; ADR numbers from 0014 left to `03`; the 5 s drain fits `03`'s 20 s stop grace | §1, §2.2, §9, §10 |
+| 13 | Design review answered | ✔ DR-01 to DR-04 each fixed (DR-03 in the SPEC at `173bd60`), with location and probe evidence; no settled check reopened | *Review response* |
 
 ### plan-review (three lenses, applied by hand on the finished draft)
 

@@ -27,8 +27,12 @@ erDiagram
         timestamptz clicked_at "application Clock when the 302 was answered"
         date clicked_on "UTC day of clicked_at, computed in Java"
         varchar(2048) referrer "origin only, or NULL"
-        varchar(16) user_agent_class "browser | bot | other | unknown"
-        varchar(64) client_hash "HMAC-SHA256 under the day's salt, hex"
+        varchar(16) user_agent_class FK "user_agent_class.token"
+        varchar(64) client_hash "HMAC-SHA256 under the day's salt, hex; CHECK LENGTH = 64"
+    }
+    USER_AGENT_CLASS {
+        varchar(16) token PK "browser | bot | other | unknown (seeded by V2)"
     }
     LINK ||..o{ AUDIT_LOG : "audited by (entity_id = code, no FK)"
     LINK ||--o{ CLICK : "clicked (link_id, index with clicked_on)"
+    USER_AGENT_CLASS ||--o{ CLICK : "classifies (FK, not a multi-value CHECK: H2 2.4.240)"
