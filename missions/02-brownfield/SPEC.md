@@ -22,6 +22,13 @@ From `docs/REQUIREMENTS.md`: FR-13 … FR-15 (FR-13 applies to every slice throu
 
 Mission 02 = the brownfield enhancement slice (`01-audit-read`, moved in from mission 01 with its scaffold; impact analysis over the shipped `audit_log` table before design) + one bug-fix slice (a dogfood defect, seeded and disclosed if none surfaces) + the fault-injection drills. Slice plan-locks are delegated to the orchestration lead; the mission plan-lock and ship sign-off stay with the human.
 
+## Inputs (fast plan, D7)
+
+- Scope: **two slices + drills** — (1) `04-audit-read`, moved here from mission 01: an Operator reads the audit trail through a read-only, paginated, loopback-only-by-default endpoint over the *shipped* `audit_log` table (FR-17; the brownfield demonstration: `impact-analysis.md` per `docs/guidance/brownfield.md` §2 before design — impacted modules, endpoints, schema, data flows, blast radius, compatibility of existing links FR-13); (2) one bug-fix slice (FR-14) for a defect found by using the shipped service — the dogfood pass QA runs at mission-01 release prep is the source; if nothing real surfaces, a seeded defect is used and disclosed as seeded in `docs/scenarios/brownfield.md`; plus the test/documentation improvements of FR-15 inside whichever slice touches them. Custom alias and expiry (FR-11/FR-12) are **dropped** (D7). NFR-X2 (versioned migrations with rollback) applies to any schema change; NFR-P2 (click purge) lands here if mission 01 did not deliver it.
+- Shipped baseline: `main` after mission 01's wave 2 (`16c355f` create/redirect, `091ff46` analytics, `03-operate` once merged); read it, run it, then analyse.
+- Fault-injection drills (release agent, `docs/scenarios/drills.md`, each labelled as a drill): QA rejects a candidate → remediation loop; integrator `git revert` after a failed installed smoke; `rig seat stop` → `workflow route`; `workflow abort` + `resume`.
+- Gates: mission plan-lock and ship sign-off are the human's; slice plan-locks are delegated to the lead (D11). Guides: `brownfield.md`, `decomposition.md`, `orchestration.md` §4–§7, `release.md`.
+
 ## Slices
 
 [List notable slices and their state]
