@@ -1,0 +1,21 @@
+Starting a Gradle Daemon, 1 busy and 1 stopped Daemons could not be reused, use --status for details
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :jar UP-TO-DATE
+> Task :compileFunctionalTestJava UP-TO-DATE
+> Task :processFunctionalTestResources UP-TO-DATE
+> Task :functionalTestClasses UP-TO-DATE
+> Task :compileReviewRetention
+
+> Task :reviewRetention
+{"@timestamp":"2026-10-03T18:16:52.449520Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":81794,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:16:53.038001Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":81794,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:16:53.039098Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":81794,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:16:53.040846Z","log":{"level":"WARN","logger":"dev.urlshort.click.ClickPurge"},"process":{"pid":81794,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"click purge off","retentionDays":90,"ecs":{"version":"8.11"}}
+A8off purge-enabled=false: runs after readiness=[], purgeEnabled bound=false
+A8off suite clock at 2026-10-04T00:10:12.004Z for 11 s (two ticks' worth), no trigger: runs=[], day 2026-07-05 left=2 (with the purge enabled, A8b deleted it after 4.9 s)
+
+BUILD SUCCESSFUL in 19s
+7 actionable tasks: 2 executed, 5 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html

@@ -84,7 +84,7 @@ budget (SPEC rule 9). Nothing is reserved by the change: short codes are 8 chara
 | If this is wrong | Worst case | Detection |
 |---|---|---|
 | The loopback rule admits a remote client | link targets and request ids exposed to the network | AC-11 to AC-14; the security review; P4b, which shows the platform-default hole this design closes |
-| A future deployment re-enables forwarded headers (`SERVER_FORWARDHEADERSSTRATEGY=native`, or removes the pin) | the hole of P4b returns: an internal proxy forwards `X-Forwarded-For: 127.0.0.x` and is admitted | a functional test that the shipped file carries `none`, and a real-Tomcat test with `spring.main.cloud-platform=kubernetes` (design §7); ADR-0019 names the property as part of the loopback rule's boundary |
+| A future deployment re-enables forwarded headers (`SERVER_FORWARDHEADERSSTRATEGY=native`, or removes the pin) | after design review DR-01: the audit read **closes**, with every request `403`, because the controller admits only under an effective `NONE` strategy (P6). Before that fix, the hole of P4b returned | functional tests for both overrides and the shipped pin, and a real-Tomcat test with `spring.main.cloud-platform=kubernetes` (design §7) |
 | Paging repeats or skips committed rows | an Operator misses or double-counts a mutation | AC-6, AC-8, AC-20 (P3 by effect) |
 | A read writes something | the trail grows on reads, or a row changes | AC-10; `AuditTrail` holds only a `SELECT` |
 | A read leaks into logs | targets in the log stream | AC-15, AC-16; no new log event; the cursor and the content are never logged |

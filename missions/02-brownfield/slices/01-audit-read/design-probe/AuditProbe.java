@@ -34,6 +34,7 @@ import tools.jackson.databind.json.JsonMapper;
 
 import dev.urlshort.UrlshortApplication;
 import dev.urlshort.web.Problems;
+import org.springframework.boot.web.server.autoconfigure.ServerProperties;
 
 /**
  * Design probe for 01-audit-read (design.md section 12). The read endpoint is implemented here exactly
@@ -48,13 +49,16 @@ public class AuditProbe {
 	public static void main(String[] args) throws Exception {
 		p1Classification();
 		HttpClient client = HttpClient.newBuilder().followRedirects(HttpClient.Redirect.NEVER).build();
-		try (ConfigurableApplicationContext ctx = start("jdbc:h2:mem:probe-audit;MODE=PostgreSQL;DB_CLOSE_DELAY=-1")) {
+		// the shipped pin, as design.md section 1 adds it to application.properties
+		try (ConfigurableApplicationContext ctx = start("jdbc:h2:mem:probe-audit;MODE=PostgreSQL;DB_CLOSE_DELAY=-1",
+				"--server.forward-headers-strategy=none")) {
 			String base = "http://127.0.0.1:" + ctx.getEnvironment().getRequiredProperty("local.server.port");
 			p2Responses(client, base);
 			p3HeldWrite(client, base, ctx.getBean(DataSource.class));
 		}
 		p4ForwardHeaders(client);
 		p5PageCost();
+		p6StrategyAndAccept(client);
 		System.out.println("PROBE done");
 		System.exit(0);
 	}
@@ -157,6 +161,61 @@ public class AuditProbe {
 		}
 	}
 
+	// ------------------------------------------------------------------ P6: design review DR-01 and DR-02 controls
+
+	/**
+	 * DR-01: the read admits only while Boot's effective forwarded-header strategy is NONE, so neither
+	 * override (native, framework) nor an unset strategy on a detected platform can open it. DR-02: with no
+	 * produces condition, a strict Accept still meets the guard and the validation first.
+	 */
+	static void p6StrategyAndAccept(HttpClient client) throws Exception {
+		List<String[]> variants = List.of(new String[] { "none", "--server.forward-headers-strategy=none" },
+				// an operator override of the shipped pin leaves this value effective (a repeated command-line
+				// argument would be joined into a list, so the override is passed alone)
+				new String[] { "native (operator override)", "--server.forward-headers-strategy=native" },
+				new String[] { "framework (operator override)", "--server.forward-headers-strategy=framework" },
+				new String[] { "unset" }, new String[] { "unset + kubernetes", "--spring.main.cloud-platform=kubernetes" });
+		for (String[] variant : variants) {
+			String[] more = java.util.Arrays.copyOfRange(variant, 1, variant.length);
+			try (ConfigurableApplicationContext ctx = start("jdbc:h2:mem:probe-p6;MODE=PostgreSQL;DB_CLOSE_DELAY=-1", more)) {
+				String base = "http://127.0.0.1:" + ctx.getEnvironment().getRequiredProperty("local.server.port");
+				List<String> results = new ArrayList<>();
+				results.add("plain " + status(client, base + "/api/audit", null, null));
+				results.add("XFF 127.0.0.2 " + status(client, base + "/api/audit", "X-Forwarded-For", "127.0.0.2"));
+				results.add("Forwarded for=127.0.0.2 " + status(client, base + "/api/audit", "Forwarded", "for=127.0.0.2"));
+				results.add("XFF 192.0.2.10 " + status(client, base + "/api/audit", "X-Forwarded-For", "192.0.2.10"));
+				System.out.println("P6 strategy " + variant[0] + " (effective " + ctx.getBean(ServerProperties.class).getForwardHeadersStrategy()
+						+ "): " + String.join(", ", results));
+				if (variant[0].equals("none")) {
+					for (String accept : List.of("text/html", "application/problem+json", "*/*")) {
+						List<String> strict = new ArrayList<>();
+						strict.add("refused " + statusAccept(client, base + "/api/audit", accept, "X-Forwarded-For", "198.51.100.9"));
+						strict.add("limit=0 " + statusAccept(client, base + "/api/audit?limit=0", accept, null, null));
+						strict.add("valid " + statusAccept(client, base + "/api/audit", accept, null, null));
+						System.out.println("P6 Accept " + accept + ": " + String.join(", ", strict));
+					}
+				}
+			}
+		}
+	}
+
+	static String status(HttpClient client, String uri, @Nullable String header, @Nullable String value) throws Exception {
+		return statusAccept(client, uri, null, header, value);
+	}
+
+	static String statusAccept(HttpClient client, String uri, @Nullable String accept, @Nullable String header, @Nullable String value)
+			throws Exception {
+		HttpRequest.Builder request = HttpRequest.newBuilder(URI.create(uri));
+		if (accept != null) {
+			request.header("Accept", accept);
+		}
+		if (header != null) {
+			request.header(header, value);
+		}
+		HttpResponse<String> response = client.send(request.build(), HttpResponse.BodyHandlers.ofString());
+		return response.statusCode() + " " + response.headers().firstValue("Content-Type").orElse("-");
+	}
+
 	// ------------------------------------------------------------------ P5: page cost on a million rows
 
 	static void p5PageCost() throws Exception {
@@ -193,8 +252,8 @@ public class AuditProbe {
 	public static class ProbeConfig {
 
 		@Bean
-		public ProbeAuditController probeAuditController(JdbcClient jdbc, JsonMapper json) {
-			return new ProbeAuditController(jdbc, json);
+		public ProbeAuditController probeAuditController(JdbcClient jdbc, JsonMapper json, ServerProperties server) {
+			return new ProbeAuditController(jdbc, json, server);
 		}
 	}
 
@@ -203,17 +262,22 @@ public class AuditProbe {
 
 		final JdbcClient jdbc;
 		final JsonMapper json;
+		/** Design review DR-01: the peer address is the connection's only when nothing rewrites it. */
+		final boolean peerIsConnection;
 
-		ProbeAuditController(JdbcClient jdbc, JsonMapper json) {
+		ProbeAuditController(JdbcClient jdbc, JsonMapper json, ServerProperties server) {
 			this.jdbc = jdbc;
 			this.json = json;
+			this.peerIsConnection = server.getForwardHeadersStrategy() == ServerProperties.ForwardHeadersStrategy.NONE;
 		}
 
-		@GetMapping(path = "/api/audit", produces = "application/json")
-		public AuditPage page(@RequestParam(name = "limit", required = false) @Nullable String limit,
+		// design review DR-02: no produces condition, so nothing is decided before the guard; the 200 names
+		// application/json itself, so a client that accepts only something else gets 406 after validation
+		@GetMapping(path = "/api/audit")
+		public org.springframework.http.ResponseEntity<AuditPage> page(@RequestParam(name = "limit", required = false) @Nullable String limit,
 				@RequestParam(name = "cursor", required = false) @Nullable String cursor,
 				HttpServletRequest request) throws Exception {
-			if (!admitted(request)) {
+			if (!peerIsConnection || !admitted(request)) {
 				throw new ErrorResponseException(HttpStatus.FORBIDDEN);
 			}
 			int size = limit(limit);
@@ -227,10 +291,9 @@ public class AuditProbe {
 								rs.getString("action"), rs.getString("entity"), rs.getString("entity_id"), rs.getString("request_id"),
 								beforeState == null ? null : json.readTree(beforeState), json.readTree(rs.getString("after_state")));
 					}).list();
-			if (rows.size() <= size) {
-				return new AuditPage(rows, null);
-			}
-			return new AuditPage(rows.subList(0, size), b64(Long.toString(ids.get(size - 1))));
+			AuditPage page = rows.size() <= size ? new AuditPage(rows, null)
+					: new AuditPage(rows.subList(0, size), b64(Long.toString(ids.get(size - 1))));
+			return org.springframework.http.ResponseEntity.ok().contentType(org.springframework.http.MediaType.APPLICATION_JSON).body(page);
 		}
 
 		@GetMapping("/probe/peer")

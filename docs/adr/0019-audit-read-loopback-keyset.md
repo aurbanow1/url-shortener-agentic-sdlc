@@ -30,7 +30,9 @@ it is the table's only index.
   - Methods other than `GET`, `HEAD` and `OPTIONS` are refused by MVC with `405` before any handler
     runs, and carry no trail content.
   - A filter would repeat the path matching for one endpoint.
-- **The rule.** A request is admitted only when all three hold:
+- **The rule.** A request is admitted only when all four hold:
+  - Boot's effective forwarded-header strategy is `NONE`
+    (`ServerProperties.getForwardHeadersStrategy()`, read once in the controller's constructor);
   - it carries no `X-Forwarded-For` header;
   - it carries no `Forwarded` header;
   - `request.getRemoteAddr()` is non-empty and
@@ -58,6 +60,20 @@ it is the table's only index.
   - The pin also keeps `03-operate`'s rate-limit identity what ADR-0015 says: application code reads
     `X-Forwarded-For`. In the shipped deployments (jar, compose) no platform is detected, so their
     behaviour does not change.
+  - **Enforced, not just defaulted** (design review DR-01). The first rule above makes the endpoint
+    refuse every request unless the effective strategy is `NONE`. So an operator override
+    (`SERVER_FORWARDHEADERSSTRATEGY=native` or `framework`), or a removed pin on a detected
+    platform (`null`), closes the read; it does not open it.
+  - The reviewer's controls had admitted forged loopback headers under both overrides. Probe P6
+    measured `403` for plain and forged requests under `native`, `framework`, unset, and unset +
+    `kubernetes`, and plain-only admission under `none`.
+- **Content negotiation never precedes the rule** (design review DR-02).
+  - The mapping has no `produces` condition, which had answered `406` before the guard for a
+    strict `Accept`.
+  - The handler returns `ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON)`, so an
+    admitted, valid read is `200 application/json` whatever the `Accept`.
+  - Refusals and validation errors are problems whatever the `Accept` (P6). The endpoint answers
+    no `406`.
 - **Order and keyset.**
   - Rows are ordered newest first by `id`, the write sequence of SPEC rule 4.
   - A page is `SELECT … FROM audit_log WHERE id < :before ORDER BY id DESC FETCH FIRST :fetch ROWS
@@ -105,6 +121,8 @@ it is the table's only index.
 | A servlet filter or Tomcat's `RemoteAddrValve` for the check | a filter repeats the path matching; MockMvc never runs a valve, so AC-11 to AC-14 could not be proven in the suite |
 | Trusting the rate limiter's client identity | ADR-0015 believes `X-Forwarded-For` from a listed proxy, and rule 2 forbids forwarding headers from granting anything |
 | Leaving `server.forward-headers-strategy` unset | P4b: a detected cloud platform admits a forged loopback header |
+| The pin alone, with an override documented as voiding the rule (the first version) | design review DR-01: an override admitted forged loopback headers, and no decision allows a setting to open the endpoint |
+| `produces = APPLICATION_JSON_VALUE` on the mapping | design review DR-02: a strict `Accept` got `406` before the guard and the validation |
 | Offset paging (`page`, `size`) | shifts while rows are written: repeats and skips (SPEC A-3, AC-8) |
 | Ordering by `occurred_at` | the service clock can step (SPEC A-10) |
 | A descending index on `id` | the primary key already serves both directions (P5) |
@@ -112,14 +130,14 @@ it is the table's only index.
 
 ## Consequences
 
-- **The loopback rule depends on two things,** both stated in `docs/DESIGN.md` §3:
-  - the connection address being the client's;
-  - forwarded-header handling staying off.
-
-  An Operator who sets `server.forward-headers-strategy` (or `SERVER_FORWARDHEADERSSTRATEGY`)
-  to `native` or `framework` voids it. A local relay that adds no forwarding header looks like a
-  local Operator (SPEC rule 2, review RQ-04). The deployment must not relay `/api/audit`, or the
-  relay must add a forwarding header, which then refuses.
+- **The loopback rule depends on the connection address being the client's.** The service
+  enforces the part it can see: forwarded-header handling must be off, or the read closes.
+  - Setting `server.forward-headers-strategy` (or `SERVER_FORWARDHEADERSSTRATEGY`) to `native`
+    or `framework` turns the audit read off: every request is `403`. It does not open it.
+  - What the service cannot see stays the documented boundary (`docs/DESIGN.md` §3; SPEC rule 2,
+    review RQ-04): a local relay that adds no forwarding header looks like a local Operator. The
+    deployment must not relay `/api/audit`, or the relay must add a forwarding header, which then
+    refuses.
 - **Later slices that rewrite the client address must keep the headers.** Wave-review finding
   W2D-03 (A-9) and mission 03's `01-analytics-v2` (its A-7) may add a request wrapper in
   `RateLimitFilter` that overrides `getRemoteAddr()` behind a listed proxy (ADR-0015's sketch).
@@ -127,9 +145,14 @@ it is the table's only index.
   `Forwarded` visible: their presence refuses the request here before the address is read. A
   wrapper that removes or hides them must also leave this check on the raw connection address.
   That slice's design states which.
-- **Tests.** A real-Tomcat journey with `spring.main.cloud-platform=kubernetes` proves the pin by
-  effect: without it the forged request is admitted (P4b). A test also reads the shipped file for
-  `none`.
+- **Tests.**
+  - MockMvc contexts with `server.forward-headers-strategy=native` and `=framework` prove that
+    the overrides close the read (P6).
+  - A real-Tomcat journey with `spring.main.cloud-platform=kubernetes` and the shipped pin proves
+    plain admission and forged refusal (P4b).
+  - A test reads the shipped file for `none`.
+  - A unit test builds the controller under each strategy.
+  - Strict-`Accept` journeys cover DR-02.
 - **Page cost.** `limit + 1` index reads, at most 101 rows. No count and no filter.
 - **Write sequence is not commit order.** Two creates in flight can commit in the opposite order
   to their `id`s (`docs/review/01-audit-read/proof/commit-order.txt`). The read states this and
@@ -137,4 +160,4 @@ it is the table's only index.
 - **Moving to PostgreSQL:** `FETCH FIRST :n ROWS ONLY` with a parameter and a backward
   primary-key scan are both supported. The identity column is portable.
 - Verified before implementation: `missions/02-brownfield/slices/01-audit-read/design-probe/output.txt`
-  (P1 to P5).
+  (P1 to P6).
