@@ -123,3 +123,72 @@ single granted line inside the `functionalTest` block.
 - `scripts/gw check` ran after the last edit, then again with `--rerun-tasks` on
   the committed candidate. No edit between the last check and this handoff.
   Worktree clean at `3886a04`.
+
+## QA
+
+QA Agent (Codex), 2026-10-02/03 UTC. Candidate
+`3886a04a4afac6117038b2884cf72749f57d28aa`, verified before execution and after
+shutdown; no checkout change or product edit. Verdict **NOT-CLEAR**: fresh
+gate green, independent live AC-7 literal address-absence check fails.
+
+Ran `scripts/gw --log missions/00-hello/slices/01-ping/proof/qa-check.txt --offline -p .worktrees/01-ping check --rerun-tasks`
+from main to use the operator's updated log wrapper. All 13 tasks executed,
+exit 0. JUnit XML: 6 unit plus 9 functional tests, zero failures/errors/skips.
+Read all three CSVs: unit 15/15 lines, functional 13/15, merged 15/15; no
+branches exist. HTML/XML/CSV reports and summary are under
+`docs/qa/coverage/01-ping/`; traceability and gaps are updated.
+
+Started the candidate with
+`scripts/gw --log missions/00-hello/slices/01-ping/proof/qa-bootrun.txt --offline -p .worktrees/01-ping bootRun --args='--server.address=127.0.0.1 --server.port=18081 --spring.datasource.url=jdbc:h2:mem:qa-ping'`.
+The bind confines the app to localhost; the database override isolates QA
+state; shipped ECS logging and problem-details configuration are unchanged.
+Initial sandboxed curl calls could not connect; the same `scripts/http`
+commands succeeded with approved execution outside the sandbox.
+
+Independent observations:
+
+- AC-1/2/3: `proof/qa-ping-first.txt` is 200 application/json with exactly
+  status=ok and a Z-terminated current instant; id
+  `010b88fa-3871-48b6-a14e-5d7792d659c7` has the required shape. The first
+  and second response times lie within `qa-http-start.txt` and
+  `qa-http-end.txt` (lower bound truncated to seconds). Approval latency
+  widened that interval; this makes no latency claim.
+- AC-4: `proof/qa-ping-second.txt` is the consecutive GET, with distinct id
+  `0ff0c2bd-3b07-45d6-8a00-9bf83a96c545`.
+- AC-5: `proof/qa-ping-post.txt` is 405 application/problem+json, body status
+  405, title and instance, no stack trace or exception class, id present.
+- AC-6: every GET's matching line parses as one JSON object with the same
+  requestId as its response. `proof/qa-ping-log-line.json` is the first
+  GET's unedited event; `proof/qa-bootrun.txt` contains every event.
+- AC-7: the User-Agent canary is absent from the complete log, but the
+  literal loopback address occurs in `process.thread.name`. This is server
+  bind metadata: verified with installed Tomcat bytecode, captured in
+  `proof/qa-tomcat-bind-name.txt`. It is not evidence of client-derived
+  address logging, yet the literal locked assertion and proof item 7 are
+  not met. See `docs/qa/01-ping/findings.md` QA-01; no waiver applied.
+- AC-8: `proof/qa-ping-canaries.txt` supplies a distinctive inbound id and
+  user agent; the returned id differs and neither canary appears in logs.
+
+No audit row is applicable: ping has no persistence. Validation, duplicates,
+expiry and rate limits are outside this slice. HEAD/OPTIONS, unknown paths,
+Accept negotiation, load, packaged jar/image and persistence were not tested.
+The app (PID 40179) was stopped with SIGTERM and logged graceful shutdown
+complete. The resulting bootRun status 143 is the intentional stop, separate
+from the green check result.
+
+## Self-check
+
+QA pre-handoff check:
+
+- Exercised all eight ACs through live HTTP and inspected the actual bodies,
+  headers and matching log events, including the sole specified error case
+  (POST), privacy canary and spoofed id. Recorded the failing assertion
+  rather than substituting its passing MockMvc result.
+- Read merged and per-suite CSV counts; every executed test and all AC/BR
+  mappings appear in TRACEABILITY; GAPS records the informational per-suite
+  shortfall and open AC-7 discrepancy.
+- Proof drop `proof/qa-evidence.md` uses NOT-CLEAR and names contract items
+  1–6. Item 7 is deliberately not attested as satisfied. No slice_accept
+  judgments or locked-document edits performed.
+- App stopped and graceful shutdown observed. Worktree remains clean at the
+  exact candidate. No product code, tests or build files edited.

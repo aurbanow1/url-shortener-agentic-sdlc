@@ -1,0 +1,15 @@
+test | dev.urlshort.UrlshortApplicationTests#mainBootsWithoutAWebServer() | PASS
+test | dev.urlshort.UrlshortApplicationTests#contextLoads() | PASS
+test | dev.urlshort.ping.PingControllerTest#answersOkWithTheCurrentUtcInstant() | PASS
+test | dev.urlshort.web.RequestIdFilterTest#ignoresInboundRequestIdAndIssuesADifferentIdPerRequest() | PASS
+test | dev.urlshort.web.RequestIdFilterTest#clearsMdcWhenTheChainThrows() | PASS
+test | dev.urlshort.web.RequestIdFilterTest#issuesOneIdOnHeaderAndMdcBeforeTheChainRunsAndClearsMdcAfter() | PASS
+functionalTest | dev.urlshort.HealthJourneyTest#healthEndpointReportsUp() | PASS
+functionalTest | dev.urlshort.ping.PingJourneyTest#AC5_wrongMethodIsProblemDetailWithRequestId() | PASS
+functionalTest | dev.urlshort.ping.PingJourneyTest#AC7_logEventCarriesNoClientAddressOrUserAgent(CapturedOutput) | PASS
+functionalTest | dev.urlshort.ping.PingJourneyTest#AC1_pingAnswersOkAsJson() | PASS
+functionalTest | dev.urlshort.ping.PingJourneyTest#AC2_timeIsCurrentUtcInstant() | PASS
+functionalTest | dev.urlshort.ping.PingJourneyTest#AC4_requestIdsAreUniquePerRequest() | PASS
+functionalTest | dev.urlshort.ping.PingJourneyTest#AC6_pingIsLoggedAsJsonWithRequestId(CapturedOutput) | PASS
+functionalTest | dev.urlshort.ping.PingJourneyTest#AC8_clientSuppliedRequestIdIsIgnored(CapturedOutput) | PASS
+functionalTest | dev.urlshort.ping.PingJourneyTest#AC3_everyResponseCarriesRequestId() | PASS

@@ -1,0 +1,81 @@
+Source: .gradle-home/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-core/11.0.24/172bb449cba1a8ffcffa249727907602a4cc899/tomcat-embed-core-11.0.24.jar
+Command: javap -classpath <source> -c -p org.apache.coyote.AbstractProtocol
+
+  private java.lang.String getNameInternal();
+    Code:
+       0: new           #217                // class java/lang/StringBuilder
+       3: dup
+       4: aload_0
+       5: invokevirtual #219                // Method getNamePrefix:()Ljava/lang/String;
+       8: invokespecial #222                // Method java/lang/StringBuilder."<init>":(Ljava/lang/String;)V
+      11: astore_1
+      12: aload_1
+      13: bipush        45
+      15: invokevirtual #225                // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+      18: pop
+      19: aload_0
+      20: invokevirtual #229                // Method getId:()Ljava/lang/String;
+      23: astore_2
+      24: aload_2
+      25: ifnull        37
+      28: aload_1
+      29: aload_2
+      30: invokevirtual #230                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      33: pop
+      34: goto          120
+      37: aload_0
+      38: invokevirtual #233                // Method getAddress:()Ljava/net/InetAddress;
+      41: ifnull        63
+      44: aload_1
+      45: aload_0
+      46: invokevirtual #233                // Method getAddress:()Ljava/net/InetAddress;
+      49: invokevirtual #234                // Method java/net/InetAddress.getHostAddress:()Ljava/lang/String;
+      52: invokevirtual #230                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      55: pop
+      56: aload_1
+      57: bipush        45
+      59: invokevirtual #225                // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+      62: pop
+      63: aload_0
+      64: invokevirtual #239                // Method getPortWithOffset:()I
+      67: istore_3
+      68: iload_3
+      69: ifne          114
+      72: aload_1
+      73: ldc           #240                // String auto-
+      75: invokevirtual #230                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      78: pop
+      79: aload_1
+      80: aload_0
+      81: invokevirtual #242                // Method getNameIndex:()I
+      84: invokevirtual #245                // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+      87: pop
+      88: aload_0
+      89: invokevirtual #248                // Method getLocalPort:()I
+      92: istore_3
+      93: iload_3
+      94: iconst_m1
+      95: if_icmpeq     120
+      98: aload_1
+      99: bipush        45
+     101: invokevirtual #225                // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+     104: pop
+     105: aload_1
+     106: iload_3
+     107: invokevirtual #245                // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+     110: pop
+     111: goto          120
+     114: aload_1
+     115: iload_3
+     116: invokevirtual #245                // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+     119: pop
+     120: aload_1
+     121: invokevirtual #249                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     124: areturn
+
+  public java.net.InetAddress getAddress();
+    Code:
+       0: aload_0
+       1: getfield      #41                 // Field endpoint:Lorg/apache/tomcat/util/net/AbstractEndpoint;
+       4: invokevirtual #158                // Method org/apache/tomcat/util/net/AbstractEndpoint.getAddress:()Ljava/net/InetAddress;
+       7: areturn
