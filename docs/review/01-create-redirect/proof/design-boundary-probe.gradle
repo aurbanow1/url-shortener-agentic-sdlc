@@ -1,0 +1,25 @@
+// Isolated review probe: candidate's advice/filter plus diagnostic endpoints, no src edits.
+gradle.projectsEvaluated {
+    def project = gradle.rootProject
+    def functional = project.sourceSets.functionalTest
+    def compiled = project.layout.buildDirectory.dir('review-design-boundary-classes')
+    def compile = project.tasks.register('compileDesignBoundaryProbe', JavaCompile) {
+        dependsOn project.tasks.named('functionalTestClasses')
+        source project.file('missions/01-greenfield-core/slices/01-create-redirect/design-probe/MechanismProbe.java')
+        source project.file('docs/review/01-create-redirect/proof/DesignBoundaryProbe.java')
+        classpath = functional.runtimeClasspath
+        destinationDirectory = compiled
+        javaCompiler.set(project.javaToolchains.compilerFor {
+            languageVersion = JavaLanguageVersion.of(21)
+        })
+    }
+    project.tasks.register('designBoundaryProbe', JavaExec) {
+        dependsOn compile
+        javaLauncher.set(project.javaToolchains.launcherFor {
+            languageVersion = JavaLanguageVersion.of(21)
+        })
+        classpath = functional.runtimeClasspath + project.files(compiled)
+        mainClass = 'DesignBoundaryProbe'
+        systemProperty 'spring.profiles.active', 'functional'
+    }
+}
