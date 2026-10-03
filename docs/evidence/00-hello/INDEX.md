@@ -131,11 +131,12 @@ Instances exported: 2; packets exported: 23.
   autonomy.
 - **Fallback and recovery packets.** `packets/qitem-recovery-a562baedab298be5.*`
   is the stuck-sweep finding on the design step (a seat at a permission
-  prompt), diagnosed by the lead; two later findings of the same class on the
-  release seat (`qitem-recovery-0771ba919d4f9545`, `qitem-recovery-1500f49a88f65f64`)
-  are not referenced by any trail and so are not exported here; the lead's
-  notes in `missions/00-hello/NOTES.md` §2 and the natural-failures table in
-  `docs/scenarios/drills.md` record them. Governance clause: fallback.
+  prompt), diagnosed by the lead. Two later findings of the same class landed
+  on the release seat: `qitem-recovery-1500f49a88f65f64` (parked on the
+  `evidence_export` packet) is exported here; `qitem-recovery-0771ba919d4f9545`
+  (on the closed `release_prep` packet) is not referenced by any trail and so
+  is not. The lead's notes in `missions/00-hello/NOTES.md` §2 record all
+  three. Governance clause: fallback.
 - **What this export cannot contain.** Its own step's closure
   (`evidence_export`) and `mission_close`, which happen after it. The lead may
   re-run `tools/evidence-export.sh 00-hello` at close; `compiled-graph.json`
