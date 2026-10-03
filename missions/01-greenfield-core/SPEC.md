@@ -40,7 +40,7 @@ Notes on the allocation:
 - **M3** (committed OpenAPI document): `01-create-redirect` owns the export mechanism and the first document (backlog W1-01); `02-analytics` and `04-audit-read` extend it, one per wave (shaping rule 5 below).
 - **`03-operate` has two kinds of ids.** It builds and proves in-suite: FR-10, R2 (at the limit, one over, spoofed `X-Forwarded-For`), R1 (readiness group includes the database), O3 (metric names and the rejection counter readable through the actuator). It owns the configuration, `Dockerfile`, `compose.yaml` and `scripts/smoke.sh` lines for R3, R4, S5, X1, L1 and L2, whose proofs are release-level per the proof column of `docs/REQUIREMENTS.md` (installed smoke, `docker inspect`, restart loop, bench). What the slice cannot prove in-suite it records in `docs/qa/GAPS.md`; it does not claim it.
 - **R5** (idempotency keys honoured for 24 h) sits with FR-9 in `01-create-redirect`.
-- Count: 11 FR ids and 20 NFR ids in scope (M1 and M2 counted once as cross-cutting), all allocated; no slice without ids.
+- Count: 11 FR ids (FR-1…FR-10, FR-17) and 24 NFR ids (L1–L3, R1–R6, S1, S3–S6, P1, O1–O3, A1–A2, M1–M3, X1) in scope, 35 in all; 22 NFR ids sit in a slice column and M1, M2 are cross-cutting on every slice; all allocated; no slice without ids.
 
 ## Inputs carried from 00-hello
 
@@ -147,7 +147,7 @@ Recorded 2026-10-03 before the handoff to `decomposition_review`.
 - Disjoint territories within a wave, shared-file grants explicit with reasons: yes; `w2` table above, grants in each `slice.yaml` with the reason and the reviewer's check.
 - Every `depends_on` edge names a crossing artefact, no edge inside a wave: yes; `02`, `03`, `04` → `01` with the artefact named; `w2` has no internal edge; `04`'s placement in `w3` is a `SOFT-AFTER` line in its `slice.yaml`, not a hard edge.
 - Tiers with reasons that hold against §4: yes; all four high, each reason quoting the §4 row it matches; none chosen to avoid a gate; the gate count is stated.
-- Every in-scope id allocated exactly once, cross-cutting noted, no orphan slice: yes; allocation table, 31 ids.
+- Every in-scope id allocated exactly once, cross-cutting noted, no orphan slice: yes; allocation table, 35 ids (11 FR, 24 NFR).
 - Compiled graph committed, `unknowns` empty: see `docs/evidence/01-greenfield-core/compiled-graph.json` and NOTES §1 for the compile and revise receipts.
 - Decision brief complete and honest about `assumed` rows and risks: yes; eight `assumed` rows by name, two secondary assumptions, three decisions with defaults and alternatives, nine risks with mitigations, the not-in-scope list, the gate count.
 - Brownfield impact analysis: not applicable; greenfield mission.

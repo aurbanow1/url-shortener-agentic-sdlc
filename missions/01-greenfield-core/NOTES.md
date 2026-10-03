@@ -17,8 +17,8 @@ Context and observations that help the mission but do not change its
 - Wave map row: `qitem-20261003040319-a45c400a` (tags `wave-map`, `format:wave-map-v1`, `mission:01-greenfield-core`), body in `docs/evidence/01-greenfield-core/wave-map.md`; closed `done` / `no-follow-on` as a composition record.
 - Compiled graph: `docs/evidence/01-greenfield-core/compiled-graph.json`, bound version `1-960eb9c69dfaa4ce` (digest `960eb9c6…c8c729e`), `unknowns` empty when compiled with the lifecycle operation key; the per-slice "No authored proof contract" readiness issue is the placeholder SPECs and is filled at each slice's `requirements` step.
 - Revision receipt: `rig workflow revise 01M3ZXEXAMS945ZS0QZ26KZK1V --apply` under `revision-b45cc7524d5587e0f212a2fb` at 04:03:49Z, instance version 1 → 2, previous digest `87f06000…` (empty composition) → `960eb9c6…`, source-only (executable steps and policy unchanged), frontier `qitem-20261003033825-0148d3da` preserved, no replay. Recorded so the compiled evidence and the running instance name the same version.
-- Next: `decomposition_review` by `review-agent@urlshort-factory` (not in `rig ps --nodes` at 04:05Z; the engine holds the packet until the seat is up), then the human `mission_plan_lock` with `SPEC.md` as evidence (three decisions: the eight `assumed` rows, the dependency-override placement, FR-17 in this mission).
-- Seat inventory at decompose: orchestration lead, design, development, QA up; requirements, review, release absent. Operator informed by `rig send`.
+- Next: `decomposition_review` by `review-agent@urlshort-factory` (up and idle at 04:10Z), then the human `mission_plan_lock` with `SPEC.md` as evidence (three decisions: the eight `assumed` rows, the dependency-override placement, FR-17 in this mission).
+- Seat inventory: at decompose claim (03:38Z) the orchestration lead, design, development and QA seats were up and the requirements, review and release seats absent (named as a runtime risk in the brief); by 04:10Z all seven seats were up and idle, so the handoff moves immediately.
 
 ## 2. Orchestration lead
 
