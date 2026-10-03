@@ -9,6 +9,19 @@
         },
         "type" : "object"
       },
+      "DayClicks" : {
+        "properties" : {
+          "clicks" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "date" : {
+            "format" : "date",
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
       "LinkResponse" : {
         "properties" : {
           "code" : {
@@ -26,6 +39,30 @@
           },
           "url" : {
             "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "LinkStats" : {
+        "properties" : {
+          "clicksPerDay" : {
+            "items" : {
+              "$ref" : "#/components/schemas/DayClicks"
+            },
+            "type" : "array"
+          },
+          "code" : {
+            "type" : "string"
+          },
+          "topReferrers" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ReferrerClicks"
+            },
+            "type" : "array"
+          },
+          "totalClicks" : {
+            "format" : "int64",
+            "type" : "integer"
           }
         },
         "type" : "object"
@@ -63,6 +100,18 @@
           },
           "type" : {
             "format" : "uri",
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "ReferrerClicks" : {
+        "properties" : {
+          "clicks" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "referrer" : {
             "type" : "string"
           }
         },
@@ -290,6 +339,66 @@
         },
         "summary" : "Read a link by its code",
         "tags" : [ "link-controller" ]
+      }
+    },
+    "/api/links/{code}/stats" : {
+      "get" : {
+        "operationId" : "stats",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "code",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "stats" : {
+                    "description" : "stats",
+                    "value" : {
+                      "clicksPerDay" : [ {
+                        "clicks" : 2,
+                        "date" : "2026-10-01"
+                      }, {
+                        "clicks" : 3,
+                        "date" : "2026-10-02"
+                      }, {
+                        "clicks" : 1,
+                        "date" : "2026-10-04"
+                      } ],
+                      "code" : "Ab3dE9fG",
+                      "topReferrers" : [ {
+                        "clicks" : 5,
+                        "referrer" : "https://a.example"
+                      } ],
+                      "totalClicks" : 6
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/LinkStats"
+                }
+              }
+            },
+            "description" : "Total clicks, clicks per UTC day and the top 10 referrer origins"
+          },
+          "404" : {
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description" : "No link has this code"
+          }
+        },
+        "summary" : "Read a link's click statistics",
+        "tags" : [ "stats-controller" ]
       }
     },
     "/api/ping" : {
