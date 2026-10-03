@@ -47,6 +47,15 @@ territory:
   # list, GET /api/audit marked loopback only. ORDERED, first holder; 02-click-retention's own README
   # line rebases onto this slice's merge.
   - README.md
+  # TEST-SIDE GRANT (lead, 2026-10-03T18:30Z, development-agent request qitem-20261003182833-40a842ff):
+  # two enumerating assertions only. "/api/audit" joins the exact path list in
+  # AC28_liveDocumentDescribesTheSlice, and the operation count becomes 7 ("..., statistics, audit") in
+  # AC20_everyOperationDocumentsTheTooManyRequestsProblem. No other assertion changes. AC-19 requires the
+  # document to gain the operation, so these two must change by construction (same pattern as
+  # 02-analytics' one-line grant on this file in mission 01). Plan-lock reading of AC-17: every
+  # behavioural test of the f6dd29e suite passes unchanged; these two document-enumeration assertions
+  # are the named, granted exception. 03-dogfood-fix (w2) touches this file later, after w1 merges.
+  - src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java
 execution:
   actor_role: requirements
   depends_on: []
