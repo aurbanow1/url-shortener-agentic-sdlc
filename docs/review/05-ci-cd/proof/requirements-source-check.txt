@@ -1,0 +1,23 @@
+candidate f27165b92399223715fc564d5ef0307859b09d06
+SPEC sha256 f6c186bcdb98b1cb01ad2ef33160645349c1640307a52bbf1c4b875d032e71e3
+working SPEC matches: False
+13 numbered ACs; all GIVEN/WHEN/THEN present
+6 ambiguity rows; each resolved assumed/decided; proof contract has 7 items
+RQ-01 evidence from exact candidate:
+62: the judge verifies against them. "The workflow files" means the three files
+63: under `.github/` on the candidate.
+102:   GIVEN each workflow file on the candidate
+104:   THEN it declares `permissions: contents: read` at the top level, and any job-level grant beyond that has a comment giving the reason.
+117:   GIVEN each workflow file on the candidate
+119:   THEN every job sets `timeout-minutes`, and every workflow sets a `concurrency` group keyed on the workflow and the ref with `cancel-in-progress: true`.
+124:   GIVEN `.github/dependabot.yml` on the candidate
+126:   THEN it is a version-2 configuration with one `github-actions` entry and one `gradle` entry, each on directory `/` with a weekly schedule.
+
+Local check is baseline only; no .github implementation exists yet.
+Check-time HEAD 9ac54aa50c0dc1746afa512eb35e88afe2f217f2
+src/ and build.gradle.kts match the requirements candidate.
+
+In-packet author correction: 9ac54aa50c0dc1746afa512eb35e88afe2f217f2
+Final SPEC byte-matches correction; sha256 ed36df501cbc763fb3e0632972a084da42da65425fd5a4a23292c23e2de4ec8b
+The original working-tree mismatch above is this authored correction, read and re-reviewed.
+Delta: workflow-files definition, status response, self-check wording only; one file.
