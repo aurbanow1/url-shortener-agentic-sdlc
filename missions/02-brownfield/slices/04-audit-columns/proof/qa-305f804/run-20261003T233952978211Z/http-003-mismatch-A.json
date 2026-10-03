@@ -1,0 +1,41 @@
+{
+  "sequence": 3,
+  "name": "mismatch-A",
+  "app": "controlled",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "POST",
+    "-H",
+    "Idempotency-Key: QA04-IDEMPOTENCY-CANARY",
+    "-H",
+    "Content-Type: application/json",
+    "--data",
+    "{\"url\": \"https://example.com/qa04-A-different\"}",
+    "http://localhost:18161/api/links"
+  ],
+  "status": 422,
+  "headers": {
+    "x-request-id": "cd8a6ab4-ea49-4b5e-89f4-32518828d504",
+    "content-type": "application/problem+json",
+    "transfer-encoding": "chunked",
+    "date": "Sat, 03 Oct 2026 23:39:55 GMT"
+  },
+  "body": "{\"instance\":\"urn:uuid:cd8a6ab4-ea49-4b5e-89f4-32518828d504\",\"status\":422,\"title\":\"Unprocessable Content\",\"errors\":[{\"field\":\"Idempotency-Key\",\"rule\":\"mismatch\",\"message\":\"Idempotency-Key was already used with a different url\"}]}",
+  "json": {
+    "instance": "urn:uuid:cd8a6ab4-ea49-4b5e-89f4-32518828d504",
+    "status": 422,
+    "title": "Unprocessable Content",
+    "errors": [
+      {
+        "field": "Idempotency-Key",
+        "rule": "mismatch",
+        "message": "Idempotency-Key was already used with a different url"
+      }
+    ]
+  }
+}

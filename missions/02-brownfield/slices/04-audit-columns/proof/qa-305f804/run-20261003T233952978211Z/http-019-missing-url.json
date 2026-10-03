@@ -1,0 +1,40 @@
+{
+  "sequence": 19,
+  "name": "missing-url",
+  "app": "controlled",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "POST",
+    "-H",
+    "Content-Type: application/json",
+    "--data",
+    "{}",
+    "http://localhost:18161/api/links"
+  ],
+  "status": 400,
+  "headers": {
+    "x-request-id": "eb91b4b8-70f2-46b8-ab47-47f3e2981abc",
+    "content-type": "application/problem+json",
+    "transfer-encoding": "chunked",
+    "date": "Sat, 03 Oct 2026 23:39:56 GMT",
+    "connection": "close"
+  },
+  "body": "{\"instance\":\"urn:uuid:eb91b4b8-70f2-46b8-ab47-47f3e2981abc\",\"status\":400,\"title\":\"Bad Request\",\"errors\":[{\"field\":\"url\",\"rule\":\"required\",\"message\":\"url is required\"}]}",
+  "json": {
+    "instance": "urn:uuid:eb91b4b8-70f2-46b8-ab47-47f3e2981abc",
+    "status": 400,
+    "title": "Bad Request",
+    "errors": [
+      {
+        "field": "url",
+        "rule": "required",
+        "message": "url is required"
+      }
+    ]
+  }
+}

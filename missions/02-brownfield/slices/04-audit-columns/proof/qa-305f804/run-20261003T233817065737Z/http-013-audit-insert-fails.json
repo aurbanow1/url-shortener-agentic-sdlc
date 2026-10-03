@@ -1,0 +1,29 @@
+{
+  "sequence": 13,
+  "name": "audit-insert-fails",
+  "app": "controlled",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "DELETE",
+    "http://localhost:18161/api/links/ufGg4gGW"
+  ],
+  "status": 500,
+  "headers": {
+    "x-request-id": "69148627-d55d-4e48-9ff9-22680598bd5c",
+    "content-type": "application/problem+json",
+    "transfer-encoding": "chunked",
+    "date": "Sat, 03 Oct 2026 23:38:20 GMT",
+    "connection": "close"
+  },
+  "body": "{\"instance\":\"urn:uuid:69148627-d55d-4e48-9ff9-22680598bd5c\",\"status\":500,\"title\":\"Internal Server Error\"}",
+  "json": {
+    "instance": "urn:uuid:69148627-d55d-4e48-9ff9-22680598bd5c",
+    "status": 500,
+    "title": "Internal Server Error"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "sequence": 20,
+  "name": "bad-key",
+  "app": "controlled",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "POST",
+    "-H",
+    "Idempotency-Key: bad key",
+    "-H",
+    "Content-Type: application/json",
+    "--data",
+    "{\"url\": \"https://example.com/bad-key\"}",
+    "http://localhost:18161/api/links"
+  ],
+  "status": 400,
+  "headers": {
+    "x-request-id": "6901787a-6188-4d7a-b5fd-d707e7e596ae",
+    "content-type": "application/problem+json",
+    "transfer-encoding": "chunked",
+    "date": "Sat, 03 Oct 2026 23:39:56 GMT",
+    "connection": "close"
+  },
+  "body": "{\"instance\":\"urn:uuid:6901787a-6188-4d7a-b5fd-d707e7e596ae\",\"status\":400,\"title\":\"Bad Request\",\"errors\":[{\"field\":\"Idempotency-Key\",\"rule\":\"format\",\"message\":\"Idempotency-Key must be 1 to 255 visible ASCII characters\"}]}",
+  "json": {
+    "instance": "urn:uuid:6901787a-6188-4d7a-b5fd-d707e7e596ae",
+    "status": 400,
+    "title": "Bad Request",
+    "errors": [
+      {
+        "field": "Idempotency-Key",
+        "rule": "format",
+        "message": "Idempotency-Key must be 1 to 255 visible ASCII characters"
+      }
+    ]
+  }
+}

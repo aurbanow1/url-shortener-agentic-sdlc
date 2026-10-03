@@ -1,0 +1,27 @@
+{
+  "candidate": "305f8045d45b19a9e3287d5fe3508af6e04db9a4",
+  "reportHashes": 366,
+  "effectAssertions": 787,
+  "httpRequests": 94,
+  "additionalChecks": [
+    "create-A shipped creation Location and JSON",
+    "replay-A shipped creation Location and JSON",
+    "redirect-A empty body",
+    "retire-A empty body",
+    "expired-key-create-B shipped creation Location and JSON",
+    "create-D shipped creation Location and JSON",
+    "D-still-redirects empty body",
+    "f6-create-release-A shipped creation Location and JSON",
+    "f6-create-retired shipped creation Location and JSON",
+    "f6-retire-R empty body",
+    "f6-create-release-B shipped creation Location and JSON",
+    "f6-create-active shipped creation Location and JSON",
+    "f6-redirect-active empty body",
+    "upgraded-new-create shipped creation Location and JSON",
+    "upgraded-new-retire empty body",
+    "94/94 requestId joins include actual response status in request-completed event",
+    "366/366 copied report hashes rechecked",
+    "only canonical test.exec and functionalTest.exec contributed to gate"
+  ],
+  "result": "PASS"
+}

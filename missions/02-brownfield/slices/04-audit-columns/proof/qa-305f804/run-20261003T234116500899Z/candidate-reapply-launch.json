@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "/opt/homebrew/opt/openjdk@21/bin/java",
+    "-jar",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/04-audit-columns/build/libs/urlshort.jar",
+    "--server.address=127.0.0.1",
+    "--server.port=18165",
+    "--spring.datasource.url=jdbc:h2:file:/private/tmp/urlshort-qa2-auditcols-uthyrm0v/run-20261003T234116500899Z/rollback-copy/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+    "--urlshort.public-base-url=http://localhost:18165",
+    "--urlshort.rate-limit.create-per-minute=10000",
+    "--urlshort.rate-limit.redirect-per-minute=10000"
+  ],
+  "pid": 63726,
+  "directory": "/private/tmp/urlshort-qa2-auditcols-uthyrm0v/run-20261003T234116500899Z/rollback-copy"
+}

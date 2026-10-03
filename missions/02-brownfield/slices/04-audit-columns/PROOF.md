@@ -4,23 +4,24 @@
 >
 > **HOW (the drop verb, not hand-placement):** put media files under `proof/`, then ATTACH them with `rig proof add OPR.99.0.3.4 --artifact-type qa --verdict PASS --candidate-sha <tip> --money-evidence "<one line>" --evidences "1" --media "screenshot-01.png"` — the drop writes the C1 header the Living Notes DELIVERED pairing joins on. Hand-placing files without a drop leaves the deliverable unpaired and `unverified`.
 
-Closed by: <seat>   Date: <date>   Verdict: <pass | pass-with-residue | ...>
+QA checked by: qa2-agent@urlshort-factory (Codex), 2026-10-03T23:47Z. Verdict: PASS on `305f8045d45b19a9e3287d5fe3508af6e04db9a4`. Integration/closure pending.
 
 ## What this proves
 
-<1-3 sentences: the claim the slice made, now demonstrated>
+Link and audit rows carry the added audit columns without changing public behavior. All three link writes maintain service-clock update stamps; no-op/refused/rolled-back operations stamp nothing. A real shipped directory upgrades without changing legacy values and the literal migration rollback restores its prior schema on a copy before V4 reapplies.
 
 ## Artifacts (media in proof/)
 
 Dropped via `rig proof add … --evidences … --media …` (one drop per verdict; media attached, never only hand-listed):
 
-- proof/screenshot-01.png — <what it shows>
-- proof/capture-behavior.gif — <what it shows>
-- proof/command-output.txt — <what it proves>
+- proof/qa-evidence-305f804.md — QA drop covering contract1–4 and6–9; item5 awaits its explicit merge-time gap closure.
+- docs/qa/coverage/04-audit-columns/SUMMARY.md — fresh gate, CSV percentages and evidence scope.
+- proof/qa-305f804/run-20261003T234116500899Z/ — independent HTTP, row, schema, rollback and log captures.
+- proof/qa-report-hashes.json and qa-junit/ —366 copied coverage hashes and both saved suites.
 
 ## Residue / caveats (if any)
 
-<documented residue: what's not covered + where it's tracked>
+See docs/qa/GAPS.md §04-audit-columns for complementary per-suite misses, authorized migration pins, external fixtures, parameterized XML attribution and the explicit PostgreSQL/Docker/large-directory timing limits. No merged coverage or acceptance failure.
 
 ## Builder
 
@@ -100,3 +101,50 @@ On a copy of that upgraded directory (`rollback-data`):
 - **Territory:** `link/` main and tests, and V4, plus the two granted `click/` test lines. `audit/`, the `Link` record, every response and `AuditLog` are unchanged, so AC-8 holds by construction, and its journey checks it.
 - **AC-9:** every shipped test passes. The only shipped tests changed are the two granted lines, and those change which migration they stop at, not what they assert.
 - **Gate** on the candidate `305f804`, after the last change.
+
+
+## QA
+
+QA2 `qa2-agent@urlshort-factory` (Codex), 2026-10-03T23:47Z, packet `qitem-20261003232046-aa44c49f`.
+**PASS** on exact `305f8045d45b19a9e3287d5fe3508af6e04db9a4`; fresh independent gate218 unit/233 functional, zero failures/errors/skips,
+merged557/557 lines200/200 branches. No product or test edit. Read SPEC, design, impact analysis,
+builder proof, prior independent design review and QA guide before judging effects.
+
+Own complete run: `missions/02-brownfield/slices/04-audit-columns/proof/qa-305f804/run-20261003T234116500899Z/summary.json` (94 curl requests,787 assertions). Every response ID joins
+its own JSON request-completed event/status; failed audit INSERT logs only exception class chain
+and code origin, sanitized500, no new audit row, whole link unchanged. The successful creates and
+retire each correlate to actual persisted audit rows. Full capture argv/headers/bodies/rows/logs are
+retained. By-effect evidence is independently produced; builder captures are not substituted.
+
+| ACs | Observed effect / primary evidence |
+|---|---|
+|1 | Fresh V1–V4 schema; seven new non-null columns/types; all legacy metadata and constraint semantics preserved (`fresh-schema.json`, `upgrade-before-f6.json`, `upgrade-after-candidate.json`) |
+|2–3 | Created and retired link/audit rows: exact frozen service instants, preserved creation, equal database row clocks and anonymous actors (`AC2-created-row.json`, `AC3-retired-row.json`) |
+|4 | Actual expired-key HTTP create releases A and stamps it at B's creation instant, preserving A's legacy data (`AC4-key-release.json`) |
+|5–6 | Replay201/mismatch422/read200/redirect302/repeat410 leave stamps/trail intact; actual JDBC audit failure500 rolls back every link field; audit rows stay append-only (`AC5-real-jdbc-rollback.json`, HTTP and SQL assertions) |
+|7 | Real f6 jar writes active/retired/released links; candidate starts on same directory; all old values unchanged, old stamps correctly backfilled, future-event cap observed (`upgrade-before-f6.json`, `upgrade-after-candidate.json`) |
+|8 | Exact five-field link/four-field stats/eight-field audit bodies; correct status/Location/media/empty redirects; no added field/header/log; named SELECT/OpenAPI unchanged (`qa-evidence-recheck.json`, HTTP captures) |
+|9 |59 baseline source/resource hashes:57 unchanged and2 authorized assertion-preserving V3 pins; all213/224 inherited invocations green;271 mapped methods (`qa-baseline-file-hashes.json`, `qa-junit-summary.json`) |
+|10 | UA/key/address/URL/request-ID canaries absent from audit columns; staticanonymous actor; no raw client values in logs (`AC10-audit-columns.json`, full JSON logs) |
+|11 | Exact literal header eight SQL statements; rollback only on stopped copy restores prior schema/constraints/all legacy data; real candidate reapply successful (`rollback-literal-header.json`, `rollback-after.json`, `rollback-reapplied.json`) |
+
+All captures in table except static/JUnit files are in the complete run directory. Prior32-control
+design review read and ran the exact same migration/header; candidate/design migration bytes equal,
+so contract8's recorded review exists before the downstream implementation review. Contract9's
+impact analysis precedes design; plan-lock recheck recorded in slice.yaml and exact candidate named
+SELECT/ancestry/nextV4 independently confirmed. Interim policy gap closes at merge, not at QA.
+
+## Self-check (QA)
+
+- Every AC exercised by effect; all failure cases including bad input, duplicates, expired key,
+  repeated retire, actual audit-store failure and default-budget429 checked.94 response/log joins.
+- CSVs independently read: per-suite87.97/97 and93.90/83; merged100/100.366 report hashes match.
+- All271 test methods map to an AC/BR, every AC has named evidence;41 class-only parameterized XML
+  attributions explicitly qualified. AC1/11 unit allowance and real functional rollback compensate
+  the absence of a JUnit functional rollback method as permitted by the locked SPEC/design.
+- GAPS entry written; no exclusion or threshold reduction. Original437 invocations passed with
+  only the granted2 migration pins; no assertion change. Original code/docs remain read-only.
+- Proof drop covers1–4 and6–9 with candidate judgments before handoff; item5 requires the future merge-time interim-gap closure and is routed durably to the lead.
+- All7 app processes stopped; candidate remains clean at exact SHA; rollback only on copied database.
+- Not checked: PostgreSQL, Docker, large-directory migration timing; normal shutdown is the only
+  shutdown claim. Interrupted QA instrument runs preserved; only the complete final run is claimed.

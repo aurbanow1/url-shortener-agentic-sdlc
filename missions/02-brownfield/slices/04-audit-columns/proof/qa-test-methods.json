@@ -1,0 +1,3172 @@
+[
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.UrlshortApplicationTests",
+    "method": "contextLoads",
+    "source": "src/test/java/dev/urlshort/UrlshortApplicationTests.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.UrlshortApplicationTests.xml",
+    "matchingInvocations": [
+      "contextLoads()"
+    ],
+    "classInvocations": 2,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.UrlshortApplicationTests",
+    "method": "mainBootsWithoutAWebServer",
+    "source": "src/test/java/dev/urlshort/UrlshortApplicationTests.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.UrlshortApplicationTests.xml",
+    "matchingInvocations": [
+      "mainBootsWithoutAWebServer()"
+    ],
+    "classInvocations": 2,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "loopbackPeersAreAdmitted",
+    "source": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.audit.AuditControllerTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 38,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "otherPeersAreRefused",
+    "source": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.audit.AuditControllerTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 38,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "aMissingPeerIsRefused",
+    "source": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.audit.AuditControllerTest.xml",
+    "matchingInvocations": [
+      "aMissingPeerIsRefused()"
+    ],
+    "classInvocations": 38,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "aForwardingHeaderRefusesEvenFromLoopback",
+    "source": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.audit.AuditControllerTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 38,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "theShippedStrategyAdmitsALoopbackRequest",
+    "source": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.audit.AuditControllerTest.xml",
+    "matchingInvocations": [
+      "theShippedStrategyAdmitsALoopbackRequest()"
+    ],
+    "classInvocations": 38,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "anyOtherStrategyClosesTheEndpoint",
+    "source": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.audit.AuditControllerTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 38,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "anUnsetStrategyClosesTheEndpoint",
+    "source": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.audit.AuditControllerTest.xml",
+    "matchingInvocations": [
+      "anUnsetStrategyClosesTheEndpoint()"
+    ],
+    "classInvocations": 38,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "aRemoteIpHeaderSettingClosesTheEndpoint",
+    "source": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.audit.AuditControllerTest.xml",
+    "matchingInvocations": [
+      "aRemoteIpHeaderSettingClosesTheEndpoint()"
+    ],
+    "classInvocations": 38,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "aProtocolHeaderSettingClosesTheEndpoint",
+    "source": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.audit.AuditControllerTest.xml",
+    "matchingInvocations": [
+      "aProtocolHeaderSettingClosesTheEndpoint()"
+    ],
+    "classInvocations": 38,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "emptyRemoteIpSettingsKeepTheEndpointOpen",
+    "source": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.audit.AuditControllerTest.xml",
+    "matchingInvocations": [
+      "emptyRemoteIpSettingsKeepTheEndpointOpen()"
+    ],
+    "classInvocations": 38,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "limitDefaultsTo50AndAcceptsItsBounds",
+    "source": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.audit.AuditControllerTest.xml",
+    "matchingInvocations": [
+      "limitDefaultsTo50AndAcceptsItsBounds()"
+    ],
+    "classInvocations": 38,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "limitOutsideItsRangeIsARangeProblem",
+    "source": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.audit.AuditControllerTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 38,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "aLimitThatIsNotAWholeNumberIsAFormatProblem",
+    "source": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.audit.AuditControllerTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 38,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "aCursorIsTheBase64urlOfAPositiveId",
+    "source": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.audit.AuditControllerTest.xml",
+    "matchingInvocations": [
+      "aCursorIsTheBase64urlOfAPositiveId()"
+    ],
+    "classInvocations": 38,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "aMalformedCursorIsAFormatProblem",
+    "source": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.audit.AuditControllerTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 38,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.audit.AuditLogTest",
+    "method": "theWriterOffersOnlyAppendAndItsOnlyStatementIsAnInsert",
+    "source": "src/test/java/dev/urlshort/audit/AuditLogTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.audit.AuditLogTest.xml",
+    "matchingInvocations": [
+      "theWriterOffersOnlyAppendAndItsOnlyStatementIsAnInsert()"
+    ],
+    "classInvocations": 2,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.audit.AuditLogTest",
+    "method": "appendWritesOneRowWithServerOwnedValues",
+    "source": "src/test/java/dev/urlshort/audit/AuditLogTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.audit.AuditLogTest.xml",
+    "matchingInvocations": [
+      "appendWritesOneRowWithServerOwnedValues()"
+    ],
+    "classInvocations": 2,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickAuditColumnsTest",
+    "method": "theClickTablesGainFilledAuditColumnsAndKeepEveryV1ColumnAndConstraint",
+    "source": "src/test/java/dev/urlshort/click/ClickAuditColumnsTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickAuditColumnsTest.xml",
+    "matchingInvocations": [
+      "theClickTablesGainFilledAuditColumnsAndKeepEveryV1ColumnAndConstraint()"
+    ],
+    "classInvocations": 1,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "aRunDeletesBeforeTheEarliestKeptDayAndLogsOneInfo",
+    "source": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickPurgeTest.xml",
+    "matchingInvocations": [
+      "aRunDeletesBeforeTheEarliestKeptDayAndLogsOneInfo()"
+    ],
+    "classInvocations": 8,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "theCutoffFollowsThePeriod",
+    "source": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickPurgeTest.xml",
+    "matchingInvocations": [
+      "theCutoffFollowsThePeriod()"
+    ],
+    "classInvocations": 8,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "theTickRunsOnceADayFromTenPastMidnight",
+    "source": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickPurgeTest.xml",
+    "matchingInvocations": [
+      "theTickRunsOnceADayFromTenPastMidnight()"
+    ],
+    "classInvocations": 8,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "aClockThatStepsBackRunsNothing",
+    "source": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickPurgeTest.xml",
+    "matchingInvocations": [
+      "aClockThatStepsBackRunsNothing()"
+    ],
+    "classInvocations": 8,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "aFailedRunIsOneWarnWithTheClassOnlyAndIsNotRetriedBeforeTheNextDay",
+    "source": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickPurgeTest.xml",
+    "matchingInvocations": [
+      "aFailedRunIsOneWarnWithTheClassOnlyAndIsNotRetriedBeforeTheNextDay()"
+    ],
+    "classInvocations": 8,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "startRunsOnThePurgeThreadAndReturnsAfterTheRun",
+    "source": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickPurgeTest.xml",
+    "matchingInvocations": [
+      "startRunsOnThePurgeThreadAndReturnsAfterTheRun()"
+    ],
+    "classInvocations": 8,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "runNowRunsOnThePurgeThread",
+    "source": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickPurgeTest.xml",
+    "matchingInvocations": [
+      "runNowRunsOnThePurgeThread()"
+    ],
+    "classInvocations": 8,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "onHoldStartDeletesNothingAndSaysSoOnce",
+    "source": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickPurgeTest.xml",
+    "matchingInvocations": [
+      "onHoldStartDeletesNothingAndSaysSoOnce()"
+    ],
+    "classInvocations": 8,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aHeadRequestIsNotAClick",
+    "source": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickRecorderTest.xml",
+    "matchingInvocations": [
+      "aHeadRequestIsNotAClick()"
+    ],
+    "classInvocations": 10,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aRedirectIsStoredAsItsReducedFactsOnly",
+    "source": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickRecorderTest.xml",
+    "matchingInvocations": [
+      "aRedirectIsStoredAsItsReducedFactsOnly()"
+    ],
+    "classInvocations": 10,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aFailedWriteIsOneWarnWithTheRequestIdAndNoClickValue",
+    "source": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickRecorderTest.xml",
+    "matchingInvocations": [
+      "aFailedWriteIsOneWarnWithTheRequestIdAndNoClickValue()"
+    ],
+    "classInvocations": 10,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aClickThatCannotBeQueuedIsOneWarnAndTheRedirectGoesOn",
+    "source": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickRecorderTest.xml",
+    "matchingInvocations": [
+      "aClickThatCannotBeQueuedIsOneWarnAndTheRedirectGoesOn()"
+    ],
+    "classInvocations": 10,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aClickThatCannotBeReducedIsOneWarn",
+    "source": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickRecorderTest.xml",
+    "matchingInvocations": [
+      "aClickThatCannotBeReducedIsOneWarn()"
+    ],
+    "classInvocations": 10,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aFastStoreIsDrainedOnCloseAndNothingIsReported",
+    "source": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickRecorderTest.xml",
+    "matchingInvocations": [
+      "aFastStoreIsDrainedOnCloseAndNothingIsReported()"
+    ],
+    "classInvocations": 10,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aStuckWriteIsBoundedAndEveryUnwrittenClickIsReportedOnceBeforeCloseReturns",
+    "source": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickRecorderTest.xml",
+    "matchingInvocations": [
+      "aStuckWriteIsBoundedAndEveryUnwrittenClickIsReportedOnceBeforeCloseReturns()"
+    ],
+    "classInvocations": 10,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aClaimedClickIsNeverWrittenWhenTheWriterReachesItLater",
+    "source": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickRecorderTest.xml",
+    "matchingInvocations": [
+      "aClaimedClickIsNeverWrittenWhenTheWriterReachesItLater()"
+    ],
+    "classInvocations": 10,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aWriteThatFailsAfterShutdownClaimedItIsNotReportedAgain",
+    "source": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickRecorderTest.xml",
+    "matchingInvocations": [
+      "aWriteThatFailsAfterShutdownClaimedItIsNotReportedAgain()"
+    ],
+    "classInvocations": 10,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aWriteThatCompletesAfterShutdownClaimedItIsNotReportedAgain",
+    "source": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickRecorderTest.xml",
+    "matchingInvocations": [
+      "aWriteThatCompletesAfterShutdownClaimedItIsNotReportedAgain()"
+    ],
+    "classInvocations": 10,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickSchemaTest",
+    "method": "theClickConstraintsStillWorkAfterTheDdlConnectionIsRetired",
+    "source": "src/test/java/dev/urlshort/click/ClickSchemaTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickSchemaTest.xml",
+    "matchingInvocations": [
+      "theClickConstraintsStillWorkAfterTheDdlConnectionIsRetired()"
+    ],
+    "classInvocations": 1,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickTest",
+    "method": "theReferrerIsReducedToItsOrigin",
+    "source": "src/test/java/dev/urlshort/click/ClickTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 28,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickTest",
+    "method": "aReferrerThatIsNotAnHttpOriginIsNone",
+    "source": "src/test/java/dev/urlshort/click/ClickTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 28,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickTest",
+    "method": "theReferrerLengthCapIs2048",
+    "source": "src/test/java/dev/urlshort/click/ClickTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 28,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickTest",
+    "method": "theUserAgentIsReducedToAClass",
+    "source": "src/test/java/dev/urlshort/click/ClickTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 28,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickTest",
+    "method": "anAbsentOrEmptyUserAgentIsUnknown",
+    "source": "src/test/java/dev/urlshort/click/ClickTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 28,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.ClickTest",
+    "method": "rule2_aClickHoldsOnlyTheReducedFacts",
+    "source": "src/test/java/dev/urlshort/click/ClickTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.ClickTest.xml",
+    "matchingInvocations": [
+      "rule2_aClickHoldsOnlyTheReducedFacts()"
+    ],
+    "classInvocations": 28,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.DailySaltTest",
+    "method": "sameAddressAndDayHashEquallyAndTheStampCarriesTheClocksInstant",
+    "source": "src/test/java/dev/urlshort/click/DailySaltTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.DailySaltTest.xml",
+    "matchingInvocations": [
+      "sameAddressAndDayHashEquallyAndTheStampCarriesTheClocksInstant()"
+    ],
+    "classInvocations": 7,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.DailySaltTest",
+    "method": "anotherAddressOrAnotherDayHashesDifferently",
+    "source": "src/test/java/dev/urlshort/click/DailySaltTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.DailySaltTest.xml",
+    "matchingInvocations": [
+      "anotherAddressOrAnotherDayHashesDifferently()"
+    ],
+    "classInvocations": 7,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.DailySaltTest",
+    "method": "theHashIsNeverTheUnsaltedDigest",
+    "source": "src/test/java/dev/urlshort/click/DailySaltTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.DailySaltTest.xml",
+    "matchingInvocations": [
+      "theHashIsNeverTheUnsaltedDigest()"
+    ],
+    "classInvocations": 7,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.DailySaltTest",
+    "method": "aSelectionMadeBeforeMidnightKeepsItsDayAndNeverReplacesTheNextDaysSalt",
+    "source": "src/test/java/dev/urlshort/click/DailySaltTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.DailySaltTest.xml",
+    "matchingInvocations": [
+      "aSelectionMadeBeforeMidnightKeepsItsDayAndNeverReplacesTheNextDaysSalt()"
+    ],
+    "classInvocations": 7,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.DailySaltTest",
+    "method": "aStaleExpiryIsANoOpAndTheCurrentDaysExpiryDropsTheSalt",
+    "source": "src/test/java/dev/urlshort/click/DailySaltTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.DailySaltTest.xml",
+    "matchingInvocations": [
+      "aStaleExpiryIsANoOpAndTheCurrentDaysExpiryDropsTheSalt()"
+    ],
+    "classInvocations": 7,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.DailySaltTest",
+    "method": "closeDropsTheSalt",
+    "source": "src/test/java/dev/urlshort/click/DailySaltTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.DailySaltTest.xml",
+    "matchingInvocations": [
+      "closeDropsTheSalt()"
+    ],
+    "classInvocations": 7,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.DailySaltTest",
+    "method": "aSaltIsDroppedAtTheEndOfItsDayWithoutAnyFurtherClick",
+    "source": "src/test/java/dev/urlshort/click/DailySaltTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.DailySaltTest.xml",
+    "matchingInvocations": [
+      "aSaltIsDroppedAtTheEndOfItsDayWithoutAnyFurtherClick()"
+    ],
+    "classInvocations": 7,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.LinkStatsTest",
+    "method": "noRowsIsZeroAndTwoEmptyLists",
+    "source": "src/test/java/dev/urlshort/click/LinkStatsTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.LinkStatsTest.xml",
+    "matchingInvocations": [
+      "noRowsIsZeroAndTwoEmptyLists()"
+    ],
+    "classInvocations": 3,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.LinkStatsTest",
+    "method": "daysAreSummedAscendingAndClicksWithoutAReferrerCountOnlyInTheTotals",
+    "source": "src/test/java/dev/urlshort/click/LinkStatsTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.LinkStatsTest.xml",
+    "matchingInvocations": [
+      "daysAreSummedAscendingAndClicksWithoutAReferrerCountOnlyInTheTotals()"
+    ],
+    "classInvocations": 3,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.click.LinkStatsTest",
+    "method": "referrersAreRankedByClicksThenByCodePointAndCappedAtTen",
+    "source": "src/test/java/dev/urlshort/click/LinkStatsTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.click.LinkStatsTest.xml",
+    "matchingInvocations": [
+      "referrersAreRankedByClicksThenByCodePointAndCappedAtTen()"
+    ],
+    "classInvocations": 3,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkAuditColumnsTest",
+    "method": "AC1_bothTablesGainTheAuditColumnsAndNothingElseChanges",
+    "source": "src/test/java/dev/urlshort/link/LinkAuditColumnsTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.link.LinkAuditColumnsTest.xml",
+    "matchingInvocations": [
+      "AC1_bothTablesGainTheAuditColumnsAndNothingElseChanges()"
+    ],
+    "classInvocations": 2,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkAuditColumnsTest",
+    "method": "AC11_theWrittenRollbackRestoresTheEarlierSchemaAndV4AppliesAgain",
+    "source": "src/test/java/dev/urlshort/link/LinkAuditColumnsTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.link.LinkAuditColumnsTest.xml",
+    "matchingInvocations": [
+      "AC11_theWrittenRollbackRestoresTheEarlierSchemaAndV4AppliesAgain()"
+    ],
+    "classInvocations": 2,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkServiceStampTest",
+    "method": "aCreateStampsTheNewLinkWithItsCreationInstant",
+    "source": "src/test/java/dev/urlshort/link/LinkServiceStampTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.link.LinkServiceStampTest.xml",
+    "matchingInvocations": [
+      "aCreateStampsTheNewLinkWithItsCreationInstant()"
+    ],
+    "classInvocations": 3,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkServiceStampTest",
+    "method": "aKeyReleaseStampsTheReleasedLinkWithTheSameInstant",
+    "source": "src/test/java/dev/urlshort/link/LinkServiceStampTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.link.LinkServiceStampTest.xml",
+    "matchingInvocations": [
+      "aKeyReleaseStampsTheReleasedLinkWithTheSameInstant()"
+    ],
+    "classInvocations": 3,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkServiceStampTest",
+    "method": "aRetireStampsThroughItsConditionalUpdate",
+    "source": "src/test/java/dev/urlshort/link/LinkServiceStampTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.link.LinkServiceStampTest.xml",
+    "matchingInvocations": [
+      "aRetireStampsThroughItsConditionalUpdate()"
+    ],
+    "classInvocations": 3,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "createWithoutAKeyInsertsAndAuditsTheNewLink",
+    "source": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.link.LinkServiceTest.xml",
+    "matchingInvocations": [
+      "createWithoutAKeyInsertsAndAuditsTheNewLink()"
+    ],
+    "classInvocations": 9,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "createWithAnUnboundKeyBindsIt",
+    "source": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.link.LinkServiceTest.xml",
+    "matchingInvocations": [
+      "createWithAnUnboundKeyBindsIt()"
+    ],
+    "classInvocations": 9,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "replayWithinTheWindowReturnsTheBoundLinkAndWritesNothing",
+    "source": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.link.LinkServiceTest.xml",
+    "matchingInvocations": [
+      "replayWithinTheWindowReturnsTheBoundLinkAndWritesNothing()"
+    ],
+    "classInvocations": 9,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "mismatchWithinTheWindowIs422AndKeepsTheBinding",
+    "source": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.link.LinkServiceTest.xml",
+    "matchingInvocations": [
+      "mismatchWithinTheWindowIs422AndKeepsTheBinding()"
+    ],
+    "classInvocations": 9,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "anExpiredKeyIsReleasedAndBindsANewLink",
+    "source": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.link.LinkServiceTest.xml",
+    "matchingInvocations": [
+      "anExpiredKeyIsReleasedAndBindsANewLink()"
+    ],
+    "classInvocations": 9,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "readOfAnUnknownCodeIs404",
+    "source": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.link.LinkServiceTest.xml",
+    "matchingInvocations": [
+      "readOfAnUnknownCodeIs404()"
+    ],
+    "classInvocations": 9,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "resolveSendsVisitorsToActiveLinksOnly",
+    "source": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.link.LinkServiceTest.xml",
+    "matchingInvocations": [
+      "resolveSendsVisitorsToActiveLinksOnly()"
+    ],
+    "classInvocations": 9,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "retireUpdatesConditionallyAndAuditsBeforeAndAfter",
+    "source": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.link.LinkServiceTest.xml",
+    "matchingInvocations": [
+      "retireUpdatesConditionallyAndAuditsBeforeAndAfter()"
+    ],
+    "classInvocations": 9,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "retireThatChangesNoRowIs410AndWritesNoAuditRow",
+    "source": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.link.LinkServiceTest.xml",
+    "matchingInvocations": [
+      "retireThatChangesNoRowIs410AndWritesNoAuditRow()"
+    ],
+    "classInvocations": 9,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkTest",
+    "method": "stateIsActiveUntilRetiredAtIsSet",
+    "source": "src/test/java/dev/urlshort/link/LinkTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.link.LinkTest.xml",
+    "matchingInvocations": [
+      "stateIsActiveUntilRetiredAtIsSet()"
+    ],
+    "classInvocations": 1,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkValidationTest",
+    "method": "eachRejectedUrlFailsExactlyItsRule",
+    "source": "src/test/java/dev/urlshort/link/LinkValidationTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.link.LinkValidationTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 36,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkValidationTest",
+    "method": "validUrlsPass",
+    "source": "src/test/java/dev/urlshort/link/LinkValidationTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.link.LinkValidationTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 36,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkValidationTest",
+    "method": "exactly2048CharactersIsAccepted",
+    "source": "src/test/java/dev/urlshort/link/LinkValidationTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.link.LinkValidationTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 36,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkValidationTest",
+    "method": "malformedKeysFailFormat",
+    "source": "src/test/java/dev/urlshort/link/LinkValidationTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.link.LinkValidationTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 36,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkValidationTest",
+    "method": "keysLongerThan255FailFormat",
+    "source": "src/test/java/dev/urlshort/link/LinkValidationTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.link.LinkValidationTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 36,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.LinkValidationTest",
+    "method": "absentOrVisibleAsciiKeysPass",
+    "source": "src/test/java/dev/urlshort/link/LinkValidationTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.link.LinkValidationTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 36,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.ShortCodesTest",
+    "method": "codesAreEightCharactersFromTheAlphanumericAlphabet",
+    "source": "src/test/java/dev/urlshort/link/ShortCodesTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.link.ShortCodesTest.xml",
+    "matchingInvocations": [
+      "codesAreEightCharactersFromTheAlphanumericAlphabet()"
+    ],
+    "classInvocations": 2,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.link.ShortCodesTest",
+    "method": "aDrawThatSpellsAReservedSegmentIsDrawnAgain",
+    "source": "src/test/java/dev/urlshort/link/ShortCodesTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.link.ShortCodesTest.xml",
+    "matchingInvocations": [
+      "aDrawThatSpellsAReservedSegmentIsDrawnAgain()"
+    ],
+    "classInvocations": 2,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.ping.PingControllerTest",
+    "method": "answersOkWithTheCurrentUtcInstant",
+    "source": "src/test/java/dev/urlshort/ping/PingControllerTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.ping.PingControllerTest.xml",
+    "matchingInvocations": [
+      "answersOkWithTheCurrentUtcInstant()"
+    ],
+    "classInvocations": 1,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.MetricsConfigTest",
+    "method": "onlyThePathTagIsDropped",
+    "source": "src/test/java/dev/urlshort/web/MetricsConfigTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.MetricsConfigTest.xml",
+    "matchingInvocations": [
+      "onlyThePathTagIsDropped()"
+    ],
+    "classInvocations": 1,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "unwrapsABodyLimitErrorRaisedInsideTheJsonReaderTo413",
+    "source": "src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.ProblemDetailsAdviceTest.xml",
+    "matchingInvocations": [
+      "unwrapsABodyLimitErrorRaisedInsideTheJsonReaderTo413()"
+    ],
+    "classInvocations": 7,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "unreadableBodyWithoutALimitErrorStays400WithoutTheFrameworkDetail",
+    "source": "src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.ProblemDetailsAdviceTest.xml",
+    "matchingInvocations": [
+      "unreadableBodyWithoutALimitErrorStays400WithoutTheFrameworkDetail()"
+    ],
+    "classInvocations": 7,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "frameworkDetailThatEchoesClientInputIsCleared",
+    "source": "src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.ProblemDetailsAdviceTest.xml",
+    "matchingInvocations": [
+      "frameworkDetailThatEchoesClientInputIsCleared()"
+    ],
+    "classInvocations": 7,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "domainProblemKeepsItsErrorsAndGetsTheRequestIdAsInstance",
+    "source": "src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.ProblemDetailsAdviceTest.xml",
+    "matchingInvocations": [
+      "domainProblemKeepsItsErrorsAndGetsTheRequestIdAsInstance()"
+    ],
+    "classInvocations": 7,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "unhandledExceptionIsABare500AndOneMessageFreeEvent",
+    "source": "src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.ProblemDetailsAdviceTest.xml",
+    "matchingInvocations": [
+      "unhandledExceptionIsABare500AndOneMessageFreeEvent()"
+    ],
+    "classInvocations": 7,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "errorOriginIsNoneWhenNoFrameIsOurs",
+    "source": "src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.ProblemDetailsAdviceTest.xml",
+    "matchingInvocations": [
+      "errorOriginIsNoneWhenNoFrameIsOurs()"
+    ],
+    "classInvocations": 7,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "aNonProblemBodyPassesThroughUntouched",
+    "source": "src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.ProblemDetailsAdviceTest.xml",
+    "matchingInvocations": [
+      "aNonProblemBodyPassesThroughUntouched()"
+    ],
+    "classInvocations": 7,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.ProblemsTest",
+    "method": "validationIs400WithExactlyOneFieldError",
+    "source": "src/test/java/dev/urlshort/web/ProblemsTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.ProblemsTest.xml",
+    "matchingInvocations": [
+      "validationIs400WithExactlyOneFieldError()"
+    ],
+    "classInvocations": 3,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.ProblemsTest",
+    "method": "notFoundAndGoneAreBareProblems",
+    "source": "src/test/java/dev/urlshort/web/ProblemsTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.ProblemsTest.xml",
+    "matchingInvocations": [
+      "notFoundAndGoneAreBareProblems()"
+    ],
+    "classInvocations": 3,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.ProblemsTest",
+    "method": "idempotencyMismatchIs422NamingTheHeaderAndRule",
+    "source": "src/test/java/dev/urlshort/web/ProblemsTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.ProblemsTest.xml",
+    "matchingInvocations": [
+      "idempotencyMismatchIs422NamingTheHeaderAndRule()"
+    ],
+    "classInvocations": 3,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "rule1_limitedRequestsAreChargedToTheirBudget",
+    "source": "src/test/java/dev/urlshort/web/RateLimitFilterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RateLimitFilterTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 32,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "rule1_operatorSurfacesAreNeitherChargedNorLimited",
+    "source": "src/test/java/dev/urlshort/web/RateLimitFilterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RateLimitFilterTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 32,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "rule5_theClientIsThePeerOrTheRightMostUntrustedForwardedHop",
+    "source": "src/test/java/dev/urlshort/web/RateLimitFilterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RateLimitFilterTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 32,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "rule5_anAbsentOrEmptyHeaderFromATrustedProxyChargesTheProxy",
+    "source": "src/test/java/dev/urlshort/web/RateLimitFilterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RateLimitFilterTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 32,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "theFilterReadsOnlyXForwardedForAndOnlyFromATrustedPeer",
+    "source": "src/test/java/dev/urlshort/web/RateLimitFilterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RateLimitFilterTest.xml",
+    "matchingInvocations": [
+      "theFilterReadsOnlyXForwardedForAndOnlyFromATrustedPeer()"
+    ],
+    "classInvocations": 32,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "anEmptyBucketIsA429ProblemWithRetryAfterAndNoChain",
+    "source": "src/test/java/dev/urlshort/web/RateLimitFilterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RateLimitFilterTest.xml",
+    "matchingInvocations": [
+      "anEmptyBucketIsA429ProblemWithRetryAfterAndNoChain()"
+    ],
+    "classInvocations": 32,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "eachRejectionIsCountedOnceUnderItsBudgetOnly",
+    "source": "src/test/java/dev/urlshort/web/RateLimitFilterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RateLimitFilterTest.xml",
+    "matchingInvocations": [
+      "eachRejectionIsCountedOnceUnderItsBudgetOnly()"
+    ],
+    "classInvocations": 32,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "AC03a_anExactlyEmptyBucketRefillsOneTokenAfterExactlyOneSecond",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RateLimiterTest.xml",
+    "matchingInvocations": [
+      "AC03a_anExactlyEmptyBucketRefillsOneTokenAfterExactlyOneSecond()"
+    ],
+    "classInvocations": 12,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "AC03b_retryAfterIsRoundedUpAndHonoured",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RateLimiterTest.xml",
+    "matchingInvocations": [
+      "AC03b_retryAfterIsRoundedUpAndHonoured()"
+    ],
+    "classInvocations": 12,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "AC04_aQuietMinuteRefillsTheWholeBucket",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RateLimiterTest.xml",
+    "matchingInvocations": [
+      "AC04_aQuietMinuteRefillsTheWholeBucket()"
+    ],
+    "classInvocations": 12,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "refusalsTakeNothing",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RateLimiterTest.xml",
+    "matchingInvocations": [
+      "refusalsTakeNothing()"
+    ],
+    "classInvocations": 12,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "budgetsAndClientsAreIndependent",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RateLimiterTest.xml",
+    "matchingInvocations": [
+      "budgetsAndClientsAreIndependent()"
+    ],
+    "classInvocations": 12,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "retryAfterIsTheWaitForOneTokenInWholeSeconds",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RateLimiterTest.xml",
+    "matchingInvocations": [
+      "retryAfterIsTheWaitForOneTokenInWholeSeconds()"
+    ],
+    "classInvocations": 12,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "aRequestOvertakenByNewerOnesDecidesOnTheTimeItReachesTheBucket",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RateLimiterTest.xml",
+    "matchingInvocations": [
+      "aRequestOvertakenByNewerOnesDecidesOnTheTimeItReachesTheBucket()"
+    ],
+    "classInvocations": 12,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "afterABackwardClockStepTheBucketRefillsFromItsStoredTat",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RateLimiterTest.xml",
+    "matchingInvocations": [
+      "afterABackwardClockStepTheBucketRefillsFromItsStoredTat()"
+    ],
+    "classInvocations": 12,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "fullBucketsAreReleasedByTheNextRequestButNotWhileIdle",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RateLimiterTest.xml",
+    "matchingInvocations": [
+      "fullBucketsAreReleasedByTheNextRequestButNotWhileIdle()"
+    ],
+    "classInvocations": 12,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "aBucketThatIsNotYetFullSurvivesTheRelease",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RateLimiterTest.xml",
+    "matchingInvocations": [
+      "aBucketThatIsNotYetFullSurvivesTheRelease()"
+    ],
+    "classInvocations": 12,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "theReleaseRunsAtMostOncePerSecond",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RateLimiterTest.xml",
+    "matchingInvocations": [
+      "theReleaseRunsAtMostOncePerSecond()"
+    ],
+    "classInvocations": 12,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "theReleaseResumesAfterABackwardClockStep",
+    "source": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RateLimiterTest.xml",
+    "matchingInvocations": [
+      "theReleaseResumesAfterABackwardClockStep()"
+    ],
+    "classInvocations": 12,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RequestBodyLimitFilterTest",
+    "method": "aBodyOfExactlyTheLimitIsReadInFull",
+    "source": "src/test/java/dev/urlshort/web/RequestBodyLimitFilterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RequestBodyLimitFilterTest.xml",
+    "matchingInvocations": [
+      "aBodyOfExactlyTheLimitIsReadInFull()"
+    ],
+    "classInvocations": 5,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RequestBodyLimitFilterTest",
+    "method": "theFirstByteOverTheLimitIs413OnTheBulkReadPath",
+    "source": "src/test/java/dev/urlshort/web/RequestBodyLimitFilterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RequestBodyLimitFilterTest.xml",
+    "matchingInvocations": [
+      "theFirstByteOverTheLimitIs413OnTheBulkReadPath()"
+    ],
+    "classInvocations": 5,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RequestBodyLimitFilterTest",
+    "method": "singleByteReadsCountTooAndEndOfStreamIsPassedThrough",
+    "source": "src/test/java/dev/urlshort/web/RequestBodyLimitFilterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RequestBodyLimitFilterTest.xml",
+    "matchingInvocations": [
+      "singleByteReadsCountTooAndEndOfStreamIsPassedThrough()"
+    ],
+    "classInvocations": 5,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RequestBodyLimitFilterTest",
+    "method": "theWrappedStreamIsCreatedOnceSoTheCountCannotBeReset",
+    "source": "src/test/java/dev/urlshort/web/RequestBodyLimitFilterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RequestBodyLimitFilterTest.xml",
+    "matchingInvocations": [
+      "theWrappedStreamIsCreatedOnceSoTheCountCannotBeReset()"
+    ],
+    "classInvocations": 5,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RequestBodyLimitFilterTest",
+    "method": "servletStreamStateAndListenerDelegateToTheContainerStream",
+    "source": "src/test/java/dev/urlshort/web/RequestBodyLimitFilterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RequestBodyLimitFilterTest.xml",
+    "matchingInvocations": [
+      "servletStreamStateAndListenerDelegateToTheContainerStream()"
+    ],
+    "classInvocations": 5,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RequestIdFilterTest",
+    "method": "issuesOneIdOnHeaderAndMdcBeforeTheChainRunsAndClearsMdcAfter",
+    "source": "src/test/java/dev/urlshort/web/RequestIdFilterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RequestIdFilterTest.xml",
+    "matchingInvocations": [
+      "issuesOneIdOnHeaderAndMdcBeforeTheChainRunsAndClearsMdcAfter()"
+    ],
+    "classInvocations": 4,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RequestIdFilterTest",
+    "method": "ignoresInboundRequestIdAndIssuesADifferentIdPerRequest",
+    "source": "src/test/java/dev/urlshort/web/RequestIdFilterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RequestIdFilterTest.xml",
+    "matchingInvocations": [
+      "ignoresInboundRequestIdAndIssuesADifferentIdPerRequest()"
+    ],
+    "classInvocations": 4,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RequestIdFilterTest",
+    "method": "writesOneRequestCompletedEventWithTheStatusAndTheIdButNotTheMethod",
+    "source": "src/test/java/dev/urlshort/web/RequestIdFilterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RequestIdFilterTest.xml",
+    "matchingInvocations": [
+      "writesOneRequestCompletedEventWithTheStatusAndTheIdButNotTheMethod()"
+    ],
+    "classInvocations": 4,
+    "result": "PASS"
+  },
+  {
+    "suite": "unit",
+    "class": "dev.urlshort.web.RequestIdFilterTest",
+    "method": "clearsMdcWhenTheChainThrows",
+    "source": "src/test/java/dev/urlshort/web/RequestIdFilterTest.java",
+    "report": "build/test-results/test/TEST-dev.urlshort.web.RequestIdFilterTest.xml",
+    "matchingInvocations": [
+      "clearsMdcWhenTheChainThrows()"
+    ],
+    "classInvocations": 4,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.HealthJourneyTest",
+    "method": "healthEndpointReportsUp",
+    "source": "src/functionalTest/java/dev/urlshort/HealthJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.HealthJourneyTest.xml",
+    "matchingInvocations": [
+      "healthEndpointReportsUp()"
+    ],
+    "classInvocations": 1,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditAccessSettingsJourneyTest",
+    "method": "AC13_AC14_noSettingOpensTheEndpointBeyondLoopback",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditAccessSettingsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditAccessSettingsJourneyTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 6,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditAccessSettingsJourneyTest",
+    "method": "aPlainLoopbackReadStillWorksUnderTheseSettings",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditAccessSettingsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditAccessSettingsJourneyTest.xml",
+    "matchingInvocations": [
+      "aPlainLoopbackReadStillWorksUnderTheseSettings()"
+    ],
+    "classInvocations": 6,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditForwardedHeadersJourneyTest",
+    "method": "theShippedFilePinsTheForwardedHeaderStrategyOff",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditForwardedHeadersJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditForwardedHeadersJourneyTest.xml",
+    "matchingInvocations": [
+      "theShippedFilePinsTheForwardedHeaderStrategyOff()"
+    ],
+    "classInvocations": 6,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditForwardedHeadersJourneyTest",
+    "method": "onADetectedCloudPlatformThePinKeepsAForgedLoopbackHeaderOut",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditForwardedHeadersJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditForwardedHeadersJourneyTest.xml",
+    "matchingInvocations": [
+      "onADetectedCloudPlatformThePinKeepsAForgedLoopbackHeaderOut()"
+    ],
+    "classInvocations": 6,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditForwardedHeadersJourneyTest",
+    "method": "anOverrideOfThePinClosesTheEndpoint",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditForwardedHeadersJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditForwardedHeadersJourneyTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 6,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditForwardedHeadersJourneyTest",
+    "method": "aTomcatRemoteIpSettingClosesTheEndpoint",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditForwardedHeadersJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditForwardedHeadersJourneyTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 6,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditJourneyTest",
+    "method": "AC22_createWritesExactlyOneAuditRow",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditJourneyTest.xml",
+    "matchingInvocations": [
+      "AC22_createWritesExactlyOneAuditRow()"
+    ],
+    "classInvocations": 4,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditJourneyTest",
+    "method": "AC23_retireWritesExactlyOneAuditRow",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditJourneyTest.xml",
+    "matchingInvocations": [
+      "AC23_retireWritesExactlyOneAuditRow()"
+    ],
+    "classInvocations": 4,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditJourneyTest",
+    "method": "AC24_aFailedAuditWriteRollsTheRetireBackAndFailsClosed",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditJourneyTest.xml",
+    "matchingInvocations": [
+      "AC24_aFailedAuditWriteRollsTheRetireBackAndFailsClosed()"
+    ],
+    "classInvocations": 4,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditJourneyTest",
+    "method": "AC25_auditRowsAreAppendOnlyUnderEveryOperation",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditJourneyTest.xml",
+    "matchingInvocations": [
+      "AC25_auditRowsAreAppendOnlyUnderEveryOperation()"
+    ],
+    "classInvocations": 4,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditReadFailureJourneyTest",
+    "method": "AC21_aFailedReadIsA500ProblemNeverAnEmptyOrPartialPage",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditReadFailureJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditReadFailureJourneyTest.xml",
+    "matchingInvocations": [
+      "AC21_aFailedReadIsA500ProblemNeverAnEmptyOrPartialPage(CapturedOutput)"
+    ],
+    "classInvocations": 1,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC01_anEmptyTrailIsAnEmptyPage",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditReadJourneyTest.xml",
+    "matchingInvocations": [
+      "AC01_anEmptyTrailIsAnEmptyPage()"
+    ],
+    "classInvocations": 33,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC02_aCreateRowIsReadableAsWritten",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditReadJourneyTest.xml",
+    "matchingInvocations": [
+      "AC02_aCreateRowIsReadableAsWritten()"
+    ],
+    "classInvocations": 33,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC03_aRetireRowCarriesBeforeAndAfter",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditReadJourneyTest.xml",
+    "matchingInvocations": [
+      "AC03_aRetireRowCarriesBeforeAndAfter()"
+    ],
+    "classInvocations": 33,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC04_rowsComeNewestFirstInTheOrderTheyWereWritten",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditReadJourneyTest.xml",
+    "matchingInvocations": [
+      "AC04_rowsComeNewestFirstInTheOrderTheyWereWritten()"
+    ],
+    "classInvocations": 33,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC05_everyFieldMatchesTheStoredRow",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditReadJourneyTest.xml",
+    "matchingInvocations": [
+      "AC05_everyFieldMatchesTheStoredRow()"
+    ],
+    "classInvocations": 33,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC06_pagesFollowNextToTheEnd",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditReadJourneyTest.xml",
+    "matchingInvocations": [
+      "AC06_pagesFollowNextToTheEnd()"
+    ],
+    "classInvocations": 33,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC07_theDefaultAndMaximumPageSizes",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditReadJourneyTest.xml",
+    "matchingInvocations": [
+      "AC07_theDefaultAndMaximumPageSizes()"
+    ],
+    "classInvocations": 33,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC08_pagingIsStableWhileRowsAreWritten",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditReadJourneyTest.xml",
+    "matchingInvocations": [
+      "AC08_pagingIsStableWhileRowsAreWritten()"
+    ],
+    "classInvocations": 33,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC09_invalidPagingParametersAreRefusedNamingTheField",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditReadJourneyTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 33,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC10_readingChangesNothing",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditReadJourneyTest.xml",
+    "matchingInvocations": [
+      "AC10_readingChangesNothing()"
+    ],
+    "classInvocations": 33,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC11_aNonLoopbackClientIsRefused",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditReadJourneyTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 33,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC12_everyLoopbackAddressIsAdmitted",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditReadJourneyTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 33,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC13_forwardingHeadersNeverGrantAccess",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditReadJourneyTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 33,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "theGuardAndTheValidationComeBeforeContentNegotiation",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditReadJourneyTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 33,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC15_requestCorrelationOnTheNewPaths",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditReadJourneyTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 33,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC16_auditContentAndClientValuesStayOutOfTheLogs",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditReadJourneyTest.xml",
+    "matchingInvocations": [
+      "AC16_auditContentAndClientValuesStayOutOfTheLogs(CapturedOutput)"
+    ],
+    "classInvocations": 33,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC19_theLiveApiDocumentDescribesTheAuditRead",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditReadJourneyTest.xml",
+    "matchingInvocations": [
+      "AC19_theLiveApiDocumentDescribesTheAuditRead()"
+    ],
+    "classInvocations": 33,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC20_aTraversalAcrossAnInFlightWriteNeitherRepeatsNorSkipsCommittedRows",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditReadJourneyTest.xml",
+    "matchingInvocations": [
+      "AC20_aTraversalAcrossAnInFlightWriteNeitherRepeatsNorSkipsCommittedRows()"
+    ],
+    "classInvocations": 33,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.audit.AuditUpgradeJourneyTest",
+    "method": "AC18_anExistingDatabaseUpgradesInPlaceAndKeepsItsLinksAndRows",
+    "source": "src/functionalTest/java/dev/urlshort/audit/AuditUpgradeJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditUpgradeJourneyTest.xml",
+    "matchingInvocations": [
+      "AC18_anExistingDatabaseUpgradesInPlaceAndKeepsItsLinksAndRows()"
+    ],
+    "classInvocations": 1,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickPurgeFailureJourneyTest",
+    "method": "AC10_aFailedRunIsReportedAndLeavesTheServiceWorking",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickPurgeFailureJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickPurgeFailureJourneyTest.xml",
+    "matchingInvocations": [
+      "AC10_aFailedRunIsReportedAndLeavesTheServiceWorking(CapturedOutput)"
+    ],
+    "classInvocations": 2,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickPurgeFailureJourneyTest",
+    "method": "AC12_aClickThatCannotBeReducedIsOneWarnWithItsOwnReason",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickPurgeFailureJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickPurgeFailureJourneyTest.xml",
+    "matchingInvocations": [
+      "AC12_aClickThatCannotBeReducedIsOneWarnWithItsOwnReason(CapturedOutput)"
+    ],
+    "classInvocations": 2,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickPurgeHoldJourneyTest",
+    "method": "theSharedContextsHoldThePurge",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickPurgeHoldJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickPurgeHoldJourneyTest.xml",
+    "matchingInvocations": [
+      "theSharedContextsHoldThePurge(CapturedOutput)"
+    ],
+    "classInvocations": 1,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC01_aRedirectRecordsExactlyOneClickWithItsTime",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRecordingJourneyTest.xml",
+    "matchingInvocations": [
+      "AC01_aRedirectRecordsExactlyOneClickWithItsTime()"
+    ],
+    "classInvocations": 20,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC02_onlyARedirectIsAClick",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRecordingJourneyTest.xml",
+    "matchingInvocations": [
+      "AC02_onlyARedirectIsAClick()"
+    ],
+    "classInvocations": 20,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC03_theReferrerIsStoredAsItsOriginOnly",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRecordingJourneyTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 20,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC04_theUserAgentIsStoredAsAClassOnly",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRecordingJourneyTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 20,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC05_theClientAddressIsStoredOnlyAsASaltedHashThatRotatesEveryUtcDay",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRecordingJourneyTest.xml",
+    "matchingInvocations": [
+      "AC05_theClientAddressIsStoredOnlyAsASaltedHashThatRotatesEveryUtcDay()"
+    ],
+    "classInvocations": 20,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC06_forwardingHeadersDoNotChangeTheRecordedClient",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRecordingJourneyTest.xml",
+    "matchingInvocations": [
+      "AC06_forwardingHeadersDoNotChangeTheRecordedClient()"
+    ],
+    "classInvocations": 20,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC17_theStatisticsExposeAggregatesOnly",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRecordingJourneyTest.xml",
+    "matchingInvocations": [
+      "AC17_theStatisticsExposeAggregatesOnly()"
+    ],
+    "classInvocations": 20,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC18_noClickDataReachesTheLogs",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRecordingJourneyTest.xml",
+    "matchingInvocations": [
+      "AC18_noClickDataReachesTheLogs(CapturedOutput)"
+    ],
+    "classInvocations": 20,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "method": "AC14_aSlowClickStoreDoesNotSlowTheRedirect",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickResilienceJourneyTest.xml",
+    "matchingInvocations": [
+      "AC14_aSlowClickStoreDoesNotSlowTheRedirect()"
+    ],
+    "classInvocations": 5,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "method": "AC15_AC19_aFailingClickStoreDoesNotFailTheRedirectAndTheLossIsOneCorrelatedWarn",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickResilienceJourneyTest.xml",
+    "matchingInvocations": [
+      "AC15_AC19_aFailingClickStoreDoesNotFailTheRedirectAndTheLossIsOneCorrelatedWarn(CapturedOutput)"
+    ],
+    "classInvocations": 5,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "method": "AC16_concurrentRedirectsLoseNoClicksAndTheRequestIsNeverReadAfterItsResponse",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickResilienceJourneyTest.xml",
+    "matchingInvocations": [
+      "AC16_concurrentRedirectsLoseNoClicksAndTheRequestIsNeverReadAfterItsResponse()"
+    ],
+    "classInvocations": 5,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "method": "AC18_AC19_onTomcatClickDataStaysOutOfTheLogsAndEveryEventIsCorrelated",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickResilienceJourneyTest.xml",
+    "matchingInvocations": [
+      "AC18_AC19_onTomcatClickDataStaysOutOfTheLogsAndEveryEventIsCorrelated(CapturedOutput)"
+    ],
+    "classInvocations": 5,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "method": "AC22_headOnTheStatisticsPathHasNoBodyAndRecordsNothing",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickResilienceJourneyTest.xml",
+    "matchingInvocations": [
+      "AC22_headOnTheStatisticsPathHasNoBodyAndRecordsNothing()"
+    ],
+    "classInvocations": 5,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionJourneyTest",
+    "method": "AC01_theBoundaryDayIsKeptAndTheDayBeforeItIsDeleted",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRetentionJourneyTest.xml",
+    "matchingInvocations": [
+      "AC01_theBoundaryDayIsKeptAndTheDayBeforeItIsDeleted()"
+    ],
+    "classInvocations": 6,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionJourneyTest",
+    "method": "AC02_theWindowMovesWithTheDay",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRetentionJourneyTest.xml",
+    "matchingInvocations": [
+      "AC02_theWindowMovesWithTheDay()"
+    ],
+    "classInvocations": 6,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionJourneyTest",
+    "method": "AC05_statisticsCoverTheRetainedClicksOnly",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRetentionJourneyTest.xml",
+    "matchingInvocations": [
+      "AC05_statisticsCoverTheRetainedClicksOnly()"
+    ],
+    "classInvocations": 6,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionJourneyTest",
+    "method": "AC06_linksRedirectsAndTheAuditTrailAreUntouched",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRetentionJourneyTest.xml",
+    "matchingInvocations": [
+      "AC06_linksRedirectsAndTheAuditTrailAreUntouched()"
+    ],
+    "classInvocations": 6,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionJourneyTest",
+    "method": "AC09_eachRunLogsOneInfoWithItsCountCutoffAndPeriodAndNoClickValue",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRetentionJourneyTest.xml",
+    "matchingInvocations": [
+      "AC09_eachRunLogsOneInfoWithItsCountCutoffAndPeriodAndNoClickValue(CapturedOutput)"
+    ],
+    "classInvocations": 6,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionJourneyTest",
+    "method": "AC11_aRedirectWhileOldClicksAreBeingDeletedIsServedAndCounted",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRetentionJourneyTest.xml",
+    "matchingInvocations": [
+      "AC11_aRedirectWhileOldClicksAreBeingDeletedIsServedAndCounted()"
+    ],
+    "classInvocations": 6,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionScheduleJourneyTest",
+    "method": "AC08_aPurgeRunsEveryUtcDayWithoutAnOperator",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionScheduleJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRetentionScheduleJourneyTest.xml",
+    "matchingInvocations": [
+      "AC08_aPurgeRunsEveryUtcDayWithoutAnOperator(CapturedOutput)"
+    ],
+    "classInvocations": 1,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionSettingJourneyTest",
+    "method": "AC03_thePeriodIsAnOperatorSetting",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionSettingJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRetentionSettingJourneyTest.xml",
+    "matchingInvocations": [
+      "AC03_thePeriodIsAnOperatorSetting(CapturedOutput)"
+    ],
+    "classInvocations": 1,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionStartupJourneyTest",
+    "method": "AC04_anInvalidPeriodStopsTheServiceFromStarting",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionStartupJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRetentionStartupJourneyTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 6,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionStartupJourneyTest",
+    "method": "AC07_aPurgeRunsAtStartup",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionStartupJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRetentionStartupJourneyTest.xml",
+    "matchingInvocations": [
+      "AC07_aPurgeRunsAtStartup(CapturedOutput)"
+    ],
+    "classInvocations": 6,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionStartupJourneyTest",
+    "method": "AC13_AC16_anExistingDataDirectoryUpgradesInPlace",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionStartupJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRetentionStartupJourneyTest.xml",
+    "matchingInvocations": [
+      "AC13_AC16_anExistingDataDirectoryUpgradesInPlace()"
+    ],
+    "classInvocations": 6,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickRetentionStartupJourneyTest",
+    "method": "AC15_aPausedPurgeDeletesNothingAndSaysSoAtEveryStart",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickRetentionStartupJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRetentionStartupJourneyTest.xml",
+    "matchingInvocations": [
+      "AC15_aPausedPurgeDeletesNothingAndSaysSoAtEveryStart(CapturedOutput)"
+    ],
+    "classInvocations": 6,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.ClickSchemaJourneyTest",
+    "method": "everyUserAgentClassIsRecordedAfterThePoolRetiresItsConnections",
+    "source": "src/functionalTest/java/dev/urlshort/click/ClickSchemaJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickSchemaJourneyTest.xml",
+    "matchingInvocations": [
+      "everyUserAgentClassIsRecordedAfterThePoolRetiresItsConnections()"
+    ],
+    "classInvocations": 1,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC07_aLinkWithNoClicksHasEmptyStatistics",
+    "source": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.StatsJourneyTest.xml",
+    "matchingInvocations": [
+      "AC07_aLinkWithNoClicksHasEmptyStatistics()"
+    ],
+    "classInvocations": 13,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC08_totalClicksCountsEveryRedirect",
+    "source": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.StatsJourneyTest.xml",
+    "matchingInvocations": [
+      "AC08_totalClicksCountsEveryRedirect()"
+    ],
+    "classInvocations": 13,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC09_clicksPerDayAreGroupedByUtcCalendarDay",
+    "source": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.StatsJourneyTest.xml",
+    "matchingInvocations": [
+      "AC09_clicksPerDayAreGroupedByUtcCalendarDay()"
+    ],
+    "classInvocations": 13,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC10_topReferrersAreRankedAndCapped",
+    "source": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.StatsJourneyTest.xml",
+    "matchingInvocations": [
+      "AC10_topReferrersAreRankedAndCapped()"
+    ],
+    "classInvocations": 13,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC12_aRetiredLinksStatisticsAreStillReadable",
+    "source": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.StatsJourneyTest.xml",
+    "matchingInvocations": [
+      "AC12_aRetiredLinksStatisticsAreStillReadable()"
+    ],
+    "classInvocations": 13,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC13_statisticsOfAnUnknownCodeAndWrongMethodsAreProblemDetails",
+    "source": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.StatsJourneyTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 13,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC19_theStatisticsPathAndASettledRedirectAreCorrelated",
+    "source": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.StatsJourneyTest.xml",
+    "matchingInvocations": [
+      "AC19_theStatisticsPathAndASettledRedirectAreCorrelated(CapturedOutput)"
+    ],
+    "classInvocations": 13,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC20_redirectAndAuditBehaviourAreUnchanged",
+    "source": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.StatsJourneyTest.xml",
+    "matchingInvocations": [
+      "AC20_redirectAndAuditBehaviourAreUnchanged()"
+    ],
+    "classInvocations": 13,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC21_theLiveApiDocumentDescribesTheStatisticsEndpoint",
+    "source": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.StatsJourneyTest.xml",
+    "matchingInvocations": [
+      "AC21_theLiveApiDocumentDescribesTheStatisticsEndpoint()"
+    ],
+    "classInvocations": 13,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC22_headAndOptionsKeepTheFrameworkDefaultsAndRecordNothing",
+    "source": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.click.StatsJourneyTest.xml",
+    "matchingInvocations": [
+      "AC22_headAndOptionsKeepTheFrameworkDefaultsAndRecordNothing()"
+    ],
+    "classInvocations": 13,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC17_aReplayReturnsTheFirstLink",
+    "source": "src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.IdempotencyJourneyTest.xml",
+    "matchingInvocations": [
+      "AC17_aReplayReturnsTheFirstLink()"
+    ],
+    "classInvocations": 9,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC18_sameKeyWithADifferentUrlIsRefusedAndTheBindingSurvives",
+    "source": "src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.IdempotencyJourneyTest.xml",
+    "matchingInvocations": [
+      "AC18_sameKeyWithADifferentUrlIsRefusedAndTheBindingSurvives()"
+    ],
+    "classInvocations": 9,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC19_aKeyIsHonouredFor24HoursAndNotLongerAndARejectionDoesNotExtendIt",
+    "source": "src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.IdempotencyJourneyTest.xml",
+    "matchingInvocations": [
+      "AC19_aKeyIsHonouredFor24HoursAndNotLongerAndARejectionDoesNotExtendIt()"
+    ],
+    "classInvocations": 9,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC20_aMalformedKeyIsRefused",
+    "source": "src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.IdempotencyJourneyTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 9,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC20_aKeyOf255VisibleCharactersIsAccepted",
+    "source": "src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.IdempotencyJourneyTest.xml",
+    "matchingInvocations": [
+      "AC20_aKeyOf255VisibleCharactersIsAccepted()"
+    ],
+    "classInvocations": 9,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC21_aRejectedCreateDoesNotConsumeTheKey",
+    "source": "src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.IdempotencyJourneyTest.xml",
+    "matchingInvocations": [
+      "AC21_aRejectedCreateDoesNotConsumeTheKey()"
+    ],
+    "classInvocations": 9,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkAuditColumnsFailureJourneyTest",
+    "method": "AC05_aRetireWhoseAuditWriteFailsStampsNothing",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkAuditColumnsFailureJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkAuditColumnsFailureJourneyTest.xml",
+    "matchingInvocations": [
+      "AC05_aRetireWhoseAuditWriteFailsStampsNothing()"
+    ],
+    "classInvocations": 1,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkAuditColumnsJourneyTest",
+    "method": "AC02_aCreateStampsTheNewLinkAndItsAuditRow",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkAuditColumnsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkAuditColumnsJourneyTest.xml",
+    "matchingInvocations": [
+      "AC02_aCreateStampsTheNewLinkAndItsAuditRow()"
+    ],
+    "classInvocations": 7,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkAuditColumnsJourneyTest",
+    "method": "AC03_aRetireMovesTheLinksUpdateStampOnly",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkAuditColumnsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkAuditColumnsJourneyTest.xml",
+    "matchingInvocations": [
+      "AC03_aRetireMovesTheLinksUpdateStampOnly()"
+    ],
+    "classInvocations": 7,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkAuditColumnsJourneyTest",
+    "method": "AC04_releasingAnExpiredKeyIsAWrite",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkAuditColumnsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkAuditColumnsJourneyTest.xml",
+    "matchingInvocations": [
+      "AC04_releasingAnExpiredKeyIsAWrite()"
+    ],
+    "classInvocations": 7,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkAuditColumnsJourneyTest",
+    "method": "AC05_requestsThatChangeNothingStampNothing",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkAuditColumnsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkAuditColumnsJourneyTest.xml",
+    "matchingInvocations": [
+      "AC05_requestsThatChangeNothingStampNothing()"
+    ],
+    "classInvocations": 7,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkAuditColumnsJourneyTest",
+    "method": "AC06_auditRowsAreNeverUpdated",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkAuditColumnsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkAuditColumnsJourneyTest.xml",
+    "matchingInvocations": [
+      "AC06_auditRowsAreNeverUpdated()"
+    ],
+    "classInvocations": 7,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkAuditColumnsJourneyTest",
+    "method": "AC08_noResponseShowsTheNewColumns",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkAuditColumnsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkAuditColumnsJourneyTest.xml",
+    "matchingInvocations": [
+      "AC08_noResponseShowsTheNewColumns()"
+    ],
+    "classInvocations": 7,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkAuditColumnsJourneyTest",
+    "method": "AC10_theAuditColumnsHoldNoClientValue",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkAuditColumnsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkAuditColumnsJourneyTest.xml",
+    "matchingInvocations": [
+      "AC10_theAuditColumnsHoldNoClientValue()"
+    ],
+    "classInvocations": 7,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC01_validUrlBecomesAShortLink",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkCreateJourneyTest.xml",
+    "matchingInvocations": [
+      "AC01_validUrlBecomesAShortLink()"
+    ],
+    "classInvocations": 28,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC02_everyCreateWithoutAKeyIsANewLink",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkCreateJourneyTest.xml",
+    "matchingInvocations": [
+      "AC02_everyCreateWithoutAKeyIsANewLink()"
+    ],
+    "classInvocations": 28,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC03_shortUrlUsesTheShippedBaseNeverTheHostHeader",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkCreateJourneyTest.xml",
+    "matchingInvocations": [
+      "AC03_shortUrlUsesTheShippedBaseNeverTheHostHeader()"
+    ],
+    "classInvocations": 28,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkCreateJourneyTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 28,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC04_aUrlOfExactly2048CharactersIsAccepted",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkCreateJourneyTest.xml",
+    "matchingInvocations": [
+      "AC04_aUrlOfExactly2048CharactersIsAccepted()"
+    ],
+    "classInvocations": 28,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC05_bodyThatIsNotAJsonObjectIsRefused",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkCreateJourneyTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 28,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC06_nonJsonContentTypeIsRefused",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkCreateJourneyTest.xml",
+    "matchingInvocations": [
+      "AC06_nonJsonContentTypeIsRefused()"
+    ],
+    "classInvocations": 28,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC07_bodyIsRefusedAtTheSixteenKibLimit",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkCreateJourneyTest.xml",
+    "matchingInvocations": [
+      "AC07_bodyIsRefusedAtTheSixteenKibLimit()"
+    ],
+    "classInvocations": 28,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC16_redirectRouteDoesNotShadowTheExistingSurface",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkCreateJourneyTest.xml",
+    "matchingInvocations": [
+      "AC16_redirectRouteDoesNotShadowTheExistingSurface()"
+    ],
+    "classInvocations": 28,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC08_readingALinkReturnsItsDetails",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkReadRetireJourneyTest.xml",
+    "matchingInvocations": [
+      "AC08_readingALinkReturnsItsDetails()"
+    ],
+    "classInvocations": 10,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC09_aRetiredLinkIsStillReadableWithItsState",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkReadRetireJourneyTest.xml",
+    "matchingInvocations": [
+      "AC09_aRetiredLinkIsStillReadableWithItsState()"
+    ],
+    "classInvocations": 10,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC10_retiringALinkIs204WithAnEmptyBody",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkReadRetireJourneyTest.xml",
+    "matchingInvocations": [
+      "AC10_retiringALinkIs204WithAnEmptyBody()"
+    ],
+    "classInvocations": 10,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC11_retiringAnAlreadyRetiredLinkIs410AndNotASecondMutation",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkReadRetireJourneyTest.xml",
+    "matchingInvocations": [
+      "AC11_retiringAnAlreadyRetiredLinkIs410AndNotASecondMutation()"
+    ],
+    "classInvocations": 10,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC14_unknownCodeIs404OnEveryLinkOperation",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkReadRetireJourneyTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 10,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC15_wrongMethodIs405",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkReadRetireJourneyTest.xml",
+    "matchingInvocations": [
+      "AC15_wrongMethodIs405()"
+    ],
+    "classInvocations": 10,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.LinkUpgradeJourneyTest",
+    "method": "AC07_anExistingDatabaseUpgradesInPlace",
+    "source": "src/functionalTest/java/dev/urlshort/link/LinkUpgradeJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkUpgradeJourneyTest.xml",
+    "matchingInvocations": [
+      "AC07_anExistingDatabaseUpgradesInPlace()"
+    ],
+    "classInvocations": 1,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.PublicBaseUrlJourneyTest",
+    "method": "AC03_shortUrlUsesTheConfiguredBaseNeverTheHostHeader",
+    "source": "src/functionalTest/java/dev/urlshort/link/PublicBaseUrlJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.PublicBaseUrlJourneyTest.xml",
+    "matchingInvocations": [
+      "AC03_shortUrlUsesTheConfiguredBaseNeverTheHostHeader()"
+    ],
+    "classInvocations": 1,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.RedirectJourneyTest",
+    "method": "AC12_visitorIsRedirectedWithANonCacheable302",
+    "source": "src/functionalTest/java/dev/urlshort/link/RedirectJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.RedirectJourneyTest.xml",
+    "matchingInvocations": [
+      "AC12_visitorIsRedirectedWithANonCacheable302()"
+    ],
+    "classInvocations": 3,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.RedirectJourneyTest",
+    "method": "AC13_aRetiredLinkTellsTheVisitorItIsGone",
+    "source": "src/functionalTest/java/dev/urlshort/link/RedirectJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.RedirectJourneyTest.xml",
+    "matchingInvocations": [
+      "AC13_aRetiredLinkTellsTheVisitorItIsGone()"
+    ],
+    "classInvocations": 3,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.link.RedirectJourneyTest",
+    "method": "rule7_queryStringOnTheShortLinkIsNotForwarded",
+    "source": "src/functionalTest/java/dev/urlshort/link/RedirectJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.link.RedirectJourneyTest.xml",
+    "matchingInvocations": [
+      "rule7_queryStringOnTheShortLinkIsNotForwarded()"
+    ],
+    "classInvocations": 3,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC1_pingAnswersOkAsJson",
+    "source": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.ping.PingJourneyTest.xml",
+    "matchingInvocations": [
+      "AC1_pingAnswersOkAsJson()"
+    ],
+    "classInvocations": 8,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC2_timeIsCurrentUtcInstant",
+    "source": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.ping.PingJourneyTest.xml",
+    "matchingInvocations": [
+      "AC2_timeIsCurrentUtcInstant()"
+    ],
+    "classInvocations": 8,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC3_everyResponseCarriesRequestId",
+    "source": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.ping.PingJourneyTest.xml",
+    "matchingInvocations": [
+      "AC3_everyResponseCarriesRequestId()"
+    ],
+    "classInvocations": 8,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC4_requestIdsAreUniquePerRequest",
+    "source": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.ping.PingJourneyTest.xml",
+    "matchingInvocations": [
+      "AC4_requestIdsAreUniquePerRequest()"
+    ],
+    "classInvocations": 8,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC5_wrongMethodIsProblemDetailWithRequestId",
+    "source": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.ping.PingJourneyTest.xml",
+    "matchingInvocations": [
+      "AC5_wrongMethodIsProblemDetailWithRequestId()"
+    ],
+    "classInvocations": 8,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC6_pingIsLoggedAsJsonWithRequestId",
+    "source": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.ping.PingJourneyTest.xml",
+    "matchingInvocations": [
+      "AC6_pingIsLoggedAsJsonWithRequestId(CapturedOutput)"
+    ],
+    "classInvocations": 8,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC7_logEventCarriesNoClientAddressOrUserAgent",
+    "source": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.ping.PingJourneyTest.xml",
+    "matchingInvocations": [
+      "AC7_logEventCarriesNoClientAddressOrUserAgent(CapturedOutput)"
+    ],
+    "classInvocations": 8,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC8_clientSuppliedRequestIdIsIgnored",
+    "source": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.ping.PingJourneyTest.xml",
+    "matchingInvocations": [
+      "AC8_clientSuppliedRequestIdIsIgnored(CapturedOutput)"
+    ],
+    "classInvocations": 8,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.ColdStartJourneyTest",
+    "method": "AC26_theFirstRequestOnARealServerLogsOnlyItsOwnCorrelatedEvents",
+    "source": "src/functionalTest/java/dev/urlshort/web/ColdStartJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.ColdStartJourneyTest.xml",
+    "matchingInvocations": [
+      "AC26_theFirstRequestOnARealServerLogsOnlyItsOwnCorrelatedEvents(CapturedOutput)"
+    ],
+    "classInvocations": 1,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.DatabaseDownJourneyTest",
+    "method": "AC14_AC15_readinessFollowsTheDatabaseAndLivenessDoesNot",
+    "source": "src/functionalTest/java/dev/urlshort/web/DatabaseDownJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.DatabaseDownJourneyTest.xml",
+    "matchingInvocations": [
+      "AC14_AC15_readinessFollowsTheDatabaseAndLivenessDoesNot()"
+    ],
+    "classInvocations": 1,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.HealthMetricsJourneyTest",
+    "method": "AC13_livenessAndReadinessAreUpWithAWorkingDatabase",
+    "source": "src/functionalTest/java/dev/urlshort/web/HealthMetricsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.HealthMetricsJourneyTest.xml",
+    "matchingInvocations": [
+      "AC13_livenessAndReadinessAreUpWithAWorkingDatabase()"
+    ],
+    "classInvocations": 4,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.HealthMetricsJourneyTest",
+    "method": "AC15_healthBodiesDiscloseNothingAboutTheInstallation",
+    "source": "src/functionalTest/java/dev/urlshort/web/HealthMetricsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.HealthMetricsJourneyTest.xml",
+    "matchingInvocations": [
+      "AC15_healthBodiesDiscloseNothingAboutTheInstallation()"
+    ],
+    "classInvocations": 4,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.HealthMetricsJourneyTest",
+    "method": "AC18_redirectsAreCountedByRouteTemplate",
+    "source": "src/functionalTest/java/dev/urlshort/web/HealthMetricsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.HealthMetricsJourneyTest.xml",
+    "matchingInvocations": [
+      "AC18_redirectsAreCountedByRouteTemplate()"
+    ],
+    "classInvocations": 4,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.HealthMetricsJourneyTest",
+    "method": "AC6_diskGaugesCarryNoInstallationPath",
+    "source": "src/functionalTest/java/dev/urlshort/web/HealthMetricsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.HealthMetricsJourneyTest.xml",
+    "matchingInvocations": [
+      "AC6_diskGaugesCarryNoInstallationPath()"
+    ],
+    "classInvocations": 4,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.HealthMetricsJourneyTest$AnonymousScrape",
+    "method": "AC6_theScrapeCarriesNoInstallationPath",
+    "source": "src/functionalTest/java/dev/urlshort/web/HealthMetricsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.HealthMetricsJourneyTest$AnonymousScrape.xml",
+    "matchingInvocations": [
+      "AC6_theScrapeCarriesNoInstallationPath()"
+    ],
+    "classInvocations": 1,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.ObservabilityJourneyTest",
+    "method": "AC26_everyResponseCarriesARequestIdAndEveryEventOfTheRequestTheSameId",
+    "source": "src/functionalTest/java/dev/urlshort/web/ObservabilityJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.ObservabilityJourneyTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 20,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.ObservabilityJourneyTest",
+    "method": "AC27_noClientControlledValueReachesTheLogs",
+    "source": "src/functionalTest/java/dev/urlshort/web/ObservabilityJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.ObservabilityJourneyTest.xml",
+    "matchingInvocations": [
+      "AC27_noClientControlledValueReachesTheLogs(CapturedOutput)"
+    ],
+    "classInvocations": 20,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.ObservabilityJourneyTest",
+    "method": "AC27_aDatabaseFailureQuotingTheKeyLogsOnlyClassNames",
+    "source": "src/functionalTest/java/dev/urlshort/web/ObservabilityJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.ObservabilityJourneyTest.xml",
+    "matchingInvocations": [
+      "AC27_aDatabaseFailureQuotingTheKeyLogsOnlyClassNames(CapturedOutput)"
+    ],
+    "classInvocations": 20,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.ObservabilityJourneyTest",
+    "method": "rule8_problemBodiesAndLogsNeverEchoASubmittedValue",
+    "source": "src/functionalTest/java/dev/urlshort/web/ObservabilityJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.ObservabilityJourneyTest.xml",
+    "matchingInvocations": [],
+    "classInvocations": 20,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.OpenApiDocumentTest",
+    "method": "NFRM3_committedDocumentEqualsTheLiveOne",
+    "source": "src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.OpenApiDocumentTest.xml",
+    "matchingInvocations": [
+      "NFRM3_committedDocumentEqualsTheLiveOne()"
+    ],
+    "classInvocations": 5,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.OpenApiDocumentTest",
+    "method": "AC28_liveDocumentDescribesTheSlice",
+    "source": "src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.OpenApiDocumentTest.xml",
+    "matchingInvocations": [
+      "AC28_liveDocumentDescribesTheSlice()"
+    ],
+    "classInvocations": 5,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.OpenApiDocumentTest",
+    "method": "AC20_everyOperationDocumentsTheTooManyRequestsProblem",
+    "source": "src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.OpenApiDocumentTest.xml",
+    "matchingInvocations": [
+      "AC20_everyOperationDocumentsTheTooManyRequestsProblem()"
+    ],
+    "classInvocations": 5,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.OpenApiDocumentTest",
+    "method": "AC1_problemSchemaDocumentsErrorsAndNoProperties",
+    "source": "src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.OpenApiDocumentTest.xml",
+    "matchingInvocations": [
+      "AC1_problemSchemaDocumentsErrorsAndNoProperties()"
+    ],
+    "classInvocations": 5,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.OpenApiDocumentTest",
+    "method": "AC2_problemBodiesConformToTheDocumentedSchema",
+    "source": "src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.OpenApiDocumentTest.xml",
+    "matchingInvocations": [
+      "AC2_problemBodiesConformToTheDocumentedSchema()"
+    ],
+    "classInvocations": 5,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.OpenApiDocumentTest$OverTheCreateBudget",
+    "method": "AC2_theTooManyRequestsProblemConformsToo",
+    "source": "src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.OpenApiDocumentTest$OverTheCreateBudget.xml",
+    "matchingInvocations": [
+      "AC2_theTooManyRequestsProblemConformsToo()"
+    ],
+    "classInvocations": 1,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitDefaultsTest",
+    "method": "theShippedConfigurationCarriesTheDecidedBudgets",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitDefaultsTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitDefaultsTest.xml",
+    "matchingInvocations": [
+      "theShippedConfigurationCarriesTheDecidedBudgets()"
+    ],
+    "classInvocations": 2,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitDefaultsTest",
+    "method": "theSettingsRecordDefaultsToTheSameBudgets",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitDefaultsTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitDefaultsTest.xml",
+    "matchingInvocations": [
+      "theSettingsRecordDefaultsToTheSameBudgets()"
+    ],
+    "classInvocations": 2,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC01_theCreateBudgetAdmits60AndRefusesThe61st",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitJourneyTest.xml",
+    "matchingInvocations": [
+      "AC01_theCreateBudgetAdmits60AndRefusesThe61st()"
+    ],
+    "classInvocations": 19,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC02_theRedirectBudgetAdmits600AndRefusesThe601st",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitJourneyTest.xml",
+    "matchingInvocations": [
+      "AC02_theRedirectBudgetAdmits600AndRefusesThe601st()"
+    ],
+    "classInvocations": 19,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC03a_retryAfterIsTruthfulFromAnExactlyEmptyBucket",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitJourneyTest.xml",
+    "matchingInvocations": [
+      "AC03a_retryAfterIsTruthfulFromAnExactlyEmptyBucket()"
+    ],
+    "classInvocations": 19,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC03b_retryAfterIsAnUpperBoundFromAPartlyRefilledBucket",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitJourneyTest.xml",
+    "matchingInvocations": [
+      "AC03b_retryAfterIsAnUpperBoundFromAPartlyRefilledBucket()"
+    ],
+    "classInvocations": 19,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC04_aFullBudgetReturnsAfterAQuietMinute",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitJourneyTest.xml",
+    "matchingInvocations": [
+      "AC04_aFullBudgetReturnsAfterAQuietMinute()"
+    ],
+    "classInvocations": 19,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC05_theTwoBudgetsAreIndependent",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitJourneyTest.xml",
+    "matchingInvocations": [
+      "AC05_theTwoBudgetsAreIndependent()"
+    ],
+    "classInvocations": 19,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC06_clientsAreIndependent",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitJourneyTest.xml",
+    "matchingInvocations": [
+      "AC06_clientsAreIndependent()"
+    ],
+    "classInvocations": 19,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC07_aForgedForwardedAddressDoesNotChangeTheClient",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitJourneyTest.xml",
+    "matchingInvocations": [
+      "AC07_aForgedForwardedAddressDoesNotChangeTheClient()"
+    ],
+    "classInvocations": 19,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC09_everyRequestInABudgetCountsAndTheLimitIsCheckedFirst",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitJourneyTest.xml",
+    "matchingInvocations": [
+      "AC09_everyRequestInABudgetCountsAndTheLimitIsCheckedFirst()"
+    ],
+    "classInvocations": 19,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC11_theTooManyRequestsProblemNamesNoClient",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitJourneyTest.xml",
+    "matchingInvocations": [
+      "AC11_theTooManyRequestsProblemNamesNoClient()"
+    ],
+    "classInvocations": 19,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC12_eachRejectionIsLoggedOnceCorrelatedAndWithoutClientValues",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitJourneyTest.xml",
+    "matchingInvocations": [
+      "AC12_eachRejectionIsLoggedOnceCorrelatedAndWithoutClientValues(CapturedOutput)"
+    ],
+    "classInvocations": 19,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "rule1_percentEncodingDoesNotMoveARequestToTheLargerBudget",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitJourneyTest.xml",
+    "matchingInvocations": [
+      "rule1_percentEncodingDoesNotMoveARequestToTheLargerBudget()"
+    ],
+    "classInvocations": 19,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "rule1_operatorSurfacesAreNeverLimited",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitJourneyTest.xml",
+    "matchingInvocations": [
+      "rule1_operatorSurfacesAreNeverLimited()"
+    ],
+    "classInvocations": 19,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "rule1_aDotDotSegmentUnderAnExemptPrefixReachesNoLimitedOperation",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitJourneyTest.xml",
+    "matchingInvocations": [
+      "rule1_aDotDotSegmentUnderAnExemptPrefixReachesNoLimitedOperation()"
+    ],
+    "classInvocations": 19,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC16_theMetricsSurfaceListsTheFourKindsOfMetric",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitJourneyTest.xml",
+    "matchingInvocations": [
+      "AC16_theMetricsSurfaceListsTheFourKindsOfMetric()"
+    ],
+    "classInvocations": 19,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC17_everyRejectionIsCountedOnceByBudget",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitJourneyTest.xml",
+    "matchingInvocations": [
+      "AC17_everyRejectionIsCountedOnceByBudget()"
+    ],
+    "classInvocations": 19,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC19_metricsAreExposedForScrapingWithoutClientOrLinkValues",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitJourneyTest.xml",
+    "matchingInvocations": [
+      "AC19_metricsAreExposedForScrapingWithoutClientOrLinkValues()"
+    ],
+    "classInvocations": 19,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "designDR01_anInvalidPathUnderAnExemptPrefixLogsNoSubmittedValueOnTomcat",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitJourneyTest.xml",
+    "matchingInvocations": [
+      "designDR01_anInvalidPathUnderAnExemptPrefixLogsNoSubmittedValueOnTomcat(CapturedOutput)"
+    ],
+    "classInvocations": 19,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC11_onTomcatThe429IsTheSameProblemMediaTypeAsEveryOtherError",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitJourneyTest.xml",
+    "matchingInvocations": [
+      "AC11_onTomcatThe429IsTheSameProblemMediaTypeAsEveryOtherError()"
+    ],
+    "classInvocations": 19,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.RateLimitSettingsJourneyTest",
+    "method": "AC10_theBudgetsAreOperatorSettings",
+    "source": "src/functionalTest/java/dev/urlshort/web/RateLimitSettingsJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitSettingsJourneyTest.xml",
+    "matchingInvocations": [
+      "AC10_theBudgetsAreOperatorSettings()"
+    ],
+    "classInvocations": 1,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.ShutdownPhaseDefaultTest",
+    "method": "theShippedGracefulShutdownPhaseIsTenSeconds",
+    "source": "src/functionalTest/java/dev/urlshort/web/ShutdownPhaseDefaultTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.ShutdownPhaseDefaultTest.xml",
+    "matchingInvocations": [
+      "theShippedGracefulShutdownPhaseIsTenSeconds()"
+    ],
+    "classInvocations": 1,
+    "result": "PASS"
+  },
+  {
+    "suite": "functional",
+    "class": "dev.urlshort.web.TrustedProxyJourneyTest",
+    "method": "AC08_aTrustedProxysForwardedAddressIdentifiesTheClient",
+    "source": "src/functionalTest/java/dev/urlshort/web/TrustedProxyJourneyTest.java",
+    "report": "build/test-results/functionalTest/TEST-dev.urlshort.web.TrustedProxyJourneyTest.xml",
+    "matchingInvocations": [
+      "AC08_aTrustedProxysForwardedAddressIdentifiesTheClient()"
+    ],
+    "classInvocations": 1,
+    "result": "PASS"
+  }
+]

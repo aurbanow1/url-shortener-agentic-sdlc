@@ -1,0 +1,30 @@
+{
+  "sequence": 16,
+  "name": "audit-forwarded-refused",
+  "app": "controlled",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "GET",
+    "-H",
+    "X-Forwarded-For: 127.0.0.1",
+    "http://localhost:18161/api/audit"
+  ],
+  "status": 403,
+  "headers": {
+    "x-request-id": "39e94313-933e-424f-989d-754c59675923",
+    "content-type": "application/problem+json",
+    "transfer-encoding": "chunked",
+    "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+  },
+  "body": "{\"instance\":\"urn:uuid:39e94313-933e-424f-989d-754c59675923\",\"status\":403,\"title\":\"Forbidden\"}",
+  "json": {
+    "instance": "urn:uuid:39e94313-933e-424f-989d-754c59675923",
+    "status": 403,
+    "title": "Forbidden"
+  }
+}

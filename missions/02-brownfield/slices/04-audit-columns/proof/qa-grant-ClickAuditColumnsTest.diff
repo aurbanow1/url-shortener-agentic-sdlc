@@ -1,0 +1,13 @@
+diff --git a/src/test/java/dev/urlshort/click/ClickAuditColumnsTest.java b/src/test/java/dev/urlshort/click/ClickAuditColumnsTest.java
+index 8f57cfc..f578dd8 100644
+--- a/src/test/java/dev/urlshort/click/ClickAuditColumnsTest.java
++++ b/src/test/java/dev/urlshort/click/ClickAuditColumnsTest.java
+@@ -47,7 +47,7 @@ class ClickAuditColumnsTest {
+ 			List<Map<String, Object>> v1Classes = jdbc.sql("SELECT * FROM user_agent_class ORDER BY token").query()
+ 					.listOfRows();
+ 
+-			Flyway.configure().dataSource(dataSource).load().migrate();
++			Flyway.configure().dataSource(dataSource).target("3").load().migrate();
+ 			dataSource.getHikariPoolMXBean().softEvictConnections();
+ 			insertV1(jdbc, linkId, "CURRENT_TIMESTAMP", "CURRENT_DATE", "https://new.example");
+ 

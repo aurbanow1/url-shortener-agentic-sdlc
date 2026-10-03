@@ -1,0 +1,29 @@
+{
+  "sequence": 82,
+  "name": "rate-60",
+  "app": "default-limiter",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "GET",
+    "http://localhost:18162/api/links/zzzzzzzz"
+  ],
+  "status": 429,
+  "headers": {
+    "x-request-id": "b6ea9fb7-e675-4f9f-81ad-5446453a3818",
+    "retry-after": "1",
+    "content-type": "application/problem+json",
+    "content-length": "101",
+    "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+  },
+  "body": "{\"instance\":\"urn:uuid:b6ea9fb7-e675-4f9f-81ad-5446453a3818\",\"status\":429,\"title\":\"Too Many Requests\"}",
+  "json": {
+    "instance": "urn:uuid:b6ea9fb7-e675-4f9f-81ad-5446453a3818",
+    "status": 429,
+    "title": "Too Many Requests"
+  }
+}

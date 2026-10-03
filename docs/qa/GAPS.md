@@ -246,3 +246,22 @@ Observation limits and compensating checks:
 Every AC is functionally covered and independently observed by effect. No remaining
 AC verification gap or merged coverage deficit on X; custody item 9 is an explicit
 later judgment obligation, not an accepted gap or completed acceptance.
+
+
+## 04-audit-columns — QA2, candidate 305f8045d45b19a9e3287d5fe3508af6e04db9a4
+
+| Gap / qualification | Why | Compensating check / disposition |
+|---|---|---|
+| None for merged coverage or required AC verification | Fresh557/557 lines200/200 branches; all11 ACs observed | No exclusion, lowered threshold or failing acceptance criterion |
+| Unit490/557 lines (87.97%),194/200 branches (97%); functional523/557 lines (93.90%),166/200 branches (83%) | The gate specifies merged coverage; suites complement one another | Independent CSV sums,366 copied hashes rechecked; merged100/100 |
+| AC1/11 schema/rollback tests are unit, as explicitly allowed in SPEC proof item1/design§7 | There is no dedicated JUnit functional rollback method; QA's generic every-AC-functional convention cannot be represented as an invented test | Functional LinkUpgradeJourneyTest covers in-place application/rows; external real candidate jar/JDBC driver runs the literal rollback on a copy, verifies all schema/legacy values and restarts/reapplies V4. No unobserved AC or waiver requested |
+| AC9 two baseline tests differ by migration pins | Grant132a884 explicitly permits stopping the retention tests at their intended V3 instead of latestV4 |57/59 baseline files byte-equal; exact two diffs retain every assertion; all437 inherited invocations green plus14 new |
+| External Clock and JDBC controls; no natural24h wait or spontaneous audit-store failure | SPEC-controlled time and reproducible transaction failure | Real HTTP paths/repositories/DataSource; actual H2 CHECK rejects one audit INSERT; exact link/audit snapshots prove rollback. F6 expiry fixture moves one creation time back2d while stopped, then real shipped endpoint releases its key |
+| Synthetic future audit row on the shipped directory | Verifies the explicit LEAST cap independently of the real-clock f6 writes | All legacy values preserved; future occurred_at unchanged, new row clocks equal and earlier; all genuine old rows backfill exact event time |
+|41 source methods have only class-level parameterized XML attribution | JUnit display names omit method names for those arguments | All451 invocations green;271 source methods inventoried; nested classes resolved against their actual XML;230 individually attributed |
+| QA setup interruptions retained | Child socket bind denied; H2 offsets/fractions needed normalization; initial limiter probe incorrectly used the exempt audit route | Scoped sandbox approval; fresh directories after correction; final94 requests/787 assertions all green. Only final runmissions/02-brownfield/slices/04-audit-columns/proof/qa-305f804/run-20261003T234116500899Z is claimed complete |
+| PostgreSQL, Docker, large-directory startup cost not independently run | Outside required H2 behavioral verification; separate design32-control probe/timing retained | No QA performance/portability claim; normal shutdown observed for all7 processes |
+
+The existing interim link/audit_log policy rows at GAPS lines84–85 close only on this slice's merge;
+QA does not mark a future merge as done. All new and upgraded columns are observed here, and the
+integrator can close that interim row when the exact candidate lands.

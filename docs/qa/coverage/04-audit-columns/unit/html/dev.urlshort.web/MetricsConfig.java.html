@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MetricsConfig.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">urlshort</a> &gt; <a href="index.source.html" class="el_package">dev.urlshort.web</a> &gt; <span class="el_source">MetricsConfig.java</span></div><h1>MetricsConfig.java</h1><pre class="source lang-java linenums">package dev.urlshort.web;
+
+import io.micrometer.core.instrument.config.MeterFilter;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * No meter carries a filesystem path (ADR-0016 amendment). Micrometer's disk gauges tag the absolute
+ * data path, an installation detail on the anonymous {@code /actuator/prometheus} and
+ * {@code /actuator/metrics}; the filter drops that tag key from every meter, and only {@code disk.free}
+ * and {@code disk.total} carry it today. The gauges keep their values.
+ */
+@Configuration(proxyBeanMethods = false)
+<span class="fc" id="L14">class MetricsConfig {</span>
+
+	// ponytail: every meter, not only disk.*; a second disk path would need its own non-path tag here
+	@Bean
+	MeterFilter withoutPathTag() {
+<span class="fc" id="L19">		return MeterFilter.ignoreTags(&quot;path&quot;);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

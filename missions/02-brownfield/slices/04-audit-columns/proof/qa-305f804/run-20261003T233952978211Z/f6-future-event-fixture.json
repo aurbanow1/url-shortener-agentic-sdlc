@@ -1,0 +1,10 @@
+{
+  "sql": [
+    "INSERT INTO audit_log (occurred_at,actor,action,entity,entity_id,request_id,before_state,after_state) SELECT DATEADD('DAY',2,CURRENT_TIMESTAMP),actor,action,entity,entity_id,'qa04-future-event',before_state,after_state FROM audit_log ORDER BY id FETCH FIRST 1 ROW ONLY"
+  ],
+  "results": [
+    {
+      "updated": 1
+    }
+  ]
+}

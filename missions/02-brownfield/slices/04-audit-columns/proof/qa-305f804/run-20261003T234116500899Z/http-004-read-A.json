@@ -1,0 +1,30 @@
+{
+  "sequence": 4,
+  "name": "read-A",
+  "app": "controlled",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "GET",
+    "http://localhost:18161/api/links/YnyAVdn6"
+  ],
+  "status": 200,
+  "headers": {
+    "x-request-id": "81a36fff-f64f-4b81-9174-6e5bff264338",
+    "content-type": "application/json",
+    "content-length": "151",
+    "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+  },
+  "body": "{\"code\":\"YnyAVdn6\",\"shortUrl\":\"http://localhost:18161/YnyAVdn6\",\"url\":\"https://example.com/qa04-A\",\"state\":\"active\",\"createdAt\":\"2026-08-01T12:00:00Z\"}",
+  "json": {
+    "code": "YnyAVdn6",
+    "shortUrl": "http://localhost:18161/YnyAVdn6",
+    "url": "https://example.com/qa04-A",
+    "state": "active",
+    "createdAt": "2026-08-01T12:00:00Z"
+  }
+}

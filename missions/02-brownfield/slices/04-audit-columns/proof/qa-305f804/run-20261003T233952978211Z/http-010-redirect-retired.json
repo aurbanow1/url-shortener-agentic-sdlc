@@ -1,0 +1,28 @@
+{
+  "sequence": 10,
+  "name": "redirect-retired",
+  "app": "controlled",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "GET",
+    "http://localhost:18161/x6IcAkPb"
+  ],
+  "status": 410,
+  "headers": {
+    "x-request-id": "34b0f85b-24da-42d7-bbbf-9c82c6333d4f",
+    "content-type": "application/problem+json",
+    "transfer-encoding": "chunked",
+    "date": "Sat, 03 Oct 2026 23:39:55 GMT"
+  },
+  "body": "{\"instance\":\"urn:uuid:34b0f85b-24da-42d7-bbbf-9c82c6333d4f\",\"status\":410,\"title\":\"Gone\"}",
+  "json": {
+    "instance": "urn:uuid:34b0f85b-24da-42d7-bbbf-9c82c6333d4f",
+    "status": 410,
+    "title": "Gone"
+  }
+}

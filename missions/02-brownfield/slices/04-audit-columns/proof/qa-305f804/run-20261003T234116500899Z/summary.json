@@ -1,0 +1,56 @@
+{
+  "candidate": "305f8045d45b19a9e3287d5fe3508af6e04db9a4",
+  "assertions": 787,
+  "passed": 787,
+  "httpRequests": 94,
+  "apps": [
+    {
+      "name": "controlled",
+      "pid": 62306,
+      "exit": 0
+    },
+    {
+      "name": "default-limiter",
+      "pid": 62570,
+      "exit": 0
+    },
+    {
+      "name": "f6-writer-1",
+      "pid": 62860,
+      "exit": 143
+    },
+    {
+      "name": "f6-writer-2",
+      "pid": 63060,
+      "exit": 143
+    },
+    {
+      "name": "candidate-upgrade",
+      "pid": 63312,
+      "exit": 143
+    },
+    {
+      "name": "candidate-new-writes",
+      "pid": 63437,
+      "exit": 143
+    },
+    {
+      "name": "candidate-reapply",
+      "pid": 63726,
+      "exit": 143
+    }
+  ],
+  "scratch": "/private/tmp/urlshort-qa2-auditcols-uthyrm0v/run-20261003T234116500899Z",
+  "fixtures": [
+    "external primary Clock, JDBC controls via files; no HTTP controls",
+    "audit CHECK temporarily rejects one actual retire INSERT",
+    "f6 link creation timestamp moved back 2d while stopped; real f6 key release endpoint then invoked",
+    "one synthetic future audit event inserted on stopped f6 directory",
+    "rollback only on stopped directory copy"
+  ],
+  "notChecked": [
+    "PostgreSQL",
+    "large-directory migration timing",
+    "Docker"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "sequence": 2,
+  "name": "replay-A",
+  "app": "controlled",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "POST",
+    "-H",
+    "Idempotency-Key: QA04-IDEMPOTENCY-CANARY",
+    "-H",
+    "Content-Type: application/json",
+    "--data",
+    "{\"url\": \"https://example.com/qa04-A\"}",
+    "http://localhost:18161/api/links"
+  ],
+  "status": 201,
+  "headers": {
+    "x-request-id": "7b3cca0d-bd1f-4499-bd88-e1750de03eb0",
+    "location": "/api/links/LqbiHXav",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sat, 03 Oct 2026 23:38:20 GMT"
+  },
+  "body": "{\"code\":\"LqbiHXav\",\"shortUrl\":\"http://localhost:18161/LqbiHXav\",\"url\":\"https://example.com/qa04-A\",\"state\":\"active\",\"createdAt\":\"2026-08-01T12:00:00Z\"}",
+  "json": {
+    "code": "LqbiHXav",
+    "shortUrl": "http://localhost:18161/LqbiHXav",
+    "url": "https://example.com/qa04-A",
+    "state": "active",
+    "createdAt": "2026-08-01T12:00:00Z"
+  }
+}

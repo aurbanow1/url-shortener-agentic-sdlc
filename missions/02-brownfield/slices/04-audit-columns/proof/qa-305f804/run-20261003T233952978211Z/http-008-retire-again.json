@@ -1,0 +1,28 @@
+{
+  "sequence": 8,
+  "name": "retire-again",
+  "app": "controlled",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "DELETE",
+    "http://localhost:18161/api/links/x6IcAkPb"
+  ],
+  "status": 410,
+  "headers": {
+    "x-request-id": "8747734a-82aa-4161-9c97-1ad6a145a60f",
+    "content-type": "application/problem+json",
+    "transfer-encoding": "chunked",
+    "date": "Sat, 03 Oct 2026 23:39:55 GMT"
+  },
+  "body": "{\"instance\":\"urn:uuid:8747734a-82aa-4161-9c97-1ad6a145a60f\",\"status\":410,\"title\":\"Gone\"}",
+  "json": {
+    "instance": "urn:uuid:8747734a-82aa-4161-9c97-1ad6a145a60f",
+    "status": 410,
+    "title": "Gone"
+  }
+}

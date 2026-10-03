@@ -1,0 +1,37 @@
+{
+  "sequence": 11,
+  "name": "expired-key-create-B",
+  "app": "controlled",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "POST",
+    "-H",
+    "Idempotency-Key: QA04-IDEMPOTENCY-CANARY",
+    "-H",
+    "Content-Type: application/json",
+    "--data",
+    "{\"url\": \"https://example.com/qa04-A-B\"}",
+    "http://localhost:18161/api/links"
+  ],
+  "status": 201,
+  "headers": {
+    "x-request-id": "5ae5320a-9a74-43c5-bfa5-c0e3ce27fb64",
+    "location": "/api/links/8D7kc9mN",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sat, 03 Oct 2026 23:38:20 GMT"
+  },
+  "body": "{\"code\":\"8D7kc9mN\",\"shortUrl\":\"http://localhost:18161/8D7kc9mN\",\"url\":\"https://example.com/qa04-A-B\",\"state\":\"active\",\"createdAt\":\"2026-08-02T13:00:00Z\"}",
+  "json": {
+    "code": "8D7kc9mN",
+    "shortUrl": "http://localhost:18161/8D7kc9mN",
+    "url": "https://example.com/qa04-A-B",
+    "state": "active",
+    "createdAt": "2026-08-02T13:00:00Z"
+  }
+}

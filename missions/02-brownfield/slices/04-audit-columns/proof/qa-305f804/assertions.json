@@ -1,0 +1,111 @@
+[
+  {
+    "claim": "exact candidate",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "candidate worktree clean",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "f6 baseline exact",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC1 fresh history V1-V4",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "create-A curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "create-A status",
+    "pass": true,
+    "detail": 201
+  },
+  {
+    "claim": "create-A requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "c3b85b35-e86c-4daa-9a1e-1467d7b95259",
+      "location": "/api/links/lmI3a530",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:32:02 GMT"
+    }
+  },
+  {
+    "claim": "create-A no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "c3b85b35-e86c-4daa-9a1e-1467d7b95259",
+      "location": "/api/links/lmI3a530",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:32:02 GMT"
+    }
+  },
+  {
+    "claim": "create-A exact shipped fields",
+    "pass": true,
+    "detail": {
+      "code": "lmI3a530",
+      "shortUrl": "http://localhost:18161/lmI3a530",
+      "url": "https://example.com/qa04-A",
+      "state": "active",
+      "createdAt": "2026-08-01T12:00:00Z"
+    }
+  },
+  {
+    "claim": "AC2 equal filled audit row clocks",
+    "pass": true,
+    "detail": {
+      "id": "1",
+      "occurred_at": "2026-08-01 12:00:00+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "lmI3a530",
+      "request_id": "c3b85b35-e86c-4daa-9a1e-1467d7b95259",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/qa04-A\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 16:32:02.82669-07",
+      "updated_at": "2026-10-03 16:32:02.82669-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC2 actor equality",
+    "pass": true,
+    "detail": {
+      "id": "1",
+      "occurred_at": "2026-08-01 12:00:00+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "lmI3a530",
+      "request_id": "c3b85b35-e86c-4daa-9a1e-1467d7b95259",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/qa04-A\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 16:32:02.82669-07",
+      "updated_at": "2026-10-03 16:32:02.82669-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "controlled process stopped",
+    "pass": true,
+    "detail": {
+      "pid": 26964,
+      "exit": 0
+    }
+  }
+]
