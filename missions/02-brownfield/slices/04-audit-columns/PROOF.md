@@ -149,4 +149,6 @@ SELECT/ancestry/nextV4 independently confirmed. Interim policy gap closes at mer
 - Not checked: PostgreSQL, Docker, large-directory migration timing; normal shutdown is the only
   shutdown claim. Interrupted QA instrument runs preserved; only the complete final run is claimed.
 
-Current accepted receipts: 2,3,5,6,7,8,9,10 (item1 receipt9 reaffirms final summary formatting; item4 receipt10 reaffirms another slice append to shared TRACEABILITY while this slice section stayed byte-identical; earlier receipts retained as history). Items1–4,6–9 accepted against305f804; item5 pending under lead-confirmed qitem-20261003234855-d2ef129b.
+Accepted receipts at the saved projection: 2,3,5,6,7,8,9,10 (item1 receipt9 reaffirms final summary formatting; item4 receipt10 reaffirms another slice append to shared TRACEABILITY while this slice section stayed byte-identical; earlier receipts retained as history). Items1–4,6–9 accepted against305f804; item5 pending under lead-confirmed qitem-20261003234855-d2ef129b.
+
+Shared TRACEABILITY received another slice append after the saved projection. QA rechecked this slice table byte-equal to fdd8c5b (`qa-trace-final-projection.json`) and reaffirms item4 against the current whole-file hash before handoff. Later shared-file drift stays lead final-reconciliation scope.
