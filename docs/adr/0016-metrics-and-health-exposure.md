@@ -1,6 +1,6 @@
 # ADR-0016 — Metrics in Prometheus format, readiness with the database, status-only health, quiet parser errors
 
-- Status: accepted at the `03-operate` plan-lock (2026-10-03T09:41Z; status line set 09:48Z); amendment proposed by `01-analytics-v2` (see *Amendment*)
+- Status: accepted at the `03-operate` plan-lock (2026-10-03T09:41Z; status line set 09:48Z); amendments proposed by `01-analytics-v2` and `03-dogfood-fix` (see *Amendment* sections)
 - Date: 2026-10-03
 - Slice: `03-operate`
 
@@ -72,3 +72,30 @@ Both are registered by `ClickRecorder` at construction, every `reason` included,
 are present at zero. They render as `urlshort_clicks_recorded_total` and
 `urlshort_clicks_lost_total{reason="…"}`; a value with a comma is quoted as it is (`01-analytics-v2`
 probe S4). No other tag exists, and no tag can carry a client value, link code, id or referrer.
+
+## Amendment — `03-dogfood-fix` (2026-10-03, proposed; accepted at that slice's plan-lock)
+
+**Context.** The anonymous scrape tagged Micrometer's disk gauges with the absolute data path
+(`disk_free_bytes{path="/Users/…/url-shortener/."}`), and `/actuator/metrics/disk.free` listed it
+(QA's dogfood W2-03; `GAPS.md` QA-OPR-02). `03-operate`'s rule 9 keeps installation details out of
+health bodies, and the same holds for the metrics surfaces. No Boot property removes one tag:
+`management.metrics.*` can add tags, switch meters off or choose the disk paths.
+
+**Decision.**
+- `web.MetricsConfig` declares `MeterFilter.ignoreTags("path")`. Boot applies it to every
+  registry, so the Prometheus scrape and `/actuator/metrics` both show `disk.free` and
+  `disk.total` without tags, with their values.
+- The filter covers every meter, not only `disk.*`. On the shipped scrape only the two disk gauges
+  carry `path`. This ADR already bars a request path from tags, and a filesystem path is an
+  installation detail, so no meter here may carry a `path` worth keeping.
+- The gauges stay. Free space is what an Operator watches for a file database. Switching them off
+  (`management.metrics.enable.disk=false`) was rejected.
+
+**Consequences.**
+- No metric tag carries a filesystem path.
+- If a second disk path is configured (`management.metrics.system.diskspace.paths`), its gauges
+  would collide with the first. The change that adds the path also adds a non-path tag per path
+  (for example `volume`).
+- Verified before implementation:
+  `missions/02-brownfield/slices/03-dogfood-fix/design-probe/output.txt` (D0, D3) and
+  `test-output.txt` (T1, T2, T5).
