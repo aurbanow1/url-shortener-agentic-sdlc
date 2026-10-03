@@ -1,0 +1,1356 @@
+Compiled from "TomcatWebServerFactoryCustomizer.java"
+public class org.springframework.boot.tomcat.autoconfigure.TomcatWebServerFactoryCustomizer implements org.springframework.boot.web.server.WebServerFactoryCustomizer<org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory>, org.springframework.core.Ordered {
+  static final int ORDER;
+
+  private final org.springframework.core.env.Environment environment;
+
+  private final org.springframework.boot.web.server.autoconfigure.ServerProperties serverProperties;
+
+  private final org.springframework.boot.tomcat.autoconfigure.TomcatServerProperties tomcatProperties;
+
+  private final org.springframework.boot.autoconfigure.web.WebProperties webProperties;
+
+  public org.springframework.boot.tomcat.autoconfigure.TomcatWebServerFactoryCustomizer(org.springframework.core.env.Environment, org.springframework.boot.web.server.autoconfigure.ServerProperties, org.springframework.boot.tomcat.autoconfigure.TomcatServerProperties, org.springframework.boot.autoconfigure.web.WebProperties);
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #7                  // Field environment:Lorg/springframework/core/env/Environment;
+       9: aload_0
+      10: aload_2
+      11: putfield      #13                 // Field serverProperties:Lorg/springframework/boot/web/server/autoconfigure/ServerProperties;
+      14: aload_0
+      15: aload_3
+      16: putfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+      19: aload_0
+      20: aload         4
+      22: putfield      #21                 // Field webProperties:Lorg/springframework/boot/autoconfigure/web/WebProperties;
+      25: return
+
+  public int getOrder();
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public void customize(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory);
+    Code:
+       0: invokestatic  #25                 // Method org/springframework/boot/context/properties/PropertyMapper.get:()Lorg/springframework/boot/context/properties/PropertyMapper;
+       3: astore_2
+       4: aload_2
+       5: aload_0
+       6: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+       9: dup
+      10: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      13: pop
+      14: invokedynamic #37,  0             // InvokeDynamic #0:get:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;)Ljava/util/function/Supplier;
+      19: invokevirtual #40                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/util/function/Supplier;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+      22: aload_1
+      23: dup
+      24: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      27: pop
+      28: invokedynamic #44,  0             // InvokeDynamic #1:accept:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)Ljava/util/function/Consumer;
+      33: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+      36: aload_2
+      37: aload_0
+      38: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+      41: dup
+      42: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      45: pop
+      46: invokedynamic #54,  0             // InvokeDynamic #2:get:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;)Ljava/util/function/Supplier;
+      51: invokevirtual #40                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/util/function/Supplier;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+      54: invokedynamic #55,  0             // InvokeDynamic #3:adapt:()Lorg/springframework/boot/context/properties/PropertyMapper$Source$Adapter;
+      59: invokevirtual #59                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.as:(Lorg/springframework/boot/context/properties/PropertyMapper$Source$Adapter;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+      62: invokedynamic #63,  0             // InvokeDynamic #4:adapt:()Lorg/springframework/boot/context/properties/PropertyMapper$Source$Adapter;
+      67: invokevirtual #59                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.as:(Lorg/springframework/boot/context/properties/PropertyMapper$Source$Adapter;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+      70: aload_1
+      71: dup
+      72: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      75: pop
+      76: invokedynamic #64,  0             // InvokeDynamic #5:accept:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)Ljava/util/function/Consumer;
+      81: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+      84: aload_0
+      85: aload_1
+      86: invokevirtual #65                 // Method customizeRemoteIpValve:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)V
+      89: aload_0
+      90: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+      93: invokevirtual #69                 // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties.getThreads:()Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Threads;
+      96: astore_3
+      97: aload_2
+      98: aload_3
+      99: dup
+     100: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     103: pop
+     104: invokedynamic #75,  0             // InvokeDynamic #6:get:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Threads;)Ljava/util/function/Supplier;
+     109: invokevirtual #40                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/util/function/Supplier;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     112: aload_0
+     113: invokedynamic #78,  0             // InvokeDynamic #7:test:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;)Ljava/util/function/Predicate;
+     118: invokevirtual #82                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.when:(Ljava/util/function/Predicate;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     121: aload_0
+     122: aload_1
+     123: invokedynamic #86,  0             // InvokeDynamic #8:accept:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)Ljava/util/function/Consumer;
+     128: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     131: aload_2
+     132: aload_3
+     133: dup
+     134: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     137: pop
+     138: invokedynamic #89,  0             // InvokeDynamic #9:get:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Threads;)Ljava/util/function/Supplier;
+     143: invokevirtual #40                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/util/function/Supplier;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     146: aload_0
+     147: invokedynamic #78,  0             // InvokeDynamic #7:test:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;)Ljava/util/function/Predicate;
+     152: invokevirtual #82                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.when:(Ljava/util/function/Predicate;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     155: aload_0
+     156: aload_1
+     157: invokedynamic #90,  0             // InvokeDynamic #10:accept:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)Ljava/util/function/Consumer;
+     162: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     165: aload_2
+     166: aload_3
+     167: dup
+     168: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     171: pop
+     172: invokedynamic #91,  0             // InvokeDynamic #11:get:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Threads;)Ljava/util/function/Supplier;
+     177: invokevirtual #40                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/util/function/Supplier;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     180: aload_0
+     181: invokedynamic #78,  0             // InvokeDynamic #7:test:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;)Ljava/util/function/Predicate;
+     186: invokevirtual #82                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.when:(Ljava/util/function/Predicate;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     189: aload_0
+     190: aload_1
+     191: invokedynamic #92,  0             // InvokeDynamic #12:accept:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)Ljava/util/function/Consumer;
+     196: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     199: aload_2
+     200: aload_0
+     201: getfield      #13                 // Field serverProperties:Lorg/springframework/boot/web/server/autoconfigure/ServerProperties;
+     204: invokevirtual #93                 // Method org/springframework/boot/web/server/autoconfigure/ServerProperties.getMaxHttpRequestHeaderSize:()Lorg/springframework/util/unit/DataSize;
+     207: invokevirtual #99                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/lang/Object;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     210: invokedynamic #102,  0            // InvokeDynamic #13:adapt:()Lorg/springframework/boot/context/properties/PropertyMapper$Source$Adapter;
+     215: invokevirtual #103                // Method org/springframework/boot/context/properties/PropertyMapper$Source.asInt:(Lorg/springframework/boot/context/properties/PropertyMapper$Source$Adapter;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     218: aload_0
+     219: invokedynamic #78,  0             // InvokeDynamic #7:test:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;)Ljava/util/function/Predicate;
+     224: invokevirtual #82                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.when:(Ljava/util/function/Predicate;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     227: aload_0
+     228: aload_1
+     229: invokedynamic #106,  0            // InvokeDynamic #14:accept:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)Ljava/util/function/Consumer;
+     234: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     237: aload_2
+     238: aload_0
+     239: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+     242: dup
+     243: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     246: pop
+     247: invokedynamic #107,  0            // InvokeDynamic #15:get:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;)Ljava/util/function/Supplier;
+     252: invokevirtual #40                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/util/function/Supplier;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     255: invokedynamic #102,  0            // InvokeDynamic #13:adapt:()Lorg/springframework/boot/context/properties/PropertyMapper$Source$Adapter;
+     260: invokevirtual #103                // Method org/springframework/boot/context/properties/PropertyMapper$Source.asInt:(Lorg/springframework/boot/context/properties/PropertyMapper$Source$Adapter;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     263: aload_0
+     264: invokedynamic #78,  0             // InvokeDynamic #7:test:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;)Ljava/util/function/Predicate;
+     269: invokevirtual #82                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.when:(Ljava/util/function/Predicate;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     272: aload_0
+     273: aload_1
+     274: invokedynamic #108,  0            // InvokeDynamic #16:accept:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)Ljava/util/function/Consumer;
+     279: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     282: aload_2
+     283: aload_0
+     284: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+     287: dup
+     288: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     291: pop
+     292: invokedynamic #109,  0            // InvokeDynamic #17:get:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;)Ljava/util/function/Supplier;
+     297: invokevirtual #40                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/util/function/Supplier;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     300: invokedynamic #102,  0            // InvokeDynamic #13:adapt:()Lorg/springframework/boot/context/properties/PropertyMapper$Source$Adapter;
+     305: invokevirtual #103                // Method org/springframework/boot/context/properties/PropertyMapper$Source.asInt:(Lorg/springframework/boot/context/properties/PropertyMapper$Source$Adapter;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     308: aload_0
+     309: aload_1
+     310: invokedynamic #110,  0            // InvokeDynamic #18:accept:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)Ljava/util/function/Consumer;
+     315: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     318: aload_2
+     319: aload_0
+     320: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+     323: dup
+     324: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     327: pop
+     328: invokedynamic #111,  0            // InvokeDynamic #19:get:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;)Ljava/util/function/Supplier;
+     333: invokevirtual #40                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/util/function/Supplier;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     336: invokedynamic #102,  0            // InvokeDynamic #13:adapt:()Lorg/springframework/boot/context/properties/PropertyMapper$Source$Adapter;
+     341: invokevirtual #103                // Method org/springframework/boot/context/properties/PropertyMapper$Source.asInt:(Lorg/springframework/boot/context/properties/PropertyMapper$Source$Adapter;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     344: invokedynamic #112,  0            // InvokeDynamic #20:test:()Ljava/util/function/Predicate;
+     349: invokevirtual #82                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.when:(Ljava/util/function/Predicate;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     352: aload_0
+     353: aload_1
+     354: invokedynamic #115,  0            // InvokeDynamic #21:accept:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)Ljava/util/function/Consumer;
+     359: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     362: aload_2
+     363: aload_0
+     364: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+     367: dup
+     368: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     371: pop
+     372: invokedynamic #116,  0            // InvokeDynamic #22:get:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;)Ljava/util/function/Supplier;
+     377: invokevirtual #40                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/util/function/Supplier;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     380: aload_0
+     381: aload_1
+     382: invokedynamic #117,  0            // InvokeDynamic #23:accept:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)Ljava/util/function/Consumer;
+     387: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     390: aload_2
+     391: aload_0
+     392: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+     395: dup
+     396: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     399: pop
+     400: invokedynamic #118,  0            // InvokeDynamic #24:get:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;)Ljava/util/function/Supplier;
+     405: invokevirtual #40                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/util/function/Supplier;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     408: invokedynamic #102,  0            // InvokeDynamic #13:adapt:()Lorg/springframework/boot/context/properties/PropertyMapper$Source$Adapter;
+     413: invokevirtual #103                // Method org/springframework/boot/context/properties/PropertyMapper$Source.asInt:(Lorg/springframework/boot/context/properties/PropertyMapper$Source$Adapter;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     416: aload_0
+     417: aload_1
+     418: invokedynamic #119,  0            // InvokeDynamic #25:accept:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)Ljava/util/function/Consumer;
+     423: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     426: aload_2
+     427: aload_0
+     428: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+     431: dup
+     432: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     435: pop
+     436: invokedynamic #120,  0            // InvokeDynamic #26:get:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;)Ljava/util/function/Supplier;
+     441: invokevirtual #40                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/util/function/Supplier;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     444: aload_0
+     445: aload_1
+     446: invokedynamic #121,  0            // InvokeDynamic #27:accept:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)Ljava/util/function/Consumer;
+     451: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     454: aload_2
+     455: aload_0
+     456: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+     459: dup
+     460: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     463: pop
+     464: invokedynamic #122,  0            // InvokeDynamic #28:get:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;)Ljava/util/function/Supplier;
+     469: invokevirtual #40                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/util/function/Supplier;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     472: invokedynamic #123,  0            // InvokeDynamic #29:test:()Ljava/util/function/Predicate;
+     477: invokevirtual #82                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.when:(Ljava/util/function/Predicate;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     480: aload_0
+     481: aload_1
+     482: invokedynamic #124,  0            // InvokeDynamic #30:accept:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)Ljava/util/function/Consumer;
+     487: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     490: aload_2
+     491: aload_0
+     492: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+     495: dup
+     496: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     499: pop
+     500: invokedynamic #125,  0            // InvokeDynamic #31:get:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;)Ljava/util/function/Supplier;
+     505: invokevirtual #40                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/util/function/Supplier;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     508: aload_1
+     509: dup
+     510: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     513: pop
+     514: invokedynamic #126,  0            // InvokeDynamic #32:accept:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)Ljava/util/function/Consumer;
+     519: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     522: aload_2
+     523: aload_0
+     524: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+     527: dup
+     528: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     531: pop
+     532: invokedynamic #127,  0            // InvokeDynamic #33:get:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;)Ljava/util/function/Supplier;
+     537: invokevirtual #40                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/util/function/Supplier;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     540: aload_0
+     541: aload_1
+     542: invokedynamic #128,  0            // InvokeDynamic #34:accept:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)Ljava/util/function/Consumer;
+     547: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     550: aload_2
+     551: aload_0
+     552: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+     555: dup
+     556: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     559: pop
+     560: invokedynamic #129,  0            // InvokeDynamic #35:get:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;)Ljava/util/function/Supplier;
+     565: invokevirtual #40                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/util/function/Supplier;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     568: aload_0
+     569: invokedynamic #78,  0             // InvokeDynamic #7:test:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;)Ljava/util/function/Predicate;
+     574: invokevirtual #82                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.when:(Ljava/util/function/Predicate;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     577: aload_0
+     578: aload_1
+     579: invokedynamic #130,  0            // InvokeDynamic #36:accept:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)Ljava/util/function/Consumer;
+     584: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     587: aload_2
+     588: aload_0
+     589: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+     592: dup
+     593: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     596: pop
+     597: invokedynamic #131,  0            // InvokeDynamic #37:get:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;)Ljava/util/function/Supplier;
+     602: invokevirtual #40                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/util/function/Supplier;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     605: aload_0
+     606: invokedynamic #78,  0             // InvokeDynamic #7:test:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;)Ljava/util/function/Predicate;
+     611: invokevirtual #82                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.when:(Ljava/util/function/Predicate;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     614: aload_0
+     615: aload_1
+     616: invokedynamic #132,  0            // InvokeDynamic #38:accept:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)Ljava/util/function/Consumer;
+     621: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     624: aload_2
+     625: aload_0
+     626: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+     629: dup
+     630: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     633: pop
+     634: invokedynamic #133,  0            // InvokeDynamic #39:get:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;)Ljava/util/function/Supplier;
+     639: invokevirtual #40                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/util/function/Supplier;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     642: aload_0
+     643: aload_1
+     644: invokedynamic #134,  0            // InvokeDynamic #40:accept:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)Ljava/util/function/Consumer;
+     649: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     652: aload_2
+     653: aload_0
+     654: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+     657: dup
+     658: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     661: pop
+     662: invokedynamic #135,  0            // InvokeDynamic #41:get:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;)Ljava/util/function/Supplier;
+     667: invokevirtual #40                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/util/function/Supplier;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     670: aload_0
+     671: aload_1
+     672: invokedynamic #136,  0            // InvokeDynamic #42:accept:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)Ljava/util/function/Consumer;
+     677: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     680: aload_2
+     681: aload_0
+     682: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+     685: dup
+     686: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     689: pop
+     690: invokedynamic #137,  0            // InvokeDynamic #43:get:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;)Ljava/util/function/Supplier;
+     695: invokevirtual #40                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/util/function/Supplier;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     698: aload_0
+     699: aload_1
+     700: invokedynamic #138,  0            // InvokeDynamic #44:accept:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)Ljava/util/function/Consumer;
+     705: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     708: aload_2
+     709: aload_0
+     710: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+     713: dup
+     714: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     717: pop
+     718: invokedynamic #139,  0            // InvokeDynamic #45:get:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;)Ljava/util/function/Supplier;
+     723: invokevirtual #40                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/util/function/Supplier;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     726: aload_0
+     727: invokedynamic #140,  0            // InvokeDynamic #46:adapt:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;)Lorg/springframework/boot/context/properties/PropertyMapper$Source$Adapter;
+     732: invokevirtual #59                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.as:(Lorg/springframework/boot/context/properties/PropertyMapper$Source$Adapter;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     735: invokevirtual #143                // Method org/springframework/boot/context/properties/PropertyMapper$Source.whenHasText:()Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     738: aload_0
+     739: aload_1
+     740: invokedynamic #147,  0            // InvokeDynamic #47:accept:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)Ljava/util/function/Consumer;
+     745: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     748: aload_2
+     749: aload_0
+     750: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+     753: dup
+     754: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     757: pop
+     758: invokedynamic #148,  0            // InvokeDynamic #48:get:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;)Ljava/util/function/Supplier;
+     763: invokevirtual #40                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/util/function/Supplier;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     766: aload_0
+     767: invokedynamic #140,  0            // InvokeDynamic #46:adapt:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;)Lorg/springframework/boot/context/properties/PropertyMapper$Source$Adapter;
+     772: invokevirtual #59                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.as:(Lorg/springframework/boot/context/properties/PropertyMapper$Source$Adapter;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     775: invokevirtual #143                // Method org/springframework/boot/context/properties/PropertyMapper$Source.whenHasText:()Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     778: aload_0
+     779: aload_1
+     780: invokedynamic #149,  0            // InvokeDynamic #49:accept:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer;Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)Ljava/util/function/Consumer;
+     785: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     788: aload_2
+     789: aload_0
+     790: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+     793: invokevirtual #150                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties.getMbeanregistry:()Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Mbeanregistry;
+     796: dup
+     797: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     800: pop
+     801: invokedynamic #154,  0            // InvokeDynamic #50:get:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Mbeanregistry;)Ljava/util/function/Supplier;
+     806: invokevirtual #40                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/util/function/Supplier;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     809: invokedynamic #157,  0            // InvokeDynamic #51:adapt:()Lorg/springframework/boot/context/properties/PropertyMapper$Source$Adapter;
+     814: invokevirtual #59                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.as:(Lorg/springframework/boot/context/properties/PropertyMapper$Source$Adapter;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     817: aload_1
+     818: dup
+     819: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     822: pop
+     823: invokedynamic #158,  0            // InvokeDynamic #52:accept:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)Ljava/util/function/Consumer;
+     828: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     831: aload_0
+     832: aload_1
+     833: invokevirtual #159                // Method customizeStaticResources:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)V
+     836: aload_0
+     837: aload_0
+     838: getfield      #21                 // Field webProperties:Lorg/springframework/boot/autoconfigure/web/WebProperties;
+     841: invokevirtual #162                // Method org/springframework/boot/autoconfigure/web/WebProperties.getError:()Lorg/springframework/boot/autoconfigure/web/ErrorProperties;
+     844: aload_1
+     845: invokevirtual #168                // Method customizeErrorReportValve:(Lorg/springframework/boot/autoconfigure/web/ErrorProperties;Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)V
+     848: aload_1
+     849: aload_0
+     850: aload_0
+     851: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+     854: invokevirtual #172                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties.getUseApr:()Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$UseApr;
+     857: invokevirtual #176                // Method getUseApr:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$UseApr;)Z
+     860: invokeinterface #179,  2          // InterfaceMethod org/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory.setUseApr:(Z)V
+     865: return
+
+  private boolean getUseApr(org.springframework.boot.tomcat.autoconfigure.TomcatServerProperties$UseApr);
+    Code:
+       0: getstatic     #185                // Field org/springframework/boot/tomcat/autoconfigure/TomcatWebServerFactoryCustomizer$1.$SwitchMap$org$springframework$boot$tomcat$autoconfigure$TomcatServerProperties$UseApr:[I
+       3: aload_1
+       4: invokevirtual #191                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$UseApr.ordinal:()I
+       7: iaload
+       8: tableswitch   { // 1 to 3
+                     1: 44
+                     2: 57
+                     3: 64
+               default: 36
+          }
+      36: new           #197                // class java/lang/IncompatibleClassChangeError
+      39: dup
+      40: invokespecial #199                // Method java/lang/IncompatibleClassChangeError."<init>":()V
+      43: athrow
+      44: aload_0
+      45: invokevirtual #200                // Method isAprAvailable:()Z
+      48: ldc           #204                // String APR has been configured to \'ALWAYS\', but it\'s not available
+      50: invokestatic  #206                // Method org/springframework/util/Assert.state:(ZLjava/lang/String;)V
+      53: iconst_1
+      54: goto          65
+      57: aload_0
+      58: invokevirtual #200                // Method isAprAvailable:()Z
+      61: goto          65
+      64: iconst_0
+      65: ireturn
+
+  private boolean isAprAvailable();
+    Code:
+       0: new           #212                // class org/apache/catalina/core/AprLifecycleListener
+       3: dup
+       4: invokespecial #214                // Method org/apache/catalina/core/AprLifecycleListener."<init>":()V
+       7: pop
+       8: invokestatic  #215                // Method org/apache/catalina/core/AprLifecycleListener.isAprAvailable:()Z
+      11: ireturn
+
+  private boolean isPositive(int);
+    Code:
+       0: iload_1
+       1: ifle          8
+       4: iconst_1
+       5: goto          9
+       8: iconst_0
+       9: ireturn
+
+  private void customizeMaxThreads(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: ldc           #216                // class org/apache/coyote/AbstractProtocol
+       5: invokedynamic #218,  0            // InvokeDynamic #53:accept:()Ljava/util/function/ObjIntConsumer;
+      10: invokevirtual #221                // Method customizeHandler:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;ILjava/lang/Class;Ljava/util/function/ObjIntConsumer;)V
+      13: return
+
+  private void customizeMinThreads(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: ldc           #216                // class org/apache/coyote/AbstractProtocol
+       5: invokedynamic #225,  0            // InvokeDynamic #54:accept:()Ljava/util/function/ObjIntConsumer;
+      10: invokevirtual #221                // Method customizeHandler:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;ILjava/lang/Class;Ljava/util/function/ObjIntConsumer;)V
+      13: return
+
+  private void customizeMaxQueueCapacity(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: ldc           #216                // class org/apache/coyote/AbstractProtocol
+       5: invokedynamic #226,  0            // InvokeDynamic #55:accept:()Ljava/util/function/ObjIntConsumer;
+      10: invokevirtual #221                // Method customizeHandler:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;ILjava/lang/Class;Ljava/util/function/ObjIntConsumer;)V
+      13: return
+
+  private void customizeAcceptCount(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: ldc           #216                // class org/apache/coyote/AbstractProtocol
+       5: invokedynamic #227,  0            // InvokeDynamic #56:accept:()Ljava/util/function/ObjIntConsumer;
+      10: invokevirtual #221                // Method customizeHandler:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;ILjava/lang/Class;Ljava/util/function/ObjIntConsumer;)V
+      13: return
+
+  private void customizeProcessorCache(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: ldc           #216                // class org/apache/coyote/AbstractProtocol
+       5: invokedynamic #228,  0            // InvokeDynamic #57:accept:()Ljava/util/function/ObjIntConsumer;
+      10: invokevirtual #221                // Method customizeHandler:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;ILjava/lang/Class;Ljava/util/function/ObjIntConsumer;)V
+      13: return
+
+  private void customizeKeepAliveTimeout(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, java.time.Duration);
+    Code:
+       0: aload_1
+       1: iconst_1
+       2: anewarray     #229                // class org/springframework/boot/tomcat/TomcatConnectorCustomizer
+       5: dup
+       6: iconst_0
+       7: aload_2
+       8: invokedynamic #231,  0            // InvokeDynamic #58:customize:(Ljava/time/Duration;)Lorg/springframework/boot/tomcat/TomcatConnectorCustomizer;
+      13: aastore
+      14: invokeinterface #235,  2          // InterfaceMethod org/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory.addConnectorCustomizers:([Lorg/springframework/boot/tomcat/TomcatConnectorCustomizer;)V
+      19: return
+
+  private void customizeMaxKeepAliveRequests(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: ldc           #239                // class org/apache/coyote/http11/AbstractHttp11Protocol
+       5: invokedynamic #241,  0            // InvokeDynamic #59:accept:()Ljava/util/function/ObjIntConsumer;
+      10: invokevirtual #221                // Method customizeHandler:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;ILjava/lang/Class;Ljava/util/function/ObjIntConsumer;)V
+      13: return
+
+  private void customizeMaxConnections(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: ldc           #216                // class org/apache/coyote/AbstractProtocol
+       5: invokedynamic #242,  0            // InvokeDynamic #60:accept:()Ljava/util/function/ObjIntConsumer;
+      10: invokevirtual #221                // Method customizeHandler:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;ILjava/lang/Class;Ljava/util/function/ObjIntConsumer;)V
+      13: return
+
+  private void customizeConnectionTimeout(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, java.time.Duration);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #243                // Method java/time/Duration.toMillis:()J
+       6: l2i
+       7: ldc           #216                // class org/apache/coyote/AbstractProtocol
+       9: invokedynamic #249,  0            // InvokeDynamic #61:accept:()Ljava/util/function/ObjIntConsumer;
+      14: invokevirtual #221                // Method customizeHandler:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;ILjava/lang/Class;Ljava/util/function/ObjIntConsumer;)V
+      17: return
+
+  private void customizeRelaxedPathChars(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, java.lang.String);
+    Code:
+       0: aload_1
+       1: iconst_1
+       2: anewarray     #229                // class org/springframework/boot/tomcat/TomcatConnectorCustomizer
+       5: dup
+       6: iconst_0
+       7: aload_2
+       8: invokedynamic #250,  0            // InvokeDynamic #62:customize:(Ljava/lang/String;)Lorg/springframework/boot/tomcat/TomcatConnectorCustomizer;
+      13: aastore
+      14: invokeinterface #235,  2          // InterfaceMethod org/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory.addConnectorCustomizers:([Lorg/springframework/boot/tomcat/TomcatConnectorCustomizer;)V
+      19: return
+
+  private void customizeRelaxedQueryChars(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, java.lang.String);
+    Code:
+       0: aload_1
+       1: iconst_1
+       2: anewarray     #229                // class org/springframework/boot/tomcat/TomcatConnectorCustomizer
+       5: dup
+       6: iconst_0
+       7: aload_2
+       8: invokedynamic #253,  0            // InvokeDynamic #63:customize:(Ljava/lang/String;)Lorg/springframework/boot/tomcat/TomcatConnectorCustomizer;
+      13: aastore
+      14: invokeinterface #235,  2          // InterfaceMethod org/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory.addConnectorCustomizers:([Lorg/springframework/boot/tomcat/TomcatConnectorCustomizer;)V
+      19: return
+
+  private java.lang.String joinCharacters(java.util.List<java.lang.Character>);
+    Code:
+       0: aload_1
+       1: invokeinterface #254,  1          // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+       6: invokedynamic #260,  0            // InvokeDynamic #64:apply:()Ljava/util/function/Function;
+      11: invokeinterface #264,  2          // InterfaceMethod java/util/stream/Stream.map:(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+      16: invokestatic  #270                // Method java/util/stream/Collectors.joining:()Ljava/util/stream/Collector;
+      19: invokeinterface #276,  2          // InterfaceMethod java/util/stream/Stream.collect:(Ljava/util/stream/Collector;)Ljava/lang/Object;
+      24: checkcast     #280                // class java/lang/String
+      27: areturn
+
+  private void customizeRemoteIpValve(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory);
+    Code:
+       0: aload_0
+       1: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+       4: invokevirtual #282                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties.getRemoteip:()Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Remoteip;
+       7: astore_2
+       8: aload_2
+       9: invokevirtual #286                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Remoteip.getProtocolHeader:()Ljava/lang/String;
+      12: astore_3
+      13: aload_2
+      14: invokevirtual #292                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Remoteip.getRemoteIpHeader:()Ljava/lang/String;
+      17: astore        4
+      19: aload_3
+      20: invokestatic  #295                // Method org/springframework/util/StringUtils.hasText:(Ljava/lang/String;)Z
+      23: ifne          41
+      26: aload         4
+      28: invokestatic  #295                // Method org/springframework/util/StringUtils.hasText:(Ljava/lang/String;)Z
+      31: ifne          41
+      34: aload_0
+      35: invokevirtual #301                // Method getOrDeduceUseForwardHeaders:()Z
+      38: ifeq          144
+      41: new           #304                // class org/apache/catalina/valves/RemoteIpValve
+      44: dup
+      45: invokespecial #306                // Method org/apache/catalina/valves/RemoteIpValve."<init>":()V
+      48: astore        5
+      50: aload         5
+      52: aload_3
+      53: invokestatic  #307                // Method org/springframework/util/StringUtils.hasLength:(Ljava/lang/String;)Z
+      56: ifeq          63
+      59: aload_3
+      60: goto          66
+      63: ldc_w         #310                // String X-Forwarded-Proto
+      66: invokevirtual #312                // Method org/apache/catalina/valves/RemoteIpValve.setProtocolHeader:(Ljava/lang/String;)V
+      69: aload         4
+      71: invokestatic  #307                // Method org/springframework/util/StringUtils.hasLength:(Ljava/lang/String;)Z
+      74: ifeq          84
+      77: aload         5
+      79: aload         4
+      81: invokevirtual #316                // Method org/apache/catalina/valves/RemoteIpValve.setRemoteIpHeader:(Ljava/lang/String;)V
+      84: aload         5
+      86: aload_2
+      87: invokevirtual #319                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Remoteip.getTrustedProxies:()Ljava/lang/String;
+      90: invokevirtual #322                // Method org/apache/catalina/valves/RemoteIpValve.setTrustedProxies:(Ljava/lang/String;)V
+      93: aload         5
+      95: aload_2
+      96: invokevirtual #325                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Remoteip.getInternalProxies:()Ljava/lang/String;
+      99: invokevirtual #328                // Method org/apache/catalina/valves/RemoteIpValve.setInternalProxies:(Ljava/lang/String;)V
+     102: aload         5
+     104: aload_2
+     105: invokevirtual #331                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Remoteip.getHostHeader:()Ljava/lang/String;
+     108: invokevirtual #334                // Method org/apache/catalina/valves/RemoteIpValve.setHostHeader:(Ljava/lang/String;)V
+     111: aload         5
+     113: aload_2
+     114: invokevirtual #337                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Remoteip.getPortHeader:()Ljava/lang/String;
+     117: invokevirtual #340                // Method org/apache/catalina/valves/RemoteIpValve.setPortHeader:(Ljava/lang/String;)V
+     120: aload         5
+     122: aload_2
+     123: invokevirtual #343                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Remoteip.getProtocolHeaderHttpsValue:()Ljava/lang/String;
+     126: invokevirtual #346                // Method org/apache/catalina/valves/RemoteIpValve.setProtocolHeaderHttpsValue:(Ljava/lang/String;)V
+     129: aload_1
+     130: iconst_1
+     131: anewarray     #349                // class org/apache/catalina/Valve
+     134: dup
+     135: iconst_0
+     136: aload         5
+     138: aastore
+     139: invokeinterface #351,  2          // InterfaceMethod org/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory.addEngineValves:([Lorg/apache/catalina/Valve;)V
+     144: return
+
+  private boolean getOrDeduceUseForwardHeaders();
+    Code:
+       0: aload_0
+       1: getfield      #13                 // Field serverProperties:Lorg/springframework/boot/web/server/autoconfigure/ServerProperties;
+       4: invokevirtual #355                // Method org/springframework/boot/web/server/autoconfigure/ServerProperties.getForwardHeadersStrategy:()Lorg/springframework/boot/web/server/autoconfigure/ServerProperties$ForwardHeadersStrategy;
+       7: ifnonnull     35
+      10: aload_0
+      11: getfield      #7                  // Field environment:Lorg/springframework/core/env/Environment;
+      14: invokestatic  #359                // Method org/springframework/boot/cloud/CloudPlatform.getActive:(Lorg/springframework/core/env/Environment;)Lorg/springframework/boot/cloud/CloudPlatform;
+      17: astore_1
+      18: aload_1
+      19: ifnull        33
+      22: aload_1
+      23: invokevirtual #365                // Method org/springframework/boot/cloud/CloudPlatform.isUsingForwardHeaders:()Z
+      26: ifeq          33
+      29: iconst_1
+      30: goto          34
+      33: iconst_0
+      34: ireturn
+      35: aload_0
+      36: getfield      #13                 // Field serverProperties:Lorg/springframework/boot/web/server/autoconfigure/ServerProperties;
+      39: invokevirtual #355                // Method org/springframework/boot/web/server/autoconfigure/ServerProperties.getForwardHeadersStrategy:()Lorg/springframework/boot/web/server/autoconfigure/ServerProperties$ForwardHeadersStrategy;
+      42: getstatic     #368                // Field org/springframework/boot/web/server/autoconfigure/ServerProperties$ForwardHeadersStrategy.NATIVE:Lorg/springframework/boot/web/server/autoconfigure/ServerProperties$ForwardHeadersStrategy;
+      45: if_acmpne     52
+      48: iconst_1
+      49: goto          53
+      52: iconst_0
+      53: ireturn
+
+  private void customizeMaxHttpRequestHeaderSize(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: ldc           #239                // class org/apache/coyote/http11/AbstractHttp11Protocol
+       5: invokedynamic #374,  0            // InvokeDynamic #65:accept:()Ljava/util/function/ObjIntConsumer;
+      10: invokevirtual #221                // Method customizeHandler:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;ILjava/lang/Class;Ljava/util/function/ObjIntConsumer;)V
+      13: return
+
+  private void customizeMaxHttpResponseHeaderSize(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: ldc           #239                // class org/apache/coyote/http11/AbstractHttp11Protocol
+       5: invokedynamic #375,  0            // InvokeDynamic #66:accept:()Ljava/util/function/ObjIntConsumer;
+      10: invokevirtual #221                // Method customizeHandler:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;ILjava/lang/Class;Ljava/util/function/ObjIntConsumer;)V
+      13: return
+
+  private void customizeMaxSwallowSize(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, int);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: ldc           #239                // class org/apache/coyote/http11/AbstractHttp11Protocol
+       5: invokedynamic #376,  0            // InvokeDynamic #67:accept:()Ljava/util/function/ObjIntConsumer;
+      10: invokevirtual #221                // Method customizeHandler:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;ILjava/lang/Class;Ljava/util/function/ObjIntConsumer;)V
+      13: return
+
+  private <T extends org.apache.coyote.ProtocolHandler> void customizeHandler(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, int, java.lang.Class<T>, java.util.function.ObjIntConsumer<T>);
+    Code:
+       0: aload_1
+       1: iconst_1
+       2: anewarray     #229                // class org/springframework/boot/tomcat/TomcatConnectorCustomizer
+       5: dup
+       6: iconst_0
+       7: aload_3
+       8: aload         4
+      10: iload_2
+      11: invokedynamic #377,  0            // InvokeDynamic #68:customize:(Ljava/lang/Class;Ljava/util/function/ObjIntConsumer;I)Lorg/springframework/boot/tomcat/TomcatConnectorCustomizer;
+      16: aastore
+      17: invokeinterface #235,  2          // InterfaceMethod org/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory.addConnectorCustomizers:([Lorg/springframework/boot/tomcat/TomcatConnectorCustomizer;)V
+      22: return
+
+  private void customizeMaxHttpFormPostSize(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, int);
+    Code:
+       0: aload_1
+       1: iconst_1
+       2: anewarray     #229                // class org/springframework/boot/tomcat/TomcatConnectorCustomizer
+       5: dup
+       6: iconst_0
+       7: iload_2
+       8: invokedynamic #380,  0            // InvokeDynamic #69:customize:(I)Lorg/springframework/boot/tomcat/TomcatConnectorCustomizer;
+      13: aastore
+      14: invokeinterface #235,  2          // InterfaceMethod org/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory.addConnectorCustomizers:([Lorg/springframework/boot/tomcat/TomcatConnectorCustomizer;)V
+      19: return
+
+  private void customizeMaxParameterCount(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, int);
+    Code:
+       0: aload_1
+       1: iconst_1
+       2: anewarray     #229                // class org/springframework/boot/tomcat/TomcatConnectorCustomizer
+       5: dup
+       6: iconst_0
+       7: iload_2
+       8: invokedynamic #383,  0            // InvokeDynamic #70:customize:(I)Lorg/springframework/boot/tomcat/TomcatConnectorCustomizer;
+      13: aastore
+      14: invokeinterface #235,  2          // InterfaceMethod org/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory.addConnectorCustomizers:([Lorg/springframework/boot/tomcat/TomcatConnectorCustomizer;)V
+      19: return
+
+  private void customizeMaxPartCount(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, int);
+    Code:
+       0: aload_1
+       1: iconst_1
+       2: anewarray     #229                // class org/springframework/boot/tomcat/TomcatConnectorCustomizer
+       5: dup
+       6: iconst_0
+       7: iload_2
+       8: invokedynamic #384,  0            // InvokeDynamic #71:customize:(I)Lorg/springframework/boot/tomcat/TomcatConnectorCustomizer;
+      13: aastore
+      14: invokeinterface #235,  2          // InterfaceMethod org/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory.addConnectorCustomizers:([Lorg/springframework/boot/tomcat/TomcatConnectorCustomizer;)V
+      19: return
+
+  private void customizeMaxPartHeaderSize(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, int);
+    Code:
+       0: aload_1
+       1: iconst_1
+       2: anewarray     #229                // class org/springframework/boot/tomcat/TomcatConnectorCustomizer
+       5: dup
+       6: iconst_0
+       7: iload_2
+       8: invokedynamic #385,  0            // InvokeDynamic #72:customize:(I)Lorg/springframework/boot/tomcat/TomcatConnectorCustomizer;
+      13: aastore
+      14: invokeinterface #235,  2          // InterfaceMethod org/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory.addConnectorCustomizers:([Lorg/springframework/boot/tomcat/TomcatConnectorCustomizer;)V
+      19: return
+
+  private void customizeAccessLog(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory);
+    Code:
+       0: new           #386                // class org/apache/catalina/valves/AccessLogValve
+       3: dup
+       4: invokespecial #388                // Method org/apache/catalina/valves/AccessLogValve."<init>":()V
+       7: astore_2
+       8: invokestatic  #25                 // Method org/springframework/boot/context/properties/PropertyMapper.get:()Lorg/springframework/boot/context/properties/PropertyMapper;
+      11: astore_3
+      12: aload_0
+      13: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+      16: invokevirtual #389                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties.getAccesslog:()Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Accesslog;
+      19: astore        4
+      21: aload_3
+      22: aload         4
+      24: invokevirtual #393                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Accesslog.getConditionIf:()Ljava/lang/String;
+      27: invokevirtual #99                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/lang/Object;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+      30: aload_2
+      31: dup
+      32: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      35: pop
+      36: invokedynamic #398,  0            // InvokeDynamic #73:accept:(Lorg/apache/catalina/valves/AccessLogValve;)Ljava/util/function/Consumer;
+      41: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+      44: aload_3
+      45: aload         4
+      47: invokevirtual #401                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Accesslog.getConditionUnless:()Ljava/lang/String;
+      50: invokevirtual #99                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/lang/Object;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+      53: aload_2
+      54: dup
+      55: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      58: pop
+      59: invokedynamic #404,  0            // InvokeDynamic #74:accept:(Lorg/apache/catalina/valves/AccessLogValve;)Ljava/util/function/Consumer;
+      64: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+      67: aload_3
+      68: aload         4
+      70: invokevirtual #405                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Accesslog.getPattern:()Ljava/lang/String;
+      73: invokevirtual #99                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/lang/Object;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+      76: aload_2
+      77: dup
+      78: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      81: pop
+      82: invokedynamic #408,  0            // InvokeDynamic #75:accept:(Lorg/apache/catalina/valves/AccessLogValve;)Ljava/util/function/Consumer;
+      87: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+      90: aload_3
+      91: aload         4
+      93: invokevirtual #409                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Accesslog.getDirectory:()Ljava/lang/String;
+      96: invokevirtual #99                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/lang/Object;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+      99: aload_2
+     100: dup
+     101: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     104: pop
+     105: invokedynamic #412,  0            // InvokeDynamic #76:accept:(Lorg/apache/catalina/valves/AccessLogValve;)Ljava/util/function/Consumer;
+     110: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     113: aload_3
+     114: aload         4
+     116: invokevirtual #413                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Accesslog.getPrefix:()Ljava/lang/String;
+     119: invokevirtual #99                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/lang/Object;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     122: aload_2
+     123: dup
+     124: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     127: pop
+     128: invokedynamic #416,  0            // InvokeDynamic #77:accept:(Lorg/apache/catalina/valves/AccessLogValve;)Ljava/util/function/Consumer;
+     133: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     136: aload_3
+     137: aload         4
+     139: invokevirtual #417                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Accesslog.getSuffix:()Ljava/lang/String;
+     142: invokevirtual #99                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/lang/Object;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     145: aload_2
+     146: dup
+     147: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     150: pop
+     151: invokedynamic #420,  0            // InvokeDynamic #78:accept:(Lorg/apache/catalina/valves/AccessLogValve;)Ljava/util/function/Consumer;
+     156: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     159: aload_3
+     160: aload         4
+     162: invokevirtual #421                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Accesslog.getEncoding:()Ljava/lang/String;
+     165: invokevirtual #99                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/lang/Object;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     168: invokevirtual #143                // Method org/springframework/boot/context/properties/PropertyMapper$Source.whenHasText:()Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     171: aload_2
+     172: dup
+     173: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     176: pop
+     177: invokedynamic #424,  0            // InvokeDynamic #79:accept:(Lorg/apache/catalina/valves/AccessLogValve;)Ljava/util/function/Consumer;
+     182: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     185: aload_3
+     186: aload         4
+     188: invokevirtual #425                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Accesslog.getLocale:()Ljava/lang/String;
+     191: invokevirtual #99                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/lang/Object;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     194: invokevirtual #143                // Method org/springframework/boot/context/properties/PropertyMapper$Source.whenHasText:()Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     197: aload_2
+     198: dup
+     199: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     202: pop
+     203: invokedynamic #428,  0            // InvokeDynamic #80:accept:(Lorg/apache/catalina/valves/AccessLogValve;)Ljava/util/function/Consumer;
+     208: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     211: aload_3
+     212: aload         4
+     214: invokevirtual #429                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Accesslog.isCheckExists:()Z
+     217: invokestatic  #432                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     220: invokevirtual #99                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/lang/Object;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     223: aload_2
+     224: dup
+     225: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     228: pop
+     229: invokedynamic #438,  0            // InvokeDynamic #81:accept:(Lorg/apache/catalina/valves/AccessLogValve;)Ljava/util/function/Consumer;
+     234: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     237: aload_3
+     238: aload         4
+     240: invokevirtual #439                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Accesslog.isRotate:()Z
+     243: invokestatic  #432                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     246: invokevirtual #99                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/lang/Object;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     249: aload_2
+     250: dup
+     251: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     254: pop
+     255: invokedynamic #442,  0            // InvokeDynamic #82:accept:(Lorg/apache/catalina/valves/AccessLogValve;)Ljava/util/function/Consumer;
+     260: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     263: aload_3
+     264: aload         4
+     266: invokevirtual #443                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Accesslog.isRenameOnRotate:()Z
+     269: invokestatic  #432                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     272: invokevirtual #99                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/lang/Object;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     275: aload_2
+     276: dup
+     277: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     280: pop
+     281: invokedynamic #446,  0            // InvokeDynamic #83:accept:(Lorg/apache/catalina/valves/AccessLogValve;)Ljava/util/function/Consumer;
+     286: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     289: aload_3
+     290: aload         4
+     292: invokevirtual #447                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Accesslog.getMaxDays:()I
+     295: invokestatic  #450                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     298: invokevirtual #99                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/lang/Object;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     301: aload_2
+     302: dup
+     303: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     306: pop
+     307: invokedynamic #455,  0            // InvokeDynamic #84:accept:(Lorg/apache/catalina/valves/AccessLogValve;)Ljava/util/function/Consumer;
+     312: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     315: aload_3
+     316: aload         4
+     318: invokevirtual #456                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Accesslog.getFileDateFormat:()Ljava/lang/String;
+     321: invokevirtual #99                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/lang/Object;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     324: aload_2
+     325: dup
+     326: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     329: pop
+     330: invokedynamic #459,  0            // InvokeDynamic #85:accept:(Lorg/apache/catalina/valves/AccessLogValve;)Ljava/util/function/Consumer;
+     335: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     338: aload_3
+     339: aload         4
+     341: invokevirtual #460                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Accesslog.isIpv6Canonical:()Z
+     344: invokestatic  #432                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     347: invokevirtual #99                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/lang/Object;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     350: aload_2
+     351: dup
+     352: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     355: pop
+     356: invokedynamic #463,  0            // InvokeDynamic #86:accept:(Lorg/apache/catalina/valves/AccessLogValve;)Ljava/util/function/Consumer;
+     361: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     364: aload_3
+     365: aload         4
+     367: invokevirtual #464                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Accesslog.isRequestAttributesEnabled:()Z
+     370: invokestatic  #432                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     373: invokevirtual #99                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/lang/Object;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     376: aload_2
+     377: dup
+     378: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     381: pop
+     382: invokedynamic #467,  0            // InvokeDynamic #87:accept:(Lorg/apache/catalina/valves/AccessLogValve;)Ljava/util/function/Consumer;
+     387: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     390: aload_3
+     391: aload         4
+     393: invokevirtual #468                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Accesslog.isBuffered:()Z
+     396: invokestatic  #432                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+     399: invokevirtual #99                 // Method org/springframework/boot/context/properties/PropertyMapper.from:(Ljava/lang/Object;)Lorg/springframework/boot/context/properties/PropertyMapper$Source;
+     402: aload_2
+     403: dup
+     404: invokestatic  #31                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+     407: pop
+     408: invokedynamic #471,  0            // InvokeDynamic #88:accept:(Lorg/apache/catalina/valves/AccessLogValve;)Ljava/util/function/Consumer;
+     413: invokevirtual #48                 // Method org/springframework/boot/context/properties/PropertyMapper$Source.to:(Ljava/util/function/Consumer;)V
+     416: aload_1
+     417: iconst_1
+     418: anewarray     #349                // class org/apache/catalina/Valve
+     421: dup
+     422: iconst_0
+     423: aload_2
+     424: aastore
+     425: invokeinterface #351,  2          // InterfaceMethod org/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory.addEngineValves:([Lorg/apache/catalina/Valve;)V
+     430: return
+
+  private void customizeStaticResources(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory);
+    Code:
+       0: aload_0
+       1: getfield      #17                 // Field tomcatProperties:Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties;
+       4: invokevirtual #472                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties.getResource:()Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Resource;
+       7: astore_2
+       8: aload_1
+       9: iconst_1
+      10: anewarray     #476                // class org/springframework/boot/tomcat/TomcatContextCustomizer
+      13: dup
+      14: iconst_0
+      15: aload_2
+      16: invokedynamic #478,  0            // InvokeDynamic #89:customize:(Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Resource;)Lorg/springframework/boot/tomcat/TomcatContextCustomizer;
+      21: aastore
+      22: invokeinterface #481,  2          // InterfaceMethod org/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory.addContextCustomizers:([Lorg/springframework/boot/tomcat/TomcatContextCustomizer;)V
+      27: return
+
+  private void customizeErrorReportValve(org.springframework.boot.autoconfigure.web.ErrorProperties, org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory);
+    Code:
+       0: aload_1
+       1: invokevirtual #485                // Method org/springframework/boot/autoconfigure/web/ErrorProperties.getIncludeStacktrace:()Lorg/springframework/boot/autoconfigure/web/ErrorProperties$IncludeAttribute;
+       4: getstatic     #491                // Field org/springframework/boot/autoconfigure/web/ErrorProperties$IncludeAttribute.NEVER:Lorg/springframework/boot/autoconfigure/web/ErrorProperties$IncludeAttribute;
+       7: if_acmpne     28
+      10: aload_2
+      11: iconst_1
+      12: anewarray     #476                // class org/springframework/boot/tomcat/TomcatContextCustomizer
+      15: dup
+      16: iconst_0
+      17: invokedynamic #497,  0            // InvokeDynamic #90:customize:()Lorg/springframework/boot/tomcat/TomcatContextCustomizer;
+      22: aastore
+      23: invokeinterface #481,  2          // InterfaceMethod org/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory.addContextCustomizers:([Lorg/springframework/boot/tomcat/TomcatContextCustomizer;)V
+      28: return
+
+  public void customize(org.springframework.boot.web.server.WebServerFactory);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #180                // class org/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory
+       5: invokevirtual #500                // Method customize:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)V
+       8: return
+
+  private static void lambda$customizeErrorReportValve$0(org.apache.catalina.Context);
+    Code:
+       0: new           #502                // class org/apache/catalina/valves/ErrorReportValve
+       3: dup
+       4: invokespecial #504                // Method org/apache/catalina/valves/ErrorReportValve."<init>":()V
+       7: astore_1
+       8: aload_1
+       9: iconst_0
+      10: invokevirtual #505                // Method org/apache/catalina/valves/ErrorReportValve.setShowServerInfo:(Z)V
+      13: aload_1
+      14: iconst_0
+      15: invokevirtual #508                // Method org/apache/catalina/valves/ErrorReportValve.setShowReport:(Z)V
+      18: aload_0
+      19: invokeinterface #511,  1          // InterfaceMethod org/apache/catalina/Context.getParent:()Lorg/apache/catalina/Container;
+      24: invokeinterface #517,  1          // InterfaceMethod org/apache/catalina/Container.getPipeline:()Lorg/apache/catalina/Pipeline;
+      29: aload_1
+      30: invokeinterface #523,  2          // InterfaceMethod org/apache/catalina/Pipeline.addValve:(Lorg/apache/catalina/Valve;)V
+      35: return
+
+  private static void lambda$customizeStaticResources$0(org.springframework.boot.tomcat.autoconfigure.TomcatServerProperties$Resource, org.apache.catalina.Context);
+    Code:
+       0: aload_1
+       1: aload_1
+       2: aload_0
+       3: invokedynamic #529,  0            // InvokeDynamic #91:lifecycleEvent:(Lorg/apache/catalina/Context;Lorg/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Resource;)Lorg/apache/catalina/LifecycleListener;
+       8: invokeinterface #533,  2          // InterfaceMethod org/apache/catalina/Context.addLifecycleListener:(Lorg/apache/catalina/LifecycleListener;)V
+      13: return
+
+  private static void lambda$customizeStaticResources$1(org.apache.catalina.Context, org.springframework.boot.tomcat.autoconfigure.TomcatServerProperties$Resource, org.apache.catalina.LifecycleEvent);
+    Code:
+       0: aload_2
+       1: invokevirtual #537                // Method org/apache/catalina/LifecycleEvent.getType:()Ljava/lang/String;
+       4: ldc_w         #544                // String configure_start
+       7: invokevirtual #546                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      10: ifeq          64
+      13: aload_0
+      14: invokeinterface #550,  1          // InterfaceMethod org/apache/catalina/Context.getResources:()Lorg/apache/catalina/WebResourceRoot;
+      19: aload_1
+      20: invokevirtual #554                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Resource.isAllowCaching:()Z
+      23: invokeinterface #559,  2          // InterfaceMethod org/apache/catalina/WebResourceRoot.setCachingAllowed:(Z)V
+      28: aload_0
+      29: invokeinterface #550,  1          // InterfaceMethod org/apache/catalina/Context.getResources:()Lorg/apache/catalina/WebResourceRoot;
+      34: aload_1
+      35: invokevirtual #564                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Resource.getCacheMaxSize:()Lorg/springframework/util/unit/DataSize;
+      38: invokevirtual #567                // Method org/springframework/util/unit/DataSize.toKilobytes:()J
+      41: invokeinterface #572,  3          // InterfaceMethod org/apache/catalina/WebResourceRoot.setCacheMaxSize:(J)V
+      46: aload_0
+      47: invokeinterface #550,  1          // InterfaceMethod org/apache/catalina/Context.getResources:()Lorg/apache/catalina/WebResourceRoot;
+      52: aload_1
+      53: invokevirtual #576                // Method org/springframework/boot/tomcat/autoconfigure/TomcatServerProperties$Resource.getCacheTtl:()Ljava/time/Duration;
+      56: invokevirtual #243                // Method java/time/Duration.toMillis:()J
+      59: invokeinterface #580,  3          // InterfaceMethod org/apache/catalina/WebResourceRoot.setCacheTtl:(J)V
+      64: return
+
+  private static void lambda$customizeMaxPartHeaderSize$0(int, org.apache.catalina.connector.Connector);
+    Code:
+       0: aload_1
+       1: iload_0
+       2: invokevirtual #583                // Method org/apache/catalina/connector/Connector.setMaxPartHeaderSize:(I)V
+       5: goto          9
+       8: astore_2
+       9: return
+    Exception table:
+       from    to  target type
+           0     5     8   Class java/lang/NoSuchMethodError
+
+  private static void lambda$customizeMaxPartCount$0(int, org.apache.catalina.connector.Connector);
+    Code:
+       0: aload_1
+       1: iload_0
+       2: invokevirtual #591                // Method org/apache/catalina/connector/Connector.setMaxPartCount:(I)V
+       5: goto          9
+       8: astore_2
+       9: return
+    Exception table:
+       from    to  target type
+           0     5     8   Class java/lang/NoSuchMethodError
+
+  private static void lambda$customizeMaxParameterCount$0(int, org.apache.catalina.connector.Connector);
+    Code:
+       0: aload_1
+       1: iload_0
+       2: invokevirtual #594                // Method org/apache/catalina/connector/Connector.setMaxParameterCount:(I)V
+       5: return
+
+  private static void lambda$customizeMaxHttpFormPostSize$0(int, org.apache.catalina.connector.Connector);
+    Code:
+       0: aload_1
+       1: iload_0
+       2: invokevirtual #597                // Method org/apache/catalina/connector/Connector.setMaxPostSize:(I)V
+       5: return
+
+  private static void lambda$customizeHandler$0(java.lang.Class, java.util.function.ObjIntConsumer, int, org.apache.catalina.connector.Connector);
+    Code:
+       0: aload_3
+       1: invokevirtual #600                // Method org/apache/catalina/connector/Connector.getProtocolHandler:()Lorg/apache/coyote/ProtocolHandler;
+       4: astore        4
+       6: aload_0
+       7: aload         4
+       9: invokevirtual #604                // Method java/lang/Class.isInstance:(Ljava/lang/Object;)Z
+      12: ifeq          31
+      15: aload_1
+      16: aload_0
+      17: aload         4
+      19: invokevirtual #609                // Method java/lang/Class.cast:(Ljava/lang/Object;)Ljava/lang/Object;
+      22: checkcast     #612                // class org/apache/coyote/ProtocolHandler
+      25: iload_2
+      26: invokeinterface #614,  3          // InterfaceMethod java/util/function/ObjIntConsumer.accept:(Ljava/lang/Object;I)V
+      31: return
+
+  private static void lambda$customizeRelaxedQueryChars$0(java.lang.String, org.apache.catalina.connector.Connector);
+    Code:
+       0: aload_1
+       1: ldc_w         #619                // String relaxedQueryChars
+       4: aload_0
+       5: invokevirtual #621                // Method org/apache/catalina/connector/Connector.setProperty:(Ljava/lang/String;Ljava/lang/String;)Z
+       8: pop
+       9: return
+
+  private static void lambda$customizeRelaxedPathChars$0(java.lang.String, org.apache.catalina.connector.Connector);
+    Code:
+       0: aload_1
+       1: ldc_w         #625                // String relaxedPathChars
+       4: aload_0
+       5: invokevirtual #621                // Method org/apache/catalina/connector/Connector.setProperty:(Ljava/lang/String;Ljava/lang/String;)Z
+       8: pop
+       9: return
+
+  private static void lambda$customizeKeepAliveTimeout$0(java.time.Duration, org.apache.catalina.connector.Connector);
+    Code:
+       0: aload_1
+       1: invokevirtual #600                // Method org/apache/catalina/connector/Connector.getProtocolHandler:()Lorg/apache/coyote/ProtocolHandler;
+       4: astore_2
+       5: aload_2
+       6: invokeinterface #627,  1          // InterfaceMethod org/apache/coyote/ProtocolHandler.findUpgradeProtocols:()[Lorg/apache/coyote/UpgradeProtocol;
+      11: astore_3
+      12: aload_3
+      13: arraylength
+      14: istore        4
+      16: iconst_0
+      17: istore        5
+      19: iload         5
+      21: iload         4
+      23: if_icmpge     62
+      26: aload_3
+      27: iload         5
+      29: aaload
+      30: astore        6
+      32: aload         6
+      34: instanceof    #631                // class org/apache/coyote/http2/Http2Protocol
+      37: ifeq          56
+      40: aload         6
+      42: checkcast     #631                // class org/apache/coyote/http2/Http2Protocol
+      45: astore        7
+      47: aload         7
+      49: aload_0
+      50: invokevirtual #243                // Method java/time/Duration.toMillis:()J
+      53: invokevirtual #633                // Method org/apache/coyote/http2/Http2Protocol.setKeepAliveTimeout:(J)V
+      56: iinc          5, 1
+      59: goto          19
+      62: aload_2
+      63: instanceof    #216                // class org/apache/coyote/AbstractProtocol
+      66: ifeq          83
+      69: aload_2
+      70: checkcast     #216                // class org/apache/coyote/AbstractProtocol
+      73: astore_3
+      74: aload_3
+      75: aload_0
+      76: invokevirtual #243                // Method java/time/Duration.toMillis:()J
+      79: l2i
+      80: invokevirtual #636                // Method org/apache/coyote/AbstractProtocol.setKeepAliveTimeout:(I)V
+      83: return
+
+  private static java.lang.Boolean lambda$customize$20(java.lang.Boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #638                // Method java/lang/Boolean.booleanValue:()Z
+       4: ifne          11
+       7: iconst_1
+       8: goto          12
+      11: iconst_0
+      12: invokestatic  #432                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      15: areturn
+
+  private void lambda$customize$19(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, java.lang.String);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #641                // Method customizeRelaxedQueryChars:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;Ljava/lang/String;)V
+       6: return
+
+  private void lambda$customize$18(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, java.lang.String);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #645                // Method customizeRelaxedPathChars:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;Ljava/lang/String;)V
+       6: return
+
+  private void lambda$customize$17(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, java.lang.Integer);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #648                // Method java/lang/Integer.intValue:()I
+       6: invokevirtual #651                // Method customizeMaxKeepAliveRequests:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;I)V
+       9: return
+
+  private void lambda$customize$16(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, java.time.Duration);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #655                // Method customizeKeepAliveTimeout:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;Ljava/time/Duration;)V
+       6: return
+
+  private void lambda$customize$15(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, java.lang.Integer);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #648                // Method java/lang/Integer.intValue:()I
+       6: invokevirtual #659                // Method customizeProcessorCache:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;I)V
+       9: return
+
+  private void lambda$customize$14(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, java.lang.Integer);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #648                // Method java/lang/Integer.intValue:()I
+       6: invokevirtual #662                // Method customizeAcceptCount:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;I)V
+       9: return
+
+  private void lambda$customize$13(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, java.lang.Integer);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #648                // Method java/lang/Integer.intValue:()I
+       6: invokevirtual #665                // Method customizeMaxConnections:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;I)V
+       9: return
+
+  private void lambda$customize$12(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, java.time.Duration);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #668                // Method customizeConnectionTimeout:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;Ljava/time/Duration;)V
+       6: return
+
+  private void lambda$customize$11(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, org.springframework.boot.tomcat.autoconfigure.TomcatServerProperties$Accesslog);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #671                // Method customizeAccessLog:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;)V
+       5: return
+
+  private void lambda$customize$10(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, java.lang.Integer);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #648                // Method java/lang/Integer.intValue:()I
+       6: invokevirtual #674                // Method customizeMaxPartCount:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;I)V
+       9: return
+
+  private void lambda$customize$9(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, java.lang.Integer);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #648                // Method java/lang/Integer.intValue:()I
+       6: invokevirtual #677                // Method customizeMaxPartHeaderSize:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;I)V
+       9: return
+
+  private void lambda$customize$8(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, java.lang.Integer);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #648                // Method java/lang/Integer.intValue:()I
+       6: invokevirtual #680                // Method customizeMaxParameterCount:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;I)V
+       9: return
+
+  private void lambda$customize$7(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, java.lang.Integer);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #648                // Method java/lang/Integer.intValue:()I
+       6: invokevirtual #683                // Method customizeMaxHttpFormPostSize:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;I)V
+       9: return
+
+  private static boolean lambda$customize$6(java.lang.Integer);
+    Code:
+       0: aload_0
+       1: invokevirtual #648                // Method java/lang/Integer.intValue:()I
+       4: ifeq          11
+       7: iconst_1
+       8: goto          12
+      11: iconst_0
+      12: ireturn
+
+  private void lambda$customize$5(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, java.lang.Integer);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #648                // Method java/lang/Integer.intValue:()I
+       6: invokevirtual #686                // Method customizeMaxSwallowSize:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;I)V
+       9: return
+
+  private void lambda$customize$4(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, java.lang.Integer);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #648                // Method java/lang/Integer.intValue:()I
+       6: invokevirtual #689                // Method customizeMaxHttpResponseHeaderSize:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;I)V
+       9: return
+
+  private void lambda$customize$3(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, java.lang.Integer);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #648                // Method java/lang/Integer.intValue:()I
+       6: invokevirtual #692                // Method customizeMaxHttpRequestHeaderSize:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;I)V
+       9: return
+
+  private void lambda$customize$2(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, java.lang.Integer);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #648                // Method java/lang/Integer.intValue:()I
+       6: invokevirtual #695                // Method customizeMaxQueueCapacity:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;I)V
+       9: return
+
+  private void lambda$customize$1(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, java.lang.Integer);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #648                // Method java/lang/Integer.intValue:()I
+       6: invokevirtual #698                // Method customizeMinThreads:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;I)V
+       9: return
+
+  private void lambda$customize$0(org.springframework.boot.tomcat.ConfigurableTomcatWebServerFactory, java.lang.Integer);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #648                // Method java/lang/Integer.intValue:()I
+       6: invokevirtual #701                // Method customizeMaxThreads:(Lorg/springframework/boot/tomcat/ConfigurableTomcatWebServerFactory;I)V
+       9: return
+}

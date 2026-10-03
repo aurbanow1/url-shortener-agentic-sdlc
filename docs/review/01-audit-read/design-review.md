@@ -159,3 +159,22 @@ wrappers to preserve those headers or the raw peer check. No new non-blocking ba
 Implementation still owes the exact-candidate gate, real upgrade, logs and OpenAPI proof.
 Reviewer self-check: all six changed files covered, two resolutions independently observed,
 no producer/product files edited, and the ledger records this scoped pass.
+
+## Re-review 0052efb — CR-01 design correction
+
+2026-10-03. **PASS** on `0052efb16189b02237525301a32484e1a0e9475d`, independently reviewed within fixed-candidate packet `qitem-20261003213051-77ffaad3`, as explicitly requested after plan relock `01M41PCN4N25BR55E2ST2KKSRZ`. This is the design delta that answers code/security CR-01; earlier settled findings remain closed.
+
+| Changed file | Verdict |
+|---|---|
+| `docs/DESIGN.md` | PASS; audit-read component and stack fact name both independent Tomcat remoteip triggers. |
+| `docs/adr/0019-audit-read-loopback-keyset.md` | PASS; bound Tomcat properties, guard, regression obligations and future-version ceiling are explicit. |
+| `missions/02-brownfield/slices/01-audit-read/design.md` | PASS; component, threat model, test mapping and response to CR-01 agree; no change to the accepted public outcome. |
+| `missions/02-brownfield/slices/01-audit-read/design-probe/RemoteIpProbe.java` | PASS; complete producer control read, including custom header and framework cases; distinguishes modeled predicates from delivered code. |
+| `missions/02-brownfield/slices/01-audit-read/design-probe/remote-ip-output.txt` | PASS; all results read, including the old guard's admission and corrected denial. |
+| `missions/02-brownfield/slices/01-audit-read/design-probe/remote-ip-probe.gradle` | PASS; local probe task uses the project's runtime classpath. |
+
+**6 changed files / 6 reviewed.** Independent confirmation uses the actual implementation at `7ac8af56ed04c27bbefbd416b3976c544d2f274a`, rather than accepting the producer's modeled predicate as implementation proof. The original 30-observation reproduction now gives the required statuses; 32 additional asserted real-Tomcat controls cover custom/both/blank/whitespace header settings with GET/HEAD, forwarding headers and strict Accept. See [code controls](proof/code-controls-7ac8af5.txt), [additional controls](proof/revision-controls-7ac8af5.txt) and [reconciliation](proof/evidence-reconciliation-7ac8af5.json).
+
+Inspected the installed Boot 4.1.1 [customizer bytecode](proof/boot-tomcat-customizer-4.1.1.txt): either nonblank remote-IP/protocol header can install the RemoteIpValve independently of the strategy. The design's NONE plus two `hasText` checks prevents those paths and conservatively closes access for unset/native/framework. A valve-attribute-only substitute would miss framework wrapping. Blank settings retain direct local reads; either specified forwarding header still refuses them. The fresh exact-candidate gate passes 203 unit + 202 functional tests, 494/494 lines and 194/194 branches.
+
+No new dependency, abstraction, data model, migration or public response contract. The two added conditions use the same bound properties and platform text predicate as Boot; the named future-Boot trigger ceiling is accepted intent. The headerless-local-relay boundary remains explicit, and no remote TCP/IPv6 deployment claim is added. **CR-01 design response fixed; no open design findings.** This records the requested independent look without creating another gate or QA receipt.

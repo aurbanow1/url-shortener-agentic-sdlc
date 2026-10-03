@@ -76,3 +76,47 @@ This sentence is the complexity-only result. The correctness/security verdict re
 Producer response received before exit: the design owner agreed with CR-01 and committed a proposed design correction at `0052efb` (also inspect `TomcatServerProperties` remote-IP and protocol-header fields). The lead re-locked that plan (`01M41PCN4N25BR55E2ST2KKSRZ`) and explicitly requested an independent look at this design delta during the fixed-candidate re-review. That response is **acknowledged, not yet independently accepted**; the product candidate reviewed here remains 35590f0 and CR-01 remains open. The next review must inspect the design delta as well as its implementation.
 
 Verified exact SHA, clean candidate, 15/15 files, fresh full gate, real reproduction and reconciled QA artifacts. Findings have consequence, location and executable evidence. Ledger has both review rows. This is an independent review; producer repairs remain with the producer.
+
+## Re-review 7ac8af56ed04c27bbefbd416b3976c544d2f274a
+
+2026-10-03, packet `qitem-20261003213051-77ffaad3`, combined code/security review. **PASS; CR-01 fixed, no open findings.** This verdict supersedes the initial FAIL for the corrected candidate only.
+
+The clean worktree matches QA's exact SHA. Read the full correction and all three changed files, +72/-6 from 35590f0; the other 12 files in the original ledger are unchanged. **3/3 delta files reviewed, 15/15 unique candidate files reviewed** (full range from `0df4841`: +1529/-7). The accepted SPEC and public API are unchanged. Confidence in the correction and scoped evidence: 99%.
+
+| Changed file | Verdict |
+|---|---|
+| `src/main/java/dev/urlshort/audit/AuditController.java` | PASS; lines 65–67 require NONE and both bound Tomcat remoteip header settings to lack text. The guard still precedes validation and query execution. |
+| `src/test/java/dev/urlshort/audit/AuditControllerTest.java` | PASS; each independent trigger refuses; empty settings preserve local access; earlier strategy/null/address/parsing cases retained. |
+| `src/functionalTest/java/dev/urlshort/audit/AuditForwardedHeadersJourneyTest.java` | PASS; real Tomcat under each trigger refuses plain/forged GET and HEAD, with a stored canary proving denial does not return audit content. Earlier native/framework/platform controls retained. |
+
+| Finding | Resolution | Evidence |
+|---|---|---|
+| CR-01 HIGH | Fixed | The unchanged original reviewer reproduction now yields default plain GET/HEAD 200 and forwarded 403; either remoteip trigger, native and framework yield 403 for every plain/forged request. All 30 observations independently asserted in the reconciliation. A further 32 asserted real-container controls cover custom `X-Real-IP`, both settings, empty/whitespace settings, XFF/Forwarded, GET/HEAD and strict HTML Accept. Denials contain no audit canary/items; HEAD bodies are empty. |
+
+### Fresh verification and QA evidence audit
+
+Commands ran in the exact candidate worktree, with `--log` paths under this report's `proof/` directory:
+
+```sh
+scripts/gw --offline check --rerun-tasks
+scripts/gw --offline -I /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/review/01-audit-read/proof/audit-code.gradle reviewAuditCode
+scripts/gw --offline -I /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/review/01-audit-read/proof/audit-revision.gradle reviewAuditRevision
+```
+
+- [Full gate](proof/code-check-7ac8af5.txt): exit 0, 14 tasks executed, **203 unit + 202 functional**, zero failures/errors/skips; merged **494/494 lines and 194/194 branches**. Per-suite totals match committed QA reports: unit 438/494 lines, 188/194 branches; functional 457/494 and 162/194.
+- [Original control rerun](proof/code-controls-7ac8af5.txt) and [additional asserted controls](proof/revision-controls-7ac8af5.txt) pass their expected effects. The original launcher only collects observations; [reconciliation](proof/evidence-reconciliation-7ac8af5.json) explicitly checks its 30 outcomes. The additional [source](proof/AuditRevisionControls.java) checks all 32 directly. Both use actual candidate classes and close their loopback-only contexts.
+- Independently accepted the requested design correction `0052efb`: all six files read, installed Boot 4.1.1 customizer bytecode inspected, and implementation effects verified. See the focused entry in [design review](design-review.md). No new library, layer, schema, storage or public response was introduced.
+- QA's corrected-candidate record (`a08650c`, receipt commit `0d92000`) names all 21 ACs, **258 HTTP captures and 1482 reconciliation checks**. Independently verified all **348** coverage report hashes, 36 installed-configuration observations, exact read-only snapshots for three intervals (4/45/45 audit rows, each with three links and zero clicks), all five original API path objects and equality of the complete live/committed OpenAPI document. QA's same-directory upgrade retains shipped rows and statistics; original-suite qualification remains 153/155 with only the two explicitly granted enumeration failures.
+- Logging evidence is scoped honestly: the initial added file sink was plain text, so its 235 exchanges are not claimed as retained JSON correlation. QA repeated **23 requests**, retaining **24 default-console JSON request events**, including the two actual pages and a 403 for the identical second-page URI with a forwarding header. Independently matched the raw events to response IDs/statuses; GAPS and PROOF disclose the correction and whole-run canary checks. This does not turn unretained earlier events into proof.
+
+### Ponytail review
+
+Lean already. Ship.
+
+The correction uses Boot's existing bound properties and Spring's `StringUtils.hasText`. The `ponytail:` comment names the real ceiling: a future Boot rewrite trigger requires review of this predicate. No new complexity finding.
+
+### Verdict and self-check
+
+**PASS for combined handoff; no remaining blocking or non-blocking findings.** CR-01 is resolved, and the unchanged acceptance assessments carry forward; ACs 11–14 now pass within the SPEC's peer/header boundary. The [security re-review](02-security-review.md) supplies the previously missing corrected record for proof item 12. QA must judge that item through lead sequencing item `qitem-20261003194346-b74b8081` before integration/acceptance; this review does not issue that QA receipt.
+
+Exact candidate, complete delta/file coverage, fresh gate, independent reproduction, design correction and QA evidence checked. Product/tests/SPEC/design untouched. Actual remote TCP, real IPv6, headerless local relays and future Boot versions are not newly claimed as tested.
