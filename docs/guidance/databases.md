@@ -1,9 +1,10 @@
 # Database guidance
 
 Applies to every slice that adds a table, a column, an index or a query.
-Embedded H2 in PostgreSQL mode today (ADR-0003 rationale: zero ops for the
-prototype); every rule below keeps a later move to PostgreSQL a configuration
-change, not a rewrite.
+Embedded H2 in PostgreSQL mode today (zero ops for the prototype; the first
+slice that creates a table records this in its persistence ADR — ADR-0001
+covers only the stack baseline); every rule below keeps a later move to
+PostgreSQL a configuration change, not a rewrite.
 
 ## 1. Schema ownership
 
