@@ -19,4 +19,4 @@
 - [x] Item 9: no migration, as the design and plan-lock state
 - [x] Item 10 (builder half): `docs/api/openapi.json` regenerated on the candidate; QA's live-vs-committed diff is pending
 - [x] QA on candidate7ac8af5: independent203 unit/202 functional, merged494/494 lines194/194 branches,258 HTTP captures, CR-01 fixed by installed-jar reproduction. AC-17 exact grant428e9e1 retained; proof/qa-recheck-7ac8af5/verification.json and PROOF.md QA. Historical35590f0 PASS remains superseded and item1 rejected.
-- [ ] Review: security record (item 12)
+- [x] Review: security record (item12) read and accepted on exact7ac8af5 from corrected independent70b1a2d record; attributed QA receipt26, proof/qa-item12-judgment-receipt-7ac8af5.json. All13 proof items ready; integration remains the lead's step.

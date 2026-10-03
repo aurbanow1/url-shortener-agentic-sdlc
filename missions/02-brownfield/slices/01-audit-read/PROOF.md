@@ -226,6 +226,40 @@ qitem-20261003194346-b74b8081. The earlier35590f0 rejection is preserved.
 - All app ports18131/18132/18133/18134 refuse connections; worktree remains
   clean at exact candidateSHA. No product/build/test edits.
 
+
+### Security record completion — 7ac8af5, receipt26
+
+Packet qitem-20261003214437-dba5ead9, 2026-10-03. The independent corrected
+security record is now available at70b1a2d, with explicit item12 rows.
+QA read its exact-candidate re-review and the independent0052efb design
+acceptance; parsed all30 original control outcomes and32 additional
+controls, and reconciled36 prior independent QA installed-jar outcomes.
+The observed statuses, safe refusal bodies and empty HEAD bodies agree.
+No new product change, app start or suite rerun is claimed for this narrow
+record judgment; the existing independent full QA remains applicable.
+
+Item12 **accepted against commit7ac8af56ed04c27bbefbd416b3976c544d2f274a**:
+attributed receipt26, id2dfc1507553fedb9594b92ac1cd3a1b12041c37a8c4237b7a6aebf5f7049ac43.
+Record checks, proof drop, judgment and ready snapshot are
+proof/qa-item12-{record-check,security,judgment-receipt,readiness}-7ac8af5.
+All13 items are accepted/current and34 cited evidence hashes match bytes.
+This supersedes the earlier pending-item12 status; other QA findings and
+capture qualifications remain unchanged.
+
+#### Self-check — security-record judgment
+
+- Read the actual committed record, explicit contract row and raw controls,
+  rather than treating the review PASS message as the receipt.
+- Exact unchanged clean candidate, security record bytes match70b1a2d;
+  every cited hash current, all13 proof states accepted.
+- Scope preserved: the service-observed peer/header inputs and known Boot
+  triggers; headerless local relays must exclude this route or retain a
+  forwarding header. No external TCP/IPv6, authentication or future-trigger
+  guarantee inferred.
+- No source/build/test/reviewer artifact edited. Item12 proof drop made;
+  attributed receipt committed with explicit paths before returning the
+  sequencing packet to the lead.
+
 ### Historical QA — 35590f0 (superseded)
 
 
