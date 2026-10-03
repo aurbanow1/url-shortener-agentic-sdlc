@@ -34,10 +34,10 @@ it in `docs/guidance/README.md` §2.
 |---|---|---|
 | §4.1 requirement understanding | `docs/REQUIREMENTS.md` (44 FR/NFR rows tagged stated / derived / decided / dropped), slice `SPEC.md`s with ambiguity logs, the mission-03 ambiguity park and the human's six answers | done |
 | §4.2 decomposition | `missions/*/mission.yaml`, `slices/*/slice.yaml`, `docs/evidence/*/compiled-graph.json`, wave maps, plan-lock briefs | done (3 missions) |
-| §4.3 brownfield reasoning | `missions/02-brownfield/slices/*/impact-analysis.md` | `[final]` |
+| §4.3 brownfield reasoning | `missions/02-brownfield/slices/*/impact-analysis.md` (five slices), `docs/scenarios/brownfield.md` §Codebase reasoning, including the forwarded-header path one analysis missed and review caught | done; merge outcomes `[final]` |
 | §4.4 orchestration | `rig/workflows/*.yaml`, `project.yaml#lifecycle`, `docs/GOVERNANCE.md`, `docs/evidence/*/` (trails, packets, gates), `docs/metrics/`, `docs/scenarios/drills.md` | done |
 | §4.5 engineering output | `src/`, Flyway `V1`/`V2`, `docs/api/openapi.json`, Javadoc on every public type (`-Xdoclint:all -Werror` in `check`), `docs/DESIGN.md`, ADRs | done |
-| §4.6 validation and risk control | `docs/RISKS.md`, `docs/scenarios/drills.md`, permission policies, loopback-only tooling | done |
+| §4.6 validation and risk control | `docs/RISKS.md`, `docs/scenarios/drills.md`, permission policies, loopback-only tooling, CI/CD on GitHub Actions (`.github/workflows/`, D14) with the first runs recorded in `missions/02-brownfield/slices/05-ci-cd/PROOF.md` | done |
 | §4.7 controlled autonomy | gate packets and `rig queue resolve` records, delegation records (D11), role `Never` lists | done |
 | §4.8 final summary | this document | `[final]` |
 | §5 deliverables | prototype, `docs/ARCHITECTURE.md`, `docs/scenarios/*.md`, `README.md` + `docs/SETUP-FACTORY.md`, `docs/TESTING.md` | `[final]` for the scenario narratives |
@@ -100,6 +100,25 @@ are recorded verbatim in the queue transitions exported under `docs/evidence/`.
   path is documented, not exercised.
 - AC-28's published-port clause could not be met through macOS Docker's host
   forwarder; it ships as a disclosed host gap by human decision.
+- Review independence is weaker on two steps since D17: a SPEC is written and
+  reviewed by the same model (GPT-6-Astra), and a release package on the same
+  runtime. Code, QA and security review keep author and judge on different
+  runtimes.
+- Throughput was bounded by the code chain, not by seats: slices that touch
+  the same files merge one after another, and a slice's steps run one at a
+  time, so one long QA run holds everything downstream. Building on a reviewed
+  sibling branch shortened that chain where the lead judged the risk
+  acceptable.
+- Codex seats run sandboxed, so each local app start or stop, Docker call or
+  daemon call needs an operator approval. QA alone needed about twenty in one
+  afternoon.
+- Proof judgments bind the exact bytes of their evidence. Shared documents
+  that later slices extend (traceability, gaps, the ERD) turn shipped items
+  from accepted to unknown. They are re-affirmed by QA on the final `main`;
+  `[final]`: the outcome.
+- One dependency update (the Gradle wrapper, 9.7.1 to 9.8.0) was merged on
+  GitHub outside the rig's review; `[final]`: how it was brought into the
+  rig's `main`.
 - `[final]` anything not delivered by mission 03 close.
 
 ## 8. How to verify in 15 minutes
