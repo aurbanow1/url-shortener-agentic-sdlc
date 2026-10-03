@@ -1,0 +1,24 @@
+%% urlshort — entity relationship diagram (kept current by the Design Agent; last: 01-create-redirect design, V1)
+%% No foreign key between the tables by design: audit_log identifies its subject by (entity, entity_id = code)
+%% and must outlive any future deletion of the subject (ADR-0008).
+erDiagram
+    LINK {
+        bigint id PK "GENERATED ALWAYS AS IDENTITY"
+        varchar(32) code UK "public identifier, [A-Za-z0-9]{8}, case-sensitive"
+        varchar(2048) url "stored verbatim"
+        timestamptz created_at "application Clock, ms; also the idempotency binding time"
+        timestamptz retired_at "NULL = active; set once by DELETE"
+        varchar(255) idempotency_key UK "nullable; bound by the 201 that created the row"
+    }
+    AUDIT_LOG {
+        bigint id PK "GENERATED ALWAYS AS IDENTITY"
+        timestamptz occurred_at "application Clock"
+        varchar(64) actor "anonymous"
+        varchar(64) action "link.create | link.retire"
+        varchar(32) entity "link"
+        varchar(64) entity_id "the code"
+        varchar(64) request_id "X-Request-Id of the mutating request"
+        varchar(4096) before_state "JSON {url,state}; NULL on create"
+        varchar(4096) after_state "JSON {url,state}"
+    }
+    LINK ||..o{ AUDIT_LOG : "audited by (entity_id = code, no FK)"

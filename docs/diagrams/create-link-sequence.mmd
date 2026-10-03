@@ -1,0 +1,46 @@
+%% urlshort — create a short link, including the Idempotency-Key branches (01-create-redirect design.md §4)
+sequenceDiagram
+    autonumber
+    participant C as Creator
+    participant F as RequestIdFilter + RequestBodyLimitFilter (web)
+    participant LC as LinkController (link)
+    participant V as LinkValidation
+    participant S as LinkService (@Transactional)
+    participant R as LinkRepository → H2 link
+    participant A as AuditLog → H2 audit_log
+    participant E as ProblemDetailsAdvice
+
+    C->>F: POST /api/links {"url":U} [Idempotency-Key: K]
+    F->>F: X-Request-Id R, MDC requestId=R; wrap body stream (limit 16 384 B)
+    F->>LC: chain.doFilter
+    LC->>V: validateUrl(U), validateIdempotencyKey(K)
+    alt rule fails
+        V-->>E: ErrorResponseException 400 {errors:[{field,rule}]}
+        E-->>C: 400 application/problem+json
+    end
+    LC->>S: create(U, K)
+    opt K present
+        S->>R: findByIdempotencyKey(K)
+        alt bound and now < createdAt + 24h
+            alt same url
+                S-->>LC: existing link (replay; no write)
+                LC-->>C: 201 Location /api/links/C, current representation
+            else different url
+                S-->>E: ErrorResponseException 422 {errors:[{Idempotency-Key, mismatch}]}
+                E-->>C: 422 problem detail (binding untouched)
+            end
+        else bound and expired
+            S->>R: releaseIdempotencyKey(id)
+        end
+    end
+    S->>R: save(Link(code=ShortCodes.next(), url=U, createdAt=now, key=K))
+    S->>A: append("link.create","link",C,null,{url,state:active})
+    A->>A: INSERT audit_log (actor anonymous, request_id = MDC requestId, occurred_at = clock)
+    alt audit insert fails
+        A-->>S: DataAccessException → rollback
+        S-->>E: exception
+        E-->>C: 500 problem detail (nothing stored)
+    end
+    S-->>LC: link
+    LC-->>C: 201 Location /api/links/C {code,shortUrl,url,state,createdAt}
+    F->>F: INFO "request completed" {method,status}; MDC.remove

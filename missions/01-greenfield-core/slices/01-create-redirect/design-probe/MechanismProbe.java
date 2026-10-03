@@ -216,6 +216,24 @@ public class MechanismProbe {
 			return handleExceptionInternal(ex, ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR),
 					new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
 		}
+
+		@Override
+		protected ResponseEntity<Object> handleHttpMessageNotReadable(
+				org.springframework.http.converter.HttpMessageNotReadableException ex, HttpHeaders headers,
+				org.springframework.http.HttpStatusCode status, WebRequest request) {
+			StringBuilder chain = new StringBuilder();
+			for (Throwable t = ex; t != null; t = t.getCause()) {
+				chain.append(t.getClass().getName()).append(": ").append(t.getMessage()).append(" <- ");
+			}
+			System.out.println("PROBE not-readable cause chain\n    " + chain);
+			// design.md section 1: a limit raised inside Jackson's databind arrives wrapped; unwrap it.
+			for (Throwable t = ex.getCause(); t != null; t = t.getCause()) {
+				if (t instanceof ErrorResponseException limit) {
+					return handleExceptionInternal(limit, limit.getBody(), limit.getHeaders(), limit.getStatusCode(), request);
+				}
+			}
+			return super.handleHttpMessageNotReadable(ex, headers, status, request);
+		}
 	}
 
 	/** Counting input stream: the 16 385th body byte raises a 413 inside the DispatcherServlet. */

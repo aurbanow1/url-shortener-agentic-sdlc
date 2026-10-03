@@ -1,0 +1,41 @@
+%% urlshort — redirect and retire (01-create-redirect design.md §4)
+sequenceDiagram
+    autonumber
+    participant V as Visitor / Creator
+    participant F as RequestIdFilter (web)
+    participant RC as RedirectController (link)
+    participant LC as LinkController (link)
+    participant S as LinkService
+    participant R as LinkRepository → H2 link
+    participant A as AuditLog → H2 audit_log
+    participant E as ProblemDetailsAdvice
+
+    V->>F: GET /C  (Accept: text/html,…,*/*;q=0.8)
+    F->>RC: chain.doFilter (requestId on MDC)
+    RC->>S: resolve(C)
+    S->>R: findByCode(C)
+    alt no row
+        S-->>E: ErrorResponseException 404
+        E-->>V: 404 application/problem+json
+    else retired_at set
+        S-->>E: ErrorResponseException 410
+        E-->>V: 410 application/problem+json, no Location
+    else active
+        S-->>RC: link
+        Note over RC: 02-analytics hook goes here (one call), nothing else changes
+        RC-->>V: 302 Location: <stored url> Cache-Control: no-store
+    end
+
+    V->>F: DELETE /api/links/C
+    F->>LC: chain.doFilter
+    LC->>S: retire(C)
+    S->>R: findByCode(C) → link (404 if absent)
+    S->>R: UPDATE link SET retired_at=now WHERE id=? AND retired_at IS NULL
+    alt 0 rows (already retired, or a concurrent retire won)
+        S-->>E: ErrorResponseException 410
+        E-->>V: 410 problem detail, no audit row
+    else 1 row
+        S->>A: append("link.retire","link",C,{url,active},{url,retired})
+        S-->>LC: done
+        LC-->>V: 204
+    end

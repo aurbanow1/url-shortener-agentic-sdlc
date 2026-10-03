@@ -1,20 +1,38 @@
-%% urlshort — container view (kept current by the Design Agent; last: 01-ping)
+%% urlshort — container view (kept current by the Design Agent; last: 01-create-redirect design, not yet merged)
 flowchart LR
-    C[Client / operator / proxy]
+    C[Creator / Visitor / Operator]
     subgraph urlshort [urlshort · Spring Boot 4.1 · Java 21]
-        F[RequestIdFilter<br/>web · highest precedence]
+        F1[RequestIdFilter<br/>web · highest precedence<br/>X-Request-Id · MDC · request event]
+        F2[RequestBodyLimitFilter<br/>web · 16 KiB counting stream]
         D[DispatcherServlet]
+        LC[LinkController<br/>link · /api/links]
+        RC[RedirectController<br/>link · /{code}]
+        V[LinkValidation · ShortCodes]
+        S[LinkService<br/>@Transactional]
+        R[LinkRepository<br/>Spring Data JDBC]
+        AU[AuditLog<br/>audit · insert-only JdbcClient]
         P[PingController<br/>ping]
-        E[ProblemDetailsExceptionHandler<br/>platform]
+        E[ProblemDetailsAdvice<br/>web · extends ResponseEntityExceptionHandler]
         A[Actuator<br/>health · info · metrics]
-        O[springdoc OpenAPI]
+        O[springdoc OpenAPI<br/>OpenApiConfig: servers /]
+        K[(Clock · tickMillis UTC)]
     end
     L[(stdout · ECS JSON lines)]
-    H[(H2 file DB · data/<br/>schema via Flyway · no tables yet)]
-    C -->|HTTP| F --> D
+    H[(H2 file DB · data/<br/>Flyway V1: link, audit_log)]
+    C -->|HTTP| F1 --> F2 --> D
+    D --> LC
+    D --> RC
     D --> P
-    D -.-> E
+    D -.->|every error| E
+    LC --> V
+    LC --> S
+    RC --> S
+    S --> R --> H
+    S --> AU --> H
+    S --- K
+    AU --- K
     C -->|/actuator/*| A
     C -->|/v3/api-docs| O
-    P -->|INFO ping · MDC requestId| L
-    urlshort -.->|not used by 01-ping| H
+    F1 -->|INFO request completed · MDC requestId| L
+    E -->|ERROR request failed · 500 only| L
+    P -->|INFO ping| L
