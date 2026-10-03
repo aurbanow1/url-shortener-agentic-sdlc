@@ -47,7 +47,7 @@ to merged lines and branches. Per-suite figures are informational.
 All 321 report files (HTML, XML, CSV, including the merged report) were copied
 from this run and SHA-256 checked against their source bytes. The inventory,
 all 186 named source-test mappings, XML invocation names and copy hashes are in
-[`qa-report-audit-add7ab5.json`](../../../../missions/02-brownfield/slices/05-ci-cd/proof/qa-report-audit-add7ab5.json).
+[`qa-report-audit-add7ab5.json`](qa-report-audit-add7ab5.json).
 No product, test, build or threshold changed; the candidate diff is three
 `.github/` files, 129 insertions. No new excluded path or coverage waiver.
 

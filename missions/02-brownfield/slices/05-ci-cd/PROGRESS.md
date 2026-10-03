@@ -9,5 +9,5 @@
 
 - [x] Implementation complete — candidate `add7ab5` (`.github/` only, copied byte for byte from the locked drafts)
 - [x] Tests passing — local equivalents on `add7ab5`: actionlint 0 errors, YAML parsed, `check` green (165 unit / 155 functional, 100 % line and branch), `--jar` smoke OK, image built; AC-13 (GitHub runs) pending the human's push
-- [x] Independent QA complete — exact `add7ab5ca37dcd6f51aef3cd43c85455e1be6d14`, fresh165/155, merged100/100, YAML/source AC-1..11, own jar smoke and stopped process; completed builder --pull image and attached pins checked. AC-13 explicitly PENDING under SPEC A-5; all7 proof-contract items evidenced.
+- [x] Independent QA complete — exact `add7ab5ca37dcd6f51aef3cd43c85455e1be6d14`, fresh165/155, merged100/100, YAML/source AC-1..11, own jar smoke and stopped process; completed builder --pull image and attached pins checked. AC-13 explicitly PENDING under SPEC A-5; All seven proof-contract items accepted against this exact SHA (receipts00000001..00000007), current readiness ready7/7; evidencef10c796.
 - [ ] Review approved

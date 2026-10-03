@@ -163,6 +163,11 @@ Context and observations that help the mission but do not change its
   - **Waiting** on audit-read's code-review packet `qitem-20261003195938-d8b8a9c3`. review-agent reported a HIGH at 20:07Z: the remoteip header settings re-enable peer rewriting while the strategy is `NONE`.
   - **Continuation on wake:** if audit-read comes back to implement, fix it first. Once its merge commit is on `main`: `git rebase <merge>` in `.worktrees/03-dogfood-fix`, run `OpenApiDocumentTest`, `cp build/openapi/openapi.json docs/api/openapi.json`, commit, run `check --rerun-tasks`, update PROOF/PROGRESS with the SHA, drop the proof, and hand off.
   - `01-analytics-v2` (`qitem-20261003200325-7115d4e3`, mission 03) was handed to `dev2-agent` at 20:03Z; it is not mine.
+- 2026-10-03T20:25Z — `01-audit-read` CR-01 rework (packet `qitem-20261003201620-c74de839`).
+  - Candidate **`7ac8af5`**: `ea7e6f4` tests (red on the `35590f0` code), `1fe1cbf` guard per design `0052efb` (`TomcatServerProperties` remoteip headers), `7ac8af5` HEAD cases.
+  - Gate green: unit 203, functional 202, 494/494 lines, 194/194 branches.
+  - Not re-run by me on the new SHA: AC-17 and the jar captures. The change only narrows admission; QA re-runs the exact candidate.
+  - `03-dogfood-fix` is stacked on `35590f0`. Its rebase onto audit-read's merge commit absorbs this change.
 
 ## 5. QA Agent
 
@@ -212,3 +217,12 @@ Context and observations that help the mission but do not change its
   All186 named source methods have inherited AC/rule rows. QA is PASS on
   AC1–12; AC13 remains explicitly PENDING per A5. Seven proof-contract
   judgments and committed evidence handoff follow against the unchanged SHA.
+
+- 2026-10-03T20:21Z — 05-ci-cd QA evidence committed f10c796. All seven
+  attributed candidate judgments accepted (receipts00000001..00000007);
+  live rig proof show is ready7/7, no unknowns/issues. Item7 accepts the
+  explicitly allowed pending GitHub record, not a successful GitHub run.
+  Receipt commit and qa_check handoff to review2 close this packet. Required
+  shared GAPS/TRACEABILITY appends may stale older shared-file receipt hashes;
+  those unassigned scopes are not rejudged here. No app is left running and
+  the worktree remains clean at the named candidate.
