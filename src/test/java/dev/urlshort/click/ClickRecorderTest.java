@@ -25,6 +25,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
+import dev.urlshort.web.RateLimitFilter;
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -48,7 +50,8 @@ class ClickRecorderTest {
 
 	private final ClickStore store = mock(ClickStore.class);
 	private final DailySalt salt = mock(DailySalt.class);
-	private final ClickRecorder recorder = new ClickRecorder(store, salt, Duration.ofMillis(200));
+	private final SimpleMeterRegistry registry = new SimpleMeterRegistry();
+	private final ClickRecorder recorder = new ClickRecorder(store, salt, registry, Duration.ofMillis(200));
 	private final ListAppender<ILoggingEvent> events = new ListAppender<>();
 	private final Logger recorderLogger = (Logger) LoggerFactory.getLogger(ClickRecorder.class);
 
@@ -250,6 +253,99 @@ class ClickRecorderTest {
 
 		assertThat(events.list).singleElement().satisfies(
 				event -> assertThat(keyValues(event)).containsEntry("reason", "shutdown deadline, outcome unknown"));
+	}
+
+	@Test
+	void theRateLimitersClientIsHashedWhenTheRequestCarriesIt() throws Exception {
+		MockHttpServletRequest request = request("GET", "req-proxied");
+		request.setAttribute(RateLimitFilter.CLIENT_ATTRIBUTE, "198.51.100.5");
+
+		recorder.record(1L, request);
+		recorder.settle();
+
+		verify(salt).stamp("198.51.100.5");
+		verify(salt, never()).stamp("203.0.113.77");
+	}
+
+	@Test
+	void everyLostReasonIsRegisteredAtZeroBeforeAnyClick() {
+		assertThat(registry.find("urlshort.clicks.lost").counters())
+				.extracting(counter -> counter.getId().getTag("reason"))
+				.containsExactlyInAnyOrder("rejected", "reduction failed", "write failed", "shutdown deadline",
+						"shutdown deadline, outcome unknown");
+		assertThat(registry.find("urlshort.clicks.lost").counters()).allSatisfy(counter -> {
+			assertThat(counter.count()).isZero();
+			assertThat(counter.getId().getTags()).hasSize(1);
+		});
+		assertThat(recorded()).isZero();
+	}
+
+	@Test
+	void aStoredClickIsCountedAsRecorded() throws Exception {
+		recorder.record(1L, request("GET", "req-count"));
+		recorder.settle();
+
+		assertThat(recorded()).isEqualTo(1);
+		assertThat(registry.find("urlshort.clicks.lost").counters()).allSatisfy(c -> assertThat(c.count()).isZero());
+	}
+
+	@Test
+	void aFailedWriteIsCountedUnderItsReason() throws Exception {
+		doThrow(new DataAccessResourceFailureException("down")).when(store).insert(any());
+
+		recorder.record(1L, request("GET", "req-fail-count"));
+		recorder.settle();
+
+		assertThat(lost("write failed")).isEqualTo(1);
+		assertThat(recorded()).isZero();
+	}
+
+	@Test
+	void aRejectedClickIsCountedUnderItsReason() throws Exception {
+		recorder.close();
+
+		recorder.record(1L, request("GET", "req-rejected-count"));
+
+		assertThat(lost("rejected")).isEqualTo(1);
+	}
+
+	@Test
+	void aReductionFailureIsCountedUnderItsReason() throws Exception {
+		when(salt.stamp(anyString())).thenThrow(new GeneralSecurityException("no HMAC"));
+
+		recorder.record(1L, request("GET", "req-salt-count"));
+
+		assertThat(lost("reduction failed")).isEqualTo(1);
+	}
+
+	@Test
+	void shutdownReasonsAreCountedAndAWriteThatReturnsAfterTheClaimIsStillRecorded() throws Exception {
+		CountDownLatch entered = new CountDownLatch(1);
+		CountDownLatch release = new CountDownLatch(1);
+		doAnswer(call -> {
+			entered.countDown();
+			release.await();
+			return null;
+		}).when(store).insert(any());
+		recorder.record(1L, request("GET", "req-running-count"));
+		recorder.record(2L, request("GET", "req-queued-count"));
+		entered.await();
+
+		recorder.claimOutstanding();
+		release.countDown();
+		recorder.settle();
+
+		assertThat(lost("shutdown deadline, outcome unknown")).isEqualTo(1);
+		assertThat(lost("shutdown deadline")).isEqualTo(1);
+		assertThat(recorded()).as("the running insert returned, so its click is stored").isEqualTo(1);
+	}
+
+	private double recorded() {
+		return registry.get("urlshort.clicks.recorded").counter().count();
+	}
+
+	private double lost(String reason) {
+		return registry.get("urlshort.clicks.lost").tag("reason", reason).counter().count();
 	}
 
 	private static MockHttpServletRequest request(String method, String requestId) {

@@ -220,7 +220,8 @@ class ClickRecordingJourneyTest {
 		tools.jackson.databind.JsonNode stats = jsonMapper.readTree(body);
 		assertThat(stats.propertyNames()).containsExactlyInAnyOrder("code", "totalClicks", "clicksPerDay",
 				"topReferrers");
-		stats.get("clicksPerDay").forEach(day -> assertThat(day.propertyNames()).containsExactlyInAnyOrder("date", "clicks"));
+		stats.get("clicksPerDay").forEach(day -> assertThat(day.propertyNames()).containsExactlyInAnyOrder("date", "clicks",
+				"uniqueVisitors", "botClicks"));
 		stats.get("topReferrers")
 				.forEach(ref -> assertThat(ref.propertyNames()).containsExactlyInAnyOrder("referrer", "clicks"));
 		assertThat(body).doesNotContain("203.0.113.77").doesNotContain("198.51.100.23").doesNotContain(hash)
