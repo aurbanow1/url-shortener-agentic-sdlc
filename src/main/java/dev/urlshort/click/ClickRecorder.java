@@ -27,7 +27,8 @@ import org.springframework.stereotype.Component;
  * 1, 2 and 5; ADR-0011). The request is reduced to a {@link Click} on the request thread, and only
  * that crosses to a single writer thread through a queue of {@value #QUEUE_CAPACITY}.
  *
- * <p>Fail open: a full or closed queue, or a failed write, loses that click and writes exactly one WARN
+ * <p>Fail open: a click that cannot be reduced (reason {@code reduction failed}), a full or closed queue
+ * ({@code rejected}) or a failed write loses that click and writes exactly one WARN
  * {@code click lost} carrying the redirect's {@code requestId}, a {@code reason} and the exception's
  * class, never its message or any click value. On shutdown the writer drains for at most five seconds;
  * every click still unwritten is then reported once, before {@link #close()} returns (DR-01). Each
@@ -90,7 +91,7 @@ public class ClickRecorder {
 					MDC.get("requestId"));
 		}
 		catch (Exception ex) {
-			lost("rejected", ex);
+			lost("reduction failed", ex);
 			return;
 		}
 		outstanding.add(write);

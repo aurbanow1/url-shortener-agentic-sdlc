@@ -179,3 +179,24 @@ QA evidence committed at 84d3604. Attributed receipts 1–10 accept proof items
 1–8 and 10 against X; item 7 was re-affirmed with a durable exact migration
 copy instead of a worktree evidence path. Live state is nine accepted, item 9
 pending, no issues, saved in proof/qa-judgment-state-a8fc8b6.json.
+
+## QA custody continuation — X′ a2c34c1
+
+Packet qitem-20261003225644-1b96a603 fulfilled. QA independently verified exact
+clean HEAD `a2c34c146c75cfabe24b16ec9e30ad40628dd676`, ancestry from audit-read's
+`cb148c4`, V3 next after unchanged V1/V2, and the authorized range-diff: six
+patches identical, seventh only properties context around audit-read's pin;
+added/removed lines and README patch unchanged. V3 equals the reviewed X bytes.
+
+Read the lead's fresh 14-task gate: 213 unit + 224 functional, no failures,
+errors or skips. QA additionally verified the canonical merge using only fresh
+test.exec and functionalTest.exec, excluding the old auxiliary replay file:
+555/555 lines, 200/200 branches. The tests themselves remained up-to-date for
+this extra verification; fresh execution is attributed to the lead's gate.
+
+Proof drop qa-custody-evidence-a2c34c1.md attests only item 9 on X′. Receipt 11
+accepts it. Live readiness is 10/10 accepted, no issues. Items 1–8 and 10 retain
+X attribution under the lead's explicit custody rule; acceptance/tag/merge
+target X′. Full evidence/self-check: proof/qa-custody-a2c34c1.md and supporting
+Git, shared-hunk and canonical coverage captures. No new full public-journey
+claim, product/test edit, rebase, merge or app start by QA in this narrow step.

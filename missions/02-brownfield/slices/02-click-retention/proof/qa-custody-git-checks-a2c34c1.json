@@ -1,0 +1,84 @@
+{
+  "packet": "qitem-20261003225644-1b96a603",
+  "scope": "proof contract item 9; approved custody exception",
+  "checkedAt": "2026-10-03T22:59Z",
+  "candidate": "a2c34c146c75cfabe24b16ec9e30ad40628dd676",
+  "originalCandidate": "a8fc8b6b67e3a3cbdaada43a3233191b6c7610e1",
+  "oldBase": "16312da",
+  "rebaseBase": "2ead709bb991caaa8ece275c6bcf5048123b73cc",
+  "auditReadMerge": "cb148c4fecd40e39dc7e1c8788506b0f37a2f119",
+  "commands": [
+    {
+      "checkIndex": 0,
+      "status": "fulfilled",
+      "chunk_id": "3c5c7e",
+      "wall_time_seconds": 0.000006166,
+      "exit_code": 0,
+      "original_token_count": 11,
+      "output": "a2c34c146c75cfabe24b16ec9e30ad40628dd676\n"
+    },
+    {
+      "checkIndex": 1,
+      "status": "fulfilled",
+      "chunk_id": "2d6503",
+      "wall_time_seconds": 0.000005375,
+      "exit_code": 0,
+      "original_token_count": 0,
+      "output": ""
+    },
+    {
+      "checkIndex": 2,
+      "status": "fulfilled",
+      "chunk_id": "3a4129",
+      "wall_time_seconds": 0.000005459,
+      "exit_code": 0,
+      "original_token_count": 387,
+      "output": "1:  0498c56 = 1:  7cc24df test(02-click-retention): a click reduction failure reports its own reason\n2:  2c5b8e8 = 2:  6764393 fix(02-click-retention): click lost reason \"reduction failed\" (W2-05)\n3:  1d63e4c = 3:  b841fb6 test(02-click-retention): the click tables carry audit columns\n4:  632ecb9 = 4:  ccee69b feat(02-click-retention): V3 audit columns on click and user_agent_class\n5:  64abbfe = 5:  e39a9d4 test(02-click-retention): retention purge journeys and tick rules\n6:  056c8db = 6:  7383462 feat(02-click-retention): daily click purge with a retention setting\n7:  a8fc8b6 ! 7:  a2c34c1 feat(02-click-retention): shipped retention setting\n    @@ README.md: returns a `code` and `shortUrl`; `GET /{code}` redirects (302); `GET\n      read-only filesystem, H2 file database in the `urlshort-data` volume, published on `127.0.0.1:8080`\n     \n      ## src/main/resources/application.properties ##\n    -@@ src/main/resources/application.properties: urlshort.rate-limit.create-per-minute=60\n    - urlshort.rate-limit.redirect-per-minute=600\n    - urlshort.rate-limit.trusted-proxies=\n    +@@ src/main/resources/application.properties: urlshort.rate-limit.trusted-proxies=\n    + # X-Forwarded-For, which Boot otherwise enables on a detected cloud platform.\n    + server.forward-headers-strategy=none\n      \n     +# Click retention (NFR-P2): clicks older than this many UTC days are deleted at startup and daily at 00:10Z; a positive whole number. Overridable by URLSHORT_CLICK_RETENTIONDAYS (ADR-0018).\n     +urlshort.click.retention-days=90\n"
+    },
+    {
+      "checkIndex": 3,
+      "status": "fulfilled",
+      "chunk_id": "76812c",
+      "wall_time_seconds": 0.00000325,
+      "exit_code": 0,
+      "original_token_count": 0,
+      "output": ""
+    },
+    {
+      "checkIndex": 4,
+      "status": "fulfilled",
+      "chunk_id": "237167",
+      "wall_time_seconds": 0.000004041,
+      "exit_code": 0,
+      "original_token_count": 30,
+      "output": "src/main/resources/db/migration/V1__create_link_and_audit_log.sql\nsrc/main/resources/db/migration/V2__create_click.sql\n"
+    },
+    {
+      "checkIndex": 5,
+      "status": "fulfilled",
+      "chunk_id": "48d06c",
+      "wall_time_seconds": 0.000003667,
+      "exit_code": 0,
+      "original_token_count": 46,
+      "output": "src/main/resources/db/migration/V1__create_link_and_audit_log.sql\nsrc/main/resources/db/migration/V2__create_click.sql\nsrc/main/resources/db/migration/V3__add_click_audit_columns.sql\n"
+    },
+    {
+      "checkIndex": 6,
+      "status": "fulfilled",
+      "chunk_id": "c78804",
+      "wall_time_seconds": 0.000005958,
+      "exit_code": 0,
+      "original_token_count": 1038,
+      "output": "{\"@timestamp\":\"2026-10-03T22:56:33.303033Z\",\"log\":{\"level\":\"INFO\",\"logger\":\"com.zaxxer.hikari.HikariDataSource\"},\"process\":{\"pid\":89520,\"thread\":{}},\"service\":{\"name\":\"urlshort\",\"node\":{}},\"message\":\"HikariPool-24 - Shutdown initiated...\",\"ecs\":{\"version\":\"8.11\"}}\n{\"@timestamp\":\"2026-10-03T22:56:33.303206Z\",\"log\":{\"level\":\"INFO\",\"logger\":\"com.zaxxer.hikari.HikariDataSource\"},\"process\":{\"pid\":89520,\"thread\":{}},\"service\":{\"name\":\"urlshort\",\"node\":{}},\"message\":\"HikariPool-24 - Shutdown completed.\",\"ecs\":{\"version\":\"8.11\"}}\n{\"@timestamp\":\"2026-10-03T22:56:33.305273Z\",\"log\":{\"level\":\"INFO\",\"logger\":\"com.zaxxer.hikari.HikariDataSource\"},\"process\":{\"pid\":89520,\"thread\":{}},\"service\":{\"name\":\"urlshort\",\"node\":{}},\"message\":\"HikariPool-26 - Shutdown initiated...\",\"ecs\":{\"version\":\"8.11\"}}\n{\"@timestamp\":\"2026-10-03T22:56:33.305540Z\",\"log\":{\"level\":\"INFO\",\"logger\":\"com.zaxxer.hikari.HikariDataSource\"},\"process\":{\"pid\":89520,\"thread\":{}},\"service\":{\"name\":\"urlshort\",\"node\":{}},\"message\":\"HikariPool-26 - Shutdown completed.\",\"ecs\":{\"version\":\"8.11\"}}\n{\"@timestamp\":\"2026-10-03T22:56:33.305974Z\",\"log\":{\"level\":\"INFO\",\"logger\":\"com.zaxxer.hikari.HikariDataSource\"},\"process\":{\"pid\":89520,\"thread\":{}},\"service\":{\"name\":\"urlshort\",\"node\":{}},\"message\":\"HikariPool-27 - Shutdown initiated...\",\"ecs\":{\"version\":\"8.11\"}}\n{\"@timestamp\":\"2026-10-03T22:56:33.306138Z\",\"log\":{\"level\":\"INFO\",\"logger\":\"com.zaxxer.hikari.HikariDataSource\"},\"process\":{\"pid\":89520,\"thread\":{}},\"service\":{\"name\":\"urlshort\",\"node\":{}},\"message\":\"HikariPool-27 - Shutdown completed.\",\"ecs\":{\"version\":\"8.11\"}}\n{\"@timestamp\":\"2026-10-03T22:56:33.306433Z\",\"log\":{\"level\":\"INFO\",\"logger\":\"org.springframework.boot.tomcat.GracefulShutdown\"},\"process\":{\"pid\":89520,\"thread\":{}},\"service\":{\"name\":\"urlshort\",\"node\":{}},\"message\":\"Commencing graceful shutdown. Waiting for active requests to complete\",\"tags\":[\"COMMONS-LOGGING\"],\"ecs\":{\"version\":\"8.11\"}}\n{\"@timestamp\":\"2026-10-03T22:56:33.307080Z\",\"log\":{\"level\":\"INFO\",\"logger\":\"org.springframework.boot.tomcat.GracefulShutdown\"},\"process\":{\"pid\":89520,\"thread\":{}},\"service\":{\"name\":\"urlshort\",\"node\":{}},\"message\":\"Graceful shutdown complete\",\"tags\":[\"COMMONS-LOGGING\"],\"ecs\":{\"version\":\"8.11\"}}\n{\"@timestamp\":\"2026-10-03T22:56:33.307579Z\",\"log\":{\"level\":\"INFO\",\"logger\":\"com.zaxxer.hikari.HikariDataSource\"},\"process\":{\"pid\":89520,\"thread\":{}},\"service\":{\"name\":\"urlshort\",\"node\":{}},\"message\":\"HikariPool-28 - Shutdown initiated...\",\"ecs\":{\"version\":\"8.11\"}}\n{\"@timestamp\":\"2026-10-03T22:56:33.307776Z\",\"log\":{\"level\":\"INFO\",\"logger\":\"com.zaxxer.hikari.HikariDataSource\"},\"process\":{\"pid\":89520,\"thread\":{}},\"service\":{\"name\":\"urlshort\",\"node\":{}},\"message\":\"HikariPool-28 - Shutdown completed.\",\"ecs\":{\"version\":\"8.11\"}}\n{\"@timestamp\":\"2026-10-03T22:56:33.312879Z\",\"log\":{\"level\":\"INFO\",\"logger\":\"com.zaxxer.hikari.HikariDataSource\"},\"process\":{\"pid\":89520,\"thread\":{}},\"service\":{\"name\":\"urlshort\",\"node\":{}},\"message\":\"HikariPool-29 - Shutdown initiated...\",\"ecs\":{\"version\":\"8.11\"}}\n{\"@timestamp\":\"2026-10-03T22:56:33.331040Z\",\"log\":{\"level\":\"INFO\",\"logger\":\"com.zaxxer.hikari.HikariDataSource\"},\"process\":{\"pid\":89520,\"thread\":{}},\"service\":{\"name\":\"urlshort\",\"node\":{}},\"message\":\"HikariPool-29 - Shutdown completed.\",\"ecs\":{\"version\":\"8.11\"}}\n{\"@timestamp\":\"2026-10-03T22:56:33.331747Z\",\"log\":{\"level\":\"INFO\",\"logger\":\"com.zaxxer.hikari.HikariDataSource\"},\"process\":{\"pid\":89520,\"thread\":{}},\"service\":{\"name\":\"urlshort\",\"node\":{}},\"message\":\"HikariPool-30 - Shutdown initiated...\",\"ecs\":{\"version\":\"8.11\"}}\n{\"@timestamp\":\"2026-10-03T22:56:33.336733Z\",\"log\":{\"level\":\"INFO\",\"logger\":\"com.zaxxer.hikari.HikariDataSource\"},\"process\":{\"pid\":89520,\"thread\":{}},\"service\":{\"name\":\"urlshort\",\"node\":{}},\"message\":\"HikariPool-30 - Shutdown completed.\",\"ecs\":{\"version\":\"8.11\"}}\n\n> Task :jacocoTestCoverageVerification\n> Task :jacocoTestReport\n> Task :jacocoFunctionalTestReport\n> Task :jacocoAllReport\n> Task :javadoc\n> Task :check\n\nBUILD SUCCESSFUL in 1m 6s\n14 actionable tasks: 14 executed\nConsider enabling configuration cache to speed up this build: https://docs.gradle.org/9.8.0/userguide/configuration_cache_enabling.html\n"
+    },
+    {
+      "checkIndex": 7,
+      "status": "fulfilled",
+      "chunk_id": "fb131e",
+      "wall_time_seconds": 0.000004417,
+      "exit_code": 0,
+      "original_token_count": 951,
+      "output": "Warning: truncated output (original token count: 951)\nTotal output lines: 63\n\nspring.application.name=urlshort\n\n# Base of every shortUrl; override with URLSHORT_PUBLIC_BASE_URL. Never taken from Host headers.\nurlshort.public-base-url=http://localhost:8080\n\n# Per-client rate limit (NFR-R2): /api requests per minute, every other limited request per minute,\n# and the proxies whose X-Forwarded-For is believed (exact addresses, comma-separated; none by default).\n# Overridable by URLSHORT_RATELIMIT_CREATEPERMINUTE, _REDIRECTPERMINUTE, _TRUSTEDPROXIES.\nurlshort.rate-limit.create-per-minute=60\nurlshort.rate-limit.redirect-per-minute=600\nurlshort.rate-limit.trusted-proxies=\n# The audit read trusts only the connection address (ADR-0019); Tomcat must not rewrite it from\n# X-Forwarded-For, which Boot otherwise enables on a detected cloud platform.\nserver.forward-headers-strategy=none\n\n# Click retention (NFR-P2): clicks older than this many UTC days are deleted at startup and daily at 00:10Z; a positive whole number. Overridable by URLSHORT_CLICK_RETENTIONDAYS (ADR-0018).\nur…451 tokens truncated…d.format.console=ecs\nlogging.structured.json.exclude=process.thread.name\n\n# Operational surface: health probes, metrics and the Prometheus scrape (NFR-R1, NFR-O3, ADR-0016).\nmanagement.endpoints.web.exposure.include=health,info,metrics,prometheus\nmanagement.endpoint.health.probes.enabled=true\n# Readiness is UP only while the database answers; liveness never asks it (business rule 9).\nmanagement.endpoint.health.group.readiness.include=readinessState,db\n# Status only: the probes are anonymous, details would name the database and its location (AC-15).\nmanagement.endpoint.health.show-details=never\n\n# OpenAPI 3 document for the public API.\nspringdoc.api-docs.path=/v3/api-docs\nspringdoc.swagger-ui.path=/swagger-ui.html\n# Each operation declares its own problem responses; do not derive untyped ones from the error advice.\nspringdoc.override-with-generic-response=false\n# Key-sorted output, so the committed docs/api/openapi.json diffs cleanly (ADR-0010).\nspringdoc.writer-with-order-by-keys=true\n"
+    }
+  ]
+}
