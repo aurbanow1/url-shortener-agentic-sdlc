@@ -1,6 +1,6 @@
-%% urlshort — entity relationship diagram (kept current by the Design Agent; last: 01-create-redirect design, V1)
-%% No foreign key between the tables by design: audit_log identifies its subject by (entity, entity_id = code)
-%% and must outlive any future deletion of the subject (ADR-0008).
+%% urlshort — entity relationship diagram (kept current by the Design Agent; last: 02-analytics design, V2)
+%% No foreign key between link and audit_log by design: audit_log identifies its subject by (entity, entity_id = code)
+%% and must outlive any future deletion of the subject (ADR-0008). click references link by id and goes with it (ADR-0013).
 erDiagram
     LINK {
         bigint id PK "GENERATED ALWAYS AS IDENTITY"
@@ -21,4 +21,14 @@ erDiagram
         varchar(4096) before_state "JSON {url,state}; NULL on create"
         varchar(4096) after_state "JSON {url,state}"
     }
+    CLICK {
+        bigint id PK "GENERATED ALWAYS AS IDENTITY"
+        bigint link_id FK "link.id, ON DELETE CASCADE"
+        timestamptz clicked_at "application Clock when the 302 was answered"
+        date clicked_on "UTC day of clicked_at, computed in Java"
+        varchar(2048) referrer "origin only, or NULL"
+        varchar(16) user_agent_class "browser | bot | other | unknown"
+        varchar(64) client_hash "HMAC-SHA256 under the day's salt, hex"
+    }
     LINK ||..o{ AUDIT_LOG : "audited by (entity_id = code, no FK)"
+    LINK ||--o{ CLICK : "clicked (link_id, index with clicked_on)"

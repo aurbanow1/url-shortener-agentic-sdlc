@@ -1,6 +1,6 @@
 # ADR-0004 — Structured ECS JSON logs with no client PII
 
-- Status: accepted; amended 2026-10-03 by `01-create-redirect` (see *Amendment*)
+- Status: accepted; amended 2026-10-03 by `01-create-redirect`; second amendment proposed by `02-analytics` (see *Amendment* sections)
 - Date: 2026-10-02
 - Slice: `01-ping`
 
@@ -91,3 +91,22 @@ configuration (ADR-0002, *Consequences of the amendment*). Verified by effect:
 H2's own trace file (`data/*.trace.db`) is not this service's log stream; its
 default level keeps integrity violations out of it (`01-create-redirect`
 design §6).
+
+## Amendment — `02-analytics` (2026-10-03, proposed with that slice's design)
+
+The first work done for a request after its response has gone is click
+recording (ADR-0011).
+
+- **Work done for a request on another thread restores `requestId` in the
+  MDC for its duration and removes it afterwards.** Its events follow every
+  rule above. In particular, an exception on that thread is logged by its
+  class name only (`errorType`), because a failed insert's driver message
+  can quote bound click values.
+- Click data (address, its hash, `User-Agent`, `Referer` whole or as origin,
+  forwarding values) is never passed to a logger. A recorded click logs
+  nothing; a lost click logs one `WARN` `click lost` with `requestId` and
+  `errorType`.
+
+Verified by effect:
+`missions/01-greenfield-core/slices/02-analytics/design-probe/output.txt`
+(C8).

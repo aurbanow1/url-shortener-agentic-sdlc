@@ -1,0 +1,19 @@
+// Design probe for 02-analytics (design.md section 12 names what each case proves).
+// Run from the repo root, no product, test or build file changes:
+//   scripts/gw --log missions/01-greenfield-core/slices/02-analytics/design-probe/output.txt \
+//       --offline -I missions/01-greenfield-core/slices/02-analytics/design-probe/click-probe.gradle designClickProbe
+// One JavaExec task on the functional runtime classpath (shipped main code + resources, functional
+// profile overlay for the in-memory H2) that launches ClickProbe.java in source-file mode.
+gradle.projectsEvaluated {
+    def project = gradle.rootProject
+    def functional = project.sourceSets.functionalTest
+    project.tasks.register('designClickProbe', JavaExec) {
+        dependsOn project.tasks.named('functionalTestClasses')
+        javaLauncher.set(project.javaToolchains.launcherFor {
+            languageVersion = JavaLanguageVersion.of(21)
+        })
+        classpath = functional.runtimeClasspath
+        mainClass = project.file('missions/01-greenfield-core/slices/02-analytics/design-probe/ClickProbe.java').absolutePath
+        systemProperty 'spring.profiles.active', 'functional'
+    }
+}

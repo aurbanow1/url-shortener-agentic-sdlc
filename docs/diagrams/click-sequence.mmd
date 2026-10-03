@@ -1,0 +1,51 @@
+%% urlshort — redirect with click recording, and the statistics read (02-analytics design.md §4)
+sequenceDiagram
+    autonumber
+    participant V as Visitor
+    participant F as RequestIdFilter (web)
+    participant RC as RedirectController (link)
+    participant S as LinkService (link)
+    participant CR as ClickRecorder (click)
+    participant DS as DailySalt (click)
+    participant Q as queue (10 000) + click-writer thread
+    participant ST as ClickStore → H2 click
+    participant A as Analyst
+    participant SC as StatsController (click)
+
+    V->>F: GET /C (Referer, User-Agent, peer address)
+    F->>F: X-Request-Id R, MDC requestId=R
+    F->>RC: chain.doFilter
+    RC->>S: resolve(C)
+    alt unknown or retired
+        S-->>V: 404 / 410 problem detail (no click)
+    end
+    S-->>RC: link
+    RC->>CR: record(link.id, request)
+    alt HEAD
+        CR-->>RC: return (not a click)
+    else GET
+        CR->>CR: now = clock.instant(); origin(Referer); class(User-Agent)
+        CR->>DS: hash(peer address, now)
+        DS-->>CR: HMAC-SHA256 under the day's salt (64 hex)
+        CR->>Q: execute(write(Click, R))
+        alt queue full or closed
+            CR->>CR: WARN "click lost" {requestId R, errorType}
+        end
+    end
+    RC-->>V: 302 Location: <url>, Cache-Control: no-store
+    F->>F: INFO "request completed" {status 302}; MDC.remove
+    Q->>Q: MDC requestId=R (restored on the writer thread)
+    Q->>ST: insert(Click)
+    alt write fails
+        Q->>Q: WARN "click lost" {requestId R, errorType}; nothing stored
+    end
+    Q->>Q: MDC.remove
+
+    A->>SC: GET /api/links/C/stats
+    SC->>ST: findLinkId(C)
+    alt no link
+        SC-->>A: 404 problem detail
+    end
+    SC->>ST: countByDayAndReferrer(id): one grouped SELECT
+    SC->>SC: LinkStats.of: total, per day ascending, top 10 referrers
+    SC-->>A: 200 {code, totalClicks, clicksPerDay, topReferrers}

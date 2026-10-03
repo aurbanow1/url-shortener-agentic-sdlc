@@ -1,16 +1,20 @@
-%% urlshort — container view (kept current by the Design Agent; last: 01-create-redirect design, not yet merged)
+%% urlshort — container view (kept current by the Design Agent; last: 02-analytics design, not yet merged)
 flowchart LR
-    C[Creator / Visitor / Operator]
+    C[Creator / Visitor / Analyst / Operator]
     subgraph urlshort [urlshort · Spring Boot 4.1 · Java 21]
         F1[RequestIdFilter<br/>web · highest precedence<br/>X-Request-Id · MDC · request event]
         F2[RequestBodyLimitFilter<br/>web · 16 KiB counting stream]
         D[DispatcherServlet]
         LC[LinkController<br/>link · /api/links]
-        RC[RedirectController<br/>link · /{code}]
+        RC[RedirectController<br/>link · /{code} · click hook]
         V[LinkValidation · ShortCodes]
         S[LinkService<br/>@Transactional]
         R[LinkRepository<br/>Spring Data JDBC]
         AU[AuditLog<br/>audit · insert-only JdbcClient]
+        CR[ClickRecorder<br/>click · reduce on request thread<br/>queue 10 000 · one click-writer]
+        DS[DailySalt<br/>click · HMAC · salt per UTC day, in memory]
+        CS[ClickStore<br/>click · JdbcClient]
+        SC[StatsController<br/>click · /api/links/{code}/stats]
         P[PingController<br/>ping]
         E[ProblemDetailsAdvice<br/>web · extends ResponseEntityExceptionHandler]
         A[Actuator<br/>health · info · metrics]
@@ -18,21 +22,29 @@ flowchart LR
         K[(Clock · tickMillis UTC)]
     end
     L[(stdout · ECS JSON lines)]
-    H[(H2 file DB · data/<br/>Flyway V1: link, audit_log)]
+    H[(H2 file DB · data/<br/>Flyway V1: link, audit_log<br/>V2: click)]
     C -->|HTTP| F1 --> F2 --> D
     D --> LC
     D --> RC
+    D --> SC
     D --> P
     D -.->|every error| E
     LC --> V
     LC --> S
     RC --> S
+    RC -->|302 only, not HEAD| CR
+    CR --> DS
+    CR -.->|async, fail open| CS
+    SC --> CS
     S --> R --> H
     S --> AU --> H
+    CS --> H
     S --- K
     AU --- K
+    CR --- K
     C -->|/actuator/*| A
     C -->|/v3/api-docs| O
     F1 -->|INFO request completed · MDC requestId| L
     E -->|ERROR request failed · 500 only| L
+    CR -->|WARN click lost · requestId restored| L
     P -->|INFO ping| L
