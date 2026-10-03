@@ -91,11 +91,17 @@ What I ran and looked at, by effect:
   (functional 9); 0 failures, 0 errors, 0 skipped. Merged JaCoCo CSV:
   `PingResponse` 1/1, `PingController` 4/4, `RequestIdFilter` 7/7,
   `UrlshortApplication` 3/3 lines; 0 branches missed of 0.
-- **Profile overlay and exclusion by effect, from the same run:** the unit
-  suite's console output is plain text; the functional suite's console output
-  is ECS JSON with `"process":{"pid":…,"thread":{}}`. In the captured
-  `PingJourneyTest` output: 10 lines carry a `requestId`; 0 lines contain a
-  thread name, a loopback address or a `canary-` string.
+- **Profile overlay and exclusion by effect, from the same run:** the
+  functional suite's console output in the committed gate log is ECS JSON
+  with `"process":{"pid":…,"thread":{}}` (the two HikariCP shutdown events in
+  `proof/wave-w1-check-design-agent.txt`), while the unit suite's lines in the
+  same log are plain text. In the `PingJourneyTest` JUnit report
+  (`build/test-results/functionalTest/TEST-dev.urlshort.ping.PingJourneyTest.xml`,
+  system-out plus messages, not committed): 10 occurrences of `requestId`, 0
+  of `process.thread.name`, `127.0.0.1` or `canary-`. The canaries travel in
+  request headers, so their absence from the report says the log output and
+  the test messages did not echo them; the authoritative canary evidence is
+  the AC-7 and AC-8 journeys passing plus the live captures in `proof/`.
 - **Read:** slice `PROOF.md` (builder, QA NOT-CLEAR, builder re-check, QA PASS,
   integrate, QA acceptance), `docs/qa/TRACEABILITY.md` (all 8 AC, 8 BR and 15
   methods mapped both ways), `docs/qa/GAPS.md` (no open merged-coverage or AC
