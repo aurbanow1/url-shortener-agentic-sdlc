@@ -1,0 +1,203 @@
+{
+  "candidate": "973bc1a5e7b4464acdf7d93834839d064acd2e46",
+  "prior": "40067fc",
+  "files": [
+    {
+      "path": "docs/qa/GAPS.md",
+      "bytes": 16594,
+      "sha256": "855770f547605725fa8aba75c2af921ca098df26d13d3b1bd14426acb25a3356",
+      "workingBytesMatch": false,
+      "disposition": "complete text read or complete JSON log parsed"
+    },
+    {
+      "path": "docs/scenarios/drills.md",
+      "bytes": 13642,
+      "sha256": "57bfd04fa7eb6d395f661d35273baf5c53ca62415d3e4cc34b4f77c8dbae99c6",
+      "workingBytesMatch": true,
+      "disposition": "complete text read or complete JSON log parsed"
+    },
+    {
+      "path": "missions/01-greenfield-core/RELEASE.md",
+      "bytes": 46422,
+      "sha256": "a34431046803c8f503df79fcc160f0113e76bc02fe4652e995a39b6bdf00f75c",
+      "workingBytesMatch": true,
+      "disposition": "complete text read or complete JSON log parsed"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/container-restart-log-f090103-run5.jsonl",
+      "bytes": 36282,
+      "sha256": "67c3c865ecfc116490d8e3862626776f93a585872fb6cf62c6f393fd44cad5d0",
+      "workingBytesMatch": true,
+      "disposition": "complete text read or complete JSON log parsed",
+      "jsonEvents": 109,
+      "levels": {
+        "INFO": 102,
+        "WARN": 7
+      },
+      "shutdownMessages": [
+        "Commencing graceful shutdown. Waiting for active requests to complete",
+        "Shutdown phase 2147482623 ends with 1 bean still running after timeout of 10000ms: [webServerGracefulShutdown]",
+        "Graceful shutdown aborted with one or more requests still active",
+        "HikariPool-1 - Shutdown initiated...",
+        "HikariPool-1 - Shutdown completed."
+      ]
+    },
+    {
+      "path": "missions/01-greenfield-core/release/container-restart-log-f090103-run6.jsonl",
+      "bytes": 36928,
+      "sha256": "08ba98fb13596d52f98c87f5c6cb4900c609a8be99b99bd81f9623c3a0c3866b",
+      "workingBytesMatch": true,
+      "disposition": "complete text read or complete JSON log parsed",
+      "jsonEvents": 111,
+      "levels": {
+        "INFO": 104,
+        "WARN": 7
+      },
+      "shutdownMessages": [
+        "Commencing graceful shutdown. Waiting for active requests to complete",
+        "Shutdown phase 2147482623 ends with 1 bean still running after timeout of 10000ms: [webServerGracefulShutdown]",
+        "HikariPool-1 - Shutdown initiated...",
+        "Graceful shutdown aborted with one or more requests still active",
+        "HikariPool-1 - Shutdown completed."
+      ]
+    },
+    {
+      "path": "missions/01-greenfield-core/release/rollback-compose-config-safe.json",
+      "bytes": 1211,
+      "sha256": "485a06cbf2ba625d1aaf635b5389e993095b851bbaf8209108a76d998b8df84c",
+      "workingBytesMatch": true,
+      "disposition": "complete text read or complete JSON log parsed"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/rollback-compose-config-unsafe.json",
+      "bytes": 1177,
+      "sha256": "dec7aa9f6f3fb4d8a33980f65058230a9f81b914f4348b49791e31f12fe22f82",
+      "workingBytesMatch": true,
+      "disposition": "complete text read or complete JSON log parsed"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/rollback-compose-up-8104e05.txt",
+      "bytes": 2076,
+      "sha256": "c4805912083e61e0230a553887d3a4afbf33d519425585e577877288b68ac6d4",
+      "workingBytesMatch": true,
+      "disposition": "complete text read or complete JSON log parsed"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/rollback-container-log-8104e05.jsonl",
+      "bytes": 13914,
+      "sha256": "bb344b42bfb9215fa1f8b3e03974ca1fbecbb9d0c99b4541f39b90fbd0141461",
+      "workingBytesMatch": true,
+      "disposition": "complete text read or complete JSON log parsed",
+      "jsonEvents": 42,
+      "levels": {
+        "INFO": 39,
+        "WARN": 3
+      },
+      "shutdownMessages": []
+    },
+    {
+      "path": "missions/01-greenfield-core/release/rollback-docker-build-8104e05-attempt1-failed.txt",
+      "bytes": 3007,
+      "sha256": "c811b31ecda0ed2846347fc31170e3851baead2390519c60e63434184cd40269",
+      "workingBytesMatch": true,
+      "disposition": "complete text read or complete JSON log parsed"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/rollback-docker-build-8104e05.txt",
+      "bytes": 2638,
+      "sha256": "2acfe5d5c84252f9ff662e9359361a4a3a43eed70986fb82f655b98c6fc00c5e",
+      "workingBytesMatch": true,
+      "disposition": "complete text read or complete JSON log parsed"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/rollback-link-after.json",
+      "bytes": 165,
+      "sha256": "640bcd4a03c18ae5ca72f9e18d3c29b3d60406e0e7ab538749a5dbf840c014d4",
+      "workingBytesMatch": true,
+      "disposition": "complete text read or complete JSON log parsed"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/rollback-link-before.json",
+      "bytes": 165,
+      "sha256": "640bcd4a03c18ae5ca72f9e18d3c29b3d60406e0e7ab538749a5dbf840c014d4",
+      "workingBytesMatch": true,
+      "disposition": "complete text read or complete JSON log parsed"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/rollback-rehearsal-down-f090103.txt",
+      "bytes": 354,
+      "sha256": "79cdf50745124c1894d89298d706400c4926edc5414c40a0393f07b0da005ff6",
+      "workingBytesMatch": true,
+      "disposition": "complete text read or complete JSON log parsed"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/rollback-smoke-8104e05.txt",
+      "bytes": 634,
+      "sha256": "d6be7d460e09a8923d813bd2befa2ef8a433b774355749a6a70de7f475145f89",
+      "workingBytesMatch": true,
+      "disposition": "complete text read or complete JSON log parsed"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/rollforward-compose-up-f090103.txt",
+      "bytes": 2637,
+      "sha256": "9216e7d90466f7878d9b2b12f64bdb2eff6f99dbf96691a18bfe0835864a7ce1",
+      "workingBytesMatch": true,
+      "disposition": "complete text read or complete JSON log parsed"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/rollforward-link-after.json",
+      "bytes": 165,
+      "sha256": "640bcd4a03c18ae5ca72f9e18d3c29b3d60406e0e7ab538749a5dbf840c014d4",
+      "workingBytesMatch": true,
+      "disposition": "complete text read or complete JSON log parsed"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-restart-container-f090103-run5.txt",
+      "bytes": 723,
+      "sha256": "25ecc03f7b570b159567c278abb803d7c91a50c0c6f3752ea3898ad0a2b9e9de",
+      "workingBytesMatch": true,
+      "disposition": "complete text read or complete JSON log parsed"
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-restart-container-f090103-run6.txt",
+      "bytes": 740,
+      "sha256": "bc4519eaea2f59efc3bc112fa2bb6f057eb494dafed309b2ee47b7d9e81fb423",
+      "workingBytesMatch": true,
+      "disposition": "complete text read or complete JSON log parsed"
+    },
+    {
+      "path": "scripts/smoke.sh",
+      "bytes": 24224,
+      "sha256": "eb6e05ac85690400c300ad33be67927645325d7c935a79456f1fc1370fd50f86",
+      "workingBytesMatch": true,
+      "disposition": "complete text read or complete JSON log parsed"
+    }
+  ],
+  "finalGaps": {
+    "commit": "367567e",
+    "sha256": "187cacbfa8b2bacd5897ac64c45ead31df67c381f8bb7b5d188882f8665204d4",
+    "disposition": "read final NFR-L3 isolation clarification; does not alter the AC-28 gap"
+  },
+  "filesReviewed": 20,
+  "applicationInputsUnchangedFrom": "8e9c065",
+  "rollbackDifferenceFromPriorGate": [
+    "compose.yaml: loopback pin"
+  ],
+  "rollbackLinkBodiesByteIdentical": true,
+  "rollbackVolumeUnchanged": {
+    "urlshort-data": {
+      "name": "url-shortener_urlshort-data"
+    }
+  },
+  "safePorts": [
+    {
+      "mode": "ingress",
+      "host_ip": "127.0.0.1",
+      "target": 8080,
+      "published": "8080",
+      "protocol": "tcp"
+    }
+  ],
+  "releaseLinksMissing": [],
+  "scope": "Focused re-review; producer container captures audited, no reviewer container/build/benchmark rerun. Original fresh 165/155 offline gate retained for identical application inputs."
+}

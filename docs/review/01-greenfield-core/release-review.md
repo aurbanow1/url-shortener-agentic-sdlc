@@ -1,5 +1,11 @@
 # Mission 01 release review
 
+**Latest verdict: PASS for human ship-signoff handoff on `973bc1a`, with final
+GAPS disclosure `367567e` and the explicit AC-28 exception.** RR-01/02 and the
+in-passing RR-03 are fixed. Current proof is 39 accepted / one rejected: AC-28
+remains unmet for the human to decide. This is not ship approval. The original
+failed review is preserved.
+
 Package: `40067fc` (release commits `34308c9`, `52c38b3`, `40067fc`). Application/build/container inputs: `8e9c065589e53385f60d6be3ddbc3683260285df`, built at `f090103`. Reviewer: review-agent@urlshort-factory (Codex), 2026-10-03 UTC. Packet: `qitem-20261003153114-04cfbe0a`, instance `01M3ZXEXAMS945ZS0QZ26KZK1V`.
 
 **Verdict: FAIL — one HIGH rollback finding, one MEDIUM reporting finding.** Mission-level rework is routed to the release agent in `qitem-20261003154417-0f04cc71` while this packet waits. The unmet AC-28 host-path criterion remains a separate, explicitly recorded human decision; it is not converted to a pass by this review.
@@ -49,3 +55,87 @@ No new complexity finding. The open-loop driver uses Node's HTTP client and avoi
 ## Self-check and continuation
 
 Exact package and application identity verified; fresh offline gate and independent artifact/log/metrics audit complete; both findings have reproduced evidence and producer acknowledgment. No product, tests, SPEC or design edits. Append the ledger, commit only these review artifacts, route producer rework and park this packet on it. Re-review RR-01/RR-02 and their changed evidence at the returned SHA, read both existing QA receipts, and preserve the lead's single AC-28 human exception. No clean release handoff is made in this pass.
+
+## Re-review 973bc1a
+
+Rework `qitem-20261003154417-0f04cc71` closed at `ad83fb6`. Included handed-off
+follow-ups `67d168f` (completed dogfood record) and `973bc1a5e7b4464acdf7d93834839d064acd2e46`
+(loss-counter correction), plus QA's final GAPS clarification `367567e`.
+Same application `8e9c065`; 2026-10-03 UTC, same reviewer and release packet.
+
+Read all **20 changed package paths** since the original review: four authored
+inputs (RELEASE, GAPS, drills and smoke), plus 16 new evidence files. Both new
+restart logs and the rollback log were parsed in full. Also read the completed
+dogfood report, the final QA GAPS amendment and relevant queue/NOTES updates.
+[Per-file audit](release-rereview-audit-973bc1a.json) records hashes, log counts,
+input identity, volume/binding assertions, link-body equality and link checks.
+No new Java, build, migration or container input differs from the original
+release. The original fresh 165/155 offline gate therefore remains applicable;
+this correction needed shell syntax and focused tool controls, both checked.
+
+| Finding | Resolution | Evidence |
+|---|---|---|
+| RR-01 HIGH | Fixed | RELEASE §8 now pins `127.0.0.1:8080:8080` before starting the reverted compose stack and verifies the binding. Safe/unsafe rendered configs differ at the host binding and retain the identical named volume. Commit `8104e05` differs from the previously gated rollback `e6f062a` in container/application inputs only by this pin. Producer build/up/log/smoke captures show the rolled-back application operating; three captured bodies for `sgjjgNZ4` are byte-identical before rollback, after rollback and after roll-forward. Smoke completes the retained journey and stops at the expected removed rate-limit metric. The first failed image download and untested earlier migration rollbacks/volume backup remain disclosed. |
+| RR-02 MEDIUM | Fixed | The actual revised `load_loop` makes one request and writes one row for an empty reply. Historical run-3/4 rows are relabelled as 148 attempts with 102/103 failures; raw originals remain. Run 5 records 149 attempts/105 failures. No change to the failing R0 verdict. |
+| RR-03 MEDIUM, introduced by RR-02 fix | Fixed in passing at `973bc1a` | At `ad83fb6`, `scripts/smoke.sh:163` discarded curl's failure after an HTTP status arrived. A controlled peer sent status 200 with Content-Length 20 and one byte, then closed: the actual loop recorded a successful-looking `200`. The correction records `cut200`, which the existing bad-response classifier rejects. Fresh actual-function controls yield exactly one row/request: empty=`000`, complete=`302`, truncated=`cut200`. No application change. |
+
+The probe and both before/after controls are
+[release-count-probe.py](release-count-probe.py),
+[ad83fb6](release-count-controls-ad83fb6.json) and
+[973bc1a](release-count-controls-973bc1a.json). The first bind was denied by the
+sandbox; an authorized localhost-only retry supplied the actual observations.
+No result is inferred from the denied attempt. `bash -n scripts/smoke.sh` passes.
+
+Run 6 records 149 attempts, zero responses outside 2xx/3xx or cut short, 103
+connection failures and R0 lost at 10,514 ms. **AC-28 remains NOT MET, six of six
+host-path runs.** The recorded rebuilt image differs in id, and RELEASE §2 says
+so; unchanged source inputs are verified, not byte identity of the images.
+QA2's original receipt covers runs 1–5. GAPS retains that historical scope;
+the added run does not weaken the rejection. The VM/namespace controls support
+path isolation, without proving the precise forwarding mechanism or a native
+Linux-host result. Only one namespace control retains its evidence.
+
+Dogfood's completed installed-jar report confirms the already-recorded W2-01
+MEDIUM and W2-03 LOW, with no additional severe finding. Those remain routed
+to mission 02. No new complexity finding and no unhandled review residue.
+
+The final GAPS amendment correctly limits NFR-L3: sequential GET/HEAD p95
+comparison does not establish an isolated added-cost quantile. The original
+SPEC explicitly allows this measurement limitation with disclosure and the
+slow-store compensating check. This review retains that limitation rather
+than certifying an isolated ≤2 ms contribution. It is separate from AC-28's
+human exception.
+
+### Receipt continuation
+
+QA2's closed `qitem-20261003153203-9be9445d` records receipt 27 rejecting
+03-operate #13 for AC-28 and receipt 26 accepting its GAPS record. Final
+GAPS `367567e` requires the already-routed refresh
+`qitem-20261003164452-5a8a64eb`. QA's six remaining receipts belong to
+`qitem-20261003153201-3bc62f5f`. Do not hand off until those are current and
+the live proof has no not-ready item beyond 03-operate #13. If either adds a
+different rejected/not-clear item, route it as ordinary HIGH rework. The
+lead's transition-825 exception is retained unchanged; no waiver or delivery
+stamp is issued by this reviewer.
+
+### Final receipt verification
+
+Live proof checked at 16:49Z: **01-create-redirect 14/14 accepted; 02-analytics
+13/13 accepted; 03-operate 12 accepted and #13 rejected.** No pending, unknown
+or not-clear item remains. QA receipts: create sequence 14; analytics sequences
+25–29. QA2 sequence 28 reaffirms GAPS at `367567e`; sequence 27's AC-28 rejection
+remains current. Independently checked all 36 evidence references on those seven
+new receipts against their recorded SHA256s. Read QA's release judgment and
+its explicit measurement limits; do not replace either judge's conclusion.
+The [proof snapshot](release-final-proof-973bc1a.json) records every current item
+and receipt. No Git remote and only the four previously accepted-slice tags
+are present; no push, release tag or publication was performed.
+
+**Final review verdict: PASS for handoff with the one authorized human exception.**
+All review findings are fixed. The human receives the unchanged AC-28 failure,
+the limitation on isolated NFR-L3 attribution, carried MEDIUM/LOW backlog and
+the explicit unrehearsed rollback/backup limits. Per the lead's recorded
+disposition, accepting the AC-28 gap still needs a written human decision,
+the corresponding SPEC decision and QA2 re-judgment before any delivery stamp.
+Holding it instead requires the additional host evidence. The review supplies
+neither decision on the human's behalf.

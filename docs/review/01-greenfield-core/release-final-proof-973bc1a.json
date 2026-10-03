@@ -1,0 +1,1242 @@
+{
+  "checkedAt": "2026-10-03T16:49Z",
+  "mission": "01-greenfield-core",
+  "revision": "bf8b44dab8ab0b18d5f25cf75a505cab0e913c51fa93eac9b1f4ef7bab8592ed",
+  "state": "not-ready",
+  "slices": [
+    {
+      "id": "01-create-redirect",
+      "state": "ready",
+      "items": [
+        {
+          "index": 1,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 1,
+            "id": "d996f49aa5acdf9cdcd93e2cd2c378300f12d7be3563c4934ed296ec29379d06",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T07:38:47.678Z",
+            "verdict": "accept",
+            "reason": "Fresh full gate: 72 unit and 87 functional invocations, no failures/errors/skips; all 28 ACs have named functional methods and independently inspected effects. Traceability maps all methods and parameterized invocations.",
+            "subject": {
+              "kind": "commit",
+              "ref": "a922f49144049db0228c316c474ac6e890742fa5"
+            },
+            "evidence": [
+              {
+                "ref": "missions/01-greenfield-core/slices/01-create-redirect/proof/qa-evidence-a922f49.md",
+                "sha256": "ff3719872fec778c6b227d9f485d7d86b28d0b89b8f45c22620d7e79b887960c"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/01-create-redirect/proof/qa-check-a922f49.txt",
+                "sha256": "b05f4727904b0f193558f6f795fe8da03a049238f6d86aa23a37a3b70a2dc3da"
+              }
+            ]
+          }
+        },
+        {
+          "index": 2,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 2,
+            "id": "9649e67d3a7679e11dabdabf79d230cbc80d71c25c84f915f8bd33721a9e87c4",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T07:39:21.218Z",
+            "verdict": "accept",
+            "reason": "Merged CSV counters independently read: 185/185 lines and 56/56 branches; full coverage verification passed without exclusions.",
+            "subject": {
+              "kind": "commit",
+              "ref": "a922f49144049db0228c316c474ac6e890742fa5"
+            },
+            "evidence": [
+              {
+                "ref": "missions/01-greenfield-core/slices/01-create-redirect/proof/qa-evidence-a922f49.md",
+                "sha256": "ff3719872fec778c6b227d9f485d7d86b28d0b89b8f45c22620d7e79b887960c"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/01-create-redirect/proof/qa-inspection-a922f49.txt",
+                "sha256": "50066c7208bab1ae7abd7e7e392ae148fdb1bff3a02f7bda1884d1be8b7bc1eb"
+              }
+            ]
+          }
+        },
+        {
+          "index": 3,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 3,
+            "id": "a0700f085de373db34e8fa3c27185b10482cc78a414eabc5499a7ee5c094abc4",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T07:39:21.433Z",
+            "verdict": "accept",
+            "reason": "All candidate unit, functional and merged HTML/XML/CSV reports committed in QA evidence commit 4966043; totals read from those CSV files.",
+            "subject": {
+              "kind": "commit",
+              "ref": "a922f49144049db0228c316c474ac6e890742fa5"
+            },
+            "evidence": [
+              {
+                "ref": "missions/01-greenfield-core/slices/01-create-redirect/proof/qa-evidence-a922f49.md",
+                "sha256": "ff3719872fec778c6b227d9f485d7d86b28d0b89b8f45c22620d7e79b887960c"
+              }
+            ]
+          }
+        },
+        {
+          "index": 4,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 4,
+            "id": "cfdf20e05e51220915f15157a2d1927a1a3ab6e54f3e95c972eb12dcd9ce8e8f",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T07:39:21.639Z",
+            "verdict": "accept",
+            "reason": "Committed traceability maps AC-1–AC-28, BR-1–BR-12 and all 42 unit/45 functional methods with requirement ids; 159 executed invocations inventoried.",
+            "subject": {
+              "kind": "commit",
+              "ref": "a922f49144049db0228c316c474ac6e890742fa5"
+            },
+            "evidence": [
+              {
+                "ref": "missions/01-greenfield-core/slices/01-create-redirect/proof/qa-evidence-a922f49.md",
+                "sha256": "ff3719872fec778c6b227d9f485d7d86b28d0b89b8f45c22620d7e79b887960c"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/01-create-redirect/proof/qa-test-invocations-a922f49.txt",
+                "sha256": "5aba22ba56e104f800d7fda185753171e6724a6d3fcf457008e3a715f77c05eb"
+              }
+            ]
+          }
+        },
+        {
+          "index": 5,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 5,
+            "id": "fdf0755dffd96986cc3a4f1a4da6e051e58ea26c1a57f0511fb431e136760fea",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T07:39:21.844Z",
+            "verdict": "accept",
+            "reason": "Committed GAPS row states None for this slice at the merged gate and AC verification; per-suite coverage differences are informational and later review records are explicitly tracked.",
+            "subject": {
+              "kind": "commit",
+              "ref": "a922f49144049db0228c316c474ac6e890742fa5"
+            },
+            "evidence": [
+              {
+                "ref": "missions/01-greenfield-core/slices/01-create-redirect/proof/qa-evidence-a922f49.md",
+                "sha256": "ff3719872fec778c6b227d9f485d7d86b28d0b89b8f45c22620d7e79b887960c"
+              }
+            ]
+          }
+        },
+        {
+          "index": 6,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 6,
+            "id": "3afcdc69581939f298f979089bc507b43d73dbdcf5998522293cb8101f5a9a4b",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T07:39:22.060Z",
+            "verdict": "accept",
+            "reason": "First branch commit 20aef57 changes only build dependency pins; independent full gate passed on that commit alone. Inspected builder fresh OSV capture: 90 coordinates, required versions, zero findings.",
+            "subject": {
+              "kind": "commit",
+              "ref": "a922f49144049db0228c316c474ac6e890742fa5"
+            },
+            "evidence": [
+              {
+                "ref": "missions/01-greenfield-core/slices/01-create-redirect/proof/qa-evidence-a922f49.md",
+                "sha256": "ff3719872fec778c6b227d9f485d7d86b28d0b89b8f45c22620d7e79b887960c"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/01-create-redirect/proof/qa-overrides-check-20aef57.txt",
+                "sha256": "d645d456a604b138623989db99ef83ae60a3346d3de1d4f12e2db0c931ef9541"
+              }
+            ]
+          }
+        },
+        {
+          "index": 7,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 7,
+            "id": "112635fa3f231f378fabe0a1d05598e698b09e6c2df86bee2ad6d8904a4abc54",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T07:39:22.281Z",
+            "verdict": "accept",
+            "reason": "Independent live curl captures show 201/200/302/204/410/400 with status, headers and bodies, correct Location/no-store, empty retire response and sanitized browser errors.",
+            "subject": {
+              "kind": "commit",
+              "ref": "a922f49144049db0228c316c474ac6e890742fa5"
+            },
+            "evidence": [
+              {
+                "ref": "missions/01-greenfield-core/slices/01-create-redirect/proof/qa-evidence-a922f49.md",
+                "sha256": "ff3719872fec778c6b227d9f485d7d86b28d0b89b8f45c22620d7e79b887960c"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/01-create-redirect/proof/qa-http-a922f49.txt",
+                "sha256": "692b022b6572f50b85bf00d2a7ca9a085c2a387056133b33903a29d94b36adde"
+              }
+            ]
+          }
+        },
+        {
+          "index": 8,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 8,
+            "id": "68fa4b3daa459aa90879426670964dbe74cc1ae11a4e3bd7283a2de2a7938490",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T07:39:22.495Z",
+            "verdict": "accept",
+            "reason": "Parsed all 75 measured request windows: nonempty, every event has matching response requestId; all canaries, target and loopback client addresses absent from runtime logs. Real 500 also correlated.",
+            "subject": {
+              "kind": "commit",
+              "ref": "a922f49144049db0228c316c474ac6e890742fa5"
+            },
+            "evidence": [
+              {
+                "ref": "missions/01-greenfield-core/slices/01-create-redirect/proof/qa-evidence-a922f49.md",
+                "sha256": "ff3719872fec778c6b227d9f485d7d86b28d0b89b8f45c22620d7e79b887960c"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/01-create-redirect/proof/qa-correlated-events-a922f49.jsonl",
+                "sha256": "883b0aa375995507effcd868b920ba365a045f80ae37eed737ba229e4f1cb31f"
+              }
+            ]
+          }
+        },
+        {
+          "index": 9,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 9,
+            "id": "3647a0c727a9ff1cb301f5606d71d9e0962e64cd5d1deddbbaa460acca3a3a09",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T07:39:22.708Z",
+            "verdict": "accept",
+            "reason": "Independent H2 export has exactly one create and retire row for the captured link, anonymous actor, matching entity/action/requestId, correct before/after states and in-window UTC times. Rollback and append-only comparisons also passed.",
+            "subject": {
+              "kind": "commit",
+              "ref": "a922f49144049db0228c316c474ac6e890742fa5"
+            },
+            "evidence": [
+              {
+                "ref": "missions/01-greenfield-core/slices/01-create-redirect/proof/qa-evidence-a922f49.md",
+                "sha256": "ff3719872fec778c6b227d9f485d7d86b28d0b89b8f45c22620d7e79b887960c"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/01-create-redirect/proof/qa-audit-before-a922f49.csv",
+                "sha256": "74e526c04bcf9fe97f8a67651e8c93ef5e4b30e2ef86831e64378c0bf02e21df"
+              }
+            ]
+          }
+        },
+        {
+          "index": 10,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 10,
+            "id": "e9616a0666b3c076f849a0c062f8937ddf34b44fe7ca22ead366b84ff09662fe",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T07:39:22.918Z",
+            "verdict": "accept",
+            "reason": "Candidate committed document equals independently fetched live JSON after recursive key sorting; required paths, methods, statuses, problem types, Location header and examples verified.",
+            "subject": {
+              "kind": "commit",
+              "ref": "a922f49144049db0228c316c474ac6e890742fa5"
+            },
+            "evidence": [
+              {
+                "ref": "missions/01-greenfield-core/slices/01-create-redirect/proof/qa-evidence-a922f49.md",
+                "sha256": "ff3719872fec778c6b227d9f485d7d86b28d0b89b8f45c22620d7e79b887960c"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/01-create-redirect/proof/qa-openapi-diff-a922f49.txt",
+                "sha256": "9708044ddcd399f7e83a5f4cc31721afb11d5d63cc933344fa7cadc5453c8663"
+              }
+            ]
+          }
+        },
+        {
+          "index": 11,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 11,
+            "id": "4d757854fd2c95c8e54f80054ca875e9559245f5716dd7e4a4bba23f41c162c5",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T07:39:23.135Z",
+            "verdict": "accept",
+            "reason": "ADRs 0005–0010 and amendments exist, are indexed and accepted before dependent code: docs creation 0aaab2f, revision d93e7d5, acceptance 0210716 precede feature commits. Inspected git chronology and DESIGN index.",
+            "subject": {
+              "kind": "commit",
+              "ref": "a922f49144049db0228c316c474ac6e890742fa5"
+            },
+            "evidence": [
+              {
+                "ref": "missions/01-greenfield-core/slices/01-create-redirect/proof/qa-evidence-a922f49.md",
+                "sha256": "ff3719872fec778c6b227d9f485d7d86b28d0b89b8f45c22620d7e79b887960c"
+              }
+            ]
+          }
+        },
+        {
+          "index": 12,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 12,
+            "id": "b8f85f3aee4da6f62a0fdea927601f5207ffcb23fa2a3fb492a36ef712267f33",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T07:39:23.363Z",
+            "verdict": "accept",
+            "reason": "Fresh functional AC19 passes with FunctionalClockConfig primary FunctionalClock shift/reset at 23h, 24h−1s and 24h+1s; named method and clock mechanism are in the committed traceability row.",
+            "subject": {
+              "kind": "commit",
+              "ref": "a922f49144049db0228c316c474ac6e890742fa5"
+            },
+            "evidence": [
+              {
+                "ref": "missions/01-greenfield-core/slices/01-create-redirect/proof/qa-evidence-a922f49.md",
+                "sha256": "ff3719872fec778c6b227d9f485d7d86b28d0b89b8f45c22620d7e79b887960c"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/01-create-redirect/proof/qa-test-invocations-a922f49.txt",
+                "sha256": "5aba22ba56e104f800d7fda185753171e6724a6d3fcf457008e3a715f77c05eb"
+              }
+            ]
+          }
+        },
+        {
+          "index": 13,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 13,
+            "id": "354ea64e92ffd32d97e6f47ce043ce44776001ef0d72a899008ab89802a284fd",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T08:03:09.234Z",
+            "verdict": "accept",
+            "reason": "Review evidence a80c998 explicitly records NFR-A2: no application code updates or deletes audit rows. Inspected exact candidate AuditLog and AuditLogTest: sole append operation/INSERT constant asserted, real H2 persistence test present; both unchanged after merge. Review fresh full gate passed 72 unit and 87 functional invocations, including those assertions; QA append-only snapshots independently support the outcome.",
+            "subject": {
+              "kind": "commit",
+              "ref": "a922f49144049db0228c316c474ac6e890742fa5"
+            },
+            "evidence": [
+              {
+                "ref": "docs/review/01-create-redirect/01-code-review.md",
+                "sha256": "fbbee32565202722f2355979b0579a3ebb291b53fda046127ed80c4722108c81"
+              },
+              {
+                "ref": "docs/review/01-create-redirect/02-security-review.md",
+                "sha256": "44cae3b687c303ea241a8feb6d531ee46b6412300a750389794824b52e0f16ce"
+              },
+              {
+                "ref": "docs/review/01-create-redirect/proof/source-check-a922f49.json",
+                "sha256": "2c9ce3acc27399899557b592234ab5cd046620d011ea32dbbae852e423f8d9e5"
+              },
+              {
+                "ref": "docs/review/01-create-redirect/proof/code-check-a922f49.txt",
+                "sha256": "b2722da2fd9b6be68e10342b433e9d058654826df2d3c9342fffff4b37f52d90"
+              }
+            ]
+          }
+        },
+        {
+          "index": 14,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 14,
+            "id": "22ed2733c7bb8d839de9b0b6b52aadb7051d497c9a1e8fa9b13007458d2519e0",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T16:44:45.313Z",
+            "verdict": "accept",
+            "reason": "Explicit NFR-S4 code/security rows plus release tracked-tree scan and installed environment smoke now exist. QA independently repeated committed f090103 signatures (zero matches) and literal-assignment screen (four variable reads), checked blank H2 password and tracked .env absence; env smoke records https://sho.rt.example/dpMkbHzk. Built product inputs equal merged8e9c065. Accept specified scan/override claim; no universal/full-history/untracked/image secret-absence claim.",
+            "subject": {
+              "kind": "commit",
+              "ref": "8e9c065589e53385f60d6be3ddbc3683260285df"
+            },
+            "evidence": [
+              {
+                "ref": "docs/qa/01-greenfield-core/release-judgments/README.md",
+                "sha256": "68150427ac7f8ed5d5d7db2272fcbbba7bac6036eb260bf179a3273c4b1d62c7"
+              },
+              {
+                "ref": "docs/qa/01-greenfield-core/release-judgments/audit-8e9c065.json",
+                "sha256": "c5e81eecb6011788ff2843632f65ef8b3a62459e3701e4eb357bd3acfee1806a"
+              },
+              {
+                "ref": "docs/review/01-create-redirect/01-code-review.md",
+                "sha256": "fbbee32565202722f2355979b0579a3ebb291b53fda046127ed80c4722108c81"
+              },
+              {
+                "ref": "docs/review/01-create-redirect/02-security-review.md",
+                "sha256": "44cae3b687c303ea241a8feb6d531ee46b6412300a750389794824b52e0f16ce"
+              },
+              {
+                "ref": "missions/01-greenfield-core/RELEASE.md",
+                "sha256": "a34431046803c8f503df79fcc160f0113e76bc02fe4652e995a39b6bdf00f75c"
+              },
+              {
+                "ref": "missions/01-greenfield-core/release/smoke-jar-ac26-f090103.txt",
+                "sha256": "1a857a2cf53354edabb574d4eb40b877673c86e4cb53eeb9471fc758ca03c775"
+              },
+              {
+                "ref": "missions/01-greenfield-core/release/jar-ac26-log-f090103.jsonl",
+                "sha256": "ca20d83275316318c94ecde6eb6078db2576166e1ac8a70b7a86b9cd27a559f9"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "02-analytics",
+      "state": "ready",
+      "items": [
+        {
+          "index": 1,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 26,
+            "id": "f44dc818532349cc871248f8945e227544a5f68f032ded1b87e0a4822ac6e049",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T16:45:27.273Z",
+            "verdict": "accept",
+            "reason": "Reaffirm after shared TRACEABILITY append: entire analytics5b3490c section equals prior accepted5b2cdb2 record,138 methods69/suite and all22ACs with functional mappings retained. Prior independent121/126 gate and isolated regression unchanged; merged release check records test/functionalTest/coverage/Javadoc success and f090 product inputs equal8e9c065. This is record audit, not a new test run.",
+            "subject": {
+              "kind": "commit",
+              "ref": "8e9c065589e53385f60d6be3ddbc3683260285df"
+            },
+            "evidence": [
+              {
+                "ref": "docs/qa/01-greenfield-core/release-judgments/README.md",
+                "sha256": "68150427ac7f8ed5d5d7db2272fcbbba7bac6036eb260bf179a3273c4b1d62c7"
+              },
+              {
+                "ref": "docs/qa/01-greenfield-core/release-judgments/audit-8e9c065.json",
+                "sha256": "c5e81eecb6011788ff2843632f65ef8b3a62459e3701e4eb357bd3acfee1806a"
+              },
+              {
+                "ref": "docs/qa/TRACEABILITY.md",
+                "sha256": "ba5147180c1c5280d845846be2a6419dc04257df993828f5a2dd46ad62acc511"
+              },
+              {
+                "ref": "docs/qa/coverage/02-analytics/SUMMARY.md",
+                "sha256": "4851108cf733aaee4d38e3dc2daab8d426f892f4fb61f251dd86ecf7bdaf0ace"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/02-analytics/proof/qa-cr01-isolated-5b3490c.xml",
+                "sha256": "1c2fc516363590bd3f38faa5d19a2ad7a5e96974593c578e4754a4360ae90266"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/02-analytics/proof/qa-check-5b3490c.txt",
+                "sha256": "557691b4f2af32b0d14c43790730ede0f2f783480f0a02bfc605e2afd1e848f1"
+              },
+              {
+                "ref": "missions/01-greenfield-core/release/check-bootjar-f090103.txt",
+                "sha256": "b14866e3b7a66f82e557b6120e3f08b2ad29d0c0ea2aad539d7bf02f935dcdab"
+              }
+            ]
+          }
+        },
+        {
+          "index": 2,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 13,
+            "id": "0051a3a28e32d9442d6018293240bfdc5d9c4fd54b6dc63120712d52492f0338",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T11:17:38.275Z",
+            "verdict": "accept",
+            "reason": "Fresh candidate gate and copied merged CSV have 359/359 per-class lines and 118/118 branches, zero misses; root XML 358 distinct lines is the documented shared-source-line count, also 100%. No exclusion.",
+            "subject": {
+              "kind": "commit",
+              "ref": "5b3490c65915cf42594a4720350950bcefd2d7d0"
+            },
+            "evidence": [
+              {
+                "ref": "docs/qa/coverage/02-analytics/all/jacocoTestReport.csv",
+                "sha256": "8f1533687faabdb1f3b10edf1ccefba4410cfd5cce8e272dfb9f0f87c060ec1f"
+              },
+              {
+                "ref": "docs/qa/coverage/02-analytics/SUMMARY.md",
+                "sha256": "4851108cf733aaee4d38e3dc2daab8d426f892f4fb61f251dd86ecf7bdaf0ace"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/02-analytics/proof/qa-check-5b3490c.txt",
+                "sha256": "557691b4f2af32b0d14c43790730ede0f2f783480f0a02bfc605e2afd1e848f1"
+              }
+            ]
+          }
+        },
+        {
+          "index": 3,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 14,
+            "id": "5e2369044d3a5056b7096581f963e158c81f06324586c7673695751026a7f277",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T11:17:38.537Z",
+            "verdict": "accept",
+            "reason": "Fresh candidate unit/functional HTML/XML/CSV reports copied, 291 files byte-checked and committed in 440c473; old report history remains in 2aedfd1.",
+            "subject": {
+              "kind": "commit",
+              "ref": "5b3490c65915cf42594a4720350950bcefd2d7d0"
+            },
+            "evidence": [
+              {
+                "ref": "missions/01-greenfield-core/slices/02-analytics/proof/qa-report-copy-hashes-5b3490c.txt",
+                "sha256": "ab16fc737844a5145017fd3093acccebeae2ea175e2ccbb7114b223d76c60ac6"
+              },
+              {
+                "ref": "docs/qa/coverage/02-analytics/unit/jacocoTestReport.csv",
+                "sha256": "d6283b8aa371cd215251b06ad5e7359d96d40988dfc65ec8c68a1c1e6b44d2c3"
+              },
+              {
+                "ref": "docs/qa/coverage/02-analytics/functional/jacocoTestReport.csv",
+                "sha256": "224f1e438b1ff01fc86e209751d09c32b8296a51ad0b2c350885633c85c00d6e"
+              }
+            ]
+          }
+        },
+        {
+          "index": 4,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 27,
+            "id": "6a8b4e946df70c61f3b771b28646f831f62334e090892ff6ef87f42814ec996d",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T16:45:27.514Z",
+            "verdict": "accept",
+            "reason": "Reaffirm complete unchanged analytics table: all22 ACs with functional mappings and FR/NFR IDs, all9business rules and all138methods69per suite retained. Whole section equals prior accepted record; changes elsewhere add03-operate rather than remove analytics coverage. Independent gate/invocation evidence unchanged; audited against merged subject via retained candidate evidence plus release check.",
+            "subject": {
+              "kind": "commit",
+              "ref": "8e9c065589e53385f60d6be3ddbc3683260285df"
+            },
+            "evidence": [
+              {
+                "ref": "docs/qa/01-greenfield-core/release-judgments/README.md",
+                "sha256": "68150427ac7f8ed5d5d7db2272fcbbba7bac6036eb260bf179a3273c4b1d62c7"
+              },
+              {
+                "ref": "docs/qa/01-greenfield-core/release-judgments/audit-8e9c065.json",
+                "sha256": "c5e81eecb6011788ff2843632f65ef8b3a62459e3701e4eb357bd3acfee1806a"
+              },
+              {
+                "ref": "docs/qa/TRACEABILITY.md",
+                "sha256": "ba5147180c1c5280d845846be2a6419dc04257df993828f5a2dd46ad62acc511"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/02-analytics/proof/qa-test-invocations-5b3490c.txt",
+                "sha256": "bbabdf65170035481347867350b03885cd24f41548b5cc0ec9e956856c7e36d4"
+              }
+            ]
+          }
+        },
+        {
+          "index": 5,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 28,
+            "id": "6f925a4484bd38da253ec9488724409c93dbf608a964213b343e0d763602734f",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T16:45:27.751Z",
+            "verdict": "accept",
+            "reason": "Reaffirm current GAPS367567e after3ec7ab4: earlier analytics rows/compensations retained, no merged coverage exclusion or untested AC introduced; appended release rows honestly disclose host AC28failure and analytics sequential-bench isolation limit. Item13 expressly permits recording an unisolated added share. No threshold change or waiver, no AC28 acceptance.",
+            "subject": {
+              "kind": "commit",
+              "ref": "8e9c065589e53385f60d6be3ddbc3683260285df"
+            },
+            "evidence": [
+              {
+                "ref": "docs/qa/01-greenfield-core/release-judgments/README.md",
+                "sha256": "68150427ac7f8ed5d5d7db2272fcbbba7bac6036eb260bf179a3273c4b1d62c7"
+              },
+              {
+                "ref": "docs/qa/01-greenfield-core/release-judgments/audit-8e9c065.json",
+                "sha256": "c5e81eecb6011788ff2843632f65ef8b3a62459e3701e4eb357bd3acfee1806a"
+              },
+              {
+                "ref": "docs/qa/GAPS.md",
+                "sha256": "187cacbfa8b2bacd5897ac64c45ead31df67c381f8bb7b5d188882f8665204d4"
+              }
+            ]
+          }
+        },
+        {
+          "index": 6,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 17,
+            "id": "8f513a77f2425ac6df8a36be2f3313cfe077df92d242145525a01ba2e3a023f9",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T11:17:39.212Z",
+            "verdict": "accept",
+            "reason": "Fresh candidate capture shows three independent canary-bearing browser redirects with unique server IDs, original Location/no-store, followed by exact three-click aggregate stats and reduced origin; prior comprehensive effects adopted only through proven source equality.",
+            "subject": {
+              "kind": "commit",
+              "ref": "5b3490c65915cf42594a4720350950bcefd2d7d0"
+            },
+            "evidence": [
+              {
+                "ref": "missions/01-greenfield-core/slices/02-analytics/proof/qa-http-5b3490c.json",
+                "sha256": "20a05f7f81c4fde8c92dfd13fcf344d9e61164bf96eaa60a583653fe7deacfe4"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/02-analytics/proof/qa-candidate-equivalence-5b3490c.txt",
+                "sha256": "b9ec70c6778fd56fa6685b127398607c1778411cd514a0efd495e70877b279bd"
+              }
+            ]
+          }
+        },
+        {
+          "index": 7,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 18,
+            "id": "e5ccb950046d313b6ddab6cc85006b73795525ef7822bc6047c4b1bca6d98d1d",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T11:17:39.442Z",
+            "verdict": "accept",
+            "reason": "Fresh H2 export has exactly three representative rows: times within client intervals, UTC days, origin only, browser class, same nonempty 64-hex hash, no raw address/canary; unchanged fresh functional AC-5 proves other address/day boundaries.",
+            "subject": {
+              "kind": "commit",
+              "ref": "5b3490c65915cf42594a4720350950bcefd2d7d0"
+            },
+            "evidence": [
+              {
+                "ref": "missions/01-greenfield-core/slices/02-analytics/proof/qa-clicks-5b3490c.csv",
+                "sha256": "d6bef693c48ba712b249e2f4defb8a691e294e96d545fbeabc20bc1fd347e11b"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/02-analytics/proof/qa-http-5b3490c.json",
+                "sha256": "20a05f7f81c4fde8c92dfd13fcf344d9e61164bf96eaa60a583653fe7deacfe4"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/02-analytics/proof/qa-test-invocations-5b3490c.txt",
+                "sha256": "bbabdf65170035481347867350b03885cd24f41548b5cc0ec9e956856c7e36d4"
+              }
+            ]
+          }
+        },
+        {
+          "index": 8,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 19,
+            "id": "ef00fb8ba4b10582b994278b35e023774c6f47369723ea2295de58a76b30c221",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T11:17:39.664Z",
+            "verdict": "accept",
+            "reason": "All 13 fresh journey responses correlate to 15 JSON events with no client canary/address/hash/referrer: one completion each plus safe failed-insert WARN and OpenAPI INFO. Three-redirect/stats representative evidence complete; two setup requests excluded from correlation claim explicitly.",
+            "subject": {
+              "kind": "commit",
+              "ref": "5b3490c65915cf42594a4720350950bcefd2d7d0"
+            },
+            "evidence": [
+              {
+                "ref": "missions/01-greenfield-core/slices/02-analytics/proof/qa-correlated-events-5b3490c.jsonl",
+                "sha256": "af7f8ca0eb51bca0b68767ed00415aeea49e9779db7242c50f0b88a0f9d9723b"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/02-analytics/proof/qa-recheck-comparison-5b3490c.txt",
+                "sha256": "319ed1a3cd06298da1ea3c8b318479cb23a7312cfdaf3715def86ebf29ba7b18"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/02-analytics/proof/qa-http-5b3490c.json",
+                "sha256": "20a05f7f81c4fde8c92dfd13fcf344d9e61164bf96eaa60a583653fe7deacfe4"
+              }
+            ]
+          }
+        },
+        {
+          "index": 9,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 20,
+            "id": "4f7166744e0adf487e011e0785aa7f475bb26d3b773c55fe75bfd8168ca3f8ad",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T11:17:39.907Z",
+            "verdict": "accept",
+            "reason": "Fresh live OpenAPI JSON again equals candidate-committed document after key sorting; stats schema/example/problem404 and prior operation responses retained by exact document/source equality and fresh functional checks.",
+            "subject": {
+              "kind": "commit",
+              "ref": "5b3490c65915cf42594a4720350950bcefd2d7d0"
+            },
+            "evidence": [
+              {
+                "ref": "missions/01-greenfield-core/slices/02-analytics/proof/qa-live-openapi-5b3490c.json",
+                "sha256": "e9d40df1b420f353d3dcf0fd7d6dd72a7351c13941d330a11e09e52eeaa5ebea"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/02-analytics/proof/qa-recheck-comparison-5b3490c.txt",
+                "sha256": "319ed1a3cd06298da1ea3c8b318479cb23a7312cfdaf3715def86ebf29ba7b18"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/02-analytics/proof/qa-candidate-equivalence-5b3490c.txt",
+                "sha256": "b9ec70c6778fd56fa6685b127398607c1778411cd514a0efd495e70877b279bd"
+              }
+            ]
+          }
+        },
+        {
+          "index": 10,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 29,
+            "id": "bab34cbbfee35c1094895a2e975fb4f3f6e07ab9dabd98d5737e5bf8a3395fbb",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T16:45:27.980Z",
+            "verdict": "accept",
+            "reason": "Reaffirm ADR0011/12/13 contents equal accepted versions; DESIGN7 retains all three index entries. Accepted/indexed at4cfb745 before first dependent product2499505 by commit chronology; docs/product parallel branches, no ancestry claim. Later DESIGN additions concern03-operate; original analytics architecture claims unchanged.",
+            "subject": {
+              "kind": "commit",
+              "ref": "8e9c065589e53385f60d6be3ddbc3683260285df"
+            },
+            "evidence": [
+              {
+                "ref": "docs/qa/01-greenfield-core/release-judgments/README.md",
+                "sha256": "68150427ac7f8ed5d5d7db2272fcbbba7bac6036eb260bf179a3273c4b1d62c7"
+              },
+              {
+                "ref": "docs/qa/01-greenfield-core/release-judgments/audit-8e9c065.json",
+                "sha256": "c5e81eecb6011788ff2843632f65ef8b3a62459e3701e4eb357bd3acfee1806a"
+              },
+              {
+                "ref": "docs/DESIGN.md",
+                "sha256": "778f627a2bcab8ecf56d96faf4d894981c86a62ae5ebf0c6815e21a029820145"
+              },
+              {
+                "ref": "docs/adr/0011-click-handoff-bounded-single-writer.md",
+                "sha256": "1b6eca188e16eb13d8cae744459498ff603846a2492543825eb3417c47c9a256"
+              },
+              {
+                "ref": "docs/adr/0012-client-hash-daily-salt.md",
+                "sha256": "d2cbfc12b02236f2f3e0bc407e287f021df6f213ff9fa2a4ff77b1a7244bc9f8"
+              },
+              {
+                "ref": "docs/adr/0013-click-events-and-request-time-statistics.md",
+                "sha256": "fce9163ec0d4653f9443d9d517b68d150f881bb104f3035e171b414a4693e5be"
+              }
+            ]
+          }
+        },
+        {
+          "index": 11,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 22,
+            "id": "021de3c2ad7a976f72bdb2f793705697a2efdcb131c8949082b6c1d21003b329",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T11:17:40.389Z",
+            "verdict": "accept",
+            "reason": "ERD continues to show CLICK reduced fields and its LINK/user-agent lookup FKs; candidate migration/product tree unchanged and verified identical.",
+            "subject": {
+              "kind": "commit",
+              "ref": "5b3490c65915cf42594a4720350950bcefd2d7d0"
+            },
+            "evidence": [
+              {
+                "ref": "docs/diagrams/erd.mmd",
+                "sha256": "2c07d476421d19ec054058fc1883284bc5eb552ec57e2cb4e153e950bdd6c503"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/02-analytics/proof/qa-candidate-equivalence-5b3490c.txt",
+                "sha256": "b9ec70c6778fd56fa6685b127398607c1778411cd514a0efd495e70877b279bd"
+              }
+            ]
+          }
+        },
+        {
+          "index": 12,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 24,
+            "id": "1f3432af3b193892016da72593731c3d57152c93b41851307ccdd33ce455691b",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T11:30:22.127Z",
+            "verdict": "accept",
+            "reason": "Reaffirmed after reading current design/security records and 4074673 re-review. Explicit item-12 row and fresh actual-class probe confirm unchanged DailySalt private managed 32-byte salt, no logging/storage/HTTP exposure, quiet UTC-day expiry and close zero/drop, idempotent close and stale-expiry guard. QA independent probe agrees. Transient key copies, scheduler and process-memory limits remain explicit; review append changes evidence hash only, not product behavior.",
+            "subject": {
+              "kind": "commit",
+              "ref": "5b3490c65915cf42594a4720350950bcefd2d7d0"
+            },
+            "evidence": [
+              {
+                "ref": "docs/review/02-analytics/design-review.md",
+                "sha256": "41cc33fa25bd70a97462c4a293742a2b61379623853ab0293e1d07405279c718"
+              },
+              {
+                "ref": "docs/review/02-analytics/02-security-review.md",
+                "sha256": "a6007c5002dd26c122aebb892c73b3d44128abac0917b6b969089415a51597f8"
+              },
+              {
+                "ref": "docs/review/02-analytics/proof/code-security-recheck-5b3490c.txt",
+                "sha256": "2d6d82ae4e8049fcad5e1a206505807148e3e5d1ed0d9944d26f40cadc218274"
+              },
+              {
+                "ref": "docs/review/02-analytics/proof/recheck-audit-5b3490c.txt",
+                "sha256": "fa3669398b1d778f498e532dcfa0aa96161d5a8dafb914b36c8e08e1002f34d6"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/02-analytics/proof/qa-salt-lifetime-5b3490c.txt",
+                "sha256": "9034968f0e2f4248d929db38ce893c302fd4b93150179922d56ee815d84c2caa"
+              }
+            ]
+          }
+        },
+        {
+          "index": 13,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 25,
+            "id": "9e687bb7bcd73d52c51e02e4df59a32d9ed8bf509f8647bfc2ff1ee496718424",
+            "actor": "qa-agent@urlshort-factory",
+            "at": "2026-10-03T16:45:27.010Z",
+            "verdict": "accept",
+            "reason": "Accept release measurement/disclosure requirement under item's explicit unisolated-share allowance. Corrected open-loop 100/s GET with creates p95 2.2ms; separate GET/HEAD100/s p95 1.7/1.8ms, zero bad responses; complete JSON counts agree with 12000 stored GET clicks. Independent p95 difference is only a proxy, not isolated added cost; final GAPS367567e states that limit. No isolated numerical-cost guarantee or waiver; discarded first run excluded.",
+            "subject": {
+              "kind": "commit",
+              "ref": "8e9c065589e53385f60d6be3ddbc3683260285df"
+            },
+            "evidence": [
+              {
+                "ref": "docs/qa/01-greenfield-core/release-judgments/README.md",
+                "sha256": "68150427ac7f8ed5d5d7db2272fcbbba7bac6036eb260bf179a3273c4b1d62c7"
+              },
+              {
+                "ref": "docs/qa/01-greenfield-core/release-judgments/audit-8e9c065.json",
+                "sha256": "c5e81eecb6011788ff2843632f65ef8b3a62459e3701e4eb357bd3acfee1806a"
+              },
+              {
+                "ref": "docs/qa/GAPS.md",
+                "sha256": "187cacbfa8b2bacd5897ac64c45ead31df67c381f8bb7b5d188882f8665204d4"
+              },
+              {
+                "ref": "tools/bench.mjs",
+                "sha256": "9fdc92bb9b59a3d75a8b3034504faa1e3c509b08fea6ab0e9fad656b87ead55f"
+              },
+              {
+                "ref": "missions/01-greenfield-core/release/bench-jar-f090103.txt",
+                "sha256": "42594b334cf5c05a103ac83a6393d35b0183f7d5870f425f81d0f5490c622322"
+              },
+              {
+                "ref": "missions/01-greenfield-core/release/bench-stats-7YBO6Hrx-f090103.json",
+                "sha256": "a343442a90b51ea51de8b7885799359da7f49b0b6390f89318571e4f9345c5ac"
+              },
+              {
+                "ref": "missions/01-greenfield-core/release/jar-bench-log-f090103.jsonl",
+                "sha256": "972190092294bf57d04bb29d510c1b447050b83caf79acc15d4967675076336c"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "03-operate",
+      "state": "not-ready",
+      "items": [
+        {
+          "index": 1,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 14,
+            "id": "a8d307b185d66d41d37d4f866bee24efe435a5870cbade90c4d8754fae432e05",
+            "actor": "qa2-agent@urlshort-factory",
+            "at": "2026-10-03T13:43:19.251Z",
+            "verdict": "accept",
+            "reason": "Fresh complete gate on this exact SHA: 165 unit and 155 functional invocations, zero failures/errors/skips; all AC1-20 have named functional tests and independently observed HTTP effects.",
+            "subject": {
+              "kind": "commit",
+              "ref": "1c8b2cff20ad8b73a060bc817c8d0011782f876f"
+            },
+            "evidence": [
+              {
+                "ref": "docs/qa/03-operate/check-1c8b2cf.txt",
+                "sha256": "d0610693e836561d5e5975b4e4f0919c188c37eaa217a4c7e895e9edb08b1600"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/03-operate/proof/qa-traceability-1c8b2cf.json",
+                "sha256": "248b9a124a67a4e33256b5183a179c8551451acead88714f875c15e0a9fd5dad"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/03-operate/proof/qa-observed-1c8b2cf.json",
+                "sha256": "f33db391ac4f47454e84f7ec665237257ffea106e2b3eac7836a41c5b588686b"
+              }
+            ]
+          }
+        },
+        {
+          "index": 2,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 15,
+            "id": "8b1635d76fa088d93d05887fa699b4af33ec36142b01dbb1eb22883128ee576b",
+            "actor": "qa2-agent@urlshort-factory",
+            "at": "2026-10-03T13:43:19.647Z",
+            "verdict": "accept",
+            "reason": "Read the merged original and copied CSV totals: 443/443 lines and 162/162 branches; fresh gate includes coverage verification with no exclusions or lowered thresholds.",
+            "subject": {
+              "kind": "commit",
+              "ref": "1c8b2cff20ad8b73a060bc817c8d0011782f876f"
+            },
+            "evidence": [
+              {
+                "ref": "docs/qa/coverage/03-operate/SUMMARY.md",
+                "sha256": "8a5365c1392a4851e537886ddfa54e5c0423949d80a31af73a246ea554ead049"
+              },
+              {
+                "ref": "docs/qa/coverage/03-operate/all/jacocoTestReport.csv",
+                "sha256": "d2bf064150b749764588b4cdbd1444ae0913f34c51f009adbfcc69951521d113"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/03-operate/proof/qa-coverage-totals-1c8b2cf.json",
+                "sha256": "072b6a9774e85945edcf29769be90536211a1092a742d8f034930b1e2cabddae"
+              }
+            ]
+          }
+        },
+        {
+          "index": 3,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 16,
+            "id": "ff7c243c9048f5e05554649a09d470a7cf39ecd5ffc77469de51d9c2e9793706",
+            "actor": "qa2-agent@urlshort-factory",
+            "at": "2026-10-03T13:43:19.995Z",
+            "verdict": "accept",
+            "reason": "Evidence commit f7ee87e commits unit and functional HTML/XML/CSV for this candidate; all 321 original/copy SHA-256 hashes independently match.",
+            "subject": {
+              "kind": "commit",
+              "ref": "1c8b2cff20ad8b73a060bc817c8d0011782f876f"
+            },
+            "evidence": [
+              {
+                "ref": "docs/qa/coverage/03-operate/unit/jacocoTestReport.xml",
+                "sha256": "1d3c4cdf2beb3ad810ac46a0826cbff8c4c01142b222978a5732a8912e0a8ded"
+              },
+              {
+                "ref": "docs/qa/coverage/03-operate/functional/jacocoTestReport.xml",
+                "sha256": "9278311c2e7cc81bf53ce1e7d3de85a34a2ede7ceaa3f127a310311f9d4ad1e1"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/03-operate/proof/qa-report-hashes-1c8b2cf.json",
+                "sha256": "ffef8c3338959c848476386dbd888c7b6fb3b12da5b618b9bfd55bc50b0f07bf"
+              }
+            ]
+          }
+        },
+        {
+          "index": 4,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 17,
+            "id": "dc67cd3e0db1fa0d3f88ce28447ffaab8d1b5e54853e0b51d0b0da78dd5eb5dc",
+            "actor": "qa2-agent@urlshort-factory",
+            "at": "2026-10-03T13:43:20.483Z",
+            "verdict": "accept",
+            "reason": "Fresh table maps every AC1-28 and BR1-13 to tests or release checks with requirement ids. All 186 annotated methods and 320 executed invocations map both ways; release rows remain pending.",
+            "subject": {
+              "kind": "commit",
+              "ref": "1c8b2cff20ad8b73a060bc817c8d0011782f876f"
+            },
+            "evidence": [
+              {
+                "ref": "docs/qa/TRACEABILITY.md",
+                "sha256": "ba5147180c1c5280d845846be2a6419dc04257df993828f5a2dd46ad62acc511"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/03-operate/proof/qa-traceability-1c8b2cf.json",
+                "sha256": "248b9a124a67a4e33256b5183a179c8551451acead88714f875c15e0a9fd5dad"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/03-operate/proof/qa-test-invocations-1c8b2cf.txt",
+                "sha256": "367f1e85a4919dd56432df26e0d6ee74d4b283314f13f1564b7247b485cf0b7c"
+              }
+            ]
+          }
+        },
+        {
+          "index": 5,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 28,
+            "id": "e1a36c3c907eb44b5157a96d9f01861e94df8b737970fe54ce397f50ee3a951e",
+            "actor": "qa2-agent@urlshort-factory",
+            "at": "2026-10-03T16:48:42.248Z",
+            "verdict": "accept",
+            "reason": "Assigned reaffirmation packet qitem-20261003164452-5a8a64eb: GAPS at367567e equals the current file and is append-only relative to receipt26's exact hashed bytes. The added02-analytics row limits sequential GET-minus-HEAD to a comparison proxy and claims no isolated added-cost quantile. All03-operate release AC/NFR gap rows and checks are unchanged, including AC28 NOT MET5/5 and the unmeasured container bench. Item5 documentation remains satisfied; item13 stays rejected in receipt27. No app/build/bench run or waiver.",
+            "subject": {
+              "kind": "commit",
+              "ref": "8e9c065589e53385f60d6be3ddbc3683260285df"
+            },
+            "evidence": [
+              {
+                "ref": "docs/qa/GAPS.md",
+                "sha256": "187cacbfa8b2bacd5897ac64c45ead31df67c381f8bb7b5d188882f8665204d4"
+              },
+              {
+                "ref": "docs/qa/03-operate/release-judgment-8e9c065.md",
+                "sha256": "344f7457b1fa778ee5df7c29c9cab0c7be6ef02bde4de010227ee3c5540577e6"
+              }
+            ]
+          }
+        },
+        {
+          "index": 6,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 19,
+            "id": "f65ca442699cff618e80cfb0860ebfe91d5ffea988bec8c69a1ce0b5ed1b9cff",
+            "actor": "qa2-agent@urlshort-factory",
+            "at": "2026-10-03T13:43:21.152Z",
+            "verdict": "accept",
+            "reason": "Fresh exact-candidate Tomcat/H2 HTTP effects retain admitted create, complete private 429 headers/body, UP liveness/readiness and Prometheus rejection counter. Test controls are disclosed; unmodified jar checks are separate.",
+            "subject": {
+              "kind": "commit",
+              "ref": "1c8b2cff20ad8b73a060bc817c8d0011782f876f"
+            },
+            "evidence": [
+              {
+                "ref": "missions/01-greenfield-core/slices/03-operate/proof/qa-http-1c8b2cf.json",
+                "sha256": "479c51d68cca39b10ce702f27cf11fe1f0a0856f0fb671f17a1765146319665f"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/03-operate/proof/qa-exchange-429-create-1c8b2cf.txt",
+                "sha256": "0501c614a64ba4722498cfd5d838148653af126da5ceaa5654d35fe01d96eddb"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/03-operate/proof/qa-prometheus-1c8b2cf.txt",
+                "sha256": "254d088bb5476817869331a2c1c15b18d800be1e040789be94095fc2f32179ac"
+              }
+            ]
+          }
+        },
+        {
+          "index": 7,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 20,
+            "id": "b0be17b5d31d70b55817978eeb86aee42ee18f14b3bde55167d0a5a1699137da",
+            "actor": "qa2-agent@urlshort-factory",
+            "at": "2026-10-03T13:43:21.495Z",
+            "verdict": "accept",
+            "reason": "All 30 captured 429 ids across five apps correlate to exactly one JSON completion of status429. Full logs and final stored rows contain none of the searched client/forwarded/UA/rejected URL/id canaries.",
+            "subject": {
+              "kind": "commit",
+              "ref": "1c8b2cff20ad8b73a060bc817c8d0011782f876f"
+            },
+            "evidence": [
+              {
+                "ref": "missions/01-greenfield-core/slices/03-operate/proof/qa-correlated-429-1c8b2cf.jsonl",
+                "sha256": "a4b531e8c32564669cec6290823702865dcf380f112fe521ac5518a395223c0a"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/03-operate/proof/qa-storage-privacy-1c8b2cf.txt",
+                "sha256": "8432c7f402e6c1cdce79f3d5cfce1c6610540bcd0aa06b1f9e6d21b9492e22fc"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/03-operate/proof/qa-http-1c8b2cf.json",
+                "sha256": "479c51d68cca39b10ce702f27cf11fe1f0a0856f0fb671f17a1765146319665f"
+              }
+            ]
+          }
+        },
+        {
+          "index": 8,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 21,
+            "id": "81a90e28727283a9a9b8a7b07a7b8a2d6a818951b4317daada5254b12d02da3b",
+            "actor": "qa2-agent@urlshort-factory",
+            "at": "2026-10-03T13:43:21.814Z",
+            "verdict": "accept",
+            "reason": "Fresh whole live OpenAPI equals the candidate committed document without field normalization; all six operations include 429, integer Retry-After and an example. Candidate includes the analytics merge.",
+            "subject": {
+              "kind": "commit",
+              "ref": "1c8b2cff20ad8b73a060bc817c8d0011782f876f"
+            },
+            "evidence": [
+              {
+                "ref": "missions/01-greenfield-core/slices/03-operate/proof/qa-openapi-1c8b2cf.json",
+                "sha256": "35fe978266dfee0edb4fe57e26e5993d046cfb072cbb3c86086dbfb813499350"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/03-operate/proof/qa-openapi-diff-1c8b2cf.txt",
+                "sha256": "e1b6ad904b2a0d3b9b02ad8a633bf7fc7914ff4ac4a4bcc041d7487e7cc220a2"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/03-operate/proof/qa-ancestry-1c8b2cf.txt",
+                "sha256": "b0cd437c83ce6f08cabf5f3b83935569393c2e4e4306fb20d8f6eee17fe0cff3"
+              }
+            ]
+          }
+        },
+        {
+          "index": 9,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 22,
+            "id": "f74e3ab45b2dfb388af7a8136d795fea804f13e8051e1ef06fb8a42b2bd216d9",
+            "actor": "qa2-agent@urlshort-factory",
+            "at": "2026-10-03T13:43:22.149Z",
+            "verdict": "accept",
+            "reason": "Fresh merge-base ancestor check with analytics merge091ff46 and exact candidate returns0; worktree HEAD remains the packet SHA.",
+            "subject": {
+              "kind": "commit",
+              "ref": "1c8b2cff20ad8b73a060bc817c8d0011782f876f"
+            },
+            "evidence": [
+              {
+                "ref": "missions/01-greenfield-core/slices/03-operate/proof/qa-ancestry-1c8b2cf.txt",
+                "sha256": "b0cd437c83ce6f08cabf5f3b83935569393c2e4e4306fb20d8f6eee17fe0cff3"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/03-operate/proof/qa-final-verification-1c8b2cf.txt",
+                "sha256": "738aae72ad482a6c791bb9ee42dc1250a1720e87efdb359d4d8d918f101b4c58"
+              }
+            ]
+          }
+        },
+        {
+          "index": 10,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 23,
+            "id": "9b72882574e730b9248ac61cf8f3bfb9c25bc6da6a175fc6ce1770ec5b792497",
+            "actor": "qa2-agent@urlshort-factory",
+            "at": "2026-10-03T13:43:22.485Z",
+            "verdict": "accept",
+            "reason": "Fresh Git-tree inspection verifies accepted ADR0014-0017 and their DESIGN index at4cfb745, ancestor of first dependent codea0abe1c. Recorded chronology retains those exact subjects.",
+            "subject": {
+              "kind": "commit",
+              "ref": "1c8b2cff20ad8b73a060bc817c8d0011782f876f"
+            },
+            "evidence": [
+              {
+                "ref": "missions/01-greenfield-core/slices/03-operate/proof/qa-adr-chronology-1c8b2cf.json",
+                "sha256": "b33db316d2e2a786f27f2b96f51207bde16664abbb75892c0b1efa9c613b1c9d"
+              }
+            ]
+          }
+        },
+        {
+          "index": 11,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 25,
+            "id": "215444beb7ccc6ef8bd1744dcfa5ad70d7a90a64f294e31fc384563674999298",
+            "actor": "qa2-agent@urlshort-factory",
+            "at": "2026-10-03T13:59:27.260Z",
+            "verdict": "accept",
+            "reason": "Read both independent explicit item-11 PASS re-reviews at48381d4 on the exact candidate. Per-client TAT state and opportunistic cleanup are bounded under the recorded forward-clock policy; backward steps fail closed until catch-up/restart, with no absolute client-cardinality cap claimed. The candidate changes no identity sink; audited response/log/scrape/storage canaries are absent, preserving salted click and explicit submitted-target exceptions. All26 candidate Git blobs match reviewer hashes. Receipt completion only; release item13 remains pending.",
+            "subject": {
+              "kind": "commit",
+              "ref": "1c8b2cff20ad8b73a060bc817c8d0011782f876f"
+            },
+            "evidence": [
+              {
+                "ref": "docs/review/03-operate/01-code-review.md",
+                "sha256": "c11b6ee13ee953ac53b3907b1e4911d57d68dcfc2a876a7c3e356725f82c50fa"
+              },
+              {
+                "ref": "docs/review/03-operate/02-security-review.md",
+                "sha256": "dd196bfbbd9a116f2acf1701cfa3e64ea5541eb93d76519d218a16c7ef485d33"
+              },
+              {
+                "ref": "docs/review/03-operate/proof/qa-audit-1c8b2cf.json",
+                "sha256": "42322e3065f2cf174f7c4b16772be330f7c96f4496b1b569acb48cf62e6ec1dc"
+              },
+              {
+                "ref": "docs/review/03-operate/proof/rate-boundary-1c8b2cf.txt",
+                "sha256": "5f1e588e1ac71f2038eb95e9cecf4a36ffe243776e2c960f4bdcdbf6f17755c2"
+              }
+            ]
+          }
+        },
+        {
+          "index": 12,
+          "state": "accepted",
+          "receipt": {
+            "sequence": 24,
+            "id": "70cd5f68f9e01e7312771873fa1b8fc9cfc019a1662fef55288bad21d6f7e01c",
+            "actor": "qa2-agent@urlshort-factory",
+            "at": "2026-10-03T13:43:22.814Z",
+            "verdict": "accept",
+            "reason": "Repaired candidate has release smoke modes; fresh60s bench mode output captured. Strict actual R0 function controls8/8 reject truncation, absent/500/late responses; unmodified jar completes201 at532ms. Supported C locale and below-target workload are explicit limits; no release numerical verdict.",
+            "subject": {
+              "kind": "commit",
+              "ref": "1c8b2cff20ad8b73a060bc817c8d0011782f876f"
+            },
+            "evidence": [
+              {
+                "ref": "missions/01-greenfield-core/slices/03-operate/proof/qa-bench-1c8b2cf.txt",
+                "sha256": "6873b4542d563ee7c25aadf18435b2e2f6552438c6249b9ca6259ff0d7b19863"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/03-operate/proof/qa-drain-1c8b2cf.txt",
+                "sha256": "e9553009ea4e539113eca5da35f1b9fc99f960c7c3607b5e7371af09db04e582"
+              },
+              {
+                "ref": "docs/qa/03-operate/r0-controls-1c8b2cf.json",
+                "sha256": "8daed5dfd53a0e79bca05b20006399c3a3f392778b61f72e7824f36c6ae60561"
+              },
+              {
+                "ref": "missions/01-greenfield-core/slices/03-operate/proof/qa-r0-control-1c8b2cf.py",
+                "sha256": "11b13758e4d902f15cbba7b32b92dc989ff76d12e8125920b42204dabda73979"
+              },
+              {
+                "ref": "docs/qa/03-operate/findings.md",
+                "sha256": "0590bd9cfc60bfeef78cebbe6876913ec56082231c8fe6de98e8b2f02d77ef52"
+              }
+            ]
+          }
+        },
+        {
+          "index": 13,
+          "state": "rejected",
+          "receipt": {
+            "sequence": 27,
+            "id": "73e743e51ae2694aaca5c3952e81364acdc20f99be0734b73e2920c4eca3027e",
+            "actor": "qa2-agent@urlshort-factory",
+            "at": "2026-10-03T15:49:29.711Z",
+            "verdict": "reject",
+            "reason": "AC28 requires complete normal R0 through the published port: five recorded Mac-host restart runs end curl52/status000 after 10.370-10.663s, with dispatched R0 and aborted phase in JSON logs. Corrected record3ec7ab4 preserves this failure. Jar drain, VM controls and specified-rate NFR-L1/L2 support narrower positive claims; they do not satisfy AC28 or grant a ship waiver. No human exception recorded.",
+            "subject": {
+              "kind": "commit",
+              "ref": "8e9c065589e53385f60d6be3ddbc3683260285df"
+            },
+            "evidence": [
+              {
+                "ref": "docs/qa/03-operate/release-judgment-8e9c065.md",
+                "sha256": "344f7457b1fa778ee5df7c29c9cab0c7be6ef02bde4de010227ee3c5540577e6"
+              },
+              {
+                "ref": "docs/qa/03-operate/release-audit-8e9c065.json",
+                "sha256": "e0ff50f4f9a80c7a2aa1b5e7fe66a75398912d47e230ecd7ee8ac3c05dfeb99a"
+              },
+              {
+                "ref": "missions/01-greenfield-core/release/smoke-restart-container-f090103-run5.txt",
+                "sha256": "25ecc03f7b570b159567c278abb803d7c91a50c0c6f3752ea3898ad0a2b9e9de"
+              },
+              {
+                "ref": "missions/01-greenfield-core/release/container-restart-log-f090103-run5.jsonl",
+                "sha256": "67c3c865ecfc116490d8e3862626776f93a585872fb6cf62c6f393fd44cad5d0"
+              },
+              {
+                "ref": "missions/01-greenfield-core/release/smoke-inspect-container-f090103.txt",
+                "sha256": "27876214b05aaf097b7d57022a02e2296c778871ef3992a3ec9e4ea0b78353c1"
+              },
+              {
+                "ref": "missions/01-greenfield-core/release/bench-jar-f090103.txt",
+                "sha256": "42594b334cf5c05a103ac83a6393d35b0183f7d5870f425f81d0f5490c622322"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
