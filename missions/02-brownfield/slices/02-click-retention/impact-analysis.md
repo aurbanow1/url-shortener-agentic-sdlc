@@ -37,10 +37,13 @@ Found with `grep -rln -e ClickRecorder -e ClickStore -e "FROM click" -e "INTO cl
 | `src/main/resources/application.properties` | **two settings** with their comments: `urlshort.click.retention-days=90`, and `urlshort.click.purge-enabled=true`, the operator hold (design review DR-01) | Boot; second holder after `01-audit-read` merges (ordered custody) |
 | `src/functionalTest/resources/application-functional.properties` | **one line, granted** by the lead (slice.yaml `cec7032`): `urlshort.click.purge-enabled=false` | every functional context; the purge journeys override it (design §7) |
 | `click.package-info` | the package description gains retention | — |
+| `src/main/resources/db/migration/V3__add_click_audit_columns.sql` | **new** (AC-16, added by SPEC `32b1ae2` after design review; ADR-0020): audit columns on `click` and `user_agent_class`, with defaults and a backfill | Flyway at startup; every writer of `click` (`ClickStore.insert`) keeps its v1 column list, and the defaults fill the new columns |
 
 Unchanged, read to confirm: `click.StatsController`, `click.LinkStats` (fold the remaining
 rows), `click.DailySalt`, `click.Click`, `link.RedirectController`. **Not touched:** `link/`,
-`audit/`, `web/`, `db/migration/` (no schema change, below), `docs/api/openapi.json`.
+`audit/`, `web/`, `docs/api/openapi.json`. Also checked for AC-16: `grep -rn "INTO click"` finds
+the v1 column list in `ClickStore.insert` and the unit `ClickSchemaTest`. No shipped test asserts
+the exact column set of `click` or `user_agent_class`.
 
 ## Impacted endpoints
 
@@ -55,18 +58,28 @@ with no clicks. No metric is added. The API document is not regenerated.
 - **Rows.** The purge deletes `click` rows with `clicked_on < today − P`. `link`, `audit_log`,
   `user_agent_class` and `flyway_schema_history` are not touched: the statement names only
   `click`, and deleting a child never cascades to a parent.
-- **No migration.** The purge's statement scans the table. The probe measured the alternatives,
-  and an index on `clicked_on` bought nothing worth a migration (design §3, probe L1–L10). This
-  slice takes no Flyway number, so the next number stays with `01-audit-read`.
+- **No index.** The purge's statement scans the table. The probe measured the alternatives, and an
+  index on `clicked_on` bought nothing (design §3, probe L1–L10):
   - Single `DELETE` of 1 000 000 of 1 300 000 rows: 7.9 s without the index, 9.5 s with it.
   - The same in 10 000-row batches: 43 s either way.
   - Creating the index on 1.3 million rows: 1.5 s.
+- **One expand migration, V3: the audit columns** (AC-16, the human's decision A-10; ADR-0020).
+  - `click` and `user_agent_class` each gain `created_at` and `updated_at` (database clock,
+    defaults) and `created_by` and `updated_by` (`anonymous` / `system`, defaults).
+  - Every v1 column, value and constraint is unchanged (probe M2).
+  - Pre-existing clicks get `created_at = updated_at = clicked_at`, and classes the migration's
+    time.
+  - New rows are filled by the defaults, so the v1 insert is unchanged (M2b, M3).
+  - V3 is the next Flyway number after `01-audit-read`, which takes none.
+  - It costs 42 to 43 s inside Flyway for 1 300 000 clicks, once, before readiness (M5).
 - **Volume.** In steady state a run deletes one day of clicks, about 1/91 of the table at the
   default. A larger run happens only when the period is lowered (90 → 7 deletes about 92 % at the
   next run) or after a long outage.
-- **Expand → migrate → contract.** Not applicable: no schema change.
-- **Rollback.** `git revert` of the merge commit restores v1's behaviour, with no schema to undo.
-  Deleted rows cannot be recovered; deletion is the requirement. To keep an undo before lowering
+- **Expand → migrate → contract.** V3 is the expand step only: columns added, nothing dropped or
+  retyped. No later contract step is planned.
+- **Rollback.** `git revert` of the merge commit restores v1's behaviour. The V3 header's rollback
+  statements, run on a stopped copy of the data directory, restore the V2 schema exactly (probe
+  M4). Deleted rows cannot be recovered; deletion is the requirement. To keep an undo before lowering
   the period, the Operator copies `data/` while the service is stopped (`docs/guidance/databases.md`
   §5). `docs/DESIGN.md` §3 says so next to the setting.
 
@@ -149,7 +162,8 @@ removes the case.
 - New events on the `click-purge` thread, without `requestId` (SPEC rule 6, not a request):
   - INFO `clicks purged` with `deleted`, `cutoff` (the earliest UTC day kept) and `retentionDays`;
   - WARN `click purge failed` with `cutoff`, `retentionDays` and `errorType`;
-  - WARN `click purge off` with `retentionDays`, at every start while the hold is on.
+  - WARN `click purge paused, no click is deleted` with `setting` (`urlshort.click.purge-enabled`)
+    and `retentionDays`, at every start while the hold is on (AC-15).
 
   No message or stack trace, and no click value, link code or id (AC-9, AC-10).
 - New `click lost` reason `reduction failed` (AC-12). `rejected` keeps its meaning: a full or
@@ -179,7 +193,8 @@ removes the case.
 - Every class the change touches, and every class that calls or reads one of them, is in the
   module table. The `grep` that produced the list is quoted.
 - Endpoints: none changed, checked against the baseline responses.
-- Schema: no change. The reason is measured, not assumed (probe L0 to L10).
+- Schema: no index, measured (probe L0 to L10). One expand migration for AC-16, measured on upgrade,
+  insert compatibility, rollback and cost (M1 to M5).
 - Data flows: each existing flow is checked, and the two new flows (startup, daily) are named.
 - Blast radius: each failure has a worst case and a detector.
 - Compatibility: every shipped test that stores clicks, captures logs or moves the clock is listed,

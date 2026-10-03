@@ -126,7 +126,7 @@ package-private).
 | Logging | ECS JSON, one object per line, MDC and SLF4J key-value pairs as top-level members; never client IP, `User-Agent`, target URL, idempotency key, method token or any copied inbound header value; `process.thread.name` excluded; **no throwable is ever passed to a logger on a request path** (the `500` event carries `errorChain` + `errorOrigin`); `PageNotFound` category at ERROR; DispatcherServlet initialised at startup (`spring.mvc.servlet.load-on-startup=1`) so the first request writes no uncorrelated line; work done for a request on another thread (click writes, *02-analytics*) restores `requestId` in the MDC for its duration and logs exceptions by class name only; *03-operate*: Tomcat's request-parse errors not logged (`Http11Processor=warn`, they carried client bytes), MVC's invalid-path WARN not logged (`ResourceHandlerUtils=error`, it carried the submitted path), and `DataSourceHealthIndicator`'s WARN is the one accepted framework throwable on a request path; ***02-click-retention (designed)***: work that is not a request (a purge run) carries no `requestId` and logs exceptions by class name only | ADR-0004 (amended 2026-10-03 three times; all three amendments accepted) |
 | Privacy of Visitor data *(02-analytics)* | A click stores four reduced facts only: referrer origin (lowercase scheme and host, non-default port) or none; user-agent class `browser`/`bot`/`other`/`unknown`; HMAC-SHA256 of the peer address under a random salt per UTC day, held in memory and dropped at the day's end; the instant (and its UTC day). Never stored or logged: raw address, `User-Agent`, referrer path/query/fragment/userinfo, forwarding headers, request id. Statistics expose aggregates only | ADR-0012, ADR-0013; 02-analytics SPEC rules 2–4, 9 |
 | Asynchronous work *(02-analytics)* | Click writes, on one bounded writer thread owned by `ClickRecorder`; the request thread never waits on it; fail open; a salt's expiry uses `CompletableFuture.delayedExecutor`. ***02-click-retention (designed)***: the retention purge, on one daemon thread owned by `ClickPurge`. Each owner holds its executor as a field and controls its own shutdown, and neither interrupts a JDBC call. Still no `@Async` and no scheduler framework: Spring's cron trigger cannot follow the suite-controlled clock | ADR-0011 (amended by 02-click-retention), ADR-0012, ADR-0018 |
-| Retention ***02-click-retention (designed)*** | Clicks are kept for `P` UTC days, then deleted; nothing is aggregated or kept in another form (NFR-P2, transition 831; mission 03 Q4 A). **`urlshort.click.retention-days`**, environment variable **`URLSHORT_CLICK_RETENTIONDAYS`**, a positive whole number, default **90**. An invalid value stops startup with an error naming the setting and the rejected value. On UTC day `T` a run deletes every click with `clicked_on < T − P`, so day `T − P` is kept and a click lives at least `P` full days (a calendar-day cutoff, not per-click expiry). **Runs:** once at startup, finished before readiness; then **daily at 00:10Z** (at the first 5 s tick at or after it, on the application clock); at most once per UTC day; a failed run is retried by the next day's run. **Records:** INFO `clicks purged` {`deleted`, `cutoff`, `retentionDays`} or WARN `click purge failed` {`cutoff`, `retentionDays`, `errorType`}, no audit row. **Hold:** `urlshort.click.purge-enabled=false` (environment variable `URLSHORT_CLICK_PURGEENABLED`, default `true`) pauses every deletion, at startup and daily, for example while an incident is investigated or under a legal hold. It logs WARN `click purge off` at every start, and clicks then grow beyond the period until the hold is lifted. The functional suite's shared contexts run with the hold on. **Before lowering the period**, copy `data/` while the service is stopped if an undo is wanted: deletion is irreversible. The next start's run deletes the difference at once, and readiness waits for it (8 to 32 s per million rows) | ADR-0018 |
+| Retention ***02-click-retention (designed)*** | Clicks are kept for `P` UTC days, then deleted; nothing is aggregated or kept in another form (NFR-P2, transition 831; mission 03 Q4 A). **`urlshort.click.retention-days`**, environment variable **`URLSHORT_CLICK_RETENTIONDAYS`**, a positive whole number, default **90**. An invalid value stops startup with an error naming the setting and the rejected value. On UTC day `T` a run deletes every click with `clicked_on < T − P`, so day `T − P` is kept and a click lives at least `P` full days (a calendar-day cutoff, not per-click expiry). **Runs:** once at startup, finished before readiness; then **daily at 00:10Z** (at the first 5 s tick at or after it, on the application clock); at most once per UTC day; a failed run is retried by the next day's run. **Records:** INFO `clicks purged` {`deleted`, `cutoff`, `retentionDays`} or WARN `click purge failed` {`cutoff`, `retentionDays`, `errorType`}, no audit row. **Hold:** `urlshort.click.purge-enabled=false` (environment variable `URLSHORT_CLICK_PURGEENABLED`, default `true`) pauses every deletion, at startup and daily, for example while an incident is investigated or under a legal hold. It logs WARN `click purge paused, no click is deleted` {`setting`, `retentionDays`} at every start, and clicks then grow beyond the period until the hold is lifted. The functional suite's shared contexts run with the hold on. **Before lowering the period**, copy `data/` while the service is stopped if an undo is wanted: deletion is irreversible. The next start's run deletes the difference at once, and readiness waits for it (8 to 32 s per million rows) | ADR-0018 |
 | Persistence | H2 file DB under `data/` in PostgreSQL mode; Flyway-owned schema `V<n>__<verb>_<noun>.sql`; Spring Data JDBC records + targeted `@Modifying` updates; `JdbcClient` for single-statement writers; portable SQL; reserved-word-safe names | ADR-0005 |
 | Time | Every stored or returned instant comes from the `Clock` bean `Clock.tickMillis(UTC)` (`link.LinkConfig`); tests replace the bean; no database-side business time | ADR-0005 |
 | Audit | One `audit_log` row per mutation in the same transaction; insert-only writer; actor `anonymous`; `before_state`/`after_state` JSON text | ADR-0008 |
@@ -435,7 +435,8 @@ Time
 ## 5. Data model
 
 Flyway `V1__create_link_and_audit_log.sql` (01-create-redirect) and
-`V2__create_click.sql` (*02-analytics*). ERD source: `diagrams/erd.mmd`.
+`V2__create_click.sql` (*02-analytics*); ***02-click-retention (designed)***:
+`V3__add_click_audit_columns.sql`. ERD source: `diagrams/erd.mmd`.
 
 ```mermaid
 erDiagram
@@ -466,9 +467,17 @@ erDiagram
         varchar(2048) referrer
         varchar(16) user_agent_class FK
         varchar(64) client_hash
+        timestamptz created_at "V3, designed"
+        timestamptz updated_at "V3, designed"
+        varchar(16) created_by "V3, designed: anonymous"
+        varchar(16) updated_by "V3, designed: anonymous"
     }
     USER_AGENT_CLASS {
         varchar(16) token PK
+        timestamptz created_at "V3, designed"
+        timestamptz updated_at "V3, designed"
+        varchar(16) created_by "V3, designed: system"
+        varchar(16) updated_by "V3, designed: system"
     }
     LINK ||..o{ AUDIT_LOG : "entity_id = code (no FK)"
     LINK ||--o{ CLICK : "link_id (FK, ON DELETE CASCADE)"
@@ -496,11 +505,20 @@ erDiagram
   - rows with `clicked_on < today − P` are deleted at startup and daily at 00:10Z, by one
     `DELETE … WHERE clicked_on < ?` per run (ADR-0018, §3 Retention);
   - the statement scans the table on purpose: an index on `clicked_on` was measured and bought
-    nothing for it, so there is no schema change;
+    nothing for it;
   - statistics then cover the retained window only.
+- **Audit columns *02-click-retention (designed)*, V3 (ADR-0020; the human's policy, every table
+  gets them in the next migration that touches it):**
+  - `click` and `user_agent_class` gain `created_at`/`updated_at` (database clock,
+    `DEFAULT CURRENT_TIMESTAMP`) and `created_by`/`updated_by` (`anonymous` for clicks, `system`
+    for classes), all `NOT NULL` with defaults, so writers keep their v1 column lists;
+  - pre-existing clicks are backfilled from `clicked_at`;
+  - `clicked_at` stays the click's time on the service clock.
+  - `link` and `audit_log` get the same columns in `04-audit-columns`.
 - Queries and their indexes are listed per slice in its `design.md` §3.
 - Rollback of V1: `DROP TABLE audit_log; DROP TABLE link;`. Rollback of V2:
-  `DROP TABLE click; DROP TABLE user_agent_class;` (click history only).
+  `DROP TABLE click; DROP TABLE user_agent_class;` (click history only). Rollback of V3: drop the
+  eight audit columns and V3's `flyway_schema_history` row (the statements are in its header).
 
 The audit-read slice (mission 02) adds no table.
 
@@ -546,6 +564,7 @@ The audit-read slice (mission 02) adds no table.
 | [0017](adr/0017-container-hardening-and-shutdown.md) | Container hardening; 10 s graceful shutdown inside a 20 s stop grace | 03-operate | accepted at plan-lock 2026-10-03 |
 | [0018](adr/0018-click-retention-daily-purge.md) | Click retention: one `DELETE` per run, at startup (before readiness) and daily at 00:10Z, decided on the application clock; `urlshort.click.retention-days` (90) | 02-click-retention | proposed (design 2026-10-03) |
 | [0019](adr/0019-audit-read-loopback-keyset.md) | Audit read: loopback peer with forwarding headers refused, `server.forward-headers-strategy=none` pinned, keyset pages by write sequence (`id`), base64url cursor, no index | 01-audit-read | proposed (design 2026-10-03) |
+| [0020](adr/0020-audit-columns-expand-migration.md) | Audit columns: database-clock defaults, constant actors (`anonymous`, `system`), backfill from domain time, one expand migration per table set with a written rollback | 02-click-retention; the pattern for 04-audit-columns | proposed (design 2026-10-03) |
 
 Pending, each lands with the slice that introduces the concern: the
 production profile's API-document exposure is still open (`/v3/api-docs`
@@ -565,3 +584,5 @@ and `/swagger-ui.html` stay on and unlimited).
 | 2026-10-03 | 03-operate (design) | `web.RateLimitFilter` + `RateLimiter` (per-client GCRA, two budgets, `429` problem detail, rejection counter, trusted-proxy rule); `RequestBodyLimitFilter` to order `+3`; Prometheus registry and `/actuator/prometheus`; readiness includes the database; status-only health; Tomcat parse errors no longer logged; 10 s shutdown phase; compose: read-only root, tmpfs, loopback publish, readiness health check, 20 s stop grace; `scripts/smoke.sh` `--restart`, `--drain`, `--bench`; `429` on every documented operation; ADR-0014..0017 and a third ADR-0004 amendment |
 | 2026-10-03 | 02-click-retention (design) | `click.ClickPurge` + `ClickRetentionProperties`: clicks older than `urlshort.click.retention-days` (90, `URLSHORT_CLICK_RETENTIONDAYS`) deleted by one `DELETE` per run, at startup before readiness and daily at 00:10Z on a 5 s tick of the application clock, one INFO or WARN per run, a 3 s non-interrupting close; `ClickStore.deleteBefore`; `click lost` reason `reduction failed` (W2-05); no schema change; ADR-0018, ADR-0011 amendment, ADR-0013 note; stack facts on H2 batched deletes, MVCC under a large delete, Spring's scheduler and the clock, readiness after `ApplicationReadyEvent`; stale ADR-0004 status text corrected |
 | 2026-10-03 | 01-audit-read (design) | `audit.AuditController` + `AuditTrail`: `GET /api/audit`. The loopback peer is admitted only without forwarding headers (`403` otherwise). `limit` and `cursor` are validated per field. Keyset pages run newest first by `id` with `limit + 1` reads and a base64url cursor. No index and no migration. `server.forward-headers-strategy=none` is pinned because Boot enables Tomcat's `RemoteIpValve` on a detected cloud platform. One operation in the API document. ADR-0019. Stack facts on forwarded headers, IPv4-mapped loopback, H2's backwards primary-key walk and Jackson nulls |
+| 2026-10-03 | 01-audit-read (design review DR-01, DR-02) | The audit read admits only while Boot's effective forwarded-header strategy is `NONE`, so an override closes it rather than opening it. No `produces` condition: a `200` is `application/json` whatever the `Accept`, after the guard and the validation. ADR-0019 revised |
+| 2026-10-03 | 02-click-retention (design review DR-01 to DR-04) | `urlshort.click.purge-enabled`, an operator hold (WARN at every start naming the setting), set `false` in the functional overlay so no shared test context purges. V3 expand migration: audit columns on `click` and `user_agent_class`, with defaults, a backfill and a written rollback (the human's policy; ADR-0020). AC-4 asserted on the failure-analysis event only |

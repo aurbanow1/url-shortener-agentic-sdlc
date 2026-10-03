@@ -1,4 +1,4 @@
-%% urlshort — entity relationship diagram (kept current by the Design Agent; last: 02-analytics design, V2)
+%% urlshort — entity relationship diagram (kept current by the Design Agent; last: 02-click-retention design, V3 audit columns, not yet merged)
 %% No foreign key between link and audit_log by design: audit_log identifies its subject by (entity, entity_id = code)
 %% and must outlive any future deletion of the subject (ADR-0008). click references link by id and goes with it (ADR-0013).
 erDiagram
@@ -29,9 +29,17 @@ erDiagram
         varchar(2048) referrer "origin only, or NULL"
         varchar(16) user_agent_class FK "user_agent_class.token"
         varchar(64) client_hash "HMAC-SHA256 under the day's salt, hex; CHECK LENGTH = 64"
+        timestamptz created_at "V3 (designed): database clock default; backfilled from clicked_at"
+        timestamptz updated_at "V3 (designed): equals created_at (insert-only rows)"
+        varchar(16) created_by "V3 (designed): default anonymous"
+        varchar(16) updated_by "V3 (designed): default anonymous"
     }
     USER_AGENT_CLASS {
         varchar(16) token PK "browser | bot | other | unknown (seeded by V2)"
+        timestamptz created_at "V3 (designed): database clock default"
+        timestamptz updated_at "V3 (designed): equals created_at"
+        varchar(16) created_by "V3 (designed): default system"
+        varchar(16) updated_by "V3 (designed): default system"
     }
     LINK ||..o{ AUDIT_LOG : "audited by (entity_id = code, no FK)"
     LINK ||--o{ CLICK : "clicked (link_id, index with clicked_on)"
