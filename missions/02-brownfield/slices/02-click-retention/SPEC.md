@@ -31,7 +31,7 @@ with the 90-day default as an operator setting".
 
 | Id | Requirement (short) | Proven by |
 |---|---|---|
-| NFR-P2 | click retention 90 days, then deleted, enforced by a job, not by hope | AC-1, AC-2, AC-3, AC-4, AC-7, AC-8, AC-9 |
+| NFR-P2 | click retention 90 days, then deleted, enforced by a job, not by hope | AC-1, AC-2, AC-3, AC-4, AC-7, AC-8, AC-9, AC-15 |
 | FR-13 | existing links, redirects, statistics and audit keep working unchanged across the change, migration included | AC-5, AC-6, AC-11, AC-13, AC-14 |
 | NFR-X2 | a versioned migration with a written rollback, if this slice adds one | AC-13; *Non-functional* |
 | FR-15 (in passing, wave review W2-05) | a click-reduction failure reports its own reason | AC-12 |
@@ -86,7 +86,7 @@ Stored click rows are inspected by the suite, as in `02-analytics`.
 - **AC-4 — An invalid period stops the service from starting.** [NFR-P2]
   GIVEN the retention period setting is `0`, `-5`, or `ninety`
   WHEN the service starts
-  THEN it does not start (startup fails before any request is served), the failure names the setting and the rejected value and echoes no other configuration value (in particular not the datasource URL or a credential), and no click is deleted.
+  THEN it does not start (startup fails before any request is served), the startup failure report names the setting and the rejected value and echoes no other configuration value (in particular not the datasource URL or a credential), and no click is deleted. Log lines written earlier in the same startup are the shipped startup logging and are not part of this criterion.
 
 - **AC-5 — Statistics cover the retained clicks only.** [NFR-P2, FR-13]
   GIVEN a link whose clicks span UTC days `T−95` to `T` with distinct referrer origins on the oldest days, and its statistics recorded before the purge
@@ -125,6 +125,11 @@ Stored click rows are inspected by the suite, as in `02-analytics`.
   WHEN a Visitor opens the link while a purge is deleting them
   THEN the redirect answers `302` as before, and its click (today's) is recorded and appears in the statistics once recording has settled.
 
+- **AC-15 — Turning the daily run off is loud and keeps the startup run.** [NFR-P2]
+  GIVEN the service is started with the daily purge turned off through its setting, and clicks older than the period exist
+  WHEN the service starts, and later the suite-controlled clock passes the next UTC day's scheduled purge time with no trigger sent
+  THEN exactly one `WARN` event at startup names the setting and says only the startup purge runs; the startup purge deletes the old clicks (as in AC-7); and clicks that fall out of the window on the next UTC day still exist 60 seconds after the scheduled time on the suite clock.
+
 #### In passing (FR-15, wave review W2-05)
 
 - **AC-12 — A click-reduction failure reports its own reason.** [FR-15, NFR-O1]
@@ -142,13 +147,13 @@ Stored click rows are inspected by the suite, as in `02-analytics`.
 - **AC-14 — The shipped behaviour still passes.** [FR-13]
   GIVEN the functional suite as it stood at `f6dd29e`
   WHEN it runs against the candidate
-  THEN every test passes unchanged. If a test must change because it stores clicks older than 90 days on the suite clock, the impact analysis names it and the reason, and nothing else about it changes.
+  THEN every test passes unchanged. If a test must change because it stores clicks older than 90 days on the suite clock, the impact analysis names it and the reason, and nothing else about it changes. The functional profile overlay gains one line that turns the daily purge off for the shared test contexts (rule 3, design review DR-01). A daily run's event carries no request id (rule 6), and shipped journeys require every line in their capture window to carry one. The impact analysis records the line. No test source changes for it.
 
 ### Business rules
 
 1. **Retention period.** A positive whole number of days, default `90` (NFR-P2, decided). It is an operator setting overridable by an environment variable; the design records its name in `docs/DESIGN.md`. Any other value stops the service at startup with an error that names the setting and the rejected value, and no other configuration value. There is no silent fallback to the default and no "zero means keep nothing".
 2. **What is deleted.** On UTC day `T`, with period `P`, the purge deletes every click whose stored UTC day is earlier than `T − P`. The click's stored UTC day is the day v1 already records for it (ADR-0013). The day `T − P` itself is kept, so every click is kept for at least `P` full days and deleted by the first run after its day leaves the window. Nothing is aggregated or kept in another form. Deletion removes the row.
-3. **When it runs.** Once shortly after startup (AC-7), and once every UTC day at a fixed time that the design records (AC-8). A run that fails is retried by the next scheduled run, with no tighter retry loop. Runs never overlap.
+3. **When it runs.** Once shortly after startup (AC-7), and by default once every UTC day at a fixed time that the design records (AC-8). The daily run is on unless the Operator turns it off through a documented setting. With it off, only the startup run purges, and the service says so in one `WARN` at startup (AC-15). Turning it off is the Operator's documented choice, like a longer period, and is never silent. A run that fails is retried by the next scheduled run, with no tighter retry loop. Runs never overlap.
 4. **What it touches.** Click rows only. Links, audit rows, the redirect and the statistics contract are unchanged. Statistics are computed over the clicks that remain, so after a purge they cover the retained window (AC-5). The purge is not a mutation of a link: it writes no audit row. The run's log event is its record (A-4).
 5. **Visitor first.** A purge runs off the request path. A redirect during a purge is served and its click recorded as v1 promises (AC-11, `02-analytics` rules 5 and 6).
 6. **Logs.** One `INFO` event per run with count, cutoff day and period; one `WARN` per failed run with the exception class only. No event carries a stored click value, a link code or a link id. A run is not a request, so its events carry no `requestId` (NFR-O1 governs request events).
@@ -156,12 +161,12 @@ Stored click rows are inspected by the suite, as in `02-analytics`.
 
 ### Non-functional
 
-- **NFR-P2.** 90 days by default, an operator setting, enforced by a scheduled job with a run at startup. Proven by AC-1 to AC-4 and AC-7 to AC-10.
+- **NFR-P2.** 90 days by default, an operator setting, enforced by a scheduled job with a run at startup. The daily run is on by default. Proven by AC-1 to AC-4, AC-7 to AC-10 and AC-15.
 - **NFR-X2 (if a migration is added).** The purge deletes by the stored click day. If the design adds an index for it, that is a new versioned migration with the next free Flyway number after `01-audit-read`'s (ordered custody, mission SPEC), and it has a written rollback in its header, as V1 and V2 do. Proven by AC-13 and the review.
 - **Lock behaviour.** A purge over many rows must not stall redirects or click writes beyond what AC-11 tolerates. How it bounds that (for example by deleting in batches) is the design's and is recorded in an ADR (NFR-M2).
 - **ADR before dependent code (NFR-M2).** The purge schedule and mechanism (time, startup run, no overlap, batching if any, failure handling); the retention setting; the index, if added.
 - **Coverage gate (NFR-M1).** `scripts/gw check` with 100 % line and branch coverage on merged unit and functional data; honest gaps in `docs/qa/GAPS.md`.
-- **Territory.** `click/` (main, unit, functional), `db/migration/` only for an index, and `application.properties` for the retention setting (second holder after `01-audit-read` merges). Not `link/`, `audit/`, `web/` or `docs/api/openapi.json`: no endpoint changes.
+- **Territory.** `click/` (main, unit, functional), `db/migration/` only for an index, and `application.properties` for the retention and daily-purge settings (second holder after `01-audit-read` merges). The functional profile overlay, one line (AC-14), only if the orchestration lead grants it. Not `link/`, `audit/`, `web/` or `docs/api/openapi.json`: no endpoint changes.
 
 ### Scope
 
@@ -196,16 +201,18 @@ Stored click rows are inspected by the suite, as in `02-analytics`.
 | A-7 | What reason token does a reduction failure get (W2-05)? | widen `rejected`; a distinct token | **assumed** a distinct static token (rule 7). The design names it (for example `reduction failed`). Safe: operator-facing vocabulary only; `rejected` keeps its documented meaning. |
 | A-8 | Does mission 03's open retention question block this slice? | wait for its answer; build the decided delete | **decided** build the decided delete. The human approved this mission's purge with the 90-day default at 15:40Z. Mission 03's park offers keeping it as the recommended default. If the answer there is to aggregate (Q4 C), the lead adds that as mission-03 work, and this slice's period setting and day-based deletion stay usable underneath it. |
 
+| A-9 | May the Operator turn the daily run off (design review DR-01: the shared test contexts need it off)? | no switch, so shipped tests change; a switch, default on | **assumed** a switch, default on, loud when off (rule 3, AC-15). Safe: the shipped default keeps NFR-P2's daily job, and the startup run still purges. The switch gives the Operator no new power over retention, because the period setting the human granted can already keep clicks as long as the Operator wants. It also keeps AC-14's shipped tests unchanged. |
+
 No question is parked on `human@kernel`. The purge, its default and the
 setting are the human's recorded decision. Every other row is a narrow,
 reversible default.
 
 ## Proof contract
 
-- [ ] AC-1 through AC-14 are each covered by a named test (functional, or unit where noted by the design) and are green on the candidate SHA with `scripts/gw check`.
+- [ ] AC-1 through AC-15 are each covered by a named test (functional, or unit where noted by the design) and are green on the candidate SHA with `scripts/gw check`.
 - [ ] `scripts/gw check` reports 100 % line and 100 % branch coverage on the merged unit and functional data (NFR-M1).
 - [ ] Unit and functional JaCoCo reports committed under `docs/qa/coverage/02-click-retention/unit/` and `docs/qa/coverage/02-click-retention/functional/`.
-- [ ] `docs/qa/TRACEABILITY.md` holds a table for `02-click-retention` mapping AC-1 to AC-14 and rules 1 to 7 to their tests, with the requirement id beside each AC.
+- [ ] `docs/qa/TRACEABILITY.md` holds a table for `02-click-retention` mapping AC-1 to AC-15 and rules 1 to 7 to their tests, with the requirement id beside each AC.
 - [ ] `docs/qa/GAPS.md` holds a row for `02-click-retention` ("None for this slice" or each honest gap with its compensating check).
 - [ ] `proof/` holds a by-effect capture from the running service started on a data directory that holds clicks beyond the period: click row counts per UTC day before start and after the startup purge, and the run's `INFO` log line (count, cutoff, period, no click values). This is a by-effect check of AC-7, AC-9 and AC-13 on the real service. The boundary (AC-1 to AC-3) and the daily schedule (AC-8) are proven by the suite-clock tests.
 - [ ] If a migration is added, its header carries a written rollback, and the review records that the rollback was read (NFR-X2).
@@ -232,6 +239,7 @@ N/A: non-visual slice.
 - 2026-10-03: requirements review **PASS** on `ee7a4de` (`docs/review/02-click-retention/requirements-review.md`, evidence `735abe2`), with one MEDIUM finding, RQ-01. Fixed in passing (see *Review response*).
 
 - 2026-10-03: AC-4 and rule 1 clarified during design (see *Review response*, D-AC4).
+- 2026-10-03: design review FAIL (DR-01 HIGH, DR-02 MEDIUM, `docs/review/02-click-retention/design-review.md`). The requirements side is answered in *Review response*. Rule 3 now has a daily run that is on by default and can be turned off loudly. New AC-15, new A-9, AC-14 names the one overlay line, and AC-4 is scoped to the failure report. Now 15 acceptance criteria and 9 ambiguity rows (6 assumed, 3 decided, none parked).
 
 ## Review response
 
@@ -239,6 +247,8 @@ N/A: non-visual slice.
 |---|---|---|
 | RQ-01 | MEDIUM | **Fixed.** AC-6's verification redirect recorded a new click before the statistics read, so `totalClicks` `0` could not hold. The statistics are now read first (empty), then `GET /C` is opened, then after recording settles the statistics show that one click on day `T`. No other AC, rule or ambiguity row changed. |
 | D-AC4 | design note | **Fixed.** "Names the setting without echoing anything else" could not hold: Spring Boot's startup failure report names the setting and repeats the operator's rejected value and where it came from (command line or environment variable), and nothing else (design probe rows A4, `design-probe/output.txt`). The rejected value is the operator's own input, not client data, and helps them fix it. AC-4 and rule 1 now say: the failure names the setting and the rejected value and echoes no other configuration value. The property may be printed as `retention-days` or `retentionDays` depending on the failure kind; both name the setting. No other AC, rule or ambiguity row changed. |
+| DR-01 (design review) | HIGH, on the design | **Requirements adjusted to the design's fix.** A daily run at a real 00:10Z writes an `INFO` line with no request id (rule 6). That line can land inside the capture window of shipped journeys that require every captured line to carry one, so AC-14 failed. The design adds a daily-purge setting, on by default, and the functional profile overlay turns it off for the shared contexts (probe `design-probe/output-5.txt`, A8off). Rule 3 now makes the daily run the default and turning it off the Operator's documented, loud choice. New AC-15 proves the `WARN` and that only the startup run purges. A-9 records why the switch is safe. AC-14 names the one overlay line with no test source change, and *Territory* marks that line as needing the lead's grant. Rule 6 is untouched: no false request id, and no purge event is suppressed. |
+| DR-02 (design review) | MEDIUM, on the design | **Wording tightened.** AC-4's "no other configuration value" applies to the startup failure report. Lines the shipped startup writes before binding fails (the pool and Flyway log the datasource URL there today) are not part of AC-4. The failed start and the no-deletion clauses are unchanged. |
 
 ## Dependencies
 
@@ -257,4 +267,5 @@ N/A: non-visual slice.
 - No design leaked beyond shipped facts. The table, column and migration names appear only where they cite shipped artifacts. The schedule time, batching and setting name are the design's.
 - Consistent with the human's recorded decisions: delete, 90 days, an operator setting (15:40Z); the mission-03 coupling is stated, not pre-empted.
 - `plan-review` lenses applied by the author while drafting (the skill was not invoked separately for this slice): the engineering lens added AC-7 (startup run, so a service down at the scheduled time still purges), AC-11 (redirect during a purge) and the dedicated-peer note. Strategy lens kept aggregation out (the human's open question). UX lens: the Analyst sees `200` with empty arrays for a fully purged link (AC-6), not `404`. No executive summary.
+- DR-01/DR-02 amendment: AC-15 is observable by a startup log event and stored click rows on the suite clock. A-9 is safe because the default keeps the daily job and the period setting already bounds the Operator's power. AC-14 still forbids test source changes; only one overlay line is named, and it waits on the lead's grant. AC-4 now asserts on the failure report only. Counts updated in the coverage table, *Non-functional*, the proof contract and the status. Not verified by me: the overlay grant (the lead's), and the A8off probe beyond reading its two result rows.
 - Not verified by me: whether the scheduler can follow the suite clock (AC-8). The design either makes it do so or records the gap with the trigger-based test as the compensating check.
