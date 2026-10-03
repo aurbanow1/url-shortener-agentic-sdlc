@@ -72,7 +72,8 @@ Recorded 2026-10-03T01:52Z before the handoff to `wave_review`.
 - Reverts needed: none.
 - Human decisions honoured: mission plan-lock (one slice, one wave, minimal filter) and slice plan-lock (SPEC `4e581cc` + design `d0521de`); neither locked artifact edited after its stamp.
 - Exceptions handled and recorded: two bounded loops (design review DR-01, QA-01), one permission-prompt stall, two territory grants and one lead decision, all in `NOTES.md` §2.
-- Open items carried forward: ADR-0004 / `docs/DESIGN.md` thread-name example reconciliation (queue row to the design agent, non-blocking); unit-suite properties shadowing (backlog); release-time network advisory checks (review agent's note for release).
+- Open items carried forward: unit-suite properties shadowing (backlog); release-time network advisory checks (review agent's note for release). The ADR-0004 / `docs/DESIGN.md` thread-name example reconciliation closed at `23f7a8c`.
+- Wave review outcome (2026-10-03T02:01Z): PASS from both vantages on `42a25db4`; two LOW follow-ups, W1-01 (OpenAPI export ownership, to the first mission-01 API slice) and W1-02 (real-server journey for log-privacy criteria), recorded as backlog in `NOTES.md` §2.
 
 ## Slices
 
