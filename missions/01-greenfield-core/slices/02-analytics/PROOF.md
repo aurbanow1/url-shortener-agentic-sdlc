@@ -83,6 +83,16 @@ on its own (100 % line and branch merged, Javadoc gate):
 - **Every AC has a named test:** AC01–AC22 in the journey classes, AC-11 inside AC-08/09/10, AC-20 in `StatsJourneyTest`. Watched failing first: the recording and statistics journeys (the two red runs above). **Not watched failing:** `ClickResilienceJourneyTest` (AC-14, AC-15, AC-16, the Tomcat rows of AC-18, AC-19 and AC-22) and `ClickSchemaJourneyTest` were written in commit 4 against working code. AC-14's non-blocking redirect, AC-15's fail-open WARN and AC-16's count under concurrency are behaviour those classes prove for the first time, not re-runs of a MockMvc red. Commit 1's unit tests were red only as compile failures, as on slice 01.
 - **One flaky test was found and fixed at the root:** the 1 ms clock-shift race (deviation 6). It was not retried away.
 
+## Review response — candidate `5b3490c`
+
+Code review on `862c52e` (`docs/review/02-analytics/01-code-review.md`): FAIL on CR-01 (HIGH). Security PASS.
+
+| Id | Severity | Response | Evidence |
+|---|---|---|---|
+| CR-01 | HIGH | **Fixed in the test setup only.** `DailySaltTest.aSelectionMadeBeforeMidnightKeepsItsDayAndNeverReplacesTheNextDaysSalt` drew day D's salt at `23:59:59.999`, so `DailySalt` scheduled that salt's real expiry 1 ms later. Run on its own, before the JVM is warm, the timer fired between the test's two day-D selections and dropped the key the test compares against. Day D's salt is now drawn at `12:00`, so its expiry is hours away. The clock then moves to `23:59:59.999` and every original assertion is kept: the delayed pre-midnight selection's hash equals D's, D+1 hashed twice is stable, and D+1 differs from D. The real scheduled-expiry case (`aSaltIsDroppedAtTheEndOfItsDayWithoutAnyFurtherClick`) is unchanged and still its own test. No expiry was disabled, no sleep was added, and product code is unchanged. Self-check by the same hunt in the rest of the class: no other test draws a salt near midnight except that expiry test, which does it on purpose. | `proof/cr01-isolated-red-862c52e.txt` (the review's command, run alone, fails at line 73 on `862c52e`); `proof/cr01-isolated-green-5b3490c.txt` (the same command passes on `5b3490c`); the whole `DailySaltTest` class run alone twice, both green; `proof/builder-check-5b3490c.txt` (`--offline check --rerun-tasks` green: unit 121, functional 126, 100 % line/branch, Javadoc) |
+
+New candidate: `5b3490c65915cf42594a4720350950bcefd2d7d0` (`862c52e` plus the one test commit). The by-effect captures under `proof/` were taken on `862c52e`; product code is identical on `5b3490c`, so they stand.
+
 ## QA
 
 Seat `qa-agent@urlshort-factory` (Codex), 2026-10-03 UTC; packet
