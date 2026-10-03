@@ -78,6 +78,17 @@ flowchart TB
 | `review-agent` | Code Review Agent, Security & Compliance Agent | findings with severity + `file:line`, review ledger, shortener security checklist, verdict on the threat model |
 | `release-agent` | Release & Reliability Agent | installed smoke, README/TESTING, `RELEASE.md`, evidence export, metrics, drills; holds the ship gate |
 
+**Runtimes, models and effort per seat** (decided 2026-10-02; a model is pinned in the agent spec where it differs from the runtime default and mirrored into the live rig with `rig seat set-model`, which is audited):
+
+| Seat | Runtime | Model | Reasoning effort | Where it is set |
+|---|---|---|---|---|
+| `orchestration-lead`, `requirements-agent`, `design-agent`, `release-agent` | Claude Code | Claude Fable 5.1 (`claude-fable-5-1`) | xhigh | runtime default (`~/.claude/settings.json`: `model: fable`, `effortLevel: xhigh`) |
+| `development-agent` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | xhigh | `rig/agents/development-agent/agent.yaml` → `defaults.model`; effort from `modelSettings.claude-opus-5-5` |
+| `qa-agent` | Codex | GPT-6.1-Sol (`gpt-6.1-sol`) | xhigh | `rig/agents/qa-agent/agent.yaml` → `defaults.model`; effort from `~/.codex/config.toml` `model_reasoning_effort` |
+| `review-agent` | Codex | GPT-6-Astra (`gpt-6-astra`) | xhigh | runtime default (`~/.codex/config.toml`) |
+
+Effort is a runtime setting, not an OpenRig field; the factory assumes `xhigh` on both runtimes (`docs/SETUP-FACTORY.md`). Every review step runs on the other family from the author (Codex judges Claude), and inside the Claude family the builder (Opus 5.5) differs from the planners and the lead (Fable 5.1).
+
 ### 2.3 Control flow: three graphs
 
 **Mission lifecycle** (`project.yaml`; a pure `depends_on` DAG, one instance per mission):

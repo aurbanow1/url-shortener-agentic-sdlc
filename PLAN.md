@@ -283,6 +283,7 @@ Spikes (facts that must be verified by running, ~1 h, in a scratch directory):
 | D3 | Human gate identity | register you via `rig gateway human add` (default, not objected) | gates route to your seat; approve in Mission Control (`rig ui open`) or `rig queue resolve` |
 | D4 | Existing `product-team` rig | **snapshotted and torn down** (snapshot `01M3Z4M6A30X2HX9SJ7J1VB537`; restore with `rig up product-team`) | only `kernel` + the new `urlshort-factory` run |
 | D5 | Submission target | **zip only** | local git history kept; deliverable = `url-shortener-agentic-sdlc.zip` = repo incl. `.git` + `docs/evidence` + `dist/*.rigbundle`; no GitHub Actions (the `./gradlew check` gate is the CI); PDF excluded |
+| D6 | Seat models | **Development Agent → Opus 5.5, QA Agent → GPT-6.1-Sol, both at xhigh effort** (your decision, 2026-10-02); the other seats stay on the runtime defaults (Fable 5.1 / GPT-6-Astra, xhigh) | pinned in the two agent specs (`defaults.model`) and in the live rig (`rig seat set-model`, audited); effort stays a runtime setting documented in `docs/SETUP-FACTORY.md`; the builder seat was relaunched fresh mid-mission (continuity from files, recorded as a seat-handover drill) |
 
 ## 11. First actions once you say go
 

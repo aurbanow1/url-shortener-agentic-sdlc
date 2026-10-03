@@ -35,6 +35,22 @@ specs resolve from the repo alone.
 - Codex seats: `.codex/rules/urlshort.rules` (project layer) allows the same families and marks `git push`, `git reset --hard`, `git clean`, `docker push` **forbidden**; a forbidden rule overrides any user-level allow. Verify: `codex execpolicy check --pretty --rules "$PWD/.codex/rules/urlshort.rules" git push origin main`.
 - Nothing is published by an agent: no remote is configured, and ship sign-off is a human gate.
 
+## Models and reasoning effort
+
+OpenRig pins a seat's *model* in its agent spec (`defaults.model`); `rig seat set-model <seat> --model <id>` changes a live seat (audited, effective at the seat's next launch). Reasoning *effort* is a runtime setting, so set it once per runtime before `rig up`:
+
+- Claude Code — `~/.claude/settings.json`: `"model": "fable"`, `"effortLevel": "xhigh"`, plus `"modelSettings": {"claude-opus-5-5": {"effortLevel": "xhigh"}}` for the builder.
+- Codex — `~/.codex/config.toml`: `model = "gpt-6-astra"`, `model_reasoning_effort = "xhigh"`.
+
+| Seat | Runtime | Model | Effort |
+|---|---|---|---|
+| orchestration-lead, requirements-agent, design-agent, release-agent | Claude Code | Claude Fable 5.1 | xhigh |
+| development-agent | Claude Code | Claude Opus 5.5 (pinned in `rig/agents/development-agent/agent.yaml`) | xhigh |
+| qa-agent | Codex | GPT-6.1-Sol (pinned in `rig/agents/qa-agent/agent.yaml`) | xhigh |
+| review-agent | Codex | GPT-6-Astra | xhigh |
+
+Verify after launch: `ps -axo args= | grep -- --model` lists the pinned Claude seats; a Codex seat prints its model and effort in its status bar (`rig capture qa-agent@urlshort-factory`).
+
 ## Launch
 
 ```sh
