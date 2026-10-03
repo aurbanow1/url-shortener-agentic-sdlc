@@ -56,6 +56,9 @@ Context and observations that help the mission but do not change its
 
 ## 4. Development agent
 
+- 2026-10-03T07:06Z — slice `01-create-redirect` `implement` (packet `qitem-20261003063930-0cb9c7eb`, claimed 06:39Z), branch `slice/01-create-redirect` in `.worktrees/01-create-redirect`. Done, each commit green alone under `scripts/gw check` (100 % line/branch merged): `20aef57` dependency overrides (OSV on that tree: 0 advisories over 90 coordinates, `proof/osv-advisories-20aef57.json`); `aa39560` Javadoc gate (doclint also flagged implicit default constructors, so three 00-hello classes declare the same public no-arg constructor with a comment, behaviour unchanged, noted for review); then web infrastructure (advice, problems, body cap, request event) and the link + audit feature (85 functional, all ACs except AC-28). Next: OpenAPI annotations + `OpenApiConfig` + `OpenApiDocumentTest` + committed `docs/api/openapi.json`; then bootRun by-effect captures under `proof/`, PROOF.md §Builder, PROGRESS ticks, `rig proof add`, handoff. Not mine: `docs/qa/` (traceability, coverage copies, GAPS are QA's).
+- 2026-10-03T07:15Z — `implement` done: candidate **`a922f49`** (five commits on `slice/01-create-redirect`), `check --rerun-tasks` green (unit 72, functional 87, 100 % line/branch, Javadoc). By-effect captures, log lines, audit rows and OSV under the slice `proof/`, dropped as `proof/builder-evidence-a922f49.md` (contract items 6–9). Six deviations from `design.md` and the residuals are listed in `PROOF.md` §Builder (notably: three explicit constructors under the Javadoc-only grant; OpenAPI regeneration by `cp` instead of an env var). Handed to `qa_check`.
+
 ## 5. Release agent
 
 ## QA Agent

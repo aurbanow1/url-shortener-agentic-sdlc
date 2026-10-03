@@ -1,0 +1,24 @@
+# Audit rows written by the captured create and retire (AC-22, AC-23 by effect)
+# Candidate a922f49, app started with `scripts/gw bootRun --args=--server.port=18081` in
+# .worktrees/01-create-redirect (file database ./data/urlshort), then stopped; queried with
+# java -cp h2-2.4.240.jar org.h2.tools.Shell -url "jdbc:h2:file:./data/urlshort;MODE=PostgreSQL" -user sa -sql "..."
+# Request ids: create 4f2ba114-cfce-4146-9ba6-ab88baccf4b4 (http-201-create-a922f49.txt),
+#              retire d02b573e-a44e-4c0d-a614-1fa2e73c8b2c (http-204-retire-a922f49.txt).
+# The read, redirect, 410 and 400 requests of the same session wrote no row for this code.
+
+SELECT id, occurred_at, actor, action, entity, entity_id, request_id, before_state, after_state FROM audit_log WHERE entity_id = 'QUPpzC7N' ORDER BY id;
+
+ID | OCCURRED_AT                | ACTOR     | ACTION      | ENTITY | ENTITY_ID | REQUEST_ID                           | BEFORE_STATE                                                                  | AFTER_STATE
+3  | 2026-10-03 07:09:12.375+00 | anonymous | link.create | link   | QUPpzC7N  | 4f2ba114-cfce-4146-9ba6-ab88baccf4b4 | null                                                                          | {"url":"https://example.com/some/path?q=canaryquerybuilder","state":"active"}
+4  | 2026-10-03 07:09:19.492+00 | anonymous | link.retire | link   | QUPpzC7N  | d02b573e-a44e-4c0d-a614-1fa2e73c8b2c | {"url":"https://example.com/some/path?q=canaryquerybuilder","state":"active"} | {"url":"https://example.com/some/path?q=canaryquerybuilder","state":"retired"}
+(2 rows, 4 ms)
+
+SELECT code, url, created_at, retired_at, idempotency_key FROM link WHERE code = 'QUPpzC7N';
+
+CODE     | URL                                                | CREATED_AT                 | RETIRED_AT                 | IDEMPOTENCY_KEY
+QUPpzC7N | https://example.com/some/path?q=canaryquerybuilder | 2026-10-03 00:09:12.372-07 | 2026-10-03 00:09:19.492-07 | canary-key-builder-a922f49-2
+(1 row, 0 ms)
+
+# Note: link timestamps are stored with the JVM's zone offset (-07, Spring Data JDBC binds Instant
+# through java.sql.Timestamp) while audit_log uses +00 (AuditLog binds an OffsetDateTime in UTC). Both
+# are the same instants (07:09:12.372Z = 00:09:12.372-07); the API returns createdAt in UTC.

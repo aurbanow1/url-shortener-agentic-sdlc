@@ -1,0 +1,27 @@
+# JSON log lines for the six captured requests (AC-26, AC-27 by effect)
+# Candidate a922f49, shipped logging configuration (ECS), `scripts/gw bootRun --args=--server.port=18081`.
+# Full run log: bootrun-log-a922f49.txt (lines 34-38 belong to a first sequence on code qEjMvJni
+# that was abandoned when the redirect capture failed on a shell glob; they are kept, not hidden).
+#
+# Each request below wrote exactly one event, `request completed`, whose requestId equals the
+# captured X-Request-Id header and which carries only `status`.
+#   201 create   http-201-create-a922f49.txt        X-Request-Id 4f2ba114-cfce-4146-9ba6-ab88baccf4b4
+#   200 read     http-200-read-a922f49.txt          X-Request-Id 36c3bf3c-cfb4-4da8-ba21-78e8dcc18d65
+#   302 redirect http-302-redirect-a922f49.txt      X-Request-Id 1661cff0-0512-408f-a2f3-d5bce444551a
+#   204 retire   http-204-retire-a922f49.txt        X-Request-Id d02b573e-a44e-4c0d-a614-1fa2e73c8b2c
+#   410 visitor  http-410-visitor-gone-a922f49.txt  X-Request-Id c8a12a85-7d4b-4b35-b276-dddd7247187c
+#   400 invalid  http-400-invalid-url-a922f49.txt   X-Request-Id 2b5f75f7-0b3b-4f46-9a67-162464a20153
+#
+# Privacy check over the whole run log: `grep -c -E "canary|127\.0\.0\.1|0:0:0:0:0:0:0:1|curl/" build/bootrun-a922f49.log`
+# -> 0. The create sent User-Agent canary-ua-builder-a922f49, Idempotency-Key canary-key-builder-a922f49-2
+# and a url with query canaryquerybuilder; the redirect sent the same User-Agent; the 400 sent
+# javascript:alert(canaryjsbuilder). curl's own User-Agent (curl/...) and the loopback client address
+# are absent too. Every line after `Started UrlshortApplication` carries requestId; the DispatcherServlet
+# initialised before `Tomcat started` (line 27 vs 30), so the first request logged no uncorrelated line.
+
+{"@timestamp":"2026-10-03T07:09:12.377340Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":82750,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"4f2ba114-cfce-4146-9ba6-ab88baccf4b4","status":201,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T07:09:16.793353Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":82750,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"36c3bf3c-cfb4-4da8-ba21-78e8dcc18d65","status":200,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T07:09:18.405087Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":82750,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"1661cff0-0512-408f-a2f3-d5bce444551a","status":302,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T07:09:19.493317Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":82750,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"d02b573e-a44e-4c0d-a614-1fa2e73c8b2c","status":204,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T07:09:20.944862Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":82750,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"c8a12a85-7d4b-4b35-b276-dddd7247187c","status":410,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T07:09:21.985216Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":82750,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"2b5f75f7-0b3b-4f46-9a67-162464a20153","status":400,"ecs":{"version":"8.11"}}

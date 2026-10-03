@@ -1,0 +1,252 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :jar UP-TO-DATE
+> Task :compileFunctionalTestJava
+> Task :processFunctionalTestResources UP-TO-DATE
+> Task :functionalTestClasses
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+
+> Task :functionalTest
+
+AuditJourneyTest > AC22_createWritesExactlyOneAuditRow() FAILED
+    java.lang.AssertionError at AuditJourneyTest.java:149
+
+AuditJourneyTest > AC24_aFailedAuditWriteRollsTheRetireBackAndFailsClosed() FAILED
+    java.lang.AssertionError at AuditJourneyTest.java:149
+
+AuditJourneyTest > AC25_auditRowsAreAppendOnlyUnderEveryOperation() FAILED
+    java.lang.AssertionError at AuditJourneyTest.java:149
+
+AuditJourneyTest > AC23_retireWritesExactlyOneAuditRow() FAILED
+    java.lang.AssertionError at AuditJourneyTest.java:149
+
+IdempotencyJourneyTest > AC17_aReplayReturnsTheFirstLink() FAILED
+    org.springframework.jdbc.BadSqlGrammarException at IdempotencyJourneyTest.java:177
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at IdempotencyJourneyTest.java:177
+
+IdempotencyJourneyTest > AC18_sameKeyWithADifferentUrlIsRefusedAndTheBindingSurvives() FAILED
+    org.springframework.jdbc.BadSqlGrammarException at IdempotencyJourneyTest.java:177
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at IdempotencyJourneyTest.java:177
+
+IdempotencyJourneyTest > AC21_aRejectedCreateDoesNotConsumeTheKey() FAILED
+    java.lang.AssertionError at IdempotencyJourneyTest.java:148
+
+IdempotencyJourneyTest > AC20_aKeyOf255VisibleCharactersIsAccepted() FAILED
+    org.opentest4j.AssertionFailedError at IdempotencyJourneyTest.java:140
+
+IdempotencyJourneyTest > AC19_aKeyIsHonouredFor24HoursAndNotLongerAndARejectionDoesNotExtendIt() FAILED
+    java.lang.NullPointerException at IdempotencyJourneyTest.java:168
+
+IdempotencyJourneyTest > AC20_aMalformedKeyIsRefused(String) > [1] key = "" FAILED
+    org.springframework.jdbc.BadSqlGrammarException at IdempotencyJourneyTest.java:177
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at IdempotencyJourneyTest.java:177
+
+IdempotencyJourneyTest > AC20_aMalformedKeyIsRefused(String) > [2] key = "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk" FAILED
+    org.springframework.jdbc.BadSqlGrammarException at IdempotencyJourneyTest.java:177
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at IdempotencyJourneyTest.java:177
+
+IdempotencyJourneyTest > AC20_aMalformedKeyIsRefused(String) > [3] key = "has space" FAILED
+    org.springframework.jdbc.BadSqlGrammarException at IdempotencyJourneyTest.java:177
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at IdempotencyJourneyTest.java:177
+
+IdempotencyJourneyTest > AC20_aMalformedKeyIsRefused(String) > [4] key = "café" FAILED
+    org.springframework.jdbc.BadSqlGrammarException at IdempotencyJourneyTest.java:177
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at IdempotencyJourneyTest.java:177
+
+LinkCreateJourneyTest > AC02_everyCreateWithoutAKeyIsANewLink() FAILED
+    java.lang.AssertionError at LinkCreateJourneyTest.java:83
+
+LinkCreateJourneyTest > AC01_validUrlBecomesAShortLink() FAILED
+    java.lang.AssertionError at LinkCreateJourneyTest.java:59
+
+LinkCreateJourneyTest > AC03_shortUrlUsesTheShippedBaseNeverTheHostHeader() FAILED
+    java.lang.AssertionError at LinkCreateJourneyTest.java:96
+
+LinkCreateJourneyTest > AC05_bodyThatIsNotAJsonObjectIsRefused(String) > [1] raw = "" FAILED
+    java.lang.AssertionError at LinkCreateJourneyTest.java:168
+
+LinkCreateJourneyTest > AC05_bodyThatIsNotAJsonObjectIsRefused(String) > [2] raw = "{\"url\": " FAILED
+    java.lang.AssertionError at LinkCreateJourneyTest.java:168
+
+LinkCreateJourneyTest > AC05_bodyThatIsNotAJsonObjectIsRefused(String) > [3] raw = "[\"https://example.com/\"]" FAILED
+    java.lang.AssertionError at LinkCreateJourneyTest.java:168
+
+LinkCreateJourneyTest > AC05_bodyThatIsNotAJsonObjectIsRefused(String) > [4] raw = "{\"url\": {\"a\": 1}}" FAILED
+    java.lang.AssertionError at LinkCreateJourneyTest.java:168
+
+LinkCreateJourneyTest > AC06_nonJsonContentTypeIsRefused() FAILED
+    java.lang.AssertionError at LinkCreateJourneyTest.java:176
+
+LinkCreateJourneyTest > AC04_aUrlOfExactly2048CharactersIsAccepted() FAILED
+    java.lang.AssertionError at LinkCreateJourneyTest.java:160
+
+LinkCreateJourneyTest > AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule(String, String, boolean) > [1] "required": present=false value=<null> FAILED
+    org.springframework.jdbc.BadSqlGrammarException at LinkCreateJourneyTest.java:208
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at LinkCreateJourneyTest.java:208
+
+LinkCreateJourneyTest > AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule(String, String, boolean) > [2] "required": present=true value=<null> FAILED
+    org.springframework.jdbc.BadSqlGrammarException at LinkCreateJourneyTest.java:208
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at LinkCreateJourneyTest.java:208
+
+LinkCreateJourneyTest > AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule(String, String, boolean) > [3] "required": present=true value=<""> FAILED
+    org.springframework.jdbc.BadSqlGrammarException at LinkCreateJourneyTest.java:208
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at LinkCreateJourneyTest.java:208
+
+LinkCreateJourneyTest > AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule(String, String, boolean) > [4] "required": present=true value=<"   "> FAILED
+    org.springframework.jdbc.BadSqlGrammarException at LinkCreateJourneyTest.java:208
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at LinkCreateJourneyTest.java:208
+
+LinkCreateJourneyTest > AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule(String, String, boolean) > [5] "too-long": present=true value=<"https://example.com/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa…"> FAILED
+    org.springframework.jdbc.BadSqlGrammarException at LinkCreateJourneyTest.java:208
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at LinkCreateJourneyTest.java:208
+
+LinkCreateJourneyTest > AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule(String, String, boolean) > [6] "scheme": present=true value=<"javascript:alert(1)"> FAILED
+    org.springframework.jdbc.BadSqlGrammarException at LinkCreateJourneyTest.java:208
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at LinkCreateJourneyTest.java:208
+
+LinkCreateJourneyTest > AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule(String, String, boolean) > [7] "scheme": present=true value=<"data:text/html,hi"> FAILED
+    org.springframework.jdbc.BadSqlGrammarException at LinkCreateJourneyTest.java:208
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at LinkCreateJourneyTest.java:208
+
+LinkCreateJourneyTest > AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule(String, String, boolean) > [8] "scheme": present=true value=<"file:///etc/passwd"> FAILED
+    org.springframework.jdbc.BadSqlGrammarException at LinkCreateJourneyTest.java:208
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at LinkCreateJourneyTest.java:208
+
+LinkCreateJourneyTest > AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule(String, String, boolean) > [9] "scheme": present=true value=<"ftp://example.com/"> FAILED
+    org.springframework.jdbc.BadSqlGrammarException at LinkCreateJourneyTest.java:208
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at LinkCreateJourneyTest.java:208
+
+LinkCreateJourneyTest > AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule(String, String, boolean) > [10] "scheme": present=true value=<"example.com/path"> FAILED
+    org.springframework.jdbc.BadSqlGrammarException at LinkCreateJourneyTest.java:208
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at LinkCreateJourneyTest.java:208
+
+LinkCreateJourneyTest > AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule(String, String, boolean) > [11] "scheme": present=true value=<" https://example.com/"> FAILED
+    org.springframework.jdbc.BadSqlGrammarException at LinkCreateJourneyTest.java:208
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at LinkCreateJourneyTest.java:208
+
+LinkCreateJourneyTest > AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule(String, String, boolean) > [12] "malformed": present=true value=<"https://"> FAILED
+    org.springframework.jdbc.BadSqlGrammarException at LinkCreateJourneyTest.java:208
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at LinkCreateJourneyTest.java:208
+
+LinkCreateJourneyTest > AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule(String, String, boolean) > [13] "malformed": present=true value=<"https://exa mple.com/"> FAILED
+    org.springframework.jdbc.BadSqlGrammarException at LinkCreateJourneyTest.java:208
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at LinkCreateJourneyTest.java:208
+
+LinkCreateJourneyTest > AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule(String, String, boolean) > [14] "malformed": present=true value=<"https://[bad/"> FAILED
+    org.springframework.jdbc.BadSqlGrammarException at LinkCreateJourneyTest.java:208
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at LinkCreateJourneyTest.java:208
+
+LinkCreateJourneyTest > AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule(String, String, boolean) > [15] "malformed": present=true value=<"https://example.com/ "> FAILED
+    org.springframework.jdbc.BadSqlGrammarException at LinkCreateJourneyTest.java:208
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at LinkCreateJourneyTest.java:208
+
+LinkCreateJourneyTest > AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule(String, String, boolean) > [16] "credentials": present=true value=<"https://user:secret@example.com/"> FAILED
+    org.springframework.jdbc.BadSqlGrammarException at LinkCreateJourneyTest.java:208
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at LinkCreateJourneyTest.java:208
+
+LinkCreateJourneyTest > AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule(String, String, boolean) > [17] "credentials": present=true value=<"https://user@example.com/"> FAILED
+    org.springframework.jdbc.BadSqlGrammarException at LinkCreateJourneyTest.java:208
+        Caused by: org.h2.jdbc.JdbcSQLSyntaxErrorException at LinkCreateJourneyTest.java:208
+
+LinkCreateJourneyTest > AC07_bodyIsRefusedAtTheSixteenKibLimit() FAILED
+    java.lang.AssertionError at LinkCreateJourneyTest.java:189
+
+LinkReadRetireJourneyTest > AC09_aRetiredLinkIsStillReadableWithItsState() FAILED
+    java.lang.AssertionError at LinkReadRetireJourneyTest.java:133
+
+LinkReadRetireJourneyTest > AC08_readingALinkReturnsItsDetails() FAILED
+    java.lang.AssertionError at LinkReadRetireJourneyTest.java:133
+
+LinkReadRetireJourneyTest > AC11_retiringAnAlreadyRetiredLinkIs410AndNotASecondMutation() FAILED
+    java.lang.AssertionError at LinkReadRetireJourneyTest.java:133
+
+LinkReadRetireJourneyTest > AC10_retiringALinkIs204WithAnEmptyBody() FAILED
+    java.lang.AssertionError at LinkReadRetireJourneyTest.java:133
+
+LinkReadRetireJourneyTest > AC15_wrongMethodIs405() FAILED
+    java.lang.AssertionError at LinkReadRetireJourneyTest.java:133
+
+PublicBaseUrlJourneyTest > AC03_shortUrlUsesTheConfiguredBaseNeverTheHostHeader() FAILED
+    java.lang.AssertionError at PublicBaseUrlJourneyTest.java:31
+
+RedirectJourneyTest > rule7_queryStringOnTheShortLinkIsNotForwarded() FAILED
+    java.lang.AssertionError at RedirectJourneyTest.java:70
+
+RedirectJourneyTest > AC12_visitorIsRedirectedWithANonCacheable302() FAILED
+    java.lang.AssertionError at RedirectJourneyTest.java:70
+
+RedirectJourneyTest > AC13_aRetiredLinkTellsTheVisitorItIsGone() FAILED
+    java.lang.AssertionError at RedirectJourneyTest.java:70
+
+ObservabilityJourneyTest > AC27_noClientControlledValueReachesTheLogs(CapturedOutput) FAILED
+    java.lang.NullPointerException at ObservabilityJourneyTest.java:108
+
+ObservabilityJourneyTest > AC27_aDatabaseFailureQuotingTheKeyLogsOnlyClassNames(CapturedOutput) FAILED
+    org.opentest4j.AssertionFailedError at ObservabilityJourneyTest.java:139
+
+ObservabilityJourneyTest > AC26_everyResponseCarriesARequestIdAndEveryEventOfTheRequestTheSameId(String, CapturedOutput) > [1] scenario = "201 create" FAILED
+    org.opentest4j.AssertionFailedError at ObservabilityJourneyTest.java:79
+
+ObservabilityJourneyTest > AC26_everyResponseCarriesARequestIdAndEveryEventOfTheRequestTheSameId(String, CapturedOutput) > [2] scenario = "200 read" FAILED
+    java.lang.NullPointerException at ObservabilityJourneyTest.java:224
+
+ObservabilityJourneyTest > AC26_everyResponseCarriesARequestIdAndEveryEventOfTheRequestTheSameId(String, CapturedOutput) > [3] scenario = "204 retire" FAILED
+    java.lang.NullPointerException at ObservabilityJourneyTest.java:224
+
+ObservabilityJourneyTest > AC26_everyResponseCarriesARequestIdAndEveryEventOfTheRequestTheSameId(String, CapturedOutput) > [4] scenario = "302 redirect" FAILED
+    java.lang.NullPointerException at ObservabilityJourneyTest.java:224
+
+ObservabilityJourneyTest > AC26_everyResponseCarriesARequestIdAndEveryEventOfTheRequestTheSameId(String, CapturedOutput) > [6] scenario = "410 retired" FAILED
+    java.lang.NullPointerException at ObservabilityJourneyTest.java:224
+
+ObservabilityJourneyTest > AC26_everyResponseCarriesARequestIdAndEveryEventOfTheRequestTheSameId(String, CapturedOutput) > [7] scenario = "400 invalid url" FAILED
+    org.opentest4j.AssertionFailedError at ObservabilityJourneyTest.java:79
+
+ObservabilityJourneyTest > AC26_everyResponseCarriesARequestIdAndEveryEventOfTheRequestTheSameId(String, CapturedOutput) > [8] scenario = "405 wrong method" FAILED
+    org.opentest4j.AssertionFailedError at ObservabilityJourneyTest.java:79
+
+ObservabilityJourneyTest > AC26_everyResponseCarriesARequestIdAndEveryEventOfTheRequestTheSameId(String, CapturedOutput) > [9] scenario = "413 oversized body" FAILED
+    org.opentest4j.AssertionFailedError at ObservabilityJourneyTest.java:79
+
+ObservabilityJourneyTest > AC26_everyResponseCarriesARequestIdAndEveryEventOfTheRequestTheSameId(String, CapturedOutput) > [10] scenario = "415 wrong content type" FAILED
+    org.opentest4j.AssertionFailedError at ObservabilityJourneyTest.java:79
+
+ObservabilityJourneyTest > AC26_everyResponseCarriesARequestIdAndEveryEventOfTheRequestTheSameId(String, CapturedOutput) > [11] scenario = "422 key mismatch" FAILED
+    org.opentest4j.AssertionFailedError at ObservabilityJourneyTest.java:79
+
+ObservabilityJourneyTest > AC26_everyResponseCarriesARequestIdAndEveryEventOfTheRequestTheSameId(String, CapturedOutput) > [12] scenario = "500 induced audit failure" FAILED
+    java.lang.NullPointerException at ObservabilityJourneyTest.java:224
+
+ObservabilityJourneyTest > rule8_problemBodiesAndLogsNeverEchoASubmittedValue(MockHttpServletRequestBuilder, int, String, CapturedOutput) > [1] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@6df09fb3, status = 415, canary = "canaryctbcabfeeeeffe" FAILED
+    org.opentest4j.AssertionFailedError at ObservabilityJourneyTest.java:177
+
+ObservabilityJourneyTest > rule8_problemBodiesAndLogsNeverEchoASubmittedValue(MockHttpServletRequestBuilder, int, String, CapturedOutput) > [6] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@2c7d64c1, status = 405, canary = "CANARYMETHODBCABFEEEEFFE" FAILED
+    org.opentest4j.AssertionFailedError at ObservabilityJourneyTest.java:177
+
+{"@timestamp":"2026-10-03T07:01:40.078239Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":61544,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T07:01:40.079241Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":61544,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T07:01:40.081697Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":61544,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-2 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T07:01:40.082161Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":61544,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-2 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T07:01:40.084097Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":61544,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-3 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T07:01:40.084549Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":61544,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-3 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T07:01:40.085954Z","log":{"level":"INFO","logger":"org.springframework.boot.tomcat.GracefulShutdown"},"process":{"pid":61544,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Commencing graceful shutdown. Waiting for active requests to complete","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T07:01:40.089705Z","log":{"level":"INFO","logger":"org.springframework.boot.tomcat.GracefulShutdown"},"process":{"pid":61544,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Graceful shutdown complete","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T07:01:40.091358Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":61544,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-4 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T07:01:40.106075Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":61544,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-4 - Shutdown completed.","ecs":{"version":"8.11"}}
+
+> Task :functionalTest FAILED
+
+85 tests completed, 64 failed
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':functionalTest'.
+> There were failing tests. See the report at: file:///Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/01-create-redirect/build/reports/tests/functionalTest/index.html
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 11s
+6 actionable tasks: 2 executed, 4 up-to-date
