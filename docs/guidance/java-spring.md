@@ -26,7 +26,7 @@ Facts first (they changed recently), then practices with their checks.
 - Constructor injection only; no field injection; no `@Autowired` on the single constructor.
 - Controllers: `@RestController`, request records with Bean Validation (`@NotBlank`, `@Size`, `@Pattern`), `@Valid` on the parameter, return `ResponseEntity` only when status or headers vary; `201` creates set `Location`.
 - Services own transactions: `@Transactional` on the use-case method, read-only variants where applicable; never on controllers or repositories.
-- Persistence: Spring Data JDBC aggregates for simple CRUD; `JdbcClient` for anything with a non-trivial query; no JPA/Hibernate here (ADR-0001 rationale: explicit SQL, no lazy-loading surprises).
+- Persistence: Spring Data JDBC aggregates for simple CRUD; `JdbcClient` for anything with a non-trivial query; no JPA/Hibernate here (rationale, explicit SQL and no lazy-loading surprises, is recorded in the persistence ADR of the first slice that touches a table; ADR-0001 covers only the stack baseline).
 - Configuration: `@ConfigurationProperties` records bound with `@EnableConfigurationProperties` or `@ConfigurationPropertiesScan`; validated with Bean Validation; defaults in the record.
 - Filters for cross-cutting HTTP concerns (`OncePerRequestFilter`, ordered explicitly); interceptors only for controller-level concerns.
 - Logging through SLF4J with parameters (`log.info("ping", kv("code", code))` or MDC), never string concatenation; never log request bodies, headers or client addresses.

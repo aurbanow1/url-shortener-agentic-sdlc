@@ -34,7 +34,7 @@ Checks: a controller contains no business rule; a service does not build HTTP re
 ## 3. API design
 
 - Resource-oriented URLs, plural nouns for collections (`/api/links`), opaque codes for public redirects (`/{code}`).
-- Status codes carry meaning: `201` with `Location` on create, `200` on read, `204` on delete, `302` for redirects that must be observable (ADR-0002), `400` validation, `404` unknown, `409` conflict, `410` gone/expired, `429` rate-limited, `405` wrong method.
+- Status codes carry meaning: `201` with `Location` on create, `200` on read, `204` on delete, `302` for redirects that must be observable (ADR written by the first redirect slice; ADR-0002 is problem details), `400` validation, `404` unknown, `409` conflict, `410` gone/expired, `429` rate-limited, `405` wrong method.
 - Errors are RFC 9457 problem details (`application/problem+json`): `type`, `title`, `status`, `detail`, `instance`; add typed extension members (`errors[]` for validation) rather than free text. Never a stack trace or a class name.
 - Idempotency: creates that may be retried accept `Idempotency-Key`; deletes and updates are naturally idempotent.
 - Versioning: none until a breaking change is unavoidable; then a new resource path, never a header-only flag.
