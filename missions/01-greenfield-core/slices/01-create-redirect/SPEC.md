@@ -19,6 +19,8 @@ locked-artifacts:
     path: design.md
     kind: spec
 provenance: transport:v1
+approved-by: orchestration-lead@urlshort-factory
+approved-at: 2026-10-03T17:24:23.704Z
 ---
 
 # Slice 01 — Create and redirect

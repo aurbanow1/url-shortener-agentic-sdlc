@@ -20,6 +20,8 @@ locked-artifacts:
     kind: spec
 provenance: transport:v1
 approved-spec-priors: 2
+approved-by: orchestration-lead@urlshort-factory
+approved-at: 2026-10-03T17:24:24.039Z
 ---
 
 # Slice 03 — Operate safely
