@@ -34,6 +34,10 @@ exports against these rows.
 | `ship_signoff` | human | after `release_prep` |
 | safe-stop | human or orchestration lead | any time |
 
+### Delegation record (2026-10-03T06:05Z)
+
+The human delegated **all slice plan-locks** to the orchestration lead for the rest of the run (the human was going offline overnight; a timed auto-approval was considered and rejected because an unattended resolution under the human identity would hollow out the checkpoint and the audit trail). Mechanism: the `urlshort-slice` plan-lock gate targets the orchestrator role; the lead approves after `plan-review` and records its reasoning on the gate item; the design agent stamps on the lead's behalf. Mission plan-locks, ambiguity decisions and ship sign-offs stay with the human.
+
 ## Known limits (honest scope)
 
 - OpenRig 0.6.3's workflow runtime holds **one live packet per instance**; intra-instance fan-out is not claimed. Parallelism is across slice instances and across seats (pipeline overlap).

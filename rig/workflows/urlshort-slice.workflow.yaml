@@ -2,8 +2,9 @@
 # One instance per slice. Nine steps: every producing step is followed by an
 # independent review (requirements_review, design_review, code_review which
 # carries the security & compliance checklist in the same packet) whose failed
-# verdict routes back to the producer; plan-lock held at the HUMAN (high-tier
-# slices) only after the design review passed; QA records the proof judgments
+# verdict routes back to the producer; plan-lock held by the orchestration lead
+# (delegated by the human on 2026-10-03 for the rest of the run) only after the
+# design review passed; QA records the proof judgments
 # at qa_check, so integrate is terminal. The delegated variant for low-tier
 # slices differs only in plan_lock.gate.target; keep the two files otherwise identical.
 #
@@ -97,13 +98,15 @@ workflow:
     - id: plan_lock
       actor_role: design
       objective: >-
-        Hold the locked artifact set (SPEC.md + design.md) at the plan-lock gate.
-        After the decision is recorded, stamp the plan-lock on behalf of the
-        approver and release the builder.
+        Hold the locked artifact set (SPEC.md + design.md) at the plan-lock gate,
+        delegated to the orchestration lead by the human's decision of 2026-10-03
+        (mission plan-locks and ship sign-offs stay with the human). After the
+        lead's decision is recorded, stamp the plan-lock on its behalf and release
+        the builder.
       allowed_exits: [handoff, waiting, failed]
       gate:
-        target: human@kernel
-        summary: "Slice plan ready — approve SPEC.md + design.md to start the build (plan-lock)."
+        target: orchestrator
+        summary: "Slice plan ready — orchestration lead approves SPEC.md + design.md (plan-lock delegated by the human on 2026-10-03; reasoning recorded)."
         evidence_ref: SPEC.md
       next_hop:
         mode: require
