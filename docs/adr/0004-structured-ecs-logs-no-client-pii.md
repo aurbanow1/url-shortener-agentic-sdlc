@@ -23,6 +23,16 @@ would hide the JSON contract from the tests that are supposed to prove it.
   value, or any value copied from an inbound request header. Framework
   loggers stay at INFO in the shipped configuration; Tomcat access logging
   stays off.
+- The ECS member `process.thread.name` is excluded from every event
+  (`logging.structured.json.exclude=process.thread.name` in the shipped
+  `application.properties`). Tomcat names its worker threads after the bound
+  address (`http-nio-127.0.0.1-8080-exec-1`), so on a loopback-bound instance
+  the server's own address would appear on every line and collide literally
+  with the rule above and with the `01-ping` acceptance criterion AC-7
+  (finding QA-01 at `qa_check`, decided by the orchestration lead on
+  2026-10-03). Bind metadata is not client data, but one property line keeps
+  the rule literal and adds no code. The `process` member therefore renders
+  as `{"pid":<n>,"thread":{}}`.
 - The functional suite runs under the shipped structured format so HTTP
   journeys prove the JSON contract by effect; tests assert only the members
   they own (`requestId`, absence of canaries), never the ECS envelope.
@@ -37,6 +47,9 @@ would hide the JSON contract from the tests that are supposed to prove it.
 ## Consequences
 
 - `01-ping` proves by effect that `requestId` reaches a one-line JSON object.
+- Thread names are not available in the logs for correlation; `requestId` is
+  the correlation key. A later slice that needs thread identity must find a
+  rendering that cannot carry an address, and amend this ADR.
 - Any later slice that wants client analytics (for example per-click
   statistics) must not log or store a raw IP; it uses a salted hash and gets
   its own ADR.

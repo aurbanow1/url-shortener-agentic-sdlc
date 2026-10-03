@@ -53,7 +53,7 @@ only because it has no logic and no state.
 |---|---|---|
 | Request correlation | Response header `X-Request-Id`, server-issued per request, inbound ignored; MDC key `requestId` | ADR-0003 |
 | Errors | Every non-2xx is an RFC 9457 `ProblemDetail`, `application/problem+json`, no stack trace or class name; platform handler until a domain exception exists | ADR-0002 |
-| Logging | ECS JSON, one object per line, MDC as top-level members; never client IP, `User-Agent` or copied inbound header values | ADR-0004 |
+| Logging | ECS JSON, one object per line, MDC as top-level members; never client IP, `User-Agent` or copied inbound header values; `process.thread.name` excluded because it carries the server bind address | ADR-0004 |
 | Persistence | H2 file DB under `data/`, schema owned by Flyway migrations `src/main/resources/db/migration/V<n>__<name>.sql` | baseline; ADR with the first persisting slice |
 | Tests | unit suite `test` (plain-text logs), functional suite `functionalTest` (`@SpringBootTest` + `MockMvc`, boots on the shipped `application.properties` plus the `functional` profile overlay for the in-memory database), 100 % line + branch gate on merged data | ADR-0001, ADR-0004, `TESTING.md` |
 
@@ -132,6 +132,13 @@ Logging
   `ecs.version`; **every MDC key-value pair is added as a top-level member**.
   Customise with `logging.structured.json.{include,exclude,rename,add}`.
   **[docs]**
+- This service **excludes `process.thread.name`**
+  (`logging.structured.json.exclude=process.thread.name`, shipped
+  `application.properties`): Tomcat puts the bound address into worker-thread
+  names, so a loopback-bound instance would print its own address on every
+  event. The `process` member renders as `{"pid":<n>,"thread":{}}`. Decided
+  on `01-ping` finding QA-01; recorded in ADR-0004. **[by effect: the
+  builder's loopback capture under `missions/00-hello/slices/01-ping/proof/`]**
 - Logging is initialised before the `ApplicationContext` is created, so only
   Environment-level properties (property files, system properties, test
   property sources at bootstrap) influence it, and the Logback configuration
@@ -175,3 +182,4 @@ salted IP hashing for analytics; audit-record shape.
 |---|---|---|
 | 2026-10-02 | 01-ping | Adds `web.RequestIdFilter` (cross-cutting) and `ping.PingController`/`PingResponse`; fixes the request-id, error and logging contracts; records ADR-0001..0004 |
 | 2026-10-02 | 01-ping (design review DR-01) | Functional suite configuration becomes a profile overlay (`application-functional.properties` + `functional` profile from the Gradle task) so the shipped `application.properties` is the base in HTTP journeys |
+| 2026-10-03 | 01-ping (QA finding QA-01) | Shipped configuration excludes `process.thread.name` from structured log events; the server bind address no longer appears in any log line |
