@@ -62,16 +62,24 @@ done
   echo
   echo "| Artifact | Governance clause (docs/GOVERNANCE.md) |"
   echo "|---|---|"
-  echo "| compiled-graph.json | explicit dependency graph (mission DAG) |"
-  echo "| instances/*.trace.json | append-only step trails: lineage, exits, retries, gates |"
-  echo "| packets/*.transitions.json | queue transition logs: handoffs, parks, human resolutions |"
-  echo "| proof-readiness.json | attributed proof judgments per slice |"
-  echo "| scope-audit.json | convention audit (advisory) |"
-  echo "| workflow-status.json / workflow-list.json | instance states, attention classes |"
-  echo "| usage-top.json | per-seat token burn in the window |"
+  echo "| compiled-graph.json | Explicit dependency graph with entry/exit gates: the mission DAG as compiled from the authored sources at export time (if a running instance was bound to an earlier version, the lead keeps that version here and the disk compile beside it as compiled-graph.authored-*.json; see Dynamic re-planning) |"
+  echo "| instances/*.trace.json | Cross-stage context and decision lineage; Bounded retries: the append-only step trail, one entry per closed packet with closureReason handoff / waiting / failed / done, actor and evidence_ref; failed → implement hops are the retries |"
+  echo "| instances/*.show.json | Dynamic re-planning; Fallback: bound sources and digests, revisionHistory (rig workflow revise receipts), the reconciliation block comparing the bound graph with the authored one, exception routing, resumeCount |"
+  echo "| packets/*.transitions.json | Human approval checkpoints; Safe-stop; Audit-grade observability: every state change of every packet with actor and timestamp, including the engine's gate park on human@kernel and the human's decision text on rig queue resolve |"
+  echo "| packets/*.show.json | Human approval checkpoints: the packet as last seen, with summary, evidence_ref, tier, tags (step, gate) and chain of record |"
+  echo "| proof-readiness.json | Controlled agent autonomy; Audit-grade observability: attributed proof judgments per slice (rig proof judge receipts, judge seat, subject commit, evidence hashes) and readiness |"
+  echo "| scope-audit.json | Policy guardrails: convention audit of mission and slice files (advisory) |"
+  echo "| workflow-status.json / workflow-list.json | Sequential and parallel paths: instance states and attention classes at export time (overlapping instance timestamps show pipeline parallelism) |"
+  echo "| queue-active.json | Safe-stop: live queue rows at export time (what was still held or parked) |"
+  echo "| usage-top.json | Reliability metrics: per-seat token burn over the window (24 h) |"
+  echo "| ../../metrics/metrics.json, ../../metrics/README.md | Reliability metrics: success rate, retries, rollbacks, MTTR, latency, human wait derived from these files by tools/sdlc-metrics.mjs |"
+  echo
+  echo "Approval stamps are not in this export: they live in the stamped files' frontmatter (missions/<m>/SPEC.md, slices/*/SPEC.md: approved-spec-*, approved-*) with append-only audit rows daemon-side; the decision text behind each stamp is in the gate packet's transitions here."
   echo
   echo "Instances exported: ${#INSTANCES[@]}; packets exported: $(ls "$OUT/packets" 2>/dev/null | grep -c transitions || true)."
 } > "$OUT/INDEX.md"
 # packets and step trails as tables, so no seat has to hand-roll shell loops over the export
 node "$ROOT/tools/evidence-index.mjs" "$OUT" >> "$OUT/INDEX.md" 2>/dev/null || true
+# mission-specific notes written by the release agent survive re-runs
+if [ -f "$OUT/INDEX-notes.md" ]; then { echo; cat "$OUT/INDEX-notes.md"; } >> "$OUT/INDEX.md"; fi
 echo "done → $OUT"
