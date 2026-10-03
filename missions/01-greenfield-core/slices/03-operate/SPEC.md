@@ -4,7 +4,7 @@ slice: 03-operate
 mission: 01-greenfield-core
 status: placeholder
 stage: wip
-tier: high
+tier: low
 verified: 2026-10-03 against scaffold (rig scope create)
 created: 2026-10-03
 intent: "An Operator can run urlshort in production shape: clients above the rate limit are answered 429 with Retry-After and a counted rejection, readiness reflects the database, metrics are exposed for scraping, and the container runs non-root with durable data on a loopback-published port."

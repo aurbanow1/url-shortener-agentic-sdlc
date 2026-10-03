@@ -1,0 +1,19 @@
+// Design probe for 01-create-redirect (design.md section 12 names what each case proves).
+// Run from the repo root, no product, test or build file changes:
+//   scripts/gw --log missions/01-greenfield-core/slices/01-create-redirect/design-probe/output.txt \
+//       --offline -I missions/01-greenfield-core/slices/01-create-redirect/design-probe/mechanism-probe.gradle designMechanismProbe
+// One JavaExec task on the functional runtime classpath (shipped main code + resources, functional
+// profile overlay for the in-memory H2) that launches MechanismProbe.java in source-file mode.
+gradle.projectsEvaluated {
+    def project = gradle.rootProject
+    def functional = project.sourceSets.functionalTest
+    project.tasks.register('designMechanismProbe', JavaExec) {
+        dependsOn project.tasks.named('functionalTestClasses')
+        javaLauncher.set(project.javaToolchains.launcherFor {
+            languageVersion = JavaLanguageVersion.of(21)
+        })
+        classpath = functional.runtimeClasspath
+        mainClass = project.file('missions/01-greenfield-core/slices/01-create-redirect/design-probe/MechanismProbe.java').absolutePath
+        systemProperty 'spring.profiles.active', 'functional'
+    }
+}

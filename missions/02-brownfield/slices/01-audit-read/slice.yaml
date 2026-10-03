@@ -1,0 +1,38 @@
+schema: openrig.slice/v0alpha1
+kind: slice
+composition:
+  mission: ../../mission.yaml
+  slice_markdown:
+    spec: SPEC.md
+    progress: PROGRESS.md
+    proof: PROOF.md
+metadata:
+  id: 01-audit-read
+# Moved from mission 01-greenfield-core (there: 04-audit-read, wave w3) by the human's fast-plan
+# decision of 2026-10-03 (operator packet qitem-20261003052736-7830d02a). It is mission 02's
+# brownfield enhancement slice: an impact analysis over the shipped audit_log table and the
+# shipped request path precedes its design (docs/guidance/brownfield.md). Mission 02's own
+# decompose step re-reads this manifest; the territory below is the mission-01 prediction.
+# Gate tier decides the workflow variant: high -> urlshort-slice (human plan-lock),
+# low -> urlshort-slice-delegated (orchestration lead approves the plan-lock).
+tier: low
+tier_reason: delegated plan-lock by the human's fast-plan decision of 2026-10-03, which delegates every slice plan-lock after 01-create-redirect in missions 01-03 to the orchestration lead. The lead's own plan review weighs what the decomposition guide calls high, a read endpoint over the audit trail (request ids, before/after payloads) that must be loopback-only by default (NFR-S6); the independent design and security reviews cover it. No migration; reads the audit_log table shipped by mission 01.
+# Requirements allocated (docs/REQUIREMENTS.md): FR-17; NFR-S6; FR-13 (impact analysis, as on every
+# brownfield slice); cross-cutting M1 M2 M3 O1 O2.
+# Prerequisite: mission 01 shipped (the audit_log table and its row shape from 01-create-redirect).
+# A cross-mission prerequisite is not a sibling edge, so execution.depends_on stays empty and the
+# mission-level depends_on (02-brownfield -> 01-greenfield-core) carries it.
+territory:
+  # read side: the query and endpoint over audit_log; the write side is on main since mission 01.
+  - src/main/java/dev/urlshort/audit/
+  - src/test/java/dev/urlshort/audit/
+  - src/functionalTest/java/dev/urlshort/audit/
+  # the audit endpoint's entry if the design exposes it as a public API path.
+  - docs/api/openapi.json
+  # management address/port if the design exposes the audit read as an actuator endpoint bound to
+  # loopback instead of a public API path. The design chooses; both options keep the loopback-only
+  # default testable by effect against a non-loopback bind.
+  - src/main/resources/application.properties
+execution:
+  actor_role: requirements
+  depends_on: []

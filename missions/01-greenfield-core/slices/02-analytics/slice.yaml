@@ -10,8 +10,8 @@ metadata:
   id: 02-analytics
 # Gate tier decides the workflow variant: high -> urlshort-slice (human plan-lock),
 # low -> urlshort-slice-delegated (orchestration lead approves the plan-lock).
-tier: high
-tier_reason: adds a schema migration (the click table; decomposition guide section 4 lists a migration as high) and decides privacy-sensitive storage under NFR-P1 (salted, daily-rotated hash of the client address, user-agent class, referrer host only). Additive on the foundation otherwise; no change to the link rows.
+tier: low
+tier_reason: delegated plan-lock by the human's fast-plan decision of 2026-10-03 (operator packet qitem-20261003052736-7830d02a; mission plan-lock re-approved, action 01M403RBRS6DQTXA1VW89AXQCA), which delegates every slice plan-lock after 01-create-redirect to the orchestration lead. The lead's own plan review weighs what guide section 4 would have called high, an additive migration (click table) and the NFR-P1 privacy storage design; the independent design review before the lock covers both.
 # Requirements allocated (docs/REQUIREMENTS.md): FR-7 FR-8; NFR-P1 L3; cross-cutting M1 M2 M3 O1 O2.
 # Input carried from 00-hello: backlog 3 (W1-02): NFR-P1 constrains log content, so the design
 # weighs one small real-server functional journey against test-context cost (MockMvc cannot see

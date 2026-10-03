@@ -4,7 +4,7 @@ slice: 02-analytics
 mission: 01-greenfield-core
 status: placeholder
 stage: wip
-tier: high
+tier: low
 verified: 2026-10-03 against scaffold (rig scope create)
 created: 2026-10-03
 intent: "An Analyst can read a link's click statistics (total clicks, clicks per day, top referrers) because every redirect records a privacy-safe click event without slowing the Visitor."

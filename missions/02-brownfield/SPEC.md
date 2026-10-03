@@ -16,7 +16,11 @@ Extend the shipped shortener with link expiry and custom aliases and fix a defec
 
 ## Requirements in scope
 
-From `docs/REQUIREMENTS.md`: FR-11 … FR-15 (FR-13 applies to every slice through the impact analysis); NFR-S2, X2, and P2 if the purge was not delivered in mission 01.
+From `docs/REQUIREMENTS.md`: FR-13 … FR-15 (FR-13 applies to every slice through the impact analysis) and FR-17 (the audit-trail read, moved here from mission 01); NFR-S6, X2, and P2 if the purge was not delivered in mission 01. FR-11, FR-12 and NFR-S2 (custom alias, expiry) were dropped from the plan by the human's fast-plan decision of 2026-10-03 (`qitem-20261003052736-7830d02a`); the frontmatter intent predates that decision and is rewritten at this mission's `decompose`.
+
+## Fast-plan decision (2026-10-03, recorded by the orchestration lead)
+
+Mission 02 = the brownfield enhancement slice (`01-audit-read`, moved in from mission 01 with its scaffold; impact analysis over the shipped `audit_log` table before design) + one bug-fix slice (a dogfood defect, seeded and disclosed if none surfaces) + the fault-injection drills. Slice plan-locks are delegated to the orchestration lead; the mission plan-lock and ship sign-off stay with the human.
 
 ## Slices
 

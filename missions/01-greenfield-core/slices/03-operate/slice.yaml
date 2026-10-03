@@ -10,8 +10,8 @@ metadata:
   id: 03-operate
 # Gate tier decides the workflow variant: high -> urlshort-slice (human plan-lock),
 # low -> urlshort-slice-delegated (orchestration lead approves the plan-lock).
-tier: high
-tier_reason: new security-relevant surface, the rate limiter with its trusted-proxy rule for X-Forwarded-For (decomposition guide section 4 names rate limit as high), plus container privilege changes (non-root user, read-only filesystem). No migration.
+tier: low
+tier_reason: delegated plan-lock by the human's fast-plan decision of 2026-10-03 (operator packet qitem-20261003052736-7830d02a; mission plan-lock re-approved, action 01M403RBRS6DQTXA1VW89AXQCA), which delegates every slice plan-lock after 01-create-redirect to the orchestration lead. The lead's own plan review weighs what guide section 4 would have called high, the rate limiter's trusted-proxy rule for X-Forwarded-For and the container privilege changes; the independent design and security reviews cover both. No migration.
 # Requirements allocated (docs/REQUIREMENTS.md), in two groups so the SPEC does not promise
 # proofs the suites cannot give:
 #   builds and proves in-suite: FR-10, NFR-R2 (at the limit, one over, spoofed X-Forwarded-For),
@@ -36,8 +36,11 @@ tier_reason: new security-relevant surface, the rate limiter with its trusted-pr
 # main, regenerate docs/api/openapi.json, hand off". The integrator checks the ancestry
 # (git merge-base --is-ancestor <02 merge commit> <03 candidate>) before merging 03; a candidate
 # that predates 02's merge is routed back to implement, and the three reviews re-earn their
-# verdict on the regenerated diff in one short turn each. The arrangement does not depend on 04:
-# if the human defers 04-audit-read, the 429 contract still lands with 03 in w2.
+# verdict on the regenerated diff in one short turn each. 04-audit-read moved to mission 02 by the
+# fast plan; w2 is the last wave of this mission and hands off to wave_review when both are accepted.
+# Launch note (fast plan item 4): instantiate this slice with the second-judge workflow variant
+# (second reviewer and QA seats) once the operator has added it under rig/workflows/, so 02 and 03
+# do not queue on one judge; fall back to urlshort-slice-delegated if the variant is not there.
 territory:
   # the rate-limit filter lives beside the request-id filter (cross-cutting HTTP concerns).
   - src/main/java/dev/urlshort/web/

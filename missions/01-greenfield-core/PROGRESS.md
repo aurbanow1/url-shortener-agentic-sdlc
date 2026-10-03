@@ -7,7 +7,7 @@
 
 ## Acceptance
 
-- [x] Scope complete (all slices shaped) — 2026-10-03, decomposed into `01-create-redirect`, `02-analytics`, `03-operate`, `04-audit-read` over waves w1/w2/w3 (wave map `qitem-20261003040319-a45c400a`); plan-lock pending
+- [x] Scope complete (all slices shaped) — 2026-10-03, decomposed into four slices over three waves; plan-lock approved 04:39Z; amended 05:30Z by the human's fast plan to `01-create-redirect` (w1, high) and `02-analytics` ∥ `03-operate` (w2, low, delegated), `04-audit-read` moved to mission 02 (wave map in `docs/evidence/01-greenfield-core/wave-map.md`)
 - [ ] Implementation in progress
 - [ ] QA / review pass
 - [ ] Merge / ship

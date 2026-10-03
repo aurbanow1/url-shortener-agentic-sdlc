@@ -1,17 +1,19 @@
 ---
-id: OPR.99.0.2.4
-slice: 04-audit-read
-mission: 01-greenfield-core
+id: OPR.99.0.3.1
+slice: 01-audit-read
+mission: 02-brownfield
 status: placeholder
 stage: wip
-tier: high
+tier: low
 verified: 2026-10-03 against scaffold (rig scope create)
 created: 2026-10-03
 intent: "An Operator can read the audit trail of every mutation (who, what, when, before, after, request id) through a read-only, paginated endpoint that is loopback-only by default."
-depends_on: ["OPR.99.0.2.1"]
+depends_on: []
+moved-on: 2026-10-03
+moved-from: 01-greenfield-core
 ---
 
-# Slice 04 — Audit trail read
+# Slice 01 — Audit trail read (moved from mission 01 as its `04-audit-read` by the fast plan of 2026-10-03; prerequisite: mission 01 shipped the `audit_log` table)
 
 ## Intent
 
