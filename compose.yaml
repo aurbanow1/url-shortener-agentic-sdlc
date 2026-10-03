@@ -3,12 +3,19 @@ services:
     build: .
     image: urlshort:local
     ports:
-      - "8080:8080"
+      - "127.0.0.1:8080:8080"          # AC-22: published on loopback only
+    read_only: true                     # AC-23: read-only root filesystem
     volumes:
-      - urlshort-data:/app/data
-    healthcheck:
-      # the JRE image has no curl/wget; a bash TCP probe is enough for "is it listening"
-      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8080"]
+      - urlshort-data:/app/data         # the only persistent writable mount (H2 file database)
+      - type: tmpfs                     # A-14: JVM perf data, Tomcat work dir, H2 temp files; nothing survives a restart
+        target: /tmp
+        tmpfs:
+          size: 67108864                # 64 MiB
+          mode: 01777
+    stop_grace_period: 20s              # AC-28: longer than the 10 s shutdown phase plus context close
+    healthcheck:                        # AC-21: asks readiness (database included), not just an open port
+      # the JRE image has no curl/wget; HTTP/1.0 makes the server close the connection so grep reads to the end
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8080 && printf 'GET /actuator/health/readiness HTTP/1.0\\r\\nHost: localhost\\r\\n\\r\\n' >&3 && grep -q '\"status\":\"UP\"' <&3"]
       interval: 10s
       timeout: 3s
       retries: 6
