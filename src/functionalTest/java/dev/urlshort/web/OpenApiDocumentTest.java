@@ -69,7 +69,7 @@ class OpenApiDocumentTest {
 	void AC28_liveDocumentDescribesTheSlice() {
 		JsonNode paths = document.get("paths");
 		assertThat(paths.propertyNames()).containsExactlyInAnyOrder("/api/ping", "/api/links", "/api/links/{code}",
-				"/{code}", "/api/links/{code}/stats");
+				"/{code}", "/api/links/{code}/stats", "/api/audit");
 		assertThat(paths.get("/api/ping").has("get")).isTrue();
 		assertThat(paths.get("/api/links").propertyNames()).containsExactly("post");
 		assertThat(paths.get("/api/links/{code}").propertyNames()).containsExactlyInAnyOrder("get", "delete");
@@ -113,7 +113,7 @@ class OpenApiDocumentTest {
 				assertThat(tooMany.at("/headers/Retry-After/schema/type").asString()).as(id).isEqualTo("integer");
 			}
 		}
-		assertThat(operations).as("ping, create, read, retire, redirect, statistics").isEqualTo(6);
+		assertThat(operations).as("ping, create, read, retire, redirect, statistics, audit").isEqualTo(7);
 	}
 
 	private static boolean hasExample(JsonNode mediaType) {
