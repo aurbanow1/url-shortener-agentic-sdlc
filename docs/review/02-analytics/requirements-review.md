@@ -1,5 +1,8 @@
 # 02-analytics — requirements review
 
+**Latest verdict: PASS at `72001071cd38691b2ba0a41bf6b83be787ac02c0`.**
+RQ-01 is fixed; the original review below is retained as history.
+
 Candidate: `488788f1b6bcdbb7caccc89c15217607bffaaa2c`.
 Reviewer: `review-agent@urlshort-factory` (Codex), 2026-10-03.
 Author: requirements agent (Claude).
@@ -99,3 +102,26 @@ and must not be reported as measured based on the slow-store test alone.
 - Only review artifacts authored; no product, tests, SPEC or design edits.
   Ledger row appended. Verdict follows the severity rule; handoff to design
   carries the non-blocking correction and release measurement limitation.
+
+## Re-review 72001071cd38691b2ba0a41bf6b83be787ac02c0
+
+2026-10-03. **PASS; RQ-01 fixed, no open requirements findings.** This records
+the producer's in-passing response to the original packet, handed to me at
+08:22Z. The completed requirements gate is not reopened; design proceeds.
+
+| Finding | Resolution verified |
+|---|---|
+| RQ-01 (MEDIUM) | Fixed. The HTTP capture now names its three-count result, representative origin reduction and aggregate response shape; empty statistics and UTC-day cases explicitly remain controlled functional proof. The row export only claims the one-client/day privacy assertions it can show, assigning hash stability, rotation and the second address to the clock-controlled suite. The log capture claims only its 200/settled-302 rows and assigns 404/405/failing-store coverage to functional tests. |
+
+| Changed file | Verdict |
+|---|---|
+| `missions/01-greenfield-core/slices/02-analytics/SPEC.md` | PASS — entire one-file correction read, including Review response; 1/1 files reviewed |
+
+Self-check: the working SPEC matches the named commit. Independent text
+comparison confirms every requirement, AC, business rule, scope entry and
+ambiguity row unchanged, with all 13 proof items retained. Replayed the
+original documentary counterexample: the corrected wording no longer claims
+that a three-click capture demonstrates unexercised boundaries. No product or
+test changes; the baseline build was not repeated for this wording correction.
+Only the review report and ledger changed. Existing release measurement and
+cross-slice backlog obligations remain as recorded above.
