@@ -1,0 +1,17 @@
+gradle.projectsEvaluated {
+    def p = gradle.rootProject
+    def output = p.layout.buildDirectory.dir('review-rate-boundary')
+    def compile = p.tasks.register('compileReviewRateBoundary', JavaCompile) {
+        dependsOn p.tasks.named('classes')
+        source p.file('../../docs/review/03-operate/proof/RateLimitBoundaryProbe.java')
+        classpath = p.sourceSets.main.runtimeClasspath
+        destinationDirectory.set(output)
+        javaCompiler.set(p.javaToolchains.compilerFor { languageVersion = JavaLanguageVersion.of(21) })
+    }
+    p.tasks.register('reviewRateBoundary', JavaExec) {
+        dependsOn compile
+        classpath = p.files(output) + p.sourceSets.main.runtimeClasspath
+        mainClass = 'dev.urlshort.web.RateLimitBoundaryProbe'
+        javaLauncher.set(p.javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) })
+    }
+}

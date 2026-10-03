@@ -1,0 +1,13 @@
+candidate=a7c533ffef55650e5b422377ffe0c4e38d41400c
+peer advertised Content-Length=100; actual body bytes=0
+candidate r0_finish returned: HTTP/1.1 201 Created
+captured R0:
+HTTP/1.1 201 Created
+Content-Type: application/json
+Content-Length: 100
+X-Request-Id: r0-truncated-control
+Connection: close
+
+R0 status gate accepted the truncated response
+credited client id: r0-truncated-control
+R0_GATE_EXIT=0 (expected rejection)

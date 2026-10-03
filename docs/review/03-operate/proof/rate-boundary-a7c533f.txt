@@ -1,0 +1,25 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :compileReviewRateBoundary
+
+> Task :reviewRateBoundary FAILED
+REORDER wallClockAdvance=1ms clockMovedBackward=false before=60 exhaustedRetryAfter=1 olderRetryAfter=0 laterAdmissions=59 totalAdmissions=120 expectedMaximum=60
+ROLLBACK_MEMORY clientsAfter61SecondsAndRequest=10002 oldFullClients=10000 cleanupDeadlineStillInFuture=true
+Exception in thread "main" java.lang.AssertionError: Ordinary request reordering replenished the same client's bucket
+	at dev.urlshort.web.RateLimitBoundaryProbe.main(RateLimitBoundaryProbe.java:67)
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':reviewRateBoundary' (registered in initialization script '/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/review/03-operate/proof/rate-boundary.gradle').
+> Process 'command '/opt/homebrew/Cellar/openjdk@21/21.0.10/libexec/openjdk.jdk/Contents/Home/bin/java'' finished with non-zero exit value 1
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 1s
+4 actionable tasks: 2 executed, 2 up-to-date

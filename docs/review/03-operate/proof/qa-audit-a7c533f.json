@@ -1,0 +1,141 @@
+{
+  "candidate": "a7c533ffef55650e5b422377ffe0c4e38d41400c",
+  "head_matches": true,
+  "base": "f046bbdc0d19e0a262a95436c6905caafe16d2bc",
+  "candidate_files": {
+    "Dockerfile": "4f4dec93b382b68e493eb51646bda034bd4de2bbf77586acebb7f05fec6a5ea7",
+    "build.gradle.kts": "a7c529dcda2f3c689dbbca05d0592da7f5194c79a277b41f78a3ae62386d0bfe",
+    "compose.yaml": "ca4cc8b9bfe26890c8c149f274a97f226373b1acd24c2a4d3079a59c5a927df7",
+    "docs/api/openapi.json": "66bf4caf0415be752178223d13e90c4c0b9ac548dd033b8c34d7cc99096b66fe",
+    "scripts/smoke.sh": "bd3df562d0af127395cf684583191df084cb7396cb412b2fe63781f62093fa0d",
+    "src/functionalTest/java/dev/urlshort/link/FunctionalClock.java": "0f0dc0f2e04256482cfd14844f55a821b0f36d1ec16d5e24557793063650f1ae",
+    "src/functionalTest/java/dev/urlshort/web/DatabaseDownJourneyTest.java": "69990b205ea0e728566020909bc480d33603eaad2add33caa7078d2c2a212ad6",
+    "src/functionalTest/java/dev/urlshort/web/HealthMetricsJourneyTest.java": "b26a71e0e1339a66f3bf79aba29cb3bbf43454cd08513b6ceff44a464a444a21",
+    "src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java": "3a156d6ec77a8fe78128865b7e95e30b6b43b7998a0a0b7d565222220876313d",
+    "src/functionalTest/java/dev/urlshort/web/RateLimitDefaultsTest.java": "5ac597a0ae442a82a33b201b563972d288bfe11474fb02f6774926b625c52dbb",
+    "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java": "71baa3a0317a88d2d17397e24819a2b044f95251d753652e635609d2bf3639fb",
+    "src/functionalTest/java/dev/urlshort/web/RateLimitSettingsJourneyTest.java": "97bff6d77c28960c2de49725ca2eef6550fa8f383b371e7fb7b90479b7e4098b",
+    "src/functionalTest/java/dev/urlshort/web/ShutdownPhaseDefaultTest.java": "3711da6e32df70d9e27c5fac3bf6b0c24b396a9cb63ec34c91957edc86b661b9",
+    "src/functionalTest/java/dev/urlshort/web/TrustedProxyJourneyTest.java": "b2d30fdb48e26ed6d356873a0010673f699012ebdc9775538ec852f590bee487",
+    "src/functionalTest/resources/application-functional.properties": "86dc84f9657ce39b77a993ec9daa381e7cf0bd5e49ff4d3425a238d44d7a15e2",
+    "src/main/java/dev/urlshort/web/OpenApiConfig.java": "53039e68c0d87ae592dedd664fdf6f13217cb7506293dcd9c63db1d86d509bdb",
+    "src/main/java/dev/urlshort/web/RateLimitConfig.java": "2d7462ffc008c05855cad40a22c9cfef2dcab1b52b97af097ded219f822ce165",
+    "src/main/java/dev/urlshort/web/RateLimitFilter.java": "48b6d4b7c0776419968aece04830eb47f61ea95f8d2a6d238c99101b3bed811f",
+    "src/main/java/dev/urlshort/web/RateLimitProperties.java": "b4caf8a656f3e1ad30d52232d94c3ad633577f6cd4884caa596a95359fb7d736",
+    "src/main/java/dev/urlshort/web/RateLimiter.java": "41b30832bef14774b5eeb1b06247ce0feb6ac7b421feae3a76707e213da984e0",
+    "src/main/java/dev/urlshort/web/RequestBodyLimitFilter.java": "70abb2feb1ea3d405e2d824e85ee28b74a6ce9eae5e56be9c13fa28e891bc9bc",
+    "src/main/resources/application.properties": "598505e652e49802ae721e98fb4e4992d8fce051506649a7dea17d130270d0fb",
+    "src/test/java/dev/urlshort/web/RateLimitFilterTest.java": "a1066a22ed0b0d6d67078700acf5a912c08bbfa86ca5ac5e7a0801be8a588221",
+    "src/test/java/dev/urlshort/web/RateLimiterTest.java": "eb0d97d1c5560eaaf62c4f74a5c9f6017cf265b3871b529ac5ad2bffd2e49958"
+  },
+  "candidate_bytes_match": true,
+  "analytics_merge_ancestor": true,
+  "junit": {
+    "test": {
+      "tests": 163,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "functionalTest": {
+      "tests": 155,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "trace": {
+    "source_test_methods": 184,
+    "rows": 184,
+    "missing": [],
+    "extra": [],
+    "qa_source_inventory_matches": true,
+    "method_inventory_basis": "@Test and @ParameterizedTest source declarations; XML display names are not method identifiers"
+  },
+  "coverage": {
+    "unit": {
+      "LINE_COVERED": 398,
+      "LINE_MISSED": 43,
+      "BRANCH_COVERED": 160,
+      "BRANCH_MISSED": 0
+    },
+    "functional": {
+      "LINE_COVERED": 406,
+      "LINE_MISSED": 35,
+      "BRANCH_COVERED": 129,
+      "BRANCH_MISSED": 31
+    },
+    "all": {
+      "LINE_COVERED": 441,
+      "LINE_MISSED": 0,
+      "BRANCH_COVERED": 160,
+      "BRANCH_MISSED": 0
+    }
+  },
+  "qa_report_hashes": {
+    "checked": 321,
+    "mismatches": []
+  },
+  "qa_http": {
+    "exchanges": 2303,
+    "statuses": {
+      "201": 376,
+      "429": 30,
+      "302": 1810,
+      "400": 61,
+      "404": 2,
+      "200": 17,
+      "503": 2,
+      "405": 1,
+      "413": 1,
+      "422": 1,
+      "204": 1,
+      "410": 1
+    },
+    "rejections": 30,
+    "bad_rejection_correlations": []
+  },
+  "privacy": {
+    "qa-default-log-a7c533f.jsonl": {
+      "10.77.77.77": 0,
+      "192.0.2.201": 0
+    },
+    "qa-prometheus-a7c533f.txt": {
+      "10.77.77.77": 0,
+      "192.0.2.201": 0
+    },
+    "qa-default-final-link-a7c533f.csv": {
+      "10.77.77.77": 0,
+      "192.0.2.201": 0
+    },
+    "qa-default-final-audit_log-a7c533f.csv": {
+      "10.77.77.77": 0,
+      "192.0.2.201": 0
+    },
+    "qa-default-final-click-a7c533f.csv": {
+      "10.77.77.77": 0,
+      "192.0.2.201": 0
+    },
+    "qa-jar-bench-log-a7c533f.jsonl": {
+      "10.77.77.77": 0,
+      "192.0.2.201": 0
+    },
+    "qa-jar-settings-log-a7c533f.jsonl": {
+      "10.77.77.77": 0,
+      "192.0.2.201": 0
+    },
+    "qa-settings-log-a7c533f.jsonl": {
+      "10.77.77.77": 0,
+      "192.0.2.201": 0
+    },
+    "qa-trusted-log-a7c533f.jsonl": {
+      "10.77.77.77": 0,
+      "192.0.2.201": 0
+    }
+  },
+  "openapi_equal": true,
+  "privacy_response_headers_bodies": {
+    "10.77.77.77": 0,
+    "192.0.2.201": 0
+  }
+}
