@@ -24,9 +24,11 @@ come from event rows at request time or from a summary table.
   column for any raw value and none for the request id.
 - **The UTC day is computed in Java and stored.** `clicked_on =
   LocalDate.ofInstant(clicked_at, UTC)` is written alongside the instant.
-  H2 returns `TIMESTAMP WITH TIME ZONE` values in the session zone, and the
-  two engines spell a UTC date differently, so grouping by a SQL expression
-  over `clicked_at` would not be exact or portable. The day is derived
+  A SQL day over `clicked_at` depends on the parameter binding and the
+  session zone: with a `Timestamp` binding, H2 stored and returned
+  `-07:00` values on the reference machine. The two engines also spell a
+  UTC date differently. So grouping by a SQL expression would not be exact
+  or portable. The day is derived
   data, not a new fact.
 - **Statistics come from event rows at request time, from one statement.**
   `SELECT clicked_on, referrer, COUNT(*) FROM click WHERE link_id = ? GROUP
@@ -55,5 +57,5 @@ come from event rows at request time or from a summary table.
 - Rollback: `DROP TABLE click;` removes click history only.
 - Verified before implementation:
   `missions/01-greenfield-core/slices/02-analytics/design-probe/output.txt`
-  (C0 DDL, C3 the session-zone instant, C5 the fold, C6 H2's ordering for
-  comparison).
+  (C0 DDL, C3 the session-zone instant under a `Timestamp` binding, C5 the
+  fold, C6 H2's ordering for comparison).

@@ -299,10 +299,12 @@ Persistence
   aggregate to change one column. **[docs; design rule, ADR-0005]**
 - `JdbcClient` (auto-configured) for single-statement writers with named
   parameters. **[docs]**
-- H2 returns `TIMESTAMP WITH TIME ZONE` values in the JVM's session zone
-  (`…-07:00` on the reference machine), so a SQL `CAST(… AS DATE)` would
-  give the local day: compute UTC days in Java and store them when grouping
-  by day. **[probe: `02-analytics/design-probe` C3]**
+- With a `java.sql.Timestamp` binding, H2 stores and returns `TIMESTAMP WITH
+  TIME ZONE` values in the JVM's session zone (`…-07:00` on the reference
+  machine), so a SQL `CAST(… AS DATE)` would give the local day. The
+  behaviour under an `OffsetDateTime` binding (`atOffset(UTC)`, as
+  `AuditLog` binds) was not run. Either way: compute UTC days in Java and
+  store them when grouping by day. **[probe: `02-analytics/design-probe` C3]**
 - H2 reserved words that bite: `KEY`, `VALUE`; keywords to avoid as column
   names on either engine: `AT`, `BEFORE`, `AFTER`. **[H2 grammar]**
 
@@ -360,8 +362,8 @@ erDiagram
   `01-audit-read`) needs one.
 - `click` *(02-analytics)*: one row per `302` redirect, reduced before it is
   written (no raw address, user agent, referrer path or request id);
-  `clicked_on` is the UTC day of `clicked_at`, computed in Java because H2
-  returns timestamps in the session zone; `CHECK`s on the user-agent class
+  `clicked_on` is the UTC day of `clicked_at`, computed in Java because a SQL
+  day depends on the binding and the session zone; `CHECK`s on the user-agent class
   and the 64-character hash; index `ix_click_link_day (link_id, clicked_on)`
   for the statistics query; statistics are computed per request from one
   grouped query (ADR-0013). NFR-P2's purge (mission 02) is a `DELETE` by

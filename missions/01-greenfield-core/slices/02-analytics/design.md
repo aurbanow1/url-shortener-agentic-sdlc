@@ -30,7 +30,7 @@ table, no scheduler framework, no new dependency, no new property.
 | Component | Package / class | New or changed | Responsibility |
 |---|---|---|---|
 | Click feature package | `dev.urlshort.click` (`package-info.java`) | **new** | Records clicks and serves their statistics. Owns the `click` table. Reads `link` only to turn a code into its id (see "Link lookup" below). |
-| Recorder (the hook's target) | `click.ClickRecorder` (**public**, `@Component`) | **new** | `public void record(long linkId, HttpServletRequest request)`, called by the redirect on the request thread. Returns at once for `HEAD` (rule 1; the `GET` mapping also serves `HEAD` **[probe C2]**). Otherwise it reads `MDC.get("requestId")`, `clock.instant()`, `Referer`, `User-Agent` and `getRemoteAddr()`, builds the reduced `Click` and calls `writer.execute(...)`. The whole body sits in one `try`: any `RuntimeException`, including `RejectedExecutionException` from a full or closed queue, becomes one `click lost` WARN and the method returns normally (rule 5). The writer is `new ThreadPoolExecutor(1, 1, 0, MILLISECONDS, new ArrayBlockingQueue<>(QUEUE_CAPACITY), daemon thread "click-writer", new AbortPolicy())` with `QUEUE_CAPACITY = 10_000`. Each task puts the captured request id into the MDC, calls `store.insert(click)`, turns a `RuntimeException` into one `click lost` WARN, and removes the MDC key in `finally`. `void settle()` (package-private, for the functional suite) submits an empty task and waits for it up to 10 s; with one FIFO writer, that means every earlier click is written or lost. `@PreDestroy void close()` calls `writer.close()`, which drains the queue before the `DataSource` goes away (the recorder depends on the store, so Spring destroys it first). |
+| Recorder (the hook's target) | `click.ClickRecorder` (**public**, `@Component`; its constructor stays package-private because it takes the package-private `ClickStore` and `DailySalt`) | **new** | `public void record(long linkId, HttpServletRequest request)`, called by the redirect on the request thread. Returns at once for `HEAD` (rule 1; the `GET` mapping also serves `HEAD` **[probe C2]**). Otherwise it reads `MDC.get("requestId")`, `clock.instant()`, `Referer`, `User-Agent` and `getRemoteAddr()`, builds the reduced `Click` and calls `writer.execute(...)`. The whole body sits in one `try`: any `RuntimeException`, including `RejectedExecutionException` from a full or closed queue, becomes one `click lost` WARN and the method returns normally (rule 5). The writer is `new ThreadPoolExecutor(1, 1, 0, MILLISECONDS, new ArrayBlockingQueue<>(QUEUE_CAPACITY), daemon thread "click-writer", new AbortPolicy())` with `QUEUE_CAPACITY = 10_000`. Each task puts the captured request id into the MDC, calls `store.insert(click)`, turns a `RuntimeException` into one `click lost` WARN, and removes the MDC key in `finally`. `void settle()` (package-private, for the functional suite) submits an empty task and waits for it up to 10 s; with one FIFO writer, that means every earlier click is written or lost. `@PreDestroy void close()` calls `writer.close()`, which drains the queue before the `DataSource` goes away (the recorder depends on the store, so Spring destroys it first). |
 | Click record + reductions | `click.Click` | **new** | `record Click(long linkId, Instant clickedAt, LocalDate clickedOn, @Nullable String referrer, String userAgentClass, String clientHash)`. These are rule 2's facts, plus `clickedOn` = `LocalDate.ofInstant(clickedAt, UTC)`, the grouping key decided by the application, not the database (§3). Two static pure functions: `@Nullable String referrerOrigin(@Nullable String header)` (rule 3: `null` when absent, longer than 2 048, unparseable by `java.net.URI`, scheme not `http`/`https` ignoring case, or no host; otherwise lowercase scheme + `://` + lowercase host + `:port` unless the port is absent or the scheme's default) and `String userAgentClass(@Nullable String header)` (rule 4's order: absent or empty → `unknown`; lowercase contains `bot`, `crawler` or `spider` → `bot`; starts with `Mozilla/` → `browser`; else `other`). |
 | Daily salt | `click.DailySalt` (`@Component`) | **new** | `String hash(String address, Instant at)`: HMAC-SHA256 of the address's UTF-8 bytes under the salt of `at`'s UTC day, as 64 lowercase hex characters. The salt is 32 bytes from the application's `SecureRandom` bean, held in one field, and never logged, returned or stored. Under the object's lock: if `at`'s day differs from the held salt's day, zero the old bytes, draw a new salt for that day, and schedule `expire(day)` at that day's end with `CompletableFuture.delayedExecutor(Duration.between(at, dayEnd))`. The `SecretKeySpec` is built under the same lock (it copies the key); the HMAC runs outside it. `expire(day)` zeroes and drops the salt if it still belongs to `day`, so a salt never outlives its UTC day, even when no click arrives after midnight **[probe S2]**. `@PreDestroy close()` drops it too. ADR-0012. |
 | Store | `click.ClickStore` (`@Component`, `JdbcClient`; not `@Repository`, whose exception-translation proxy `JdbcClient` does not need and which would sit between the spy of §7 and the class) | **new** | `void insert(Click)` (one `INSERT`, instants bound as `atOffset(UTC)` like `AuditLog`); `Optional<Long> findLinkId(String code)`; `List<DayReferrerCount> countByDayAndReferrer(long linkId)`, one grouped `SELECT` (§3), with nested `record DayReferrerCount(LocalDate day, @Nullable String referrer, long clicks)`. Package-private. |
@@ -82,10 +82,15 @@ Mechanics the builder relies on:
   client hash (DR-01's lesson, **[probe C8]**).
 - **`LocalDate` renders as `"2026-10-01"`** under Boot 4.1's Jackson 3
   defaults, and the body is `application/json` **[probe C5]**.
-- **H2 returns a `TIMESTAMP WITH TIME ZONE` in the session zone**
-  (`…T01:33:23.008-07:00` on the reference machine **[probe C3]**). A day
-  computed in SQL would therefore follow the JVM's zone, not UTC. This is why
-  the day is computed in Java and stored (§3).
+- **H2 stored and returned a `TIMESTAMP WITH TIME ZONE` in the session
+  zone** (`…T01:33:23.008-07:00` on the reference machine **[probe C3]**,
+  where the probe bound a `java.sql.Timestamp`). The design binds
+  `atOffset(UTC)` like `AuditLog`, and with that binding H2 may well keep
+  `Z`; I did not run it. The decision does not depend on it: a day computed
+  in SQL depends on the binding and the session zone and is spelled
+  differently on H2 and PostgreSQL. A day computed in Java from the
+  instant does not, which is why the day is computed in Java and stored
+  (§3).
 
 ## 2. API contract
 
@@ -165,9 +170,9 @@ Design notes (ADR-0013):
   a summary table if reads ever get heavy.
 - **`clicked_on` is stored, computed in Java as the UTC day of `clicked_at`.**
   The guide suggests an index on `(link_id, clicked_at)`. The only query here
-  groups by UTC day, and a day computed in SQL would follow the session time
-  zone (the probe got `-07:00` back from H2), with different functions on H2
-  and PostgreSQL. A stored `DATE` makes the grouping key exact, portable and
+  groups by UTC day, and a day computed in SQL depends on the parameter
+  binding and the session time zone (the probe, binding a `Timestamp`, got
+  `-07:00` back from H2), with different functions on H2 and PostgreSQL. A stored `DATE` makes the grouping key exact, portable and
   indexable. It is derived from `clicked_at`, not a fifth fact (rule 2), and
   only `Click`'s constructor call in `ClickRecorder` writes it.
 - **`referrer` is the origin or `NULL`**, `VARCHAR(2048)` because an origin is
@@ -326,7 +331,7 @@ named after it, tabled ACs as one `@ParameterizedTest`:
 | Class | Context | ACs |
 |---|---|---|
 | `ClickRecordingJourneyTest` | base (MockMvc) | AC-1 (**polls** the store every 50 ms up to rule 6's 5 s; this is the visibility bound's test, then `settle()` and still exactly one), AC-2 (table; `settle()` then none), AC-3 (table), AC-4 (table), AC-5 (`setRemoteAddr` per request, `FunctionalClock`), AC-6, AC-17, AC-18 |
-| `StatsJourneyTest` | base (MockMvc) | AC-7, AC-8, AC-9 (`FunctionalClock`), AC-10, AC-11 (over the bodies of AC-8, AC-9, AC-10), AC-12, AC-13 (table), AC-19 rows `200`, `404`, `405` and settled `302`, AC-20, AC-21 (`GET /v3/api-docs`: the stats path, its `200` schema with four properties and an example, its `404` as `application/problem+json`; every path of slice 01's AC-28 still present) |
+| `StatsJourneyTest` | base (MockMvc) | AC-7, AC-8, AC-9 (`FunctionalClock`), AC-10, AC-11 (over the bodies of AC-8, AC-9, AC-10), AC-12, AC-13 (table), AC-19 rows `200`, `404`, `405` and settled `302`, AC-20, AC-21 (`GET /v3/api-docs`: the stats path, its `200` schema with four properties (springdoc emits a `$ref` to `components/schemas/LinkStats`; resolve it) and an example, its `404` as `application/problem+json`; every path of slice 01's AC-28 still present) |
 | `ClickResilienceJourneyTest` | **own**: `@SpringBootTest(webEnvironment = RANDOM_PORT)` + `@MockitoSpyBean ClickStore` | AC-14 and AC-15 over real HTTP; AC-16 (200 redirects from 20 threads over real HTTP); AC-19's failing-store row; the W1-02 real-server journey (below) |
 
 Plus the granted line in `web/OpenApiDocumentTest` (§1) and the regenerated
@@ -367,7 +372,13 @@ Unit (`src/test/java/dev/urlshort/click/`, no Spring context):
   requirements review asked). Before opening any capture window, a test
   calls `settle()`, so an earlier request's async event cannot fall into it.
   Before closing the window, it calls `settle()` again, so events written
-  after the response are inside it (AC-19).
+  after the response are inside it (AC-19). On the real server
+  (`ClickResilienceJourneyTest`) that is not enough: the filter writes
+  `request completed` in the Tomcat thread's `finally`, which can run after
+  the client already has the reply (slice 01's probe needed 300 ms). So
+  before closing a window there, the test also polls the capture (50 ms
+  steps, at most 5 s) for the `request completed` line carrying `R`, as
+  `ColdStartJourneyTest` does.
 - **Why no click write fails in the base context**, which matters for slice
   01's `ObservabilityJourneyTest`, which asserts every line in its windows
   carries its own id. The FK cannot fail, because the id comes from a link
@@ -490,7 +501,8 @@ one.
 | A salt derived from a master secret | the master secret would let anyone holding it recompute every past day's hashes, which defeats "not kept after its day" | — |
 | Lazy salt rotation only (on the next click) | on a quiet day the salt would stay in memory past midnight (rule 4) | — |
 | A summary table updated per click | a second write on every click, and rows are needed anyway for uniques and purge | statistics reads becoming the bottleneck |
-| Day grouped in SQL from `clicked_at` | session-time-zone semantics differ between H2 and PostgreSQL (`-07:00` came back from H2) | a database-side UTC function both engines share |
+| Day grouped in SQL from `clicked_at` | the result depends on the binding and the session time zone (with a `Timestamp` binding, `-07:00` came back from H2), and the function differs between H2 and PostgreSQL | a database-side UTC function both engines share |
+| Bounded drain at shutdown (`shutdown()` + `awaitTermination(n)` + `shutdownNow()`, one WARN per unwritten click) | `ExecutorService.close()` is one line and in practice is bounded by queue size × the time a write takes to succeed or fail. The embedded store either writes in microseconds or fails at once | `03-operate`'s shutdown evidence (AC-25, 10 s) showing a tail from the drain |
 | `ORDER BY … LIMIT 10` in SQL for the top referrers | the tie order would follow the database collation (PostgreSQL's linguistic collations ignore punctuation); separate statements could also break AC-11 under concurrent writes | an index-only path for very high-cardinality referrers |
 | A public lookup in `link/` (code → id) | outside the `link/` grant; the FK already ties `click` to `link.id` | a third feature needing the same lookup |
 | Recording the click from a servlet filter or interceptor after the response | it would have to infer "this was a `302` of the redirect route" from status and path, and would see `HEAD` and `429`s too; the hook knows | — |
@@ -529,7 +541,10 @@ scripts/gw --log missions/01-greenfield-core/slices/02-analytics/design-probe/ou
 Not verified by me, left to the builder's tests: `@MockitoSpyBean` on a
 package-private `@Component` in a `RANDOM_PORT` context; MockMvc per-request
 `setRemoteAddr` combined with the shifted clock (both mechanisms already run
-in slice 01's suite); `@PreDestroy` draining in a real context close; and
+in slice 01's suite); `@PreDestroy` draining in a real context close (the
+annotation is `jakarta.annotation-api` 3.0.0, already in the dependency
+cache through the Boot starters; the probe used `destroyMethod = "close"`);
+and
 springdoc's exact output for `LinkStats`. Each has a fallback in §7 that
 keeps the contract unchanged.
 
@@ -599,8 +614,8 @@ mechanism, async handoff with correlated logs and fail-open, ran on Tomcat
 with a slow and a failing store. The data model has one table, one index and
 constraints for the closed sets. Issues found and fixed in the draft:
 (1) `HEAD` hits the `GET` mapping, so the skip is in the recorder (probe C2);
-(2) a SQL-side day would follow the session zone, so the day is stored
-(probe C3); (3) a lazily rotated salt would outlive a quiet day, so expiry is
+(2) a SQL-side day would depend on the binding and the session zone, so the
+day is computed in Java and stored (probe C3); (3) a lazily rotated salt would outlive a quiet day, so expiry is
 scheduled (probe S2); (4) a second plain real-server class would have
 weakened `ColdStartJourneyTest`, so the real-server checks went into the spy
 context.

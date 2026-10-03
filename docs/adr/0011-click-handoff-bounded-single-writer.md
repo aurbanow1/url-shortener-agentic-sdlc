@@ -48,7 +48,12 @@ hook in `link/`, but not `application.properties` or `build.gradle.kts`.
 - **Shutdown.** `@PreDestroy close()` calls `ExecutorService.close()`, which
   drains the queue. The recorder depends on the store and so on the
   `DataSource`, which Spring therefore destroys after the recorder. An
-  abrupt stop loses what is queued (A-11).
+  abrupt stop loses what is queued (A-11). `close()` has no timeout of its
+  own. In practice it is bounded by the queue size times the time a write
+  takes to succeed or fail, and the embedded store does either at once. If
+  `03-operate`'s shutdown evidence shows a tail, the upgrade is
+  `shutdown()` + `awaitTermination(n)` + `shutdownNow()` with one WARN per
+  unwritten click.
 - **A test seam, not a feature.** A package-private `settle()` submits an
   empty task and waits up to 10 s. With one FIFO writer, that means every
   earlier click has been written or lost. It is the "flush" the SPEC's
