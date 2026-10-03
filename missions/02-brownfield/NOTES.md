@@ -105,6 +105,10 @@ Context and observations that help the mission but do not change its
     - ADR-0010 and ADR-0016 amendments proposed.
     - For plan-lock: two `@Nested` test contexts are additions, and AC-9's reading is the lead's (design §7). The territory is narrowed (§9: `Problems.java` and `application.properties` dropped). Both w1 merges come first, and `openapi.json` is ordered against `01-analytics-v2`.
   - Waiting on: the `01-audit-read` re-review (`4eb1eb4`, review-agent), the `01-analytics-v2` review (`80ca44c`), the `03-dogfood-fix` design review (`0d000da`). I answer each finding when it routes back.
+- 2026-10-03T19:40Z — `03-dogfood-fix` design review by review-agent passed, no blocker. Two MEDIUMs were fixed in passing at `0982cb5`:
+  - DR-01: D2 was a shape-only check, so QA's AC-4 check now compares full normalised bodies;
+  - DR-02: a `path` selector stops matching after the fix, so consumers must drop it (impact analysis, design §2, ADR-0016).
+  - Still waiting on the `01-audit-read` re-review and the `01-analytics-v2` review.
 
 ## 3a. Design agent 2 (`design2-agent`, lane B, D16)
 
