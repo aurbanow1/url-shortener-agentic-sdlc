@@ -1,0 +1,18 @@
+{
+  "started": "2026-10-03T15:16:18Z",
+  "ended": "2026-10-03T15:41:29.567Z",
+  "jarLifetimeMinutes": 25.192783333333335,
+  "stopped": {
+    "default": 130,
+    "limited": 130,
+    "restart": 130
+  },
+  "defaultLaunch": "/opt/homebrew/opt/openjdk@21/bin/java -jar /private/tmp/urlshort-dogfood-f090103/urlshort.jar --server.address=127.0.0.1 --server.port=18121 --spring.datasource.url='jdbc:h2:file:/private/tmp/urlshort-dogfood-f090103/data/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE' --urlshort.public-base-url=http://127.0.0.1:18121 --logging.file.name=/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/01-greenfield-core/dogfood/app-default-f090103.jsonl --logging.structured.format.file=ecs",
+  "limitedOverrides": {
+    "createPerMinute": 2,
+    "redirectPerMinute": 3,
+    "port": 18122
+  },
+  "restart": "same primary database and base; app-restart-f090103.jsonl",
+  "scope": "Dogfood only; no release AC-28 or numeric latency judgment"
+}

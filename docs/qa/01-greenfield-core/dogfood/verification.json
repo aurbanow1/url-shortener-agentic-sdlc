@@ -1,0 +1,52 @@
+{
+  "httpAttempts": 118,
+  "capturedHTTPCalls": 112,
+  "responseHopIds": 114,
+  "statuses": {
+    "200": 38,
+    "201": 23,
+    "302": 15,
+    "422": 1,
+    "400": 13,
+    "204": 1,
+    "410": 3,
+    "415": 1,
+    "404": 5,
+    "405": 2,
+    "406": 1,
+    "500": 4,
+    "413": 1,
+    "429": 4
+  },
+  "initialInstrumentConnectionFailures": 4,
+  "postStopConnectionRefusals": 2,
+  "allCapturedResponseHopsCorrelateExactlyOnce": true,
+  "jsonLogEvents": 235,
+  "correlatedEvents": 125,
+  "primary": {
+    "linksUnchanged": 12,
+    "auditUnchanged": 14,
+    "clicksBefore": 6,
+    "clicksAfter": 10
+  },
+  "limited": {
+    "links": 1,
+    "audit": 1,
+    "clicks": 6,
+    "rejections": 4
+  },
+  "sameKeyRaces": "four pairs; one 201 and one safe 500 each; one stored link/audit per key, retries recover winner",
+  "knownDefectsConfirmed": [
+    "W2-01 MEDIUM",
+    "W2-03 LOW"
+  ],
+  "newSevereDefectsObserved": 0,
+  "jarHashUnchanged": true,
+  "limits": [
+    "No browser-rendered UI/video test",
+    "No Docker restart/drain judgment",
+    "No latency target judgment in dogfood",
+    "Four early sandbox-client failures and one separate diagnostic request are not product failures",
+    "Smoke output/log retained separately; not folded into per-request ledger"
+  ]
+}

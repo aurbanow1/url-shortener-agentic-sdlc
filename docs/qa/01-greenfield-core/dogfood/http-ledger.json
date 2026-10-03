@@ -1,0 +1,2941 @@
+[
+  {
+    "name": "01-health",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/actuator/health",
+    "before": "2026-10-03T15:17:53.032Z",
+    "after": "2026-10-03T15:17:53.103Z",
+    "requestHeaders": [],
+    "exitCode": 7,
+    "metrics": "curl: (7) Failed to connect to 127.0.0.1 port 18121 after 0 ms: Couldn't connect to server\n000 0.000097 0",
+    "status": 0,
+    "headers": {},
+    "files": {
+      "headers": "dogfood/exchanges/01-health.headers",
+      "body": "dogfood/exchanges/01-health.body"
+    }
+  },
+  {
+    "name": "02-liveness",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/actuator/health/liveness",
+    "before": "2026-10-03T15:17:53.208Z",
+    "after": "2026-10-03T15:17:53.274Z",
+    "requestHeaders": [],
+    "exitCode": 7,
+    "metrics": "curl: (7) Failed to connect to 127.0.0.1 port 18121 after 0 ms: Couldn't connect to server\n000 0.000099 0",
+    "status": 0,
+    "headers": {},
+    "files": {
+      "headers": "dogfood/exchanges/02-liveness.headers",
+      "body": "dogfood/exchanges/02-liveness.body"
+    }
+  },
+  {
+    "name": "03-readiness",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/actuator/health/readiness",
+    "before": "2026-10-03T15:17:53.355Z",
+    "after": "2026-10-03T15:17:53.415Z",
+    "requestHeaders": [],
+    "exitCode": 7,
+    "metrics": "curl: (7) Failed to connect to 127.0.0.1 port 18121 after 0 ms: Couldn't connect to server\n000 0.000095 0",
+    "status": 0,
+    "headers": {},
+    "files": {
+      "headers": "dogfood/exchanges/03-readiness.headers",
+      "body": "dogfood/exchanges/03-readiness.body"
+    }
+  },
+  {
+    "name": "04-ping",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/api/ping",
+    "before": "2026-10-03T15:17:53.490Z",
+    "after": "2026-10-03T15:17:53.550Z",
+    "requestHeaders": [],
+    "exitCode": 7,
+    "metrics": "curl: (7) Failed to connect to 127.0.0.1 port 18121 after 0 ms: Couldn't connect to server\n000 0.000098 0",
+    "status": 0,
+    "headers": {},
+    "files": {
+      "headers": "dogfood/exchanges/04-ping.headers",
+      "body": "dogfood/exchanges/04-ping.body"
+    }
+  },
+  {
+    "name": "05-health",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/actuator/health",
+    "before": "2026-10-03T15:18:56.304Z",
+    "after": "2026-10-03T15:18:56.382Z",
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.015603 49",
+    "status": 200,
+    "headers": {
+      "x-request-id": "9763b204-d520-4d53-9196-a1540663762e",
+      "content-type": "application/vnd.spring-boot.actuator.v3+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:18:56 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/05-health.headers",
+      "body": "dogfood/exchanges/05-health.body"
+    }
+  },
+  {
+    "name": "06-liveness",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/actuator/health/liveness",
+    "before": "2026-10-03T15:18:56.508Z",
+    "after": "2026-10-03T15:18:56.575Z",
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.013628 15",
+    "status": 200,
+    "headers": {
+      "x-request-id": "c2e6b5b6-b944-4381-845d-ee036461ffd9",
+      "content-type": "application/vnd.spring-boot.actuator.v3+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:18:56 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/06-liveness.headers",
+      "body": "dogfood/exchanges/06-liveness.body"
+    }
+  },
+  {
+    "name": "07-readiness",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/actuator/health/readiness",
+    "before": "2026-10-03T15:18:56.655Z",
+    "after": "2026-10-03T15:18:56.710Z",
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.002647 15",
+    "status": 200,
+    "headers": {
+      "x-request-id": "4401d557-96be-4db7-bb66-8791e6cf625e",
+      "content-type": "application/vnd.spring-boot.actuator.v3+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:18:56 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/07-readiness.headers",
+      "body": "dogfood/exchanges/07-readiness.body"
+    }
+  },
+  {
+    "name": "08-ping",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/api/ping",
+    "before": "2026-10-03T15:18:56.786Z",
+    "after": "2026-10-03T15:18:56.869Z",
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.032085 52",
+    "status": 200,
+    "headers": {
+      "x-request-id": "cae3fa55-0d33-4841-b1c1-90f8406c8346",
+      "content-type": "application/json",
+      "content-length": "52",
+      "date": "Sat, 03 Oct 2026 15:18:56 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/08-ping.headers",
+      "body": "dogfood/exchanges/08-ping.body"
+    }
+  },
+  {
+    "name": "09-create-shared",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:18:56.946Z",
+    "after": "2026-10-03T15:18:57.081Z",
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-share-20261003"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/event/invite?campaign=autumn#details\"}",
+    "exitCode": 0,
+    "metrics": "201 0.082007 185",
+    "status": 201,
+    "headers": {
+      "x-request-id": "aae2c23e-47a8-44b2-9620-1959b014ccb9",
+      "location": "/api/links/EfQINEL6",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:18:57 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/09-create-shared.headers",
+      "body": "dogfood/exchanges/09-create-shared.body"
+    }
+  },
+  {
+    "name": "12-head-shared",
+    "method": "HEAD",
+    "url": "http://127.0.0.1:18121/EfQINEL6",
+    "before": "2026-10-03T15:18:57.158Z",
+    "after": "2026-10-03T15:18:57.222Z",
+    "requestHeaders": [
+      "Accept: text/html"
+    ],
+    "exitCode": 0,
+    "metrics": "302 0.006386 0",
+    "status": 302,
+    "headers": {
+      "x-request-id": "9097daa2-ec4d-4906-93b8-82abf6d7f10e",
+      "location": "https://example.com/event/invite?campaign=autumn#details",
+      "cache-control": "no-store",
+      "date": "Sat, 03 Oct 2026 15:18:57 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/12-head-shared.headers",
+      "body": "dogfood/exchanges/12-head-shared.body"
+    }
+  },
+  {
+    "name": "10-read-shared",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/api/links/EfQINEL6",
+    "before": "2026-10-03T15:18:57.158Z",
+    "after": "2026-10-03T15:18:57.222Z",
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.007488 185",
+    "status": 200,
+    "headers": {
+      "x-request-id": "5ff19901-2e52-4626-b1c3-6e1f97b77bb8",
+      "content-type": "application/json",
+      "content-length": "185",
+      "date": "Sat, 03 Oct 2026 15:18:57 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/10-read-shared.headers",
+      "body": "dogfood/exchanges/10-read-shared.body"
+    }
+  },
+  {
+    "name": "11-empty-stats",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/api/links/EfQINEL6/stats",
+    "before": "2026-10-03T15:18:57.158Z",
+    "after": "2026-10-03T15:18:57.223Z",
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.009697 71",
+    "status": 200,
+    "headers": {
+      "x-request-id": "c6729961-f4a3-4d99-ae24-520a4e5e19ce",
+      "content-type": "application/json",
+      "content-length": "71",
+      "date": "Sat, 03 Oct 2026 15:18:57 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/11-empty-stats.headers",
+      "body": "dogfood/exchanges/11-empty-stats.body"
+    }
+  },
+  {
+    "name": "13-follow-from-news",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/EfQINEL6",
+    "before": "2026-10-03T15:19:45.580Z",
+    "after": "2026-10-03T15:19:45.679Z",
+    "requestHeaders": [
+      "Accept: text/html",
+      "User-Agent: Mozilla/5.0 dogfood-ua-canary-20261003",
+      "Referer: https://news.example/articles/launch?dogfood_ref_canary=20261003",
+      "X-Forwarded-For: 198.51.100.171",
+      "X-Request-Id: dogfood-inbound-canary-20261003"
+    ],
+    "exitCode": 0,
+    "metrics": "302 0.043063 0",
+    "status": 302,
+    "headers": {
+      "x-request-id": "2c83ec60-11bd-47cc-8542-36be13feb44d",
+      "location": "https://example.com/event/invite?campaign=autumn#details",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 15:19:45 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/13-follow-from-news.headers",
+      "body": "dogfood/exchanges/13-follow-from-news.body"
+    }
+  },
+  {
+    "name": "14-follow-from-news",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/EfQINEL6",
+    "before": "2026-10-03T15:19:45.791Z",
+    "after": "2026-10-03T15:19:45.849Z",
+    "requestHeaders": [
+      "Accept: text/html",
+      "User-Agent: curl/8 dogfood-agent-canary-20261003",
+      "Referer: https://news.example/other/path?q=second",
+      "X-Forwarded-For: 203.0.113.172"
+    ],
+    "exitCode": 0,
+    "metrics": "302 0.003230 0",
+    "status": 302,
+    "headers": {
+      "x-request-id": "4ac756d7-07d3-4cb3-8136-a33f87ca6b79",
+      "location": "https://example.com/event/invite?campaign=autumn#details",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 15:19:45 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/14-follow-from-news.headers",
+      "body": "dogfood/exchanges/14-follow-from-news.body"
+    }
+  },
+  {
+    "name": "15-follow-direct",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/EfQINEL6",
+    "before": "2026-10-03T15:19:45.929Z",
+    "after": "2026-10-03T15:19:45.986Z",
+    "requestHeaders": [
+      "Accept: text/html",
+      "User-Agent: Googlebot dogfood-bot-canary-20261003"
+    ],
+    "exitCode": 0,
+    "metrics": "302 0.003170 0",
+    "status": 302,
+    "headers": {
+      "x-request-id": "9fbac285-f141-417d-ad07-d6585301f027",
+      "location": "https://example.com/event/invite?campaign=autumn#details",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 15:19:45 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/15-follow-direct.headers",
+      "body": "dogfood/exchanges/15-follow-direct.body"
+    }
+  },
+  {
+    "name": "16-three-click-stats",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/api/links/EfQINEL6/stats",
+    "before": "2026-10-03T15:19:46.066Z",
+    "after": "2026-10-03T15:19:46.123Z",
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.004580 149",
+    "status": 200,
+    "headers": {
+      "x-request-id": "27b0bf6a-113f-49b0-90e6-c95b006d6377",
+      "content-type": "application/json",
+      "content-length": "149",
+      "date": "Sat, 03 Oct 2026 15:19:46 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/16-three-click-stats.headers",
+      "body": "dogfood/exchanges/16-three-click-stats.body"
+    }
+  },
+  {
+    "name": "17-replay-create",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:19:46.212Z",
+    "after": "2026-10-03T15:19:46.273Z",
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-share-20261003"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/event/invite?campaign=autumn#details\"}",
+    "exitCode": 0,
+    "metrics": "201 0.004293 185",
+    "status": 201,
+    "headers": {
+      "x-request-id": "550dae25-09ec-4521-a5a8-93cbebd17618",
+      "location": "/api/links/EfQINEL6",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:19:46 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/17-replay-create.headers",
+      "body": "dogfood/exchanges/17-replay-create.body"
+    }
+  },
+  {
+    "name": "18-conflicting-key",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:19:46.352Z",
+    "after": "2026-10-03T15:19:46.430Z",
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-share-20261003"
+    ],
+    "requestBody": "{\"url\":\"https://other.example/dogfood-key-canary\"}",
+    "exitCode": 0,
+    "metrics": "422 0.025387 228",
+    "status": 422,
+    "headers": {
+      "x-request-id": "c4b1f350-a561-439c-a247-518beecd6e3f",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:19:46 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/18-conflicting-key.headers",
+      "body": "dogfood/exchanges/18-conflicting-key.body"
+    }
+  },
+  {
+    "name": "19-invalid-url",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:19:46.507Z",
+    "after": "2026-10-03T15:19:46.584Z",
+    "requestHeaders": [
+      "Content-Type: application/json"
+    ],
+    "requestBody": "{\"url\":\"javascript:dogfood-url-canary\"}",
+    "exitCode": 0,
+    "metrics": "400 0.002597 190",
+    "status": 400,
+    "headers": {
+      "x-request-id": "7c0abc7c-1d49-48d4-98c7-7fa60fc8155d",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:19:46 GMT",
+      "connection": "close"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/19-invalid-url.headers",
+      "body": "dogfood/exchanges/19-invalid-url.body"
+    }
+  },
+  {
+    "name": "20-invalid-url-repeat",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:19:46.660Z",
+    "after": "2026-10-03T15:19:46.715Z",
+    "requestHeaders": [
+      "Content-Type: application/json"
+    ],
+    "requestBody": "{\"url\":\"javascript:dogfood-url-canary\"}",
+    "exitCode": 0,
+    "metrics": "400 0.002116 190",
+    "status": 400,
+    "headers": {
+      "x-request-id": "2bb9630c-10ed-41c2-8815-84a4e513a82e",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:19:46 GMT",
+      "connection": "close"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/20-invalid-url-repeat.headers",
+      "body": "dogfood/exchanges/20-invalid-url-repeat.body"
+    }
+  },
+  {
+    "name": "21-live-openapi",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/v3/api-docs",
+    "before": "2026-10-03T15:19:46.912Z",
+    "after": "2026-10-03T15:19:47.270Z",
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.313901 9602",
+    "status": 200,
+    "headers": {
+      "x-request-id": "ef801189-6804-45f7-81d6-a24ea53c14f1",
+      "content-type": "application/json",
+      "content-length": "9602",
+      "date": "Sat, 03 Oct 2026 15:19:47 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/21-live-openapi.headers",
+      "body": "dogfood/exchanges/21-live-openapi.body"
+    }
+  },
+  {
+    "name": "22-prometheus",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/actuator/prometheus",
+    "before": "2026-10-03T15:19:47.372Z",
+    "after": "2026-10-03T15:19:47.458Z",
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.028106 22872",
+    "status": 200,
+    "headers": {
+      "x-request-id": "ec718e05-8ece-4249-9ba6-836136708a3a",
+      "content-type": "text/plain;version=0.0.4;charset=utf-8",
+      "content-length": "22872",
+      "date": "Sat, 03 Oct 2026 15:19:47 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/22-prometheus.headers",
+      "body": "dogfood/exchanges/22-prometheus.body"
+    }
+  },
+  {
+    "name": "23-prometheus-repeat",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/actuator/prometheus",
+    "before": "2026-10-03T15:19:47.560Z",
+    "after": "2026-10-03T15:19:47.620Z",
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.004552 23332",
+    "status": 200,
+    "headers": {
+      "x-request-id": "3f2eac9e-620b-494d-811a-8c1c42b651a3",
+      "content-type": "text/plain;version=0.0.4;charset=utf-8",
+      "content-length": "23332",
+      "date": "Sat, 03 Oct 2026 15:19:47 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/23-prometheus-repeat.headers",
+      "body": "dogfood/exchanges/23-prometheus-repeat.body"
+    }
+  },
+  {
+    "name": "24-retire-shared",
+    "method": "DELETE",
+    "url": "http://127.0.0.1:18121/api/links/EfQINEL6",
+    "before": "2026-10-03T15:21:07.234Z",
+    "after": "2026-10-03T15:21:07.342Z",
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "204 0.049657 0",
+    "status": 204,
+    "headers": {
+      "x-request-id": "48334953-4592-4ffd-a273-65e1fe6c4832",
+      "date": "Sat, 03 Oct 2026 15:21:07 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/24-retire-shared.headers",
+      "body": "dogfood/exchanges/24-retire-shared.body"
+    }
+  },
+  {
+    "name": "25-visit-retired",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/EfQINEL6",
+    "before": "2026-10-03T15:21:07.449Z",
+    "after": "2026-10-03T15:21:07.508Z",
+    "requestHeaders": [
+      "Accept: text/html"
+    ],
+    "exitCode": 0,
+    "metrics": "410 0.004423 88",
+    "status": 410,
+    "headers": {
+      "x-request-id": "ac3bb5e9-1fe2-4d39-b76a-ece7d6f6b24e",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:21:07 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/25-visit-retired.headers",
+      "body": "dogfood/exchanges/25-visit-retired.body"
+    }
+  },
+  {
+    "name": "26-read-retired",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/api/links/EfQINEL6",
+    "before": "2026-10-03T15:21:07.590Z",
+    "after": "2026-10-03T15:21:07.645Z",
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.003182 186",
+    "status": 200,
+    "headers": {
+      "x-request-id": "6af31004-988a-42b5-9f88-d13c1cdc5a8a",
+      "content-type": "application/json",
+      "content-length": "186",
+      "date": "Sat, 03 Oct 2026 15:21:07 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/26-read-retired.headers",
+      "body": "dogfood/exchanges/26-read-retired.body"
+    }
+  },
+  {
+    "name": "27-stats-retired",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/api/links/EfQINEL6/stats",
+    "before": "2026-10-03T15:21:07.739Z",
+    "after": "2026-10-03T15:21:07.807Z",
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.003301 149",
+    "status": 200,
+    "headers": {
+      "x-request-id": "a1af5a7a-65c9-4e52-95c6-5377ecd5ae2f",
+      "content-type": "application/json",
+      "content-length": "149",
+      "date": "Sat, 03 Oct 2026 15:21:07 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/27-stats-retired.headers",
+      "body": "dogfood/exchanges/27-stats-retired.body"
+    }
+  },
+  {
+    "name": "28-retire-again",
+    "method": "DELETE",
+    "url": "http://127.0.0.1:18121/api/links/EfQINEL6",
+    "before": "2026-10-03T15:21:07.889Z",
+    "after": "2026-10-03T15:21:07.950Z",
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "410 0.003757 88",
+    "status": 410,
+    "headers": {
+      "x-request-id": "c2aef2d1-afb0-404d-99c9-08d0bcf41733",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:21:07 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/28-retire-again.headers",
+      "body": "dogfood/exchanges/28-retire-again.body"
+    }
+  },
+  {
+    "name": "29-replay-after-retire",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:21:08.036Z",
+    "after": "2026-10-03T15:21:08.097Z",
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-share-20261003"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/event/invite?campaign=autumn#details\"}",
+    "exitCode": 0,
+    "metrics": "201 0.008296 186",
+    "status": 201,
+    "headers": {
+      "x-request-id": "15165c39-6824-476e-8cdf-b4a7b44267b8",
+      "location": "/api/links/EfQINEL6",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:21:08 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/29-replay-after-retire.headers",
+      "body": "dogfood/exchanges/29-replay-after-retire.body"
+    }
+  },
+  {
+    "name": "30-original-key-after-conflict",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:21:08.177Z",
+    "after": "2026-10-03T15:21:08.240Z",
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-share-20261003"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/event/invite?campaign=autumn#details\"}",
+    "exitCode": 0,
+    "metrics": "201 0.003011 186",
+    "status": 201,
+    "headers": {
+      "x-request-id": "07738c32-464b-4343-a3dd-9679ad524b9c",
+      "location": "/api/links/EfQINEL6",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:21:08 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/30-original-key-after-conflict.headers",
+      "body": "dogfood/exchanges/30-original-key-after-conflict.body"
+    }
+  },
+  {
+    "name": "31-missing-url",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:23:43.882Z",
+    "after": "2026-10-03T15:23:43.952Z",
+    "requestHeaders": [
+      "Content-Type: application/json"
+    ],
+    "requestBody": "{}",
+    "exitCode": 0,
+    "metrics": "400 0.012956 168",
+    "status": 400,
+    "headers": {
+      "x-request-id": "20cde448-7aa7-4b18-995e-c2bcdf7889ef",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:23:43 GMT",
+      "connection": "close"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/31-missing-url.headers",
+      "body": "dogfood/exchanges/31-missing-url.body"
+    }
+  },
+  {
+    "name": "32-null-url",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:23:44.067Z",
+    "after": "2026-10-03T15:23:44.125Z",
+    "requestHeaders": [
+      "Content-Type: application/json"
+    ],
+    "requestBody": "{\"url\":null}",
+    "exitCode": 0,
+    "metrics": "400 0.002538 168",
+    "status": 400,
+    "headers": {
+      "x-request-id": "ab774410-dfb5-40b3-87aa-eca5ea39eb52",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:23:44 GMT",
+      "connection": "close"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/32-null-url.headers",
+      "body": "dogfood/exchanges/32-null-url.body"
+    }
+  },
+  {
+    "name": "33-credential-url",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:23:44.208Z",
+    "after": "2026-10-03T15:23:44.275Z",
+    "requestHeaders": [
+      "Content-Type: application/json"
+    ],
+    "requestBody": "{\"url\":\"https://dogfood-user:dogfood-password@example.com/private\"}",
+    "exitCode": 0,
+    "metrics": "400 0.002325 188",
+    "status": 400,
+    "headers": {
+      "x-request-id": "a1aa3aa3-7f5b-4bd4-b452-e7e9be025a48",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:23:44 GMT",
+      "connection": "close"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/33-credential-url.headers",
+      "body": "dogfood/exchanges/33-credential-url.body"
+    }
+  },
+  {
+    "name": "34-copy-whitespace",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:23:44.354Z",
+    "after": "2026-10-03T15:23:44.412Z",
+    "requestHeaders": [
+      "Content-Type: application/json"
+    ],
+    "requestBody": "{\"url\":\" https://example.com/copy\"}",
+    "exitCode": 0,
+    "metrics": "400 0.003268 190",
+    "status": 400,
+    "headers": {
+      "x-request-id": "9b61abd0-aac2-4e53-be46-50c0825cd14f",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:23:44 GMT",
+      "connection": "close"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/34-copy-whitespace.headers",
+      "body": "dogfood/exchanges/34-copy-whitespace.body"
+    }
+  },
+  {
+    "name": "35-trailing-whitespace",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:23:44.496Z",
+    "after": "2026-10-03T15:23:44.554Z",
+    "requestHeaders": [
+      "Content-Type: application/json"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/copy \"}",
+    "exitCode": 0,
+    "metrics": "400 0.002618 193",
+    "status": 400,
+    "headers": {
+      "x-request-id": "fbd877ee-f09e-4d92-9ed9-c5ab9c38f6c7",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:23:44 GMT",
+      "connection": "close"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/35-trailing-whitespace.headers",
+      "body": "dogfood/exchanges/35-trailing-whitespace.body"
+    }
+  },
+  {
+    "name": "36-malformed-host",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:23:44.637Z",
+    "after": "2026-10-03T15:23:44.695Z",
+    "requestHeaders": [
+      "Content-Type: application/json"
+    ],
+    "requestBody": "{\"url\":\"https://\"}",
+    "exitCode": 0,
+    "metrics": "400 0.002343 193",
+    "status": 400,
+    "headers": {
+      "x-request-id": "56daca09-ffc4-41e7-a53e-e5eca4463a74",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:23:44 GMT",
+      "connection": "close"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/36-malformed-host.headers",
+      "body": "dogfood/exchanges/36-malformed-host.body"
+    }
+  },
+  {
+    "name": "37-array-body",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:23:44.773Z",
+    "after": "2026-10-03T15:23:44.835Z",
+    "requestHeaders": [
+      "Content-Type: application/json"
+    ],
+    "requestBody": "[]",
+    "exitCode": 0,
+    "metrics": "400 0.006805 95",
+    "status": 400,
+    "headers": {
+      "x-request-id": "4ac872f8-aab6-4569-be0e-f368683c6fdd",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:23:44 GMT",
+      "connection": "close"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/37-array-body.headers",
+      "body": "dogfood/exchanges/37-array-body.body"
+    }
+  },
+  {
+    "name": "38-object-url",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:23:44.915Z",
+    "after": "2026-10-03T15:23:44.971Z",
+    "requestHeaders": [
+      "Content-Type: application/json"
+    ],
+    "requestBody": "{\"url\":{\"canary\":\"dogfood-object-canary\"}}",
+    "exitCode": 0,
+    "metrics": "400 0.002583 95",
+    "status": 400,
+    "headers": {
+      "x-request-id": "237f5999-e60b-4c29-9f54-5ac15d8989d4",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:23:44 GMT",
+      "connection": "close"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/38-object-url.headers",
+      "body": "dogfood/exchanges/38-object-url.body"
+    }
+  },
+  {
+    "name": "39-bad-key",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:23:45.052Z",
+    "after": "2026-10-03T15:23:45.109Z",
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood key with spaces"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/invalid-key\"}",
+    "exitCode": 0,
+    "metrics": "400 0.003214 220",
+    "status": 400,
+    "headers": {
+      "x-request-id": "05592120-e01a-4594-a675-2a3d0af208a6",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:23:45 GMT",
+      "connection": "close"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/39-bad-key.headers",
+      "body": "dogfood/exchanges/39-bad-key.body"
+    }
+  },
+  {
+    "name": "40-truncated-json",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:23:45.188Z",
+    "after": "2026-10-03T15:23:45.249Z",
+    "requestHeaders": [
+      "Content-Type: application/json"
+    ],
+    "requestBody": "{\"url\":",
+    "exitCode": 0,
+    "metrics": "400 0.002645 95",
+    "status": 400,
+    "headers": {
+      "x-request-id": "be133c92-2f13-454a-931e-7599480717eb",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:23:45 GMT",
+      "connection": "close"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/40-truncated-json.headers",
+      "body": "dogfood/exchanges/40-truncated-json.body"
+    }
+  },
+  {
+    "name": "41-wrong-media",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:23:45.330Z",
+    "after": "2026-10-03T15:23:45.387Z",
+    "requestHeaders": [
+      "Content-Type: text/plain"
+    ],
+    "requestBody": "not-json-dogfood-canary",
+    "exitCode": 0,
+    "metrics": "415 0.003418 106",
+    "status": 415,
+    "headers": {
+      "x-request-id": "5362a4fa-03b3-4028-92db-7c256097b738",
+      "accept": "application/json",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:23:45 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/41-wrong-media.headers",
+      "body": "dogfood/exchanges/41-wrong-media.body"
+    }
+  },
+  {
+    "name": "42-missing-link",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/AbCd1234",
+    "before": "2026-10-03T15:23:45.466Z",
+    "after": "2026-10-03T15:23:45.540Z",
+    "requestHeaders": [
+      "Accept: text/html"
+    ],
+    "exitCode": 0,
+    "metrics": "404 0.020904 93",
+    "status": 404,
+    "headers": {
+      "x-request-id": "794f401a-efb6-4752-95f5-e4b489a393cf",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:23:45 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/42-missing-link.headers",
+      "body": "dogfood/exchanges/42-missing-link.body"
+    }
+  },
+  {
+    "name": "43-missing-details",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/api/links/AbCd1234",
+    "before": "2026-10-03T15:23:45.618Z",
+    "after": "2026-10-03T15:23:45.675Z",
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "404 0.003198 93",
+    "status": 404,
+    "headers": {
+      "x-request-id": "c08e1c58-836a-4e48-a87f-2490a2dbef12",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:23:45 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/43-missing-details.headers",
+      "body": "dogfood/exchanges/43-missing-details.body"
+    }
+  },
+  {
+    "name": "44-missing-stats",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/api/links/AbCd1234/stats",
+    "before": "2026-10-03T15:23:45.754Z",
+    "after": "2026-10-03T15:23:45.810Z",
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "404 0.002674 93",
+    "status": 404,
+    "headers": {
+      "x-request-id": "a25a676c-a8c4-4850-a579-3baba1ca34e4",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:23:45 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/44-missing-stats.headers",
+      "body": "dogfood/exchanges/44-missing-stats.body"
+    }
+  },
+  {
+    "name": "45-wrong-ping-method",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/ping",
+    "before": "2026-10-03T15:23:45.891Z",
+    "after": "2026-10-03T15:23:45.949Z",
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "405 0.002521 102",
+    "status": 405,
+    "headers": {
+      "x-request-id": "816e542f-7da2-46a2-aebe-039d7c3cfa99",
+      "allow": "GET",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:23:45 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/45-wrong-ping-method.headers",
+      "body": "dogfood/exchanges/45-wrong-ping-method.body"
+    }
+  },
+  {
+    "name": "46-wrong-stats-method",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links/EfQINEL6/stats",
+    "before": "2026-10-03T15:23:46.031Z",
+    "after": "2026-10-03T15:23:46.090Z",
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "405 0.002327 102",
+    "status": 405,
+    "headers": {
+      "x-request-id": "a038dc64-b35e-43f5-9260-54110011892a",
+      "allow": "GET",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:23:46 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/46-wrong-stats-method.headers",
+      "body": "dogfood/exchanges/46-wrong-stats-method.body"
+    }
+  },
+  {
+    "name": "47-body-needs-json",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/api/links/EfQINEL6",
+    "before": "2026-10-03T15:23:46.170Z",
+    "after": "2026-10-03T15:23:46.243Z",
+    "requestHeaders": [
+      "Accept: text/html"
+    ],
+    "exitCode": 0,
+    "metrics": "406 0.019670 98",
+    "status": 406,
+    "headers": {
+      "x-request-id": "05291644-e4fb-4a1e-aaa5-4e198253ca9c",
+      "accept": "application/json, application/*+json, application/yaml",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:23:46 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/47-body-needs-json.headers",
+      "body": "dogfood/exchanges/47-body-needs-json.body"
+    }
+  },
+  {
+    "name": "48-hidden-h2-console",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/h2-console",
+    "before": "2026-10-03T15:23:46.326Z",
+    "after": "2026-10-03T15:23:46.400Z",
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "404 0.006676 93",
+    "status": 404,
+    "headers": {
+      "x-request-id": "857d4d8f-2a52-4c8c-b8a9-17b76c2c327e",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:23:46 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/48-hidden-h2-console.headers",
+      "body": "dogfood/exchanges/48-hidden-h2-console.body"
+    }
+  },
+  {
+    "name": "49-disabled-env-endpoint",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/actuator/env",
+    "before": "2026-10-03T15:23:46.480Z",
+    "after": "2026-10-03T15:23:46.543Z",
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "404 0.003783 93",
+    "status": 404,
+    "headers": {
+      "x-request-id": "e9965a89-c0a8-40c1-8a99-58ce698537e2",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:23:46 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/49-disabled-env-endpoint.headers",
+      "body": "dogfood/exchanges/49-disabled-env-endpoint.body"
+    }
+  },
+  {
+    "name": "50-create-persisted",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:24:59.744Z",
+    "after": "2026-10-03T15:24:59.834Z",
+    "hopStatuses": [
+      201
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Host: dogfood-host-canary.example",
+      "X-Forwarded-Host: dogfood-forward-host-canary.example"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/persisted?x=a%20b&lang=pl#part-2\"}",
+    "exitCode": 0,
+    "metrics": "201 0.032442 181",
+    "status": 201,
+    "headers": {
+      "x-request-id": "34804928-0bef-4bf0-a79f-490e6b4592e5",
+      "location": "/api/links/67iyKB3h",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:24:59 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/50-create-persisted.headers",
+      "body": "dogfood/exchanges/50-create-persisted.body"
+    }
+  },
+  {
+    "name": "51-create-followable",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:24:59.939Z",
+    "after": "2026-10-03T15:24:59.991Z",
+    "hopStatuses": [
+      201
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json"
+    ],
+    "requestBody": "{\"url\":\"http://127.0.0.1:18121/api/ping\"}",
+    "exitCode": 0,
+    "metrics": "201 0.003262 160",
+    "status": 201,
+    "headers": {
+      "x-request-id": "cd88d616-878c-4a42-b10f-93646d00f52f",
+      "location": "/api/links/tbPK2eML",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:24:59 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/51-create-followable.headers",
+      "body": "dogfood/exchanges/51-create-followable.body"
+    }
+  },
+  {
+    "name": "52-follow-complete",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/tbPK2eML",
+    "before": "2026-10-03T15:25:00.077Z",
+    "after": "2026-10-03T15:25:00.133Z",
+    "hopStatuses": [
+      302,
+      200
+    ],
+    "requestHeaders": [
+      "User-Agent: Mozilla/5.0 dogfood-follow-canary"
+    ],
+    "exitCode": 0,
+    "metrics": "200 0.004894 52",
+    "status": 200,
+    "headers": {
+      "x-request-id": "91b24fd7-dbc2-40e1-bc15-258abafbf16f",
+      "location": "http://127.0.0.1:18121/api/ping",
+      "cache-control": "no-store",
+      "content-length": "52",
+      "date": "Sat, 03 Oct 2026 15:25:00 GMT",
+      "content-type": "application/json"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/52-follow-complete.headers",
+      "body": "dogfood/exchanges/52-follow-complete.body"
+    }
+  },
+  {
+    "name": "53-followable-stats",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/api/links/tbPK2eML/stats",
+    "before": "2026-10-03T15:25:00.206Z",
+    "after": "2026-10-03T15:25:00.268Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.002482 103",
+    "status": 200,
+    "headers": {
+      "x-request-id": "92875f1d-16cd-4be1-82a7-29e242f7d3d6",
+      "content-type": "application/json",
+      "content-length": "103",
+      "date": "Sat, 03 Oct 2026 15:25:00 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/53-followable-stats.headers",
+      "body": "dogfood/exchanges/53-followable-stats.body"
+    }
+  },
+  {
+    "name": "54-unkeyed-duplicate-a",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:25:00.348Z",
+    "after": "2026-10-03T15:25:00.402Z",
+    "hopStatuses": [
+      201
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/double-click\"}",
+    "exitCode": 0,
+    "metrics": "201 0.003128 161",
+    "status": 201,
+    "headers": {
+      "x-request-id": "a85ef821-7d06-4884-b8aa-be9d387b3422",
+      "location": "/api/links/No4HzySA",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:25:00 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/54-unkeyed-duplicate-a.headers",
+      "body": "dogfood/exchanges/54-unkeyed-duplicate-a.body"
+    }
+  },
+  {
+    "name": "55-unkeyed-duplicate-b",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:25:00.475Z",
+    "after": "2026-10-03T15:25:00.528Z",
+    "hopStatuses": [
+      201
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/double-click\"}",
+    "exitCode": 0,
+    "metrics": "201 0.003049 161",
+    "status": 201,
+    "headers": {
+      "x-request-id": "89abffad-6656-4f63-9af8-4059fb30e38b",
+      "location": "/api/links/bmU7fvoG",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:25:00 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/55-unkeyed-duplicate-b.headers",
+      "body": "dogfood/exchanges/55-unkeyed-duplicate-b.body"
+    }
+  },
+  {
+    "name": "57-double-submit-b",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:25:00.604Z",
+    "after": "2026-10-03T15:25:00.660Z",
+    "hopStatuses": [
+      201
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-double-click"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/double-click\"}",
+    "exitCode": 0,
+    "metrics": "201 0.003882 161",
+    "status": 201,
+    "headers": {
+      "x-request-id": "926d1164-9155-4180-a621-3d24ea6446ef",
+      "location": "/api/links/02DWJONk",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:25:00 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/57-double-submit-b.headers",
+      "body": "dogfood/exchanges/57-double-submit-b.body"
+    }
+  },
+  {
+    "name": "56-double-submit-a",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:25:00.604Z",
+    "after": "2026-10-03T15:25:00.665Z",
+    "hopStatuses": [
+      500
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-double-click"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/double-click\"}",
+    "exitCode": 0,
+    "metrics": "500 0.011716 105",
+    "status": 500,
+    "headers": {
+      "x-request-id": "b0f9b424-d769-496a-a9ab-4953084ca5de",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:25:00 GMT",
+      "connection": "close"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/56-double-submit-a.headers",
+      "body": "dogfood/exchanges/56-double-submit-a.body"
+    }
+  },
+  {
+    "name": "58-share-extra-query",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/67iyKB3h?utm_source=dogfood-query-canary",
+    "before": "2026-10-03T15:25:00.738Z",
+    "after": "2026-10-03T15:25:00.792Z",
+    "hopStatuses": [
+      302
+    ],
+    "requestHeaders": [
+      "Accept: text/html"
+    ],
+    "exitCode": 0,
+    "metrics": "302 0.002915 0",
+    "status": 302,
+    "headers": {
+      "x-request-id": "ef006872-0c69-4c3f-92e8-f7dd8c682f67",
+      "location": "https://example.com/persisted?x=a%20b&lang=pl#part-2",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 15:25:00 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/58-share-extra-query.headers",
+      "body": "dogfood/exchanges/58-share-extra-query.body"
+    }
+  },
+  {
+    "name": "59-read-shorturl-host",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/api/links/67iyKB3h",
+    "before": "2026-10-03T15:25:00.866Z",
+    "after": "2026-10-03T15:25:00.918Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.002614 181",
+    "status": 200,
+    "headers": {
+      "x-request-id": "b3984bf6-6807-4265-962a-dbd9bd63de37",
+      "content-type": "application/json",
+      "content-length": "181",
+      "date": "Sat, 03 Oct 2026 15:25:00 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/59-read-shorturl-host.headers",
+      "body": "dogfood/exchanges/59-read-shorturl-host.body"
+    }
+  },
+  {
+    "name": "60-stats-head",
+    "method": "HEAD",
+    "url": "http://127.0.0.1:18121/api/links/67iyKB3h/stats",
+    "before": "2026-10-03T15:25:00.994Z",
+    "after": "2026-10-03T15:25:01.049Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.002485 0",
+    "status": 200,
+    "headers": {
+      "x-request-id": "2fbe99a5-0ae2-490e-98c8-b9558228cdf7",
+      "content-type": "application/json",
+      "content-length": "103",
+      "date": "Sat, 03 Oct 2026 15:25:01 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/60-stats-head.headers",
+      "body": "dogfood/exchanges/60-stats-head.body"
+    }
+  },
+  {
+    "name": "61-stats-options",
+    "method": "OPTIONS",
+    "url": "http://127.0.0.1:18121/api/links/67iyKB3h/stats",
+    "before": "2026-10-03T15:25:01.121Z",
+    "after": "2026-10-03T15:25:01.172Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.002047 0",
+    "status": 200,
+    "headers": {
+      "x-request-id": "b4c01a59-44a2-4e95-94ab-b388cca174b8",
+      "allow": "GET,HEAD,OPTIONS",
+      "accept-patch": "",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 15:25:01 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/61-stats-options.headers",
+      "body": "dogfood/exchanges/61-stats-options.body"
+    }
+  },
+  {
+    "name": "62-after-nonclick-stats",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/api/links/67iyKB3h/stats",
+    "before": "2026-10-03T15:25:01.246Z",
+    "after": "2026-10-03T15:25:01.299Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.002012 103",
+    "status": 200,
+    "headers": {
+      "x-request-id": "f19ce6aa-1ddc-471e-ad1b-356127e45723",
+      "content-type": "application/json",
+      "content-length": "103",
+      "date": "Sat, 03 Oct 2026 15:25:01 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/62-after-nonclick-stats.headers",
+      "body": "dogfood/exchanges/62-after-nonclick-stats.body"
+    }
+  },
+  {
+    "name": "63-metrics-names",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/actuator/metrics",
+    "before": "2026-10-03T15:25:01.372Z",
+    "after": "2026-10-03T15:25:01.423Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.003318 1604",
+    "status": 200,
+    "headers": {
+      "x-request-id": "03b45e98-2298-4823-baf9-190b75285d7f",
+      "content-type": "application/vnd.spring-boot.actuator.v3+json",
+      "content-length": "1604",
+      "date": "Sat, 03 Oct 2026 15:25:01 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/63-metrics-names.headers",
+      "body": "dogfood/exchanges/63-metrics-names.body"
+    }
+  },
+  {
+    "name": "64-rejection-metric-before",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/actuator/metrics/urlshort.ratelimit.rejections",
+    "before": "2026-10-03T15:25:01.495Z",
+    "after": "2026-10-03T15:25:01.559Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.012338 233",
+    "status": 200,
+    "headers": {
+      "x-request-id": "5fe53282-ad3a-4630-be35-a8493f7bc48a",
+      "content-disposition": "inline;filename=f.txt",
+      "content-type": "application/vnd.spring-boot.actuator.v3+json",
+      "content-length": "233",
+      "date": "Sat, 03 Oct 2026 15:25:01 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/64-rejection-metric-before.headers",
+      "body": "dogfood/exchanges/64-rejection-metric-before.body"
+    }
+  },
+  {
+    "name": "65-race-1-0",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:25:25.735Z",
+    "after": "2026-10-03T15:25:25.812Z",
+    "hopStatuses": [
+      201
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-race-1"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/concurrent-retry-1\"}",
+    "exitCode": 0,
+    "metrics": "201 0.023577 167",
+    "status": 201,
+    "headers": {
+      "x-request-id": "44984826-7c84-4e22-a735-26e3ab5b95de",
+      "location": "/api/links/57qBdbdP",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:25:25 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/65-race-1-0.headers",
+      "body": "dogfood/exchanges/65-race-1-0.body"
+    }
+  },
+  {
+    "name": "65-race-1-1",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:25:25.735Z",
+    "after": "2026-10-03T15:25:25.812Z",
+    "hopStatuses": [
+      500
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-race-1"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/concurrent-retry-1\"}",
+    "exitCode": 0,
+    "metrics": "500 0.024141 105",
+    "status": 500,
+    "headers": {
+      "x-request-id": "87a7d0f9-c37f-42b2-ab25-8b66dde518d5",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:25:25 GMT",
+      "connection": "close"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/65-race-1-1.headers",
+      "body": "dogfood/exchanges/65-race-1-1.body"
+    }
+  },
+  {
+    "name": "65-race-2-1",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:25:25.913Z",
+    "after": "2026-10-03T15:25:25.972Z",
+    "hopStatuses": [
+      201
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-race-2"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/concurrent-retry-2\"}",
+    "exitCode": 0,
+    "metrics": "201 0.004079 167",
+    "status": 201,
+    "headers": {
+      "x-request-id": "b12b5021-60b3-4623-a054-fdce175c22c0",
+      "location": "/api/links/wLDbLeGI",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:25:25 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/65-race-2-1.headers",
+      "body": "dogfood/exchanges/65-race-2-1.body"
+    }
+  },
+  {
+    "name": "65-race-2-0",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:25:25.913Z",
+    "after": "2026-10-03T15:25:25.972Z",
+    "hopStatuses": [
+      500
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-race-2"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/concurrent-retry-2\"}",
+    "exitCode": 0,
+    "metrics": "500 0.004655 105",
+    "status": 500,
+    "headers": {
+      "x-request-id": "cc113cda-9788-4f2b-936c-c2eb2901d9ca",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:25:25 GMT",
+      "connection": "close"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/65-race-2-0.headers",
+      "body": "dogfood/exchanges/65-race-2-0.body"
+    }
+  },
+  {
+    "name": "65-race-3-1",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:25:26.049Z",
+    "after": "2026-10-03T15:25:26.106Z",
+    "hopStatuses": [
+      500
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-race-3"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/concurrent-retry-3\"}",
+    "exitCode": 0,
+    "metrics": "500 0.004329 105",
+    "status": 500,
+    "headers": {
+      "x-request-id": "df076adf-c31b-46f9-bf2e-910d2d43fa50",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:25:26 GMT",
+      "connection": "close"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/65-race-3-1.headers",
+      "body": "dogfood/exchanges/65-race-3-1.body"
+    }
+  },
+  {
+    "name": "65-race-3-0",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:25:26.049Z",
+    "after": "2026-10-03T15:25:26.106Z",
+    "hopStatuses": [
+      201
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-race-3"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/concurrent-retry-3\"}",
+    "exitCode": 0,
+    "metrics": "201 0.004004 167",
+    "status": 201,
+    "headers": {
+      "x-request-id": "52343870-5aa7-494a-8619-2528a1ec79c8",
+      "location": "/api/links/e9WWiBJj",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:25:26 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/65-race-3-0.headers",
+      "body": "dogfood/exchanges/65-race-3-0.body"
+    }
+  },
+  {
+    "name": "66-retry-double",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:27:14.205Z",
+    "after": "2026-10-03T15:27:14.294Z",
+    "hopStatuses": [
+      201
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-double-click"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/double-click\"}",
+    "exitCode": 0,
+    "metrics": "201 0.033453 161",
+    "status": 201,
+    "headers": {
+      "x-request-id": "0bb92c90-8e4c-4b6a-b8e0-11cb711bceb2",
+      "location": "/api/links/02DWJONk",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:27:14 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/66-retry-double.headers",
+      "body": "dogfood/exchanges/66-retry-double.body"
+    }
+  },
+  {
+    "name": "67-retry-race-1",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:27:14.393Z",
+    "after": "2026-10-03T15:27:14.448Z",
+    "hopStatuses": [
+      201
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-race-1"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/concurrent-retry-1\"}",
+    "exitCode": 0,
+    "metrics": "201 0.003099 167",
+    "status": 201,
+    "headers": {
+      "x-request-id": "3112f4a2-3319-42bd-8328-d92e241d1454",
+      "location": "/api/links/57qBdbdP",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:27:14 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/67-retry-race-1.headers",
+      "body": "dogfood/exchanges/67-retry-race-1.body"
+    }
+  },
+  {
+    "name": "68-retry-race-2",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:27:14.522Z",
+    "after": "2026-10-03T15:27:14.575Z",
+    "hopStatuses": [
+      201
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-race-2"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/concurrent-retry-2\"}",
+    "exitCode": 0,
+    "metrics": "201 0.002810 167",
+    "status": 201,
+    "headers": {
+      "x-request-id": "60a55350-d650-4f4c-834f-1a0df2936ae7",
+      "location": "/api/links/wLDbLeGI",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:27:14 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/68-retry-race-2.headers",
+      "body": "dogfood/exchanges/68-retry-race-2.body"
+    }
+  },
+  {
+    "name": "69-retry-race-3",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:27:14.649Z",
+    "after": "2026-10-03T15:27:14.704Z",
+    "hopStatuses": [
+      201
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-race-3"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/concurrent-retry-3\"}",
+    "exitCode": 0,
+    "metrics": "201 0.002715 167",
+    "status": 201,
+    "headers": {
+      "x-request-id": "0c1015db-cbd9-456e-889b-4f956e29eda1",
+      "location": "/api/links/e9WWiBJj",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:27:14 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/69-retry-race-3.headers",
+      "body": "dogfood/exchanges/69-retry-race-3.body"
+    }
+  },
+  {
+    "name": "70-invalid-first-key",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:27:14.780Z",
+    "after": "2026-10-03T15:27:14.837Z",
+    "hopStatuses": [
+      400
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-corrected-key"
+    ],
+    "requestBody": "{\"url\":\"ftp://dogfood-invalid-first.example/\"}",
+    "exitCode": 0,
+    "metrics": "400 0.002424 190",
+    "status": 400,
+    "headers": {
+      "x-request-id": "500a8ebc-e822-43f3-a854-46909ca23e53",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:27:14 GMT",
+      "connection": "close"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/70-invalid-first-key.headers",
+      "body": "dogfood/exchanges/70-invalid-first-key.body"
+    }
+  },
+  {
+    "name": "71-corrected-key",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:27:14.912Z",
+    "after": "2026-10-03T15:27:14.966Z",
+    "hopStatuses": [
+      201
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-corrected-key"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/corrected\"}",
+    "exitCode": 0,
+    "metrics": "201 0.004643 158",
+    "status": 201,
+    "headers": {
+      "x-request-id": "58bc590e-6f64-45de-876f-66083236e26c",
+      "location": "/api/links/e1sFl46R",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:27:14 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/71-corrected-key.headers",
+      "body": "dogfood/exchanges/71-corrected-key.body"
+    }
+  },
+  {
+    "name": "72-corrected-key-replay",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:27:15.038Z",
+    "after": "2026-10-03T15:27:15.090Z",
+    "hopStatuses": [
+      201
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-corrected-key"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/corrected\"}",
+    "exitCode": 0,
+    "metrics": "201 0.002704 158",
+    "status": 201,
+    "headers": {
+      "x-request-id": "0428d10d-a256-4cf4-8415-0391ea8e3163",
+      "location": "/api/links/e1sFl46R",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:27:15 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/72-corrected-key-replay.headers",
+      "body": "dogfood/exchanges/72-corrected-key-replay.body"
+    }
+  },
+  {
+    "name": "73-body-at-16k",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:27:15.164Z",
+    "after": "2026-10-03T15:27:15.226Z",
+    "hopStatuses": [
+      201
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/body-boundary\",\"padding\":\"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"}",
+    "exitCode": 0,
+    "metrics": "201 0.010942 162",
+    "status": 201,
+    "headers": {
+      "x-request-id": "60d46977-b2d4-4bdc-b501-e870802e4514",
+      "location": "/api/links/BMz0uEsF",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:27:15 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/73-body-at-16k.headers",
+      "body": "dogfood/exchanges/73-body-at-16k.body"
+    }
+  },
+  {
+    "name": "74-body-above-16k",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:27:15.302Z",
+    "after": "2026-10-03T15:27:15.363Z",
+    "hopStatuses": [
+      413
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/body-boundary\",\"padding\":\"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"}",
+    "exitCode": 0,
+    "metrics": "413 0.003961 101",
+    "status": 413,
+    "headers": {
+      "x-request-id": "160b1589-e894-4e29-af20-debd78e16e62",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:27:15 GMT",
+      "connection": "close"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/74-body-above-16k.headers",
+      "body": "dogfood/exchanges/74-body-above-16k.body"
+    }
+  },
+  {
+    "name": "75-limited-ready",
+    "method": "GET",
+    "url": "http://127.0.0.1:18122/actuator/health/readiness",
+    "before": "2026-10-03T15:28:15.736Z",
+    "after": "2026-10-03T15:28:15.889Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.096317 15",
+    "status": 200,
+    "headers": {
+      "x-request-id": "15c9d473-ad15-489e-80a8-a2806b0ba6d1",
+      "content-type": "application/vnd.spring-boot.actuator.v3+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:28:15 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/75-limited-ready.headers",
+      "body": "dogfood/exchanges/75-limited-ready.body"
+    }
+  },
+  {
+    "name": "76-limited-create",
+    "method": "POST",
+    "url": "http://127.0.0.1:18122/api/links",
+    "before": "2026-10-03T15:28:15.982Z",
+    "after": "2026-10-03T15:28:16.131Z",
+    "hopStatuses": [
+      201
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-limited-key"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/limited\"}",
+    "exitCode": 0,
+    "metrics": "201 0.099240 156",
+    "status": 201,
+    "headers": {
+      "x-request-id": "48ddb361-a94a-4796-88a7-2c56035d662c",
+      "location": "/api/links/wOYeO9Qm",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:28:16 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/76-limited-create.headers",
+      "body": "dogfood/exchanges/76-limited-create.body"
+    }
+  },
+  {
+    "name": "77-limited-second-api",
+    "method": "GET",
+    "url": "http://127.0.0.1:18122/api/ping",
+    "before": "2026-10-03T15:28:16.209Z",
+    "after": "2026-10-03T15:28:16.262Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.003761 52",
+    "status": 200,
+    "headers": {
+      "x-request-id": "e17d7c8b-a8f4-4f55-8db9-fdb99163faca",
+      "content-type": "application/json",
+      "content-length": "52",
+      "date": "Sat, 03 Oct 2026 15:28:16 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/77-limited-second-api.headers",
+      "body": "dogfood/exchanges/77-limited-second-api.body"
+    }
+  },
+  {
+    "name": "78-limited-over-create",
+    "method": "POST",
+    "url": "http://127.0.0.1:18122/api/links",
+    "before": "2026-10-03T15:28:16.340Z",
+    "after": "2026-10-03T15:28:16.392Z",
+    "hopStatuses": [
+      429
+    ],
+    "requestHeaders": [
+      "Content-Type: text/plain",
+      "User-Agent: dogfood-limit-canary",
+      "X-Forwarded-For: 198.51.100.201"
+    ],
+    "requestBody": "dogfood-limit-body-canary",
+    "exitCode": 0,
+    "metrics": "429 0.004915 101",
+    "status": 429,
+    "headers": {
+      "x-request-id": "819f3236-3ccd-48b5-9423-d9acaf528061",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "Sat, 03 Oct 2026 15:28:16 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/78-limited-over-create.headers",
+      "body": "dogfood/exchanges/78-limited-over-create.body"
+    }
+  },
+  {
+    "name": "79-limited-redirect-1",
+    "method": "GET",
+    "url": "http://127.0.0.1:18122/wOYeO9Qm",
+    "before": "2026-10-03T15:28:16.466Z",
+    "after": "2026-10-03T15:28:16.534Z",
+    "hopStatuses": [
+      302
+    ],
+    "requestHeaders": [
+      "User-Agent: Mozilla/5.0 dogfood-visitor-limit-canary",
+      "X-Forwarded-For: 203.0.113.1"
+    ],
+    "exitCode": 0,
+    "metrics": "302 0.013109 0",
+    "status": 302,
+    "headers": {
+      "x-request-id": "02513635-2b47-4d28-91df-e5f46e9d03c6",
+      "location": "https://example.com/limited",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 15:28:16 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/79-limited-redirect-1.headers",
+      "body": "dogfood/exchanges/79-limited-redirect-1.body"
+    }
+  },
+  {
+    "name": "79-limited-redirect-2",
+    "method": "GET",
+    "url": "http://127.0.0.1:18122/wOYeO9Qm",
+    "before": "2026-10-03T15:28:16.610Z",
+    "after": "2026-10-03T15:28:16.663Z",
+    "hopStatuses": [
+      302
+    ],
+    "requestHeaders": [
+      "User-Agent: Mozilla/5.0 dogfood-visitor-limit-canary",
+      "X-Forwarded-For: 203.0.113.2"
+    ],
+    "exitCode": 0,
+    "metrics": "302 0.003106 0",
+    "status": 302,
+    "headers": {
+      "x-request-id": "8e9122a4-3de6-40b2-9355-91ec54dae1fc",
+      "location": "https://example.com/limited",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 15:28:16 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/79-limited-redirect-2.headers",
+      "body": "dogfood/exchanges/79-limited-redirect-2.body"
+    }
+  },
+  {
+    "name": "79-limited-redirect-3",
+    "method": "GET",
+    "url": "http://127.0.0.1:18122/wOYeO9Qm",
+    "before": "2026-10-03T15:28:16.736Z",
+    "after": "2026-10-03T15:28:16.796Z",
+    "hopStatuses": [
+      302
+    ],
+    "requestHeaders": [
+      "User-Agent: Mozilla/5.0 dogfood-visitor-limit-canary",
+      "X-Forwarded-For: 203.0.113.3"
+    ],
+    "exitCode": 0,
+    "metrics": "302 0.003006 0",
+    "status": 302,
+    "headers": {
+      "x-request-id": "f4b3329a-6b2c-496f-90b0-8d31b28d7bed",
+      "location": "https://example.com/limited",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 15:28:16 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/79-limited-redirect-3.headers",
+      "body": "dogfood/exchanges/79-limited-redirect-3.body"
+    }
+  },
+  {
+    "name": "79-limited-redirect-4",
+    "method": "GET",
+    "url": "http://127.0.0.1:18122/wOYeO9Qm",
+    "before": "2026-10-03T15:28:16.871Z",
+    "after": "2026-10-03T15:28:16.924Z",
+    "hopStatuses": [
+      429
+    ],
+    "requestHeaders": [
+      "User-Agent: Mozilla/5.0 dogfood-visitor-limit-canary",
+      "X-Forwarded-For: 203.0.113.4"
+    ],
+    "exitCode": 0,
+    "metrics": "429 0.001513 101",
+    "status": 429,
+    "headers": {
+      "x-request-id": "42c9a35a-c2da-4580-b1e1-ec0ab251faa5",
+      "retry-after": "20",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "Sat, 03 Oct 2026 15:28:16 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/79-limited-redirect-4.headers",
+      "body": "dogfood/exchanges/79-limited-redirect-4.body"
+    }
+  },
+  {
+    "name": "80-limited-health",
+    "method": "GET",
+    "url": "http://127.0.0.1:18122/actuator/health",
+    "before": "2026-10-03T15:28:16.996Z",
+    "after": "2026-10-03T15:28:17.050Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.004416 49",
+    "status": 200,
+    "headers": {
+      "x-request-id": "df992cdc-be49-4145-b339-b1e44694d965",
+      "content-type": "application/vnd.spring-boot.actuator.v3+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:28:17 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/80-limited-health.headers",
+      "body": "dogfood/exchanges/80-limited-health.body"
+    }
+  },
+  {
+    "name": "81-limited-metrics",
+    "method": "GET",
+    "url": "http://127.0.0.1:18122/actuator/metrics/urlshort.ratelimit.rejections",
+    "before": "2026-10-03T15:28:17.128Z",
+    "after": "2026-10-03T15:28:17.191Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.012639 233",
+    "status": 200,
+    "headers": {
+      "x-request-id": "0a956390-0928-4ae7-aeb1-e0facb8a58e3",
+      "content-disposition": "inline;filename=f.txt",
+      "content-type": "application/vnd.spring-boot.actuator.v3+json",
+      "content-length": "233",
+      "date": "Sat, 03 Oct 2026 15:28:17 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/81-limited-metrics.headers",
+      "body": "dogfood/exchanges/81-limited-metrics.body"
+    }
+  },
+  {
+    "name": "82-limited-prometheus",
+    "method": "GET",
+    "url": "http://127.0.0.1:18122/actuator/prometheus",
+    "before": "2026-10-03T15:28:17.267Z",
+    "after": "2026-10-03T15:28:17.332Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.011673 21128",
+    "status": 200,
+    "headers": {
+      "x-request-id": "9d1d0718-d069-456f-ba0e-dfe233558c56",
+      "content-type": "text/plain;version=0.0.4;charset=utf-8",
+      "content-length": "21128",
+      "date": "Sat, 03 Oct 2026 15:28:17 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/82-limited-prometheus.headers",
+      "body": "dogfood/exchanges/82-limited-prometheus.body"
+    }
+  },
+  {
+    "name": "83-limited-docs",
+    "method": "GET",
+    "url": "http://127.0.0.1:18122/v3/api-docs",
+    "before": "2026-10-03T15:28:17.407Z",
+    "after": "2026-10-03T15:28:17.593Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.157855 9602",
+    "status": 200,
+    "headers": {
+      "x-request-id": "c83cd823-409b-4849-b936-6034df687b92",
+      "content-type": "application/json",
+      "content-length": "9602",
+      "date": "Sat, 03 Oct 2026 15:28:17 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/83-limited-docs.headers",
+      "body": "dogfood/exchanges/83-limited-docs.body"
+    }
+  },
+  {
+    "name": "84-limit-recovery",
+    "method": "POST",
+    "url": "http://127.0.0.1:18122/api/links",
+    "before": "2026-10-03T15:30:11.431Z",
+    "after": "2026-10-03T15:30:11.518Z",
+    "hopStatuses": [
+      201
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-limited-key"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/limited\"}",
+    "exitCode": 0,
+    "metrics": "201 0.026701 156",
+    "status": 201,
+    "headers": {
+      "x-request-id": "3cee7a54-6cd1-4862-8a06-00f66f084264",
+      "location": "/api/links/wOYeO9Qm",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:30:11 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/84-limit-recovery.headers",
+      "body": "dogfood/exchanges/84-limit-recovery.body"
+    }
+  },
+  {
+    "name": "85-limit-click-count",
+    "method": "GET",
+    "url": "http://127.0.0.1:18122/api/links/wOYeO9Qm/stats",
+    "before": "2026-10-03T15:30:11.638Z",
+    "after": "2026-10-03T15:30:11.724Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.029135 103",
+    "status": 200,
+    "headers": {
+      "x-request-id": "e655ae9a-15c9-4411-a110-4f713ced54b2",
+      "content-type": "application/json",
+      "content-length": "103",
+      "date": "Sat, 03 Oct 2026 15:30:11 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/85-limit-click-count.headers",
+      "body": "dogfood/exchanges/85-limit-click-count.body"
+    }
+  },
+  {
+    "name": "86-restart-ready",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/actuator/health/readiness",
+    "before": "2026-10-03T15:33:51.656Z",
+    "after": "2026-10-03T15:33:51.860Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.166695 15",
+    "status": 200,
+    "headers": {
+      "x-request-id": "b3746703-cc93-4fc4-b87d-02ca19ea4547",
+      "content-type": "application/vnd.spring-boot.actuator.v3+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:33:51 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/86-restart-ready.headers",
+      "body": "dogfood/exchanges/86-restart-ready.body"
+    }
+  },
+  {
+    "name": "87-persisted-body-after-restart",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/api/links/67iyKB3h",
+    "before": "2026-10-03T15:33:51.985Z",
+    "after": "2026-10-03T15:33:52.144Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.122874 181",
+    "status": 200,
+    "headers": {
+      "x-request-id": "195b404a-c385-41de-9787-912c0f1a28b8",
+      "content-type": "application/json",
+      "content-length": "181",
+      "date": "Sat, 03 Oct 2026 15:33:52 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/87-persisted-body-after-restart.headers",
+      "body": "dogfood/exchanges/87-persisted-body-after-restart.body"
+    }
+  },
+  {
+    "name": "88-persisted-stats-before-new-visit",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/api/links/67iyKB3h/stats",
+    "before": "2026-10-03T15:33:52.234Z",
+    "after": "2026-10-03T15:33:52.309Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.016468 103",
+    "status": 200,
+    "headers": {
+      "x-request-id": "d555a9fd-e777-469b-b99d-671ca50fa5f1",
+      "content-type": "application/json",
+      "content-length": "103",
+      "date": "Sat, 03 Oct 2026 15:33:52 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/88-persisted-stats-before-new-visit.headers",
+      "body": "dogfood/exchanges/88-persisted-stats-before-new-visit.body"
+    }
+  },
+  {
+    "name": "89-persisted-follow-after-restart",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/67iyKB3h",
+    "before": "2026-10-03T15:33:52.397Z",
+    "after": "2026-10-03T15:33:52.471Z",
+    "hopStatuses": [
+      302
+    ],
+    "requestHeaders": [
+      "Accept: text/html",
+      "User-Agent: Mozilla/5.0 dogfood-restart-canary"
+    ],
+    "exitCode": 0,
+    "metrics": "302 0.013560 0",
+    "status": 302,
+    "headers": {
+      "x-request-id": "94dc1587-a1d9-426f-b648-4e69b8b2614f",
+      "location": "https://example.com/persisted?x=a%20b&lang=pl#part-2",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 15:33:52 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/89-persisted-follow-after-restart.headers",
+      "body": "dogfood/exchanges/89-persisted-follow-after-restart.body"
+    }
+  },
+  {
+    "name": "90-persisted-stats-after-new-visit",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/api/links/67iyKB3h/stats",
+    "before": "2026-10-03T15:33:52.564Z",
+    "after": "2026-10-03T15:33:52.634Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.003311 103",
+    "status": 200,
+    "headers": {
+      "x-request-id": "ad6b69a5-1b6d-45a5-8ffb-4c0cd6e1ce37",
+      "content-type": "application/json",
+      "content-length": "103",
+      "date": "Sat, 03 Oct 2026 15:33:52 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/90-persisted-stats-after-new-visit.headers",
+      "body": "dogfood/exchanges/90-persisted-stats-after-new-visit.body"
+    }
+  },
+  {
+    "name": "91-retired-body-after-restart",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/api/links/EfQINEL6",
+    "before": "2026-10-03T15:33:52.726Z",
+    "after": "2026-10-03T15:33:52.785Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.003756 186",
+    "status": 200,
+    "headers": {
+      "x-request-id": "d1594e43-9334-4b65-9a15-cd8324f781c2",
+      "content-type": "application/json",
+      "content-length": "186",
+      "date": "Sat, 03 Oct 2026 15:33:52 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/91-retired-body-after-restart.headers",
+      "body": "dogfood/exchanges/91-retired-body-after-restart.body"
+    }
+  },
+  {
+    "name": "92-retired-visit-after-restart",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/EfQINEL6",
+    "before": "2026-10-03T15:33:52.868Z",
+    "after": "2026-10-03T15:33:52.941Z",
+    "hopStatuses": [
+      410
+    ],
+    "requestHeaders": [
+      "Accept: text/html"
+    ],
+    "exitCode": 0,
+    "metrics": "410 0.014499 88",
+    "status": 410,
+    "headers": {
+      "x-request-id": "a8b7462a-21e8-46ce-b80c-eb5a4439131f",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:33:52 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/92-retired-visit-after-restart.headers",
+      "body": "dogfood/exchanges/92-retired-visit-after-restart.body"
+    }
+  },
+  {
+    "name": "93-retired-stats-after-restart",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/api/links/EfQINEL6/stats",
+    "before": "2026-10-03T15:33:53.040Z",
+    "after": "2026-10-03T15:33:53.117Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.005224 149",
+    "status": 200,
+    "headers": {
+      "x-request-id": "77156618-1ba5-4f01-b79d-71f925a13c88",
+      "content-type": "application/json",
+      "content-length": "149",
+      "date": "Sat, 03 Oct 2026 15:33:53 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/93-retired-stats-after-restart.headers",
+      "body": "dogfood/exchanges/93-retired-stats-after-restart.body"
+    }
+  },
+  {
+    "name": "94-replay-key-after-restart",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:33:53.210Z",
+    "after": "2026-10-03T15:33:53.284Z",
+    "hopStatuses": [
+      201
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-share-20261003"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/event/invite?campaign=autumn#details\"}",
+    "exitCode": 0,
+    "metrics": "201 0.017280 186",
+    "status": 201,
+    "headers": {
+      "x-request-id": "54165f18-ee07-444b-a442-ef17160fe926",
+      "location": "/api/links/EfQINEL6",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:33:53 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/94-replay-key-after-restart.headers",
+      "body": "dogfood/exchanges/94-replay-key-after-restart.body"
+    }
+  },
+  {
+    "name": "95-replay-race-key-after-restart",
+    "method": "POST",
+    "url": "http://127.0.0.1:18121/api/links",
+    "before": "2026-10-03T15:33:53.371Z",
+    "after": "2026-10-03T15:33:53.431Z",
+    "hopStatuses": [
+      201
+    ],
+    "requestHeaders": [
+      "Content-Type: application/json",
+      "Idempotency-Key: dogfood-race-1"
+    ],
+    "requestBody": "{\"url\":\"https://example.com/concurrent-retry-1\"}",
+    "exitCode": 0,
+    "metrics": "201 0.003158 167",
+    "status": 201,
+    "headers": {
+      "x-request-id": "d5f87eab-c825-47d6-ac91-7ceb6ea05e4e",
+      "location": "/api/links/57qBdbdP",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 15:33:53 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/95-replay-race-key-after-restart.headers",
+      "body": "dogfood/exchanges/95-replay-race-key-after-restart.body"
+    }
+  },
+  {
+    "name": "96-user-referrer-a",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/67iyKB3h",
+    "before": "2026-10-03T15:34:51.237Z",
+    "after": "2026-10-03T15:34:51.332Z",
+    "hopStatuses": [
+      302
+    ],
+    "requestHeaders": [
+      "Accept: text/html",
+      "User-Agent: Mozilla/5.0 dogfood-returning-visitor-canary",
+      "Referer: https://community.example/thread/1?private=dogfood-community-canary"
+    ],
+    "exitCode": 0,
+    "metrics": "302 0.034463 0",
+    "status": 302,
+    "headers": {
+      "x-request-id": "eeec7bdb-a520-476b-a70f-8551a73802d2",
+      "location": "https://example.com/persisted?x=a%20b&lang=pl#part-2",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 15:34:51 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/96-user-referrer-a.headers",
+      "body": "dogfood/exchanges/96-user-referrer-a.body"
+    }
+  },
+  {
+    "name": "97-user-referrer-b",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/67iyKB3h",
+    "before": "2026-10-03T15:34:51.469Z",
+    "after": "2026-10-03T15:34:51.528Z",
+    "hopStatuses": [
+      302
+    ],
+    "requestHeaders": [
+      "Accept: text/html",
+      "User-Agent: Mozilla/5.0 dogfood-returning-visitor-canary",
+      "Referer: https://community.example/thread/2?private=dogfood-community-canary"
+    ],
+    "exitCode": 0,
+    "metrics": "302 0.003362 0",
+    "status": 302,
+    "headers": {
+      "x-request-id": "f11dbe0e-2667-4732-bff6-cbfe8636b3bf",
+      "location": "https://example.com/persisted?x=a%20b&lang=pl#part-2",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 15:34:51 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/97-user-referrer-b.headers",
+      "body": "dogfood/exchanges/97-user-referrer-b.body"
+    }
+  },
+  {
+    "name": "98-user-referrer-c",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/67iyKB3h",
+    "before": "2026-10-03T15:34:51.628Z",
+    "after": "2026-10-03T15:34:51.701Z",
+    "hopStatuses": [
+      302
+    ],
+    "requestHeaders": [
+      "Accept: text/html",
+      "User-Agent: Mozilla/5.0 dogfood-returning-visitor-canary",
+      "Referer: https://newsletter.example/news?private=dogfood-newsletter-canary"
+    ],
+    "exitCode": 0,
+    "metrics": "302 0.010353 0",
+    "status": 302,
+    "headers": {
+      "x-request-id": "8df02bf6-8b7e-4fd7-93eb-5bb7c14b24bc",
+      "location": "https://example.com/persisted?x=a%20b&lang=pl#part-2",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 15:34:51 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/98-user-referrer-c.headers",
+      "body": "dogfood/exchanges/98-user-referrer-c.body"
+    }
+  },
+  {
+    "name": "99-after-return-visits",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/api/links/67iyKB3h/stats",
+    "before": "2026-10-03T15:34:51.792Z",
+    "after": "2026-10-03T15:34:51.849Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.003640 207",
+    "status": 200,
+    "headers": {
+      "x-request-id": "24fda9f0-fc94-42a0-8ba1-a0080d33362d",
+      "content-type": "application/json",
+      "content-length": "207",
+      "date": "Sat, 03 Oct 2026 15:34:51 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/99-after-return-visits.headers",
+      "body": "dogfood/exchanges/99-after-return-visits.body"
+    }
+  },
+  {
+    "name": "100-swagger-entry",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/swagger-ui.html",
+    "before": "2026-10-03T15:34:51.928Z",
+    "after": "2026-10-03T15:34:52.016Z",
+    "hopStatuses": [
+      302,
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.024162 734",
+    "status": 200,
+    "headers": {
+      "x-request-id": "0e019d20-ca7f-4341-9fed-311cc35342c8",
+      "location": "/swagger-ui/index.html",
+      "content-length": "734",
+      "date": "Sat, 03 Oct 2026 15:34:51 GMT",
+      "cache-control": "no-store",
+      "accept-ranges": "bytes",
+      "content-type": "text/html"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/100-swagger-entry.headers",
+      "body": "dogfood/exchanges/100-swagger-entry.body"
+    }
+  },
+  {
+    "name": "101-quiet-refill-api-1",
+    "method": "GET",
+    "url": "http://127.0.0.1:18122/api/ping",
+    "before": "2026-10-03T15:34:52.095Z",
+    "after": "2026-10-03T15:34:52.185Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.038131 52",
+    "status": 200,
+    "headers": {
+      "x-request-id": "ce506c62-1494-4732-b4ff-222b1e7821bd",
+      "content-type": "application/json",
+      "content-length": "52",
+      "date": "Sat, 03 Oct 2026 15:34:52 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/101-quiet-refill-api-1.headers",
+      "body": "dogfood/exchanges/101-quiet-refill-api-1.body"
+    }
+  },
+  {
+    "name": "101-quiet-refill-api-2",
+    "method": "GET",
+    "url": "http://127.0.0.1:18122/api/ping",
+    "before": "2026-10-03T15:34:52.264Z",
+    "after": "2026-10-03T15:34:52.318Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.002378 52",
+    "status": 200,
+    "headers": {
+      "x-request-id": "b4063420-19fc-4085-977e-ef137d5b176a",
+      "content-type": "application/json",
+      "content-length": "52",
+      "date": "Sat, 03 Oct 2026 15:34:52 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/101-quiet-refill-api-2.headers",
+      "body": "dogfood/exchanges/101-quiet-refill-api-2.body"
+    }
+  },
+  {
+    "name": "101-quiet-refill-api-3",
+    "method": "GET",
+    "url": "http://127.0.0.1:18122/api/ping",
+    "before": "2026-10-03T15:34:52.400Z",
+    "after": "2026-10-03T15:34:52.454Z",
+    "hopStatuses": [
+      429
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "429 0.002667 101",
+    "status": 429,
+    "headers": {
+      "x-request-id": "0f46c5d4-503f-4125-89cd-305d3e739a29",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "Sat, 03 Oct 2026 15:34:52 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/101-quiet-refill-api-3.headers",
+      "body": "dogfood/exchanges/101-quiet-refill-api-3.body"
+    }
+  },
+  {
+    "name": "102-quiet-refill-redirect-1",
+    "method": "GET",
+    "url": "http://127.0.0.1:18122/wOYeO9Qm",
+    "before": "2026-10-03T15:34:52.536Z",
+    "after": "2026-10-03T15:34:52.622Z",
+    "hopStatuses": [
+      302
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "302 0.023991 0",
+    "status": 302,
+    "headers": {
+      "x-request-id": "5210ab32-cd79-4fec-ad55-41c9e40406a4",
+      "location": "https://example.com/limited",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 15:34:52 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/102-quiet-refill-redirect-1.headers",
+      "body": "dogfood/exchanges/102-quiet-refill-redirect-1.body"
+    }
+  },
+  {
+    "name": "102-quiet-refill-redirect-2",
+    "method": "GET",
+    "url": "http://127.0.0.1:18122/wOYeO9Qm",
+    "before": "2026-10-03T15:34:52.711Z",
+    "after": "2026-10-03T15:34:52.766Z",
+    "hopStatuses": [
+      302
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "302 0.003024 0",
+    "status": 302,
+    "headers": {
+      "x-request-id": "3634a9ce-f69f-47bb-8892-164168b33bdc",
+      "location": "https://example.com/limited",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 15:34:52 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/102-quiet-refill-redirect-2.headers",
+      "body": "dogfood/exchanges/102-quiet-refill-redirect-2.body"
+    }
+  },
+  {
+    "name": "102-quiet-refill-redirect-3",
+    "method": "GET",
+    "url": "http://127.0.0.1:18122/wOYeO9Qm",
+    "before": "2026-10-03T15:34:52.848Z",
+    "after": "2026-10-03T15:34:52.906Z",
+    "hopStatuses": [
+      302
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "302 0.003164 0",
+    "status": 302,
+    "headers": {
+      "x-request-id": "0f5f1f79-0137-4196-8ff5-c9a4fef5ac87",
+      "location": "https://example.com/limited",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 15:34:52 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/102-quiet-refill-redirect-3.headers",
+      "body": "dogfood/exchanges/102-quiet-refill-redirect-3.body"
+    }
+  },
+  {
+    "name": "102-quiet-refill-redirect-4",
+    "method": "GET",
+    "url": "http://127.0.0.1:18122/wOYeO9Qm",
+    "before": "2026-10-03T15:34:52.988Z",
+    "after": "2026-10-03T15:34:53.057Z",
+    "hopStatuses": [
+      429
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "429 0.001830 101",
+    "status": 429,
+    "headers": {
+      "x-request-id": "83cbfa5a-27ee-4731-b2e8-c13e6989806a",
+      "retry-after": "20",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "Sat, 03 Oct 2026 15:34:53 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/102-quiet-refill-redirect-4.headers",
+      "body": "dogfood/exchanges/102-quiet-refill-redirect-4.body"
+    }
+  },
+  {
+    "name": "103-final-limited-rejection-meter",
+    "method": "GET",
+    "url": "http://127.0.0.1:18122/actuator/metrics/urlshort.ratelimit.rejections",
+    "before": "2026-10-03T15:34:53.140Z",
+    "after": "2026-10-03T15:34:53.213Z",
+    "hopStatuses": [
+      200
+    ],
+    "requestHeaders": [],
+    "exitCode": 0,
+    "metrics": "200 0.003690 233",
+    "status": 200,
+    "headers": {
+      "x-request-id": "2fd206cd-5b04-41af-aac1-386bca2b9528",
+      "content-disposition": "inline;filename=f.txt",
+      "content-type": "application/vnd.spring-boot.actuator.v3+json",
+      "content-length": "233",
+      "date": "Sat, 03 Oct 2026 15:34:53 GMT"
+    },
+    "files": {
+      "headers": "dogfood/exchanges/103-final-limited-rejection-meter.headers",
+      "body": "dogfood/exchanges/103-final-limited-rejection-meter.body"
+    }
+  },
+  {
+    "name": "104-stopped-primary",
+    "method": "GET",
+    "url": "http://127.0.0.1:18121/actuator/health",
+    "before": "2026-10-03T15:41:29.567Z",
+    "after": "2026-10-03T15:41:29.625Z",
+    "hopStatuses": [],
+    "requestHeaders": [],
+    "exitCode": 7,
+    "metrics": "curl: (7) Failed to connect to 127.0.0.1 port 18121 after 0 ms: Couldn't connect to server\n000 0.000213 0",
+    "status": 0,
+    "headers": {},
+    "files": {
+      "headers": "dogfood/exchanges/104-stopped-primary.headers",
+      "body": "dogfood/exchanges/104-stopped-primary.body"
+    }
+  },
+  {
+    "name": "105-stopped-limited",
+    "method": "GET",
+    "url": "http://127.0.0.1:18122/actuator/health",
+    "before": "2026-10-03T15:41:29.721Z",
+    "after": "2026-10-03T15:41:29.773Z",
+    "hopStatuses": [],
+    "requestHeaders": [],
+    "exitCode": 7,
+    "metrics": "curl: (7) Failed to connect to 127.0.0.1 port 18122 after 0 ms: Couldn't connect to server\n000 0.000190 0",
+    "status": 0,
+    "headers": {},
+    "files": {
+      "headers": "dogfood/exchanges/105-stopped-limited.headers",
+      "body": "dogfood/exchanges/105-stopped-limited.body"
+    }
+  }
+]
