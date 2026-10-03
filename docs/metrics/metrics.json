@@ -1,21 +1,21 @@
 {
   "totals": {
-    "generatedAt": "2026-10-03T02:30:17.755Z",
+    "generatedAt": "2026-10-03T03:02:15.016Z",
     "instances": 2,
     "active": 1,
     "completed": 1,
     "failed": 0,
     "aborted": 0,
     "instanceSuccessRate": 1,
-    "stepClosures": 31,
+    "stepClosures": 33,
     "failedClosures": 2,
-    "stepSuccessRate": 0.935,
+    "stepSuccessRate": 0.939,
     "retries": 6,
     "rollbacks": 0,
     "mttrMeanSec": 1244,
     "e2eP50Sec": 13597,
     "e2eP95Sec": 13597,
-    "humanWaitTotalSec": 2146
+    "humanWaitTotalSec": 2739
   },
   "instances": [
     {
@@ -25,26 +25,44 @@
       "status": "active",
       "createdAt": "2026-10-02T21:29:02.766Z",
       "completedAt": null,
-      "e2eLatencySec": 18075,
-      "hops": 4,
-      "stepClosures": 17,
+      "e2eLatencySec": 19992,
+      "hops": 6,
+      "stepClosures": 19,
       "failedClosures": 0,
       "reentries": 0,
       "retries": 0,
       "rollbacks": 0,
       "resumeCount": 0,
       "mttrSec": null,
-      "humanWaitSec": 1277,
-      "queueWaitSec": 173,
-      "workSec": 14905,
+      "humanWaitSec": 1870,
+      "queueWaitSec": 194,
+      "workSec": 16742,
       "packets": [
+        {
+          "qitemId": "qitem-20261003024639-d36d76cc",
+          "step": "evidence_export",
+          "queueWaitSec": 21,
+          "workSec": null,
+          "humanWaitSec": 0,
+          "closedState": null,
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003023502-f807af1f",
+          "step": "ship_signoff",
+          "queueWaitSec": null,
+          "workSec": null,
+          "humanWaitSec": 593,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
         {
           "qitemId": "qitem-20261003020412-57cea2d9",
           "step": "release_prep",
           "queueWaitSec": 13,
-          "workSec": null,
+          "workSec": 1837,
           "humanWaitSec": 0,
-          "closedState": null,
+          "closedState": "handed-off",
           "rollbackNotes": 0
         },
         {

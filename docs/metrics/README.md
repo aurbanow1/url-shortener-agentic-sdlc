@@ -1,6 +1,6 @@
 # SDLC reliability metrics
 
-Generated 2026-10-03T02:30:17.755Z by `tools/sdlc-metrics.mjs` from OpenRig workflow trails and queue transition logs (docs/evidence exports).
+Generated 2026-10-03T03:02:15.016Z by `tools/sdlc-metrics.mjs` from OpenRig workflow trails and queue transition logs (docs/evidence exports).
 
 ## Totals
 
@@ -8,19 +8,19 @@ Generated 2026-10-03T02:30:17.755Z by `tools/sdlc-metrics.mjs` from OpenRig work
 |---|---|
 | Workflow instances (active / completed / failed / aborted) | 2 (1 / 1 / 0 / 0) |
 | Instance success rate (completed ÷ terminal) | 1 |
-| Step closures (failed) | 31 (2) |
-| Step success rate | 0.935 |
+| Step closures (failed) | 33 (2) |
+| Step success rate | 0.939 |
 | Retries (failed closures + step re-entries) | 6 |
 | Rollbacks (revert notes + engine resumes) | 0 |
 | MTTR, mean (failed closure → next successful closure of that step) | 21 min |
 | End-to-end latency, completed instances p50 / p95 | 3.8 h / 3.8 h |
-| Time parked on the human (all gates) | 36 min |
+| Time parked on the human (all gates) | 46 min |
 
 ## Per instance
 
 | Instance | Workflow | Status | E2E latency | Hops | Closures | Retries | Rollbacks | Human wait | MTTR |
 |---|---|---|---|---|---|---|---|---|---|
-| 01M3Z8AJ1E… | 00-hello | active | 5.0 h | 4 | 17 | 0 | 0 | 21 min | – |
+| 01M3Z8AJ1E… | 00-hello | active | 5.6 h | 6 | 19 | 0 | 0 | 31 min | – |
 | 01M3ZA8Q39… | urlshort-slice | completed | 3.8 h | 13 | 14 | 6 | 0 | 14 min | 21 min |
 
 ## Derivations and honest limits

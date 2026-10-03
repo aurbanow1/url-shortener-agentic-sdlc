@@ -1,1 +1,37 @@
-{"ok":false,"error":{"code":"commander.missingMandatoryOptionValue","message":"required option '--mission <name>' not specified"}}
+{
+  "ok": true,
+  "mission": {
+    "name": "00-hello",
+    "railStatus": "present",
+    "frontmatterError": null,
+    "findings": []
+  },
+  "slices": [
+    {
+      "name": "01-ping",
+      "railStatus": "present",
+      "frontmatterError": null,
+      "findings": []
+    }
+  ],
+  "graph": {
+    "mission": {
+      "id": "OPR.99.0.1",
+      "name": "00-hello",
+      "dependsOn": []
+    },
+    "nodes": [
+      {
+        "id": "OPR.99.0.1.1",
+        "name": "01-ping",
+        "dependsOn": []
+      }
+    ],
+    "ready": [
+      "OPR.99.0.1.1"
+    ],
+    "waiting": [],
+    "advisories": []
+  },
+  "totalFindings": 0
+}

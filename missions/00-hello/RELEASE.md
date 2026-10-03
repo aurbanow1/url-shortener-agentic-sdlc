@@ -75,7 +75,7 @@ review and release prep before this sign-off.
 | Tests from that run | unit 6 (`UrlshortApplicationTests` 2, `RequestIdFilterTest` 3, `PingControllerTest` 1), functional 9 (`HealthJourneyTest` 1, `PingJourneyTest` 8); 0 failures, 0 errors, 0 skipped |
 | Coverage from that run | merged 15 of 15 lines (`PingResponse` 1, `PingController` 4, `RequestIdFilter` 7, `UrlshortApplication` 3); 0 of 0 branches; `jacocoTestCoverageVerification` passed with no exclusions |
 | Jar | `build/libs/urlshort.jar`, version 0.1.0, 37 070 236 bytes, git blob `e9ba48ae7fe09bf06b119f3cd6e00debab10bb4b` |
-| Image | `urlshort:local` built by `docker compose build` from the same working tree (log [`release/docker-build-d189019.txt`](release/docker-build-d189019.txt)); image id `db744838ce54` (`sha256:db744838ce540a72e44d6199eedeb95b37dd8ec3a6683ef253f69b63c3f95eca`, 557 MB, Temurin 21 JRE base). The container's jar is built inside the image from the same sources and is not byte-identical to the host jar; the same-SHA claim rests on the clean working tree above |
+| Image | `urlshort:local` built by `docker compose build` from the same working tree (log [`release/docker-build-d189019.txt`](release/docker-build-d189019.txt)); image id `db744838ce54` (`sha256:db744838ce540a72e44d6199eedeb95b37dd8ec3a6683ef253f69b63c3f95eca`, 557 MB, Temurin 21 JRE base). The container's jar is built inside the image from the same sources and may differ byte for byte from the host jar (not compared); the same-SHA claim rests on the clean working tree above |
 | Toolchain | OpenJDK 21.0.10 (Homebrew), Gradle 9.7.1, Spring Boot 4.1.1, JaCoCo 0.8.15, Docker 28.4.0 with Compose 5.1.3, OpenRig 0.6.3 (8b5e9488) |
 
 ## 3. Installed smoke
@@ -283,6 +283,11 @@ Further known gaps and limits:
   tested against this combination beyond Flyway creating its history table.
 - **Zero branches**: the branch threshold passes vacuously; the production
   code has no conditional.
+- **Operational limits** (owner: release agent, to be addressed in the
+  brownfield mission or recorded as accepted): single node, no replica; H2
+  file database under `./data` or the `urlshort-data` volume with no backup or
+  restore procedure; no `docs/RUNBOOK.md` yet; restart durability,
+  concurrency and load were not exercised by the smoke.
 - **Dogfood pass not requested.** The mission SPEC states the product value
   is the proven pipeline, not the ping, and the endpoint has no user-facing
   journey to explore; a dogfood row would have been ceremony. Dogfood starts
@@ -298,8 +303,20 @@ Further known gaps and limits:
 
 ## 8. Rollback
 
-Described step by step; not executed, because `main` has never been red after
-the merge and a revert on `main` is the integrator's act.
+Described step by step and rehearsed once on a throwaway branch (drill row in
+[`../../docs/scenarios/drills.md`](../../docs/scenarios/drills.md)): the
+revert of `42a25db4` applied cleanly as `a9f3d2f` on `rollback-rehearsal`
+(9 files, +1/−305) and the gate on the reverted tree was green
+([`release/rollback-rehearsal-check.txt`](release/rollback-rehearsal-check.txt),
+13 of 13 tasks, 3 tests, coverage verification passed). The branch and its
+worktree were removed; `main` was not touched, because `main` has never been
+red after the merge and a revert on `main` is the integrator's act.
+
+**Verification after a real rollback:** `scripts/gw check` green on the
+reverted `main`, then `scripts/smoke.sh` against the rebuilt jar, expecting the
+ping section to fail and the health and OpenAPI sections to pass.
+**Data lost:** none. No user data exists; the only persistent state is
+Flyway's empty history table in the H2 file.
 
 1. **Source.** On `main`: `git revert -m 1 42a25db4a9c24fba3221c1ade4044719cab39ee3`,
    then `scripts/gw check`. The revert removes `ping/` and `web/` in all three
@@ -320,18 +337,39 @@ the merge and a revert on `main` is the integrator's act.
    sign-off, the gate packet stays parked and this step waits on what the human
    asks for.
 
+## 9. Ship decision
+
+Approved by `human@kernel` on gate `qitem-20261003023502-f807af1f` at
+2026-10-03T02:44:55Z: "approve: ship the 00-hello dry run on 42a25db4;
+Tomcat/Jackson advisories tracked in qitem-20261003021640-bc2477ef and fixed
+before the first slice that parses client input". The 01-ping delivery stamp
+was recorded by the orchestration lead on the human's behalf at
+2026-10-03T02:45:45Z (action `01M3ZTEF1C876Q09Q5ND34N8KZ`, `approved-by` /
+`approved-at` in `slices/01-ping/SPEC.md`, commit `9cd64f8`). The decision's
+condition binds mission 01 planning. Publishing remains a human act; no agent
+pushed, tagged or published anything for this release.
+
 ## Self-check
 
-- Every claim has an evidence link that opens: the paths in §2 to §7 were listed
-  with `ls` before this commit; the release captures live under `release/`.
-- The smoke ran against the artifact that will ship: the jar was built by the
-  gate run on `main` at `d189019`, the image was built from the same clean
-  working tree, and `git diff --stat 42a25db4 HEAD` over product, test, build
-  and container inputs is empty.
-- Known gaps copied from `docs/qa/GAPS.md`, none omitted: three rows, plus the
-  wave follow-ups, the backlog item, the advisories and the limits found here.
-- Rollback path: described step by step in §8 (`git revert -m 1`, no migration,
-  local image only); not executed, reason stated.
-- Nothing pushed, tagged or published: `git log --oneline` shows only pathspec
-  commits of documentation, scripts and tools; no new tag; the image exists
-  only in the local Docker daemon.
+One line per section, written at `release_prep` and re-read at `evidence_export`.
+
+- §1 Brief: the human's two prior decisions are quoted from the gate transition
+  logs; the advisory item is the one judgment call and is stated with its
+  reachability and its alternative's cost; nothing was published.
+- §2 Artifact and gate: the jar is from the fresh `--rerun-tasks` gate on
+  `main` at `d189019`; the image from the same clean tree; `git diff --stat
+  42a25db4 HEAD` over product, test, build and container inputs is empty, and
+  every path cited was listed with `ls` before the commit.
+- §3 Smoke: ran on both artifacts bound to loopback, logs captured, process
+  and container stopped and removed; what it did not exercise is listed.
+- §4 Advisories: every OSV hit is in the table with severity, fixed-in and
+  reachability; the remediation is a routed queue item with a deadline rule.
+- §5 Evidence: every linked path exists and names the SHA it is about.
+- §6 Metrics: derived from the engine's records by the committed tool; the two
+  counting corrections are commits with their reason, not tuning.
+- §7 Gaps: the three `docs/qa/GAPS.md` rows are copied verbatim; review LOWs,
+  backlog, advisories and operational limits are listed with an owner.
+- §8 Rollback: exact commands, rehearsed once on a throwaway branch with the
+  gate green on the reverted tree (drill row linked), data loss stated.
+- §9 Ship decision: quoted from the gate transition log with the stamp's
+  action id and commit.

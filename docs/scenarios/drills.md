@@ -8,6 +8,7 @@ normal work are listed separately at the bottom.
 
 | Drill | Governance path | Command(s) | Observed | Evidence |
 |---|---|---|---|---|
+| 2026-10-03 02:55Z — rollback rehearsal for 00-hello (release agent, at `evidence_export`) | Rollback: revert of the slice merge, verified by the gate, without touching `main` | `git worktree add -b rollback-rehearsal .worktrees/rollback-rehearsal main` · `git -C .worktrees/rollback-rehearsal revert --no-edit -m 1 42a25db4a9c24fba3221c1ade4044719cab39ee3` · `scripts/gw --log missions/00-hello/release/rollback-rehearsal-check.txt --offline -p .worktrees/rollback-rehearsal check --rerun-tasks` · `git worktree remove --force …` · `git branch -D rollback-rehearsal` | The revert applied cleanly as `a9f3d2f` on the throwaway branch: 9 files, +1/−305, removing `ping/` and `web/` in all three source sets, restoring the functional `application.properties` and dropping the two granted configuration lines. Gate on the reverted tree: BUILD SUCCESSFUL in 25 s, 13 of 13 tasks executed, `UrlshortApplicationTests` 2 + `HealthJourneyTest` 1, no failures, coverage verification passed (the bootstrap state). No migration existed to reverse; no data to lose. Worktree and branch removed; `main` untouched (`git worktree list` shows only the main checkout). | `missions/00-hello/release/rollback-rehearsal-check.txt`; `missions/00-hello/RELEASE.md` §8 |
 
 ## Natural failures observed during the missions
 
