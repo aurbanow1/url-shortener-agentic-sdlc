@@ -27,10 +27,15 @@ Dropped via `rig proof add … --evidences … --media …` (one drop per verdic
 Seat `development-agent@urlshort-factory` (Claude), 2026-10-03, packet `qitem-20261003200223-d361adc6`.
 This section is builder evidence, not a verdict.
 
-**Status: built on the stacked base, not yet a candidate.** `slice/03-dogfood-fix` is stacked on
-`01-audit-read`'s `35590f0`, which is in code review. Code review reported a HIGH on it at 20:07Z,
-and its packet exit is pending. The plan-lock requires a rebase onto audit-read's merge commit, a
-regenerated document and a fresh gate before handoff. This section records the work up to that point.
+**Candidate:** `4fe70427bd0d182e886d6a19b217daa1d9e39f5d`. The branch was built stacked on `35590f0`,
+then rebased onto `01-audit-read`'s merge `cb148c4` and onto `main` `15db6c5` (docs only after the
+merge). The rebase was clean. `git merge-base --is-ancestor cb148c4 4fe7042` succeeds.
+Regenerating `docs/api/openapi.json` on this base gave no difference, because the live document
+already equals the committed one.
+
+Rebased SHAs: `9b2788a`→`cce7cf7`, `edc1815`→`a28a20a`, `3224036`→`72dfffb`, `5233c29`→`4fe7042`. The
+table and the red runs below name the pre-rebase SHAs. Those red runs ran on the stacked base, whose
+product code differs from `cb148c4` only by audit-read's CR-01 guard, which these tests do not touch.
 
 | SHA | Commit |
 |---|---|
@@ -47,7 +52,9 @@ regenerated document and a fresh gate before handoff. This section records the w
 | the same on `edc1815`, before regenerating | AC-1 and AC-2 green; only `NFRM3` red, because the committed document was stale | — |
 | `git diff docs/api/openapi.json` after regenerating | only `components.schemas.ProblemDetail` (`properties` removed, `errors` added) and the new `ProblemFieldError` (AC-3) | `edc1815` |
 | `functionalTest --tests '*HealthMetricsJourneyTest*'` on `3224036` | red. "[disk.free carries no path tag] Expecting ["path"] not to contain ["path"]". The scrape: "[the scrape carries no path label]" | `proof/red-w2-03-metrics.txt`, `proof/red-w2-03-report.xml`, `proof/red-w2-03-scrape-report.xml` |
-| `scripts/gw --offline check --rerun-tasks` on `5233c29` | BUILD SUCCESSFUL; **unit 201/201, functional 205/205**; merged **506/506 lines, 190/190 branches**; `javadoc` green | `proof/builder-check-5233c29.txt` |
+| `scripts/gw --offline check --rerun-tasks` on `5233c29` (stacked) | BUILD SUCCESSFUL; unit 201/201, functional 205/205; merged 506/506 lines, 190/190 branches | `proof/builder-check-5233c29.txt` |
+| `scripts/gw --offline check --rerun-tasks` on the candidate `4fe7042`, after the rebase | BUILD SUCCESSFUL; **unit 204/204, functional 207/207**; merged **508/508 lines, 194/194 branches**; `javadoc` green | `proof/builder-check-4fe7042.txt` |
+| `git diff --stat cb148c4 4fe7042 -- src docs/api README.md` | only the territory: `OpenApiConfig`, the new `MetricsConfig` and `MetricsConfigTest`, `openapi.json`, and the two tests (+102 and +41 lines, 0 removed) | — |
 
 ### Deviations from design.md
 
@@ -57,7 +64,7 @@ regenerated document and a fresh gate before handoff. This section records the w
 
 ### Not verified, and residual risks
 
-- **Not yet done:** the rebase onto `01-audit-read`'s merge commit, the document regenerated there, and the gate on that SHA. If code review changes audit-read (its HIGH at 20:07Z), this branch absorbs that change on the rebase.
+- **Repository line endings, not this slice:** `gradlew.bat` shows as modified in every checkout of `main` after the wrapper bump `f3e6b0b`. It has `text eol=crlf` attributes, but the committed blob does not match its normalised form, so the "modification" is line endings only. I did not commit it. To rebase, I hid it with a temporary `--assume-unchanged` flag in this worktree, then cleared the flag. Reported to the lead.
 - **Jar-level captures** (proof contract item 7: the `400` beside the live schema, the committed-vs-live diff, a path-free scrape) are QA's, per the design's §7.
 - **AC-4** (the wire unchanged, as full bodies compared between `main` and the candidate jars) is QA's recorded check. By construction, no request-path code changed.
 
@@ -66,4 +73,4 @@ regenerated document and a fresh gate before handoff. This section records the w
 - **Test before fix**, each pair in its own commits, and each red run captured with messages that name `errors`/`properties` and `path`.
 - **Territory:** `OpenApiConfig`, the new `MetricsConfig` and `MetricsConfigTest`, additions to `OpenApiDocumentTest` and `HealthMetricsJourneyTest`, and `openapi.json`. Nothing in `Problems`, `ProblemDetailsAdvice`, `RateLimitFilter`, `application.properties`, `click/`, `link/` or `audit/`.
 - **AC-9:** the two shipped tests only gained lines (143 insertions, 0 deletions).
-- **Gate** on the stacked tip, after the last code edit. It must be re-run after the rebase.
+- **Gate** re-run on the rebased candidate `4fe7042` after the last change, green.
