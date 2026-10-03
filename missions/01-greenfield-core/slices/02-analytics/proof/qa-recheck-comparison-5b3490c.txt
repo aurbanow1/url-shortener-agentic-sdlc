@@ -1,0 +1,6 @@
+PASS: isolated midnight test; full 121/126 gate.
+PASS: 13 live journey response IDs, 15 correlated JSON events; one correlated failed-insert WARN; no raw address/hash/referring origin/client canary in logs.
+LIMIT: two additional creation/preparation exchanges are retained. The preparation app was stopped immediately after the second create; its request-completed line was not retained. No fresh correlation claim for the two preparation requests.
+PASS: three representative clicks, origin/browser/64-hex hash, exact aggregate body; failing link zero clicks; 404/405 safe problems, HEAD/OPTIONS defaults.
+PASS: audit and link snapshots identical (two rows each); temporary rejecting CHECK removed, count0; health refused after stop.
+PASS: live/committed API JSON key-sorted diff empty. Prior comprehensive evidence adopted through exact product/config/functional-tree equivalence, not relabeled as fresh.

@@ -218,3 +218,72 @@ idempotency expiry boundary did run in the full suite.
 - Both app processes stopped, health connection refused, disposable constraint
   removed, builder database preserved. Worktree clean at the candidate SHA.
 
+## QA re-check — 5b3490c65915cf42594a4720350950bcefd2d7d0
+
+Packet `qitem-20261003110223-756ec012`, QA Agent/Codex, 2026-10-03.
+**PASS for qa_check.** Reviewed the complete new diff: four added setup lines
+in DailySaltTest only. The test now draws day D's salt at noon before moving
+to 23:59:59.999. Every original ordering assertion and the separate real
+scheduled-expiry test remain unchanged. No product, configuration, API or
+functional-test change; exact Git object comparison is in
+`proof/qa-candidate-equivalence-5b3490c.txt`.
+
+The review's isolated method ran in its own fresh test process first:
+**1/1 PASS**, no failures/errors/skips, saved log and XML. Then the complete
+offline gate reran all tasks: **121 unit / 126 functional**, zero
+failures/errors/skips, Javadoc and merged coverage green. The committed CSV
+sums remain **359/359 lines, 118/118 branches**; root XML counts 358 distinct
+source lines because one line is shared across classes. All 291 report files
+were copied and byte-checked. Current reports are under docs/qa/coverage;
+the older reports remain in commit 2aedfd1. All 138 source test methods and
+all 22 ACs/nine rules are mapped again in TRACEABILITY.
+
+Earlier comprehensive live effects remain attributed to 862c52e and are
+adopted through verified product/config/functional-tree equality. I also
+started this candidate on 127.0.0.1:18092 with a new disposable database:
+two setup creates plus **13 journey exchanges**. Empty → three redirects →
+exact three-click aggregate/origin, safe 404/405, unchanged HEAD/OPTIONS
+count, and a real rejected H2 click insert all behaved as specified.
+The three stored rows contain reduced origin/browser/64-hex hash and no
+canary/raw address. Audit and link before/after exports each remain exactly
+two identical rows. Live API JSON again equals the committed candidate
+document. The fault CHECK was removed (remaining count 0); both app runs
+stopped and subsequent health connection was refused.
+
+All thirteen journey response ids correlate to **15 JSON events**: one
+completion each, one safe asynchronous failed-write WARN, and one OpenAPI
+initialization INFO. Full live logs have no supplied client canary, address,
+hash or referring origin. **Capture limitation:** I stopped the preparation
+app immediately after its second create, before that create's completion
+line was retained. The two setup requests therefore have no fresh correlation
+claim; their HTTP replies and persisted creation effects are retained.
+The AC-19 journey rows and the earlier full captures are unaffected.
+
+Item **12** now has both required records: design review and the explicit
+daily-salt row in `docs/review/02-analytics/02-security-review.md` at
+a3092bd. I read that row and its actual-class probe, then ran the probe again
+on this candidate: scheduled quiet-day expiry nulls day/salt and zeroes the
+former 32-byte array; close does likewise, idempotently; stale expiry is
+harmless. The bean's salt is private memory, never logged/stored/returned.
+Transient SecretKeySpec copies for in-flight requests remain ordinary JVM
+objects; no universal heap-erasure or hard real-time guarantee is claimed.
+The security-reviewed product blob is identical on this revision.
+
+QA proof drop and judgments cover **1–12** on the new candidate. **13** still
+belongs to release_prep's NFR-L3 bench/gap, under lead obligation
+qitem-20261003103240-18e29a17. The numerical added p95, natural midnight,
+PostgreSQL, packaged artifact and exhaustive scheduling remain unverified.
+This fixes code-review CR-01's test race; the earlier API-schema backlog with
+the same local label and A-9 remain the lead's separate obligations.
+
+### Self-check
+
+Checked exact SHA/clean worktree; sole test-setup delta and unchanged
+assertions; isolated repro command and full all-AC gate; fresh merged CSV,
+291 copied files and 138 complete mappings; adopted prior effects by exact
+source equality; fresh click/error/failure/storage/log/API effects and the
+stated preparation-capture limit. GAPS and proof sequencing current.
+Item 12 has recorded independent security evidence and a fresh QA probe.
+Item 13 remains explicitly pending. Apps stopped, temporary constraint gone,
+no product/test edits by QA; new proof and judgments use the candidate SHA.
+

@@ -1,0 +1,348 @@
+{
+  "candidate": "5b3490c65915cf42594a4720350950bcefd2d7d0",
+  "codes": {
+    "representative": {
+      "code": "i40W5vTn",
+      "shortUrl": "http://localhost:8080/i40W5vTn",
+      "url": "https://recheck-target.example/representative",
+      "state": "active",
+      "createdAt": "2026-10-03T11:06:00.116Z",
+      "target": "https://recheck-target.example/representative"
+    },
+    "failed": {
+      "code": "VFmweoGc",
+      "shortUrl": "http://localhost:8080/VFmweoGc",
+      "url": "https://recheck-target.example/failed",
+      "state": "active",
+      "createdAt": "2026-10-03T11:06:00.224Z",
+      "target": "https://recheck-target.example/failed"
+    }
+  },
+  "exchanges": [
+    {
+      "label": "recheck-create-representative",
+      "path": "/api/links",
+      "request": {
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "url": "https://recheck-target.example/representative"
+        }
+      },
+      "before": "2026-10-03T11:06:00.017Z",
+      "after": "2026-10-03T11:06:00.196Z",
+      "wallMs": 179,
+      "status": 201,
+      "headers": {
+        "x-request-id": "e84e8951-bb4f-470f-a84f-c11b1865e948",
+        "location": "/api/links/i40W5vTn",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 11:06:00 GMT"
+      },
+      "body": "{\"code\":\"i40W5vTn\",\"shortUrl\":\"http://localhost:8080/i40W5vTn\",\"url\":\"https://recheck-target.example/representative\",\"state\":\"active\",\"createdAt\":\"2026-10-03T11:06:00.116Z\"}"
+    },
+    {
+      "label": "recheck-create-failed",
+      "path": "/api/links",
+      "request": {
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "url": "https://recheck-target.example/failed"
+        }
+      },
+      "before": "2026-10-03T11:06:00.196Z",
+      "after": "2026-10-03T11:06:00.258Z",
+      "wallMs": 63,
+      "status": 201,
+      "headers": {
+        "x-request-id": "b35afae1-1374-4e92-96ff-6c701a8fe3f6",
+        "location": "/api/links/VFmweoGc",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 11:06:00 GMT"
+      },
+      "body": "{\"code\":\"VFmweoGc\",\"shortUrl\":\"http://localhost:8080/VFmweoGc\",\"url\":\"https://recheck-target.example/failed\",\"state\":\"active\",\"createdAt\":\"2026-10-03T11:06:00.224Z\"}"
+    },
+    {
+      "label": "recheck-empty",
+      "path": "/api/links/i40W5vTn/stats",
+      "request": {
+        "method": "GET",
+        "headers": {}
+      },
+      "before": "2026-10-03T11:07:03.983Z",
+      "after": "2026-10-03T11:07:04.118Z",
+      "wallMs": 135,
+      "status": 200,
+      "headers": {
+        "x-request-id": "572476e7-ded7-4175-921e-90b878c8b1c3",
+        "content-type": "application/json",
+        "content-length": "71",
+        "date": "Sat, 03 Oct 2026 11:07:04 GMT"
+      },
+      "body": "{\"code\":\"i40W5vTn\",\"totalClicks\":0,\"clicksPerDay\":[],\"topReferrers\":[]}"
+    },
+    {
+      "label": "recheck-redirect-0",
+      "path": "/i40W5vTn",
+      "request": {
+        "method": "GET",
+        "headers": {
+          "Accept": "text/html",
+          "User-Agent": "Mozilla/5.0 recheckuacanary",
+          "Referer": "https://RecheckOrigin.Example/recheckpathcanary?q=recheckquerycanary",
+          "X-Forwarded-For": "192.0.2.88"
+        }
+      },
+      "before": "2026-10-03T11:07:04.118Z",
+      "after": "2026-10-03T11:07:04.232Z",
+      "wallMs": 114,
+      "status": 302,
+      "headers": {
+        "x-request-id": "31ad7e30-68cb-46c5-9121-5381c53c390d",
+        "location": "https://recheck-target.example/representative",
+        "cache-control": "no-store",
+        "content-length": "0",
+        "date": "Sat, 03 Oct 2026 11:07:04 GMT"
+      },
+      "body": ""
+    },
+    {
+      "label": "recheck-redirect-1",
+      "path": "/i40W5vTn",
+      "request": {
+        "method": "GET",
+        "headers": {
+          "Accept": "text/html",
+          "User-Agent": "Mozilla/5.0 recheckuacanary",
+          "Referer": "https://RecheckOrigin.Example/recheckpathcanary?q=recheckquerycanary",
+          "X-Forwarded-For": "192.0.2.88"
+        }
+      },
+      "before": "2026-10-03T11:07:04.232Z",
+      "after": "2026-10-03T11:07:04.285Z",
+      "wallMs": 53,
+      "status": 302,
+      "headers": {
+        "x-request-id": "740ca63c-65e0-4a52-8c20-3e08320f7f24",
+        "location": "https://recheck-target.example/representative",
+        "cache-control": "no-store",
+        "content-length": "0",
+        "date": "Sat, 03 Oct 2026 11:07:04 GMT"
+      },
+      "body": ""
+    },
+    {
+      "label": "recheck-redirect-2",
+      "path": "/i40W5vTn",
+      "request": {
+        "method": "GET",
+        "headers": {
+          "Accept": "text/html",
+          "User-Agent": "Mozilla/5.0 recheckuacanary",
+          "Referer": "https://RecheckOrigin.Example/recheckpathcanary?q=recheckquerycanary",
+          "X-Forwarded-For": "192.0.2.88"
+        }
+      },
+      "before": "2026-10-03T11:07:04.285Z",
+      "after": "2026-10-03T11:07:04.337Z",
+      "wallMs": 52,
+      "status": 302,
+      "headers": {
+        "x-request-id": "7d7526d8-1148-4625-8b4b-da9a89046fa0",
+        "location": "https://recheck-target.example/representative",
+        "cache-control": "no-store",
+        "content-length": "0",
+        "date": "Sat, 03 Oct 2026 11:07:04 GMT"
+      },
+      "body": ""
+    },
+    {
+      "label": "recheck-stats",
+      "path": "/api/links/i40W5vTn/stats",
+      "request": {
+        "method": "GET",
+        "headers": {}
+      },
+      "before": "2026-10-03T11:07:04.337Z",
+      "after": "2026-10-03T11:07:04.387Z",
+      "wallMs": 50,
+      "status": 200,
+      "headers": {
+        "x-request-id": "f8887d10-26ae-4646-8739-3327f80d1120",
+        "content-type": "application/json",
+        "content-length": "158",
+        "date": "Sat, 03 Oct 2026 11:07:04 GMT"
+      },
+      "body": "{\"code\":\"i40W5vTn\",\"totalClicks\":3,\"clicksPerDay\":[{\"date\":\"2026-10-03\",\"clicks\":3}],\"topReferrers\":[{\"referrer\":\"https://recheckorigin.example\",\"clicks\":3}]}"
+    },
+    {
+      "label": "recheck-head",
+      "path": "/api/links/i40W5vTn/stats",
+      "request": {
+        "method": "HEAD",
+        "headers": {}
+      },
+      "before": "2026-10-03T11:07:04.387Z",
+      "after": "2026-10-03T11:07:04.436Z",
+      "wallMs": 49,
+      "status": 200,
+      "headers": {
+        "x-request-id": "a432a25e-07ae-49da-b8c1-aa8a0f9850b5",
+        "content-type": "application/json",
+        "content-length": "158",
+        "date": "Sat, 03 Oct 2026 11:07:04 GMT"
+      },
+      "body": ""
+    },
+    {
+      "label": "recheck-options",
+      "path": "/api/links/i40W5vTn/stats",
+      "request": {
+        "method": "OPTIONS",
+        "headers": {}
+      },
+      "before": "2026-10-03T11:07:04.436Z",
+      "after": "2026-10-03T11:07:04.484Z",
+      "wallMs": 48,
+      "status": 200,
+      "headers": {
+        "x-request-id": "54ddf6fb-7966-49eb-9d86-ebc699797946",
+        "allow": "GET,HEAD,OPTIONS",
+        "accept-patch": "",
+        "content-length": "0",
+        "date": "Sat, 03 Oct 2026 11:07:04 GMT"
+      },
+      "body": ""
+    },
+    {
+      "label": "recheck-404",
+      "path": "/api/links/nosuchcode1/stats",
+      "request": {
+        "method": "GET",
+        "headers": {
+          "Accept": "text/html"
+        }
+      },
+      "before": "2026-10-03T11:07:04.484Z",
+      "after": "2026-10-03T11:07:04.540Z",
+      "wallMs": 56,
+      "status": 404,
+      "headers": {
+        "x-request-id": "4d2e620c-0b08-4524-bd91-b1fc88144db9",
+        "content-type": "application/problem+json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 11:07:04 GMT"
+      },
+      "body": "{\"instance\":\"urn:uuid:4d2e620c-0b08-4524-bd91-b1fc88144db9\",\"status\":404,\"title\":\"Not Found\"}"
+    },
+    {
+      "label": "recheck-405",
+      "path": "/api/links/i40W5vTn/stats",
+      "request": {
+        "method": "POST",
+        "headers": {
+          "Accept": "text/html"
+        }
+      },
+      "before": "2026-10-03T11:07:04.540Z",
+      "after": "2026-10-03T11:07:04.589Z",
+      "wallMs": 49,
+      "status": 405,
+      "headers": {
+        "x-request-id": "ec188d1a-e1d2-49e9-9bf5-09af3a1979d0",
+        "allow": "GET",
+        "content-type": "application/problem+json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 11:07:04 GMT"
+      },
+      "body": "{\"instance\":\"urn:uuid:ec188d1a-e1d2-49e9-9bf5-09af3a1979d0\",\"status\":405,\"title\":\"Method Not Allowed\"}"
+    },
+    {
+      "label": "recheck-failed-store",
+      "path": "/VFmweoGc",
+      "request": {
+        "method": "GET",
+        "headers": {
+          "User-Agent": "Mozilla/5.0 recheckfailcanary",
+          "Referer": "https://recheckfailure.example/recheckfailpath?q=recheckfailquery"
+        }
+      },
+      "before": "2026-10-03T11:07:04.589Z",
+      "after": "2026-10-03T11:07:04.638Z",
+      "wallMs": 50,
+      "status": 302,
+      "headers": {
+        "x-request-id": "9b167239-d735-40d6-9103-14985ea5e1b4",
+        "location": "https://recheck-target.example/failed",
+        "cache-control": "no-store",
+        "content-length": "0",
+        "date": "Sat, 03 Oct 2026 11:07:04 GMT"
+      },
+      "body": ""
+    },
+    {
+      "label": "recheck-failed-stats",
+      "path": "/api/links/VFmweoGc/stats",
+      "request": {
+        "method": "GET",
+        "headers": {}
+      },
+      "before": "2026-10-03T11:07:04.639Z",
+      "after": "2026-10-03T11:07:04.690Z",
+      "wallMs": 51,
+      "status": 200,
+      "headers": {
+        "x-request-id": "c4a2de8a-ffe4-4622-8a57-e337f04495e4",
+        "content-type": "application/json",
+        "content-length": "71",
+        "date": "Sat, 03 Oct 2026 11:07:04 GMT"
+      },
+      "body": "{\"code\":\"VFmweoGc\",\"totalClicks\":0,\"clicksPerDay\":[],\"topReferrers\":[]}"
+    },
+    {
+      "label": "recheck-openapi",
+      "path": "/v3/api-docs",
+      "request": {
+        "method": "GET",
+        "headers": {}
+      },
+      "before": "2026-10-03T11:07:04.690Z",
+      "after": "2026-10-03T11:07:04.862Z",
+      "wallMs": 172,
+      "status": 200,
+      "headers": {
+        "x-request-id": "5b155082-4e84-4ab2-97bc-7738b1c0b9df",
+        "content-type": "application/json",
+        "content-length": "6656",
+        "date": "Sat, 03 Oct 2026 11:07:04 GMT"
+      },
+      "body": "{\"openapi\":\"3.1.0\",\"info\":{\"description\":\"Create, read and retire short links; visitors are redirected with 302.\",\"title\":\"urlshort\",\"version\":\"1\"},\"servers\":[{\"url\":\"/\"}],\"paths\":{\"/api/links\":{\"post\":{\"description\":\"Without Idempotency-Key every call creates a new link. With a key, a repeat with the same url within 24 h of the first 201 returns that link (current state); a different url is 422.\",\"operationId\":\"createLink\",\"parameters\":[{\"description\":\"1 to 255 visible ASCII characters; makes a retried create return the first link\",\"in\":\"header\",\"name\":\"Idempotency-Key\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"requestBody\":{\"content\":{\"application/json\":{\"examples\":{\"create\":{\"description\":\"create\",\"value\":{\"url\":\"https://example.com/some/path?q=1\"}}},\"schema\":{\"$ref\":\"#/components/schemas/CreateLinkRequest\"}}},\"required\":true},\"responses\":{\"201\":{\"content\":{\"application/json\":{\"examples\":{\"created\":{\"description\":\"created\",\"value\":{\"code\":\"Ab3dE9fG\",\"shortUrl\":\"http://localhost:8080/Ab3dE9fG\",\"url\":\"https://example.com/some/path?q=1\",\"state\":\"active\",\"createdAt\":\"2026-10-03T05:12:42.133Z\"}}},\"schema\":{\"$ref\":\"#/components/schemas/LinkResponse\"}}},\"description\":\"Created, or replayed for the same key and url\",\"headers\":{\"Location\":{\"description\":\"/api/links/{code}\",\"schema\":{\"type\":\"string\"},\"style\":\"simple\"}}},\"400\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Invalid url or Idempotency-Key (errors[] names field and rule), or a body that is not a JSON object\"},\"413\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Body larger than 16 384 bytes\"},\"415\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Content-Type is not application/json\"},\"422\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Idempotency-Key already used with a different url\"},\"500\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Nothing was stored\"}},\"summary\":\"Create a short link for an http(s) URL\",\"tags\":[\"link-controller\"]}},\"/api/links/{code}\":{\"delete\":{\"operationId\":\"retireLink\",\"parameters\":[{\"in\":\"path\",\"name\":\"code\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"204\":{\"description\":\"Retired\"},\"404\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"No link has this code\"},\"410\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Already retired\"},\"500\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Nothing was changed\"}},\"summary\":\"Retire a link; visitors then get 410 and the record is kept\",\"tags\":[\"link-controller\"]},\"get\":{\"operationId\":\"readLink\",\"parameters\":[{\"in\":\"path\",\"name\":\"code\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"link\":{\"description\":\"link\",\"value\":{\"code\":\"Ab3dE9fG\",\"shortUrl\":\"http://localhost:8080/Ab3dE9fG\",\"url\":\"https://example.com/some/path?q=1\",\"state\":\"active\",\"createdAt\":\"2026-10-03T05:12:42.133Z\"}}},\"schema\":{\"$ref\":\"#/components/schemas/LinkResponse\"}}},\"description\":\"The link; state is active or retired\"},\"404\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"No link has this code\"}},\"summary\":\"Read a link by its code\",\"tags\":[\"link-controller\"]}},\"/api/links/{code}/stats\":{\"get\":{\"operationId\":\"stats\",\"parameters\":[{\"in\":\"path\",\"name\":\"code\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"stats\":{\"description\":\"stats\",\"value\":{\"code\":\"Ab3dE9fG\",\"totalClicks\":6,\"clicksPerDay\":[{\"date\":\"2026-10-01\",\"clicks\":2},{\"date\":\"2026-10-02\",\"clicks\":3},{\"date\":\"2026-10-04\",\"clicks\":1}],\"topReferrers\":[{\"referrer\":\"https://a.example\",\"clicks\":5}]}}},\"schema\":{\"$ref\":\"#/components/schemas/LinkStats\"}}},\"description\":\"Total clicks, clicks per UTC day and the top 10 referrer origins\"},\"404\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"No link has this code\"}},\"summary\":\"Read a link's click statistics\",\"tags\":[\"stats-controller\"]}},\"/api/ping\":{\"get\":{\"operationId\":\"ping\",\"responses\":{\"200\":{\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/PingResponse\"}}},\"description\":\"OK\"}},\"tags\":[\"ping-controller\"]}},\"/{code}\":{\"get\":{\"operationId\":\"redirect\",\"parameters\":[{\"in\":\"path\",\"name\":\"code\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"302\":{\"description\":\"Redirect to the stored url, not cacheable\",\"headers\":{\"Cache-Control\":{\"description\":\"no-store\",\"schema\":{\"type\":\"string\"},\"style\":\"simple\"},\"Location\":{\"description\":\"The stored url, byte for byte\",\"schema\":{\"type\":\"string\"},\"style\":\"simple\"}}},\"404\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"No link has this code\"},\"410\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"The link was retired\"}},\"summary\":\"Open a short link\",\"tags\":[\"redirect-controller\"]}}},\"components\":{\"schemas\":{\"CreateLinkRequest\":{\"type\":\"object\",\"properties\":{\"url\":{\"type\":\"string\"}}},\"DayClicks\":{\"type\":\"object\",\"properties\":{\"clicks\":{\"type\":\"integer\",\"format\":\"int64\"},\"date\":{\"type\":\"string\",\"format\":\"date\"}}},\"LinkResponse\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\",\"format\":\"date-time\"},\"shortUrl\":{\"type\":\"string\"},\"state\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"}}},\"LinkStats\":{\"type\":\"object\",\"properties\":{\"clicksPerDay\":{\"type\":\"array\",\"items\":{\"$ref\":\"#/components/schemas/DayClicks\"}},\"code\":{\"type\":\"string\"},\"topReferrers\":{\"type\":\"array\",\"items\":{\"$ref\":\"#/components/schemas/ReferrerClicks\"}},\"totalClicks\":{\"type\":\"integer\",\"format\":\"int64\"}}},\"PingResponse\":{\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"string\"},\"time\":{\"type\":\"string\"}}},\"ProblemDetail\":{\"type\":\"object\",\"properties\":{\"detail\":{\"type\":\"string\"},\"instance\":{\"type\":\"string\",\"format\":\"uri\"},\"properties\":{\"type\":\"object\",\"additionalProperties\":{}},\"status\":{\"type\":\"integer\",\"format\":\"int32\"},\"title\":{\"type\":\"string\"},\"type\":{\"type\":\"string\",\"format\":\"uri\"}}},\"ReferrerClicks\":{\"type\":\"object\",\"properties\":{\"clicks\":{\"type\":\"integer\",\"format\":\"int64\"},\"referrer\":{\"type\":\"string\"}}}}}}"
+    },
+    {
+      "label": "recheck-final-stats",
+      "path": "/api/links/i40W5vTn/stats",
+      "request": {
+        "method": "GET",
+        "headers": {}
+      },
+      "before": "2026-10-03T11:07:04.862Z",
+      "after": "2026-10-03T11:07:04.914Z",
+      "wallMs": 52,
+      "status": 200,
+      "headers": {
+        "x-request-id": "2193c7dc-f230-45f4-b9e7-1748915dd0a7",
+        "content-type": "application/json",
+        "content-length": "158",
+        "date": "Sat, 03 Oct 2026 11:07:04 GMT"
+      },
+      "body": "{\"code\":\"i40W5vTn\",\"totalClicks\":3,\"clicksPerDay\":[{\"date\":\"2026-10-03\",\"clicks\":3}],\"topReferrers\":[{\"referrer\":\"https://recheckorigin.example\",\"clicks\":3}]}"
+    }
+  ]
+}

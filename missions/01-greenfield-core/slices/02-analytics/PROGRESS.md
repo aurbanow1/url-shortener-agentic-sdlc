@@ -19,15 +19,23 @@
 - [x] `docs/api/openapi.json` regenerated on the candidate with the statistics operation and its example; drift fails the suite
 - [x] `docs/diagrams/erd.mmd` shows `click` and its relation to `link` (on `main`, by the design step)
 - [x] QA: coverage reports, traceability, GAPS row (NFR-L3), live-vs-committed API document diff, independent captures — independent 121/126, 359/359 lines, 118/118 branches on 862c52e; PROOF.md §QA
-- [ ] Design/security review record on salt handling (rule 4); release bench for NFR-L3
+- [x] Design/security review record on salt handling (rule 4), security evidence a3092bd; fresh QA actual-class probe on 5b3490c
+- [ ] Release bench for NFR-L3
 
 ## QA acceptance
 
 - [x] All 22 ACs and nine rules mapped; all 138 source test methods mapped, 247 invocations green
 - [x] Live HTTP, stored clicks, correlated JSON logs and unchanged audit/link snapshots checked independently
 - [x] Apps stopped, worktree clean at the exact candidate, isolated database constraint removed
-- [ ] Proof item 12: later security-review salt record (design portion present)
+- [x] Proof item 12: explicit design/security salt records plus fresh actual-class expiry/close probe
 - [ ] Proof item 13: release-level latency measurement; pending gap allowed by the locked SPEC
 
 Later records tracked by lead continuation qitem-20261003103240-18e29a17;
-see docs/qa/02-analytics/proof-sequencing.md. QA acceptance of 1–11 does not close those obligations.
+see docs/qa/02-analytics/proof-sequencing.md. Item 13 remains pending.
+
+## Re-check after CR-01
+
+- [x] Candidate 5b3490c65915cf42594a4720350950bcefd2d7d0: test setup only; all original assertions retained
+- [x] Isolated midnight regression 1/1 and fresh full 121/126 gate; merged CSV 100% line/branch
+- [x] Reports copied again, all 138 method mappings refreshed; previous comprehensive effects adopted through exact source equality
+- [x] Fresh live representative/error/failing-insert effects; logs, audit/click export and API document checked; preparation-log limit recorded
