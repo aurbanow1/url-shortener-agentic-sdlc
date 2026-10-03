@@ -1,6 +1,6 @@
 Environment: URLSHORT_PUBLIC_BASE_URL=https://sho.rt
 Command: scripts/http --silent --show-error --include --max-time 10 --request POST --header 'Content-Type: application/json' --header 'Host: evil.example' --header 'X-Forwarded-Host: evil.example' --data-binary '{"url":"https://example.com/configured"}' http://127.0.0.1:18091/api/links
-HTTP/1.1 201 
+HTTP/1.1 201
 X-Request-Id: af4dc5f4-0e0e-4081-a7dc-c99f5f23f7dc
 Location: /api/links/vOiZa2yX
 Content-Type: application/json

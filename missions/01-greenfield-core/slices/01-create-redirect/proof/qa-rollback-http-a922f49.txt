@@ -2,7 +2,7 @@
 Before: 2026-10-03T07:21:57.871Z
 After: 2026-10-03T07:21:58.020Z
 Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: text/plain' --data-binary '@missions/01-greenfield-core/slices/01-create-redirect/proof/qa-text-body-a922f49.txt' 'http://127.0.0.1:18091/api/links'
-HTTP/1.1 415 
+HTTP/1.1 415
 X-Request-Id: ef93507b-6202-41a6-bac6-73d7cd620a94
 Accept: application/json
 Content-Type: application/problem+json
@@ -15,7 +15,7 @@ Date: Sat, 03 Oct 2026 07:21:57 GMT
 Before: 2026-10-03T07:21:58.021Z
 After: 2026-10-03T07:21:58.151Z
 Command: scripts/http --silent --show-error --include --max-time 10 --request 'DELETE' 'http://127.0.0.1:18091/api/links/bJq291Iv'
-HTTP/1.1 500 
+HTTP/1.1 500
 X-Request-Id: 0f973c08-1757-4bf0-865f-c6cb292cfd5c
 Content-Type: application/problem+json
 Transfer-Encoding: chunked
@@ -28,7 +28,7 @@ Connection: close
 Before: 2026-10-03T07:21:58.152Z
 After: 2026-10-03T07:21:58.211Z
 Command: scripts/http --silent --show-error --include --max-time 10 --request 'GET' 'http://127.0.0.1:18091/api/links/bJq291Iv'
-HTTP/1.1 200 
+HTTP/1.1 200
 X-Request-Id: 932a7441-ada2-4532-8b62-f0530d236a9e
 Content-Type: application/json
 Content-Length: 154
@@ -40,12 +40,9 @@ Date: Sat, 03 Oct 2026 07:21:58 GMT
 Before: 2026-10-03T07:21:58.211Z
 After: 2026-10-03T07:21:58.267Z
 Command: scripts/http --silent --show-error --include --max-time 10 --request 'GET' --header 'Accept: text/html,application/xhtml+xml,*/*;q=0.8' 'http://127.0.0.1:18091/bJq291Iv'
-HTTP/1.1 302 
+HTTP/1.1 302
 X-Request-Id: d646dd16-15d0-4c29-a79b-a2a1e3bf303b
 Location: https://example.com/repeat
 Cache-Control: no-store
 Content-Length: 0
 Date: Sat, 03 Oct 2026 07:21:58 GMT
-
-
-

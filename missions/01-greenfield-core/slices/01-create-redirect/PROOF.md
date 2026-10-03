@@ -114,7 +114,9 @@ JUnit invocation inventory is `proof/qa-test-invocations-a922f49.txt`.
 
 **HTTP effects.** Started the unchanged candidate on loopback port 18091
 with an isolated database at `build/qa-h2/urlshort`, preserving the builder's
-database. `proof/qa-http-a922f49.txt` contains create/read/redirect/retire,
+database. Captured text normalizes CRLF, status-line trailing spaces and
+blank lines at EOF; response bodies and header values are unchanged.
+`proof/qa-http-a922f49.txt` contains create/read/redirect/retire,
 retired reads and browser errors, all AC-4 validation rows, all AC-5 body
 shapes, multipart, the exact 16,384/16,385-byte boundary, all AC-14 and AC-15
 requests, the route regression guard, three idempotent replays, mismatch
