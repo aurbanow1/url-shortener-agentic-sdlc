@@ -135,3 +135,97 @@ or requirement narrowing has been granted by this reviewer.
 - All probe processes finished. No container, real limiter implementation,
   advisory scan or performance target is claimed verified here.
 - Ledger row appended; peer reviewer notified to serialize that write.
+
+## Re-review 99a93804292c794bc081759c49cd2c97cbc98f6d
+
+2026-10-03 UTC, `review2-agent@urlshort-factory` (Codex), packet
+`qitem-20261003093000-222473fe`. SPEC candidate:
+`f24f373b5c8649239a9bc5431cdaafdf24fe5fa8`.
+
+**Verdict: PASS with residue — DR-01 and DR-02 resolved; DR-03 has one
+non-blocking MEDIUM wording carry-over to fix in passing. Handoff to plan-lock.**
+
+### Resolution of findings
+
+| Id | Resolution | Evidence and disposition |
+|---|---|---|
+| DR-01 | Fixed | `design.md:42` adds the exact `ResourceHandlerUtils=error` control independently verified in `proof/path-review-quiet.txt`. The event table, threat model, ADR-0004/0016 and shared logging contract now agree. `RateLimitJourneyTest` names real-server GET and POST canaries and asserts both 404 and no canary in captured logs. Product inputs are unchanged since the before/after control, so that result remains applicable; the regression test is still implementation work. |
+| DR-02 | Resolved by recorded contract correction | The lead answered the escalation in mission `NOTES.md` §2 and routed the precise predicate through `qitem-20261003092511-dc120dcd`. The requirements owner applied it at `f24f373`; design §2.5/§12, ADR-0017 and the shared contract align. The lead explains this as correction of an agent-added promise under D11, preserving the human's NFR-R3 text/proof, and recorded a reversible FYI in `qitem-20261003092530-bebe2a60`. This is a lead decision, not a new human approval. The revised counter probe and an independent request-ID control support the distinction; results below. |
+| DR-03 | Partially fixed; MEDIUM remains non-blocking | `design.md:37`, ADR-0014 and the unit-test plan now explicitly describe idle retention and cleanup on a later request. The threat-table row at `design.md:273` still says entries are released within 61 seconds and bounds them by the last 61 seconds of clients. The original idle counterexample still applies to that sentence. Replace that row with the opportunistic guarantee already stated in §1. No timer or new review loop is required; fix this wording in passing. |
+
+The lead's decision does not excuse a dispatched request whose response is
+lost: the revised AC-25 requires zero such failures, separately counts outright
+refusals and never-dispatched boundary losses, and retains the held-request,
+new-connection, complete-phase and compose-restart checks. No other AC changed.
+
+### Revision coverage
+
+Scope: eight distinct files in design commits `22c69a2`/`99a9380`, plus the
+SPEC correction in `f24f373`. All nine were byte-compared to the candidate and
+matched. The unrelated analytics changes in the accumulated main history are
+outside this packet; only this slice's changes to shared documents are judged.
+
+| Revision file | Result |
+|---|---|
+| `missions/01-greenfield-core/slices/03-operate/SPEC.md` | Revised AC-25, rule 13, A-16 and response/history read; lead decision accurately represented |
+| `missions/01-greenfield-core/slices/03-operate/design.md` | All revision hunks read with surrounding contract; DR-01/02 resolved, DR-03 wording residue |
+| `missions/01-greenfield-core/slices/03-operate/design-probe/OperateProbe.java` | New entry/return counters read in full drain context and independently rerun |
+| `missions/01-greenfield-core/slices/03-operate/design-probe/output.txt` | All 416 structured events parsed, all case results inspected; source and reported counts agree |
+| `docs/adr/0004-structured-ecs-logs-no-client-pii.md` | Resource-path logger added consistently |
+| `docs/adr/0014-rate-limit-filter-gcra.md` | Actual lazy sweep and idle retention stated |
+| `docs/adr/0016-metrics-and-health-exposure.md` | Invalid-path mitigation and 404 result stated |
+| `docs/adr/0017-container-hardening-and-shutdown.md` | Revised predicate and reconciliation stated; native shutdown retained |
+| `docs/DESIGN.md` | This revision's logging and shutdown contract changes agree |
+
+**9 changed files, 9 reviewed.** No new production layer, dependency, territory
+or schema change was introduced by the fixes.
+
+### Fresh verification
+
+```sh
+scripts/gw --log docs/review/03-operate/proof/design-revision-rerun.txt --offline -I missions/01-greenfield-core/slices/03-operate/design-probe/operate-probe.gradle designOperateProbe
+scripts/gw --log docs/review/03-operate/proof/drain-identity.txt --offline -I docs/review/03-operate/proof/drain-identity.gradle reviewDrainIdentity
+```
+
+Both exit 0 and actually execute their Java probes. The prior baseline gate is
+not claimed rerun: product/build inputs still match `99a9380`, and this revision
+changes documentation/probes only. Trailing horizontal whitespace was removed
+from the new text captures before commit without changing substantive output.
+
+- Revised authored probe: D1 has **9,928 dispatched = returned = client
+  successes**, four cut-offs; D2 has **13,560**, four cut-offs. Held creates
+  return 201 after 510/515 ms; subsequent connections are refused. In the paced
+  runs, **P7 has two cut-offs**, with 68 dispatched = returned = successes
+  (`proof/design-revision-rerun.txt:427`); the other nine have none. Every
+  run's counters reconcile. This updates the observed sample honestly: a paced
+  rate does not guarantee zero backlog losses. All 416 structured events were
+  parsed; all fourteen contexts report graceful completion.
+- Independent `DrainIdentityProbe` verifies the proposed reconciliation using
+  actual `RequestIdFilter` completion events and response-header IDs, with a
+  latch proving that the held request entered the chain. Normal drain:
+  readiness and a complete 201 response both reconcile, zero missing IDs,
+  628 ms (`proof/drain-identity.txt:43`). The complete held response is checked
+  against HTTP framing and its body, not only its status.
+- Negative control: deliberately reset the held socket **after dispatch**
+  during shutdown. The server logs both requests; the client receives only
+  readiness. The missing set is exactly the held request's known ID, classified
+  as a dispatched loss, 565 ms (`proof/drain-identity.txt:75`). New connections
+  are refused in both controls. The induced client abort tests the detector;
+  it is not a newly discovered service shutdown defect.
+
+Limits: these probes close the application context, not a packaged process by
+SIGTERM. The authored load probe recognizes success from a 2xx/3xx status after
+socket EOF; the final smoke must use complete-transfer status and retain both
+ID lists as designed. Neither probe is a substitute for the implemented smoke,
+the container restart, the real limiter, integrated analytics shutdown, or the
+release performance measurements. The other review seat owns analytics' drain
+finding; this verdict does not settle it. The accepted connection boundary and
+measured losses must remain visible in release evidence, as the lead recorded.
+
+### Re-review self-check
+
+All three original findings are dispositioned; no settled issue reopened and
+no unrelated low-severity issue added. The nine revision files and decision
+chain were inspected, both fresh probe outputs checked, and all probe processes
+finished. Source, tests, SPEC and design were not edited. DR-03's remaining
+sentence should be fixed in passing, not deferred as a need for new machinery.
