@@ -11,6 +11,7 @@
 //   e2e latency     createdAt -> completedAt of an instance (or now, if active)
 //   step closure    one trail entry; closureReason handoff|done = success, failed = artifact rejected
 //   retry           a failed closure (QA / review / security sent the candidate back) or a step re-entered
+//                   with a non-waiting exit; `waiting` re-presentations of the same step are waits, not retries
 //   rollback        a transition or evidence note mentioning revert/rollback, plus engine resumes (resumeCount)
 //   MTTR            failed closure of step S -> next successful closure of S (mean over occurrences)
 //   human wait      packet parked on human@kernel -> transition recorded by human@kernel
@@ -97,7 +98,8 @@ for (const [id, inst] of instances) {
     let humanWait = 0;
     for (let i = 0; i < tr.length; i++) {
       const t = tr[i];
-      const parkedOnHuman = t.state === "blocked" && /human@kernel/.test(`${t.transitionNote ?? ""} ${t.closureTarget ?? ""}`);
+      // Only the engine's own gate park counts; an owner's note that merely mentions the gate (e.g. the integrator waiting on a parked slice) does not.
+      const parkedOnHuman = t.state === "blocked" && (t.blockedOn === "human@kernel" || /^workflow gate: parked on human@kernel/.test(t.transitionNote ?? ""));
       if (!parkedOnHuman) continue;
       const release = tr.slice(i + 1).find((u) => u.actorSession === "human@kernel" || u.state !== "blocked");
       humanWait += (release ? ts(release.ts) : now) - ts(t.ts);
@@ -108,7 +110,8 @@ for (const [id, inst] of instances) {
 
   const closures = trail.map((t) => ({ step: t.stepId, reason: t.closureReason, at: ts(t.closedAt), note: `${t.closureEvidence?.evidence_ref ?? ""}` }));
   const failed = closures.filter((c) => c.reason === "failed");
-  const stepCounts = closures.reduce((m, c) => m.set(c.step, (m.get(c.step) ?? 0) + 1), new Map());
+  // A `waiting` closure re-presents the same step (e.g. the integrator waiting on a slice's proof); it is a wait, not a retry.
+  const stepCounts = closures.filter((c) => c.reason !== "waiting").reduce((m, c) => m.set(c.step, (m.get(c.step) ?? 0) + 1), new Map());
   const reentries = [...stepCounts.values()].reduce((a, n) => a + Math.max(0, n - 1), 0);
   const mttrs = failed.map((f) => {
     const fix = closures.find((c) => c.step === f.step && c.at > f.at && c.reason !== "failed");
@@ -163,7 +166,8 @@ const totals = {
   mttrMeanSec: mttrAll.length ? Math.round(mttrAll.reduce((a, b) => a + b, 0) / mttrAll.length) : null,
   e2eP50Sec: pct(completed.map((r) => r.e2eLatencySec), 0.5),
   e2eP95Sec: pct(completed.map((r) => r.e2eLatencySec), 0.95),
-  humanWaitTotalSec: report.reduce((a, r) => a + r.humanWaitSec, 0),
+  // A gate packet can appear in several instances' trails (a slice gate is also a blocker of the mission's wave_integration); count each packet once.
+  humanWaitTotalSec: [...new Map(report.flatMap((r) => r.packets.map((p) => [p.qitemId, p.humanWaitSec ?? 0]))).values()].reduce((a, b) => a + b, 0),
 };
 
 // ---- write -------------------------------------------------------------------------
@@ -198,10 +202,10 @@ ${rows}
 ## Derivations and honest limits
 
 - **Source of truth**: \`rig workflow trace --json\` (append-only step trail; one entry per closed packet with \`closureReason\` handoff/done/failed) and \`rig queue transitions --json\` (every state change of a packet with actor and timestamp). Nothing is self-reported by agents.
-- **Retry** counts an artifact verdict of \`failed\` (QA, code review or security review sent the candidate back) plus any step closed more than once. A retry is a governance event working as designed, not a defect of the factory.
+- **Retry** counts an artifact verdict of \`failed\` (QA, code review or security review sent the candidate back) plus any step closed more than once with a non-\`waiting\` exit. A \`waiting\` closure re-presents the same step (the integrator waiting on a slice's proof) and is not counted. One remediation round therefore shows as one failed closure plus two re-entries (the checking step and the building step both run again). A retry is a governance event working as designed, not a defect of the factory.
 - **Rollback** counts transition or evidence notes mentioning revert/rollback and engine \`resumeCount\`; a Git revert by the integrator is visible in \`git log\` as well.
 - **MTTR** is measured from a failed closure to the next successful closure of the same step, i.e. the time to repair the candidate and pass that check again. Instances with no failure have no MTTR (shown as –), not zero.
-- **Human wait** is time a packet spent parked on \`human@kernel\`; it is reported separately so agent throughput and human latency are not conflated.
+- **Human wait** is time a packet spent parked on \`human@kernel\`; it is reported separately so agent throughput and human latency are not conflated. The per-instance column sums the gate packets in that instance's trail; the total counts each packet once, because a slice gate also appears in the mission trail as the blocker of \`wave_integration\`.
 - Active instances contribute latency up to the generation time and are excluded from the p50/p95.
 - Token burn per seat is a separate record: \`rig usage top --json\` in \`docs/evidence/<mission>/usage-top.json\`.
 `;
