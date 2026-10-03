@@ -1,0 +1,85 @@
+05-ci-cd AC-5 / AC-12 — image build with the base images pulled (qa2-agent's request qitem-20261003200244-22f2ea52)
+Builder: dev2-agent@urlshort-factory (networked Claude seat). Started 2026-10-03T20:03Z, finished about 20:16Z.
+Candidate: add7ab5ca37dcd6f51aef3cd43c85455e1be6d14 (git -C .worktrees/05-ci-cd rev-parse HEAD; git status --short empty)
+Command (layer cache allowed, as requested; context = the candidate worktree):
+  docker build --pull --tag urlshort:cd /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/05-ci-cd
+Exit code: 0 (reported by the harness on completion: "completed (exit code 0)"; the run had no pipe, so it is docker's own)
+Host: Docker legacy builder (deprecation notice below); GitHub's runners use BuildKit with the same command.
+
+What it shows:
+- Both base images were pulled against Docker Hub: eclipse-temurin:21-jdk (sha256:3e3c176f…) and
+  eclipse-temurin:21-jre (sha256:cff19e62…), each "Image is up to date".
+- Steps 5 to 7 ran (not from cache): the Gradle distribution download and the in-container
+  bootJar (BUILD SUCCESSFUL in 55s). Steps 2-4 and 9-15 came from the layer cache.
+- 15/15 steps, "Successfully built 8f8a7521104b", "Successfully tagged urlshort:cd". The image ID equals
+  the earlier cached build's, so the rebuilt layers produced the same image.
+
+----- docker output, verbatim -----
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon    597kB
+Step 1/15 : FROM eclipse-temurin:21-jdk AS build
+21-jdk: Pulling from library/eclipse-temurin
+Digest: sha256:3e3c176ffed168beb42c607be9bc1639b466cf00261a0fb04425562c9d0c5c2b
+Status: Image is up to date for eclipse-temurin:21-jdk
+ ---> 3e3c176ffed1
+Step 2/15 : WORKDIR /src
+ ---> Using cache
+ ---> 1a10dc31771f
+Step 3/15 : COPY gradlew settings.gradle.kts build.gradle.kts ./
+ ---> Using cache
+ ---> 7840656df0a5
+Step 4/15 : COPY gradle gradle
+ ---> Using cache
+ ---> 05c4a3984a0e
+Step 5/15 : RUN ./gradlew --no-daemon --version >/dev/null
+ ---> Running in e8dbceb7b4a9
+ ---> Removed intermediate container e8dbceb7b4a9
+ ---> 413782848d55
+Step 6/15 : COPY src src
+ ---> d0bdd621f888
+Step 7/15 : RUN ./gradlew --no-daemon bootJar -x test -x functionalTest
+ ---> Running in 6628de43fcca
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.7.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build
+> Task :compileJava
+> Task :processResources
+> Task :classes
+> Task :resolveMainClassName
+> Task :bootJar
+
+BUILD SUCCESSFUL in 55s
+4 actionable tasks: 4 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html
+ ---> Removed intermediate container 6628de43fcca
+ ---> 6bfa3ce6a893
+Step 8/15 : FROM eclipse-temurin:21-jre
+21-jre: Pulling from library/eclipse-temurin
+Digest: sha256:cff19e6215689161eb6162c11b86b0c60ddf802164f2eaf48d570f8fb79a36c5
+Status: Image is up to date for eclipse-temurin:21-jre
+ ---> cff19e621568
+Step 9/15 : WORKDIR /app
+ ---> Using cache
+ ---> cecdf9d4ae9b
+Step 10/15 : RUN useradd --system --uid 10001 --home /app urlshort  && mkdir -p /app/data && chown -R urlshort:urlshort /app
+ ---> Using cache
+ ---> a226d62411bb
+Step 11/15 : COPY --from=build /src/build/libs/urlshort.jar /app/urlshort.jar
+ ---> Using cache
+ ---> 72c5fcc52ce6
+Step 12/15 : USER urlshort
+ ---> Using cache
+ ---> b8647cddb61f
+Step 13/15 : EXPOSE 8080
+ ---> Using cache
+ ---> 8263ef2e8724
+Step 14/15 : ENV SPRING_DATASOURCE_URL="jdbc:h2:file:/app/data/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE"     JAVA_TOOL_OPTIONS="-XX:MaxRAMPercentage=75"
+ ---> Using cache
+ ---> 4d2d129e8100
+Step 15/15 : ENTRYPOINT ["java", "-jar", "/app/urlshort.jar"]
+ ---> Using cache
+ ---> 8f8a7521104b
+Successfully built 8f8a7521104b
+Successfully tagged urlshort:cd
