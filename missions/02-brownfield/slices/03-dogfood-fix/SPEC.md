@@ -70,7 +70,7 @@ contract (`01-create-redirect` rule 8; ADR-0002).
   WHEN `components.schemas.ProblemDetail` is read
   THEN it has an optional top-level member `errors`: an array whose items are objects with exactly the required string members `field`, `rule` and `message`. It has no member `properties`. Its other members (`type`, `title`, `status`, `detail`, `instance`) are as before.
 
-- **AC-2 — Every shipped problem body conforms to the documented schema.** [FR-14]
+- **AC-2 — A representative set of problem bodies conforms to the documented schema.** [FR-14] (six cases covering both shapes, with and without `errors`. Other problem statuses, such as `403`, `405`, `406`, `413`, `415` and `500`, use the same schema (rule 3) and are not separately required here.)
   GIVEN the live document's `ProblemDetail` schema
   WHEN the suite sends a create with an invalid URL (`400`), a create whose idempotency key is bound to a different URL within its window (`422`), a read of an unknown code (`404`), a redirect to a retired link (`410`), a request over the create budget (`429`), and a malformed `GET /api/audit` query (`400`, the audit read merged from `01-audit-read`)
   THEN each response body validates against that schema. Each body's members are all described by it. The `400` and `422` bodies carry `errors` with one element each, and the others carry no `errors`.
@@ -205,7 +205,7 @@ N/A: non-visual slice.
 ## Self-check
 
 - Every AC is observable: the live and committed API documents (AC-1, AC-3), HTTP responses validated against the schema (AC-2, AC-4), git history and captured failing runs (AC-5, AC-6), the Prometheus and metrics endpoints (AC-6), and the documents (AC-7, AC-8).
-- Error and privacy paths are ACs: every problem status the service sends is checked against the schema (AC-2), and the installation-path disclosure is removed (AC-6).
+- Error and privacy paths are ACs: a representative set of six problem bodies, covering both the `errors` and the no-`errors` shape, is checked against the schema (AC-2), and the installation-path disclosure is removed (AC-6).
 - Business rules cover the non-obvious logic: test before fix, the wire as the truth, one schema for all problems, the "no installation details" rule extended to metrics, smallest fix.
 - Out of scope is explicit, including the non-defect dogfood observations and any change to problem bodies.
 - Every ambiguity is resolved: 3 assumed, 2 decided, none parked.
@@ -214,4 +214,4 @@ N/A: non-visual slice.
 - Consistent with the dogfood report, the mission brief (FR-14 real defect, FR-15 in the slice that touches it) and the dispatch's exclusions.
 - Checked on `main` by me: the committed `ProblemDetail` schema (`docs/api/openapi.json` lines 81–107) has `properties` and no `errors`; `Problems` builds `errors` from `field`/`rule`/`message`; no shipped metrics configuration class exists (`RateLimitFilter` only registers its counter); `GAPS.md` line 48 holds QA-OPR-02. `HealthMetricsJourneyTest` and the smoke do not read the disk gauges.
 - Not verified by me: whether one Boot property can drop only the `path` tag (A-4 leaves both routes open), and what `01-audit-read`'s regenerated document will look like after its merge (the plan-lock re-check covers it).
-- `plan-review` lenses applied while drafting (not invoked separately). Engineering lens: AC-2 validates every problem status, not just the reported `400`, and AC-4 proves the wire did not move. Strategy lens: W2-03 accepted only because it closes an existing gaps row. UX lens: the Creator's interface is the generated client; AC-1 removes the dead `properties` member.
+- `plan-review` lenses applied while drafting (not invoked separately). Engineering lens: AC-2 validates a representative set of problem statuses, not just the reported `400`, and AC-4 proves the wire did not move. Strategy lens: W2-03 accepted only because it closes an existing gaps row. UX lens: the Creator's interface is the generated client; AC-1 removes the dead `properties` member.
