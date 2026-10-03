@@ -62,13 +62,28 @@ Added 2026-10-02T22:47Z under the protocol update of 22:45Z, after the plan-lock
 - Risks named: yes, seat availability, filter scope creep, logging already configured.
 - Doghouse stated: yes, in §The doghouse.
 
+## Self-check (wave_integration)
+
+Recorded 2026-10-03T01:52Z before the handoff to `wave_review`.
+
+- Every slice of every wave accepted: yes, wave w1 = `01-ping`, slice instance `01M3ZA8Q39QEB3R1QDQCVTER18` completed with `done` (QA accept, 7/7 proof-contract items, readiness ready).
+- Three independent verdicts on one SHA before merge: yes, QA, code review and security review all named `f286a10863e4a8081235226f2d56e51ac121b319`.
+- Serial `--no-ff` merge, gate green on main, tag, worktree removed: yes, merge `42a25db4a9c24fba3221c1ade4044719cab39ee3`, `scripts/gw --offline check` green on main (log under `slices/01-ping/proof/`), tag `slice/01-ping/accepted`, `.worktrees/01-ping` gone.
+- Reverts needed: none.
+- Human decisions honoured: mission plan-lock (one slice, one wave, minimal filter) and slice plan-lock (SPEC `4e581cc` + design `d0521de`); neither locked artifact edited after its stamp.
+- Exceptions handled and recorded: two bounded loops (design review DR-01, QA-01), one permission-prompt stall, two territory grants and one lead decision, all in `NOTES.md` §2.
+- Open items carried forward: ADR-0004 / `docs/DESIGN.md` thread-name example reconciliation (queue row to the design agent, non-blocking); unit-suite properties shadowing (backlog); release-time network advisory checks (review agent's note for release).
+
 ## Slices
 
-- `01-ping` — Ping endpoint. Tier high. Wave w1. State: scaffolded, awaiting mission plan-lock.
+- `01-ping` — Ping endpoint. Tier high. Wave w1. State: **accepted and merged** (`42a25db4`, tag `slice/01-ping/accepted`); proof contract 7/7 judged by QA; delivery stamp follows ship sign-off.
 
 ## Status
 
 - 2026-10-02 — decomposed into one slice, one wave; compiled graph exported to `docs/evidence/00-hello/compiled-graph.json`; held at mission plan-lock.
+- 2026-10-02T22:02Z — mission plan-lock approved; wave w1 launched.
+- 2026-10-03T01:33Z — `01-ping` merged into main; 01:49Z slice accepted. Wave w1 complete.
+- 2026-10-03T01:52Z — handed to `wave_review` (review agent + design agent, authors excluded). Wave range on main: `f43ecd1..42a25db4` for product code (nine files), plus the slice and mission documents committed on main since `adfa5ca`.
 
 ---
 
