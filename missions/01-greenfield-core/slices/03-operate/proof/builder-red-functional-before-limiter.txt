@@ -1,0 +1,90 @@
+> Task :compileJava
+> Task :processResources UP-TO-DATE
+> Task :classes
+> Task :jar
+> Task :compileFunctionalTestJava
+> Task :processFunctionalTestResources
+> Task :functionalTestClasses
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+
+> Task :functionalTest
+
+RateLimitDefaultsTest > theShippedConfigurationCarriesTheDecidedBudgets() FAILED
+    org.opentest4j.AssertionFailedError at RateLimitDefaultsTest.java:25
+
+RateLimitJourneyTest > rule1_percentEncodingDoesNotMoveARequestToTheLargerBudget() FAILED
+    org.opentest4j.AssertionFailedError at RateLimitJourneyTest.java:244
+
+RateLimitJourneyTest > AC07_aForgedForwardedAddressDoesNotChangeTheClient() FAILED
+    org.opentest4j.AssertionFailedError at RateLimitJourneyTest.java:163
+
+RateLimitJourneyTest > AC01_theCreateBudgetAdmits60AndRefusesThe61st() FAILED
+    org.opentest4j.AssertionFailedError at RateLimitJourneyTest.java:271
+
+RateLimitJourneyTest > AC09_everyRequestInABudgetCountsAndTheLimitIsCheckedFirst() FAILED
+    org.opentest4j.AssertionFailedError at RateLimitJourneyTest.java:177
+
+RateLimitJourneyTest > AC11_theTooManyRequestsProblemNamesNoClient() FAILED
+    org.opentest4j.AssertionFailedError at RateLimitJourneyTest.java:271
+
+RateLimitJourneyTest > AC12_eachRejectionIsLoggedOnceCorrelatedAndWithoutClientValues(CapturedOutput) FAILED
+    org.opentest4j.AssertionFailedError at RateLimitJourneyTest.java:224
+
+RateLimitJourneyTest > AC03a_retryAfterIsTruthfulFromAnExactlyEmptyBucket() FAILED
+    org.opentest4j.AssertionFailedError at RateLimitJourneyTest.java:100
+
+RateLimitJourneyTest > AC05_theTwoBudgetsAreIndependent() FAILED
+    org.opentest4j.AssertionFailedError at RateLimitJourneyTest.java:139
+
+RateLimitJourneyTest > AC03b_retryAfterIsAnUpperBoundFromAPartlyRefilledBucket() FAILED
+    org.opentest4j.AssertionFailedError at RateLimitJourneyTest.java:115
+
+RateLimitJourneyTest > AC04_aFullBudgetReturnsAfterAQuietMinute() FAILED
+    org.opentest4j.AssertionFailedError at RateLimitJourneyTest.java:127
+
+RateLimitJourneyTest > AC02_theRedirectBudgetAdmits600AndRefusesThe601st() FAILED
+    org.opentest4j.AssertionFailedError at RateLimitJourneyTest.java:271
+
+RateLimitJourneyTest > AC06_clientsAreIndependent() FAILED
+    org.opentest4j.AssertionFailedError at RateLimitJourneyTest.java:152
+
+RateLimitSettingsJourneyTest > AC10_theBudgetsAreOperatorSettings() FAILED
+    org.opentest4j.AssertionFailedError at RateLimitSettingsJourneyTest.java:60
+
+TrustedProxyJourneyTest > AC08_aTrustedProxysForwardedAddressIdentifiesTheClient() FAILED
+    org.opentest4j.AssertionFailedError at TrustedProxyJourneyTest.java:43
+
+{"@timestamp":"2026-10-03T09:48:39.892501Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":57804,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T09:48:39.893187Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":57804,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T09:48:39.895484Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":57804,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-2 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T09:48:39.895729Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":57804,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-2 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T09:48:39.897286Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":57804,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-3 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T09:48:39.897585Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":57804,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-3 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T09:48:39.898553Z","log":{"level":"INFO","logger":"org.springframework.boot.tomcat.GracefulShutdown"},"process":{"pid":57804,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Commencing graceful shutdown. Waiting for active requests to complete","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T09:48:39.901875Z","log":{"level":"INFO","logger":"org.springframework.boot.tomcat.GracefulShutdown"},"process":{"pid":57804,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Graceful shutdown complete","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T09:48:39.903464Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":57804,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-4 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T09:48:39.903769Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":57804,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-4 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T09:48:39.909289Z","log":{"level":"INFO","logger":"org.springframework.boot.tomcat.GracefulShutdown"},"process":{"pid":57804,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Commencing graceful shutdown. Waiting for active requests to complete","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T09:48:39.910234Z","log":{"level":"INFO","logger":"org.springframework.boot.tomcat.GracefulShutdown"},"process":{"pid":57804,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Graceful shutdown complete","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T09:48:39.911344Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":57804,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-5 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T09:48:39.911617Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":57804,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-5 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T09:48:39.914003Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":57804,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-6 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T09:48:39.942382Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":57804,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-6 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T09:48:39.943906Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":57804,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-7 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T09:48:39.958497Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":57804,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-7 - Shutdown completed.","ecs":{"version":"8.11"}}
+
+> Task :functionalTest FAILED
+
+105 tests completed, 15 failed
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':functionalTest'.
+> There were failing tests. See the report at: file:///Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/03-operate/build/reports/tests/functionalTest/index.html
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 14s
+6 actionable tasks: 5 executed, 1 up-to-date
