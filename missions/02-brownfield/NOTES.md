@@ -94,6 +94,16 @@ Context and observations that help the mission but do not change its
   - **Flyway numbering**: audit-read takes none, click-retention takes V3, so analytics-v2 takes the next free one.
   - Tooling rule from the lead (18:11Z): document edits with the Edit tool only, no `sed -i`/`perl -i`/shell variables.
   - Now: the `01-analytics-v2` design (`qitem-20261003164151-fbee7e97`, SPEC `b8c327b`).
+- 2026-10-03T19:30Z — design status after the w2 designs.
+  - **`02-click-retention`**: design review PASS by review2 (18:35Z, with a timing note), on to plan-lock.
+  - **`01-analytics-v2`** (mission 03): in review with review-agent at `80ca44c`. `recorded` now counts every returned insert, and the missing-day fallback is gone. Mission 03 NOTES §3 holds the detail.
+  - **`04-audit-columns`**: impact analysis `aecb0d9`, design `5a6d168` (V4, `LinkRepository.stamp`, ADR-0020 amendment). Design review **PASS** by review2 at 19:15Z: no findings, evidence `c60cd39` and `docs/review/04-audit-columns/design-review.md`. On to plan-lock, with the merged-`main` re-check intact.
+  - **`03-dogfood-fix`**: impact analysis `e8969b5` (with both probes), design `0d000da`; handed to `design_review` (review-agent).
+    - W2-01: a customiser in `OpenApiConfig` corrects `ProblemDetail` to the wire: optional `errors` of `ProblemFieldError`, no `properties`.
+    - W2-03: new `web.MetricsConfig` with `MeterFilter.ignoreTags("path")`.
+    - ADR-0010 and ADR-0016 amendments proposed.
+    - For plan-lock: two `@Nested` test contexts are additions, and AC-9's reading is the lead's (design §7). The territory is narrowed (§9: `Problems.java` and `application.properties` dropped). Both w1 merges come first, and `openapi.json` is ordered against `01-analytics-v2`.
+  - Waiting on: the `01-audit-read` re-review (`4eb1eb4`, review-agent), the `01-analytics-v2` review (`80ca44c`), the `03-dogfood-fix` design review (`0d000da`). I answer each finding when it routes back.
 
 ## 4. Development agent
 

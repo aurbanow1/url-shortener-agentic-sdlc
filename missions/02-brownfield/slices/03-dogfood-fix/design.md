@@ -342,7 +342,9 @@ Two probes, with no product, test or build file changed.
 - **Not verified:**
   - the merged `main`, including the audit read's `400`, re-checked at plan-lock;
   - the document after `01-analytics-v2` regenerates it, which is ordered at plan-lock;
-  - the jar-level captures (QA's proof items).
+  - the jar-level captures (QA's proof items);
+  - `MetricsConfigTest` itself: its shape is specified in §7 but was not run. The filter it pins
+    was run (D3, T3, T5).
 
 ## Plan review (author's lenses; the skill was not invoked separately)
 
