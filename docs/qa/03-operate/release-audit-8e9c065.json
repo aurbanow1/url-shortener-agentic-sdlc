@@ -1,0 +1,468 @@
+{
+  "actor": "qa2-agent@urlshort-factory",
+  "packet": "qitem-20261003153203-9be9445d",
+  "subject": "commit:8e9c065589e53385f60d6be3ddbc3683260285df",
+  "build_commit": "f09010396d584fdf41702bb99856aa17a1ec1206",
+  "release_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+  "product_input_paths": [
+    "src",
+    "build.gradle.kts",
+    "settings.gradle.kts",
+    "Dockerfile",
+    "compose.yaml",
+    "gradle",
+    "gradlew",
+    ".dockerignore",
+    "scripts",
+    "docs/api"
+  ],
+  "product_diff_between_subject_and_build": [],
+  "record_files": [
+    {
+      "path": "missions/01-greenfield-core/release/smoke-container-f090103.txt",
+      "bytes": 643,
+      "sha256": "eb0b9f6180479c8c6d4dfd17dabf0041c14e0a45d6a1b688bce929a2b32f4151",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/compose-up-f090103.txt",
+      "bytes": 2184,
+      "sha256": "95119687e4ab7ec95ac91e0acb6468c05dfb862d91cd0516bb89c49cc7ff9134",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-inspect-container-f090103.txt",
+      "bytes": 996,
+      "sha256": "27876214b05aaf097b7d57022a02e2296c778871ef3992a3ec9e4ea0b78353c1",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-jar-ac26-f090103.txt",
+      "bytes": 1193,
+      "sha256": "1a857a2cf53354edabb574d4eb40b877673c86e4cb53eeb9471fc758ca03c775",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-drain-f090103.txt",
+      "bytes": 328,
+      "sha256": "2f972a3224703f7b475a8e204c329834a5c46abbbe5aea66cb8d668f616e05a0",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-drain-f090103-run2.txt",
+      "bytes": 328,
+      "sha256": "5222623e92c547dbaef6fab88207b1b85df3302caacb6ef137a281c16a5fae77",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-drain-f090103-run3.txt",
+      "bytes": 328,
+      "sha256": "0cd71ce4b003dc5a47e442eb4d0c16c4a48b81f78b588948861894711f0514b1",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-restart-container-f090103.txt",
+      "bytes": 231,
+      "sha256": "04276dc2eff42e5871f6784f1e119e350cff3328a16ec2f158074cc85a43ace8",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-restart-container-f090103-run2.txt",
+      "bytes": 231,
+      "sha256": "da04a79a8768bc290c325a573778046dc2284417518e594e5c16bdfac675353c",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-restart-container-f090103-run3.txt",
+      "bytes": 723,
+      "sha256": "ac3cb9742ccdbddb2962a4e55b60083b726ea5175de197d6abe187ff2688311d",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-restart-container-f090103-run4.txt",
+      "bytes": 723,
+      "sha256": "e989c4c44e65eafd30eb17f5a00e521798dddda6f62fefbeb526a08ebfffe1ea",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-restart-container-f090103-run5.txt",
+      "bytes": 723,
+      "sha256": "25ecc03f7b570b159567c278abb803d7c91a50c0c6f3752ea3898ad0a2b9e9de",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/r0-in-namespace-control-f090103.txt",
+      "bytes": 501,
+      "sha256": "41b6de3d5e12370a0f1bff1d080b36f1b1b0b9e403f3c7b15b11ede0048eae2a",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/r0-vm-published-port-f090103-run1.txt",
+      "bytes": 501,
+      "sha256": "969b15eec7888ea72e146cb14cdaafaa77d966088679b300475625045a58a504",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/r0-vm-published-port-f090103-run2.txt",
+      "bytes": 501,
+      "sha256": "c98fb01659f32455ff3688f50bec43c0dd72e54c02f47cb86fb593e944d0821d",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/bench-jar-f090103.txt",
+      "bytes": 1492,
+      "sha256": "42594b334cf5c05a103ac83a6393d35b0183f7d5870f425f81d0f5490c622322",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/bench-jar-f090103-discarded-run1.txt",
+      "bytes": 1392,
+      "sha256": "f9abca2b5b9258d039ff562f98e206bfb50b3114ef94579efda1388f5bcf738b",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/bench-stats-7YBO6Hrx-f090103.json",
+      "bytes": 111,
+      "sha256": "a343442a90b51ea51de8b7885799359da7f49b0b6390f89318571e4f9345c5ac",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/jar-drain-log-f090103.jsonl",
+      "bytes": 32306,
+      "sha256": "c0422bcd639f49e8da64d13ba9366fa80b3bba3f7852e4ad719a9f37d9f14c42",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/container-restart-log-f090103.jsonl",
+      "bytes": 39420,
+      "sha256": "ff7d1a66a36648f25cf9a2534b39761a3e9765412a57bf7d1f0520d4ec3633b9",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/container-restart-log-f090103-run5.jsonl",
+      "bytes": 36282,
+      "sha256": "67c3c865ecfc116490d8e3862626776f93a585872fb6cf62c6f393fd44cad5d0",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/container-control-log-f090103.jsonl",
+      "bytes": 31375,
+      "sha256": "29d955c7e696eef9f15635da36de3a6ff25f41b86336653fdc1cb7971034ffe5",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/container-vm-path-log-f090103.jsonl",
+      "bytes": 45021,
+      "sha256": "c5d38686fd4fe438424eb4e8b29bb76c386f1d730659435afb0983a5ba5c8e93",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/jar-bench-log-f090103.jsonl",
+      "bytes": 6252668,
+      "sha256": "972190092294bf57d04bb29d510c1b447050b83caf79acc15d4967675076336c",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/compose-down-f090103.txt",
+      "bytes": 354,
+      "sha256": "79cdf50745124c1894d89298d706400c4926edc5414c40a0393f07b0da005ff6",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/release/docker-build-8e9c065.txt",
+      "bytes": 2771,
+      "sha256": "ac5bd185cb451981d822cddb863249f9ea4cfdaca9ce419bf471afdb5d2be9a7",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "missions/01-greenfield-core/RELEASE.md",
+      "bytes": 40702,
+      "sha256": "d943f8c3b11862f47caa8d64de1b2b5a3413c0c0d4b520064d7f1473838e034a",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": false
+    },
+    {
+      "path": "scripts/smoke.sh",
+      "bytes": 23981,
+      "sha256": "0f5092a7e8f6ffc78880ff551406fb827df309c409fe953dce420af2c82e64b2",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "tools/bench.mjs",
+      "bytes": 2723,
+      "sha256": "9fdc92bb9b59a3d75a8b3034504faa1e3c509b08fea6ab0e9fad656b87ead55f",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": true
+    },
+    {
+      "path": "docs/qa/GAPS.md",
+      "bytes": 16512,
+      "sha256": "48ee7d6d88e3cd654de977efba4b80ff6e66b23287cba88d01a45f9c303b38c6",
+      "source_commit": "3ec7ab48b1a8eb5771d3095c09f03a1080ce90f2",
+      "working_copy_matches": false
+    }
+  ],
+  "restart_R0": [
+    {
+      "path": "missions/01-greenfield-core/release/smoke-restart-container-f090103.txt",
+      "curl_exit": 52,
+      "http_status": 0,
+      "elapsed_after_stop_ms": 10485,
+      "complete_normal_R0": false
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-restart-container-f090103-run2.txt",
+      "curl_exit": 52,
+      "http_status": 0,
+      "elapsed_after_stop_ms": 10489,
+      "complete_normal_R0": false
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-restart-container-f090103-run3.txt",
+      "curl_exit": 52,
+      "http_status": 0,
+      "elapsed_after_stop_ms": 10393,
+      "complete_normal_R0": false
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-restart-container-f090103-run4.txt",
+      "curl_exit": 52,
+      "http_status": 0,
+      "elapsed_after_stop_ms": 10370,
+      "complete_normal_R0": false
+    },
+    {
+      "path": "missions/01-greenfield-core/release/smoke-restart-container-f090103-run5.txt",
+      "curl_exit": 52,
+      "http_status": 0,
+      "elapsed_after_stop_ms": 10663,
+      "complete_normal_R0": false
+    }
+  ],
+  "benchmark": [
+    {
+      "label": "create POST /api/links",
+      "requests": 1200,
+      "elapsed_ms": 59952,
+      "offered_rps": 20,
+      "seconds": 60,
+      "achieved_rps": 20.0,
+      "non_2xx_3xx": 0,
+      "p50_ms": 1.5,
+      "p95_ms": 2.8,
+      "p99_ms": 4.9
+    },
+    {
+      "label": "redirect GET /{code}",
+      "requests": 6000,
+      "elapsed_ms": 59992,
+      "offered_rps": 100,
+      "seconds": 60,
+      "achieved_rps": 100.0,
+      "non_2xx_3xx": 0,
+      "p50_ms": 1.1,
+      "p95_ms": 2.2,
+      "p99_ms": 3.3
+    },
+    {
+      "label": "redirect GET /{code} alone",
+      "requests": 6000,
+      "elapsed_ms": 59993,
+      "offered_rps": 100,
+      "seconds": 60,
+      "achieved_rps": 100.0,
+      "non_2xx_3xx": 0,
+      "p50_ms": 0.9,
+      "p95_ms": 1.7,
+      "p99_ms": 2.8
+    },
+    {
+      "label": "redirect HEAD /{code} alone",
+      "requests": 6000,
+      "elapsed_ms": 59992,
+      "offered_rps": 100,
+      "seconds": 60,
+      "achieved_rps": 100.0,
+      "non_2xx_3xx": 0,
+      "p50_ms": 1.0,
+      "p95_ms": 1.8,
+      "p99_ms": 3.1
+    }
+  ],
+  "NFR_L1_met_on_recorded_run": true,
+  "NFR_L2_met_on_recorded_run": true,
+  "stored_GET_clicks": 12000,
+  "logs": [
+    {
+      "path": "missions/01-greenfield-core/release/jar-drain-log-f090103.jsonl",
+      "json_events": 98,
+      "completion_events": 66,
+      "unique_completion_request_ids": 66,
+      "status_counts": {
+        "200": 1,
+        "201": 65
+      },
+      "shutdown_events": [
+        {
+          "at": "2026-10-03T14:41:40.093926Z",
+          "message": "Commencing graceful shutdown. Waiting for active requests to complete"
+        },
+        {
+          "at": "2026-10-03T14:41:40.656137Z",
+          "message": "Graceful shutdown complete"
+        }
+      ]
+    },
+    {
+      "path": "missions/01-greenfield-core/release/container-restart-log-f090103.jsonl",
+      "json_events": 119,
+      "completion_events": 65,
+      "unique_completion_request_ids": 65,
+      "status_counts": {
+        "200": 16,
+        "201": 1,
+        "302": 47,
+        "400": 1
+      },
+      "shutdown_events": [
+        {
+          "at": "2026-10-03T15:02:29.748389905Z",
+          "message": "Commencing graceful shutdown. Waiting for active requests to complete"
+        },
+        {
+          "at": "2026-10-03T15:02:39.760078336Z",
+          "message": "Shutdown phase 2147482623 ends with 1 bean still running after timeout of 10000ms: [webServerGracefulShutdown]"
+        },
+        {
+          "at": "2026-10-03T15:02:39.779065238Z",
+          "message": "Graceful shutdown aborted with one or more requests still active"
+        }
+      ]
+    },
+    {
+      "path": "missions/01-greenfield-core/release/container-restart-log-f090103-run5.jsonl",
+      "json_events": 109,
+      "completion_events": 51,
+      "unique_completion_request_ids": 51,
+      "status_counts": {
+        "200": 4,
+        "201": 1,
+        "302": 45,
+        "400": 1
+      },
+      "shutdown_events": [
+        {
+          "at": "2026-10-03T15:42:15.886007272Z",
+          "message": "Commencing graceful shutdown. Waiting for active requests to complete"
+        },
+        {
+          "at": "2026-10-03T15:42:25.912182555Z",
+          "message": "Shutdown phase 2147482623 ends with 1 bean still running after timeout of 10000ms: [webServerGracefulShutdown]"
+        },
+        {
+          "at": "2026-10-03T15:42:25.936407036Z",
+          "message": "Graceful shutdown aborted with one or more requests still active"
+        }
+      ]
+    },
+    {
+      "path": "missions/01-greenfield-core/release/container-control-log-f090103.jsonl",
+      "json_events": 95,
+      "completion_events": 43,
+      "unique_completion_request_ids": 43,
+      "status_counts": {
+        "200": 41,
+        "201": 1,
+        "302": 1
+      },
+      "shutdown_events": [
+        {
+          "at": "2026-10-03T15:03:01.680596616Z",
+          "message": "Commencing graceful shutdown. Waiting for active requests to complete"
+        },
+        {
+          "at": "2026-10-03T15:03:05.496840334Z",
+          "message": "Graceful shutdown complete"
+        }
+      ]
+    },
+    {
+      "path": "missions/01-greenfield-core/release/container-vm-path-log-f090103.jsonl",
+      "json_events": 136,
+      "completion_events": 52,
+      "unique_completion_request_ids": 52,
+      "status_counts": {
+        "200": 50,
+        "201": 2
+      },
+      "shutdown_events": [
+        {
+          "at": "2026-10-03T15:14:06.789409840Z",
+          "message": "Commencing graceful shutdown. Waiting for active requests to complete"
+        },
+        {
+          "at": "2026-10-03T15:14:10.477197591Z",
+          "message": "Graceful shutdown complete"
+        },
+        {
+          "at": "2026-10-03T15:15:59.138414656Z",
+          "message": "Commencing graceful shutdown. Waiting for active requests to complete"
+        },
+        {
+          "at": "2026-10-03T15:16:03.373165123Z",
+          "message": "Graceful shutdown complete"
+        }
+      ]
+    },
+    {
+      "path": "missions/01-greenfield-core/release/jar-bench-log-f090103.jsonl",
+      "json_events": 19237,
+      "completion_events": 19205,
+      "unique_completion_request_ids": 19205,
+      "status_counts": {
+        "200": 4,
+        "201": 1201,
+        "302": 18000
+      },
+      "shutdown_events": [
+        {
+          "at": "2026-10-03T14:56:35.305397Z",
+          "message": "Commencing graceful shutdown. Waiting for active requests to complete"
+        },
+        {
+          "at": "2026-10-03T14:56:35.310891Z",
+          "message": "Graceful shutdown complete"
+        }
+      ]
+    }
+  ],
+  "counter_correction": "Runs 3/4 raw files count duplicate 000 rows; corrected record at 3ec7ab4 gives 148/102 and 148/103 attempts/failures. Run5 has one row per attempt: 149/105. All five independent R0 curl results still fail.",
+  "scope": "Independent read-only audit of committed release effects; no new app, container, build or benchmark run. No native Linux host test or host-forwarder mechanism observation."
+}
