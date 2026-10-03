@@ -94,3 +94,43 @@ Draw mechanism, not decoration: a context/container view of the service (once, i
 ## 10. Trade-offs: say them out loud
 
 Every design records the alternatives it rejected and why, in a short table (`option | why not now | what would change the decision`). Reviewers judge the reasoning, not the taste.
+
+## 11. Cross-cutting concerns register (owner: `design-agent`)
+
+A concern that more than one slice touches is settled **once**: one ADR, one
+code path. Every later design reuses that path or amends the ADR, and never
+re-derives the concern locally. The run showed why this matters. "Who is the
+client, and which proxy is trusted" was decided separately by the rate
+limiter, the audit read's loopback guard and the analytics visitor identity.
+Per-slice reviews judged each on its own. The gap between them surfaced
+late: once at wave review (W2-02), and once as a code-review security finding
+after QA had passed the slice (`01-audit-read` CR-01).
+
+| Concern | Settled by | The one code path | Rule for a new design |
+|---|---|---|---|
+| Client identity and proxy trust: peer address, `X-Forwarded-For`, trusted proxies, Tomcat `remoteip`, `server.forward-headers-strategy` | ADR-0015, with ADR-0019 for the audit read's loopback rule | `web/RateLimitFilter.clientOf(...)` for "who is the client"; the audit read's guard refuses whenever any setting can rewrite the peer | Reuse `clientOf`. Any new trust or loopback rule amends ADR-0015 and lists every setting that can rewrite the peer. |
+| Time | ADR-0013 (request-time statistics), ADR-0018 (purge clock) | the single `java.time.Clock` bean in `link/LinkConfig`; UTC days everywhere | Inject the `Clock`; never call `now()` directly; state which UTC day a rule uses. |
+| Schema change | ADR-0005, ADR-0020 | Flyway `db/migration/V<n>__*.sql`; the lead assigns `<n>` at plan-lock (ordered custody) | Expand only, with a written rollback; take the number the lead assigns. |
+| Audit columns | the human's policy (`databases.md` §2), ADR-0020 | `created_at`/`updated_at`, plus `created_by`/`updated_by` where an actor exists, on every table | A new table carries them from its first migration. |
+| Error shape | ADR-0002 | the platform problem-details handler plus `web/Problems` and `web/ProblemDetailsAdvice` | No new error body shape; a new field goes into the documented `errors` array. |
+| Request id and logging | ADR-0003, ADR-0004 | `web/RequestIdFilter`; ECS JSON with no client PII | New log events carry `requestId` and no raw IP or user agent. |
+| Audit trail writes | ADR-0008 | `audit/AuditLog`, in the same transaction as the change | Every state change of a link writes its audit row in that transaction. |
+| Client hashing for analytics | ADR-0012 | `click/DailySalt`, a daily salt that is never exposed | Distinct-visitor logic uses the day's hash only within its UTC day. |
+| Metrics and health exposure | ADR-0016 | Actuator with the exposure decided there | A new metric follows `urlshort.<feature>.<thing>`; exposure changes amend ADR-0016. |
+| API document | ADR-0010 | the committed `docs/api/openapi.json`, regenerated and diffed against the live document | One slice at a time holds it (ordered custody). |
+| CI/CD | D14, `ci-cd.md` | `.github/workflows/ci.yml` and `cd.yml` | No new workflow without `ci-cd.md` §6. |
+
+**Owner duty.** `design-agent@urlshort-factory` keeps this register current.
+When a design adds or changes a concern, the designer files a plain queue
+item to `design-agent` with the design path and the register row it touches.
+`design-agent` answers with a one-paragraph consistency verdict, in
+`docs/review/<slice>/architecture-consistency.md`, before the design's review.
+A design that touches no registered concern needs no request; its
+`## Self-check` says so in one line.
+
+**Checks.**
+- `design_review` fails (HIGH) a design that redefines a registered concern
+  without amending the settling ADR, or that misses a consistency verdict it
+  needed.
+- `wave_review` walks this table across everything the wave merged and
+  records one line per concern: consistent, or the drift found.
