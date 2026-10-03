@@ -1,0 +1,318 @@
+{
+  "base": "8e9c065589e53385f60d6be3ddbc3683260285df",
+  "candidate": "ed2b940dafb71104bebe392d133191fd88b3bd7d",
+  "changed_path_count": 4747,
+  "changed_paths_by_root": {
+    ".claude": 1,
+    ".codex": 1,
+    ".github": 3,
+    ".gitignore": 1,
+    "PLAN.md": 1,
+    "README.md": 1,
+    "docs": 2114,
+    "gradle": 2,
+    "gradlew.bat": 1,
+    "missions": 2571,
+    "rig": 16,
+    "scripts": 1,
+    "src": 33,
+    "tools": 1
+  },
+  "reviewed_product_tool_paths": [
+    {
+      "path": ".github/dependabot.yml",
+      "sha256": "c8d99a96bec9beb72f62ba6081fbd2565e0dac12c85a778d381507bff090d360"
+    },
+    {
+      "path": ".github/workflows/cd.yml",
+      "sha256": "3ca7256f6a95db153b64d68a916f4ff6b72f84b4b429d9314a99525b7b65ca33"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "00fcb90bb5284006de4103b9970f9e809a333792511fd83486afab9f08357a01"
+    },
+    {
+      "path": "README.md",
+      "sha256": "e9f8c7f57124c3863a36891a77363e18d43dda4be7d33b01b0775c52c6ca0cdc"
+    },
+    {
+      "path": "docs/api/openapi.json",
+      "sha256": "56f418873b00b7ac069a33d86f32b5a55f0738c1ad1b96edef423edfeb337ead"
+    },
+    {
+      "path": "gradle/wrapper/gradle-wrapper.jar",
+      "sha256": "238e777fcddd7e34f9708186085def2abd6e08e658505b38718d79d74c21abd5"
+    },
+    {
+      "path": "gradle/wrapper/gradle-wrapper.properties",
+      "sha256": "d3c8ac7b34869c3184b4c21374153af1ad72c69c1813e723e3cfc7995f3624bd"
+    },
+    {
+      "path": "gradlew.bat",
+      "sha256": "31ec098bd961c460b62875950c3eff5c8213bcb0bbde38d769b88512877fd21f"
+    },
+    {
+      "path": "scripts/smoke.sh",
+      "sha256": "eb6e05ac85690400c300ad33be67927645325d7c935a79456f1fc1370fd50f86"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/audit/AuditAccessSettingsJourneyTest.java",
+      "sha256": "05b788f7bf4483b0b5c67f77949d90aefe97e372b31abf6f5bdda981a2701f67"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/audit/AuditForwardedHeadersJourneyTest.java",
+      "sha256": "066d1dfdc1ce4698cd147070972795a7ea9e4d8a30dd7a9ba1a38be71ed6773d"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/audit/AuditReadFailureJourneyTest.java",
+      "sha256": "5776851c6a6def35b8f3c38bd951604bd5e759a47c350d99dad3110253613903"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+      "sha256": "cc583d92582d15d7b5b31b5a9af805d5fce58b74fea062b9905f04be100013f0"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/audit/AuditUpgradeJourneyTest.java",
+      "sha256": "c1c9800e086aaec2d1b1d84ebaf85344806d8eaf937465a4ea769e1de27f7042"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/click/ClickPurgeFailureJourneyTest.java",
+      "sha256": "c6468c6db266ecb0f861da800b908425c1be6e01da6f168014bbd7c2b538f54b"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/click/ClickPurgeHoldJourneyTest.java",
+      "sha256": "ab3770db72238d942083bfb7bf3508be03ec36ebb6ff87c3049dcde2e5b5c2fd"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java",
+      "sha256": "d42e733c485486e2a87feb805b8b19e8b66e03e1c11303ea983f5c2ead370428"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/click/ClickRetentionScheduleJourneyTest.java",
+      "sha256": "18e8477c1c61732e76a5da75181f1ea602093b0085f6ed793a797a1ffbaf4127"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/click/ClickRetentionSettingJourneyTest.java",
+      "sha256": "b16fcebf4b9d691cf67caec76dba79772731ef177c39e0f0be6955db02d75515"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/click/ClickRetentionStartupJourneyTest.java",
+      "sha256": "7353af7162a4808ae238801e31623f56e257309d029f58d672f0d98a2e235dd7"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/web/HealthMetricsJourneyTest.java",
+      "sha256": "e84ab098b99379f69427d7c70bf728af5b115ae8e73342a8874a56c1304529c6"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java",
+      "sha256": "94064bbd9796841ac8979268afe86c4f3d046562e3ae9aa654b2fcf999cc806a"
+    },
+    {
+      "path": "src/functionalTest/resources/application-functional.properties",
+      "sha256": "b6cd3f5ff76bcae495e8a54036f60e9ec0a667c26f5ed0efb8f90dbf564a77ec"
+    },
+    {
+      "path": "src/main/java/dev/urlshort/audit/AuditController.java",
+      "sha256": "2324cd40e83b9542cbd57aa17150214d514d89773cddf033780ddeb24db97a29"
+    },
+    {
+      "path": "src/main/java/dev/urlshort/audit/AuditEntry.java",
+      "sha256": "7a9c4081294c0a1801ed6c8517d438490da51f5e48c77f01b7a2d9836a139beb"
+    },
+    {
+      "path": "src/main/java/dev/urlshort/audit/AuditPage.java",
+      "sha256": "409393e2f3d7cbea1a3686398a4886b70d63264b7141fac2d6ee2b32e15cc72b"
+    },
+    {
+      "path": "src/main/java/dev/urlshort/audit/AuditTrail.java",
+      "sha256": "fef2b36b98947ca43354b9616123d3c501f38442ba8f8ced5b29e59c551af159"
+    },
+    {
+      "path": "src/main/java/dev/urlshort/audit/package-info.java",
+      "sha256": "7de2b53215a218561241009526f30336e7d259f0d437439be24028469e4db8ac"
+    },
+    {
+      "path": "src/main/java/dev/urlshort/click/ClickPurge.java",
+      "sha256": "8a48607d9146687556fd4fe931c99c7a6e3cfea5f1254f149554a949347d2574"
+    },
+    {
+      "path": "src/main/java/dev/urlshort/click/ClickRecorder.java",
+      "sha256": "40f1d4183f4b43f15c32afcffb8824577837c22b994276f9677c9665136f65c8"
+    },
+    {
+      "path": "src/main/java/dev/urlshort/click/ClickRetentionProperties.java",
+      "sha256": "cf0bbd394e9a7d2bd54cd01b792210eae11308c9a9a3eea31f86b41f71f03aee"
+    },
+    {
+      "path": "src/main/java/dev/urlshort/click/ClickStore.java",
+      "sha256": "a6994f1e22a5095f7cef7db196acaeb79da6d570ecdc21954b1c0b6273afdd6e"
+    },
+    {
+      "path": "src/main/java/dev/urlshort/click/package-info.java",
+      "sha256": "d1fa6a58016e8682d03afb4e57313c003ca59106917be347ca5a871d81b4e7b0"
+    },
+    {
+      "path": "src/main/java/dev/urlshort/web/MetricsConfig.java",
+      "sha256": "ad619779d1f401cbbbc2596a0d87a671ee07efa3b886747c1788fd65675ced60"
+    },
+    {
+      "path": "src/main/java/dev/urlshort/web/OpenApiConfig.java",
+      "sha256": "afd6f715792928d0934a8e7f4c1084df03e38915e72f099dfaafb7d386e05d0f"
+    },
+    {
+      "path": "src/main/resources/application.properties",
+      "sha256": "0d590335e8516c5dd368ea73b71d1f5a817843b00f9e0e2b02461a9f53d5b8f1"
+    },
+    {
+      "path": "src/main/resources/db/migration/V3__add_click_audit_columns.sql",
+      "sha256": "908715401b5c84aa8b4d1525b91a9bd472d2a9ada605a8dbd5651ff1fdfc5fb6"
+    },
+    {
+      "path": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+      "sha256": "69734d4865f30b921790270fc290ab723b5ca561afa82af2bb623b83ad10e966"
+    },
+    {
+      "path": "src/test/java/dev/urlshort/click/ClickAuditColumnsTest.java",
+      "sha256": "cd8ed9de3327d8faa1339464edbc96db16c18b968674b942d26638a8ca91d35d"
+    },
+    {
+      "path": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+      "sha256": "a879bc09205fc297b726ca9ee02086eb549800bd479b1d0ca75afd0afb2b4b9a"
+    },
+    {
+      "path": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+      "sha256": "be5527483f25d48c789b8ca90e5c21bfe39f9c36a42687e551fc249648c7d7ba"
+    },
+    {
+      "path": "src/test/java/dev/urlshort/web/MetricsConfigTest.java",
+      "sha256": "a81908c1ef9ee5e0d119269bc764483e76d740c26a219045e676bfed4264b12b"
+    },
+    {
+      "path": "tools/bench.mjs",
+      "sha256": "9fdc92bb9b59a3d75a8b3034504faa1e3c509b08fea6ab0e9fad656b87ead55f"
+    }
+  ],
+  "prior_candidate_blob_equality": {
+    "audit": {
+      "candidate": "7ac8af5",
+      "equal_paths": [
+        "src/functionalTest/java/dev/urlshort/audit/AuditAccessSettingsJourneyTest.java",
+        "src/functionalTest/java/dev/urlshort/audit/AuditForwardedHeadersJourneyTest.java",
+        "src/functionalTest/java/dev/urlshort/audit/AuditReadFailureJourneyTest.java",
+        "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+        "src/functionalTest/java/dev/urlshort/audit/AuditUpgradeJourneyTest.java",
+        "src/main/java/dev/urlshort/audit/AuditController.java",
+        "src/main/java/dev/urlshort/audit/AuditEntry.java",
+        "src/main/java/dev/urlshort/audit/AuditPage.java",
+        "src/main/java/dev/urlshort/audit/AuditTrail.java",
+        "src/main/java/dev/urlshort/audit/package-info.java",
+        "src/test/java/dev/urlshort/audit/AuditControllerTest.java"
+      ]
+    },
+    "dogfood": {
+      "candidate": "4fe7042",
+      "equal_paths": [
+        "docs/api/openapi.json",
+        "src/main/java/dev/urlshort/web/OpenApiConfig.java",
+        "src/main/java/dev/urlshort/web/MetricsConfig.java",
+        "src/test/java/dev/urlshort/web/MetricsConfigTest.java",
+        "src/functionalTest/java/dev/urlshort/web/HealthMetricsJourneyTest.java",
+        "src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java"
+      ]
+    },
+    "ci": {
+      "candidate": "add7ab5",
+      "equal_paths": [
+        ".github/dependabot.yml",
+        ".github/workflows/cd.yml",
+        ".github/workflows/ci.yml"
+      ]
+    },
+    "retention": {
+      "candidate": "a8fc8b6",
+      "equal_paths": [
+        "src/functionalTest/java/dev/urlshort/click/ClickPurgeFailureJourneyTest.java",
+        "src/functionalTest/java/dev/urlshort/click/ClickPurgeHoldJourneyTest.java",
+        "src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java",
+        "src/functionalTest/java/dev/urlshort/click/ClickRetentionScheduleJourneyTest.java",
+        "src/functionalTest/java/dev/urlshort/click/ClickRetentionSettingJourneyTest.java",
+        "src/functionalTest/java/dev/urlshort/click/ClickRetentionStartupJourneyTest.java",
+        "src/functionalTest/resources/application-functional.properties",
+        "src/main/java/dev/urlshort/click/ClickPurge.java",
+        "src/main/java/dev/urlshort/click/ClickRecorder.java",
+        "src/main/java/dev/urlshort/click/ClickRetentionProperties.java",
+        "src/main/java/dev/urlshort/click/ClickStore.java",
+        "src/main/java/dev/urlshort/click/package-info.java",
+        "src/main/resources/db/migration/V3__add_click_audit_columns.sql",
+        "src/test/java/dev/urlshort/click/ClickAuditColumnsTest.java",
+        "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+        "src/test/java/dev/urlshort/click/ClickRecorderTest.java"
+      ]
+    }
+  },
+  "tests": {
+    "test": {
+      "tests": 213,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "functionalTest": {
+      "tests": 224,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "jacoco_exec_inputs": [
+    "functionalTest.exec",
+    "test.exec"
+  ],
+  "coverage": {
+    "test": {
+      "BRANCH": {
+        "missed": 6,
+        "covered": 194
+      },
+      "LINE": {
+        "missed": 67,
+        "covered": 487
+      }
+    },
+    "functionalTest": {
+      "BRANCH": {
+        "missed": 34,
+        "covered": 166
+      },
+      "LINE": {
+        "missed": 34,
+        "covered": 520
+      }
+    },
+    "all": {
+      "BRANCH": {
+        "missed": 0,
+        "covered": 200
+      },
+      "LINE": {
+        "missed": 0,
+        "covered": 554
+      }
+    }
+  },
+  "merged_openapi": "live equals committed; audit path and corrected problem schema coexist",
+  "merged_properties": "NONE guard pin, 90-day/default-on purge and functional hold coexist",
+  "unchanged_build_surfaces": [
+    "build.gradle.kts",
+    "settings.gradle.kts",
+    "Dockerfile",
+    "compose.yaml",
+    "gradlew"
+  ],
+  "wrapper_jar": {
+    "sha256": "238e777fcddd7e34f9708186085def2abd6e08e658505b38718d79d74c21abd5",
+    "matches_cached_9_8_distribution": true,
+    "online_provenance_verified_here": false
+  },
+  "bat_normalization": "9bbf6e5 has no diff ignoring CR at EOL; Windows execution not performed"
+}

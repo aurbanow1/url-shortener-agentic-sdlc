@@ -1,0 +1,41 @@
+Pinned ed2b940 compiled ClickRecorder.close(), javap -c -p after the fresh check:
+  void close() throws java.lang.InterruptedException;
+    Code:
+       0: aload_0
+       1: getfield      #49                 // Field writer:Ljava/util/concurrent/ThreadPoolExecutor;
+       4: invokevirtual #181                // Method java/util/concurrent/ThreadPoolExecutor.shutdown:()V
+       7: aload_0
+       8: getfield      #49                 // Field writer:Ljava/util/concurrent/ThreadPoolExecutor;
+      11: aload_0
+      12: getfield      #61                 // Field drainDeadline:Ljava/time/Duration;
+      15: invokevirtual #184                // Method java/time/Duration.toMillis:()J
+      18: getstatic     #28                 // Field java/util/concurrent/TimeUnit.MILLISECONDS:Ljava/util/concurrent/TimeUnit;
+      21: invokevirtual #190                // Method java/util/concurrent/ThreadPoolExecutor.awaitTermination:(JLjava/util/concurrent/TimeUnit;)Z
+      24: ifne          86
+      27: aload_0
+      28: getfield      #49                 // Field writer:Ljava/util/concurrent/ThreadPoolExecutor;
+      31: invokevirtual #194                // Method java/util/concurrent/ThreadPoolExecutor.shutdownNow:()Ljava/util/List;
+      34: invokeinterface #198,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      39: astore_1
+      40: aload_1
+      41: invokeinterface #204,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      46: ifeq          82
+      49: aload_1
+      50: invokeinterface #210,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      55: checkcast     #214                // class java/lang/Runnable
+      58: astore_2
+      59: aload_2
+      60: instanceof    #177                // class java/util/concurrent/Future
+      63: ifeq          79
+      66: aload_2
+      67: checkcast     #177                // class java/util/concurrent/Future
+      70: astore_3
+      71: aload_3
+      72: iconst_0
+      73: invokeinterface #216,  2          // InterfaceMethod java/util/concurrent/Future.cancel:(Z)Z
+      78: pop
+      79: goto          40
+      82: aload_0
+      83: invokevirtual #220                // Method claimOutstanding:()V
+      86: return
+
