@@ -90,7 +90,10 @@
       "Bash(bash --version)",
       "Bash(java -version)",
       "Bash(node --version)",
-      "Bash(docker --version)"
+      "Bash(docker --version)",
+      "Bash(bash -n *)",
+      "Bash(sh -n *)",
+      "Bash(shellcheck *)"
     ],
     "deny": [
       "Bash(git push *)",
