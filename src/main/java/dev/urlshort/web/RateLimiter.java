@@ -28,7 +28,8 @@ import org.springframework.stereotype.Component;
  *
  * <p>The application clock is the wall clock. A backward step is outside the contract and fails closed:
  * a client's bucket refills only from its stored TAT, so a recently active client waits up to the length
- * of the step. The release is rescheduled at the next request after such a step.
+ * of the step. The release is rescheduled at the next request after a step of more than a second; a
+ * shorter step delays it by less than two seconds.
  */
 @Component
 class RateLimiter {
@@ -68,8 +69,9 @@ class RateLimiter {
 	}
 
 	private void releaseFullBuckets(long now) {
-		// due once a second; a deadline more than a second ahead can only follow a backward clock step
-		LongPredicate due = next -> now >= next || next - now > SECOND;
+		// due once a second. A deadline more than two seconds ahead follows a backward clock step; the
+		// margin keeps a concurrent request whose clock read was slightly older from sweeping again.
+		LongPredicate due = next -> now >= next || next - now > 2 * SECOND;
 		if (due.test(nextSweep.getAndUpdate(next -> due.test(next) ? now + SECOND : next))) {
 			buckets.values().forEach(b -> b.tats.values().removeIf(tat -> tat <= now));
 		}
