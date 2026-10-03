@@ -19,7 +19,8 @@ approval records stamps, the human ships.
    SHA; what was proven and how; human decisions honoured (quote the stamps);
    the items that need the human's judgment; rollback in one line;
    recommended default and the alternative with its cost.
-2. **Artifact and gate** — jar/image identifiers (SHA, digest), the gate
+2. **Artifact and gate** — jar/image identifiers (SHA, digest), the CI and CD
+   runs for the candidate SHA with URLs and conclusions (`ci-cd.md` §5), the gate
    command and its summary (tests, coverage), proof readiness (`rig proof show`).
 3. **Installed smoke** — jar on loopback, container on loopback, what each
    answered, captured logs; what the smoke did **not** exercise.

@@ -11,6 +11,16 @@ intent: "An Operator can read the audit trail of every mutation (who, what, when
 depends_on: []
 moved-on: 2026-10-03
 moved-from: 01-greenfield-core
+approved-spec-by: orchestration-lead@urlshort-factory
+approved-spec-at: 2026-10-03T18:27:13.964Z
+locked-artifacts:
+  - name: SPEC.md
+    path: SPEC.md
+    kind: spec
+  - name: design.md
+    path: design.md
+    kind: spec
+provenance: transport:v1
 ---
 
 # Slice 01 — Audit trail read (moved from mission 01 as its `04-audit-read` by the fast plan of 2026-10-03; prerequisite: mission 01 shipped the `audit_log` table)

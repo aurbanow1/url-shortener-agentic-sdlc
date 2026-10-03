@@ -11,4 +11,13 @@ gradle.projectsEvaluated {
         mainClass = project.file('docs/review/01-audit-read/proof/AuditAccessProbe.java').absolutePath
         systemProperty 'spring.profiles.active', 'functional'
     }
+    project.tasks.register('reviewAuditAccessRevision', JavaExec) {
+        dependsOn project.tasks.named('functionalTestClasses')
+        javaLauncher.set(project.javaToolchains.launcherFor {
+            languageVersion = JavaLanguageVersion.of(21)
+        })
+        classpath = functional.runtimeClasspath
+        mainClass = project.file('docs/review/01-audit-read/proof/AuditAccessRevisionProbe.java').absolutePath
+        systemProperty 'spring.profiles.active', 'functional'
+    }
 }

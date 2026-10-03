@@ -19,6 +19,7 @@ demand at the step that needs them; they are not a reading list to recite.
 | [review.md](review.md) — independence, proof of complete coverage, severities, issue → resolution → re-review, the security checklist | Review Agent (every review step); authors receiving findings | before any review; when answering findings |
 | [orchestration.md](orchestration.md) — exit semantics, bounded retries, exception dial, rollback, safe-stop, re-planning, human checkpoints, lineage | orchestration lead; every seat for the exit rules | at every mission step; when a loop does not converge |
 | [release.md](release.md) — release package contract, installed smoke, advisories, rollback, metrics, evidence export, final summary | Release & Reliability Agent; Review Agent (`release_review`); lead (`mission_close`) | at `release_prep` and `evidence_export`; before the final summary |
+| [ci-cd.md](ci-cd.md) — CI/CD in GitHub Actions on every repository: the gate on every pull request, a loopback smoke of the shippable jar, least privilege, pinned actions, publishing only on a human trigger | Development Agent; Review Agent (`code_review` on `.github/`); Release & Reliability Agent; lead (`decompose`) | before touching `.github/`; at `release_prep`; at `decompose` when a repository has no CI/CD yet |
 
 Rules of the library:
 
@@ -48,7 +49,7 @@ final summary; this table is the map.
 | §4.7 Controlled autonomy — agents execute, humans approve | orchestration.md §8; decomposition.md §4, §6 | gate packets and `rig queue resolve` records, stamps `--on-behalf-of human@kernel`, `rig/CULTURE.md` |
 | §4.8 Final engineering summary | release.md §8 | `docs/FINAL-SUMMARY.md` |
 | §7 Expectation — agents under defined autonomy boundaries; humans own oversight, approvals, final quality | orchestration.md §8; review.md §1; `docs/GOVERNANCE.md` (principle + delegation record) | role `Never` lists, permission policies, gate packets and `rig queue resolve` records, D11 |
-| §5 Working prototype, runnable end to end | release.md §3; java-spring.md §5 | `scripts/gw check`, `java -jar build/libs/urlshort.jar`, `Dockerfile`, `compose.yaml` |
+| §5 Working prototype, runnable end to end | release.md §3; java-spring.md §5; ci-cd.md §2 | `scripts/gw check`, `java -jar build/libs/urlshort.jar`, `Dockerfile`, `compose.yaml`, `.github/workflows/ci.yml` and `cd.yml` (the gate and a loopback smoke on every pull request and push to `main`) |
 | §5 Architecture overview | architecture.md §1–§2, §9 | `docs/ARCHITECTURE.md`, `docs/diagrams/`, `docs/adr/` |
 | §5 Three scenarios | decomposition.md; brownfield.md; requirements.md §3 (ambiguity) | missions 01–03, `docs/scenarios/*.md` |
 | §5 Setup instructions | release.md §3 (smoke), `docs/SETUP-FACTORY.md` | `README.md`, `docs/SETUP-FACTORY.md` |

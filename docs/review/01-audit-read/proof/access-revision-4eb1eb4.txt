@@ -1,0 +1,82 @@
+Starting a Gradle Daemon, 1 busy and 2 stopped Daemons could not be reused, use --status for details
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :jar UP-TO-DATE
+> Task :compileFunctionalTestJava UP-TO-DATE
+> Task :processFunctionalTestResources UP-TO-DATE
+> Task :functionalTestClasses UP-TO-DATE
+
+> Task :reviewAuditAccessRevision
+{"@timestamp":"2026-10-03T18:23:13.635054Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":1172,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:23:14.148268Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":1172,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:23:14.149368Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":1172,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+REVISION strategy=default effective=NONE
+REVISION GET default plain -> 200 type=application/json body={"items":[{"entityId":"AUDIT-REVIEW-CANARY"}],"next":"synthetic"}
+REVISION GET default forged-XFF -> 403 type=application/problem+json body={"instance":"urn:uuid:8d573e82-52c1-4e4b-994a-59a876836816","status":403,"title":"Forbidden"}
+REVISION GET default forged-Forwarded -> 403 type=application/problem+json body={"instance":"urn:uuid:b49a14a6-903a-4679-b1a5-d6be89b43ff7","status":403,"title":"Forbidden"}
+REVISION HEAD default plain -> 200 type=application/json body=
+REVISION HEAD default forged-XFF -> 403 type=application/problem+json body=
+REVISION HEAD default forged-Forwarded -> 403 type=application/problem+json body=
+REVISION GET default remote-XFF -> 403 type=application/problem+json body={"instance":"urn:uuid:7ddee62f-b212-4ca3-a7ca-7f3ceb4f931b","status":403,"title":"Forbidden"}
+REVISION GET accept=*/* invalid-limit -> 400 type=application/problem+json body={"instance":"urn:uuid:ff81b19f-eee9-4393-9f19-992da35be050","status":400,"title":"Bad Request","errors":[{"field":"limit","rule":"format","message":"must be a whole number"}]}
+REVISION GET accept=*/* denied -> 403 type=application/problem+json body={"instance":"urn:uuid:89418d64-4f72-41b3-ba8e-246c51cf1147","status":403,"title":"Forbidden"}
+REVISION GET accept=*/* valid -> 200 type=application/json body={"items":[{"entityId":"AUDIT-REVIEW-CANARY"}],"next":"synthetic"}
+REVISION GET accept=text/html invalid-limit -> 400 type=application/problem+json body={"instance":"urn:uuid:821c7e5c-d701-44eb-a21c-ad87de7859bc","status":400,"title":"Bad Request","errors":[{"field":"limit","rule":"format","message":"must be a whole number"}]}
+REVISION GET accept=text/html denied -> 403 type=application/problem+json body={"instance":"urn:uuid:d8798f95-5e09-47e5-91ca-2b3e8e82f52c","status":403,"title":"Forbidden"}
+REVISION GET accept=text/html valid -> 200 type=application/json body={"items":[{"entityId":"AUDIT-REVIEW-CANARY"}],"next":"synthetic"}
+REVISION GET accept=application/problem+json invalid-limit -> 400 type=application/problem+json body={"instance":"urn:uuid:82bbc7a4-6a7f-43dd-8cc8-7a6ec0ff91e1","status":400,"title":"Bad Request","errors":[{"field":"limit","rule":"format","message":"must be a whole number"}]}
+REVISION GET accept=application/problem+json denied -> 403 type=application/problem+json body={"instance":"urn:uuid:f84bcb09-03c4-489c-ab0f-d1c7de4e3469","status":403,"title":"Forbidden"}
+REVISION GET accept=application/problem+json valid -> 200 type=application/json body={"items":[{"entityId":"AUDIT-REVIEW-CANARY"}],"next":"synthetic"}
+REVISION GET accept=text/html,application/xhtml+xml,*/*;q=0.8 invalid-limit -> 400 type=application/problem+json body={"instance":"urn:uuid:4c4d8a93-9283-41d5-ab0d-e463e4456e57","status":400,"title":"Bad Request","errors":[{"field":"limit","rule":"format","message":"must be a whole number"}]}
+REVISION GET accept=text/html,application/xhtml+xml,*/*;q=0.8 denied -> 403 type=application/problem+json body={"instance":"urn:uuid:17752dd6-e476-4964-8fad-44b348f42ad5","status":403,"title":"Forbidden"}
+REVISION GET accept=text/html,application/xhtml+xml,*/*;q=0.8 valid -> 200 type=application/json body={"items":[{"entityId":"AUDIT-REVIEW-CANARY"}],"next":"synthetic"}
+{"@timestamp":"2026-10-03T18:23:14.457759Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":1172,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:23:14.539331Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":1172,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:23:14.539547Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":1172,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+REVISION strategy=native effective=NATIVE
+REVISION GET native plain -> 403 type=application/problem+json body={"instance":"urn:uuid:77c27192-2b54-4663-9cdf-28b48c940985","status":403,"title":"Forbidden"}
+REVISION GET native forged-XFF -> 403 type=application/problem+json body={"instance":"urn:uuid:63c21513-6e66-4aa3-89c0-5a80c6fab7b3","status":403,"title":"Forbidden"}
+REVISION GET native forged-Forwarded -> 403 type=application/problem+json body={"instance":"urn:uuid:3a18385a-4036-47a4-bc46-ccebbc191df6","status":403,"title":"Forbidden"}
+REVISION HEAD native plain -> 403 type=application/problem+json body=
+REVISION HEAD native forged-XFF -> 403 type=application/problem+json body=
+REVISION HEAD native forged-Forwarded -> 403 type=application/problem+json body=
+REVISION GET native remote-XFF -> 403 type=application/problem+json body={"instance":"urn:uuid:4d709bc4-ffa5-44e2-a5d0-f5110dc7a13e","status":403,"title":"Forbidden"}
+{"@timestamp":"2026-10-03T18:23:14.693648Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":1172,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:23:14.769618Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":1172,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:23:14.769835Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":1172,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+REVISION strategy=framework effective=FRAMEWORK
+REVISION GET framework plain -> 403 type=application/problem+json body={"instance":"urn:uuid:99243110-ad91-40e8-9e71-72223c7467fe","status":403,"title":"Forbidden"}
+REVISION GET framework forged-XFF -> 403 type=application/problem+json body={"instance":"urn:uuid:4fe593ae-4e8e-4cb5-b472-7170b3957ca5","status":403,"title":"Forbidden"}
+REVISION GET framework forged-Forwarded -> 403 type=application/problem+json body={"instance":"urn:uuid:a312fecd-563d-4654-afdb-ca08662a1776","status":403,"title":"Forbidden"}
+REVISION HEAD framework plain -> 403 type=application/problem+json body=
+REVISION HEAD framework forged-XFF -> 403 type=application/problem+json body=
+REVISION HEAD framework forged-Forwarded -> 403 type=application/problem+json body=
+REVISION GET framework remote-XFF -> 403 type=application/problem+json body={"instance":"urn:uuid:5bc8994b-d4c9-40b6-a4d4-d56fa95cd0ca","status":403,"title":"Forbidden"}
+{"@timestamp":"2026-10-03T18:23:14.937317Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":1172,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:23:15.018400Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":1172,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:23:15.018593Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":1172,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+REVISION strategy=unset effective=null
+REVISION GET unset plain -> 403 type=application/problem+json body={"instance":"urn:uuid:defc71e3-ab58-4a4a-9f66-5fd6bf0515d5","status":403,"title":"Forbidden"}
+REVISION GET unset forged-XFF -> 403 type=application/problem+json body={"instance":"urn:uuid:be93d169-bb4c-4515-bd8d-1fb86d4c3033","status":403,"title":"Forbidden"}
+REVISION GET unset forged-Forwarded -> 403 type=application/problem+json body={"instance":"urn:uuid:9bf47548-b178-4916-b709-7d8ba257c440","status":403,"title":"Forbidden"}
+REVISION HEAD unset plain -> 403 type=application/problem+json body=
+REVISION HEAD unset forged-XFF -> 403 type=application/problem+json body=
+REVISION HEAD unset forged-Forwarded -> 403 type=application/problem+json body=
+REVISION GET unset remote-XFF -> 403 type=application/problem+json body={"instance":"urn:uuid:245dd332-fa21-4a0c-b82c-2347540f147f","status":403,"title":"Forbidden"}
+{"@timestamp":"2026-10-03T18:23:15.159879Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":1172,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:23:15.222526Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":1172,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:23:15.222729Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":1172,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+REVISION strategy=unset-cloud effective=null
+REVISION GET unset-cloud plain -> 403 type=application/problem+json body={"instance":"urn:uuid:70bd999c-0856-4699-bd63-d60b69f5d118","status":403,"title":"Forbidden"}
+REVISION GET unset-cloud forged-XFF -> 403 type=application/problem+json body={"instance":"urn:uuid:91ac5032-8a51-48b0-a96f-63271f745500","status":403,"title":"Forbidden"}
+REVISION GET unset-cloud forged-Forwarded -> 403 type=application/problem+json body={"instance":"urn:uuid:cb50501b-a8c3-4588-909b-df1d5aa9aaf7","status":403,"title":"Forbidden"}
+REVISION HEAD unset-cloud plain -> 403 type=application/problem+json body=
+REVISION HEAD unset-cloud forged-XFF -> 403 type=application/problem+json body=
+REVISION HEAD unset-cloud forged-Forwarded -> 403 type=application/problem+json body=
+REVISION GET unset-cloud remote-XFF -> 403 type=application/problem+json body={"instance":"urn:uuid:c62e96fa-2272-4b2c-9f35-707832ed6d75","status":403,"title":"Forbidden"}
+REVISION PASS controls=47
+
+BUILD SUCCESSFUL in 8s
+6 actionable tasks: 1 executed, 5 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html

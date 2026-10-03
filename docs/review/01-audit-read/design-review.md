@@ -1,5 +1,7 @@
 # 01-audit-read — design review
 
+**Latest verdict: PASS at `4eb1eb4`. DR-01 and DR-02 fixed.** Original review retained below.
+
 Candidate: `b55c549738f5c2b24b32882d9497a616f7de199a` (design `c1be72844649ff87a9207f74bec46e2df8b135e2`,
 impact analysis `a686b2a4a85830d4dcb5256a170e0cc2ee771f17`). Accepted SPEC: `7b753b7`.
 Packet: `qitem-20261003174406-936f9d9c`; instance: `01M416ZY5N11CDGZBM2DT4GAXS`.
@@ -103,3 +105,57 @@ explicit. Append one ledger row and return through `failed` to the design author
 the producer's response to DR-01/02 and any consequences of that fix; retain settled paging,
 scope and requirements decisions. Implementation still owes full candidate suites, upgrade,
 OpenAPI equality and actual log evidence.
+
+## Re-review 4eb1eb4
+
+Candidate: `4eb1eb4a2d021abf41f6f96db4df630e6a7e5626`.
+Packet: `qitem-20261003182016-5973c5c1`, same instance; 2026-10-03 UTC.
+**Verdict: PASS — both findings fixed, no open findings.** Handoff to delegated plan-lock.
+
+Read the complete six-file correction and each producer response against the accepted,
+unchanged SPEC `7b753b7`. Re-review is confined to the findings and effects of their fixes;
+settled representation, pagination, scope and upgrade requirements remain unchanged.
+
+| Changed file | Verdict |
+|---|---|
+| `missions/02-brownfield/slices/01-audit-read/design.md` | PASS; effective-strategy guard, response handling, threat residual and tests updated |
+| `missions/02-brownfield/slices/01-audit-read/impact-analysis.md` | PASS; override consequence correctly changes from disclosure to closed read |
+| `missions/02-brownfield/slices/01-audit-read/design-probe/AuditProbe.java` | PASS; revised guard and explicit response type, P6 adds both overrides, unset/platform and Accept controls |
+| `missions/02-brownfield/slices/01-audit-read/design-probe/output.txt` | PASS; all new output read; P6 confirms the scoped response claims; P2–P5 retained |
+| `docs/adr/0019-audit-read-loopback-keyset.md` | PASS; enforcement replaces the unsupported operator exception, alternatives/tests updated |
+| `docs/DESIGN.md` | PASS; complete changed audit-read row agrees with the corrected contract |
+
+**6 changed files / 6 reviewed in this correction; 10 unique design files overall.**
+
+| Finding | Resolution | Independent evidence |
+|---|---|---|
+| DR-01 HIGH | Fixed | Constructor admits only when Boot's bound `ServerProperties` strategy is explicitly `NONE`. A real properties-file default is overridden with native/framework in the reviewer probe. Under either override, plain and forged GET/HEAD all return 403; unset and unset with Kubernetes detection also return 403. Default NONE still admits plain loopback and refuses both header forms. Every refusal excludes the synthetic audit canary. Test mapping retains default/platform controls and adds override contexts and each enum/null unit case. |
+| DR-02 MEDIUM | Fixed | No mapping-level `produces` condition; successful response explicitly sets JSON. With wildcard, strict HTML, problem-only and browser Accept, refused requests return 403 ProblemDetail, invalid limits return 400 ProblemDetail with field/rule, and valid requests return 200 application/json. HEAD has no body. |
+
+Fresh reviewer command:
+
+```sh
+scripts/gw --log docs/review/01-audit-read/proof/access-revision-4eb1eb4.txt --offline -I docs/review/01-audit-read/proof/audit-access.gradle reviewAuditAccessRevision
+scripts/gw --log docs/review/01-audit-read/proof/baseline-check-4eb1eb4.txt --offline check
+```
+
+The first exits 0 with **47/47 asserted HTTP controls**, including status, content type,
+request-id presence, empty HEAD bodies and canary presence/absence. The revised independent
+[probe](proof/AuditAccessRevisionProbe.java) changes the two mechanisms from the original
+reproducer and retains its synthetic-data/loopback-only limits; [full output](proof/access-revision-4eb1eb4.txt).
+The [baseline gate](proof/baseline-check-4eb1eb4.txt) exits 0, all tasks UP-TO-DATE.
+`src/` and Gradle definitions have no diff between the handed candidate and the shared checkout;
+these checks do not claim that the future implementation or its QA suite has been delivered.
+
+The newer database policy was read (databases §§2/8). This slice still creates no table or DDL.
+The recorded mission decision keeps its migration scope unchanged; `docs/qa/GAPS.md` now names
+the click/reference-table V3 migration and the separate `04-audit-columns` expand migration
+after V3 for link/audit_log. That debt is explicit and is not silently waived here.
+
+Residual boundary remains the accepted headerless local relay: it cannot be distinguished from
+a local Operator. The documentation requires excluding this route from such relays or retaining
+a forwarding header that refuses it. ADR-0019 also retains the obligation for future client-address
+wrappers to preserve those headers or the raw peer check. No new non-blocking backlog item.
+Implementation still owes the exact-candidate gate, real upgrade, logs and OpenAPI proof.
+Reviewer self-check: all six changed files covered, two resolutions independently observed,
+no producer/product files edited, and the ledger records this scoped pass.
