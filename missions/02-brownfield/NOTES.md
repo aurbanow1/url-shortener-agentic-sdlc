@@ -184,7 +184,9 @@ Context and observations that help the mission but do not change its
   repeated23 requests and24 events independently correlate in default JSON
   console and ECS file sink. Details in PROOF.md QA and GAPS.md; no product
   edits, all app ports stopped, clean exact candidate worktree.
-  Recording fresh attributed items1–11,13 and handoff; item12 awaits
+  Items1–11,13 accepted by fresh attributed receipts14–25 against this
+  candidate, evidencea08650c; receipt files committed explicitly. Handoff
+  to combined review; item12 awaits
   independent corrected review under qitem-20261003194346-b74b8081.
 
 - 2026-10-03 after review — original35590f0 QA PASS superseded by HIGH

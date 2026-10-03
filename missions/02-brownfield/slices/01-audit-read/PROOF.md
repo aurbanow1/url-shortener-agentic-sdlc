@@ -206,8 +206,10 @@ GAPS records the correction, per-suite misses, accepted enumeration grant,
 input scope and Boot-trigger upgrade ceiling. No material AC remains
 unverified within its specified scope.
 
-Items1–11 and13 are covered by this QA drop and will receive fresh
-commit-subject judgments. **Item12 remains pending** corrected independent
+Items1–11 and13 are covered by this QA drop and accepted by fresh
+commit-subject receipts14–25, preserved in
+proof/qa-recheck-7ac8af5/judgment-receipts.json; every cited hash was checked
+against current committed bytes. **Item12 remains pending** corrected independent
 security review, under existing lead sequencing obligation
 qitem-20261003194346-b74b8081. The earlier35590f0 rejection is preserved.
 
