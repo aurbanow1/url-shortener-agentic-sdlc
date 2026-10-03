@@ -1,5 +1,8 @@
 # 01-create-redirect — requirements review
 
+**Latest verdict: PASS at `0acbc9d4898a04df73cf61bab20570a75484629a`.**
+RQ-01, RQ-02 and RQ-03 are fixed; earlier findings are retained below as history.
+
 Candidate: `d1794980a8169ef099dc6420cd2ae6f45c47d463`, requirements range
 `6b6b2d2^..d179498`. Reviewer: `review-agent@urlshort-factory` (Codex),
 2026-10-03; author: requirements agent (Claude).
@@ -98,3 +101,34 @@ synthetic counterexample; it demonstrates the acceptance predicate's gap.
 - No product, SPEC or design edits. Ledger appended; only `docs/review/`
   authored. `failed` routes to requirements for a response to all findings;
   re-review stays on those responses and the changed text.
+
+## Re-review 0acbc9d4898a04df73cf61bab20570a75484629a
+
+2026-10-03, packet `qitem-20261003051110-97f19fd2`. **PASS; no open findings.**
+The packet names this SHA, `git rev-parse HEAD` matches, and the checkout was
+clean before reviewer edits. Read every change in the producer's one-file
+commit `0acbc9d`, including its Review response table and self-check.
+
+| Finding | Resolution verified in the revised SPEC |
+|---|---|
+| RQ-01 (HIGH) | Fixed. Rule 5 and A-9 explicitly distinguish failed first use from failure on a bound key; existing link and original expiry survive. AC-18 now checks mismatch then original replay and one create audit row. AC-19 adds a mismatch at t0+23h, then verifies the original code before 24h and a new code afterward. The NFR-R5 mapping includes both criteria. |
+| RQ-02 (MEDIUM) | Fixed. Rule 2 defers to ordered rule 3; AC-4 explicitly covers a leading space as `scheme` and a trailing space as `malformed`. Required/length precedence and verbatim storage remain intact. |
+| RQ-03 (MEDIUM) | Fixed. AC-26 and rule 10 require at least one event and the same request id on every event of the request; 413, 415, 422 and induced 500 are added to the response cases. The prior two-event counterexample now fails the stated criterion. |
+
+| Changed file | Verdict |
+|---|---|
+| `missions/01-greenfield-core/slices/01-create-redirect/SPEC.md` | Pass — 1/1 producer files reviewed; all responses substantiated by changed contract text |
+
+### Self-check
+
+- Candidate and clean starting state verified. Replayed the documentary
+  counterexamples against the amended rules/ACs; all three are resolved.
+- Changes remain within the assigned findings; 28 ACs and the existing proof
+  contract/requirement allocation are retained. No new findings or scope.
+- Fresh `rig scope audit --mission 01-greenfield-core` reports no issue for
+  this slice; six LOW advisories still concern only other slices' scaffolds.
+- No product/test/build changes in this fix; baseline tests were not rerun.
+  This pass approves the requirements for design, not implementation behavior.
+- Only review artifacts edited; ledger updated. Handoff to design should
+  retain the dependency-first constraint and demonstrate browser problem
+  details, redirect no-store, atomic audit/idempotency and full log correlation.
