@@ -33,3 +33,12 @@ Context and observations that help the mission but do not change its
 - Mechanics worth keeping: `rig scope slice create <mission> <slug>` numbers the folder itself, so the slug must not carry the number. I passed `01-analytics-v2` and got `01-01-analytics-v2`; renamed the (uncommitted) folder, the `mission.yaml` ref and the SPEC `slice:` field by hand before anything was compiled; `rig scope slice ls` then reported `01-analytics-v2` with the same id `OPR.99.0.4.1`.
 - Reading, honestly: my role file also names `requirements.md` §1–2 and `architecture.md` §1–2 for decompose. I did not reread them for this mission: the shape was fixed by the mission SPEC (D7), and `decomposition.md` and `orchestration.md`, which govern slice shape, tiers, waves and re-planning, were read in full. The committed compiled graph was checked equal to a fresh compile after the revisions were applied.
 - `rig scope audit --mission 03-ambiguous-analytics`: two low advisories (placeholder mini-requirements and proof contract), filled at the slice's `requirements` step; no tier drift (`tier: high` in both the SPEC frontmatter and `slice.yaml`).
+
+## 3. Design agent
+
+- 2026-10-03T18:45Z — `01-analytics-v2` design written on SPEC `b8c327b` (packet `qitem-20261003164151-fbee7e97`, instance `01M416Z3CM54YQTX93V4KG0CPS`). Impact analysis `3ebfb09` first, then design `aa36c8b` plus a follow-up commit.
+  - Mechanism: one `UNION ALL` statistics statement for per-day `uniqueVisitors`/`botClicks`. The hash is compared only within `clicked_on`, the salt's day.
+  - Identity: the rate limiter's `clientOf` result is left on the request as `RateLimitFilter.CLIENT_ATTRIBUTE` and hashed by `ClickRecorder`. The `web/` grant is `c78500e`; it is used within its conditions, and the design says why not the wrapper.
+  - Counters `urlshort.clicks.recorded` and `urlshort.clicks.lost{reason}`. ADR-0013, ADR-0015 and ADR-0016 amended.
+  - **No migration, no Flyway number.** Mission 02's `02-click-retention` takes V3, and `01-audit-read` takes none. The slice builds after both mission-02 w1 merges, then regenerates `docs/api/openapi.json`.
+  - Probe: `design-probe/output.txt` (S1–S5).

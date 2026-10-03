@@ -35,7 +35,7 @@ It takes no Flyway number; `02-click-retention` takes V3.
 | `web.RateLimitFilter` (**grant** `c78500e`: additive, decisions unchanged, existing tests unchanged, no other `web/` file) | becomes `public`; one constant; one statement | `/** Request attribute holding the client this request was charged to (ADR-0015); read by the click recorder. */ public static final String CLIENT_ATTRIBUTE = RateLimitFilter.class.getName() + ".client";` In `doFilterInternal` after the exempt check: `String client = clientOf(request.getRemoteAddr(), request.getHeader("X-Forwarded-For"), trustedProxies); request.setAttribute(CLIENT_ATTRIBUTE, client); long retryAfter = limiter.tryTake(budget, client);`. `clientOf` stays package-private; the grant allowed it public, and nothing needs it. Constructor stays package-private |
 | `click.ClickRecorder` | the address; the counters | **Address:** in `record`, `String address = request.getAttribute(RateLimitFilter.CLIENT_ATTRIBUTE) instanceof String client ? client : request.getRemoteAddr();` then `salt.stamp(address)` as before. **Counters:** the `@Autowired` constructor takes a `MeterRegistry`, and so does the package-private test constructor. It registers `recorded = Counter.builder("urlshort.clicks.recorded").description("Clicks written to the click store").register(registry)`. For each reason in `REASONS` (`rejected`, `reduction failed`, `write failed`, `shutdown deadline`, `shutdown deadline, outcome unknown`), it registers `Counter.builder("urlshort.clicks.lost").description("Clicks reported by a click lost event").tag("reason", r).register(registry)` into an `EnumMap`-like `Map<String, Counter>`. `lost(reason, error)` becomes an instance method that logs as before and then increments `lostCounters.get(reason)`. `ClickWrite.run` increments `recorded` after `compareAndSet(RUNNING, DONE)` succeeds post-insert. The reason strings become constants used by both the log and the map |
 | `click.ClickStore` | the statistics statement | `Stats stats(long linkId)` replaces `countByDayAndReferrer`. It runs the `UNION ALL` of §3 and reads each row into `referrers` (`clicks` not null → `DayReferrerCount(day, referrer, clicks)`, as v1) or `days` (`unique_visitors` not null → `DayFigures(day, uniqueVisitors, botClicks)` into a `Map<LocalDate, DayFigures>`). `record Stats(List<DayReferrerCount> referrers, Map<LocalDate, DayFigures> days)`. The Javadoc says the hash is read only here, only to count within a day |
-| `click.LinkStats` | the per-day element | `record DayClicks(LocalDate date, long clicks, long uniqueVisitors, long botClicks)`: component order is JSON order, rule 1. `of(String code, ClickStore.Stats stats)` folds the referrer rows exactly as v1 and builds each day's element from v1's per-day sum plus `stats.days().get(day)`. Every day with clicks has a day row, because both groupings read the same rows in one statement |
+| `click.LinkStats` | the per-day element | `record DayClicks(LocalDate date, long clicks, long uniqueVisitors, long botClicks)`: component order is JSON order, rule 1. `of(String code, ClickStore.Stats stats)` folds the referrer rows exactly as v1 and builds each day's element from v1's per-day sum plus `stats.days().getOrDefault(day, DayFigures.NONE)`, where `NONE` is zero and zero. Normally every day with clicks has a day row, because both groupings read the same rows in one statement. The default means a day row missing for any reason, such as a purge deleting between the two branches, gives zeros rather than a `500`. Unit-tested |
 | `click.StatsController` | OpenAPI | the `200` example gains the two fields per element: `{"code":"aB3dE5fG","totalClicks":6,"clicksPerDay":[{"date":"2026-10-01","clicks":6,"uniqueVisitors":3,"botClicks":1}],"topReferrers":[{"referrer":"https://news.example.com","clicks":4}]}`. `DayClicks` components carry `@Schema` descriptions: unique visitors are "distinct visitors that UTC day; never combined across days", and bot clicks "clicks whose user agent was classified bot" |
 | `click.package-info` | text | the hash's single permitted use (Q2 B) |
 | `docs/api/openapi.json` | regenerated | after rebasing onto `01-audit-read`'s merge (SPEC A-9) |
@@ -163,7 +163,7 @@ Functional journeys use the v1 conventions: peers set per request (`.with(r -> {
 |---|---|---|
 | AC-1, rule 1 | `StatsV2JourneyTest`: one browser redirect, settle; and a link never opened | the exact body, element `{"date": D, "clicks": 1, "uniqueVisitors": 1, "botClicks": 0}`; the empty body is v1's |
 | AC-2, rule 3 | same: peers `203.0.113.1` ×3, `.2` ×2, `.3` ×1 | `{6, 3, 0}` |
-| AC-3, rule 3 | same: the clock at `<D>T23:59:59Z` and `<D+1>T00:00:01Z`, peer `203.0.113.1` (dedicated to this test) | each day `uniqueVisitors` 1; the body's field set is exactly AC-1's |
+| AC-3, rule 3 | same: the clock at `<D>T23:59:59Z` and `<D+1>T00:00:01Z`, peer **`203.0.113.31`**. No other test in the class uses it, because a day-shifted request leaves that peer's bucket a day ahead, so its next unshifted request would answer `429` (mission 01 NOTES §2 12:40Z). The SPEC's `203.0.113.1` is illustrative and is AC-2's peer here | each day `uniqueVisitors` 1; the body's field set is exactly AC-1's |
 | AC-4, rule 4 | same: v1's AC-4 user agents from six peers | `{6, 6, 3}`, `totalClicks` 6 |
 | AC-5 | same: peer `203.0.113.9`, a browser click and a bot click | `{2, 1, 1}` |
 | AC-6, A-1 | `StatsJourneyTest` (v1's AC-8 to AC-11), shape updated only (AC-14) | v1 values exact |
@@ -246,8 +246,11 @@ database. The recorded run halves the links.
 4. `feat(01-analytics-v2): click identity follows the trusted-proxy rule`: `RateLimitFilter` (grant)
    and `ClickRecorder`.
 5. `feat(01-analytics-v2): click counters`: `ClickRecorder`.
-6. `docs(01-analytics-v2): regenerate the API document`.
-7. Run `scripts/gw check`, commit the coverage reports, and hand off naming the SHA.
+6. `docs(01-analytics-v2): regenerate the API document`. `OpenApiDocumentTest` is expected to be
+   red from step 3, when `DayClicks` changes, until this step.
+7. Run `scripts/gw check`, commit the coverage reports, and hand off naming the SHA. `RateLimitFilter`
+   turning `public` puts it under `javadoc -Xdoclint:all -Werror`: the class and the new constant
+   need Javadoc, and the first gate run proves the rest.
 
 ## Status
 
