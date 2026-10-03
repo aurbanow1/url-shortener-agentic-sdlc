@@ -82,7 +82,7 @@ flowchart TB
 
 | Seat | Runtime | Model | Reasoning effort | Where it is set |
 |---|---|---|---|---|
-| `orchestration-lead`, `design-agent` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | **xhigh** — the seat sends `/effort xhigh` to itself at every launch (agent spec `startup.actions`) |
+| `orchestration-lead`, `design-agent` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | **xhigh** — set per session by the operator after each launch (`rig send --raw <seat> "/effort xhigh"`, verified with `/effort status`) |
 | `requirements-agent`, `release-agent` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | high (D7; project `.claude/settings.json`) | `defaults.model` in each agent spec (D8, 2026-10-03) |
 | `development-agent` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | high (D7) | `rig/agents/development-agent/agent.yaml` → `defaults.model`; effort from `modelSettings.claude-opus-5-5` |
 | `qa-agent`, `qa2-agent` | Codex | GPT-6.1-Sol (`gpt-6.1-sol`) | xhigh | `rig/agents/qa-agent/agent.yaml` → `defaults.model`; effort from `~/.codex/config.toml` `model_reasoning_effort` |

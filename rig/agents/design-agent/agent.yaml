@@ -35,8 +35,4 @@ startup:
     - path: startup/context.md
       delivery_hint: send_text
       required: true
-  actions:
-    - type: send_text
-      value: "/effort xhigh"
-      phase: after_ready
-      idempotent: true
+  actions: []
