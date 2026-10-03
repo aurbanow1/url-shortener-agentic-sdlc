@@ -1,4 +1,4 @@
-%% urlshort — container view (kept current by the Design Agent; last: 03-operate design, 02-analytics and 03-operate not yet merged)
+%% urlshort — container view (kept current by the Design Agent; last: 02-click-retention design, ClickPurge not yet merged)
 flowchart LR
     C[Creator / Visitor / Analyst / Operator<br/>container: 127.0.0.1:8080 only]
     subgraph urlshort [urlshort · Spring Boot 4.1 · Java 21 · uid 10001 · read-only root + tmpfs /tmp]
@@ -17,6 +17,7 @@ flowchart LR
         DS[DailySalt<br/>click · HMAC · salt per UTC day, in memory]
         CS[ClickStore<br/>click · JdbcClient]
         SC[StatsController<br/>click · /api/links/{code}/stats]
+        CP[ClickPurge · designed<br/>click · one click-purge thread<br/>startup run before readiness · daily 00:10Z]
         P[PingController<br/>ping]
         E[ProblemDetailsAdvice<br/>web · extends ResponseEntityExceptionHandler]
         A[Actuator · not limited<br/>health liveness/readiness+db · info · metrics · prometheus]
@@ -39,6 +40,7 @@ flowchart LR
     CR --> DS
     CR -.->|async, fail open| CS
     SC --> CS
+    CP -->|DELETE rows with clicked_on before today − P| CS
     S --> R --> H
     S --> AU --> H
     CS --> H
@@ -46,9 +48,11 @@ flowchart LR
     AU --- K
     DS --- K
     RL --- K
+    CP --- K
     C -->|/actuator/*| A
     C -->|/v3/api-docs| O
     F1 -->|INFO request completed · MDC requestId| L
     E -->|ERROR request failed · 500 only| L
     CR -->|WARN click lost · requestId restored| L
+    CP -->|INFO clicks purged · WARN click purge failed| L
     P -->|INFO ping| L

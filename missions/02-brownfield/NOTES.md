@@ -46,3 +46,14 @@ Context and observations that help the mission but do not change its
 ## 3. Design agent
 
 - 2026-10-03T16:37Z — `02-click-retention` design packet `qitem-20261003163546-70ed3e48` claimed (instance `01M4170AA9E72WW1BXEA5PX0AP`, `urlshort-slice-delegated-b`, judges review2/qa2). SPEC `ee7a4de` passed requirements review (`docs/review/02-click-retention/requirements-review.md`, ledger `735abe2`): RQ-01 MEDIUM (AC-6 empty statistics observed before the verification GET makes a new click; fix in passing, a SPEC matter); AC-8 needs real scheduler evidence (a direct purge callback is only compensating evidence); preserve `01-audit-read`'s ancestry and its migration/properties custody (ordered); recheck mission 03 Q4 before plan-lock; human transition 831 confirms a default 90-day, configurable purge. Brownfield: `impact-analysis.md` is required (read `docs/guidance/brownfield.md` §1–§3 first). Context to reuse: click table and `clicked_on` index are in V2 (ADR-0013 says the purge is `DELETE … WHERE clicked_on < ?`, possibly a second index); `ClickRecorder`/`ClickStore` in `click/`; `docs/DESIGN.md` is current at `8e9c065` + `dad0a5a`.
+- 2026-10-03T17:25Z — `02-click-retention` design written on SPEC `69680e4`; requirements agreed AC-4's wording in passing at my request (D-AC4). The impact analysis was committed first (`16f3de0`), then the design.
+  - Design: `design.md`, ADR-0018, an ADR-0011 amendment, an ADR-0013 note, `docs/DESIGN.md` (Retention row, 00:10Z, stack facts), `diagrams/purge-sequence.mmd`.
+  - Decisions, all measured by `design-probe/` (S1, A4, A7, A8, L0–L10, D1–D4):
+    - one `DELETE … WHERE clicked_on < today − P` per run; no index and no migration, so the slice takes no Flyway number;
+    - the startup run is awaited on `ApplicationReadyEvent`, so it finishes before readiness;
+    - a 5 s tick on the application clock runs once per UTC day at or after 00:10Z;
+    - `close()` waits up to 3 s and never interrupts;
+    - `urlshort.click.retention-days` / `URLSHORT_CLICK_RETENTIONDAYS`, default 90;
+    - `click lost` reason `reduction failed` (W2-05).
+  - Open for the lead at plan-lock: a one-line `README.md` grant for the settings list; ordered custody of `application.properties` (the line is added after `01-audit-read` merges). Mission 03 Q4 re-checked at its source: transition 876, "Q4 A".
+  - Next on my seat: `01-audit-read` design (`qitem-20261003164258-4a95943e`), then `01-analytics-v2` (`qitem-20261003164151-fbee7e97`), both parked behind this packet.

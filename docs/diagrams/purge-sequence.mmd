@@ -1,0 +1,47 @@
+%% urlshort — click retention purge: startup run, daily run, failure, shutdown (02-click-retention design.md §4)
+sequenceDiagram
+    autonumber
+    participant B as Spring Boot
+    participant P as ClickPurge (click)
+    participant T as click-purge thread
+    participant K as Clock (UTC)
+    participant ST as ClickStore → H2 click
+    participant L as stdout (ECS JSON)
+    participant V as Visitor / click-writer
+
+    Note over B,ST: startup: Flyway has run, Tomcat has started, readiness is not yet reported
+    B->>P: ApplicationReadyEvent
+    P->>T: submit(run) and wait
+    T->>K: instant() → UTC day T
+    T->>T: lastRunDay = T, cutoff = T − P
+    T->>ST: DELETE FROM click WHERE clicked_on < :cutoff (one statement, own transaction)
+    ST-->>T: n rows
+    T->>L: INFO "clicks purged" {deleted n, cutoff, retentionDays P}
+    T-->>P: done
+    P->>T: scheduleWithFixedDelay(tick, 5 s)
+    P-->>B: return
+    B->>B: readiness ACCEPTING_TRAFFIC
+
+    par Visitors are never blocked by a run (MVCC row locks)
+        V->>ST: INSERT click (today), SELECT statistics
+    and every 5 s
+        T->>K: instant()
+        alt UTC day > lastRunDay and time ≥ 00:10Z
+            T->>T: lastRunDay = today, cutoff = today − P
+            T->>ST: DELETE FROM click WHERE clicked_on < :cutoff
+            alt the store answers
+                T->>L: INFO "clicks purged" {deleted, cutoff, retentionDays}
+            else RuntimeException
+                T->>L: WARN "click purge failed" {cutoff, retentionDays, errorType = class name}
+                Note over T: no retry today; the next UTC day's run deletes the same rows
+            end
+        else same day, before 00:10Z, or the clock stepped back
+            T->>T: nothing
+        end
+    end
+
+    Note over B,ST: shutdown (SIGTERM)
+    B->>B: graceful phase ≤ 10 s (the run, if any, keeps going)
+    B->>P: @PreDestroy close()
+    P->>T: shutdown(), awaitTermination(3 s), never interrupt
+    Note over T,ST: a statement still running at exit is undone by H2 at the next open; the next startup run repeats it

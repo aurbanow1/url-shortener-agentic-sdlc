@@ -1,6 +1,6 @@
 # ADR-0011 — Click recording: reduced on the request thread, written by one bounded writer, fail open
 
-- Status: accepted at the `02-analytics` plan-lock (2026-10-03T09:48Z)
+- Status: accepted at the `02-analytics` plan-lock (2026-10-03T09:48Z); amendment proposed by `02-click-retention` (see *Amendment*)
 - Date: 2026-10-03
 - Slice: `02-analytics`
 
@@ -97,3 +97,20 @@ hook in `link/`, but not `application.properties` or `build.gradle.kts`.
   (C2 `HEAD`, C4 hook time, C7 slow store, C8 failing store). The bounded
   close is in `…/design-probe/revision-output.txt` (DR-01: the reviewer's
   six 2-s writes, close returned at 5 006 ms, every click accounted once).
+
+## Amendment — `02-click-retention` (2026-10-03, proposed; accepted at that slice's plan-lock)
+
+The *Consequences* above said a second asynchronous feature would justify a shared executor
+configuration. The click purge (ADR-0018) is that second feature. It keeps the pattern instead:
+
+- **One more owned executor, not a shared one.** `click.ClickPurge` holds a single-thread
+  `ScheduledExecutorService` with one daemon thread, `click-purge`, as a field, the way
+  `ClickRecorder` holds `click-writer`. The two share nothing: the writer is a bounded queue on
+  the Visitor's path, and the purge is one timed job.
+- **Still no scheduler framework.** Spring's `@Scheduled` with a cron trigger cannot follow the
+  suite-controlled clock: it arms against the clock and then sleeps real time (ADR-0018, probe S1).
+  `@EnableScheduling` would also switch scheduling on for the whole application for one job.
+- **Each owner controls its own shutdown, and neither interrupts a JDBC call.** The writer drains
+  for at most 5 s, as above. The purge waits for a run in progress for at most 3 s. Both are
+  `@PreDestroy` methods, so their waits add up after the graceful phase (ADR-0018's budget).
+- A third asynchronous feature, or one that needs a pool, reopens the shared-executor question.

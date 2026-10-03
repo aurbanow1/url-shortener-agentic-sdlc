@@ -71,3 +71,11 @@ come from event rows at request time or from a summary table.
   fold, C6 H2's ordering for comparison) and
   `…/design-probe/constraint-output.txt` (every constraint form before and
   after connection retirement, including the revised V2).
+
+## Note — `02-click-retention` (2026-10-03)
+
+The purge sketched under *Consequences* is decided in ADR-0018. It is one
+`DELETE FROM click WHERE clicked_on < ?` per run, as sketched, and it needs **no** index on
+`clicked_on`. The table scan was measured faster than an indexed delete for a catch-up, and within
+0.3 s of batched indexed deletes for a daily run (ADR-0018, probe L1–L10). The schema of this ADR is
+unchanged.
