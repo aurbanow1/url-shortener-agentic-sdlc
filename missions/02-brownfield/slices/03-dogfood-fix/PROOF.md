@@ -133,7 +133,17 @@ commits it.
 - Both historical regressions independently RED before fixes; ADR
   amendments/index precede dependent code.
 - Proof drop covers items 1–8 with --evidences and retained media; attributed
-  candidate judgments follow evidence commit.
+  candidate judgments recorded after evidence commit 33c5b44.
 - Both apps stopped (exit130/SIGINT); ports18151/18152 refuse connections.
   Primary worktree exact 4fe7042, inherited wrapper-line-ending noise only;
   no authored source/build/test edit.
+
+
+### Attributed QA receipts
+
+Evidence commit 33c5b44; items 1–8 accepted against exact 4fe7042 by
+qa-agent in receipts 00000001..00000008. All eight live states accepted,
+readiness ready, no issues; all 36 evidence-reference hashes independently
+match. Full receipts in proof/qa-judgment-receipts-4fe7042.json,
+hash audit in proof/qa-receipt-audit-4fe7042.json. Receipt files and this
+record committed with explicit paths; independent review is next.

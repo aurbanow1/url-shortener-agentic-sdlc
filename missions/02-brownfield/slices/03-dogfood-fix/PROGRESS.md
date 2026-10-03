@@ -30,4 +30,4 @@
 - [x] Independent red controls cce7cf7/72dfffb; ADR chronology/index and README check recorded.
 - [x] All 233 source methods mapped; gap row written, QA-OPR-02 closed.
 - [x] Apps stopped; exact candidate preserved, inherited gradlew.bat line endings disclosed.
-- [ ] Attributed proof receipts committed and qa_check handed to review.
+- [x] All eight attributed proof receipts recorded; evidence committed and ready for qa_check handoff.

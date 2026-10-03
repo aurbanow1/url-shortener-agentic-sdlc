@@ -215,8 +215,11 @@ Context and observations that help the mission but do not change its
   GAPS closes QA-OPR-02, names single-disk scope, selector break,
   parameterized attribution and inherited wrapper line endings.
   Both apps stopped; no product/test/build edit. Evidence slice PROOF QA,
-  proof/qa-4fe7042/, coverage SUMMARY. Next: commit evidence, drop all 8
-  items, judge/commit receipts, verify readiness and hand off.
+  proof/qa-4fe7042/, coverage SUMMARY. Evidence committed at33c5b44;
+  QA drop covers all eight items. Attributed receipts1–8 accept exact4fe7042;
+  ready8/8, no issues, all36 cited hashes independently match.
+  Receipt files and this note committed explicitly; authored handoff
+  to independent review closes the active packet.
   Shared GAPS/TRACE edits may stale older receipts; lead's final
   reconciliation qitem-20261003195138-8eb72ecb handles final merged state.
 
