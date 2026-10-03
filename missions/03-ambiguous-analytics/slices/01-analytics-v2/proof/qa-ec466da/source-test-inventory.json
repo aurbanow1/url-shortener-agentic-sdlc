@@ -1,0 +1,3540 @@
+[
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/UrlshortApplicationTests.java",
+    "class": "dev.urlshort.UrlshortApplicationTests",
+    "method": "contextLoads",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/UrlshortApplicationTests.java",
+    "class": "dev.urlshort.UrlshortApplicationTests",
+    "method": "mainBootsWithoutAWebServer",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "loopbackPeersAreAdmitted",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "otherPeersAreRefused",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "aMissingPeerIsRefused",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "aForwardingHeaderRefusesEvenFromLoopback",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "theShippedStrategyAdmitsALoopbackRequest",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "anyOtherStrategyClosesTheEndpoint",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "anUnsetStrategyClosesTheEndpoint",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "aRemoteIpHeaderSettingClosesTheEndpoint",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "aProtocolHeaderSettingClosesTheEndpoint",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "emptyRemoteIpSettingsKeepTheEndpointOpen",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "limitDefaultsTo50AndAcceptsItsBounds",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "limitOutsideItsRangeIsARangeProblem",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "aLimitThatIsNotAWholeNumberIsAFormatProblem",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "aCursorIsTheBase64urlOfAPositiveId",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "class": "dev.urlshort.audit.AuditControllerTest",
+    "method": "aMalformedCursorIsAFormatProblem",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/audit/AuditLogTest.java",
+    "class": "dev.urlshort.audit.AuditLogTest",
+    "method": "theWriterOffersOnlyAppendAndItsOnlyStatementIsAnInsert",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/audit/AuditLogTest.java",
+    "class": "dev.urlshort.audit.AuditLogTest",
+    "method": "appendWritesOneRowWithServerOwnedValues",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickAuditColumnsTest.java",
+    "class": "dev.urlshort.click.ClickAuditColumnsTest",
+    "method": "theClickTablesGainFilledAuditColumnsAndKeepEveryV1ColumnAndConstraint",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-5"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "aRunDeletesBeforeTheEarliestKeptDayAndLogsOneInfo",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-7"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "theCutoffFollowsThePeriod",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-7"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "theTickRunsOnceADayFromTenPastMidnight",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-7"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "aClockThatStepsBackRunsNothing",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-7"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "aFailedRunIsOneWarnWithTheClassOnlyAndIsNotRetriedBeforeTheNextDay",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-7"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "startRunsOnThePurgeThreadAndReturnsAfterTheRun",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-7"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "runNowRunsOnThePurgeThread",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-7"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickPurgeTest.java",
+    "class": "dev.urlshort.click.ClickPurgeTest",
+    "method": "onHoldStartDeletesNothingAndSaysSoOnce",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-7"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aHeadRequestIsNotAClick",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-2/4/6/10/11"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aRedirectIsStoredAsItsReducedFactsOnly",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-2/4/6/10/11"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aFailedWriteIsOneWarnWithTheRequestIdAndNoClickValue",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-2/4/6/10/11"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aClickThatCannotBeQueuedIsOneWarnAndTheRedirectGoesOn",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-2/4/6/10/11"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aClickThatCannotBeReducedIsOneWarn",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-2/4/6/10/11"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aFastStoreIsDrainedOnCloseAndNothingIsReported",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-2/4/6/10/11"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aStuckWriteIsBoundedAndEveryUnwrittenClickIsReportedOnceBeforeCloseReturns",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-2/4/6/10/11"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aClaimedClickIsNeverWrittenWhenTheWriterReachesItLater",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-2/4/6/10/11"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aWriteThatFailsAfterShutdownClaimedItIsNotReportedAgain",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-2/4/6/10/11"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aWriteThatCompletesAfterShutdownClaimedItIsNotReportedAgain",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-2/4/6/10/11"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "theRateLimitersClientIsHashedWhenTheRequestCarriesIt",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-2/4/6/10/11"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "everyLostReasonIsRegisteredAtZeroBeforeAnyClick",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-2/4/6/10/11"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aStoredClickIsCountedAsRecorded",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-2/4/6/10/11"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aFailedWriteIsCountedUnderItsReason",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-2/4/6/10/11"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aRejectedClickIsCountedUnderItsReason",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-2/4/6/10/11"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "aReductionFailureIsCountedUnderItsReason",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-2/4/6/10/11"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "class": "dev.urlshort.click.ClickRecorderTest",
+    "method": "shutdownReasonsAreCountedAndAWriteThatReturnsAfterTheClaimIsStillRecorded",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-2/4/6/10/11"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickSchemaTest.java",
+    "class": "dev.urlshort.click.ClickSchemaTest",
+    "method": "theClickConstraintsStillWorkAfterTheDdlConnectionIsRetired",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-5"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickTest.java",
+    "class": "dev.urlshort.click.ClickTest",
+    "method": "theReferrerIsReducedToItsOrigin",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-2/4/5/9"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickTest.java",
+    "class": "dev.urlshort.click.ClickTest",
+    "method": "aReferrerThatIsNotAnHttpOriginIsNone",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-2/4/5/9"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickTest.java",
+    "class": "dev.urlshort.click.ClickTest",
+    "method": "theReferrerLengthCapIs2048",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-2/4/5/9"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickTest.java",
+    "class": "dev.urlshort.click.ClickTest",
+    "method": "theUserAgentIsReducedToAClass",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-2/4/5/9"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickTest.java",
+    "class": "dev.urlshort.click.ClickTest",
+    "method": "anAbsentOrEmptyUserAgentIsUnknown",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-2/4/5/9"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/ClickTest.java",
+    "class": "dev.urlshort.click.ClickTest",
+    "method": "rule2_aClickHoldsOnlyTheReducedFacts",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-2/4/5/9"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/DailySaltTest.java",
+    "class": "dev.urlshort.click.DailySaltTest",
+    "method": "sameAddressAndDayHashEquallyAndTheStampCarriesTheClocksInstant",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-3/5/9"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/DailySaltTest.java",
+    "class": "dev.urlshort.click.DailySaltTest",
+    "method": "anotherAddressOrAnotherDayHashesDifferently",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-3/5/9"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/DailySaltTest.java",
+    "class": "dev.urlshort.click.DailySaltTest",
+    "method": "theHashIsNeverTheUnsaltedDigest",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-3/5/9"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/DailySaltTest.java",
+    "class": "dev.urlshort.click.DailySaltTest",
+    "method": "aSelectionMadeBeforeMidnightKeepsItsDayAndNeverReplacesTheNextDaysSalt",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-3/5/9"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/DailySaltTest.java",
+    "class": "dev.urlshort.click.DailySaltTest",
+    "method": "aStaleExpiryIsANoOpAndTheCurrentDaysExpiryDropsTheSalt",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-3/5/9"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/DailySaltTest.java",
+    "class": "dev.urlshort.click.DailySaltTest",
+    "method": "closeDropsTheSalt",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-3/5/9"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/DailySaltTest.java",
+    "class": "dev.urlshort.click.DailySaltTest",
+    "method": "aSaltIsDroppedAtTheEndOfItsDayWithoutAnyFurtherClick",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-3/5/9"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/LinkStatsTest.java",
+    "class": "dev.urlshort.click.LinkStatsTest",
+    "method": "noRowsIsZeroAndTwoEmptyLists",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-3/4/9"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/LinkStatsTest.java",
+    "class": "dev.urlshort.click.LinkStatsTest",
+    "method": "daysAreSummedAscendingWithTheirFiguresAndClicksWithoutAReferrerCountOnlyInTheTotals",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-3/4/9"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/click/LinkStatsTest.java",
+    "class": "dev.urlshort.click.LinkStatsTest",
+    "method": "referrersAreRankedByClicksThenByCodePointAndCappedAtTen",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-3/4/9"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "createWithoutAKeyInsertsAndAuditsTheNewLink",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "createWithAnUnboundKeyBindsIt",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "replayWithinTheWindowReturnsTheBoundLinkAndWritesNothing",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "mismatchWithinTheWindowIs422AndKeepsTheBinding",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "anExpiredKeyIsReleasedAndBindsANewLink",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "readOfAnUnknownCodeIs404",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "resolveSendsVisitorsToActiveLinksOnly",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "retireUpdatesConditionallyAndAuditsBeforeAndAfter",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/link/LinkServiceTest.java",
+    "class": "dev.urlshort.link.LinkServiceTest",
+    "method": "retireThatChangesNoRowIs410AndWritesNoAuditRow",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/link/LinkTest.java",
+    "class": "dev.urlshort.link.LinkTest",
+    "method": "stateIsActiveUntilRetiredAtIsSet",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/link/LinkValidationTest.java",
+    "class": "dev.urlshort.link.LinkValidationTest",
+    "method": "eachRejectedUrlFailsExactlyItsRule",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/link/LinkValidationTest.java",
+    "class": "dev.urlshort.link.LinkValidationTest",
+    "method": "validUrlsPass",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/link/LinkValidationTest.java",
+    "class": "dev.urlshort.link.LinkValidationTest",
+    "method": "exactly2048CharactersIsAccepted",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/link/LinkValidationTest.java",
+    "class": "dev.urlshort.link.LinkValidationTest",
+    "method": "malformedKeysFailFormat",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/link/LinkValidationTest.java",
+    "class": "dev.urlshort.link.LinkValidationTest",
+    "method": "keysLongerThan255FailFormat",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/link/LinkValidationTest.java",
+    "class": "dev.urlshort.link.LinkValidationTest",
+    "method": "absentOrVisibleAsciiKeysPass",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/link/ShortCodesTest.java",
+    "class": "dev.urlshort.link.ShortCodesTest",
+    "method": "codesAreEightCharactersFromTheAlphanumericAlphabet",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/link/ShortCodesTest.java",
+    "class": "dev.urlshort.link.ShortCodesTest",
+    "method": "aDrawThatSpellsAReservedSegmentIsDrawnAgain",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/ping/PingControllerTest.java",
+    "class": "dev.urlshort.ping.PingControllerTest",
+    "method": "answersOkWithTheCurrentUtcInstant",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/MetricsConfigTest.java",
+    "class": "dev.urlshort.web.MetricsConfigTest",
+    "method": "onlyThePathTagIsDropped",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-10/11"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java",
+    "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "unwrapsABodyLimitErrorRaisedInsideTheJsonReaderTo413",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java",
+    "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "unreadableBodyWithoutALimitErrorStays400WithoutTheFrameworkDetail",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java",
+    "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "frameworkDetailThatEchoesClientInputIsCleared",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java",
+    "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "domainProblemKeepsItsErrorsAndGetsTheRequestIdAsInstance",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java",
+    "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "unhandledExceptionIsABare500AndOneMessageFreeEvent",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java",
+    "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "errorOriginIsNoneWhenNoFrameIsOurs",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/ProblemDetailsAdviceTest.java",
+    "class": "dev.urlshort.web.ProblemDetailsAdviceTest",
+    "method": "aNonProblemBodyPassesThroughUntouched",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/ProblemsTest.java",
+    "class": "dev.urlshort.web.ProblemsTest",
+    "method": "validationIs400WithExactlyOneFieldError",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/ProblemsTest.java",
+    "class": "dev.urlshort.web.ProblemsTest",
+    "method": "notFoundAndGoneAreBareProblems",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/ProblemsTest.java",
+    "class": "dev.urlshort.web.ProblemsTest",
+    "method": "idempotencyMismatchIs422NamingTheHeaderAndRule",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RateLimitFilterTest.java",
+    "class": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "rule1_limitedRequestsAreChargedToTheirBudget",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-6"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RateLimitFilterTest.java",
+    "class": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "rule1_operatorSurfacesAreNeitherChargedNorLimited",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-6"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RateLimitFilterTest.java",
+    "class": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "rule5_theClientIsThePeerOrTheRightMostUntrustedForwardedHop",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-6"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RateLimitFilterTest.java",
+    "class": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "rule5_anAbsentOrEmptyHeaderFromATrustedProxyChargesTheProxy",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-6"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RateLimitFilterTest.java",
+    "class": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "theFilterReadsOnlyXForwardedForAndOnlyFromATrustedPeer",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RateLimitFilterTest.java",
+    "class": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "anEmptyBucketIsA429ProblemWithRetryAfterAndNoChain",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RateLimitFilterTest.java",
+    "class": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "eachRejectionIsCountedOnceUnderItsBudgetOnly",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RateLimitFilterTest.java",
+    "class": "dev.urlshort.web.RateLimitFilterTest",
+    "method": "theChargedClientIsLeftOnTheRequestForTheClickRecorderAndAnExemptRequestCarriesNone",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "AC03a_anExactlyEmptyBucketRefillsOneTokenAfterExactlyOneSecond",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "AC03b_retryAfterIsRoundedUpAndHonoured",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "AC04_aQuietMinuteRefillsTheWholeBucket",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "refusalsTakeNothing",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "budgetsAndClientsAreIndependent",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "retryAfterIsTheWaitForOneTokenInWholeSeconds",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "aRequestOvertakenByNewerOnesDecidesOnTheTimeItReachesTheBucket",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "afterABackwardClockStepTheBucketRefillsFromItsStoredTat",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "fullBucketsAreReleasedByTheNextRequestButNotWhileIdle",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "aBucketThatIsNotYetFullSurvivesTheRelease",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "theReleaseRunsAtMostOncePerSecond",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RateLimiterTest.java",
+    "class": "dev.urlshort.web.RateLimiterTest",
+    "method": "theReleaseResumesAfterABackwardClockStep",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RequestBodyLimitFilterTest.java",
+    "class": "dev.urlshort.web.RequestBodyLimitFilterTest",
+    "method": "aBodyOfExactlyTheLimitIsReadInFull",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RequestBodyLimitFilterTest.java",
+    "class": "dev.urlshort.web.RequestBodyLimitFilterTest",
+    "method": "theFirstByteOverTheLimitIs413OnTheBulkReadPath",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RequestBodyLimitFilterTest.java",
+    "class": "dev.urlshort.web.RequestBodyLimitFilterTest",
+    "method": "singleByteReadsCountTooAndEndOfStreamIsPassedThrough",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RequestBodyLimitFilterTest.java",
+    "class": "dev.urlshort.web.RequestBodyLimitFilterTest",
+    "method": "theWrappedStreamIsCreatedOnceSoTheCountCannotBeReset",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RequestBodyLimitFilterTest.java",
+    "class": "dev.urlshort.web.RequestBodyLimitFilterTest",
+    "method": "servletStreamStateAndListenerDelegateToTheContainerStream",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1 (inherited service/management regression)"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RequestIdFilterTest.java",
+    "class": "dev.urlshort.web.RequestIdFilterTest",
+    "method": "issuesOneIdOnHeaderAndMdcBeforeTheChainRunsAndClearsMdcAfter",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-11"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RequestIdFilterTest.java",
+    "class": "dev.urlshort.web.RequestIdFilterTest",
+    "method": "ignoresInboundRequestIdAndIssuesADifferentIdPerRequest",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-11"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RequestIdFilterTest.java",
+    "class": "dev.urlshort.web.RequestIdFilterTest",
+    "method": "writesOneRequestCompletedEventWithTheStatusAndTheIdButNotTheMethod",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-11"
+    ]
+  },
+  {
+    "suite": "unit",
+    "path": "src/test/java/dev/urlshort/web/RequestIdFilterTest.java",
+    "class": "dev.urlshort.web.RequestIdFilterTest",
+    "method": "clearsMdcWhenTheChainThrows",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-11"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/HealthJourneyTest.java",
+    "class": "dev.urlshort.HealthJourneyTest",
+    "method": "healthEndpointReportsUp",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditAccessSettingsJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditAccessSettingsJourneyTest",
+    "method": "AC13_AC14_noSettingOpensTheEndpointBeyondLoopback",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditAccessSettingsJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditAccessSettingsJourneyTest",
+    "method": "aPlainLoopbackReadStillWorksUnderTheseSettings",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditForwardedHeadersJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditForwardedHeadersJourneyTest",
+    "method": "theShippedFilePinsTheForwardedHeaderStrategyOff",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditForwardedHeadersJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditForwardedHeadersJourneyTest",
+    "method": "onADetectedCloudPlatformThePinKeepsAForgedLoopbackHeaderOut",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditForwardedHeadersJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditForwardedHeadersJourneyTest",
+    "method": "anOverrideOfThePinClosesTheEndpoint",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditForwardedHeadersJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditForwardedHeadersJourneyTest",
+    "method": "aTomcatRemoteIpSettingClosesTheEndpoint",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditJourneyTest",
+    "method": "AC22_createWritesExactlyOneAuditRow",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditJourneyTest",
+    "method": "AC23_retireWritesExactlyOneAuditRow",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditJourneyTest",
+    "method": "AC24_aFailedAuditWriteRollsTheRetireBackAndFailsClosed",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditJourneyTest",
+    "method": "AC25_auditRowsAreAppendOnlyUnderEveryOperation",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditReadFailureJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditReadFailureJourneyTest",
+    "method": "AC21_aFailedReadIsA500ProblemNeverAnEmptyOrPartialPage",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC01_anEmptyTrailIsAnEmptyPage",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC02_aCreateRowIsReadableAsWritten",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC03_aRetireRowCarriesBeforeAndAfter",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC04_rowsComeNewestFirstInTheOrderTheyWereWritten",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC05_everyFieldMatchesTheStoredRow",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC06_pagesFollowNextToTheEnd",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC07_theDefaultAndMaximumPageSizes",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC08_pagingIsStableWhileRowsAreWritten",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC09_invalidPagingParametersAreRefusedNamingTheField",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC10_readingChangesNothing",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC11_aNonLoopbackClientIsRefused",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC12_everyLoopbackAddressIsAdmitted",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC13_forwardingHeadersNeverGrantAccess",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "theGuardAndTheValidationComeBeforeContentNegotiation",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC15_requestCorrelationOnTheNewPaths",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC16_auditContentAndClientValuesStayOutOfTheLogs",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC19_theLiveApiDocumentDescribesTheAuditRead",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditReadJourneyTest",
+    "method": "AC20_aTraversalAcrossAnInFlightWriteNeitherRepeatsNorSkipsCommittedRows",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/audit/AuditUpgradeJourneyTest.java",
+    "class": "dev.urlshort.audit.AuditUpgradeJourneyTest",
+    "method": "AC18_anExistingDatabaseUpgradesInPlaceAndKeepsItsLinksAndRows",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickMetricsJourneyTest.java",
+    "class": "dev.urlshort.click.ClickMetricsJourneyTest",
+    "method": "AC10_recordedAndLostClicksAreCounted",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-10"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickMetricsJourneyTest.java",
+    "class": "dev.urlshort.click.ClickMetricsJourneyTest",
+    "method": "AC11_theClickCountersAreScrapeableAndNameNoClient",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-11"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickPurgeFailureJourneyTest.java",
+    "class": "dev.urlshort.click.ClickPurgeFailureJourneyTest",
+    "method": "AC10_aFailedRunIsReportedAndLeavesTheServiceWorking",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-7",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickPurgeFailureJourneyTest.java",
+    "class": "dev.urlshort.click.ClickPurgeFailureJourneyTest",
+    "method": "AC12_aClickThatCannotBeReducedIsOneWarnWithItsOwnReason",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-7",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickPurgeHoldJourneyTest.java",
+    "class": "dev.urlshort.click.ClickPurgeHoldJourneyTest",
+    "method": "theSharedContextsHoldThePurge",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-7",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC01_aRedirectRecordsExactlyOneClickWithItsTime",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-5",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC02_onlyARedirectIsAClick",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-5",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC03_theReferrerIsStoredAsItsOriginOnly",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-5",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC04_theUserAgentIsStoredAsAClassOnly",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-4",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC05_theClientAddressIsStoredOnlyAsASaltedHashThatRotatesEveryUtcDay",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-5",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC06_forwardingHeadersDoNotChangeTheRecordedClient",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-5",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC17_theStatisticsExposeAggregatesOnly",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-9",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "class": "dev.urlshort.click.ClickRecordingJourneyTest",
+    "method": "AC18_noClickDataReachesTheLogs",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-12",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java",
+    "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "method": "AC14_aSlowClickStoreDoesNotSlowTheRedirect",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-15",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java",
+    "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "method": "AC15_AC19_aFailingClickStoreDoesNotFailTheRedirectAndTheLossIsOneCorrelatedWarn",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-15",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java",
+    "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "method": "AC16_concurrentRedirectsLoseNoClicksAndTheRequestIsNeverReadAfterItsResponse",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-15",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java",
+    "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "method": "AC18_AC19_onTomcatClickDataStaysOutOfTheLogsAndEveryEventIsCorrelated",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-12",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java",
+    "class": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "method": "AC22_headOnTheStatisticsPathHasNoBodyAndRecordsNothing",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java",
+    "class": "dev.urlshort.click.ClickRetentionJourneyTest",
+    "method": "AC01_theBoundaryDayIsKeptAndTheDayBeforeItIsDeleted",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-7",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java",
+    "class": "dev.urlshort.click.ClickRetentionJourneyTest",
+    "method": "AC02_theWindowMovesWithTheDay",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-7",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java",
+    "class": "dev.urlshort.click.ClickRetentionJourneyTest",
+    "method": "AC05_statisticsCoverTheRetainedClicksOnly",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-7",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java",
+    "class": "dev.urlshort.click.ClickRetentionJourneyTest",
+    "method": "AC06_linksRedirectsAndTheAuditTrailAreUntouched",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-7",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java",
+    "class": "dev.urlshort.click.ClickRetentionJourneyTest",
+    "method": "AC09_eachRunLogsOneInfoWithItsCountCutoffAndPeriodAndNoClickValue",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-7",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java",
+    "class": "dev.urlshort.click.ClickRetentionJourneyTest",
+    "method": "AC11_aRedirectWhileOldClicksAreBeingDeletedIsServedAndCounted",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-7",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickRetentionScheduleJourneyTest.java",
+    "class": "dev.urlshort.click.ClickRetentionScheduleJourneyTest",
+    "method": "AC08_aPurgeRunsEveryUtcDayWithoutAnOperator",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-7",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickRetentionSettingJourneyTest.java",
+    "class": "dev.urlshort.click.ClickRetentionSettingJourneyTest",
+    "method": "AC03_thePeriodIsAnOperatorSetting",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-7",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickRetentionStartupJourneyTest.java",
+    "class": "dev.urlshort.click.ClickRetentionStartupJourneyTest",
+    "method": "AC04_anInvalidPeriodStopsTheServiceFromStarting",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-7",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickRetentionStartupJourneyTest.java",
+    "class": "dev.urlshort.click.ClickRetentionStartupJourneyTest",
+    "method": "AC07_aPurgeRunsAtStartup",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-7",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickRetentionStartupJourneyTest.java",
+    "class": "dev.urlshort.click.ClickRetentionStartupJourneyTest",
+    "method": "AC13_AC16_anExistingDataDirectoryUpgradesInPlace",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-7",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickRetentionStartupJourneyTest.java",
+    "class": "dev.urlshort.click.ClickRetentionStartupJourneyTest",
+    "method": "AC15_aPausedPurgeDeletesNothingAndSaysSoAtEveryStart",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-7",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickSchemaJourneyTest.java",
+    "class": "dev.urlshort.click.ClickSchemaJourneyTest",
+    "method": "everyUserAgentClassIsRecordedAfterThePoolRetiresItsConnections",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC07_aLinkWithNoClicksHasEmptyStatistics",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC08_totalClicksCountsEveryRedirect",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC09_clicksPerDayAreGroupedByUtcCalendarDay",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC10_topReferrersAreRankedAndCapped",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC12_aRetiredLinksStatisticsAreStillReadable",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC13_statisticsOfAnUnknownCodeAndWrongMethodsAreProblemDetails",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC19_theStatisticsPathAndASettledRedirectAreCorrelated",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-12",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC20_redirectAndAuditBehaviourAreUnchanged",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC21_theLiveApiDocumentDescribesTheStatisticsEndpoint",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-13",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "class": "dev.urlshort.click.StatsJourneyTest",
+    "method": "AC22_headAndOptionsKeepTheFrameworkDefaultsAndRecordNothing",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/StatsV2JourneyTest.java",
+    "class": "dev.urlshort.click.StatsV2JourneyTest",
+    "method": "AC01_thePerDayElementCarriesFourFigures",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-1"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/StatsV2JourneyTest.java",
+    "class": "dev.urlshort.click.StatsV2JourneyTest",
+    "method": "AC02_uniqueVisitorsCountDistinctClientsWithinAUtcDay",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-2"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/StatsV2JourneyTest.java",
+    "class": "dev.urlshort.click.StatsV2JourneyTest",
+    "method": "AC03_uniquesArePerUtcDayAndNeverCombinedAcrossDays",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-3"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/StatsV2JourneyTest.java",
+    "class": "dev.urlshort.click.StatsV2JourneyTest",
+    "method": "AC04_botClicksAreCountedPerDayAndNothingElseChangesMeaning",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-4"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/StatsV2JourneyTest.java",
+    "class": "dev.urlshort.click.StatsV2JourneyTest",
+    "method": "AC05_oneClientsBotAndBrowserClicksAreOneVisitor",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-5"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/StatsV2JourneyTest.java",
+    "class": "dev.urlshort.click.StatsV2JourneyTest",
+    "method": "AC08_withoutATrustedProxyForwardingHeadersChangeNothing",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-8"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/StatsV2JourneyTest.java",
+    "class": "dev.urlshort.click.StatsV2JourneyTest",
+    "method": "AC13_theApiDocumentDescribesTheV2PerDayElement",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-13"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/TrustedProxyClickJourneyTest.java",
+    "class": "dev.urlshort.click.TrustedProxyClickJourneyTest",
+    "method": "AC07_behindATrustedProxyUniquesCountTheForwardedClients",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-7"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/TrustedProxyClickJourneyTest.java",
+    "class": "dev.urlshort.click.TrustedProxyClickJourneyTest",
+    "method": "AC09_theStatisticsStillExposeAggregatesOnly",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-9"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/TrustedProxyClickJourneyTest.java",
+    "class": "dev.urlshort.click.TrustedProxyClickJourneyTest",
+    "method": "AC12_trustedProxyRedirectsLogNoForwardedValueOrAddress",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-12"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java",
+    "class": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC17_aReplayReturnsTheFirstLink",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java",
+    "class": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC18_sameKeyWithADifferentUrlIsRefusedAndTheBindingSurvives",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java",
+    "class": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC19_aKeyIsHonouredFor24HoursAndNotLongerAndARejectionDoesNotExtendIt",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java",
+    "class": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC20_aMalformedKeyIsRefused",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java",
+    "class": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC20_aKeyOf255VisibleCharactersIsAccepted",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java",
+    "class": "dev.urlshort.link.IdempotencyJourneyTest",
+    "method": "AC21_aRejectedCreateDoesNotConsumeTheKey",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC01_validUrlBecomesAShortLink",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC02_everyCreateWithoutAKeyIsANewLink",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC03_shortUrlUsesTheShippedBaseNeverTheHostHeader",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC04_aUrlOfExactly2048CharactersIsAccepted",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC05_bodyThatIsNotAJsonObjectIsRefused",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC06_nonJsonContentTypeIsRefused",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC07_bodyIsRefusedAtTheSixteenKibLimit",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+    "class": "dev.urlshort.link.LinkCreateJourneyTest",
+    "method": "AC16_redirectRouteDoesNotShadowTheExistingSurface",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java",
+    "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC08_readingALinkReturnsItsDetails",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java",
+    "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC09_aRetiredLinkIsStillReadableWithItsState",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java",
+    "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC10_retiringALinkIs204WithAnEmptyBody",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java",
+    "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC11_retiringAnAlreadyRetiredLinkIs410AndNotASecondMutation",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java",
+    "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC14_unknownCodeIs404OnEveryLinkOperation",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java",
+    "class": "dev.urlshort.link.LinkReadRetireJourneyTest",
+    "method": "AC15_wrongMethodIs405",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/PublicBaseUrlJourneyTest.java",
+    "class": "dev.urlshort.link.PublicBaseUrlJourneyTest",
+    "method": "AC03_shortUrlUsesTheConfiguredBaseNeverTheHostHeader",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/RedirectJourneyTest.java",
+    "class": "dev.urlshort.link.RedirectJourneyTest",
+    "method": "AC12_visitorIsRedirectedWithANonCacheable302",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/RedirectJourneyTest.java",
+    "class": "dev.urlshort.link.RedirectJourneyTest",
+    "method": "AC13_aRetiredLinkTellsTheVisitorItIsGone",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/link/RedirectJourneyTest.java",
+    "class": "dev.urlshort.link.RedirectJourneyTest",
+    "method": "rule7_queryStringOnTheShortLinkIsNotForwarded",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC1_pingAnswersOkAsJson",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC2_timeIsCurrentUtcInstant",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC3_everyResponseCarriesRequestId",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC4_requestIdsAreUniquePerRequest",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC5_wrongMethodIsProblemDetailWithRequestId",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC6_pingIsLoggedAsJsonWithRequestId",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC7_logEventCarriesNoClientAddressOrUserAgent",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+    "class": "dev.urlshort.ping.PingJourneyTest",
+    "method": "AC8_clientSuppliedRequestIdIsIgnored",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/ColdStartJourneyTest.java",
+    "class": "dev.urlshort.web.ColdStartJourneyTest",
+    "method": "AC26_theFirstRequestOnARealServerLogsOnlyItsOwnCorrelatedEvents",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/DatabaseDownJourneyTest.java",
+    "class": "dev.urlshort.web.DatabaseDownJourneyTest",
+    "method": "AC14_AC15_readinessFollowsTheDatabaseAndLivenessDoesNot",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/HealthMetricsJourneyTest.java",
+    "class": "dev.urlshort.web.HealthMetricsJourneyTest",
+    "method": "AC13_livenessAndReadinessAreUpWithAWorkingDatabase",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/HealthMetricsJourneyTest.java",
+    "class": "dev.urlshort.web.HealthMetricsJourneyTest",
+    "method": "AC15_healthBodiesDiscloseNothingAboutTheInstallation",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/HealthMetricsJourneyTest.java",
+    "class": "dev.urlshort.web.HealthMetricsJourneyTest",
+    "method": "AC18_redirectsAreCountedByRouteTemplate",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/HealthMetricsJourneyTest.java",
+    "class": "dev.urlshort.web.HealthMetricsJourneyTest",
+    "method": "AC6_diskGaugesCarryNoInstallationPath",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/HealthMetricsJourneyTest.java",
+    "class": "dev.urlshort.web.HealthMetricsJourneyTest$AnonymousScrape",
+    "method": "AC6_theScrapeCarriesNoInstallationPath",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/ObservabilityJourneyTest.java",
+    "class": "dev.urlshort.web.ObservabilityJourneyTest",
+    "method": "AC26_everyResponseCarriesARequestIdAndEveryEventOfTheRequestTheSameId",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-11",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/ObservabilityJourneyTest.java",
+    "class": "dev.urlshort.web.ObservabilityJourneyTest",
+    "method": "AC27_noClientControlledValueReachesTheLogs",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-11",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/ObservabilityJourneyTest.java",
+    "class": "dev.urlshort.web.ObservabilityJourneyTest",
+    "method": "AC27_aDatabaseFailureQuotingTheKeyLogsOnlyClassNames",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-11",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/ObservabilityJourneyTest.java",
+    "class": "dev.urlshort.web.ObservabilityJourneyTest",
+    "method": "rule8_problemBodiesAndLogsNeverEchoASubmittedValue",
+    "parameterized": true,
+    "attribution": "green class parameterized group; XML display omits method",
+    "invocations": null,
+    "mapsTo": [
+      "BR-11",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java",
+    "class": "dev.urlshort.web.OpenApiDocumentTest",
+    "method": "NFRM3_committedDocumentEqualsTheLiveOne",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-8",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java",
+    "class": "dev.urlshort.web.OpenApiDocumentTest",
+    "method": "AC28_liveDocumentDescribesTheSlice",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-8",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java",
+    "class": "dev.urlshort.web.OpenApiDocumentTest",
+    "method": "AC20_everyOperationDocumentsTheTooManyRequestsProblem",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-8",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java",
+    "class": "dev.urlshort.web.OpenApiDocumentTest",
+    "method": "AC1_problemSchemaDocumentsErrorsAndNoProperties",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-8",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java",
+    "class": "dev.urlshort.web.OpenApiDocumentTest",
+    "method": "AC2_problemBodiesConformToTheDocumentedSchema",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-8",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java",
+    "class": "dev.urlshort.web.OpenApiDocumentTest$OverTheCreateBudget",
+    "method": "AC2_theTooManyRequestsProblemConformsToo",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-8",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/RateLimitDefaultsTest.java",
+    "class": "dev.urlshort.web.RateLimitDefaultsTest",
+    "method": "theShippedConfigurationCarriesTheDecidedBudgets",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/RateLimitDefaultsTest.java",
+    "class": "dev.urlshort.web.RateLimitDefaultsTest",
+    "method": "theSettingsRecordDefaultsToTheSameBudgets",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC01_theCreateBudgetAdmits60AndRefusesThe61st",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC02_theRedirectBudgetAdmits600AndRefusesThe601st",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC03a_retryAfterIsTruthfulFromAnExactlyEmptyBucket",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC03b_retryAfterIsAnUpperBoundFromAPartlyRefilledBucket",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC04_aFullBudgetReturnsAfterAQuietMinute",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC05_theTwoBudgetsAreIndependent",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC06_clientsAreIndependent",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC07_aForgedForwardedAddressDoesNotChangeTheClient",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC09_everyRequestInABudgetCountsAndTheLimitIsCheckedFirst",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC11_theTooManyRequestsProblemNamesNoClient",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC12_eachRejectionIsLoggedOnceCorrelatedAndWithoutClientValues",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "rule1_percentEncodingDoesNotMoveARequestToTheLargerBudget",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "rule1_operatorSurfacesAreNeverLimited",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "rule1_aDotDotSegmentUnderAnExemptPrefixReachesNoLimitedOperation",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC16_theMetricsSurfaceListsTheFourKindsOfMetric",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC17_everyRejectionIsCountedOnceByBudget",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC19_metricsAreExposedForScrapingWithoutClientOrLinkValues",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "designDR01_anInvalidPathUnderAnExemptPrefixLogsNoSubmittedValueOnTomcat",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+    "class": "dev.urlshort.web.RateLimitJourneyTest",
+    "method": "AC11_onTomcatThe429IsTheSameProblemMediaTypeAsEveryOtherError",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/RateLimitSettingsJourneyTest.java",
+    "class": "dev.urlshort.web.RateLimitSettingsJourneyTest",
+    "method": "AC10_theBudgetsAreOperatorSettings",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/ShutdownPhaseDefaultTest.java",
+    "class": "dev.urlshort.web.ShutdownPhaseDefaultTest",
+    "method": "theShippedGracefulShutdownPhaseIsTenSeconds",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/web/TrustedProxyJourneyTest.java",
+    "class": "dev.urlshort.web.TrustedProxyJourneyTest",
+    "method": "AC08_aTrustedProxysForwardedAddressIdentifiesTheClient",
+    "parameterized": false,
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-6",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java",
+    "class": "dev.urlshort.click.ClickResilienceTrustedProxyJourneyTest",
+    "method": "AC14_aSlowClickStoreDoesNotSlowTheRedirect",
+    "parameterized": false,
+    "inheritedFrom": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-15",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java",
+    "class": "dev.urlshort.click.ClickResilienceTrustedProxyJourneyTest",
+    "method": "AC15_AC19_aFailingClickStoreDoesNotFailTheRedirectAndTheLossIsOneCorrelatedWarn",
+    "parameterized": false,
+    "inheritedFrom": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-15",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java",
+    "class": "dev.urlshort.click.ClickResilienceTrustedProxyJourneyTest",
+    "method": "AC16_concurrentRedirectsLoseNoClicksAndTheRequestIsNeverReadAfterItsResponse",
+    "parameterized": false,
+    "inheritedFrom": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-15",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java",
+    "class": "dev.urlshort.click.ClickResilienceTrustedProxyJourneyTest",
+    "method": "AC18_AC19_onTomcatClickDataStaysOutOfTheLogsAndEveryEventIsCorrelated",
+    "parameterized": false,
+    "inheritedFrom": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "AC-12",
+      "AC-14"
+    ]
+  },
+  {
+    "suite": "functional",
+    "path": "src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java",
+    "class": "dev.urlshort.click.ClickResilienceTrustedProxyJourneyTest",
+    "method": "AC22_headOnTheStatisticsPathHasNoBodyAndRecordsNothing",
+    "parameterized": false,
+    "inheritedFrom": "dev.urlshort.click.ClickResilienceJourneyTest",
+    "attribution": "named XML invocation",
+    "invocations": 1,
+    "mapsTo": [
+      "BR-1",
+      "AC-14"
+    ]
+  }
+]

@@ -247,6 +247,20 @@ Every AC is functionally covered and independently observed by effect. No remain
 AC verification gap or merged coverage deficit on X; custody item 9 is an explicit
 later judgment obligation, not an accepted gap or completed acceptance.
 
+## 01-analytics-v2 — candidate ec466da8da4b1efde9d612c6c8692070cc6fc4b9
+
+| Gap / qualification | Why | Compensating observation / disposition |
+|---|---|---|
+| NFR-L1 p95/p99 pending release_prep | This slice changes redirect identity work; the SPEC assigns percentile measurements to the release benchmark | Fresh v1 slow/failing/concurrent tests pass in both contexts. Actual physical two-second insert delay left all20 redirects below250ms; each200-concurrent sequence stored200 rows. No percentile claim. Proof12 returns after release_prep under a12a0e2 and qitem-20261003195138-8eb72ecb. |
+| Unit87.24% lines506/580,96.12% branches198/206; functional94.14% lines546/580,83.01% branches171/206 | Suites exercise complementary paths; policy gates merged execution data | CSV merged580/580 lines206/206 branches100/100.372 copied report hashes checked. No exclusion, lowered threshold or merged coverage gap. |
+| Controlled peers, UTC Clock and H2 insert trigger | Exact proxy, midnight, expiry, fault and delay inputs need repeatable isolated fixtures | Actual unchanged candidate classes/Tomcat/JDBC/Flyway, external Servlet peer wrapper, primary Clock and physical H2 trigger. Unmodified installed jar separately verifies actual-loopback trusted XFF4/3/1, privacy, metrics, API, audit and errors. No remote TCP-client boundary, natural midnight, real disk crash or load benchmark claimed. |
+| Rule5 construction/security judgment remains downstream item11 | HTTP cannot prove that a hash is never joined or used across days, or that a salt is never persisted | Same client has different stored hashes on the two UTC days; no hash/address/canary appears in statistics, counters or either log sink. Existing salt regression tests pass. Design states the restrictions; independent security review must record them before item11 is judged and integration occurs (lead a12a0e2). |
+| Original-suite replay setup and authorized expectations disclosed | Literal153/155 has only the two merged audit enumeration failures; old fixture clicks otherwise run under the earlier retention replay hold | Lead a12a0e2 carries audit grant428e9e1 forward for those two assertions. Authorized repeat155/155 changes only those enumerations and the two allowed per-day expectations; original/replayed hashes retained. No remaining AC-14 gap or blanket waiver. Purge-enabled candidate gate and independent inherited purge observation both pass. |
+|41 parameterized source methods have XML group attribution | Default JUnit parameter displays omit the source method in some invocation names | All282 source/context methods mapped; all462 invocations green and attributed to a named method or its green class parameterized group. Five resilience methods execute under both default and trusted contexts. No unique per-method XML join asserted for those groups. |
+| QA instrument corrections retained | Initial referrer expectation mistakenly included none; timing parser initially expected literal backslash-n; curl-I output file holds HEAD headers | Corrected top10 exactly matches v1. Initial20 slow responses retained and repeated on a new link with a corrected timing parser. Direct JDK HTTP probe observes zero HEAD body bytes. Raw captures, parser correction note and superseded manual assertion retained; no product defect inferred from these instrument errors. |
+
+No uncovered merged line/branch, failed required AC, or excluded test remains at qa_check. Security and release benchmark items are pending evidence obligations, not accepted absent records. All713 curl responses plus three HEAD wire checks correlate in both console/file sinks; all apps stopped and the worktree left clean at the exact candidate.
+
 
 ## 04-audit-columns — QA2, candidate 305f8045d45b19a9e3287d5fe3508af6e04db9a4
 

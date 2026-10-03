@@ -118,3 +118,43 @@ captures retaken.
   and the Javadoc changed. `clientOf` and the constructor are still package-private. Every existing
   `RateLimitFilterTest` case is unchanged, with one case added. No other `web/` file is touched.
 - No migration, no `application.properties`, no README.
+
+## QA — exact candidate ec466da8da4b1efde9d612c6c8692070cc6fc4b9
+
+Independent checker: qa-agent@urlshort-factory (Codex), 2026-10-03. Verdict: PASS for qa_check. Read the SPEC, design, impact analysis, builder proof and required QA guidance; independently verified the effects rather than adopting the builder's captures. Proof items1–10 are covered here. Item11 awaits the security-review record and item12 awaits release_prep; the lead's a12a0e2 records both returns before their acceptance stages.
+
+Fresh exact-candidate offline gate: 221unit/241functional, no failures/errors/skips; merged CSV580/580 lines206/206 branches100/100. Reports copied and372 SHA-256 comparisons passed. Details: [coverage summary](../../../../docs/qa/coverage/01-analytics-v2/SUMMARY.md); independent log [qa-check-ec466da.txt](proof/qa-check-ec466da.txt).
+
+Three isolated actual-Tomcat processes used the immutable candidate jar/classes. Port18170 ran the unmodified jar with actual loopback configured as a trusted proxy. Ports18171/18172 ran unchanged candidate classes with external QA-only Clock/Servlet-peer controls and an actual H2 BEFORE INSERT trigger for faults and delay. [AnalyticsQaLauncher.java](proof/qa-ec466da/AnalyticsQaLauncher.java) discloses these fixtures. Product code and shipped tests were never edited. The jar's SHA-256 is a1f85572fd35035385d50696ceae7ff25a230a712a42631c46f57134e0a39050.
+
+| AC | Independently observed effect | Capture under proof/qa-ec466da/ |
+|---|---|---|
+|1| Exact four top-level fields and four daily fields; one browser1/1/0; untouched link zero/empty | http/ac01-stats.body; ac01-empty-stats.body |
+|2| SPEC three clients3+2+1 give6clicks/3uniques; installed three clients, one twice, one bot give4/3/1 | http/ac02-stats.body; installed-stats.body |
+|3| Same exact SPEC peer at23:59:59 and00:00:01 gives one unique each UTC day; stored hashes differ; no combined figure | http/ac03-stats.body; default-figures-rows.json; controls.json |
+|4| Six UA rows from six clients give6/6/3; bots remain in raw totals | http/ac04-stats.body; default-initial-rows.json |
+|5| Same client's browser and bot give2/1/1 | http/ac05-stats.body |
+|6| V1 seven-click total, exact2/3/1 UTC series with absent day3, exact26-click top10/tie order; totals consistent | http/ac06-seven-stats.body; ac06-days-stats.body; ac06-referrers-stats.body |
+|7| Trusted10.9.9.9 and exact four SPEC headers give4/3/0; forged left entry ignored; no address in any stored click column | http/ac07-stats.body; trusted-ac07-rows.json |
+|8| Default peer203.0.113.77 and varied XFF/Forwarded/X-Real-IP give3/1/0; no forwarded address stored | http/ac08-stats.body; default-initial-rows.json |
+|9| V1 exact privacy canaries, forwarded inputs and stored hashes absent from aggregate-only bodies | http/default-v1-canaries-stats.body; trusted-v1-canaries-stats.body; stored snapshots; verify.py |
+|10| Both contexts: three actual inserts give recorded+3; two physical failed inserts give lost+2/write failed, no rows and unchanged302 | http/default-after-recorded.body; trusted-after-recorded.body; default-after-write-failed.body; trusted-after-write-failed.body; JSON logs |
+|11| Both counter families present, lost has only static reason labels; no client/hash/link/referrer/UA value | default-click-counters.txt; trusted-click-counters.txt; http/*-prometheus.body |
+|12| All716 responses match requestId/status exactly once in default console and file; each failure has one correlated class-only loss WARN; no private values in either sink | http-ledger.json; head-wire.json; *-console.jsonl; *.jsonl; verification-summary.json |
+|13| Live installed OpenAPI equals committed document; DayClicks exactly four properties/example; every other baseline operation equal | http/installed-openapi.body; openapi-diff.txt; verify.py |
+|14| Original f6dd29e replay155/155 with only four explicitly authorized expectations across three files; initial literal153/155 retained | v1-authorized-summary.json; shipped-functional-source-provenance-authorized.json; v1-replay-summary.json; lead a12a0e2 |
+|15| Two-second actual H2 insertion delay:20redirects all below250ms in each context; two failed writes still302;200concurrent each give200 stored reduced rows | http/*slow-retry-burst-timings.txt; *-slow-before-settle.json; *-concurrent-rows.json; verification-summary.json |
+
+Additional failure/regression effects: invalid scheme400, idempotent replay201/same code, mismatched key422, exact24-hour expiry201/new code, unknown/long statistics code404, wrong method405, retired410/statistics remain readable, HEAD zero body bytes on real wire, OPTIONS defaults, and the61st API request429/Retry-After. Every error has application/problem+json and urn:uuid response correlation. Reads and HEAD/OPTIONS leave complete database snapshots byte-equivalent; installed create/retire audit rows match their response IDs with no duplicate replay audit row. After controlled advance beyond90days, the inherited autonomous purge removes old click rows and the statistics become empty while links remain.
+
+AC-14 qualification: the first literal replay has only the two inherited audit enumeration failures. QA requested a ruling before accepting them; lead a12a0e2 carries forward audit-read grant428e9e1. The repeat changes only those two enumerations plus the two allowed per-day expectations; all other original assertions remain unchanged. The replay fixture disables purge for the older v1 timestamps, as in the preceding retention replay; the canonical candidate gate and manual inherited purge observation use enabled purge. The newly merged AuditUpgradeJourneyTest exact-body change is separately granted35e5951 and named by the builder; three click-retention exact-day assertions belong to its later dependency tests. The impact analysis names both original f6dd29e day expectations and redirect/click/migration/API custody, with these later additions disclosed in the builder section and lead records.
+
+Observation limits: Servlet peers and Clock are controlled inputs, not a remote TCP boundary or natural midnight. The H2 trigger is an isolated physical-failure fixture, not a natural disk crash. The slow/concurrency captures establish resilience, not NFR-L1 percentile results. Hash single-use construction and salt non-persistence remain the required downstream security judgment. No Docker, production load, queue-capacity saturation, crash recovery, restart upper-bound manual exercise, or shutdown-under-load claim. Existing unit regressions cover reason vocabulary, salt disposal and restart/day identity behavior; QA does not infer a missing review from those green tests.
+
+### Self-check
+
+- Every AC exercised by observable effects or its recorded original-suite/document comparison; required failure cases tried. Observed status/headers/body, actual stored rows, correlated default-console/file JSON and audit rows. Controlled mechanisms and unchecked limits explicitly declared.
+- Read merged coverage from the copied CSV, verified372 report hashes and the independent gate; no exclusion or threshold change. All282 source-method/context rows and462 invocations map both ways;41 parameterized methods have disclosed group attribution. Five inherited resilience methods execute under each configuration.
+- TRACEABILITY and mandatory GAPS entry written, including pending NFR-L1. Raw captures and initial instrument errors retained; corrected referrer expectation, timing parser and direct-wire HEAD probe verified before the verdict.
+- Proof drop attests items1–10 and names the actual candidate. Security11/release12 remain pending under authored return sequencing, not accepted absent evidence.
+- All three processes stopped normally with exit130; every post-stop loopback probe returned curl7. Exact candidate HEAD rechecked and worktree clean. No product/test edits.

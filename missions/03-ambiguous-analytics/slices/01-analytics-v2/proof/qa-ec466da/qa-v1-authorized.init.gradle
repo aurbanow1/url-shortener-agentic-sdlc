@@ -1,0 +1,22 @@
+allprojects {
+ afterEvaluate {
+  tasks.register('qaV1Compile', JavaCompile) {
+   dependsOn tasks.named('classes'),tasks.named('jar')
+   source fileTree('/private/tmp/urlshort-analytics-qa-ec466da/shipped/src/functionalTest/java') { include '**/*.java' }
+   classpath=sourceSets.functionalTest.compileClasspath
+   destinationDirectory=file('/private/tmp/urlshort-analytics-qa-ec466da/v1-classes')
+   options.release=21
+  }
+  tasks.register('qaV1Replay', Test) {
+   dependsOn tasks.named('qaV1Compile')
+   useJUnitPlatform()
+   testClassesDirs=files('/private/tmp/urlshort-analytics-qa-ec466da/v1-classes')
+   classpath=files('/private/tmp/urlshort-analytics-qa-ec466da/v1-classes','/private/tmp/urlshort-analytics-qa-ec466da/shipped/src/functionalTest/resources')+sourceSets.functionalTest.runtimeClasspath
+   systemProperty 'spring.profiles.active','functional'
+   systemProperty 'urlshort.click.purge-enabled','false'
+   reports.junitXml.outputLocation=file('/private/tmp/urlshort-analytics-qa-ec466da/v1-authorized-results')
+   reports.html.outputLocation=file('/private/tmp/urlshort-analytics-qa-ec466da/v1-authorized-report')
+   jacoco.destinationFile=file('/private/tmp/urlshort-analytics-qa-ec466da/v1-authorized.exec')
+  }
+ }
+}

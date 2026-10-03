@@ -1,0 +1,20 @@
+{
+  "tests": 155,
+  "failures": 2,
+  "errors": 0,
+  "skipped": 0,
+  "failedMethods": [
+    {
+      "name": "AC28_liveDocumentDescribesTheSlice()",
+      "classname": "dev.urlshort.web.OpenApiDocumentTest",
+      "time": "0.023",
+      "failure": "java.lang.AssertionError: \nExpecting actual:\n  [\"/api/audit\",\n    \"/api/links\",\n    \"/api/links/{code}\",\n    \"/api/links/{code}/stats\",\n    \"/api/ping\",\n    \"/{code}\"]\nto contain exactly in any order:\n  [\"/api/ping\",\n    \"/api/links\",\n    \"/api/links/{code}\",\n    \"/{code}\",\n    \"/api/links/{code}/stats\"]\nbut the following elements were unexpected:\n  [\"/api/audit\"]\n"
+    },
+    {
+      "name": "AC20_everyOperationDocumentsTheTooManyRequestsProblem()",
+      "classname": "dev.urlshort.web.OpenApiDocumentTest",
+      "time": "0.015",
+      "failure": "org.opentest4j.AssertionFailedError: [ping, create, read, retire, redirect, statistics] \nexpected: 6\n but was: 7"
+    }
+  ]
+}
