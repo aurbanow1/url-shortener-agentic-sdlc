@@ -1,6 +1,6 @@
 # ADR-0009 — `Idempotency-Key`: bound on the link row by its `201`, honoured for 24 h from creation
 
-- Status: proposed (becomes accepted at the `01-create-redirect` plan-lock)
+- Status: accepted at the `01-create-redirect` plan-lock (2026-10-03T06:38Z)
 - Date: 2026-10-03
 - Slice: `01-create-redirect`
 

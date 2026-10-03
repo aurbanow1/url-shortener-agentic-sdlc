@@ -9,6 +9,16 @@ verified: 2026-10-03 against scaffold (rig scope create)
 created: 2026-10-03
 intent: "A Creator can create, read and retire a short link for a valid http(s) URL, and a Visitor who opens it is redirected (302) or told it is gone (410), with every mutation audited, every error a problem detail, and a retried create with the same Idempotency-Key returning the first link."
 depends_on: []
+approved-spec-by: orchestration-lead@urlshort-factory
+approved-spec-at: 2026-10-03T06:38:21.176Z
+locked-artifacts:
+  - name: SPEC.md
+    path: SPEC.md
+    kind: spec
+  - name: design.md
+    path: design.md
+    kind: spec
+provenance: transport:v1
 ---
 
 # Slice 01 — Create and redirect

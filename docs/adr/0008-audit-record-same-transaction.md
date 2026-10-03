@@ -1,6 +1,6 @@
 # ADR-0008 — Audit rows: one `audit_log` row per mutation, written in the same transaction, insert-only
 
-- Status: proposed (becomes accepted at the `01-create-redirect` plan-lock)
+- Status: accepted at the `01-create-redirect` plan-lock (2026-10-03T06:38Z)
 - Date: 2026-10-03
 - Slice: `01-create-redirect` (write side); the read endpoint is mission 02 (`01-audit-read`)
 

@@ -1,6 +1,6 @@
 # ADR-0007 — Short codes: 8 random characters from `[A-Za-z0-9]`, unique by constraint
 
-- Status: proposed (becomes accepted at the `01-create-redirect` plan-lock)
+- Status: accepted at the `01-create-redirect` plan-lock (2026-10-03T06:38Z)
 - Date: 2026-10-03
 - Slice: `01-create-redirect`
 

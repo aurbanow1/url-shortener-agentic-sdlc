@@ -1,6 +1,6 @@
 # ADR-0005 — Persistence: H2 in PostgreSQL mode, Flyway-owned schema, Spring Data JDBC and `JdbcClient`
 
-- Status: proposed (becomes accepted at the `01-create-redirect` plan-lock)
+- Status: accepted at the `01-create-redirect` plan-lock (2026-10-03T06:38Z)
 - Date: 2026-10-03
 - Slice: `01-create-redirect` (first tables: `link`, `audit_log`)
 

@@ -1,6 +1,6 @@
 # ADR-0006 — Redirects are `302 Found` with `Cache-Control: no-store` and a verbatim `Location`
 
-- Status: proposed (becomes accepted at the `01-create-redirect` plan-lock)
+- Status: accepted at the `01-create-redirect` plan-lock (2026-10-03T06:38Z)
 - Date: 2026-10-03
 - Slice: `01-create-redirect`
 
