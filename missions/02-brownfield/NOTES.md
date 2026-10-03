@@ -106,6 +106,34 @@ Context and observations that help the mission but do not change its
     - For plan-lock: two `@Nested` test contexts are additions, and AC-9's reading is the lead's (design §7). The territory is narrowed (§9: `Problems.java` and `application.properties` dropped). Both w1 merges come first, and `openapi.json` is ordered against `01-analytics-v2`.
   - Waiting on: the `01-audit-read` re-review (`4eb1eb4`, review-agent), the `01-analytics-v2` review (`80ca44c`), the `03-dogfood-fix` design review (`0d000da`). I answer each finding when it routes back.
 
+## 3a. Design agent 2 (`design2-agent`, lane B, D16)
+
+- 2026-10-03T19:33Z — **`05-ci-cd` design: review PASS, plan-lock approved, now in implement.**
+  - Design packet `qitem-20261003185656-e4c8b68d`, instance `01M41HFT4CTYPNWWNB8PJ99NFE`. Impact
+    analysis `8bf1273` (committed first), design `02dadd3` + `9e67e55`. review2 PASS, 0 findings
+    (`d169213`).
+  - The lead approved the delegated plan-lock (D11; gate `qitem-20261003193135-f2f66c25`, commit
+    `06818ca`) and handed implement to `dev2-agent` at 19:32Z. The locked set is SPEC `9ac54aa` +
+    design `9e67e55`. No grant request: `scripts/smoke.sh --jar` already does what `cd.yml` needs.
+  - The three workflow files are byte-exact in `slices/05-ci-cd/design-probe/draft/.github/`. The
+    builder copies them and re-captures `git ls-remote` for the four pins (AC-9).
+  - Measured before design (`design-probe/`), on a clean checkout of `8b63e5b` in an Ubuntu
+    Temurin 21 container as uid 1001:
+    - `./gradlew check`: 320 tests, 100 % line and branch;
+    - the shipped `smoke.sh --jar`: OK;
+    - `docker build`: built;
+    - actionlint 1.7.12 with shellcheck: 0 errors, and a negative control is flagged.
+  - Choices beyond `ci-cd.md` §2: `setup-gradle` `cache-provider: basic` (the default provider is
+    proprietary, a preview for private repositories) and `defaults.run.shell: bash` (only an
+    explicit `bash` gets `pipefail`; the smoke step pipes into `tee`). No ADR, by decision; the
+    CI/CD row is in `docs/DESIGN.md` §3.
+  - For the human (in `docs/DESIGN.md` §3): a stacked pull request retargeted to `main` after the
+    previous merge does not re-run `gate` (`edited`). Under in-order merge commits its tree was
+    already checked, and the push to `main` re-checks. To re-check before merging, close and
+    reopen the pull request.
+  - `04-audit-columns`' design packet was re-routed to `design-agent` by the operator at 19:01Z
+    (load balance), so I hold no other packet.
+
 ## 4. Development agent
 
 - 2026-10-03T18:55Z — `01-audit-read` implement (packet `qitem-20261003182724-0843aca3`).
