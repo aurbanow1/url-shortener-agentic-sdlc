@@ -6,6 +6,9 @@ verified: 2026-10-02 against scaffold (rig scope create)
 created: 2026-10-02
 intent: "Change the shipped shortener safely: add an operator-facing, loopback-only audit-read endpoint over the existing audit table (impact analysis first), purge clicks past the retention period, fix a defect found by using the service with a regression test first, and prove retry, rollback, fallback and safe-stop with recorded drills — without breaking existing links."
 depends_on: ["OPR.99.0.2"]
+approved-spec-by: orchestration-lead@urlshort-factory
+approved-spec-at: 2026-10-03T15:40:44.103Z
+provenance: transport:v1
 ---
 
 # Mission — Brownfield: enhance and fix the shipped shortener

@@ -6,6 +6,9 @@ verified: 2026-10-02 against scaffold (rig scope create)
 created: 2026-10-02
 intent: "Marketing says the analytics are not good enough; turn that ambiguous ask into a decided, built and proven improvement by surfacing the real questions (what is counted, retention, privacy, who reads it) to the human before building, and re-plan when the answer changes the design."
 depends_on: ["OPR.99.0.2"]
+approved-spec-by: orchestration-lead@urlshort-factory
+approved-spec-at: 2026-10-03T15:40:43.879Z
+provenance: transport:v1
 ---
 
 # Mission — Ambiguous: marketing wants better analytics
