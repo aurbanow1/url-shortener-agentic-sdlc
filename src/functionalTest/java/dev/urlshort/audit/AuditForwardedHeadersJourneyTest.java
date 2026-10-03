@@ -89,10 +89,12 @@ class AuditForwardedHeadersJourneyTest {
 					HttpResponse.BodyHandlers.ofString());
 			assertThat(created.statusCode()).isEqualTo(201);
 
-			for (String[] header : List.of(new String[] { null, null }, new String[] { "X-Forwarded-For", "127.0.0.2" })) {
-				HttpResponse<String> response = send(base, "GET", header[0], header[1]);
-				assertThat(response.statusCode()).as("%s %s %s", setting, header[0], header[1]).isEqualTo(403);
-				assertThat(response.body()).doesNotContain("items").doesNotContain(canary);
+			for (String method : List.of("GET", "HEAD")) {
+				for (String[] header : List.of(new String[] { null, null }, new String[] { "X-Forwarded-For", "127.0.0.2" })) {
+					HttpResponse<String> response = send(base, method, header[0], header[1]);
+					assertThat(response.statusCode()).as("%s %s %s %s", setting, method, header[0], header[1]).isEqualTo(403);
+					assertThat(response.body()).doesNotContain("items").doesNotContain(canary);
+				}
 			}
 		}
 	}
