@@ -45,9 +45,12 @@ policy, evidence, metrics — is authored in this repository.
 
 ### 2.2 Roles and seats
 
-Ten workflow roles resolve onto eleven seats (design, development, QA and review have two each; a slice's workflow variant names which). QA and review run on **Codex**,
-everything else on **Claude Code**, so no candidate is judged by the model that
-wrote it.
+Ten workflow roles resolve onto eleven seats (design, development, QA and review have two each; a slice's workflow variant names which). QA, review, requirements and release run on **Codex**; orchestration, design and
+development on **Claude Code**. Code is never judged by the model that wrote it.
+Since D17 two artefacts are judged on the same runtime as their author: a `SPEC.md`
+(written by GPT-6-Astra, reviewed by GPT-6-Astra, the same model) and a release
+package (GPT-6.1-Sol author, GPT-6-Astra reviewer). This is a disclosed weakening of
+review independence for those two steps, chosen by the human.
 
 ```mermaid
 flowchart TB
@@ -84,7 +87,8 @@ flowchart TB
 |---|---|---|---|---|
 | `design-agent`, `design2-agent` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | **xhigh** — set per session by the operator after each launch (`rig send --raw <seat> "/effort xhigh"`, verified with `/effort status`) |
 | `orchestration-lead` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | high (D12, 2026-10-03: few short turns, backstopped by review-before-gate) |
-| `requirements-agent`, `release-agent` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | high (D7; project `.claude/settings.json`) | `defaults.model` in each agent spec (D8, 2026-10-03) |
+| `requirements-agent` | Codex | GPT-6-Astra (`gpt-6-astra`) | xhigh | `defaults.model` in its agent spec (D17, 2026-10-03); effort from `~/.codex/config.toml` |
+| `release-agent` | Codex | GPT-6.1-Sol (`gpt-6.1-sol`) | xhigh | `defaults.model` in its agent spec (D17, 2026-10-03); effort from `~/.codex/config.toml` |
 | `development-agent`, `dev2-agent` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | high (D7) | `rig/agents/development-agent/agent.yaml` → `defaults.model`; effort from `modelSettings.claude-opus-5-5` |
 | `qa-agent`, `qa2-agent` | Codex | GPT-6.1-Sol (`gpt-6.1-sol`) | xhigh | `rig/agents/qa-agent/agent.yaml` → `defaults.model`; effort from `~/.codex/config.toml` `model_reasoning_effort` |
 | `review-agent`, `review2-agent` | Codex | GPT-6-Astra (`gpt-6-astra`) | xhigh | runtime default (`~/.codex/config.toml`) |

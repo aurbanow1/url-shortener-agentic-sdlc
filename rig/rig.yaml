@@ -46,7 +46,7 @@ pods:
       - id: agent
         label: Requirements Agent
         agent_ref: "local:agents/requirements-agent"
-        runtime: claude-code
+        runtime: codex
         profile: default
         cwd: "."
     edges: []
@@ -150,7 +150,7 @@ pods:
       - id: agent
         label: Release & Reliability Agent
         agent_ref: "local:agents/release-agent"
-        runtime: claude-code
+        runtime: codex
         profile: default
         cwd: "."
     edges: []
