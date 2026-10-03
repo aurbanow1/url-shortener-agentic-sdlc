@@ -20,7 +20,8 @@ import tools.jackson.databind.SerializationFeature;
 import tools.jackson.databind.json.JsonMapper;
 
 /**
- * AC-28 and NFR-M3: the live API document describes the slice, and the committed
+ * AC-28 (slice 01), AC-20 (slice 03: the {@code 429} on every operation) and NFR-M3: the live API
+ * document describes the service, and the committed
  * {@code docs/api/openapi.json} equals it. Every run writes the live document, key-sorted and
  * indented, to {@code build/openapi/openapi.json}; when the API changes, regenerate with
  * {@code scripts/gw functionalTest --tests '*OpenApiDocumentTest*'} and
@@ -96,6 +97,23 @@ class OpenApiDocumentTest {
 				|| create.at("/requestBody/content/application~1json").has("example")).isTrue();
 		assertThat(hasExample(create.at("/responses/201/content/application~1json"))).isTrue();
 		assertThat(hasExample(read.at("/responses/200/content/application~1json"))).isTrue();
+	}
+
+	@Test
+	void AC20_everyOperationDocumentsTheTooManyRequestsProblem() {
+		int operations = 0;
+		for (JsonNode path : document.get("paths")) {
+			for (JsonNode operation : path) {
+				operations++;
+				JsonNode tooMany = operation.at("/responses/429");
+				String id = operation.get("operationId").asString();
+				assertThat(tooMany.isMissingNode()).as("%s documents 429", id).isFalse();
+				assertThat(tooMany.get("content").propertyNames()).as(id).containsExactly(PROBLEM_JSON);
+				assertThat(hasExample(tooMany.at("/content/application~1problem+json"))).as(id).isTrue();
+				assertThat(tooMany.at("/headers/Retry-After/schema/type").asString()).as(id).isEqualTo("integer");
+			}
+		}
+		assertThat(operations).as("ping, create, read, retire, redirect, statistics").isEqualTo(6);
 	}
 
 	private static boolean hasExample(JsonNode mediaType) {
