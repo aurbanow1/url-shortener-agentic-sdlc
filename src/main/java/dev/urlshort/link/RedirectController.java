@@ -1,8 +1,14 @@
 package dev.urlshort.link;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.headers.Header;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +30,16 @@ class RedirectController {
 	}
 
 	@GetMapping("/{code:[A-Za-z0-9]{6,32}}")
+	@Operation(summary = "Open a short link", responses = {
+		@ApiResponse(responseCode = "302", description = "Redirect to the stored url, not cacheable",
+				headers = {
+					@Header(name = "Location", description = "The stored url, byte for byte",
+							schema = @Schema(type = "string")),
+					@Header(name = "Cache-Control", description = "no-store", schema = @Schema(type = "string")) }),
+		@ApiResponse(responseCode = "404", description = "No link has this code", content = @Content(
+				mediaType = LinkController.PROBLEM, schema = @Schema(implementation = ProblemDetail.class))),
+		@ApiResponse(responseCode = "410", description = "The link was retired", content = @Content(
+				mediaType = LinkController.PROBLEM, schema = @Schema(implementation = ProblemDetail.class))) })
 	ResponseEntity<Void> redirect(@PathVariable String code) {
 		Link link = links.resolve(code);
 		// slice 02-analytics records the click here, after resolve and before the response
