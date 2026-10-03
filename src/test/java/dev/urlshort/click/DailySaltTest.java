@@ -60,6 +60,10 @@ class DailySaltTest {
 
 	@Test
 	void aSelectionMadeBeforeMidnightKeepsItsDayAndNeverReplacesTheNextDaysSalt() throws Exception {
+		// draw day D's salt at noon, so its real expiry timer is hours away; drawn at 23:59:59.999 the timer
+		// would fire 1 ms later and could drop D's key between the selections below (CR-01)
+		clock.set(Instant.parse("2026-10-01T12:00:00Z"));
+		salt.stamp(ADDRESS);
 		clock.set(Instant.parse("2026-10-01T23:59:59.999Z"));
 		String dayD = salt.stamp(ADDRESS).clientHash();
 		clock.set(Instant.parse("2026-10-01T23:59:59.999Z"));
