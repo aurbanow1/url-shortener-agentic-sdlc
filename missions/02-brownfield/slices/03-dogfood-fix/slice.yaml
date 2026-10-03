@@ -1,0 +1,33 @@
+schema: openrig.slice/v0alpha1
+kind: slice
+composition:
+  mission: ../../mission.yaml
+  slice_markdown:
+    spec: SPEC.md
+    progress: PROGRESS.md
+    proof: PROOF.md
+metadata:
+  id: 03-dogfood-fix
+# Gate tier decides the workflow variant: high -> urlshort-slice, low -> urlshort-slice-delegated.
+# Since D11 both route the slice plan-lock to the orchestration lead.
+tier: low
+tier_reason: delegated plan-lock by the human's fast-plan decision of 2026-10-03 (operator packet qitem-20261003052736-7830d02a; D11 since extends it to all slice plan-locks). A bug fix with a regression test written first on shipped code, scoped by the defect report. The lead's plan review re-weighs the tier once the defect is known; if the fix touches a security-relevant surface or the schema, that is named at plan-lock.
+# Requirements allocated (docs/REQUIREMENTS.md): FR-14 (the defect fixed with a regression test
+# written first), FR-15 (test and documentation improvements the fix touches: GAPS.md rows closed
+# or re-justified, README / docs/DESIGN.md matching the shipped behaviour), FR-13 (impact analysis,
+# as on every brownfield slice); NFR-X2 if the fix needs a migration; cross-cutting M1 M2.
+# EXTERNAL DEPENDENCY (not a sibling edge): the defect comes from the dogfood pass QA runs at
+# mission 01's release_prep. This slice's requirements step reads that report; if the report is not
+# there yet, the requirements agent exits waiting blocked on mission 01's release_prep packet.
+# If no real defect surfaces, a defect is SEEDED and disclosed as seeded in
+# docs/scenarios/brownfield.md (mission SPEC, D7 inputs). The seeder is the release agent: not the
+# orchestration lead (who plan-locks and merges this slice) and not the QA seat that judges it.
+# BROWNFIELD: design writes impact-analysis.md over the code the defect touches before design.md.
+# TERRITORY: not predictable before the defect is known, so it is set at the requirements step
+# from the defect report and adopted with rig workflow revise (the receipt goes in
+# docs/evidence/02-brownfield/). The slice runs alone in wave w2, after both w1 slices are merged,
+# so disjointness holds by construction.
+territory: []
+execution:
+  actor_role: requirements
+  depends_on: []

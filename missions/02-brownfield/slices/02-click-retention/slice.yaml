@@ -1,0 +1,51 @@
+schema: openrig.slice/v0alpha1
+kind: slice
+composition:
+  mission: ../../mission.yaml
+  slice_markdown:
+    spec: SPEC.md
+    progress: PROGRESS.md
+    proof: PROOF.md
+metadata:
+  id: 02-click-retention
+# Gate tier decides the workflow variant: high -> urlshort-slice, low -> urlshort-slice-delegated.
+# Since D11 both route the slice plan-lock to the orchestration lead.
+tier: low
+tier_reason: delegated plan-lock by the human's fast-plan decision of 2026-10-03 (operator packet qitem-20261003052736-7830d02a), which makes every slice after 01-create-redirect in missions 01-03 low tier with the plan-lock delegated to the orchestration lead (D11 since extends it to all slice plan-locks). The lead's own plan review weighs what decomposition guide section 4 would call high, a scheduled job that deletes user data (click rows) and, likely, a migration for an index on the click day with a written rollback (NFR-X2); the independent design and security reviews cover both.
+# Launch on rig/workflows/urlshort-slice-delegated-b.workflow.yaml (QA by qa2-agent, review by
+# review2-agent) so the two w1 slices do not queue on one judge; qa2-agent is therefore this
+# slice's proof judge (the project policy names only qa-agent; the nearest policy wins).
+proofPolicy:
+  judges:
+    - qa2-agent@urlshort-factory
+# Requirements allocated (docs/REQUIREMENTS.md): NFR-P2 (90 days, decided; "lands in mission 02 if
+# mission 01 did not deliver it", and mission 01 did not); FR-13 (impact analysis, as on every
+# brownfield slice); NFR-X2 if a migration is added; cross-cutting M1 M2; O1 O2 for the job's log
+# events (a purge run logs counts only, never a click value).
+# DESIGN HINT that keeps mission 03 cheap: make the retention period an operator setting (default
+# 90 days, NFR-P2's decided number) and the mechanism "delete click rows whose stored UTC day is
+# older than the period" (02-analytics design section 3 and ADR-0013: one DELETE ... WHERE
+# clicked_on < ?, needing at most a second index). Mission 03 revisits retention at its ambiguity
+# park: if the human keeps the mechanism, the answer changes a number; only a different mechanism
+# (aggregate instead of delete) becomes a mission-03 slice.
+# BROWNFIELD: design writes impact-analysis.md over the shipped click table, the click writer and
+# the statistics query (02-analytics, merged 091ff46) before design.md (docs/guidance/brownfield.md).
+# Wave w1 with 01-audit-read. ORDERED CUSTODY of two shared items: 01-audit-read holds
+# src/main/resources/application.properties and the next Flyway version number first; this slice
+# holds them from 01-audit-read's merge, so its implement handoff descends from that merge commit
+# (the integrator checks git merge-base --is-ancestor). If its build is otherwise done earlier, the
+# builder exits waiting blocked on 01-audit-read's frontier packet with the continuation "rebase onto
+# main, take the next V number, hand off". w1 launches only after mission 01's 03-operate is
+# integrated, so both slices start from a main that holds every mission-01 change.
+territory:
+  - src/main/java/dev/urlshort/click/
+  - src/test/java/dev/urlshort/click/
+  - src/functionalTest/java/dev/urlshort/click/
+  # Only if the purge needs an index on the click day (V number taken after 01-audit-read's).
+  - src/main/resources/db/migration/
+  # ORDERED GRANT, second holder after 01-audit-read's merge: the retention-period setting.
+  - src/main/resources/application.properties
+# NOT in territory: link/, audit/, web/, docs/api/openapi.json (no endpoint changes).
+execution:
+  actor_role: requirements
+  depends_on: []

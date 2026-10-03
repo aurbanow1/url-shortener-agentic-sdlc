@@ -16,9 +16,16 @@ metadata:
 # Gate tier decides the workflow variant: high -> urlshort-slice (human plan-lock),
 # low -> urlshort-slice-delegated (orchestration lead approves the plan-lock).
 tier: low
-tier_reason: delegated plan-lock by the human's fast-plan decision of 2026-10-03, which delegates every slice plan-lock after 01-create-redirect in missions 01-03 to the orchestration lead. The lead's own plan review weighs what the decomposition guide calls high, a read endpoint over the audit trail (request ids, before/after payloads) that must be loopback-only by default (NFR-S6); the independent design and security reviews cover it. No migration; reads the audit_log table shipped by mission 01.
+tier_reason: delegated plan-lock by the human's fast-plan decision of 2026-10-03, which delegates every slice plan-lock after 01-create-redirect in missions 01-03 to the orchestration lead (D11 since extends it to all slice plan-locks). The lead's own plan review weighs what the decomposition guide calls high, a read endpoint over the audit trail (request ids, before/after payloads) that must be loopback-only by default (NFR-S6), and the likely index migration for pagination (01-create-redirect's design left "the audit-read slice adds the index its pagination needs"; NFR-X2 rollback applies); the independent design and security reviews cover both. Reads the audit_log table shipped by mission 01.
 # Requirements allocated (docs/REQUIREMENTS.md): FR-17; NFR-S6; FR-13 (impact analysis, as on every
-# brownfield slice); cross-cutting M1 M2 M3 O1 O2.
+# brownfield slice); NFR-X2 if the pagination index is a migration; cross-cutting M1 M2 M3 O1 O2.
+# Mission 02 decompose (2026-10-03): wave w1 with 02-click-retention. ORDERED CUSTODY of two shared
+# items: this slice holds src/main/resources/application.properties and the next Flyway version
+# number FIRST; 02-click-retention takes them from this slice's merge and rebases onto it. This slice
+# merges on its own verdicts without waiting for 02. It is the only w1 holder of
+# docs/api/openapi.json. w1 launches only after mission 01's 03-operate is integrated (03-operate
+# holds application.properties and openapi.json until then), so the impact analysis reads a main
+# that holds every mission-01 change.
 # Prerequisite: mission 01 shipped (the audit_log table and its row shape from 01-create-redirect).
 # A cross-mission prerequisite is not a sibling edge, so execution.depends_on stays empty and the
 # mission-level depends_on (02-brownfield -> 01-greenfield-core) carries it.
@@ -29,9 +36,11 @@ territory:
   - src/functionalTest/java/dev/urlshort/audit/
   # the audit endpoint's entry if the design exposes it as a public API path.
   - docs/api/openapi.json
+  # the index its pagination needs over audit_log (first w1 holder of the next V number).
+  - src/main/resources/db/migration/
   # management address/port if the design exposes the audit read as an actuator endpoint bound to
   # loopback instead of a public API path. The design chooses; both options keep the loopback-only
-  # default testable by effect against a non-loopback bind.
+  # default testable by effect against a non-loopback bind. ORDERED GRANT, first w1 holder.
   - src/main/resources/application.properties
 execution:
   actor_role: requirements
