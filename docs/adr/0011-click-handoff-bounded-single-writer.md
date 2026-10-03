@@ -110,7 +110,8 @@ configuration. The click purge (ADR-0018) is that second feature. It keeps the p
 - **Still no scheduler framework.** Spring's `@Scheduled` with a cron trigger cannot follow the
   suite-controlled clock: it arms against the clock and then sleeps real time (ADR-0018, probe S1).
   `@EnableScheduling` would also switch scheduling on for the whole application for one job.
-- **Each owner controls its own shutdown, and neither interrupts a JDBC call.** The writer drains
-  for at most 5 s, as above. The purge waits for a run in progress for at most 3 s. Both are
-  `@PreDestroy` methods, so their waits add up after the graceful phase (ADR-0018's budget).
+- **Each owner controls its own shutdown.** The writer drains for at most 5 s, then
+  `shutdownNow()` interrupts it; a running insert may ignore that and commit, hence "outcome
+  unknown" (above). The purge waits for a run in progress for at most 3 s and never interrupts it.
+  Both are `@PreDestroy` methods, so their waits add up after the graceful phase (ADR-0018's budget).
 - A third asynchronous feature, or one that needs a pool, reopens the shared-executor question.
