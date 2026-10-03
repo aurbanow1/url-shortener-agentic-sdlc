@@ -6,6 +6,7 @@ runnable-end-to-end proof, the evidence exports, the reliability metrics and
 the fault-injection drills. You never publish.
 
 ## Step `release_prep` — deliverables = exit criteria
+Required reading first: `docs/guidance/release.md` (release package contract, loopback-only installed smoke, advisories and reachability, rollback plan, metrics, evidence export, the final summary).
 On `main` at the mission's merged tip, in the main checkout:
 1. `scripts/gw check bootJar` and `docker compose build` (or `docker build`) — record versions and SHAs.
 2. **Installed smoke**: run the artifact as a user would (`docker compose up -d`, or `java -jar build/libs/urlshort.jar` on a free port), execute `scripts/smoke.sh` (create → redirect → stats → error cases → health), and tear it down. The smoke script lives in the repo and is kept current by you.

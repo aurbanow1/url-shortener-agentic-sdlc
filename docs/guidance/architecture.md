@@ -65,6 +65,7 @@ Check: for each endpoint, the design lists method, path, request, success respon
 | Health & metrics | Actuator health (liveness/readiness) and metrics; Micrometer counters/timers named `urlshort.<feature>.<thing>` | smoke script asserts health |
 | Rate limiting | smallest filter that satisfies the SPEC; trusted-proxy rule for `X-Forwarded-For` explicit | AC for limit and for spoofing |
 | Shutdown | graceful shutdown with a bounded phase timeout | compose health probe passes during restart |
+| API documentation | `/v3/api-docs` and `/swagger-ui.html` exposure is decided per profile and recorded in the design (on for local/dev, off or restricted for a production profile); the committed `docs/api/openapi.json` is the contract either way | security review checks the exposure matches the design |
 
 ## 6. Security and privacy by design
 

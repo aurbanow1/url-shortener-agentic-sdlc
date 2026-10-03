@@ -27,6 +27,7 @@ The gate is `scripts/gw check`: both suites green and JaCoCo at 100 % line and b
 - **Deterministic**: no `Thread.sleep`, no wall-clock races (compare instants against a recorded interval or inject a `Clock`), random ports, isolated data per test, no order dependence.
 - **Honest assertions**: assert the exact body shape when the SPEC says "exactly"; assert absence as well as presence (a canary must be absent; a stack trace must be absent).
 - **Readable over DRY**: a little duplication in tests beats a helper that hides the behaviour under test.
+- **Server metadata needs a real server**: MockMvc never starts Tomcat, so anything the container adds (thread names, connector-bound addresses, real header casing) is invisible to it. An AC about such metadata gets one real-server journey (`webEnvironment = RANDOM_PORT` + a loopback client) or a by-effect capture at `qa_check` — the QA-01 lesson, wave w1 follow-up W1-02.
 
 ## 3. Coverage policy
 
