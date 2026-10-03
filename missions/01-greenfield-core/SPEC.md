@@ -127,7 +127,7 @@ Documents edited on `main` by single seats (`docs/DESIGN.md`, `docs/adr/`, `docs
 
 3. **FR-17 in this mission.** `docs/REQUIREMENTS.md` allocates FR-17 to "01 → reliability (or 02 if time-boxed out; recorded either way)". **Default: keep it, as `04-audit-read` in `w3`.** Alternative: defer `04-audit-read` to mission 02 as an additive brownfield slice, saving one serial wave (roughly three hours of pipeline time) at the cost of shipping an audit trail nobody can read until mission 02. **Outcome:** the plan-lock kept it; the human's fast plan (05:30Z) then moved it to mission 02 as the brownfield enhancement slice.
 
-**Human gates on this mission.** As briefed at the plan-lock, every slice was high-tier under the guide's §4 table and the human would have decided six times. The fast plan (05:30Z) delegates the plan-locks of `02-analytics`, `03-operate` and every later slice to the orchestration lead (tier low, `urlshort-slice-delegated`, the lead's reasoning recorded at each closure); the human now decides three times on this mission: this plan-lock (done), `01-create-redirect`'s slice plan-lock (in flight), and the ship sign-off. No tier was chosen by an agent to avoid a gate; the lowering is the human's.
+**Human gates on this mission.** As briefed at the plan-lock, every slice was high-tier under the guide's §4 table and the human would have decided six times. The fast plan (05:30Z) delegates the plan-locks of `02-analytics`, `03-operate` and every later slice to the orchestration lead (tier low, `urlshort-slice-delegated`, the lead's reasoning recorded at each closure); after the fast plan the human decided three times on this mission: this plan-lock (done), `01-create-redirect`'s slice plan-lock, and the ship sign-off. Human decision D11 (2026-10-03T06:05Z, operator item `qitem-20261003055950-1b5ec0d3`) then delegated **every** slice plan-lock for the rest of the run to the orchestration lead, `01-create-redirect`'s included (the `urlshort-slice` workflow's `plan_lock` gate now targets the orchestrator); the human now decides twice on this mission: this plan-lock (done) and the ship sign-off, plus any ambiguity decision. `01-create-redirect` keeps `tier: high` as its risk classification (the guide's §4 reasons still hold and the lead's plan review weighs them); only the gate's handler changed. No tier was chosen by an agent to avoid a gate; the lowering and the delegation are the human's.
 
 **Risks.**
 
@@ -165,7 +165,7 @@ Recorded 2026-10-03 before the handoff to `decomposition_review`.
 
 ## Slices
 
-- `01-create-redirect` — Create and redirect. Tier high (human plan-lock). Wave w1. State: in flight; requirements passed review at `0acbc9d`, design in progress.
+- `01-create-redirect` — Create and redirect. Tier high (risk); plan-lock delegated to the lead by D11. Wave w1. State: in flight; requirements passed review at `0acbc9d`, design handed off at `0aaab2f`, design review in progress.
 - `02-analytics` — Click analytics. Tier low (delegated, fast plan). Wave w2. State: scaffolded.
 - `03-operate` — Operate safely. Tier low (delegated, fast plan). Wave w2. State: scaffolded.
 - `04-audit-read` — moved to mission 02 as `01-audit-read` by the fast plan (2026-10-03).
@@ -179,6 +179,8 @@ Recorded 2026-10-03 before the handoff to `decomposition_review`.
 - 2026-10-03T04:39Z — **mission plan-lock approved** by `human@kernel` on `qitem-20261003042553-03ac8b4b`: "approve: four slices in three waves as briefed; the eight assumed rows (NFR-L1, L2, R2, R5, S3, S6, S2, P2) are confirmed as stated; dependency overrides land as the first gated commit of 01-create-redirect; FR-17 stays in this mission as 04-audit-read". Stamp recorded on the human's behalf (frontmatter `approved-spec-*`); the eight rows in `docs/REQUIREMENTS.md` now carry `decided`. Wave w1 launching.
 - 2026-10-03T05:18Z — Javadoc policy adopted by the human (see Inputs); routed into `01-create-redirect` by the lead, manifest grants added, binding re-adopted. Slice `01` at `design`.
 - 2026-10-03T05:30Z — **Human decision, fast plan** (relayed verbatim by the operator on `qitem-20261003052736-7830d02a`; mission plan-lock re-approved on the human's behalf, action `01M403RBRS6DQTXA1VW89AXQCA`): slice plan-locks after `01` delegated to the lead (`02`, `03` now tier low); `04-audit-read` moved to mission 02 as `01-audit-read`; FR-11, FR-12, NFR-S2 dropped from the plan; w2 = `02` ∥ `03` is the last wave; a second reviewer and a second QA seat are coming with a routing variant for `03`; mission 03 is decomposed in parallel once w2 builds. Decision text verbatim in `NOTES.md` §1. Scoped re-check requested from the review agent.
+- 2026-10-03T05:45Z — fast-plan re-check **PASS** on `a7945e6` (review evidence `b4d7c4d`); its one non-blocking MEDIUM, DC-03 (opening brief still described the plan-lock shape), fixed at `a0e52a5`.
+- 2026-10-03T06:05Z — **Human decision D11** (relayed verbatim by the operator on `qitem-20261003055950-1b5ec0d3`): "all slice plan-locks are delegated to the orchestration lead for the rest of the run; the human keeps mission plan-locks, ambiguity decisions and ship sign-offs." `01-create-redirect`'s plan-lock routes to the lead as handler at its next hop; human gates on this mission: two (see "Human gates on this mission").
 
 ---
 
