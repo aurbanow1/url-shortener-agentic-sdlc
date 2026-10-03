@@ -54,6 +54,7 @@ Notes on the allocation:
   4. unit-suite properties overlay (`src/test/resources/application.properties` shadows the shipped file) → optional in-passing fix granted to `01-create-redirect`'s territory; not an acceptance criterion.
 - Product baseline: `docs/REQUIREMENTS.md`; the `assumed` rows are confirmed or changed at this mission's plan-lock (brief, decision item 1).
 - Guidance that applies to this mission for the first time: `docs/guidance/decomposition.md`, `docs/guidance/orchestration.md`, `docs/guidance/review.md`, `docs/guidance/release.md`.
+- **Javadoc policy** (human decision 2026-10-03 after the plan-lock, `docs/guidance/java-spring.md` §8, operator packet `qitem-20261003051852-2c3bd470`): the build enforces Javadoc on `src/main/java` (`javadoc` with `-Xdoclint:all -Werror`, `check` depends on it); code review judges that the text says what the signature does not. Routed into `01-create-redirect` as its second gated commit (after the dependency overrides, before feature code), with Javadoc-only grants on `ping/` and `UrlshortApplication.java`; `02`–`04` inherit the gate. No SPEC or allocation change: the guide binds the builder, and the obligation rides with NFR-M1's gate.
 
 ## Decision brief (mission plan-lock)
 
@@ -174,6 +175,7 @@ Recorded 2026-10-03 before the handoff to `decomposition_review`.
 - 2026-10-03T04:20Z — re-review of `ed7672f`: DC-01 settled; new HIGH DC-02, the `w2` row still said "waits for both proofs; merges serially" while rule 5 makes `03`'s handoff depend on `02`'s merge, a cycle. Fixed: merges are per slice at `integrate` and precede `slice_accept`; `02` merges without waiting for `03`; the wave-level wait is for both accepted slices before `w3`. All three wave rows now state the real order.
 - 2026-10-03T04:25Z — decomposition review **PASS** on `6b5e17f` (`docs/review/01-greenfield-core/decomposition-review.md`, review evidence committed at `93b9245`): DC-01 and DC-02 settled, no open findings, compiled binding `1-de9659cfc2f86cdb` matches the live instance. Held at **mission plan-lock** on `qitem-20261003042553-03ac8b4b`, parked on `human@kernel` with this file as evidence. The human decides the eight `assumed` rows, the dependency-override placement and FR-17 keep/defer (decision brief above).
 - 2026-10-03T04:39Z — **mission plan-lock approved** by `human@kernel` on `qitem-20261003042553-03ac8b4b`: "approve: four slices in three waves as briefed; the eight assumed rows (NFR-L1, L2, R2, R5, S3, S6, S2, P2) are confirmed as stated; dependency overrides land as the first gated commit of 01-create-redirect; FR-17 stays in this mission as 04-audit-read". Stamp recorded on the human's behalf (frontmatter `approved-spec-*`); the eight rows in `docs/REQUIREMENTS.md` now carry `decided`. Wave w1 launching.
+- 2026-10-03T05:18Z — Javadoc policy adopted by the human (see Inputs); routed into `01-create-redirect` by the lead, manifest grants added, binding re-adopted. Slice `01` at `design`.
 
 ---
 

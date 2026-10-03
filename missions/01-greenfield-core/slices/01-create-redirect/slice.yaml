@@ -18,6 +18,13 @@ tier_reason: foundation slice (first schema migration link + audit_log, the erro
 # green on its own before any feature commit; OSV re-run by the builder and the
 # release agent, since the QA sandbox has no network), backlog 2 (OpenAPI export
 # ownership, W1-01), backlog 4 (unit-suite properties overlay, optional).
+# Javadoc policy (human decision 2026-10-03, docs/guidance/java-spring.md section 8, operator packet
+# qitem-20261003051852-2c3bd470): the javadoc task runs with -Xdoclint:all -Werror and check depends
+# on it; every public type and public/protected method in src/main/java documents its contract;
+# package-info.java per feature package (link/, audit/, web/); no Javadoc on test methods. Routed
+# into this slice as the SECOND gated commit on the branch: (1) dependency overrides, (2) javadoc
+# gate plus Javadoc on the classes 00-hello left without contracts, each gated green on its own,
+# both before any feature commit. Later slices inherit the gate.
 # Territory: wave w1, alone, so the wider foundation territory collides with nothing.
 territory:
   - src/main/java/dev/urlshort/link/
@@ -45,6 +52,10 @@ territory:
   # pattern in passing (optional, not an acceptance criterion).
   - src/test/resources/application.properties
   - src/functionalTest/resources/application-functional.properties
+  # GRANT for the Javadoc policy (see above): Javadoc-only edits, no behaviour change, so the javadoc
+  # gate passes on the 00-hello classes. Reviewers check the diff under these paths is comments only.
+  - src/main/java/dev/urlshort/UrlshortApplication.java
+  - src/main/java/dev/urlshort/ping/
 execution:
   actor_role: requirements
   depends_on: []
