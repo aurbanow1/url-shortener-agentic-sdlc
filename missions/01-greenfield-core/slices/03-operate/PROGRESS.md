@@ -11,7 +11,7 @@
 - [x] Tests passing — fresh independent `check --rerun-tasks` on `1c8b2cf`: unit 165/165, functional 155/155, merged 443/443 lines and 162/162 branches, Javadoc green (`docs/qa/03-operate/check-1c8b2cf.txt`)
 - [x] Review approved — combined code and security re-review PASS on `1c8b2cf` (`docs/review/03-operate/01-code-review.md`, `02-security-review.md`, evidence `48381d4`; the first round's HIGHs, the limiter's stale-time reset and the smoke script's truncated-R0 pass, fixed and re-probed; CR-03 judged against the written clock policy)
 - [x] Integrated — merged `--no-ff` into `main` as `8e9c065` (orchestration lead, 2026-10-03T13:59Z; 26 files, all inside the slice territory and its grants; the two granted test files carry only the dedicated-peer change plus two stricter status checks); `scripts/gw --offline check --rerun-tasks` green on `main` after the merge, unit 165, functional 155, 0 failures/skips, coverage verification passed (`docs/evidence/01-greenfield-core/integrate-03-operate-check-8e9c065.txt`); tag `slice/03-operate/accepted` on `1c8b2cf`; worktree removed
-- [ ] Delivery stamp — after the mission's ship sign-off and item 13 after `release_prep` (`qitem-20261003120849-f4cbfa97`). Item 11 is accepted by QA2 in receipt `00000025.md`; items 1–12 are accepted on `1c8b2cf`.
+- [ ] Delivery stamp — human ship sign-off/AC-28 gap decision remains pending. QA2 completed the release judgment: item 13 rejected against merged `8e9c065`, receipt `00000027.md`; item 5 re-affirmed over corrected GAPS, receipt `00000026.md`. Items 1–12 remain accepted within their recorded subjects/scopes.
 
 ## Historical builder-side proof-contract items — a7c533f
 
@@ -93,3 +93,17 @@ findings. Next action is the authored QA handoff to review2.
 
 Release remains required; no absolute cardinality or final workload/container
 claim is added. The delivery stamp still follows the mission ship sign-off.
+
+## Release receipt completion — 2026-10-03T15:49Z
+
+- [x] Assigned packet qitem-20261003153203-9be9445d and lead's 3ec7ab4 correction read; raw release effects, 30 pinned hashes and exact merged/build input equivalence independently audited.
+- [x] Item 13 judged **REJECT**, receipt 00000027 on merged 8e9c065: AC-28 R0 lost in five Mac-published-port runs, despite passing jar/control/other release effects.
+- [x] Specified-rate jar benchmark inspected: 6000 redirects/1200 creates over 60-second open-loop windows, achieved 100.0/20.0 per second; zero errors; NFR-L1 p95/p99 2.2/3.3 ms and NFR-L2 p95 2.8 ms meet bounds on this run.
+- [x] Item 5 disclosure re-affirmed in receipt 00000026 after corrected attempt counts and explicit overwritten-control limit; no AC-28 waiver.
+- [x] Dedicated judgment/audit and NOT-CLEAR proof drop at f7994a0; no product edit, new test/build run or app launch for this packet.
+- [ ] AC-28 accepted: requires successful evidence or an explicit authorized exception; the existing human ship gate owns that decision.
+
+Current proof state is `not-ready`: items 1–12 accepted, item 13 rejected,
+no metadata issues. QA's release-record obligation is fulfilled; the literal
+AC-28 promise remains unmet. No new builder workflow is invented by this
+non-workflow receipt packet.

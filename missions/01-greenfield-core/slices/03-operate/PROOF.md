@@ -4,11 +4,11 @@
 >
 > **HOW (the drop verb, not hand-placement):** put media files under `proof/`, then ATTACH them with `rig proof add OPR.99.0.2.3 --artifact-type qa --verdict PASS --candidate-sha <tip> --money-evidence "<one line>" --evidences "1" --media "screenshot-01.png"` — the drop writes the C1 header the Living Notes DELIVERED pairing joins on. Hand-placing files without a drop leaves the deliverable unpaired and `unverified`.
 
-Current status: QA and independent code/security re-review PASS on candidate 1c8b2cf, integrated by the lead as 8e9c065. Attributed items 1–12 are accepted; only release item 13 remains pending. Review FAIL at 43cccf5 and the withdrawn a7c533f item 12 remain historical. No release verdict.
+Current status: QA and independent code/security re-review PASS on candidate 1c8b2cf, integrated by the lead as 8e9c065. Attributed items 1–12 are accepted; release item 13 is REJECTED against merged 8e9c065 because AC-28's published-port R0 fails in five recorded runs. The human's ship-gap decision remains pending. Review FAIL at 43cccf5 and the withdrawn a7c533f item 12 remain historical.
 
 ## What this proves
 
-The candidate limits client requests with a correlated, private 429; health follows the database; metrics and the API document expose the promised contract. Independent QA observed all AC-1–AC-20, with a fresh 100% merged coverage gate. Container and release workload judgments remain pending under the locked SPEC.
+The candidate limits client requests with a correlated, private 429; health follows the database; metrics and the API document expose the promised contract. Independent QA observed all AC-1–AC-20, with a fresh 100% merged coverage gate. Release records support AC-21–27 and the specified-rate NFR-L1/L2 jar benchmark, but AC-28 is not met on this host under the locked SPEC.
 
 ## Artifacts (media in proof/)
 
@@ -17,10 +17,11 @@ Dropped via `rig proof add … --evidences … --media …` (one drop per verdic
 - Builder drop: `proof/builder-evidence-a7c533f.md`.
 - QA drop: `proof/qa-evidence-a7c533f.md`; coverage, captures and limits are detailed below.
 - Current QA drop: `proof/qa-evidence-1c8b2cf.md`; fresh re-check below.
+- Release judgment drop: `proof/qa-release-judgment-8e9c065.md`, NOT-CLEAR on item 13; raw-effect audit and finding under `docs/qa/03-operate/release-judgment-8e9c065.md`.
 
 ## Residue / caveats (if any)
 
-Proof item 11 is now accepted from the completed independent re-reviews; item 13 awaits release under the retained proof-sequencing/GAPS continuation. QA bench offered rate is below the specified workload; its latency numbers are not a release verdict.
+Proof item 11 is accepted from the completed independent re-reviews. Item 13 is rejected: five held responses are lost through the Mac published port. The release jar benchmark reaches 100/20 requests/s and meets NFR-L1/L2 on its recorded run; the container was not benched. Shipping with the AC-28 gap still requires the human's decision.
 
 ## Builder
 
@@ -453,3 +454,47 @@ and clock/privacy limits inspected; all 26 Git-blob hashes verified; receipt
 actor/subject/evidence and current proof state checked; merge second parent
 verified. Product/tests and existing evidence untouched; release item 13
 remains under the lead's existing obligation without a new release acceptance.
+
+#### Proof item 13 — release records judged, 2026-10-03T15:49Z
+
+Assigned packet `qitem-20261003153203-9be9445d`, updated by the lead to include
+the count correction at `3ec7ab4`. Independently read the committed release
+effects and inspect output; checked the empty build-input diff from merged
+`8e9c065589e53385f60d6be3ddbc3683260285df` to build `f090103`; pinned 30 file
+hashes and parsed JSON completion/shutdown events and benchmark arithmetic.
+This is a receipt audit, with no new app, container or build run.
+
+Receipt `proof/judgments/00000027.md` **rejects item 13** against the merged
+subject. AC-28's explicit held response fails 5/5 through the Mac published
+port: curl 52/status 000 at 10370–10663 ms. The logs establish a dispatched
+request, 10000 ms graceful timeout and aborted drain. Proxy connection failures
+are counted separately; their exclusion does not excuse R0. Corrected counts
+are 148/102, 148/103 and 149/105 attempts/failures for runs 3–5.
+
+Release captures support AC-21–27: inspect hardening and 20-second stop timeout,
+three restart/down-up persistence checks, three passing direct jar drains,
+jar configuration and a 100/20 open-loop benchmark. NFR-L1 redirect p95/p99
+2.2/3.3 ms and NFR-L2 create p95 2.8 ms meet their bounds on that jar run.
+Two VM-published-port controls and one retained namespace control complete
+their chunked 201 bodies. The first reported namespace control was overwritten;
+the precise forwarder failure mechanism and native Linux Docker are unverified.
+
+Receipt `proof/judgments/00000026.md` **re-affirms item 5** over the corrected
+GAPS disclosure, with no waiver. The dedicated judgment/finding and audit are
+committed at `f7994a0`, with NOT-CLEAR drop
+`proof/qa-release-judgment-8e9c065.md`. Current proof state: items 1–12 accepted,
+item 13 rejected, no metadata issues, `not-ready`. The lead's existing ship
+gate owns the choice to accept the disclosed host gap or hold; this QA judgment
+does not change the locked SPEC or grant that exception.
+
+### Self-check — release receipt
+
+Locked AC/proof contract and lead transition 806 read; exact subject/build
+identity checked; raw files matched committed hashes; all five R0 results,
+control body terminators, shutdown logs, jar completion counts and actual
+benchmark target arithmetic inspected. Gap claim rechecked after the release
+corrections; attributed receipts actor/subject/evidence verified with fresh
+`rig proof show`. No new app to stop; product/tests and prior coverage/traceability
+evidence untouched. No container benchmark, capacity, native-Linux result or
+human waiver claimed. Non-workflow receipt packet closes with its completed
+judgment, without calling the release artifact a PASS.
