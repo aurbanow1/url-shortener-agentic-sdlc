@@ -1,0 +1,63 @@
+{
+  "candidate": "bb198b5a8d7b8ed8ff06a7e29871cd3da89b239a",
+  "compileCommand": "rig workflow compile missions/01-greenfield-core --operation-key urlshort-01-greenfield-core-lifecycle-1 --json",
+  "compiledInputDigest": "960eb9c69dfaa4ce655ac9cbfa1d4b3baf45ccb8e8d0268d40dd3cc00c8c729e",
+  "workflowVersion": "1-960eb9c69dfaa4ce",
+  "unknowns": [],
+  "advisories": [],
+  "savedMatchesLive": {
+    "digest": true,
+    "sources": true,
+    "workflowSpec": true,
+    "dependencies": true
+  },
+  "slices": [
+    {
+      "id": "01-create-redirect",
+      "dependsOn": [],
+      "proofState": "unknown",
+      "proofIssues": [
+        "No authored proof contract"
+      ]
+    },
+    {
+      "id": "02-analytics",
+      "dependsOn": [
+        "01-create-redirect"
+      ],
+      "proofState": "unknown",
+      "proofIssues": [
+        "No authored proof contract"
+      ]
+    },
+    {
+      "id": "03-operate",
+      "dependsOn": [
+        "01-create-redirect"
+      ],
+      "proofState": "unknown",
+      "proofIssues": [
+        "No authored proof contract"
+      ]
+    },
+    {
+      "id": "04-audit-read",
+      "dependsOn": [
+        "01-create-redirect"
+      ],
+      "proofState": "unknown",
+      "proofIssues": [
+        "No authored proof contract"
+      ]
+    }
+  ],
+  "waveMapQitem": "qitem-20261003040319-a45c400a",
+  "workflowInstance": "01M3ZXEXAMS945ZS0QZ26KZK1V",
+  "observedInstance": {
+    "version": 3,
+    "currentStep": "decomposition_review",
+    "boundDigest": "960eb9c69dfaa4ce655ac9cbfa1d4b3baf45ccb8e8d0268d40dd3cc00c8c729e",
+    "reconciliation": "current",
+    "adopted": true
+  }
+}
