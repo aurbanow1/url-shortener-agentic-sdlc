@@ -1,0 +1,91 @@
+{
+  "ok": true,
+  "mission": {
+    "name": "01-greenfield-core",
+    "railStatus": "present",
+    "frontmatterError": null,
+    "findings": []
+  },
+  "slices": [
+    {
+      "name": "01-create-redirect",
+      "railStatus": "present",
+      "frontmatterError": null,
+      "findings": []
+    },
+    {
+      "name": "02-analytics",
+      "railStatus": "present",
+      "frontmatterError": null,
+      "findings": [
+        {
+          "kind": "proof_artifact_c1_invalid",
+          "severity": "medium",
+          "path": "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/01-greenfield-core/slices/02-analytics/proof/qa-commands-862c52e.md",
+          "message": "Proof artifact violates the C1 header contract: no frontmatter header at all (required C1 fields: slice, candidate_sha, artifact_type, verdict, money_evidence).",
+          "remediation": "Re-drop via: rig proof add <slice> --artifact-type <guard|qa|rev1-r1|rev1-r2|adjudication> --verdict <CLEAR|BLOCKING|CONCERNING|PASS|NOT-CLEAR> --candidate-sha <sha> --money-evidence \"<line>\" — or add the missing frontmatter fields in place."
+        }
+      ]
+    },
+    {
+      "name": "03-operate",
+      "railStatus": "present",
+      "frontmatterError": null,
+      "findings": [],
+      "attestations": {
+        "spec": {
+          "by": "orchestration-lead@urlshort-factory",
+          "at": "2026-10-03T09:42:06.438Z",
+          "priors": 1
+        }
+      }
+    }
+  ],
+  "graph": {
+    "mission": {
+      "id": "OPR.99.0.2",
+      "name": "01-greenfield-core",
+      "dependsOn": []
+    },
+    "nodes": [
+      {
+        "id": "OPR.99.0.2.1",
+        "name": "01-create-redirect",
+        "dependsOn": []
+      },
+      {
+        "id": "OPR.99.0.2.2",
+        "name": "02-analytics",
+        "dependsOn": [
+          "OPR.99.0.2.1"
+        ]
+      },
+      {
+        "id": "OPR.99.0.2.3",
+        "name": "03-operate",
+        "dependsOn": [
+          "OPR.99.0.2.1"
+        ]
+      }
+    ],
+    "ready": [
+      "OPR.99.0.2.1"
+    ],
+    "waiting": [
+      {
+        "id": "OPR.99.0.2.2",
+        "on": [
+          "OPR.99.0.2.1"
+        ]
+      },
+      {
+        "id": "OPR.99.0.2.3",
+        "on": [
+          "OPR.99.0.2.1"
+        ]
+      }
+    ],
+    "advisories": []
+  },
+  "totalFindings": 1
+}

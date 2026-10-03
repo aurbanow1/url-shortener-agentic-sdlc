@@ -1,0 +1,10 @@
+# docker compose port urlshort 8080
+127.0.0.1:8080
+# docker inspect
+User=urlshort ReadonlyRootfs=true StopTimeout=20 PortBindings={"8080/tcp":[{"HostIp":"127.0.0.1","HostPort":"8080"}]} Mounts=[{"Type":"volume","Name":"url-shortener_urlshort-data","Source":"/var/lib/docker/volumes/url-shortener_urlshort-data/_data","Destination":"/app/data","Driver":"local","Mode":"rw","RW":true,"Propagation":""},{"Type":"tmpfs","Source":"","Destination":"/tmp","Mode":"","RW":true,"Propagation":""}]
+Health=healthy Healthcheck=["CMD","bash","-c","exec 3<>/dev/tcp/127.0.0.1/8080 && printf 'GET /actuator/health/readiness HTTP/1.0\\r\\nHost: localhost\\r\\n\\r\\n' >&3 && grep -q '\"status\":\"UP\"' <&3"]
+# inside the container: identity, a write outside data/ fails, a write inside data/ succeeds
+uid=10001(urlshort) gid=999(urlshort) groups=999(urlshort)
+touch /app/smoke-probe: touch: cannot touch '/app/smoke-probe': Read-only file system
+touch /app/data/smoke-probe: ok (removed again)
+SMOKE INSPECT OK

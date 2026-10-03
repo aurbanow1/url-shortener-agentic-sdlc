@@ -9,9 +9,11 @@ what the honest limits are.
 
 | Suite | Location | What it proves | Runs in |
 |---|---|---|---|
-| Unit (`test`) | `src/test/java` | a rule or component in isolation, no Spring context (today: the request-id filter lifecycle, the ping controller, application bootstrap; later: code generation, validation, expiry rules, hashing) | `scripts/gw test` (seconds) |
+| Unit (`test`) | `src/test/java` | a rule or component in isolation, no Spring context (code generation, URL validation, click reduction and salts, the token-bucket limiter, filters, problem details) | `scripts/gw test` (seconds) |
 | Functional (`functionalTest`) | `src/functionalTest/java` | the public HTTP journeys end to end — `@SpringBootTest` + `MockMvc` under the `functional` profile against an in-memory H2 database with Flyway applied; one test per acceptance criterion, named after it (`AC5_wrongMethodIsProblemDetailWithRequestId`) | `scripts/gw functionalTest` |
-| Installed smoke | `scripts/smoke.sh` | a *running* instance (jar or container) answers the journey as a user would | release prep |
+| Installed smoke | `scripts/smoke.sh <base-url>` | a *running* instance (jar or container) answers the journey as a user would: health, ping, create → redirect → read → stats → retire, error cases, metric names, Prometheus, OpenAPI | release prep |
+| Installed lifecycle | `scripts/smoke.sh --jar` / `--drain` / `--inspect` / `--restart` | the plain jar configured by environment; graceful shutdown with a held in-flight request; the container's binding, user, read-only filesystem and stop timeout; links surviving compose restart and down/up under load | release prep |
+| Latency bench | `scripts/smoke.sh --bench <base-url>` (`tools/bench.mjs`) | redirect and create latency at the specified **offered** rates (100/s and 20/s for 60 s), open loop: request *i* is due at *i*/rate s whatever earlier requests do, and latency runs from the due time, so a slow response cannot hide later ones. Click-recording cost (NFR-L3) is GET minus HEAD on the same redirect at the same rate | release prep |
 | Dependency advisories | `tools/dep-advisories.mjs` | the resolved runtime classpath checked against the OSV database; raw response kept under the mission's `release/` | release prep (needs network) |
 
 **The gate.** `scripts/gw check` runs both suites and `jacocoTestCoverageVerification`
@@ -80,7 +82,15 @@ every mission:
   captures against `bootRun` and by the installed smoke against the jar and the
   container; only the smoke crosses the container boundary.
 - The H2 database in tests is in-memory; the product's file-mode H2 is exercised
-  by the installed smoke, which runs the jar with its shipped datasource. No
-  Flyway migration exists yet, so migration history is not yet evidence.
+  by the installed smoke, which runs the jar with its shipped datasource, and by
+  the container on its volume. Flyway Community applies the V1/V2 migrations
+  forward only; there is no automated down-migration.
+- The bench runs on the same laptop as the service, against one instance with
+  its two rate budgets raised; one 60 s run per scenario is a regression signal,
+  not a capacity claim.
+- On a macOS host whose Docker engine runs in a Lima VM, a request still sending
+  its body through the published port when the container stops is cut by the
+  host's port forwarder (mission 01 `RELEASE.md` §3, AC-28); inside the VM and
+  inside the container's network namespace the same request completes.
 - Coverage measures the production code under `src/main`; Gradle build logic
   and shell tooling (`scripts/`, `tools/`) are exercised by use, not by tests.

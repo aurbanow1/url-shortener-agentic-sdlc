@@ -1,20 +1,20 @@
 # SDLC reliability metrics
 
-Generated 2026-10-03T03:07:20.488Z by `tools/sdlc-metrics.mjs` from OpenRig workflow trails and queue transition logs (docs/evidence exports).
+Generated 2026-10-03T15:24:16.329Z by `tools/sdlc-metrics.mjs` from OpenRig workflow trails and queue transition logs (docs/evidence exports).
 
 ## Totals
 
 | Metric | Value |
 |---|---|
-| Workflow instances (active / completed / failed / aborted) | 2 (0 / 2 / 0 / 0) |
+| Workflow instances (active / completed / failed / aborted) | 8 (3 / 5 / 0 / 0) |
 | Instance success rate (completed ÷ terminal) | 1 |
-| Step closures (failed) | 35 (2) |
-| Step success rate | 0.943 |
-| Retries (failed closures + step re-entries) | 6 |
-| Rollbacks (revert notes + engine resumes) | 0 |
-| MTTR, mean (failed closure → next successful closure of that step) | 21 min |
-| End-to-end latency, completed instances p50 / p95 | 3.8 h / 3.8 h |
-| Time parked on the human (all gates) | 46 min |
+| Step closures (failed) | 126 (9) |
+| Step success rate | 0.929 |
+| Retries (failed closures + step re-entries) | 29 |
+| Rollbacks (revert notes + engine resumes) | 4 |
+| MTTR, mean (failed closure → next successful closure of that step) | 28 min |
+| End-to-end latency, completed instances p50 / p95 | 3.8 h / 5.6 h |
+| Time parked on the human (all gates) | 7.9 h |
 
 ## Per instance
 
@@ -22,6 +22,12 @@ Generated 2026-10-03T03:07:20.488Z by `tools/sdlc-metrics.mjs` from OpenRig work
 |---|---|---|---|---|---|---|---|---|---|
 | 01M3Z8AJ1E… | 00-hello | completed | 5.6 h | 7 | 21 | 0 | 0 | 31 min | – |
 | 01M3ZA8Q39… | urlshort-slice | completed | 3.8 h | 13 | 14 | 6 | 0 | 14 min | 21 min |
+| 01M3ZXEXAM… | 01-greenfield-core | active | 11.8 h | 5 | 36 | 0 | 1 | 14 min | – |
+| 01M40149S2… | urlshort-slice | completed | 3.3 h | 12 | 13 | 6 | 1 | 0 s | 17 min |
+| 01M40CP0JV… | urlshort-slice-delegated | completed | 3.4 h | 13 | 16 | 7 | 0 | 0 s | 36 min |
+| 01M40CPBYR… | urlshort-slice-delegated-b | completed | 5.9 h | 15 | 22 | 10 | 1 | 0 s | 36 min |
+| 01M40RVNDQ… | 03-ambiguous-analytics | waiting | 3.8 h | 2 | 2 | 0 | 0 | 3.6 h | – |
+| 01M40SN34E… | 02-brownfield | waiting | 3.6 h | 2 | 2 | 0 | 1 | 3.3 h | – |
 
 ## Derivations and honest limits
 

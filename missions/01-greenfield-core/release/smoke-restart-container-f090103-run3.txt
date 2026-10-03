@@ -1,0 +1,7 @@
+# stop timeout 20 s > 10 s shutdown phase
+# docker compose restart under load (AC-24, AC-28)
+FAIL restart: held request R0: curl exit 52, status 000, complete 10393 ms after the stop; expected a complete 2xx/3xx within 10 s
+restart: R0 curl exit 52, status 000, complete 10393 ms after the stop; 250 load requests; non-2xx/3xx responses: 0; connection failures through the port proxy (reported, not judged): 204
+# docker compose down (no -v) and up (AC-24)
+links survive restart and down/up: GET /4798qxQD 302 to https://example.com/survives-restart, GET /api/links/4798qxQD unchanged
+SMOKE FAIL: restart: held request R0: curl exit 52, status 000, complete 10393 ms after the stop; expected a complete 2xx/3xx within 10 s

@@ -1,0 +1,3 @@
+# stop timeout 20 s > 10 s shutdown phase
+# docker compose restart under load (AC-24, AC-28)
+SMOKE FAIL: restart: held request R0: curl exit 52, status 000, complete 10485 ms after the stop; expected a complete 2xx/3xx within 10 s
