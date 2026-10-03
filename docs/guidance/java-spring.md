@@ -19,7 +19,7 @@ Facts first (they changed recently), then practices with their checks.
 - No checked exceptions for domain failures: a small sealed/abstract `DomainException` hierarchy mapped to problem details once, in one advice.
 - Time: `Instant`, `Duration`, `Clock` — never `LocalDateTime` for an instant, never `new Date()`.
 - Null: Bean Validation at the boundary, non-null by construction inside; JSpecify annotations only where a nullable value is real.
-- Keep methods short enough to name honestly; a comment explains *why*, never *what*. A deliberate ceiling is marked `// ponytail: <ceiling>, <upgrade path>`.
+- Keep methods short enough to name honestly; an inline comment explains *why*, never *what*; the *contract* (what a caller may rely on) is Javadoc — see §8. A deliberate ceiling is marked `// ponytail: <ceiling>, <upgrade path>`.
 
 ## 3. Spring
 
@@ -58,6 +58,7 @@ Facts first (they changed recently), then practices with their checks.
 - Dependencies: none added without an ADR; Boot-managed versions.
 - `ponytail-review` lens: `delete:` / `stdlib:` / `native:` / `yagni:` / `shrink:` findings — the diff's best outcome is getting shorter.
 - Tests deterministic (no sleeps, no wall-clock races, random ports), readable (Arrange/Act/Assert), named after behaviour.
+- Javadoc per §8: every public type and public/protected method of production code documents its contract (purpose, parameters, return, errors, invariants); `scripts/gw check` runs `javadoc -Xdoclint:all -Werror`, so a missing or malformed comment is a red gate, not a review opinion; the review judges that the text says something the signature does not.
 
 ## 7. Pitfalls we have already paid for
 
@@ -66,3 +67,46 @@ Facts first (they changed recently), then practices with their checks.
 - Assuming the request id survives the error path: it does only because the filter sets the header *before* `chain.doFilter` and runs first in the chain — keep the order explicit.
 - H2 "PostgreSQL mode" is not PostgreSQL: avoid vendor SQL; keep migrations portable; plan a real PostgreSQL run before any production claim.
 - Tomcat names its worker threads after the connector's bound address (`http-nio-127.0.0.1-18081-exec-5`), and ECS structured logging emits the thread name as `process.thread.name`. A "no addresses in logs" criterion is therefore violated by server metadata as soon as the app binds to an explicit IP. Either exclude the member from the structured log or never assert address absence on a loopback-bound capture — decide at design time, not at QA (QA-01 on `01-ping`).
+
+## 8. Javadoc and comments
+
+Production code is read by the next agent and by the evaluator; the contract
+has to be on the type, not in a chat log.
+
+- **Every public type and every public or protected method** in `src/main/java`
+  carries Javadoc: first sentence = what it is for (not what it is called);
+  then what a caller may rely on — `@param` meaning and constraints, `@return`
+  including the "absent" case, `@throws` for every documented failure, and the
+  invariants or ordering that matter (filter order, transaction boundary,
+  thread-safety when relevant). Records document their components with
+  `@param` in the record's comment; enums document each constant.
+- **Every feature package has a `package-info.java`** stating the user outcome
+  it serves and its boundary (what belongs here, what does not).
+- Javadoc states the **contract**; inline comments state the **why** (a
+  non-obvious decision, a workaround with its reason, a `// ponytail:` ceiling).
+  Neither restates the code: a comment that says "returns the link" above
+  `Link link()` is a MEDIUM review finding, not documentation.
+- Link the record of decisions: a class that exists because of an ADR says so
+  (`@see` ADR-0003 or a sentence); an endpoint's Javadoc names the ACs it
+  serves (`AC-3`, `AC-7`) so the reviewer can trace it without the SPEC open.
+- No Javadoc on test methods — the test name and Arrange/Act/Assert are the
+  documentation; one class-level comment per test class saying which AC range
+  or component it proves.
+- **Enforcement:** the Gradle `javadoc` task runs with `-Xdoclint:all -Werror`
+  and `check` depends on it, so a missing comment, a missing `@param`/`@return`,
+  an unknown tag or a dangling `{@link}` fails the gate the same way a failing
+  test does. Generated API docs land in `build/docs/javadoc/`.
+
+  ```kotlin
+  tasks.javadoc {
+      (options as StandardJavadocDocletOptions).apply {
+          addBooleanOption("Xdoclint:all", true)
+          addBooleanOption("Werror", true)
+      }
+  }
+  tasks.check { dependsOn(tasks.javadoc) }
+  ```
+
+- Checks: `scripts/gw javadoc` is green; `grep -L '/\*\*' src/main/java -r` finds
+  no production class; the code review ledger notes one line per new public
+  type that the Javadoc says something the signature does not.

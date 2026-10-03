@@ -57,7 +57,7 @@ says what each step writes; this says how to review so the record stands up.
 |---|---|---|
 | requirements_review | `requirements.md` §2, §6; `docs/REQUIREMENTS.md` allocation | AC not testable from outside; missing failure/privacy AC; allocated id without an AC; design leaked; widened scope |
 | design_review | `architecture.md` §3–§8, `databases.md` §8; brownfield: `brownfield.md` §2, §7 | AC unreachable; error AC without a problem detail; migration without rollback; threat model misses an entry point; speculative structure or dependency |
-| code_review | `java-spring.md` §6, `qa.md` §2–§3, ponytail lens (§5 below) | AC without a test that would fail; leakage in errors; PII in logs; logic in the wrong layer; QA evidence inconsistent with the diff |
+| code_review | `java-spring.md` §6 and §8 (Javadoc), `qa.md` §2–§3, ponytail lens (§5 below) | AC without a test that would fail; leakage in errors; PII in logs; logic in the wrong layer; QA evidence inconsistent with the diff; Javadoc missing on a public type/method is a red gate (`javadoc -Xdoclint:all -Werror`), Javadoc that only restates the signature is MEDIUM |
 | security_review | the checklist in the role file + §6 below | reachable open redirect/SSRF/injection; spoofable rate limit; raw PII; exposed internals; secret in repo |
 | decomposition_review | `decomposition.md` §9 | layer slices; overlapping territories; unallocated requirement ids; tier without reason |
 | wave_review | the integrated range on `main` vs. the SPECs and `architecture.md` §1–§2 | drift from the doghouse; cross-slice inconsistency; coverage or traceability regressed after merge |
