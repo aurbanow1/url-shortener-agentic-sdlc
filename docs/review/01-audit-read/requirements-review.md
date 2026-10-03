@@ -1,5 +1,7 @@
 # 01-audit-read — requirements review
 
+**Latest verdict: PASS at `7b753b7`. RQ-01–04 fixed.** Original verdict retained below.
+
 Candidate: `411a50cc35fb3b889346888bfa7a5e8f529f5470`.
 Packet: `qitem-20261003154828-764bc65c`; instance: `01M416ZY5N11CDGZBM2DT4GAXS`.
 Reviewer: review-agent@urlshort-factory (Codex), 2026-10-03 UTC.
@@ -59,3 +61,21 @@ product failure. Product code is unchanged, so no additional project gate was
 needed for this SPEC-only review. Return through the authored `failed` exit.
 On re-review, check each producer response and changed contract/proof mapping;
 retain settled requirements and avoid unrelated new polish findings.
+
+## Re-review 7b753b7
+
+Packet `qitem-20261003163921-0a8e2926`, same instance, 2026-10-03 UTC.
+Read the complete one-file correction and each response; independently verified
+the file equals the candidate and contains AC-1–21. No product changes.
+
+| Finding | Resolution | Re-review evidence |
+|---|---|---|
+| RQ-01 HIGH | Fixed | BR-4/A-10 now distinguish existing write sequence from unrecorded commit order. BR-5 guarantees exactly once for rows committed before the first page, at most once for in-flight rows, with a fresh traversal needed after late commits. AC-20 holds a write open and checks traversal/re-read; proof and traceability include it. The old H2 counterexample is acknowledged without adding a write-side feature. |
+| RQ-02 HIGH | Fixed | The opening switch is removed from the contract, exclusions and ambiguity resolution. AC-14 requires refusal with nondefault operator/proxy settings; A-6 follows the narrower mission decision. |
+| RQ-03 HIGH | Fixed | AC-21 injects a failing read: safe 500, no partial/empty-success representation, correlated safe logs, then successful recovery. NFR-R6, BR-6, OpenAPI AC-19 and proof/test mapping include it. |
+| RQ-04 MEDIUM | Fixed | BR-2/A-5 explicitly disclose headerless local relays; security proof is qualified to observed peer/header inputs, and an operator-documentation proof item records the deployment boundary. |
+
+**Verdict: PASS, no open findings.** Handoff to design. Prior unaffected
+requirements remain settled. Design still owes the brownfield analysis,
+actual peer-address handling, bounded pagination implementation and controlled
+test mechanisms; this review does not claim they have been implemented.
