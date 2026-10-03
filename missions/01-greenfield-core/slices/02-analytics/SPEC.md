@@ -19,6 +19,8 @@ locked-artifacts:
     path: design.md
     kind: spec
 provenance: transport:v1
+approved-by: orchestration-lead@urlshort-factory
+approved-at: 2026-10-03T17:31:45.352Z
 ---
 
 # Slice 02 — Click analytics

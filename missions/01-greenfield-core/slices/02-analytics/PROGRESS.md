@@ -11,7 +11,7 @@
 - [x] Tests passing — `scripts/gw --offline check --rerun-tasks` on `862c52e`: unit 121/121, functional 126/126, merged coverage 100 % line and branch, Javadoc gate green (`proof/builder-check-862c52e.txt`; builder run, QA re-runs independently)
 - [x] Review approved — combined code and security re-review PASS on `5b3490c` (`docs/review/02-analytics/01-code-review.md`, `02-security-review.md`, evidence `4074673`; the first round's HIGH, a timing-dependent `DailySaltTest` case, fixed in test setup only)
 - [x] Integrated — merged `--no-ff` into `main` as `091ff46` (orchestration lead, 2026-10-03T11:29Z); `scripts/gw --offline check --rerun-tasks` green on `main` after the merge (`docs/evidence/01-greenfield-core/integrate-02-analytics-check-091ff46.txt`); tag `slice/02-analytics/accepted` on `5b3490c`; worktree removed
-- [ ] Delivery stamp — release/lead continuation following the human's ship decision (gate transition 1011); all 13 proof items accepted, with receipts 00000030–00000032 re-affirming items 5/10/13 after authorized shared-evidence changes. QA performs no delivery stamp in this judgment-only packet
+- [x] Delivery stamp — recorded by the orchestration lead on behalf of `human@kernel` at 2026-10-03T17:31:45Z (audit action `01M41D4SA9V4YKWN79SVM0T5W9`), after the human's ship sign-off (gate transition 1011, approving `8e9c065`); all 13 proof items accepted, with receipts 00000030–00000032 re-affirming items 5/10/13 after authorized shared-evidence changes (`715cc9b`)
 
 ## Builder-side proof-contract items
 
