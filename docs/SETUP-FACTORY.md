@@ -37,14 +37,15 @@ specs resolve from the repo alone.
 
 ## Models and reasoning effort
 
-OpenRig pins a seat's *model* in its agent spec (`defaults.model`); `rig seat set-model <seat> --model <id>` changes a live seat (audited, effective at the seat's next launch). Reasoning *effort* is a runtime setting: the project `.claude/settings.json` sets the default for Claude seats, and a seat can raise its own with the `/effort <level>` slash command (`low|medium|high|xhigh|max`; `/effort status` reads it back), which is how the lead and design seats run at `xhigh` while the rest stay at `high`. From the operator shell it must be sent raw — `rig send --raw <seat> "/effort xhigh"` — because the default From/To envelope turns a slash command into plain message text; a `startup.actions` `send_text` cannot do it (startup text is delivered as a message, not as a command), so after every launch of `orchestration-lead` or `design-agent` the operator runs `rig send --raw <seat> "/effort xhigh"` and confirms with `/effort status`. Set the runtime defaults once before `rig up`:
+OpenRig pins a seat's *model* in its agent spec (`defaults.model`); `rig seat set-model <seat> --model <id>` changes a live seat (audited, effective at the seat's next launch). Reasoning *effort* is a runtime setting: the project `.claude/settings.json` sets the default for Claude seats, and a seat can raise its own with the `/effort <level>` slash command (`low|medium|high|xhigh|max`; `/effort status` reads it back), which is how the design seat runs at `xhigh` while the rest stay at `high`. From the operator shell it must be sent raw — `rig send --raw <seat> "/effort xhigh"` — because the default From/To envelope turns a slash command into plain message text; a `startup.actions` `send_text` cannot do it (startup text is delivered as a message, not as a command), so after every launch of `design-agent` the operator runs `rig send --raw <seat> "/effort xhigh"` and confirms with `/effort status`. Set the runtime defaults once before `rig up`:
 
 - Claude Code — every seat's model is pinned to `claude-opus-5-5` in its agent spec (`defaults.model`), so the user-level `"model"` alias does not matter for seats; the project's `.claude/settings.json` sets `"effortLevel": "high"` for the author seats (project scope overrides user scope), plus `"modelSettings": {"claude-opus-5-5": {"effortLevel": "xhigh"}}` for the builder.
 - Codex — `~/.codex/config.toml`: `model = "gpt-6-astra"`, `model_reasoning_effort = "xhigh"`.
 
 | Seat | Runtime | Model | Effort |
 |---|---|---|---|
-| orchestration-lead, design-agent | Claude Code | Claude Opus 5.5 (pinned in each agent spec) | xhigh (operator sends `rig send --raw <seat> "/effort xhigh"` after each launch) |
+| design-agent | Claude Code | Claude Opus 5.5 (pinned in its agent spec) | xhigh (operator sends `rig send --raw design-agent@urlshort-factory "/effort xhigh"` after each launch) |
+| orchestration-lead | Claude Code | Claude Opus 5.5 (pinned) | high (project default; D12) |
 | requirements-agent, release-agent | Claude Code | Claude Opus 5.5 (pinned in each agent spec) | high (project `.claude/settings.json`) |
 | development-agent | Claude Code | Claude Opus 5.5 (pinned in `rig/agents/development-agent/agent.yaml`) | high |
 | qa-agent, qa2-agent | Codex | GPT-6.1-Sol (pinned in `rig/agents/qa-agent/agent.yaml`) | xhigh |

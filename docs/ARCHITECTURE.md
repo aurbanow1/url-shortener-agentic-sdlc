@@ -82,13 +82,14 @@ flowchart TB
 
 | Seat | Runtime | Model | Reasoning effort | Where it is set |
 |---|---|---|---|---|
-| `orchestration-lead`, `design-agent` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | **xhigh** — set per session by the operator after each launch (`rig send --raw <seat> "/effort xhigh"`, verified with `/effort status`) |
+| `design-agent` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | **xhigh** — set per session by the operator after each launch (`rig send --raw <seat> "/effort xhigh"`, verified with `/effort status`) |
+| `orchestration-lead` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | high (D12, 2026-10-03: few short turns, backstopped by review-before-gate) |
 | `requirements-agent`, `release-agent` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | high (D7; project `.claude/settings.json`) | `defaults.model` in each agent spec (D8, 2026-10-03) |
 | `development-agent` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | high (D7) | `rig/agents/development-agent/agent.yaml` → `defaults.model`; effort from `modelSettings.claude-opus-5-5` |
 | `qa-agent`, `qa2-agent` | Codex | GPT-6.1-Sol (`gpt-6.1-sol`) | xhigh | `rig/agents/qa-agent/agent.yaml` → `defaults.model`; effort from `~/.codex/config.toml` `model_reasoning_effort` |
 | `review-agent`, `review2-agent` | Codex | GPT-6-Astra (`gpt-6-astra`) | xhigh | runtime default (`~/.codex/config.toml`) |
 
-Effort is a runtime setting, not an OpenRig field; the factory runs the planning and design seats at `xhigh`, the other Claude author seats at `high` (D7/D9), and the Codex judge seats at `xhigh` (`docs/SETUP-FACTORY.md`). Every review step runs on the other family from the author (Codex judges Claude), and every Claude seat runs Opus 5.5 (D8); independence comes from the Codex judges, not from model diversity inside the Claude family.
+Effort is a runtime setting, not an OpenRig field; the factory runs the design seat at `xhigh`, the other Claude author seats including the lead at `high` (D7/D9/D12), and the Codex judge seats at `xhigh` (`docs/SETUP-FACTORY.md`). Every review step runs on the other family from the author (Codex judges Claude), and every Claude seat runs Opus 5.5 (D8); independence comes from the Codex judges, not from model diversity inside the Claude family.
 
 ### 2.3 Control flow: three graphs
 
