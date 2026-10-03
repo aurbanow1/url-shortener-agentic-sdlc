@@ -4,7 +4,7 @@ mission: 02-brownfield
 stage: wip
 verified: 2026-10-02 against scaffold (rig scope create)
 created: 2026-10-02
-intent: "Extend the shipped shortener with link expiry and custom aliases and fix a defect found by using it, without breaking existing links; demonstrates codebase reasoning, migration with rollback, and the retry, rollback, fallback and safe-stop paths through labelled fault-injection drills."
+intent: "Change the shipped shortener safely: add an operator-facing, loopback-only audit-read endpoint over the existing audit table (impact analysis first), fix a defect found by using the service with a regression test first, and prove retry, rollback, fallback and safe-stop with recorded drills — without breaking existing links."
 depends_on: ["OPR.99.0.2"]
 ---
 
