@@ -1,6 +1,6 @@
 # ADR-0016 — Metrics in Prometheus format, readiness with the database, status-only health, quiet parser errors
 
-- Status: accepted at the `03-operate` plan-lock (2026-10-03T09:41Z; status line set 09:48Z); amendments proposed by `01-analytics-v2` and `03-dogfood-fix` (see *Amendment* sections)
+- Status: accepted at the `03-operate` plan-lock (2026-10-03T09:41Z; status line set 09:48Z); `03-dogfood-fix` amendment accepted at that slice's plan-lock and merged in `5c264db`; `01-analytics-v2` amendment accepted at its plan-lock, not merged yet (see *Amendment* sections)
 - Date: 2026-10-03
 - Slice: `03-operate`
 

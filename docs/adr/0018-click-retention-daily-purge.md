@@ -1,6 +1,6 @@
 # ADR-0018 — Click retention: one DELETE per run, at startup and daily at 00:10Z, decided on the application clock
 
-- Status: proposed by `02-click-retention` (2026-10-03); accepted at that slice's plan-lock
+- Status: accepted at the `02-click-retention` plan-lock (2026-10-03); merged in `ed2b940`
 - Date: 2026-10-03
 - Slice: `02-click-retention` (mission 02)
 

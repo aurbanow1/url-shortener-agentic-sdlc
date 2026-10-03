@@ -1,4 +1,4 @@
-%% urlshort — container view (kept current by the Design Agent; last: 01-audit-read design; ClickPurge and the audit read not yet merged)
+%% urlshort — container view (kept current by the Design Agent; last: current at main ed2b940, ClickPurge and the audit read merged)
 flowchart LR
     C[Creator / Visitor / Analyst / Operator<br/>container: 127.0.0.1:8080 only]
     subgraph urlshort [urlshort · Spring Boot 4.1 · Java 21 · uid 10001 · read-only root + tmpfs /tmp]
@@ -13,12 +13,12 @@ flowchart LR
         S[LinkService<br/>@Transactional]
         R[LinkRepository<br/>Spring Data JDBC]
         AU[AuditLog<br/>audit · insert-only JdbcClient]
-        AR[AuditController + AuditTrail · designed<br/>audit · /api/audit · loopback only<br/>keyset pages by id]
+        AR[AuditController + AuditTrail<br/>audit · /api/audit · loopback only<br/>keyset pages by id]
         CR[ClickRecorder<br/>click · reduce on request thread<br/>queue 10 000 · one click-writer]
         DS[DailySalt<br/>click · HMAC · salt per UTC day, in memory]
         CS[ClickStore<br/>click · JdbcClient]
         SC[StatsController<br/>click · /api/links/{code}/stats]
-        CP[ClickPurge · designed<br/>click · one click-purge thread<br/>startup run before readiness · daily 00:10Z]
+        CP[ClickPurge<br/>click · one click-purge thread<br/>startup run before readiness · daily 00:10Z]
         P[PingController<br/>ping]
         E[ProblemDetailsAdvice<br/>web · extends ResponseEntityExceptionHandler]
         A[Actuator · not limited<br/>health liveness/readiness+db · info · metrics · prometheus]
@@ -26,7 +26,7 @@ flowchart LR
         K[(Clock · tickMillis UTC)]
     end
     L[(stdout · ECS JSON lines)]
-    H[(H2 file DB · data/<br/>Flyway V1: link, audit_log<br/>V2: click)]
+    H[(H2 file DB · data/<br/>Flyway V1: link, audit_log<br/>V2: click · V3: click audit columns)]
     C -->|HTTP| F1 --> OB --> RL --> F2 --> D
     RL -.->|429 problem+json, Retry-After| C
     D --> LC

@@ -1,6 +1,6 @@
 # ADR-0020 — Audit columns: database-clock defaults, constant actors, one expand migration per table set
 
-- Status: proposed by `02-click-retention` (2026-10-03); accepted at that slice's plan-lock; amendment proposed by `04-audit-columns` (see *Amendment*)
+- Status: accepted at the `02-click-retention` plan-lock (2026-10-03), merged in `ed2b940` (V3); `04-audit-columns` amendment accepted at its plan-lock, not merged yet (see *Amendment*)
 - Date: 2026-10-03
 - Slice: `02-click-retention` (mission 02); the pattern for `04-audit-columns` (`link`, `audit_log`)
 

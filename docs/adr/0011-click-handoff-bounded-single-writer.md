@@ -1,6 +1,6 @@
 # ADR-0011 — Click recording: reduced on the request thread, written by one bounded writer, fail open
 
-- Status: accepted at the `02-analytics` plan-lock (2026-10-03T09:48Z); amendment proposed by `02-click-retention` (see *Amendment*)
+- Status: accepted at the `02-analytics` plan-lock (2026-10-03T09:48Z); `02-click-retention` amendment accepted at that slice's plan-lock and merged in `ed2b940` (see *Amendment*)
 - Date: 2026-10-03
 - Slice: `02-analytics`
 

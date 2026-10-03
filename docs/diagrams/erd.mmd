@@ -1,4 +1,4 @@
-%% urlshort — entity relationship diagram (kept current by the Design Agent; last: 04-audit-columns design, V3 and V4 audit columns, not yet merged)
+%% urlshort — entity relationship diagram (kept current by the Design Agent; last: current at main ed2b940, V3 merged; V4 from the 04-audit-columns design, not yet merged)
 %% No foreign key between link and audit_log by design: audit_log identifies its subject by (entity, entity_id = code)
 %% and must outlive any future deletion of the subject (ADR-0008). click references link by id and goes with it (ADR-0013).
 erDiagram
@@ -36,17 +36,17 @@ erDiagram
         varchar(2048) referrer "origin only, or NULL"
         varchar(16) user_agent_class FK "user_agent_class.token"
         varchar(64) client_hash "HMAC-SHA256 under the day's salt, hex; CHECK LENGTH = 64"
-        timestamptz created_at "V3 (designed): database clock default; backfilled from clicked_at"
-        timestamptz updated_at "V3 (designed): equals created_at (insert-only rows)"
-        varchar(16) created_by "V3 (designed): default anonymous"
-        varchar(16) updated_by "V3 (designed): default anonymous"
+        timestamptz created_at "V3: database clock default; backfilled from clicked_at"
+        timestamptz updated_at "V3: equals created_at (insert-only rows)"
+        varchar(16) created_by "V3: default anonymous"
+        varchar(16) updated_by "V3: default anonymous"
     }
     USER_AGENT_CLASS {
         varchar(16) token PK "browser | bot | other | unknown (seeded by V2)"
-        timestamptz created_at "V3 (designed): database clock default"
-        timestamptz updated_at "V3 (designed): equals created_at"
-        varchar(16) created_by "V3 (designed): default system"
-        varchar(16) updated_by "V3 (designed): default system"
+        timestamptz created_at "V3: database clock default"
+        timestamptz updated_at "V3: equals created_at"
+        varchar(16) created_by "V3: default system"
+        varchar(16) updated_by "V3: default system"
     }
     LINK ||..o{ AUDIT_LOG : "audited by (entity_id = code, no FK)"
     LINK ||--o{ CLICK : "clicked (link_id, index with clicked_on)"
