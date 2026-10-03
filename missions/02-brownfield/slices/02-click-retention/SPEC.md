@@ -95,8 +95,8 @@ Stored click rows are inspected by the suite, as in `02-analytics`.
 
 - **AC-6 — Links, redirects and the audit trail are untouched.** [FR-13]
   GIVEN an active link `C` whose only clicks are older than the period, and the audit rows recorded with their content
-  WHEN a purge runs
-  THEN `GET /C` still answers `302` with the same `Location`; `GET /api/links/C` answers `200` with its creation body; its statistics answer `200` with `totalClicks` `0`, `clicksPerDay` `[]` and `topReferrers` `[]`; every audit row is present with identical content; and no audit row was added.
+  WHEN a purge runs, and the suite then reads `C`'s statistics, opens `GET /C` once, and reads the statistics again after recording settles
+  THEN the first statistics read answers `200` with `totalClicks` `0`, `clicksPerDay` `[]` and `topReferrers` `[]`; `GET /C` answers `302` with the same `Location`; the second statistics read shows `totalClicks` `1`, with one `clicksPerDay` element for day `T`; `GET /api/links/C` answers `200` with its creation body; every audit row is present with identical content; and no audit row was added.
 
 - **AC-7 — A purge runs at startup.** [NFR-P2]
   GIVEN stored clicks older than the period, and a service that was not running at its scheduled purge time
@@ -228,6 +228,14 @@ N/A: non-visual slice.
 ## Status
 
 - 2026-10-03: requirements written; 14 acceptance criteria, 7 business rules, 8 ambiguity rows (5 assumed, 3 decided, none parked). Handed to `requirements_review`.
+
+- 2026-10-03: requirements review **PASS** on `ee7a4de` (`docs/review/02-click-retention/requirements-review.md`, evidence `735abe2`), with one MEDIUM finding, RQ-01. Fixed in passing (see *Review response*).
+
+## Review response
+
+| Id | Severity | Response |
+|---|---|---|
+| RQ-01 | MEDIUM | **Fixed.** AC-6's verification redirect recorded a new click before the statistics read, so `totalClicks` `0` could not hold. The statistics are now read first (empty), then `GET /C` is opened, then after recording settles the statistics show that one click on day `T`. No other AC, rule or ambiguity row changed. |
 
 ## Dependencies
 
