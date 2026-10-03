@@ -398,6 +398,10 @@ Persistence
 - A process that exits while a `DELETE` is uncommitted leaves the file consistent: the next open
   undoes it (4 s for 1 000 000 rows). After the pool closes, a statement still running on another
   thread finishes and commits if the JVM lives on. **[probe: `02-click-retention` D3, D4]**
+- Under H2 2.4.240 `READ_COMMITTED`, one statement reads one snapshot: an insert and a delete
+  committed between the two branches of a `UNION ALL` left both branches at the initial state.
+  Figures folded from one statement agree with each other.
+  **[review: `docs/review/01-analytics-v2/proof/consistency-controls.txt`]**
 
 Time
 
