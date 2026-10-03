@@ -59,9 +59,29 @@ because `DayClicks` changed and `docs/api/openapi.json` is regenerated last, aft
 - **Outside the impact analysis's AC-14 list:** the three `ClickRetentionJourneyTest` assertions. That
   test did not exist when the analysis was written; it is `02-click-retention`'s, on the stacked base.
 
-**Not yet done:** the by-effect captures (the three-peer statistics and the Prometheus excerpt).
-These run on the final rebased candidate, as do the coverage reports in
-`docs/qa/coverage/01-analytics-v2/`.
+**Rebased onto click-retention's candidate** at 21:44Z: `git rebase --onto slice/02-click-retention 056c8db`
+applied cleanly, giving tip `e64fb51` on `a8fc8b6`. `check --continue` still showed only the expected
+`OpenApiDocumentTest` failure.
+
+**Trial rebase onto `01-audit-read`'s merge `cb148c4`** (21:53Z), in a throwaway detached worktree, so
+no slice branch moved. The whole stack applied **without conflict**:
+`application.properties` and `README.md` merged in custody order (audit-read's lines first). The gate
+on it ran 236 tests with 2 failures:
+- `OpenApiDocumentTest`, expected;
+- `AuditUpgradeJourneyTest.AC18` (audit-read's, new on `main`), which asserts v1's exact statistics
+  body. The lead granted that one assertion at `35e5951` (my request `qitem-20261003215452-d915f3ab`).
+  It changes on the final rebase as an AC-14-style shape update.
+
+**By effect on `e64fb51` (interim, retaken on the candidate):**
+[`proof/builder-by-effect-e64fb51.txt`](proof/builder-by-effect-e64fb51.txt). The jar runs on 127.0.0.1
+with 127.0.0.1 as trusted proxy, and three clients are named in `X-Forwarded-For`:
+- Statistics: `{"date":"2026-10-03","clicks":4,"uniqueVisitors":3,"botClicks":1}`.
+- Prometheus: `urlshort_clicks_recorded_total 4.0`, and `urlshort_clicks_lost_total` for all five
+  reasons, each at `0.0`.
+- No client address in the log.
+
+**Still to do on the candidate:** the coverage reports in `docs/qa/coverage/01-analytics-v2/`, and the
+captures retaken.
 
 ## Self-check (interim)
 
