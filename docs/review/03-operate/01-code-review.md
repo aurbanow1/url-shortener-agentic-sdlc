@@ -144,3 +144,90 @@ against unmodified candidate behavior. All findings have location, consequence,
 evidence and required change. QA evidence reconciled independently. Only
 `docs/review/` authored; product, tests, SPEC and design untouched. Both review
 rows recorded in `docs/review/REVIEW-LEDGER.md` with one combined failed exit.
+
+## Re-review 1c8b2cff20ad8b73a060bc817c8d0011782f876f
+
+2026-10-03 UTC, `review2-agent@urlshort-factory` (Codex), assigned packet
+`qitem-20261003134551-e4b16c7a`. **PASS: CR-01, CR-02 and CR-03 fixed.**
+Security SEC-01 is the same resolved CR-01. No new blocking findings.
+
+The clean worktree matches QA's full candidate SHA. Read the builder's response,
+fresh QA evidence and the full five-file delta from `a7c533f`; all five changed
+files were read in full. The cumulative range now has 26 files (two granted
+inherited tests added), 2,043 insertions and 43 deletions. The 21 other files are
+unchanged from the first review; their earlier verdicts remain. Git-object byte
+checks and all 26 file hashes are in [the new audit](proof/qa-audit-1c8b2cf.json).
+
+The lead's actual transition **726** on `qitem-20261003123330-f28e75db` grants
+the two shifted-clock test peers and records the clock policy: normal operation
+assumes forward application time; backwards wall-clock steps fail closed until
+stored TAT catches up or the process restarts. That is an explicit operational
+limit, not permission to grant extra budget. The two-second sweep margin is a
+budget-neutral implementation choice within the granted scheduling repair.
+
+### Delta file ledger
+
+| Changed file | Re-review verdict |
+|---|---|
+| `scripts/smoke.sh` | PASS, CR-02 fixed: curl checks framing/completion, status and a shared elapsed deadline decide R0_OK; both drain/restart use it. Truncated R0/readiness headers no longer count as complete. |
+| `src/main/java/dev/urlshort/web/RateLimiter.java` | PASS, CR-01/CR-03 fixed: remove reset-on-stale-time branch, read clock within per-client compute; recover cleanup scheduling after rollback. |
+| `src/test/java/dev/urlshort/web/RateLimiterTest.java` | PASS: deterministic overtaken-request regression, explicit fail-closed rollback and 10,000-client cleanup regression. |
+| `src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java` | PASS: granted shifted requests use their own peer; timing and assertions retain their previous meaning. |
+| `src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java` | PASS: granted shifted requests use their own peer; expanded helper calls preserve the original 302/200 and statistics assertions. |
+
+### Finding resolutions and fresh verification
+
+| Finding | Resolution | Independent evidence |
+|---|---|---|
+| CR-01 / SEC-01 HIGH | **Fixed.** Same client's TAT no longer resets when an older request is overtaken. Sampling inside compute also avoids a stale Retry-After decision under forward time. | Unchanged original two-thread probe now reports `before=60`, `olderRetryAfter=1`, `laterAdmissions=0`, `totalAdmissions=60`, versus 120 before. [Fresh output](proof/rate-boundary-1c8b2cf.txt); new regression passed in full gate. |
+| CR-02 HIGH | **Fixed.** Complete response and elapsed time are both required; curl failure prevents delivery credit. Both callers check R0_OK. | Reviewer reran the inspected eight-case QA control against candidate functions: complete fixed/chunked 201 pass; zero/short body, truncated chunked response, no response, 500 and complete 201 at **11,012 ms** reject. [Results](proof/r0-controls-1c8b2cf.txt), [raw responses/results](proof/r0-controls-1c8b2cf.json), [rerun instrument](proof/r0-controls-1c8b2cf.py). Setup must exit successfully and emit a verdict to count. |
+| CR-03 MEDIUM | **Fixed under the recorded clock policy.** Cleanup no longer waits an hour to release clients created after the rollback. Pre-step entries remain until their TAT becomes full, consistent with fail-closed policy. | Original probe now retains **2 clients**, versus 10,002 before: one pre-step client and the new trigger client. Its `oldFullClients=10000` and `cleanupDeadlineStillInFuture=true` strings are fixed labels, not live counts/deadline measurements. The actual `clientsAfter61SecondsAndRequest` count and fresh unit regression establish the result. |
+
+Fresh commands in the worktree (same wrapper-only offline convention):
+
+```sh
+../../scripts/gw --log ../../docs/review/03-operate/proof/code-check-1c8b2cf.txt --offline check --rerun-tasks
+../../scripts/gw --log ../../docs/review/03-operate/proof/rate-boundary-1c8b2cf.txt --offline -I ../../docs/review/03-operate/proof/rate-boundary.gradle reviewRateBoundary
+../../scripts/gw --log ../../docs/review/03-operate/proof/runtime-dependencies-1c8b2cf.txt --offline dependencies --configuration runtimeClasspath
+```
+
+All exit 0. [Full gate](proof/code-check-1c8b2cf.txt): all 14 tasks executed,
+165 unit / 155 functional invocations, zero failures/errors/skips, Javadoc green;
+merged **443/443 lines, 162/162 branches**. The QA report's 321 copy hashes match;
+the current candidate's 186 source methods map to exactly its 186 traceability
+rows (historical tables excluded). All 2,303 saved exchanges and 30 rejection
+correlations reconcile; live/committed OpenAPI agrees. The runtime dependency
+tree is unchanged, including versions. The response control ran from the root
+with `python3 docs/review/03-operate/proof/r0-controls-1c8b2cf.py`; only its output
+and root paths differ from the inspected QA control, and its environment uses
+the supported `C` locale. No product edits or fresh advisory-network query.
+
+QA's real-jar drain record independently reports complete 201 at 532 ms,
+connection probe refused, 62 complete / 16 refused / zero losses/failures. I read
+that record and reran the response controls; I did not rerun the jar/container
+drain. Final installed release judgment remains with release.
+
+### Explicit proof-item-11 re-review
+
+| Obligation | Verdict | Evidence/scope |
+|---|---|---|
+| Limiter memory bounded | **PASS under the forward-clock contract.** CR-03 resolved. | Entries are reclaimed opportunistically once refilled, on limited traffic; normal 10,000-client test and rollback probe pass. No allocation while idle. Backwards clock steps retain pre-step TATs until catch-up by explicit policy, not an unconditional wall-clock 61 s promise. Arbitrarily delayed threads can cause an extra harmless sweep; no budget reset follows. |
+| No client address in a log, metric, response or stored row | **PASS, reaffirmed.** | The only changed production class keeps client keys in memory and adds no sink. New audit finds zero peer/forwarded canaries in 2,303 responses, five logs, scrape and three final tables. Existing URL-verbatim exception and salted click hashing remain unchanged. |
+
+### Ponytail review
+
+Lean already. Ship.
+
+Curl replaces the incomplete handwritten response reader; no product dependency
+or speculative layer added. QA-OPR-01 remains a release-owned MEDIUM workload
+gap (82.1/16.4 req/s does not prove 100/20 targets). Retain QA-OPR-02's accepted
+LOW disk path. QA-OPR-03 is a LOW host prerequisite introduced by the timestamp
+helper: release must verify Perl/Time::HiRes and supported locale; `C` was tested.
+No remaining CR finding needs a fix before integration.
+
+Self-check: exact candidate/clean worktree, five of five delta files read,
+26 of 26 cumulative files covered, fresh gate and fix probes inspected,
+scope/grant and every earlier finding disposition recorded. Only review files
+authored; QA/source/tests/design/SPEC untouched. Code/security rows appended;
+**combined handoff to integrate**. Item 11's review evidence is now complete;
+the slice's separate receipt policy names QA2 as its only proof judge.

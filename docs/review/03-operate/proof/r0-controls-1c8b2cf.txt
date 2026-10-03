@@ -1,0 +1,25 @@
+complete 201: expected=pass observed=pass
+R0_OK=1 R0_RC=0 R0=curl exit 0, status 201, complete 6 ms after the stop
+
+201 header, 100-byte body promised, 0 sent: expected=reject observed=reject
+R0_OK=0 R0_RC=18 R0=curl exit 18, status 201, complete 6 ms after the stop
+
+201 header, 100-byte body promised, 10 sent: expected=reject observed=reject
+R0_OK=0 R0_RC=18 R0=curl exit 18, status 201, complete 8 ms after the stop
+
+connection closed without a response: expected=reject observed=reject
+R0_OK=0 R0_RC=52 R0=curl exit 52, status 000, complete 6 ms after the stop
+
+complete chunked 201: expected=pass observed=pass
+R0_OK=1 R0_RC=0 R0=curl exit 0, status 201, complete 5 ms after the stop
+
+truncated chunked 201: expected=reject observed=reject
+R0_OK=0 R0_RC=18 R0=curl exit 18, status 201, complete 6 ms after the stop
+
+complete 500: expected=reject observed=reject
+R0_OK=0 R0_RC=0 R0=curl exit 0, status 500, complete 5 ms after the stop
+
+complete 201 sent 11 s after the stop: expected=reject observed=reject
+R0_OK=0 R0_RC=0 R0=curl exit 0, status 201, complete 11012 ms after the stop
+
+8/8 correct

@@ -92,3 +92,53 @@ is memory-only in this change; proof-item-11's memory exception is explicit.
 No product/test/spec/design edits. Separate security ledger row recorded.
 **Combined packet exits failed** until CR-01 and CR-02 are resolved; fix CR-03
 in passing, retain the stated LOW, and carry the named release obligations.
+
+## Re-review 1c8b2cff20ad8b73a060bc817c8d0011782f876f
+
+2026-10-03 UTC, same reviewer, packet `qitem-20261003134551-e4b16c7a`.
+**PASS. SEC-01/CR-01 and CR-03 fixed; CR-02 also resolved in code review.**
+No new blocking security findings. This disposition supersedes the earlier
+candidate's FAIL without rewriting its evidence.
+
+All five delta files read; cumulative 26/26-file coverage and the full finding
+responses are in the [code re-review](01-code-review.md#re-review-1c8b2cff20ad8b73a060bc817c8d0011782f876f).
+Only `RateLimiter` changes production behavior: no new entry point, identity
+source, persistence/log/metric sink, exposure setting or runtime dependency.
+The rest of the original checklist remains valid for unchanged bytes; the rows
+affected by the repair are reassessed explicitly below.
+
+| Checklist item / finding | Status | Fresh evidence and resolution |
+|---|---|---|
+| Concurrent rate limit, SEC-01 (= CR-01) | **pass — fixed** | Removing the reset branch and reading time inside per-client compute preserves the spent bucket. Unchanged two-thread probe: 60 admissions, overtaken request retry 1, no additional admission. [Output](proof/rate-boundary-1c8b2cf.txt). |
+| Enumeration protection | **pass within the stated single-node scope** | Same eight-character base62 keyspace (about 47.6 bits), intended 600/min redirect bucket and 10/s refill; reset bypass removed. Existing limits/spoof tests and fresh ordering regression pass. This is risk reduction, not authorization or a guarantee against distributed enumeration. |
+| Memory cleanup, CR-03 | **pass — fixed** | 10,000 post-rollback clients reclaimed after refill; probe leaves only the pre-step client and new client. Lead transition 726 explicitly makes backward steps fail closed; pre-step keys wait for their TAT rather than gaining new budget. |
+| Identity, output/log/storage privacy | **pass** | No changed sink. Fresh QA evidence audit finds neither client-address canary in response headers/bodies, five logs, scrape or link/audit/click rows. [Audit](proof/qa-audit-1c8b2cf.json). Existing raw-key memory-only and salted click persistence boundaries remain. |
+| Direct dependencies / exposure / credentials | **pass for unchanged surface** | Fresh [offline tree](proof/runtime-dependencies-1c8b2cf.txt) is identical to the first candidate, including all eight direct versions listed above. Build, properties, containers and API document unchanged. No new secret. Advisory database and image verification remain release-owned. |
+| Shutdown evidence, CR-02 | **pass — fixed instrument** | Reviewer executed all eight complete/truncated/failed/late response controls, 8/8 expected outcomes; 11,012 ms complete 201 rejects. curl framing result controls delivery credit; both callers enforce R0_OK. Real container drain remains unverified here. |
+| QA-OPR-02 disk-path disclosure | **pass with retained LOW** | Same deliberate decision: retain useful default disk gauges in the loopback operator scope. Reassess before expanding exposure; no client-identity leakage found. |
+| QA-OPR-03 host locale | **n-a to product security; LOW release prerequisite** | Smoke timestamp helper needs working Perl/Time::HiRes and locale. Reviewer controls used supported `C`; QA's initial unsupported `C.UTF-8` setup failures remain disclosed. Release verifies its host. |
+
+| Proof-item-11 obligation | Verdict | Explicit current record |
+|---|---|---|
+| Limiter per-client memory is bounded | **PASS** | Forward-clock contract: opportunistic full-bucket release limits state to recent admitted distinct clients; idle traffic adds no keys. Fresh normal-cleanup suite and rollback repair probe pass. Pre-step entries after a backwards clock step remain until catch-up under the explicitly accepted fail-closed operational limit. There is no claimed absolute cardinality cap. |
+| No client address reaches a log, metric, response or stored row | **PASS** | The changed class has no output/persistence sink; client identity remains an in-memory key. Independently audited new captured responses, logs, metric scrape and three tables contain zero peer/forwarded canary occurrences. Existing salted click hash and explicit submitted-target URL exception are preserved. |
+
+Fresh full gate passed **165 unit / 155 functional**, zero failures/errors/skips,
+100% merged line/branch coverage and Javadoc. All 321 saved QA coverage hashes,
+186 current-method trace rows, 2,303 exchanges and 30 log correlations reconcile.
+The unchanged original limiter probe passed; its literal old diagnostic labels
+are not current measurements. No advisory-network access or container execution
+is claimed. These are independent reviewer executions/audits, not an inferred
+pass from the builder's response.
+
+Residuals: backward wall-clock steps can temporarily refuse pre-step clients;
+disk gauges disclose the operator working directory; smoke needs supported
+Perl/locale; final container/drain/advisory and 100/20 req/s latency checks remain
+release obligations. None reopens a settled finding or adds a product gate.
+Code and security **handoff together**. Both proof-item-11 review rows are now
+positive; the separate attributed receipt belongs to QA2 under the slice policy.
+
+Self-check: candidate and five-file delta verified, resolved finding behavior
+reproduced, affected security checklist and explicit item-11 obligations judged,
+unchanged surface checked by Git objects/dependency-tree equality, review ledger
+row appended. Product/tests/SPEC/design and QA evidence were not changed.
