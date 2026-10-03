@@ -22,12 +22,13 @@ import org.springframework.web.filter.OncePerRequestFilter;
  * throws a {@code 413} {@link ErrorResponseException}, exact for declared and chunked bodies alike.
  * The exception is raised inside the DispatcherServlet, so {@code ProblemDetailsAdvice} renders it.
  *
- * <p>Runs right after {@link RequestIdFilter}, so a {@code 413} still carries its request id. Only
- * {@code getInputStream()} is wrapped: the JSON path never calls {@code getReader()} and multipart
- * parsing is disabled.
+ * <p>Runs after {@link RequestIdFilter}, so a {@code 413} still carries its request id, and after
+ * {@link RateLimitFilter}, so a body is never read before its request is charged (rule 3 of slice
+ * 03-operate). Only {@code getInputStream()} is wrapped: the JSON path never calls
+ * {@code getReader()} and multipart parsing is disabled.
  */
 @Component
-@Order(Ordered.HIGHEST_PRECEDENCE + 1)
+@Order(Ordered.HIGHEST_PRECEDENCE + 3)
 class RequestBodyLimitFilter extends OncePerRequestFilter {
 
 	static final int MAX_BODY_BYTES = 16_384;
