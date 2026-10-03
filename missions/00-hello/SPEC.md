@@ -2,7 +2,7 @@
 id: OPR.99.0.1
 mission: 00-hello
 stage: wip
-verified: 2026-10-02 against scaffold (rig scope create)
+verified: 2026-10-03 against evidence export at 818da73 and ship sign-off qitem-20261003023502-f807af1f (approved by human@kernel 2026-10-03T02:44:55Z)
 created: 2026-10-02
 intent: "Prove the factory end to end: one trivial endpoint travels every pipeline step and both human gates, leaving a complete evidence trail."
 depends_on: []
@@ -76,15 +76,35 @@ Recorded 2026-10-03T01:52Z before the handoff to `wave_review`.
 - Release prep security flag (2026-10-03T02:16Z): OSV advisories on managed transitive dependencies (Tomcat 11.0.24, Jackson 3.1.5 and 2.21.5), none reachable on the current localhost-only surface with no client input. Lead accepts the release agent's default: known gap in `RELEASE.md` for the ship decision; dependency-upgrade slice first in mission 01, before any JSON-body slice. Details and evidence paths in `NOTES.md` §2.
 - Wave review outcome (2026-10-03T02:01Z): PASS from both vantages on `42a25db4`; two LOW follow-ups, W1-01 (OpenAPI export ownership, to the first mission-01 API slice) and W1-02 (real-server journey for log-privacy criteria), recorded as backlog in `NOTES.md` §2.
 
+## Self-check (mission_close)
+
+Recorded 2026-10-03T03:07Z before the `done` exit.
+
+- PROGRESS current: yes, all four acceptance rows ticked with dates and ids, plus the close row.
+- NOTES current: yes, §1 names the final state, §2 carries the close section with the ordered backlog and the factory findings.
+- Worktrees removed: yes, `git worktree list` shows only the main checkout.
+- Follow-on work recorded as backlog: yes, four product items for mission 01 and five factory findings, in NOTES §2 and summarised below.
+- Evidence exported and committed: yes, `docs/evidence/00-hello/` at `818da73` with INDEX.md.
+- Human decisions on record: three, all verbatim in the packet transition logs and in NOTES; two stamps recorded on the human's behalf (mission spec, slice delivery) plus the slice plan-lock stamp recorded by the design agent.
+- Nothing published: yes, no push, no release tag, no exposure beyond localhost.
+
 ## Slices
 
-- `01-ping` — Ping endpoint. Tier high. Wave w1. State: **accepted and merged** (`42a25db4`, tag `slice/01-ping/accepted`); proof contract 7/7 judged by QA; delivery stamp follows ship sign-off.
+- `01-ping` — Ping endpoint. Tier high. Wave w1. State: **delivered** (`42a25db4`, tag `slice/01-ping/accepted`); proof contract 7/7 judged by QA; delivery stamp recorded 2026-10-03T02:45:45Z on the human's behalf.
+
+## Backlog handed to mission 01
+
+1. Dependency upgrade slice first (Tomcat 11.0.25, Jackson 3.1.7, Jackson 2 constraint 2.21.7), before any slice that parses client input.
+2. OpenAPI export ownership in the first API slice (W1-01).
+3. Real-server journey for log-privacy criteria (W1-02).
+4. Unit-suite properties shadowing (profile pattern).
 
 ## Status
 
 - 2026-10-02 — decomposed into one slice, one wave; compiled graph exported to `docs/evidence/00-hello/compiled-graph.json`; held at mission plan-lock.
 - 2026-10-02T22:02Z — mission plan-lock approved; wave w1 launched.
 - 2026-10-03T01:33Z — `01-ping` merged into main; 01:49Z slice accepted. Wave w1 complete.
+- 2026-10-03T03:07Z — **mission closed** by the lead after evidence export (`818da73`). Final status sent to the human.
 - 2026-10-03T02:44Z — ship sign-off approved by `human@kernel` on `qitem-20261003023502-f807af1f` ("approve: ship the 00-hello dry run on 42a25db4; Tomcat/Jackson advisories tracked … and fixed before the first slice that parses client input"); `01-ping` delivery stamp recorded on the human's behalf. Nothing published by an agent.
 - 2026-10-03T01:52Z — handed to `wave_review` (review agent + design agent, authors excluded). Wave range on main: `f43ecd1..42a25db4` for product code (nine files), plus the slice and mission documents committed on main since `adfa5ca`.
 
