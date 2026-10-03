@@ -58,7 +58,7 @@ schema-policy slice. No unrelated public API is needed to prove it.
 
 | ID | Severity | File:line | Evidence / consequence | Required change |
 |---|---|---|---|---|
-| RQ-01 | HIGH | `missions/02-brownfield/slices/04-audit-columns/SPEC.md:117` at `b95f3e2` | AC-8 preserves the shipped response and also forbids every audit-column name/value in a body, header or log. AC-1/2 reuse `link.created_at`; the shipped response exposes that instant as `createdAt` (`LinkResponse.java:19`). Fresh create and read-after-retire both expose `2026-10-03T18:57:55.676Z`, so the global absence condition cannot hold while preserving behavior. Independently, locked audit-read AC-1/rule 3 exposes `actor=anonymous`, which AC-2 requires in the new actor columns. | Forbid added response fields/exposure sourced from the newly added columns, while preserving existing `createdAt` and audit `actor`. Remove the global value-absence assertion; shared values are not proof of new-column exposure. Preserve a concrete unchanged-shape check after an update. |
+| RQ-01 | HIGH | `missions/02-brownfield/slices/04-audit-columns/SPEC.md:117` at `b95f3e2` | AC-8 preserves the shipped response and also forbids every audit-column name/value in a body, header or log. AC-1/2 reuse `link.created_at`; the shipped response exposes that instant as `createdAt` (`LinkResponse.java:18`). Fresh create and read-after-retire both expose `2026-10-03T18:57:55.676Z`, so the global absence condition cannot hold while preserving behavior. Independently, locked audit-read AC-1/rule 3 exposes `actor=anonymous`, which AC-2 requires in the new actor columns. | Forbid added response fields/exposure sourced from the newly added columns, while preserving existing `createdAt` and audit `actor`. Remove the global value-absence assertion; shared values are not proof of new-column exposure. Preserve a concrete unchanged-shape check after an update. |
 
 Evidence: [`proof/requirements-source-check.txt`](proof/requirements-source-check.txt),
 [`proof/baseline-create.json`](proof/baseline-create.json),
@@ -85,7 +85,7 @@ values in the columns. No additional finding introduced by the correction.
   database. Observed readiness `UP`, create `201`, retire `204`, read `200`;
   both bodies have exactly the five shipped fields and identical `createdAt`.
   The process was terminated and graceful shutdown observed in
-  `proof/baseline-app.log`. HTTP header line endings were normalized for Git.
+  `proof/baseline-app.txt`. HTTP header line endings and trailing whitespace were normalized for Git.
 - The successful baseline gate from the immediately preceding review is
   reused: [`../05-ci-cd/proof/requirements-baseline-check.txt`](../05-ci-cd/proof/requirements-baseline-check.txt),
   all 14 tasks up-to-date. Verified `src/` and `build.gradle.kts` are identical;
