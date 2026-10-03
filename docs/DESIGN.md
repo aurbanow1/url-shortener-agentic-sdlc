@@ -59,7 +59,7 @@ flowchart LR
     CS --> H
     S --- K
     AU --- K
-    CR --- K
+    DS --- K
     RL --- K
     C -->|/actuator/*| A
     C -->|/v3/api-docs| O
