@@ -118,7 +118,7 @@ Decisions this fixes (each measured, §12):
   outcome:
   - a failed run waits for the next UTC day (A8g, A8h);
   - a clock that steps back runs nothing (A8d);
-  - before 00:10Z nothing runs (A8e), and at 00:10Z the run follows within one tick (A8f).
+  - on a later day nothing runs at 00:09:56Z (A8e), and the run follows at 00:10:03Z (A8f).
 - **Startup run before readiness.** `start()` is called before Boot publishes `ACCEPTING_TRAFFIC`:
   in A7b and A7s readiness came 1 ms after the run ended. Three consequences:
   - AC-7 holds before readiness;
@@ -297,7 +297,7 @@ thread, except AC-7 and AC-8, which send no trigger.
 | AC-1, rule 2, A-1 | `ClickRetentionJourneyTest`: two clicks each on `T−91`, `T−90`, `T−89`, `T`; full rows read before; `runNow()` at `T` | the `T−91` rows are gone; the six others are equal column for column |
 | AC-2 | same class: the AC-1 fixture rebuilt, run at `T`, then the clock moved to `T+1`, `runNow()` | `T−90` gone, `T−89` and `T` kept |
 | AC-3, rule 1 | `ClickRetentionSettingJourneyTest` (`urlshort.click.retention-days=7`, `@DirtiesContext`): clicks on `T−8`, `T−7`, `T`; `runNow()` | `T−8` gone; also its startup INFO shows `retentionDays` 7 |
-| AC-4, rule 1 | `ClickRetentionStartupJourneyTest`: for `0`, `-5`, `ninety`, a temporary file database (Flyway + one link + three clicks at `T−100` by JDBC); `new SpringApplicationBuilder(UrlshortApplication.class).run("--spring.datasource.url=…", "--server.port=0", "--urlshort.click.retention-days=" + v)` throws; `OutputCaptureExtension` | the capture names `retention-days` or `retentionDays` and `v`, not the datasource URL; three clicks remain; no `clicks purged` line |
+| AC-4, rule 1 | `ClickRetentionStartupJourneyTest`: for `0`, `-5`, `ninety`, a temporary file database (Flyway + one link + three clicks at `T−100` by JDBC); `new SpringApplicationBuilder(UrlshortApplication.class).run("--spring.datasource.url=…", "--server.port=0", "--urlshort.click.retention-days=" + v)` throws; `OutputCaptureExtension` | the capture names `retention-days` or `retentionDays` and `v`, not the datasource URL; three clicks remain; no `clicks purged` line. **Predicted, not measured:** a failed `run` publishes `ApplicationFailedEvent`, on which Boot cleans up its logging system, inside the functional JVM where cached contexts keep logging. So the three startups stay in this one class, with `.registerShutdownHook(false)` on the builder. If later classes' log lines change format, run the three failing startups in a child JVM, as probe D4 does |
 | AC-5, rule 4 | `ClickRetentionJourneyTest`: clicks over `T−95`…`T` with origins seen only on `T−95`…`T−91`; statistics read before; `runNow()`; read again | per-day counts equal from `T−90` on, total = their sum, the old-only origins absent, the four fields unchanged |
 | AC-6, rule 4 | same class: link `C` with clicks only at `T−100`; `SELECT * FROM audit_log` before; `runNow()`; statistics → `200`, `0`, `[]`, `[]`; then `GET /C` → `302` and the same `Location`; `settle()`; statistics → total 1 with one element for `T`; `GET /api/links/C` → `200`, creation body | the audit rows are identical and their count unchanged (RQ-01 order) |
 | AC-7, rule 3 | `ClickRetentionStartupJourneyTest`: a temporary file database fully migrated, clicks at `T−100` and `T−10`; start the application with no trigger | when `run(…)` returns (readiness is reported), the `T−100` rows are already gone and `T−10` kept, which is stronger than "within 60 s"; one `clicks purged` line |
@@ -385,7 +385,7 @@ the commands.
 | A8a | context start | the startup run done 5–7 ms after `ApplicationReadyEvent`; default 90 bound | AC-7 mechanism, the setting |
 | A8b | clicks at `T−90`, `T−89`; clock to `T+1` 00:10:01Z, no trigger | `T−90` deleted after **4.9 s**, `T−89` kept | AC-8 |
 | A8c, A8d | two more ticks; clock stepped back 3 days | no second run that day; no run on a backward step | rule 3 |
-| A8e, A8f | clock at 00:09:56Z of a later day, then 00:10:03Z | no run before 00:10Z, one after | 00:10Z |
+| A8e, A8f | day `T+2`, later than the last run's day `T+1`: clock at 00:09:56Z, then 00:10:03Z | no run at 00:09:56Z, one at 00:10:03Z. The day condition held in both, so together they isolate the time-of-day gate | the 00:10Z gate |
 | A8g, A8h | the store throws (message with a canary), one more tick, next day | one WARN with the class only; no retry that day; the next day runs | AC-10, rule 3 |
 | A4 | `0`, `-5`, `ninety` | each stops startup (`BindValidationException`, `NumberFormatException`); names the setting, echoes the value and its origin, no datasource URL; **purge started 0, old clicks 3 of 3 left** | AC-4, D-AC4 |
 | L0 | `DELETE … WHERE id IN (SELECT … FETCH FIRST 10000 ROWS ONLY)` | cancelled at a 20 s timeout, H2 re-runs the subquery per row (`batch-subquery-jstack.txt`) | §3 stack fact |
@@ -448,8 +448,13 @@ ADR-0018 and the amendments are on `main` with this design, before any dependent
   ADR-0013's index sketch has a note. The `click lost` reason list includes `reduction failed`.
 - **Out of scope stays out:** no aggregation, no endpoint, no metric, nothing about links, audit
   rows or idempotency bindings.
-- **Not verified:** the shipped functional suite against a real candidate (AC-14, QA); PostgreSQL;
-  `SIGTERM` to the jar (release's `--drain`); the residual 00:10Z crossing in the suite.
+- **Not verified:**
+  - the shipped functional suite against a real candidate (AC-14, QA);
+  - PostgreSQL;
+  - `SIGTERM` to the jar (release's `--drain`);
+  - the residual 00:10Z crossing in the suite;
+  - whether three failed startups inside the functional JVM disturb the cached contexts' logging
+    (§7 AC-4 row, with its fallback).
 
 ## Plan review (author's lenses; the skill was not invoked separately)
 
