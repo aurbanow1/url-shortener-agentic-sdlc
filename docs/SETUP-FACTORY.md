@@ -39,12 +39,12 @@ specs resolve from the repo alone.
 
 OpenRig pins a seat's *model* in its agent spec (`defaults.model`); `rig seat set-model <seat> --model <id>` changes a live seat (audited, effective at the seat's next launch). Reasoning *effort* is a runtime setting, so set it once per runtime before `rig up`:
 
-- Claude Code — `~/.claude/settings.json`: `"model": "fable"`; the project's `.claude/settings.json` sets `"effortLevel": "high"` for the author seats (project scope overrides user scope), plus `"modelSettings": {"claude-opus-5-5": {"effortLevel": "xhigh"}}` for the builder.
+- Claude Code — every seat's model is pinned to `claude-opus-5-5` in its agent spec (`defaults.model`), so the user-level `"model"` alias does not matter for seats; the project's `.claude/settings.json` sets `"effortLevel": "high"` for the author seats (project scope overrides user scope), plus `"modelSettings": {"claude-opus-5-5": {"effortLevel": "xhigh"}}` for the builder.
 - Codex — `~/.codex/config.toml`: `model = "gpt-6-astra"`, `model_reasoning_effort = "xhigh"`.
 
 | Seat | Runtime | Model | Effort |
 |---|---|---|---|
-| orchestration-lead, requirements-agent, design-agent, release-agent | Claude Code | Claude Fable 5.1 | high (project `.claude/settings.json`) |
+| orchestration-lead, requirements-agent, design-agent, release-agent | Claude Code | Claude Opus 5.5 (pinned in each agent spec) | high (project `.claude/settings.json`) |
 | development-agent | Claude Code | Claude Opus 5.5 (pinned in `rig/agents/development-agent/agent.yaml`) | high |
 | qa-agent, qa2-agent | Codex | GPT-6.1-Sol (pinned in `rig/agents/qa-agent/agent.yaml`) | xhigh |
 | review-agent, review2-agent | Codex | GPT-6-Astra | xhigh |

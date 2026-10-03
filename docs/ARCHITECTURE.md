@@ -82,12 +82,12 @@ flowchart TB
 
 | Seat | Runtime | Model | Reasoning effort | Where it is set |
 |---|---|---|---|---|
-| `orchestration-lead`, `requirements-agent`, `design-agent`, `release-agent` | Claude Code | Claude Fable 5.1 (`claude-fable-5-1`) | high (D7; project `.claude/settings.json`) | runtime default (`~/.claude/settings.json`: `model: fable`, `effortLevel: xhigh`) |
+| `orchestration-lead`, `requirements-agent`, `design-agent`, `release-agent` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | high (D7; project `.claude/settings.json`) | `defaults.model` in each agent spec (D8, 2026-10-03) |
 | `development-agent` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | high (D7) | `rig/agents/development-agent/agent.yaml` → `defaults.model`; effort from `modelSettings.claude-opus-5-5` |
 | `qa-agent`, `qa2-agent` | Codex | GPT-6.1-Sol (`gpt-6.1-sol`) | xhigh | `rig/agents/qa-agent/agent.yaml` → `defaults.model`; effort from `~/.codex/config.toml` `model_reasoning_effort` |
 | `review-agent`, `review2-agent` | Codex | GPT-6-Astra (`gpt-6-astra`) | xhigh | runtime default (`~/.codex/config.toml`) |
 
-Effort is a runtime setting, not an OpenRig field; the factory runs Claude author seats at `high` and Codex judge seats at `xhigh` (D7) (`docs/SETUP-FACTORY.md`). Every review step runs on the other family from the author (Codex judges Claude), and inside the Claude family the builder (Opus 5.5) differs from the planners and the lead (Fable 5.1).
+Effort is a runtime setting, not an OpenRig field; the factory runs Claude author seats at `high` and Codex judge seats at `xhigh` (D7) (`docs/SETUP-FACTORY.md`). Every review step runs on the other family from the author (Codex judges Claude), and every Claude seat runs Opus 5.5 (D8); independence comes from the Codex judges, not from model diversity inside the Claude family.
 
 ### 2.3 Control flow: three graphs
 
