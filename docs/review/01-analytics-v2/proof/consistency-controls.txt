@@ -1,0 +1,31 @@
+Starting a Gradle Daemon, 1 busy and 4 stopped Daemons could not be reused, use --status for details
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :jar UP-TO-DATE
+> Task :compileFunctionalTestJava UP-TO-DATE
+> Task :processFunctionalTestResources UP-TO-DATE
+> Task :functionalTestClasses UP-TO-DATE
+
+> Task :reviewStatsConsistency
+11:49:02.407 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:h2:mem:review-stats (H2 2.4)
+11:49:02.479 [main] WARN org.flywaydb.core.internal.database.base.Database -- Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+11:49:02.510 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+11:49:02.512 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 2 migrations (execution time 00:00.013s)
+11:49:02.523 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+11:49:02.566 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "PUBLIC": << Empty Schema >>
+11:49:02.570 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "1 - create link and audit log"
+11:49:02.583 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "2 - create click"
+11:49:02.596 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 2 migrations to schema "PUBLIC", now at version v2 (execution time 00:00.013s)
+SNAPSHOT insert isolation=2
+SNAPSHOT insert fresh count=2, same-statement rows=[2026-10-01|null|1|null|null, 2026-10-01|null|null|1|0]
+SNAPSHOT delete isolation=2
+SNAPSHOT delete fresh count=0, same-statement rows=[2026-10-01|null|1|null|null, 2026-10-01|null|null|1|0]
+COUNTER shutdownClaim=false countBeforeCas=false stored=1 recorded=1 lost=0
+COUNTER shutdownClaim=true countBeforeCas=false stored=1 recorded=0 lost=1
+COUNTER shutdownClaim=true countBeforeCas=true stored=1 recorded=1 lost=1
+CONTROLS complete
+
+BUILD SUCCESSFUL in 5s
+6 actionable tasks: 1 executed, 5 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html
