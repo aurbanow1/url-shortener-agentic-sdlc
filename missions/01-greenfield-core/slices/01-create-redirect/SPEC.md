@@ -203,7 +203,7 @@ The public endpoints are those fixed by the mission decision brief:
 - **AC-16 — The redirect route does not shadow the existing surface.** (regression guard, business rule 1)
   GIVEN the service is running
   WHEN a client sends `GET /api/ping`, `GET /actuator/health` and `GET /v3/api-docs`
-  THEN each answers `200` exactly as before this slice (ping body `status` `ok`; health `status` `UP`; a JSON OpenAPI document).
+  THEN each answers `200` (ping body `status` `ok`; health `status` `UP`; a JSON OpenAPI document, whose content AC-28 governs).
 
 #### Idempotent create
 
@@ -262,9 +262,9 @@ The public endpoints are those fixed by the mission decision brief:
   THEN each response carries a non-empty `X-Request-Id`, and for each one the log output contains at least one event that is a single JSON object on one line carrying `requestId` equal to that header value.
 
 - **AC-27 — No client-controlled value reaches the logs.** [NFR-O2]
-  GIVEN the service is running with its default logging configuration, and four canaries that occur nowhere else: a `User-Agent` value, a query-parameter value inside a valid `url`, an `Idempotency-Key` value, and a value inside a `javascript:` URL
-  WHEN a Creator creates a link with the first three canaries, a Visitor opens it, and a Creator sends a create whose `url` is the `javascript:` canary and receives `400`
-  THEN no log output produced while handling those requests contains any of the four canaries or the client's remote address.
+  GIVEN the service is running with its default logging configuration, and five canaries that occur nowhere else: a `User-Agent` value, a query-parameter value inside a valid `url`, an `Idempotency-Key` value, an inbound `X-Request-Id` value, and a value inside a `javascript:` URL
+  WHEN a Creator creates a link sending the first four canaries, a Visitor opens it, and a Creator sends a create whose `url` is the `javascript:` canary and receives `400`
+  THEN no log output produced while handling those requests contains any of the five canaries or the client's remote address, and the `X-Request-Id` issued on the create response differs from the inbound canary.
 
 #### API document
 
@@ -403,7 +403,7 @@ N/A — non-visual slice.
 
 ## Status
 
-- 2026-10-03 — requirements written; 28 acceptance criteria, 12 business rules, 23 ambiguity rows (10 assumed, 13 decided, none parked). Awaiting `requirements_review`.
+- 2026-10-03 — requirements written; 28 acceptance criteria, 12 business rules, 23 ambiguity rows (8 assumed, 15 decided, none parked). Awaiting `requirements_review`.
 
 ## Dependencies
 
@@ -416,9 +416,9 @@ Recorded 2026-10-03 before the requirements handoff.
 - Every AC observable from outside: AC-1 to AC-21 and AC-26 to AC-28 through HTTP status, headers and bodies, or the log output; AC-22 to AC-25 through audit rows the suite inspects. No AC reads internal state.
 - Error and privacy paths are ACs: `400` (AC-4, AC-5, AC-20), `413` (AC-7), `415` (AC-6), `404` (AC-14), `405` (AC-15), `410` (AC-11, AC-13), `422` (AC-18), `500` with rollback (AC-24); no client-controlled values in logs (AC-27); no echo of submitted values in error bodies (AC-4, rule 8); host-header independence (AC-3).
 - Business rules cover the non-obvious logic: code shape and reserved segments, verbatim targets, validation order and tokens, no URL deduplication, the full idempotency contract, one-way retire, redirect headers, problem details regardless of `Accept`, audit content and transactionality, log content, base-URL source, time formats.
-- Out of scope is explicit: eighteen named exclusions, each one a thing a builder might otherwise add, with the FR-5 alias clause and the NFR-S1 private-host clause called out by name.
+- Out of scope is explicit: fourteen exclusion bullets, each one a thing a builder might otherwise add, with the FR-5 alias clause and the NFR-S1 private-host clause called out by name.
 - Every allocated id (FR-1–6, FR-9; NFR-S1, S3, S4, R5, R6, A1, A2, M3, O1, O2; cross-cutting M1, M2) appears in the *Requirements covered* table with at least one AC, or for M1 and M2 with a named artifact obligation in *Non-functional* and the proof contract.
-- Every ambiguity resolved: A-1 to A-23, ten `assumed` with the reason the default is safe, thirteen `decided`; none parked, none left open; no ambiguity resolved by widening scope.
+- Every ambiguity resolved: A-1 to A-23, eight `assumed` (A-3, A-4, A-5, A-7, A-9, A-10, A-14, A-16) with the reason the default is safe, fifteen `decided`; none parked, none left open; no ambiguity resolved by widening scope.
 - Proof contract names coverage (merged 100 % plus per-suite reports), traceability rows with ids, a `GAPS.md` row, the first-commit dependency overrides with an OSV capture, by-effect captures (HTTP exchange, log lines, audit rows), the API-document diff, the ADR obligation, and the two review-recorded checks (A2, S4).
 - No design leaked: no class, package, table, column, library, filter or migration is named; the endpoint paths and the `url`/`errors[]` field names are the public contract the mission brief already fixed or this SPEC decides; "same transaction" is the behaviour NFR-A1 states, not a mechanism.
 - Consistent with the mission brief and the human's recorded decisions: endpoints and field from the decision brief and `PLAN.md`; NFR-R5 24 h and NFR-S3 16 KiB as decided; NFR-S6 anonymous everywhere; the dependency overrides as the first gated commit; nothing from the mission's "explicitly not in this mission" list.
