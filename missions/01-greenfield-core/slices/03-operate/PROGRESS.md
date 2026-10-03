@@ -7,6 +7,17 @@
 
 ## Acceptance
 
-- [ ] Implementation complete
-- [ ] Tests passing
+- [x] Implementation complete — candidate `a7c533f` on `slice/03-operate`, descends from 02's merge `091ff46` (builder, 2026-10-03)
+- [x] Tests passing — `scripts/gw --offline check --rerun-tasks` on `a7c533f`: unit 163/163, functional 155/155, merged coverage 100 % line and branch, Javadoc green (`proof/builder-check-a7c533f.txt`; builder run, QA re-runs independently)
 - [ ] Review approved
+
+## Builder-side proof-contract items
+
+- [x] Item 6: admitted create, the 429s after exhaustion, liveness and readiness UP, Prometheus excerpt with the rejection counter (`proof/http-*-a7c533f.txt`, `proof/prometheus-excerpt-a7c533f.txt`)
+- [x] Item 7: one JSON log line per captured 429, `requestId` = header, no client address, forwarded value, user agent or URL (`proof/log-lines-429-a7c533f.txt`)
+- [x] Item 8 (builder half): `docs/api/openapi.json` regenerated on a base containing 02's merge, 429 with `Retry-After` and an example on all six operations; QA's live-vs-committed diff pending
+- [x] Item 9: `git merge-base --is-ancestor 091ff46 a7c533f` succeeds
+- [x] Item 12: `scripts/smoke.sh` holds the release-level modes; `--bench` and `--drain` run on the candidate jar (`proof/smoke-bench-a7c533f.txt`, `proof/smoke-drain-a7c533f.txt`)
+- [ ] QA: coverage reports, traceability, GAPS rows for AC-21 to AC-28, API-document diff
+- [ ] Review: limiter memory bound and privacy record (item 11)
+- [ ] Release: AC-21 to AC-28 against the container and the jar (item 13)

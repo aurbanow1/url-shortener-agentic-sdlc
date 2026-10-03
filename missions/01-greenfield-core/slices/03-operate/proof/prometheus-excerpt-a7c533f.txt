@@ -1,0 +1,28 @@
+# GET /actuator/prometheus on candidate a7c533f (AC-16, AC-17, AC-18, AC-19 by effect)
+# Instance: java -jar build/libs/urlshort.jar --server.port=18097 --urlshort.rate-limit.create-per-minute=2
+#           --urlshort.rate-limit.redirect-per-minute=3 (the AC-10 operator setting, so exhaustion takes two creates
+#           and three redirects), scraped after: 2 admitted creates, a create 429, a read 429 (both create budget),
+#           3 redirects 302 and a redirect 429. Excerpt extracted with
+#   grep -E "^(# (HELP|TYPE) )?(urlshort_ratelimit_rejections_total|hikaricp_connections_active|hikaricp_connections_idle)|^http_server_requests_seconds_count.*status=\"(302|429)\""
+
+# HELP hikaricp_connections_active Active connections
+# TYPE hikaricp_connections_active gauge
+hikaricp_connections_active{pool="HikariPool-1"} 0.0
+# HELP hikaricp_connections_idle Idle connections
+# TYPE hikaricp_connections_idle gauge
+hikaricp_connections_idle{pool="HikariPool-1"} 10.0
+http_server_requests_seconds_count{error="none",exception="none",method="GET",outcome="CLIENT_ERROR",status="429",uri="UNKNOWN"} 2
+http_server_requests_seconds_count{error="none",exception="none",method="GET",outcome="REDIRECTION",status="302",uri="/{code:[A-Za-z0-9]{6,32}}"} 3
+http_server_requests_seconds_count{error="none",exception="none",method="POST",outcome="CLIENT_ERROR",status="429",uri="UNKNOWN"} 1
+# HELP urlshort_ratelimit_rejections_total Requests answered 429 because the client's bucket was empty
+# TYPE urlshort_ratelimit_rejections_total counter
+urlshort_ratelimit_rejections_total{budget="create"} 2.0
+urlshort_ratelimit_rejections_total{budget="redirect"} 1.0
+
+# Read: the rejection counter is tagged by budget only and counted each 429 once (2 create, 1 redirect); the three
+# redirects are counted under the route template, not the code; 429s appear in the request timer as uri UNKNOWN.
+# Privacy grep over the whole scrape:
+#   grep -c -E "3Ck5EeOW|operateuacanary|operateurlcanary|192\.0\.2\.201|127\.0\.0\.1|example\.com" -> 0
+# Observation for review (not an AC-19 value): Boot's disk-space gauges (disk_free_bytes, disk_total_bytes) carry a
+# `path` tag with the service's working directory, here .../.worktrees/03-operate/. — an installation path on the
+# anonymous scrape endpoint (published on loopback only by compose.yaml). Recorded as a residual in PROOF.md.

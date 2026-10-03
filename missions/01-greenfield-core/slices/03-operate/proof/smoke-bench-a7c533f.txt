@@ -1,0 +1,17 @@
+# scripts/smoke.sh --bench http://localhost:18099   (AC-27 mode, builder run on candidate a7c533f, click recording enabled)
+# Instance: java -jar build/libs/urlshort.jar --server.port=18099 --urlshort.rate-limit.create-per-minute=1000000
+#           --urlshort.rate-limit.redirect-per-minute=1000000, file H2 under the worktree's ./data, reference laptop,
+#           client and service on the same machine. The default smoke (scripts/smoke.sh http://localhost:18099) passed
+#           against the same instance first.
+
+# bench: the instance's budgets must have been raised (URLSHORT_RATELIMIT_CREATEPERMINUTE, URLSHORT_RATELIMIT_REDIRECTPERMINUTE) so one load client is not refused; refusals show as non-2xx/3xx
+# limits: one curl process per request, closed client loops on the same machine as the service, each loop sleeping 100 ms after a request (so the achieved rate falls short of the target and is printed); latency is curl's time_total for the request; a noisy or short run is a gap, not a pass
+# target: redirects 100 req/s for 60 s (NFR-L1: p95 <= 20 ms, p99 <= 50 ms); creates 20 req/s (NFR-L2: p95 <= 50 ms)
+redirect GET /{code}: 4940 requests, achieved 82.3 req/s, non-2xx/3xx 0, p50 0.9 ms, p95 2.3 ms, p99 4.0 ms
+create POST /api/links: 986 requests, achieved 16.4 req/s, non-2xx/3xx 0, p50 1.3 ms, p95 2.7 ms, p99 4.2 ms
+
+# Read: the mode works and prints what AC-27 asks for. Not a release verdict: achieved rates are 82 and 16 req/s, below
+# the 100 and 20 targets, because of the fixed 100 ms pause per loop, and client and service share the laptop. With
+# click recording enabled the redirect p95 is 2.3 ms here; the two runs before 02 was merged gave 2.1 ms and 0.9 ms
+# (smoke-bench-8581a78.txt), so run-to-run noise on this laptop is as large as any difference: no NFR-L3 "added"
+# share can be read from these runs. Judged at release_prep.

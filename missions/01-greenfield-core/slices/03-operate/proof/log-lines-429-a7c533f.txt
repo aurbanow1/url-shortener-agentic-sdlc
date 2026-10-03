@@ -1,0 +1,13 @@
+# JSON log lines for the three captured 429s (AC-12 by effect), candidate a7c533f, shipped ECS logging.
+# Full run log: jar-log-a7c533f.txt. Each 429 sent User-Agent: operateuacanary and X-Forwarded-For: 192.0.2.201 from
+# the loopback client; the create 429 also carried a url with the query canary operateurlcanary.
+#   create 429    http-429-create-a7c533f.txt    6329d0e4-3f94-4524-a42f-5b2e5f978923
+#   read 429      http-429-read-a7c533f.txt      470fa442-ee79-40c1-af1a-1fcb6bfc3a60
+#   redirect 429  http-429-redirect-a7c533f.txt  57c6d731-cbd1-4548-b8da-575d917dcd01
+# Each request wrote exactly one event (rule 7), `request completed` with its requestId and status 429.
+# Privacy grep over the whole run log:
+#   grep -c -E "operateuacanary|operateurlcanary|192\.0\.2\.201|127\.0\.0\.1|0:0:0:0:0:0:0:1|curl/" -> 0
+
+{"@timestamp":"2026-10-03T11:34:43.899186Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":97864,"thread":{}},"service":{"name":"urlshort","version":"0.1.0","node":{}},"message":"request completed","requestId":"6329d0e4-3f94-4524-a42f-5b2e5f978923","status":429,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T11:34:46.001098Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":97864,"thread":{}},"service":{"name":"urlshort","version":"0.1.0","node":{}},"message":"request completed","requestId":"470fa442-ee79-40c1-af1a-1fcb6bfc3a60","status":429,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T11:34:48.876670Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":97864,"thread":{}},"service":{"name":"urlshort","version":"0.1.0","node":{}},"message":"request completed","requestId":"57c6d731-cbd1-4548-b8da-575d917dcd01","status":429,"ecs":{"version":"8.11"}}
