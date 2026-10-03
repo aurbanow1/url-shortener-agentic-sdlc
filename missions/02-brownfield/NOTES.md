@@ -202,6 +202,25 @@ Context and observations that help the mission but do not change its
 
 ## 5. QA Agent
 
+
+- 2026-10-03 — 03-dogfood-fix QA complete on exact 4fe7042, packet
+  qitem-20261003215524-d56667a8, instance 01M41HGF6AHB6AZR3Q0KQ8MQR7.
+  Fresh 204 unit/207 functional, merged 508/508 lines194/194 branches; original
+  15db baseline suites203/202 unchanged/green.208 installed-jar captures
+  establish all nine ACs/recorded checks, full six-case wire equality,
+  live/committed API equality, pathless numeric disk gauges.
+  All 104 requests/jar correlate in default JSON console and ECS file;
+  create/retire audit effects match. Pre-fix regressions independently RED
+  atcce7cf7/72dfffb;354 report hashes,233 source-method rows.
+  GAPS closes QA-OPR-02, names single-disk scope, selector break,
+  parameterized attribution and inherited wrapper line endings.
+  Both apps stopped; no product/test/build edit. Evidence slice PROOF QA,
+  proof/qa-4fe7042/, coverage SUMMARY. Next: commit evidence, drop all 8
+  items, judge/commit receipts, verify readiness and hand off.
+  Shared GAPS/TRACE edits may stale older receipts; lead's final
+  reconciliation qitem-20261003195138-8eb72ecb handles final merged state.
+
+
 - 2026-10-03T21:47Z — QA item12 sequencing completed on packet
   qitem-20261003214437-dba5ead9. Corrected independent security record70b1a2d
   read against exact unchanged7ac8af5;30 original and32 further controls

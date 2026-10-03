@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.urlshort.web.HealthMetricsJourneyTest" tests="4" skipped="0" failures="1" errors="0" timestamp="2026-10-03T22:03:25.991Z" hostname="Andrzejs-MacBook-Pro.local" time="3.636">
+  <properties/>
+  <testcase name="AC18_redirectsAreCountedByRouteTemplate()" classname="dev.urlshort.web.HealthMetricsJourneyTest" time="0.676"/>
+  <testcase name="AC6_diskGaugesCarryNoInstallationPath()" classname="dev.urlshort.web.HealthMetricsJourneyTest" time="0.014">
+    <failure message="java.lang.AssertionError: [disk.free carries no path tag] &#10;Expecting&#10;  [&quot;path&quot;]&#10;not to contain&#10;  [&quot;path&quot;]&#10;but found&#10;  [&quot;path&quot;]&#10;" type="java.lang.AssertionError">java.lang.AssertionError: [disk.free carries no path tag]
+Expecting
+  [&quot;path&quot;]
+not to contain
+  [&quot;path&quot;]
+but found
+  [&quot;path&quot;]
+
+	at dev.urlshort.web.HealthMetricsJourneyTest.AC6_diskGaugesCarryNoInstallationPath(HealthMetricsJourneyTest.java:102)
+</failure>
+  </testcase>
+  <testcase name="AC15_healthBodiesDiscloseNothingAboutTheInstallation()" classname="dev.urlshort.web.HealthMetricsJourneyTest" time="0.012"/>
+  <testcase name="AC13_livenessAndReadinessAreUpWithAWorkingDatabase()" classname="dev.urlshort.web.HealthMetricsJourneyTest" time="0.004"/>
+  <system-out><![CDATA[15:03:26.104 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [dev.urlshort.web.HealthMetricsJourneyTest]: HealthMetricsJourneyTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+15:03:26.182 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.web.HealthMetricsJourneyTest
+15:03:26.243 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [dev.urlshort.web.HealthMetricsJourneyTest]: HealthMetricsJourneyTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+15:03:26.245 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.web.HealthMetricsJourneyTest
+{"@timestamp":"2026-10-03T22:03:26.463800Z","log":{"level":"INFO","logger":"dev.urlshort.web.HealthMetricsJourneyTest"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Starting HealthMetricsJourneyTest using Java 21.0.10 with PID 94818 (started by andrzej in /private/tmp/urlshort-dogfood-qa-4fe7042/red-worktree)","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:26.467499Z","log":{"level":"INFO","logger":"dev.urlshort.web.HealthMetricsJourneyTest"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"The following 1 profile is active: \"functional\"","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:27.015302Z","log":{"level":"INFO","logger":"org.springframework.data.repository.config.RepositoryConfigurationDelegate"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Bootstrapping Spring Data JDBC repositories in DEFAULT mode.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:27.045118Z","log":{"level":"INFO","logger":"org.springframework.data.repository.config.RepositoryConfigurationDelegate"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Finished Spring Data repository scanning in 25 ms. Found 1 JDBC repository interface.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:27.663172Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Starting...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:27.931365Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.pool.HikariPool"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:urlshort-functional user=SA","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:27.935132Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Start completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:27.957710Z","log":{"level":"INFO","logger":"org.flywaydb.core.FlywayExecutor"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Database: jdbc:h2:mem:urlshort-functional (H2 2.4)","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:28.020787Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:28.039847Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Schema history table \"PUBLIC\".\"flyway_schema_history\" does not exist yet","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:28.041896Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbValidate"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Successfully validated 2 migrations (execution time 00:00.010s)","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:28.047452Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Creating Schema History table \"PUBLIC\".\"flyway_schema_history\" ...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:28.078066Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Current version of schema \"PUBLIC\": << Empty Schema >>","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:28.083629Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Migrating schema \"PUBLIC\" to version \"1 - create link and audit log\"","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:28.097980Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Migrating schema \"PUBLIC\" to version \"2 - create click\"","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:28.106810Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Successfully applied 2 migrations to schema \"PUBLIC\", now at version v2 (execution time 00:00.012s)","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:28.841239Z","log":{"level":"INFO","logger":"org.springframework.boot.test.mock.web.SpringBootMockServletContext"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Spring TestDispatcherServlet ''","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:28.841589Z","log":{"level":"INFO","logger":"org.springframework.test.web.servlet.TestDispatcherServlet"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Servlet ''","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:28.843486Z","log":{"level":"INFO","logger":"org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Exposing 3 endpoints beneath base path '/actuator'","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:28.847104Z","log":{"level":"INFO","logger":"org.springframework.test.web.servlet.TestDispatcherServlet"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Completed initialization in 5 ms","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:28.881249Z","log":{"level":"INFO","logger":"dev.urlshort.web.HealthMetricsJourneyTest"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Started HealthMetricsJourneyTest in 2.594 seconds (process running for 8.589)","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:28.914001Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:28.914261Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.484866Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"cb1a159b-964e-42ce-a587-b88ed9c0e46f","status":201,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.520691Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"cfe2ec2f-c2c1-4540-a04a-ffd4db0b7fec","status":302,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.536052Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"5d26a830-b11d-4772-8821-86e5bba7a84e","status":200,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.543183Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"b2c4a052-4572-4639-9711-a094fd89a279","status":302,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.545213Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"ed87fe9f-31a0-49e4-af3a-bcf756ef6deb","status":302,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.547424Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"51b066b3-4e27-4fb4-b0b5-428e9f4d61c3","status":302,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.549338Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"012d5258-38aa-4218-8fc1-e6c8741da8ac","status":302,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.551319Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"05db620f-c0e6-4e5d-a677-fc9994621ec8","status":302,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.552551Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"0785d9f3-559d-4274-b096-89ae50b6d0bd","status":200,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.588075Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"6c9349a5-481c-47a8-8eee-053d075289d4","status":200,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.598708Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"1ed556a8-b705-4a3e-97ee-39b9f0b124a7","status":200,"ecs":{"version":"8.11"}}
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /actuator/metrics/disk.free
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = org.springframework.boot.webmvc.actuate.endpoint.web.AbstractWebMvcEndpointHandlerMapping$OperationHandler
+           Method = Actuator web endpoint 'metrics-requiredMetricName'
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [X-Request-Id:"1ed556a8-b705-4a3e-97ee-39b9f0b124a7", Content-Disposition:"inline;filename=f.txt", Content-Type:"application/vnd.spring-boot.actuator.v3+json"]
+     Content type = application/vnd.spring-boot.actuator.v3+json
+             Body = {"availableTags":[{"tag":"path","values":["/private/tmp/urlshort-dogfood-qa-4fe7042/red-worktree/."]}],"baseUnit":"bytes","description":"Usable space for path","measurements":[{"statistic":"VALUE","value":3.248805888E10}],"name":"disk.free"}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+{"@timestamp":"2026-10-03T22:03:29.617666Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"dcb84a2c-29b4-4b18-9a16-0bf4c344d021","status":200,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.620407Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"e22476c2-9a94-4f8c-a57e-99a51bfde8a1","status":200,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.621911Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"00effe82-25cc-4164-a071-906ea0ea32f8","status":200,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.625570Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"d9ec4eb4-2c86-431b-b5db-a03688731a77","status":200,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.626854Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"30c6d496-fb75-4373-8a52-73a63ab8e8be","status":200,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.629481Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.web.HealthMetricsJourneyTest$AnonymousScrape]: AnonymousScrape does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.631070Z","log":{"level":"INFO","logger":"org.springframework.boot.test.context.SpringBootTestContextBootstrapper"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.web.HealthMetricsJourneyTest$AnonymousScrape","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.631636Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.web.HealthMetricsJourneyTest$AnonymousScrape]: AnonymousScrape does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.631803Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.web.HealthMetricsJourneyTest]: HealthMetricsJourneyTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.632674Z","log":{"level":"INFO","logger":"org.springframework.boot.test.context.SpringBootTestContextBootstrapper"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.web.HealthMetricsJourneyTest$AnonymousScrape","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.642848Z","log":{"level":"INFO","logger":"dev.urlshort.web.HealthMetricsJourneyTest$AnonymousScrape"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Starting HealthMetricsJourneyTest.AnonymousScrape using Java 21.0.10 with PID 94818 (started by andrzej in /private/tmp/urlshort-dogfood-qa-4fe7042/red-worktree)","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.643094Z","log":{"level":"INFO","logger":"dev.urlshort.web.HealthMetricsJourneyTest$AnonymousScrape"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"The following 1 profile is active: \"functional\"","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.727340Z","log":{"level":"INFO","logger":"org.springframework.data.repository.config.RepositoryConfigurationDelegate"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Bootstrapping Spring Data JDBC repositories in DEFAULT mode.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.731702Z","log":{"level":"INFO","logger":"org.springframework.data.repository.config.RepositoryConfigurationDelegate"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Finished Spring Data repository scanning in 3 ms. Found 1 JDBC repository interface.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.773809Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-2 - Starting...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.774538Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.pool.HikariPool"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-2 - Added connection conn10: url=jdbc:h2:mem:urlshort-functional user=SA","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.774734Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-2 - Start completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.774940Z","log":{"level":"INFO","logger":"org.flywaydb.core.FlywayExecutor"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Database: jdbc:h2:mem:urlshort-functional (H2 2.4)","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.776837Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.779178Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbValidate"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Successfully validated 2 migrations (execution time 00:00.001s)","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.780697Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Current version of schema \"PUBLIC\": 2","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.781015Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Schema \"PUBLIC\" is up to date. No migration necessary.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.929823Z","log":{"level":"INFO","logger":"org.springframework.boot.test.mock.web.SpringBootMockServletContext"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Spring TestDispatcherServlet ''","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.930142Z","log":{"level":"INFO","logger":"org.springframework.test.web.servlet.TestDispatcherServlet"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Servlet ''","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.930770Z","log":{"level":"INFO","logger":"org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Exposing 4 endpoints beneath base path '/actuator'","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.932733Z","log":{"level":"INFO","logger":"org.springframework.test.web.servlet.TestDispatcherServlet"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Completed initialization in 2 ms","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.941554Z","log":{"level":"INFO","logger":"dev.urlshort.web.HealthMetricsJourneyTest$AnonymousScrape"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Started HealthMetricsJourneyTest.AnonymousScrape in 0.308 seconds (process running for 9.649)","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.942073Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.942168Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+]]></system-out>
+  <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.gradle-home/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.18.11/82212e5b3633e7a65fca8bec525762cfb6c9bae4/byte-buddy-agent-1.18.11.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

@@ -1,0 +1,15 @@
+{
+  "actualAllowedLoopbackProbes": {
+    "18151": {
+      "curlExit": 7,
+      "output": "curl: (7) Failed to connect to 127.0.0.1 port 18151 after 0 ms: Couldn't connect to server\n",
+      "time": "2026-10-03T22:24:28.880Z"
+    },
+    "18152": {
+      "curlExit": 7,
+      "output": "curl: (7) Failed to connect to 127.0.0.1 port 18152 after 0 ms: Couldn't connect to server\n",
+      "time": "2026-10-03T22:24:28.933Z"
+    }
+  },
+  "note": "Earlier sandboxed Python connect_ex returned EPERM(1), which is not evidence of refusal. Replaced that instrument with the allow-listed HTTP wrapper; both actual curl probes exit7 with connection refusal."
+}

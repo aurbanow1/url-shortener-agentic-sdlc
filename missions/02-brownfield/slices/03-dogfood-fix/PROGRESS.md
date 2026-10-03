@@ -19,3 +19,15 @@
 - [x] AC-8 `README.md` check: lines 12, 18 and 39 mention metrics generically. No line describes a problem member, the problem schema or a metric tag, so no change is needed.
 - [x] AC-9, additions only: `git diff --stat 35590f0 5233c29` on `OpenApiDocumentTest` and `HealthMetricsJourneyTest` shows 143 insertions and 0 deletions
 - [x] Rebased onto `01-audit-read`'s merge commit (and `main` `15db6c5`). The regenerated `docs/api/openapi.json` was unchanged. `check` was re-run; handed off as `4fe7042`.
+
+
+## QA
+
+- [x] All nine ACs/five rules independently verified on exact 4fe7042.
+- [x] Fresh 204 unit/207 functional; unchanged merged-baseline 203/202 green.
+- [x] Merged 508/508 lines194/194 branches;354 copied report hashes checked.
+- [x] Full six-case wire equality, live/committed schema equality, pathless numeric gauges, JSON logs and audit effects captured from real jars.
+- [x] Independent red controls cce7cf7/72dfffb; ADR chronology/index and README check recorded.
+- [x] All 233 source methods mapped; gap row written, QA-OPR-02 closed.
+- [x] Apps stopped; exact candidate preserved, inherited gradlew.bat line endings disclosed.
+- [ ] Attributed proof receipts committed and qa_check handed to review.

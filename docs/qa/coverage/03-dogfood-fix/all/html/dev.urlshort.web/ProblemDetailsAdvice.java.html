@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProblemDetailsAdvice.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">urlshort</a> &gt; <a href="index.source.html" class="el_package">dev.urlshort.web</a> &gt; <span class="el_source">ProblemDetailsAdvice.java</span></div><h1>ProblemDetailsAdvice.java</h1><pre class="source lang-java linenums">package dev.urlshort.web;
+
+import java.net.URI;
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import org.jspecify.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ProblemDetail;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.ErrorResponseException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+/**
+ * The one error advice: every error response of the service is a problem detail built from
+ * server-owned values only (business rule 8, NFR-R6).
+ *
+ * &lt;p&gt;The platform base class renders framework errors ({@code 400}, {@code 404}, {@code 405},
+ * {@code 415}) and the domain {@link ErrorResponseException}s from {@link Problems}. This class adds
+ * the catch-all {@code 500}, the {@code 413} unwrap for the body cap, and one rule for every body:
+ * no {@code detail} (framework wording echoes paths, methods and headers) and {@code instance} =
+ * {@code urn:uuid:&lt;X-Request-Id&gt;}. Defining it makes Boot's own {@code ProblemDetailsExceptionHandler}
+ * back off. Decision records: ADR-0002 and ADR-0004 (amended for slice 01-create-redirect).
+ */
+@RestControllerAdvice
+<span class="fc" id="L37">class ProblemDetailsAdvice extends ResponseEntityExceptionHandler {</span>
+
+<span class="fc" id="L39">	private static final Logger log = LoggerFactory.getLogger(ProblemDetailsAdvice.class);</span>
+
+	/**
+	 * Fails closed on anything no other handler claims: a bare {@code 500} and one ERROR event
+	 * carrying only the exception class chain and the first frame of our code. The throwable is never
+	 * given to the logger, because driver messages quote bound values (DR-01).
+	 */
+	@ExceptionHandler(Exception.class)
+	ResponseEntity&lt;Object&gt; unhandled(Exception ex, WebRequest request) {
+<span class="fc" id="L48">		log.atError().setMessage(&quot;request failed&quot;)</span>
+<span class="fc" id="L49">				.addKeyValue(&quot;errorChain&quot;, Stream.iterate((Throwable) ex, Objects::nonNull, Throwable::getCause).limit(8)</span>
+<span class="fc" id="L50">						.map(t -&gt; t.getClass().getName()).collect(Collectors.joining(&quot; &lt;- &quot;)))</span>
+<span class="fc" id="L51">				.addKeyValue(&quot;errorOrigin&quot;, Arrays.stream(ex.getStackTrace())</span>
+<span class="fc" id="L52">						.filter(frame -&gt; frame.getClassName().startsWith(&quot;dev.urlshort.&quot;))</span>
+<span class="fc" id="L53">						.findFirst().map(StackTraceElement::toString).orElse(&quot;none&quot;))</span>
+<span class="fc" id="L54">				.log();</span>
+		// a non-null body keeps the parent from flagging the request for the container's /error page
+<span class="fc" id="L56">		return handleExceptionInternal(ex, ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR), new HttpHeaders(),</span>
+				HttpStatus.INTERNAL_SERVER_ERROR, request);
+	}
+
+	/**
+	 * Renders the body cap's {@code 413} when the JSON reader wrapped it into an unreadable-body
+	 * error; any other unreadable body stays the platform's {@code 400}.
+	 */
+	@Override
+	protected @Nullable ResponseEntity&lt;Object&gt; handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
+			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+<span class="fc bfc" id="L67" title="All 2 branches covered.">		for (Throwable cause = ex.getCause(); cause != null; cause = cause.getCause()) {</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">			if (cause instanceof ErrorResponseException limit) {</span>
+<span class="fc" id="L69">				return handleErrorResponseException(limit, limit.getHeaders(), limit.getStatusCode(), request);</span>
+			}
+		}
+<span class="fc" id="L72">		return super.handleHttpMessageNotReadable(ex, headers, status, request);</span>
+	}
+
+	/**
+	 * The last step every rendered error passes through: clears {@code detail} and sets
+	 * {@code instance} to the request id, so no body can echo a submitted value. Headers the
+	 * framework derived ({@code Allow}, {@code Accept}) are kept.
+	 */
+	@Override
+	protected ResponseEntity&lt;Object&gt; createResponseEntity(@Nullable Object body, HttpHeaders headers,
+			HttpStatusCode statusCode, WebRequest request) {
+<span class="fc bfc" id="L83" title="All 2 branches covered.">		if (body instanceof ProblemDetail problem) {</span>
+<span class="fc" id="L84">			problem.setDetail(null);</span>
+<span class="fc" id="L85">			problem.setInstance(URI.create(&quot;urn:uuid:&quot; + MDC.get(&quot;requestId&quot;)));</span>
+		}
+<span class="fc" id="L87">		return super.createResponseEntity(body, headers, statusCode, request);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

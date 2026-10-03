@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.urlshort.click.DailySaltTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-10-03T21:56:26.825Z" hostname="Andrzejs-MacBook-Pro.local" time="0.116">
+  <properties/>
+  <testcase name="closeDropsTheSalt()" classname="dev.urlshort.click.DailySaltTest" time="0.007"/>
+  <testcase name="theHashIsNeverTheUnsaltedDigest()" classname="dev.urlshort.click.DailySaltTest" time="0.0"/>
+  <testcase name="aSaltIsDroppedAtTheEndOfItsDayWithoutAnyFurtherClick()" classname="dev.urlshort.click.DailySaltTest" time="0.106"/>
+  <testcase name="anotherAddressOrAnotherDayHashesDifferently()" classname="dev.urlshort.click.DailySaltTest" time="0.0"/>
+  <testcase name="aStaleExpiryIsANoOpAndTheCurrentDaysExpiryDropsTheSalt()" classname="dev.urlshort.click.DailySaltTest" time="0.0"/>
+  <testcase name="aSelectionMadeBeforeMidnightKeepsItsDayAndNeverReplacesTheNextDaysSalt()" classname="dev.urlshort.click.DailySaltTest" time="0.0"/>
+  <testcase name="sameAddressAndDayHashEquallyAndTheStampCarriesTheClocksInstant()" classname="dev.urlshort.click.DailySaltTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

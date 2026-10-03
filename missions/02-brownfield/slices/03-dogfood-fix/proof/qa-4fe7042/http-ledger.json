@@ -1,0 +1,2610 @@
+{
+  "sequential": [
+    {
+      "name": "base-openapi",
+      "method": "GET",
+      "url": "http://127.0.0.1:18151/v3/api-docs",
+      "peer": "actual localhost",
+      "headersSent": [],
+      "before": "2026-10-03T22:03:19.498Z",
+      "after": "2026-10-03T22:03:19.895Z",
+      "status": 200,
+      "headers": "HTTP/1.1 200 \nX-Request-Id: 9e91997a-324a-49a6-9ac6-971e8d00ea3c\nContent-Type: application/json\nContent-Length: 12837\nDate: Sat, 03 Oct 2026 22:03:19 GMT\n\n",
+      "body": "{\"openapi\":\"3.1.0\",\"info\":{\"description\":\"Create, read and retire short links; visitors are redirected with 302.\",\"title\":\"urlshort\",\"version\":\"1\"},\"servers\":[{\"url\":\"/\"}],\"paths\":{\"/api/audit\":{\"get\":{\"operationId\":\"readAudit\",\"parameters\":[{\"description\":\"Rows per page\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"type\":\"integer\",\"default\":50,\"maximum\":100,\"minimum\":1}},{\"description\":\"The next of the previous page\",\"in\":\"query\",\"name\":\"cursor\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"page\":{\"description\":\"page\",\"value\":{\"items\":[{\"occurredAt\":\"2026-10-03T17:29:41.033Z\",\"actor\":\"anonymous\",\"action\":\"link.retire\",\"entity\":\"link\",\"entityId\":\"jHkOIMpK\",\"requestId\":\"140fc9de-5b8e-4c43-9d55-2f0b1e1c7a10\",\"before\":{\"url\":\"https://example.com/\",\"state\":\"active\"},\"after\":{\"url\":\"https://example.com/\",\"state\":\"retired\"}},{\"occurredAt\":\"2026-10-03T17:28:02.512Z\",\"actor\":\"anonymous\",\"action\":\"link.create\",\"entity\":\"link\",\"entityId\":\"jHkOIMpK\",\"requestId\":\"0d6a1f3e-9c27-4b1a-8e5f-6a4c3b2d1e0f\",\"before\":null,\"after\":{\"url\":\"https://example.com/\",\"state\":\"active\"}}],\"next\":\"MTI\"}}},\"schema\":{\"$ref\":\"#/components/schemas/AuditPage\"}}},\"description\":\"One page of audit rows, newest first, and the cursor of the next\"},\"400\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"limit or cursor is malformed\"},\"403\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Not a loopback client, or a forwarding header is present\"},\"429\":{\"content\":{\"application/problem+json\":{\"examples\":{\"tooManyRequests\":{\"value\":{\"instance\":\"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10\",\"status\":429,\"title\":\"Too Many Requests\"}}},\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Too many requests from this client; retry after Retry-After seconds\",\"headers\":{\"Retry-After\":{\"description\":\"Whole seconds until this client's next request is admitted\",\"schema\":{\"type\":\"integer\",\"format\":\"int32\",\"minimum\":1}}}},\"500\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"The trail could not be read\"}},\"summary\":\"Read the audit trail, newest first (loopback only)\",\"tags\":[\"audit-controller\"]}},\"/api/links\":{\"post\":{\"description\":\"Without Idempotency-Key every call creates a new link. With a key, a repeat with the same url within 24 h of the first 201 returns that link (current state); a different url is 422.\",\"operationId\":\"createLink\",\"parameters\":[{\"description\":\"1 to 255 visible ASCII characters; makes a retried create return the first link\",\"in\":\"header\",\"name\":\"Idempotency-Key\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"requestBody\":{\"content\":{\"application/json\":{\"examples\":{\"create\":{\"description\":\"create\",\"value\":{\"url\":\"https://example.com/some/path?q=1\"}}},\"schema\":{\"$ref\":\"#/components/schemas/CreateLinkRequest\"}}},\"required\":true},\"responses\":{\"201\":{\"content\":{\"application/json\":{\"examples\":{\"created\":{\"description\":\"created\",\"value\":{\"code\":\"Ab3dE9fG\",\"shortUrl\":\"http://localhost:8080/Ab3dE9fG\",\"url\":\"https://example.com/some/path?q=1\",\"state\":\"active\",\"createdAt\":\"2026-10-03T05:12:42.133Z\"}}},\"schema\":{\"$ref\":\"#/components/schemas/LinkResponse\"}}},\"description\":\"Created, or replayed for the same key and url\",\"headers\":{\"Location\":{\"description\":\"/api/links/{code}\",\"schema\":{\"type\":\"string\"},\"style\":\"simple\"}}},\"400\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Invalid url or Idempotency-Key (errors[] names field and rule), or a body that is not a JSON object\"},\"413\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Body larger than 16 384 bytes\"},\"415\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Content-Type is not application/json\"},\"422\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Idempotency-Key already used with a different url\"},\"429\":{\"content\":{\"application/problem+json\":{\"examples\":{\"tooManyRequests\":{\"value\":{\"instance\":\"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10\",\"status\":429,\"title\":\"Too Many Requests\"}}},\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Too many requests from this client; retry after Retry-After seconds\",\"headers\":{\"Retry-After\":{\"description\":\"Whole seconds until this client's next request is admitted\",\"schema\":{\"type\":\"integer\",\"format\":\"int32\",\"minimum\":1}}}},\"500\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Nothing was stored\"}},\"summary\":\"Create a short link for an http(s) URL\",\"tags\":[\"link-controller\"]}},\"/api/links/{code}\":{\"delete\":{\"operationId\":\"retireLink\",\"parameters\":[{\"in\":\"path\",\"name\":\"code\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"204\":{\"description\":\"Retired\"},\"404\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"No link has this code\"},\"410\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Already retired\"},\"429\":{\"content\":{\"application/problem+json\":{\"examples\":{\"tooManyRequests\":{\"value\":{\"instance\":\"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10\",\"status\":429,\"title\":\"Too Many Requests\"}}},\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Too many requests from this client; retry after Retry-After seconds\",\"headers\":{\"Retry-After\":{\"description\":\"Whole seconds until this client's next request is admitted\",\"schema\":{\"type\":\"integer\",\"format\":\"int32\",\"minimum\":1}}}},\"500\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Nothing was changed\"}},\"summary\":\"Retire a link; visitors then get 410 and the record is kept\",\"tags\":[\"link-controller\"]},\"get\":{\"operationId\":\"readLink\",\"parameters\":[{\"in\":\"path\",\"name\":\"code\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"link\":{\"description\":\"link\",\"value\":{\"code\":\"Ab3dE9fG\",\"shortUrl\":\"http://localhost:8080/Ab3dE9fG\",\"url\":\"https://example.com/some/path?q=1\",\"state\":\"active\",\"createdAt\":\"2026-10-03T05:12:42.133Z\"}}},\"schema\":{\"$ref\":\"#/components/schemas/LinkResponse\"}}},\"description\":\"The link; state is active or retired\"},\"404\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"No link has this code\"},\"429\":{\"content\":{\"application/problem+json\":{\"examples\":{\"tooManyRequests\":{\"value\":{\"instance\":\"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10\",\"status\":429,\"title\":\"Too Many Requests\"}}},\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Too many requests from this client; retry after Retry-After seconds\",\"headers\":{\"Retry-After\":{\"description\":\"Whole seconds until this client's next request is admitted\",\"schema\":{\"type\":\"integer\",\"format\":\"int32\",\"minimum\":1}}}}},\"summary\":\"Read a link by its code\",\"tags\":[\"link-controller\"]}},\"/api/links/{code}/stats\":{\"get\":{\"operationId\":\"stats\",\"parameters\":[{\"in\":\"path\",\"name\":\"code\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"stats\":{\"description\":\"stats\",\"value\":{\"code\":\"Ab3dE9fG\",\"totalClicks\":6,\"clicksPerDay\":[{\"date\":\"2026-10-01\",\"clicks\":2},{\"date\":\"2026-10-02\",\"clicks\":3},{\"date\":\"2026-10-04\",\"clicks\":1}],\"topReferrers\":[{\"referrer\":\"https://a.example\",\"clicks\":5}]}}},\"schema\":{\"$ref\":\"#/components/schemas/LinkStats\"}}},\"description\":\"Total clicks, clicks per UTC day and the top 10 referrer origins\"},\"404\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"No link has this code\"},\"429\":{\"content\":{\"application/problem+json\":{\"examples\":{\"tooManyRequests\":{\"value\":{\"instance\":\"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10\",\"status\":429,\"title\":\"Too Many Requests\"}}},\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Too many requests from this client; retry after Retry-After seconds\",\"headers\":{\"Retry-After\":{\"description\":\"Whole seconds until this client's next request is admitted\",\"schema\":{\"type\":\"integer\",\"format\":\"int32\",\"minimum\":1}}}}},\"summary\":\"Read a link's click statistics\",\"tags\":[\"stats-controller\"]}},\"/api/ping\":{\"get\":{\"operationId\":\"ping\",\"responses\":{\"200\":{\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/PingResponse\"}}},\"description\":\"OK\"},\"429\":{\"content\":{\"application/problem+json\":{\"examples\":{\"tooManyRequests\":{\"value\":{\"instance\":\"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10\",\"status\":429,\"title\":\"Too Many Requests\"}}},\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Too many requests from this client; retry after Retry-After seconds\",\"headers\":{\"Retry-After\":{\"description\":\"Whole seconds until this client's next request is admitted\",\"schema\":{\"type\":\"integer\",\"format\":\"int32\",\"minimum\":1}}}}},\"tags\":[\"ping-controller\"]}},\"/{code}\":{\"get\":{\"operationId\":\"redirect\",\"parameters\":[{\"in\":\"path\",\"name\":\"code\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"302\":{\"description\":\"Redirect to the stored url, not cacheable\",\"headers\":{\"Cache-Control\":{\"description\":\"no-store\",\"schema\":{\"type\":\"string\"},\"style\":\"simple\"},\"Location\":{\"description\":\"The stored url, byte for byte\",\"schema\":{\"type\":\"string\"},\"style\":\"simple\"}}},\"404\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"No link has this code\"},\"410\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"The link was retired\"},\"429\":{\"content\":{\"application/problem+json\":{\"examples\":{\"tooManyRequests\":{\"value\":{\"instance\":\"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10\",\"status\":429,\"title\":\"Too Many Requests\"}}},\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Too many requests from this client; retry after Retry-After seconds\",\"headers\":{\"Retry-After\":{\"description\":\"Whole seconds until this client's next request is admitted\",\"schema\":{\"type\":\"integer\",\"format\":\"int32\",\"minimum\":1}}}}},\"summary\":\"Open a short link\",\"tags\":[\"redirect-controller\"]}}},\"components\":{\"schemas\":{\"AuditEntry\":{\"type\":\"object\",\"properties\":{\"action\":{\"type\":\"string\",\"description\":\"What happened\",\"example\":\"link.retire\"},\"actor\":{\"type\":\"string\",\"description\":\"Who acted\",\"example\":\"anonymous\"},\"after\":{\"type\":\"object\",\"description\":\"The state after the change, as stored\"},\"before\":{\"type\":[\"object\",\"null\"],\"description\":\"The state before the change, as stored; null for a create\"},\"entity\":{\"type\":\"string\",\"description\":\"The kind of thing changed\",\"example\":\"link\"},\"entityId\":{\"type\":\"string\",\"description\":\"The public identifier of the thing changed\",\"example\":\"jHkOIMpK\"},\"occurredAt\":{\"type\":\"string\",\"format\":\"date-time\",\"description\":\"When the mutation happened (UTC)\",\"example\":\"2026-10-03T17:29:41.033Z\"},\"requestId\":{\"type\":\"string\",\"description\":\"The X-Request-Id of the request that made the change\"}}},\"AuditPage\":{\"type\":\"object\",\"properties\":{\"items\":{\"type\":\"array\",\"items\":{\"$ref\":\"#/components/schemas/AuditEntry\"}},\"next\":{\"type\":[\"string\",\"null\"],\"description\":\"Pass back as cursor for the next page; null on the last page\"}}},\"CreateLinkRequest\":{\"type\":\"object\",\"properties\":{\"url\":{\"type\":\"string\"}}},\"DayClicks\":{\"type\":\"object\",\"properties\":{\"clicks\":{\"type\":\"integer\",\"format\":\"int64\"},\"date\":{\"type\":\"string\",\"format\":\"date\"}}},\"LinkResponse\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\",\"format\":\"date-time\"},\"shortUrl\":{\"type\":\"string\"},\"state\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"}}},\"LinkStats\":{\"type\":\"object\",\"properties\":{\"clicksPerDay\":{\"type\":\"array\",\"items\":{\"$ref\":\"#/components/schemas/DayClicks\"}},\"code\":{\"type\":\"string\"},\"topReferrers\":{\"type\":\"array\",\"items\":{\"$ref\":\"#/components/schemas/ReferrerClicks\"}},\"totalClicks\":{\"type\":\"integer\",\"format\":\"int64\"}}},\"PingResponse\":{\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"string\"},\"time\":{\"type\":\"string\"}}},\"ProblemDetail\":{\"type\":\"object\",\"properties\":{\"detail\":{\"type\":\"string\"},\"instance\":{\"type\":\"string\",\"format\":\"uri\"},\"properties\":{\"type\":\"object\",\"additionalProperties\":{}},\"status\":{\"type\":\"integer\",\"format\":\"int32\"},\"title\":{\"type\":\"string\"},\"type\":{\"type\":\"string\",\"format\":\"uri\"}}},\"ReferrerClicks\":{\"type\":\"object\",\"properties\":{\"clicks\":{\"type\":\"integer\",\"format\":\"int64\"},\"referrer\":{\"type\":\"string\"}}}}}}",
+      "json": {
+        "openapi": "3.1.0",
+        "info": {
+          "description": "Create, read and retire short links; visitors are redirected with 302.",
+          "title": "urlshort",
+          "version": "1"
+        },
+        "servers": [
+          {
+            "url": "/"
+          }
+        ],
+        "paths": {
+          "/api/audit": {
+            "get": {
+              "operationId": "readAudit",
+              "parameters": [
+                {
+                  "description": "Rows per page",
+                  "in": "query",
+                  "name": "limit",
+                  "required": false,
+                  "schema": {
+                    "type": "integer",
+                    "default": 50,
+                    "maximum": 100,
+                    "minimum": 1
+                  }
+                },
+                {
+                  "description": "The next of the previous page",
+                  "in": "query",
+                  "name": "cursor",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "responses": {
+                "200": {
+                  "content": {
+                    "application/json": {
+                      "examples": {
+                        "page": {
+                          "description": "page",
+                          "value": {
+                            "items": [
+                              {
+                                "occurredAt": "2026-10-03T17:29:41.033Z",
+                                "actor": "anonymous",
+                                "action": "link.retire",
+                                "entity": "link",
+                                "entityId": "jHkOIMpK",
+                                "requestId": "140fc9de-5b8e-4c43-9d55-2f0b1e1c7a10",
+                                "before": {
+                                  "url": "https://example.com/",
+                                  "state": "active"
+                                },
+                                "after": {
+                                  "url": "https://example.com/",
+                                  "state": "retired"
+                                }
+                              },
+                              {
+                                "occurredAt": "2026-10-03T17:28:02.512Z",
+                                "actor": "anonymous",
+                                "action": "link.create",
+                                "entity": "link",
+                                "entityId": "jHkOIMpK",
+                                "requestId": "0d6a1f3e-9c27-4b1a-8e5f-6a4c3b2d1e0f",
+                                "before": null,
+                                "after": {
+                                  "url": "https://example.com/",
+                                  "state": "active"
+                                }
+                              }
+                            ],
+                            "next": "MTI"
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/AuditPage"
+                      }
+                    }
+                  },
+                  "description": "One page of audit rows, newest first, and the cursor of the next"
+                },
+                "400": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "limit or cursor is malformed"
+                },
+                "403": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Not a loopback client, or a forwarding header is present"
+                },
+                "429": {
+                  "content": {
+                    "application/problem+json": {
+                      "examples": {
+                        "tooManyRequests": {
+                          "value": {
+                            "instance": "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                            "status": 429,
+                            "title": "Too Many Requests"
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Too many requests from this client; retry after Retry-After seconds",
+                  "headers": {
+                    "Retry-After": {
+                      "description": "Whole seconds until this client's next request is admitted",
+                      "schema": {
+                        "type": "integer",
+                        "format": "int32",
+                        "minimum": 1
+                      }
+                    }
+                  }
+                },
+                "500": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "The trail could not be read"
+                }
+              },
+              "summary": "Read the audit trail, newest first (loopback only)",
+              "tags": [
+                "audit-controller"
+              ]
+            }
+          },
+          "/api/links": {
+            "post": {
+              "description": "Without Idempotency-Key every call creates a new link. With a key, a repeat with the same url within 24 h of the first 201 returns that link (current state); a different url is 422.",
+              "operationId": "createLink",
+              "parameters": [
+                {
+                  "description": "1 to 255 visible ASCII characters; makes a retried create return the first link",
+                  "in": "header",
+                  "name": "Idempotency-Key",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "requestBody": {
+                "content": {
+                  "application/json": {
+                    "examples": {
+                      "create": {
+                        "description": "create",
+                        "value": {
+                          "url": "https://example.com/some/path?q=1"
+                        }
+                      }
+                    },
+                    "schema": {
+                      "$ref": "#/components/schemas/CreateLinkRequest"
+                    }
+                  }
+                },
+                "required": true
+              },
+              "responses": {
+                "201": {
+                  "content": {
+                    "application/json": {
+                      "examples": {
+                        "created": {
+                          "description": "created",
+                          "value": {
+                            "code": "Ab3dE9fG",
+                            "shortUrl": "http://localhost:8080/Ab3dE9fG",
+                            "url": "https://example.com/some/path?q=1",
+                            "state": "active",
+                            "createdAt": "2026-10-03T05:12:42.133Z"
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/LinkResponse"
+                      }
+                    }
+                  },
+                  "description": "Created, or replayed for the same key and url",
+                  "headers": {
+                    "Location": {
+                      "description": "/api/links/{code}",
+                      "schema": {
+                        "type": "string"
+                      },
+                      "style": "simple"
+                    }
+                  }
+                },
+                "400": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Invalid url or Idempotency-Key (errors[] names field and rule), or a body that is not a JSON object"
+                },
+                "413": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Body larger than 16 384 bytes"
+                },
+                "415": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Content-Type is not application/json"
+                },
+                "422": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Idempotency-Key already used with a different url"
+                },
+                "429": {
+                  "content": {
+                    "application/problem+json": {
+                      "examples": {
+                        "tooManyRequests": {
+                          "value": {
+                            "instance": "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                            "status": 429,
+                            "title": "Too Many Requests"
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Too many requests from this client; retry after Retry-After seconds",
+                  "headers": {
+                    "Retry-After": {
+                      "description": "Whole seconds until this client's next request is admitted",
+                      "schema": {
+                        "type": "integer",
+                        "format": "int32",
+                        "minimum": 1
+                      }
+                    }
+                  }
+                },
+                "500": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Nothing was stored"
+                }
+              },
+              "summary": "Create a short link for an http(s) URL",
+              "tags": [
+                "link-controller"
+              ]
+            }
+          },
+          "/api/links/{code}": {
+            "delete": {
+              "operationId": "retireLink",
+              "parameters": [
+                {
+                  "in": "path",
+                  "name": "code",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "responses": {
+                "204": {
+                  "description": "Retired"
+                },
+                "404": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "No link has this code"
+                },
+                "410": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Already retired"
+                },
+                "429": {
+                  "content": {
+                    "application/problem+json": {
+                      "examples": {
+                        "tooManyRequests": {
+                          "value": {
+                            "instance": "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                            "status": 429,
+                            "title": "Too Many Requests"
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Too many requests from this client; retry after Retry-After seconds",
+                  "headers": {
+                    "Retry-After": {
+                      "description": "Whole seconds until this client's next request is admitted",
+                      "schema": {
+                        "type": "integer",
+                        "format": "int32",
+                        "minimum": 1
+                      }
+                    }
+                  }
+                },
+                "500": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Nothing was changed"
+                }
+              },
+              "summary": "Retire a link; visitors then get 410 and the record is kept",
+              "tags": [
+                "link-controller"
+              ]
+            },
+            "get": {
+              "operationId": "readLink",
+              "parameters": [
+                {
+                  "in": "path",
+                  "name": "code",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "responses": {
+                "200": {
+                  "content": {
+                    "application/json": {
+                      "examples": {
+                        "link": {
+                          "description": "link",
+                          "value": {
+                            "code": "Ab3dE9fG",
+                            "shortUrl": "http://localhost:8080/Ab3dE9fG",
+                            "url": "https://example.com/some/path?q=1",
+                            "state": "active",
+                            "createdAt": "2026-10-03T05:12:42.133Z"
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/LinkResponse"
+                      }
+                    }
+                  },
+                  "description": "The link; state is active or retired"
+                },
+                "404": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "No link has this code"
+                },
+                "429": {
+                  "content": {
+                    "application/problem+json": {
+                      "examples": {
+                        "tooManyRequests": {
+                          "value": {
+                            "instance": "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                            "status": 429,
+                            "title": "Too Many Requests"
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Too many requests from this client; retry after Retry-After seconds",
+                  "headers": {
+                    "Retry-After": {
+                      "description": "Whole seconds until this client's next request is admitted",
+                      "schema": {
+                        "type": "integer",
+                        "format": "int32",
+                        "minimum": 1
+                      }
+                    }
+                  }
+                }
+              },
+              "summary": "Read a link by its code",
+              "tags": [
+                "link-controller"
+              ]
+            }
+          },
+          "/api/links/{code}/stats": {
+            "get": {
+              "operationId": "stats",
+              "parameters": [
+                {
+                  "in": "path",
+                  "name": "code",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "responses": {
+                "200": {
+                  "content": {
+                    "application/json": {
+                      "examples": {
+                        "stats": {
+                          "description": "stats",
+                          "value": {
+                            "code": "Ab3dE9fG",
+                            "totalClicks": 6,
+                            "clicksPerDay": [
+                              {
+                                "date": "2026-10-01",
+                                "clicks": 2
+                              },
+                              {
+                                "date": "2026-10-02",
+                                "clicks": 3
+                              },
+                              {
+                                "date": "2026-10-04",
+                                "clicks": 1
+                              }
+                            ],
+                            "topReferrers": [
+                              {
+                                "referrer": "https://a.example",
+                                "clicks": 5
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/LinkStats"
+                      }
+                    }
+                  },
+                  "description": "Total clicks, clicks per UTC day and the top 10 referrer origins"
+                },
+                "404": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "No link has this code"
+                },
+                "429": {
+                  "content": {
+                    "application/problem+json": {
+                      "examples": {
+                        "tooManyRequests": {
+                          "value": {
+                            "instance": "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                            "status": 429,
+                            "title": "Too Many Requests"
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Too many requests from this client; retry after Retry-After seconds",
+                  "headers": {
+                    "Retry-After": {
+                      "description": "Whole seconds until this client's next request is admitted",
+                      "schema": {
+                        "type": "integer",
+                        "format": "int32",
+                        "minimum": 1
+                      }
+                    }
+                  }
+                }
+              },
+              "summary": "Read a link's click statistics",
+              "tags": [
+                "stats-controller"
+              ]
+            }
+          },
+          "/api/ping": {
+            "get": {
+              "operationId": "ping",
+              "responses": {
+                "200": {
+                  "content": {
+                    "*/*": {
+                      "schema": {
+                        "$ref": "#/components/schemas/PingResponse"
+                      }
+                    }
+                  },
+                  "description": "OK"
+                },
+                "429": {
+                  "content": {
+                    "application/problem+json": {
+                      "examples": {
+                        "tooManyRequests": {
+                          "value": {
+                            "instance": "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                            "status": 429,
+                            "title": "Too Many Requests"
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Too many requests from this client; retry after Retry-After seconds",
+                  "headers": {
+                    "Retry-After": {
+                      "description": "Whole seconds until this client's next request is admitted",
+                      "schema": {
+                        "type": "integer",
+                        "format": "int32",
+                        "minimum": 1
+                      }
+                    }
+                  }
+                }
+              },
+              "tags": [
+                "ping-controller"
+              ]
+            }
+          },
+          "/{code}": {
+            "get": {
+              "operationId": "redirect",
+              "parameters": [
+                {
+                  "in": "path",
+                  "name": "code",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "responses": {
+                "302": {
+                  "description": "Redirect to the stored url, not cacheable",
+                  "headers": {
+                    "Cache-Control": {
+                      "description": "no-store",
+                      "schema": {
+                        "type": "string"
+                      },
+                      "style": "simple"
+                    },
+                    "Location": {
+                      "description": "The stored url, byte for byte",
+                      "schema": {
+                        "type": "string"
+                      },
+                      "style": "simple"
+                    }
+                  }
+                },
+                "404": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "No link has this code"
+                },
+                "410": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "The link was retired"
+                },
+                "429": {
+                  "content": {
+                    "application/problem+json": {
+                      "examples": {
+                        "tooManyRequests": {
+                          "value": {
+                            "instance": "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                            "status": 429,
+                            "title": "Too Many Requests"
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Too many requests from this client; retry after Retry-After seconds",
+                  "headers": {
+                    "Retry-After": {
+                      "description": "Whole seconds until this client's next request is admitted",
+                      "schema": {
+                        "type": "integer",
+                        "format": "int32",
+                        "minimum": 1
+                      }
+                    }
+                  }
+                }
+              },
+              "summary": "Open a short link",
+              "tags": [
+                "redirect-controller"
+              ]
+            }
+          }
+        },
+        "components": {
+          "schemas": {
+            "AuditEntry": {
+              "type": "object",
+              "properties": {
+                "action": {
+                  "type": "string",
+                  "description": "What happened",
+                  "example": "link.retire"
+                },
+                "actor": {
+                  "type": "string",
+                  "description": "Who acted",
+                  "example": "anonymous"
+                },
+                "after": {
+                  "type": "object",
+                  "description": "The state after the change, as stored"
+                },
+                "before": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "description": "The state before the change, as stored; null for a create"
+                },
+                "entity": {
+                  "type": "string",
+                  "description": "The kind of thing changed",
+                  "example": "link"
+                },
+                "entityId": {
+                  "type": "string",
+                  "description": "The public identifier of the thing changed",
+                  "example": "jHkOIMpK"
+                },
+                "occurredAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "When the mutation happened (UTC)",
+                  "example": "2026-10-03T17:29:41.033Z"
+                },
+                "requestId": {
+                  "type": "string",
+                  "description": "The X-Request-Id of the request that made the change"
+                }
+              }
+            },
+            "AuditPage": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AuditEntry"
+                  }
+                },
+                "next": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "Pass back as cursor for the next page; null on the last page"
+                }
+              }
+            },
+            "CreateLinkRequest": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string"
+                }
+              }
+            },
+            "DayClicks": {
+              "type": "object",
+              "properties": {
+                "clicks": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                }
+              }
+            },
+            "LinkResponse": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "shortUrl": {
+                  "type": "string"
+                },
+                "state": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                }
+              }
+            },
+            "LinkStats": {
+              "type": "object",
+              "properties": {
+                "clicksPerDay": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DayClicks"
+                  }
+                },
+                "code": {
+                  "type": "string"
+                },
+                "topReferrers": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReferrerClicks"
+                  }
+                },
+                "totalClicks": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            },
+            "PingResponse": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "time": {
+                  "type": "string"
+                }
+              }
+            },
+            "ProblemDetail": {
+              "type": "object",
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "instance": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "properties": {
+                  "type": "object",
+                  "additionalProperties": {}
+                },
+                "status": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              }
+            },
+            "ReferrerClicks": {
+              "type": "object",
+              "properties": {
+                "clicks": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "referrer": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "headerMap": {
+        "x-request-id": "9e91997a-324a-49a6-9ac6-971e8d00ea3c",
+        "content-type": "application/json",
+        "content-length": "12837",
+        "date": "Sat, 03 Oct 2026 22:03:19 GMT"
+      }
+    },
+    {
+      "name": "candidate-openapi",
+      "method": "GET",
+      "url": "http://127.0.0.1:18152/v3/api-docs",
+      "peer": "actual localhost",
+      "headersSent": [],
+      "before": "2026-10-03T22:03:19.976Z",
+      "after": "2026-10-03T22:03:20.390Z",
+      "status": 200,
+      "headers": "HTTP/1.1 200 \nX-Request-Id: 18f52499-d54a-4f8a-9f54-9369d1ac2ca2\nContent-Type: application/json\nContent-Length: 13119\nDate: Sat, 03 Oct 2026 22:03:20 GMT\n\n",
+      "body": "{\"openapi\":\"3.1.0\",\"info\":{\"description\":\"Create, read and retire short links; visitors are redirected with 302.\",\"title\":\"urlshort\",\"version\":\"1\"},\"servers\":[{\"url\":\"/\"}],\"paths\":{\"/api/audit\":{\"get\":{\"operationId\":\"readAudit\",\"parameters\":[{\"description\":\"Rows per page\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"type\":\"integer\",\"default\":50,\"maximum\":100,\"minimum\":1}},{\"description\":\"The next of the previous page\",\"in\":\"query\",\"name\":\"cursor\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"page\":{\"description\":\"page\",\"value\":{\"items\":[{\"occurredAt\":\"2026-10-03T17:29:41.033Z\",\"actor\":\"anonymous\",\"action\":\"link.retire\",\"entity\":\"link\",\"entityId\":\"jHkOIMpK\",\"requestId\":\"140fc9de-5b8e-4c43-9d55-2f0b1e1c7a10\",\"before\":{\"url\":\"https://example.com/\",\"state\":\"active\"},\"after\":{\"url\":\"https://example.com/\",\"state\":\"retired\"}},{\"occurredAt\":\"2026-10-03T17:28:02.512Z\",\"actor\":\"anonymous\",\"action\":\"link.create\",\"entity\":\"link\",\"entityId\":\"jHkOIMpK\",\"requestId\":\"0d6a1f3e-9c27-4b1a-8e5f-6a4c3b2d1e0f\",\"before\":null,\"after\":{\"url\":\"https://example.com/\",\"state\":\"active\"}}],\"next\":\"MTI\"}}},\"schema\":{\"$ref\":\"#/components/schemas/AuditPage\"}}},\"description\":\"One page of audit rows, newest first, and the cursor of the next\"},\"400\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"limit or cursor is malformed\"},\"403\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Not a loopback client, or a forwarding header is present\"},\"429\":{\"content\":{\"application/problem+json\":{\"examples\":{\"tooManyRequests\":{\"value\":{\"instance\":\"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10\",\"status\":429,\"title\":\"Too Many Requests\"}}},\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Too many requests from this client; retry after Retry-After seconds\",\"headers\":{\"Retry-After\":{\"description\":\"Whole seconds until this client's next request is admitted\",\"schema\":{\"type\":\"integer\",\"format\":\"int32\",\"minimum\":1}}}},\"500\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"The trail could not be read\"}},\"summary\":\"Read the audit trail, newest first (loopback only)\",\"tags\":[\"audit-controller\"]}},\"/api/links\":{\"post\":{\"description\":\"Without Idempotency-Key every call creates a new link. With a key, a repeat with the same url within 24 h of the first 201 returns that link (current state); a different url is 422.\",\"operationId\":\"createLink\",\"parameters\":[{\"description\":\"1 to 255 visible ASCII characters; makes a retried create return the first link\",\"in\":\"header\",\"name\":\"Idempotency-Key\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"requestBody\":{\"content\":{\"application/json\":{\"examples\":{\"create\":{\"description\":\"create\",\"value\":{\"url\":\"https://example.com/some/path?q=1\"}}},\"schema\":{\"$ref\":\"#/components/schemas/CreateLinkRequest\"}}},\"required\":true},\"responses\":{\"201\":{\"content\":{\"application/json\":{\"examples\":{\"created\":{\"description\":\"created\",\"value\":{\"code\":\"Ab3dE9fG\",\"shortUrl\":\"http://localhost:8080/Ab3dE9fG\",\"url\":\"https://example.com/some/path?q=1\",\"state\":\"active\",\"createdAt\":\"2026-10-03T05:12:42.133Z\"}}},\"schema\":{\"$ref\":\"#/components/schemas/LinkResponse\"}}},\"description\":\"Created, or replayed for the same key and url\",\"headers\":{\"Location\":{\"description\":\"/api/links/{code}\",\"schema\":{\"type\":\"string\"},\"style\":\"simple\"}}},\"400\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Invalid url or Idempotency-Key (errors[] names field and rule), or a body that is not a JSON object\"},\"413\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Body larger than 16 384 bytes\"},\"415\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Content-Type is not application/json\"},\"422\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Idempotency-Key already used with a different url\"},\"429\":{\"content\":{\"application/problem+json\":{\"examples\":{\"tooManyRequests\":{\"value\":{\"instance\":\"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10\",\"status\":429,\"title\":\"Too Many Requests\"}}},\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Too many requests from this client; retry after Retry-After seconds\",\"headers\":{\"Retry-After\":{\"description\":\"Whole seconds until this client's next request is admitted\",\"schema\":{\"type\":\"integer\",\"format\":\"int32\",\"minimum\":1}}}},\"500\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Nothing was stored\"}},\"summary\":\"Create a short link for an http(s) URL\",\"tags\":[\"link-controller\"]}},\"/api/links/{code}\":{\"delete\":{\"operationId\":\"retireLink\",\"parameters\":[{\"in\":\"path\",\"name\":\"code\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"204\":{\"description\":\"Retired\"},\"404\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"No link has this code\"},\"410\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Already retired\"},\"429\":{\"content\":{\"application/problem+json\":{\"examples\":{\"tooManyRequests\":{\"value\":{\"instance\":\"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10\",\"status\":429,\"title\":\"Too Many Requests\"}}},\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Too many requests from this client; retry after Retry-After seconds\",\"headers\":{\"Retry-After\":{\"description\":\"Whole seconds until this client's next request is admitted\",\"schema\":{\"type\":\"integer\",\"format\":\"int32\",\"minimum\":1}}}},\"500\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Nothing was changed\"}},\"summary\":\"Retire a link; visitors then get 410 and the record is kept\",\"tags\":[\"link-controller\"]},\"get\":{\"operationId\":\"readLink\",\"parameters\":[{\"in\":\"path\",\"name\":\"code\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"link\":{\"description\":\"link\",\"value\":{\"code\":\"Ab3dE9fG\",\"shortUrl\":\"http://localhost:8080/Ab3dE9fG\",\"url\":\"https://example.com/some/path?q=1\",\"state\":\"active\",\"createdAt\":\"2026-10-03T05:12:42.133Z\"}}},\"schema\":{\"$ref\":\"#/components/schemas/LinkResponse\"}}},\"description\":\"The link; state is active or retired\"},\"404\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"No link has this code\"},\"429\":{\"content\":{\"application/problem+json\":{\"examples\":{\"tooManyRequests\":{\"value\":{\"instance\":\"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10\",\"status\":429,\"title\":\"Too Many Requests\"}}},\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Too many requests from this client; retry after Retry-After seconds\",\"headers\":{\"Retry-After\":{\"description\":\"Whole seconds until this client's next request is admitted\",\"schema\":{\"type\":\"integer\",\"format\":\"int32\",\"minimum\":1}}}}},\"summary\":\"Read a link by its code\",\"tags\":[\"link-controller\"]}},\"/api/links/{code}/stats\":{\"get\":{\"operationId\":\"stats\",\"parameters\":[{\"in\":\"path\",\"name\":\"code\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"200\":{\"content\":{\"application/json\":{\"examples\":{\"stats\":{\"description\":\"stats\",\"value\":{\"code\":\"Ab3dE9fG\",\"totalClicks\":6,\"clicksPerDay\":[{\"date\":\"2026-10-01\",\"clicks\":2},{\"date\":\"2026-10-02\",\"clicks\":3},{\"date\":\"2026-10-04\",\"clicks\":1}],\"topReferrers\":[{\"referrer\":\"https://a.example\",\"clicks\":5}]}}},\"schema\":{\"$ref\":\"#/components/schemas/LinkStats\"}}},\"description\":\"Total clicks, clicks per UTC day and the top 10 referrer origins\"},\"404\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"No link has this code\"},\"429\":{\"content\":{\"application/problem+json\":{\"examples\":{\"tooManyRequests\":{\"value\":{\"instance\":\"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10\",\"status\":429,\"title\":\"Too Many Requests\"}}},\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Too many requests from this client; retry after Retry-After seconds\",\"headers\":{\"Retry-After\":{\"description\":\"Whole seconds until this client's next request is admitted\",\"schema\":{\"type\":\"integer\",\"format\":\"int32\",\"minimum\":1}}}}},\"summary\":\"Read a link's click statistics\",\"tags\":[\"stats-controller\"]}},\"/api/ping\":{\"get\":{\"operationId\":\"ping\",\"responses\":{\"200\":{\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/PingResponse\"}}},\"description\":\"OK\"},\"429\":{\"content\":{\"application/problem+json\":{\"examples\":{\"tooManyRequests\":{\"value\":{\"instance\":\"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10\",\"status\":429,\"title\":\"Too Many Requests\"}}},\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Too many requests from this client; retry after Retry-After seconds\",\"headers\":{\"Retry-After\":{\"description\":\"Whole seconds until this client's next request is admitted\",\"schema\":{\"type\":\"integer\",\"format\":\"int32\",\"minimum\":1}}}}},\"tags\":[\"ping-controller\"]}},\"/{code}\":{\"get\":{\"operationId\":\"redirect\",\"parameters\":[{\"in\":\"path\",\"name\":\"code\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"302\":{\"description\":\"Redirect to the stored url, not cacheable\",\"headers\":{\"Cache-Control\":{\"description\":\"no-store\",\"schema\":{\"type\":\"string\"},\"style\":\"simple\"},\"Location\":{\"description\":\"The stored url, byte for byte\",\"schema\":{\"type\":\"string\"},\"style\":\"simple\"}}},\"404\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"No link has this code\"},\"410\":{\"content\":{\"application/problem+json\":{\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"The link was retired\"},\"429\":{\"content\":{\"application/problem+json\":{\"examples\":{\"tooManyRequests\":{\"value\":{\"instance\":\"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10\",\"status\":429,\"title\":\"Too Many Requests\"}}},\"schema\":{\"$ref\":\"#/components/schemas/ProblemDetail\"}}},\"description\":\"Too many requests from this client; retry after Retry-After seconds\",\"headers\":{\"Retry-After\":{\"description\":\"Whole seconds until this client's next request is admitted\",\"schema\":{\"type\":\"integer\",\"format\":\"int32\",\"minimum\":1}}}}},\"summary\":\"Open a short link\",\"tags\":[\"redirect-controller\"]}}},\"components\":{\"schemas\":{\"AuditEntry\":{\"type\":\"object\",\"properties\":{\"action\":{\"type\":\"string\",\"description\":\"What happened\",\"example\":\"link.retire\"},\"actor\":{\"type\":\"string\",\"description\":\"Who acted\",\"example\":\"anonymous\"},\"after\":{\"type\":\"object\",\"description\":\"The state after the change, as stored\"},\"before\":{\"type\":[\"object\",\"null\"],\"description\":\"The state before the change, as stored; null for a create\"},\"entity\":{\"type\":\"string\",\"description\":\"The kind of thing changed\",\"example\":\"link\"},\"entityId\":{\"type\":\"string\",\"description\":\"The public identifier of the thing changed\",\"example\":\"jHkOIMpK\"},\"occurredAt\":{\"type\":\"string\",\"format\":\"date-time\",\"description\":\"When the mutation happened (UTC)\",\"example\":\"2026-10-03T17:29:41.033Z\"},\"requestId\":{\"type\":\"string\",\"description\":\"The X-Request-Id of the request that made the change\"}}},\"AuditPage\":{\"type\":\"object\",\"properties\":{\"items\":{\"type\":\"array\",\"items\":{\"$ref\":\"#/components/schemas/AuditEntry\"}},\"next\":{\"type\":[\"string\",\"null\"],\"description\":\"Pass back as cursor for the next page; null on the last page\"}}},\"CreateLinkRequest\":{\"type\":\"object\",\"properties\":{\"url\":{\"type\":\"string\"}}},\"DayClicks\":{\"type\":\"object\",\"properties\":{\"clicks\":{\"type\":\"integer\",\"format\":\"int64\"},\"date\":{\"type\":\"string\",\"format\":\"date\"}}},\"LinkResponse\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\",\"format\":\"date-time\"},\"shortUrl\":{\"type\":\"string\"},\"state\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"}}},\"LinkStats\":{\"type\":\"object\",\"properties\":{\"clicksPerDay\":{\"type\":\"array\",\"items\":{\"$ref\":\"#/components/schemas/DayClicks\"}},\"code\":{\"type\":\"string\"},\"topReferrers\":{\"type\":\"array\",\"items\":{\"$ref\":\"#/components/schemas/ReferrerClicks\"}},\"totalClicks\":{\"type\":\"integer\",\"format\":\"int64\"}}},\"PingResponse\":{\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"string\"},\"time\":{\"type\":\"string\"}}},\"ProblemDetail\":{\"type\":\"object\",\"properties\":{\"detail\":{\"type\":\"string\"},\"errors\":{\"type\":\"array\",\"description\":\"Present on 400 validation and 422 idempotency-mismatch problems only\",\"items\":{\"$ref\":\"#/components/schemas/ProblemFieldError\"}},\"instance\":{\"type\":\"string\",\"format\":\"uri\"},\"status\":{\"type\":\"integer\",\"format\":\"int32\"},\"title\":{\"type\":\"string\"},\"type\":{\"type\":\"string\",\"format\":\"uri\"}}},\"ProblemFieldError\":{\"type\":\"object\",\"properties\":{\"field\":{\"type\":\"string\"},\"message\":{\"type\":\"string\"},\"rule\":{\"type\":\"string\"}},\"required\":[\"field\",\"message\",\"rule\"]},\"ReferrerClicks\":{\"type\":\"object\",\"properties\":{\"clicks\":{\"type\":\"integer\",\"format\":\"int64\"},\"referrer\":{\"type\":\"string\"}}}}}}",
+      "json": {
+        "openapi": "3.1.0",
+        "info": {
+          "description": "Create, read and retire short links; visitors are redirected with 302.",
+          "title": "urlshort",
+          "version": "1"
+        },
+        "servers": [
+          {
+            "url": "/"
+          }
+        ],
+        "paths": {
+          "/api/audit": {
+            "get": {
+              "operationId": "readAudit",
+              "parameters": [
+                {
+                  "description": "Rows per page",
+                  "in": "query",
+                  "name": "limit",
+                  "required": false,
+                  "schema": {
+                    "type": "integer",
+                    "default": 50,
+                    "maximum": 100,
+                    "minimum": 1
+                  }
+                },
+                {
+                  "description": "The next of the previous page",
+                  "in": "query",
+                  "name": "cursor",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "responses": {
+                "200": {
+                  "content": {
+                    "application/json": {
+                      "examples": {
+                        "page": {
+                          "description": "page",
+                          "value": {
+                            "items": [
+                              {
+                                "occurredAt": "2026-10-03T17:29:41.033Z",
+                                "actor": "anonymous",
+                                "action": "link.retire",
+                                "entity": "link",
+                                "entityId": "jHkOIMpK",
+                                "requestId": "140fc9de-5b8e-4c43-9d55-2f0b1e1c7a10",
+                                "before": {
+                                  "url": "https://example.com/",
+                                  "state": "active"
+                                },
+                                "after": {
+                                  "url": "https://example.com/",
+                                  "state": "retired"
+                                }
+                              },
+                              {
+                                "occurredAt": "2026-10-03T17:28:02.512Z",
+                                "actor": "anonymous",
+                                "action": "link.create",
+                                "entity": "link",
+                                "entityId": "jHkOIMpK",
+                                "requestId": "0d6a1f3e-9c27-4b1a-8e5f-6a4c3b2d1e0f",
+                                "before": null,
+                                "after": {
+                                  "url": "https://example.com/",
+                                  "state": "active"
+                                }
+                              }
+                            ],
+                            "next": "MTI"
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/AuditPage"
+                      }
+                    }
+                  },
+                  "description": "One page of audit rows, newest first, and the cursor of the next"
+                },
+                "400": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "limit or cursor is malformed"
+                },
+                "403": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Not a loopback client, or a forwarding header is present"
+                },
+                "429": {
+                  "content": {
+                    "application/problem+json": {
+                      "examples": {
+                        "tooManyRequests": {
+                          "value": {
+                            "instance": "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                            "status": 429,
+                            "title": "Too Many Requests"
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Too many requests from this client; retry after Retry-After seconds",
+                  "headers": {
+                    "Retry-After": {
+                      "description": "Whole seconds until this client's next request is admitted",
+                      "schema": {
+                        "type": "integer",
+                        "format": "int32",
+                        "minimum": 1
+                      }
+                    }
+                  }
+                },
+                "500": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "The trail could not be read"
+                }
+              },
+              "summary": "Read the audit trail, newest first (loopback only)",
+              "tags": [
+                "audit-controller"
+              ]
+            }
+          },
+          "/api/links": {
+            "post": {
+              "description": "Without Idempotency-Key every call creates a new link. With a key, a repeat with the same url within 24 h of the first 201 returns that link (current state); a different url is 422.",
+              "operationId": "createLink",
+              "parameters": [
+                {
+                  "description": "1 to 255 visible ASCII characters; makes a retried create return the first link",
+                  "in": "header",
+                  "name": "Idempotency-Key",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "requestBody": {
+                "content": {
+                  "application/json": {
+                    "examples": {
+                      "create": {
+                        "description": "create",
+                        "value": {
+                          "url": "https://example.com/some/path?q=1"
+                        }
+                      }
+                    },
+                    "schema": {
+                      "$ref": "#/components/schemas/CreateLinkRequest"
+                    }
+                  }
+                },
+                "required": true
+              },
+              "responses": {
+                "201": {
+                  "content": {
+                    "application/json": {
+                      "examples": {
+                        "created": {
+                          "description": "created",
+                          "value": {
+                            "code": "Ab3dE9fG",
+                            "shortUrl": "http://localhost:8080/Ab3dE9fG",
+                            "url": "https://example.com/some/path?q=1",
+                            "state": "active",
+                            "createdAt": "2026-10-03T05:12:42.133Z"
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/LinkResponse"
+                      }
+                    }
+                  },
+                  "description": "Created, or replayed for the same key and url",
+                  "headers": {
+                    "Location": {
+                      "description": "/api/links/{code}",
+                      "schema": {
+                        "type": "string"
+                      },
+                      "style": "simple"
+                    }
+                  }
+                },
+                "400": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Invalid url or Idempotency-Key (errors[] names field and rule), or a body that is not a JSON object"
+                },
+                "413": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Body larger than 16 384 bytes"
+                },
+                "415": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Content-Type is not application/json"
+                },
+                "422": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Idempotency-Key already used with a different url"
+                },
+                "429": {
+                  "content": {
+                    "application/problem+json": {
+                      "examples": {
+                        "tooManyRequests": {
+                          "value": {
+                            "instance": "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                            "status": 429,
+                            "title": "Too Many Requests"
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Too many requests from this client; retry after Retry-After seconds",
+                  "headers": {
+                    "Retry-After": {
+                      "description": "Whole seconds until this client's next request is admitted",
+                      "schema": {
+                        "type": "integer",
+                        "format": "int32",
+                        "minimum": 1
+                      }
+                    }
+                  }
+                },
+                "500": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Nothing was stored"
+                }
+              },
+              "summary": "Create a short link for an http(s) URL",
+              "tags": [
+                "link-controller"
+              ]
+            }
+          },
+          "/api/links/{code}": {
+            "delete": {
+              "operationId": "retireLink",
+              "parameters": [
+                {
+                  "in": "path",
+                  "name": "code",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "responses": {
+                "204": {
+                  "description": "Retired"
+                },
+                "404": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "No link has this code"
+                },
+                "410": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Already retired"
+                },
+                "429": {
+                  "content": {
+                    "application/problem+json": {
+                      "examples": {
+                        "tooManyRequests": {
+                          "value": {
+                            "instance": "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                            "status": 429,
+                            "title": "Too Many Requests"
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Too many requests from this client; retry after Retry-After seconds",
+                  "headers": {
+                    "Retry-After": {
+                      "description": "Whole seconds until this client's next request is admitted",
+                      "schema": {
+                        "type": "integer",
+                        "format": "int32",
+                        "minimum": 1
+                      }
+                    }
+                  }
+                },
+                "500": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Nothing was changed"
+                }
+              },
+              "summary": "Retire a link; visitors then get 410 and the record is kept",
+              "tags": [
+                "link-controller"
+              ]
+            },
+            "get": {
+              "operationId": "readLink",
+              "parameters": [
+                {
+                  "in": "path",
+                  "name": "code",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "responses": {
+                "200": {
+                  "content": {
+                    "application/json": {
+                      "examples": {
+                        "link": {
+                          "description": "link",
+                          "value": {
+                            "code": "Ab3dE9fG",
+                            "shortUrl": "http://localhost:8080/Ab3dE9fG",
+                            "url": "https://example.com/some/path?q=1",
+                            "state": "active",
+                            "createdAt": "2026-10-03T05:12:42.133Z"
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/LinkResponse"
+                      }
+                    }
+                  },
+                  "description": "The link; state is active or retired"
+                },
+                "404": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "No link has this code"
+                },
+                "429": {
+                  "content": {
+                    "application/problem+json": {
+                      "examples": {
+                        "tooManyRequests": {
+                          "value": {
+                            "instance": "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                            "status": 429,
+                            "title": "Too Many Requests"
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Too many requests from this client; retry after Retry-After seconds",
+                  "headers": {
+                    "Retry-After": {
+                      "description": "Whole seconds until this client's next request is admitted",
+                      "schema": {
+                        "type": "integer",
+                        "format": "int32",
+                        "minimum": 1
+                      }
+                    }
+                  }
+                }
+              },
+              "summary": "Read a link by its code",
+              "tags": [
+                "link-controller"
+              ]
+            }
+          },
+          "/api/links/{code}/stats": {
+            "get": {
+              "operationId": "stats",
+              "parameters": [
+                {
+                  "in": "path",
+                  "name": "code",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "responses": {
+                "200": {
+                  "content": {
+                    "application/json": {
+                      "examples": {
+                        "stats": {
+                          "description": "stats",
+                          "value": {
+                            "code": "Ab3dE9fG",
+                            "totalClicks": 6,
+                            "clicksPerDay": [
+                              {
+                                "date": "2026-10-01",
+                                "clicks": 2
+                              },
+                              {
+                                "date": "2026-10-02",
+                                "clicks": 3
+                              },
+                              {
+                                "date": "2026-10-04",
+                                "clicks": 1
+                              }
+                            ],
+                            "topReferrers": [
+                              {
+                                "referrer": "https://a.example",
+                                "clicks": 5
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/LinkStats"
+                      }
+                    }
+                  },
+                  "description": "Total clicks, clicks per UTC day and the top 10 referrer origins"
+                },
+                "404": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "No link has this code"
+                },
+                "429": {
+                  "content": {
+                    "application/problem+json": {
+                      "examples": {
+                        "tooManyRequests": {
+                          "value": {
+                            "instance": "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                            "status": 429,
+                            "title": "Too Many Requests"
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Too many requests from this client; retry after Retry-After seconds",
+                  "headers": {
+                    "Retry-After": {
+                      "description": "Whole seconds until this client's next request is admitted",
+                      "schema": {
+                        "type": "integer",
+                        "format": "int32",
+                        "minimum": 1
+                      }
+                    }
+                  }
+                }
+              },
+              "summary": "Read a link's click statistics",
+              "tags": [
+                "stats-controller"
+              ]
+            }
+          },
+          "/api/ping": {
+            "get": {
+              "operationId": "ping",
+              "responses": {
+                "200": {
+                  "content": {
+                    "*/*": {
+                      "schema": {
+                        "$ref": "#/components/schemas/PingResponse"
+                      }
+                    }
+                  },
+                  "description": "OK"
+                },
+                "429": {
+                  "content": {
+                    "application/problem+json": {
+                      "examples": {
+                        "tooManyRequests": {
+                          "value": {
+                            "instance": "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                            "status": 429,
+                            "title": "Too Many Requests"
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Too many requests from this client; retry after Retry-After seconds",
+                  "headers": {
+                    "Retry-After": {
+                      "description": "Whole seconds until this client's next request is admitted",
+                      "schema": {
+                        "type": "integer",
+                        "format": "int32",
+                        "minimum": 1
+                      }
+                    }
+                  }
+                }
+              },
+              "tags": [
+                "ping-controller"
+              ]
+            }
+          },
+          "/{code}": {
+            "get": {
+              "operationId": "redirect",
+              "parameters": [
+                {
+                  "in": "path",
+                  "name": "code",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "responses": {
+                "302": {
+                  "description": "Redirect to the stored url, not cacheable",
+                  "headers": {
+                    "Cache-Control": {
+                      "description": "no-store",
+                      "schema": {
+                        "type": "string"
+                      },
+                      "style": "simple"
+                    },
+                    "Location": {
+                      "description": "The stored url, byte for byte",
+                      "schema": {
+                        "type": "string"
+                      },
+                      "style": "simple"
+                    }
+                  }
+                },
+                "404": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "No link has this code"
+                },
+                "410": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "The link was retired"
+                },
+                "429": {
+                  "content": {
+                    "application/problem+json": {
+                      "examples": {
+                        "tooManyRequests": {
+                          "value": {
+                            "instance": "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                            "status": 429,
+                            "title": "Too Many Requests"
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ProblemDetail"
+                      }
+                    }
+                  },
+                  "description": "Too many requests from this client; retry after Retry-After seconds",
+                  "headers": {
+                    "Retry-After": {
+                      "description": "Whole seconds until this client's next request is admitted",
+                      "schema": {
+                        "type": "integer",
+                        "format": "int32",
+                        "minimum": 1
+                      }
+                    }
+                  }
+                }
+              },
+              "summary": "Open a short link",
+              "tags": [
+                "redirect-controller"
+              ]
+            }
+          }
+        },
+        "components": {
+          "schemas": {
+            "AuditEntry": {
+              "type": "object",
+              "properties": {
+                "action": {
+                  "type": "string",
+                  "description": "What happened",
+                  "example": "link.retire"
+                },
+                "actor": {
+                  "type": "string",
+                  "description": "Who acted",
+                  "example": "anonymous"
+                },
+                "after": {
+                  "type": "object",
+                  "description": "The state after the change, as stored"
+                },
+                "before": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "description": "The state before the change, as stored; null for a create"
+                },
+                "entity": {
+                  "type": "string",
+                  "description": "The kind of thing changed",
+                  "example": "link"
+                },
+                "entityId": {
+                  "type": "string",
+                  "description": "The public identifier of the thing changed",
+                  "example": "jHkOIMpK"
+                },
+                "occurredAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "When the mutation happened (UTC)",
+                  "example": "2026-10-03T17:29:41.033Z"
+                },
+                "requestId": {
+                  "type": "string",
+                  "description": "The X-Request-Id of the request that made the change"
+                }
+              }
+            },
+            "AuditPage": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AuditEntry"
+                  }
+                },
+                "next": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "Pass back as cursor for the next page; null on the last page"
+                }
+              }
+            },
+            "CreateLinkRequest": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string"
+                }
+              }
+            },
+            "DayClicks": {
+              "type": "object",
+              "properties": {
+                "clicks": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                }
+              }
+            },
+            "LinkResponse": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "shortUrl": {
+                  "type": "string"
+                },
+                "state": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                }
+              }
+            },
+            "LinkStats": {
+              "type": "object",
+              "properties": {
+                "clicksPerDay": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DayClicks"
+                  }
+                },
+                "code": {
+                  "type": "string"
+                },
+                "topReferrers": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReferrerClicks"
+                  }
+                },
+                "totalClicks": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            },
+            "PingResponse": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "time": {
+                  "type": "string"
+                }
+              }
+            },
+            "ProblemDetail": {
+              "type": "object",
+              "properties": {
+                "detail": {
+                  "type": "string"
+                },
+                "errors": {
+                  "type": "array",
+                  "description": "Present on 400 validation and 422 idempotency-mismatch problems only",
+                  "items": {
+                    "$ref": "#/components/schemas/ProblemFieldError"
+                  }
+                },
+                "instance": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "status": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              }
+            },
+            "ProblemFieldError": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "rule": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "message",
+                "rule"
+              ]
+            },
+            "ReferrerClicks": {
+              "type": "object",
+              "properties": {
+                "clicks": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "referrer": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "headerMap": {
+        "x-request-id": "18f52499-d54a-4f8a-9f54-9369d1ac2ca2",
+        "content-type": "application/json",
+        "content-length": "13119",
+        "date": "Sat, 03 Oct 2026 22:03:20 GMT"
+      }
+    },
+    {
+      "name": "base-bad-create",
+      "method": "POST",
+      "url": "http://127.0.0.1:18151/api/links",
+      "peer": "actual localhost",
+      "headersSent": [
+        "User-Agent: qa-dogfood-privacy-canary-4fe7042"
+      ],
+      "before": "2026-10-03T22:03:41.381Z",
+      "after": "2026-10-03T22:03:41.477Z",
+      "status": 400,
+      "headers": "HTTP/1.1 400 \nX-Request-Id: 9259e366-47b9-497e-b20a-745712a422da\nContent-Type: application/problem+json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 22:03:41 GMT\nConnection: close\n\n",
+      "body": "{\"instance\":\"urn:uuid:9259e366-47b9-497e-b20a-745712a422da\",\"status\":400,\"title\":\"Bad Request\",\"errors\":[{\"field\":\"url\",\"rule\":\"scheme\",\"message\":\"url must start with http:// or https://\"}]}",
+      "json": {
+        "instance": "urn:uuid:9259e366-47b9-497e-b20a-745712a422da",
+        "status": 400,
+        "title": "Bad Request",
+        "errors": [
+          {
+            "field": "url",
+            "rule": "scheme",
+            "message": "url must start with http:// or https://"
+          }
+        ]
+      },
+      "headerMap": {
+        "x-request-id": "9259e366-47b9-497e-b20a-745712a422da",
+        "content-type": "application/problem+json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 22:03:41 GMT",
+        "connection": "close"
+      }
+    },
+    {
+      "name": "base-create",
+      "method": "POST",
+      "url": "http://127.0.0.1:18151/api/links",
+      "peer": "actual localhost",
+      "headersSent": [
+        "Idempotency-Key: qa-dogfood-4fe7042"
+      ],
+      "before": "2026-10-03T22:03:41.592Z",
+      "after": "2026-10-03T22:03:41.746Z",
+      "status": 201,
+      "headers": "HTTP/1.1 201 \nX-Request-Id: d337b00c-7fc3-463e-a2ff-5726f4dfa95e\nLocation: /api/links/6KxlgsqU\nContent-Type: application/json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 22:03:41 GMT\n\n",
+      "body": "{\"code\":\"6KxlgsqU\",\"shortUrl\":\"http://localhost:8080/6KxlgsqU\",\"url\":\"https://qa-dogfood.example/canary-4fe7042\",\"state\":\"active\",\"createdAt\":\"2026-10-03T22:03:41.642Z\"}",
+      "json": {
+        "code": "6KxlgsqU",
+        "shortUrl": "http://localhost:8080/6KxlgsqU",
+        "url": "https://qa-dogfood.example/canary-4fe7042",
+        "state": "active",
+        "createdAt": "2026-10-03T22:03:41.642Z"
+      },
+      "headerMap": {
+        "x-request-id": "d337b00c-7fc3-463e-a2ff-5726f4dfa95e",
+        "location": "/api/links/6KxlgsqU",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 22:03:41 GMT"
+      }
+    },
+    {
+      "name": "base-reuse",
+      "method": "POST",
+      "url": "http://127.0.0.1:18151/api/links",
+      "peer": "actual localhost",
+      "headersSent": [
+        "Idempotency-Key: qa-dogfood-4fe7042"
+      ],
+      "before": "2026-10-03T22:03:41.848Z",
+      "after": "2026-10-03T22:03:41.905Z",
+      "status": 201,
+      "headers": "HTTP/1.1 201 \nX-Request-Id: 21f1e2ae-6006-4229-8101-283fc572469f\nLocation: /api/links/6KxlgsqU\nContent-Type: application/json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 22:03:41 GMT\n\n",
+      "body": "{\"code\":\"6KxlgsqU\",\"shortUrl\":\"http://localhost:8080/6KxlgsqU\",\"url\":\"https://qa-dogfood.example/canary-4fe7042\",\"state\":\"active\",\"createdAt\":\"2026-10-03T22:03:41.642Z\"}",
+      "json": {
+        "code": "6KxlgsqU",
+        "shortUrl": "http://localhost:8080/6KxlgsqU",
+        "url": "https://qa-dogfood.example/canary-4fe7042",
+        "state": "active",
+        "createdAt": "2026-10-03T22:03:41.642Z"
+      },
+      "headerMap": {
+        "x-request-id": "21f1e2ae-6006-4229-8101-283fc572469f",
+        "location": "/api/links/6KxlgsqU",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 22:03:41 GMT"
+      }
+    },
+    {
+      "name": "base-mismatch",
+      "method": "POST",
+      "url": "http://127.0.0.1:18151/api/links",
+      "peer": "actual localhost",
+      "headersSent": [
+        "Idempotency-Key: qa-dogfood-4fe7042"
+      ],
+      "before": "2026-10-03T22:03:42.004Z",
+      "after": "2026-10-03T22:03:42.060Z",
+      "status": 422,
+      "headers": "HTTP/1.1 422 \nX-Request-Id: b2a19f13-9dc1-40b0-87fd-1d95daad8ef6\nContent-Type: application/problem+json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 22:03:42 GMT\n\n",
+      "body": "{\"instance\":\"urn:uuid:b2a19f13-9dc1-40b0-87fd-1d95daad8ef6\",\"status\":422,\"title\":\"Unprocessable Content\",\"errors\":[{\"field\":\"Idempotency-Key\",\"rule\":\"mismatch\",\"message\":\"Idempotency-Key was already used with a different url\"}]}",
+      "json": {
+        "instance": "urn:uuid:b2a19f13-9dc1-40b0-87fd-1d95daad8ef6",
+        "status": 422,
+        "title": "Unprocessable Content",
+        "errors": [
+          {
+            "field": "Idempotency-Key",
+            "rule": "mismatch",
+            "message": "Idempotency-Key was already used with a different url"
+          }
+        ]
+      },
+      "headerMap": {
+        "x-request-id": "b2a19f13-9dc1-40b0-87fd-1d95daad8ef6",
+        "content-type": "application/problem+json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 22:03:42 GMT"
+      }
+    },
+    {
+      "name": "base-unknown",
+      "method": "GET",
+      "url": "http://127.0.0.1:18151/api/links/nosuch12",
+      "peer": "actual localhost",
+      "headersSent": [],
+      "before": "2026-10-03T22:03:42.141Z",
+      "after": "2026-10-03T22:03:42.207Z",
+      "status": 404,
+      "headers": "HTTP/1.1 404 \nX-Request-Id: c4605a21-85ca-4339-a7e8-e0c3868abf1b\nContent-Type: application/problem+json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 22:03:42 GMT\n\n",
+      "body": "{\"instance\":\"urn:uuid:c4605a21-85ca-4339-a7e8-e0c3868abf1b\",\"status\":404,\"title\":\"Not Found\"}",
+      "json": {
+        "instance": "urn:uuid:c4605a21-85ca-4339-a7e8-e0c3868abf1b",
+        "status": 404,
+        "title": "Not Found"
+      },
+      "headerMap": {
+        "x-request-id": "c4605a21-85ca-4339-a7e8-e0c3868abf1b",
+        "content-type": "application/problem+json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 22:03:42 GMT"
+      }
+    },
+    {
+      "name": "base-retire",
+      "method": "DELETE",
+      "url": "http://127.0.0.1:18151/api/links/6KxlgsqU",
+      "peer": "actual localhost",
+      "headersSent": [],
+      "before": "2026-10-03T22:03:42.285Z",
+      "after": "2026-10-03T22:03:42.340Z",
+      "status": 204,
+      "headers": "HTTP/1.1 204 \nX-Request-Id: a72c6e31-dc14-466c-bdc2-3158b4ebe1f2\nDate: Sat, 03 Oct 2026 22:03:42 GMT\n\n",
+      "body": "",
+      "headerMap": {
+        "x-request-id": "a72c6e31-dc14-466c-bdc2-3158b4ebe1f2",
+        "date": "Sat, 03 Oct 2026 22:03:42 GMT"
+      }
+    },
+    {
+      "name": "base-gone",
+      "method": "GET",
+      "url": "http://127.0.0.1:18151/6KxlgsqU",
+      "peer": "actual localhost",
+      "headersSent": [],
+      "before": "2026-10-03T22:03:42.422Z",
+      "after": "2026-10-03T22:03:42.477Z",
+      "status": 410,
+      "headers": "HTTP/1.1 410 \nX-Request-Id: 31ec241a-eda8-4169-a42e-978d99c44139\nContent-Type: application/problem+json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 22:03:42 GMT\n\n",
+      "body": "{\"instance\":\"urn:uuid:31ec241a-eda8-4169-a42e-978d99c44139\",\"status\":410,\"title\":\"Gone\"}",
+      "json": {
+        "instance": "urn:uuid:31ec241a-eda8-4169-a42e-978d99c44139",
+        "status": 410,
+        "title": "Gone"
+      },
+      "headerMap": {
+        "x-request-id": "31ec241a-eda8-4169-a42e-978d99c44139",
+        "content-type": "application/problem+json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 22:03:42 GMT"
+      }
+    },
+    {
+      "name": "base-bad-audit",
+      "method": "GET",
+      "url": "http://127.0.0.1:18151/api/audit?limit=0",
+      "peer": "actual localhost",
+      "headersSent": [],
+      "before": "2026-10-03T22:03:42.556Z",
+      "after": "2026-10-03T22:03:42.611Z",
+      "status": 400,
+      "headers": "HTTP/1.1 400 \nX-Request-Id: 24667500-7671-424f-8529-32ca2c205af8\nContent-Type: application/problem+json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 22:03:42 GMT\nConnection: close\n\n",
+      "body": "{\"instance\":\"urn:uuid:24667500-7671-424f-8529-32ca2c205af8\",\"status\":400,\"title\":\"Bad Request\",\"errors\":[{\"field\":\"limit\",\"rule\":\"range\",\"message\":\"must be from 1 to 100\"}]}",
+      "json": {
+        "instance": "urn:uuid:24667500-7671-424f-8529-32ca2c205af8",
+        "status": 400,
+        "title": "Bad Request",
+        "errors": [
+          {
+            "field": "limit",
+            "rule": "range",
+            "message": "must be from 1 to 100"
+          }
+        ]
+      },
+      "headerMap": {
+        "x-request-id": "24667500-7671-424f-8529-32ca2c205af8",
+        "content-type": "application/problem+json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 22:03:42 GMT",
+        "connection": "close"
+      }
+    },
+    {
+      "name": "base-audit",
+      "method": "GET",
+      "url": "http://127.0.0.1:18151/api/audit?limit=10",
+      "peer": "actual localhost",
+      "headersSent": [],
+      "before": "2026-10-03T22:03:42.689Z",
+      "after": "2026-10-03T22:03:42.752Z",
+      "status": 200,
+      "headers": "HTTP/1.1 200 \nX-Request-Id: 309d0746-5e1e-44b7-8956-b129ecd55e51\nContent-Type: application/json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 22:03:42 GMT\n\n",
+      "body": "{\"items\":[{\"occurredAt\":\"2026-10-03T22:03:42.316Z\",\"actor\":\"anonymous\",\"action\":\"link.retire\",\"entity\":\"link\",\"entityId\":\"6KxlgsqU\",\"requestId\":\"a72c6e31-dc14-466c-bdc2-3158b4ebe1f2\",\"before\":{\"url\":\"https://qa-dogfood.example/canary-4fe7042\",\"state\":\"active\"},\"after\":{\"url\":\"https://qa-dogfood.example/canary-4fe7042\",\"state\":\"retired\"}},{\"occurredAt\":\"2026-10-03T22:03:41.703Z\",\"actor\":\"anonymous\",\"action\":\"link.create\",\"entity\":\"link\",\"entityId\":\"6KxlgsqU\",\"requestId\":\"d337b00c-7fc3-463e-a2ff-5726f4dfa95e\",\"before\":null,\"after\":{\"url\":\"https://qa-dogfood.example/canary-4fe7042\",\"state\":\"active\"}}],\"next\":null}",
+      "json": {
+        "items": [
+          {
+            "occurredAt": "2026-10-03T22:03:42.316Z",
+            "actor": "anonymous",
+            "action": "link.retire",
+            "entity": "link",
+            "entityId": "6KxlgsqU",
+            "requestId": "a72c6e31-dc14-466c-bdc2-3158b4ebe1f2",
+            "before": {
+              "url": "https://qa-dogfood.example/canary-4fe7042",
+              "state": "active"
+            },
+            "after": {
+              "url": "https://qa-dogfood.example/canary-4fe7042",
+              "state": "retired"
+            }
+          },
+          {
+            "occurredAt": "2026-10-03T22:03:41.703Z",
+            "actor": "anonymous",
+            "action": "link.create",
+            "entity": "link",
+            "entityId": "6KxlgsqU",
+            "requestId": "d337b00c-7fc3-463e-a2ff-5726f4dfa95e",
+            "before": null,
+            "after": {
+              "url": "https://qa-dogfood.example/canary-4fe7042",
+              "state": "active"
+            }
+          }
+        ],
+        "next": null
+      },
+      "headerMap": {
+        "x-request-id": "309d0746-5e1e-44b7-8956-b129ecd55e51",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 22:03:42 GMT"
+      }
+    },
+    {
+      "name": "base-disk-free",
+      "method": "GET",
+      "url": "http://127.0.0.1:18151/actuator/metrics/disk.free",
+      "peer": "actual localhost",
+      "headersSent": [],
+      "before": "2026-10-03T22:03:42.828Z",
+      "after": "2026-10-03T22:03:42.902Z",
+      "status": 200,
+      "headers": "HTTP/1.1 200 \nX-Request-Id: c5ba5fe7-95bb-4fae-a879-44c3f33c3a79\nContent-Disposition: inline;filename=f.txt\nContent-Type: application/vnd.spring-boot.actuator.v3+json\nContent-Length: 229\nDate: Sat, 03 Oct 2026 22:03:42 GMT\n\n",
+      "body": "{\"availableTags\":[{\"tag\":\"path\",\"values\":[\"/private/tmp/urlshort-dogfood-qa-4fe7042/.\"]}],\"baseUnit\":\"bytes\",\"description\":\"Usable space for path\",\"measurements\":[{\"statistic\":\"VALUE\",\"value\":3.2546082816E10}],\"name\":\"disk.free\"}",
+      "json": {
+        "availableTags": [
+          {
+            "tag": "path",
+            "values": [
+              "/private/tmp/urlshort-dogfood-qa-4fe7042/."
+            ]
+          }
+        ],
+        "baseUnit": "bytes",
+        "description": "Usable space for path",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 32546082816
+          }
+        ],
+        "name": "disk.free"
+      },
+      "headerMap": {
+        "x-request-id": "c5ba5fe7-95bb-4fae-a879-44c3f33c3a79",
+        "content-disposition": "inline;filename=f.txt",
+        "content-type": "application/vnd.spring-boot.actuator.v3+json",
+        "content-length": "229",
+        "date": "Sat, 03 Oct 2026 22:03:42 GMT"
+      }
+    },
+    {
+      "name": "base-disk-total",
+      "method": "GET",
+      "url": "http://127.0.0.1:18151/actuator/metrics/disk.total",
+      "peer": "actual localhost",
+      "headersSent": [],
+      "before": "2026-10-03T22:03:42.986Z",
+      "after": "2026-10-03T22:03:43.042Z",
+      "status": 200,
+      "headers": "HTTP/1.1 200 \nX-Request-Id: a6cceb2d-7ac9-4b48-a915-636372fc0aa8\nContent-Disposition: inline;filename=f.txt\nContent-Type: application/vnd.spring-boot.actuator.v3+json\nContent-Length: 230\nDate: Sat, 03 Oct 2026 22:03:43 GMT\n\n",
+      "body": "{\"availableTags\":[{\"tag\":\"path\",\"values\":[\"/private/tmp/urlshort-dogfood-qa-4fe7042/.\"]}],\"baseUnit\":\"bytes\",\"description\":\"Total space for path\",\"measurements\":[{\"statistic\":\"VALUE\",\"value\":4.94384795648E11}],\"name\":\"disk.total\"}",
+      "json": {
+        "availableTags": [
+          {
+            "tag": "path",
+            "values": [
+              "/private/tmp/urlshort-dogfood-qa-4fe7042/."
+            ]
+          }
+        ],
+        "baseUnit": "bytes",
+        "description": "Total space for path",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 494384795648
+          }
+        ],
+        "name": "disk.total"
+      },
+      "headerMap": {
+        "x-request-id": "a6cceb2d-7ac9-4b48-a915-636372fc0aa8",
+        "content-disposition": "inline;filename=f.txt",
+        "content-type": "application/vnd.spring-boot.actuator.v3+json",
+        "content-length": "230",
+        "date": "Sat, 03 Oct 2026 22:03:43 GMT"
+      }
+    },
+    {
+      "name": "base-prometheus",
+      "method": "GET",
+      "url": "http://127.0.0.1:18151/actuator/prometheus",
+      "peer": "actual localhost",
+      "headersSent": [],
+      "before": "2026-10-03T22:03:43.119Z",
+      "after": "2026-10-03T22:03:43.185Z",
+      "status": 200,
+      "headers": "HTTP/1.1 200 \nX-Request-Id: d85d4bdd-26c4-485b-a5d6-d4f43aceae7d\nContent-Type: text/plain;version=0.0.4;charset=utf-8\nContent-Length: 22842\nDate: Sat, 03 Oct 2026 22:03:43 GMT\n\n",
+      "body": "# HELP application_ready_time_seconds Time taken for the application to be ready to service requests\n# TYPE application_ready_time_seconds gauge\napplication_ready_time_seconds{main_application_class=\"dev.urlshort.UrlshortApplication\"} 2.14\n# HELP application_started_time_seconds Time taken to start the application\n# TYPE application_started_time_seconds gauge\napplication_started_time_seconds{main_application_class=\"dev.urlshort.UrlshortApplication\"} 2.102\n# HELP disk_free_bytes Usable space for path\n# TYPE disk_free_bytes gauge\ndisk_free_bytes{path=\"/private/tmp/urlshort-dogfood-qa-4fe7042/.\"} 3.2546033664E10\n# HELP disk_total_bytes Total space for path\n# TYPE disk_total_bytes gauge\ndisk_total_bytes{path=\"/private/tmp/urlshort-dogfood-qa-4fe7042/.\"} 4.94384795648E11\n# HELP executor_active_threads The approximate number of threads that are actively executing tasks\n# TYPE executor_active_threads gauge\nexecutor_active_threads{name=\"applicationTaskExecutor\"} 0.0\n# HELP executor_completed_tasks_total The approximate total number of tasks that have completed execution\n# TYPE executor_completed_tasks_total counter\nexecutor_completed_tasks_total{name=\"applicationTaskExecutor\"} 0.0\n# HELP executor_pool_core_threads The core number of threads for the pool\n# TYPE executor_pool_core_threads gauge\nexecutor_pool_core_threads{name=\"applicationTaskExecutor\"} 8.0\n# HELP executor_pool_max_threads The maximum allowed number of threads in the pool\n# TYPE executor_pool_max_threads gauge\nexecutor_pool_max_threads{name=\"applicationTaskExecutor\"} 2.147483647E9\n# HELP executor_pool_size_threads The current number of threads in the pool\n# TYPE executor_pool_size_threads gauge\nexecutor_pool_size_threads{name=\"applicationTaskExecutor\"} 0.0\n# HELP executor_queue_remaining_tasks The number of additional elements that this queue can ideally accept without blocking\n# TYPE executor_queue_remaining_tasks gauge\nexecutor_queue_remaining_tasks{name=\"applicationTaskExecutor\"} 2.147483647E9\n# HELP executor_queued_tasks The approximate number of tasks that are queued for execution\n# TYPE executor_queued_tasks gauge\nexecutor_queued_tasks{name=\"applicationTaskExecutor\"} 0.0\n# HELP hikaricp_connections Total connections\n# TYPE hikaricp_connections gauge\nhikaricp_connections{pool=\"HikariPool-1\"} 10.0\n# HELP hikaricp_connections_acquire_seconds Connection acquire time\n# TYPE hikaricp_connections_acquire_seconds summary\nhikaricp_connections_acquire_seconds_count{pool=\"HikariPool-1\"} 7\nhikaricp_connections_acquire_seconds_sum{pool=\"HikariPool-1\"} 0.0\n# HELP hikaricp_connections_acquire_seconds_max Connection acquire time\n# TYPE hikaricp_connections_acquire_seconds_max gauge\nhikaricp_connections_acquire_seconds_max{pool=\"HikariPool-1\"} 0.0\n# HELP hikaricp_connections_active Active connections\n# TYPE hikaricp_connections_active gauge\nhikaricp_connections_active{pool=\"HikariPool-1\"} 0.0\n# HELP hikaricp_connections_creation_seconds Connection creation time\n# TYPE hikaricp_connections_creation_seconds summary\nhikaricp_connections_creation_seconds_count{pool=\"HikariPool-1\"} 0\nhikaricp_connections_creation_seconds_sum{pool=\"HikariPool-1\"} 0.0\n# HELP hikaricp_connections_creation_seconds_max Connection creation time\n# TYPE hikaricp_connections_creation_seconds_max gauge\nhikaricp_connections_creation_seconds_max{pool=\"HikariPool-1\"} 0.0\n# HELP hikaricp_connections_idle Idle connections\n# TYPE hikaricp_connections_idle gauge\nhikaricp_connections_idle{pool=\"HikariPool-1\"} 10.0\n# HELP hikaricp_connections_max Max connections\n# TYPE hikaricp_connections_max gauge\nhikaricp_connections_max{pool=\"HikariPool-1\"} 10.0\n# HELP hikaricp_connections_min Min connections\n# TYPE hikaricp_connections_min gauge\nhikaricp_connections_min{pool=\"HikariPool-1\"} 10.0\n# HELP hikaricp_connections_pending Pending threads\n# TYPE hikaricp_connections_pending gauge\nhikaricp_connections_pending{pool=\"HikariPool-1\"} 0.0\n# HELP hikaricp_connections_timeout_total Connection timeout total count\n# TYPE hikaricp_connections_timeout_total counter\nhikaricp_connections_timeout_total{pool=\"HikariPool-1\"} 0.0\n# HELP hikaricp_connections_usage_seconds Connection usage time\n# TYPE hikaricp_connections_usage_seconds summary\nhikaricp_connections_usage_seconds_count{pool=\"HikariPool-1\"} 7\nhikaricp_connections_usage_seconds_sum{pool=\"HikariPool-1\"} 0.081\n# HELP hikaricp_connections_usage_seconds_max Connection usage time\n# TYPE hikaricp_connections_usage_seconds_max gauge\nhikaricp_connections_usage_seconds_max{pool=\"HikariPool-1\"} 0.065\n# HELP http_server_requests_active_seconds  \n# TYPE http_server_requests_active_seconds summary\nhttp_server_requests_active_seconds_count{exception=\"none\",method=\"DELETE\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0\nhttp_server_requests_active_seconds_sum{exception=\"none\",method=\"DELETE\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0.0\nhttp_server_requests_active_seconds_count{exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 1\nhttp_server_requests_active_seconds_sum{exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0.008389208\nhttp_server_requests_active_seconds_count{exception=\"none\",method=\"POST\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0\nhttp_server_requests_active_seconds_sum{exception=\"none\",method=\"POST\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0.0\n# HELP http_server_requests_active_seconds_max  \n# TYPE http_server_requests_active_seconds_max gauge\nhttp_server_requests_active_seconds_max{exception=\"none\",method=\"DELETE\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0.0\nhttp_server_requests_active_seconds_max{exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0.008537\nhttp_server_requests_active_seconds_max{exception=\"none\",method=\"POST\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0.0\n# HELP http_server_requests_seconds  \n# TYPE http_server_requests_seconds summary\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"DELETE\",outcome=\"SUCCESS\",status=\"204\",uri=\"/api/links/{code:[A-Za-z0-9]{6,32}}\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"DELETE\",outcome=\"SUCCESS\",status=\"204\",uri=\"/api/links/{code:[A-Za-z0-9]{6,32}}\"} 0.004115584\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"400\",uri=\"/api/audit\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"400\",uri=\"/api/audit\"} 0.002004625\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"404\",uri=\"/api/links/{code:[A-Za-z0-9]{6,32}}\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"404\",uri=\"/api/links/{code:[A-Za-z0-9]{6,32}}\"} 0.002935875\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"410\",uri=\"/{code:[A-Za-z0-9]{6,32}}\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"410\",uri=\"/{code:[A-Za-z0-9]{6,32}}\"} 0.002508459\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/actuator/metrics/{requiredMetricName}\"} 2\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/actuator/metrics/{requiredMetricName}\"} 0.021470959\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/api/audit\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/api/audit\"} 0.006671125\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/v3/api-docs\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/v3/api-docs\"} 0.276120208\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"CLIENT_ERROR\",status=\"400\",uri=\"/api/links\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"CLIENT_ERROR\",status=\"400\",uri=\"/api/links\"} 0.035763416\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"CLIENT_ERROR\",status=\"422\",uri=\"/api/links\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"CLIENT_ERROR\",status=\"422\",uri=\"/api/links\"} 0.003108917\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"SUCCESS\",status=\"201\",uri=\"/api/links\"} 2\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"SUCCESS\",status=\"201\",uri=\"/api/links\"} 0.094424292\n# HELP http_server_requests_seconds_max  \n# TYPE http_server_requests_seconds_max gauge\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"DELETE\",outcome=\"SUCCESS\",status=\"204\",uri=\"/api/links/{code:[A-Za-z0-9]{6,32}}\"} 0.004115584\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"400\",uri=\"/api/audit\"} 0.002004625\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"404\",uri=\"/api/links/{code:[A-Za-z0-9]{6,32}}\"} 0.002935875\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"410\",uri=\"/{code:[A-Za-z0-9]{6,32}}\"} 0.002508459\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/actuator/metrics/{requiredMetricName}\"} 0.02038375\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/api/audit\"} 0.006671125\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/v3/api-docs\"} 0.276120208\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"CLIENT_ERROR\",status=\"400\",uri=\"/api/links\"} 0.035763416\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"CLIENT_ERROR\",status=\"422\",uri=\"/api/links\"} 0.003108917\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"SUCCESS\",status=\"201\",uri=\"/api/links\"} 0.088733875\n# HELP jdbc_connections_active Current number of active connections that have been allocated from the data source.\n# TYPE jdbc_connections_active gauge\njdbc_connections_active{name=\"dataSource\"} 0.0\n# HELP jdbc_connections_idle Number of established but idle connections.\n# TYPE jdbc_connections_idle gauge\njdbc_connections_idle{name=\"dataSource\"} 10.0\n# HELP jdbc_connections_max Maximum number of active connections that can be allocated at the same time.\n# TYPE jdbc_connections_max gauge\njdbc_connections_max{name=\"dataSource\"} 10.0\n# HELP jdbc_connections_min Minimum number of idle connections in the pool.\n# TYPE jdbc_connections_min gauge\njdbc_connections_min{name=\"dataSource\"} 10.0\n# HELP jvm_info JVM version info\n# TYPE jvm_info gauge\njvm_info{runtime=\"OpenJDK Runtime Environment\",vendor=\"Homebrew\",version=\"21.0.10\"} 1\n# HELP jvm_buffer_count_buffers An estimate of the number of buffers in the pool\n# TYPE jvm_buffer_count_buffers gauge\njvm_buffer_count_buffers{id=\"direct\"} 11.0\njvm_buffer_count_buffers{id=\"mapped\"} 0.0\njvm_buffer_count_buffers{id=\"mapped - 'non-volatile memory'\"} 0.0\n# HELP jvm_buffer_memory_used_bytes An estimate of the memory that the Java virtual machine is using for this buffer pool\n# TYPE jvm_buffer_memory_used_bytes gauge\njvm_buffer_memory_used_bytes{id=\"direct\"} 92160.0\njvm_buffer_memory_used_bytes{id=\"mapped\"} 0.0\njvm_buffer_memory_used_bytes{id=\"mapped - 'non-volatile memory'\"} 0.0\n# HELP jvm_buffer_total_capacity_bytes An estimate of the total capacity of the buffers in this pool\n# TYPE jvm_buffer_total_capacity_bytes gauge\njvm_buffer_total_capacity_bytes{id=\"direct\"} 92160.0\njvm_buffer_total_capacity_bytes{id=\"mapped\"} 0.0\njvm_buffer_total_capacity_bytes{id=\"mapped - 'non-volatile memory'\"} 0.0\n# HELP jvm_classes_loaded_classes The number of classes that are currently loaded in the Java virtual machine\n# TYPE jvm_classes_loaded_classes gauge\njvm_classes_loaded_classes 14966.0\n# HELP jvm_classes_loaded_count_classes_total The number of classes loaded in the Java virtual machine\n# TYPE jvm_classes_loaded_count_classes_total counter\njvm_classes_loaded_count_classes_total 14958.0\n# HELP jvm_classes_unloaded_classes_total The number of classes unloaded in the Java virtual machine\n# TYPE jvm_classes_unloaded_classes_total counter\njvm_classes_unloaded_classes_total 0.0\n# HELP jvm_compilation_time_ms_total The approximate accumulated elapsed time spent in compilation\n# TYPE jvm_compilation_time_ms_total counter\njvm_compilation_time_ms_total{compiler=\"HotSpot 64-Bit Tiered Compilers\"} 4031.0\n# HELP jvm_gc_live_data_size_bytes Size of long-lived heap memory pool after reclamation\n# TYPE jvm_gc_live_data_size_bytes gauge\njvm_gc_live_data_size_bytes 0.0\n# HELP jvm_gc_max_data_size_bytes Max size of long-lived heap memory pool\n# TYPE jvm_gc_max_data_size_bytes gauge\njvm_gc_max_data_size_bytes 6.442450944E9\n# HELP jvm_gc_memory_allocated_bytes_total Incremented for an increase in the size of the (young) heap memory pool after one GC to before the next\n# TYPE jvm_gc_memory_allocated_bytes_total counter\njvm_gc_memory_allocated_bytes_total 1.13246208E8\n# HELP jvm_gc_memory_promoted_bytes_total Count of positive increases in the size of the old generation memory pool before GC to after GC\n# TYPE jvm_gc_memory_promoted_bytes_total counter\njvm_gc_memory_promoted_bytes_total 9805336.0\n# HELP jvm_gc_overhead An approximation of the percent of CPU time used by GC activities over the last lookback period or since monitoring began, whichever is shorter, in the range [0..1]\n# TYPE jvm_gc_overhead gauge\njvm_gc_overhead 4.604802615874769E-5\n# HELP jvm_gc_pause_seconds Time spent in GC pause\n# TYPE jvm_gc_pause_seconds summary\njvm_gc_pause_seconds_count{action=\"end of minor GC\",cause=\"G1 Evacuation Pause\",gc=\"G1 Young Generation\"} 2\njvm_gc_pause_seconds_sum{action=\"end of minor GC\",cause=\"G1 Evacuation Pause\",gc=\"G1 Young Generation\"} 0.012\n# HELP jvm_gc_pause_seconds_max Time spent in GC pause\n# TYPE jvm_gc_pause_seconds_max gauge\njvm_gc_pause_seconds_max{action=\"end of minor GC\",cause=\"G1 Evacuation Pause\",gc=\"G1 Young Generation\"} 0.007\n# HELP jvm_memory_committed_bytes The amount of memory in bytes that is committed for the Java virtual machine to use\n# TYPE jvm_memory_committed_bytes gauge\njvm_memory_committed_bytes{area=\"heap\",id=\"G1 Eden Space\"} 6.291456E7\njvm_memory_committed_bytes{area=\"heap\",id=\"G1 Old Gen\"} 4.194304E7\njvm_memory_committed_bytes{area=\"heap\",id=\"G1 Survivor Space\"} 8388608.0\njvm_memory_committed_bytes{area=\"nonheap\",id=\"CodeHeap 'non-nmethods'\"} 2555904.0\njvm_memory_committed_bytes{area=\"nonheap\",id=\"CodeHeap 'non-profiled nmethods'\"} 4063232.0\njvm_memory_committed_bytes{area=\"nonheap\",id=\"CodeHeap 'profiled nmethods'\"} 1.540096E7\njvm_memory_committed_bytes{area=\"nonheap\",id=\"Compressed Class Space\"} 1.0027008E7\njvm_memory_committed_bytes{area=\"nonheap\",id=\"Metaspace\"} 7.2941568E7\n# HELP jvm_memory_max_bytes The maximum amount of memory in bytes that can be used for memory management\n# TYPE jvm_memory_max_bytes gauge\njvm_memory_max_bytes{area=\"heap\",id=\"G1 Eden Space\"} -1.0\njvm_memory_max_bytes{area=\"heap\",id=\"G1 Old Gen\"} 6.442450944E9\njvm_memory_max_bytes{area=\"heap\",id=\"G1 Survivor Space\"} -1.0\njvm_memory_max_bytes{area=\"nonheap\",id=\"CodeHeap 'non-nmethods'\"} 5849088.0\njvm_memory_max_bytes{area=\"nonheap\",id=\"CodeHeap 'non-profiled nmethods'\"} 1.22912768E8\njvm_memory_max_bytes{area=\"nonheap\",id=\"CodeHeap 'profiled nmethods'\"} 1.22896384E8\njvm_memory_max_bytes{area=\"nonheap\",id=\"Compressed Class Space\"} 1.073741824E9\njvm_memory_max_bytes{area=\"nonheap\",id=\"Metaspace\"} -1.0\n# HELP jvm_memory_usage_after_gc The percentage of long-lived heap pool used after the last GC event, in the range [0..1]\n# TYPE jvm_memory_usage_after_gc gauge\njvm_memory_usage_after_gc{area=\"heap\",pool=\"long-lived\"} 0.004537579913934072\n# HELP jvm_memory_used_bytes The amount of used memory\n# TYPE jvm_memory_used_bytes gauge\njvm_memory_used_bytes{area=\"heap\",id=\"G1 Eden Space\"} 4194304.0\njvm_memory_used_bytes{area=\"heap\",id=\"G1 Old Gen\"} 2.9233136E7\njvm_memory_used_bytes{area=\"heap\",id=\"G1 Survivor Space\"} 5525744.0\njvm_memory_used_bytes{area=\"nonheap\",id=\"CodeHeap 'non-nmethods'\"} 1593600.0\njvm_memory_used_bytes{area=\"nonheap\",id=\"CodeHeap 'non-profiled nmethods'\"} 4002176.0\njvm_memory_used_bytes{area=\"nonheap\",id=\"CodeHeap 'profiled nmethods'\"} 1.5310976E7\njvm_memory_used_bytes{area=\"nonheap\",id=\"Compressed Class Space\"} 9485296.0\njvm_memory_used_bytes{area=\"nonheap\",id=\"Metaspace\"} 7.1705808E7\n# HELP jvm_threads_daemon_threads The current number of live daemon threads\n# TYPE jvm_threads_daemon_threads gauge\njvm_threads_daemon_threads 19.0\n# HELP jvm_threads_live_threads The current number of live threads including both daemon and non-daemon threads\n# TYPE jvm_threads_live_threads gauge\njvm_threads_live_threads 23.0\n# HELP jvm_threads_peak_threads The peak live thread count since the Java virtual machine started or peak was reset\n# TYPE jvm_threads_peak_threads gauge\njvm_threads_peak_threads 24.0\n# HELP jvm_threads_started_threads_total The total number of application threads started in the JVM\n# TYPE jvm_threads_started_threads_total counter\njvm_threads_started_threads_total 28.0\n# HELP jvm_threads_states_threads The current number of threads\n# TYPE jvm_threads_states_threads gauge\njvm_threads_states_threads{state=\"blocked\"} 0.0\njvm_threads_states_threads{state=\"new\"} 0.0\njvm_threads_states_threads{state=\"runnable\"} 7.0\njvm_threads_states_threads{state=\"terminated\"} 0.0\njvm_threads_states_threads{state=\"timed-waiting\"} 5.0\njvm_threads_states_threads{state=\"waiting\"} 11.0\n# HELP logback_events_total Number of log events that were enabled by the effective log level\n# TYPE logback_events_total counter\nlogback_events_total{level=\"debug\"} 0.0\nlogback_events_total{level=\"error\"} 0.0\nlogback_events_total{level=\"info\"} 18.0\nlogback_events_total{level=\"trace\"} 0.0\nlogback_events_total{level=\"warn\"} 2.0\n# HELP process_cpu_time_ns_total The \"cpu time\" used by the Java Virtual Machine process\n# TYPE process_cpu_time_ns_total counter\nprocess_cpu_time_ns_total 7.445634E9\n# HELP process_cpu_usage The \"recent cpu usage\" for the Java Virtual Machine process\n# TYPE process_cpu_usage gauge\nprocess_cpu_usage 0.0\n# HELP process_files_max_files The maximum file descriptor count\n# TYPE process_files_max_files gauge\nprocess_files_max_files 1048576.0\n# HELP process_files_open_files The open file descriptor count\n# TYPE process_files_open_files gauge\nprocess_files_open_files 15.0\n# HELP process_start_time_seconds Start time of the process since unix epoch.\n# TYPE process_start_time_seconds gauge\nprocess_start_time_seconds 1.791064760308E9\n# HELP process_uptime_seconds The uptime of the Java virtual machine\n# TYPE process_uptime_seconds gauge\nprocess_uptime_seconds 262.858\n# HELP spring_data_repository_invocations_seconds Duration of repository invocations\n# TYPE spring_data_repository_invocations_seconds summary\nspring_data_repository_invocations_seconds_count{exception=\"None\",method=\"findByCode\",repository=\"LinkRepository\",state=\"SUCCESS\"} 3\nspring_data_repository_invocations_seconds_sum{exception=\"None\",method=\"findByCode\",repository=\"LinkRepository\",state=\"SUCCESS\"} 0.002801001\nspring_data_repository_invocations_seconds_count{exception=\"None\",method=\"findByIdempotencyKey\",repository=\"LinkRepository\",state=\"SUCCESS\"} 3\nspring_data_repository_invocations_seconds_sum{exception=\"None\",method=\"findByIdempotencyKey\",repository=\"LinkRepository\",state=\"SUCCESS\"} 0.03923825\nspring_data_repository_invocations_seconds_count{exception=\"None\",method=\"retire\",repository=\"LinkRepository\",state=\"SUCCESS\"} 1\nspring_data_repository_invocations_seconds_sum{exception=\"None\",method=\"retire\",repository=\"LinkRepository\",state=\"SUCCESS\"} 0.001597375\nspring_data_repository_invocations_seconds_count{exception=\"None\",method=\"save\",repository=\"LinkRepository\",state=\"SUCCESS\"} 1\nspring_data_repository_invocations_seconds_sum{exception=\"None\",method=\"save\",repository=\"LinkRepository\",state=\"SUCCESS\"} 0.021372042\n# HELP spring_data_repository_invocations_seconds_max Duration of repository invocations\n# TYPE spring_data_repository_invocations_seconds_max gauge\nspring_data_repository_invocations_seconds_max{exception=\"None\",method=\"findByCode\",repository=\"LinkRepository\",state=\"SUCCESS\"} 9.98292E-4\nspring_data_repository_invocations_seconds_max{exception=\"None\",method=\"findByIdempotencyKey\",repository=\"LinkRepository\",state=\"SUCCESS\"} 0.034120208\nspring_data_repository_invocations_seconds_max{exception=\"None\",method=\"retire\",repository=\"LinkRepository\",state=\"SUCCESS\"} 0.001597375\nspring_data_repository_invocations_seconds_max{exception=\"None\",method=\"save\",repository=\"LinkRepository\",state=\"SUCCESS\"} 0.021372042\n# HELP system_cpu_count The number of processors available to the Java virtual machine\n# TYPE system_cpu_count gauge\nsystem_cpu_count 14.0\n# HELP system_cpu_usage The \"recent cpu usage\" of the system the application is running in\n# TYPE system_cpu_usage gauge\nsystem_cpu_usage 0.0\n# HELP system_load_average_1m The sum of the number of runnable entities queued to available processors and the number of runnable entities running on the available processors averaged over a period of time\n# TYPE system_load_average_1m gauge\nsystem_load_average_1m 5.16943359375\n# HELP tomcat_sessions_active_current_sessions  \n# TYPE tomcat_sessions_active_current_sessions gauge\ntomcat_sessions_active_current_sessions 0.0\n# HELP tomcat_sessions_active_max_sessions  \n# TYPE tomcat_sessions_active_max_sessions gauge\ntomcat_sessions_active_max_sessions 0.0\n# HELP tomcat_sessions_alive_max_seconds  \n# TYPE tomcat_sessions_alive_max_seconds gauge\ntomcat_sessions_alive_max_seconds 0.0\n# HELP tomcat_sessions_created_sessions_total  \n# TYPE tomcat_sessions_created_sessions_total counter\ntomcat_sessions_created_sessions_total 0.0\n# HELP tomcat_sessions_expired_sessions_total  \n# TYPE tomcat_sessions_expired_sessions_total counter\ntomcat_sessions_expired_sessions_total 0.0\n# HELP tomcat_sessions_rejected_sessions_total  \n# TYPE tomcat_sessions_rejected_sessions_total counter\ntomcat_sessions_rejected_sessions_total 0.0\n# HELP urlshort_ratelimit_rejections_total Requests answered 429 because the client's bucket was empty\n# TYPE urlshort_ratelimit_rejections_total counter\nurlshort_ratelimit_rejections_total{budget=\"create\"} 0.0\nurlshort_ratelimit_rejections_total{budget=\"redirect\"} 0.0\n",
+      "headerMap": {
+        "x-request-id": "d85d4bdd-26c4-485b-a5d6-d4f43aceae7d",
+        "content-type": "text/plain;version=0.0.4;charset=utf-8",
+        "content-length": "22842",
+        "date": "Sat, 03 Oct 2026 22:03:43 GMT"
+      }
+    },
+    {
+      "name": "candidate-bad-create",
+      "method": "POST",
+      "url": "http://127.0.0.1:18152/api/links",
+      "peer": "actual localhost",
+      "headersSent": [
+        "User-Agent: qa-dogfood-privacy-canary-4fe7042"
+      ],
+      "before": "2026-10-03T22:03:43.287Z",
+      "after": "2026-10-03T22:03:43.415Z",
+      "status": 400,
+      "headers": "HTTP/1.1 400 \nX-Request-Id: a6e1560e-51a7-4bce-8e85-15d747341b37\nContent-Type: application/problem+json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 22:03:43 GMT\nConnection: close\n\n",
+      "body": "{\"instance\":\"urn:uuid:a6e1560e-51a7-4bce-8e85-15d747341b37\",\"status\":400,\"title\":\"Bad Request\",\"errors\":[{\"field\":\"url\",\"rule\":\"scheme\",\"message\":\"url must start with http:// or https://\"}]}",
+      "json": {
+        "instance": "urn:uuid:a6e1560e-51a7-4bce-8e85-15d747341b37",
+        "status": 400,
+        "title": "Bad Request",
+        "errors": [
+          {
+            "field": "url",
+            "rule": "scheme",
+            "message": "url must start with http:// or https://"
+          }
+        ]
+      },
+      "headerMap": {
+        "x-request-id": "a6e1560e-51a7-4bce-8e85-15d747341b37",
+        "content-type": "application/problem+json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 22:03:43 GMT",
+        "connection": "close"
+      }
+    },
+    {
+      "name": "candidate-create",
+      "method": "POST",
+      "url": "http://127.0.0.1:18152/api/links",
+      "peer": "actual localhost",
+      "headersSent": [
+        "Idempotency-Key: qa-dogfood-4fe7042"
+      ],
+      "before": "2026-10-03T22:03:43.519Z",
+      "after": "2026-10-03T22:03:43.650Z",
+      "status": 201,
+      "headers": "HTTP/1.1 201 \nX-Request-Id: 3773eb93-8d82-45a8-a977-acb0512c3894\nLocation: /api/links/YucSjZ1E\nContent-Type: application/json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 22:03:43 GMT\n\n",
+      "body": "{\"code\":\"YucSjZ1E\",\"shortUrl\":\"http://localhost:8080/YucSjZ1E\",\"url\":\"https://qa-dogfood.example/canary-4fe7042\",\"state\":\"active\",\"createdAt\":\"2026-10-03T22:03:43.555Z\"}",
+      "json": {
+        "code": "YucSjZ1E",
+        "shortUrl": "http://localhost:8080/YucSjZ1E",
+        "url": "https://qa-dogfood.example/canary-4fe7042",
+        "state": "active",
+        "createdAt": "2026-10-03T22:03:43.555Z"
+      },
+      "headerMap": {
+        "x-request-id": "3773eb93-8d82-45a8-a977-acb0512c3894",
+        "location": "/api/links/YucSjZ1E",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 22:03:43 GMT"
+      }
+    },
+    {
+      "name": "candidate-reuse",
+      "method": "POST",
+      "url": "http://127.0.0.1:18152/api/links",
+      "peer": "actual localhost",
+      "headersSent": [
+        "Idempotency-Key: qa-dogfood-4fe7042"
+      ],
+      "before": "2026-10-03T22:03:43.768Z",
+      "after": "2026-10-03T22:03:43.827Z",
+      "status": 201,
+      "headers": "HTTP/1.1 201 \nX-Request-Id: 7a69e4a2-40db-4071-9bfc-99fe5d21b15c\nLocation: /api/links/YucSjZ1E\nContent-Type: application/json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 22:03:43 GMT\n\n",
+      "body": "{\"code\":\"YucSjZ1E\",\"shortUrl\":\"http://localhost:8080/YucSjZ1E\",\"url\":\"https://qa-dogfood.example/canary-4fe7042\",\"state\":\"active\",\"createdAt\":\"2026-10-03T22:03:43.555Z\"}",
+      "json": {
+        "code": "YucSjZ1E",
+        "shortUrl": "http://localhost:8080/YucSjZ1E",
+        "url": "https://qa-dogfood.example/canary-4fe7042",
+        "state": "active",
+        "createdAt": "2026-10-03T22:03:43.555Z"
+      },
+      "headerMap": {
+        "x-request-id": "7a69e4a2-40db-4071-9bfc-99fe5d21b15c",
+        "location": "/api/links/YucSjZ1E",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 22:03:43 GMT"
+      }
+    },
+    {
+      "name": "candidate-mismatch",
+      "method": "POST",
+      "url": "http://127.0.0.1:18152/api/links",
+      "peer": "actual localhost",
+      "headersSent": [
+        "Idempotency-Key: qa-dogfood-4fe7042"
+      ],
+      "before": "2026-10-03T22:03:43.925Z",
+      "after": "2026-10-03T22:03:43.982Z",
+      "status": 422,
+      "headers": "HTTP/1.1 422 \nX-Request-Id: d78e3bbf-eb47-4435-bdc3-ae474fbe9396\nContent-Type: application/problem+json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 22:03:43 GMT\n\n",
+      "body": "{\"instance\":\"urn:uuid:d78e3bbf-eb47-4435-bdc3-ae474fbe9396\",\"status\":422,\"title\":\"Unprocessable Content\",\"errors\":[{\"field\":\"Idempotency-Key\",\"rule\":\"mismatch\",\"message\":\"Idempotency-Key was already used with a different url\"}]}",
+      "json": {
+        "instance": "urn:uuid:d78e3bbf-eb47-4435-bdc3-ae474fbe9396",
+        "status": 422,
+        "title": "Unprocessable Content",
+        "errors": [
+          {
+            "field": "Idempotency-Key",
+            "rule": "mismatch",
+            "message": "Idempotency-Key was already used with a different url"
+          }
+        ]
+      },
+      "headerMap": {
+        "x-request-id": "d78e3bbf-eb47-4435-bdc3-ae474fbe9396",
+        "content-type": "application/problem+json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 22:03:43 GMT"
+      }
+    },
+    {
+      "name": "candidate-unknown",
+      "method": "GET",
+      "url": "http://127.0.0.1:18152/api/links/nosuch12",
+      "peer": "actual localhost",
+      "headersSent": [],
+      "before": "2026-10-03T22:03:44.058Z",
+      "after": "2026-10-03T22:03:44.115Z",
+      "status": 404,
+      "headers": "HTTP/1.1 404 \nX-Request-Id: 06df275d-20ea-4d9f-9929-7bf338bfe34d\nContent-Type: application/problem+json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 22:03:44 GMT\n\n",
+      "body": "{\"instance\":\"urn:uuid:06df275d-20ea-4d9f-9929-7bf338bfe34d\",\"status\":404,\"title\":\"Not Found\"}",
+      "json": {
+        "instance": "urn:uuid:06df275d-20ea-4d9f-9929-7bf338bfe34d",
+        "status": 404,
+        "title": "Not Found"
+      },
+      "headerMap": {
+        "x-request-id": "06df275d-20ea-4d9f-9929-7bf338bfe34d",
+        "content-type": "application/problem+json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 22:03:44 GMT"
+      }
+    },
+    {
+      "name": "candidate-retire",
+      "method": "DELETE",
+      "url": "http://127.0.0.1:18152/api/links/YucSjZ1E",
+      "peer": "actual localhost",
+      "headersSent": [],
+      "before": "2026-10-03T22:03:44.192Z",
+      "after": "2026-10-03T22:03:44.257Z",
+      "status": 204,
+      "headers": "HTTP/1.1 204 \nX-Request-Id: 6d72dc95-0e54-4966-be57-ee734906b5b5\nDate: Sat, 03 Oct 2026 22:03:44 GMT\n\n",
+      "body": "",
+      "headerMap": {
+        "x-request-id": "6d72dc95-0e54-4966-be57-ee734906b5b5",
+        "date": "Sat, 03 Oct 2026 22:03:44 GMT"
+      }
+    },
+    {
+      "name": "candidate-gone",
+      "method": "GET",
+      "url": "http://127.0.0.1:18152/YucSjZ1E",
+      "peer": "actual localhost",
+      "headersSent": [],
+      "before": "2026-10-03T22:03:44.332Z",
+      "after": "2026-10-03T22:03:44.396Z",
+      "status": 410,
+      "headers": "HTTP/1.1 410 \nX-Request-Id: 94a23263-1a96-42c9-8fb8-77cc9194c409\nContent-Type: application/problem+json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 22:03:44 GMT\n\n",
+      "body": "{\"instance\":\"urn:uuid:94a23263-1a96-42c9-8fb8-77cc9194c409\",\"status\":410,\"title\":\"Gone\"}",
+      "json": {
+        "instance": "urn:uuid:94a23263-1a96-42c9-8fb8-77cc9194c409",
+        "status": 410,
+        "title": "Gone"
+      },
+      "headerMap": {
+        "x-request-id": "94a23263-1a96-42c9-8fb8-77cc9194c409",
+        "content-type": "application/problem+json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 22:03:44 GMT"
+      }
+    },
+    {
+      "name": "candidate-bad-audit",
+      "method": "GET",
+      "url": "http://127.0.0.1:18152/api/audit?limit=0",
+      "peer": "actual localhost",
+      "headersSent": [],
+      "before": "2026-10-03T22:03:44.471Z",
+      "after": "2026-10-03T22:03:44.525Z",
+      "status": 400,
+      "headers": "HTTP/1.1 400 \nX-Request-Id: 8355c803-afd8-4202-825b-a2c64183a6ad\nContent-Type: application/problem+json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 22:03:44 GMT\nConnection: close\n\n",
+      "body": "{\"instance\":\"urn:uuid:8355c803-afd8-4202-825b-a2c64183a6ad\",\"status\":400,\"title\":\"Bad Request\",\"errors\":[{\"field\":\"limit\",\"rule\":\"range\",\"message\":\"must be from 1 to 100\"}]}",
+      "json": {
+        "instance": "urn:uuid:8355c803-afd8-4202-825b-a2c64183a6ad",
+        "status": 400,
+        "title": "Bad Request",
+        "errors": [
+          {
+            "field": "limit",
+            "rule": "range",
+            "message": "must be from 1 to 100"
+          }
+        ]
+      },
+      "headerMap": {
+        "x-request-id": "8355c803-afd8-4202-825b-a2c64183a6ad",
+        "content-type": "application/problem+json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 22:03:44 GMT",
+        "connection": "close"
+      }
+    },
+    {
+      "name": "candidate-audit",
+      "method": "GET",
+      "url": "http://127.0.0.1:18152/api/audit?limit=10",
+      "peer": "actual localhost",
+      "headersSent": [],
+      "before": "2026-10-03T22:03:44.602Z",
+      "after": "2026-10-03T22:03:44.659Z",
+      "status": 200,
+      "headers": "HTTP/1.1 200 \nX-Request-Id: 522c8ff1-6a1b-4e9a-b649-571fd4096e30\nContent-Type: application/json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 22:03:44 GMT\n\n",
+      "body": "{\"items\":[{\"occurredAt\":\"2026-10-03T22:03:44.230Z\",\"actor\":\"anonymous\",\"action\":\"link.retire\",\"entity\":\"link\",\"entityId\":\"YucSjZ1E\",\"requestId\":\"6d72dc95-0e54-4966-be57-ee734906b5b5\",\"before\":{\"url\":\"https://qa-dogfood.example/canary-4fe7042\",\"state\":\"active\"},\"after\":{\"url\":\"https://qa-dogfood.example/canary-4fe7042\",\"state\":\"retired\"}},{\"occurredAt\":\"2026-10-03T22:03:43.620Z\",\"actor\":\"anonymous\",\"action\":\"link.create\",\"entity\":\"link\",\"entityId\":\"YucSjZ1E\",\"requestId\":\"3773eb93-8d82-45a8-a977-acb0512c3894\",\"before\":null,\"after\":{\"url\":\"https://qa-dogfood.example/canary-4fe7042\",\"state\":\"active\"}}],\"next\":null}",
+      "json": {
+        "items": [
+          {
+            "occurredAt": "2026-10-03T22:03:44.230Z",
+            "actor": "anonymous",
+            "action": "link.retire",
+            "entity": "link",
+            "entityId": "YucSjZ1E",
+            "requestId": "6d72dc95-0e54-4966-be57-ee734906b5b5",
+            "before": {
+              "url": "https://qa-dogfood.example/canary-4fe7042",
+              "state": "active"
+            },
+            "after": {
+              "url": "https://qa-dogfood.example/canary-4fe7042",
+              "state": "retired"
+            }
+          },
+          {
+            "occurredAt": "2026-10-03T22:03:43.620Z",
+            "actor": "anonymous",
+            "action": "link.create",
+            "entity": "link",
+            "entityId": "YucSjZ1E",
+            "requestId": "3773eb93-8d82-45a8-a977-acb0512c3894",
+            "before": null,
+            "after": {
+              "url": "https://qa-dogfood.example/canary-4fe7042",
+              "state": "active"
+            }
+          }
+        ],
+        "next": null
+      },
+      "headerMap": {
+        "x-request-id": "522c8ff1-6a1b-4e9a-b649-571fd4096e30",
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+        "date": "Sat, 03 Oct 2026 22:03:44 GMT"
+      }
+    },
+    {
+      "name": "candidate-disk-free",
+      "method": "GET",
+      "url": "http://127.0.0.1:18152/actuator/metrics/disk.free",
+      "peer": "actual localhost",
+      "headersSent": [],
+      "before": "2026-10-03T22:03:44.736Z",
+      "after": "2026-10-03T22:03:44.802Z",
+      "status": 200,
+      "headers": "HTTP/1.1 200 \nX-Request-Id: 3d0851aa-ec8c-4535-91a5-765b9338a880\nContent-Disposition: inline;filename=f.txt\nContent-Type: application/vnd.spring-boot.actuator.v3+json\nContent-Length: 157\nDate: Sat, 03 Oct 2026 22:03:44 GMT\n\n",
+      "body": "{\"availableTags\":[],\"baseUnit\":\"bytes\",\"description\":\"Usable space for path\",\"measurements\":[{\"statistic\":\"VALUE\",\"value\":3.25458944E10}],\"name\":\"disk.free\"}",
+      "json": {
+        "availableTags": [],
+        "baseUnit": "bytes",
+        "description": "Usable space for path",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 32545894400
+          }
+        ],
+        "name": "disk.free"
+      },
+      "headerMap": {
+        "x-request-id": "3d0851aa-ec8c-4535-91a5-765b9338a880",
+        "content-disposition": "inline;filename=f.txt",
+        "content-type": "application/vnd.spring-boot.actuator.v3+json",
+        "content-length": "157",
+        "date": "Sat, 03 Oct 2026 22:03:44 GMT"
+      }
+    },
+    {
+      "name": "candidate-disk-total",
+      "method": "GET",
+      "url": "http://127.0.0.1:18152/actuator/metrics/disk.total",
+      "peer": "actual localhost",
+      "headersSent": [],
+      "before": "2026-10-03T22:03:44.881Z",
+      "after": "2026-10-03T22:03:44.938Z",
+      "status": 200,
+      "headers": "HTTP/1.1 200 \nX-Request-Id: e0fcdd71-d1e8-4a22-80f8-9ee34344cf1e\nContent-Disposition: inline;filename=f.txt\nContent-Type: application/vnd.spring-boot.actuator.v3+json\nContent-Length: 160\nDate: Sat, 03 Oct 2026 22:03:44 GMT\n\n",
+      "body": "{\"availableTags\":[],\"baseUnit\":\"bytes\",\"description\":\"Total space for path\",\"measurements\":[{\"statistic\":\"VALUE\",\"value\":4.94384795648E11}],\"name\":\"disk.total\"}",
+      "json": {
+        "availableTags": [],
+        "baseUnit": "bytes",
+        "description": "Total space for path",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 494384795648
+          }
+        ],
+        "name": "disk.total"
+      },
+      "headerMap": {
+        "x-request-id": "e0fcdd71-d1e8-4a22-80f8-9ee34344cf1e",
+        "content-disposition": "inline;filename=f.txt",
+        "content-type": "application/vnd.spring-boot.actuator.v3+json",
+        "content-length": "160",
+        "date": "Sat, 03 Oct 2026 22:03:44 GMT"
+      }
+    },
+    {
+      "name": "candidate-prometheus",
+      "method": "GET",
+      "url": "http://127.0.0.1:18152/actuator/prometheus",
+      "peer": "actual localhost",
+      "headersSent": [],
+      "before": "2026-10-03T22:03:45.016Z",
+      "after": "2026-10-03T22:03:45.085Z",
+      "status": 200,
+      "headers": "HTTP/1.1 200 \nX-Request-Id: 9d0d32bd-e9d2-44b1-a60d-198c5c1718d3\nContent-Type: text/plain;version=0.0.4;charset=utf-8\nContent-Length: 22743\nDate: Sat, 03 Oct 2026 22:03:45 GMT\n\n",
+      "body": "# HELP application_ready_time_seconds Time taken for the application to be ready to service requests\n# TYPE application_ready_time_seconds gauge\napplication_ready_time_seconds{main_application_class=\"dev.urlshort.UrlshortApplication\"} 2.266\n# HELP application_started_time_seconds Time taken to start the application\n# TYPE application_started_time_seconds gauge\napplication_started_time_seconds{main_application_class=\"dev.urlshort.UrlshortApplication\"} 2.236\n# HELP disk_free_bytes Usable space for path\n# TYPE disk_free_bytes gauge\ndisk_free_bytes 3.254595584E10\n# HELP disk_total_bytes Total space for path\n# TYPE disk_total_bytes gauge\ndisk_total_bytes 4.94384795648E11\n# HELP executor_active_threads The approximate number of threads that are actively executing tasks\n# TYPE executor_active_threads gauge\nexecutor_active_threads{name=\"applicationTaskExecutor\"} 0.0\n# HELP executor_completed_tasks_total The approximate total number of tasks that have completed execution\n# TYPE executor_completed_tasks_total counter\nexecutor_completed_tasks_total{name=\"applicationTaskExecutor\"} 0.0\n# HELP executor_pool_core_threads The core number of threads for the pool\n# TYPE executor_pool_core_threads gauge\nexecutor_pool_core_threads{name=\"applicationTaskExecutor\"} 8.0\n# HELP executor_pool_max_threads The maximum allowed number of threads in the pool\n# TYPE executor_pool_max_threads gauge\nexecutor_pool_max_threads{name=\"applicationTaskExecutor\"} 2.147483647E9\n# HELP executor_pool_size_threads The current number of threads in the pool\n# TYPE executor_pool_size_threads gauge\nexecutor_pool_size_threads{name=\"applicationTaskExecutor\"} 0.0\n# HELP executor_queue_remaining_tasks The number of additional elements that this queue can ideally accept without blocking\n# TYPE executor_queue_remaining_tasks gauge\nexecutor_queue_remaining_tasks{name=\"applicationTaskExecutor\"} 2.147483647E9\n# HELP executor_queued_tasks The approximate number of tasks that are queued for execution\n# TYPE executor_queued_tasks gauge\nexecutor_queued_tasks{name=\"applicationTaskExecutor\"} 0.0\n# HELP hikaricp_connections Total connections\n# TYPE hikaricp_connections gauge\nhikaricp_connections{pool=\"HikariPool-1\"} 10.0\n# HELP hikaricp_connections_acquire_seconds Connection acquire time\n# TYPE hikaricp_connections_acquire_seconds summary\nhikaricp_connections_acquire_seconds_count{pool=\"HikariPool-1\"} 7\nhikaricp_connections_acquire_seconds_sum{pool=\"HikariPool-1\"} 0.0\n# HELP hikaricp_connections_acquire_seconds_max Connection acquire time\n# TYPE hikaricp_connections_acquire_seconds_max gauge\nhikaricp_connections_acquire_seconds_max{pool=\"HikariPool-1\"} 0.0\n# HELP hikaricp_connections_active Active connections\n# TYPE hikaricp_connections_active gauge\nhikaricp_connections_active{pool=\"HikariPool-1\"} 0.0\n# HELP hikaricp_connections_creation_seconds Connection creation time\n# TYPE hikaricp_connections_creation_seconds summary\nhikaricp_connections_creation_seconds_count{pool=\"HikariPool-1\"} 0\nhikaricp_connections_creation_seconds_sum{pool=\"HikariPool-1\"} 0.0\n# HELP hikaricp_connections_creation_seconds_max Connection creation time\n# TYPE hikaricp_connections_creation_seconds_max gauge\nhikaricp_connections_creation_seconds_max{pool=\"HikariPool-1\"} 0.0\n# HELP hikaricp_connections_idle Idle connections\n# TYPE hikaricp_connections_idle gauge\nhikaricp_connections_idle{pool=\"HikariPool-1\"} 10.0\n# HELP hikaricp_connections_max Max connections\n# TYPE hikaricp_connections_max gauge\nhikaricp_connections_max{pool=\"HikariPool-1\"} 10.0\n# HELP hikaricp_connections_min Min connections\n# TYPE hikaricp_connections_min gauge\nhikaricp_connections_min{pool=\"HikariPool-1\"} 10.0\n# HELP hikaricp_connections_pending Pending threads\n# TYPE hikaricp_connections_pending gauge\nhikaricp_connections_pending{pool=\"HikariPool-1\"} 0.0\n# HELP hikaricp_connections_timeout_total Connection timeout total count\n# TYPE hikaricp_connections_timeout_total counter\nhikaricp_connections_timeout_total{pool=\"HikariPool-1\"} 0.0\n# HELP hikaricp_connections_usage_seconds Connection usage time\n# TYPE hikaricp_connections_usage_seconds summary\nhikaricp_connections_usage_seconds_count{pool=\"HikariPool-1\"} 7\nhikaricp_connections_usage_seconds_sum{pool=\"HikariPool-1\"} 0.088\n# HELP hikaricp_connections_usage_seconds_max Connection usage time\n# TYPE hikaricp_connections_usage_seconds_max gauge\nhikaricp_connections_usage_seconds_max{pool=\"HikariPool-1\"} 0.067\n# HELP http_server_requests_active_seconds  \n# TYPE http_server_requests_active_seconds summary\nhttp_server_requests_active_seconds_count{exception=\"none\",method=\"DELETE\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0\nhttp_server_requests_active_seconds_sum{exception=\"none\",method=\"DELETE\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0.0\nhttp_server_requests_active_seconds_count{exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 1\nhttp_server_requests_active_seconds_sum{exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0.007085292\nhttp_server_requests_active_seconds_count{exception=\"none\",method=\"POST\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0\nhttp_server_requests_active_seconds_sum{exception=\"none\",method=\"POST\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0.0\n# HELP http_server_requests_active_seconds_max  \n# TYPE http_server_requests_active_seconds_max gauge\nhttp_server_requests_active_seconds_max{exception=\"none\",method=\"DELETE\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0.0\nhttp_server_requests_active_seconds_max{exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0.007250375\nhttp_server_requests_active_seconds_max{exception=\"none\",method=\"POST\",outcome=\"SUCCESS\",status=\"200\",uri=\"UNKNOWN\"} 0.0\n# HELP http_server_requests_seconds  \n# TYPE http_server_requests_seconds summary\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"DELETE\",outcome=\"SUCCESS\",status=\"204\",uri=\"/api/links/{code:[A-Za-z0-9]{6,32}}\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"DELETE\",outcome=\"SUCCESS\",status=\"204\",uri=\"/api/links/{code:[A-Za-z0-9]{6,32}}\"} 0.008775292\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"400\",uri=\"/api/audit\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"400\",uri=\"/api/audit\"} 0.001876375\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"404\",uri=\"/api/links/{code:[A-Za-z0-9]{6,32}}\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"404\",uri=\"/api/links/{code:[A-Za-z0-9]{6,32}}\"} 0.003385292\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"410\",uri=\"/{code:[A-Za-z0-9]{6,32}}\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"410\",uri=\"/{code:[A-Za-z0-9]{6,32}}\"} 0.002448292\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/actuator/metrics/{requiredMetricName}\"} 2\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/actuator/metrics/{requiredMetricName}\"} 0.014467167\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/api/audit\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/api/audit\"} 0.005689167\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/v3/api-docs\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/v3/api-docs\"} 0.305707667\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"CLIENT_ERROR\",status=\"400\",uri=\"/api/links\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"CLIENT_ERROR\",status=\"400\",uri=\"/api/links\"} 0.06844475\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"CLIENT_ERROR\",status=\"422\",uri=\"/api/links\"} 1\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"CLIENT_ERROR\",status=\"422\",uri=\"/api/links\"} 0.003611083\nhttp_server_requests_seconds_count{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"SUCCESS\",status=\"201\",uri=\"/api/links\"} 2\nhttp_server_requests_seconds_sum{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"SUCCESS\",status=\"201\",uri=\"/api/links\"} 0.083798542\n# HELP http_server_requests_seconds_max  \n# TYPE http_server_requests_seconds_max gauge\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"DELETE\",outcome=\"SUCCESS\",status=\"204\",uri=\"/api/links/{code:[A-Za-z0-9]{6,32}}\"} 0.008775292\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"400\",uri=\"/api/audit\"} 0.001876375\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"404\",uri=\"/api/links/{code:[A-Za-z0-9]{6,32}}\"} 0.003385292\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"CLIENT_ERROR\",status=\"410\",uri=\"/{code:[A-Za-z0-9]{6,32}}\"} 0.002448292\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/actuator/metrics/{requiredMetricName}\"} 0.013289792\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/api/audit\"} 0.005689167\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SUCCESS\",status=\"200\",uri=\"/v3/api-docs\"} 0.305707667\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"CLIENT_ERROR\",status=\"400\",uri=\"/api/links\"} 0.06844475\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"CLIENT_ERROR\",status=\"422\",uri=\"/api/links\"} 0.003611083\nhttp_server_requests_seconds_max{error=\"none\",exception=\"none\",method=\"POST\",outcome=\"SUCCESS\",status=\"201\",uri=\"/api/links\"} 0.077364\n# HELP jdbc_connections_active Current number of active connections that have been allocated from the data source.\n# TYPE jdbc_connections_active gauge\njdbc_connections_active{name=\"dataSource\"} 0.0\n# HELP jdbc_connections_idle Number of established but idle connections.\n# TYPE jdbc_connections_idle gauge\njdbc_connections_idle{name=\"dataSource\"} 10.0\n# HELP jdbc_connections_max Maximum number of active connections that can be allocated at the same time.\n# TYPE jdbc_connections_max gauge\njdbc_connections_max{name=\"dataSource\"} 10.0\n# HELP jdbc_connections_min Minimum number of idle connections in the pool.\n# TYPE jdbc_connections_min gauge\njdbc_connections_min{name=\"dataSource\"} 10.0\n# HELP jvm_info JVM version info\n# TYPE jvm_info gauge\njvm_info{runtime=\"OpenJDK Runtime Environment\",vendor=\"Homebrew\",version=\"21.0.10\"} 1\n# HELP jvm_buffer_count_buffers An estimate of the number of buffers in the pool\n# TYPE jvm_buffer_count_buffers gauge\njvm_buffer_count_buffers{id=\"direct\"} 11.0\njvm_buffer_count_buffers{id=\"mapped\"} 0.0\njvm_buffer_count_buffers{id=\"mapped - 'non-volatile memory'\"} 0.0\n# HELP jvm_buffer_memory_used_bytes An estimate of the memory that the Java virtual machine is using for this buffer pool\n# TYPE jvm_buffer_memory_used_bytes gauge\njvm_buffer_memory_used_bytes{id=\"direct\"} 92160.0\njvm_buffer_memory_used_bytes{id=\"mapped\"} 0.0\njvm_buffer_memory_used_bytes{id=\"mapped - 'non-volatile memory'\"} 0.0\n# HELP jvm_buffer_total_capacity_bytes An estimate of the total capacity of the buffers in this pool\n# TYPE jvm_buffer_total_capacity_bytes gauge\njvm_buffer_total_capacity_bytes{id=\"direct\"} 92160.0\njvm_buffer_total_capacity_bytes{id=\"mapped\"} 0.0\njvm_buffer_total_capacity_bytes{id=\"mapped - 'non-volatile memory'\"} 0.0\n# HELP jvm_classes_loaded_classes The number of classes that are currently loaded in the Java virtual machine\n# TYPE jvm_classes_loaded_classes gauge\njvm_classes_loaded_classes 14963.0\n# HELP jvm_classes_loaded_count_classes_total The number of classes loaded in the Java virtual machine\n# TYPE jvm_classes_loaded_count_classes_total counter\njvm_classes_loaded_count_classes_total 14975.0\n# HELP jvm_classes_unloaded_classes_total The number of classes unloaded in the Java virtual machine\n# TYPE jvm_classes_unloaded_classes_total counter\njvm_classes_unloaded_classes_total 0.0\n# HELP jvm_compilation_time_ms_total The approximate accumulated elapsed time spent in compilation\n# TYPE jvm_compilation_time_ms_total counter\njvm_compilation_time_ms_total{compiler=\"HotSpot 64-Bit Tiered Compilers\"} 4282.0\n# HELP jvm_gc_live_data_size_bytes Size of long-lived heap memory pool after reclamation\n# TYPE jvm_gc_live_data_size_bytes gauge\njvm_gc_live_data_size_bytes 0.0\n# HELP jvm_gc_max_data_size_bytes Max size of long-lived heap memory pool\n# TYPE jvm_gc_max_data_size_bytes gauge\njvm_gc_max_data_size_bytes 6.442450944E9\n# HELP jvm_gc_memory_allocated_bytes_total Incremented for an increase in the size of the (young) heap memory pool after one GC to before the next\n# TYPE jvm_gc_memory_allocated_bytes_total counter\njvm_gc_memory_allocated_bytes_total 1.17440512E8\n# HELP jvm_gc_memory_promoted_bytes_total Count of positive increases in the size of the old generation memory pool before GC to after GC\n# TYPE jvm_gc_memory_promoted_bytes_total counter\njvm_gc_memory_promoted_bytes_total 1.1471472E7\n# HELP jvm_gc_overhead An approximation of the percent of CPU time used by GC activities over the last lookback period or since monitoring began, whichever is shorter, in the range [0..1]\n# TYPE jvm_gc_overhead gauge\njvm_gc_overhead 3.446198210011373E-5\n# HELP jvm_gc_pause_seconds Time spent in GC pause\n# TYPE jvm_gc_pause_seconds summary\njvm_gc_pause_seconds_count{action=\"end of minor GC\",cause=\"G1 Evacuation Pause\",gc=\"G1 Young Generation\"} 2\njvm_gc_pause_seconds_sum{action=\"end of minor GC\",cause=\"G1 Evacuation Pause\",gc=\"G1 Young Generation\"} 0.009\n# HELP jvm_gc_pause_seconds_max Time spent in GC pause\n# TYPE jvm_gc_pause_seconds_max gauge\njvm_gc_pause_seconds_max{action=\"end of minor GC\",cause=\"G1 Evacuation Pause\",gc=\"G1 Young Generation\"} 0.005\n# HELP jvm_memory_committed_bytes The amount of memory in bytes that is committed for the Java virtual machine to use\n# TYPE jvm_memory_committed_bytes gauge\njvm_memory_committed_bytes{area=\"heap\",id=\"G1 Eden Space\"} 6.291456E7\njvm_memory_committed_bytes{area=\"heap\",id=\"G1 Old Gen\"} 4.194304E7\njvm_memory_committed_bytes{area=\"heap\",id=\"G1 Survivor Space\"} 8388608.0\njvm_memory_committed_bytes{area=\"nonheap\",id=\"CodeHeap 'non-nmethods'\"} 2555904.0\njvm_memory_committed_bytes{area=\"nonheap\",id=\"CodeHeap 'non-profiled nmethods'\"} 4194304.0\njvm_memory_committed_bytes{area=\"nonheap\",id=\"CodeHeap 'profiled nmethods'\"} 1.5269888E7\njvm_memory_committed_bytes{area=\"nonheap\",id=\"Compressed Class Space\"} 1.0027008E7\njvm_memory_committed_bytes{area=\"nonheap\",id=\"Metaspace\"} 7.2941568E7\n# HELP jvm_memory_max_bytes The maximum amount of memory in bytes that can be used for memory management\n# TYPE jvm_memory_max_bytes gauge\njvm_memory_max_bytes{area=\"heap\",id=\"G1 Eden Space\"} -1.0\njvm_memory_max_bytes{area=\"heap\",id=\"G1 Old Gen\"} 6.442450944E9\njvm_memory_max_bytes{area=\"heap\",id=\"G1 Survivor Space\"} -1.0\njvm_memory_max_bytes{area=\"nonheap\",id=\"CodeHeap 'non-nmethods'\"} 5849088.0\njvm_memory_max_bytes{area=\"nonheap\",id=\"CodeHeap 'non-profiled nmethods'\"} 1.22912768E8\njvm_memory_max_bytes{area=\"nonheap\",id=\"CodeHeap 'profiled nmethods'\"} 1.22896384E8\njvm_memory_max_bytes{area=\"nonheap\",id=\"Compressed Class Space\"} 1.073741824E9\njvm_memory_max_bytes{area=\"nonheap\",id=\"Metaspace\"} -1.0\n# HELP jvm_memory_usage_after_gc The percentage of long-lived heap pool used after the last GC event, in the range [0..1]\n# TYPE jvm_memory_usage_after_gc gauge\njvm_memory_usage_after_gc{area=\"heap\",pool=\"long-lived\"} 0.004613568385442098\n# HELP jvm_memory_used_bytes The amount of used memory\n# TYPE jvm_memory_used_bytes gauge\njvm_memory_used_bytes{area=\"heap\",id=\"G1 Eden Space\"} 4194304.0\njvm_memory_used_bytes{area=\"heap\",id=\"G1 Old Gen\"} 2.9722688E7\njvm_memory_used_bytes{area=\"heap\",id=\"G1 Survivor Space\"} 5186144.0\njvm_memory_used_bytes{area=\"nonheap\",id=\"CodeHeap 'non-nmethods'\"} 1595520.0\njvm_memory_used_bytes{area=\"nonheap\",id=\"CodeHeap 'non-profiled nmethods'\"} 4163840.0\njvm_memory_used_bytes{area=\"nonheap\",id=\"CodeHeap 'profiled nmethods'\"} 1.526592E7\njvm_memory_used_bytes{area=\"nonheap\",id=\"Compressed Class Space\"} 9489256.0\njvm_memory_used_bytes{area=\"nonheap\",id=\"Metaspace\"} 7.1788584E7\n# HELP jvm_threads_daemon_threads The current number of live daemon threads\n# TYPE jvm_threads_daemon_threads gauge\njvm_threads_daemon_threads 19.0\n# HELP jvm_threads_live_threads The current number of live threads including both daemon and non-daemon threads\n# TYPE jvm_threads_live_threads gauge\njvm_threads_live_threads 23.0\n# HELP jvm_threads_peak_threads The peak live thread count since the Java virtual machine started or peak was reset\n# TYPE jvm_threads_peak_threads gauge\njvm_threads_peak_threads 24.0\n# HELP jvm_threads_started_threads_total The total number of application threads started in the JVM\n# TYPE jvm_threads_started_threads_total counter\njvm_threads_started_threads_total 28.0\n# HELP jvm_threads_states_threads The current number of threads\n# TYPE jvm_threads_states_threads gauge\njvm_threads_states_threads{state=\"blocked\"} 0.0\njvm_threads_states_threads{state=\"new\"} 0.0\njvm_threads_states_threads{state=\"runnable\"} 7.0\njvm_threads_states_threads{state=\"terminated\"} 0.0\njvm_threads_states_threads{state=\"timed-waiting\"} 5.0\njvm_threads_states_threads{state=\"waiting\"} 11.0\n# HELP logback_events_total Number of log events that were enabled by the effective log level\n# TYPE logback_events_total counter\nlogback_events_total{level=\"debug\"} 0.0\nlogback_events_total{level=\"error\"} 0.0\nlogback_events_total{level=\"info\"} 18.0\nlogback_events_total{level=\"trace\"} 0.0\nlogback_events_total{level=\"warn\"} 2.0\n# HELP process_cpu_time_ns_total The \"cpu time\" used by the Java Virtual Machine process\n# TYPE process_cpu_time_ns_total counter\nprocess_cpu_time_ns_total 7.863515E9\n# HELP process_cpu_usage The \"recent cpu usage\" for the Java Virtual Machine process\n# TYPE process_cpu_usage gauge\nprocess_cpu_usage 0.0\n# HELP process_files_max_files The maximum file descriptor count\n# TYPE process_files_max_files gauge\nprocess_files_max_files 1048576.0\n# HELP process_files_open_files The open file descriptor count\n# TYPE process_files_open_files gauge\nprocess_files_open_files 15.0\n# HELP process_start_time_seconds Start time of the process since unix epoch.\n# TYPE process_start_time_seconds gauge\nprocess_start_time_seconds 1.791064761485E9\n# HELP process_uptime_seconds The uptime of the Java virtual machine\n# TYPE process_uptime_seconds gauge\nprocess_uptime_seconds 263.579\n# HELP spring_data_repository_invocations_seconds Duration of repository invocations\n# TYPE spring_data_repository_invocations_seconds summary\nspring_data_repository_invocations_seconds_count{exception=\"None\",method=\"findByCode\",repository=\"LinkRepository\",state=\"SUCCESS\"} 3\nspring_data_repository_invocations_seconds_sum{exception=\"None\",method=\"findByCode\",repository=\"LinkRepository\",state=\"SUCCESS\"} 0.002769459\nspring_data_repository_invocations_seconds_count{exception=\"None\",method=\"findByIdempotencyKey\",repository=\"LinkRepository\",state=\"SUCCESS\"} 3\nspring_data_repository_invocations_seconds_sum{exception=\"None\",method=\"findByIdempotencyKey\",repository=\"LinkRepository\",state=\"SUCCESS\"} 0.037611957\nspring_data_repository_invocations_seconds_count{exception=\"None\",method=\"retire\",repository=\"LinkRepository\",state=\"SUCCESS\"} 1\nspring_data_repository_invocations_seconds_sum{exception=\"None\",method=\"retire\",repository=\"LinkRepository\",state=\"SUCCESS\"} 0.006218709\nspring_data_repository_invocations_seconds_count{exception=\"None\",method=\"save\",repository=\"LinkRepository\",state=\"SUCCESS\"} 1\nspring_data_repository_invocations_seconds_sum{exception=\"None\",method=\"save\",repository=\"LinkRepository\",state=\"SUCCESS\"} 0.027784416\n# HELP spring_data_repository_invocations_seconds_max Duration of repository invocations\n# TYPE spring_data_repository_invocations_seconds_max gauge\nspring_data_repository_invocations_seconds_max{exception=\"None\",method=\"findByCode\",repository=\"LinkRepository\",state=\"SUCCESS\"} 0.001028667\nspring_data_repository_invocations_seconds_max{exception=\"None\",method=\"findByIdempotencyKey\",repository=\"LinkRepository\",state=\"SUCCESS\"} 0.031607333\nspring_data_repository_invocations_seconds_max{exception=\"None\",method=\"retire\",repository=\"LinkRepository\",state=\"SUCCESS\"} 0.006218709\nspring_data_repository_invocations_seconds_max{exception=\"None\",method=\"save\",repository=\"LinkRepository\",state=\"SUCCESS\"} 0.027784416\n# HELP system_cpu_count The number of processors available to the Java virtual machine\n# TYPE system_cpu_count gauge\nsystem_cpu_count 14.0\n# HELP system_cpu_usage The \"recent cpu usage\" of the system the application is running in\n# TYPE system_cpu_usage gauge\nsystem_cpu_usage 0.0\n# HELP system_load_average_1m The sum of the number of runnable entities queued to available processors and the number of runnable entities running on the available processors averaged over a period of time\n# TYPE system_load_average_1m gauge\nsystem_load_average_1m 5.16943359375\n# HELP tomcat_sessions_active_current_sessions  \n# TYPE tomcat_sessions_active_current_sessions gauge\ntomcat_sessions_active_current_sessions 0.0\n# HELP tomcat_sessions_active_max_sessions  \n# TYPE tomcat_sessions_active_max_sessions gauge\ntomcat_sessions_active_max_sessions 0.0\n# HELP tomcat_sessions_alive_max_seconds  \n# TYPE tomcat_sessions_alive_max_seconds gauge\ntomcat_sessions_alive_max_seconds 0.0\n# HELP tomcat_sessions_created_sessions_total  \n# TYPE tomcat_sessions_created_sessions_total counter\ntomcat_sessions_created_sessions_total 0.0\n# HELP tomcat_sessions_expired_sessions_total  \n# TYPE tomcat_sessions_expired_sessions_total counter\ntomcat_sessions_expired_sessions_total 0.0\n# HELP tomcat_sessions_rejected_sessions_total  \n# TYPE tomcat_sessions_rejected_sessions_total counter\ntomcat_sessions_rejected_sessions_total 0.0\n# HELP urlshort_ratelimit_rejections_total Requests answered 429 because the client's bucket was empty\n# TYPE urlshort_ratelimit_rejections_total counter\nurlshort_ratelimit_rejections_total{budget=\"create\"} 0.0\nurlshort_ratelimit_rejections_total{budget=\"redirect\"} 0.0\n",
+      "headerMap": {
+        "x-request-id": "9d0d32bd-e9d2-44b1-a60d-198c5c1718d3",
+        "content-type": "text/plain;version=0.0.4;charset=utf-8",
+        "content-length": "22743",
+        "date": "Sat, 03 Oct 2026 22:03:45 GMT"
+      }
+    },
+    {
+      "name": "base-disk-selector",
+      "method": "GET",
+      "url": "http://127.0.0.1:18151/actuator/metrics/disk.free?tag=path:%2Fprivate%2Ftmp%2Furlshort-dogfood-qa-4fe7042%2F.",
+      "peer": "actual localhost",
+      "headersSent": [],
+      "before": "2026-10-03T22:04:36.672Z",
+      "after": "2026-10-03T22:04:36.756Z",
+      "status": 200,
+      "headers": "HTTP/1.1 200 \nX-Request-Id: a9e36c5c-a6ce-48d4-9eed-eaa16ff7e605\nContent-Disposition: inline;filename=f.txt\nContent-Type: application/vnd.spring-boot.actuator.v3+json\nContent-Length: 158\nDate: Sat, 03 Oct 2026 22:04:36 GMT\n\n",
+      "body": "{\"availableTags\":[],\"baseUnit\":\"bytes\",\"description\":\"Usable space for path\",\"measurements\":[{\"statistic\":\"VALUE\",\"value\":3.252639744E10}],\"name\":\"disk.free\"}",
+      "json": {
+        "availableTags": [],
+        "baseUnit": "bytes",
+        "description": "Usable space for path",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 32526397440
+          }
+        ],
+        "name": "disk.free"
+      },
+      "headerMap": {
+        "x-request-id": "a9e36c5c-a6ce-48d4-9eed-eaa16ff7e605",
+        "content-disposition": "inline;filename=f.txt",
+        "content-type": "application/vnd.spring-boot.actuator.v3+json",
+        "content-length": "158",
+        "date": "Sat, 03 Oct 2026 22:04:36 GMT"
+      }
+    },
+    {
+      "name": "candidate-disk-selector",
+      "method": "GET",
+      "url": "http://127.0.0.1:18152/actuator/metrics/disk.free?tag=path:%2Fprivate%2Ftmp%2Furlshort-dogfood-qa-4fe7042%2F.",
+      "peer": "actual localhost",
+      "headersSent": [],
+      "before": "2026-10-03T22:04:36.851Z",
+      "after": "2026-10-03T22:04:36.933Z",
+      "status": 404,
+      "headers": "HTTP/1.1 404 \nX-Request-Id: f38aabc6-6ec7-4bbe-8eb0-e270f5d996a7\nContent-Length: 0\nDate: Sat, 03 Oct 2026 22:04:36 GMT\n\n",
+      "body": "",
+      "headerMap": {
+        "x-request-id": "f38aabc6-6ec7-4bbe-8eb0-e270f5d996a7",
+        "content-length": "0",
+        "date": "Sat, 03 Oct 2026 22:04:36 GMT"
+      }
+    }
+  ],
+  "bursts": {
+    "base": {
+      "before": "2026-10-03T22:04:09.352Z",
+      "after": "2026-10-03T22:04:09.560Z"
+    },
+    "candidate": {
+      "before": "2026-10-03T22:04:09.562Z",
+      "after": "2026-10-03T22:04:09.762Z"
+    }
+  }
+}

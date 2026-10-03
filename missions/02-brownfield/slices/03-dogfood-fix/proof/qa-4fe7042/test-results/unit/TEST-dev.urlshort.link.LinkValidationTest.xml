@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.urlshort.link.LinkValidationTest" tests="36" skipped="0" failures="0" errors="0" timestamp="2026-10-03T21:56:27.084Z" hostname="Andrzejs-MacBook-Pro.local" time="0.026">
+  <properties/>
+  <testcase name="[1] key = &quot;&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.001"/>
+  <testcase name="[2] key = &quot;has space&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[3] key = &quot;café&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[4] key = &quot;tab\there&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[1] url = null, rule = &quot;required&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.001"/>
+  <testcase name="[2] url = &quot;&quot;, rule = &quot;required&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[3] url = &quot;   &quot;, rule = &quot;required&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.001"/>
+  <testcase name="[4] url = &quot;https://example.com/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa…&quot;, rule = &quot;too-long&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[5] url = &quot;javascript:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa…&quot;, rule = &quot;too-long&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[6] url = &quot;javascript:alert(1)&quot;, rule = &quot;scheme&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[7] url = &quot;data:text/html,hi&quot;, rule = &quot;scheme&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[8] url = &quot;file:///etc/passwd&quot;, rule = &quot;scheme&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[9] url = &quot;ftp://example.com/&quot;, rule = &quot;scheme&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.001"/>
+  <testcase name="[10] url = &quot;example.com/path&quot;, rule = &quot;scheme&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[11] url = &quot; https://example.com/&quot;, rule = &quot;scheme&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[12] url = &quot;https://&quot;, rule = &quot;malformed&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[13] url = &quot;https://exa mple.com/&quot;, rule = &quot;malformed&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[14] url = &quot;https://[bad/&quot;, rule = &quot;malformed&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[15] url = &quot;https://example.com/ &quot;, rule = &quot;malformed&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[16] url = &quot;https://example.com/\r\nSet-Cookie:x&quot;, rule = &quot;malformed&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[17] url = &quot;https://exämple.com/&quot;, rule = &quot;malformed&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[18] url = &quot;https:///no-host&quot;, rule = &quot;malformed&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.001"/>
+  <testcase name="[19] url = &quot;https://user:secret@example.com/&quot;, rule = &quot;credentials&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[20] url = &quot;https://user@example.com/&quot;, rule = &quot;credentials&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.001"/>
+  <testcase name="[1] url = &quot;https://example.com/some/path?q=1&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.001"/>
+  <testcase name="[2] url = &quot;http://example.com/&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[3] url = &quot;HTTPS://EXAMPLE.COM/&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[4] url = &quot;http://localhost:8080/&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.001"/>
+  <testcase name="[5] url = &quot;https://example.com/p?q=a%20b#frag&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[1] length = 256" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[2] length = 1000" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[1] key = null" classname="dev.urlshort.link.LinkValidationTest" time="0.001"/>
+  <testcase name="[2] key = &quot;k&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[3] key = &quot;!~&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[4] key = &quot;550e8400-e29b-41d4-a716-446655440000&quot;" classname="dev.urlshort.link.LinkValidationTest" time="0.0"/>
+  <testcase name="[1] length = 2048" classname="dev.urlshort.link.LinkValidationTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

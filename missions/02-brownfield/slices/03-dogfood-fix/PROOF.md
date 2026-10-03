@@ -4,23 +4,27 @@
 >
 > **HOW (the drop verb, not hand-placement):** put media files under `proof/`, then ATTACH them with `rig proof add OPR.99.0.3.3 --artifact-type qa --verdict PASS --candidate-sha <tip> --money-evidence "<one line>" --evidences "1" --media "screenshot-01.png"` — the drop writes the C1 header the Living Notes DELIVERED pairing joins on. Hand-placing files without a drop leaves the deliverable unpaired and `unverified`.
 
-Closed by: <seat>   Date: <date>   Verdict: <pass | pass-with-residue | ...>
+QA checked by: qa-agent@urlshort-factory (Codex),2026-10-03.
+QA verdict: PASS on 4fe7042; integration and independent review follow.
 
 ## What this proves
 
-<1-3 sentences: the claim the slice made, now demonstrated>
+The API document describes existing validation errors without changing
+problem responses. Anonymous disk metrics retain values while removing the
+installation path. Independent evidence covers all nine ACs and five rules.
 
 ## Artifacts (media in proof/)
 
-Dropped via `rig proof add … --evidences … --media …` (one drop per verdict; media attached, never only hand-listed):
+QA drop proof/qa-pass-4fe7042.md is attached through rig proof add,
+covers items 1–8. Independent evidence: proof/qa-4fe7042/, gate
+proof/qa-check-4fe7042.txt, reports/CSV summary
+docs/qa/coverage/03-dogfood-fix/.
 
-- proof/screenshot-01.png — <what it shows>
-- proof/capture-behavior.gif — <what it shows>
-- proof/command-output.txt — <what it proves>
+## Residue / caveats
 
-## Residue / caveats (if any)
-
-<documented residue: what's not covered + where it's tracked>
+Default single-disk-path scope, removed-selector compatibility and inherited
+Windows-wrapper line endings are disclosed in GAPS and QA below.
+No merged coverage shortfall or required AC failure.
 
 ## Builder
 
@@ -74,3 +78,62 @@ product code differs from `cb148c4` only by audit-read's CR-01 guard, which thes
 - **Territory:** `OpenApiConfig`, the new `MetricsConfig` and `MetricsConfigTest`, additions to `OpenApiDocumentTest` and `HealthMetricsJourneyTest`, and `openapi.json`. Nothing in `Problems`, `ProblemDetailsAdvice`, `RateLimitFilter`, `application.properties`, `click/`, `link/` or `audit/`.
 - **AC-9:** the two shipped tests only gained lines (143 insertions, 0 deletions).
 - **Gate** re-run on the rebased candidate `4fe7042` after the last change, green.
+
+
+## QA — independent check of 4fe70427bd0d182e886d6a19b217daa1d9e39f5d
+
+Seat qa-agent@urlshort-factory (Codex), packet qitem-20261003215524-d56667a8,
+instance 01M41HGF6AHB6AZR3Q0KQ8MQR7. Primary worktree HEAD equals packet SHA.
+QA authored no product, build or test change.
+
+**Observed by effect.** Fresh offline check executes all 14 tasks:
+204 unit/207 functional, no failures/errors/skips; Javadoc/verification green.
+Copied CSVs: unit 441/508 lines188/194 branches; functional 471/508 lines162/194
+branches; merged 508/508 and194/194. All 354 copied report hashes checked.
+
+| AC | Independent observation |
+|---|---|
+| 1 | Live ProblemDetail optional errors array of ProblemFieldError; exactly required string field/rule/message; no properties; five other property schemas unchanged. |
+| 2 | Real jars: invalid create400, same-key different-URL422, unknown-code404, retired redirect410, over-create-budget429, malformed audit400. Every body field documented; both400s and422 one errors item; other statuses omit it. Default60-create budget gives30 captured429 refusals per jar with positive Retry-After. |
+| 3 | Whole candidate live/committed document equality; empty committed-vs-live.diff. Baseline live also matches committed doc. Paths/operations/responses/headers/examples identical outside two problem components; all 22 problem refs use one schema. |
+| 4 | Six full semantic bodies including title and every field/rule/message, status/content type match baseline jar; only instance/request IDs differ. wire-comparison.json retains both normalized values. |
+| 5 | Independently checked out cce7cf7 and reran OpenApiDocumentTest: exactly two assertions fail naming missing errors/extra properties; fresh candidate green. History establishes test before a28a20a fix. |
+| 6 | Baseline scrape/disk metric endpoints reproduce known absolute path. Candidate no sample path tag, no known cwd anywhere in scrape, no path availableTags; both gauges numeric/positive. Independent72dfffb run: exactly endpoint/scrape assertions fail on path; candidate passes after 4fe7042. |
+| 7 | QA closes QA-OPR-02 original row with installed evidence, appends honest qualifications. W2-01 recorded fixed; no open W2-01 row. |
+| 8 | Read DESIGN error/API/metric descriptions, ADR-0010/0016 amendments/§7 index, README smoke/endpoints/documentation lines12/18/39. Descriptions match wire/schema/pathless gauges; README needs no correction. ADR design 0d000da/clarification 0982cb5 precede dependent commits by ancestry. |
+| 9 | Extracted all 50 original test/resource files from 15db6c5 with Git-blob hashes; external QA init tasks compile against candidate classes and run203 unit/202 functional unchanged, all green. Shipped test diffs add102+41 lines only; new27-line unit test allowed; no other shipped test changes. |
+
+**Logs and audit effects.** All 208 HTTP captures have a unique UUID response
+header and one completion/status in default JSON console and ECS file log.
+Create/retire audit rows from functional audit endpoint match response IDs,
+code and before/after states; replay adds no row. No peer/URL/user-agent
+canary in either whole-run log. Added sink was ECS from startup, default
+console checked separately. Raw transport/JUnit/console bytes archived and
+hashed before whitespace-only display normalization; verify.py checks it.
+
+**Limits.** Recorded Git/document checks expressly allowed by SPEC, not
+claimed as JUnit-only. Parameterized XML names omit source methods; every233
+named method has a row and green class-group attribution where needed,
+all 411 invocations retained. No second disk path configured; adding one
+requires non-sensitive tag per ADR-0016. Old path selector now404,
+deliberately documented; unfiltered gauges200. No new Docker/load/migration/
+Swagger rendering or natural-clock-boundary proof. Baseline source/build
+hashes match15db6c5; jar built from later docs-only main6140c3c. Inherited
+candidate gradlew.bat difference only line endings; QA neither repairs nor
+commits it.
+
+### Self-check
+
+- Every AC checked through promised effect; six failure cases captured from
+  both installed jars, full values compared.
+- Fresh gate and unchanged original suites independently green; coverage
+  read from three CSVs, merged 100%line/branch.
+- All 233 source methods mapped both ways; parameterized-group boundary named.
+- GAPS entry written, QA-OPR-02 closed; README check recorded.
+- Both historical regressions independently RED before fixes; ADR
+  amendments/index precede dependent code.
+- Proof drop covers items 1–8 with --evidences and retained media; attributed
+  candidate judgments follow evidence commit.
+- Both apps stopped (exit130/SIGINT); ports18151/18152 refuse connections.
+  Primary worktree exact 4fe7042, inherited wrapper-line-ending noise only;
+  no authored source/build/test edit.

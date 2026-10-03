@@ -1,0 +1,37 @@
+> Task :compileJava
+> Task :processResources
+> Task :classes
+> Task :jar
+> Task :compileFunctionalTestJava
+> Task :processFunctionalTestResources
+> Task :functionalTestClasses
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+
+> Task :functionalTest
+
+HealthMetricsJourneyTest > AC6_diskGaugesCarryNoInstallationPath() FAILED
+    java.lang.AssertionError at HealthMetricsJourneyTest.java:102
+
+HealthMetricsJourneyTest > AnonymousScrape > AC6_theScrapeCarriesNoInstallationPath() FAILED
+    java.lang.AssertionError at HealthMetricsJourneyTest.java:121
+
+{"@timestamp":"2026-10-03T22:03:29.969655Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.970548Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.973078Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-2 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T22:03:29.985872Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":94818,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-2 - Shutdown completed.","ecs":{"version":"8.11"}}
+
+> Task :functionalTest FAILED
+
+5 tests completed, 2 failed
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':functionalTest'.
+> There were failing tests. See the report at: file:///private/tmp/urlshort-dogfood-qa-4fe7042/red-worktree/build/reports/tests/functionalTest/index.html
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 11s
+6 actionable tasks: 6 executed
