@@ -1,0 +1,16 @@
+Initial candidate b95f3e2683d7dcbf06fbe5a27b378743f3f8211e
+Initial SPEC sha256 535d040ea0fda8eef582e81228d686387973152fdbfe8f5ba061634d983d1762
+Final candidate e28cfeaa56f4cf5da59529915f4c5d34b6606899
+Final SPEC sha256 62332dfd79e65c782dd275a9cb948666d9b00ed27b2d9f94e52f3b6478a3bf93
+Final working SPEC byte-matches: true
+11 ACs all GIVEN/WHEN/THEN; 7 rules and 7 resolved ambiguity rows; 9 proof items.
+RQ-01 source:
+76:   THEN `C`'s row has `created_at` = `updated_at` = `t` and `created_by` = `updated_by` = `anonymous`. The `link.create` audit row has `created_at` = `updated_at` (both filled) and `created_by` = `updated_by` = `anonymous`, equal to its `actor`.
+117:   THEN each response has exactly the status, headers and body fields it had before this slice (`01-create-redirect`, `02-analytics` and `01-audit-read` contracts). In particular each `GET /api/audit` row has exactly rule 3's eight fields of `01-audit-read`. No response body, header or log event contains an audit column's name or value. `docs/api/openapi.json` is unchanged.
+
+Runtime: loopback-only baseline jar; isolated in-memory DB review04; stopped with TERM.
+POST /api/links: 201; DELETE /api/links/p383j7M8: 204; GET after retire: 200.
+Observed both JSON bodies have exactly five shipped fields and identical createdAt=2026-10-03T18:57:55.676Z
+The new policy reuses this link.created_at value; the original global value ban therefore contradicts preservation.
+Audit actor example is from locked audit-read SPEC AC-1/rule 3, not a newly exercised audit HTTP endpoint.
+Check: ../05-ci-cd/proof/requirements-baseline-check.txt; successful up-to-date gate on the same src/build bytes.
