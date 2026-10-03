@@ -1,0 +1,74 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :jar UP-TO-DATE
+> Task :compileFunctionalTestJava UP-TO-DATE
+> Task :processFunctionalTestResources UP-TO-DATE
+> Task :functionalTestClasses UP-TO-DATE
+
+> Task :reviewMigration
+11:34:50.194 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:h2:file:/var/folders/1b/jc5sj1h11hl0pbwpvbd2n9n80000gn/T/retention-review-v3-11725968920561405734/upgrade (H2 2.4)
+11:34:50.228 [main] WARN org.flywaydb.core.internal.database.base.Database -- Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+11:34:50.248 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+11:34:50.249 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 3 migrations (execution time 00:00.011s)
+11:34:50.253 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+11:34:50.270 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "PUBLIC": << Empty Schema >>
+11:34:50.273 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "1 - create link and audit log"
+11:34:50.283 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "2 - create click"
+11:34:50.291 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 2 migrations to schema "PUBLIC", now at version v2 (execution time 00:00.008s)
+11:34:50.320 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:h2:file:/var/folders/1b/jc5sj1h11hl0pbwpvbd2n9n80000gn/T/retention-review-v3-11725968920561405734/upgrade (H2 2.4)
+11:34:50.323 [main] WARN org.flywaydb.core.internal.database.base.Database -- Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+11:34:50.325 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 3 migrations (execution time 00:00.001s)
+11:34:50.327 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "PUBLIC": 2
+11:34:50.328 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "3 - add click audit columns"
+11:34:50.349 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 1 migration to schema "PUBLIC", now at version v3 (execution time 00:00.019s)
+PASS old column types/defaults/nullability preserved
+PASS named checks/FKs and primary-key columns preserved
+PASS old click values preserved
+PASS old click backfilled
+PASS four non-null timestamp defaults
+PASS four non-null actor defaults
+PASS all seeded classes have equal times and system actors
+PASS keeper after Flyway connection retirement: equal row times
+PASS keeper after Flyway connection retirement: database write time distinct from shifted domain time
+PASS keeper after Flyway connection retirement: static actors
+PASS fresh connection after database reopen: equal row times
+PASS fresh connection after database reopen: database write time distinct from shifted domain time
+PASS fresh connection after database reopen: static actors
+PASS constraint rejection 23506
+PASS constraint rejection 23513
+PASS constraint rejection 23506
+PASS constraint rejection 23502
+PASS five literal rollback header lines
+PASS rollback restores complete V2 column schema
+PASS rollback preserves constraints
+PASS rollback preserves all click rows
+PASS rollback removes only V3 history
+11:34:50.386 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:h2:file:/var/folders/1b/jc5sj1h11hl0pbwpvbd2n9n80000gn/T/retention-review-v3-11725968920561405734/upgrade (H2 2.4)
+11:34:50.388 [main] WARN org.flywaydb.core.internal.database.base.Database -- Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+11:34:50.391 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 3 migrations (execution time 00:00.001s)
+11:34:50.391 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "PUBLIC": 2
+11:34:50.393 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "3 - add click audit columns"
+11:34:50.403 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 1 migration to schema "PUBLIC", now at version v3 (execution time 00:00.009s)
+PASS V3 reapplies and backfills all rows
+PASS four non-null timestamp defaults
+PASS four non-null actor defaults
+PASS all seeded classes have equal times and system actors
+11:34:50.416 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:h2:file:/var/folders/1b/jc5sj1h11hl0pbwpvbd2n9n80000gn/T/retention-review-v3-11725968920561405734/fresh (H2 2.4)
+11:34:50.418 [main] WARN org.flywaydb.core.internal.database.base.Database -- Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+11:34:50.419 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+11:34:50.420 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 3 migrations (execution time 00:00.000s)
+11:34:50.420 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+11:34:50.422 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "PUBLIC": << Empty Schema >>
+11:34:50.423 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "1 - create link and audit log"
+11:34:50.425 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "2 - create click"
+11:34:50.430 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "3 - add click audit columns"
+11:34:50.438 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 3 migrations to schema "PUBLIC", now at version v3 (execution time 00:00.008s)
+PASS four non-null timestamp defaults
+PASS four non-null actor defaults
+PASS all seeded classes have equal times and system actors
+PASS: 29 independent assertions; temporary file databases: /var/folders/1b/jc5sj1h11hl0pbwpvbd2n9n80000gn/T/retention-review-v3-11725968920561405734
+
+BUILD SUCCESSFUL in 1s
+6 actionable tasks: 1 executed, 5 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html

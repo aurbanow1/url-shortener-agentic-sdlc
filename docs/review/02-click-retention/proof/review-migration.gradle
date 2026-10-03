@@ -1,0 +1,12 @@
+// Run: scripts/gw --log docs/review/02-click-retention/proof/migration-rereview-f044cbe.txt --offline -I docs/review/02-click-retention/proof/review-migration.gradle reviewMigration
+gradle.projectsEvaluated {
+    def project = gradle.rootProject
+    project.tasks.register('reviewMigration', JavaExec) {
+        dependsOn project.tasks.named('functionalTestClasses')
+        javaLauncher.set(project.javaToolchains.launcherFor {
+            languageVersion = JavaLanguageVersion.of(21)
+        })
+        classpath = project.sourceSets.functionalTest.runtimeClasspath
+        mainClass = project.file('docs/review/02-click-retention/proof/ReviewMigrationProbe.java').absolutePath
+    }
+}
