@@ -1,3 +1,18 @@
+---
+slice: OPR.99.0.2.3
+candidate_sha: a7c533ffef55650e5b422377ffe0c4e38d41400c
+artifact_type: qa
+verdict: PASS
+money_evidence: Real HTTP captures use disclosed disposable clock, request-peer
+  and H2 availability controls; separate unmodified jar runs confirm shipped
+  behavior.
+evidences:
+  - "6"
+self_check: Read the launcher and runner source and compared them with the
+  recorded HTTP exchanges; controlled observations are distinguished from
+  unmodified jar and container claims.
+---
+
 # Independent QA instruments and limits
 
 The fresh quality gate used the original source/tests/build configuration at
@@ -49,3 +64,8 @@ The launcher and Python source are preserved to make the controlled mechanism
 reviewable. This is QA evidence, not a new product test suite or runtime API.
 
 Text display captures use LF newlines and trim trailing spaces; original response strings, including trailing status/HELP spaces, remain in the JSON exchange records. Large JSON arrays use one exchange per line; their parsed content is unchanged.
+
+## Media
+
+![qa-control-a7c533f.java](qa-control-a7c533f.java)
+![qa-journey-a7c533f.py](qa-journey-a7c533f.py)

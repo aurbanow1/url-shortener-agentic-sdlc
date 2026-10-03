@@ -30,8 +30,10 @@
 - [x] Coverage copies/hashes, all 184-method/318-invocation traceability, individual release gap rows and exact live API diff recorded.
 - [x] Plain jar env/smoke/60 s bench/drain observed; apps stopped; candidate worktree clean and unchanged.
 - [x] QA proof drop `proof/qa-evidence-a7c533f.md` covers items 1–10 and 12.
-- [x] Attributed judgments for items 1–10 and 12: receipts `proof/judgments/00000001.md` through `00000011.md`, actor qa2-agent, subject commit a7c533ffef55650e5b422377ffe0c4e38d41400c. Live proof state confirms these accepted and only 11/13 pending.
+- [x] Attributed judgments for items 1–10 and 12: receipts `proof/judgments/00000001.md` through `00000012.md`, actor qa2-agent, subject commit a7c533ffef55650e5b422377ffe0c4e38d41400c. Live proof state confirms these accepted and only 11/13 pending.
 - [ ] Item 11: code/security review records.
 - [ ] Item 13: release AC-21–AC-28, container inspect/restarts and specified-rate latency judgment.
 
 Pending records are retained by lead obligation `qitem-20261003120849-f4cbfa97` (`docs/qa/03-operate/proof-sequencing.md`). Bench input rate remains below 100/20; no numeric latency-target judgment.
+
+The scope audit reports no 03-operate findings. Receipt 00000012 reaffirms item 6 after adding the required C1 header to the instrument disclosure; observed effects are unchanged.

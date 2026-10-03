@@ -220,7 +220,7 @@ natural wall-clock/outage or downstream-review claim.
 ### Attributed judgments
 
 Evidence commit `0b10ca9` contains the coverage/captures/traceability. Receipts
-`proof/judgments/00000001.md`–`00000011.md` accept items 1–10 and 12, attributed
+`proof/judgments/00000001.md`–`00000012.md` accept items 1–10 and 12, attributed
 to `qa2-agent@urlshort-factory` against commit
 `a7c533ffef55650e5b422377ffe0c4e38d41400c`. Fresh `rig proof show` confirms
 these accepted, only items 11 and 13 pending, and no issues. Overall readiness
@@ -228,3 +228,5 @@ correctly remains `not-ready` until the later review/release records arrive.
 Lead accepted obligation `qitem-20261003120849-f4cbfa97`; item 11 returns after
 review, item 13 after release_prep. The lead's commit `1248441` preserves the
 QA Agent 2 mission NOTES entry unchanged.
+
+The scope audit reports no 03-operate findings. Receipt 00000012 reaffirms item 6 after adding the required C1 header to the instrument disclosure; observed effects are unchanged.
