@@ -1,0 +1,30 @@
+11:34:16.412 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:h2:mem:stats-probe (H2 2.4)
+11:34:16.443 [main] WARN org.flywaydb.core.internal.database.base.Database -- Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+11:34:16.454 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+11:34:16.455 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 2 migrations (execution time 00:00.005s)
+11:34:16.458 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+11:34:16.474 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "PUBLIC": << Empty Schema >>
+11:34:16.477 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "1 - create link and audit log"
+11:34:16.486 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "PUBLIC" to version "2 - create click"
+11:34:16.492 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 2 migrations to schema "PUBLIC", now at version v2 (execution time 00:00.006s)
+S1 rows (day | referrer | clicks | uniqueVisitors | botClicks): 2026-10-01|null|2|3|0; 2026-10-01|https://x.example|2|3|0; 2026-10-01|https://y.example|2|3|0; 2026-10-02|null|1|1|1; 2026-10-02|https://x.example|1|1|1; 2026-10-03|null|6|6|3; 2026-10-04|null|1|1|0; 2026-10-05|null|1|1|0
+S1u union form, same link (referrer rows carry clicks; day rows carry the two new figures): 2026-10-01|https://x.example|2|null|null; 2026-10-01|https://y.example|2|null|null; 2026-10-01|null|2|null|null; 2026-10-01|null|null|3|0; 2026-10-02|https://x.example|1|null|null; 2026-10-02|null|1|null|null; 2026-10-02|null|null|1|1; 2026-10-03|null|6|null|null; 2026-10-03|null|null|6|3; 2026-10-04|null|1|null|null; 2026-10-04|null|null|1|0; 2026-10-05|null|1|null|null; 2026-10-05|null|null|1|0
+S2 plan: SELECT "R"."CLICKED_ON", "R"."REFERRER", "R"."CLICKS", "D"."UNIQUE_VISITORS", "D"."BOT_CLICKS" FROM ( SELECT "CLICKED_ON", "REFERRER", COUNT(*) AS "CLICKS" FROM "PUBLIC"."CLICK" WHERE "LINK_ID" = ?1 GROUP BY "CLICKED_ON", "REFERRER" ) "R" /* SELECT CLICKED_ON, REFERRER, COUNT(*) AS CLICKS FROM PUBLIC.CLICK /* PUBLIC.FK_CLICK_LINK_INDEX_3: LINK_ID = ?1 */ WHERE LINK_ID = ?1 GROUP BY CLICKED_ON, REFERRER */ INNER JOIN ( SELECT "CLICKED_ON", COUNT(DISTINCT "CLIENT_HASH") AS "UNIQUE_VISITORS", SUM(CASE WHEN "USER_AGENT_CLASS" = 'bot' THEN 1 ELSE 0 END) AS "BOT_CLICKS" FROM "PUBLIC"."CLICK" WHERE "LINK_ID" = ?2 GROUP BY "CLICKED_ON" ) "D" /* SELECT CLICKED_ON, COUNT(DISTINCT CLIENT_HASH) AS UNIQUE_VISITORS, SUM(CASE WHEN USER_AGENT_CLASS = 'bot' THEN 1 ELSE 0 END) AS BOT_CLICKS FROM PUBLIC.CLICK /* PUBLIC.IX_CLICK_LINK_DAY: LINK_ID = ?2 AND CLICKED_ON IS NOT DISTINCT FROM ?3 */ WHERE (LINK_ID = ?2) _LOCAL_AND_GLOBAL_ (CLICKED_ON IS NOT DISTINCT FROM ?3) GROUP BY CLICKED_ON: CLICKED_ON = R.CLICKED_ON */ ON 1=1 WHERE "D"."CLICKED_ON" = "R"."CLICKED_ON"
+S3 join form, 10 referrers (225 000 clicks of one link over 90 days, about 1 000 clients a day, cold): 207 ms, 991 rows
+S3 union form, 10 referrers (225 000 clicks of one link over 90 days, about 1 000 clients a day, cold): 146 ms, 1082 rows
+S5 join form, 300 referrers a day (225 000 clicks of one link over 90 days, about 1 000 clients a day, cold): 209 ms, 18091 rows
+S5 union form, 300 referrers a day (225 000 clicks of one link over 90 days, about 1 000 clients a day, cold): 202 ms, 18182 rows
+{"@timestamp":"2026-10-03T18:34:22.290660Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":35197,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:34:22.729113Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":35197,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T18:34:22.730088Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":35197,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+S4 # HELP urlshort_clicks_lost_total Clicks reported by a click lost event
+S4 # TYPE urlshort_clicks_lost_total counter
+S4 urlshort_clicks_lost_total{reason="reduction failed"} 0.0
+S4 urlshort_clicks_lost_total{reason="rejected"} 0.0
+S4 urlshort_clicks_lost_total{reason="shutdown deadline"} 0.0
+S4 urlshort_clicks_lost_total{reason="shutdown deadline, outcome unknown"} 0.0
+S4 urlshort_clicks_lost_total{reason="write failed"} 2.0
+S4 # HELP urlshort_clicks_recorded_total Clicks written to the store
+S4 # TYPE urlshort_clicks_recorded_total counter
+S4 urlshort_clicks_recorded_total 3.0
+PROBE done

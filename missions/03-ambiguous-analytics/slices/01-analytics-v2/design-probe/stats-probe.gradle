@@ -1,0 +1,18 @@
+// Design probe for 01-analytics-v2 (design.md section 12, rows S1-S4).
+// Run from the repo root, no product, test or build file changes:
+//   scripts/gw --log missions/03-ambiguous-analytics/slices/01-analytics-v2/design-probe/output.txt \
+//       --offline -I missions/03-ambiguous-analytics/slices/01-analytics-v2/design-probe/stats-probe.gradle designStatsProbe
+gradle.projectsEvaluated {
+    def project = gradle.rootProject
+    def functional = project.sourceSets.functionalTest
+    project.tasks.register('designStatsProbe', JavaExec) {
+        dependsOn project.tasks.named('functionalTestClasses')
+        javaLauncher.set(project.javaToolchains.launcherFor {
+            languageVersion = JavaLanguageVersion.of(21)
+        })
+        classpath = functional.runtimeClasspath
+        mainClass = project.file('missions/03-ambiguous-analytics/slices/01-analytics-v2/design-probe/StatsProbe.java').absolutePath
+        systemProperty 'spring.profiles.active', 'functional'
+        maxHeapSize = '1g'
+    }
+}
