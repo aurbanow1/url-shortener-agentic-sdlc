@@ -113,8 +113,11 @@ class ClickAuditColumnsTest {
 				+ " ORDER BY tc.table_name, tc.constraint_name").query().listOfRows();
 	}
 
+	/** Every index by its table, kind and columns; H2 renames its generated index names when ALTER rebuilds a table. */
 	private static List<Map<String, Object>> indexes(JdbcClient jdbc) {
-		return jdbc.sql("SELECT table_name, index_name, index_type_name FROM information_schema.indexes"
-				+ " WHERE table_schema = 'PUBLIC' ORDER BY table_name, index_name").query().listOfRows();
+		return jdbc.sql("SELECT ic.table_name, i.index_type_name, ic.column_name, ic.ordinal_position"
+				+ " FROM information_schema.index_columns ic JOIN information_schema.indexes i"
+				+ " ON i.index_schema = ic.index_schema AND i.index_name = ic.index_name WHERE ic.table_schema = 'PUBLIC'"
+				+ " ORDER BY ic.table_name, i.index_type_name, ic.column_name, ic.ordinal_position").query().listOfRows();
 	}
 }
