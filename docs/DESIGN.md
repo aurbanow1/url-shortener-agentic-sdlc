@@ -5,11 +5,11 @@ slice. Slice-level detail lives in `missions/<m>/slices/<s>/design.md`;
 decisions live in [`adr/`](adr/). Diagrams in [`diagrams/`](diagrams/) are the
 single source for the pictures below.
 
-Last updated: 2026-10-03, slice `03-operate` (design; not yet merged).
-`main` carries `01-ping` and `01-create-redirect` (merged as `16c355f`);
-everything marked *02-analytics* or *03-operate* below describes a design
-under review (wave `w2`), so that the builders and the reviewers read one
-picture.
+Last updated: 2026-10-03, mission 01 wave review (integrated at `8e9c065`).
+`main` carries `01-ping`, `01-create-redirect` (`16c355f`), `02-analytics`
+(`091ff46`) and `03-operate` (`8e9c065`). Everything below describes merged
+code; an italic slice name (*02-analytics*, *03-operate*) marks the slice
+that introduced an item.
 
 ## 1. System view
 
@@ -282,6 +282,13 @@ Testing
 - The in-memory H2 of the functional suite (`DB_CLOSE_DELAY=-1`) outlives a
   Spring context and is shared by every context started in the JVM; tests
   count deltas, never absolute rows. **[design choice, 01-create-redirect]**
+- The rate limiter's per-peer state lives in the same context as the shared
+  suite clock. A journey that moves the clock forward leaves its peer's
+  bucket ahead of real time, and every later request from that peer would
+  answer `429`. Such journeys send from a dedicated peer address
+  (`.with(peer(...))`), never MockMvc's default `127.0.0.1`. **[03-operate
+  code-review rework, lead decision 12:40Z; ADR-0014 clock-policy
+  amendment]**
 
 JSON
 

@@ -72,3 +72,26 @@ bounded. No new library is wanted, and none is in the offline build cache.
 - Verified before implementation:
   `missions/01-greenfield-core/slices/03-operate/design-probe/output.txt`
   (B1–B3 arithmetic, O1 `429` shape and single log line, O1b filter order).
+
+## Amendment — clock policy (2026-10-03, recorded at the mission 01 wave review)
+
+Decided by the orchestration lead during `03-operate`'s code-review rework
+(`missions/01-greenfield-core/NOTES.md` §2, 12:40Z, builder item
+`qitem-20261003123330-f28e75db`) and shipped in `RateLimiter`'s contract; it
+was missing here until the wave review.
+
+- **The application clock is the wall clock, and a backward step is outside
+  the contract and fails closed.** Each bucket keeps `start = max(TAT, now)`
+  with the clock read inside the per-client atomic update, so a request can
+  never decide on a time older than the TAT it sees. After a step back, a
+  recently active client waits up to the length of the step; nobody is
+  admitted early.
+- **The release sweep is rescheduled after a step.** The sweep also runs when
+  its deadline is more than two seconds ahead of the clock (that only
+  happens after a backward step). A shorter step delays it by less than two
+  seconds.
+- **Consequence for the functional suite:** the shared suite clock and the
+  limiter's per-peer state live in the same context, so a journey that moves
+  the clock forward leaves its peer's bucket ahead of real time. Such
+  journeys send from a dedicated peer address (`IdempotencyJourneyTest`,
+  `StatsJourneyTest`, granted at 12:40Z).

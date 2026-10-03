@@ -1,6 +1,6 @@
 # ADR-0004 — Structured ECS JSON logs with no client PII
 
-- Status: accepted; amended 2026-10-03 by `01-create-redirect`; second and third amendments proposed by `02-analytics` and `03-operate` (see *Amendment* sections)
+- Status: accepted; amended 2026-10-03 by `01-create-redirect`; second and third amendments accepted at the `02-analytics` (09:48Z) and `03-operate` (09:41Z) plan-locks (see *Amendment* sections)
 - Date: 2026-10-02
 - Slice: `01-ping`
 
@@ -92,7 +92,7 @@ H2's own trace file (`data/*.trace.db`) is not this service's log stream; its
 default level keeps integrity violations out of it (`01-create-redirect`
 design §6).
 
-## Amendment — `02-analytics` (2026-10-03, proposed with that slice's design)
+## Amendment — `02-analytics` (2026-10-03, accepted at that slice's plan-lock)
 
 The first work done for a request after its response has gone is click
 recording (ADR-0011).
@@ -111,7 +111,7 @@ Verified by effect:
 `missions/01-greenfield-core/slices/02-analytics/design-probe/output.txt`
 (C8).
 
-## Amendment — `03-operate` (2026-10-03, proposed with that slice's design)
+## Amendment — `03-operate` (2026-10-03, accepted at that slice's plan-lock)
 
 - **Tomcat's request-parse errors are not logged:**
   `logging.level.org.apache.coyote.http11.Http11Processor=warn` (shipped).
