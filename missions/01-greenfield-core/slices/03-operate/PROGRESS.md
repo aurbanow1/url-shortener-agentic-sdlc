@@ -109,3 +109,14 @@ AC-28 promise remains unmet. No new builder workflow is invented by this
 non-workflow receipt packet.
 
 - 2026-10-03T16:49Z: judgment-only packet qitem-20261003164452-5a8a64eb completed; receipt 28 re-affirms GAPS item 5 after the append-only 02-analytics measurement disclosure at 367567e. Every 03-operate row is unchanged; fresh state 1–12 accepted/13 rejected, no issues. No app/build/bench run or waiver.
+
+## Human-amended release receipt — 2026-10-03
+
+- [x] Assigned packet qitem-20261003171429-897aa374: human gate transition 1011 and amended AC-28/A-19 at 55a197a read; all remaining clauses unchanged.
+- [x] GAPS host row updated with accepted human decision, six failed host captures, actual corrected counts and evidence paths; original failure preserved. GAPS/audit/PASS drop commit 15a8f9c.
+- [x] All 26 original raw hashes reverified; jar drains 3/3; VM-port complete bodies/ids/phase logs 2/2; one retained namespace control complete. First reported namespace run remains unretained.
+- [x] Corrected restart run 6: 149 attempts, zero bad/incomplete received responses, 103 proxy failures; timeout 20 s >10 s; host R0 still cut and disclosed.
+- [x] Receipt 30 accepts item 13 against amended AC-28 on merged 8e9c065; receipt 29 accepts GAPS item 5. Current 03 proof ready, all 13 accepted, no issues.
+- [x] Shared-evidence side effect reported to lead; 02 items 5/13 and independently stale item 10 routed by the lead to qa-agent. No QA2 judgment of another slice.
+- [x] Delivery stamp recorded by lead at 17:24:24Z, action 01M41CQAB84KZC76HJYDXW4CD2, as attributed in the current Acceptance row. QA2 made no stamp.
+- [x] Receipt 31 re-affirms accepted item 13 after the delivery stamp added only approval frontmatter to SPEC, changing its evidence hash. Criterion and other evidence unchanged; fresh proof ready 13/13, no issues. Receipts 29–31 committed for evidence export.

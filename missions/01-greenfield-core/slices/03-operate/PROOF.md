@@ -4,11 +4,11 @@
 >
 > **HOW (the drop verb, not hand-placement):** put media files under `proof/`, then ATTACH them with `rig proof add OPR.99.0.2.3 --artifact-type qa --verdict PASS --candidate-sha <tip> --money-evidence "<one line>" --evidences "1" --media "screenshot-01.png"` — the drop writes the C1 header the Living Notes DELIVERED pairing joins on. Hand-placing files without a drop leaves the deliverable unpaired and `unverified`.
 
-Current status: QA and independent code/security re-review PASS on candidate 1c8b2cf, integrated by the lead as 8e9c065. Attributed items 1–12 are accepted; release item 13 is REJECTED against merged 8e9c065 because AC-28's published-port R0 fails in five recorded runs. The human's ship-gap decision remains pending. Review FAIL at 43cccf5 and the withdrawn a7c533f item 12 remain historical.
+Current status: all 13 attributed items accepted on their recorded subjects/scopes. Receipt 30 accepts release item 13 on merged 8e9c065 against human-amended AC-28 (SPEC 55a197a, A-19, gate transition 1011); receipt 29 re-affirms updated GAPS item 5. Six failed Mac host-port R0 runs remain an accepted disclosed host gap. Receipt 27's rejection remains historical for the original criterion. The lead recorded the delivery stamp at 17:24:24Z; earlier review failures and withdrawals remain intact.
 
 ## What this proves
 
-The candidate limits client requests with a correlated, private 429; health follows the database; metrics and the API document expose the promised contract. Independent QA observed all AC-1–AC-20, with a fresh 100% merged coverage gate. Release records support AC-21–27 and the specified-rate NFR-L1/L2 jar benchmark, but AC-28 is not met on this host under the locked SPEC.
+The candidate limits client requests with a correlated, private 429; health follows the database; metrics and the API document expose the promised contract. Independent QA observed all AC-1–AC-20, with a fresh 100% merged coverage gate. Release records support AC-21–28 under the human-amended direct-path R0 criterion and the specified-rate NFR-L1/L2 jar benchmark. The Mac host-port cut remains disclosed, with no successful host response claimed.
 
 ## Artifacts (media in proof/)
 
@@ -18,10 +18,11 @@ Dropped via `rig proof add … --evidences … --media …` (one drop per verdic
 - QA drop: `proof/qa-evidence-a7c533f.md`; coverage, captures and limits are detailed below.
 - Current QA drop: `proof/qa-evidence-1c8b2cf.md`; fresh re-check below.
 - Release judgment drop: `proof/qa-release-judgment-8e9c065.md`, NOT-CLEAR on item 13; raw-effect audit and finding under `docs/qa/03-operate/release-judgment-8e9c065.md`.
+- Current release judgment drop: `proof/qa-release-rejudgment-55a197a.md`, PASS against amended AC-28; retained-effect audit and decision record under `docs/qa/03-operate/release-rejudgment-55a197a.md`.
 
 ## Residue / caveats (if any)
 
-Proof item 11 is accepted from the completed independent re-reviews. Item 13 is rejected: five held responses are lost through the Mac published port. The release jar benchmark reaches 100/20 requests/s and meets NFR-L1/L2 on its recorded run; the container was not benched. Shipping with the AC-28 gap still requires the human's decision.
+Proof item 11 is accepted from the completed independent re-reviews. Item 13 is accepted against the human-amended AC-28, preserving six failed host-port captures as an accepted disclosed gap. Only one namespace control has retained evidence; the first reported run was overwritten. Native Linux and the precise forwarder mechanism remain unverified. The release jar benchmark reaches 100/20 requests/s and meets NFR-L1/L2 on its recorded run; the container was not benched.
 
 ## Builder
 
@@ -511,3 +512,52 @@ hashing current GAPS as `187cacbf…65204d4`. Fresh attributed state is items
 Self-check: prior receipt digest, append-only diff, committed/current bytes,
 receipt actor/subject/hash and live state verified; no app, build, bench,
 product change, new AC-28 judgment or waiver.
+
+#### Human-amended release judgment — 2026-10-03
+
+Assigned packet `qitem-20261003171429-897aa374`. Independently read the human's
+ship decision at gate transition 1011, SPEC amendment 55a197a/A-19 and unchanged
+remaining clauses; reviewed RISKS and updated GAPS with the actual decision,
+host, six failed captures, corrected counts and raw paths. Evidence/GAPS commit
+`15a8f9c` includes the new PASS drop and independent re-judgment audit.
+
+Reverified all 26 original raw-file hashes. Three jar drains retain complete
+201 responses. Both VM-port captures and the retained namespace capture contain
+normal 201 bodies and final chunks, with matching completion ids; graceful
+shutdown finishes at 3687.788/4234.751/3816.244 ms into their phases. The first
+reported namespace run has no retained evidence and is not independently credited.
+Run 6 uses the corrected curl-exit-aware load loop: 149 attempts, zero bad or
+incomplete received responses, 103 proxy failures; its host R0 still fails.
+Inspect timeout 20 s exceeds the shipped 10 s phase. Other AC-21–27 effects and
+the specified-rate NFR-L1/L2 jar verdict stand on unchanged retained evidence.
+
+Receipt `proof/judgments/00000030.md` accepts item 13 on merged
+`8e9c065589e53385f60d6be3ddbc3683260285df`, superseding receipt 27 for the amended
+criterion. Receipt `00000029.md` accepts updated GAPS item 5. Fresh 03 proof state
+is `ready`: all 13 items accepted, no issues. Earlier rejection and failed host
+exchanges remain historical; this is a criteria amendment with human authority,
+not a repaired source or a successful Mac host-port response.
+
+Shared-evidence handoff: metadata inspection found 02-analytics items 5/13
+unknown after this GAPS edit and its item 10 also unknown. The lead independently
+confirmed and routed these to that slice's judge. QA2 did not judge 02. The lead
+recorded 03's delivery stamp at 17:24:24Z, action `01M41CQAB84KZC76HJYDXW4CD2`;
+the current PROGRESS acceptance row preserves that attribution.
+
+### Self-check — amended release receipt
+
+Human actor/decision and SPEC diff verified; all retained direct-path response
+bodies/terminal chunks, request ids and graceful completion times checked;
+original hashes, corrected run-6 instrument/output, inspect timeout, unchanged
+product-input diff, GAPS/RISKS disclosure and live attributed state verified.
+No new app, build or bench run; no product/test edits. No native-Linux,
+unretained namespace, container-benchmark or exact forwarding-mechanism claim.
+The human-authorized host gap remains visible. Delivery stamp attribution was
+read from PROGRESS; QA2 made no stamp.
+
+The delivery stamp appended only `approved-by` and `approved-at` to SPEC
+frontmatter, invalidating receipt 30's whole-file evidence hash. QA inspected
+the diff and re-affirmed item 13 in receipt `00000031.md` against the stamped
+file with the same subject and evidence. AC-28/A-19 and every proof item are
+unchanged; all other evidence hashes still match. Fresh state is ready, 13/13
+accepted, no issues. Receipts 29, 30 and 31 are committed for evidence export.
