@@ -21,11 +21,14 @@ import java.util.stream.Stream;
 import dev.urlshort.link.FunctionalClock;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.system.CapturedOutput;
+import org.springframework.boot.test.system.OutputCaptureExtension;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.simple.JdbcClient;
@@ -36,11 +39,12 @@ import tools.jackson.databind.json.JsonMapper;
 
 /**
  * Recording a click on every {@code 302} redirect and nothing else, reduced before it is stored:
- * AC-1 to AC-6 and business rules 1 to 4. Each test creates its own links and reads only their
+ * AC-1 to AC-6, AC-17, AC-18 and business rules 1 to 4. Each test creates its own links and reads only their
  * clicks, because the in-memory database is shared by every context of the suite.
  */
 @SpringBootTest
 @AutoConfigureMockMvc
+@ExtendWith(OutputCaptureExtension.class)
 class ClickRecordingJourneyTest {
 
 	static final String BROWSER_ACCEPT = "text/html,application/xhtml+xml,*/*;q=0.8";
@@ -202,9 +206,52 @@ class ClickRecordingJourneyTest {
 		assertThat(clicks.toString()).doesNotContain("192.0.2.99");
 	}
 
+	@Test
+	void AC17_theStatisticsExposeAggregatesOnly() throws Exception {
+		String code = create("https://example.com/aggregates");
+		mockMvc.perform(get("/" + code).with(peer("203.0.113.77")).header("User-Agent", "Mozilla/5.0 uacanary")
+				.header("Referer", "https://News.Example/a/refpathcanary?t=refquerycanary#reffragcanary"));
+		mockMvc.perform(get("/" + code).with(peer("198.51.100.23")).header("User-Agent", "uacanary-crawler/1.0"));
+		recorder.settle();
+		String hash = (String) clicks(code).getFirst().get("CLIENT_HASH");
+
+		String body = mockMvc.perform(get("/api/links/" + code + "/stats")).andReturn().getResponse().getContentAsString();
+
+		tools.jackson.databind.JsonNode stats = jsonMapper.readTree(body);
+		assertThat(stats.propertyNames()).containsExactlyInAnyOrder("code", "totalClicks", "clicksPerDay",
+				"topReferrers");
+		stats.get("clicksPerDay").forEach(day -> assertThat(day.propertyNames()).containsExactlyInAnyOrder("date", "clicks"));
+		stats.get("topReferrers")
+				.forEach(ref -> assertThat(ref.propertyNames()).containsExactlyInAnyOrder("referrer", "clicks"));
+		assertThat(body).doesNotContain("203.0.113.77").doesNotContain("198.51.100.23").doesNotContain(hash)
+				.doesNotContain("browser").doesNotContain("\"bot\"").doesNotContain("uacanary")
+				.doesNotContain("refpathcanary").doesNotContain("refquerycanary").doesNotContain("reffragcanary")
+				.doesNotContain("/a/");
+	}
+
+	@Test
+	void AC18_noClickDataReachesTheLogs(CapturedOutput output) throws Exception {
+		String code = create("https://example.com/no-logs");
+		recorder.settle();
+		int windowStart = output.getAll().length();
+
+		mockMvc.perform(get("/" + code).with(peer("203.0.113.77")).header("User-Agent", "Mozilla/5.0 logcanaryua")
+				.header("Referer", "https://logorigin.example/logcanarypath?q=logcanaryquery")
+				.header("X-Forwarded-For", "192.0.2.123"));
+		recorder.settle();
+		mockMvc.perform(get("/api/links/" + code + "/stats"));
+		String window = output.getAll().substring(windowStart);
+
+		String hash = (String) clicks(code).getFirst().get("CLIENT_HASH");
+		assertThat(window).isNotBlank().doesNotContain("logcanaryua").doesNotContain("logcanarypath")
+				.doesNotContain("logcanaryquery").doesNotContain("192.0.2.123").doesNotContain("203.0.113.77")
+				.doesNotContain(hash).doesNotContain("logorigin.example");
+	}
+
 	private void redirectAt(String code, String instant, String address) throws Exception {
 		clock.reset();
-		clock.shift(Duration.between(Instant.now(), Instant.parse(instant)));
+		// from the suite clock's own millisecond tick, so elapsed real time can only move it later
+		clock.shift(Duration.between(clock.instant(), Instant.parse(instant)));
 		assertThat(mockMvc.perform(get("/" + code).with(peer(address))).andReturn().getResponse().getStatus())
 				.isEqualTo(302);
 	}

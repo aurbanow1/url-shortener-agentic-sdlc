@@ -68,7 +68,7 @@ class OpenApiDocumentTest {
 	void AC28_liveDocumentDescribesTheSlice() {
 		JsonNode paths = document.get("paths");
 		assertThat(paths.propertyNames()).containsExactlyInAnyOrder("/api/ping", "/api/links", "/api/links/{code}",
-				"/{code}");
+				"/{code}", "/api/links/{code}/stats");
 		assertThat(paths.get("/api/ping").has("get")).isTrue();
 		assertThat(paths.get("/api/links").propertyNames()).containsExactly("post");
 		assertThat(paths.get("/api/links/{code}").propertyNames()).containsExactlyInAnyOrder("get", "delete");
