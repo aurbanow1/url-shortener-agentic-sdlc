@@ -9,7 +9,9 @@
 
 - [x] Implementation complete — current candidate `1c8b2cf` on `slice/03-operate`, descends from 02's merge `091ff46`; review repairs independently rechecked by QA (2026-10-03)
 - [x] Tests passing — fresh independent `check --rerun-tasks` on `1c8b2cf`: unit 165/165, functional 155/155, merged 443/443 lines and 162/162 branches, Javadoc green (`docs/qa/03-operate/check-1c8b2cf.txt`)
-- [ ] Review approved
+- [x] Review approved — combined code and security re-review PASS on `1c8b2cf` (`docs/review/03-operate/01-code-review.md`, `02-security-review.md`, evidence `48381d4`; the first round's HIGHs, the limiter's stale-time reset and the smoke script's truncated-R0 pass, fixed and re-probed; CR-03 judged against the written clock policy)
+- [x] Integrated — merged `--no-ff` into `main` as `8e9c065` (orchestration lead, 2026-10-03T13:59Z; 26 files, all inside the slice territory and its grants; the two granted test files carry only the dedicated-peer change plus two stricter status checks); `scripts/gw --offline check --rerun-tasks` green on `main` after the merge, unit 165, functional 155, 0 failures/skips, coverage verification passed (`docs/evidence/01-greenfield-core/integrate-03-operate-check-8e9c065.txt`); tag `slice/03-operate/accepted` on `1c8b2cf`; worktree removed
+- [ ] Delivery stamp — after the mission's ship sign-off, once item 11 is judged by `qa2-agent` (`qitem-20261003135618-4e62dbf5`, from the re-review rows) and item 13 after `release_prep` (`qitem-20261003120849-f4cbfa97`). Items 1–10 and 12 are accepted on `1c8b2cf`
 
 ## Historical builder-side proof-contract items — a7c533f
 
