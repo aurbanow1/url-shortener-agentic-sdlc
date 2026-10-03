@@ -11,7 +11,7 @@
 - [x] Tests passing — `scripts/gw --offline check --rerun-tasks` on `862c52e`: unit 121/121, functional 126/126, merged coverage 100 % line and branch, Javadoc gate green (`proof/builder-check-862c52e.txt`; builder run, QA re-runs independently)
 - [x] Review approved — combined code and security re-review PASS on `5b3490c` (`docs/review/02-analytics/01-code-review.md`, `02-security-review.md`, evidence `4074673`; the first round's HIGH, a timing-dependent `DailySaltTest` case, fixed in test setup only)
 - [x] Integrated — merged `--no-ff` into `main` as `091ff46` (orchestration lead, 2026-10-03T11:29Z); `scripts/gw --offline check --rerun-tasks` green on `main` after the merge (`docs/evidence/01-greenfield-core/integrate-02-analytics-check-091ff46.txt`); tag `slice/02-analytics/accepted` on `5b3490c`; worktree removed
-- [ ] Delivery stamp — remains the mission's ship sign-off; item 13 accepted after release measurement/disclosure, with four shared-document judgments re-affirmed against merged `8e9c065` (receipts 00000025–00000029). This supplies no ship approval or AC-28 waiver
+- [ ] Delivery stamp — release/lead continuation following the human's ship decision (gate transition 1011); all 13 proof items accepted, with receipts 00000030–00000032 re-affirming items 5/10/13 after authorized shared-evidence changes. QA performs no delivery stamp in this judgment-only packet
 
 ## Builder-side proof-contract items
 
@@ -42,3 +42,10 @@ items 1, 4, 5 and 10 after shared-document changes; all 13 items are accepted.
 - [x] Isolated midnight regression 1/1 and fresh full 121/126 gate; merged CSV 100% line/branch
 - [x] Reports copied again, all 138 method mappings refreshed; previous comprehensive effects adopted through exact source equality
 - [x] Fresh live representative/error/failing-insert effects; logs, audit/click export and API document checked; preparation-log limit recorded
+
+## Shared-evidence reaffirmation after ship decision
+
+- [x] Packet qitem-20261003172414-da644ea6: full GAPS delta at 15a8f9c changes only 03-operate's human-authorized host-gap row; all analytics rows and isolation limits retained
+- [x] Original ADR-0011/12/13 decisions, indexing and chronology retained; later retention amendment/note explicitly outside this merged-subject acceptance
+- [x] Items 5, 10 and 13 re-affirmed against merged 8e9c065 in receipts 00000030–00000032; fresh derived state ready, all 13 accepted, no issues; audit in docs/qa/02-analytics/reaffirmation-15a8f9c.{md,json}
+- [x] Judgment only: no app, build, benchmark or product/shared-evidence change; release/lead owns the remaining delivery stamp

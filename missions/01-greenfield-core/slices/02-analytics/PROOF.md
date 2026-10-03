@@ -316,3 +316,33 @@ chronology; checked built/merged input equality and current evidence hashes.
 Final GAPS was committed before judging. No product/test/build/release change
 or extra app/load/container run; separate dogfood apps stopped. No AC-28 waiver
 or delivery stamp; the human's mission ship sign-off remains outstanding.
+
+## QA shared-evidence reaffirmation — after 15a8f9c
+
+QA Agent/Codex, 2026-10-03; packet qitem-20261003172414-da644ea6.
+Read the human's ship decision at gate transition 1011 and the latest full
+GAPS delta. Only the 03-operate host-gap row changed; the failed original
+host-path result remains disclosed. All analytics rows, including the
+unisolated added-p95 limit, are byte-identical. ADR-0012 is unchanged;
+ADR-0011 adds a proposed retention executor amendment/status annotation
+and ADR-0013 appends a retention/no-index note. Original decision bodies,
+analytics introducer, index entries and plan-lock acceptance are preserved.
+This does not accept unmerged retention behavior or repeat QA2's AC-28 judgment.
+
+The binding audit compares every retained evidence hash: five changed bindings
+(GAPS for 5/13; DESIGN and ADR-0011/0013 for 10), eleven unchanged. Instrument,
+benchmark, statistics and JSON-log files retain their accepted hashes. No new
+latency observation; the original sequential GET/HEAD comparison retains its
+explicit isolation limit. Evidence: docs/qa/02-analytics/reaffirmation-15a8f9c.md
+and .json. Receipts proof/judgments/00000030.md–00000032.md re-affirm items
+5, 10 and 13 against 8e9c065589e53385f60d6be3ddbc3683260285df; all 13
+derive accepted/ready. Additive QA drop qa-reaffirmation-15a8f9c.md names those
+three items. The release/lead continuation performs the delivery stamp.
+
+### Self-check
+
+Read exact packet, contract, prior receipts and human transition. Compared
+complete gap delta, all analytics rows, original ADR decisions and later notes,
+index rows and every bound hash. Current evidence postdates 15a8f9c and receipts
+retain the merged subject. No app, build, bench, product/test or shared-evidence
+edit; no new waiver or delivery stamp. Fresh derived readiness checked.
