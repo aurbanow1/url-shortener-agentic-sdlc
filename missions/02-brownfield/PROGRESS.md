@@ -7,7 +7,7 @@
 
 ## Acceptance
 
-- [ ] Scope complete (all slices shaped)
+- [x] Scope complete (all slices shaped) — three slices (`01-audit-read`, `02-click-retention`, `03-dogfood-fix`) in two waves plus four labelled drills, shaped at `b689f36`; pending decomposition review and the mission plan-lock. `03-dogfood-fix`'s territory is set at its requirements step from the defect report
 - [ ] Implementation in progress
 - [ ] QA / review pass
 - [ ] Merge / ship
