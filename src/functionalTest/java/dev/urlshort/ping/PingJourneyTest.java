@@ -120,7 +120,13 @@ class PingJourneyTest {
 			return request;
 		})).andExpect(status().isOk()).andReturn().getResponse().getHeader(REQUEST_ID);
 
-		assertThat(linesContaining(output, id)).isNotEmpty();
+		List<String> events = linesContaining(output, id);
+		assertThat(events).isNotEmpty();
+		for (String line : events) {
+			assertThat(jsonMapper.readTree(line).at("/process/thread/name").isMissingNode())
+					.as("no thread name, which carries the bind address on a loopback-bound server: %s", line)
+					.isTrue();
+		}
 		assertThat(output.getAll()).doesNotContain(userAgent).doesNotContain(remoteAddr);
 	}
 
