@@ -1,0 +1,27 @@
+%% CI/CD on GitHub Actions (05-ci-cd): the gate on every pull request and on main, the package
+%% job on main, Dependabot proposals. Nothing is published. Inline in
+%% missions/02-brownfield/slices/05-ci-cd/design.md §4.
+sequenceDiagram
+    autonumber
+    actor H as Human (merges, D13)
+    participant GH as GitHub
+    participant CI as ci.yml · gate<br/>ubuntu-24.04
+    participant CD as cd.yml · package<br/>ubuntu-24.04
+    participant DB as Dependabot (weekly)
+
+    H->>GH: push pr/NN branch (opened / synchronize)
+    GH->>CI: pull_request · merge commit refs/pull/n/merge<br/>token contents:read, no secrets
+    CI->>CI: checkout (no persisted token) · Temurin 21 · setup-gradle<br/>(wrapper validated, cache read-only off main)
+    CI->>CI: ./gradlew check --no-daemon
+    CI-->>GH: upload gate-reports (always)
+    CI-->>H: check run "gate": success or failure
+    H->>GH: merge (merge commit) — next PR retargets: edited, no re-run
+    GH->>CI: push to main · the gate again on the merged tree
+    GH->>CD: push to main
+    CD->>CD: ./gradlew bootJar --no-daemon · upload urlshort-jar
+    CD->>CD: scripts/smoke.sh --jar … 18091<br/>java -jar --server.address=127.0.0.1 · smoke · SIGTERM
+    CD-->>GH: upload smoke-logs (always)
+    CD->>CD: docker build --tag urlshort:cd . (not pushed)
+    CD-->>H: run conclusion + artifacts
+    DB->>GH: update pull request (read-only token, as a fork)
+    GH->>CI: pull_request · the same gate
