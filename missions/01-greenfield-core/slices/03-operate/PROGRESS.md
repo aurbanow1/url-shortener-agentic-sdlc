@@ -30,7 +30,7 @@
 - [x] Coverage copies/hashes, all 184-method/318-invocation traceability, individual release gap rows and exact live API diff recorded.
 - [x] Plain jar env/smoke/60 s bench/drain observed; apps stopped; candidate worktree clean and unchanged.
 - [x] QA proof drop `proof/qa-evidence-a7c533f.md` covers items 1–10 and 12.
-- [ ] Attributed judgments for items 1–10 and 12 (recorded next, before handoff).
+- [x] Attributed judgments for items 1–10 and 12: receipts `proof/judgments/00000001.md` through `00000011.md`, actor qa2-agent, subject commit a7c533ffef55650e5b422377ffe0c4e38d41400c. Live proof state confirms these accepted and only 11/13 pending.
 - [ ] Item 11: code/security review records.
 - [ ] Item 13: release AC-21–AC-28, container inspect/restarts and specified-rate latency judgment.
 
