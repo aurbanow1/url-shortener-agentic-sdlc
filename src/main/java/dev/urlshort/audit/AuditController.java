@@ -15,12 +15,14 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.jspecify.annotations.Nullable;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
+import org.springframework.boot.tomcat.autoconfigure.TomcatServerProperties;
 import org.springframework.boot.web.server.autoconfigure.ServerProperties;
 import org.springframework.boot.web.server.autoconfigure.ServerProperties.ForwardHeadersStrategy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.ErrorResponseException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,11 +33,11 @@ import org.springframework.web.bind.annotation.RestController;
  * at a time. Anonymous, read-only and loopback only (NFR-S6, ADR-0019): a request is served only when
  * its peer is a loopback address, it carries no {@code X-Forwarded-For} or {@code Forwarded} header, and
  * nothing rewrites the peer from those headers (the effective forwarded-header strategy is
- * {@code NONE}). Any other request is a {@code 403} problem, decided before validation and before
+ * {@code NONE} and no {@code server.tomcat.remoteip} header is set). Any other request is a {@code 403} problem, decided before validation and before
  * content negotiation, so no setting and no {@code Accept} can open the trail.
  */
 @RestController
-// ServerProperties, which decides the guard, exists only in a servlet application
+// ServerProperties and TomcatServerProperties, which decide the guard, exist only in a servlet application
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 class AuditController {
 
@@ -55,10 +57,14 @@ class AuditController {
 	private final AuditTrail trail;
 	private final boolean peerIsConnection;
 
-	AuditController(AuditTrail trail, ServerProperties server) {
+	AuditController(AuditTrail trail, ServerProperties server, TomcatServerProperties tomcat) {
 		this.trail = trail;
-		// any other strategy (or Boot's platform default when unset) may rewrite the peer from a header
-		this.peerIsConnection = server.getForwardHeadersStrategy() == ForwardHeadersStrategy.NONE;
+		// the negation of Boot 4.1.1's condition for installing Tomcat's RemoteIpValve, which rewrites the
+		// peer from a header: any other strategy (or the platform default when unset), or either remoteip
+		// header setting. ponytail: mirrors Boot's trigger list; a Boot upgrade that adds one adds it here
+		this.peerIsConnection = server.getForwardHeadersStrategy() == ForwardHeadersStrategy.NONE
+				&& !StringUtils.hasText(tomcat.getRemoteip().getRemoteIpHeader())
+				&& !StringUtils.hasText(tomcat.getRemoteip().getProtocolHeader());
 	}
 
 	@GetMapping("/api/audit")
