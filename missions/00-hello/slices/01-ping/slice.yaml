@@ -34,6 +34,12 @@ territory:
   # (systemProperty spring.profiles.active=functional). Reviewers check the diff
   # stays inside that block.
   - build.gradle.kts
+  # Granted after QA finding QA-01 (lead decision, 2026-10-03T00:33Z): Tomcat names
+  # worker threads after the bound address, so process.thread.name carries the
+  # loopback address in every log line and AC-7 fails literally on a loopback run.
+  # LIMITED to one property line that excludes process.thread.name from the
+  # structured JSON log. Reviewers check the diff is that line and nothing else.
+  - src/main/resources/application.properties
 execution:
   actor_role: requirements
   depends_on: []
