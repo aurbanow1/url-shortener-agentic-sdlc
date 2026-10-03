@@ -1,22 +1,23 @@
 # urlshort-slice — the per-slice SDLC (pure next_hop routing graph).
-# One instance per slice. Eleven steps: every producing step is followed by an
-# independent review (requirements_review, design_review, code_review +
-# security_review) whose failed verdict routes back to the producer; plan-lock
-# held at the HUMAN (high-tier slices) only after the design review passed. The delegated variant for low-tier slices differs only in
-# plan_lock.gate.target; keep the two files otherwise identical.
+# One instance per slice. Nine steps: every producing step is followed by an
+# independent review (requirements_review, design_review, code_review which
+# carries the security & compliance checklist in the same packet) whose failed
+# verdict routes back to the producer; plan-lock held at the HUMAN (high-tier
+# slices) only after the design review passed; QA records the proof judgments
+# at qa_check, so integrate is terminal. The delegated variant for low-tier
+# slices differs only in plan_lock.gate.target; keep the two files otherwise identical.
 #
-# max_hops arithmetic: 11 baseline steps + 2 requirements-review rounds x 2 hops
-# + 2 design-review rounds x 2 hops + 3 remediation rounds x the 4-hop loop
-# (implement -> qa_check -> code_review -> security_review) = 31 -> 36.
+# max_hops arithmetic: 9 baseline steps + 2 requirements-review rounds x 2 hops
+# + 2 design-review rounds x 2 hops + 3 remediation rounds x the 3-hop loop
+# (implement -> qa_check -> code_review) = 26 -> 30.
 workflow:
   id: urlshort-slice
   version: 1
   objective: >-
     Take one slice from intent to an accepted, merged candidate: requirements
     and their review, design and its review, plan-lock (human), TDD
-    implementation, QA with 100% coverage proof, independent code review,
-    security & compliance review, serial integration into main, and attributed
-    proof acceptance.
+    implementation, QA with 100% coverage proof and the proof judgments, one
+    independent code + security review, and serial integration into main.
   target:
     rig: urlshort-factory
   entry:
@@ -39,8 +40,6 @@ workflow:
     design_review:
       preferred_targets: [review-agent@urlshort-factory]
     code_review:
-      preferred_targets: [review-agent@urlshort-factory]
-    security:
       preferred_targets: [review-agent@urlshort-factory]
     integrator:
       preferred_targets: [orchestration-lead@urlshort-factory]
@@ -126,8 +125,10 @@ workflow:
       objective: >-
         Verify the candidate by effect: run the suites and the public journey,
         produce unit and functional coverage reports, the acceptance-criteria
-        traceability table and the gap list, record proof drops. A failing
-        check is the artifact's verdict and routes back to implement.
+        traceability table and the gap list, record proof drops. On PASS,
+        record the attributed judgment on every proof-contract item against
+        the candidate SHA (rig proof judge) so acceptance needs no extra hop.
+        A failing check is the artifact's verdict and routes back to implement.
       allowed_exits: [handoff, waiting, failed]
       next_hop:
         mode: require
@@ -141,20 +142,12 @@ workflow:
         every changed file read, findings with severity and evidence, anti-slop
         and drift checks, review ledger updated — and a review of the QA
         evidence itself (traceability complete, coverage honest, gaps real).
-        MUST-FIX or HIGH routes back to implement.
-      allowed_exits: [handoff, waiting, failed]
-      next_hop:
-        mode: require
-        suggested_roles: [security]
-        on:
-          failed: implement
-    - id: security_review
-      actor_role: security
-      objective: >-
-        Security & compliance review of the same candidate: shortener-specific
-        checklist (open redirect, scheme allow-list, injection, rate-limit
-        bypass, PII and log hygiene, error leakage), dependency check, verdict
-        on the threat model. A blocking finding routes back to implement.
+        In the same packet, the security & compliance review of the same
+        candidate: shortener-specific checklist (open redirect, scheme
+        allow-list, injection, rate-limit bypass, PII and log hygiene, error
+        leakage, exposure), dependency check, verdict on the threat model —
+        written as 01-code-review.md and 02-security-review.md with one exit.
+        MUST-FIX or HIGH in either routes back to implement.
       allowed_exits: [handoff, waiting, failed]
       next_hop:
         mode: require
@@ -164,19 +157,12 @@ workflow:
     - id: integrate
       actor_role: integrator
       objective: >-
-        Confirm all three verdicts name the same candidate SHA, merge the slice
-        branch into main with --no-ff, re-run the gate on main, tag the accepted
-        candidate, remove the worktree. A red main is reverted and recorded.
-      allowed_exits: [handoff, waiting, failed]
-      next_hop:
-        on:
-          handoff: slice_accept
-    - id: slice_accept
-      actor_role: qa
-      objective: >-
-        Record the attributed judgment on every proof-contract item against the
-        merged candidate (rig proof judge), bring PROGRESS.md current, and close
-        the slice. Delivery stamps follow the mission's ship sign-off.
+        Confirm the QA and review verdicts name the same candidate SHA and the
+        proof-contract judgments are recorded, merge the slice branch into main
+        with --no-ff, re-run the gate on main, tag the accepted candidate, remove
+        the worktree, bring PROGRESS.md current and close the slice; delivery
+        stamps follow the mission's ship sign-off. A red main is reverted and
+        recorded.
       allowed_exits: [done, waiting, failed]
       next_hop:
         mode: forbid
@@ -186,7 +172,7 @@ workflow:
     closure_required: true
     allowed_exits: [handoff, waiting, done, failed]
   loop_guards:
-    max_hops: 36
+    max_hops: 30
     spawn_budget: 0
   closure:
     success: Slice merged into main with all proof-contract items accepted.
