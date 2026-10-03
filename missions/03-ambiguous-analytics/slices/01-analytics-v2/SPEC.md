@@ -9,6 +9,16 @@ verified: 2026-10-03 against scaffold (rig scope create)
 created: 2026-10-03
 intent: "An Analyst gets the click analytics marketing actually needs, with what is counted, how long clicks are kept, what the hashed address may be used for and who reads the figures decided by the human before anything is built, then built and proven on top of the shipped v1."
 depends_on: []
+approved-spec-by: orchestration-lead@urlshort-factory
+approved-spec-at: 2026-10-03T20:02:59.400Z
+locked-artifacts:
+  - name: SPEC.md
+    path: SPEC.md
+    kind: spec
+  - name: design.md
+    path: design.md
+    kind: spec
+provenance: transport:v1
 ---
 
 # Slice 01 — Analytics v2
