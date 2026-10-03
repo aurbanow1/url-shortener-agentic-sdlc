@@ -85,6 +85,7 @@ Recorded 2026-10-03T01:52Z before the handoff to `wave_review`.
 - 2026-10-02 — decomposed into one slice, one wave; compiled graph exported to `docs/evidence/00-hello/compiled-graph.json`; held at mission plan-lock.
 - 2026-10-02T22:02Z — mission plan-lock approved; wave w1 launched.
 - 2026-10-03T01:33Z — `01-ping` merged into main; 01:49Z slice accepted. Wave w1 complete.
+- 2026-10-03T02:44Z — ship sign-off approved by `human@kernel` on `qitem-20261003023502-f807af1f` ("approve: ship the 00-hello dry run on 42a25db4; Tomcat/Jackson advisories tracked … and fixed before the first slice that parses client input"); `01-ping` delivery stamp recorded on the human's behalf. Nothing published by an agent.
 - 2026-10-03T01:52Z — handed to `wave_review` (review agent + design agent, authors excluded). Wave range on main: `f43ecd1..42a25db4` for product code (nine files), plus the slice and mission documents committed on main since `adfa5ca`.
 
 ---
