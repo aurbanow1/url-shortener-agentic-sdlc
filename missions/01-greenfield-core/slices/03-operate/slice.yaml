@@ -27,8 +27,8 @@ tier_reason: delegated plan-lock by the human's fast-plan decision of 2026-10-03
 # SERIALIZATION POINT (decomposition review DC-01): docs/api/openapi.json has one holder at a time.
 # In w2 the grant is ordered: 02-analytics holds it until 02's merge into main; 03 holds it from
 # then on. 02 merges at its own integrate step on its own three verdicts, without waiting for 03
-# (the schedule is acyclic: merge 02, hand off 03, prove 03, merge 03); wave_integration launches
-# w3 only when both slices are accepted (decomposition review DC-02).
+# (the schedule is acyclic: merge 02, hand off 03, prove 03, merge 03); wave_integration hands
+# off to wave_review only when both slices are accepted (decomposition review DC-02).
 # 03's implement step therefore hands off a candidate that descends from 02's merge
 # commit, with the document regenerated on that base (so it carries 02's stats endpoint and 03's
 # 429 response on every operation). If 03's build is otherwise done before 02 has merged, the
@@ -38,9 +38,9 @@ tier_reason: delegated plan-lock by the human's fast-plan decision of 2026-10-03
 # that predates 02's merge is routed back to implement, and the three reviews re-earn their
 # verdict on the regenerated diff in one short turn each. 04-audit-read moved to mission 02 by the
 # fast plan; w2 is the last wave of this mission and hands off to wave_review when both are accepted.
-# Launch note (fast plan item 4): instantiate this slice with the second-judge workflow variant
-# (second reviewer and QA seats) once the operator has added it under rig/workflows/, so 02 and 03
-# do not queue on one judge; fall back to urlshort-slice-delegated if the variant is not there.
+# Launch note (fast plan item 4): instantiate this slice with
+# rig/workflows/urlshort-slice-delegated-b.workflow.yaml (routes qa and review to the second
+# judge seats), so 02 and 03 do not queue on one judge.
 territory:
   # the rate-limit filter lives beside the request-id filter (cross-cutting HTTP concerns).
   - src/main/java/dev/urlshort/web/

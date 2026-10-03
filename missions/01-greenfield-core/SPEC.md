@@ -20,9 +20,9 @@ A user can create a short link for a valid http(s) URL, be redirected through it
 
 ## The doghouse
 
-A Creator posts a valid http(s) URL and gets a short link; a Visitor who opens it is redirected with a `302` and the click is recorded without slowing them; an Analyst reads the counts; an Operator sees abuse answered with `429`, truthful readiness, metrics, and every mutation in a readable audit trail, all from one container on one H2 file.
+A Creator posts a valid http(s) URL and gets a short link; a Visitor who opens it is redirected with a `302` and the click is recorded without slowing them; an Analyst reads the counts; an Operator sees abuse answered with `429`, truthful readiness, metrics, and every mutation written to an audit trail, all from one container on one H2 file. Reading that trail (FR-17) is mission 02's enhancement slice.
 
-Nothing on the out-of-scope list of `docs/REQUIREMENTS.md` §4 is in this mission. Custom aliases, expiry, retention purge and "better analytics" are missions 02 and 03.
+Nothing on the out-of-scope list of `docs/REQUIREMENTS.md` §4 is in this mission. Custom aliases and expiry (FR-11, FR-12, NFR-S2) are dropped from the plan by the human's fast-plan decision of 2026-10-03; the audit read and the retention purge are mission 02, "better analytics" is mission 03. (Historical: before the fast plan this mission also promised a readable audit trail, and aliases and expiry were planned for later missions.)
 
 ## Requirements in scope
 
@@ -59,7 +59,7 @@ Notes on the allocation:
 
 ## Decision brief (mission plan-lock)
 
-**Outcome.** Four slices over three waves. When this mission closes, `main` carries the public API (`POST /api/links`, `GET`/`DELETE /api/links/{code}`, `GET /{code}`, `GET /api/links/{code}/stats`, an audit read endpoint), a `link`, `click` and `audit_log` schema owned by Flyway, problem details on every error, a request id and a structured log line on every request, a rate limiter, truthful readiness, metrics, and a hardened container; every mutation writes an audit row that an Operator can read. Each slice arrives through requirements, design, their reviews, a plan-lock, test-first implementation, QA with coverage proof, code review and security review on one candidate SHA, serial integration and attributed proof acceptance.
+**Outcome.** Three slices over two waves (since the fast plan of 2026-10-03). When this mission closes, `main` carries the public API (`POST /api/links`, `GET`/`DELETE /api/links/{code}`, `GET /{code}`, `GET /api/links/{code}/stats`), a `link`, `click` and `audit_log` schema owned by Flyway, problem details on every error, a request id and a structured log line on every request, a rate limiter, truthful readiness, metrics, and a hardened container; every mutation writes an audit row, and the endpoint to read it comes with mission 02. (Historical: the brief approved at the 04:39Z plan-lock said four slices over three waves, with an audit read endpoint in this mission.) Each slice arrives through requirements, design, their reviews, a plan-lock, test-first implementation, QA with coverage proof, code review and security review on one candidate SHA, serial integration and attributed proof acceptance.
 
 **Slices, in order.**
 
