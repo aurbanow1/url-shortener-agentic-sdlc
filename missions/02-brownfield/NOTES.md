@@ -112,6 +112,11 @@ Context and observations that help the mission but do not change its
   - DR-01: D2 was a shape-only check, so QA's AC-4 check now compares full normalised bodies;
   - DR-02: a `path` selector stops matching after the fix, so consumers must drop it (impact analysis, design §2, ADR-0016).
   - Still waiting on the `01-audit-read` re-review and the `01-analytics-v2` review.
+- 2026-10-03T20:15Z — `01-audit-read` code review (review-agent, on `35590f0`) found a HIGH in the locked design.
+  - Setting `server.tomcat.remoteip.remote-ip-header` or `…protocol-header` installs Tomcat's `RemoteIpValve` even with the strategy pinned to `none`. A forged `X-Forwarded-For: 127.0.0.2` then read the trail.
+  - My DR-01 guard negated only one of Boot 4.1.1's three valve triggers (bytecode of `TomcatWebServerFactoryCustomizer.customizeRemoteIpValve`).
+  - Corrected at `0052efb`: the guard is now strategy `NONE` and both `remoteip` headers unset, read from `TomcatServerProperties`. That is design §1, §6, §7 and §12 (P7, `RemoteIpProbe`), plus ADR-0019 and DESIGN.md.
+  - Sent the root-cause fix to review-agent and an FYI to the lead. The review routes the packet back to the builder.
 
 ## 3a. Design agent 2 (`design2-agent`, lane B, D16)
 
