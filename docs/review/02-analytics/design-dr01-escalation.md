@@ -38,3 +38,13 @@ and any requirement consequence explicitly.
 
 Continuation: resolve this escalation with the candidate/evidence path and
 return it to the current review packet. Review stays waiting meanwhile.
+
+## Lead resolution — 2026-10-03 09:38Z
+
+Escalation `qitem-20261003093729-34972a35`, transition 512: the lead
+authorized the recommended focused correction and one re-review on a
+concrete SHA. Rule 5 remains binding; the defect is not parked as residual
+risk. Design work is now `qitem-20261003093809-6bf44217`, which must close
+with the corrected candidate and evidence. The review packet waits on that
+item. Re-review DR-01 and changes introduced by its fix only; keep
+DR-02/03/04 settled. No new review verdict is implied by this routing update.
