@@ -317,9 +317,9 @@ its evidence with `rig proof add`, with artifacts under `proof/`.
 - [ ] Unit and functional JaCoCo reports for the candidate are committed under `docs/qa/coverage/02-analytics/unit/` and `docs/qa/coverage/02-analytics/functional/`.
 - [ ] `docs/qa/TRACEABILITY.md` holds a table for `02-analytics` mapping AC-1 through AC-21 and business rules 1 to 9 to the tests that prove them, with the `FR`/`NFR` id beside each AC.
 - [ ] `docs/qa/GAPS.md` holds a row for `02-analytics`: either "None for this slice" or each honest gap with its compensating check. The NFR-L3 number is a gap until the release-level bench measures it.
-- [ ] `proof/` holds a captured exchange from the running service: three redirects of one link (`302` with `X-Request-Id`, `Location`, `Cache-Control`), sent with a `User-Agent`, a `Referer` carrying a path-and-query canary and a forwarding-header canary, followed by its statistics (`200` body). This proves AC-1, AC-3, AC-7 to AC-9 and AC-17 by effect.
-- [ ] `proof/` holds the stored click records for that capture (a query result or export), showing time, referrer origin, user-agent class and client hash, and the absence of the canaries and the raw address. This proves AC-3 to AC-5 by effect.
-- [ ] `proof/` holds the JSON log lines produced for those captured requests and their click recording. They show `requestId` equal to each captured header and contain no canary, client address, client hash or referrer. This proves AC-18 and AC-19 by effect, on the running service per W1-02.
+- [ ] `proof/` holds a captured exchange from the running service: three redirects of one link (`302` with `X-Request-Id`, `Location`, `Cache-Control`), sent with a `User-Agent`, a `Referer` carrying a path-and-query canary and a forwarding-header canary, followed by its statistics (`200` body). This is a representative by-effect check, on the running service, of three things: each redirect is counted (AC-1, AC-8 with `totalClicks` `3`), the referrer is reduced to its origin (AC-3, one row), and the statistics body has the AC-7 field shape with aggregates only (AC-17). The full tables and boundaries (empty statistics in AC-7, UTC-day grouping in AC-9, ranking in AC-10) are proven by the controlled functional tests of the first item.
+- [ ] `proof/` holds the stored click records for that capture (a query result or export), showing time, referrer origin, user-agent class and client hash, and the absence of the canaries and the raw address. This is a representative by-effect check of the stored-record privacy reductions for one client on one day (AC-3, AC-4 for the class sent, AC-5's "no raw address, non-empty hash"). Hash equality within a day, rotation across UTC midnight and the second address in AC-5 are proven by the suite-clock functional test, with no wait through a real midnight.
+- [ ] `proof/` holds the JSON log lines produced for those captured requests and their click recording. They show `requestId` equal to each captured header and contain no canary, client address, client hash or referrer. This is a by-effect check of AC-18, and of AC-19's `200` and settled-`302` rows, on the running service per W1-02. AC-19's `404`, `405` and failing-store rows are proven by the functional tests.
 - [ ] `docs/api/openapi.json` is regenerated on the candidate with the statistics operation and its examples, and QA's diff of it against the candidate's live `/v3/api-docs` (both key-sorted) is empty (NFR-M3; mission shaping rule 5).
 - [ ] The ADRs listed under *Non-functional* exist and are indexed in `docs/DESIGN.md` §7 before the commits that depend on them (NFR-M2).
 - [ ] `docs/diagrams/erd.mmd` shows the click storage and its relation to links.
@@ -343,6 +343,14 @@ N/A: non-visual slice.
 ## Status
 
 - 2026-10-03: requirements written; 21 acceptance criteria, 9 business rules, 17 ambiguity rows (11 assumed, 6 decided, none parked). Handed to `requirements_review`.
+
+- 2026-10-03: requirements review **PASS** on `488788f` (`docs/review/02-analytics/requirements-review.md`, evidence `d882fdb`), with one MEDIUM finding, RQ-01. Fixed in passing (see *Review response*); no AC, rule or ambiguity row changed.
+
+## Review response
+
+| Id | Severity | Response |
+|---|---|---|
+| RQ-01 | MEDIUM | **Fixed.** The three by-effect capture items in the proof contract no longer claim full proof of AC-5, AC-7, AC-9 or AC-19. Each now names the assertions it actually shows on the running service and points to the controlled functional tests for the tables, the empty case, the UTC-day boundary, the salt rotation, and the `404`/`405`/failing-store rows. Every AC and the all-AC functional-test obligation are unchanged. |
 
 ## Dependencies
 
