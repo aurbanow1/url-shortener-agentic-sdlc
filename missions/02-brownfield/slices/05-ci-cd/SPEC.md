@@ -9,6 +9,16 @@ verified: 2026-10-03 against scaffold (rig scope create)
 created: 2026-10-03
 intent: "Every change to the repository is checked by the same quality gate in GitHub Actions (on every pull request and on push to main), the jar and image are built and the jar is smoked on loopback without publishing anything, and dependency updates are proposed automatically, as the human decided (D14, docs/guidance/ci-cd.md)."
 depends_on: []
+approved-spec-by: orchestration-lead@urlshort-factory
+approved-spec-at: 2026-10-03T19:32:02.871Z
+locked-artifacts:
+  - name: SPEC.md
+    path: SPEC.md
+    kind: spec
+  - name: design.md
+    path: design.md
+    kind: spec
+provenance: transport:v1
 ---
 
 # Slice 05 — CI/CD
