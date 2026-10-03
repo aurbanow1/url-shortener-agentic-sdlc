@@ -47,10 +47,10 @@ groups, and this SPEC never promises an in-suite proof for the second:
 | NFR-R1 | liveness and readiness probes; readiness down until migrations ran and the DB answers | AC-13, AC-14, AC-15 (in-suite); AC-21 (compose health) | in-suite + release |
 | NFR-O3 | request timers per endpoint, redirect counter, rate-limit rejection counter, DB pool gauges, Prometheus format | AC-16, AC-17, AC-18, AC-19 | in-suite (+ smoke reads names, AC-21) |
 | NFR-M3 | committed OpenAPI document with examples | AC-20 (the `429` on every operation) | in-suite + QA diff |
-| NFR-R3 | graceful shutdown, 10 s phase timeout, no new connections | AC-25 | release |
+| NFR-R3 | graceful shutdown, 10 s phase timeout, no new connections | AC-25, AC-28 | release |
 | NFR-R4 | committed links survive a restart; single-node ceiling stated | AC-24 | release |
 | NFR-S5 | non-root user, read-only filesystem except `data/` | AC-23 | release |
-| NFR-X1 | one container via `docker compose up --build` and a plain jar; configuration by environment; data on a named volume | AC-21, AC-22, AC-26 | release |
+| NFR-X1 | one container via `docker compose up --build` and a plain jar; configuration by environment; data on a named volume | AC-21, AC-22, AC-26, AC-28 | release |
 | NFR-L1 | redirect p95 ≤ 20 ms, p99 ≤ 50 ms at 100 req/s for 60 s | AC-27 (the bench mode exists and reports these numbers); the target is judged at `release_prep` | release |
 | NFR-L2 | create p95 ≤ 50 ms at 20 req/s | AC-27, same | release |
 | NFR-M1 (cross-cutting) | 100 % line and branch coverage, honest gaps | proof contract (artifact, not HTTP) | build gate |
@@ -108,9 +108,14 @@ requests fall in which budget and how the bucket refills).
   THEN the first 600 answer `302`; the 601st answers `429` as a problem detail with `Retry-After` and `X-Request-Id`, and carries no `Location` header.
 
 - **AC-3 — `Retry-After` is truthful.** [FR-10, NFR-R2]
-  GIVEN a client whose create budget is exhausted and whose last request was answered `429` with `Retry-After: S`
-  WHEN the suite-controlled clock advances by `S` seconds minus one millisecond and the client sends a valid create, then the clock advances by one more millisecond and the client sends another valid create, then the client immediately sends a third
-  THEN `S` is a whole number of seconds ≥ 1; the first request answers `429`; the second answers `201`; the third answers `429`.
+  (a) Boundary from an exactly empty bucket.
+  GIVEN the default limits, a frozen suite-controlled clock, and a remote address that has sent nothing, which then sends 60 valid creates (all `201`) and a 61st answered `429` with `Retry-After: S`, all at the same frozen instant, so its create bucket holds exactly zero tokens
+  WHEN the clock advances by 999 ms and the client sends a valid create, then the clock advances by 1 ms more and the client sends another valid create, then the client sends a third without the clock moving
+  THEN `S` is `1`; the first request answers `429`; the second answers `201`; the third answers `429`.
+  (b) Rounded-up waiting from a partly refilled bucket.
+  GIVEN the default limits and a client whose create bucket was emptied as in (a), after which the clock advanced by 250 ms and the client's next create was answered `429` with `Retry-After: S`
+  WHEN the clock advances by exactly `S` seconds, the client sends no request in between, and the client then sends a valid create
+  THEN `S` is a whole number of seconds ≥ 1, and the create answers `201`. Whether a request sent earlier than `S` seconds would also have been admitted is not asserted, because rounding up makes `Retry-After` an upper bound (rule 4).
 
 - **AC-4 — A full budget returns after a quiet minute.** [NFR-R2]
   GIVEN a client whose create budget is exhausted
@@ -240,10 +245,10 @@ the configuration and the smoke and bench steps; the suites do not claim them.
   WHEN the Operator runs `docker compose restart`, and separately `docker compose down` (without `-v`) followed by `docker compose up`
   THEN after each, `GET /C` answers `302` to the same target and `GET /api/links/C` answers `200` with the body recorded at creation.
 
-- **AC-25 — Shutdown is graceful within 10 s.** [NFR-R3]
-  GIVEN the compose stack is up and the smoke loop is sending requests continuously
-  WHEN the Operator runs `docker compose restart`
-  THEN every request that received an HTTP response received a `2xx` or `3xx` (refused connections while the process is down are counted and reported separately, not as failures), the shutdown log shows the graceful-shutdown phase completing, and the shipped graceful-shutdown phase timeout is 10 s.
+- **AC-25 — Shutdown drains in-flight requests, accepts no new connection, and stays within 10 s.** [NFR-R3]
+  GIVEN a running instance whose listening socket the client reaches directly (the packaged jar of AC-26 on loopback, or a probe inside the container's own network namespace; through the compose port publish a port proxy accepts every connection itself, so acceptance by the service is not observable there, A-16), a load client sending requests continuously, and one request `R0` that the service has accepted and not yet answered when the stop is issued (the means of holding `R0` in flight is the design's)
+  WHEN the Operator sends the process its stop signal and, while `R0` is still unanswered, a probe attempts a new TCP connection to the service
+  THEN `R0` receives its complete normal response (`2xx` or `3xx`) within 10 s of the stop signal; the probe's connection attempt is refused and never accepted; every load-client request whose connection was accepted received a complete `2xx` or `3xx` response, with a reset, an end of stream before a complete response, or a timeout after acceptance each counted as a failure and the failure count zero; connection attempts refused before acceptance are counted and reported separately and are not failures; the shutdown log shows the graceful-shutdown phase completing; and the shipped graceful-shutdown phase timeout is 10 s.
 
 - **AC-26 — The plain jar runs with configuration by environment.** [NFR-X1]
   GIVEN `scripts/gw bootJar` has produced the jar
@@ -255,6 +260,11 @@ the configuration and the smoke and bench steps; the suites do not claim them.
   WHEN the Operator runs `scripts/smoke.sh --bench`
   THEN it drives redirects at 100 requests per second for 60 seconds and creates at 20 requests per second, and prints for each scenario the achieved rate, the request count, the count of responses outside `2xx`/`3xx`, and p50, p95 and p99 latency in milliseconds; the run is judged against NFR-L1 and NFR-L2 at `release_prep`, and a noisy or failing run is recorded as a gap, not as a pass.
 
+- **AC-28 — A compose restart under load answers no error and is never killed mid-drain.** [NFR-R3, NFR-X1]
+  GIVEN the compose stack is up, the smoke loop is sending requests continuously through the published port, and one request `R0` is in flight when the restart is issued (as in AC-25)
+  WHEN the Operator runs `docker compose restart`
+  THEN `R0` receives its complete normal response (`2xx` or `3xx`); every HTTP response received during the restart is `2xx` or `3xx`; connection failures seen through the port proxy are counted and reported, not judged (AC-25 judges acceptance on a direct socket); and `docker inspect` shows a stop timeout longer than the 10 s shutdown phase, so the container runtime never kills the process before the phase ends (rule 13).
+
 ### Business rules
 
 1. **Which requests are limited, and by which budget.** Every request is limited except the operator surfaces: `/actuator/**`, `/v3/api-docs/**`, `/swagger-ui.html` and `/swagger-ui/**` are never limited and never counted, so probes and scrapers keep working under a flood. Requests whose path is `/api` or starts with `/api/` (create, read, retire, statistics, ping, whatever their method) are charged to the **create budget** (default 60 per minute). Every other limited request (the Visitor's `GET /{code}` and anything else outside `/api`) is charged to the **redirect budget** (default 600 per minute). A client has one bucket per budget.
@@ -262,14 +272,14 @@ the configuration and the smoke and bench steps; the suites do not claim them.
 3. **Every request counts.** A request is charged before anything else about it is examined (body, content type, validation, existence of the code), so `400`, `404`, `405`, `410`, `413` and `415` outcomes use budget the same as successes, and an over-limit request is answered `429` regardless of what it would otherwise have produced. Only the request id is assigned before the check, so the `429` carries it.
 4. **`Retry-After`.** A whole number of seconds, at least 1: the time until the bucket holds one token again, rounded up. Never an HTTP date.
 5. **Client identity.** The client is the request's remote address. `X-Forwarded-For` is read only when the remote address is one of the operator-configured trusted proxies (exact addresses; default: none); the client is then the right-most `X-Forwarded-For` entry that is not itself a trusted proxy, or the remote address when the header is absent, empty or holds only trusted proxies. `Forwarded`, `X-Real-IP` and every other header are never used to identify the client.
-6. **No client values in output.** The client address, every forwarded-address value, the `User-Agent` and any submitted value never appear in a response body or header, a log event, a metric tag or the Prometheus output; the limiter's per-client state lives only in memory and is never written to the database.
+6. **No client values in limiter output, logs or metrics.** A `429` response (body and headers) never contains the client address, any forwarded-address value, the `User-Agent` or any value the client submitted. No log event, metric tag or Prometheus output contains the client address, a forwarded-address value or the `User-Agent`, and logs keep `01-create-redirect`'s rule 10. Responses to admitted requests are unchanged by this slice: the link `url` in create and read bodies and the redirect `Location` keep `01-create-redirect`'s verbatim contract (rules 2 and 7 there). The limiter's per-client state lives only in memory and is never written to the database.
 7. **One log event per rejection.** A `429` produces exactly one log event (the request's own, carrying `requestId` and the status), so a flood cannot multiply log volume.
 8. **Limiter state is per instance and in memory.** A restart starts every bucket full; this is acceptable under the single-node ceiling (NFR-R4).
 9. **Readiness and liveness.** Readiness is `UP` only when the application has started (migrations included) and the database answers a query; otherwise `503` `DOWN`. Liveness does not depend on the database. Health bodies carry a `status` and no installation details.
 10. **Metrics.** The request timer reports routes as templates (`/{code}`, `/api/links/{code}`), never as concrete paths; the rejection counter is named `urlshort.ratelimit.rejections` and is tagged by budget only. No metric tag carries a client address, a code, a URL or any header value.
 11. **Operator settings.** The two budgets and the trusted-proxy list are configuration, overridable by environment variable, with the defaults above (60, 600, none). Raising them is how the bench runs (AC-27).
 12. **Container.** The service runs as one container built by `docker compose up --build`, as a non-root user, with a read-only root filesystem, its database on a named volume mounted at the data directory, its port published on `127.0.0.1` only, and a health check that asks readiness. A size-limited in-memory temporary directory is permitted (it holds nothing across restarts; A-14).
-13. **Graceful shutdown.** On stop, the service stops accepting new connections and lets in-flight requests finish, for at most a 10 s shutdown phase.
+13. **Graceful shutdown.** On stop, the service stops accepting new connections and lets in-flight requests finish, for at most a 10 s shutdown phase. A request whose connection the service accepted is answered completely or, only if the phase times out, cut off. Within the phase no accepted request is reset or left without a response. The container's stop timeout is longer than the phase, so the runtime does not kill the process while it drains.
 
 ### Non-functional
 
@@ -294,7 +304,7 @@ Only what this slice must prove.
 - Readiness that includes the database; liveness independent of it; health bodies without installation details.
 - The `429` response on every operation of the committed API document, regenerated on a base containing `02-analytics`.
 - `Dockerfile` and `compose.yaml` changes for S5 and X1 (non-root, read-only root, named volume, loopback publish, readiness health check); the 10 s graceful-shutdown timeout.
-- `scripts/smoke.sh` steps for liveness, readiness, metric names and Prometheus, the restart and shutdown loops of AC-24/AC-25, and the `--bench` mode of AC-27.
+- `scripts/smoke.sh` steps for liveness, readiness, metric names and Prometheus, the restart and shutdown loops of AC-24, AC-25 and AC-28, and the `--bench` mode of AC-27.
 - Unit and functional tests, coverage reports, traceability rows, the `GAPS.md` row for the release-level ids, and the proof contract items.
 
 **Explicitly out of scope**
@@ -329,7 +339,7 @@ Only what this slice must prove.
 | A-13 | Does liveness depend on the database? | yes; no | **decided** no (AC-14): a database outage would otherwise make the orchestrator restart a healthy process in a loop. |
 | A-14 | NFR-S5 says "read-only filesystem except `data/`"; the JVM and the embedded server need a temporary directory. | temp files on the data volume; a size-limited in-memory tmpfs | **assumed** in-memory tmpfs permitted (rule 12): it holds nothing across restarts, so no state escapes the data volume, and putting scratch files on the durable volume would mix them with the database. Safe: the persistent-write surface is still exactly `data/`. |
 | A-15 | Graceful-shutdown timeout: NFR-R3 says 10 s, the shipped configuration says 20 s. | keep 20 s; 10 s | **decided** 10 s (NFR-R3 is the requirement; the 20 s line predates it). |
-| A-16 | NFR-R3's proof is "zero non-2xx/3xx" during a restart, but a stopped process refuses connections. | count refusals as failures; count them separately | **assumed** refusals are not HTTP responses and are reported separately (AC-25); the claim is that no accepted request is answered with an error or cut off. Safe: it is how any single-node restart behaves; the count is still reported. |
+| A-16 | NFR-R3's proof is "zero non-2xx/3xx" during a restart, but a stopped process refuses connections, and through Docker's port publish a port proxy accepts every client connection itself. | count refusals as failures; count them separately; judge acceptance through the published port | **assumed** refusals before acceptance are not failures and are reported separately. A reset, end of stream or timeout after the service accepted a connection is a failure (AC-25, after review RQ-01). Acceptance by the service is judged where the client reaches the service's own socket (the jar on loopback, or a probe inside the container's network namespace). Through the published port the proxy's own acceptance hides the distinction, so the compose run (AC-28) judges the HTTP responses received and the in-flight request, and reports connection failures. Safe: the stronger check runs on the same application code and shutdown configuration, and the compose run keeps the baseline's proof column. |
 | A-17 | `01-create-redirect`'s threat model left to this slice what the embedded server answers and logs for requests it rejects before the application (malformed request line, oversized headers). | specify a contract; leave out of scope | **assumed** out of scope (Scope list): no application code runs there, so no request id, problem detail or rate limit can be promised; NFR-S3 keeps header limits at server defaults. The design checks by effect whether those rejections log client-controlled values and, if they do, records the finding (the logging configuration is in this slice's territory). Safe: no product behaviour changes. |
 | A-18 | Which port and interface does the container publish? | all interfaces; loopback | **decided** `127.0.0.1:8080` (AC-22): the intent says "loopback-published", and the rig's culture forbids exposing the service beyond localhost. |
 
@@ -345,16 +355,16 @@ its evidence with `rig proof add`, artifacts under `proof/`.
 - [ ] AC-1 through AC-20 are each covered by a named test (functional, or unit where the AC is about a pure rule), tabled criteria as one parameterised test, all green on the candidate SHA with `scripts/gw check`.
 - [ ] `scripts/gw check` reports 100 % line and 100 % branch coverage on the merged unit and functional execution data for the candidate SHA (NFR-M1).
 - [ ] Unit and functional JaCoCo reports for the candidate are committed under `docs/qa/coverage/03-operate/unit/` and `docs/qa/coverage/03-operate/functional/`.
-- [ ] `docs/qa/TRACEABILITY.md` holds a table for `03-operate` mapping AC-1 through AC-27 and business rules 1 to 13 to the tests or release checks that prove them, with the `FR`/`NFR` id beside each AC.
-- [ ] `docs/qa/GAPS.md` holds a row for `03-operate` naming every criterion not proven in-suite (AC-21 to AC-27; NFR-R3, R4, S5, X1, L1, L2), the release check that will prove each, and any other honest gap.
+- [ ] `docs/qa/TRACEABILITY.md` holds a table for `03-operate` mapping AC-1 through AC-28 and business rules 1 to 13 to the tests or release checks that prove them, with the `FR`/`NFR` id beside each AC.
+- [ ] `docs/qa/GAPS.md` holds a row for `03-operate` naming every criterion not proven in-suite (AC-21 to AC-28; NFR-R3, R4, S5, X1, L1, L2), the release check that will prove each, and any other honest gap.
 - [ ] `proof/` holds a captured exchange from the running service: an admitted create, the `429` that follows exhaustion (status line, `Retry-After`, `X-Request-Id`, body), readiness and liveness `UP`, and an excerpt of `GET /actuator/prometheus` showing the rejection counter: AC-1, AC-11, AC-13, AC-19 by effect.
 - [ ] `proof/` holds the JSON log lines for the captured `429`s, one per request, each with `requestId` equal to the captured header and containing no client address, forwarded value, user agent or URL: AC-12 by effect.
 - [ ] `docs/api/openapi.json` is regenerated on a base containing `02-analytics`'s merge, documents the `429` with `Retry-After` and an example on every operation, and QA's diff against the candidate's live `/v3/api-docs` (both key-sorted) is empty (AC-20, NFR-M3).
 - [ ] `git merge-base --is-ancestor <02-analytics merge commit> <candidate>` succeeds for the handed-off candidate (mission shaping rule 5).
 - [ ] The ADRs listed under *Non-functional* exist and are indexed in `docs/DESIGN.md` §7 before the commits that depend on them (NFR-M2).
 - [ ] The code and security review records that the limiter's per-client memory is bounded and that no client address reaches a log, metric, response or stored row.
-- [ ] `scripts/smoke.sh` contains the release-level steps of AC-21 to AC-27 (health, metric names, restart, shutdown loop, `--bench`); one run of `--bench` against a local instance is captured under `proof/` to show the mode works (its numbers are not the release verdict).
-- [ ] At `release_prep` (recorded in `missions/01-greenfield-core/RELEASE.md`, not judged at `qa_check`): AC-21 to AC-27 pass against the container and the jar, with `docker inspect` output for AC-22 and AC-23 and the bench numbers judged against NFR-L1 and NFR-L2.
+- [ ] `scripts/smoke.sh` contains the release-level steps of AC-21 to AC-28 (health, metric names, restart, shutdown loop, `--bench`); one run of `--bench` against a local instance is captured under `proof/` to show the mode works (its numbers are not the release verdict).
+- [ ] At `release_prep` (recorded in `missions/01-greenfield-core/RELEASE.md`, not judged at `qa_check`): AC-21 to AC-28 pass against the container and the jar, with `docker inspect` output for AC-22, AC-23 and AC-28 and the bench numbers judged against NFR-L1 and NFR-L2.
 
 ## Source material
 
@@ -372,7 +382,20 @@ N/A — non-visual slice.
 
 ## Status
 
-- 2026-10-03 — requirements written: 27 acceptance criteria (20 in-suite, 7 release-level), 13 business rules, 18 ambiguity rows (9 assumed, 9 decided, none parked).
+- 2026-10-03 — requirements written: 27 acceptance criteria (20 in-suite, 7 release-level), 13 business rules, 18 ambiguity rows (9 assumed, 9 decided, none parked). Handed to `requirements_review` at `da71937`.
+- 2026-10-03 — requirements review **FAIL** on `da71937` (`docs/review/03-operate/requirements-review.md`): RQ-01 HIGH (the shutdown criterion did not observe an in-flight request, a cut-off accepted request, or refusal of new connections), RQ-02 and RQ-03 MEDIUM. All three fixed, see *Review response*. Now 28 acceptance criteria (20 in-suite, 8 release-level); AC-1 to AC-27 keep their numbers.
+
+## Review response
+
+Review `docs/review/03-operate/requirements-review.md` on candidate
+`da71937`: FAIL on RQ-01 (HIGH), with RQ-02 and RQ-03 (MEDIUM). Every finding
+is answered below; none is disputed.
+
+| Id | Severity | Response |
+|---|---|---|
+| RQ-01 | HIGH | **Fixed.** AC-25 now establishes a request `R0` that the service has accepted and not answered when the stop is issued, and requires its complete `2xx`/`3xx` within 10 s. It requires a probe connection attempted during the drain to be refused. It counts a reset, end of stream or timeout after acceptance as a failure that must be zero, and reports refusals before acceptance separately. The holding mechanism is left to the design. The check runs where the service's own socket is reachable (the jar on loopback, or a probe inside the container's network namespace), because through the compose port publish a port proxy accepts every connection and hides the distinction the finding asks for. New AC-28 keeps the baseline's compose-restart proof: `R0` completes, every received response is `2xx`/`3xx`, and the container's stop timeout exceeds the 10 s phase. Docker's default is also 10 s, which would let the runtime kill the process mid-drain. Rule 13 and A-16 now state the stronger promise. |
+| RQ-02 | MEDIUM | **Fixed.** AC-3 is split. (a) fixes the boundary on an exactly empty bucket at a frozen instant (60 `201`, then `429` with `S` = `1`; 999 ms later `429`, 1 ms later `201`, then `429` again). (b) states the rounded-up wait from a partly refilled bucket: after exactly `S` seconds with no intervening request, the create is admitted. Earlier admission is not asserted, because `Retry-After` is an upper bound. |
+| RQ-03 | MEDIUM | **Fixed.** Rule 6 now bans client and submitted values from `429` responses (body and headers) only, and keeps the ban on client identity in logs, metric tags and Prometheus output. It also restates that admitted responses keep `01-create-redirect`'s verbatim `url` and `Location` contract. AC-11 already tested the `429` scope and is unchanged. |
 
 ## Dependencies
 
@@ -383,7 +406,7 @@ N/A — non-visual slice.
 
 Recorded 2026-10-03 before the first requirements handoff.
 
-- Every AC observable from outside: AC-1 to AC-20 through HTTP status, headers, bodies, the actuator endpoints, the log output and the live API document; AC-21 to AC-27 through `docker`, `docker compose`, the jar and `scripts/smoke.sh`, labelled release-level. No AC reads internal state.
+- Every AC observable from outside: AC-1 to AC-20 through HTTP status, headers, bodies, the actuator endpoints, the log output and the live API document; AC-21 to AC-28 through `docker`, `docker compose`, the jar and `scripts/smoke.sh`, labelled release-level. No AC reads internal state.
 - Error and privacy paths are ACs: `429` on both budgets (AC-1, AC-2), at-limit and one-over (AC-1, AC-2, AC-4, AC-10), forged forwarding headers (AC-7, AC-8), rejected inputs still charged (AC-9), readiness down (AC-14), no client address or canary in `429` bodies, logs, metric tags or Prometheus output (AC-11, AC-12, AC-17, AC-19), no installation details in health (AC-15).
 - Business rules cover the non-obvious logic: request classification and exemptions, bucket size and refill, what counts, `Retry-After` rounding, client identity with trusted proxies, output privacy, log volume per rejection, in-memory state, health semantics, metric tags, settings, container posture, shutdown.
 - Out of scope is explicit: ten exclusions, including CIDR proxies, informational rate-limit headers, distributed state and server-level rejections.
@@ -396,6 +419,7 @@ Recorded 2026-10-03 before the first requirements handoff.
 - Found while drafting, from the shipped baseline and the decided numbers: A-8 (the bench cannot run under the default budget), A-15 (20 s vs 10 s), A-16 (refused connections during restart), AC-9 (limit checked before validation) and the memory-bound line.
 - `plan-review` run once on the finished draft. Engineering lens: rule 1 now also exempts `/swagger-ui.html` (the configured UI path); AC-1 states "created nothing" as an audit-row delta the suite can count (the in-memory database is shared across contexts); AC-20 names the statistics path from the mission brief; AC-3's millisecond boundary checked against rule 2 (a fresh 60-token bucket exhausted on a frozen clock needs exactly 1 s, so `S` = 1 and 999 ms is still short). Strategy lens: scope equals the allocation; the release-level split follows `slice.yaml`. UX lens: the only "interface" is the client's view of a `429` (truthful `Retry-After`, AC-3; no client values echoed, AC-11). No executive summary was produced, as on `01-create-redirect`.
 - Not verified by me: that the redirect count is readable per status from the request timer on this stack (A-10), and whether the embedded server logs client-controlled values on pre-application rejections (A-17); both are design questions with a named fallback.
+- Review response (before the second handoff): RQ-01 to RQ-03 are each answered as fixed in the *Review response* table, and no settled finding is reopened. AC-1 to AC-27 keep their numbers and AC-28 is appended, so the reviewer's references hold. Every AC-21–27 range in the coverage table, scope, proof contract and this self-check now includes AC-28. AC-3(a) was re-derived by hand against rule 2: 60 tokens consumed at one instant leave exactly 0, one token returns after exactly 1 s, so `S` = 1. Not verified by me, and left to the design: that the embedded server closes its listening socket at the start of the drain (so a probe is refused rather than held in a backlog), and how `R0` is held in flight without a test-only endpoint in the shipped service. If a connection lands in the backlog in the instant the socket closes, AC-25 counts it as a failure. The design must show by effect that this does not happen at the load client's rate, or the review must bring evidence for a different predicate.
 
 ---
 
