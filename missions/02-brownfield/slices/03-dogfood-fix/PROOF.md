@@ -161,3 +161,24 @@ proof/qa-final-receipt-audit-4fe7042.json. The other lane pending append is
 preserved without staging it; QA2 was informed. Lead final living-document
 reconciliation remains required after remaining merges. No test rerun or
 product change was needed for this append.
+
+
+### Shared GAPS reaffirmation — review follow-up
+
+Packet qitem-20261003224103-2a21b284; exact candidate remains 4fe7042.
+Independently checked GAPS delta from 583278c to 84d3604: only the retention
+lane section was appended. This slice section, QA-OPR-02 closure and all
+scope qualifications are byte-identical; W2-01 remains fixed.
+Item 6 reaffirmed by receipt 10, id
+bb093f3c67fcf76936c991dfda4beebc29f0708f45a156fbb1f1f2cb2b99e8b4.
+Historical receipt 6 remains. Readiness restored to eight accepted items,
+no issues; all 38 current cited-reference hashes match (32 distinct files).
+Evidence: proof/qa-gap-reaffirmation-4fe7042.json,
+qa-gap-reaffirmation-receipt-4fe7042.json and
+qa-gap-reaffirmation-hash-audit-4fe7042.json.
+
+Self-check: read the actual shared-file delta and unchanged qualifications;
+checked exact worktree HEAD and every current receipt hash. Narrow evidence
+reaffirmation only: no new build, app start or product/test/build edit.
+Independent review/integration may proceed; final shared-document
+reconciliation after remaining merges stays with the lead obligation.
