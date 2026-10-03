@@ -35,7 +35,7 @@ During `docker compose restart`, a request still sending its body through the
 published port `127.0.0.1:8080` is cut (empty reply after the 10 s phase, 5 of 5 runs).
 The service is not at fault on the evidence: the same request completes `201` when
 sent inside the Docker VM through Docker's own published port (2 of 2) and from the
-container's network namespace (2 of 2), and the jar's drain passes 3 of 3. The cut
+container's network namespace (2 of 2 observed, 1 retained as evidence), and the jar's drain passes 3 of 3. The cut
 is in the macOS-to-VM port forwarder of this laptop's Docker setup (Lima). Every
 other AC-28 clause passes. The orchestration lead kept AC-28 as written
 (`qitem-20261003151205-a94f1d92`): moving where it is measured after it failed would
@@ -257,7 +257,7 @@ create p95 2.7 ms) but they do not count.
 |---|---|---|
 | macOS host → `127.0.0.1:8080` (Lima forwarder → VM → Docker port publish → container) | cut, 5 of 5 | §3.3 |
 | inside the VM → VM's `127.0.0.1:8080` (Docker port publish → container), `docker run --network host` | `201` 3.6 s and 4.0 s into the drain, then `Graceful shutdown complete`, 2 of 2 | [run 1](release/r0-vm-published-port-f090103-run1.txt), [run 2](release/r0-vm-published-port-f090103-run2.txt), [log](release/container-vm-path-log-f090103.jsonl) |
-| inside the container's network namespace, `docker run --network container:…` | `201` 3.7 s into the drain, then `Graceful shutdown complete`, 2 of 2 (first run's log was replaced by the next `down`/`up`) | [output](release/r0-in-namespace-control-f090103.txt), [log](release/container-control-log-f090103.jsonl) |
+| inside the container's network namespace, `docker run --network container:…` | `201` 3.7 s into the drain, then `Graceful shutdown complete`. Observed 2 of 2, but only the second run is evidence: the first run's output file was overwritten by the second and its container log was replaced by the next `down`/`up`, so the first rests on the author's observation alone | [output](release/r0-in-namespace-control-f090103.txt), [log](release/container-control-log-f090103.jsonl) |
 
 So the cut happens in the macOS-to-VM host forwarder. Not tested on a native Linux
 Docker host. The lead's working hypothesis, that the forwarder drops established
