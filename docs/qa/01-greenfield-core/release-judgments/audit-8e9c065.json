@@ -1,0 +1,137 @@
+{
+  "at": "2026-10-03T16:43:01.789867+00:00",
+  "read_at_commit": "56df4f8ac1767116d478c67fe81d19a2c31f5a4b",
+  "merged_subject": "8e9c065589e53385f60d6be3ddbc3683260285df",
+  "built_commit": "f09010396d584fdf41702bb99856aa17a1ec1206",
+  "product_input_comparison": "empty diff for src, build.gradle.kts, settings.gradle.kts, gradle.properties, Dockerfile, compose.yaml, docs/api/openapi.json",
+  "after_3ec7ab4": true,
+  "secret_scan": {
+    "signature_regex": "-----BEGIN (RSA |EC |OPENSSH |DSA |ENCRYPTED )?PRIVATE KEY-----|AKIA[0-9A-Z]{16}|gh[pousr]_[0-9A-Za-z]{20,}|xox[baprs]-[0-9A-Za-z-]{20,}|sk-(ant-)?[0-9A-Za-z_-]{20,}|AIza[0-9A-Za-z_-]{35}|eyJ[0-9A-Za-z_-]{10,}[.][0-9A-Za-z_-]{10,}[.][0-9A-Za-z_-]{10,}",
+    "assignment_regex": "(password|passwd|secret|token|api_key|credential)[[:space:]\"']*[:=][[:space:]\"']*[^[:space:]\"'=]{6,}",
+    "scope": [
+      "src",
+      "build.gradle.kts",
+      "settings.gradle.kts",
+      "gradle.properties",
+      "Dockerfile",
+      "compose.yaml",
+      "scripts",
+      "tools",
+      ".claude",
+      ".codex",
+      "rig/rig.yaml",
+      "project.yaml"
+    ],
+    "signature_git_exit": 1,
+    "signature_hits": 0,
+    "assignment_hits": [
+      {
+        "file": ".claude/plugins/shared:openrig-core/hooks/scripts/activity-relay.cjs",
+        "line": 93,
+        "classification": "variable/environment read"
+      },
+      {
+        "file": ".claude/plugins/shared:openrig-core/hooks/scripts/activity-relay.cjs",
+        "line": 111,
+        "classification": "variable read from parsed local endpoint metadata"
+      },
+      {
+        "file": ".codex/plugins/shared:openrig-core/hooks/scripts/activity-relay.cjs",
+        "line": 93,
+        "classification": "variable/environment read"
+      },
+      {
+        "file": ".codex/plugins/shared:openrig-core/hooks/scripts/activity-relay.cjs",
+        "line": 111,
+        "classification": "variable read from parsed local endpoint metadata"
+      }
+    ],
+    "tracked_paths": 2012,
+    "tracked_dotenv": false,
+    "empty_h2_password": true,
+    "limitations": "Tracked commit contents and stated signatures/assignments only; no universal secret absence, full history, untracked files, binary image or dedicated scanner claim."
+  },
+  "bench": {
+    "scenarios": [
+      [
+        "create POST",
+        1200,
+        20.0,
+        2.8
+      ],
+      [
+        "redirect GET /{code}:",
+        6000,
+        100.0,
+        2.2
+      ],
+      [
+        "redirect GET /{code} alone:",
+        6000,
+        100.0,
+        1.7
+      ],
+      [
+        "redirect HEAD /{code} alone:",
+        6000,
+        100.0,
+        1.8
+      ]
+    ],
+    "stats_clicks": 12000,
+    "json_events": 19237,
+    "levels": {
+      "INFO": 19234,
+      "WARN": 3
+    },
+    "completion_messages": 19205,
+    "completion_status": {
+      "200": 4,
+      "201": 1201,
+      "302": 18000
+    },
+    "warn_messages": [
+      "Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.",
+      "SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'",
+      "SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'"
+    ],
+    "limitation": "GET and HEAD are sequential 60-second proxy runs, not an isolated counterfactual click-on/off comparison. Difference of independent p95s is not an isolated added-cost quantile; no causal or capacity guarantee."
+  },
+  "env_smoke": {
+    "events": 73,
+    "shortUrl": "https://sho.rt.example/dpMkbHzk",
+    "reported_full_smoke": true,
+    "searched_canaries_absent": true
+  },
+  "reaffirmations": {
+    "analytics_table_unchanged": true,
+    "mapped_methods": 138,
+    "unit_methods": 69,
+    "functional_methods": 69,
+    "all_22_acs_and_9_rules": true,
+    "analytics_old_gap_rows_retained": true,
+    "adrs_unchanged": true,
+    "adr_index_in_4cfb745_before_product_2499505": true
+  },
+  "hashes": {
+    "missions/01-greenfield-core/RELEASE.md": "a34431046803c8f503df79fcc160f0113e76bc02fe4652e995a39b6bdf00f75c",
+    "docs/qa/GAPS.md": "187cacbfa8b2bacd5897ac64c45ead31df67c381f8bb7b5d188882f8665204d4",
+    "docs/qa/TRACEABILITY.md": "ba5147180c1c5280d845846be2a6419dc04257df993828f5a2dd46ad62acc511",
+    "docs/DESIGN.md": "778f627a2bcab8ecf56d96faf4d894981c86a62ae5ebf0c6815e21a029820145",
+    "tools/bench.mjs": "9fdc92bb9b59a3d75a8b3034504faa1e3c509b08fea6ab0e9fad656b87ead55f",
+    "scripts/smoke.sh": "eb6e05ac85690400c300ad33be67927645325d7c935a79456f1fc1370fd50f86",
+    "docs/review/01-create-redirect/01-code-review.md": "fbbee32565202722f2355979b0579a3ebb291b53fda046127ed80c4722108c81",
+    "docs/review/01-create-redirect/02-security-review.md": "44cae3b687c303ea241a8feb6d531ee46b6412300a750389794824b52e0f16ce",
+    "missions/01-greenfield-core/release/bench-jar-f090103.txt": "42594b334cf5c05a103ac83a6393d35b0183f7d5870f425f81d0f5490c622322",
+    "missions/01-greenfield-core/release/bench-jar-f090103-discarded-run1.txt": "f9abca2b5b9258d039ff562f98e206bfb50b3114ef94579efda1388f5bcf738b",
+    "missions/01-greenfield-core/release/bench-stats-7YBO6Hrx-f090103.json": "a343442a90b51ea51de8b7885799359da7f49b0b6390f89318571e4f9345c5ac",
+    "missions/01-greenfield-core/release/jar-bench-log-f090103.jsonl": "972190092294bf57d04bb29d510c1b447050b83caf79acc15d4967675076336c",
+    "missions/01-greenfield-core/release/bench-prometheus-f090103.txt": "826618e66cef09bff5b05ee76a4cc220799e65d4e888786642945d4f5639aa5b",
+    "missions/01-greenfield-core/release/smoke-jar-ac26-f090103.txt": "1a857a2cf53354edabb574d4eb40b877673c86e4cb53eeb9471fc758ca03c775",
+    "missions/01-greenfield-core/release/jar-ac26-log-f090103.jsonl": "ca20d83275316318c94ecde6eb6078db2576166e1ac8a70b7a86b9cd27a559f9",
+    "missions/01-greenfield-core/release/check-bootjar-f090103.txt": "b14866e3b7a66f82e557b6120e3f08b2ad29d0c0ea2aad539d7bf02f935dcdab",
+    "docs/adr/0011-click-handoff-bounded-single-writer.md": "1b6eca188e16eb13d8cae744459498ff603846a2492543825eb3417c47c9a256",
+    "docs/adr/0012-client-hash-daily-salt.md": "d2cbfc12b02236f2f3e0bc407e287f021df6f213ff9fa2a4ff77b1a7244bc9f8",
+    "docs/adr/0013-click-events-and-request-time-statistics.md": "fce9163ec0d4653f9443d9d517b68d150f881bb104f3035e171b414a4693e5be"
+  }
+}
