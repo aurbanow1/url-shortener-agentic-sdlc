@@ -1,0 +1,36 @@
+Command: python3 /private/tmp/urlshort-qa-report-a922f49.py
+Assertions: complete test-source inventory; zero JUnit failures/errors/skips; CSV coverage totals; all ACs mapped; every main request has a nonempty log window and every event in it carries that response's requestId; no canary/target/client address in runtime logs; audit time/actor/entity/action/requestId/snapshots/counts; rollback snapshots identical; append-only snapshots unchanged with exact growth; live OpenAPI equals committed document and all AC-28 content present.
+{
+  "counts": {
+    "unit": 72,
+    "functional": 87
+  },
+  "method_counts": {
+    "unit": 42,
+    "functional": 45
+  },
+  "coverage": {
+    "unit": {
+      "LINE_MISSED": 16,
+      "LINE_COVERED": 169,
+      "BRANCH_MISSED": 0,
+      "BRANCH_COVERED": 56
+    },
+    "functional": {
+      "LINE_MISSED": 9,
+      "LINE_COVERED": 176,
+      "BRANCH_MISSED": 6,
+      "BRANCH_COVERED": 50
+    },
+    "all": {
+      "LINE_MISSED": 0,
+      "LINE_COVERED": 185,
+      "BRANCH_MISSED": 0,
+      "BRANCH_COVERED": 56
+    }
+  },
+  "requests_correlated": 75,
+  "audit_rows": 16,
+  "live_openapi_diff": "empty"
+}
+

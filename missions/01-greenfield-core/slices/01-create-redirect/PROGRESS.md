@@ -18,5 +18,5 @@
 - [x] JSON log lines for those requests, `requestId` = header, no canary/UA/address (`proof/log-lines-a922f49.txt`)
 - [x] Audit rows for the captured create and retire (`proof/audit-rows-a922f49.txt`)
 - [x] `docs/api/openapi.json` committed, generated key-sorted by `OpenApiDocumentTest`, drift fails the suite
-- [ ] QA: coverage reports, traceability, GAPS row, live-vs-committed API document diff, independent captures
+- [x] QA: 72 unit / 87 functional invocations pass independently; merged coverage 185/185 lines, 56/56 branches; reports copied, traceability and GAPS row complete; live-vs-committed API document diff empty; independent HTTP/log/audit/rollback/append-only captures (`PROOF.md` §QA, candidate `a922f49`, 2026-10-03)
 - [ ] Code review / security review: NFR-A2 and NFR-S4 records

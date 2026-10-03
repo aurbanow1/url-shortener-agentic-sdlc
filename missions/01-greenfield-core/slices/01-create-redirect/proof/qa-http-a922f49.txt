@@ -1,0 +1,919 @@
+=== AC01-create ===
+Before: 2026-10-03T07:19:40.560Z
+After: 2026-10-03T07:19:40.726Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --header 'Host: evil.example' --header 'X-Forwarded-Host: evil.example' --header 'X-Forwarded-Proto: https' --header 'Forwarded: host=evil.example;proto=https' --header 'User-Agent: QAuaA922f49' --header 'Idempotency-Key: QAkeyA922f49' --header 'X-Request-Id: QAridA922f49' --data-binary '{"url":"https://example.com/some/path?q=1&qa=QAqueryA922f49"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 201 
+X-Request-Id: 63ce0367-759c-4a4a-afd5-c7b7afe901d9
+Location: /api/links/NUNP18JK
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:40 GMT
+
+{"code":"NUNP18JK","shortUrl":"http://localhost:8080/NUNP18JK","url":"https://example.com/some/path?q=1&qa=QAqueryA922f49","state":"active","createdAt":"2026-10-03T07:19:40.638Z"}
+
+=== AC08-read ===
+Before: 2026-10-03T07:19:40.732Z
+After: 2026-10-03T07:19:40.789Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'GET' 'http://127.0.0.1:18091/api/links/NUNP18JK'
+HTTP/1.1 200 
+X-Request-Id: 946f08d6-1e81-4321-addd-040f64d6ab29
+Content-Type: application/json
+Content-Length: 179
+Date: Sat, 03 Oct 2026 07:19:40 GMT
+
+{"code":"NUNP18JK","shortUrl":"http://localhost:8080/NUNP18JK","url":"https://example.com/some/path?q=1&qa=QAqueryA922f49","state":"active","createdAt":"2026-10-03T07:19:40.638Z"}
+
+=== AC12-redirect ===
+Before: 2026-10-03T07:19:40.789Z
+After: 2026-10-03T07:19:40.842Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'GET' --header 'Accept: text/html,application/xhtml+xml,*/*;q=0.8' --header 'User-Agent: QAuaA922f49' 'http://127.0.0.1:18091/NUNP18JK?utm_source=QAignored'
+HTTP/1.1 302 
+X-Request-Id: 78502d7e-bcf9-4b85-a37c-99d6a080dedd
+Location: https://example.com/some/path?q=1&qa=QAqueryA922f49
+Cache-Control: no-store
+Content-Length: 0
+Date: Sat, 03 Oct 2026 07:19:40 GMT
+
+
+
+=== AC17-replay-0 ===
+Before: 2026-10-03T07:19:40.843Z
+After: 2026-10-03T07:19:40.894Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --header 'Idempotency-Key: QAkeyA922f49' --data-binary '{"url":"https://example.com/some/path?q=1&qa=QAqueryA922f49"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 201 
+X-Request-Id: b404060f-bc93-4d2a-a561-bb1e60168942
+Location: /api/links/NUNP18JK
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:40 GMT
+
+{"code":"NUNP18JK","shortUrl":"http://localhost:8080/NUNP18JK","url":"https://example.com/some/path?q=1&qa=QAqueryA922f49","state":"active","createdAt":"2026-10-03T07:19:40.638Z"}
+
+=== AC17-replay-1 ===
+Before: 2026-10-03T07:19:40.895Z
+After: 2026-10-03T07:19:40.945Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --header 'Idempotency-Key: QAkeyA922f49' --data-binary '{"url":"https://example.com/some/path?q=1&qa=QAqueryA922f49"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 201 
+X-Request-Id: d461e20a-d0fc-4278-8400-33424de52e2a
+Location: /api/links/NUNP18JK
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:40 GMT
+
+{"code":"NUNP18JK","shortUrl":"http://localhost:8080/NUNP18JK","url":"https://example.com/some/path?q=1&qa=QAqueryA922f49","state":"active","createdAt":"2026-10-03T07:19:40.638Z"}
+
+=== AC17-replay-2 ===
+Before: 2026-10-03T07:19:40.945Z
+After: 2026-10-03T07:19:40.997Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --header 'Idempotency-Key: QAkeyA922f49' --data-binary '{"url":"https://example.com/some/path?q=1&qa=QAqueryA922f49"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 201 
+X-Request-Id: 80430a27-8768-4bfe-bc4d-1d24cbfc884d
+Location: /api/links/NUNP18JK
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:40 GMT
+
+{"code":"NUNP18JK","shortUrl":"http://localhost:8080/NUNP18JK","url":"https://example.com/some/path?q=1&qa=QAqueryA922f49","state":"active","createdAt":"2026-10-03T07:19:40.638Z"}
+
+=== AC18-mismatch ===
+Before: 2026-10-03T07:19:40.997Z
+After: 2026-10-03T07:19:41.057Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --header 'Idempotency-Key: QAkeyA922f49' --data-binary '{"url":"https://example.com/other"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 422 
+X-Request-Id: d1525e51-de66-4386-b8b6-f8a1955641b3
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:41 GMT
+
+{"instance":"urn:uuid:d1525e51-de66-4386-b8b6-f8a1955641b3","status":422,"title":"Unprocessable Content","errors":[{"field":"Idempotency-Key","rule":"mismatch","message":"Idempotency-Key was already used with a different url"}]}
+
+=== AC18-original-still-bound ===
+Before: 2026-10-03T07:19:41.057Z
+After: 2026-10-03T07:19:41.108Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --header 'Idempotency-Key: QAkeyA922f49' --data-binary '{"url":"https://example.com/some/path?q=1&qa=QAqueryA922f49"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 201 
+X-Request-Id: ca5432c5-177c-476e-a5f6-4d062926d464
+Location: /api/links/NUNP18JK
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:41 GMT
+
+{"code":"NUNP18JK","shortUrl":"http://localhost:8080/NUNP18JK","url":"https://example.com/some/path?q=1&qa=QAqueryA922f49","state":"active","createdAt":"2026-10-03T07:19:40.638Z"}
+
+=== AC02-distinct-0 ===
+Before: 2026-10-03T07:19:41.108Z
+After: 2026-10-03T07:19:41.162Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"https://example.com/repeat"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 201 
+X-Request-Id: d75b002a-95c7-4e1e-aa4d-3a7309be257f
+Location: /api/links/bJq291Iv
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:41 GMT
+
+{"code":"bJq291Iv","shortUrl":"http://localhost:8080/bJq291Iv","url":"https://example.com/repeat","state":"active","createdAt":"2026-10-03T07:19:41.136Z"}
+
+=== AC02-distinct-1 ===
+Before: 2026-10-03T07:19:41.162Z
+After: 2026-10-03T07:19:41.213Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"https://example.com/repeat"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 201 
+X-Request-Id: ad805fd1-6c94-473a-9f50-9f81bcf0128a
+Location: /api/links/7aBR12NC
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:41 GMT
+
+{"code":"7aBR12NC","shortUrl":"http://localhost:8080/7aBR12NC","url":"https://example.com/repeat","state":"active","createdAt":"2026-10-03T07:19:41.187Z"}
+
+=== AC02-distinct-2 ===
+Before: 2026-10-03T07:19:41.213Z
+After: 2026-10-03T07:19:41.262Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"https://example.com/repeat"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 201 
+X-Request-Id: 9967857e-9bfd-40d1-b214-4e75a216aef7
+Location: /api/links/XFuV3C6r
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:41 GMT
+
+{"code":"XFuV3C6r","shortUrl":"http://localhost:8080/XFuV3C6r","url":"https://example.com/repeat","state":"active","createdAt":"2026-10-03T07:19:41.237Z"}
+
+=== AC02-distinct-3 ===
+Before: 2026-10-03T07:19:41.262Z
+After: 2026-10-03T07:19:41.311Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"https://example.com/repeat"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 201 
+X-Request-Id: ef2ccd11-2d65-43fc-afd4-9366dba4f7b0
+Location: /api/links/2bWjMKXr
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:41 GMT
+
+{"code":"2bWjMKXr","shortUrl":"http://localhost:8080/2bWjMKXr","url":"https://example.com/repeat","state":"active","createdAt":"2026-10-03T07:19:41.286Z"}
+
+=== AC02-distinct-4 ===
+Before: 2026-10-03T07:19:41.312Z
+After: 2026-10-03T07:19:41.363Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"https://example.com/repeat"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 201 
+X-Request-Id: b91ee0e2-786c-4fe7-9e52-2e81609138f2
+Location: /api/links/XFZIb36b
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:41 GMT
+
+{"code":"XFZIb36b","shortUrl":"http://localhost:8080/XFZIb36b","url":"https://example.com/repeat","state":"active","createdAt":"2026-10-03T07:19:41.336Z"}
+
+=== AC02-distinct-5 ===
+Before: 2026-10-03T07:19:41.363Z
+After: 2026-10-03T07:19:41.415Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"https://example.com/repeat"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 201 
+X-Request-Id: 007ff475-4657-4459-9996-907bb148a4a9
+Location: /api/links/TCALzMMu
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:41 GMT
+
+{"code":"TCALzMMu","shortUrl":"http://localhost:8080/TCALzMMu","url":"https://example.com/repeat","state":"active","createdAt":"2026-10-03T07:19:41.389Z"}
+
+=== AC02-distinct-6 ===
+Before: 2026-10-03T07:19:41.415Z
+After: 2026-10-03T07:19:41.472Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"https://example.com/repeat"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 201 
+X-Request-Id: 7b07f748-922b-47cc-b166-ba8adfea8a06
+Location: /api/links/L5GvOKiS
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:41 GMT
+
+{"code":"L5GvOKiS","shortUrl":"http://localhost:8080/L5GvOKiS","url":"https://example.com/repeat","state":"active","createdAt":"2026-10-03T07:19:41.442Z"}
+
+=== AC02-distinct-7 ===
+Before: 2026-10-03T07:19:41.472Z
+After: 2026-10-03T07:19:41.537Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"https://example.com/repeat"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 201 
+X-Request-Id: 395d9b2a-3c91-4fd6-ac9c-2a479221eadb
+Location: /api/links/4g7yrNMn
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:41 GMT
+
+{"code":"4g7yrNMn","shortUrl":"http://localhost:8080/4g7yrNMn","url":"https://example.com/repeat","state":"active","createdAt":"2026-10-03T07:19:41.510Z"}
+
+=== AC02-distinct-8 ===
+Before: 2026-10-03T07:19:41.537Z
+After: 2026-10-03T07:19:41.590Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"https://example.com/repeat"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 201 
+X-Request-Id: e25500cd-1693-4e49-aa20-e3d212ac749a
+Location: /api/links/VeqDLieM
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:41 GMT
+
+{"code":"VeqDLieM","shortUrl":"http://localhost:8080/VeqDLieM","url":"https://example.com/repeat","state":"active","createdAt":"2026-10-03T07:19:41.565Z"}
+
+=== AC02-distinct-9 ===
+Before: 2026-10-03T07:19:41.590Z
+After: 2026-10-03T07:19:41.641Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"https://example.com/repeat"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 201 
+X-Request-Id: 7fb1831c-ff8e-432f-9499-c3e7cedc8a76
+Location: /api/links/Lspwe4Nk
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:41 GMT
+
+{"code":"Lspwe4Nk","shortUrl":"http://localhost:8080/Lspwe4Nk","url":"https://example.com/repeat","state":"active","createdAt":"2026-10-03T07:19:41.615Z"}
+
+=== AC04-required-0 ===
+Before: 2026-10-03T07:19:41.643Z
+After: 2026-10-03T07:19:41.693Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: 69f87964-17ad-46cf-ba2a-d24c8bd3ecd3
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:41 GMT
+Connection: close
+
+{"instance":"urn:uuid:69f87964-17ad-46cf-ba2a-d24c8bd3ecd3","status":400,"title":"Bad Request","errors":[{"field":"url","rule":"required","message":"url is required"}]}
+
+=== AC04-required-1 ===
+Before: 2026-10-03T07:19:41.693Z
+After: 2026-10-03T07:19:41.743Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":null}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: a3dc3c3b-54b5-4f9f-b572-f36366641498
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:41 GMT
+Connection: close
+
+{"instance":"urn:uuid:a3dc3c3b-54b5-4f9f-b572-f36366641498","status":400,"title":"Bad Request","errors":[{"field":"url","rule":"required","message":"url is required"}]}
+
+=== AC04-required-2 ===
+Before: 2026-10-03T07:19:41.743Z
+After: 2026-10-03T07:19:41.794Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":""}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: 2bea0af3-1ec6-458e-a426-7f72f396eebf
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:41 GMT
+Connection: close
+
+{"instance":"urn:uuid:2bea0af3-1ec6-458e-a426-7f72f396eebf","status":400,"title":"Bad Request","errors":[{"field":"url","rule":"required","message":"url is required"}]}
+
+=== AC04-required-3 ===
+Before: 2026-10-03T07:19:41.795Z
+After: 2026-10-03T07:19:41.844Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"   "}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: cbc9edce-f8a0-4e31-90d7-40c22ccf9feb
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:41 GMT
+Connection: close
+
+{"instance":"urn:uuid:cbc9edce-f8a0-4e31-90d7-40c22ccf9feb","status":400,"title":"Bad Request","errors":[{"field":"url","rule":"required","message":"url is required"}]}
+
+=== AC04-too-long-4 ===
+Before: 2026-10-03T07:19:41.844Z
+After: 2026-10-03T07:19:41.896Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: 75f4b713-c587-49c4-974b-dc48de4f3d50
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:41 GMT
+Connection: close
+
+{"instance":"urn:uuid:75f4b713-c587-49c4-974b-dc48de4f3d50","status":400,"title":"Bad Request","errors":[{"field":"url","rule":"too-long","message":"url must be at most 2048 characters"}]}
+
+=== AC04-scheme-5 ===
+Before: 2026-10-03T07:19:41.896Z
+After: 2026-10-03T07:19:41.958Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"javascript:alert(1)"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: 8fd0b424-f199-4dc9-83de-400dd98325b3
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:41 GMT
+Connection: close
+
+{"instance":"urn:uuid:8fd0b424-f199-4dc9-83de-400dd98325b3","status":400,"title":"Bad Request","errors":[{"field":"url","rule":"scheme","message":"url must start with http:// or https://"}]}
+
+=== AC04-scheme-6 ===
+Before: 2026-10-03T07:19:41.958Z
+After: 2026-10-03T07:19:42.008Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"data:text/html,hi"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: 70f3cdb3-f827-4f39-ae7c-1198fd996ace
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:41 GMT
+Connection: close
+
+{"instance":"urn:uuid:70f3cdb3-f827-4f39-ae7c-1198fd996ace","status":400,"title":"Bad Request","errors":[{"field":"url","rule":"scheme","message":"url must start with http:// or https://"}]}
+
+=== AC04-scheme-7 ===
+Before: 2026-10-03T07:19:42.008Z
+After: 2026-10-03T07:19:42.059Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"file:///etc/passwd"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: 90e83eae-bfd6-4fd8-93c0-c3fe2e1c46b8
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:42 GMT
+Connection: close
+
+{"instance":"urn:uuid:90e83eae-bfd6-4fd8-93c0-c3fe2e1c46b8","status":400,"title":"Bad Request","errors":[{"field":"url","rule":"scheme","message":"url must start with http:// or https://"}]}
+
+=== AC04-scheme-8 ===
+Before: 2026-10-03T07:19:42.059Z
+After: 2026-10-03T07:19:42.137Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"ftp://example.com/"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: 4fde6708-6ddf-4ed6-a5af-0937e407a827
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:42 GMT
+Connection: close
+
+{"instance":"urn:uuid:4fde6708-6ddf-4ed6-a5af-0937e407a827","status":400,"title":"Bad Request","errors":[{"field":"url","rule":"scheme","message":"url must start with http:// or https://"}]}
+
+=== AC04-scheme-9 ===
+Before: 2026-10-03T07:19:42.137Z
+After: 2026-10-03T07:19:42.202Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"example.com/path"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: ec4166da-a441-4d2d-b485-3f37f86e8e8d
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:42 GMT
+Connection: close
+
+{"instance":"urn:uuid:ec4166da-a441-4d2d-b485-3f37f86e8e8d","status":400,"title":"Bad Request","errors":[{"field":"url","rule":"scheme","message":"url must start with http:// or https://"}]}
+
+=== AC04-scheme-10 ===
+Before: 2026-10-03T07:19:42.202Z
+After: 2026-10-03T07:19:42.281Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":" https://example.com/"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: 97cebe7d-b1e3-4350-b221-f665e4533331
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:42 GMT
+Connection: close
+
+{"instance":"urn:uuid:97cebe7d-b1e3-4350-b221-f665e4533331","status":400,"title":"Bad Request","errors":[{"field":"url","rule":"scheme","message":"url must start with http:// or https://"}]}
+
+=== AC04-malformed-11 ===
+Before: 2026-10-03T07:19:42.281Z
+After: 2026-10-03T07:19:42.338Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"https://"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: 39ab233e-c003-4afd-9420-1575c3f16ab9
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:42 GMT
+Connection: close
+
+{"instance":"urn:uuid:39ab233e-c003-4afd-9420-1575c3f16ab9","status":400,"title":"Bad Request","errors":[{"field":"url","rule":"malformed","message":"url must be an absolute URL with a host"}]}
+
+=== AC04-malformed-12 ===
+Before: 2026-10-03T07:19:42.338Z
+After: 2026-10-03T07:19:42.393Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"https://exa mple.com/"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: c479c1a6-9dc6-4d6a-b61a-cbd8d6fcffd4
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:42 GMT
+Connection: close
+
+{"instance":"urn:uuid:c479c1a6-9dc6-4d6a-b61a-cbd8d6fcffd4","status":400,"title":"Bad Request","errors":[{"field":"url","rule":"malformed","message":"url must be an absolute URL with a host"}]}
+
+=== AC04-malformed-13 ===
+Before: 2026-10-03T07:19:42.393Z
+After: 2026-10-03T07:19:42.451Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"https://[bad/"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: e42f7076-852c-4aca-a2b3-493baae53a3a
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:42 GMT
+Connection: close
+
+{"instance":"urn:uuid:e42f7076-852c-4aca-a2b3-493baae53a3a","status":400,"title":"Bad Request","errors":[{"field":"url","rule":"malformed","message":"url must be an absolute URL with a host"}]}
+
+=== AC04-malformed-14 ===
+Before: 2026-10-03T07:19:42.451Z
+After: 2026-10-03T07:19:42.508Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"https://example.com/ "}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: 84f5f170-83a6-4536-98d2-bd30a10e1076
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:42 GMT
+Connection: close
+
+{"instance":"urn:uuid:84f5f170-83a6-4536-98d2-bd30a10e1076","status":400,"title":"Bad Request","errors":[{"field":"url","rule":"malformed","message":"url must be an absolute URL with a host"}]}
+
+=== AC04-credentials-15 ===
+Before: 2026-10-03T07:19:42.508Z
+After: 2026-10-03T07:19:42.566Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"https://user:secret@example.com/"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: 11060e06-3300-40d3-b953-f0b22072e596
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:42 GMT
+Connection: close
+
+{"instance":"urn:uuid:11060e06-3300-40d3-b953-f0b22072e596","status":400,"title":"Bad Request","errors":[{"field":"url","rule":"credentials","message":"url must not contain credentials"}]}
+
+=== AC04-credentials-16 ===
+Before: 2026-10-03T07:19:42.566Z
+After: 2026-10-03T07:19:42.627Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"https://user@example.com/"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: 434670b7-f0d6-4792-a22f-5b2e133c5acb
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:42 GMT
+Connection: close
+
+{"instance":"urn:uuid:434670b7-f0d6-4792-a22f-5b2e133c5acb","status":400,"title":"Bad Request","errors":[{"field":"url","rule":"credentials","message":"url must not contain credentials"}]}
+
+=== BR03-2048-accepted ===
+Before: 2026-10-03T07:19:42.627Z
+After: 2026-10-03T07:19:42.681Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 201 
+X-Request-Id: 20ea933e-c4a7-4ba7-867c-7bb60a59f2a3
+Location: /api/links/WH9k9e6U
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:42 GMT
+
+{"code":"WH9k9e6U","shortUrl":"http://localhost:8080/WH9k9e6U","url":"https://example.com/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","state":"active","createdAt":"2026-10-03T07:19:42.656Z"}
+
+=== AC05-json-0 ===
+Before: 2026-10-03T07:19:42.681Z
+After: 2026-10-03T07:19:42.734Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: 30359f6e-c337-4690-a187-daf02e0f9e10
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:42 GMT
+Connection: close
+
+{"instance":"urn:uuid:30359f6e-c337-4690-a187-daf02e0f9e10","status":400,"title":"Bad Request"}
+
+=== AC05-json-1 ===
+Before: 2026-10-03T07:19:42.734Z
+After: 2026-10-03T07:19:42.791Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{ "url": ' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: c5ec6f41-6f3b-475b-b4fc-94bfdd497ca3
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:42 GMT
+Connection: close
+
+{"instance":"urn:uuid:c5ec6f41-6f3b-475b-b4fc-94bfdd497ca3","status":400,"title":"Bad Request"}
+
+=== AC05-json-2 ===
+Before: 2026-10-03T07:19:42.791Z
+After: 2026-10-03T07:19:42.843Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '[]' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: 7509ea16-7686-4c02-9b67-094077c307bf
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:42 GMT
+Connection: close
+
+{"instance":"urn:uuid:7509ea16-7686-4c02-9b67-094077c307bf","status":400,"title":"Bad Request"}
+
+=== AC05-json-3 ===
+Before: 2026-10-03T07:19:42.843Z
+After: 2026-10-03T07:19:42.895Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":{}}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: 452530a2-745d-40ad-ae95-46c7dd564e7c
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:42 GMT
+Connection: close
+
+{"instance":"urn:uuid:452530a2-745d-40ad-ae95-46c7dd564e7c","status":400,"title":"Bad Request"}
+
+=== AC06-text ===
+Before: 2026-10-03T07:19:42.895Z
+After: 2026-10-03T07:19:42.940Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: text/plain' --data-binary 'https://example.com/' 'http://127.0.0.1:18091/api/links'
+scripts/http: refusing non-loopback URL: https://example.com/
+
+
+=== AC06-multipart ===
+Before: 2026-10-03T07:19:42.941Z
+After: 2026-10-03T07:19:42.994Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: multipart/form-data; boundary=qa' --data-binary '--qa
+Content-Disposition: form-data; name="url"
+
+https://example.com/
+--qa--
+' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 415 
+X-Request-Id: 38067c67-a201-4980-b2ae-dcbe60292dfb
+Accept: application/json
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:42 GMT
+
+{"instance":"urn:uuid:38067c67-a201-4980-b2ae-dcbe60292dfb","status":415,"title":"Unsupported Media Type"}
+
+=== AC07-size-16384 ===
+Before: 2026-10-03T07:19:42.994Z
+After: 2026-10-03T07:19:43.051Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"https://example.com/","pad":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 201 
+X-Request-Id: 5f004b34-be1b-4999-82ff-20a7d140dc3d
+Location: /api/links/uA6hb1hs
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:43 GMT
+
+{"code":"uA6hb1hs","shortUrl":"http://localhost:8080/uA6hb1hs","url":"https://example.com/","state":"active","createdAt":"2026-10-03T07:19:43.023Z"}
+
+=== AC07-size-16385 ===
+Before: 2026-10-03T07:19:43.051Z
+After: 2026-10-03T07:19:43.105Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"https://example.com/","pad":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 413 
+X-Request-Id: aca4c6de-85aa-45c5-bf47-ea58c43d35d1
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:43 GMT
+Connection: close
+
+{"instance":"urn:uuid:aca4c6de-85aa-45c5-bf47-ea58c43d35d1","status":413,"title":"Content Too Large"}
+
+=== AC14-unknown-0 ===
+Before: 2026-10-03T07:19:43.105Z
+After: 2026-10-03T07:19:43.159Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'GET' --header 'Accept: text/html,application/xhtml+xml,*/*;q=0.8' --header 'User-Agent: QAuaA922f49' 'http://127.0.0.1:18091/api/links/nosuchcode1'
+HTTP/1.1 404 
+X-Request-Id: 70581dda-98d2-4454-9c0a-87f3012122c2
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:43 GMT
+
+{"instance":"urn:uuid:70581dda-98d2-4454-9c0a-87f3012122c2","status":404,"title":"Not Found"}
+
+=== AC14-unknown-1 ===
+Before: 2026-10-03T07:19:43.159Z
+After: 2026-10-03T07:19:43.209Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'GET' --header 'Accept: text/html,application/xhtml+xml,*/*;q=0.8' --header 'User-Agent: QAuaA922f49' 'http://127.0.0.1:18091/nosuchcode1'
+HTTP/1.1 404 
+X-Request-Id: 2d9b501e-1818-48c3-9b63-67cdba8e596b
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:43 GMT
+
+{"instance":"urn:uuid:2d9b501e-1818-48c3-9b63-67cdba8e596b","status":404,"title":"Not Found"}
+
+=== AC14-unknown-2 ===
+Before: 2026-10-03T07:19:43.209Z
+After: 2026-10-03T07:19:43.262Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'GET' --header 'Accept: text/html,application/xhtml+xml,*/*;q=0.8' --header 'User-Agent: QAuaA922f49' 'http://127.0.0.1:18091/api/links/zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz'
+HTTP/1.1 404 
+X-Request-Id: 5d4eb026-0381-48ea-929f-9957a43c435a
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:43 GMT
+
+{"instance":"urn:uuid:5d4eb026-0381-48ea-929f-9957a43c435a","status":404,"title":"Not Found"}
+
+=== AC14-unknown-3 ===
+Before: 2026-10-03T07:19:43.262Z
+After: 2026-10-03T07:19:43.314Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'GET' --header 'Accept: text/html,application/xhtml+xml,*/*;q=0.8' --header 'User-Agent: QAuaA922f49' 'http://127.0.0.1:18091/favicon.ico'
+HTTP/1.1 404 
+X-Request-Id: 80a08c43-fd07-4a4c-8040-1331184e8a9d
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:43 GMT
+
+{"instance":"urn:uuid:80a08c43-fd07-4a4c-8040-1331184e8a9d","status":404,"title":"Not Found"}
+
+=== AC14-delete-unknown ===
+Before: 2026-10-03T07:19:43.314Z
+After: 2026-10-03T07:19:43.366Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'DELETE' 'http://127.0.0.1:18091/api/links/nosuchcode1'
+HTTP/1.1 404 
+X-Request-Id: 8f554db5-b320-4600-a823-8ba68f97a6aa
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:43 GMT
+
+{"instance":"urn:uuid:8f554db5-b320-4600-a823-8ba68f97a6aa","status":404,"title":"Not Found"}
+
+=== AC15-method-0 ===
+Before: 2026-10-03T07:19:43.366Z
+After: 2026-10-03T07:19:43.418Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'GET' --header 'Accept: text/html,application/xhtml+xml,*/*;q=0.8' --header 'User-Agent: QAuaA922f49' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 405 
+X-Request-Id: 8fb9102a-741f-4fc8-862f-5a43ab69a91d
+Allow: POST
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:43 GMT
+
+{"instance":"urn:uuid:8fb9102a-741f-4fc8-862f-5a43ab69a91d","status":405,"title":"Method Not Allowed"}
+
+=== AC15-method-1 ===
+Before: 2026-10-03T07:19:43.418Z
+After: 2026-10-03T07:19:43.468Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'PUT' --header 'Accept: text/html,application/xhtml+xml,*/*;q=0.8' --header 'User-Agent: QAuaA922f49' 'http://127.0.0.1:18091/api/links/NUNP18JK'
+HTTP/1.1 405 
+X-Request-Id: 2b8457e7-e219-4e58-888f-8d7e6b8ba8e3
+Allow: GET, DELETE
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:43 GMT
+
+{"instance":"urn:uuid:2b8457e7-e219-4e58-888f-8d7e6b8ba8e3","status":405,"title":"Method Not Allowed"}
+
+=== AC15-method-2 ===
+Before: 2026-10-03T07:19:43.468Z
+After: 2026-10-03T07:19:43.518Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'PATCH' --header 'Accept: text/html,application/xhtml+xml,*/*;q=0.8' --header 'User-Agent: QAuaA922f49' 'http://127.0.0.1:18091/api/links/NUNP18JK'
+HTTP/1.1 405 
+X-Request-Id: a9114369-80c6-4f47-b5d3-35404ced261a
+Allow: GET, DELETE
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:43 GMT
+
+{"instance":"urn:uuid:a9114369-80c6-4f47-b5d3-35404ced261a","status":405,"title":"Method Not Allowed"}
+
+=== AC15-method-3 ===
+Before: 2026-10-03T07:19:43.518Z
+After: 2026-10-03T07:19:43.566Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'DELETE' --header 'Accept: text/html,application/xhtml+xml,*/*;q=0.8' --header 'User-Agent: QAuaA922f49' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 405 
+X-Request-Id: 15d87bc4-9fc1-4d76-aa8c-de592150f0c7
+Allow: POST
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:43 GMT
+
+{"instance":"urn:uuid:15d87bc4-9fc1-4d76-aa8c-de592150f0c7","status":405,"title":"Method Not Allowed"}
+
+=== AC15-method-4 ===
+Before: 2026-10-03T07:19:43.566Z
+After: 2026-10-03T07:19:43.620Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Accept: text/html,application/xhtml+xml,*/*;q=0.8' --header 'User-Agent: QAuaA922f49' 'http://127.0.0.1:18091/NUNP18JK'
+HTTP/1.1 405 
+X-Request-Id: 3a6227fe-04d8-4dbf-96f4-0b4cca0a7b1a
+Allow: GET
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:43 GMT
+
+{"instance":"urn:uuid:3a6227fe-04d8-4dbf-96f4-0b4cca0a7b1a","status":405,"title":"Method Not Allowed"}
+
+=== AC15-method-5 ===
+Before: 2026-10-03T07:19:43.620Z
+After: 2026-10-03T07:19:43.668Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'PUT' --header 'Accept: text/html,application/xhtml+xml,*/*;q=0.8' --header 'User-Agent: QAuaA922f49' 'http://127.0.0.1:18091/NUNP18JK'
+HTTP/1.1 405 
+X-Request-Id: b2f79391-5c65-4b86-86dc-84928b7e348d
+Allow: GET
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:43 GMT
+
+{"instance":"urn:uuid:b2f79391-5c65-4b86-86dc-84928b7e348d","status":405,"title":"Method Not Allowed"}
+
+=== AC16-ping ===
+Before: 2026-10-03T07:19:43.668Z
+After: 2026-10-03T07:19:43.720Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'GET' 'http://127.0.0.1:18091/api/ping'
+HTTP/1.1 200 
+X-Request-Id: 1bec40aa-943e-4b58-84ff-0e3de467e9e2
+Content-Type: application/json
+Content-Length: 52
+Date: Sat, 03 Oct 2026 07:19:43 GMT
+
+{"status":"ok","time":"2026-10-03T07:19:43.693504Z"}
+
+=== AC16-health ===
+Before: 2026-10-03T07:19:43.720Z
+After: 2026-10-03T07:19:43.769Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'GET' 'http://127.0.0.1:18091/actuator/health'
+HTTP/1.1 200 
+X-Request-Id: 24b049fc-abfd-4897-956d-6c509ecd2d0b
+Content-Type: application/vnd.spring-boot.actuator.v3+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:43 GMT
+
+{"groups":["liveness","readiness"],"status":"UP"}
+
+=== AC16-openapi ===
+Before: 2026-10-03T07:19:43.769Z
+After: 2026-10-03T07:19:43.949Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'GET' 'http://127.0.0.1:18091/v3/api-docs'
+HTTP/1.1 200 
+X-Request-Id: d1088fe5-d325-4281-938e-d97515b279d5
+Content-Type: application/json
+Content-Length: 5302
+Date: Sat, 03 Oct 2026 07:19:43 GMT
+
+{"openapi":"3.1.0","info":{"description":"Create, read and retire short links; visitors are redirected with 302.","title":"urlshort","version":"1"},"servers":[{"url":"/"}],"paths":{"/api/links":{"post":{"description":"Without Idempotency-Key every call creates a new link. With a key, a repeat with the same url within 24 h of the first 201 returns that link (current state); a different url is 422.","operationId":"createLink","parameters":[{"description":"1 to 255 visible ASCII characters; makes a retried create return the first link","in":"header","name":"Idempotency-Key","required":false,"schema":{"type":"string"}}],"requestBody":{"content":{"application/json":{"examples":{"create":{"description":"create","value":{"url":"https://example.com/some/path?q=1"}}},"schema":{"$ref":"#/components/schemas/CreateLinkRequest"}}},"required":true},"responses":{"201":{"content":{"application/json":{"examples":{"created":{"description":"created","value":{"code":"Ab3dE9fG","shortUrl":"http://localhost:8080/Ab3dE9fG","url":"https://example.com/some/path?q=1","state":"active","createdAt":"2026-10-03T05:12:42.133Z"}}},"schema":{"$ref":"#/components/schemas/LinkResponse"}}},"description":"Created, or replayed for the same key and url","headers":{"Location":{"description":"/api/links/{code}","schema":{"type":"string"},"style":"simple"}}},"400":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Invalid url or Idempotency-Key (errors[] names field and rule), or a body that is not a JSON object"},"413":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Body larger than 16 384 bytes"},"415":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Content-Type is not application/json"},"422":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Idempotency-Key already used with a different url"},"500":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Nothing was stored"}},"summary":"Create a short link for an http(s) URL","tags":["link-controller"]}},"/api/links/{code}":{"delete":{"operationId":"retireLink","parameters":[{"in":"path","name":"code","required":true,"schema":{"type":"string"}}],"responses":{"204":{"description":"Retired"},"404":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"No link has this code"},"410":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Already retired"},"500":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"Nothing was changed"}},"summary":"Retire a link; visitors then get 410 and the record is kept","tags":["link-controller"]},"get":{"operationId":"readLink","parameters":[{"in":"path","name":"code","required":true,"schema":{"type":"string"}}],"responses":{"200":{"content":{"application/json":{"examples":{"link":{"description":"link","value":{"code":"Ab3dE9fG","shortUrl":"http://localhost:8080/Ab3dE9fG","url":"https://example.com/some/path?q=1","state":"active","createdAt":"2026-10-03T05:12:42.133Z"}}},"schema":{"$ref":"#/components/schemas/LinkResponse"}}},"description":"The link; state is active or retired"},"404":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"No link has this code"}},"summary":"Read a link by its code","tags":["link-controller"]}},"/api/ping":{"get":{"operationId":"ping","responses":{"200":{"content":{"*/*":{"schema":{"$ref":"#/components/schemas/PingResponse"}}},"description":"OK"}},"tags":["ping-controller"]}},"/{code}":{"get":{"operationId":"redirect","parameters":[{"in":"path","name":"code","required":true,"schema":{"type":"string"}}],"responses":{"302":{"description":"Redirect to the stored url, not cacheable","headers":{"Cache-Control":{"description":"no-store","schema":{"type":"string"},"style":"simple"},"Location":{"description":"The stored url, byte for byte","schema":{"type":"string"},"style":"simple"}}},"404":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"No link has this code"},"410":{"content":{"application/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"The link was retired"}},"summary":"Open a short link","tags":["redirect-controller"]}}},"components":{"schemas":{"CreateLinkRequest":{"type":"object","properties":{"url":{"type":"string"}}},"LinkResponse":{"type":"object","properties":{"code":{"type":"string"},"createdAt":{"type":"string","format":"date-time"},"shortUrl":{"type":"string"},"state":{"type":"string"},"url":{"type":"string"}}},"PingResponse":{"type":"object","properties":{"status":{"type":"string"},"time":{"type":"string"}}},"ProblemDetail":{"type":"object","properties":{"detail":{"type":"string"},"instance":{"type":"string","format":"uri"},"properties":{"type":"object","additionalProperties":{}},"status":{"type":"integer","format":"int32"},"title":{"type":"string"},"type":{"type":"string","format":"uri"}}}}}}
+
+=== AC20-key-0 ===
+Before: 2026-10-03T07:19:43.950Z
+After: 2026-10-03T07:19:44.006Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --header 'Idempotency-Key;' --data-binary '{"url":"https://example.com/"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: 8b8e325e-0405-4484-8151-7790c3576dfa
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:43 GMT
+Connection: close
+
+{"instance":"urn:uuid:8b8e325e-0405-4484-8151-7790c3576dfa","status":400,"title":"Bad Request","errors":[{"field":"Idempotency-Key","rule":"format","message":"Idempotency-Key must be 1 to 255 visible ASCII characters"}]}
+
+=== AC20-key-1 ===
+Before: 2026-10-03T07:19:44.006Z
+After: 2026-10-03T07:19:44.058Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --header 'Idempotency-Key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' --data-binary '{"url":"https://example.com/"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: 711f55ec-f063-4669-8406-57ba08a658bd
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:44 GMT
+Connection: close
+
+{"instance":"urn:uuid:711f55ec-f063-4669-8406-57ba08a658bd","status":400,"title":"Bad Request","errors":[{"field":"Idempotency-Key","rule":"format","message":"Idempotency-Key must be 1 to 255 visible ASCII characters"}]}
+
+=== AC20-key-2 ===
+Before: 2026-10-03T07:19:44.058Z
+After: 2026-10-03T07:19:44.116Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --header 'Idempotency-Key: has space' --data-binary '{"url":"https://example.com/"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: 564b3447-b5f8-4bfc-a849-89dc3d1aaec1
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:44 GMT
+Connection: close
+
+{"instance":"urn:uuid:564b3447-b5f8-4bfc-a849-89dc3d1aaec1","status":400,"title":"Bad Request","errors":[{"field":"Idempotency-Key","rule":"format","message":"Idempotency-Key must be 1 to 255 visible ASCII characters"}]}
+
+=== AC20-key-3 ===
+Before: 2026-10-03T07:19:44.116Z
+After: 2026-10-03T07:19:44.165Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --header 'Idempotency-Key: café' --data-binary '{"url":"https://example.com/"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: 15c20cf9-512f-497c-b8f1-35b956b180ee
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:44 GMT
+Connection: close
+
+{"instance":"urn:uuid:15c20cf9-512f-497c-b8f1-35b956b180ee","status":400,"title":"Bad Request","errors":[{"field":"Idempotency-Key","rule":"format","message":"Idempotency-Key must be 1 to 255 visible ASCII characters"}]}
+
+=== BR05-key-255 ===
+Before: 2026-10-03T07:19:44.165Z
+After: 2026-10-03T07:19:44.218Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --header 'Idempotency-Key: Qkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk' --data-binary '{"url":"https://example.com/"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 201 
+X-Request-Id: 5b7aac69-a2db-4aa9-ba73-071b112fbeb3
+Location: /api/links/QU8aSt2c
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:44 GMT
+
+{"code":"QU8aSt2c","shortUrl":"http://localhost:8080/QU8aSt2c","url":"https://example.com/","state":"active","createdAt":"2026-10-03T07:19:44.191Z"}
+
+=== AC21-rejected-unbound ===
+Before: 2026-10-03T07:19:44.218Z
+After: 2026-10-03T07:19:44.270Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --header 'Idempotency-Key: QArejectedA922f49' --data-binary '{"url":"javascript:QAinvalid"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: c2fadbae-dae8-4173-a540-f8da1cf9987c
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:44 GMT
+Connection: close
+
+{"instance":"urn:uuid:c2fadbae-dae8-4173-a540-f8da1cf9987c","status":400,"title":"Bad Request","errors":[{"field":"url","rule":"scheme","message":"url must start with http:// or https://"}]}
+
+=== AC21-valid-after-reject ===
+Before: 2026-10-03T07:19:44.270Z
+After: 2026-10-03T07:19:44.324Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --header 'Idempotency-Key: QArejectedA922f49' --data-binary '{"url":"https://example.com/retry"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 201 
+X-Request-Id: ac7589a1-7cc6-4e11-9c18-2298d72407f7
+Location: /api/links/DUq24B9t
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:44 GMT
+
+{"code":"DUq24B9t","shortUrl":"http://localhost:8080/DUq24B9t","url":"https://example.com/retry","state":"active","createdAt":"2026-10-03T07:19:44.295Z"}
+
+=== AC21-replay ===
+Before: 2026-10-03T07:19:44.324Z
+After: 2026-10-03T07:19:44.379Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --header 'Idempotency-Key: QArejectedA922f49' --data-binary '{"url":"https://example.com/retry"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 201 
+X-Request-Id: b5762ea5-48ca-4031-bbb6-0f54c91a13cd
+Location: /api/links/DUq24B9t
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:44 GMT
+
+{"code":"DUq24B9t","shortUrl":"http://localhost:8080/DUq24B9t","url":"https://example.com/retry","state":"active","createdAt":"2026-10-03T07:19:44.295Z"}
+
+=== AC10-retire ===
+Before: 2026-10-03T07:19:44.379Z
+After: 2026-10-03T07:19:44.432Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'DELETE' 'http://127.0.0.1:18091/api/links/NUNP18JK'
+HTTP/1.1 204 
+X-Request-Id: 4ebdfbd6-c733-435b-b892-fb915c874cb6
+Date: Sat, 03 Oct 2026 07:19:44 GMT
+
+
+
+=== AC09-read-retired ===
+Before: 2026-10-03T07:19:44.432Z
+After: 2026-10-03T07:19:44.482Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'GET' 'http://127.0.0.1:18091/api/links/NUNP18JK'
+HTTP/1.1 200 
+X-Request-Id: 48277c9a-3fff-450c-a311-a2f722fba654
+Content-Type: application/json
+Content-Length: 180
+Date: Sat, 03 Oct 2026 07:19:44 GMT
+
+{"code":"NUNP18JK","shortUrl":"http://localhost:8080/NUNP18JK","url":"https://example.com/some/path?q=1&qa=QAqueryA922f49","state":"retired","createdAt":"2026-10-03T07:19:40.638Z"}
+
+=== BR05-replay-retired ===
+Before: 2026-10-03T07:19:44.483Z
+After: 2026-10-03T07:19:44.533Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --header 'Idempotency-Key: QAkeyA922f49' --data-binary '{"url":"https://example.com/some/path?q=1&qa=QAqueryA922f49"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 201 
+X-Request-Id: f5ac790c-3e48-430b-8e6b-5dfb3c50be25
+Location: /api/links/NUNP18JK
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:44 GMT
+
+{"code":"NUNP18JK","shortUrl":"http://localhost:8080/NUNP18JK","url":"https://example.com/some/path?q=1&qa=QAqueryA922f49","state":"retired","createdAt":"2026-10-03T07:19:40.638Z"}
+
+=== AC11-retire-again ===
+Before: 2026-10-03T07:19:44.533Z
+After: 2026-10-03T07:19:44.598Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'DELETE' 'http://127.0.0.1:18091/api/links/NUNP18JK'
+HTTP/1.1 410 
+X-Request-Id: c47ab3c2-ff53-46e7-b5df-dadf70c6381d
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:44 GMT
+
+{"instance":"urn:uuid:c47ab3c2-ff53-46e7-b5df-dadf70c6381d","status":410,"title":"Gone"}
+
+=== AC13-gone ===
+Before: 2026-10-03T07:19:44.598Z
+After: 2026-10-03T07:19:44.649Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'GET' --header 'Accept: text/html,application/xhtml+xml,*/*;q=0.8' --header 'User-Agent: QAuaA922f49' 'http://127.0.0.1:18091/NUNP18JK'
+HTTP/1.1 410 
+X-Request-Id: 47932567-1ea3-4e36-8b66-b88facec9f2e
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:44 GMT
+
+{"instance":"urn:uuid:47932567-1ea3-4e36-8b66-b88facec9f2e","status":410,"title":"Gone"}
+
+=== AC27-script-canary ===
+Before: 2026-10-03T07:19:44.649Z
+After: 2026-10-03T07:19:44.699Z
+Command: scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"javascript:QAscriptA922f49"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: c06cb6fa-cdf1-4026-9b62-eaf38953e31b
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:19:44 GMT
+Connection: close
+
+{"instance":"urn:uuid:c06cb6fa-cdf1-4026-9b62-eaf38953e31b","status":400,"title":"Bad Request","errors":[{"field":"url","rule":"scheme","message":"url must start with http:// or https://"}]}
+

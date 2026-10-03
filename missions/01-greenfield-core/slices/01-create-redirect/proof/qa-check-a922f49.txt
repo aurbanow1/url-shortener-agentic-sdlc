@@ -1,0 +1,38 @@
+> Task :compileJava
+> Task :processResources
+> Task :classes
+> Task :jar
+> Task :compileTestJava
+> Task :processTestResources
+> Task :testClasses
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+2026-10-03T00:16:47.086-07:00  INFO 6528 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-10-03T00:16:47.087-07:00  INFO 6528 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-10-03T00:16:47.090-07:00  INFO 6528 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2026-10-03T00:16:47.090-07:00  INFO 6528 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+> Task :test
+> Task :compileFunctionalTestJava
+> Task :processFunctionalTestResources
+> Task :functionalTestClasses
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+{"@timestamp":"2026-10-03T07:16:57.871102Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":7028,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T07:16:57.871760Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":7028,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T07:16:57.873867Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":7028,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-2 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T07:16:57.874216Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":7028,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-2 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T07:16:57.875911Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":7028,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-3 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T07:16:57.876191Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":7028,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-3 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T07:16:57.877070Z","log":{"level":"INFO","logger":"org.springframework.boot.tomcat.GracefulShutdown"},"process":{"pid":7028,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Commencing graceful shutdown. Waiting for active requests to complete","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T07:16:57.880187Z","log":{"level":"INFO","logger":"org.springframework.boot.tomcat.GracefulShutdown"},"process":{"pid":7028,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Graceful shutdown complete","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T07:16:57.882726Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":7028,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-4 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T07:16:57.888049Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":7028,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-4 - Shutdown completed.","ecs":{"version":"8.11"}}
+> Task :functionalTest
+> Task :jacocoTestCoverageVerification
+> Task :jacocoTestReport
+> Task :jacocoFunctionalTestReport
+> Task :jacocoAllReport
+> Task :javadoc
+> Task :check
+
+BUILD SUCCESSFUL in 21s
+14 actionable tasks: 14 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.7.1/userguide/configuration_cache_enabling.html

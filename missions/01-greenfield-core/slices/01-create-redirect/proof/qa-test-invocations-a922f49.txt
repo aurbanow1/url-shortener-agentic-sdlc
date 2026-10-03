@@ -1,0 +1,159 @@
+unit	dev.urlshort.UrlshortApplicationTests#mainBootsWithoutAWebServer()	PASS
+unit	dev.urlshort.UrlshortApplicationTests#contextLoads()	PASS
+unit	dev.urlshort.audit.AuditLogTest#theWriterOffersOnlyAppendAndItsOnlyStatementIsAnInsert()	PASS
+unit	dev.urlshort.audit.AuditLogTest#appendWritesOneRowWithServerOwnedValues()	PASS
+unit	dev.urlshort.link.LinkServiceTest#resolveSendsVisitorsToActiveLinksOnly()	PASS
+unit	dev.urlshort.link.LinkServiceTest#createWithAnUnboundKeyBindsIt()	PASS
+unit	dev.urlshort.link.LinkServiceTest#retireUpdatesConditionallyAndAuditsBeforeAndAfter()	PASS
+unit	dev.urlshort.link.LinkServiceTest#retireThatChangesNoRowIs410AndWritesNoAuditRow()	PASS
+unit	dev.urlshort.link.LinkServiceTest#createWithoutAKeyInsertsAndAuditsTheNewLink()	PASS
+unit	dev.urlshort.link.LinkServiceTest#mismatchWithinTheWindowIs422AndKeepsTheBinding()	PASS
+unit	dev.urlshort.link.LinkServiceTest#replayWithinTheWindowReturnsTheBoundLinkAndWritesNothing()	PASS
+unit	dev.urlshort.link.LinkServiceTest#anExpiredKeyIsReleasedAndBindsANewLink()	PASS
+unit	dev.urlshort.link.LinkServiceTest#readOfAnUnknownCodeIs404()	PASS
+unit	dev.urlshort.link.LinkTest#stateIsActiveUntilRetiredAtIsSet()	PASS
+unit	dev.urlshort.link.LinkValidationTest#[1] key = ""	PASS
+unit	dev.urlshort.link.LinkValidationTest#[2] key = "has space"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[3] key = "café"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[4] key = "tab\there"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[1] url = null, rule = "required"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[2] url = "", rule = "required"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[3] url = "   ", rule = "required"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[4] url = "https://example.com/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa…", rule = "too-long"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[5] url = "javascript:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa…", rule = "too-long"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[6] url = "javascript:alert(1)", rule = "scheme"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[7] url = "data:text/html,hi", rule = "scheme"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[8] url = "file:///etc/passwd", rule = "scheme"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[9] url = "ftp://example.com/", rule = "scheme"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[10] url = "example.com/path", rule = "scheme"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[11] url = " https://example.com/", rule = "scheme"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[12] url = "https://", rule = "malformed"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[13] url = "https://exa mple.com/", rule = "malformed"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[14] url = "https://[bad/", rule = "malformed"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[15] url = "https://example.com/ ", rule = "malformed"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[16] url = "https://example.com/\r\nSet-Cookie:x", rule = "malformed"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[17] url = "https://exämple.com/", rule = "malformed"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[18] url = "https:///no-host", rule = "malformed"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[19] url = "https://user:secret@example.com/", rule = "credentials"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[20] url = "https://user@example.com/", rule = "credentials"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[1] url = "https://example.com/some/path?q=1"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[2] url = "http://example.com/"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[3] url = "HTTPS://EXAMPLE.COM/"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[4] url = "http://localhost:8080/"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[5] url = "https://example.com/p?q=a%20b#frag"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[1] length = 256	PASS
+unit	dev.urlshort.link.LinkValidationTest#[2] length = 1000	PASS
+unit	dev.urlshort.link.LinkValidationTest#[1] key = null	PASS
+unit	dev.urlshort.link.LinkValidationTest#[2] key = "k"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[3] key = "!~"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[4] key = "550e8400-e29b-41d4-a716-446655440000"	PASS
+unit	dev.urlshort.link.LinkValidationTest#[1] length = 2048	PASS
+unit	dev.urlshort.link.ShortCodesTest#aDrawThatSpellsAReservedSegmentIsDrawnAgain()	PASS
+unit	dev.urlshort.link.ShortCodesTest#codesAreEightCharactersFromTheAlphanumericAlphabet()	PASS
+unit	dev.urlshort.ping.PingControllerTest#answersOkWithTheCurrentUtcInstant()	PASS
+unit	dev.urlshort.web.ProblemDetailsAdviceTest#errorOriginIsNoneWhenNoFrameIsOurs()	PASS
+unit	dev.urlshort.web.ProblemDetailsAdviceTest#frameworkDetailThatEchoesClientInputIsCleared()	PASS
+unit	dev.urlshort.web.ProblemDetailsAdviceTest#aNonProblemBodyPassesThroughUntouched()	PASS
+unit	dev.urlshort.web.ProblemDetailsAdviceTest#unreadableBodyWithoutALimitErrorStays400WithoutTheFrameworkDetail()	PASS
+unit	dev.urlshort.web.ProblemDetailsAdviceTest#unhandledExceptionIsABare500AndOneMessageFreeEvent()	PASS
+unit	dev.urlshort.web.ProblemDetailsAdviceTest#domainProblemKeepsItsErrorsAndGetsTheRequestIdAsInstance()	PASS
+unit	dev.urlshort.web.ProblemDetailsAdviceTest#unwrapsABodyLimitErrorRaisedInsideTheJsonReaderTo413()	PASS
+unit	dev.urlshort.web.ProblemsTest#validationIs400WithExactlyOneFieldError()	PASS
+unit	dev.urlshort.web.ProblemsTest#idempotencyMismatchIs422NamingTheHeaderAndRule()	PASS
+unit	dev.urlshort.web.ProblemsTest#notFoundAndGoneAreBareProblems()	PASS
+unit	dev.urlshort.web.RequestBodyLimitFilterTest#theFirstByteOverTheLimitIs413OnTheBulkReadPath()	PASS
+unit	dev.urlshort.web.RequestBodyLimitFilterTest#servletStreamStateAndListenerDelegateToTheContainerStream()	PASS
+unit	dev.urlshort.web.RequestBodyLimitFilterTest#aBodyOfExactlyTheLimitIsReadInFull()	PASS
+unit	dev.urlshort.web.RequestBodyLimitFilterTest#singleByteReadsCountTooAndEndOfStreamIsPassedThrough()	PASS
+unit	dev.urlshort.web.RequestBodyLimitFilterTest#theWrappedStreamIsCreatedOnceSoTheCountCannotBeReset()	PASS
+unit	dev.urlshort.web.RequestIdFilterTest#ignoresInboundRequestIdAndIssuesADifferentIdPerRequest()	PASS
+unit	dev.urlshort.web.RequestIdFilterTest#clearsMdcWhenTheChainThrows()	PASS
+unit	dev.urlshort.web.RequestIdFilterTest#issuesOneIdOnHeaderAndMdcBeforeTheChainRunsAndClearsMdcAfter()	PASS
+unit	dev.urlshort.web.RequestIdFilterTest#writesOneRequestCompletedEventWithTheStatusAndTheIdButNotTheMethod()	PASS
+functional	dev.urlshort.HealthJourneyTest#healthEndpointReportsUp()	PASS
+functional	dev.urlshort.audit.AuditJourneyTest#AC22_createWritesExactlyOneAuditRow()	PASS
+functional	dev.urlshort.audit.AuditJourneyTest#AC24_aFailedAuditWriteRollsTheRetireBackAndFailsClosed()	PASS
+functional	dev.urlshort.audit.AuditJourneyTest#AC25_auditRowsAreAppendOnlyUnderEveryOperation()	PASS
+functional	dev.urlshort.audit.AuditJourneyTest#AC23_retireWritesExactlyOneAuditRow()	PASS
+functional	dev.urlshort.link.IdempotencyJourneyTest#AC17_aReplayReturnsTheFirstLink()	PASS
+functional	dev.urlshort.link.IdempotencyJourneyTest#AC18_sameKeyWithADifferentUrlIsRefusedAndTheBindingSurvives()	PASS
+functional	dev.urlshort.link.IdempotencyJourneyTest#AC21_aRejectedCreateDoesNotConsumeTheKey()	PASS
+functional	dev.urlshort.link.IdempotencyJourneyTest#AC20_aKeyOf255VisibleCharactersIsAccepted()	PASS
+functional	dev.urlshort.link.IdempotencyJourneyTest#AC19_aKeyIsHonouredFor24HoursAndNotLongerAndARejectionDoesNotExtendIt()	PASS
+functional	dev.urlshort.link.IdempotencyJourneyTest#[1] key = ""	PASS
+functional	dev.urlshort.link.IdempotencyJourneyTest#[2] key = "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"	PASS
+functional	dev.urlshort.link.IdempotencyJourneyTest#[3] key = "has space"	PASS
+functional	dev.urlshort.link.IdempotencyJourneyTest#[4] key = "café"	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#AC02_everyCreateWithoutAKeyIsANewLink()	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#AC16_redirectRouteDoesNotShadowTheExistingSurface()	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#AC01_validUrlBecomesAShortLink()	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#AC03_shortUrlUsesTheShippedBaseNeverTheHostHeader()	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#[1] raw = ""	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#[2] raw = "{\"url\": "	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#[3] raw = "[\"https://example.com/\"]"	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#[4] raw = "{\"url\": {\"a\": 1}}"	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#AC06_nonJsonContentTypeIsRefused()	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#AC04_aUrlOfExactly2048CharactersIsAccepted()	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#[1] "required": present=false value=<null>	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#[2] "required": present=true value=<null>	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#[3] "required": present=true value=<"">	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#[4] "required": present=true value=<"   ">	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#[5] "too-long": present=true value=<"https://example.com/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa…">	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#[6] "scheme": present=true value=<"javascript:alert(1)">	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#[7] "scheme": present=true value=<"data:text/html,hi">	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#[8] "scheme": present=true value=<"file:///etc/passwd">	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#[9] "scheme": present=true value=<"ftp://example.com/">	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#[10] "scheme": present=true value=<"example.com/path">	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#[11] "scheme": present=true value=<" https://example.com/">	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#[12] "malformed": present=true value=<"https://">	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#[13] "malformed": present=true value=<"https://exa mple.com/">	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#[14] "malformed": present=true value=<"https://[bad/">	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#[15] "malformed": present=true value=<"https://example.com/ ">	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#[16] "credentials": present=true value=<"https://user:secret@example.com/">	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#[17] "credentials": present=true value=<"https://user@example.com/">	PASS
+functional	dev.urlshort.link.LinkCreateJourneyTest#AC07_bodyIsRefusedAtTheSixteenKibLimit()	PASS
+functional	dev.urlshort.link.LinkReadRetireJourneyTest#AC09_aRetiredLinkIsStillReadableWithItsState()	PASS
+functional	dev.urlshort.link.LinkReadRetireJourneyTest#[1] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@60a8b2fb	PASS
+functional	dev.urlshort.link.LinkReadRetireJourneyTest#[2] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@725185cc	PASS
+functional	dev.urlshort.link.LinkReadRetireJourneyTest#[3] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@468242ef	PASS
+functional	dev.urlshort.link.LinkReadRetireJourneyTest#[4] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@475c3cce	PASS
+functional	dev.urlshort.link.LinkReadRetireJourneyTest#[5] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@5891bb33	PASS
+functional	dev.urlshort.link.LinkReadRetireJourneyTest#AC08_readingALinkReturnsItsDetails()	PASS
+functional	dev.urlshort.link.LinkReadRetireJourneyTest#AC11_retiringAnAlreadyRetiredLinkIs410AndNotASecondMutation()	PASS
+functional	dev.urlshort.link.LinkReadRetireJourneyTest#AC10_retiringALinkIs204WithAnEmptyBody()	PASS
+functional	dev.urlshort.link.LinkReadRetireJourneyTest#AC15_wrongMethodIs405()	PASS
+functional	dev.urlshort.link.PublicBaseUrlJourneyTest#AC03_shortUrlUsesTheConfiguredBaseNeverTheHostHeader()	PASS
+functional	dev.urlshort.link.RedirectJourneyTest#rule7_queryStringOnTheShortLinkIsNotForwarded()	PASS
+functional	dev.urlshort.link.RedirectJourneyTest#AC12_visitorIsRedirectedWithANonCacheable302()	PASS
+functional	dev.urlshort.link.RedirectJourneyTest#AC13_aRetiredLinkTellsTheVisitorItIsGone()	PASS
+functional	dev.urlshort.ping.PingJourneyTest#AC5_wrongMethodIsProblemDetailWithRequestId()	PASS
+functional	dev.urlshort.ping.PingJourneyTest#AC7_logEventCarriesNoClientAddressOrUserAgent(CapturedOutput)	PASS
+functional	dev.urlshort.ping.PingJourneyTest#AC1_pingAnswersOkAsJson()	PASS
+functional	dev.urlshort.ping.PingJourneyTest#AC2_timeIsCurrentUtcInstant()	PASS
+functional	dev.urlshort.ping.PingJourneyTest#AC4_requestIdsAreUniquePerRequest()	PASS
+functional	dev.urlshort.ping.PingJourneyTest#AC6_pingIsLoggedAsJsonWithRequestId(CapturedOutput)	PASS
+functional	dev.urlshort.ping.PingJourneyTest#AC8_clientSuppliedRequestIdIsIgnored(CapturedOutput)	PASS
+functional	dev.urlshort.ping.PingJourneyTest#AC3_everyResponseCarriesRequestId()	PASS
+functional	dev.urlshort.web.ColdStartJourneyTest#AC26_theFirstRequestOnARealServerLogsOnlyItsOwnCorrelatedEvents(CapturedOutput)	PASS
+functional	dev.urlshort.web.ObservabilityJourneyTest#AC27_noClientControlledValueReachesTheLogs(CapturedOutput)	PASS
+functional	dev.urlshort.web.ObservabilityJourneyTest#AC27_aDatabaseFailureQuotingTheKeyLogsOnlyClassNames(CapturedOutput)	PASS
+functional	dev.urlshort.web.ObservabilityJourneyTest#[1] scenario = "201 create"	PASS
+functional	dev.urlshort.web.ObservabilityJourneyTest#[2] scenario = "200 read"	PASS
+functional	dev.urlshort.web.ObservabilityJourneyTest#[3] scenario = "204 retire"	PASS
+functional	dev.urlshort.web.ObservabilityJourneyTest#[4] scenario = "302 redirect"	PASS
+functional	dev.urlshort.web.ObservabilityJourneyTest#[5] scenario = "404 unknown code"	PASS
+functional	dev.urlshort.web.ObservabilityJourneyTest#[6] scenario = "410 retired"	PASS
+functional	dev.urlshort.web.ObservabilityJourneyTest#[7] scenario = "400 invalid url"	PASS
+functional	dev.urlshort.web.ObservabilityJourneyTest#[8] scenario = "405 wrong method"	PASS
+functional	dev.urlshort.web.ObservabilityJourneyTest#[9] scenario = "413 oversized body"	PASS
+functional	dev.urlshort.web.ObservabilityJourneyTest#[10] scenario = "415 wrong content type"	PASS
+functional	dev.urlshort.web.ObservabilityJourneyTest#[11] scenario = "422 key mismatch"	PASS
+functional	dev.urlshort.web.ObservabilityJourneyTest#[12] scenario = "500 induced audit failure"	PASS
+functional	dev.urlshort.web.ObservabilityJourneyTest#[1] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@7e89dbb, status = 415, canary = "canaryctdccbbbdb"	PASS
+functional	dev.urlshort.web.ObservabilityJourneyTest#[2] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@12fc3519, status = 404, canary = "canarypathdccbbbdbxxxxxxxxxxxxxxxxxxxxxxxxxxx"	PASS
+functional	dev.urlshort.web.ObservabilityJourneyTest#[3] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@6cbc8b6e, status = 404, canary = "canaryicodccbbbdb"	PASS
+functional	dev.urlshort.web.ObservabilityJourneyTest#[4] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@56decd33, status = 404, canary = "Cn5a16e38a4ea94094b30506"	PASS
+functional	dev.urlshort.web.ObservabilityJourneyTest#[5] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@b6fbdc1, status = 404, canary = "Cvbcf682209e044de4b41ed1"	PASS
+functional	dev.urlshort.web.ObservabilityJourneyTest#[6] request = org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder@1b37d701, status = 405, canary = "CANARYMETHODDCCBBBDB"	PASS
+functional	dev.urlshort.web.OpenApiDocumentTest#AC28_liveDocumentDescribesTheSlice()	PASS
+functional	dev.urlshort.web.OpenApiDocumentTest#NFRM3_committedDocumentEqualsTheLiveOne()	PASS

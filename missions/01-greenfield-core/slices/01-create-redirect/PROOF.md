@@ -4,19 +4,19 @@
 >
 > **HOW (the drop verb, not hand-placement):** put media files under `proof/`, then ATTACH them with `rig proof add OPR.99.0.2.1 --artifact-type qa --verdict PASS --candidate-sha <tip> --money-evidence "<one line>" --evidences "1" --media "screenshot-01.png"` — the drop writes the C1 header the Living Notes DELIVERED pairing joins on. Hand-placing files without a drop leaves the deliverable unpaired and `unverified`.
 
-Closed by: <seat>   Date: <date>   Verdict: <pass | pass-with-residue | ...>
+QA checked by: `qa-agent@urlshort-factory` (Codex), 2026-10-03. QA verdict: **PASS** on `a922f49144049db0228c316c474ac6e890742fa5`; delivery acceptance awaits the later review records.
 
 ## What this proves
 
-<1-3 sentences: the claim the slice made, now demonstrated — written by QA at close>
+The candidate creates, reads, retires and redirects short links with the specified error, idempotency, audit and privacy behavior. Independent QA passed 72 unit and 87 functional invocations and observed the running service's HTTP effects, correlated logs, audit rows and real audit-failure rollback. Merged coverage is 185/185 lines and 56/56 branches; the live OpenAPI document matches the committed candidate document.
 
 ## Artifacts (media in proof/)
 
-<written by QA at close>
+QA captures are listed in §QA below; HTML/XML/CSV coverage reports and their totals are under `docs/qa/coverage/01-create-redirect/`. The attributed QA proof drop is `proof/qa-evidence-a922f49.md`.
 
 ## Residue / caveats (if any)
 
-<written by QA at close>
+AC-19 uses the suite-controlled clock explicitly required by the SPEC, rather than a 24-hour wait. H2 only; no packaged artifact, PostgreSQL, release secret scan or concurrent same-key race claim. Proof items 13–14 remain open for code review and release prep, tracked by `qitem-20261003072643-917956c7`.
 
 ## Builder
 
@@ -93,3 +93,122 @@ red for the feature.
 - **Every AC has a named test.** AC-1 to AC-28 each map to a test whose name starts with its id: tabled criteria as `@ParameterizedTest`; AC-19 on the suite clock `FunctionalClock`. Business rules 7, 8 and 10 have their own `rule*` tests, and NFR-M3 has `NFRM3_committedDocumentEqualsTheLiveOne`. All were watched failing first, as described above.
 - **Possible false passes, checked.** The functional suite ran 87 of 87 with 0 skipped; parameterised tables run their rows (AC-4: 17, AC-26: 12). The AC-26 assertion covers every line written while the request ran, not only lines containing the id.
 - **Gate run after the last edit:** `scripts/gw check --rerun-tasks` on `a922f49`, recorded in `proof/builder-check-a922f49.txt`.
+
+## QA
+
+Seat `qa-agent@urlshort-factory` (Codex), 2026-10-03; packet
+`qitem-20261003071605-40d1d3aa`; exact candidate
+`a922f49144049db0228c316c474ac6e890742fa5`. Product code and tests were read-only.
+
+**Gate and coverage.** Independently ran
+`../../scripts/gw --offline check --rerun-tasks` in the clean candidate
+worktree. All 72 unit and 87 functional invocations passed with zero
+failures, errors or skips, including the Javadoc gate
+(`proof/qa-check-a922f49.txt`). Read every CSV counter: unit lines 169/185
+(91.35%), branches 56/56 (100%); functional lines 176/185 (95.14%), branches
+50/56 (89.29%); merged lines 185/185 and branches 56/56 (100% each).
+Copied all three HTML/XML/CSV reports to `docs/qa/coverage/01-create-redirect/`.
+`TRACEABILITY.md` maps all 42 unit and 45 functional methods and all 159
+invocations they own to ACs or business rules, with FR/NFR ids. The exact
+JUnit invocation inventory is `proof/qa-test-invocations-a922f49.txt`.
+
+**HTTP effects.** Started the unchanged candidate on loopback port 18091
+with an isolated database at `build/qa-h2/urlshort`, preserving the builder's
+database. `proof/qa-http-a922f49.txt` contains create/read/redirect/retire,
+retired reads and browser errors, all AC-4 validation rows, all AC-5 body
+shapes, multipart, the exact 16,384/16,385-byte boundary, all AC-14 and AC-15
+requests, the route regression guard, three idempotent replays, mismatch
+with binding preserved, all malformed key cases, the 255-character key
+boundary, and retry after rejection. Verified the exact five-field body,
+UTC creation interval, byte-identical reads and replay, verbatim Location,
+no-store, an empty 204 body and no Location on 410. No-key duplicate creates
+produced ten distinct codes. Replay after retirement returned the current
+retired representation. The configured environment
+`URLSHORT_PUBLIC_BASE_URL=https://sho.rt` produced `https://sho.rt/<code>`
+despite spoofed Host/forwarding headers (`proof/qa-configured-base-a922f49.txt`).
+
+The loopback wrapper rejected a plain-text body passed as a URL argument
+before any HTTP request occurred; resent that body from a file and observed
+415 (`proof/qa-rollback-http-a922f49.txt`). The environment-prefixed build
+hit the sandbox's socket restriction; the same localhost launch succeeded
+after approved escalation. Neither instrument issue was a product failure.
+
+**Logs and privacy.** Independently inspected the full runtime logs,
+including startup, and parsed every event in the 75 measured request
+windows. Each window was nonempty and every event carried that response's
+requestId; each response had its matching completion status. The five
+canaries, target URL, loopback client addresses and SQL failure constraint
+name were absent. The 500 path produced a class-only `request failed` event
+and a correlated completion event. Raw logs are
+`proof/qa-runtime-a922f49.jsonl` and `proof/qa-failure-runtime-a922f49.jsonl`;
+selected correlated events are `proof/qa-correlated-events-a922f49.jsonl`.
+The repeated operation run also has all eleven completion events in
+`proof/qa-append-runtime-a922f49.jsonl`. The environment-override response
+was captured; its run was stopped before its completion event was captured,
+so that capture supplies AC-3 evidence only. Startup springdoc WARNs occur
+before request windows and contain no client values.
+
+**Audit and rollback.** With the app stopped, exported H2 audit/link rows
+directly; the audit endpoint is not part of this slice. The main captured
+link has exactly one create and one retire row, anonymous actor, entity
+`link`, matching response requestIds, in-window UTC times, null before-state
+on create and the correct active/retired snapshots. Fifteen unique links
+and sixteen audit rows account exactly for the successful primary mutations;
+all rejected requests and replays added no row. Added a temporary CHECK
+constraint to the disposable QA database that rejects the audit insert for
+one active link's retire, restarted the unchanged app and observed actual
+500, then active read and 302 redirect. All sixteen audit and fifteen link
+rows were identical before and after the failure. Removed the constraint.
+After an environment create and another full operation sequence, the
+original rows were still identical and the count grew by exactly three
+mutations (environment create, fresh create, first retire): nineteen audit
+rows, seventeen links. Evidence: `proof/qa-audit-{before,after,final}-a922f49.csv`,
+the matching link exports, `qa-audit-injection-a922f49.txt`,
+`qa-audit-comparison-a922f49.txt`, `qa-rollback-http-a922f49.txt` and
+`qa-append-http-a922f49.txt`.
+
+**Clock and API document.** Read and ran
+`IdempotencyJourneyTest#AC19_aKeyIsHonouredFor24HoursAndNotLongerAndARejectionDoesNotExtendIt`
+with `FunctionalClockConfig`'s primary `FunctionalClock.shift/reset` at 23h,
+24h−1s and 24h+1s, as A-19 explicitly permits. Independently checked the live
+document's paths, methods, required statuses, problem media types, Location
+header and request/201/200 examples, then compared its parsed recursively
+key-sorted content with the candidate's committed `docs/api/openapi.json`:
+empty diff (`proof/qa-live-openapi-a922f49.json`,
+`proof/qa-openapi-diff-a922f49.txt`).
+
+**Earlier artifacts.** Inspected the first feature-branch commit: `20aef57`
+changes only the dependency override lines in `build.gradle.kts`. Ran its
+full gate independently in a temporary detached checkout: successful
+(`proof/qa-overrides-check-20aef57.txt`), then removed that checkout. The
+builder's fresh OSV capture at 06:42:17Z contains 90 coordinates, the
+required Tomcat/Jackson versions and zero findings; QA did not rerun the
+external service. ADR-0005–0010 exist and are indexed in `docs/DESIGN.md`;
+their creation (`0aaab2f`), revision (`d93e7d5`) and acceptance (`0210716`)
+precede the dependent feature commits (first code commit 06:42Z).
+
+**Not verified here.** Packaged artifact, PostgreSQL, load, a simultaneous
+same-key race, and the later code-review/release secret-scan records. Expiry
+and rate limiting are outside this SPEC. Proof item 13's unit persistence
+assertion and item 14's environment setting are covered, but the complete
+items depend on future records and are left unjudged. Lead follow-up:
+`qitem-20261003072643-917956c7`, evidence
+`docs/qa/01-create-redirect/proof-sequencing.md`.
+
+### Self-check
+
+- Re-read SPEC; all 28 ACs have named functional coverage, and every
+  externally controllable AC was exercised through real HTTP and effects;
+  AC-19 uses the SPEC's explicit clock mechanism.
+- Tried every listed failure input and response class, including a real
+  failed audit insert and rollback. Read logs and rows independently.
+- Read merged CSV totals rather than inferring coverage from a green gate;
+  all reports copied; no exclusion, waiver or lowered threshold.
+- Traceability covers every AC, all twelve business rules and all test
+  methods/invocations; GAPS entry states none for this slice.
+- Evidence inspection assertions passed (`proof/qa-inspection-a922f49.txt`);
+  live/committed OpenAPI diff empty; proof drop names items 1–12.
+- All QA app runs stopped; localhost health connection refused afterward.
+  Candidate worktree is clean at the exact candidate SHA; product/test
+  sources untouched. Temporary baseline checkout removed; builder database
+  preserved. Complete proof items 13–14 remain for their owning later steps.

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RequestBodyLimitFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">urlshort</a> &gt; <a href="index.source.html" class="el_package">dev.urlshort.web</a> &gt; <span class="el_source">RequestBodyLimitFilter.java</span></div><h1>RequestBodyLimitFilter.java</h1><pre class="source lang-java linenums">package dev.urlshort.web;
+
+import java.io.IOException;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ReadListener;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletInputStream;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequestWrapper;
+import jakarta.servlet.http.HttpServletResponse;
+import org.jspecify.annotations.Nullable;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
+import org.springframework.web.ErrorResponseException;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+/**
+ * Caps every request body at {@value #MAX_BODY_BYTES} bytes (NFR-S3, AC-7): reading byte 16 385
+ * throws a {@code 413} {@link ErrorResponseException}, exact for declared and chunked bodies alike.
+ * The exception is raised inside the DispatcherServlet, so {@code ProblemDetailsAdvice} renders it.
+ *
+ * &lt;p&gt;Runs right after {@link RequestIdFilter}, so a {@code 413} still carries its request id. Only
+ * {@code getInputStream()} is wrapped: the JSON path never calls {@code getReader()} and multipart
+ * parsing is disabled.
+ */
+@Component
+@Order(Ordered.HIGHEST_PRECEDENCE + 1)
+<span class="fc" id="L31">class RequestBodyLimitFilter extends OncePerRequestFilter {</span>
+
+	static final int MAX_BODY_BYTES = 16_384;
+
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+			throws ServletException, IOException {
+<span class="fc" id="L38">		chain.doFilter(new HttpServletRequestWrapper(request) {</span>
+
+			private @Nullable LimitedInputStream body;
+
+			@Override
+			public ServletInputStream getInputStream() throws IOException {
+				// one counting stream per request, so a second call cannot restart the count
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">				if (body == null) {</span>
+<span class="fc" id="L46">					body = new LimitedInputStream(super.getInputStream());</span>
+				}
+<span class="fc" id="L48">				return body;</span>
+			}
+		}, response);
+<span class="fc" id="L51">	}</span>
+
+	/** Counts body bytes as they are read and fails on the first byte over the cap. */
+	static final class LimitedInputStream extends ServletInputStream {
+
+		private final ServletInputStream in;
+		private long count;
+
+<span class="fc" id="L59">		LimitedInputStream(ServletInputStream in) {</span>
+<span class="fc" id="L60">			this.in = in;</span>
+<span class="fc" id="L61">		}</span>
+
+		@Override
+		public int read() throws IOException {
+<span class="fc" id="L65">			int b = in.read();</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">			if (b != -1) {</span>
+<span class="fc" id="L67">				count(1);</span>
+			}
+<span class="fc" id="L69">			return b;</span>
+		}
+
+		@Override
+		public int read(byte[] b, int off, int len) throws IOException {
+<span class="fc" id="L74">			int n = in.read(b, off, len);</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">			if (n &gt; 0) {</span>
+<span class="fc" id="L76">				count(n);</span>
+			}
+<span class="fc" id="L78">			return n;</span>
+		}
+
+		private void count(int n) {
+<span class="fc" id="L82">			count += n;</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">			if (count &gt; MAX_BODY_BYTES) {</span>
+<span class="fc" id="L84">				throw new ErrorResponseException(HttpStatus.CONTENT_TOO_LARGE);</span>
+			}
+<span class="fc" id="L86">		}</span>
+
+		@Override
+		public boolean isFinished() {
+<span class="nc" id="L90">			return in.isFinished();</span>
+		}
+
+		@Override
+		public boolean isReady() {
+<span class="nc" id="L95">			return in.isReady();</span>
+		}
+
+		@Override
+		public void setReadListener(ReadListener readListener) {
+<span class="nc" id="L100">			in.setReadListener(readListener);</span>
+<span class="nc" id="L101">		}</span>
+
+		@Override
+		public void close() throws IOException {
+<span class="nc" id="L105">			in.close();</span>
+<span class="nc" id="L106">		}</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

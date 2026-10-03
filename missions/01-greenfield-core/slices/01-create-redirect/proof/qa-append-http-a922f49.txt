@@ -1,0 +1,113 @@
+=== AC25-new-create ===
+scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --header 'Idempotency-Key: QAappendA922f49' --data-binary '{"url":"https://example.com/append"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 201 
+X-Request-Id: 815e6a21-a933-447d-9ad5-e39015413ba3
+Location: /api/links/CFebhBL9
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:30:24 GMT
+
+{"code":"CFebhBL9","shortUrl":"http://localhost:8080/CFebhBL9","url":"https://example.com/append","state":"active","createdAt":"2026-10-03T07:30:24.396Z"}
+
+=== AC25-replay ===
+scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --header 'Idempotency-Key: QAappendA922f49' --data-binary '{"url":"https://example.com/append"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 201 
+X-Request-Id: cae00474-68f1-4afb-af67-34dff4eb562a
+Location: /api/links/CFebhBL9
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:30:24 GMT
+
+{"code":"CFebhBL9","shortUrl":"http://localhost:8080/CFebhBL9","url":"https://example.com/append","state":"active","createdAt":"2026-10-03T07:30:24.396Z"}
+
+=== AC25-read ===
+scripts/http --silent --show-error --include --max-time 10 --request 'GET' 'http://127.0.0.1:18091/api/links/CFebhBL9'
+HTTP/1.1 200 
+X-Request-Id: ae58892f-364c-40a2-8f69-1518e6944676
+Content-Type: application/json
+Content-Length: 154
+Date: Sat, 03 Oct 2026 07:30:24 GMT
+
+{"code":"CFebhBL9","shortUrl":"http://localhost:8080/CFebhBL9","url":"https://example.com/append","state":"active","createdAt":"2026-10-03T07:30:24.396Z"}
+
+=== AC25-redirect ===
+scripts/http --silent --show-error --include --max-time 10 --request 'GET' 'http://127.0.0.1:18091/CFebhBL9'
+HTTP/1.1 302 
+X-Request-Id: ef046e6e-b1e8-43a8-95f6-c7c564762cde
+Location: https://example.com/append
+Cache-Control: no-store
+Content-Length: 0
+Date: Sat, 03 Oct 2026 07:30:24 GMT
+
+
+
+=== AC25-retire ===
+scripts/http --silent --show-error --include --max-time 10 --request 'DELETE' 'http://127.0.0.1:18091/api/links/CFebhBL9'
+HTTP/1.1 204 
+X-Request-Id: 424c9b81-c252-40d9-ba66-a5b870f386d7
+Date: Sat, 03 Oct 2026 07:30:24 GMT
+
+
+
+=== AC25-retire-again ===
+scripts/http --silent --show-error --include --max-time 10 --request 'DELETE' 'http://127.0.0.1:18091/api/links/CFebhBL9'
+HTTP/1.1 410 
+X-Request-Id: cd16d39f-df60-4217-b7b7-2694ab060a11
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:30:24 GMT
+
+{"instance":"urn:uuid:cd16d39f-df60-4217-b7b7-2694ab060a11","status":410,"title":"Gone"}
+
+=== AC25-read-retired ===
+scripts/http --silent --show-error --include --max-time 10 --request 'GET' 'http://127.0.0.1:18091/api/links/CFebhBL9'
+HTTP/1.1 200 
+X-Request-Id: d7a164a1-498d-4ffd-a17b-22c45032386b
+Content-Type: application/json
+Content-Length: 155
+Date: Sat, 03 Oct 2026 07:30:24 GMT
+
+{"code":"CFebhBL9","shortUrl":"http://localhost:8080/CFebhBL9","url":"https://example.com/append","state":"retired","createdAt":"2026-10-03T07:30:24.396Z"}
+
+=== AC25-redirect-retired ===
+scripts/http --silent --show-error --include --max-time 10 --request 'GET' 'http://127.0.0.1:18091/CFebhBL9'
+HTTP/1.1 410 
+X-Request-Id: 6cf36012-3878-4013-9338-d725e1d3e71f
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:30:24 GMT
+
+{"instance":"urn:uuid:6cf36012-3878-4013-9338-d725e1d3e71f","status":410,"title":"Gone"}
+
+=== AC25-404 ===
+scripts/http --silent --show-error --include --max-time 10 --request 'GET' 'http://127.0.0.1:18091/api/links/nosuchcode1'
+HTTP/1.1 404 
+X-Request-Id: 67e06f87-b113-4375-ba68-447cd426509c
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:30:24 GMT
+
+{"instance":"urn:uuid:67e06f87-b113-4375-ba68-447cd426509c","status":404,"title":"Not Found"}
+
+=== AC25-405 ===
+scripts/http --silent --show-error --include --max-time 10 --request 'GET' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 405 
+X-Request-Id: 3538bc5a-51a8-4627-b8f2-357c0501d8f1
+Allow: POST
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:30:24 GMT
+
+{"instance":"urn:uuid:3538bc5a-51a8-4627-b8f2-357c0501d8f1","status":405,"title":"Method Not Allowed"}
+
+=== AC25-400 ===
+scripts/http --silent --show-error --include --max-time 10 --request 'POST' --header 'Content-Type: application/json' --data-binary '{"url":"ftp://example.com/"}' 'http://127.0.0.1:18091/api/links'
+HTTP/1.1 400 
+X-Request-Id: 25d33b69-593b-483d-92eb-df6f62744c26
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sat, 03 Oct 2026 07:30:25 GMT
+Connection: close
+
+{"instance":"urn:uuid:25d33b69-593b-483d-92eb-df6f62744c26","status":400,"title":"Bad Request","errors":[{"field":"url","rule":"scheme","message":"url must start with http:// or https://"}]}
+

@@ -1,0 +1,22 @@
+Disposable database only; candidate product source unchanged.
+Failure target: bJq291Iv
+Before snapshot and reject-retire constraint:
+java -cp .gradle-home/caches/modules-2/files-2.1/com.h2database/h2/2.4.240/686180ad33981ad943fdc0ab381e619b2c2fdfe5/h2-2.4.240.jar org.h2.tools.Shell -url 'jdbc:h2:file:./.worktrees/01-create-redirect/build/qa-h2/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE' -user sa -password '' -sql 'CALL CSVWRITE('\''/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/01-greenfield-core/slices/01-create-redirect/proof/qa-audit-before-a922f49.csv'\'', '\''SELECT * FROM audit_log ORDER BY id'\''); CALL CSVWRITE('\''/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/01-greenfield-core/slices/01-create-redirect/proof/qa-links-before-a922f49.csv'\'', '\''SELECT * FROM link ORDER BY id'\''); ALTER TABLE audit_log ADD CONSTRAINT qa_reject_retire CHECK (action <> '\''link.retire'\'' OR entity_id <> '\''bJq291Iv'\'');'
+csvwrite
+16
+(1 row, 6 ms)
+csvwrite
+15
+(1 row, 0 ms)
+(Update count: 0, 1 ms)
+
+After snapshot and constraint removal:
+java -cp .gradle-home/caches/modules-2/files-2.1/com.h2database/h2/2.4.240/686180ad33981ad943fdc0ab381e619b2c2fdfe5/h2-2.4.240.jar org.h2.tools.Shell -url 'jdbc:h2:file:./.worktrees/01-create-redirect/build/qa-h2/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE' -user sa -password '' -sql 'CALL CSVWRITE('\''/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/01-greenfield-core/slices/01-create-redirect/proof/qa-audit-after-a922f49.csv'\'', '\''SELECT * FROM audit_log ORDER BY id'\''); CALL CSVWRITE('\''/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/01-greenfield-core/slices/01-create-redirect/proof/qa-links-after-a922f49.csv'\'', '\''SELECT * FROM link ORDER BY id'\''); ALTER TABLE audit_log DROP CONSTRAINT qa_reject_retire;'
+csvwrite
+16
+(1 row, 9 ms)
+csvwrite
+15
+(1 row, 1 ms)
+(Update count: 0, 0 ms)
+

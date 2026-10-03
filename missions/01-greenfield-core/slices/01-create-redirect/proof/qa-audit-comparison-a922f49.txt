@@ -1,0 +1,2 @@
+After real audit failure: all 16 audit rows and all 15 link rows unchanged byte-for-byte. No retire row for failure target.
+After environment create and full repeated operation sequence: all original 16 audit rows unchanged, plus exactly 3 rows (one environment create, one fresh create, one first retire); 19 audit rows and 17 links total. Read, redirects, replay, repeated retire, 404, 405 and 400 add no audit row.
