@@ -1,0 +1,189 @@
+{
+  "candidate": "b689f365baf3da8c42bbd91dda49cd88579e0c3d",
+  "instance": "01M40SN34E37K96B38JPG9K41X",
+  "workflowVersion": "1-dc8376c3115331b7",
+  "compiledInputDigest": "dc8376c3115331b72fb954ac646e3cac2b365ecd697c2194e0a0fe9782c8424c",
+  "committedGraphEqualsFreshCompile": true,
+  "boundSourcesEqualFreshCompile": true,
+  "sourceHashes": [
+    {
+      "path": "project.yaml",
+      "expected": "90854ece5e82fca647fb0ce37d453f81f603b3b77bebe729dec4b2d1957bc3a5",
+      "actual": "90854ece5e82fca647fb0ce37d453f81f603b3b77bebe729dec4b2d1957bc3a5"
+    },
+    {
+      "path": "missions/02-brownfield/mission.yaml",
+      "expected": "4271b5b531ddb2ff43ae75bc9e067599d94400bcc036e916c059631dac99bb7a",
+      "actual": "4271b5b531ddb2ff43ae75bc9e067599d94400bcc036e916c059631dac99bb7a"
+    },
+    {
+      "path": "missions/02-brownfield/slices/01-audit-read/slice.yaml",
+      "expected": "84961117b0b074b91bde74e42472812928df0083b201ae9e1b30ca7a6d63dcfb",
+      "actual": "84961117b0b074b91bde74e42472812928df0083b201ae9e1b30ca7a6d63dcfb"
+    },
+    {
+      "path": "missions/02-brownfield/slices/02-click-retention/slice.yaml",
+      "expected": "b8329574303dbe86ec6f761591df99275661c181e04a8a52640d13d038d30b11",
+      "actual": "b8329574303dbe86ec6f761591df99275661c181e04a8a52640d13d038d30b11"
+    },
+    {
+      "path": "missions/02-brownfield/slices/03-dogfood-fix/slice.yaml",
+      "expected": "384c0c116d4c1c11a2358f8f2d3907009711e58c8254fa5fe75432c4dd9ba460",
+      "actual": "384c0c116d4c1c11a2358f8f2d3907009711e58c8254fa5fe75432c4dd9ba460"
+    }
+  ],
+  "candidateFiles": [
+    {
+      "path": "docs/evidence/02-brownfield/compiled-graph.json",
+      "matchesCandidate": true
+    },
+    {
+      "path": "docs/evidence/02-brownfield/wave-map.md",
+      "matchesCandidate": true
+    },
+    {
+      "path": "missions/02-brownfield/NOTES.md",
+      "matchesCandidate": true
+    },
+    {
+      "path": "missions/02-brownfield/SPEC.md",
+      "matchesCandidate": true
+    },
+    {
+      "path": "missions/02-brownfield/mission.yaml",
+      "matchesCandidate": true
+    },
+    {
+      "path": "missions/02-brownfield/slices/01-audit-read/PROOF.md",
+      "matchesCandidate": true
+    },
+    {
+      "path": "missions/02-brownfield/slices/01-audit-read/slice.yaml",
+      "matchesCandidate": true
+    },
+    {
+      "path": "missions/02-brownfield/slices/02-click-retention/PROGRESS.md",
+      "matchesCandidate": true
+    },
+    {
+      "path": "missions/02-brownfield/slices/02-click-retention/PROOF.md",
+      "matchesCandidate": true
+    },
+    {
+      "path": "missions/02-brownfield/slices/02-click-retention/SPEC.md",
+      "matchesCandidate": true
+    },
+    {
+      "path": "missions/02-brownfield/slices/02-click-retention/slice.yaml",
+      "matchesCandidate": true
+    },
+    {
+      "path": "missions/02-brownfield/slices/03-dogfood-fix/PROGRESS.md",
+      "matchesCandidate": true
+    },
+    {
+      "path": "missions/02-brownfield/slices/03-dogfood-fix/PROOF.md",
+      "matchesCandidate": true
+    },
+    {
+      "path": "missions/02-brownfield/slices/03-dogfood-fix/SPEC.md",
+      "matchesCandidate": true
+    },
+    {
+      "path": "missions/02-brownfield/slices/03-dogfood-fix/slice.yaml",
+      "matchesCandidate": true
+    }
+  ],
+  "unknowns": [],
+  "reconciliation": "current",
+  "revisionReceipts": [
+    "revision-e7217bc8c78321b66bb68cce"
+  ],
+  "waveQueue": "qitem-20261003115650-35b315f4",
+  "waves": [
+    {
+      "id": "w1",
+      "slices": [
+        "01-audit-read",
+        "02-click-retention"
+      ],
+      "serialized_order": [
+        "01-audit-read",
+        "02-click-retention"
+      ]
+    },
+    {
+      "id": "w2",
+      "slices": [
+        "03-dogfood-fix"
+      ]
+    }
+  ],
+  "gates": [
+    {
+      "step": "mission_plan_lock",
+      "target": "human@kernel",
+      "summary": "Mission decomposition ready — approve slices, waves and gate tiers (mission plan-lock).",
+      "evidence_ref": "SPEC.md"
+    },
+    {
+      "step": "ship_signoff",
+      "target": "human@kernel",
+      "summary": "Release candidate prepared and proven — sign off to ship (publishing stays a human act).",
+      "evidence_ref": "RELEASE.md"
+    }
+  ],
+  "proofReadiness": [
+    {
+      "slice": "01-audit-read",
+      "state": "unknown",
+      "issues": [
+        "No authored proof contract"
+      ],
+      "judges": [
+        "qa-agent@urlshort-factory"
+      ]
+    },
+    {
+      "slice": "02-click-retention",
+      "state": "unknown",
+      "issues": [
+        "No authored proof contract"
+      ],
+      "judges": [
+        "qa2-agent@urlshort-factory"
+      ]
+    },
+    {
+      "slice": "03-dogfood-fix",
+      "state": "unknown",
+      "issues": [
+        "No authored proof contract"
+      ],
+      "judges": [
+        "qa-agent@urlshort-factory"
+      ]
+    }
+  ],
+  "retentionWorkflow": {
+    "path": "rig/workflows/urlshort-slice-delegated-b.workflow.yaml",
+    "qa": "qa2-agent@urlshort-factory",
+    "requirementsReview": "review2-agent@urlshort-factory",
+    "designReview": "review2-agent@urlshort-factory",
+    "combinedCodeSecurityReview": "review2-agent@urlshort-factory",
+    "planLock": "orchestrator",
+    "integrate": "orchestration-lead@urlshort-factory"
+  },
+  "scopeAudit": {
+    "advisoryCount": 6,
+    "itemsPerSlice": [
+      "mini_requirements_missing_or_malformed",
+      "proof_contract_missing_or_malformed"
+    ],
+    "disposition": "Expected before the three requirements steps; not decomposition findings or implementation-readiness evidence."
+  },
+  "analyticsMerged": true,
+  "observedMainHead": "15e108bbb707c915cb9bd12645d370c8b760d438",
+  "launchCondition": "Mission-01 03-operate integrated before w1; this review does not assert that launch condition has been met.",
+  "observedLaterBookkeeping": "15e108b adds mission PROGRESS only; all 15 candidate files remain byte-identical."
+}
