@@ -120,3 +120,4 @@ non-workflow receipt packet.
 - [x] Shared-evidence side effect reported to lead; 02 items 5/13 and independently stale item 10 routed by the lead to qa-agent. No QA2 judgment of another slice.
 - [x] Delivery stamp recorded by lead at 17:24:24Z, action 01M41CQAB84KZC76HJYDXW4CD2, as attributed in the current Acceptance row. QA2 made no stamp.
 - [x] Receipt 31 re-affirms accepted item 13 after the delivery stamp added only approval frontmatter to SPEC, changing its evidence hash. Criterion and other evidence unchanged; fresh proof ready 13/13, no issues. Receipts 29–31 committed for evidence export.
+- [x] Receipt/status commit fb1a785 and GAPS/effect commit 15a8f9c recorded in the completed packet qitem-20261003171429-897aa374 at 17:34:40Z. Final post-commit proof check: ready, 13 accepted, zero unknowns/issues; all three receipt files tracked and clean for export.
