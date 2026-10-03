@@ -18,5 +18,5 @@
 - [x] Item 8: two pages via `next`, a forwarded `403`, their log lines and a clean whole-run grep (`proof/http-*-35590f0.txt`, `log-lines-35590f0.txt`, `jar-log-35590f0.txt`)
 - [x] Item 9: no migration, as the design and plan-lock state
 - [x] Item 10 (builder half): `docs/api/openapi.json` regenerated on the candidate; QA's live-vs-committed diff is pending
-- [ ] QA on reworked candidate7ac8af5 pending. Historical35590f0 suite/coverage and upgrade evidence retained; original PASS superseded by HIGH QA-AUD-01 / CR-01, independently reproduced for explicit Tomcat remote-IP properties (AC13/14); docs/qa/01-audit-read/findings.md
+- [x] QA on candidate7ac8af5: independent203 unit/202 functional, merged494/494 lines194/194 branches,258 HTTP captures, CR-01 fixed by installed-jar reproduction. AC-17 exact grant428e9e1 retained; proof/qa-recheck-7ac8af5/verification.json and PROOF.md QA. Historical35590f0 PASS remains superseded and item1 rejected.
 - [ ] Review: security record (item 12)

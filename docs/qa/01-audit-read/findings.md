@@ -63,3 +63,22 @@ original jar independently with default and both explicit settings. Verified
 returned canary, GET/HEAD status changes and all15 request/log correlations.
 Stopped all three repro apps; port18134 refused afterwards. Product untouched;
 historical coverage, upgrade and read-only evidence remain preserved.
+
+## Re-check 7ac8af56ed04c27bbefbd416b3976c544d2f274a
+
+QA-AUD-01 / CR-01 HIGH — **fixed on this candidate**.
+Independent fresh gate203 unit/202 functional, merged494/494 lines194/194
+branches. Actual candidate jar SHA256
+48fca1b85ef5e78f0b74e15b5f24d9f612bab544bc53dd6b4d5cba46f9b28a7f
+reproduces the original inputs:
+- remote-ip-header=X-Forwarded-For: plain/forged GET403 and HEAD403.
+- protocol-header=X-Forwarded-Proto: plain/forged GET403 and HEAD403.
+- Default and explicit empty settings: plain GET/HEAD200, forwarding403.
+- native/framework: plain/forged GET/HEAD403.
+No refused response contains stored canary or items. Each configuration
+created a link first so the trail was nonempty. Exact launch arguments and
+curl responses are in slice proof/qa-recheck-7ac8af5/
+(installed-launch-arguments.json; qa-http/remoteip-* and strategy-*).
+The new two-invocation real-container regression passes independently;
+no gap exception or product edit by QA. The prior rejection remains an
+accurate judgment of35590f0. Item12 awaits independent security re-review.

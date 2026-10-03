@@ -176,7 +176,7 @@ Context and observations that help the mission but do not change its
 
 - 2026-10-03 — QA re-check complete on 7ac8af56ed04c27bbefbd416b3976c544d2f274a,
   packet qitem-20261003202154-65e6d10f. Independent gate203/202, merged
-  494/494 lines194/194 branches;258 HTTP captures and1,436 assertions.
+  494/494 lines194/194 branches;258 HTTP captures and1,482 assertions.
   CR-01 independently fixed under both explicit Tomcat header settings;
   fresh original155 replay has only the two accepted enumeration failures.
   Actual same-directory shipped/candidate upgrade and all21AC effects checked.
