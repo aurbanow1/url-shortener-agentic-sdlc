@@ -120,6 +120,13 @@ it is the table's only index.
   to `native` or `framework` voids it. A local relay that adds no forwarding header looks like a
   local Operator (SPEC rule 2, review RQ-04). The deployment must not relay `/api/audit`, or the
   relay must add a forwarding header, which then refuses.
+- **Later slices that rewrite the client address must keep the headers.** Wave-review finding
+  W2D-03 (A-9) and mission 03's `01-analytics-v2` (its A-7) may add a request wrapper in
+  `RateLimitFilter` that overrides `getRemoteAddr()` behind a listed proxy (ADR-0015's sketch).
+  That stays safe for this endpoint only while the wrapper leaves `X-Forwarded-For` and
+  `Forwarded` visible: their presence refuses the request here before the address is read. A
+  wrapper that removes or hides them must also leave this check on the raw connection address.
+  That slice's design states which.
 - **Tests.** A real-Tomcat journey with `spring.main.cloud-platform=kubernetes` proves the pin by
   effect: without it the forged request is admitted (P4b). A test also reads the shipped file for
   `none`.
