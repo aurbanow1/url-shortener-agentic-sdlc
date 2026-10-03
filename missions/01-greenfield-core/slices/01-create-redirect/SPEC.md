@@ -47,7 +47,7 @@ exchange, a named obligation in *Non-functional* and the *Proof contract*.
 | NFR-S1 | target allow-list: http/https only, ≤ 2 048 chars, no credentials | AC-4 (the private-host clause is not a rule in this slice, see A-13) |
 | NFR-S3 | JSON body ≤ 16 KiB, no multipart, headers at server defaults | AC-6, AC-7 |
 | NFR-S4 | no secrets in the repository; configuration by environment with safe defaults | AC-3 (the public base URL is the first such setting); no-secrets check in *Non-functional* and the proof contract |
-| NFR-R5 | idempotency keys honoured for 24 h | AC-19 |
+| NFR-R5 | idempotency keys honoured for 24 h | AC-18, AC-19 |
 | NFR-R6 | fail closed: a `500` problem detail without stack trace or class names | AC-24 |
 | NFR-A1 | one audit row per mutation, same transaction, failed audit write rolls back | AC-22, AC-23, AC-24 |
 | NFR-A2 | no update or delete path for audit rows | AC-25 (observable half); application-code half in *Non-functional* and the proof contract |
@@ -125,8 +125,8 @@ The public endpoints are those fixed by the mission decision brief:
   |---|---|
   | `required` | field absent; `null`; `""`; `"   "` |
   | `too-long` | an `https://example.com/` URL padded to 2 049 characters (2 048 is accepted, see business rule 3) |
-  | `scheme` | `javascript:alert(1)`; `data:text/html,hi`; `file:///etc/passwd`; `ftp://example.com/`; `example.com/path` (no scheme) |
-  | `malformed` | `https://` (no host); `https://exa mple.com/` (space); `https://[bad/` |
+  | `scheme` | `javascript:alert(1)`; `data:text/html,hi`; `file:///etc/passwd`; `ftp://example.com/`; `example.com/path` (no scheme); `https://example.com/` preceded by one space (leading whitespace) |
+  | `malformed` | `https://` (no host); `https://exa mple.com/` (space); `https://[bad/`; `https://example.com/` followed by one space (trailing whitespace) |
   | `credentials` | `https://user:secret@example.com/`; `https://user@example.com/` |
 
 - **AC-5 — A body that is not a JSON object is refused.** [FR-5]
@@ -212,15 +212,15 @@ The public endpoints are those fixed by the mission decision brief:
   WHEN the same request (`K`, `B`) is sent again, three times, within 24 hours
   THEN each reply is `201` with the same `Location` and the same body as the first reply, and the audit trail holds exactly one create row for `C` and no create row for any other code produced by these requests.
 
-- **AC-18 — The same key with a different URL is refused.** [FR-9]
-  GIVEN a Creator sent (`K`, `B`) and received `201`
-  WHEN the Creator sends `Idempotency-Key: K` with a valid body whose `url` differs from `B`'s
-  THEN the status is `422` as a problem detail, the body has an `errors` array with exactly one element whose `field` is `Idempotency-Key` and whose `rule` is `mismatch`, and no link is created (no new audit row).
+- **AC-18 — The same key with a different URL is refused, and the existing binding survives.** [FR-9, NFR-R5]
+  GIVEN a Creator sent (`K`, `B`) and received `201` with code `C`
+  WHEN the Creator sends `Idempotency-Key: K` with a valid body `B'` whose `url` differs from `B`'s, and then sends (`K`, `B`) again
+  THEN the first reply is `422` as a problem detail whose `errors` array has exactly one element with `field` `Idempotency-Key` and `rule` `mismatch`; the second reply is `201` with code `C` and the same body as the original reply; and the audit trail holds exactly one create row for `C` and no create row for any other code produced by these requests.
 
-- **AC-19 — A key is honoured for 24 hours and not longer.** [NFR-R5]
+- **AC-19 — A key is honoured for 24 hours and not longer, and a rejection does not extend the window.** [NFR-R5]
   GIVEN a Creator sent (`K`, `B`) at service time `t0` and received code `C`, and the suite controls the service's clock
-  WHEN the same (`K`, `B`) is sent at `t0 + 24 h − 1 s`, and then at `t0 + 24 h + 1 s`
-  THEN the first reply is `201` with code `C`, and the second reply is `201` with a code different from `C`.
+  WHEN a mismatching (`K`, `B'`) is sent at `t0 + 23 h` and answered `422`, then the same (`K`, `B`) is sent at `t0 + 24 h − 1 s`, and then at `t0 + 24 h + 1 s`
+  THEN the reply at `t0 + 24 h − 1 s` is `201` with code `C`, and the reply at `t0 + 24 h + 1 s` is `201` with a code different from `C`.
 
 - **AC-20 — A malformed key is refused.** [FR-9, FR-5]
   GIVEN the service is running
@@ -256,10 +256,10 @@ The public endpoints are those fixed by the mission decision brief:
 
 #### Observability and privacy
 
-- **AC-26 — Every response carries a request id that reaches a structured log event.** [NFR-O1, NFR-O2]
+- **AC-26 — Every response carries a request id, and every log event of that request carries the same id.** [NFR-O1, NFR-O2]
   GIVEN the service is running with its default logging configuration
-  WHEN a client provokes each of these responses: `201` create, `200` read, `204` retire, `302` redirect, `404` unknown code, `410` retired, `400` invalid URL, `405` wrong method
-  THEN each response carries a non-empty `X-Request-Id`, and for each one the log output contains at least one event that is a single JSON object on one line carrying `requestId` equal to that header value.
+  WHEN a client provokes each of these responses: `201` create, `200` read, `204` retire, `302` redirect, `404` unknown code, `410` retired, `400` invalid URL, `405` wrong method, `413` oversized body, `415` wrong content type, `422` key mismatch, `500` induced audit failure
+  THEN each response carries a non-empty `X-Request-Id` `R`; the log output produced between that request's arrival and its response contains at least one event; and every event in that output is a single JSON object on one line carrying `requestId` equal to `R` (no event of the request lacks the id or carries a different one).
 
 - **AC-27 — No client-controlled value reaches the logs.** [NFR-O2]
   GIVEN the service is running with its default logging configuration, and five canaries that occur nowhere else: a `User-Agent` value, a query-parameter value inside a valid `url`, an `Idempotency-Key` value, an inbound `X-Request-Id` value, and a value inside a `javascript:` URL
@@ -276,15 +276,15 @@ The public endpoints are those fixed by the mission decision brief:
 ### Business rules
 
 1. **Short codes.** The service generates the code; the Creator cannot choose it in this slice. A code matches `^[A-Za-z0-9]{6,32}$`, is unique across every link ever created (a retired code is never reused), is matched case-sensitively (`/Abc123` and `/abc123` are different codes), is not predictable from earlier codes (no counter or timestamp encoding), and is never equal to a first path segment the service already serves (`api`, `actuator`, `v3`, `swagger-ui`, `error`) so the redirect route cannot shadow them (AC-16). The exact length and generation strategy inside these bounds is a design decision recorded in an ADR (NFR-M2).
-2. **The target is stored verbatim.** No normalisation, no trimming, no case folding, no percent-encoding changes: the `url` returned by read, replayed by an idempotent create, and sent in `Location` is byte for byte what the Creator submitted. Leading or trailing whitespace makes the value fail `malformed` (or `required` if it is all whitespace).
+2. **The target is stored verbatim.** No normalisation, no trimming, no case folding, no percent-encoding changes: the `url` returned by read, replayed by an idempotent create, and sent in `Location` is byte for byte what the Creator submitted. Leading or trailing whitespace is never stripped; such a value is rejected under rule 3's order (all whitespace fails `required`, a leading space fails `scheme`, a trailing space fails `malformed`).
 3. **Target validation order and tokens.** Rules are evaluated in this order and the first failure is the one reported, so each input hits exactly one rule: `required` (absent, null, empty, whitespace-only) → `too-long` (more than 2 048 characters; exactly 2 048 is accepted) → `scheme` (the value does not start with `http://` or `https://`, scheme compared case-insensitively) → `malformed` (does not parse as an absolute URL per RFC 3986 with a non-empty host) → `credentials` (the URL has a userinfo component). Private, loopback and link-local hosts are not rejected in this slice (A-13). Unknown JSON fields in the request object are ignored (A-14).
 4. **Every create without a key is a new link.** The same URL may be shortened any number of times, each time to a new code; the service never deduplicates by URL. The `Idempotency-Key` is the Creator's tool for "the same create", not the URL.
-5. **Idempotency.** A key is a string of 1 to 255 visible ASCII characters (`0x21`–`0x7E`); anything else is `400` `format`. The key space is global (there are no users or tenants, NFR-S6). A key is bound to a link only by a `201`; a request refused with `4xx` or failed with `5xx` leaves the key unbound. Within 24 hours of the binding create, a request with the same key and the same `url` answers `201` with the same `Location` and the link's current representation (identical to the first reply unless the link was retired in between), writes no audit row and creates nothing; the same key with a different `url` answers `422` `mismatch`. After 24 hours the key is treated as never seen. Two concurrent creates with the same key produce at most one link. The header is ignored on every method other than `POST /api/links`.
+5. **Idempotency.** A key is a string of 1 to 255 visible ASCII characters (`0x21`–`0x7E`); anything else is `400` `format`. The key space is global (there are no users or tenants, NFR-S6). A key becomes bound to a link only by a `201`. A refused (`4xx`) or failed (`5xx`) request never changes a binding: an unbound key stays unbound (AC-21), and a key already bound keeps its link and its original 24 h window, so a `422` mismatch neither releases the key nor extends the window (AC-18, AC-19). Within 24 hours of the binding create, a request with the same key and the same `url` answers `201` with the same `Location` and the link's current representation (identical to the first reply unless the link was retired in between), writes no audit row and creates nothing; the same key with a different `url` answers `422` `mismatch`. After 24 hours the key is treated as never seen. Two concurrent creates with the same key produce at most one link. The header is ignored on every method other than `POST /api/links`.
 6. **Retire is one-way.** A link is `active` from creation until the first successful `DELETE`, then `retired` forever: the record is kept, reads answer `200` with `state` `retired`, the Visitor gets `410`, a repeat `DELETE` gets `410`, and nothing in this slice reactivates or deletes it.
 7. **Redirect.** Always `302`, never `301`, `307` or `308`. `Location` is the stored `url` exactly. The response carries `Cache-Control: no-store`. A query string or fragment on the short link (`/<code>?utm_source=x`) is ignored and not forwarded. The body of the `302` is not part of the contract. `HEAD` and `OPTIONS` behave as the framework defaults.
 8. **Errors are problem details, regardless of `Accept`.** Every non-2xx, non-3xx response from the endpoints in this slice has `Content-Type: application/problem+json` and an RFC 9457 body whose `status` equals the HTTP status, including when the client sends a browser `Accept`. Bodies never contain a stack trace, an exception class name, SQL text, or a value the client submitted. Validation failures (`400` on `url` or `Idempotency-Key`, `422` on key mismatch) add an `errors` array whose elements have `field` (the JSON field or header name), `rule` (a stable token from this SPEC) and `message` (free text, not asserted). `title`, `detail`, `type` and `instance` wording is not asserted except where an AC says so.
 9. **Audit.** Every successful mutation (`link.create`, `link.retire`) writes exactly one audit row in the same transaction as the change: if the row cannot be written the change does not happen and the response is `500`. A row carries: actor (`anonymous` in this mission, NFR-S6), action, entity type `link`, entity id (the code), a "before" state (empty on create) and an "after" state, each at least `url` and `state`, the `X-Request-Id` of the mutating request, and the UTC time. Reads, redirects, idempotent replays and rejected requests write no row. The application has no code path that updates or deletes an audit row.
-10. **Logs.** Handling any request in this slice produces at least one JSON log event carrying `requestId` equal to the response header. Under the default logging configuration no event contains the client's remote address, the `User-Agent`, the submitted or stored `url`, the `Idempotency-Key`, or any value copied from an inbound header. The code and the status may be logged.
+10. **Logs.** Handling any request in this slice produces at least one JSON log event, and every event produced while handling the request, error and `500` paths included, carries `requestId` equal to the response header. Under the default logging configuration no event contains the client's remote address, the `User-Agent`, the submitted or stored `url`, the `Idempotency-Key`, or any value copied from an inbound header. The code and the status may be logged.
 11. **Public base URL.** `shortUrl` is the operator-configured public base URL (default `http://localhost:8080`, overridable by environment, no trailing slash) followed by `/` and the code. The `Host`, `X-Forwarded-Host`, `X-Forwarded-Proto` and `Forwarded` headers are never used to build it.
 12. **Time fields.** `createdAt` and the audit time are ISO-8601 UTC instants with the `Z` designator and at least seconds precision; tests compare at seconds precision.
 
@@ -346,7 +346,7 @@ Only what this slice must prove.
 | A-6 | Should the same URL posted twice yield the same link? | deduplicate by URL; new link each time | **decided** new link each time (business rule 4). FR-9 gives the Creator an explicit tool for "the same create"; deduplicating by URL would merge different Creators' links and, later, their analytics. |
 | A-7 | What does a repeat `DELETE` on a retired link answer? | `204` (idempotent, silent); `410`; `404` | **assumed** `410`. It makes the retired state observable on every path (consistent with the Visitor's `410`), and a client retrying after a timeout learns the link is gone, which is the outcome it wanted. Either option writes one audit row. Safe: reversible, no data impact. |
 | A-8 | Does reading a retired link answer `200` or `410`? | `200` with `state` `retired`; `410` | **decided** `200` with `state` `retired`. FR-4 keeps the record for audit and FR-3 lists `state`; a Creator must be able to see what a retired link pointed to. |
-| A-9 | Status and body of an idempotent replay; same key with a different body; key scope; when the window starts | replay `200` vs `201`; stored first response vs current representation; `409` vs `422` on mismatch; per-client vs global; window from first attempt vs first success | **assumed** replay is `201` with the same `Location` and the link's current representation; mismatch is `422` (the IETF `Idempotency-Key` draft's convention); scope global (NFR-S6 decided no clients exist); window from the binding `201`; a `4xx`/`5xx` leaves the key unbound. Safe: a client that treats the replay as the original sees identical data; nothing stored is lost by any later change. |
+| A-9 | Status and body of an idempotent replay; same key with a different body; key scope; when the window starts | replay `200` vs `201`; stored first response vs current representation; `409` vs `422` on mismatch; per-client vs global; window from first attempt vs first success | **assumed** replay is `201` with the same `Location` and the link's current representation; mismatch is `422` (the IETF `Idempotency-Key` draft's convention); scope global (NFR-S6 decided no clients exist); window from the binding `201`; a `4xx`/`5xx` never changes a binding: a failed first use binds nothing, and a failure on a bound key (including the `422` mismatch) keeps the existing link and its original window (review finding RQ-01). Safe: a client that treats the replay as the original sees identical data; nothing stored is lost by any later change. |
 | A-10 | Format limits for `Idempotency-Key`? | none; 1–255 visible ASCII | **assumed** 1–255 visible ASCII, else `400` `format`. The header is client input at a trust boundary and is stored; a bound keeps it safe in rows and logs. Safe: strict subset, widenable. |
 | A-11 | How does a `400` "name the field and the rule" (FR-5)? | free-text `detail`; an `errors[]` extension with field and a stable token | **decided** `errors[{field, rule, message}]` with the tokens in business rule 3 and AC-18/AC-20; the submitted value is never echoed. Tokens make each test prove the right rejection without asserting prose, and ADR-0002 leaves framework `detail` wording unasserted. |
 | A-12 | Which rule is reported when an input breaks several (e.g. a 3 000-character `javascript:` URL)? | unspecified; a fixed order | **decided** the fixed order in business rule 3, so every test input maps to exactly one token. |
@@ -403,15 +403,29 @@ N/A — non-visual slice.
 
 ## Status
 
-- 2026-10-03 — requirements written; 28 acceptance criteria, 12 business rules, 23 ambiguity rows (8 assumed, 15 decided, none parked). Awaiting `requirements_review`.
+- 2026-10-03 — requirements written; 28 acceptance criteria, 12 business rules, 23 ambiguity rows (8 assumed, 15 decided, none parked). Handed to `requirements_review` at `d179498`.
+- 2026-10-03 — requirements review **FAIL** on `d179498` (`docs/review/01-create-redirect/requirements-review.md`): RQ-01 HIGH (a failure on an already-bound idempotency key was unspecified and contradicted the 24 h promise), RQ-02 and RQ-03 MEDIUM. All three fixed, see *Review response*; counts unchanged; re-handed off.
 
 ## Dependencies
 
 - None. `depends_on` is empty; this is the only slice in wave `w1`. Slices `02-analytics`, `03-operate` and `04-audit-read` depend on it (the link record, the redirect path, the audit rows, the API document).
 
+## Review response
+
+Review `docs/review/01-create-redirect/requirements-review.md` on candidate
+`d179498`: FAIL on RQ-01 (HIGH), with RQ-02 and RQ-03 (MEDIUM). Every finding
+is answered below; none is disputed.
+
+| Id | Severity | Response |
+|---|---|---|
+| RQ-01 | HIGH | **Fixed.** Business rule 5 now distinguishes a failed first use (binds nothing, AC-21) from a failure on an already-bound key (the existing link and its original 24 h window are preserved). AC-18 is extended: after the `422` mismatch, a replay of the original (`K`, `B`) still answers `201` with code `C` and the audit trail still holds exactly one create row. AC-19 is extended: a mismatch at `t0 + 23 h` does not extend the window. A-9 and the NFR-R5 row of the coverage matrix are updated. |
+| RQ-02 | MEDIUM | **Fixed.** Rule 2 no longer assigns its own token; whitespace is rejected under rule 3's order (all whitespace `required`, a leading space `scheme`, a trailing space `malformed`), and both inputs are rows in AC-4's table. Verbatim storage and the rejection of whitespace are unchanged. |
+| RQ-03 | MEDIUM | **Fixed.** AC-26 and rule 10 now require at least one event per request and that every event produced while handling the request carries the same `requestId`; AC-26's response table gains `413`, `415`, `422` and `500`. |
+
 ## Self-check
 
-Recorded 2026-10-03 before the requirements handoff.
+Recorded 2026-10-03 before the first requirements handoff; the review-response
+line was added before the second.
 
 - Every AC observable from outside: AC-1 to AC-21 and AC-26 to AC-28 through HTTP status, headers and bodies, or the log output; AC-22 to AC-25 through audit rows the suite inspects. No AC reads internal state.
 - Error and privacy paths are ACs: `400` (AC-4, AC-5, AC-20), `413` (AC-7), `415` (AC-6), `404` (AC-14), `405` (AC-15), `410` (AC-11, AC-13), `422` (AC-18), `500` with rollback (AC-24); no client-controlled values in logs (AC-27); no echo of submitted values in error bodies (AC-4, rule 8); host-header independence (AC-3).
@@ -426,6 +440,7 @@ Recorded 2026-10-03 before the requirements handoff.
 - `plan-review`: run twice, while drafting and on the finished draft. The engineering-clarity lens produced the validation-order rule (business rule 3, A-12), AC-16 (route shadowing), AC-21 (unbound key after a rejected create), and on the second pass tightened AC-22 ("null" before state), AC-5 (object-valued `url`) and the trailing-slash exclusion; the strategy lens confirmed no scope beyond the allocation; the UX lens applied only to the Visitor's browser path and produced the `Accept` clause in AC-12 to AC-14 and A-15 (a JSON `410` for a browser is accepted for a product with no web UI). No executive summary was produced.
 - `rig scope audit --mission 01-greenfield-core`: no finding against `01-create-redirect` (its earlier "no authored proof contract" advisory cleared); the remaining six low advisories are the untouched placeholder SPECs of slices 02 to 04.
 - Not verified by me: that `Cache-Control: no-store` and problem-detail bodies under a browser `Accept` are producible with zero friction on this stack is a design question; both are stated as contract, and the design review may dispute them with evidence.
+- Review response: RQ-01 to RQ-03 each answered as fixed in the *Review response* table; the AC count stays at 28 (AC-18 and AC-19 were extended rather than new criteria added, so the reviewer's numbering holds); no settled finding reopened; rule 3's order now decides every whitespace case and AC-4's table carries both.
 
 ---
 
