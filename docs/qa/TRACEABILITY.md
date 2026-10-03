@@ -1097,3 +1097,48 @@ By-effect evidence is independent of the builder: 271 HTTP captures, 276 correla
 | AC-17 / BR-8; FR-13 regression; baseline 03-operate and earlier slices: AC-8; BR-5; NFR-R2 | web.TrustedProxyJourneyTest#AC08_aTrustedProxysForwardedAddressIdentifiesTheClient | functional | PASS on 35590f0 |
 
 All AC-1..AC-21 have functional evidence: AC-17 is the unchanged pre-change functional suite with its named grant; the other ACs have the named functional methods above. BR-1..BR-8 map directly above. BR-9 (inherited /api budget, safe 429 + Retry-After) additionally maps to web.RateLimitJourneyTest#AC01_theCreateBudgetAdmits60AndRefusesThe61st, web.OpenApiDocumentTest#AC20_everyOperationDocumentsTheTooManyRequestsProblem and the independent 90-request audit burst: first60=200, next30=429. No source test is unmapped; no merged coverage shortfall or exclusion. Security proof-contract item12 remains downstream, awaiting an independent record.
+
+
+## 05-ci-cd — candidate add7ab5ca37dcd6f51aef3cd43c85455e1be6d14
+
+QA2, 2026-10-03. This configuration-only SPEC explicitly requires file/line,
+local command and future run mapping instead of a new functional test for each
+workflow AC. Source paths below are in the exact candidate worktree; line
+references are also recorded in `proof/qa-file-checks-add7ab5.txt`. No product
+or test changed. All 186 named source methods were independently checked to have existing AC/rule rows. The fresh 165 unit / 155 functional invocations each map to
+NFR-M1 and rule 1 in `proof/qa-report-audit-add7ab5.json`; their product AC and
+rule mappings in the earlier slice tables remain applicable. The 05-ci-cd
+checks supply no new product behavior or GitHub execution claim.
+
+| AC / requirement | Check (class#method, file line or command) | Suite / surface | Result |
+|---|---|---|---|
+| AC-1 / D14, D13 | `.github/workflows/ci.yml:5` (events at 8..11); parsed unfiltered pull_request, main push, dispatch | YAML + source | PASS |
+| AC-2 / D14, NFR-M1 | `ci.yml:27` (steps31..43); own wrapper check, Temurin21, no skips/continue/masked exit; fresh QA check | YAML + local gate | PASS |
+| AC-3 / D14 | `ci.yml:44` (paths49..52, retention53); always() upload after check | YAML + source | PASS configuration; GitHub upload not run |
+| AC-4 / D14 | `cd.yml:6` (push main7..8, dispatch9, no other events) | YAML + source | PASS |
+| AC-5 / D14 | `cd.yml:24` (bootJar41, jar42..47, smoke51..62, image64); shipped jar_mode binds loopback and stops PID; own jar smoke | YAML + local jar journey | PASS configuration/local jar; completed builder pull/build reconciled under AC-12 |
+| AC-6 / D14, D2 | All parsed steps and permissions of ci/cd; no publishing action/run, repository secret or write grant | YAML + source | PASS |
+| AC-7 / D14 | `ci.yml:13`, `cd.yml:11`; contents read only, no job grant | YAML + source | PASS |
+| AC-8 / D14 | `ci.yml:43`; `cd.yml:41`, `cd.yml:54`, `cd.yml:64`; every run block inspected for untrusted interpolation | YAML + source | PASS |
+| AC-9 / D14 | ci uses31/34/38/45, cd uses29/32/36/42/58; four builder ls-remote captures matched, Gradle annotated tag peeled | YAML + builder network capture | PASS match; builder-action-pins-add7ab5.md attaches capture (ad79bb4) |
+| AC-10 / D14 | `ci.yml:16`, `ci.yml:29`; `cd.yml:14`, `cd.yml:27`; workflow/ref concurrency, cancel true, timeout20 | YAML + source | PASS configuration |
+| AC-11 / D14 | `.github/dependabot.yml:3` (actions5..8, Gradle9..12); v2, root, weekly | YAML + source | PASS configuration; proposal execution not run |
+| AC-12 / D14, NFR-M1 | `qa-file-checks-add7ab5.txt`, `qa-check-add7ab5.txt`, `qa-bootjar-add7ab5.txt`, `qa-smoke-add7ab5.txt`, `qa-jar-log-add7ab5.jsonl`, `qa-diff-add7ab5.txt`, coverage SUMMARY; builder docker-build-pull-add7ab5.txt and attached C1 drop (ad79bb4) | YAML + unit + functional + jar HTTP + diff + builder image | PASS: local checks,100/100 merged coverage, completed pull/build capture and attachments |
+| AC-13 / D14, D13, D2 | Future operator-recorded successful PR gate URL and successful main CD URL with jar/smoke artifacts in PROOF.md | GitHub (human push) | PENDING, explicitly allowed by SPEC A-5 |
+| BR-1 / D14, NFR-M1 | AC-2 + AC-12; all 320 passing invocation names in qa-report-audit JSON retain original product AC mappings | local unit + functional; YAML | PASS local same gate; hosted run pending |
+| BR-2 / D14, D13 | AC-1; pull_request key has no filter (`ci.yml:8`) | YAML + source | PASS |
+| BR-3 / D14, D2 | AC-6, AC-7; all steps, grants and action names read | YAML + source | PASS |
+| BR-4 / D14, D2 | AC-5; unchanged jar_mode --server.address=127.0.0.1; own smoke at18105, stopped afterwards | jar HTTP + source | PASS local; hosted run pending |
+| BR-5 / D14 | AC-5; cd run56 calls the unchanged shipped script; baseline/candidate bytes compared | YAML + Git-blob comparison | PASS |
+| BR-6 / D14 | AC-3, AC-5; always() reports and smoke uploads, retention30, explicit bash | YAML + source | PASS configuration; deliberate failing GitHub run not exercised (A-6) |
+| BR-7 / D14, D13, D2 | PROOF.md and GAPS.md explicitly name AC-13 PENDING and operator URL follow-up | documentation | PASS pending disclosure |
+
+Audit row effects in the unchanged suite are independently exercised by
+`audit.AuditJourneyTest#AC22_createWritesExactlyOneAuditRow`,
+`#AC23_retireWritesExactlyOneAuditRow`,
+`#AC24_aFailedAuditWriteRollsTheRetireBackAndFailsClosed` and
+`#AC25_auditRowsAreAppendOnlyUnderEveryOperation`. They query actual H2 rows,
+including response-header request ID, before/after state and rollback. All
+four passed in this QA run. Manual jar audit read, duplicate and expiry replay
+are not asserted; those unchanged rules remain covered by the inherited HTTP
+suite and its earlier trace tables, outside this slice's configuration ACs.

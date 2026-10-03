@@ -187,3 +187,28 @@ Context and observations that help the mission but do not change its
   continuation in `proof/qa-proof-sequencing-35590f0.md`. Lead returns it to QA
   before acceptance; a changed product candidate follows the normal QA loop.
   All localhost QA apps stopped, ports 18131/18132/18133 refuse connections.
+
+
+## 6. QA Agent 2
+
+- 2026-10-03T20:13Z — working 05-ci-cd QA packet qitem-20261003195527-d2973fff,
+  instance01M41HFT4CTYPNWWNB8PJ99NFE. Exact candidateadd7ab5ca37dcd6f51aef3cd43c85455e1be6d14
+  on clean .worktrees/05-ci-cd. Fresh offline --rerun-tasks gate165unit/155functional,
+  zero failures/errors/skips, merged443/443lines162/162branches.321 copied report
+  hashes checked. YAML1.2 and source checkAC1..11 pass; action pins match builder's
+  four network captures. Own bootJar and shipped --jar smoke on18105 pass;
+ 29 completed log requests/unique IDs, all expected statuses; graceful stop,
+ PID54941 absent, port refused. AC13 explicitlyPENDING human push as SPEC A5 allows.
+- Outstanding supplemental builder obligationqitem-20261003200244-22f2ea52:
+  completed --pull Docker build with cacheallowed and contracted rigproofadd
+  attachments for image/pins. Initial cached success and incomplete uncached
+  pull do not jointly establish completed build/pull. Continue local evidence
+  docs/qa/coverage/05-ci-cd/SUMMARY.md, trace and GAPS nowwritten; hold PASS/drop/
+  judgments until new capture checked. No product/test/workflow edits.
+
+- 2026-10-03T20:17Z — 05-ci-cd supplemental capture received and independently
+  reconciled: builder ad79bb4, docker-build-pull-add7ab5.txt, both base pulls,
+  all15 steps, in-container bootJar55s, exit0; attached image/pin C1 drops.
+  All186 named source methods have inherited AC/rule rows. QA is PASS on
+  AC1–12; AC13 remains explicitly PENDING per A5. Seven proof-contract
+  judgments and committed evidence handoff follow against the unchanged SHA.

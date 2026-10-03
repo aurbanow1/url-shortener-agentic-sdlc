@@ -1,26 +1,35 @@
-# PROOF — OPR.99.0.3.5 Ci Cd
+# PROOF — OPR.99.0.3.5 CI/CD
 
-> **WHO/WHEN:** the impl/QA pair that worked the slice, at slice-close — a slice is NOT done until this file exists and every `SPEC.md` proof-contract item has evidence (mapped 1:1, artifacts under `proof/`). See the `mission-slice-sop` skill + the conventions SSOT (`docs/reference/sdlc-conventions.md` in the repo, `$OPENRIG_HOME/reference/sdlc-conventions.md` on an installed package).
->
-> **HOW (the drop verb, not hand-placement):** put media files under `proof/`, then ATTACH them with `rig proof add OPR.99.0.3.5 --artifact-type qa --verdict PASS --candidate-sha <tip> --money-evidence "<one line>" --evidences "1" --media "screenshot-01.png"` — the drop writes the C1 header the Living Notes DELIVERED pairing joins on. Hand-placing files without a drop leaves the deliverable unpaired and `unverified`.
-
-Closed by: <seat>   Date: <date>   Verdict: <pass | pass-with-residue | ...>
+Candidate: `add7ab5ca37dcd6f51aef3cd43c85455e1be6d14`.
+QA seat: `qa2-agent@urlshort-factory` (Codex), 2026-10-03.
+QA verdict: **PASS for AC-1–12; AC-13 PENDING under SPEC A-5.**
+Slice closure and review remain the workflow owners' acts.
 
 ## What this proves
 
-<1-3 sentences: the claim the slice made, now demonstrated>
+Candidate configuration meets AC-1 through AC-11. An independently rerun
+quality gate and installed loopback jar smoke show the unchanged product still
+passes locally. GitHub execution is **PENDING** the human's push (AC-13/A-5).
+The supplemental builder capture independently reconciles both base pulls and the completed image build required by AC-12.
 
-## Artifacts (media in proof/)
+## Artifacts
 
-Dropped via `rig proof add … --evidences … --media …` (one drop per verdict; media attached, never only hand-listed):
+QA media under `proof/`: `qa-file-checks-add7ab5.txt`, `qa-check-add7ab5.txt`,
+`qa-bootjar-add7ab5.txt`, `qa-smoke-add7ab5.txt`, `qa-jar-log-add7ab5.jsonl`,
+`qa-diff-add7ab5.txt`, `qa-report-audit-add7ab5.json`. Coverage HTML/XML/CSV
+and the CSV summary are in `docs/qa/coverage/05-ci-cd/`; the check table and
+qualifications are in `docs/qa/TRACEABILITY.md` and `docs/qa/GAPS.md`.
+QA drop: `proof/qa-evidence-add7ab5.md`, attached by `rig proof add`. Builder network drops: `proof/builder-docker-build-pull-add7ab5.md` and `proof/builder-action-pins-add7ab5.md` (commit `ad79bb4`). Attributed QA judgments cover all seven proof-contract items against the exact candidate; item 7 accepts the explicit pending record, not a GitHub success.
 
-- proof/screenshot-01.png — <what it shows>
-- proof/capture-behavior.gif — <what it shows>
-- proof/command-output.txt — <what it proves>
+## Residue / caveats
 
-## Residue / caveats (if any)
-
-<documented residue: what's not covered + where it's tracked>
+AC-13 remains **PENDING**: the operator must record the successful PR `gate`
+run URL and successful main `cd.yml` URL with jar and smoke-log artifacts after
+the human's push. No run or URL is claimed here. Deliberate red GitHub run,
+action/cache/wrapper-validation execution, hosted-runner shell/JAVA_HOME,
+Dependabot proposal execution and a from-scratch image build remain unobserved.
+These limits are recorded in GAPS; configuration checks use SPEC A-6 and
+native-actionlint absence uses AC-12's YAML fallback, without waiving an AC.
 
 ## Builder (dev2-agent@urlshort-factory)
 
@@ -77,3 +86,78 @@ What this does and does not show:
   21 by default, as the design says (§12, not run by the probe either).
 - **Not verified by me:** a GitHub-hosted runner, `pipefail` under it, `setup-gradle`'s cache and
   wrapper validation, a Dependabot run. All of these are AC-13 or after it.
+
+
+## QA — independent candidate verification
+
+I read the SPEC, locked design, builder's PROOF, QA and CI/CD guidance. The
+addressed project/mission/slice path and packet select QA2; the exact candidate
+HEAD matches the packet, and the clean product worktree remains unchanged.
+I did not edit product, tests, build scripts, Dockerfile or workflows.
+
+**AC-1 through AC-11:** independently parsed all three files with installed
+YAML 1.2, checked their values and read numbered source. The check output names
+each satisfying line. Every PR is unfiltered; main and dispatch triggers are
+correct; gate checks out and uses Temurin 21 and ./gradlew check without a skip
+or tolerated failure. Reports and smoke logs upload always() with 30-day
+retention. CD calls the unchanged shipped --jar mode, uploads the jar and
+builds the shipped Dockerfile without publishing. Contents read is the only
+grant; all run blocks contain no untrusted event/head-ref interpolation. All
+nine action references match the builder's four network tag captures (Gradle
+uses the annotated tag's peeled commit). Both jobs have 20-minute timeouts and
+workflow/ref concurrency with cancellation. Both Dependabot root entries are
+weekly, version 2. These are configuration effects, not hosted-runner execution.
+
+**AC-12:** my fresh --offline check --rerun-tasks succeeded in 36 seconds with
+165 unit and 155 functional invocations, no failures/errors/skips, and Javadoc
+in the gate. Summed CSV lines are400/443 unit,408/443 functional,443/443 merged;
+branches162/162 unit,131/162 functional,162/162 merged. All 321 copied report
+hashes match. The merged100/100 threshold is unchanged. The candidate/base
+diff contains exactly three .github files and 129 insertions.
+
+My independent bootJar succeeded, then I ran the unchanged shipped jar smoke
+on 127.0.0.1:18105, exit 0. Its checks observed response statuses, content types,
+request-ID headers, create response, redirect Location and no-store, active
+read, click stats/reduced referrer, invalid-input400 without echo, unknown404,
+wrong-method405, retirement204 followed by410, metrics/Prometheus/OpenAPI and
+environment overrides; a fresh forwarded client was admitted 10 times then
+429. The captured JSON log contains 29 completed requests with 29 unique IDs
+and all those statuses. No invalid input, full referrer path or test client IP
+is present. Graceful shutdown was logged; process 54941 was absent and the
+port refused connections. The inherited functional AuditJourneyTest methods
+query actual H2 rows and request IDs, append-only state and rollback; all four
+passed. A manual audit read and duplicate/expiry curl replay on this jar are
+not claimed: this slice's SPEC uses configuration ACs and inherited regression
+coverage, rather than inventing workflow-to-product AC mappings.
+
+**AC-12 network evidence, independently judged:** supplemental
+qitem-20261003200244-22f2ea52 completed at builder commit `ad79bb4`. The new
+`docker-build-pull-add7ab5.txt` names the exact SHA and unpiped exit 0. I read
+both `Pulling`/`Digest`/up-to-date entries (Temurin 21-jdk and 21-jre), all 15
+ordered Dockerfile steps, real steps 5–7 execution and in-container bootJar
+success in 55s, and final image/tag success. Cache was used for other steps;
+this is the SPEC's required pulled-base build, not a wholly uncached claim.
+The initial stopped --no-cache attempt remains historical evidence.
+`builder-docker-build-pull-add7ab5.md` attaches the build log and
+`builder-action-pins-add7ab5.md` attaches all four pin captures, both with
+candidate-linked C1 headers and media references. I performed no networked
+image build or independent live tag lookup; the SPEC explicitly assigns those
+captures to the builder. Source/capture agreement and hashes are in my report
+audit. AC-1–12 are therefore PASS within their specified evidence strategy.
+
+**AC-13 PENDING:** no push, GitHub run, run URL, artifact upload or dependency
+proposal observed. This pending state is explicitly accepted by SPEC A-5; an
+operator records URLs and successful conclusions after the human pushes.
+
+### Self-check
+
+- Exact candidate HEAD and product tree checked clean; no code/test/build edit.
+- AC-1..11 each checked in parsed and numbered files;13 AC/7 rule trace rows
+  complete. All 320 inherited invocations map to NFR-M1/rule 1 and earlier
+  product AC tables, as the slice's specific evidence strategy requires.
+- Real public jar journey and failure checks 400/404/405/410/429 observed.
+  No manual duplicate/expiry/audit read or hosted-runner claim.
+- Coverage read from all three fresh CSVs; all321 copied file hashes verified;
+  per-suite shortfalls and every qualification recorded in GAPS.
+- App stopped, PID gone, port refused; worktree left at exact candidate.
+- PASS drop attaches the checked QA media and names contract items 1..7. Attributed judgments are against the exact candidate; AC-13 is not asserted green.

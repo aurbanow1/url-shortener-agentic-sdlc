@@ -118,3 +118,27 @@ captures are independently archived. The paced61-read probe returned200
 because GCRA refills continuously; a0.17s90-read burst then proved the first60
 admitted and following30 refused with Retry-After. These are instrument and
 probe corrections, not hidden product reruns or accepted product defects.
+
+
+## 05-ci-cd — candidate add7ab5ca37dcd6f51aef3cd43c85455e1be6d14
+
+Independent QA2, 2026-10-03. Merged CSV coverage is 443/443 lines and 162/162
+branches (100%); no excluded code, changed threshold or merged coverage gap.
+
+| Scope | Gap or limit | Reason / evidence | Acceptance / owner |
+|---|---|---|---|
+| Per-suite coverage | Unit400/443 lines90.2935%,162/162 branches100%; functional408/443 lines92.0993%,131/162 branches80.8642% | Fresh165/155 invocations all pass; complementary suites merge to443/443 and162/162. 321 copied report files SHA-256 checked in proof/qa-report-audit-add7ab5.json | Existing NFR-M1/build gate applies100% to merged data; no waiver |
+| AC-13 | First GitHub PR gate and main CD run, artifact uploads, action/cache/wrapper-validation and Dependabot execution not observed | Agents cannot push; candidate-local checks and the contracted builder network captures are complete. No GitHub URLs fabricated. Operator records run URLs/conclusions/artifact presence in PROOF.md after the human pushes | SPEC A-5 explicit accepted pending state (D2/D13); human/operator follow-up |
+| AC-2 / A-6; BR-6 | A deliberately failing GitHub run was not exercised; failure upload/retention checked as configuration only | Parsed gate has no -x, continue-on-error or masked exit; explicit bash; reports/smoke upload always(),30 days. Local real check exit0 is captured | SPEC A-6 permits configuration evidence, not a claim of a red GitHub run |
+| AC-12 lint | Native actionlint absent; independent YAML1.2 parse plus parsed/source AC checks used | All three candidate files parse without errors or warnings. Builder's separate actionlint1.7.12 capture and negative control retained. QA did not rerun that container | SPEC AC-12 expressly allows parsing when actionlint is not installed |
+| AC-12 image | Initial --pull --no-cache attempt stopped at Dockerfile step5; a wholly uncached image build is not claimed | Supplemental builder --pull capture on the same SHA completed with both base images pulled, all15 steps and exit0. Steps5–7 actually ran, including bootJar; other layers cached. QA read both pull digests and success; C1 image/pin attachments committed ad79bb4 | AC-12 satisfied without waiver: cache is allowed by SPEC. A fully uncached/hosted-runner build remains unobserved; AC-13 pending |
+| AC-5 / runner environment | GitHub's env.JAVA_HOME handoff and hosted Linux shell/runner not executed locally | Own installed jar smoke used local JDK21 default; parsed cd env passes JAVA_HOME; exact script unchanged. Local journey/log/shutdown observed on127.0.0.1:18105 | Actual GitHub effects remain in AC-13 pending; no clean-runner execution claim |
+| Configuration-only traceability | Workflow ACs are file/local-command/run checks, not new product HTTP tests | SPEC explicitly selects this evidence strategy; .github-only diff leaves inherited product tests unchanged. All320 invocation names map to NFR-M1/rule1 and earlier product AC tables | Proof contract5 requires the13AC/7rule check table; no new product tests or test edits |
+
+Instrument corrections: the first QA parser invocation used the wrong local
+OpenRig module location and did not parse; the corrected installed path parsed
+all three files. The first report audit reached copied coverage but its ps
+check was denied by the sandbox; the permitted rerun verified all321 report
+hashes, PID absence and refused port. Neither supplies a product finding.
+Shared GAPS appends can change earlier receipts' evidence hashes; no judgment
+on an unassigned closed mission is made here.

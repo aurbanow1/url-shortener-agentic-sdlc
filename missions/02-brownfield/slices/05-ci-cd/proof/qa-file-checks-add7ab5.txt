@@ -1,0 +1,24 @@
+Candidate add7ab5ca37dcd6f51aef3cd43c85455e1be6d14; clean product worktree; YAML 1.2 parser
+PARSE PASS .github/workflows/ci.yml
+PARSE PASS .github/workflows/cd.yml
+PARSE PASS .github/dependabot.yml
+AC-1 PASS ci.yml:5-11; unfiltered PR event, main push, dispatch
+AC-2 PASS ci.yml:27-43; checkout, Temurin 21, own wrapper check; no skips or tolerated failures
+AC-3 PASS ci.yml:44-53; reports after check, always(), 30 days
+AC-4 PASS cd.yml:6-9; main push and dispatch only
+AC-5 PASS cd.yml:24-64 plus unchanged scripts/smoke.sh jar_mode; own jar smoke separately captured
+AC-6 PASS all steps and grants in both parsed workflows; no publishing, deployment, secret or write grant
+AC-7 PASS ci.yml:13-14; cd.yml:11-12; no job-level grants
+AC-8 PASS ci.yml:43; cd.yml:41,54-56,64; all run blocks checked
+AC-9 PASS 9 uses across 4 actions match builder 19:34Z tag capture; annotated gradle/actions uses peeled commit
+AC-10 PASS ci.yml:16-18,29; cd.yml:14-16,27; both 20 minutes
+AC-11 PASS dependabot.yml:3-12; version 2, root actions and Gradle weekly
+AC-12 PARSE/DIFF PASS; build, smoke, coverage and builder image capture are separate evidence
+AC-13 PENDING human push; no GitHub run claimed
+Base 06818cab00cab0c3a9ab225172307aaea96d8d53
+.github/dependabot.yml   | 12 +++++++++
+ .github/workflows/cd.yml | 64 ++++++++++++++++++++++++++++++++++++++++++++++++
+ .github/workflows/ci.yml | 53 +++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 129 insertions(+)
+ALL FILE CHECKS PASS (AC-1 through AC-11)
+Exit code: 0
