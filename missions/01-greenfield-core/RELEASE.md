@@ -510,7 +510,7 @@ after step 3 only health, ping and OpenAPI remain.
 **Factory.** If the human holds the ship gate, the packet stays parked; this step
 waits on what the human asks for. No workflow rollback is needed.
 
-## 9. Self-check
+## Self-check
 
 - §1 Brief: what ships is pinned to an empty product diff; the one judgment item
   (AC-28) is stated with its isolation, the lead's decision, a default and the
