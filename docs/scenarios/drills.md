@@ -5,6 +5,9 @@ snapshot for `qitem-20261003211439-20ea2949`. The previously recorded drill
 observations remain historical evidence. The natural review loop is still
 awaiting QA/re-review; this draft supplies no final release-SHA claim.
 
+Routing follow-up `qitem-20261003212424-b5b3c5ff` adds the audit-columns design
+move, corroborated by its live trace and the two packet histories below.
+
 Deliberate exercises of the governance paths, run by the Release & Reliability
 Agent (mission 02 unless noted) so that retry, rollback, fallback and safe-stop
 behaviour is demonstrated, not assumed. Each drill records the command, the
@@ -46,6 +49,7 @@ actor, time and old/new ownership. No further moves are inferred.
 | Time (UTC), scope | Recorded operation | Observed effect and evidence |
 |---|---|---|
 | 2026-10-03 **18:43:36**, mission 02 / `02-click-retention` | `rig workflow route` by **operator-human@kernel**, `development-agent` → `dev2-agent`, same `implement` step | Instance `01M4170AA9E72WW1BXEA5PX0AP` has the plan-lock handoff to old packet `qitem-20261003183953-9526315e`; transition **1177** closes it as handed-off to dev2, and **1178** creates `qitem-20261003184336-f1b2d2a0`. The trace now names that packet's owner as dev2 and records its implement waits, beginning 19:12Z. Reason in the transition: second builder added at the human's request while the first builds audit-read. [Mission-02 NOTES, 18:50Z](../../missions/02-brownfield/NOTES.md). |
+| 2026-10-03 **19:01:48**, mission 02 / `04-audit-columns` | `rig workflow route` by **operator-human@kernel**, `design2-agent` → `design-agent`, same `design` step | Instance `01M41HG4P6DEVAKTCJC6J9QAWP` records requirements-review handoff to design2 on old packet `qitem-20261003190115-8ce22243`. Transition **1235** closes that unclaimed packet as handed-off to design-agent; **1236** creates `qitem-20261003190148-7795836d`. Design-agent claims it at 19:02:00Z (**1237**) and hands off at **19:09:48Z** (**1248**); the trace's design closure names design-agent and that new packet. Reason: load balance while design2 designs CI/CD and design-agent is idle. [Mission-02 NOTES, 21:24Z correction](../../missions/02-brownfield/NOTES.md). |
 | 2026-10-03 **20:03:31**, mission 03 / `01-analytics-v2` (cross-mission context for the mission-02 stack) | `rig workflow route` by **orchestration-lead@urlshort-factory**, `development-agent` → `dev2-agent`, same `implement` step | Instance `01M416Z3CM54YQTX93V4KG0CPS` has the plan-lock handoff to `qitem-20261003200325-7115d4e3`; transition **1339** closes it as handed-off to dev2, and **1340** creates `qitem-20261003200331-90c97f87`. The trace names dev2 on that implement packet and records its 20:30:43Z wait on click-retention. Reason: the human's option 2 stacks analytics-v2 on click-retention under one builder; the first builder owns dogfood-fix. [Mission-03 NOTES, 20:03Z](../../missions/03-ambiguous-analytics/NOTES.md), [mission-02 builder note](../../missions/02-brownfield/NOTES.md). |
 
 ### Source receipts read for this draft
@@ -57,9 +61,12 @@ release prep and evidence export, and have not been refreshed by this packet.
 ```sh
 rig workflow trace 01M416ZY5N11CDGZBM2DT4GAXS --json
 rig workflow trace 01M4170AA9E72WW1BXEA5PX0AP --json
+rig workflow trace 01M41HG4P6DEVAKTCJC6J9QAWP --json
 rig workflow trace 01M416Z3CM54YQTX93V4KG0CPS --json
 rig queue transitions qitem-20261003183953-9526315e --json
 rig queue transitions qitem-20261003184336-f1b2d2a0 --json
+rig queue transitions qitem-20261003190115-8ce22243 --json
+rig queue transitions qitem-20261003190148-7795836d --json
 rig queue transitions qitem-20261003200325-7115d4e3 --json
 rig queue transitions qitem-20261003200331-90c97f87 --json
 ```
@@ -72,9 +79,9 @@ remediation verdict or failed QA exit is asserted.
 
 ### Self-check — draft additions
 
-Read all three live traces, the four routing packet transition histories,
+Read all four live traces, the six routing packet transition histories,
 the CR-01 review/control, builder commits/proof and both missions' NOTES.
-Recorded only the two corroborated route moves, with exact transition ids;
+Recorded the three corroborated route moves, with exact transition ids;
 kept their natural coordination scope separate from deliberate drills.
 The review rejection remains natural and open through re-QA, and DRILL 1
 remains parked on its own item. No drill was rerun, product changed, or final
