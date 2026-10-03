@@ -14,6 +14,7 @@ scripts/smoke.sh               # health, ping, create → redirect → read → 
 
 Try it: `curl -i -X POST -H 'Content-Type: application/json' -d '{"url":"https://example.com"}' http://localhost:8080/api/links`
 returns a `code` and `shortUrl`; `GET /{code}` redirects (302); `GET /api/links/{code}/stats` counts clicks;
+`GET /api/audit` pages through the audit trail (loopback only, and no setting opens it);
 `DELETE /api/links/{code}` retires the link. Health `/actuator/health`, metrics `/actuator/prometheus`,
 API document `/v3/api-docs`. Settings are environment variables (`URLSHORT_PUBLIC_BASE_URL`,
 `URLSHORT_RATELIMIT_CREATEPERMINUTE`, `URLSHORT_RATELIMIT_REDIRECTPERMINUTE`,
