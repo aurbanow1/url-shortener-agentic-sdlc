@@ -161,3 +161,19 @@ operator records URLs and successful conclusions after the human pushes.
   per-suite shortfalls and every qualification recorded in GAPS.
 - App stopped, PID gone, port refused; worktree left at exact candidate.
 - PASS drop attaches the checked QA media and names contract items 1..7. Attributed judgments are against the exact candidate; AC-13 is not asserted green.
+
+## AC-13: first GitHub runs (recorded by the operator, 2026-10-03)
+
+The human pushed `pr/07-ci-cd-merged` (`2e33568`) and opened pull request #7. Read with `gh api` on `aurbanow1/url-shortener-agentic-sdlc`:
+
+| Run | Event, ref, commit | Conclusion | Artifacts |
+|---|---|---|---|
+| [`ci` 37153245436](https://github.com/aurbanow1/url-shortener-agentic-sdlc/actions/runs/37153245436), job `gate` | `pull_request`, `pr/07-ci-cd-merged`, `2e33568` | success, 20:55:04–20:57:40Z | `gate-reports` (2.0 MB) |
+| [`ci` 37153380482](https://github.com/aurbanow1/url-shortener-agentic-sdlc/actions/runs/37153380482) | `push`, `main`, `a3d6867` | success, 20:57:22–20:59:44Z | `gate-reports` (2.0 MB) |
+| [`cd` 37153380418](https://github.com/aurbanow1/url-shortener-agentic-sdlc/actions/runs/37153380418), job `package` | `push`, `main`, `a3d6867` | success, 20:57:22–21:00:46Z; steps `bootJar`, `Smoke the jar on 127.0.0.1` and `docker build` each succeeded | `urlshort-jar` (35.8 MB), `smoke-logs` (4 KB) |
+
+Caveats, stated plainly:
+- The two `main` runs ran on `a3d6867`, not on `ecf8dfd`, the merge of #7. That commit also contains Dependabot's Gradle wrapper bump from 9.7.1 to 9.8.0 (pull request #8), which the human merged on GitHub two minutes after #7. The first `main` runs on `ecf8dfd` (`ci` 37153261623, `cd` 37153261626) were cancelled by the workflows' concurrency rule when `a3d6867` arrived. So the `main` evidence is for the gate and the CD job under Gradle 9.8.0. The pull-request gate ran under 9.7.1.
+- The image build on the hosted runner is the first from-scratch build: the runner has no layer cache.
+- Still unobserved: a deliberately red GitHub run, and branch protection, which the private repository's plan may not offer.
+- The attributed judgment of AC-13 belongs to QA (`rig proof judge`). This section records the evidence only.
