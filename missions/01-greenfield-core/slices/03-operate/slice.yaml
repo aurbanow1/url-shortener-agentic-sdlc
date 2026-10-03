@@ -62,7 +62,16 @@ territory:
   # ORDERED GRANT for wave w2, second holder after 02's merge: the 429 problem-detail response with
   # the Retry-After header and examples on every operation, regenerated on a base that contains 02.
   - docs/api/openapi.json
-# NOT in territory: link/, click/, db/migration/.
+  # TEST-SIDE GRANTS (lead, 2026-10-03T08:52Z, design-agent request qitem-20261003084948-76a4a31d);
+  # both files came with 01-create-redirect and no other w2 slice holds them.
+  # Raised rate-limit budgets for the functional suite only, so the existing journeys are not
+  # throttled; the limiter journeys set the shipped budgets back explicitly, and the suite must
+  # still prove that the shipped configuration carries the SPEC's default budgets.
+  - src/functionalTest/resources/application-functional.properties
+  # A freeze() mode on the shared suite clock for the limiter's exact-step criteria; reset() also
+  # unfreezes, and every test that freezes resets in @AfterEach. Existing callers unchanged.
+  - src/functionalTest/java/dev/urlshort/link/FunctionalClock.java
+# NOT in territory: link/ (production code), click/, db/migration/.
 execution:
   actor_role: requirements
   depends_on: [01-create-redirect]
