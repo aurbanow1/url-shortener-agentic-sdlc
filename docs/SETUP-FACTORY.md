@@ -39,15 +39,15 @@ specs resolve from the repo alone.
 
 OpenRig pins a seat's *model* in its agent spec (`defaults.model`); `rig seat set-model <seat> --model <id>` changes a live seat (audited, effective at the seat's next launch). Reasoning *effort* is a runtime setting, so set it once per runtime before `rig up`:
 
-- Claude Code — `~/.claude/settings.json`: `"model": "fable"`, `"effortLevel": "xhigh"`, plus `"modelSettings": {"claude-opus-5-5": {"effortLevel": "xhigh"}}` for the builder.
+- Claude Code — `~/.claude/settings.json`: `"model": "fable"`; the project's `.claude/settings.json` sets `"effortLevel": "high"` for the author seats (project scope overrides user scope), plus `"modelSettings": {"claude-opus-5-5": {"effortLevel": "xhigh"}}` for the builder.
 - Codex — `~/.codex/config.toml`: `model = "gpt-6-astra"`, `model_reasoning_effort = "xhigh"`.
 
 | Seat | Runtime | Model | Effort |
 |---|---|---|---|
-| orchestration-lead, requirements-agent, design-agent, release-agent | Claude Code | Claude Fable 5.1 | xhigh |
-| development-agent | Claude Code | Claude Opus 5.5 (pinned in `rig/agents/development-agent/agent.yaml`) | xhigh |
-| qa-agent | Codex | GPT-6.1-Sol (pinned in `rig/agents/qa-agent/agent.yaml`) | xhigh |
-| review-agent | Codex | GPT-6-Astra | xhigh |
+| orchestration-lead, requirements-agent, design-agent, release-agent | Claude Code | Claude Fable 5.1 | high (project `.claude/settings.json`) |
+| development-agent | Claude Code | Claude Opus 5.5 (pinned in `rig/agents/development-agent/agent.yaml`) | high |
+| qa-agent, qa2-agent | Codex | GPT-6.1-Sol (pinned in `rig/agents/qa-agent/agent.yaml`) | xhigh |
+| review-agent, review2-agent | Codex | GPT-6-Astra | xhigh |
 
 Verify after launch: `ps -axo args= | grep -- --model` lists the pinned Claude seats; a Codex seat prints its model and effort in its status bar (`rig capture qa-agent@urlshort-factory`).
 
@@ -55,7 +55,7 @@ Verify after launch: `ps -axo args= | grep -- --model` lists the pinned Claude s
 
 ```sh
 rig up rig/rig.yaml --cwd "$PWD" --plan     # preview
-rig up rig/rig.yaml --cwd "$PWD"            # boots 7 seats; each posts "<seat> READY" in the chatroom
+rig up rig/rig.yaml --cwd "$PWD"            # boots 9 seats; each posts "<seat> READY" in the chatroom
 rig ps --nodes --rig urlshort-factory
 rig chatroom history urlshort-factory
 ```

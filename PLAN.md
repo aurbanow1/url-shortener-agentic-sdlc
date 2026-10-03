@@ -166,6 +166,8 @@ flowchart LR
 
 ### 5.3 Slice workflow (`next_hop`; one instance per slice)
 
+> Superseded on 2026-10-03 by D7 (§10): the slice graph now has **nine** steps — `security_review` runs inside the `code_review` packet, QA records the proof judgments at `qa_check`, and `integrate` is terminal (`max_hops: 30`). The diagram below is the Day-0 design kept for the record; the live spec is `rig/workflows/urlshort-slice.workflow.yaml` (+ `-delegated`, `-delegated-b`).
+
 ```mermaid
 flowchart LR
   REQ[requirements<br/>Requirements Agent] --> RQR[requirements_review<br/>Review Agent]
