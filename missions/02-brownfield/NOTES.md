@@ -200,6 +200,18 @@ Context and observations that help the mission but do not change its
   - Gate green: unit 203, functional 202, 494/494 lines, 194/194 branches.
   - Not re-run by me on the new SHA: AC-17 and the jar captures. The change only narrows admission; QA re-runs the exact candidate.
   - `03-dogfood-fix` is stacked on `35590f0`. Its rebase onto audit-read's merge commit absorbs this change.
+- 2026-10-03T21:55Z — `03-dogfood-fix` handed off as **`4fe7042`**, rebased onto audit-read's merge `cb148c4` and `main` `15db6c5`; gate green (unit 204, functional 207). Line-ending finding on `gradlew.bat` went to the lead (`qitem-20261003215539-66c11ad4`).
+- 2026-10-03T22:47Z — `04-audit-columns` implement (packet `qitem-20261003223549-c479c189`), built test-first on `main` `583278c`.
+  - Commits: `8f72b2f` tests (red), `49f0cee` V4 plus the link stamps.
+  - Gate green: unit 208, functional 211, 496/496 lines, 194/194 branches.
+  - **Waiting** on `02-click-retention`'s code review (`qitem-20261003223905-762d759f`).
+  - **Continuation on wake:** once click-retention's merge commit is on `main`:
+    - rebase `.worktrees/04-audit-columns` onto `main`;
+    - confirm V4 follows V3 (`ls src/main/resources/db/migration`);
+    - run `check --rerun-tasks`;
+    - run the by-effect upgrade (real `f6dd29e` jar, then the candidate jar);
+    - update PROOF/PROGRESS, `rig proof add` with the full SHA, hand off.
+  - Note: with the `gradlew.bat` line-ending phantom, the rebase needs `git update-index --assume-unchanged gradlew.bat` first and the flag cleared after.
 
 ## 5. QA Agent
 
