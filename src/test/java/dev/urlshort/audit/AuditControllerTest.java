@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.springframework.boot.tomcat.autoconfigure.TomcatServerProperties;
 import org.springframework.boot.web.server.autoconfigure.ServerProperties;
 import org.springframework.boot.web.server.autoconfigure.ServerProperties.ForwardHeadersStrategy;
 import org.springframework.http.HttpStatus;
@@ -72,6 +73,32 @@ class AuditControllerTest {
 	}
 
 	@Test
+	void aRemoteIpHeaderSettingClosesTheEndpoint() {
+		TomcatServerProperties tomcat = new TomcatServerProperties();
+		tomcat.getRemoteip().setRemoteIpHeader("x-forwarded-for");
+
+		assertForbidden(controller(ForwardHeadersStrategy.NONE, tomcat));
+	}
+
+	@Test
+	void aProtocolHeaderSettingClosesTheEndpoint() {
+		TomcatServerProperties tomcat = new TomcatServerProperties();
+		tomcat.getRemoteip().setProtocolHeader("x-forwarded-proto");
+
+		assertForbidden(controller(ForwardHeadersStrategy.NONE, tomcat));
+	}
+
+	@Test
+	void emptyRemoteIpSettingsKeepTheEndpointOpen() {
+		TomcatServerProperties tomcat = new TomcatServerProperties();
+		tomcat.getRemoteip().setRemoteIpHeader("");
+		tomcat.getRemoteip().setProtocolHeader("");
+
+		assertThat(controller(ForwardHeadersStrategy.NONE, tomcat).page(null, null, request("127.0.0.1")).getStatusCode())
+				.isEqualTo(HttpStatus.OK);
+	}
+
+	@Test
 	void limitDefaultsTo50AndAcceptsItsBounds() {
 		assertThat(AuditController.limit(null)).isEqualTo(50);
 		assertThat(AuditController.limit("1")).isEqualTo(1);
@@ -103,9 +130,13 @@ class AuditControllerTest {
 	}
 
 	private static AuditController controller(@Nullable ForwardHeadersStrategy strategy) {
+		return controller(strategy, new TomcatServerProperties());
+	}
+
+	private static AuditController controller(@Nullable ForwardHeadersStrategy strategy, TomcatServerProperties tomcat) {
 		ServerProperties server = new ServerProperties();
 		server.setForwardHeadersStrategy(strategy);
-		return new AuditController(mock(AuditTrail.class), server);
+		return new AuditController(mock(AuditTrail.class), server, tomcat);
 	}
 
 	private static void assertForbidden(AuditController controller) {

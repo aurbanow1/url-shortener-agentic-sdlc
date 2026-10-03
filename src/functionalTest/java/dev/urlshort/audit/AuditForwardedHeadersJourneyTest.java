@@ -70,6 +70,33 @@ class AuditForwardedHeadersJourneyTest {
 		}
 	}
 
+	/**
+	 * Either Tomcat remoteip header setting installs the RemoteIpValve while the strategy stays pinned to
+	 * {@code none}; the read must close then too, or a forged header becomes the peer (code review on
+	 * {@code 35590f0}).
+	 */
+	@ParameterizedTest
+	@ValueSource(strings = { "server.tomcat.remoteip.remote-ip-header=x-forwarded-for",
+		"server.tomcat.remoteip.protocol-header=x-forwarded-proto" })
+	void aTomcatRemoteIpSettingClosesTheEndpoint(String setting) throws Exception {
+		String name = setting.contains("protocol") ? "protocol" : "remote-ip";
+		try (ConfigurableApplicationContext app = start(memory("urlshort-audit-" + name), "--" + setting)) {
+			String base = base(app);
+			String canary = "https://example.com/remoteip-canary-" + name;
+			HttpResponse<String> created = CLIENT.send(HttpRequest.newBuilder(URI.create(base + "/api/links"))
+					.header("Content-Type", "application/json")
+					.POST(HttpRequest.BodyPublishers.ofString("{\"url\":\"" + canary + "\"}")).build(),
+					HttpResponse.BodyHandlers.ofString());
+			assertThat(created.statusCode()).isEqualTo(201);
+
+			for (String[] header : List.of(new String[] { null, null }, new String[] { "X-Forwarded-For", "127.0.0.2" })) {
+				HttpResponse<String> response = send(base, "GET", header[0], header[1]);
+				assertThat(response.statusCode()).as("%s %s %s", setting, header[0], header[1]).isEqualTo(403);
+				assertThat(response.body()).doesNotContain("items").doesNotContain(canary);
+			}
+		}
+	}
+
 	static String memory(String name) {
 		return "jdbc:h2:mem:" + name + ";MODE=PostgreSQL;DB_CLOSE_DELAY=-1";
 	}
