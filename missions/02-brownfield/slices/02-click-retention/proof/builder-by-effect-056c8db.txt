@@ -1,0 +1,66 @@
+02-click-retention — builder by-effect check on candidate 056c8db (dev2-agent, 2026-10-03 19:04–19:11Z)
+Scope: the builder's own check (happy path + one error path) and the lead's named check for review2's
+timing residual (time to readiness on an upgraded directory). Not the QA proof-contract capture.
+
+== 1. Shipped service writes a data directory (f6dd29e) ==
+Jar: git worktree add --detach <scratchpad>/shipped-f6dd29e f6dd29e; scripts/gw --offline -p <that> bootJar
+Run: java -jar shipped urlshort.jar --server.port=18091 --spring.datasource.url=jdbc:h2:file:<scratchpad>/byeffect-data/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE
+     (NOTE: this run and run 3 omitted --server.address=127.0.0.1; the operator flagged it. Run 4 binds loopback.)
+POST /api/links {"url":"https://example.com/kept"}    -> {"code":"lIKKMx3D",...,"state":"active"}
+POST /api/links {"url":"https://example.com/retired"} -> {"code":"Sz8d3XJc",...}
+GET /lIKKMx3D x3, GET /Sz8d3XJc (Referer https://today.example/x) -> 302 302 302 302
+DELETE /api/links/Sz8d3XJc -> 204
+Stopped (graceful, HikariPool shutdown completed).
+
+== 2. Backdated clicks added while stopped (the shipped writer only stores today) ==
+java -cp h2-2.4.240.jar org.h2.tools.RunScript ... -script backdate.sql  (v1 column list)
+  link lIKKMx3D: 2 on 2026-09-23 (T-10), 2 on 2026-07-05 (T-90), 3 on 2026-07-04 (T-91)
+  link Sz8d3XJc: 3 on 2026-06-05 (T-120)
+Before (RunScript -showResults):
+  flyway_schema_history: 1 create link and audit log TRUE / 2 create click TRUE
+  clicks per day: 2026-06-05 3 | 2026-07-04 3 | 2026-07-05 2 | 2026-09-23 2 | 2026-10-03 4
+  click columns: ID LINK_ID CLICKED_AT CLICKED_ON REFERRER USER_AGENT_CLASS CLIENT_HASH; user_agent_class: TOKEN
+  link: 1 lIKKMx3D active / 2 Sz8d3XJc retired;  audit_log: 1 link.create, 2 link.create, 3 link.retire
+
+== 3. Candidate starts on that directory (default settings: 90 days, purge on) ==
+java -jar .worktrees/02-click-retention/build/libs/urlshort.jar --server.port=18092 --spring.datasource.url=<same>
+Log lines (verbatim, ECS JSON):
+{"@timestamp":"2026-10-03T19:05:11.763839Z",...,"message":"Starting UrlshortApplication v0.1.0 ..."}
+{"@timestamp":"2026-10-03T19:05:12.982863Z",...,"message":"Migrating schema \"PUBLIC\" to version \"3 - add click audit columns\""}
+{"@timestamp":"2026-10-03T19:05:13.015067Z",...,"message":"Successfully applied 1 migration to schema \"PUBLIC\", now at version v3 (execution time 00:00.028s)"}
+{"@timestamp":"2026-10-03T19:05:13.503670Z",...,"message":"Started UrlshortApplication in 1.95 seconds (process running for 2.208)"}
+{"@timestamp":"2026-10-03T19:05:13.541743Z","log":{"level":"INFO","logger":"dev.urlshort.click.ClickPurge"},"process":{"pid":42019,"thread":{}},"service":{"name":"urlshort","version":"0.1.0","node":{}},"message":"clicks purged","deleted":6,"cutoff":"2026-07-05","retentionDays":90,"ecs":{"version":"8.11"}}
+TIME TO READINESS: "Starting" 19:05:11.764 -> V3 applied 19:05:13.015 (28 ms) -> startup purge done 19:05:13.542
+  (~1.8 s after "Starting", ~2.3 s after process start; readiness is reported after the awaited run).
+  Size: 16 clicks, 2 links. This does not measure the 1.3 M-click case (probe M5/L10); it shows only
+  that the sequence migrate -> purge -> ready holds on a real upgraded directory.
+The INFO line carries deleted/cutoff/retentionDays and no requestId, link code, link id or click value.
+GET /actuator/health/readiness -> {"status":"UP"}
+GET /lIKKMx3D -> 302 https://example.com/kept
+GET /api/links/lIKKMx3D/stats ->
+  {"code":"lIKKMx3D","totalClicks":8,"clicksPerDay":[{"date":"2026-07-05","clicks":2},{"date":"2026-09-23","clicks":2},{"date":"2026-10-03","clicks":4}],
+   "topReferrers":[{"referrer":"https://today.example","clicks":3},{"referrer":"https://boundary.example","clicks":2},{"referrer":"https://within.example","clicks":2}]}
+  (T-90 kept, T-91 and T-120 gone; beyond.example, seen only on T-91, absent)
+Stopped.
+After (RunScript -showResults):
+  flyway_schema_history: 1 TRUE / 2 TRUE / 3 add click audit columns TRUE
+  clicks per day: 2026-07-05 2 | 2026-09-23 2 | 2026-10-03 5
+  click: ... CREATED_AT TIMESTAMP WITH TIME ZONE NO CURRENT_TIMESTAMP | UPDATED_AT same | CREATED_BY CHARACTER VARYING NO 'anonymous' | UPDATED_BY same
+  user_agent_class: TOKEN | CREATED_AT, UPDATED_AT TIMESTAMP WITH TIME ZONE NO CURRENT_TIMESTAMP | CREATED_BY, UPDATED_BY CHARACTER VARYING NO 'system'
+  link and audit_log rows: identical to "before"
+  click rows (id, clicked_on, clicked_at, created_at, updated_at, created_by, updated_by):
+    1 2026-10-03 19:04:32.617+00 19:04:32.617+00 19:04:32.617+00 anonymous anonymous   (pre-existing: backfilled from clicked_at)
+    5 2026-09-23 12:00:00+00     12:00:00+00     12:00:00+00     anonymous anonymous
+    7 2026-07-05 12:00:00+00     12:00:00+00     12:00:00+00     anonymous anonymous
+    15 2026-10-03 19:05:24.362+00 12:05:24.369535-07 12:05:24.369535-07 anonymous anonymous  (new, after upgrade: database clock, created_at = updated_at)
+  user_agent_class: bot/browser/other/unknown, created_at = updated_at = 12:05:12.986098-07 (migration time), system system
+
+== 4. Error path: invalid period (AC-4), loopback-bound ==
+java -jar <candidate> --server.address=127.0.0.1 --server.port=18093 --urlshort.click.retention-days=0 --spring.datasource.url=<same>
+-> process exits; grep -c "clicks purged" = 0. The failure-analysis event (verbatim):
+{"@timestamp":"2026-10-03T19:10:41.223153Z","log":{"level":"ERROR","logger":"org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter"},...,"message":"\n\n***************************\nAPPLICATION FAILED TO START\n***************************\n\nDescription:\n\nBinding to target dev.urlshort.click.ClickRetentionProperties failed:\n\n    Property: urlshort.click.retentionDays\n    Value: \"0\"\n    Origin: \"urlshort.click.retention-days\" from property source \"commandLineArgs\"\n    Reason: must be greater than 0\n\n\nAction:\n\nUpdate your application's configuration\n",...}
+No jdbc: URL in that event. Hikari's and Flyway's shipped INFO lines earlier in the same start do print the
+URL (design review DR-02: outside AC-4).
+
+Not verified here: the environment-variable form URLSHORT_CLICK_RETENTIONDAYS (the suite binds the same
+property; probe A4 covered the env origin); a real SIGTERM mid-purge; a large directory.
