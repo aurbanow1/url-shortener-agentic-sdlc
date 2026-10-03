@@ -1,11 +1,15 @@
 # QA continuation
 
-2026-10-03T22:52Z: review2 reports combined review PASS on exact `a8fc8b6`,
-commit `2ead709`, with no findings. Its fresh 346-test gate excluded the
-auxiliary `qaShippedTest.exec` and still achieved 100% merged line/branch
-coverage. This is the reviewer's report; QA started no additional review.
+2026-10-03: proof item 9 accepted on rebased X′
+`a2c34c146c75cfabe24b16ec9e30ad40628dd676`, receipt 11. All ten items are
+accepted with no issues; earlier items retain their original X attribution under
+the lead's custody amendment. Integration/accepted tag must target X′.
 
-QA2's owned queue is empty. Item 9 remains pending an assigned X′ packet under
-lead continuation `qitem-20261003221121-7686465a`: inspect the authorized
-range-diff and fresh gate, then verify audit-read ancestry and the next Flyway
-number. Existing QA judgments concern X; no rebase was made by QA.
+Independent ancestry, migration numbering/bytes and authorized range-diff
+checks passed. The lead's fresh 437-test gate passed; QA independently verified
+canonical merged coverage 555/555 lines and 200/200 branches without the old
+auxiliary replay execution file. No new full QA journey claim was made.
+
+Continuation evidence: missions/02-brownfield/slices/02-click-retention/proof/qa-custody-a2c34c1.md.
+Packet: qitem-20261003225644-1b96a603; supersedes the waiting state recorded at
+22:52Z. Integration packet remains owned by the lead.

@@ -1,0 +1,57 @@
+{
+  "candidate": "a2c34c146c75cfabe24b16ec9e30ad40628dd676",
+  "leadFreshSuiteCounts": {
+    "test": {
+      "tests": 213,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "functionalTest": {
+      "tests": 224,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "qaCanonicalMergeCoverage": {
+    "LINE_COVERED": 555,
+    "LINE_MISSED": 0,
+    "BRANCH_COVERED": 200,
+    "BRANCH_MISSED": 0
+  },
+  "qaExecutionData": [
+    "test.exec",
+    "functionalTest.exec"
+  ],
+  "auxiliaryReplayExcluded": true,
+  "reportCopies": [
+    {
+      "file": "missions/02-brownfield/slices/02-click-retention/proof/qa-custody-a2c34c1-jacocoTestReport.csv",
+      "sha256": "a38d5ea429732b3b3ebb6437f461570f93420ccd2bdf116ac7193c9dcf174d2a"
+    },
+    {
+      "file": "missions/02-brownfield/slices/02-click-retention/proof/qa-custody-a2c34c1-jacocoTestReport.xml",
+      "sha256": "eb75419e341de69f023ab777bb2539f0b3304b128c1dc28912f2bd75bf52e700"
+    }
+  ],
+  "migrationSha256": {
+    "V1__create_link_and_audit_log.sql": {
+      "cb148c4": "7360a5e4a6a7f81a8768c6ba05f1668d8aead0f50c91ec0470c597a39be79908",
+      "a8fc8b6": "7360a5e4a6a7f81a8768c6ba05f1668d8aead0f50c91ec0470c597a39be79908",
+      "a2c34c1": "7360a5e4a6a7f81a8768c6ba05f1668d8aead0f50c91ec0470c597a39be79908"
+    },
+    "V2__create_click.sql": {
+      "cb148c4": "9dc15aff23fc7e1cdac02cf469e2f5cb70bd5ebc003931057b756a0c88c84729",
+      "a8fc8b6": "9dc15aff23fc7e1cdac02cf469e2f5cb70bd5ebc003931057b756a0c88c84729",
+      "a2c34c1": "9dc15aff23fc7e1cdac02cf469e2f5cb70bd5ebc003931057b756a0c88c84729"
+    },
+    "V3__add_click_audit_columns.sql": {
+      "cb148c4": null,
+      "a8fc8b6": "908715401b5c84aa8b4d1525b91a9bd472d2a9ada605a8dbd5651ff1fdfc5fb6",
+      "a2c34c1": "908715401b5c84aa8b4d1525b91a9bd472d2a9ada605a8dbd5651ff1fdfc5fb6"
+    }
+  },
+  "leadGateLog": "docs/evidence/02-brownfield/integrate-02-click-retention-xprime-check-a2c34c1.txt",
+  "qaCoverageLog": "missions/02-brownfield/slices/02-click-retention/proof/qa-custody-coverage-a2c34c1.txt"
+}
