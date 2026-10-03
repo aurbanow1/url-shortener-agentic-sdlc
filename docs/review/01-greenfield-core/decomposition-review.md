@@ -107,3 +107,66 @@ ownership arrangement belongs to the planner.
   bounded required change. No speculative runtime defects asserted.
 - Ledger row appended. All authored changes stay under `docs/review/`.
 - Rework goes to the orchestration lead; mission packet waits on that item.
+
+## Re-review ed7672f50246e32c8a24bb9118482489b014a09b
+
+2026-10-03. Candidate confirmed by the rework item's transition 249 and
+`git rev-parse HEAD`; checkout clean before reviewer evidence edits. Reviewed
+all six changed files in `ed7672f^..ed7672f`, scoped to DC-01 and its fix.
+
+**DC-01: fixed.** `03-operate` now owns M3 for the 429 ProblemDetail response,
+Retry-After header and examples. Both w2 manifests assign ordered custody of
+the generated document; the candidate must include 02 and regenerate before
+QA. QA checks it against that candidate's live API document. This ownership
+survives deferral of 04. Do not reopen the documentation ownership finding.
+
+**Verdict: REWORK — new HIGH DC-02, introduced by the fix.** The new requirement
+to wait for 02's merge conflicts with the retained requirement to obtain both
+proofs before starting w2 merges. This is an execution-order defect, not a
+repeat rejection of DC-01's now-correct ownership.
+
+| Changed file | Verdict |
+|---|---|
+| `docs/evidence/01-greenfield-core/compiled-graph.json` | Pass — fresh compilation and live adopted binding match; executable steps unchanged |
+| `docs/evidence/01-greenfield-core/wave-map.md` | Pass for ordered grant — matches replacement queue row `qitem-20261003041633-b5881594` |
+| `missions/01-greenfield-core/NOTES.md` | DC-01 response accepted; DC-02 — repeats the new wait on 02's merge |
+| `missions/01-greenfield-core/SPEC.md` | DC-01 fixed; DC-02 — both-proof barrier conflicts with implement handoff precondition |
+| `missions/01-greenfield-core/slices/02-analytics/slice.yaml` | Pass — first holder of generated document until merge |
+| `missions/01-greenfield-core/slices/03-operate/slice.yaml` | DC-01 fixed; DC-02 — 03 cannot reach its proof before 02 merges |
+
+| Id | Severity | File:line | Evidence | Required change |
+|---|---|---|---|---|
+| DC-02 | HIGH | `missions/01-greenfield-core/SPEC.md:75` and `:100`; `missions/01-greenfield-core/slices/03-operate/slice.yaml:29` | The w2 sync point still says “waits for both proofs; merges serially”, but 03's implement handoff now requires a candidate descending from 02's merge. QA proof follows implement handoff (`rig/workflows/urlshort-slice.workflow.yaml:112`, `:124`). Thus merge02 waits for proof03, proof03 waits for handoff03, and handoff03 waits for merge02. | Make the admission/merge sequence unambiguous and acyclic. The small fix is to allow 02's reviewed/proven candidate to merge without waiting for 03's proof, then let 03 rebase/regenerate and complete QA/reviews; retain fan-in of both accepted slices before w3. Align the mission table, shaping rule, manifest/queue continuation and any applicable integration wording; an alternative acyclic schedule is acceptable. |
+
+Documentary reproduction from the candidate's explicit preconditions:
+
+| State: 02 has its proof, neither slice merged, 03's other code ready | Can proceed? |
+|---|---|
+| Merge 02 | No — SPEC:75 requires proof03 first |
+| Hand off 03 implementation | No — SPEC:100 and 03 manifest:29 require merge02 first |
+| Obtain 03 QA proof | No — no eligible implement handoff/candidate |
+
+The plan therefore needs an explicit exception to its both-proof-before-merge
+barrier. No child workflow was launched to manufacture a live stall; this
+finding is a direct trace of authored prerequisites. The compiler's empty
+unknowns do not detect this cycle: the new wait is prose inside a manifest,
+not an executable dependency edge.
+
+Verification: fresh compile digest
+`321c37d85f2bef8ebcd5e8a89648b3c11a049a372ee9ad04a581001e6998b527`, saved source
+hashes and workflow specification match; live instance binds
+`1-321c37d85f2bef8e`, reconciliation current/adopted. The replacement wave-map
+queue body equals the committed map. Receipt and cycle trace:
+`proof/decomposition-rereview-ed7672f.json`. The full six-file diff contains no
+product/test/build changes, confirmed separately against the original candidate;
+the baseline gate was not repeated for this documentation-only fix.
+
+### Self-check
+
+- 6/6 changed files read; candidate SHA verified; original settled checks retained.
+- DC-01 resolved explicitly; DC-02 is new evidence introduced by the fix, with
+  exact locations and an observable no-progress state in the plan.
+- Fresh graph/binding/wave-map checks completed; no runtime execution claimed.
+- No new lower-severity findings. One open HIGH; ledger row appended.
+- Reviewer edits remain under `docs/review/`; rework is routed to the planner,
+  and the current review packet waits on that durable item.

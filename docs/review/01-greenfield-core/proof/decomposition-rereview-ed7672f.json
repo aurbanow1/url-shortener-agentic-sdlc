@@ -1,0 +1,15 @@
+{
+  "candidate": "ed7672f50246e32c8a24bb9118482489b014a09b",
+  "compiledInputDigest": "321c37d85f2bef8ebcd5e8a89648b3c11a049a372ee9ad04a581001e6998b527",
+  "unknowns": [],
+  "savedGraphMatchesFresh": true,
+  "instanceBindingMatches": true,
+  "reconciliation": "current",
+  "waveMapQitem": "qitem-20261003041633-b5881594",
+  "documentaryCycle": {
+    "merge02WaitsFor": "proof03 (mission SPEC:75)",
+    "proof03WaitsFor": "implement03 handoff (slice workflow:112-131)",
+    "implement03HandoffWaitsFor": "merge02 (03-operate/slice.yaml:30-35)"
+  },
+  "runtimeWorkflowReproduction": "Not run; contradictory plan preconditions traced directly from the candidate documents."
+}
