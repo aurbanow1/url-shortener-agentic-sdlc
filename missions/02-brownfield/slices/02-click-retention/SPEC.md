@@ -33,7 +33,8 @@ with the 90-day default as an operator setting".
 |---|---|---|
 | NFR-P2 | click retention 90 days, then deleted, enforced by a job, not by hope | AC-1, AC-2, AC-3, AC-4, AC-7, AC-8, AC-9, AC-15 |
 | FR-13 | existing links, redirects, statistics and audit keep working unchanged across the change, migration included | AC-5, AC-6, AC-11, AC-13, AC-14 |
-| NFR-X2 | a versioned migration with a written rollback, if this slice adds one | AC-13; *Non-functional* |
+| NFR-X2 | a versioned migration with a written rollback | AC-13, AC-16; *Non-functional* |
+| Audit-column policy (human decision 2026-10-03, A-10; `docs/guidance/databases.md` §2) | every table carries `created_at`/`updated_at`, and `created_by`/`updated_by` where an actor exists; an existing table gets them in the next migration that touches it | AC-13, AC-16 |
 | FR-15 (in passing, wave review W2-05) | a click-reduction failure reports its own reason | AC-12 |
 | NFR-O1, O2 (inherited) | structured logs, request id on request events, no client values | AC-9, AC-10, AC-12 |
 | NFR-M1, M2 (cross-cutting) | coverage gate; ADR before dependent code | proof contract; *Non-functional* |
@@ -142,12 +143,17 @@ Stored click rows are inspected by the suite, as in `02-analytics`.
 - **AC-13 — An existing data directory upgrades in place.** [FR-13, NFR-X2]
   GIVEN a data directory written by the shipped service at `f6dd29e` holding links, clicks within and beyond the period, and audit rows
   WHEN the candidate starts on that directory
-  THEN migrations apply without error; every link, every audit row and every click within the period is present and unchanged; and only clicks beyond the period are deleted (by the startup purge of AC-7).
+  THEN migrations apply without error; every link and every audit row is present and unchanged; every click within the period and every user-agent class is present with its shipped columns unchanged and its four audit columns filled (AC-16); and only clicks beyond the period are deleted (by the startup purge of AC-7).
 
 - **AC-14 — The shipped behaviour still passes.** [FR-13]
   GIVEN the functional suite as it stood at `f6dd29e`
   WHEN it runs against the candidate
-  THEN every test passes unchanged. If a test must change because it stores clicks older than 90 days on the suite clock, the impact analysis names it and the reason, and nothing else about it changes. The functional profile overlay gains one line that pauses the purge for the shared test contexts (rule 3, design review DR-01; granted by the lead in `slice.yaml` at `cec7032`), and the purge journeys turn it back on in their own contexts. A run's event carries no request id (rule 6), and shipped journeys require every line in their capture window to carry one. The impact analysis records the line. No test source changes for it.
+  THEN every test passes unchanged. If a test must change because it stores clicks older than 90 days on the suite clock, the impact analysis names it and the reason, and nothing else about it changes. The functional profile overlay gains one line that pauses the purge for the shared test contexts (rule 3, design review DR-01; granted by the lead in `slice.yaml` at `cec7032`), and the purge journeys turn it back on in their own contexts. A run's event carries no request id (rule 6), and shipped journeys require every line in their capture window to carry one. The impact analysis records the line. No test source changes for it. The new audit columns (AC-16) need no test change either: shipped tests that insert click rows with their v1 column list keep working.
+
+- **AC-16 — The click tables carry audit columns.** [NFR-X2, audit-column policy]
+  GIVEN the candidate's migrations applied to an empty database, and separately to the `f6dd29e` data directory of AC-13
+  WHEN the suite reads the database schema and the stored rows
+  THEN tables `click` and `user_agent_class` each have `created_at` and `updated_at` (timestamp with time zone, not null) and `created_by` and `updated_by` (not null); every pre-existing row has all four filled, with `updated_at` equal to `created_at`; a click recorded by a redirect after the upgrade has `created_at` = `updated_at` (the row's write time; `clicked_at` keeps the click's time on the service clock), and `created_by` = `updated_by` = `anonymous`; every user-agent class row has `created_by` = `updated_by` = `system`; no audit column holds a client hash, address, user agent, referrer or request id; and every column and constraint of the v1 tables is unchanged (expand only, no column dropped, renamed or retyped).
 
 ### Business rules
 
@@ -162,11 +168,12 @@ Stored click rows are inspected by the suite, as in `02-analytics`.
 ### Non-functional
 
 - **NFR-P2.** 90 days by default, an operator setting, enforced by a scheduled job with a run at startup. The purge runs by default; pausing it is loud. Proven by AC-1 to AC-4, AC-7 to AC-10 and AC-15.
-- **NFR-X2 (if a migration is added).** The purge deletes by the stored click day. If the design adds an index for it, that is a new versioned migration with the next free Flyway number after `01-audit-read`'s (ordered custody, mission SPEC), and it has a written rollback in its header, as V1 and V2 do. Proven by AC-13 and the review.
+- **NFR-X2.** This slice adds one expand migration with the next free Flyway number after `01-audit-read`'s (ordered custody, mission SPEC). It gives `click` and `user_agent_class` the audit columns (AC-16), and an index for the purge if the design needs one. It only adds. Its header carries a written rollback, as V1 and V2 do, that removes only what it added. Proven by AC-13, AC-16 and the review.
+- **Audit-column policy (human decision, A-10).** `created_at` and `updated_at` say when the row was written; `clicked_at` stays the time of the click. Click rows are insert-only and the purge deletes them, so `updated_at` equals `created_at` for their whole life. The actor for a click row is the unauthenticated Visitor (`anonymous`), and for seeded reference rows it is `system` (A-11). How pre-existing rows are backfilled is the design's, recorded in the migration header.
 - **Lock behaviour.** A purge over many rows must not stall redirects or click writes beyond what AC-11 tolerates. How it bounds that (for example by deleting in batches) is the design's and is recorded in an ADR (NFR-M2).
-- **ADR before dependent code (NFR-M2).** The purge schedule and mechanism (time, startup run, no overlap, batching if any, failure handling); the retention setting; the index, if added.
+- **ADR before dependent code (NFR-M2).** The purge schedule and mechanism (time, startup run, no overlap, batching if any, failure handling); the retention setting; the audit-column migration and its backfill; the index, if added.
 - **Coverage gate (NFR-M1).** `scripts/gw check` with 100 % line and branch coverage on merged unit and functional data; honest gaps in `docs/qa/GAPS.md`.
-- **Territory.** `click/` (main, unit, functional), `db/migration/` only for an index, and `application.properties` for the retention and purge-pause settings (second holder after `01-audit-read` merges). The functional profile overlay, one line (AC-14), by the lead's test-side grant (`cec7032`). Not `link/`, `audit/`, `web/` or `docs/api/openapi.json`: no endpoint changes.
+- **Territory.** `click/` (main, unit, functional), `db/migration/` for the one expand migration (AC-16, and an index if needed), and `application.properties` for the retention and purge-pause settings (second holder after `01-audit-read` merges). The functional profile overlay, one line (AC-14), by the lead's test-side grant (`cec7032`). Not `link/`, `audit/`, `web/` or `docs/api/openapi.json`: no endpoint changes.
 
 ### Scope
 
@@ -174,7 +181,7 @@ Stored click rows are inspected by the suite, as in `02-analytics`.
 
 - The scheduled purge of click rows older than the retention period, with its startup run, log events and failure handling.
 - The retention-period operator setting with default 90 and startup validation.
-- An index migration for the purge, if the design needs one.
+- One expand migration adding the audit columns to `click` and `user_agent_class` (AC-16), with an index for the purge if the design needs one.
 - The distinct `click lost` reason for reduction failures (W2-05).
 - Unit and functional tests, coverage, traceability, gaps, and the proof artifacts below.
 
@@ -183,6 +190,7 @@ Stored click rows are inspected by the suite, as in `02-analytics`.
 - Aggregating old clicks into per-day counts or keeping any form of purged data. This is mission 03's question Q4 option C, parked on the human (packet `qitem-20261003154347-19e96a75`), and see *Dependencies*.
 - Any change to the statistics endpoint, its fields or the API document.
 - Purging or retaining anything other than clicks: links, audit rows, idempotency bindings.
+- Audit columns on `link` and `audit_log`: a separate mission-02 slice the orchestration lead is creating (A-10). Until it merges, the gap is a `docs/qa/GAPS.md` entry, which is the lead's to route.
 - An HTTP endpoint or operator command to run the purge on demand.
 - A purge metric (NFR-O3 is not allocated to this slice); the log event is the record.
 - Data-subject deletion requests (`docs/REQUIREMENTS.md` §4).
@@ -202,6 +210,8 @@ Stored click rows are inspected by the suite, as in `02-analytics`.
 | A-8 | Does mission 03's open retention question block this slice? | wait for its answer; build the decided delete | **decided** build the decided delete. The human approved this mission's purge with the 90-day default at 15:40Z. Mission 03's park offers keeping it as the recommended default. If the answer there is to aggregate (Q4 C), the lead adds that as mission-03 work, and this slice's period setting and day-based deletion stay usable underneath it. |
 
 | A-9 | May the Operator pause the purge? Design review DR-01 needs it paused in the shared test contexts, and the lead asked for an operational reason (incident investigation, legal hold). | no pause, so shipped tests change; turn off the daily run only; pause all deletion, default on | **assumed** pause all deletion, with the purge running by default and a `WARN` at every start while paused (rule 3, AC-15). Safe: the shipped default keeps NFR-P2's job. The pause gives the Operator no new power over retention, because the period setting the human granted can already keep clicks as long as the Operator wants. It is never silent, and it keeps AC-14's shipped tests unchanged. The human sees it at ship sign-off and can reverse it there. |
+| A-10 | Do the click tables get the audit columns now? | defer to a later slice; add them here | **decided** by the human, relayed by the operator (`qitem-20261003175330-fb054f2f`, 2026-10-03), and routed here by the orchestration lead: every table carries `created_at`/`updated_at` plus `created_by`/`updated_by` where an actor exists; an existing table gets them through an expand migration with a written rollback in the slice that next touches it. For `click` and `user_agent_class` that is this slice (AC-16). `link` and `audit_log` go to a separate slice. |
+| A-11 | Who is the actor for click and user-agent class rows? | no `created_by`/`updated_by` (no actor); `anonymous` for clicks and `system` for seeded rows; a client-derived identity | **assumed** `anonymous` for click rows (the Visitor is unauthenticated, NFR-S6) and `system` for the seeded user-agent classes, the two principals the policy names. Safe: static tokens that hold no client identity (NFR-P1), and the columns exist either way. A client-derived value is ruled out because it would defeat the reduction. |
 
 No question is parked on `human@kernel`. The purge, its default and the
 setting are the human's recorded decision. Every other row is a narrow,
@@ -209,13 +219,14 @@ reversible default.
 
 ## Proof contract
 
-- [ ] AC-1 through AC-15 are each covered by a named test (functional, or unit where noted by the design) and are green on the candidate SHA with `scripts/gw check`.
+- [ ] AC-1 through AC-16 are each covered by a named test (functional, or unit where noted by the design) and are green on the candidate SHA with `scripts/gw check`.
 - [ ] `scripts/gw check` reports 100 % line and 100 % branch coverage on the merged unit and functional data (NFR-M1).
 - [ ] Unit and functional JaCoCo reports committed under `docs/qa/coverage/02-click-retention/unit/` and `docs/qa/coverage/02-click-retention/functional/`.
-- [ ] `docs/qa/TRACEABILITY.md` holds a table for `02-click-retention` mapping AC-1 to AC-15 and rules 1 to 7 to their tests, with the requirement id beside each AC.
+- [ ] `docs/qa/TRACEABILITY.md` holds a table for `02-click-retention` mapping AC-1 to AC-16 and rules 1 to 7 to their tests, with the requirement id beside each AC.
 - [ ] `docs/qa/GAPS.md` holds a row for `02-click-retention` ("None for this slice" or each honest gap with its compensating check).
 - [ ] `proof/` holds a by-effect capture from the running service started on a data directory that holds clicks beyond the period: click row counts per UTC day before start and after the startup purge, and the run's `INFO` log line (count, cutoff, period, no click values). This is a by-effect check of AC-7, AC-9 and AC-13 on the real service. The boundary (AC-1 to AC-3) and the daily schedule (AC-8) are proven by the suite-clock tests.
-- [ ] If a migration is added, its header carries a written rollback, and the review records that the rollback was read (NFR-X2).
+- [ ] The expand migration's header carries a written rollback that removes only what it added, and the review records that the rollback was read (NFR-X2).
+- [ ] `proof/` holds a by-effect schema capture from the upgraded `f6dd29e` data directory: the columns of `click` and `user_agent_class` with type and nullability, and a sample of pre-existing and new rows' audit columns (AC-16, by effect).
 - [ ] The candidate descends from `01-audit-read`'s merge commit (`git merge-base --is-ancestor`), and its Flyway number is the next after `01-audit-read`'s (ordered custody).
 - [ ] The ADRs named under *Non-functional* exist and are indexed in `docs/DESIGN.md` §7 before the commits that depend on them (NFR-M2).
 
@@ -240,6 +251,7 @@ N/A: non-visual slice.
 
 - 2026-10-03: AC-4 and rule 1 clarified during design (see *Review response*, D-AC4).
 - 2026-10-03: design review FAIL (DR-01 HIGH, DR-02 MEDIUM, `docs/review/02-click-retention/design-review.md`). The requirements side is answered in *Review response*. Rule 3 now lets an Operator pause the purge through a documented setting, with a `WARN` at every start. The purge runs by default. New AC-15, new A-9, AC-14 names the one granted overlay line, and AC-4 is scoped to the failure report. Now 15 acceptance criteria and 9 ambiguity rows (6 assumed, 3 decided, none parked).
+- 2026-10-03: the human's audit-column decision (`qitem-20261003175330-fb054f2f`, routed by the orchestration lead) added AC-16. It is an expand migration giving `click` and `user_agent_class` `created_at`/`updated_at`/`created_by`/`updated_by`, observable from the schema and stored rows. AC-13, NFR-X2, scope, territory and the proof contract now carry it. `link` and `audit_log` are out of scope (a separate slice). Now 16 acceptance criteria and 11 ambiguity rows (7 assumed, 4 decided, none parked).
 
 ## Review response
 
@@ -262,10 +274,11 @@ N/A: non-visual slice.
 - Error paths are ACs: invalid setting (AC-4), failed run (AC-10), reduction failure (AC-12), redirect during purge (AC-11). Privacy: no click values in the purge's log events (AC-9, AC-10).
 - Business rules cover the non-obvious logic: the boundary day, when runs happen, startup validation, what is and is not touched, statistics after a purge, no audit row, and the log content.
 - Out of scope is explicit, including aggregation, which is pointed to the parked mission-03 question.
-- Every allocated id has coverage: NFR-P2, FR-13, NFR-X2 (conditional), FR-15 in passing, O1/O2 inherited, M1/M2 in the proof contract.
+- Every allocated id has coverage: NFR-P2, FR-13, NFR-X2 (AC-13, AC-16), the audit-column policy (AC-16), FR-15 in passing, O1/O2 inherited, M1/M2 in the proof contract.
 - Every ambiguity is resolved: 5 assumed with reasons, 3 decided, none parked, none widened.
 - No design leaked beyond shipped facts. The table, column and migration names appear only where they cite shipped artifacts. The schedule time, batching and setting name are the design's.
 - Consistent with the human's recorded decisions: delete, 90 days, an operator setting (15:40Z); the mission-03 coupling is stated, not pre-empted.
 - `plan-review` lenses applied by the author while drafting (the skill was not invoked separately for this slice): the engineering lens added AC-7 (startup run, so a service down at the scheduled time still purges), AC-11 (redirect during a purge) and the dedicated-peer note. Strategy lens kept aggregation out (the human's open question). UX lens: the Analyst sees `200` with empty arrays for a fully purged link (AC-6), not `404`. No executive summary.
 - DR-01/DR-02 amendment: AC-15 is observable by a startup log event and stored click rows on the suite clock. A-9 is safe because the purge runs by default, the pause is loud at every start, and the period setting already bounds the Operator's power. AC-14 still forbids test source changes; only one overlay line is named, granted at `cec7032`. AC-4 now asserts on the failure report only. Counts updated in the coverage table, *Non-functional*, the proof contract and the status. Not verified by me: the full-pause behaviour. Probe A8off measured the earlier daily-only variant, so the full pause (no startup deletion) is the design's and the tests' to prove.
+- Audit-column amendment (A-10, A-11): AC-16 is observable from the schema and stored rows, and its privacy clause bans client values from the new columns. AC-13's "unchanged" now applies to the shipped columns, because pre-existing rows gain filled audit columns. NFR-X2 is no longer conditional. Checked on `main`: `ClickStore` and the unit `ClickSchemaTest` insert into `click` with the v1 column list, and no shipped test asserts the exact column set. So the new NOT NULL columns must be filled without those inserts naming them, or AC-14 breaks. How is the design's. The column names are the human's policy, not design leakage. Not verified by me: the backfill values for pre-existing rows (the design's, recorded in the migration header).
 - Not verified by me: whether the scheduler can follow the suite clock (AC-8). The design either makes it do so or records the gap with the trigger-based test as the compensating check.
