@@ -158,7 +158,7 @@ Context and observations that help the mission but do not change its
   `35590f06c852543c29097a42c43b7802be90ba40`, clean product worktree.
   Independent offline gate: 200 unit / 200 functional, all green, merged CSV
   492/492 lines and 190/190 branches. Reports copied and all 348 hashes verified.
-  267 curl captures, 272 correlated request log events, real JDBC held write
+  271 curl captures, 276 correlated request log events, real JDBC held write
   and read failure, actual shipped-to-candidate jar upgrade on one directory.
   All 21 ACs observed within their SPEC scope; AC-17 has exactly the accepted
   two enumeration failures in the unchanged original 155-test replay, with

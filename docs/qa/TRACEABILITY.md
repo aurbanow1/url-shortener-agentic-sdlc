@@ -868,7 +868,7 @@ Independent QA 2026-10-03: fresh offline gate, 200 unit / 200 functional invocat
 
 AC-17 additionally replays the unmodified f6dd29e functional sources: 155 invocations, 153 pass, exactly the two OpenApiDocumentTest enumeration assertions fail. Their candidate versions pass. Lead grant qitem-20261003182833-40a842ff transition1156, commit428e9e1, explicitly permits only those additions. This qualified result is not a claim that all 155 original assertions are green. Every inherited functional row below is also part of this replay (apart from the two named enumeration failures). AC-18 has AuditUpgradeJourneyTest and independent installed shipped/candidate jar captures, named qa-upgrade-before/after.json and qa-http/upgrade-*.
 
-By-effect evidence is independent of the builder: 267 HTTP captures, 272 correlated request log events, read-only snapshots and exact stored-row comparisons; qa-verification-35590f0.json records 1,621 reconciliation assertions. AC-11..14 use controlled per-request Servlet peers as SPEC authorizes, plus real Tomcat for forwarded-header overrides; they do not establish an actual remote TCP-client boundary. See PROOF.md QA and GAPS.md for the scope.
+By-effect evidence is independent of the builder: 271 HTTP captures, 276 correlated request log events, read-only snapshots and exact stored-row comparisons; qa-verification-35590f0.json records 1,641 reconciliation assertions. AC-11..14 use controlled per-request Servlet peers as SPEC authorizes, plus real Tomcat for forwarded-header overrides; they do not establish an actual remote TCP-client boundary. See PROOF.md QA and GAPS.md for the scope.
 
 | AC / business rule; product requirement | Test class#method | Suite | Result |
 |---|---|---|---|

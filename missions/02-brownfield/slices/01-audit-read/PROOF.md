@@ -141,6 +141,11 @@ original curl bytes are archived in `qa-http-raw-35590f0.tar.gz`, with SHA-256
 manifest; displayed header files only have CRLF/trailing blank normalization.
 HEAD captures use curl's HEAD mode and contain headers alone, never JSON.
 
+The installed jar's `qa-exact-exchange-35590f0.json` captures two pages via
+next and repeats each identical page URI with a forwarding header: both
+repeats return403. Their four request IDs correlate with JSON events in the
+candidate-upgrade log; the final app was stopped and its port refused.
+
 | AC | Effect independently observed | Evidence |
 |---|---|---|
 | 1 | Empty store: 200, exactly items=[] and next=null | fixed-ac01-empty |
@@ -157,7 +162,7 @@ HEAD captures use curl's HEAD mode and contain headers alone, never JSON.
 | 12 | Controlled127.0.0.1/.2, ::1 and ::ffff:127.0.0.1 all200 | ac12-* |
 | 13 | All required forwarding cases refused under default and trusted-loopback settings; empty/case-varied headers also refuse; guard precedes invalid query and HTML Accept | ac13-*; settings-* |
 | 14 | Nondefault base URL, raised budgets, trusted loopback plus remote peer:plain local200, remote/forged GET/HEAD403. Native/framework strategy overrides also403 on real Tomcat | settings-*, native-*, framework-* |
-| 15 | All267 captures have server-issued X-Request-Id; all272 JSON request events reconcile to headers and completion status, including200/400/403/405/429/500 | qa-request-log-lines-35590f0.json; qa-verification-35590f0.json |
+| 15 | All271 captures have server-issued X-Request-Id; all276 JSON request events reconcile to headers and completion status, including200/400/403/405/429/500 | qa-request-log-lines-35590f0.json; qa-verification-35590f0.json |
 | 16 | Target/query, stored payload, cursor, User-Agent, peer, forwarding and induced-SQL-message canaries absent from whole-run JSON logs; target remains in allowed audit response | qa-verify-35590f0.py; qa-*.jsonl |
 | 17 | Original155-test replay has153passes plus exactly the two expressly granted enumeration failures; old live OpenAPI operations, parameters, responses and examples unchanged | qa-shipped-*; qa-api-diff-35590f0.txt |
 | 18 | Actual shipped jar creates active/retired links, three clicks and three mutation rows; stop; candidate jar uses identical H2 directory. All stored link/audit columns preserved, full statistics2/1 unchanged before verification, active302 exact Location, retired410; HEAD no click, verificationGET adds only fourth click | qa-upgrade-before/after.json; qa-http/upgrade-*; qa-artifact-provenance-35590f0.json |
@@ -216,8 +221,8 @@ the current slice ledger is independently reconciled, not assumed complete.
   rules1–9, with FR/NFR ids and explicit AC20/21 induction mechanisms.
 - GAPS entry records per-suite misses, accepted AC17 enumeration scope,
   controlled-peer/JDBC limits and downstream item12; no merged shortfall.
-- Reconciled all267 raw HTTP captures with272 request events and whole-run
-  privacy canaries; 1,621 durable verification assertions passed.
+- Reconciled all271 raw HTTP captures with276 request events and whole-run
+  privacy canaries; 1,641 durable verification assertions passed.
 - Proof drop names items1–11 and13. Item12 remains unjudged under the durable
   sequencing obligation, not counted as this step's security-review proof.
 - All QA apps stopped gracefully; localhost ports18131/18132/18133 refused

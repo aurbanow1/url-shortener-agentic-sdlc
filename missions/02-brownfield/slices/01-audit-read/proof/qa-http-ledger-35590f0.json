@@ -19186,5 +19186,143 @@
       "content-length": "101",
       "date": "Sat, 03 Oct 2026 19:25:52 GMT"
     }
+  },
+  {
+    "name": "exact-exchange-page1",
+    "method": "GET",
+    "url": "http://127.0.0.1:18133/api/audit?limit=2",
+    "peer": "actual localhost",
+    "headersSent": [],
+    "before": "2026-10-03T19:52:18.621Z",
+    "after": "2026-10-03T19:52:18.780Z",
+    "status": 200,
+    "headers": "HTTP/1.1 200 \nX-Request-Id: b307cf87-1892-4838-ad5c-1e0bee121428\nContent-Type: application/json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 19:52:18 GMT\n\n",
+    "body": "{\"items\":[{\"occurredAt\":\"2026-10-03T19:32:32.870Z\",\"actor\":\"anonymous\",\"action\":\"link.retire\",\"entity\":\"link\",\"entityId\":\"gkwN9rD4\",\"requestId\":\"929fab45-e5ba-467c-a859-f7479a331138\",\"before\":{\"url\":\"https://example.org/qa-upgrade-retired\",\"state\":\"active\"},\"after\":{\"url\":\"https://example.org/qa-upgrade-retired\",\"state\":\"retired\"}},{\"occurredAt\":\"2026-10-03T19:32:31.907Z\",\"actor\":\"anonymous\",\"action\":\"link.create\",\"entity\":\"link\",\"entityId\":\"gkwN9rD4\",\"requestId\":\"3e54f9dc-daa9-4ea1-9da7-2a5a6c20e23b\",\"before\":null,\"after\":{\"url\":\"https://example.org/qa-upgrade-retired\",\"state\":\"active\"}}],\"next\":\"Mg\"}",
+    "json": {
+      "items": [
+        {
+          "occurredAt": "2026-10-03T19:32:32.870Z",
+          "actor": "anonymous",
+          "action": "link.retire",
+          "entity": "link",
+          "entityId": "gkwN9rD4",
+          "requestId": "929fab45-e5ba-467c-a859-f7479a331138",
+          "before": {
+            "url": "https://example.org/qa-upgrade-retired",
+            "state": "active"
+          },
+          "after": {
+            "url": "https://example.org/qa-upgrade-retired",
+            "state": "retired"
+          }
+        },
+        {
+          "occurredAt": "2026-10-03T19:32:31.907Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "gkwN9rD4",
+          "requestId": "3e54f9dc-daa9-4ea1-9da7-2a5a6c20e23b",
+          "before": null,
+          "after": {
+            "url": "https://example.org/qa-upgrade-retired",
+            "state": "active"
+          }
+        }
+      ],
+      "next": "Mg"
+    },
+    "headerMap": {
+      "x-request-id": "b307cf87-1892-4838-ad5c-1e0bee121428",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 19:52:18 GMT"
+    }
+  },
+  {
+    "name": "exact-exchange-page2",
+    "method": "GET",
+    "url": "http://127.0.0.1:18133/api/audit?limit=2&cursor=Mg",
+    "peer": "actual localhost",
+    "headersSent": [],
+    "before": "2026-10-03T19:52:18.898Z",
+    "after": "2026-10-03T19:52:18.962Z",
+    "status": 200,
+    "headers": "HTTP/1.1 200 \nX-Request-Id: 7435bb9b-752f-4ccf-9e57-c1fd95e6c44f\nContent-Type: application/json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 19:52:18 GMT\n\n",
+    "body": "{\"items\":[{\"occurredAt\":\"2026-10-03T19:32:31.733Z\",\"actor\":\"anonymous\",\"action\":\"link.create\",\"entity\":\"link\",\"entityId\":\"FYTnzYej\",\"requestId\":\"8ae9ec06-9419-4353-8951-a66a6f2e05f6\",\"before\":null,\"after\":{\"url\":\"https://example.org/qa-upgrade-active?canary=QA-UPGRADE-URL-CANARY\",\"state\":\"active\"}}],\"next\":null}",
+    "json": {
+      "items": [
+        {
+          "occurredAt": "2026-10-03T19:32:31.733Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "FYTnzYej",
+          "requestId": "8ae9ec06-9419-4353-8951-a66a6f2e05f6",
+          "before": null,
+          "after": {
+            "url": "https://example.org/qa-upgrade-active?canary=QA-UPGRADE-URL-CANARY",
+            "state": "active"
+          }
+        }
+      ],
+      "next": null
+    },
+    "headerMap": {
+      "x-request-id": "7435bb9b-752f-4ccf-9e57-c1fd95e6c44f",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 19:52:18 GMT"
+    }
+  },
+  {
+    "name": "exact-exchange-refused-page1",
+    "method": "GET",
+    "url": "http://127.0.0.1:18133/api/audit?limit=2",
+    "peer": "actual localhost",
+    "headersSent": [
+      "X-Forwarded-For: 198.51.100.9"
+    ],
+    "before": "2026-10-03T19:52:19.054Z",
+    "after": "2026-10-03T19:52:19.136Z",
+    "status": 403,
+    "headers": "HTTP/1.1 403 \nX-Request-Id: 6d931737-67d4-48ac-b75d-ee52a9c1fce3\nContent-Type: application/problem+json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 19:52:19 GMT\n\n",
+    "body": "{\"instance\":\"urn:uuid:6d931737-67d4-48ac-b75d-ee52a9c1fce3\",\"status\":403,\"title\":\"Forbidden\"}",
+    "json": {
+      "instance": "urn:uuid:6d931737-67d4-48ac-b75d-ee52a9c1fce3",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "headerMap": {
+      "x-request-id": "6d931737-67d4-48ac-b75d-ee52a9c1fce3",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 19:52:19 GMT"
+    }
+  },
+  {
+    "name": "exact-exchange-refused-page2",
+    "method": "GET",
+    "url": "http://127.0.0.1:18133/api/audit?limit=2&cursor=Mg",
+    "peer": "actual localhost",
+    "headersSent": [
+      "Forwarded: for=198.51.100.9"
+    ],
+    "before": "2026-10-03T19:52:19.313Z",
+    "after": "2026-10-03T19:52:19.415Z",
+    "status": 403,
+    "headers": "HTTP/1.1 403 \nX-Request-Id: d72c1c18-d93c-4445-b010-1b1058b2fe6e\nContent-Type: application/problem+json\nTransfer-Encoding: chunked\nDate: Sat, 03 Oct 2026 19:52:19 GMT\n\n",
+    "body": "{\"instance\":\"urn:uuid:d72c1c18-d93c-4445-b010-1b1058b2fe6e\",\"status\":403,\"title\":\"Forbidden\"}",
+    "json": {
+      "instance": "urn:uuid:d72c1c18-d93c-4445-b010-1b1058b2fe6e",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "headerMap": {
+      "x-request-id": "d72c1c18-d93c-4445-b010-1b1058b2fe6e",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 19:52:19 GMT"
+    }
   }
 ]
