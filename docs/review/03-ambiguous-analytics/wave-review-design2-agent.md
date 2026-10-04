@@ -142,6 +142,16 @@ a sentence, the row says so; those edits are `design-agent`'s, and I made none.
 | Background work | **Consistent.** No new job. The writer's drain, interrupt and claim are unchanged; the two shutdown reasons are now counted |
 | Operator settings | **Drift, one new and one carried.** No new setting, but `urlshort.rate-limit.trusted-proxies` gained an effect its shipped comment does not state (M3S-02). The row's carried drift (`URLSHORT_CLICK_PURGEENABLED` missing from `README.md`, mission 02's W2P-01) is still true. **One sentence to add:** M3S-02 beside W2P-01 under *Drift on `main`* |
 
+**Added after `7c54ef7`.** `design-agent` added both sentences in `41eff65`, and I checked its
+diff:
+- the *Client identity* rule now says that a change that lets a redirect skip `RateLimitFilter`
+  (a new exempt path, a filter reorder, a second entry point) must still set `CLIENT_ATTRIBUTE`
+  (M3S-03);
+- the *Operator settings* drift names `trusted-proxies` and its rate-limit-only comment (M3S-02).
+
+The register has no open item from this walk. M3S-01 and M3S-02 remain code and comment repairs
+for the lead's backlog.
+
 ## Not verified by this vantage
 
 - No build, test or HTTP run of my own on `94aa2c0`. I relied on the integrate gate log (14 of 14
