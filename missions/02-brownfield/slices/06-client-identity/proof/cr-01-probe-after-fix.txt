@@ -1,0 +1,80 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :jar UP-TO-DATE
+> Task :compileFunctionalTestJava
+> Task :processFunctionalTestResources UP-TO-DATE
+> Task :functionalTestClasses
+> Task :compileIdentityPollingProbe
+
+> Task :identityPollingProbe
+{"@timestamp":"2026-10-04T02:57:14.084411Z","log":{"level":"INFO","logger":"dev.urlshort.web.StatsPollingProbe"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Starting StatsPollingProbe using Java 21.0.10 with PID 20268 (/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/06-client-identity/build/review-identity-polling/classes started by andrzej in /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/06-client-identity)","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:14.088619Z","log":{"level":"INFO","logger":"dev.urlshort.web.StatsPollingProbe"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"The following 1 profile is active: \"functional\"","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:14.652543Z","log":{"level":"INFO","logger":"org.springframework.data.repository.config.RepositoryConfigurationDelegate"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Bootstrapping Spring Data JDBC repositories in DEFAULT mode.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:14.675474Z","log":{"level":"INFO","logger":"org.springframework.data.repository.config.RepositoryConfigurationDelegate"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Finished Spring Data repository scanning in 19 ms. Found 1 JDBC repository interface.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:14.905452Z","log":{"level":"INFO","logger":"org.springframework.boot.tomcat.TomcatWebServer"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Tomcat initialized with port 0 (http)","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:14.912900Z","log":{"level":"INFO","logger":"org.apache.catalina.core.StandardService"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Starting service [Tomcat]","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:14.913170Z","log":{"level":"INFO","logger":"org.apache.catalina.core.StandardEngine"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Starting Servlet engine: [Apache Tomcat/11.0.25]","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:14.938364Z","log":{"level":"INFO","logger":"org.springframework.boot.web.context.servlet.WebApplicationContextInitializer"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Root WebApplicationContext: initialization completed in 819 ms","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.153990Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Starting...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.229859Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.pool.HikariPool"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:review-stats-poll user=SA","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.230849Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Start completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.236365Z","log":{"level":"INFO","logger":"org.flywaydb.core.FlywayExecutor"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Database: jdbc:h2:mem:review-stats-poll (H2 2.4)","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.258529Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.271410Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Schema history table \"PUBLIC\".\"flyway_schema_history\" does not exist yet","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.272635Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbValidate"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Successfully validated 4 migrations (execution time 00:00.006s)","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.275982Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Creating Schema History table \"PUBLIC\".\"flyway_schema_history\" ...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.292767Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Current version of schema \"PUBLIC\": << Empty Schema >>","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.301596Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Migrating schema \"PUBLIC\" to version \"1 - create link and audit log\"","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.317860Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Migrating schema \"PUBLIC\" to version \"2 - create click\"","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.325122Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Migrating schema \"PUBLIC\" to version \"3 - add click audit columns\"","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.346064Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Migrating schema \"PUBLIC\" to version \"4 - add link audit columns\"","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.358987Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Successfully applied 4 migrations to schema \"PUBLIC\", now at version v4 (execution time 00:00.040s)","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.784911Z","log":{"level":"INFO","logger":"org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Exposing 4 endpoints beneath base path '/actuator'","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.819984Z","log":{"level":"INFO","logger":"org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Spring DispatcherServlet 'dispatcherServlet'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.820261Z","log":{"level":"INFO","logger":"org.springframework.web.servlet.DispatcherServlet"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Servlet 'dispatcherServlet'","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.821347Z","log":{"level":"INFO","logger":"org.springframework.web.servlet.DispatcherServlet"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Completed initialization in 1 ms","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.821778Z","log":{"level":"INFO","logger":"org.springframework.boot.tomcat.TomcatWebServer"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Tomcat started on port 51088 (http) with context path '/'","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.826131Z","log":{"level":"INFO","logger":"dev.urlshort.web.StatsPollingProbe"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Started StatsPollingProbe in 1.959 seconds (process running for 2.162)","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.857490Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.857681Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.858555Z","log":{"level":"WARN","logger":"dev.urlshort.click.ClickPurge"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"click purge paused, no click is deleted","setting":"urlshort.click.purge-enabled","retentionDays":90,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.862742Z","log":{"level":"INFO","logger":"org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Spring TestDispatcherServlet ''","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.862930Z","log":{"level":"INFO","logger":"org.springframework.test.web.servlet.TestDispatcherServlet"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Servlet ''","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.863483Z","log":{"level":"INFO","logger":"org.springframework.test.web.servlet.TestDispatcherServlet"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Completed initialization in 0 ms","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.947643Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"c76dd535-0d1d-447d-a9e5-7015e5454a57","status":201,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.972951Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"3b4e1073-00c0-4df5-95d8-089f4a1b5736","status":302,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.994123Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"4f473879-90fe-42e6-865f-37807462fc48","status":302,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:15.995706Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"439cda64-760c-4144-84a0-1e349b550d30","status":302,"ecs":{"version":"8.11"}}
+Exception in thread "click-writer" java.lang.AssertionError: probe writer deadline
+	at dev.urlshort.web.StatsPollingProbe.lambda$main$1(StatsPollingProbe.java:55)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+{"@timestamp":"2026-10-04T02:57:18.984287Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"59a4581a-d0dc-4d83-8db2-1829c025092f","status":200,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:18.994049Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"4509db51-7f62-431c-944b-386364485668","status":200,"ecs":{"version":"8.11"}}
+PROBE elapsed_ms=3042 stats_requests=2 stats_429=0 helper_failure=none
+POSITIVE_CONTROL status=200 body={"code":"BC2S6QHh","totalClicks":3,"clicksPerDay":[{"date":"2026-10-01","clicks":3,"uniqueVisitors":2,"botClicks":0}],"topReferrers":[]}
+{"@timestamp":"2026-10-04T02:57:18.996947Z","log":{"level":"INFO","logger":"org.springframework.boot.tomcat.GracefulShutdown"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Commencing graceful shutdown. Waiting for active requests to complete","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:19.000551Z","log":{"level":"INFO","logger":"org.springframework.boot.tomcat.GracefulShutdown"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Graceful shutdown complete","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:19.004101Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T02:57:19.005084Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":20268,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-1 - Shutdown completed.","ecs":{"version":"8.11"}}
+Exception in thread "main" java.lang.AssertionError: expected helper to fail on its own exhausted poll budget before writer deadline
+	at dev.urlshort.web.StatsPollingProbe.main(StatsPollingProbe.java:80)
+
+> Task :identityPollingProbe FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':identityPollingProbe' (registered in initialization script '/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/review/06-client-identity/polling-probe.gradle').
+> Process 'command '/opt/homebrew/Cellar/openjdk@21/21.0.10/libexec/openjdk.jdk/Contents/Home/bin/java'' finished with non-zero exit value 1
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 6s
+7 actionable tasks: 3 executed, 4 up-to-date

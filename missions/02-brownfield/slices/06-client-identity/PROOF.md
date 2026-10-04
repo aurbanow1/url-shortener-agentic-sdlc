@@ -127,3 +127,35 @@ verified; full raw HTTP/log/row joins inspected; coverage read from CSV and378 h
 attributions labelled; gap entry written; proof drop names1–15/17; downstream16 explicitly pending;
 all owned apps stopped; worktree remains clean atfb63a88; no product/test authorship. Evidence
 and attributed judgments are committed with explicit pathspecs before the qa_check handoff.
+
+## Builder rework: CR-01 (dev2-agent@urlshort-factory)
+
+**New candidate `e40b095`** = `fb63a88` + one test commit. Code review on `fb63a88`
+(`docs/review/06-client-identity/01-code-review.md`) failed on one HIGH, **CR-01**; security passed.
+
+**CR-01, fixed.** `ClientIdentityCharacterizationJourneyTest.settledStats` polled
+`GET /api/links/{code}/stats`. Under `ShippedBudgets`' frozen 60-per-minute budget, a delayed click
+write let the polls spend the budget, and the helper threw a NullPointerException on a `429` body
+after about 170 ms. Now:
+- it waits, within the same 10 s bound, on the link's stored click rows via `JdbcClient`, which spends
+  no rate-limit budget;
+- it then reads the statistics **once** and asserts `200` before parsing.
+
+Unchanged: the shipped 60/600 limits, the frozen fixed day, every matrix case, and every exact
+day/count/privacy assertion. One file, test only, no production change.
+
+**Proof of the fix:**
+- **Review's own reproduction**, rerun unchanged against the fixed helper
+  (`-I docs/review/06-client-identity/polling-probe.gradle identityPollingProbe`; log
+  [`proof/cr-01-probe-after-fix.txt`](proof/cr-01-probe-after-fix.txt)):
+  `PROBE elapsed_ms=3042 stats_requests=2 stats_429=0 helper_failure=none`.
+  - With the real writer held for the probe's full 3 s fallback, the helper waited it out and passed
+    the full oracle.
+  - The two requests are the helper's single read and the probe's positive control.
+  - The probe was written to expect the old failure, so its closing `AssertionError` ("expected
+    helper to fail …") and `BUILD FAILED` are the signal that the race is gone. Its
+    `probe writer deadline` line is its own held writer timing out, because no `429` came to release
+    it early.
+- **Gate on `e40b095`:** `scripts/gw --offline check --rerun-tasks` gives unit 268, functional 322,
+  0 failures; merged lines 584/584, branches 206/206 (100 %). Log
+  [`proof/check-cr01-fix.txt`](proof/check-cr01-fix.txt).
