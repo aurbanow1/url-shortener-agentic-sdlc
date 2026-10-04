@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.urlshort.link.LinkServiceTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-10-04T01:46:37.714Z" hostname="Andrzejs-MacBook-Pro.local" time="0.007">
+  <properties/>
+  <testcase name="resolveSendsVisitorsToActiveLinksOnly()" classname="dev.urlshort.link.LinkServiceTest" time="0.001"/>
+  <testcase name="createWithAnUnboundKeyBindsIt()" classname="dev.urlshort.link.LinkServiceTest" time="0.001"/>
+  <testcase name="retireUpdatesConditionallyAndAuditsBeforeAndAfter()" classname="dev.urlshort.link.LinkServiceTest" time="0.001"/>
+  <testcase name="retireThatChangesNoRowIs410AndWritesNoAuditRow()" classname="dev.urlshort.link.LinkServiceTest" time="0.001"/>
+  <testcase name="createWithoutAKeyInsertsAndAuditsTheNewLink()" classname="dev.urlshort.link.LinkServiceTest" time="0.001"/>
+  <testcase name="mismatchWithinTheWindowIs422AndKeepsTheBinding()" classname="dev.urlshort.link.LinkServiceTest" time="0.0"/>
+  <testcase name="replayWithinTheWindowReturnsTheBoundLinkAndWritesNothing()" classname="dev.urlshort.link.LinkServiceTest" time="0.0"/>
+  <testcase name="anExpiredKeyIsReleasedAndBindsANewLink()" classname="dev.urlshort.link.LinkServiceTest" time="0.001"/>
+  <testcase name="readOfAnUnknownCodeIs404()" classname="dev.urlshort.link.LinkServiceTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

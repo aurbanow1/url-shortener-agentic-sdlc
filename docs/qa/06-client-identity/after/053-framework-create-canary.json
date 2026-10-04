@@ -1,0 +1,38 @@
+{
+  "name": "framework-create-canary",
+  "app": "framework",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/after/053-framework-create-canary.trace",
+    "-X",
+    "POST",
+    "-H",
+    "Content-Type: application/json",
+    "--data",
+    "{\"url\": \"https://example.com/qa06/client-group\"}",
+    "http://localhost:56831/api/links"
+  ],
+  "method": "POST",
+  "path": "/api/links",
+  "raw": "053-framework-create-canary.http",
+  "status": 201,
+  "headers": {
+    "x-request-id": "0d61e7f8-6614-4fee-a5ac-6f0f29f113fd",
+    "location": "/api/links/9AVZ3LTf",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 01:55:13 GMT"
+  },
+  "json": {
+    "code": "9AVZ3LTf",
+    "shortUrl": "http://localhost:8080/9AVZ3LTf",
+    "url": "https://example.com/qa06/client-group",
+    "state": "active",
+    "createdAt": "2026-10-04T01:55:12.976Z"
+  }
+}

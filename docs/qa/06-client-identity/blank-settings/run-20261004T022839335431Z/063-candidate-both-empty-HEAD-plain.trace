@@ -1,0 +1,25 @@
+== Info: Host localhost:61370 was resolved.
+== Info: IPv6: ::1
+== Info: IPv4: 127.0.0.1
+== Info:   Trying [::1]:61370...
+== Info: connect to ::1 port 61370 from ::1 port 61447 failed: Connection refused
+== Info:   Trying 127.0.0.1:61370...
+== Info: Connected to localhost (127.0.0.1) port 61370
+=> Send header, 88 bytes (0x58)
+0000: HEAD /api/audit HTTP/1.1
+001a: Host: localhost:61370
+0031: User-Agent: curl/8.7.1
+0049: Accept: */*
+0056: 
+== Info: Request completely sent off
+<= Recv header, 15 bytes (0xf)
+0000: HTTP/1.1 200 
+<= Recv header, 52 bytes (0x34)
+0000: X-Request-Id: a6217c07-5513-4f20-b28d-e3cbceb0d13d
+<= Recv header, 32 bytes (0x20)
+0000: Content-Type: application/json
+<= Recv header, 37 bytes (0x25)
+0000: Date: Sun, 04 Oct 2026 02:29:07 GMT
+<= Recv header, 2 bytes (0x2)
+0000: 
+== Info: Connection #0 to host localhost left intact

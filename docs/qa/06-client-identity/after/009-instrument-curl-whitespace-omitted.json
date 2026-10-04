@@ -1,0 +1,46 @@
+{
+  "name": "instrument-curl-whitespace-omitted",
+  "app": "direct",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/after/009-instrument-curl-whitespace-omitted.trace",
+    "-X",
+    "GET",
+    "-H",
+    "X-Forwarded-For:    ",
+    "http://localhost:56352/api/audit"
+  ],
+  "method": "GET",
+  "path": "/api/audit",
+  "raw": "009-instrument-curl-whitespace-omitted.http",
+  "status": 200,
+  "headers": {
+    "x-request-id": "fc9376ad-d8a9-4e88-a690-f6aa556cfb6f",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 01:54:54 GMT"
+  },
+  "json": {
+    "items": [
+      {
+        "occurredAt": "2026-10-04T01:54:54.801Z",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entityId": "OKAMvZaX",
+        "requestId": "ca129edf-d5f5-425b-aa49-4e4865bb48b8",
+        "before": null,
+        "after": {
+          "url": "https://example.com/qa06/client-group",
+          "state": "active"
+        }
+      }
+    ],
+    "next": null
+  }
+}

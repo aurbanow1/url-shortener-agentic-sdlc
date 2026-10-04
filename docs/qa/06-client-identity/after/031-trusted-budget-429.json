@@ -1,0 +1,38 @@
+{
+  "name": "trusted-budget-429",
+  "app": "trusted-budget",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/after/031-trusted-budget-429.trace",
+    "-X",
+    "GET",
+    "-H",
+    "X-Forwarded-For: 203.0.113.7",
+    "-H",
+    "Forwarded: for=203.0.113.88",
+    "-H",
+    "X-Real-IP: 203.0.113.99",
+    "http://localhost:56560/api/links/zzzzzzzz"
+  ],
+  "method": "GET",
+  "path": "/api/links/zzzzzzzz",
+  "raw": "031-trusted-budget-429.http",
+  "status": 429,
+  "headers": {
+    "x-request-id": "e0804904-aa8f-486e-be50-026c753e9fb1",
+    "retry-after": "30",
+    "content-type": "application/problem+json",
+    "content-length": "101",
+    "date": "Sun, 04 Oct 2026 01:55:01 GMT"
+  },
+  "json": {
+    "instance": "urn:uuid:e0804904-aa8f-486e-be50-026c753e9fb1",
+    "status": 429,
+    "title": "Too Many Requests"
+  }
+}

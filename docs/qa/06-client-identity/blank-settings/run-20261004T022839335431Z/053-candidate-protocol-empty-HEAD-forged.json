@@ -1,0 +1,27 @@
+{
+  "name": "candidate-protocol-empty-HEAD-forged",
+  "app": "candidate-protocol-empty",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/blank-settings/run-20261004T022839335431Z/053-candidate-protocol-empty-HEAD-forged.trace",
+    "--head",
+    "-H",
+    "X-Forwarded-For: 127.0.0.2",
+    "http://localhost:61208/api/audit"
+  ],
+  "method": "HEAD",
+  "path": "/api/audit",
+  "raw": "053-candidate-protocol-empty-HEAD-forged.http",
+  "status": 403,
+  "headers": {
+    "x-request-id": "94959d3a-752f-4cd2-93a5-23c05c928108",
+    "content-type": "application/problem+json",
+    "date": "Sun, 04 Oct 2026 02:29:02 GMT"
+  },
+  "json": null
+}

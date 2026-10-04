@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.urlshort.web.RequestIdFilterTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-04T01:46:37.895Z" hostname="Andrzejs-MacBook-Pro.local" time="0.002">
+  <properties/>
+  <testcase name="ignoresInboundRequestIdAndIssuesADifferentIdPerRequest()" classname="dev.urlshort.web.RequestIdFilterTest" time="0.0"/>
+  <testcase name="clearsMdcWhenTheChainThrows()" classname="dev.urlshort.web.RequestIdFilterTest" time="0.0"/>
+  <testcase name="issuesOneIdOnHeaderAndMdcBeforeTheChainRunsAndClearsMdcAfter()" classname="dev.urlshort.web.RequestIdFilterTest" time="0.0"/>
+  <testcase name="writesOneRequestCompletedEventWithTheStatusAndTheIdButNotTheMethod()" classname="dev.urlshort.web.RequestIdFilterTest" time="0.001"/>
+  <system-out><![CDATA[2026-10-03T18:46:37.895-07:00  INFO 45542 --- [    Test worker] dev.urlshort.web.RequestIdFilter         : request completed
+2026-10-03T18:46:37.896-07:00  INFO 45542 --- [    Test worker] dev.urlshort.web.RequestIdFilter         : request completed
+2026-10-03T18:46:37.896-07:00  INFO 45542 --- [    Test worker] dev.urlshort.web.RequestIdFilter         : request completed
+2026-10-03T18:46:37.896-07:00  INFO 45542 --- [    Test worker] dev.urlshort.web.RequestIdFilter         : request completed
+2026-10-03T18:46:37.897-07:00  INFO 45542 --- [    Test worker] dev.urlshort.web.RequestIdFilter         : request completed
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

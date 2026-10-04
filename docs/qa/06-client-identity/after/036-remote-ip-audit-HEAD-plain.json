@@ -1,0 +1,25 @@
+{
+  "name": "remote-ip-audit-HEAD-plain",
+  "app": "remote-ip",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/after/036-remote-ip-audit-HEAD-plain.trace",
+    "--head",
+    "http://localhost:56605/api/audit"
+  ],
+  "method": "HEAD",
+  "path": "/api/audit",
+  "raw": "036-remote-ip-audit-HEAD-plain.http",
+  "status": 403,
+  "headers": {
+    "x-request-id": "a0451ef3-855d-46fb-851f-218da94b525e",
+    "content-type": "application/problem+json",
+    "date": "Sun, 04 Oct 2026 01:55:04 GMT"
+  },
+  "json": null
+}

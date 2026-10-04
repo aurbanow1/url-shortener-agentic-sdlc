@@ -1,0 +1,30 @@
+{
+  "name": "cloud-pinned-audit-admitted",
+  "app": "cloud",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/after/058-cloud-pinned-audit-admitted.trace",
+    "-X",
+    "GET",
+    "http://localhost:56885/api/audit"
+  ],
+  "method": "GET",
+  "path": "/api/audit",
+  "raw": "058-cloud-pinned-audit-admitted.http",
+  "status": 200,
+  "headers": {
+    "x-request-id": "769bcf1f-6e3f-47ea-9cac-dd33cf9a22fc",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 01:55:15 GMT"
+  },
+  "json": {
+    "items": [],
+    "next": null
+  }
+}

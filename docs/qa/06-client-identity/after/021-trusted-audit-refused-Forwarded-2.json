@@ -1,0 +1,33 @@
+{
+  "name": "trusted-audit-refused-Forwarded-2",
+  "app": "trusted",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/after/021-trusted-audit-refused-Forwarded-2.trace",
+    "-X",
+    "GET",
+    "-H",
+    "Forwarded;",
+    "http://localhost:56445/api/audit"
+  ],
+  "method": "GET",
+  "path": "/api/audit",
+  "raw": "021-trusted-audit-refused-Forwarded-2.http",
+  "status": 403,
+  "headers": {
+    "x-request-id": "3e7673e9-e46b-42cd-8de1-48fb89cc9a7d",
+    "content-type": "application/problem+json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 01:54:57 GMT"
+  },
+  "json": {
+    "instance": "urn:uuid:3e7673e9-e46b-42cd-8de1-48fb89cc9a7d",
+    "status": 403,
+    "title": "Forbidden"
+  }
+}

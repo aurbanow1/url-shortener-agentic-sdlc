@@ -1,0 +1,36 @@
+{
+  "name": "direct-click-A-forged-forwarding",
+  "app": "direct",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/after/011-direct-click-A-forged-forwarding.trace",
+    "-X",
+    "GET",
+    "--interface",
+    "127.0.0.1",
+    "-H",
+    "User-Agent: Mozilla/5.0 QA06-BROWSER-CANARY",
+    "-H",
+    "Referer: https://ref.example/private-QA06-path?q=QA06-query#QA06-fragment",
+    "-H",
+    "X-Forwarded-For: 203.0.113.7",
+    "http://localhost:56352/OKAMvZaX"
+  ],
+  "method": "GET",
+  "path": "/OKAMvZaX",
+  "raw": "011-direct-click-A-forged-forwarding.http",
+  "status": 302,
+  "headers": {
+    "x-request-id": "46acfe43-c29e-4258-994a-a2f30da6f9d6",
+    "location": "https://example.com/qa06/client-group",
+    "cache-control": "no-store",
+    "content-length": "0",
+    "date": "Sun, 04 Oct 2026 01:54:55 GMT"
+  },
+  "json": null
+}

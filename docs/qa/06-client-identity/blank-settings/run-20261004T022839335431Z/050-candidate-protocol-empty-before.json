@@ -1,0 +1,44 @@
+{
+  "name": "candidate-protocol-empty-before",
+  "app": "candidate-protocol-empty",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/blank-settings/run-20261004T022839335431Z/050-candidate-protocol-empty-before.trace",
+    "-X",
+    "GET",
+    "http://localhost:61208/api/audit"
+  ],
+  "method": "GET",
+  "path": "/api/audit",
+  "raw": "050-candidate-protocol-empty-before.http",
+  "status": 200,
+  "headers": {
+    "x-request-id": "0433ebfd-2b9a-430b-b71d-9040aba40fe3",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 02:29:02 GMT"
+  },
+  "json": {
+    "items": [
+      {
+        "occurredAt": "2026-10-04T02:29:02.379Z",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entityId": "0pdf8CgW",
+        "requestId": "2f6f84ba-f050-4e33-b30a-dd9f9eb82561",
+        "before": null,
+        "after": {
+          "url": "https://example.com/qa06/client-group",
+          "state": "active"
+        }
+      }
+    ],
+    "next": null
+  }
+}

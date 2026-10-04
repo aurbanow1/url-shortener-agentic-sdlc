@@ -1,0 +1,38 @@
+{
+  "name": "baseline-protocol-space-create",
+  "app": "baseline-protocol-space",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/blank-settings/run-20261004T022839335431Z/019-baseline-protocol-space-create.trace",
+    "-X",
+    "POST",
+    "-H",
+    "Content-Type: application/json",
+    "--data",
+    "{\"url\": \"https://example.com/qa06/client-group\"}",
+    "http://localhost:60756/api/links"
+  ],
+  "method": "POST",
+  "path": "/api/links",
+  "raw": "019-baseline-protocol-space-create.http",
+  "status": 201,
+  "headers": {
+    "x-request-id": "812f6249-8f15-4a1f-8ea5-b298a5439d32",
+    "location": "/api/links/ccPGUntH",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 02:28:49 GMT"
+  },
+  "json": {
+    "code": "ccPGUntH",
+    "shortUrl": "http://localhost:8080/ccPGUntH",
+    "url": "https://example.com/qa06/client-group",
+    "state": "active",
+    "createdAt": "2026-10-04T02:28:49.304Z"
+  }
+}

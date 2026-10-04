@@ -1,0 +1,38 @@
+{
+  "name": "trusted-create",
+  "app": "trusted",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/after/014-trusted-create.trace",
+    "-X",
+    "POST",
+    "-H",
+    "Content-Type: application/json",
+    "--data",
+    "{\"url\": \"https://example.com/qa06/client-group\"}",
+    "http://localhost:56445/api/links"
+  ],
+  "method": "POST",
+  "path": "/api/links",
+  "raw": "014-trusted-create.http",
+  "status": 201,
+  "headers": {
+    "x-request-id": "74a42b54-b26a-4f2c-be78-798fe61803e5",
+    "location": "/api/links/hiRI8L6f",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 01:54:57 GMT"
+  },
+  "json": {
+    "code": "hiRI8L6f",
+    "shortUrl": "http://localhost:8080/hiRI8L6f",
+    "url": "https://example.com/qa06/client-group",
+    "state": "active",
+    "createdAt": "2026-10-04T01:54:57.363Z"
+  }
+}

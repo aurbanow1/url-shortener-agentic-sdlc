@@ -1,0 +1,55 @@
+{
+  "candidate": "fb63a88a9b92c1fec97ba74686af1a2f30304160",
+  "jars": {
+    "baseline": {
+      "path": "/private/tmp/urlshort-qa2-identity-4y4o0srn/urlshort.jar",
+      "sha256": "fbe67b61f0f6f668e65949bc01a92802e5de64015ca78eb2d6bbc0462b2ebde2"
+    },
+    "candidate": {
+      "path": "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/06-client-identity/build/libs/urlshort.jar",
+      "sha256": "92e1b7aef3b91749facdc39bfbc35cc8df8367119294d801436a7db34b38e58f"
+    }
+  },
+  "helperSourceSha256": "a9434c15912583c4d8237c177d1ea343ffb2659ffc0a3369f0cb47dc0034eda3",
+  "settings": [
+    [
+      "remote-empty",
+      [
+        "--server.tomcat.remoteip.remote-ip-header="
+      ]
+    ],
+    [
+      "remote-space",
+      [
+        "--server.tomcat.remoteip.remote-ip-header=   "
+      ]
+    ],
+    [
+      "protocol-empty",
+      [
+        "--server.tomcat.remoteip.protocol-header="
+      ]
+    ],
+    [
+      "protocol-space",
+      [
+        "--server.tomcat.remoteip.protocol-header=   "
+      ]
+    ],
+    [
+      "both-empty",
+      [
+        "--server.tomcat.remoteip.remote-ip-header=",
+        "--server.tomcat.remoteip.protocol-header="
+      ]
+    ],
+    [
+      "both-space",
+      [
+        "--server.tomcat.remoteip.remote-ip-header=   ",
+        "--server.tomcat.remoteip.protocol-header=   "
+      ]
+    ]
+  ],
+  "fixture": "No injected configuration, classes or servlet filter; java -jar only."
+}

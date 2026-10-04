@@ -1,0 +1,44 @@
+{
+  "name": "direct-stats-poll-1",
+  "app": "direct",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/after/012-direct-stats-poll-1.trace",
+    "-X",
+    "GET",
+    "http://localhost:56352/api/links/OKAMvZaX/stats"
+  ],
+  "method": "GET",
+  "path": "/api/links/OKAMvZaX/stats",
+  "raw": "012-direct-stats-poll-1.http",
+  "status": 200,
+  "headers": {
+    "x-request-id": "cb6ddc52-2021-4ddb-bad8-b69671444044",
+    "content-type": "application/json",
+    "content-length": "181",
+    "date": "Sun, 04 Oct 2026 01:54:55 GMT"
+  },
+  "json": {
+    "code": "OKAMvZaX",
+    "totalClicks": 2,
+    "clicksPerDay": [
+      {
+        "date": "2026-10-04",
+        "clicks": 2,
+        "uniqueVisitors": 1,
+        "botClicks": 0
+      }
+    ],
+    "topReferrers": [
+      {
+        "referrer": "https://ref.example",
+        "clicks": 2
+      }
+    ]
+  }
+}

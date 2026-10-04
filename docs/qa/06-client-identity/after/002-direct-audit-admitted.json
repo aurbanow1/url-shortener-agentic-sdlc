@@ -1,0 +1,44 @@
+{
+  "name": "direct-audit-admitted",
+  "app": "direct",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/after/002-direct-audit-admitted.trace",
+    "-X",
+    "GET",
+    "http://localhost:56352/api/audit"
+  ],
+  "method": "GET",
+  "path": "/api/audit",
+  "raw": "002-direct-audit-admitted.http",
+  "status": 200,
+  "headers": {
+    "x-request-id": "cd8d29f1-5e01-4fb7-9ff8-e1182646b798",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 01:54:54 GMT"
+  },
+  "json": {
+    "items": [
+      {
+        "occurredAt": "2026-10-04T01:54:54.801Z",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entityId": "OKAMvZaX",
+        "requestId": "ca129edf-d5f5-425b-aa49-4e4865bb48b8",
+        "before": null,
+        "after": {
+          "url": "https://example.com/qa06/client-group",
+          "state": "active"
+        }
+      }
+    ],
+    "next": null
+  }
+}

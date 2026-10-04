@@ -1,0 +1,38 @@
+{
+  "name": "candidate-both-empty-create",
+  "app": "candidate-both-empty",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/blank-settings/run-20261004T022839335431Z/061-candidate-both-empty-create.trace",
+    "-X",
+    "POST",
+    "-H",
+    "Content-Type: application/json",
+    "--data",
+    "{\"url\": \"https://example.com/qa06/client-group\"}",
+    "http://localhost:61370/api/links"
+  ],
+  "method": "POST",
+  "path": "/api/links",
+  "raw": "061-candidate-both-empty-create.http",
+  "status": 201,
+  "headers": {
+    "x-request-id": "84e9bdf4-e4b8-49ea-a5a6-8b21aacdcb62",
+    "location": "/api/links/6KVS8Det",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 02:29:07 GMT"
+  },
+  "json": {
+    "code": "6KVS8Det",
+    "shortUrl": "http://localhost:8080/6KVS8Det",
+    "url": "https://example.com/qa06/client-group",
+    "state": "active",
+    "createdAt": "2026-10-04T02:29:07.623Z"
+  }
+}

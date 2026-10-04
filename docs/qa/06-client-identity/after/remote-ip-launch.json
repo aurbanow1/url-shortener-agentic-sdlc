@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "/opt/homebrew/opt/openjdk@21/bin/java",
+    "-jar",
+    "/private/tmp/urlshort-qa2-identity-idu_b_mk/urlshort.jar",
+    "--server.address=127.0.0.1",
+    "--server.port=56605",
+    "--spring.datasource.url=jdbc:h2:file:/private/tmp/urlshort-qa2-identity-idu_b_mk/remote-ip/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+    "--server.tomcat.remoteip.remote-ip-header=x-forwarded-for"
+  ],
+  "pid": 78814,
+  "database": "/private/tmp/urlshort-qa2-identity-idu_b_mk/remote-ip"
+}

@@ -1,0 +1,244 @@
+{
+  "candidate": "fb63a88a9b92c1fec97ba74686af1a2f30304160",
+  "candidateProductTree": "4c945cf11bf38036bba900425dacda9bb8ca7a83",
+  "baseline": "50ad9c3ab9e65baa4100ede1772b514322957fa5",
+  "characterization": "1b4e0a7f123aed811957ec416889b8acfcef873e",
+  "baselineProductTree": "50387c729aa575a5eebc505f86c542ed22ff2995",
+  "unchangedOriginalFunctionalFiles": [
+    {
+      "path": "src/functionalTest/java/dev/urlshort/HealthJourneyTest.java",
+      "baselineBlob": "f5aa3b5890af5afd86b8c571f6a2aee2969ebd65",
+      "candidateBlob": "f5aa3b5890af5afd86b8c571f6a2aee2969ebd65"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/audit/AuditAccessSettingsJourneyTest.java",
+      "baselineBlob": "cc3754c1796d6b8a62057cda7497f2c952b169e2",
+      "candidateBlob": "cc3754c1796d6b8a62057cda7497f2c952b169e2"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/audit/AuditForwardedHeadersJourneyTest.java",
+      "baselineBlob": "492e72e7442281a519dd9597c3d9e2aaa361f866",
+      "candidateBlob": "492e72e7442281a519dd9597c3d9e2aaa361f866"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/audit/AuditJourneyTest.java",
+      "baselineBlob": "5173ff1156f89136a23517b831687d1cf36a23b5",
+      "candidateBlob": "5173ff1156f89136a23517b831687d1cf36a23b5"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/audit/AuditReadFailureJourneyTest.java",
+      "baselineBlob": "14b7321ee497138a661f9a7dc3aa7652f2a598af",
+      "candidateBlob": "14b7321ee497138a661f9a7dc3aa7652f2a598af"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/audit/AuditReadJourneyTest.java",
+      "baselineBlob": "7f6b557d32feaefe1eda708cb1fce6cea24351b9",
+      "candidateBlob": "7f6b557d32feaefe1eda708cb1fce6cea24351b9"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/audit/AuditUpgradeJourneyTest.java",
+      "baselineBlob": "8119fa6b568b0a3313a934852ff6f476d9d9d2e7",
+      "candidateBlob": "8119fa6b568b0a3313a934852ff6f476d9d9d2e7"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/click/ClickMetricsJourneyTest.java",
+      "baselineBlob": "694c3577f4c71201c72663eaa2c0b6d0958cd9a3",
+      "candidateBlob": "694c3577f4c71201c72663eaa2c0b6d0958cd9a3"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/click/ClickPurgeFailureJourneyTest.java",
+      "baselineBlob": "226005fa41a074038270791489b3d18c768c4a2a",
+      "candidateBlob": "226005fa41a074038270791489b3d18c768c4a2a"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/click/ClickPurgeHoldJourneyTest.java",
+      "baselineBlob": "5c884daeabc32ef7028dd022d958b59f6699408c",
+      "candidateBlob": "5c884daeabc32ef7028dd022d958b59f6699408c"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+      "baselineBlob": "f6319af0ca0b1479aba57ec361885c7dd2a9ca30",
+      "candidateBlob": "f6319af0ca0b1479aba57ec361885c7dd2a9ca30"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/click/ClickResilienceJourneyTest.java",
+      "baselineBlob": "2ae14e221487cc11c7f9ea66b87e26d08bf7dae3",
+      "candidateBlob": "2ae14e221487cc11c7f9ea66b87e26d08bf7dae3"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/click/ClickResilienceTrustedProxyJourneyTest.java",
+      "baselineBlob": "c86114f8a2d9be218d344d1e015888a1c8bcc0e4",
+      "candidateBlob": "c86114f8a2d9be218d344d1e015888a1c8bcc0e4"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java",
+      "baselineBlob": "81ed53e789cc083d49d06e5d5d706a2c6cb1bedb",
+      "candidateBlob": "81ed53e789cc083d49d06e5d5d706a2c6cb1bedb"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/click/ClickRetentionScheduleJourneyTest.java",
+      "baselineBlob": "fac095e8477970da8ac322d158b441000bc8c4bf",
+      "candidateBlob": "fac095e8477970da8ac322d158b441000bc8c4bf"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/click/ClickRetentionSettingJourneyTest.java",
+      "baselineBlob": "dc59cefa599ca5c43dfd0f76991162674bfafb90",
+      "candidateBlob": "dc59cefa599ca5c43dfd0f76991162674bfafb90"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/click/ClickRetentionStartupJourneyTest.java",
+      "baselineBlob": "1a517b80d5b9a2556f5413b9fcb17c28bd4534db",
+      "candidateBlob": "1a517b80d5b9a2556f5413b9fcb17c28bd4534db"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/click/ClickSchemaJourneyTest.java",
+      "baselineBlob": "f4684355f5f4862e1cf8f235a38a6a48084a3a53",
+      "candidateBlob": "f4684355f5f4862e1cf8f235a38a6a48084a3a53"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+      "baselineBlob": "1bd5a8fb28d06dbebf42528de8538fb2abbc3953",
+      "candidateBlob": "1bd5a8fb28d06dbebf42528de8538fb2abbc3953"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/click/StatsV2JourneyTest.java",
+      "baselineBlob": "efcd242df535f11dbfcc791134f5386adae5c978",
+      "candidateBlob": "efcd242df535f11dbfcc791134f5386adae5c978"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/click/TrustedProxyClickJourneyTest.java",
+      "baselineBlob": "b6bcf4198dab510d3874ef3ffb64743a2712c3ee",
+      "candidateBlob": "b6bcf4198dab510d3874ef3ffb64743a2712c3ee"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/link/FunctionalClock.java",
+      "baselineBlob": "9cddd47d03697ddd9c474e76545b836844ca171e",
+      "candidateBlob": "9cddd47d03697ddd9c474e76545b836844ca171e"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/link/FunctionalClockConfig.java",
+      "baselineBlob": "9468a0f4356dda069286c0ec9a2dc6c53adbcc18",
+      "candidateBlob": "9468a0f4356dda069286c0ec9a2dc6c53adbcc18"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/link/IdempotencyJourneyTest.java",
+      "baselineBlob": "1872ea5795705ae0b0c2751aa87460c383c1dbcc",
+      "candidateBlob": "1872ea5795705ae0b0c2751aa87460c383c1dbcc"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/link/LinkAuditColumnsFailureJourneyTest.java",
+      "baselineBlob": "60abdc0b2a7d68b987d99f87067427f851b8554f",
+      "candidateBlob": "60abdc0b2a7d68b987d99f87067427f851b8554f"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/link/LinkAuditColumnsJourneyTest.java",
+      "baselineBlob": "cdfa1dfbbe0adc82775e6e5d37b7c2ad48aafb56",
+      "candidateBlob": "cdfa1dfbbe0adc82775e6e5d37b7c2ad48aafb56"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/link/LinkCreateJourneyTest.java",
+      "baselineBlob": "fc8d3155d857ca85277f3fb20365c4233a2c9933",
+      "candidateBlob": "fc8d3155d857ca85277f3fb20365c4233a2c9933"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/link/LinkReadRetireJourneyTest.java",
+      "baselineBlob": "93862ffc21d50733f60876141039e966688bf224",
+      "candidateBlob": "93862ffc21d50733f60876141039e966688bf224"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/link/LinkUpgradeJourneyTest.java",
+      "baselineBlob": "6900b32a015e13e51ca89462573797f2e83d1514",
+      "candidateBlob": "6900b32a015e13e51ca89462573797f2e83d1514"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/link/PublicBaseUrlJourneyTest.java",
+      "baselineBlob": "9d43591e2dc1c7a4b352bf599a9dc7ee1115caf1",
+      "candidateBlob": "9d43591e2dc1c7a4b352bf599a9dc7ee1115caf1"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/link/RedirectJourneyTest.java",
+      "baselineBlob": "8334d32ce0c7861c02f17c3921e26235eb1bd2e1",
+      "candidateBlob": "8334d32ce0c7861c02f17c3921e26235eb1bd2e1"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/ping/PingJourneyTest.java",
+      "baselineBlob": "3e926e035964e9e53bebdc9dec5f9f84e6e03966",
+      "candidateBlob": "3e926e035964e9e53bebdc9dec5f9f84e6e03966"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/web/ColdStartJourneyTest.java",
+      "baselineBlob": "d952b27a793b19526f37931d1b092407f831db3b",
+      "candidateBlob": "d952b27a793b19526f37931d1b092407f831db3b"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/web/DatabaseDownJourneyTest.java",
+      "baselineBlob": "b4dcedb96ed5ca51441917a57d88437568648315",
+      "candidateBlob": "b4dcedb96ed5ca51441917a57d88437568648315"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/web/HealthMetricsJourneyTest.java",
+      "baselineBlob": "e15d160a36de11953ad39f942af53e2f729e9def",
+      "candidateBlob": "e15d160a36de11953ad39f942af53e2f729e9def"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/web/ObservabilityJourneyTest.java",
+      "baselineBlob": "6c78d164bf40fde1a464736f6aa7f563207ed6c9",
+      "candidateBlob": "6c78d164bf40fde1a464736f6aa7f563207ed6c9"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/web/OpenApiDocumentTest.java",
+      "baselineBlob": "fbb07904924e76583498e2f88a907ae04ad18206",
+      "candidateBlob": "fbb07904924e76583498e2f88a907ae04ad18206"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/web/RateLimitDefaultsTest.java",
+      "baselineBlob": "e46a5c49fbf55b4b072f26c5de5798edf6e27ec5",
+      "candidateBlob": "e46a5c49fbf55b4b072f26c5de5798edf6e27ec5"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/web/RateLimitJourneyTest.java",
+      "baselineBlob": "f1439f7fbf43947c3b062b4b8e79ac964d87ce88",
+      "candidateBlob": "f1439f7fbf43947c3b062b4b8e79ac964d87ce88"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/web/RateLimitSettingsJourneyTest.java",
+      "baselineBlob": "a2f8bfa42e31b96485a58aa458e6c3e33410727b",
+      "candidateBlob": "a2f8bfa42e31b96485a58aa458e6c3e33410727b"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/web/ShutdownPhaseDefaultTest.java",
+      "baselineBlob": "3274e564edfbd73d8e1e42134266592a29710a19",
+      "candidateBlob": "3274e564edfbd73d8e1e42134266592a29710a19"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/web/TrustedProxyJourneyTest.java",
+      "baselineBlob": "cc42a24cfc823d164d8d3a2dd893435873f22ac5",
+      "candidateBlob": "cc42a24cfc823d164d8d3a2dd893435873f22ac5"
+    },
+    {
+      "path": "src/functionalTest/resources/application-functional.properties",
+      "baselineBlob": "64db2f0ec15f234aa57074b3da54e0e98c173e90",
+      "candidateBlob": "64db2f0ec15f234aa57074b3da54e0e98c173e90"
+    }
+  ],
+  "unitAdaptations": [
+    {
+      "path": "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+      "referenceOnlyAdaptation": true
+    },
+    {
+      "path": "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+      "referenceOnlyAdaptation": true
+    },
+    {
+      "path": "src/test/java/dev/urlshort/web/RateLimitFilterTest.java",
+      "referenceOnlyAdaptation": true
+    }
+  ],
+  "separateProductionMoveHasNoTestChange": true,
+  "noMigrationBuildSettingsOrApiChange": true,
+  "worktreeClean": true,
+  "impactAnalysisCommit": "6772b68c41411f71363878276c578669910c6e96 2026-10-03T18:03:23-07:00",
+  "designAndAdrsCommit": "57cb9aee6394742d6ecccc7aae96c7c8580c48f7 2026-10-03T18:07:54-07:00",
+  "dependentMoveCommit": "7e232599c11f9e23b412198ae8c669f5ae467ae5 2026-10-03T18:33:04-07:00"
+}

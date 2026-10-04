@@ -1,0 +1,35 @@
+== Info: Host localhost:56560 was resolved.
+== Info: IPv6: ::1
+== Info: IPv4: 127.0.0.1
+== Info:   Trying [::1]:56560...
+== Info: connect to ::1 port 56560 from ::1 port 56599 failed: Connection refused
+== Info:   Trying 127.0.0.1:56560...
+== Info: Connected to localhost (127.0.0.1) port 56560
+=> Send header, 180 bytes (0xb4)
+0000: GET /api/links/zzzzzzzz HTTP/1.1
+0022: Host: localhost:56560
+0039: User-Agent: curl/8.7.1
+0051: Accept: */*
+005e: X-Forwarded-For: 203.0.113.7
+007c: Forwarded: for=203.0.113.88
+0099: X-Real-IP: 203.0.113.99
+00b2: 
+== Info: Request completely sent off
+<= Recv header, 15 bytes (0xf)
+0000: HTTP/1.1 429 
+<= Recv header, 52 bytes (0x34)
+0000: X-Request-Id: e0804904-aa8f-486e-be50-026c753e9fb1
+<= Recv header, 17 bytes (0x11)
+0000: Retry-After: 30
+<= Recv header, 40 bytes (0x28)
+0000: Content-Type: application/problem+json
+<= Recv header, 21 bytes (0x15)
+0000: Content-Length: 101
+<= Recv header, 37 bytes (0x25)
+0000: Date: Sun, 04 Oct 2026 01:55:01 GMT
+<= Recv header, 2 bytes (0x2)
+0000: 
+<= Recv data, 101 bytes (0x65)
+0000: {"instance":"urn:uuid:e0804904-aa8f-486e-be50-026c753e9fb1","sta
+0040: tus":429,"title":"Too Many Requests"}
+== Info: Connection #0 to host localhost left intact

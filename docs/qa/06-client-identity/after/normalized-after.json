@@ -1,0 +1,3318 @@
+{
+  "direct-create": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:direct-create>",
+      "location": "/api/links/<code:direct-create>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:direct-create>",
+      "shortUrl": "http://localhost:8080/<code:direct-create>",
+      "url": "https://example.com/qa06/client-group",
+      "state": "active",
+      "createdAt": "<createdAt:direct-create>"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:direct>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:direct-create>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "direct-audit-admitted": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 200,
+    "headers": {
+      "x-request-id": "<request:direct-audit-admitted>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "items": [
+        {
+          "occurredAt": "<audit-time:direct-create>",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "<code:direct-create>",
+          "requestId": "<request:direct-create>",
+          "before": null,
+          "after": {
+            "url": "https://example.com/qa06/client-group",
+            "state": "active"
+          }
+        }
+      ],
+      "next": null
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:direct>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:direct-audit-admitted>",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "direct-audit-refused-X-Forwarded-For-0": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:direct-audit-refused-X-Forwarded-For-0>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:direct-audit-refused-X-Forwarded-For-0>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:direct>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:direct-audit-refused-X-Forwarded-For-0>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "direct-audit-refused-X-Forwarded-For-1": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:direct-audit-refused-X-Forwarded-For-1>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:direct-audit-refused-X-Forwarded-For-1>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:direct>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:direct-audit-refused-X-Forwarded-For-1>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "direct-audit-refused-X-Forwarded-For-2": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:direct-audit-refused-X-Forwarded-For-2>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:direct-audit-refused-X-Forwarded-For-2>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:direct>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:direct-audit-refused-X-Forwarded-For-2>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "direct-audit-refused-Forwarded-0": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:direct-audit-refused-Forwarded-0>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:direct-audit-refused-Forwarded-0>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:direct>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:direct-audit-refused-Forwarded-0>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "direct-audit-refused-Forwarded-1": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:direct-audit-refused-Forwarded-1>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:direct-audit-refused-Forwarded-1>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:direct>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:direct-audit-refused-Forwarded-1>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "direct-audit-refused-Forwarded-2": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:direct-audit-refused-Forwarded-2>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:direct-audit-refused-Forwarded-2>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:direct>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:direct-audit-refused-Forwarded-2>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "instrument-curl-whitespace-omitted": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 200,
+    "headers": {
+      "x-request-id": "<request:instrument-curl-whitespace-omitted>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "items": [
+        {
+          "occurredAt": "<audit-time:direct-create>",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "<code:direct-create>",
+          "requestId": "<request:direct-create>",
+          "before": null,
+          "after": {
+            "url": "https://example.com/qa06/client-group",
+            "state": "active"
+          }
+        }
+      ],
+      "next": null
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:direct>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:instrument-curl-whitespace-omitted>",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "direct-click-A": {
+    "method": "GET",
+    "path": "/<code:direct-create>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:direct-click-A>",
+      "location": "https://example.com/qa06/client-group",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:direct>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:direct-click-A>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "direct-click-A-forged-forwarding": {
+    "method": "GET",
+    "path": "/<code:direct-create>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:direct-click-A-forged-forwarding>",
+      "location": "https://example.com/qa06/client-group",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:direct>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:direct-click-A-forged-forwarding>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "direct-stats-poll-1": {
+    "method": "GET",
+    "path": "/api/links/<code:direct-create>/stats",
+    "status": 200,
+    "headers": {
+      "x-request-id": "<request:direct-stats-poll-1>",
+      "content-type": "application/json",
+      "content-length": "181",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:direct-create>",
+      "totalClicks": 2,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 2,
+          "uniqueVisitors": 1,
+          "botClicks": 0
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://ref.example",
+          "clicks": 2
+        }
+      ]
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:direct>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:direct-stats-poll-1>",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "live-openapi": {
+    "method": "GET",
+    "path": "/v3/api-docs",
+    "status": 200,
+    "headers": {
+      "x-request-id": "<request:live-openapi>",
+      "content-type": "application/json",
+      "content-length": "13365",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "openapi": "3.1.0",
+      "info": {
+        "description": "Create, read and retire short links; visitors are redirected with 302.",
+        "title": "urlshort",
+        "version": "1"
+      },
+      "servers": [
+        {
+          "url": "/"
+        }
+      ],
+      "paths": {
+        "/api/audit": {
+          "get": {
+            "operationId": "readAudit",
+            "parameters": [
+              {
+                "description": "Rows per page",
+                "in": "query",
+                "name": "limit",
+                "required": false,
+                "schema": {
+                  "type": "integer",
+                  "default": 50,
+                  "maximum": 100,
+                  "minimum": 1
+                }
+              },
+              {
+                "description": "The next of the previous page",
+                "in": "query",
+                "name": "cursor",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "content": {
+                  "application/json": {
+                    "examples": {
+                      "page": {
+                        "description": "page",
+                        "value": {
+                          "items": [
+                            {
+                              "occurredAt": "2026-10-03T17:29:41.033Z",
+                              "actor": "anonymous",
+                              "action": "link.retire",
+                              "entity": "link",
+                              "entityId": "jHkOIMpK",
+                              "requestId": "140fc9de-5b8e-4c43-9d55-2f0b1e1c7a10",
+                              "before": {
+                                "url": "https://example.com/",
+                                "state": "active"
+                              },
+                              "after": {
+                                "url": "https://example.com/",
+                                "state": "retired"
+                              }
+                            },
+                            {
+                              "occurredAt": "2026-10-03T17:28:02.512Z",
+                              "actor": "anonymous",
+                              "action": "link.create",
+                              "entity": "link",
+                              "entityId": "jHkOIMpK",
+                              "requestId": "0d6a1f3e-9c27-4b1a-8e5f-6a4c3b2d1e0f",
+                              "before": null,
+                              "after": {
+                                "url": "https://example.com/",
+                                "state": "active"
+                              }
+                            }
+                          ],
+                          "next": "MTI"
+                        }
+                      }
+                    },
+                    "schema": {
+                      "$ref": "#/components/schemas/AuditPage"
+                    }
+                  }
+                },
+                "description": "One page of audit rows, newest first, and the cursor of the next"
+              },
+              "400": {
+                "content": {
+                  "application/problem+json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ProblemDetail"
+                    }
+                  }
+                },
+                "description": "limit or cursor is malformed"
+              },
+              "403": {
+                "content": {
+                  "application/problem+json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ProblemDetail"
+                    }
+                  }
+                },
+                "description": "Not a loopback client, or a forwarding header is present"
+              },
+              "429": {
+                "content": {
+                  "application/problem+json": {
+                    "examples": {
+                      "tooManyRequests": {
+                        "value": {
+                          "instance": "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                          "status": 429,
+                          "title": "Too Many Requests"
+                        }
+                      }
+                    },
+                    "schema": {
+                      "$ref": "#/components/schemas/ProblemDetail"
+                    }
+                  }
+                },
+                "description": "Too many requests from this client; retry after Retry-After seconds",
+                "headers": {
+                  "Retry-After": {
+                    "description": "Whole seconds until this client's next request is admitted",
+                    "schema": {
+                      "type": "integer",
+                      "format": "int32",
+                      "minimum": 1
+                    }
+                  }
+                }
+              },
+              "500": {
+                "content": {
+                  "application/problem+json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ProblemDetail"
+                    }
+                  }
+                },
+                "description": "The trail could not be read"
+              }
+            },
+            "summary": "Read the audit trail, newest first (loopback only)",
+            "tags": [
+              "audit-controller"
+            ]
+          }
+        },
+        "/api/links": {
+          "post": {
+            "description": "Without Idempotency-Key every call creates a new link. With a key, a repeat with the same url within 24 h of the first 201 returns that link (current state); a different url is 422.",
+            "operationId": "createLink",
+            "parameters": [
+              {
+                "description": "1 to 255 visible ASCII characters; makes a retried create return the first link",
+                "in": "header",
+                "name": "Idempotency-Key",
+                "required": false,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "requestBody": {
+              "content": {
+                "application/json": {
+                  "examples": {
+                    "create": {
+                      "description": "create",
+                      "value": {
+                        "url": "https://example.com/some/path?q=1"
+                      }
+                    }
+                  },
+                  "schema": {
+                    "$ref": "#/components/schemas/CreateLinkRequest"
+                  }
+                }
+              },
+              "required": true
+            },
+            "responses": {
+              "201": {
+                "content": {
+                  "application/json": {
+                    "examples": {
+                      "created": {
+                        "description": "created",
+                        "value": {
+                          "code": "Ab3dE9fG",
+                          "shortUrl": "http://localhost:8080/Ab3dE9fG",
+                          "url": "https://example.com/some/path?q=1",
+                          "state": "active",
+                          "createdAt": "2026-10-03T05:12:42.133Z"
+                        }
+                      }
+                    },
+                    "schema": {
+                      "$ref": "#/components/schemas/LinkResponse"
+                    }
+                  }
+                },
+                "description": "Created, or replayed for the same key and url",
+                "headers": {
+                  "Location": {
+                    "description": "/api/links/{code}",
+                    "schema": {
+                      "type": "string"
+                    },
+                    "style": "simple"
+                  }
+                }
+              },
+              "400": {
+                "content": {
+                  "application/problem+json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ProblemDetail"
+                    }
+                  }
+                },
+                "description": "Invalid url or Idempotency-Key (errors[] names field and rule), or a body that is not a JSON object"
+              },
+              "413": {
+                "content": {
+                  "application/problem+json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ProblemDetail"
+                    }
+                  }
+                },
+                "description": "Body larger than 16 384 bytes"
+              },
+              "415": {
+                "content": {
+                  "application/problem+json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ProblemDetail"
+                    }
+                  }
+                },
+                "description": "Content-Type is not application/json"
+              },
+              "422": {
+                "content": {
+                  "application/problem+json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ProblemDetail"
+                    }
+                  }
+                },
+                "description": "Idempotency-Key already used with a different url"
+              },
+              "429": {
+                "content": {
+                  "application/problem+json": {
+                    "examples": {
+                      "tooManyRequests": {
+                        "value": {
+                          "instance": "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                          "status": 429,
+                          "title": "Too Many Requests"
+                        }
+                      }
+                    },
+                    "schema": {
+                      "$ref": "#/components/schemas/ProblemDetail"
+                    }
+                  }
+                },
+                "description": "Too many requests from this client; retry after Retry-After seconds",
+                "headers": {
+                  "Retry-After": {
+                    "description": "Whole seconds until this client's next request is admitted",
+                    "schema": {
+                      "type": "integer",
+                      "format": "int32",
+                      "minimum": 1
+                    }
+                  }
+                }
+              },
+              "500": {
+                "content": {
+                  "application/problem+json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ProblemDetail"
+                    }
+                  }
+                },
+                "description": "Nothing was stored"
+              }
+            },
+            "summary": "Create a short link for an http(s) URL",
+            "tags": [
+              "link-controller"
+            ]
+          }
+        },
+        "/api/links/{code}": {
+          "delete": {
+            "operationId": "retireLink",
+            "parameters": [
+              {
+                "in": "path",
+                "name": "code",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "responses": {
+              "204": {
+                "description": "Retired"
+              },
+              "404": {
+                "content": {
+                  "application/problem+json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ProblemDetail"
+                    }
+                  }
+                },
+                "description": "No link has this code"
+              },
+              "410": {
+                "content": {
+                  "application/problem+json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ProblemDetail"
+                    }
+                  }
+                },
+                "description": "Already retired"
+              },
+              "429": {
+                "content": {
+                  "application/problem+json": {
+                    "examples": {
+                      "tooManyRequests": {
+                        "value": {
+                          "instance": "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                          "status": 429,
+                          "title": "Too Many Requests"
+                        }
+                      }
+                    },
+                    "schema": {
+                      "$ref": "#/components/schemas/ProblemDetail"
+                    }
+                  }
+                },
+                "description": "Too many requests from this client; retry after Retry-After seconds",
+                "headers": {
+                  "Retry-After": {
+                    "description": "Whole seconds until this client's next request is admitted",
+                    "schema": {
+                      "type": "integer",
+                      "format": "int32",
+                      "minimum": 1
+                    }
+                  }
+                }
+              },
+              "500": {
+                "content": {
+                  "application/problem+json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ProblemDetail"
+                    }
+                  }
+                },
+                "description": "Nothing was changed"
+              }
+            },
+            "summary": "Retire a link; visitors then get 410 and the record is kept",
+            "tags": [
+              "link-controller"
+            ]
+          },
+          "get": {
+            "operationId": "readLink",
+            "parameters": [
+              {
+                "in": "path",
+                "name": "code",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "content": {
+                  "application/json": {
+                    "examples": {
+                      "link": {
+                        "description": "link",
+                        "value": {
+                          "code": "Ab3dE9fG",
+                          "shortUrl": "http://localhost:8080/Ab3dE9fG",
+                          "url": "https://example.com/some/path?q=1",
+                          "state": "active",
+                          "createdAt": "2026-10-03T05:12:42.133Z"
+                        }
+                      }
+                    },
+                    "schema": {
+                      "$ref": "#/components/schemas/LinkResponse"
+                    }
+                  }
+                },
+                "description": "The link; state is active or retired"
+              },
+              "404": {
+                "content": {
+                  "application/problem+json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ProblemDetail"
+                    }
+                  }
+                },
+                "description": "No link has this code"
+              },
+              "429": {
+                "content": {
+                  "application/problem+json": {
+                    "examples": {
+                      "tooManyRequests": {
+                        "value": {
+                          "instance": "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                          "status": 429,
+                          "title": "Too Many Requests"
+                        }
+                      }
+                    },
+                    "schema": {
+                      "$ref": "#/components/schemas/ProblemDetail"
+                    }
+                  }
+                },
+                "description": "Too many requests from this client; retry after Retry-After seconds",
+                "headers": {
+                  "Retry-After": {
+                    "description": "Whole seconds until this client's next request is admitted",
+                    "schema": {
+                      "type": "integer",
+                      "format": "int32",
+                      "minimum": 1
+                    }
+                  }
+                }
+              }
+            },
+            "summary": "Read a link by its code",
+            "tags": [
+              "link-controller"
+            ]
+          }
+        },
+        "/api/links/{code}/stats": {
+          "get": {
+            "operationId": "stats",
+            "parameters": [
+              {
+                "in": "path",
+                "name": "code",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "content": {
+                  "application/json": {
+                    "examples": {
+                      "stats": {
+                        "description": "stats",
+                        "value": {
+                          "code": "aB3dE5fG",
+                          "totalClicks": 6,
+                          "clicksPerDay": [
+                            {
+                              "date": "2026-10-01",
+                              "clicks": 6,
+                              "uniqueVisitors": 3,
+                              "botClicks": 1
+                            }
+                          ],
+                          "topReferrers": [
+                            {
+                              "referrer": "https://news.example.com",
+                              "clicks": 4
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "schema": {
+                      "$ref": "#/components/schemas/LinkStats"
+                    }
+                  }
+                },
+                "description": "Total clicks; per UTC day the clicks, unique visitors and bot clicks; and the top 10 referrer origins"
+              },
+              "404": {
+                "content": {
+                  "application/problem+json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ProblemDetail"
+                    }
+                  }
+                },
+                "description": "No link has this code"
+              },
+              "429": {
+                "content": {
+                  "application/problem+json": {
+                    "examples": {
+                      "tooManyRequests": {
+                        "value": {
+                          "instance": "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                          "status": 429,
+                          "title": "Too Many Requests"
+                        }
+                      }
+                    },
+                    "schema": {
+                      "$ref": "#/components/schemas/ProblemDetail"
+                    }
+                  }
+                },
+                "description": "Too many requests from this client; retry after Retry-After seconds",
+                "headers": {
+                  "Retry-After": {
+                    "description": "Whole seconds until this client's next request is admitted",
+                    "schema": {
+                      "type": "integer",
+                      "format": "int32",
+                      "minimum": 1
+                    }
+                  }
+                }
+              }
+            },
+            "summary": "Read a link's click statistics",
+            "tags": [
+              "stats-controller"
+            ]
+          }
+        },
+        "/api/ping": {
+          "get": {
+            "operationId": "ping",
+            "responses": {
+              "200": {
+                "content": {
+                  "*/*": {
+                    "schema": {
+                      "$ref": "#/components/schemas/PingResponse"
+                    }
+                  }
+                },
+                "description": "OK"
+              },
+              "429": {
+                "content": {
+                  "application/problem+json": {
+                    "examples": {
+                      "tooManyRequests": {
+                        "value": {
+                          "instance": "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                          "status": 429,
+                          "title": "Too Many Requests"
+                        }
+                      }
+                    },
+                    "schema": {
+                      "$ref": "#/components/schemas/ProblemDetail"
+                    }
+                  }
+                },
+                "description": "Too many requests from this client; retry after Retry-After seconds",
+                "headers": {
+                  "Retry-After": {
+                    "description": "Whole seconds until this client's next request is admitted",
+                    "schema": {
+                      "type": "integer",
+                      "format": "int32",
+                      "minimum": 1
+                    }
+                  }
+                }
+              }
+            },
+            "tags": [
+              "ping-controller"
+            ]
+          }
+        },
+        "/{code}": {
+          "get": {
+            "operationId": "redirect",
+            "parameters": [
+              {
+                "in": "path",
+                "name": "code",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "responses": {
+              "302": {
+                "description": "Redirect to the stored url, not cacheable",
+                "headers": {
+                  "Cache-Control": {
+                    "description": "no-store",
+                    "schema": {
+                      "type": "string"
+                    },
+                    "style": "simple"
+                  },
+                  "Location": {
+                    "description": "The stored url, byte for byte",
+                    "schema": {
+                      "type": "string"
+                    },
+                    "style": "simple"
+                  }
+                }
+              },
+              "404": {
+                "content": {
+                  "application/problem+json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ProblemDetail"
+                    }
+                  }
+                },
+                "description": "No link has this code"
+              },
+              "410": {
+                "content": {
+                  "application/problem+json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ProblemDetail"
+                    }
+                  }
+                },
+                "description": "The link was retired"
+              },
+              "429": {
+                "content": {
+                  "application/problem+json": {
+                    "examples": {
+                      "tooManyRequests": {
+                        "value": {
+                          "instance": "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                          "status": 429,
+                          "title": "Too Many Requests"
+                        }
+                      }
+                    },
+                    "schema": {
+                      "$ref": "#/components/schemas/ProblemDetail"
+                    }
+                  }
+                },
+                "description": "Too many requests from this client; retry after Retry-After seconds",
+                "headers": {
+                  "Retry-After": {
+                    "description": "Whole seconds until this client's next request is admitted",
+                    "schema": {
+                      "type": "integer",
+                      "format": "int32",
+                      "minimum": 1
+                    }
+                  }
+                }
+              }
+            },
+            "summary": "Open a short link",
+            "tags": [
+              "redirect-controller"
+            ]
+          }
+        }
+      },
+      "components": {
+        "schemas": {
+          "AuditEntry": {
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "description": "What happened",
+                "example": "link.retire"
+              },
+              "actor": {
+                "type": "string",
+                "description": "Who acted",
+                "example": "anonymous"
+              },
+              "after": {
+                "type": "object",
+                "description": "The state after the change, as stored"
+              },
+              "before": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "description": "The state before the change, as stored; null for a create"
+              },
+              "entity": {
+                "type": "string",
+                "description": "The kind of thing changed",
+                "example": "link"
+              },
+              "entityId": {
+                "type": "string",
+                "description": "The public identifier of the thing changed",
+                "example": "jHkOIMpK"
+              },
+              "occurredAt": {
+                "type": "string",
+                "format": "date-time",
+                "description": "When the mutation happened (UTC)",
+                "example": "2026-10-03T17:29:41.033Z"
+              },
+              "requestId": {
+                "type": "string",
+                "description": "The X-Request-Id of the request that made the change"
+              }
+            }
+          },
+          "AuditPage": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AuditEntry"
+                }
+              },
+              "next": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Pass back as cursor for the next page; null on the last page"
+              }
+            }
+          },
+          "CreateLinkRequest": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              }
+            }
+          },
+          "DayClicks": {
+            "type": "object",
+            "properties": {
+              "botClicks": {
+                "type": "integer",
+                "format": "int64",
+                "description": "Clicks whose user agent was classified bot"
+              },
+              "clicks": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "date": {
+                "type": "string",
+                "format": "date"
+              },
+              "uniqueVisitors": {
+                "type": "integer",
+                "format": "int64",
+                "description": "Distinct visitors that UTC day; never combined across days"
+              }
+            }
+          },
+          "LinkResponse": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "shortUrl": {
+                "type": "string"
+              },
+              "state": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              }
+            }
+          },
+          "LinkStats": {
+            "type": "object",
+            "properties": {
+              "clicksPerDay": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/DayClicks"
+                }
+              },
+              "code": {
+                "type": "string"
+              },
+              "topReferrers": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ReferrerClicks"
+                }
+              },
+              "totalClicks": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          },
+          "PingResponse": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string"
+              },
+              "time": {
+                "type": "string"
+              }
+            }
+          },
+          "ProblemDetail": {
+            "type": "object",
+            "properties": {
+              "detail": {
+                "type": "string"
+              },
+              "errors": {
+                "type": "array",
+                "description": "Present on 400 validation and 422 idempotency-mismatch problems only",
+                "items": {
+                  "$ref": "#/components/schemas/ProblemFieldError"
+                }
+              },
+              "instance": {
+                "type": "string",
+                "format": "uri"
+              },
+              "status": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "title": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          },
+          "ProblemFieldError": {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "rule": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "field",
+              "message",
+              "rule"
+            ]
+          },
+          "ReferrerClicks": {
+            "type": "object",
+            "properties": {
+              "clicks": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "referrer": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "org.springdoc.api.AbstractOpenApiResource"
+        },
+        "process": {
+          "pid": "<pid:direct>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "Init duration for springdoc-openapi is: 162 ms",
+        "requestId": "<request:live-openapi>",
+        "ecs": {
+          "version": "8.11"
+        }
+      },
+      {
+        "@timestamp": "<log-time:1>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:direct>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:live-openapi>",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "trusted-create": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:trusted-create>",
+      "location": "/api/links/<code:trusted-create>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:trusted-create>",
+      "shortUrl": "http://localhost:8080/<code:trusted-create>",
+      "url": "https://example.com/qa06/client-group",
+      "state": "active",
+      "createdAt": "<createdAt:trusted-create>"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:trusted>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:trusted-create>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "trusted-audit-admitted": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 200,
+    "headers": {
+      "x-request-id": "<request:trusted-audit-admitted>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "items": [
+        {
+          "occurredAt": "<audit-time:trusted-create>",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "<code:trusted-create>",
+          "requestId": "<request:trusted-create>",
+          "before": null,
+          "after": {
+            "url": "https://example.com/qa06/client-group",
+            "state": "active"
+          }
+        }
+      ],
+      "next": null
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:trusted>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:trusted-audit-admitted>",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "trusted-audit-refused-X-Forwarded-For-0": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:trusted-audit-refused-X-Forwarded-For-0>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:trusted-audit-refused-X-Forwarded-For-0>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:trusted>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:trusted-audit-refused-X-Forwarded-For-0>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "trusted-audit-refused-X-Forwarded-For-1": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:trusted-audit-refused-X-Forwarded-For-1>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:trusted-audit-refused-X-Forwarded-For-1>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:trusted>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:trusted-audit-refused-X-Forwarded-For-1>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "trusted-audit-refused-X-Forwarded-For-2": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:trusted-audit-refused-X-Forwarded-For-2>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:trusted-audit-refused-X-Forwarded-For-2>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:trusted>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:trusted-audit-refused-X-Forwarded-For-2>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "trusted-audit-refused-Forwarded-0": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:trusted-audit-refused-Forwarded-0>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:trusted-audit-refused-Forwarded-0>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:trusted>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:trusted-audit-refused-Forwarded-0>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "trusted-audit-refused-Forwarded-1": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:trusted-audit-refused-Forwarded-1>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:trusted-audit-refused-Forwarded-1>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:trusted>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:trusted-audit-refused-Forwarded-1>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "trusted-audit-refused-Forwarded-2": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:trusted-audit-refused-Forwarded-2>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:trusted-audit-refused-Forwarded-2>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:trusted>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:trusted-audit-refused-Forwarded-2>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "trusted-click-A": {
+    "method": "GET",
+    "path": "/<code:trusted-create>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:trusted-click-A>",
+      "location": "https://example.com/qa06/client-group",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:trusted>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:trusted-click-A>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "trusted-click-A-chain": {
+    "method": "GET",
+    "path": "/<code:trusted-create>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:trusted-click-A-chain>",
+      "location": "https://example.com/qa06/client-group",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:trusted>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:trusted-click-A-chain>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "trusted-click-B": {
+    "method": "GET",
+    "path": "/<code:trusted-create>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:trusted-click-B>",
+      "location": "https://example.com/qa06/client-group",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:trusted>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:trusted-click-B>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "trusted-stats-poll-1": {
+    "method": "GET",
+    "path": "/api/links/<code:trusted-create>/stats",
+    "status": 200,
+    "headers": {
+      "x-request-id": "<request:trusted-stats-poll-1>",
+      "content-type": "application/json",
+      "content-length": "181",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:trusted-create>",
+      "totalClicks": 3,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 3,
+          "uniqueVisitors": 2,
+          "botClicks": 0
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://ref.example",
+          "clicks": 3
+        }
+      ]
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:trusted>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:trusted-stats-poll-1>",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "untrusted-budget-spent-0": {
+    "method": "GET",
+    "path": "/api/links/zzzzzzzz",
+    "status": 404,
+    "headers": {
+      "x-request-id": "<request:untrusted-budget-spent-0>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:untrusted-budget-spent-0>",
+      "status": 404,
+      "title": "Not Found"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:untrusted-budget>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:untrusted-budget-spent-0>",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "untrusted-budget-spent-1": {
+    "method": "GET",
+    "path": "/api/links/zzzzzzzz",
+    "status": 404,
+    "headers": {
+      "x-request-id": "<request:untrusted-budget-spent-1>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:untrusted-budget-spent-1>",
+      "status": 404,
+      "title": "Not Found"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:untrusted-budget>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:untrusted-budget-spent-1>",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "untrusted-budget-429": {
+    "method": "GET",
+    "path": "/api/links/zzzzzzzz",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:untrusted-budget-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:untrusted-budget-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:untrusted-budget>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:untrusted-budget-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "trusted-budget-spent-0": {
+    "method": "GET",
+    "path": "/api/links/zzzzzzzz",
+    "status": 404,
+    "headers": {
+      "x-request-id": "<request:trusted-budget-spent-0>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:trusted-budget-spent-0>",
+      "status": 404,
+      "title": "Not Found"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:trusted-budget>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:trusted-budget-spent-0>",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "trusted-budget-spent-1": {
+    "method": "GET",
+    "path": "/api/links/zzzzzzzz",
+    "status": 404,
+    "headers": {
+      "x-request-id": "<request:trusted-budget-spent-1>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:trusted-budget-spent-1>",
+      "status": 404,
+      "title": "Not Found"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:trusted-budget>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:trusted-budget-spent-1>",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "trusted-budget-429": {
+    "method": "GET",
+    "path": "/api/links/zzzzzzzz",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:trusted-budget-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:trusted-budget-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:trusted-budget>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:trusted-budget-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "trusted-budget-unrelated-client": {
+    "method": "GET",
+    "path": "/api/links/zzzzzzzz",
+    "status": 404,
+    "headers": {
+      "x-request-id": "<request:trusted-budget-unrelated-client>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:trusted-budget-unrelated-client>",
+      "status": 404,
+      "title": "Not Found"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:trusted-budget>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:trusted-budget-unrelated-client>",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "remote-ip-create-canary": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:remote-ip-create-canary>",
+      "location": "/api/links/<code:remote-ip-create-canary>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:remote-ip-create-canary>",
+      "shortUrl": "http://localhost:8080/<code:remote-ip-create-canary>",
+      "url": "https://example.com/qa06/client-group",
+      "state": "active",
+      "createdAt": "<createdAt:remote-ip-create-canary>"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:remote-ip>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:remote-ip-create-canary>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "remote-ip-audit-GET-plain": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:remote-ip-audit-GET-plain>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:remote-ip-audit-GET-plain>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:remote-ip>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:remote-ip-audit-GET-plain>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "remote-ip-audit-GET-forged": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:remote-ip-audit-GET-forged>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:remote-ip-audit-GET-forged>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:remote-ip>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:remote-ip-audit-GET-forged>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "remote-ip-audit-HEAD-plain": {
+    "method": "HEAD",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:remote-ip-audit-HEAD-plain>",
+      "content-type": "application/problem+json",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:remote-ip>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:remote-ip-audit-HEAD-plain>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "remote-ip-audit-HEAD-forged": {
+    "method": "HEAD",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:remote-ip-audit-HEAD-forged>",
+      "content-type": "application/problem+json",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:remote-ip>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:remote-ip-audit-HEAD-forged>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "protocol-create-canary": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:protocol-create-canary>",
+      "location": "/api/links/<code:protocol-create-canary>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:protocol-create-canary>",
+      "shortUrl": "http://localhost:8080/<code:protocol-create-canary>",
+      "url": "https://example.com/qa06/client-group",
+      "state": "active",
+      "createdAt": "<createdAt:protocol-create-canary>"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:protocol>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:protocol-create-canary>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "protocol-audit-GET-plain": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:protocol-audit-GET-plain>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:protocol-audit-GET-plain>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:protocol>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:protocol-audit-GET-plain>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "protocol-audit-GET-forged": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:protocol-audit-GET-forged>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:protocol-audit-GET-forged>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:protocol>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:protocol-audit-GET-forged>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "protocol-audit-HEAD-plain": {
+    "method": "HEAD",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:protocol-audit-HEAD-plain>",
+      "content-type": "application/problem+json",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:protocol>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:protocol-audit-HEAD-plain>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "protocol-audit-HEAD-forged": {
+    "method": "HEAD",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:protocol-audit-HEAD-forged>",
+      "content-type": "application/problem+json",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:protocol>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:protocol-audit-HEAD-forged>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "both-remoteip-create-canary": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:both-remoteip-create-canary>",
+      "location": "/api/links/<code:both-remoteip-create-canary>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:both-remoteip-create-canary>",
+      "shortUrl": "http://localhost:8080/<code:both-remoteip-create-canary>",
+      "url": "https://example.com/qa06/client-group",
+      "state": "active",
+      "createdAt": "<createdAt:both-remoteip-create-canary>"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:both-remoteip>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:both-remoteip-create-canary>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "both-remoteip-audit-GET-plain": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:both-remoteip-audit-GET-plain>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:both-remoteip-audit-GET-plain>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:both-remoteip>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:both-remoteip-audit-GET-plain>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "both-remoteip-audit-GET-forged": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:both-remoteip-audit-GET-forged>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:both-remoteip-audit-GET-forged>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:both-remoteip>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:both-remoteip-audit-GET-forged>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "both-remoteip-audit-HEAD-plain": {
+    "method": "HEAD",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:both-remoteip-audit-HEAD-plain>",
+      "content-type": "application/problem+json",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:both-remoteip>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:both-remoteip-audit-HEAD-plain>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "both-remoteip-audit-HEAD-forged": {
+    "method": "HEAD",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:both-remoteip-audit-HEAD-forged>",
+      "content-type": "application/problem+json",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:both-remoteip>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:both-remoteip-audit-HEAD-forged>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "native-create-canary": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:native-create-canary>",
+      "location": "/api/links/<code:native-create-canary>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:native-create-canary>",
+      "shortUrl": "http://localhost:8080/<code:native-create-canary>",
+      "url": "https://example.com/qa06/client-group",
+      "state": "active",
+      "createdAt": "<createdAt:native-create-canary>"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:native>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:native-create-canary>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "native-audit-GET-plain": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:native-audit-GET-plain>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:native-audit-GET-plain>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:native>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:native-audit-GET-plain>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "native-audit-GET-forged": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:native-audit-GET-forged>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:native-audit-GET-forged>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:native>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:native-audit-GET-forged>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "native-audit-HEAD-plain": {
+    "method": "HEAD",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:native-audit-HEAD-plain>",
+      "content-type": "application/problem+json",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:native>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:native-audit-HEAD-plain>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "native-audit-HEAD-forged": {
+    "method": "HEAD",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:native-audit-HEAD-forged>",
+      "content-type": "application/problem+json",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:native>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:native-audit-HEAD-forged>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "framework-create-canary": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:framework-create-canary>",
+      "location": "/api/links/<code:framework-create-canary>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:framework-create-canary>",
+      "shortUrl": "http://localhost:8080/<code:framework-create-canary>",
+      "url": "https://example.com/qa06/client-group",
+      "state": "active",
+      "createdAt": "<createdAt:framework-create-canary>"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:framework>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:framework-create-canary>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "framework-audit-GET-plain": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:framework-audit-GET-plain>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:framework-audit-GET-plain>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:framework>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:framework-audit-GET-plain>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "framework-audit-GET-forged": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:framework-audit-GET-forged>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:framework-audit-GET-forged>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:framework>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:framework-audit-GET-forged>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "framework-audit-HEAD-plain": {
+    "method": "HEAD",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:framework-audit-HEAD-plain>",
+      "content-type": "application/problem+json",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:framework>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:framework-audit-HEAD-plain>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "framework-audit-HEAD-forged": {
+    "method": "HEAD",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:framework-audit-HEAD-forged>",
+      "content-type": "application/problem+json",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:framework>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:framework-audit-HEAD-forged>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "cloud-pinned-audit-admitted": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 200,
+    "headers": {
+      "x-request-id": "<request:cloud-pinned-audit-admitted>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "items": [],
+      "next": null
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:cloud>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:cloud-pinned-audit-admitted>",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "cloud-pinned-audit-refused": {
+    "method": "GET",
+    "path": "/api/audit",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:cloud-pinned-audit-refused>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:cloud-pinned-audit-refused>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:cloud>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:cloud-pinned-audit-refused>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  }
+}

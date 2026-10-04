@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.urlshort.click.ClickPurgeTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-10-04T01:39:38.937Z" hostname="Andrzejs-MacBook-Pro.local" time="0.058">
+  <properties/>
+  <testcase name="startRunsOnThePurgeThreadAndReturnsAfterTheRun()" classname="dev.urlshort.click.ClickPurgeTest" time="0.007"/>
+  <testcase name="runNowRunsOnThePurgeThread()" classname="dev.urlshort.click.ClickPurgeTest" time="0.001"/>
+  <testcase name="aFailedRunIsOneWarnWithTheClassOnlyAndIsNotRetriedBeforeTheNextDay()" classname="dev.urlshort.click.ClickPurgeTest" time="0.008"/>
+  <testcase name="theCutoffFollowsThePeriod()" classname="dev.urlshort.click.ClickPurgeTest" time="0.001"/>
+  <testcase name="onHoldStartDeletesNothingAndSaysSoOnce()" classname="dev.urlshort.click.ClickPurgeTest" time="0.001"/>
+  <testcase name="aClockThatStepsBackRunsNothing()" classname="dev.urlshort.click.ClickPurgeTest" time="0.001"/>
+  <testcase name="aRunDeletesBeforeTheEarliestKeptDayAndLogsOneInfo()" classname="dev.urlshort.click.ClickPurgeTest" time="0.005"/>
+  <testcase name="theTickRunsOnceADayFromTenPastMidnight()" classname="dev.urlshort.click.ClickPurgeTest" time="0.001"/>
+  <system-out><![CDATA[2026-10-03T18:39:38.974-07:00  INFO 19424 --- [    click-purge] dev.urlshort.click.ClickPurge            : clicks purged
+2026-10-03T18:39:38.976-07:00  INFO 19424 --- [    click-purge] dev.urlshort.click.ClickPurge            : clicks purged
+2026-10-03T18:39:38.979-07:00  WARN 19424 --- [    Test worker] dev.urlshort.click.ClickPurge            : click purge failed
+2026-10-03T18:39:38.984-07:00  WARN 19424 --- [    Test worker] dev.urlshort.click.ClickPurge            : click purge failed
+2026-10-03T18:39:38.986-07:00  INFO 19424 --- [    Test worker] dev.urlshort.click.ClickPurge            : clicks purged
+2026-10-03T18:39:38.987-07:00  WARN 19424 --- [    Test worker] dev.urlshort.click.ClickPurge            : click purge paused, no click is deleted
+2026-10-03T18:39:38.988-07:00  INFO 19424 --- [    Test worker] dev.urlshort.click.ClickPurge            : clicks purged
+2026-10-03T18:39:38.993-07:00  INFO 19424 --- [    Test worker] dev.urlshort.click.ClickPurge            : clicks purged
+2026-10-03T18:39:38.994-07:00  INFO 19424 --- [    Test worker] dev.urlshort.click.ClickPurge            : clicks purged
+2026-10-03T18:39:38.995-07:00  INFO 19424 --- [    Test worker] dev.urlshort.click.ClickPurge            : clicks purged
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

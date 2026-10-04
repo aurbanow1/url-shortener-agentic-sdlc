@@ -1,0 +1,44 @@
+{
+  "name": "candidate-remote-space-before",
+  "app": "candidate-remote-space",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/blank-settings/run-20261004T022839335431Z/044-candidate-remote-space-before.trace",
+    "-X",
+    "GET",
+    "http://localhost:61101/api/audit"
+  ],
+  "method": "GET",
+  "path": "/api/audit",
+  "raw": "044-candidate-remote-space-before.http",
+  "status": 200,
+  "headers": {
+    "x-request-id": "ded242b2-20dc-4897-ae36-4b1afc0edde0",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 02:28:59 GMT"
+  },
+  "json": {
+    "items": [
+      {
+        "occurredAt": "2026-10-04T02:28:59.933Z",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entityId": "sG1bwAuY",
+        "requestId": "89976a1f-af37-4ae3-a011-94d84855be5e",
+        "before": null,
+        "after": {
+          "url": "https://example.com/qa06/client-group",
+          "state": "active"
+        }
+      }
+    ],
+    "next": null
+  }
+}

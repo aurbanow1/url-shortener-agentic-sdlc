@@ -1,0 +1,44 @@
+{
+  "name": "baseline-remote-empty-before",
+  "app": "baseline-remote-empty",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/blank-settings/run-20261004T022839335431Z/002-baseline-remote-empty-before.trace",
+    "-X",
+    "GET",
+    "http://localhost:60500/api/audit"
+  ],
+  "method": "GET",
+  "path": "/api/audit",
+  "raw": "002-baseline-remote-empty-before.http",
+  "status": 200,
+  "headers": {
+    "x-request-id": "4eea4f47-9026-4dd0-b762-0793f65c9c29",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 02:28:41 GMT"
+  },
+  "json": {
+    "items": [
+      {
+        "occurredAt": "2026-10-04T02:28:41.626Z",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entityId": "nsEMn19Z",
+        "requestId": "99905e13-07ea-4552-9227-8f9fa8ae8cf6",
+        "before": null,
+        "after": {
+          "url": "https://example.com/qa06/client-group",
+          "state": "active"
+        }
+      }
+    ],
+    "next": null
+  }
+}
