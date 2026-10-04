@@ -88,7 +88,7 @@ it in `docs/guidance/README.md` §2.
 | Retries (failed verdicts + step re-entries) | 55, all review loops working as designed |
 | Rollbacks executed | 6: release rehearsals and drills, each with raw evidence (`docs/metrics/rollbacks.json`); no revert reached `main`, and no production rollback was needed |
 | Engine recoveries | 1 resume and 1 abort, both DRILL 4 |
-| MTTR (failed check → next handoff or done of that step) | 29 min mean: repair of a rejected candidate, not incident recovery |
+| MTTR (failed check → next handoff or done of that step) | 31 min, the mean over 16 repairs: repair of a rejected candidate, not incident recovery |
 | End-to-end latency, completed instances | p50 5.6 h, p95 15.7 h |
 | Time parked on the human | 8.8 h, reported apart from agent throughput |
 
@@ -191,10 +191,12 @@ are recorded verbatim in the queue transitions exported under `docs/evidence/`.
 - `scripts/http`, the curl wrapper agents use for HTTP checks, at first
   checked only that a URL argument began with a loopback address, so
   `http://127.0.0.1.example.invalid/` or `--url=…` passed (found by the final
-  fact-check and an external review). It now checks every destination exactly,
-  refuses options that change or add one, and ignores `~/.curlrc` and proxies;
-  `scripts/http-guard-check.sh` runs 22 cases in CI. It remains an argument
-  guard: for the Codex seats the hard network boundary is their sandbox.
+  fact-check and two external reviews). It now accepts only the curl options
+  the repository's callers use, so redirect following, proxies, `--next` and
+  `--url` are refused; it checks every destination exactly, clears proxy
+  variables and ignores `~/.curlrc`. `scripts/http-guard-check.sh` runs 36
+  cases and a proxy-variable check in CI. It remains an argument guard: for
+  the Codex seats the hard network boundary is their sandbox.
 
 ## 8. How to verify in 15 minutes
 
