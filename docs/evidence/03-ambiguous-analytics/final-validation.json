@@ -1,0 +1,77 @@
+{
+  "verifiedAt": "2026-10-04T03:07:10.831444+00:00",
+  "candidate": "50ad9c3ab9e65baa4100ede1772b514322957fa5",
+  "qaCommit": "0e125ca7",
+  "exportJsonFilesParsed": 427,
+  "instances": 17,
+  "packets": 193,
+  "requiredArtifactsPresent": [
+    "compiled-graph.json",
+    "proof-readiness.json",
+    "scope-audit.json",
+    "workflow-list.json",
+    "workflow-status.json",
+    "queue-active.json",
+    "usage-top.json",
+    "instances/01M40RVNDQ0KT7FPWN1KJW0DC3.trace.json",
+    "instances/01M40RVNDQ0KT7FPWN1KJW0DC3.show.json",
+    "instances/01M416Z3CM54YQTX93V4KG0CPS.trace.json",
+    "instances/01M416Z3CM54YQTX93V4KG0CPS.show.json",
+    "packets/qitem-20261004023723-f58044d0.transitions.json",
+    "packets/qitem-20261004023723-f58044d0.show.json",
+    "packets/qitem-20261004024232-5aea9029.transitions.json",
+    "packets/qitem-20261004024232-5aea9029.show.json",
+    "packets/qitem-20261004024238-651b51b1.transitions.json",
+    "packets/qitem-20261004024238-651b51b1.show.json"
+  ],
+  "proofState": "ready",
+  "accepted": 12,
+  "newReceipts": {
+    "1": 18,
+    "2": 15,
+    "5": 16,
+    "6": 17
+  },
+  "committedEvidenceHashesChecked": 45,
+  "distinctEvidenceFiles": 35,
+  "localLinksAndAnchorsVerified": 193,
+  "humanDecision": {
+    "transitionId": 1916,
+    "qitemId": "qitem-20261004023723-f58044d0",
+    "ts": "2026-10-04T02:38:55.409Z",
+    "state": "in-progress",
+    "transitionNote": "approve: ship mission 03 analytics v2 at 50ad9c3 for local use; the exact-SHA hosted CI gap is accepted because the delta from the CI-verified 18db1de is one test-only change",
+    "actorSession": "human@kernel",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": "human-decision-resolved",
+    "ownerNotificationLevel": "NOTICE"
+  },
+  "deliveryStamps": {
+    "missions/03-ambiguous-analytics/SPEC.md": {
+      "actor": "release-agent@urlshort-factory",
+      "at": "2026-10-04T02:39:25.458Z"
+    },
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/SPEC.md": {
+      "actor": "orchestration-lead@urlshort-factory",
+      "at": "2026-10-04T02:40:20.216Z"
+    }
+  },
+  "historicalRecordsUnchanged": {
+    "GAPS-snapshot.md": "18149e871a3225f68323117da91202d2186662b6667642e3815068ae12974068",
+    "proof-readiness-50ad9c3.json": "8934a865ee2183d8cedfe267565c6adbe0bbdaf60b0d839d992d994b141be880",
+    "artifact-manifest-50ad9c3.json": "1d74b50b9b92cf0f8d2c021d2302e567f1a46155a430319a46da31c53a39961c",
+    "package-verification.json": "c896f1d6949a1a53e3a56f38a403cd6d7a2bac86cdf8c5ba7f1f0dcf1b1a92e6",
+    "GAPS-after-qa-50ad9c3.md": "004509e6d7d92230fa3273e1c92e3b6b67c7bc42d44f90b6009dd135487fef43",
+    "proof-readiness-after-qa-50ad9c3.json": "74c6fecb4a448601f821975b9420e28f7865719bb685a044841f147c0d5471c8",
+    "post-qa-verification-50ad9c3.json": "91d641a304c261d25c50315d5f862171a74a1ac0e067494792c54a3204590b8d"
+  },
+  "finalGapsSha256": "e3335166c248c5e6587b07aa3eab3a5585dfe4985c97aea0ee9714cd0c7cb3b3",
+  "scopeAuditFindings": 1,
+  "compiledSourceDigest": "5d5530566e58e2a2e1c0aa2a9bce3e8d4d4a3045d9777a21750c70950861d8a6",
+  "runningSourceDigest": "67227ca5beeca2c2b1e2adbd3948505d8bcfb61e326fa82ef95065f9b93916ea",
+  "dependencyEdgesEqual": true,
+  "lifecycleStatusAtExport": "waiting",
+  "lifecycleStepAtExport": "evidence_export"
+}

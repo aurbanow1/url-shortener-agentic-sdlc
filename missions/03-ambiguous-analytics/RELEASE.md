@@ -55,8 +55,9 @@ and [raw audit](slices/01-analytics-v2/proof/qa-release-50ad9c3/audit.json)
 support the bounded NFR-L1 closure and current GAPS qualifications (§§3/7).
 The [original prep readiness](release/proof-readiness-50ad9c3.json), with
 items 1–11 accepted and item 12 pending, and the earlier
+preparation validation remain unchanged as history. The mutable
 [exported proof](../../docs/evidence/03-ambiguous-analytics/proof-readiness.json)
-remain unchanged as history. QA returned through
+now contains the final reaffirmation described below. QA returned through
 `qitem-20261004020825-9237265b`, separately from global
 `qitem-20261003195138-8eb72ecb`, which retains mission01/02 drift on their
 final main. Mission03 does not wait for D21. No self-judgment is substituted.
@@ -67,8 +68,8 @@ for package `14815f9` and product `50ad9c3`. The reviewer independently checked
 all 41 current evidence references across 33 committed files and the final
 five-file delta. This is a package verdict, not human ship approval.
 
-**Live evidence change after review:** a [fresh readiness read](release/proof-readiness-shared-doc-drift-50ad9c3.json)
-is **unknown: items 2, 5 and 6 need reaffirmation**, while the other nine
+**Evidence change captured after review:** the retained [readiness read](release/proof-readiness-shared-doc-drift-50ad9c3.json)
+was **unknown: items 2, 5 and 6 needed reaffirmation**, while the other nine
 remain accepted. QA2 appended D21 sections to shared `TRACEABILITY.md` and
 `GAPS.md`, changing their whole-file hashes; those edits were uncommitted
 on this read. The earlier ready snapshot and final review remain historical
@@ -80,6 +81,22 @@ is inferred; no new gate or product review is required.
 The later slice delivery stamp also moved item 1's SPEC hash: only
 `approved-by`/`approved-at` frontmatter was added. The same pre-export QA
 item includes that stamp drift; the acceptance text is unchanged.
+
+**Final pre-export proof:** QA committed the reaffirmation at **`0e125ca7`**:
+receipts [15](slices/01-analytics-v2/proof/judgments/00000015.md),
+[16](slices/01-analytics-v2/proof/judgments/00000016.md),
+[17](slices/01-analytics-v2/proof/judgments/00000017.md) and
+[18](slices/01-analytics-v2/proof/judgments/00000018.md) reaffirm items 2, 5,
+6 and 1 against `50ad9c3`. [QA's record](slices/01-analytics-v2/proof/qa-final-reaffirmation-50ad9c3/QA.md)
+and [receipt verification](slices/01-analytics-v2/proof/qa-final-reaffirmation-50ad9c3/receipt-verification.json)
+support **ready: 12/12 accepted, no issues** in the final exported proof.
+Release independently checked all **45 references across 35 files** against
+current bytes and committed `0e125ca7`, including the final GAPS and stamped
+SPEC hashes. [Final validation](../../docs/evidence/03-ambiguous-analytics/final-validation.json).
+QA packet `qitem-20261004024232-5aea9029` closed before export; its corrected
+closure names `0e125ca7`, replacing an erroneous placeholder. Earlier pending,
+ready and drift snapshots retain their original bytes. No benchmark or
+product gate was repeated for this document reaffirmation.
 
 **Human approval:** existing gate `qitem-20261004023723-f58044d0`, handled by
 the primary `release-agent`, was resolved by `human@kernel` at
@@ -272,18 +289,30 @@ image OS-package scanning or future advisory status.
 | Shared QA/review context | [TRACEABILITY](../../docs/qa/TRACEABILITY.md), [GAPS](../../docs/qa/GAPS.md), [review ledger](../../docs/review/REVIEW-LEDGER.md), [cross-cutting register](../../docs/guidance/architecture.md) |
 
 The governance-indexed [export INDEX](../../docs/evidence/03-ambiguous-analytics/INDEX.md)
-is the authoritative packet/step table: **17 instances and 183 packets**,
-exported 01:23:04Z. It includes the mission lifecycle and analytics slice,
+is the authoritative packet/step table: **17 instances and 193 packets**.
+The final export ran **02:57:12Z–02:58:48Z**, after QA reaffirmation and human
+approval; the standalone QA-return records were supplemented at 03:04Z.
+It includes the mission lifecycle and analytics slice,
 compiled graph, every exported instance trace/show and packet transition/show,
 proof, scope audit, active queue, usage and workflow status.
-[Validation](release/export-validation.json) parsed all 407 JSON files and
-confirmed both required instance traces. This exporter captures the rig's
+[Final validation](../../docs/evidence/03-ambiguous-analytics/final-validation.json)
+parsed **427 raw JSON records**, checked the required records, committed proof
+hashes, delivery stamps and verbatim human decision. The validation report
+itself is additional. The [preparation validation](release/export-validation.json)
+retains its historical 407-record/183-packet capture. This exporter captures the rig's
 cross-mission records too; directory placement is not mission ownership.
+The [verification program](release/final-export-check.py) also checks every
+listed instance, every packet named in its traces, paired raw records and
+local links/anchors. Run it from the repository root with
+`python3 missions/03-ambiguous-analytics/release/final-export-check.py`.
 [Snapshot notes](../../docs/evidence/03-ambiguous-analytics/INDEX-notes.md)
 map the remaining obligations and [governance clauses](../../docs/GOVERNANCE.md).
-Final-state export follows the human gate; this preparation export remains
-historical. Later review and human decision are linked separately in §1;
-final export and mission close remain downstream obligations.
+The lifecycle is captured at `evidence_export`, before this author's handoff
+and the lead's `mission_close`; neither future closure is claimed here.
+The disk compile and running instance retain distinct source digests already
+present in preparation; their dependency edges match. The disk compile lacks
+an instantiation operation key and does not replace the running binding.
+The scope audit retains one medium historical QA-artifact header advisory (§7).
 
 Shared operator docs were committed by their custodian at **`e227acf`** and
 read here: [README](../../README.md) runs the product in three commands without
@@ -294,7 +323,7 @@ current seats/gates/TUI and D17's same-runtime document-review qualifications;
 
 ## 6. Metrics, read plainly
 
-The shared custodian ran `node tools/sdlc-metrics.mjs` after the coordinated
+**Preparation snapshot:** the shared custodian ran `node tools/sdlc-metrics.mjs` after the coordinated
 exports; commit **`8d3c536`**, generated **01:52:27.811Z**.
 [Derivations and limits](../../docs/metrics/README.md), [engine-derived data](../../docs/metrics/metrics.json),
 [frozen relevant rows](release/metrics-relevant-8d3c536.json).
@@ -335,6 +364,13 @@ Every historical row/qualification remains available; the table below reconciles
 its applicable sections and the review residue at this exact candidate.
 Living GAPS/proof hashes may change after this snapshot; QA alone reaffirms them.
 
+The final pre-export [complete GAPS copy](release/GAPS-final-export-50ad9c3.md)
+matches QA receipt 17 and current committed bytes, SHA-256
+`e3335166c248c5e6587b07aa3eab3a5585dfe4985c97aea0ee9714cd0c7cb3b3`.
+It retains every shared-file section, including later D21 context; those later
+product sections do not change the approved `50ad9c3` candidate. QA reaffirmed
+the unchanged analytics sections and the delivery-only SPEC metadata.
+
 | Gap / qualification | Current disposition and evidence | Owner |
 |---|---|---|
 | NFR-L1 proof12 | CLOSED for the specified run by QA receipt13: p95 3.7ms/p99 9.5ms at100 redirects/s for60s, zero bad responses. Same-host activity, trusted loopback, raised budgets and unretained client latency samples remain qualified (§3). Historical pending row is preserved beside the attributed closure. | QA return qitem-20261004020825-9237265b, pinned50ad9c3 |
@@ -358,6 +394,7 @@ Living GAPS/proof hashes may change after this snapshot; QA alone reaffirms them
 | W2F-01 historical test race | Fixed by0552b81 merged50ad9c3; ten scheduled-test repeats and owning independent re-review, then fresh whole gate. Failure records remain historical; no claim a green run alone disproved the race. | Owning review79eda7e; wave residual resolution |
 | Benchmark and factory metric limits | Same-host single-run regression only; GET−HEAD unisolated; export-container mission labels and custom-human-wait omission disclosed in§6. | Release/custodian; future measurement-tool holder |
 | Model fallback / restoration | QA-authored8cf894a fell in01:27–01:33Z Luna Reserve window; release2 and independent release review re-derived its bounded claims. The initial NFR-L1 edit797f8fb was also rechecked on QA's restored seat before receipts13/14. D17 permits shared runtime; separate authorship retained. | QA, release2 and independent release reviewer; linked audits in§3 |
+| Evidence metadata advisory | Scope audit reports medium `proof_artifact_c1_invalid` on historical `qa-item11-ec466da.md`: required frontmatter is absent. Its attributed judgment remains accepted; hash-bound historical bytes are preserved. | Lead / QA evidence owner; [raw audit](../../docs/evidence/03-ambiguous-analytics/scope-audit.json) |
 
 Closed historical gaps remain visible above; none is presented as an open
 HIGH or silently erased. Full source-specific controlled probes, parser/capture
@@ -424,7 +461,7 @@ patch permit recovery without claiming a previously published rollback image.
 - Decision brief quotes actual human transitions and links stamped SPECs;
   six alternatives are recorded. Reviewed snapshot has all12 proof items
   accepted and release review PASS; shared-document drift2/5/6 and stamp drift1,
-  human approval1916 and one reaffirmation before final export are explicit in §1.
+  human approval1916 and completed pre-export reaffirmation at0e125ca7 are explicit in §1.
 - Fresh exact-product gate and preserved jar/image identities are linked;
   every local evidence link is validated before commit. [Prep verification](release/package-verification.json),
   [post-QA verification](release/post-qa-verification-50ad9c3.json). Hosted runs are unverified.
@@ -433,16 +470,19 @@ patch permit recovery without claiming a previously published rollback image.
 - Runtime dependency resolution and fresh network OSV response inspected:
   97 coordinates,zero returned advisories; no unstated remediation or scan claim.
 - Slice planning, QA, coverage, reviews, integration and proof paths open;
-  INDEX supplies packet/step tables. Final export remains downstream of the gate.
+  INDEX supplies packet/step tables. Final export follows the human gate and QA return;
+  427 raw JSON records parse and all45 committed judgment references match.
 - Shared metrics generated at8d3c536; own instance rows and factory totals
   distinguished, zero counts and missing MTTR/human-wait limits read plainly.
 - Post-QA GAPS copied byte-for-byte and matched to receipt14; original pending
-  snapshots/manifest remain unchanged. Closures, review LOWs, operational
+  snapshots/manifest remain unchanged. Final GAPS copy matches receipt17.
+  Closures, review LOWs, operational
   limits and both model recheck obligations are retained with owners.
 - Rollback rehearsed, gate and copied-data installed smoke passed; no analytics
   down migration; data-loss and later-tree limits described step by step.
 - Current-model audit of QA's8cf894a and independent release re-derivation
   open raw bytes; QA's restored-seat receipts bind the benchmark/GAPS return.
   Final release review passed; later shared-document drift is not hidden.
+  Seven original preparation/review records remain byte-identical to14815f9.
   Nothing pushed,
   release-tagged, published or exposed beyond localhost.
