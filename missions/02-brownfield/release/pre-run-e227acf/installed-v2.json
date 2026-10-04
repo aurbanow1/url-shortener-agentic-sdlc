@@ -1,0 +1,154 @@
+{
+  "candidate": "e227acf04e1ea902406532fcebd741f8a86f7f65",
+  "createJar": {
+    "chunk_id": "310e42",
+    "wall_time_seconds": 0.00010575,
+    "exit_code": 0,
+    "original_token_count": 169,
+    "output": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r100   199    0   159  100    40   2347    590 --:--:-- --:--:-- --:--:--  2970\nHTTP/1.1 201 \r\nX-Request-Id: cab819e8-a0b0-4daf-a1b6-0f5d524c8800\r\nLocation: /api/links/snUv3xWU\r\nContent-Type: application/json\r\nTransfer-Encoding: chunked\r\nDate: Sun, 04 Oct 2026 01:18:49 GMT\r\n\r\n{\"code\":\"snUv3xWU\",\"shortUrl\":\"http://127.0.0.1:18220/snUv3xWU\",\"url\":\"https://example.com/pre-run-v2\",\"state\":\"active\",\"createdAt\":\"2026-10-04T01:18:49.365Z\"}"
+  },
+  "createContainer": {
+    "chunk_id": "07f5bd",
+    "wall_time_seconds": 0.010028416,
+    "exit_code": 0,
+    "original_token_count": 169,
+    "output": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r100   199    0   159  100    40   1540    387 --:--:-- --:--:-- --:--:--  1932\nHTTP/1.1 201 \r\nX-Request-Id: 00e79ac0-bdcb-4e1c-a0d0-d81562f45da9\r\nLocation: /api/links/GBWj1f3N\r\nContent-Type: application/json\r\nTransfer-Encoding: chunked\r\nDate: Sun, 04 Oct 2026 01:18:49 GMT\r\n\r\n{\"code\":\"GBWj1f3N\",\"shortUrl\":\"http://127.0.0.1:18221/GBWj1f3N\",\"url\":\"https://example.com/pre-run-v2\",\"state\":\"active\",\"createdAt\":\"2026-10-04T01:18:49.411Z\"}"
+  },
+  "observations": [
+    {
+      "label": "jar-browser",
+      "command": "scripts/http -sS -i -H 'User-Agent: Mozilla/5.0' -H 'X-Forwarded-For: 203.0.113.1' http://127.0.0.1:18220/snUv3xWU",
+      "chunk_id": "b599dd",
+      "wall_time_seconds": 0.000010208,
+      "exit_code": 0,
+      "original_token_count": 48,
+      "output": "HTTP/1.1 302 \r\nX-Request-Id: 9fb5b956-3d6f-4a9e-b4f8-4c4092dab6f4\r\nLocation: https://example.com/pre-run-v2\r\nCache-Control: no-store\r\nContent-Length: 0\r\nDate: Sun, 04 Oct 2026 01:19:30 GMT\r\n\r\n"
+    },
+    {
+      "label": "jar-bot",
+      "command": "scripts/http -sS -i -H 'User-Agent: example-bot' -H 'X-Forwarded-For: 203.0.113.2' http://127.0.0.1:18220/snUv3xWU",
+      "chunk_id": "c750cf",
+      "wall_time_seconds": 0.000005166,
+      "exit_code": 0,
+      "original_token_count": 48,
+      "output": "HTTP/1.1 302 \r\nX-Request-Id: 3791a3e1-b7e5-468b-a1c3-7c34a8b4afc0\r\nLocation: https://example.com/pre-run-v2\r\nCache-Control: no-store\r\nContent-Length: 0\r\nDate: Sun, 04 Oct 2026 01:19:30 GMT\r\n\r\n"
+    },
+    {
+      "label": "jar-head",
+      "command": "scripts/http -sS -I http://127.0.0.1:18220/snUv3xWU",
+      "chunk_id": "993273",
+      "wall_time_seconds": 0.000010791,
+      "exit_code": 0,
+      "original_token_count": 44,
+      "output": "HTTP/1.1 302 \r\nX-Request-Id: f918370e-050e-4471-a17e-36c9281018bd\r\nLocation: https://example.com/pre-run-v2\r\nCache-Control: no-store\r\nDate: Sun, 04 Oct 2026 01:19:30 GMT\r\n\r\n"
+    },
+    {
+      "label": "container-browser",
+      "command": "scripts/http -sS -i -H 'User-Agent: Mozilla/5.0' -H 'X-Forwarded-For: 203.0.113.1' http://127.0.0.1:18221/GBWj1f3N",
+      "chunk_id": "fdadb4",
+      "wall_time_seconds": 0.000006417,
+      "exit_code": 0,
+      "original_token_count": 48,
+      "output": "HTTP/1.1 302 \r\nX-Request-Id: 7bce0244-f601-4aac-a37f-e8f040ed9b41\r\nLocation: https://example.com/pre-run-v2\r\nCache-Control: no-store\r\nContent-Length: 0\r\nDate: Sun, 04 Oct 2026 01:19:30 GMT\r\n\r\n"
+    },
+    {
+      "label": "container-bot",
+      "command": "scripts/http -sS -i -H 'User-Agent: example-bot' -H 'X-Forwarded-For: 203.0.113.2' http://127.0.0.1:18221/GBWj1f3N",
+      "chunk_id": "bed66f",
+      "wall_time_seconds": 0.000002917,
+      "exit_code": 0,
+      "original_token_count": 48,
+      "output": "HTTP/1.1 302 \r\nX-Request-Id: af989909-4c87-474b-a8fd-b2626f73e758\r\nLocation: https://example.com/pre-run-v2\r\nCache-Control: no-store\r\nContent-Length: 0\r\nDate: Sun, 04 Oct 2026 01:19:30 GMT\r\n\r\n"
+    },
+    {
+      "label": "container-head",
+      "command": "scripts/http -sS -I http://127.0.0.1:18221/GBWj1f3N",
+      "chunk_id": "67cab0",
+      "wall_time_seconds": 0.000006208,
+      "exit_code": 0,
+      "original_token_count": 44,
+      "output": "HTTP/1.1 302 \r\nX-Request-Id: da4e46ef-5860-4469-b25a-8daffbf7fac8\r\nLocation: https://example.com/pre-run-v2\r\nCache-Control: no-store\r\nDate: Sun, 04 Oct 2026 01:19:30 GMT\r\n\r\n"
+    },
+    {
+      "command": "scripts/http -sS -i http://127.0.0.1:18220/api/links/snUv3xWU/stats",
+      "chunk_id": "ea5e01",
+      "wall_time_seconds": 0.000005583,
+      "exit_code": 0,
+      "original_token_count": 74,
+      "output": "HTTP/1.1 200 \r\nX-Request-Id: 517a0cc0-6079-4c18-8bbc-221904b648d6\r\nContent-Type: application/json\r\nContent-Length: 136\r\nDate: Sun, 04 Oct 2026 01:23:30 GMT\r\n\r\n{\"code\":\"snUv3xWU\",\"totalClicks\":2,\"clicksPerDay\":[{\"date\":\"2026-10-04\",\"clicks\":2,\"uniqueVisitors\":1,\"botClicks\":1}],\"topReferrers\":[]}"
+    },
+    {
+      "command": "scripts/http -sS -i http://127.0.0.1:18221/api/links/GBWj1f3N/stats",
+      "chunk_id": "921ff2",
+      "wall_time_seconds": 0.000002917,
+      "exit_code": 0,
+      "original_token_count": 74,
+      "output": "HTTP/1.1 200 \r\nX-Request-Id: c87c50ff-4d33-4754-aa27-14954d0f01b1\r\nContent-Type: application/json\r\nContent-Length: 136\r\nDate: Sun, 04 Oct 2026 01:23:30 GMT\r\n\r\n{\"code\":\"GBWj1f3N\",\"totalClicks\":2,\"clicksPerDay\":[{\"date\":\"2026-10-04\",\"clicks\":2,\"uniqueVisitors\":1,\"botClicks\":1}],\"topReferrers\":[]}"
+    },
+    {
+      "command": "scripts/http -sS http://127.0.0.1:18220/actuator/metrics/urlshort.click.recorded",
+      "chunk_id": "9e90ab",
+      "wall_time_seconds": 0.000004375,
+      "exit_code": 0,
+      "original_token_count": 0,
+      "output": ""
+    },
+    {
+      "command": "scripts/http -sS http://127.0.0.1:18221/actuator/metrics/urlshort.click.recorded",
+      "chunk_id": "4e56e4",
+      "wall_time_seconds": 0.000004917,
+      "exit_code": 0,
+      "original_token_count": 0,
+      "output": ""
+    },
+    {
+      "command": "scripts/http -sS http://127.0.0.1:18220/actuator/metrics/urlshort.click.lost",
+      "chunk_id": "60e19e",
+      "wall_time_seconds": 0.000005458,
+      "exit_code": 0,
+      "original_token_count": 0,
+      "output": ""
+    },
+    {
+      "command": "scripts/http -sS http://127.0.0.1:18221/actuator/metrics/urlshort.click.lost",
+      "chunk_id": "1c4a2e",
+      "wall_time_seconds": 0.000003667,
+      "exit_code": 0,
+      "original_token_count": 0,
+      "output": ""
+    },
+    {
+      "command": "scripts/http -sS -i http://127.0.0.1:18220/actuator/metrics/urlshort.clicks.recorded",
+      "chunk_id": "94333b",
+      "wall_time_seconds": 0.000003459,
+      "exit_code": 0,
+      "original_token_count": 97,
+      "output": "HTTP/1.1 200 \r\nX-Request-Id: 608987bc-e121-4ca7-a0fc-5359da05b2b7\r\nContent-Disposition: inline;filename=f.txt\r\nContent-Type: application/vnd.spring-boot.actuator.v3+json\r\nContent-Length: 155\r\nDate: Sun, 04 Oct 2026 01:23:56 GMT\r\n\r\n{\"availableTags\":[],\"description\":\"Clicks written to the click store\",\"measurements\":[{\"statistic\":\"COUNT\",\"value\":3.0}],\"name\":\"urlshort.clicks.recorded\"}"
+    },
+    {
+      "command": "scripts/http -sS -i http://127.0.0.1:18220/actuator/metrics/urlshort.clicks.lost",
+      "chunk_id": "f125b6",
+      "wall_time_seconds": 0.000006083,
+      "exit_code": 0,
+      "original_token_count": 129,
+      "output": "HTTP/1.1 200 \r\nX-Request-Id: fe945209-6711-4290-8a53-78b327da3ed8\r\nContent-Disposition: inline;filename=f.txt\r\nContent-Type: application/vnd.spring-boot.actuator.v3+json\r\nContent-Length: 284\r\nDate: Sun, 04 Oct 2026 01:23:56 GMT\r\n\r\n{\"availableTags\":[{\"tag\":\"reason\",\"values\":[\"shutdown deadline, outcome unknown\",\"reduction failed\",\"rejected\",\"shutdown deadline\",\"write failed\"]}],\"description\":\"Clicks reported by a click lost event\",\"measurements\":[{\"statistic\":\"COUNT\",\"value\":0.0}],\"name\":\"urlshort.clicks.lost\"}"
+    },
+    {
+      "command": "scripts/http -sS -i http://127.0.0.1:18221/actuator/metrics/urlshort.clicks.lost",
+      "chunk_id": "1caa20",
+      "wall_time_seconds": 0.009578084,
+      "exit_code": 0,
+      "original_token_count": 129,
+      "output": "HTTP/1.1 200 \r\nX-Request-Id: f92e8a6c-c822-4d41-8971-711be944a69b\r\nContent-Disposition: inline;filename=f.txt\r\nContent-Type: application/vnd.spring-boot.actuator.v3+json\r\nContent-Length: 284\r\nDate: Sun, 04 Oct 2026 01:23:56 GMT\r\n\r\n{\"availableTags\":[{\"tag\":\"reason\",\"values\":[\"shutdown deadline, outcome unknown\",\"reduction failed\",\"rejected\",\"shutdown deadline\",\"write failed\"]}],\"description\":\"Clicks reported by a click lost event\",\"measurements\":[{\"statistic\":\"COUNT\",\"value\":0.0}],\"name\":\"urlshort.clicks.lost\"}"
+    },
+    {
+      "command": "scripts/http -sS -i http://127.0.0.1:18221/actuator/metrics/urlshort.clicks.recorded",
+      "chunk_id": "6e9592",
+      "wall_time_seconds": 0.01078725,
+      "exit_code": 0,
+      "original_token_count": 97,
+      "output": "HTTP/1.1 200 \r\nX-Request-Id: 07651725-16cf-4dad-8039-1c3f3b636a4a\r\nContent-Disposition: inline;filename=f.txt\r\nContent-Type: application/vnd.spring-boot.actuator.v3+json\r\nContent-Length: 155\r\nDate: Sun, 04 Oct 2026 01:23:56 GMT\r\n\r\n{\"availableTags\":[],\"description\":\"Clicks written to the click store\",\"measurements\":[{\"statistic\":\"COUNT\",\"value\":3.0}],\"name\":\"urlshort.clicks.recorded\"}"
+    }
+  ],
+  "instrumentCorrection": "Four queries used singular click rather than clicks and returned empty bodies; only subsequent correct-name HTTP 200 observations support metrics claims."
+}

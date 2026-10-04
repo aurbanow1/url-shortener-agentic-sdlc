@@ -1,0 +1,50 @@
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  959.5kB
+Step 1/15 : FROM eclipse-temurin:21-jdk AS build
+ ---> 3e3c176ffed1
+Step 2/15 : WORKDIR /src
+ ---> Using cache
+ ---> 1a10dc31771f
+Step 3/15 : COPY gradlew settings.gradle.kts build.gradle.kts ./
+ ---> Using cache
+ ---> 7840656df0a5
+Step 4/15 : COPY gradle gradle
+ ---> Using cache
+ ---> 69750e70780f
+Step 5/15 : RUN ./gradlew --no-daemon --version >/dev/null
+ ---> Using cache
+ ---> dc3fffece62c
+Step 6/15 : COPY src src
+ ---> Using cache
+ ---> b10b311f74ca
+Step 7/15 : RUN ./gradlew --no-daemon bootJar -x test -x functionalTest
+ ---> Using cache
+ ---> ed8bc2d2d83e
+Step 8/15 : FROM eclipse-temurin:21-jre
+ ---> cff19e621568
+Step 9/15 : WORKDIR /app
+ ---> Using cache
+ ---> cecdf9d4ae9b
+Step 10/15 : RUN useradd --system --uid 10001 --home /app urlshort  && mkdir -p /app/data && chown -R urlshort:urlshort /app
+ ---> Using cache
+ ---> a226d62411bb
+Step 11/15 : COPY --from=build /src/build/libs/urlshort.jar /app/urlshort.jar
+ ---> Using cache
+ ---> 8ab4acc0ae7a
+Step 12/15 : USER urlshort
+ ---> Using cache
+ ---> 85c67516e689
+Step 13/15 : EXPOSE 8080
+ ---> Using cache
+ ---> 7ffdd5677142
+Step 14/15 : ENV SPRING_DATASOURCE_URL="jdbc:h2:file:/app/data/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE"     JAVA_TOOL_OPTIONS="-XX:MaxRAMPercentage=75"
+ ---> Using cache
+ ---> db936aa9fb88
+Step 15/15 : ENTRYPOINT ["java", "-jar", "/app/urlshort.jar"]
+ ---> Using cache
+ ---> 277703a6510e
+Successfully built 277703a6510e
+Successfully tagged urlshort:mission02-prerun-e227acf

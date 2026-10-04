@@ -1,0 +1,8 @@
+ALTER TABLE link DROP COLUMN updated_by;
+ALTER TABLE link DROP COLUMN created_by;
+ALTER TABLE link DROP COLUMN updated_at;
+ALTER TABLE audit_log DROP COLUMN updated_by;
+ALTER TABLE audit_log DROP COLUMN created_by;
+ALTER TABLE audit_log DROP COLUMN updated_at;
+ALTER TABLE audit_log DROP COLUMN created_at;
+DELETE FROM "flyway_schema_history" WHERE "version" = '4';
