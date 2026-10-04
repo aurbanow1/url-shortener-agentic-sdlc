@@ -1,6 +1,6 @@
 # Evidence export — 02-brownfield
 
-Exported 2026-10-04T04:58:46Z by tools/evidence-export.sh from OpenRig 0.6.3 (8b5e9488).
+Exported 2026-10-04T05:30:09Z by tools/evidence-export.sh from OpenRig 0.6.3 (8b5e9488).
 
 | Artifact | Governance clause (docs/GOVERNANCE.md) |
 |---|---|
@@ -18,7 +18,7 @@ Exported 2026-10-04T04:58:46Z by tools/evidence-export.sh from OpenRig 0.6.3 (8b
 
 Approval stamps are not in this export: they live in the stamped files' frontmatter (missions/<m>/SPEC.md, slices/*/SPEC.md: approved-spec-*, approved-*) with append-only audit rows daemon-side; the decision text behind each stamp is in the gate packet's transitions here.
 
-Instances exported: 17; packets exported: 201.
+Instances exported: 17; packets exported: 204.
 
 ## Packets (workflow · step · state · owner)
 
@@ -166,7 +166,7 @@ Instances exported: 17; packets exported: 201.
 | qitem-20261003193154-cf5ec0b6 | urlshort-slice-delegated | design_review | handed-off | review-agent |
 | qitem-20261003193221-175d6855 | urlshort-slice-delegated-b | implement | handed-off | dev2-agent |
 | qitem-20261003194307-78d5bcf1 | urlshort-slice-delegated | plan_lock | handed-off | orchestration-lead |
-| qitem-20261003195138-8eb72ecb | - | - | blocked | orchestration-lead |
+| qitem-20261003195138-8eb72ecb | - | - | done | orchestration-lead |
 | qitem-20261003195527-d2973fff | urlshort-slice-delegated-b | qa_check | handed-off | qa2-agent |
 | qitem-20261003195938-d8b8a9c3 | urlshort-slice-delegated | code_review | done | review-agent |
 | qitem-20261003200223-d361adc6 | urlshort-slice-delegated | implement | handed-off | development-agent |
@@ -220,10 +220,14 @@ Instances exported: 17; packets exported: 201.
 | qitem-20261004031539-0bd7032a | 03-ambiguous-analytics | mission_close | done | orchestration-lead |
 | qitem-20261004032752-d162e1b3 | urlshort-slice-delegated-b | code_review | handed-off | review2-agent |
 | qitem-20261004033137-1400c73d | urlshort-slice-delegated-b | integrate | done | orchestration-lead |
-| qitem-20261004034522-8dfeeeca | 02-brownfield | release_prep | in-progress | release-agent |
+| qitem-20261004034522-8dfeeeca | 02-brownfield | release_prep | handed-off | release-agent |
 | qitem-20261004041605-18a958ae | - | - | done | qa2-agent |
 | qitem-20261004041607-09149d20 | - | - | done | qa-agent |
 | qitem-20261004042358-6587e4be | - | - | done | qa2-agent |
+| qitem-20261004050142-3fad2270 | 02-brownfield | release_review | handed-off | review-agent |
+| qitem-20261004052127-b89c249b | 02-brownfield | ship_signoff | handed-off | release-agent |
+| qitem-20261004052612-42705c30 | 02-brownfield | evidence_export | in-progress | release-agent |
+| qitem-20261004052725-7bd25702 | - | - | blocked | qa-agent |
 | qitem-recovery-84c436485c1dd14a | - | - | done | release2-agent |
 
 ## Step trails (closed at · step · exit · packet · actor)
@@ -408,6 +412,9 @@ Instances exported: 17; packets exported: 201.
 
 | Closed at | Step | Exit | Packet | Actor |
 |---|---|---|---|---|
+| 2026-10-04T05:26:12.694Z | ship_signoff | handoff | qitem-20261004052127-b89c249b | release-agent |
+| 2026-10-04T05:21:27.014Z | release_review | handoff | qitem-20261004050142-3fad2270 | review-agent |
+| 2026-10-04T05:01:42.124Z | release_prep | handoff | qitem-20261004034522-8dfeeeca | release-agent |
 | 2026-10-04T03:45:22.728Z | wave_review | handoff | qitem-20261004002455-b7ea811b | review-agent |
 | 2026-10-04T00:55:49.808Z | wave_review | waiting | qitem-20261004002455-b7ea811b | review-agent |
 | 2026-10-04T00:49:13.783Z | wave_review | waiting | qitem-20261004002455-b7ea811b | review-agent |
@@ -562,16 +569,20 @@ Instances exported: 17; packets exported: 201.
 | 2026-10-04T00:54:58.619Z | requirements_review | handoff | qitem-20261004004915-91f40366 | review2-agent |
 | 2026-10-04T00:49:15.260Z | requirements | handoff | qitem-20261004003538-62f6c81e | requirements-agent |
 
-## Preparation snapshot and custody
+## Final export and custody
 
-This export is the preparation state before independent release review, the human ship decision and delivery stamps. [RELEASE.md](../../../missions/02-brownfield/RELEASE.md) is the decision brief and claim-to-evidence map. The generated packet and step-trail tables above are the primary routing record; the export directory also contains other missions' instances, so its label is not ownership.
+This is the final mission02 audit export after independent review446eca31 PASS, human2078 local-use approval, mission delivery10df955a and six slice stamps2020d53b. [RELEASE](../../../missions/02-brownfield/RELEASE.md) is the claim-to-evidence map. Current mission proof is ready64/64. The lead rechecked all six slices after stamps and explicitly waived the unnecessary SPEC-only round because no item drifted; no QA blocker for mission02 remains.
 
-- Governance “Explicit dependency graph”, “Cross-stage context and decision lineage”, “Bounded retries” and “Human approval checkpoints”: [scope audit](scope-audit.json), [compiled graph](compiled-graph.json), all instance trails and packet transitions preserve plan stamps, running revisions, independent verdicts, review loops and human decisions.
-- Governance proof and verification duties: [current readiness](proof-readiness.json) follows QA2 a9b59315 and QA 2a47ad28, both ordinary reaffirmation packets closed. Their full shows/transitions and the content-change disposition packet6587e4be are supplemental packet records. Mission02 is ready64/64; this does not substitute a release review or human approval.
-- Governance release boundary: [exact-candidate gate, runtime, rollback and gap evidence](../../../missions/02-brownfield/RELEASE.md#2-artifact-and-gate) bind product30f8de4e. Exact-SHA hosted CI/CD remains unverified; all known gaps and owned advisory backlog are preserved.
-- Governance reliability/audit duties: [four drills](../../scenarios/drills.md), [metric derivations](../../metrics/README.md) and [frozen reproducible inputs](../../../missions/02-brownfield/release/final-30f8de4e/final-metrics-inputs.tar.gz) distinguish actual rehearsals from rollback-note heuristics. Metrics freeze at04:46:43Z; this later readiness export does not rewrite that input set. Historical8d3c536 discrepancy remains qualified.
-- [Preparation validation](prep-validation.json) records parse counts, committed proof-reference checks and current hashes. Usage is the exported rolling24h window, not an isolated mission-only bill.
+- Human approval checkpoints and cross-stage lineage: [ship gate transitions](packets/qitem-20261004052127-b89c249b.transitions.json) preserve the exact decision and qualified RELEASE path; [review trail](instances/01M40SN34E37K96B38JPG9K41X.trace.json) records release_review and ship_signoff handoffs. Stamps live in committed SPEC frontmatter, not in this export directory.
+- Audit-grade observability and controlled autonomy: [proof readiness](proof-readiness.json), all packet shows/transitions and generated tables preserve attributed judgments and current custody. [Final validation](final-validation.json) checks committed proof-reference hashes, delivery stamps, raw JSON and links.
+- Explicit dependency graph and dynamic re-planning: the compiled graph is the authored disk projection; bound revisions and adoption history remain in instance shows. Other missions and drills are also exported; directory labels do not establish mission membership.
+- Reliability metrics and rollback: [reviewed preparation export and dated metrics](../../../missions/02-brownfield/release/final-evidence-export/preparation-export-ad0c01f6.tar.gz) preserve the complete prior snapshot. Shared metrics still freeze at04:46:43Z and derive from their archived inputs, not from these later refreshed records. All50 reviewed final-preparation files remain unchanged. Historical8d discrepancy, text-match rollback/resume heuristic, mean-of-instance MTTR and omitted custom waits remain explicit. [Derivations](../../metrics/README.md) and [four drills](../../scenarios/drills.md) retain those boundaries.
+- Safe-stop and ordering: [mission03 QA7bd25702](packets/qitem-20261004052725-7bd25702.show.json) is parked on this export and runs afterwards; it does not block mission02. A connection failure prevented the intended pre-handoff lead notification; successful delivery followed05:26Z and the lead authorized export05:27Z. [Export transitions](packets/qitem-20261004052612-42705c30.transitions.json) correct the earlier timing claim.
 
-The export script's header counts198 trail-named packets; the generated table additionally includes three supplemental ordinary QA packets, giving201 packet records and17 instance trails. Final validation parses468 raw JSON files and opens143 local links/anchors;174 distinct current proof-reference files match committed bytes.
+The frozen preparation validation refers to the archived preparation snapshot; final-validation.json covers current records. Usage is a rolling24h snapshot, not a mission-only bill. This capture precedes its own evidence_export closure and mission_close, so those later events are not falsely claimed present. No product rerun, push, release tag, publication or remote exposure.
 
-Nothing was pushed, release-tagged, published or exposed beyond localhost. Final-state evidence_export and SPEC-cited reaffirmation follow delivery stamps under lead custody.
+Final validation parses477 raw JSON files (excluding its own generated report),17 instance trails and205 packet shows. The exporter header counts204 trail-named packets; the table additionally includes the downstream mission03 QA packet. All174 distinct current proof-reference files match committed bytes;148 local links/anchors open. All50 frozen preparation files and the archived preparation manifest match their reviewed pin.
+
+## Self-check
+
+Final verification opens current raw records and local links, checks human decision verbatim, all seven delivery stamps and ready64/64 proof against committed bytes, and validates every frozen preparation file plus the prior export archive. No original artifact, metrics or known gap was silently rewritten. Final report counts are recorded in final-validation.json. Later mission03 QA and the cross-mission FINAL-SUMMARY remain lead custody.
