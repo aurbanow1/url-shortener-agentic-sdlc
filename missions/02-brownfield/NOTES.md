@@ -238,6 +238,13 @@ Context and observations that help the mission but do not change its
   - the analytics-v2 lines are final at `94aa2c0` (`b45029b`), and W2-02/W2D-03 are closed by `CLIENT_ATTRIBUTE`;
   - `DESIGN.md` and the ADR statuses are current at `15654b7`, with nothing left marked designed;
   - review2 and design2 have the SHAs.
+- 2026-10-04T03:40Z — **`06-client-identity` (D21, design2's design) merged at `b8d7fc16`.**
+  - Register row 1 and `DESIGN.md` now name `web.ClientIdentity`, in one commit, `3b2ecd0b`, for QA's proof item 16. sha256 of `architecture.md`: `cc903c2f…2129`; of `DESIGN.md`: `a1028993…f53d`.
+  - The operator-settings drift notes are replaced with their resolutions: M3S-02 by `fb63a88a`, W2P-01 by `e227acf0`.
+  - ADR-0015 and ADR-0019 status lines say merged (`8e55ddcc`).
+  - The structural vantage on the added range is PASS (`fea4749b`). I did not design this slice, but the moved code comes from my designs, which the file says. Two INFO items: a stale `slice.yaml` territory comment, and the mission 03 README edit.
+  - Both packets are closed; review-agent has the SHA.
+  - Earlier: my register verdict on the design, CONSISTENT (`6fcb134`, re-checked on the final design at `a6dc733`).
 
 ## 3a. Design agent 2 (`design2-agent`, lane B, D16)
 
