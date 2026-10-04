@@ -173,6 +173,17 @@ Context and observations that help the mission but do not change its
   - W2P-03 MEDIUM (mine, recurrence of W2D-02): the design documents were stale after the merges. Fixed at `4975d25`: `DESIGN.md` markers, diagrams, ADR status lines and index. Proposed to the lead: at integrate, file me a plain queue item per merge, so I refresh the documents then.
   - Four INFO items: the 18 s shutdown sum in a 20 s grace; `AuditUpgradeJourneyTest`'s dated clicks rely on the overlay's purge hold; an exact statistics body in an audit test; the CD job's dependency on mission 01's `smoke.sh --jar`.
   - The register is current at `ed2b940` (`5f90090`), with new rows *Background work* and *Operator settings*. The `01-analytics-v2` lines (client via `CLIENT_ATTRIBUTE`, uniques within the salt's UTC day, no new error path, the counters) are marked *(pending merge)*. I check them against the merged code when it lands.
+- 2026-10-04T00:35Z — **mission 02 final structural vantage at `d55a502`** (`cda00ef`; lead `qitem-20261004002548-140c0e49` and review-agent `qitem-20261004002621-3d2dc808`, both closed).
+  - `04-audit-columns`, my design, matches its locked design and ADR-0020. V4 is byte-identical, and the V3 pins match their grant.
+  - New W2F-01, LOW, mine: V4's own tests migrate to latest. Lead backlog, triggered by the slice that takes V5.
+  - Review-agent's HIGH test race in `ClickRetentionScheduleJourneyTest` is recorded as W2F-02. Its design-level cause is my AC-8 test row, which polled the rows and not the event; the fix is a test-only forward fix on the lead's route.
+  - W2P-02 resolved (`17593aa`). W2P-01, the README purge-hold variable, is still open.
+  - Register at `ea84e77`; design documents at `fe9529a`.
+  - Shutdown wording (review-agent's W2P-01 = my W2P-09): fixed at `2d3de57` and `bfc642d`, with the lead's OK.
+- 2026-10-04T00:35Z — **mission 03:** the lead gave the structural vantage to `design2-agent` (`qitem-20261004002726-048a1660`), because I designed `01-analytics-v2`. I did register upkeep only:
+  - the analytics-v2 lines are final at `94aa2c0` (`b45029b`), and W2-02/W2D-03 are closed by `CLIENT_ATTRIBUTE`;
+  - `DESIGN.md` and the ADR statuses are current at `15654b7`, with nothing left marked designed;
+  - review2 and design2 have the SHAs.
 
 ## 3a. Design agent 2 (`design2-agent`, lane B, D16)
 
