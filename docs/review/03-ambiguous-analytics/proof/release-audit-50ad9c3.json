@@ -1,0 +1,588 @@
+{
+  "reviewer": "review-agent@urlshort-factory",
+  "candidate": "50ad9c3ab9e65baa4100ede1772b514322957fa5",
+  "auditedAt": "2026-10-04T02:15:19.317461+00:00",
+  "dogfood": {
+    "rawMembers": 840,
+    "wireResponses": 401,
+    "headResponses": 4,
+    "logJoins": {
+      "default-console": 94,
+      "default-file": 94,
+      "trusted-console": 311,
+      "trusted-file": 311
+    },
+    "statsDerivedFromRequests": [
+      {
+        "name": "default-stats-empty",
+        "clicks": 0,
+        "days": []
+      },
+      {
+        "name": "trusted-stats-empty",
+        "clicks": 0,
+        "days": []
+      },
+      {
+        "name": "default-stats-mixed",
+        "clicks": 7,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 7,
+            "uniqueVisitors": 1,
+            "botClicks": 3
+          }
+        ]
+      },
+      {
+        "name": "trusted-stats-mixed",
+        "clicks": 7,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 7,
+            "uniqueVisitors": 4,
+            "botClicks": 3
+          }
+        ]
+      },
+      {
+        "name": "default-stats-after-errors",
+        "clicks": 7,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 7,
+            "uniqueVisitors": 1,
+            "botClicks": 3
+          }
+        ]
+      },
+      {
+        "name": "default-stats-after-head",
+        "clicks": 7,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 7,
+            "uniqueVisitors": 1,
+            "botClicks": 3
+          }
+        ]
+      },
+      {
+        "name": "trusted-stats-after-head",
+        "clicks": 7,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 7,
+            "uniqueVisitors": 4,
+            "botClicks": 3
+          }
+        ]
+      },
+      {
+        "name": "default-retired-stats-json",
+        "clicks": 7,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 7,
+            "uniqueVisitors": 1,
+            "botClicks": 3
+          }
+        ]
+      },
+      {
+        "name": "trusted-stats-chains",
+        "clicks": 12,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 12,
+            "uniqueVisitors": 5,
+            "botClicks": 3
+          }
+        ]
+      },
+      {
+        "name": "trusted-ranking-stats",
+        "clicks": 15,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 15,
+            "uniqueVisitors": 12,
+            "botClicks": 0
+          }
+        ]
+      },
+      {
+        "name": "trusted-after-concurrent",
+        "clicks": 112,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 112,
+            "uniqueVisitors": 15,
+            "botClicks": 23
+          }
+        ]
+      },
+      {
+        "name": "paced-0-analyst",
+        "clicks": 115,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 115,
+            "uniqueVisitors": 17,
+            "botClicks": 24
+          }
+        ]
+      },
+      {
+        "name": "paced-0-retired-analyst",
+        "clicks": 7,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 7,
+            "uniqueVisitors": 1,
+            "botClicks": 3
+          }
+        ]
+      },
+      {
+        "name": "paced-1-analyst",
+        "clicks": 118,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 118,
+            "uniqueVisitors": 17,
+            "botClicks": 25
+          }
+        ]
+      },
+      {
+        "name": "paced-1-retired-analyst",
+        "clicks": 7,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 7,
+            "uniqueVisitors": 1,
+            "botClicks": 3
+          }
+        ]
+      },
+      {
+        "name": "paced-2-analyst",
+        "clicks": 121,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 121,
+            "uniqueVisitors": 17,
+            "botClicks": 26
+          }
+        ]
+      },
+      {
+        "name": "paced-2-retired-analyst",
+        "clicks": 7,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 7,
+            "uniqueVisitors": 1,
+            "botClicks": 3
+          }
+        ]
+      },
+      {
+        "name": "paced-3-analyst",
+        "clicks": 124,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 124,
+            "uniqueVisitors": 17,
+            "botClicks": 27
+          }
+        ]
+      },
+      {
+        "name": "paced-3-retired-analyst",
+        "clicks": 7,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 7,
+            "uniqueVisitors": 1,
+            "botClicks": 3
+          }
+        ]
+      },
+      {
+        "name": "paced-4-analyst",
+        "clicks": 127,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 127,
+            "uniqueVisitors": 17,
+            "botClicks": 28
+          }
+        ]
+      },
+      {
+        "name": "paced-4-retired-analyst",
+        "clicks": 7,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 7,
+            "uniqueVisitors": 1,
+            "botClicks": 3
+          }
+        ]
+      },
+      {
+        "name": "paced-5-analyst",
+        "clicks": 130,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 130,
+            "uniqueVisitors": 17,
+            "botClicks": 29
+          }
+        ]
+      },
+      {
+        "name": "paced-5-retired-analyst",
+        "clicks": 7,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 7,
+            "uniqueVisitors": 1,
+            "botClicks": 3
+          }
+        ]
+      },
+      {
+        "name": "paced-6-analyst",
+        "clicks": 133,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 133,
+            "uniqueVisitors": 17,
+            "botClicks": 30
+          }
+        ]
+      },
+      {
+        "name": "paced-6-retired-analyst",
+        "clicks": 7,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 7,
+            "uniqueVisitors": 1,
+            "botClicks": 3
+          }
+        ]
+      },
+      {
+        "name": "paced-7-analyst",
+        "clicks": 136,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 136,
+            "uniqueVisitors": 17,
+            "botClicks": 31
+          }
+        ]
+      },
+      {
+        "name": "paced-7-retired-analyst",
+        "clicks": 7,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 7,
+            "uniqueVisitors": 1,
+            "botClicks": 3
+          }
+        ]
+      },
+      {
+        "name": "paced-8-analyst",
+        "clicks": 139,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 139,
+            "uniqueVisitors": 17,
+            "botClicks": 32
+          }
+        ]
+      },
+      {
+        "name": "paced-8-retired-analyst",
+        "clicks": 7,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 7,
+            "uniqueVisitors": 1,
+            "botClicks": 3
+          }
+        ]
+      },
+      {
+        "name": "paced-9-analyst",
+        "clicks": 142,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 142,
+            "uniqueVisitors": 17,
+            "botClicks": 33
+          }
+        ]
+      },
+      {
+        "name": "paced-9-retired-analyst",
+        "clicks": 7,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 7,
+            "uniqueVisitors": 1,
+            "botClicks": 3
+          }
+        ]
+      },
+      {
+        "name": "restart-before-campaign",
+        "clicks": 142,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 142,
+            "uniqueVisitors": 17,
+            "botClicks": 33
+          }
+        ]
+      },
+      {
+        "name": "restart-before-ranking",
+        "clicks": 15,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 15,
+            "uniqueVisitors": 12,
+            "botClicks": 0
+          }
+        ]
+      },
+      {
+        "name": "restart-after-campaign",
+        "clicks": 142,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 142,
+            "uniqueVisitors": 17,
+            "botClicks": 33
+          }
+        ]
+      },
+      {
+        "name": "restart-after-ranking",
+        "clicks": 15,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 15,
+            "uniqueVisitors": 12,
+            "botClicks": 0
+          }
+        ]
+      },
+      {
+        "name": "restart-same-client-stats",
+        "clicks": 143,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 143,
+            "uniqueVisitors": 18,
+            "botClicks": 33
+          }
+        ]
+      },
+      {
+        "name": "default-final-never-opened",
+        "clicks": 0,
+        "days": []
+      },
+      {
+        "name": "trusted-final-stats",
+        "clicks": 145,
+        "days": [
+          {
+            "date": "2026-10-04",
+            "clicks": 145,
+            "uniqueVisitors": 18,
+            "botClicks": 34
+          }
+        ]
+      }
+    ],
+    "concurrentRedirects": 100,
+    "quotaStatuses": {
+      "200": 60,
+      "429": 15
+    },
+    "restartPersistence": true
+  },
+  "jarHashes": {
+    "/private/tmp/urlshort-mission03-50ad9c3.jar": "fbe67b61f0f6f668e65949bc01a92802e5de64015ca78eb2d6bbc0462b2ebde2",
+    "/private/tmp/urlshort-mission03-container-50ad9c3.jar": "fbe67b61f0f6f668e65949bc01a92802e5de64015ca78eb2d6bbc0462b2ebde2",
+    "/private/tmp/urlshort-m03-dogfood-50ad9c3/urlshort.jar": "fbe67b61f0f6f668e65949bc01a92802e5de64015ca78eb2d6bbc0462b2ebde2"
+  },
+  "coverage": {
+    "INSTRUCTION": {
+      "missed": 0,
+      "covered": 2929
+    },
+    "BRANCH": {
+      "missed": 0,
+      "covered": 206
+    },
+    "LINE": {
+      "missed": 0,
+      "covered": 581
+    },
+    "COMPLEXITY": {
+      "missed": 0,
+      "covered": 266
+    },
+    "METHOD": {
+      "missed": 0,
+      "covered": 163
+    },
+    "CLASS": {
+      "missed": 0,
+      "covered": 51
+    }
+  },
+  "osv": {
+    "queriedAt": "2026-10-04T00:52:33.399Z",
+    "coordinates": 97,
+    "rawEmptyResults": 97
+  },
+  "installed": {
+    "trusted": {
+      "responseLogJoins": 11,
+      "stats": {
+        "code": "3lKaNlxW",
+        "totalClicks": 4,
+        "clicksPerDay": [
+          {
+            "date": "2026-10-04",
+            "clicks": 4,
+            "uniqueVisitors": 3,
+            "botClicks": 1
+          }
+        ],
+        "topReferrers": [
+          {
+            "referrer": "https://marketing.example",
+            "clicks": 4
+          }
+        ]
+      },
+      "recordedDelta": 4
+    },
+    "default": {
+      "responseLogJoins": 11,
+      "stats": {
+        "code": "sr9ukJ8z",
+        "totalClicks": 4,
+        "clicksPerDay": [
+          {
+            "date": "2026-10-04",
+            "clicks": 4,
+            "uniqueVisitors": 1,
+            "botClicks": 1
+          }
+        ],
+        "topReferrers": [
+          {
+            "referrer": "https://marketing.example",
+            "clicks": 4
+          }
+        ]
+      },
+      "recordedDelta": 4
+    }
+  },
+  "containerAndTeardown": {
+    "loopbackBinding": {
+      "8080/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": "18231"
+        }
+      ]
+    },
+    "nonRootReadOnly": true,
+    "gracefulLogsAndClosedPorts": true
+  },
+  "bench": {
+    "getClicks": 12000,
+    "mixedRedirectP95Ms": 3.7,
+    "mixedRedirectP99Ms": 9.5,
+    "latencySamplesNotRetained": true,
+    "L3IsUnisolatedProxy": true
+  },
+  "rollback": {
+    "commit": "5de969f6005f9cb5ca86df576c074a7a61c675e6",
+    "exactInverseAnalyticsProductPatch": true,
+    "migrationsAndW2F01Retained": true,
+    "storedClicks": 12000
+  },
+  "governance": {
+    "validExportJsonFiles": 407,
+    "missionLatenciesSec": [
+      51313,
+      31241
+    ],
+    "humanDecisions": {
+      "qitem-20261003114944-9bd32a00": "approve: one slice 01-analytics-v2 in one wave; park the analytics questions on me before design",
+      "qitem-20261003154347-19e96a75": "accept all recommended: Q1 B, Q2 B, Q3 B, Q4 A, Q5 A, Q6 A"
+    },
+    "metricsSnapshot": "8d3c536"
+  },
+  "packagePaths": {
+    "total": 487,
+    "exportJson": 407
+  },
+  "limitations": [
+    "Archived observations re-derived; no new installed run or benchmark",
+    "No salt-memory or natural lifecycle claim",
+    "Same-runtime separate-author review under D17",
+    "Current proof readiness checked separately"
+  ]
+}
