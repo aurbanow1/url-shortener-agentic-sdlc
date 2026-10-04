@@ -1,10 +1,9 @@
 package dev.urlshort.audit;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
+import dev.urlshort.web.ClientIdentity;
 import dev.urlshort.web.Problems;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -17,12 +16,10 @@ import org.jspecify.annotations.Nullable;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.tomcat.autoconfigure.TomcatServerProperties;
 import org.springframework.boot.web.server.autoconfigure.ServerProperties;
-import org.springframework.boot.web.server.autoconfigure.ServerProperties.ForwardHeadersStrategy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
 import org.springframework.web.ErrorResponseException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,12 +56,7 @@ class AuditController {
 
 	AuditController(AuditTrail trail, ServerProperties server, TomcatServerProperties tomcat) {
 		this.trail = trail;
-		// the negation of Boot 4.1.1's condition for installing Tomcat's RemoteIpValve, which rewrites the
-		// peer from a header: any other strategy (or the platform default when unset), or either remoteip
-		// header setting. ponytail: mirrors Boot's trigger list; a Boot upgrade that adds one adds it here
-		this.peerIsConnection = server.getForwardHeadersStrategy() == ForwardHeadersStrategy.NONE
-				&& !StringUtils.hasText(tomcat.getRemoteip().getRemoteIpHeader())
-				&& !StringUtils.hasText(tomcat.getRemoteip().getProtocolHeader());
+		this.peerIsConnection = ClientIdentity.peerIsConnection(server, tomcat);
 	}
 
 	@GetMapping("/api/audit")
@@ -84,7 +76,7 @@ class AuditController {
 			@Parameter(description = "The next of the previous page") @RequestParam(name = "cursor", required = false)
 			@Nullable String cursor,
 			HttpServletRequest request) {
-		if (!peerIsConnection || !fromLoopback(request)) {
+		if (!peerIsConnection || !ClientIdentity.fromLoopback(request)) {
 			throw new ErrorResponseException(HttpStatus.FORBIDDEN);
 		}
 		int size = limit(limit);
@@ -92,20 +84,9 @@ class AuditController {
 		return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(trail.page(size, before));
 	}
 
-	/** A loopback peer and no forwarding header: forwarding headers can only refuse (SPEC rule 2). */
+	/** Delegates to {@link ClientIdentity#fromLoopback}, the predicate's one home; removed once the tests name it. */
 	static boolean fromLoopback(HttpServletRequest request) {
-		String peer = request.getRemoteAddr();
-		if (request.getHeader("X-Forwarded-For") != null || request.getHeader("Forwarded") != null || peer == null
-				|| peer.isEmpty()) {
-			return false;
-		}
-		try {
-			// the servlet container gives a numeric literal, which is parsed, never resolved
-			return InetAddress.getByName(peer).isLoopbackAddress();
-		}
-		catch (UnknownHostException ex) {
-			return false;
-		}
+		return ClientIdentity.fromLoopback(request);
 	}
 
 	/** {@code null} is the default; otherwise a whole number from 1 to 100. */

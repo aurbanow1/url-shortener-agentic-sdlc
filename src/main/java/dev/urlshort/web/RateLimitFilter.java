@@ -44,8 +44,8 @@ import tools.jackson.databind.json.JsonMapper;
 @Order(Ordered.HIGHEST_PRECEDENCE + 2)
 public class RateLimitFilter extends OncePerRequestFilter {
 
-	/** Request attribute holding the client this request was charged to (ADR-0015); read by the click recorder. */
-	public static final String CLIENT_ATTRIBUTE = RateLimitFilter.class.getName() + ".client";
+	/** The resolved-client attribute, now {@link ClientIdentity#CLIENT_ATTRIBUTE}; one key while both names exist. */
+	public static final String CLIENT_ATTRIBUTE = ClientIdentity.CLIENT_ATTRIBUTE;
 
 	private final RateLimiter limiter;
 	private final Set<String> trustedProxies;
@@ -73,9 +73,7 @@ public class RateLimitFilter extends OncePerRequestFilter {
 			return;
 		}
 		Budget budget = path.equals("/api") || path.startsWith("/api/") ? Budget.CREATE : Budget.REDIRECT;
-		String client = clientOf(request.getRemoteAddr(), request.getHeader("X-Forwarded-For"), trustedProxies);
-		// left for the click recorder, so a click's hashed client is the client charged here (ADR-0015)
-		request.setAttribute(CLIENT_ATTRIBUTE, client);
+		String client = ClientIdentity.resolve(request, trustedProxies);
 		long retryAfter = limiter.tryTake(budget, client);
 		if (retryAfter == 0) {
 			chain.doFilter(request, response);
@@ -97,22 +95,8 @@ public class RateLimitFilter extends OncePerRequestFilter {
 				|| path.equals("/swagger-ui.html") || path.startsWith("/swagger-ui/");
 	}
 
-	/**
-	 * The client a request is charged to (business rule 5): the peer address, unless the peer is a
-	 * trusted proxy; then the right-most {@code X-Forwarded-For} entry that is not itself a trusted
-	 * proxy, or the peer when there is none. No other header is read.
-	 */
+	/** Delegates to {@link ClientIdentity#clientOf}, the rule's one home; removed once the tests name it. */
 	static String clientOf(String remote, @Nullable String forwardedFor, Set<String> trusted) {
-		if (!trusted.contains(remote) || forwardedFor == null) {
-			return remote;
-		}
-		String[] hops = forwardedFor.split(",");
-		for (int i = hops.length - 1; i >= 0; i--) {
-			String hop = hops[i].trim();
-			if (!hop.isEmpty() && !trusted.contains(hop)) {
-				return hop;
-			}
-		}
-		return remote;
+		return ClientIdentity.clientOf(remote, forwardedFor, trusted);
 	}
 }
