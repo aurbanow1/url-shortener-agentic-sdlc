@@ -1,6 +1,6 @@
 # Scenario: ambiguous — mission `03-ambiguous-analytics`
 
-> **Draft — completed at mission close.** `[final]` marks what is filled in from
+> **Mission closed 2026-10-04 (`59ff9016`).** Only the metrics row below waits for the final regeneration, filled in from
 > `missions/03-ambiguous-analytics/RELEASE.md` and the evidence export.
 
 ## The ask
@@ -81,7 +81,35 @@ What validated the human's decisions:
 - **Q5 A:** the existing statistics API gains the fields; the regenerated API document was diffed against the live one.
 
 The slice also closed wave-review finding W2-02: click identity now follows the
-rate limiter's trusted-proxy rule. `[final]`: wave review, release and ship
-sign-off for mission 03.
+rate limiter's trusted-proxy rule.
 
-## Metrics `[final]`
+### Wave review, release and ship sign-off
+
+- **Wave review, two vantages.** `review-agent` passed the wave with two LOW
+  documentation findings and three INFO observations
+  (`docs/review/03-ambiguous-analytics/wave-1-review-review-agent.md`);
+  `design2-agent` found nothing blocking. One inherited mission-02 HIGH
+  (W2F-01, a click-retention test that could flake on timing) was fixed by the
+  test-only commit `50ad9c3` and re-reviewed.
+- **Release preparation** on `release2-agent`, run in parallel with mission
+  02's work. It covered the jar and the container, each smoke-tested on
+  loopback. It benchmarked at the specified rates: redirect p95 was 3.7 ms
+  against a target of 20 ms, p99 9.5 ms, with no lost click and no quota
+  rejection. It rehearsed the rollback, a revert of `c9b66dd` that keeps V3,
+  V4 and the data. OSV reported 0 advisories on 97 runtime coordinates.
+- **Release review** passed with no findings. It covered a 487-path file
+  ledger, all 12 proof items accepted, and an independent re-derivation of the
+  installed-analytics evidence. That re-derivation mattered because `8cf894a`
+  had been written during a six-minute window in which the Codex seats ran on
+  a fallback model after a usage limit.
+- **Ship sign-off, by the human, 2026-10-04 02:38:55Z:** "approve: ship
+  mission 03 analytics v2 at 50ad9c3 for local use; the exact-SHA hosted CI
+  gap is accepted because the delta from the CI-verified 18db1de is one
+  test-only change".
+- **Proof drift handled honestly.** QA re-affirmed items 1, 2, 5 and 6 after
+  shared documents changed, and each item names the exact byte-level change it
+  checked.
+- **Mission closed** at `59ff9016`, with its backlog recorded in the mission
+  notes.
+
+## Metrics `[final]` (regenerated at the last mission close; see `docs/metrics/README.md`)
