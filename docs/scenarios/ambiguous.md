@@ -57,9 +57,31 @@ afterwards, and each move is in `missions/03-ambiguous-analytics/NOTES.md`:
 The compiled graph's revision receipts are listed in the mission notes;
 `[final]`: anything that changes between now and the mission close.
 
-## Orchestration and validation `[final]`
+## Orchestration and validation
 
-Delegated plan-lock (D11), build on top of `02-analytics`, QA and combined
-review on the other model family, wave review, release, ship sign-off.
+The slice ran the full workflow, with no failed review at any step. Times
+are UTC, from the instance trace (`01M416Z3CM54YQTX93V4KG0CPS`):
+
+| Step | Closed | Seat | Note |
+|---|---|---|---|
+| requirements, then the ambiguity park | 16:13 | requirements-agent | six questions parked on the human 15:48; answered 16:10 |
+| requirements_review | 16:41 | review-agent | pass |
+| design | 18:42 | design-agent | waited behind mission 02's two designs on the single design seat; the second design seat came later (D16) |
+| design_review | 18:56 | review-agent | pass, one MEDIUM fixed in passing |
+| plan_lock | 20:03 | orchestration-lead | delegated (D11); held behind click-retention, then released early on the human's request |
+| implement | 23:14 | dev2-agent | built stacked on click-retention's reviewed branch; waited four times for that base to settle |
+| qa_check | 00:01 | qa-agent | pass |
+| code_review, with security | 00:18 | review-agent | pass, including the privacy judgment of Q2 B |
+| integrate | 00:24 | orchestration-lead | rebased onto `main` after audit-columns; a range-diff showed all 8 patches identical to the judged `ec466da`; QA re-judged ancestry on `22fc8e2`; fresh gate; merge `c9b66dd` |
+
+What validated the human's decisions:
+- **Q1 B and Q6 A:** `uniqueVisitors` is counted per UTC day, as an upper bound across restarts.
+- **Q2 B:** the client hash is never exposed, and the daily salt is never persisted.
+- **Q3 B:** `botClicks` is reported beside the unchanged figures.
+- **Q5 A:** the existing statistics API gains the fields; the regenerated API document was diffed against the live one.
+
+The slice also closed wave-review finding W2-02: click identity now follows the
+rate limiter's trusted-proxy rule. `[final]`: wave review, release and ship
+sign-off for mission 03.
 
 ## Metrics `[final]`
