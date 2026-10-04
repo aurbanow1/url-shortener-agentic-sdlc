@@ -289,14 +289,15 @@ image OS-package scanning or future advisory status.
 | Shared QA/review context | [TRACEABILITY](../../docs/qa/TRACEABILITY.md), [GAPS](../../docs/qa/GAPS.md), [review ledger](../../docs/review/REVIEW-LEDGER.md), [cross-cutting register](../../docs/guidance/architecture.md) |
 
 The governance-indexed [export INDEX](../../docs/evidence/03-ambiguous-analytics/INDEX.md)
-is the authoritative packet/step table: **17 instances and 193 packets**.
+is the authoritative packet/step table: **17 instances and 194 packets**.
 The final export ran **02:57:12Z–02:58:48Z**, after QA reaffirmation and human
-approval; the standalone QA-return records were supplemented at 03:04Z.
+approval; standalone QA-return records were supplemented at 03:04Z and the
+completed metrics coordination at 03:12Z.
 It includes the mission lifecycle and analytics slice,
 compiled graph, every exported instance trace/show and packet transition/show,
 proof, scope audit, active queue, usage and workflow status.
 [Final validation](../../docs/evidence/03-ambiguous-analytics/final-validation.json)
-parsed **427 raw JSON records**, checked the required records, committed proof
+parsed **429 raw JSON records**, checked the required records, committed proof
 hashes, delivery stamps and verbatim human decision. The validation report
 itself is additional. The [preparation validation](release/export-validation.json)
 retains its historical 407-record/183-packet capture. This exporter captures the rig's
@@ -351,6 +352,33 @@ notes are a text heuristic, not eight confirmed production rollbacks. Waiting
 closures remain in the step-success denominator; MTTR averages instance means
 and its implementation accepts a later non-failed closure, including waiting.
 No production outage or recovery SLO is established by those figures.
+
+**Final export refresh:** the custodian committed **`c735190b`**, generated
+**2026-10-04T03:08:55.760Z** from the committed export **`3c48d0a9`**.
+The [frozen final rows and totals](release/metrics-final-export.json) match
+that committed metrics file, including its SHA-256. The preparation rows above
+remain historical. [Coordination receipt](../../docs/evidence/03-ambiguous-analytics/packets/qitem-20261004030758-9d6dc648.transitions.json).
+
+| Mission-03 instance | Final captured state / latency | Failed closures / retries / rollback heuristic | MTTR / counted human wait |
+|---|---|---|---|
+| Lifecycle `01M40RVNDQ0KT7FPWN1KJW0DC3` | Waiting at evidence_export; 55,901s elapsed, not completed E2E; 10 closures | 0 / 0 / 1 | MTTR absent; 13,928s, including 13,836s plan-lock and 92s ship gate |
+| Slice `01M416Z3CM54YQTX93V4KG0CPS` | Completed; 31,241s; 15 closures | 0 / 0 / 0 | MTTR absent; 0 counted, with the custom 1,326.732s ambiguity wait omitted |
+
+The lifecycle's single rollback count is a text match on transition **1849**,
+a preparation coordination note saying it was waiting for the rollback gate.
+It is not an execution judgment. The actual branch-only rehearsal retains
+its separate evidence in §8; no main/service rollback is inferred. Both
+instances have zero failed closures and retries, hence no measured MTTR.
+The lifecycle state comes from the export; elapsed time extends to metrics
+generation. This snapshot precedes export handoff and mission_close.
+
+Final factory totals: **17 instances**, 13 completed, one aborted, three
+active/waiting; terminal success **0.929**; **240 closures / 18 failed**, step
+success **0.925**; **52 retry events / 9 rollback text-match/resume counts**;
+MTTR mean **1,652s**, completed E2E p50 **20,200s** / p95 **31,241s** and counted
+human wait **31,526s**. These include other missions and drills. Export labels,
+waiting-closure denominators, MTTR averaging and custom-human-wait omissions
+retain the limits described above and in the shared metrics README.
 
 ## 7. Known gaps, complete
 
@@ -471,9 +499,11 @@ patch permit recovery without claiming a previously published rollback image.
   97 coordinates,zero returned advisories; no unstated remediation or scan claim.
 - Slice planning, QA, coverage, reviews, integration and proof paths open;
   INDEX supplies packet/step tables. Final export follows the human gate and QA return;
-  427 raw JSON records parse and all45 committed judgment references match.
-- Shared metrics generated at8d3c536; own instance rows and factory totals
-  distinguished, zero counts and missing MTTR/human-wait limits read plainly.
+  429 raw JSON records parse and all45 committed judgment references match.
+- Shared metrics refreshed atc735190b from export3c48d0a9; final rows match
+  committed bytes and preparation8d3c536 remains frozen. Own instance rows
+  and factory totals, zero retries, the one text-match rollback and absent
+  MTTR/custom-human-wait limits are distinguished.
 - Post-QA GAPS copied byte-for-byte and matched to receipt14; original pending
   snapshots/manifest remain unchanged. Final GAPS copy matches receipt17.
   Closures, review LOWs, operational

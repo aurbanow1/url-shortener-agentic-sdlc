@@ -16,11 +16,12 @@ slice_id = "01M416Z3CM54YQTX93V4KG0CPS"
 gate = "qitem-20261004023723-f58044d0"
 qa = "qitem-20261004024232-5aea9029"
 packet = "qitem-20261004024238-651b51b1"
+metrics_packet = "qitem-20261004030758-9d6dc648"
 required = ["compiled-graph.json", "proof-readiness.json", "scope-audit.json",
     "workflow-list.json", "workflow-status.json", "queue-active.json", "usage-top.json"]
 required += ["instances/" + name + suffix for name in (lifecycle, slice_id)
     for suffix in (".trace.json", ".show.json")]
-required += ["packets/" + name + suffix for name in (gate, qa, packet)
+required += ["packets/" + name + suffix for name in (gate, qa, packet, metrics_packet)
     for suffix in (".transitions.json", ".show.json")]
 assert all(name in records for name in required), [name for name in required if name not in records]
 instance_rows = records["workflow-list.json"]
@@ -84,6 +85,27 @@ for name in ("GAPS-snapshot.md", "proof-readiness-50ad9c3.json", "artifact-manif
     before = subprocess.check_output(["git", "show", "14815f9:" + str(path.relative_to(root))])
     assert path.read_bytes() == before, name
     historical[name] = sha(before)
+old_metrics_ref = "missions/03-ambiguous-analytics/release/metrics-relevant-8d3c536.json"
+assert (root / old_metrics_ref).read_bytes() == subprocess.check_output(["git", "show", "14815f9:" + old_metrics_ref])
+frozen_metrics = json.loads((release / "metrics-final-export.json").read_text())
+metrics_data = subprocess.check_output(["git", "show", frozen_metrics["commit"] + ":docs/metrics/metrics.json"])
+metrics = json.loads(metrics_data)
+assert sha(metrics_data) == frozen_metrics["sourceSha256"]
+assert frozen_metrics["factoryTotals"] == metrics["totals"]
+assert frozen_metrics["generatedAt"] == metrics["totals"]["generatedAt"]
+assert frozen_metrics["evidenceCommit"] == "3c48d0a9e744162179177145e3fac9471e8ccf25"
+assert records["packets/" + metrics_packet + ".show.json"]["state"] == "done"
+for row, name in zip(frozen_metrics["missionInstances"], (lifecycle, slice_id)):
+    assert row["instanceId"] == name
+    assert row == next(r for r in metrics["instances"] if r["instanceId"] == name)
+    assert row["failedClosures"] == 0 and row["retries"] == 0 and row["mttrSec"] is None
+    exported = records["instances/" + name + ".trace.json"]
+    assert row["stepClosures"] == len(exported["trail"])
+assert frozen_metrics["missionInstances"][0]["rollbacks"] == 1
+assert frozen_metrics["missionInstances"][1]["rollbacks"] == 0
+assert len(frozen_metrics["rollbackHeuristicNotes"]) == 1
+assert frozen_metrics["rollbackHeuristicNotes"][0]["transitionId"] == 1849
+assert frozen_metrics["rollbackHeuristicNotes"][0] in records["packets/qitem-20261004004828-05d2aab9.transitions.json"]
 stamps = {}
 for name in ("missions/03-ambiguous-analytics/SPEC.md", "missions/03-ambiguous-analytics/slices/01-analytics-v2/SPEC.md"):
     body = (root / name).read_text().split("---", 2)[1]
@@ -124,6 +146,8 @@ result = {"verifiedAt": datetime.datetime.now(datetime.timezone.utc).isoformat()
     "localLinksAndAnchorsVerified": links,
     "humanDecision": decision, "deliveryStamps": stamps, "historicalRecordsUnchanged": historical,
     "finalGapsSha256": sha(gaps), "scopeAuditFindings": records["scope-audit.json"]["totalFindings"],
+    "metricsCommit": frozen_metrics["commit"], "metricsSourceSha256": frozen_metrics["sourceSha256"],
+    "frozenMissionRowsAndTotalsMatchCommittedMetrics": True, "preparationMetricsUnchanged": True,
     "compiledSourceDigest": compiled["compiledInputDigest"],
     "runningSourceDigest": trace["instance"]["compiledInputDigest"], "dependencyEdgesEqual": True,
     "lifecycleStatusAtExport": trace["instance"]["status"], "lifecycleStepAtExport": trace["instance"]["currentStepId"]}

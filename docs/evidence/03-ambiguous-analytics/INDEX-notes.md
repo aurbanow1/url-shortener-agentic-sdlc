@@ -52,7 +52,8 @@ this export; it is not another product gate or D21 product dependency.
 
 The exporter ran 02:57:12Z–02:58:48Z. It selects packets named in workflow
 traces, so the standalone QA return was added with individual raw queue
-show/transitions calls at 03:04Z. Final validation parses 427 raw JSON records,
+show/transitions calls at 03:04Z. The completed metrics coordination packet
+was added at 03:12Z. Final validation parses 429 raw JSON records,
 checks 45 committed references across 35 files and preserves seven original
 preparation/review records. It also checks the human decision and both stamps.
 The [final full GAPS copy](../../../missions/03-ambiguous-analytics/release/GAPS-final-export-50ad9c3.md)
@@ -78,6 +79,12 @@ No product artifact was rebuilt, pushed, tagged, published or exposed beyond
 localhost during this export.
 
 The initial metrics snapshot8d3c536 remains frozen in the release package.
-A coordinated shared-metrics refresh uses this final export; its generation
-time and limits are recorded separately from that preparation snapshot.
+The custodian's final refreshc735190b was generated03:08:55.760Z from committed
+export3c48d0a9. [Frozen final rows](../../../missions/03-ambiguous-analytics/release/metrics-final-export.json)
+bind the metrics file hash, both mission instance IDs and factory totals.
+[Coordination transitions](packets/qitem-20261004030758-9d6dc648.transitions.json)
+record completion. Both instances have zero failures/retries and absent MTTR.
+The lifecycle's one rollback count is a text match on a coordination note,
+not an execution judgment; shared labels, omitted custom human wait and
+pre-closure snapshot limits remain explicit in RELEASE §6 and metrics README.
 See [GOVERNANCE](../../GOVERNANCE.md) for the exact clause definitions.

@@ -18,7 +18,7 @@ Exported 2026-10-04T02:58:48Z by tools/evidence-export.sh from OpenRig 0.6.3 (8b
 
 Approval stamps are not in this export: they live in the stamped files' frontmatter (missions/<m>/SPEC.md, slices/*/SPEC.md: approved-spec-*, approved-*) with append-only audit rows daemon-side; the decision text behind each stamp is in the gate packet's transitions here.
 
-Instances exported: 17; packets exported: 193.
+Instances exported: 17; packets exported: 194.
 
 ## Packets (workflow · step · state · owner)
 
@@ -217,6 +217,7 @@ Instances exported: 17; packets exported: 193.
 | qitem-20261004024238-651b51b1 | 03-ambiguous-analytics | evidence_export | in-progress | release2-agent |
 | qitem-20261004024533-3e9ae475 | urlshort-slice-delegated-b | code_review | done | review2-agent |
 | qitem-20261004025620-a869dc4a | urlshort-slice-delegated-b | implement | in-progress | dev2-agent |
+| qitem-20261004030758-9d6dc648 | - | - | done | release-agent |
 
 ## Step trails (closed at · step · exit · packet · actor)
 
@@ -600,7 +601,8 @@ this export; it is not another product gate or D21 product dependency.
 
 The exporter ran 02:57:12Z–02:58:48Z. It selects packets named in workflow
 traces, so the standalone QA return was added with individual raw queue
-show/transitions calls at 03:04Z. Final validation parses 427 raw JSON records,
+show/transitions calls at 03:04Z. The completed metrics coordination packet
+was added at 03:12Z. Final validation parses 429 raw JSON records,
 checks 45 committed references across 35 files and preserves seven original
 preparation/review records. It also checks the human decision and both stamps.
 The [final full GAPS copy](../../../missions/03-ambiguous-analytics/release/GAPS-final-export-50ad9c3.md)
@@ -626,6 +628,12 @@ No product artifact was rebuilt, pushed, tagged, published or exposed beyond
 localhost during this export.
 
 The initial metrics snapshot8d3c536 remains frozen in the release package.
-A coordinated shared-metrics refresh uses this final export; its generation
-time and limits are recorded separately from that preparation snapshot.
+The custodian's final refreshc735190b was generated03:08:55.760Z from committed
+export3c48d0a9. [Frozen final rows](../../../missions/03-ambiguous-analytics/release/metrics-final-export.json)
+bind the metrics file hash, both mission instance IDs and factory totals.
+[Coordination transitions](packets/qitem-20261004030758-9d6dc648.transitions.json)
+record completion. Both instances have zero failures/retries and absent MTTR.
+The lifecycle's one rollback count is a text match on a coordination note,
+not an execution judgment; shared labels, omitted custom human wait and
+pre-closure snapshot limits remain explicit in RELEASE §6 and metrics README.
 See [GOVERNANCE](../../GOVERNANCE.md) for the exact clause definitions.
