@@ -1,0 +1,41 @@
+[
+  {
+    "transitionId": 406,
+    "qitemId": "qitem-20261003075859-7a5a6e93",
+    "ts": "2026-10-03T07:58:59.684Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "review-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 409,
+    "qitemId": "qitem-20261003075859-7a5a6e93",
+    "ts": "2026-10-03T07:59:19.869Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 412,
+    "qitemId": "qitem-20261003075859-7a5a6e93",
+    "ts": "2026-10-03T08:01:09.223Z",
+    "state": "done",
+    "transitionNote": "workflow done: INTEGRATED: merge 16c355f (--no-ff of slice/01-create-redirect at a922f49), scripts/gw --offline check --rerun-tasks green on main (log in evidence-ref), tag slice/01-create-redirect/accepted on a922f49, worktree removed, PROGRESS current (e2bbbae). QA (items 1-12 accepted) and the combined code+security review both passed a922f49. Open: proof item 13 judgment requested from qa-agent (qitem-20261003080033-20dc594e); item 14 after mission release_prep; delivery stamp after ship sign-off. Backlog: CR-01 MEDIUM (ProblemDetail errors[] schema) for the next API-document change.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": "no-follow-on",
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

@@ -1,0 +1,69 @@
+{
+  "pickup": {
+    "state": "stalled-after-claim",
+    "evidence": "no meaningful queue change for 2080 min; owner activity idle-at-prompt (queue age does not prove idle)"
+  },
+  "waiting": {
+    "obligation": "qitem-20261003075859-7a5a6e93",
+    "owner": "orchestration-lead@urlshort-factory",
+    "state": "done",
+    "actionableSince": null,
+    "blocker": null,
+    "lastMeaningfulChange": {
+      "id": 412,
+      "at": "2026-10-03T08:01:09.223Z"
+    },
+    "liveness": {
+      "subject": "orchestration-lead@urlshort-factory",
+      "activity": "idle-at-prompt",
+      "needsInput": {
+        "count": 0,
+        "reason": null
+      },
+      "confidence": "oracle"
+    },
+    "nextBackstop": {
+      "owner": "orchestration-lead@urlshort-factory",
+      "mechanism": "none (terminal obligation)",
+      "dueAt": null,
+      "intervalSeconds": null
+    },
+    "deadlineAt": null
+  },
+  "qitemId": "qitem-20261003075859-7a5a6e93",
+  "tsCreated": "2026-10-03T07:58:59.684Z",
+  "tsUpdated": "2026-10-03T08:01:09.222Z",
+  "sourceSession": "review-agent@urlshort-factory",
+  "destinationSession": "orchestration-lead@urlshort-factory",
+  "state": "done",
+  "priority": "routine",
+  "tier": "mode2",
+  "tags": [
+    "workflow",
+    "handoff",
+    "workflow:urlshort-slice",
+    "instance:01M40149S2BGCAKVK83B6VCNKG"
+  ],
+  "blockedOn": null,
+  "handedOffTo": null,
+  "handedOffFrom": null,
+  "expiresAt": null,
+  "chainOfRecord": [
+    "qitem-20261003074021-e3821d80"
+  ],
+  "body": "### Workflow handoff: urlshort-slice@1 step integrate\n\nWorkflow instance: 01M40149S2BGCAKVK83B6VCNKG\nPrior step: code_review (code_review) closed by review-agent@urlshort-factory\nThis step: integrate (integrator)\nObjective: Confirm the QA and review verdicts name the same candidate SHA and the proof-contract judgments are recorded, merge the slice branch into main with --no-ff, re-run the gate on main, tag the accepted candidate, remove the worktree, bring PROGRESS.md current and close the slice; delivery stamps follow the mission's ship sign-off. A red main is reverted and recorded.\n\nPrior step note: Combined code/security review on exact QA candidate a922f49144049db0228c316c474ac6e890742fa5. Code PASS with one MEDIUM backlog CR-01: generated ProblemDetail schema omits runtime errors[] and instead describes a properties bag; security PASS with no findings. 48/48 files reviewed, fresh offline check --rerun-tasks: 72 unit and 87 functional, 185/185 lines and 56/56 branches, Javadoc green. QA captures/CSV/traceability audited, live exposure/privacy/error checks and runtime dependency inventory recorded. Reports docs/review/01-create-redirect/01-code-review.md and 02-security-review.md; ledger/evidence commit a80c998. Both reports explicitly record NFR-A2 and NFR-S4 for proof items 13-14; item 14 still requires release secret scan under lead follow-up qitem-20261003072643-917956c7. Release online advisory scan remains required; no PostgreSQL/load/image claim. Review server stopped and candidate worktree clean.\n\nContinuation: rig workflow project --instance 01M40149S2BGCAKVK83B6VCNKG --current-packet qitem-20261003075859-7a5a6e93 --exit <handoff|waiting|done|failed> --actor-session orchestration-lead@urlshort-factory\nContext: this workflow packet is a shortcut, not the whole story; inspect additional project, mission, and receipt evidence before choosing an authored exit.",
+  "summary": null,
+  "evidenceRef": null,
+  "humanIntent": null,
+  "humanDetail": null,
+  "closureReason": "no-follow-on",
+  "closureTarget": null,
+  "closureRequiredAt": null,
+  "claimedAt": "2026-10-03T07:59:19.869Z",
+  "lastNudgeAttempt": "2026-10-03T07:59:00.452Z",
+  "lastNudgeResult": "delivered-ack-pending",
+  "lastHeartbeat": null,
+  "resolution": null,
+  "targetRepo": null,
+  "deliveryOutcome": null
+}

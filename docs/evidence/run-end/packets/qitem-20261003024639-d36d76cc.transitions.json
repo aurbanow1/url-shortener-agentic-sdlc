@@ -1,0 +1,80 @@
+[
+  {
+    "transitionId": 214,
+    "qitemId": "qitem-20261003024639-d36d76cc",
+    "ts": "2026-10-03T02:46:39.201Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "release-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 215,
+    "qitemId": "qitem-20261003024639-d36d76cc",
+    "ts": "2026-10-03T02:46:59.900Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "release-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 216,
+    "qitemId": "qitem-20261003024639-d36d76cc",
+    "ts": "2026-10-03T02:48:58.863Z",
+    "state": "in-progress",
+    "transitionNote": "parked-owner wake reserved: release-agent@urlshort-factory|ec16d4e63363f0c2#1; obligations qitem-20261003024639-d36d76cc",
+    "actorSession": "watchdog@system",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 217,
+    "qitemId": "qitem-20261003024639-d36d76cc",
+    "ts": "2026-10-03T02:50:59.040Z",
+    "state": "in-progress",
+    "transitionNote": "parked-owner wake delivery refused: release-agent@urlshort-factory|ec16d4e63363f0c2#1; Refused: 'release-agent@urlshort-factory' is at an interactive prompt (selection_prompt). A message must not select or approve it. To deliberately drive the prompt: rig send release-agent@urlshort-factory \"<text>\" --dangerously-interact --reason \"<why>\". No text was sent.",
+    "actorSession": "watchdog@system",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 220,
+    "qitemId": "qitem-20261003024639-d36d76cc",
+    "ts": "2026-10-03T02:57:07.215Z",
+    "state": "in-progress",
+    "transitionNote": "Note from the orchestration lead 02:56Z (your seat is at a permission prompt, so rig send would be refused): the pending trace listing is a for-loop with a shell variable, which the harness stops for approval (operator hygiene broadcast 22:05Z: no for-loops, no VAR). Whatever the operator answers, finish evidence_export with plain separate commands: one jq invocation per trace file with a literal path, or ls the directory and read each file with cat. One command per tool call, no loops, no variables.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 222,
+    "qitemId": "qitem-20261003024639-d36d76cc",
+    "ts": "2026-10-03T03:04:15.798Z",
+    "state": "handed-off",
+    "transitionNote": "workflow handoff to orchestration-lead@urlshort-factory",
+    "actorSession": "release-agent@urlshort-factory",
+    "closureReason": "handed_off_to",
+    "closureTarget": "orchestration-lead@urlshort-factory",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

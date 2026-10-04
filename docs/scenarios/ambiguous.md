@@ -115,18 +115,20 @@ rate limiter's trusted-proxy rule.
 
 ## Metrics
 
-From `docs/metrics/README.md`, the run-end refresh (generated
-2026-10-04T05:38:42Z from the live daemon after the last mission closed):
+From `docs/metrics/README.md` (generated from the live daemon after the last
+mission closed, every instance terminal; `node tools/sdlc-metrics.mjs --check`
+reproduces it offline from `docs/evidence/run-end/`):
 
-| Instance | E2E latency | Hops | Closures | Retries | Rollback text matches | Human wait | MTTR |
+| Instance | E2E latency | Hops | Closures | Retries | Rollbacks executed | Human wait | MTTR |
 |---|---|---|---|---|---|---|---|
 | mission lifecycle `03-ambiguous-analytics` | 15.7 h | 9 | 12 | 0 | 1 | 3.9 h | – |
 | `01-analytics-v2` | 8.7 h | 8 | 15 | 0 | 0 | 0 s counted | – |
 
 No step failed, so there is no MTTR (shown as –, not zero). The slice passed
 every check the first time; the ambiguity was settled before design, by the
-human's six decisions. The lifecycle's one rollback match is a coordination
-note ("waiting for your rollback gate completion"), not a rollback. Human wait is the mission plan-lock (13,836 s) and the ship gate
+human's six decisions. The lifecycle's one executed rollback is the release's
+branch-only revert rehearsal, checked by the gate and an installed smoke on
+copied data. Human wait is the mission plan-lock (13,836 s) and the ship gate
 (92 s). The slice's 22-minute ambiguity park is real but uncounted, because
 the generator recognises only engine gate parks. The slice's latency includes
 the time it waited for mission 02's click work it was stacked on.

@@ -1,0 +1,41 @@
+[
+  {
+    "transitionId": 475,
+    "qitemId": "qitem-20261003091111-32efdbe2",
+    "ts": "2026-10-03T09:11:11.839Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "design-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 479,
+    "qitemId": "qitem-20261003091111-32efdbe2",
+    "ts": "2026-10-03T09:11:33.232Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "review2-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 490,
+    "qitemId": "qitem-20261003091111-32efdbe2",
+    "ts": "2026-10-03T09:22:26.539Z",
+    "state": "done",
+    "transitionNote": "workflow failed: Design review FAIL on d7fa6029168f74ae8b67efa6607dcf7a08296931; report and evidence commit 23f4bf5. DR-01 HIGH: ResourceHandlerUtils WARN logs raw-IP path canary on exempt 404; real-server control with that logger at ERROR suppresses it. DR-02 HIGH: native shutdown reproduced four post-connect resets in each closed-loop cycle, contradicting SPEC AC-25/rule 13 despite ten clean paced cycles. Contract decision routed to lead as qitem-20261003092210-1156d6e8; work DR-01 independently and coordinate any SPEC change with requirements and recorded authority. DR-03 MEDIUM: lazy sweep does not guarantee deletion within 61 wall-clock seconds while idle. Answer all findings in design Review response and hand off revised candidate. Read docs/review/03-operate/design-review.md; no src or tests changed.",
+    "actorSession": "review2-agent@urlshort-factory",
+    "closureReason": "denied",
+    "closureTarget": "Design review FAIL on d7fa6029168f74ae8b67efa6607dcf7a08296931; report and evidence commit 23f4bf5. DR-01 HIGH: ResourceHandlerUtils WARN logs raw-IP path canary on exempt 404; real-server control with that logger at ERROR suppresses it. DR-02 HIGH: native shutdown reproduced four post-connect resets in each closed-loop cycle, contradicting SPEC AC-25/rule 13 despite ten clean paced cycles. Contract decision routed to lead as qitem-20261003092210-1156d6e8; work DR-01 independently and coordinate any SPEC change with requirements and recorded authority. DR-03 MEDIUM: lazy sweep does not guarantee deletion within 61 wall-clock seconds while idle. Answer all findings in design Review response and hand off revised candidate. Read docs/review/03-operate/design-review.md; no src or tests changed.",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

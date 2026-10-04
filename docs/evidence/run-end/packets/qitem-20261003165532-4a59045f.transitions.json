@@ -1,0 +1,41 @@
+[
+  {
+    "transitionId": 987,
+    "qitemId": "qitem-20261003165532-4a59045f",
+    "ts": "2026-10-03T16:55:32.929Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 993,
+    "qitemId": "qitem-20261003165532-4a59045f",
+    "ts": "2026-10-03T16:56:15.968Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "release-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 998,
+    "qitemId": "qitem-20261003165532-4a59045f",
+    "ts": "2026-10-03T16:57:21.341Z",
+    "state": "done",
+    "transitionNote": "workflow failed: DRILL 4: deliberate step failure to exercise rig workflow resume; no product code; lead runs resume, abort and a resume attempt next",
+    "actorSession": "release-agent@urlshort-factory",
+    "closureReason": "denied",
+    "closureTarget": "DRILL 4: deliberate step failure to exercise rig workflow resume; no product code; lead runs resume, abort and a resume attempt next",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

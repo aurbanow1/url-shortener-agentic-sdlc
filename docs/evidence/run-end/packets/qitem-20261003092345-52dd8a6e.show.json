@@ -1,0 +1,69 @@
+{
+  "pickup": {
+    "state": "stalled-after-claim",
+    "evidence": "no meaningful queue change for 1975 min; owner activity idle-at-prompt (queue age does not prove idle)"
+  },
+  "waiting": {
+    "obligation": "qitem-20261003092345-52dd8a6e",
+    "owner": "review-agent@urlshort-factory",
+    "state": "handed-off",
+    "actionableSince": null,
+    "blocker": null,
+    "lastMeaningfulChange": {
+      "id": 537,
+      "at": "2026-10-03T09:46:49.514Z"
+    },
+    "liveness": {
+      "subject": "review-agent@urlshort-factory",
+      "activity": "idle-at-prompt",
+      "needsInput": {
+        "count": 0,
+        "reason": null
+      },
+      "confidence": "oracle"
+    },
+    "nextBackstop": {
+      "owner": "review-agent@urlshort-factory",
+      "mechanism": "none (terminal obligation)",
+      "dueAt": null,
+      "intervalSeconds": null
+    },
+    "deadlineAt": null
+  },
+  "qitemId": "qitem-20261003092345-52dd8a6e",
+  "tsCreated": "2026-10-03T09:23:45.385Z",
+  "tsUpdated": "2026-10-03T09:46:49.514Z",
+  "sourceSession": "design-agent@urlshort-factory",
+  "destinationSession": "review-agent@urlshort-factory",
+  "state": "handed-off",
+  "priority": "routine",
+  "tier": "mode2",
+  "tags": [
+    "workflow",
+    "handoff",
+    "workflow:urlshort-slice-delegated",
+    "instance:01M40CP0JVZZWR8226MNN8XCCV"
+  ],
+  "blockedOn": null,
+  "handedOffTo": "orchestration-lead@urlshort-factory",
+  "handedOffFrom": null,
+  "expiresAt": null,
+  "chainOfRecord": [
+    "qitem-20261003090152-625de326"
+  ],
+  "body": "### Workflow handoff: urlshort-slice-delegated@1 step design_review\n\nWorkflow instance: 01M40CP0JVZZWR8226MNN8XCCV\nPrior step: design (design) closed by design-agent@urlshort-factory\nThis step: design_review (design_review)\nObjective: Independent review of design.md (and impact-analysis.md on brownfield slices) against the SPEC: every acceptance criterion reachable, error contract explicit, data model and migration reversible, threat model covering every new entry point, smallest structure that satisfies the SPEC. MUST-FIX or HIGH routes back to design; otherwise the locked set proceeds to plan_lock.\n\nPrior step note: Design candidate 45c98c4 for 02-analytics against SPEC 173bd60 (DR-03 aligned by the requirements agent: rule 7 HEAD/OPTIONS at framework defaults, AC-22, A-18). DR-01 fixed: close() drains at most 5 s then cancels, one 'click lost' per unwritten click with its request id (revision probe: your six 2-s writes, close at 5006 ms, every click accounted once); fits 03's 10 s phase + drain + pool close < 20 s stop grace. DR-02 fixed by removing the case: DailySalt.stamp reads the clock and picks the key in one locked step; your interleaving and a stale expiry replayed deterministically (revision probe); remaining boundary written down (the clock itself moving back across midnight). DR-04 fixed: user_agent_class lookup table + FK, hash LENGTH check kept; constraint probe on memory and file DBs: IN-list and OR-of-equalities CHECKs fail with 90098 after retirement; single comparisons, LENGTH, FKs and V1's two shipped checks (tested alone) keep working, so 01-create-redirect is not affected; deterministic regression ClickSchemaTest on its own Flyway-migrated database. ADR-0011..0013 revised, DESIGN.md §4 stack fact, ERD, click-sequence. None disputed. Lead backlog note: docs/guidance/databases.md §2 says CHECK for enumerations; on H2 2.4.240 that needs the lookup-table caveat.\n\nContinuation: rig workflow project --instance 01M40CP0JVZZWR8226MNN8XCCV --current-packet qitem-20261003092345-52dd8a6e --exit <handoff|waiting|done|failed> --actor-session review-agent@urlshort-factory\nContext: this workflow packet is a shortcut, not the whole story; inspect additional project, mission, and receipt evidence before choosing an authored exit.",
+  "summary": null,
+  "evidenceRef": null,
+  "humanIntent": null,
+  "humanDetail": null,
+  "closureReason": "handed_off_to",
+  "closureTarget": "orchestration-lead@urlshort-factory",
+  "closureRequiredAt": null,
+  "claimedAt": "2026-10-03T09:41:45.265Z",
+  "lastNudgeAttempt": "2026-10-03T09:41:32.744Z",
+  "lastNudgeResult": "delivered-ack-pending",
+  "lastHeartbeat": null,
+  "resolution": null,
+  "targetRepo": null,
+  "deliveryOutcome": null
+}

@@ -1,0 +1,67 @@
+[
+  {
+    "transitionId": 679,
+    "qitemId": "qitem-20261003114345-f739a1d5",
+    "ts": "2026-10-03T11:43:45.404Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 680,
+    "qitemId": "qitem-20261003114345-f739a1d5",
+    "ts": "2026-10-03T11:44:15.097Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "review-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 681,
+    "qitemId": "qitem-20261003114345-f739a1d5",
+    "ts": "2026-10-03T11:45:56.096Z",
+    "state": "in-progress",
+    "transitionNote": "From the orchestration lead: start from main at or after 8c87... (the commit after eb2ed0a adds only the mission PROGRESS scope row and a NOTES line on what I read; the decomposition itself is eb2ed0a). The committed compiled graph was checked byte-identical to a fresh compile after both revisions were applied.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 682,
+    "qitemId": "qitem-20261003114345-f739a1d5",
+    "ts": "2026-10-03T11:46:01.800Z",
+    "state": "in-progress",
+    "transitionNote": "Correction to the lead's previous note: the follow-up commit is a636fa6 (not '8c87...', which was a placeholder written before the commit existed). Decomposition at eb2ed0a; a636fa6 adds only the mission PROGRESS scope row and a NOTES line.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 683,
+    "qitemId": "qitem-20261003114345-f739a1d5",
+    "ts": "2026-10-03T11:49:44.056Z",
+    "state": "handed-off",
+    "transitionNote": "workflow handoff to orchestration-lead@urlshort-factory",
+    "actorSession": "review-agent@urlshort-factory",
+    "closureReason": "handed_off_to",
+    "closureTarget": "orchestration-lead@urlshort-factory",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

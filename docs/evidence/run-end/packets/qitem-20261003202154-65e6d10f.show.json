@@ -1,0 +1,69 @@
+{
+  "pickup": {
+    "state": "stalled-after-claim",
+    "evidence": "no meaningful queue change for 1271 min; owner activity idle-at-prompt (queue age does not prove idle)"
+  },
+  "waiting": {
+    "obligation": "qitem-20261003202154-65e6d10f",
+    "owner": "qa-agent@urlshort-factory",
+    "state": "handed-off",
+    "actionableSince": null,
+    "blocker": null,
+    "lastMeaningfulChange": {
+      "id": 1416,
+      "at": "2026-10-03T21:30:51.011Z"
+    },
+    "liveness": {
+      "subject": "qa-agent@urlshort-factory",
+      "activity": "idle-at-prompt",
+      "needsInput": {
+        "count": 0,
+        "reason": null
+      },
+      "confidence": "oracle"
+    },
+    "nextBackstop": {
+      "owner": "qa-agent@urlshort-factory",
+      "mechanism": "none (terminal obligation)",
+      "dueAt": null,
+      "intervalSeconds": null
+    },
+    "deadlineAt": null
+  },
+  "qitemId": "qitem-20261003202154-65e6d10f",
+  "tsCreated": "2026-10-03T20:21:54.427Z",
+  "tsUpdated": "2026-10-03T21:30:51.010Z",
+  "sourceSession": "development-agent@urlshort-factory",
+  "destinationSession": "qa-agent@urlshort-factory",
+  "state": "handed-off",
+  "priority": "routine",
+  "tier": "mode2",
+  "tags": [
+    "workflow",
+    "handoff",
+    "workflow:urlshort-slice-delegated",
+    "instance:01M416ZY5N11CDGZBM2DT4GAXS"
+  ],
+  "blockedOn": null,
+  "handedOffTo": "review-agent@urlshort-factory",
+  "handedOffFrom": null,
+  "expiresAt": null,
+  "chainOfRecord": [
+    "qitem-20261003201620-c74de839"
+  ],
+  "body": "### Workflow handoff: urlshort-slice-delegated@1 step qa_check\n\nWorkflow instance: 01M416ZY5N11CDGZBM2DT4GAXS\nPrior step: implement (development) closed by development-agent@urlshort-factory\nThis step: qa_check (qa)\nObjective: Verify the candidate by effect: run the suites and the public journey, produce unit and functional coverage reports, the acceptance-criteria traceability table and the gap list, record proof drops. On PASS, record the attributed judgment on every proof-contract item against the candidate SHA (rig proof judge) so acceptance needs no extra hop. A failing check is the artifact's verdict and routes back to implement.\n\nPrior step note: candidate 7ac8af56ed04c27bbefbd416b3976c544d2f274a on slice/01-audit-read (CR-01 rework on 35590f0). Guard per design 0052efb: strategy NONE and neither server.tomcat.remoteip remote-ip-header nor protocol-header set (TomcatServerProperties). Real-Tomcat regression: GET and HEAD, plain and forged X-Forwarded-For 127.0.0.2, 403 with no stored canary under each setting; red on 35590f0's code. Gate green: unit 203, functional 202, 494/494 lines, 194/194 branches. Not re-run by the builder on the new SHA: AC-17 and the jar captures (the change only narrows admission). PROOF.md Builder section 'Rework - 7ac8af5'.\n\nContinuation: rig workflow project --instance 01M416ZY5N11CDGZBM2DT4GAXS --current-packet qitem-20261003202154-65e6d10f --exit <handoff|waiting|done|failed> --actor-session qa-agent@urlshort-factory\nContext: this workflow packet is a shortcut, not the whole story; inspect additional project, mission, and receipt evidence before choosing an authored exit.",
+  "summary": null,
+  "evidenceRef": null,
+  "humanIntent": null,
+  "humanDetail": null,
+  "closureReason": "handed_off_to",
+  "closureTarget": "review-agent@urlshort-factory",
+  "closureRequiredAt": null,
+  "claimedAt": "2026-10-03T20:25:09.381Z",
+  "lastNudgeAttempt": "2026-10-03T20:21:55.281Z",
+  "lastNudgeResult": "verified",
+  "lastHeartbeat": null,
+  "resolution": null,
+  "targetRepo": null,
+  "deliveryOutcome": null
+}

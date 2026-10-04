@@ -111,15 +111,15 @@ Mission 02 closed at `2522e6c2`, with its backlog recorded in
 
 ## Metrics
 
-From `docs/metrics/README.md`, the run-end refresh (generated
-2026-10-04T05:38:42Z from the live daemon after this mission closed, every
-instance terminal):
+From `docs/metrics/README.md` (generated from the live daemon after the last
+mission closed, every instance terminal; `node tools/sdlc-metrics.mjs --check`
+reproduces it offline from `docs/evidence/run-end/`):
 
-| Instance | E2E latency | Hops | Closures | Retries | Rollback text matches | Human wait | MTTR |
+| Instance | E2E latency | Hops | Closures | Retries | Rollbacks executed | Human wait | MTTR |
 |---|---|---|---|---|---|---|---|
 | mission lifecycle `02-brownfield` | 17.7 h | 9 | 14 | 0 | 2 | 3.6 h | – |
 | `01-audit-read` | 6.1 h | 15 | 16 | 10 | 0 | 0 s | 41 min |
-| `02-click-retention` | 7.4 h | 12 | 18 | 6 | 2 | 0 s | 38 min |
+| `02-click-retention` | 7.4 h | 12 | 18 | 6 | 0 | 0 s | 38 min |
 | `03-dogfood-fix` | 1.8 h | 8 | 9 | 0 | 0 | 0 s | – |
 | `04-audit-columns` | 5.6 h | 8 | 11 | 0 | 0 | 0 s | – |
 | `05-ci-cd` | 4.0 h | 8 | 10 | 0 | 0 | 0 s | – |
@@ -128,10 +128,12 @@ instance terminal):
 The six slices had six failed closures behind 20 retry counts: the audit read's
 requirements, design and code review (CR-01), two retention design reviews,
 and the refactor's test-only polling race. Each retry is a review loop working
-as designed. No rollback was executed in production. The "rollback" column is
-a text-match heuristic: the lifecycle's two hits are the plan brief that names
-a revert drill and the ship gate's summary of the rollback recipe; retention's
-two describe its migration rollback requirement. The real drills and the V4/V3
-rehearsal have their own evidence (above). Human wait is the mission plan-lock
+as designed. No production rollback was needed. The lifecycle's two
+executed rollbacks are DRILL 2 (the integrator's revert after a failed
+installed smoke) and the final V4/V3 migration rollback with the previous
+release's jar started on the rolled-back data. Both are listed with their raw
+evidence in `docs/metrics/rollbacks.json`. The pre-run rehearsal rolled the
+schema back too, but the current candidate then re-applied V3 and V4, so it
+is recorded there as not counted. Human wait is the mission plan-lock
 (12,869 s) and the ship gate (100 s). The delegated slice plan-locks went to
 the lead, so they count as 0 s here.

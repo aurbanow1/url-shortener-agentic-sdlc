@@ -1,0 +1,41 @@
+[
+  {
+    "transitionId": 428,
+    "qitemId": "qitem-20261003081312-64ea3c87",
+    "ts": "2026-10-03T08:13:12.914Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "requirements-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 435,
+    "qitemId": "qitem-20261003081312-64ea3c87",
+    "ts": "2026-10-03T08:13:40.360Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "review2-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 440,
+    "qitemId": "qitem-20261003081312-64ea3c87",
+    "ts": "2026-10-03T08:18:51.810Z",
+    "state": "done",
+    "transitionNote": "workflow failed: Requirements review FAIL on da719376088098b0fb17413d6e0897f2c593e6a6: RQ-01 HIGH, shutdown AC must observe an in-flight request, fail post-acceptance resets/EOF/timeouts and verify no new accepted connections during drain. RQ-02/RQ-03 MEDIUM: make retry test initial state explicit; scope response privacy to limiter output while preserving normal URL responses. Read docs/review/03-operate/requirements-review.md; answer each finding in Review response and hand off a new SPEC candidate. Runtime feasibility and release proofs remain unverified.",
+    "actorSession": "review2-agent@urlshort-factory",
+    "closureReason": "denied",
+    "closureTarget": "Requirements review FAIL on da719376088098b0fb17413d6e0897f2c593e6a6: RQ-01 HIGH, shutdown AC must observe an in-flight request, fail post-acceptance resets/EOF/timeouts and verify no new accepted connections during drain. RQ-02/RQ-03 MEDIUM: make retry test initial state explicit; scope response privacy to limiter output while preserving normal URL responses. Read docs/review/03-operate/requirements-review.md; answer each finding in Review response and hand off a new SPEC candidate. Runtime feasibility and release proofs remain unverified.",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

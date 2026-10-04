@@ -1,0 +1,80 @@
+[
+  {
+    "transitionId": 2073,
+    "qitemId": "qitem-20261004052127-b89c249b",
+    "ts": "2026-10-04T05:21:27.022Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "review-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 2074,
+    "qitemId": "qitem-20261004052127-b89c249b",
+    "ts": "2026-10-04T05:21:27.023Z",
+    "state": "blocked",
+    "transitionNote": "workflow gate: parked on human@kernel pending sign-off",
+    "actorSession": "review-agent@urlshort-factory",
+    "closureReason": "blocked_on",
+    "closureTarget": "human@kernel",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 2076,
+    "qitemId": "qitem-20261004052127-b89c249b",
+    "ts": "2026-10-04T05:21:41.703Z",
+    "state": "blocked",
+    "transitionNote": "Lead decision brief for the human (mission 02, brownfield). Package missions/02-brownfield/RELEASE.md (ad0c01f6), product 30f8de4e. What ships, six slices: (1) read-only GET /api/audit, loopback only, keyset paged; (2) 90-day click retention purge with an operator setting and a hold; (3) dogfood fix W2-01 (problem schema errors[]) and W2-03 (disk gauge); (4) audit columns on link and audit_log (V4 expand migration, rollback rehearsed); (5) CI/CD in GitHub Actions (ci.yml gate, cd.yml build and smoke, Dependabot); (6) D21 refactor, one ClientIdentity, behaviour unchanged. Evidence: proof 64/64 ready; release review PASS 446eca31; fresh 590-test gate, 100 % coverage; jar and image smoke; OSV 97 coordinates, 0 advisories; V3/V4 rollback and prior-binary rollback rehearsed; four drills recorded. Limits to accept: hosted GitHub CI/CD for this exact SHA has 0 runs until you push (the earlier AC-13 green runs were on other SHAs); MEDIUM Gradle wrapper download retries; LOWs: ping clock, future V5 test pins, functional localhost collision; historical metrics snapshot 8d3c536 does not replay exactly (233/9 vs 230/8; final metrics fresh and reproducible); single-host bench, no capacity claim; two Codex weaker-model windows, affected evidence re-derived. Options: approve (stamps recorded, small SPEC proof round, evidence export; nothing published by an agent) or reject naming the item to rework. Recommended: approve.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 2078,
+    "qitemId": "qitem-20261004052127-b89c249b",
+    "ts": "2026-10-04T05:23:06.540Z",
+    "state": "in-progress",
+    "transitionNote": "approve: ship mission 02 (six slices) at 30f8de4e for local use; the exact-SHA hosted CI gap is accepted because the delta from the CI-verified e43ed246 (pull request #14) is documentation only; the release's measurement limits are accepted",
+    "actorSession": "human@kernel",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": "human-decision-resolved",
+    "ownerNotificationLevel": "NOTICE"
+  },
+  {
+    "transitionId": 2079,
+    "qitemId": "qitem-20261004052127-b89c249b",
+    "ts": "2026-10-04T05:25:39.620Z",
+    "state": "in-progress",
+    "transitionNote": "Canonical gate evidence is missions/02-brownfield/RELEASE.md; the engine field remains literal RELEASE.md because a metadata-only edit was rejected. Human transition2078 approves local use30f8de4e with exact-SHA hosted CI gap and measurement limits accepted. Mission delivery action01M42NXNY58M6EVQCMPG349RK4 records that decision on behalf of human@kernel, not agent approval. Exact decision copied verbatim to NOTES and raw transitions retained. Lead will be notified before handoff and owns six slice stamps plus SPEC-only proof reaffirmation before export.",
+    "actorSession": "release-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 2080,
+    "qitemId": "qitem-20261004052127-b89c249b",
+    "ts": "2026-10-04T05:26:12.696Z",
+    "state": "handed-off",
+    "transitionNote": "workflow handoff to release-agent@urlshort-factory",
+    "actorSession": "release-agent@urlshort-factory",
+    "closureReason": "handed_off_to",
+    "closureTarget": "release-agent@urlshort-factory",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

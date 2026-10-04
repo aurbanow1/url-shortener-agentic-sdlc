@@ -1,0 +1,41 @@
+[
+  {
+    "transitionId": 639,
+    "qitemId": "qitem-20261003112744-2dd7d3cb",
+    "ts": "2026-10-03T11:27:44.098Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "review-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 646,
+    "qitemId": "qitem-20261003112744-2dd7d3cb",
+    "ts": "2026-10-03T11:28:21.905Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 648,
+    "qitemId": "qitem-20261003112744-2dd7d3cb",
+    "ts": "2026-10-03T11:29:27.482Z",
+    "state": "done",
+    "transitionNote": "workflow done: INTEGRATED: merge 091ff46 (--no-ff of slice/02-analytics at 5b3490c), scripts/gw --offline check --rerun-tasks green on main (log in evidence-ref), tag slice/02-analytics/accepted on 5b3490c, worktree removed, PROGRESS current (f046bbd). QA items 1-11 accepted on 5b3490c; code and security re-review PASS on 5b3490c. Open before the delivery stamp: item 12 re-affirmation (qitem-20261003112820-9f4000bb, evidence hashes changed by the re-review), item 13 after release_prep (qitem-20261003103240-18e29a17). 03-operate may now rebase onto main and hand off.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": "no-follow-on",
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

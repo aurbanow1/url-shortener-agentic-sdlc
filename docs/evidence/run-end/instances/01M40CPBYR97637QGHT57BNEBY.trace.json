@@ -1,0 +1,518 @@
+{
+  "instance": {
+    "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+    "workflowName": "urlshort-slice-delegated-b",
+    "workflowVersion": "1",
+    "createdBySession": "orchestration-lead@urlshort-factory",
+    "createdAt": "2026-10-03T08:04:38.488Z",
+    "status": "completed",
+    "currentFrontier": [],
+    "currentStepId": null,
+    "hopCount": 15,
+    "fallbackSynthesis": null,
+    "lastContinuationDecision": {
+      "exit": "done",
+      "actorSession": "orchestration-lead@urlshort-factory",
+      "closedPacket": "qitem-20261003135649-046d003e",
+      "nextPacket": null,
+      "resultNote": "03-operate integrated and closed. Candidate 1c8b2cf: QA PASS (qa2, f7ee87e) and code+security re-review PASS (review2, 48381d4) on the same SHA; descends from 091ff46. Merged --no-ff as 8e9c065 (26 files, all in territory and grants). Gate green on main: unit 165, functional 155, 0 failures, coverage verification passed. Tag slice/03-operate/accepted on 1c8b2cf; worktree removed; PROGRESS current at 7d2b19a. Proof items 1-10 and 12 accepted; item 11 with qa2 (qitem-20261003135618-4e62dbf5), item 13 at release_prep (qitem-20261003120849-f4cbfa97). Delivery stamp after ship sign-off. Hops 15 of 30.",
+      "blockedOn": null,
+      "currentStep": "integrate",
+      "branchTaken": null
+    },
+    "completedAt": "2026-10-03T13:58:53.675Z",
+    "version": 23,
+    "resumeCount": 0,
+    "hopsBaseline": 0,
+    "boundRig": "urlshort-factory",
+    "lifecycleOperationKey": null,
+    "compiledInputDigest": null,
+    "lifecycleBinding": null,
+    "deadline": {
+      "state": "healthy",
+      "evidence": null
+    }
+  },
+  "trail": [
+    {
+      "trailId": "01M410Z0ZDVNBHD006MRV9DKYT",
+      "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+      "stepId": "integrate",
+      "stepRole": "integrator",
+      "closedAt": "2026-10-03T13:58:53.675Z",
+      "closureReason": "done",
+      "closureEvidence": {
+        "evidence_ref": "docs/evidence/01-greenfield-core/integrate-03-operate-check-8e9c065.txt"
+      },
+      "actorSession": "orchestration-lead@urlshort-factory",
+      "nextQitemId": null,
+      "priorQitemId": "qitem-20261003135649-046d003e"
+    },
+    {
+      "trailId": "01M410V7TWM6YTKY4D12NKV7ZT",
+      "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+      "stepId": "code_review",
+      "stepRole": "code_review",
+      "closedAt": "2026-10-03T13:56:49.620Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "docs/review/03-operate/01-code-review.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "integrator",
+          "boundRig": "urlshort-factory",
+          "seat": "orchestration-lead@urlshort-factory"
+        }
+      },
+      "actorSession": "review2-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003135649-046d003e",
+      "priorQitemId": "qitem-20261003134551-e4b16c7a"
+    },
+    {
+      "trailId": "01M41074XHCZF2RA7TG0K5HSGJ",
+      "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+      "stepId": "qa_check",
+      "stepRole": "qa",
+      "closedAt": "2026-10-03T13:45:51.270Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "docs/qa/coverage/03-operate/SUMMARY.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "code_review",
+          "boundRig": "urlshort-factory",
+          "seat": "review2-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "qa2-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003134551-e4b16c7a",
+      "priorQitemId": "qitem-20261003130258-8d163c70"
+    },
+    {
+      "trailId": "01M40XRMD0R7WAC0B3MRAKMGP2",
+      "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+      "stepId": "implement",
+      "stepRole": "development",
+      "closedAt": "2026-10-03T13:02:58.455Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "missions/01-greenfield-core/slices/03-operate/PROOF.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "qa",
+          "boundRig": "urlshort-factory",
+          "seat": "qa2-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "development-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003130258-8d163c70",
+      "priorQitemId": "qitem-20261003123104-ccd07ab0"
+    },
+    {
+      "trailId": "01M40VY7RXNBHWQNK17F1VK9FZ",
+      "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+      "stepId": "code_review",
+      "stepRole": "code_review",
+      "closedAt": "2026-10-03T12:31:04.976Z",
+      "closureReason": "failed",
+      "closureEvidence": {
+        "evidence_ref": "docs/review/03-operate/01-code-review.md",
+        "branch_taken": {
+          "exit": "failed",
+          "target": "implement"
+        },
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "development",
+          "boundRig": "urlshort-factory",
+          "seat": "development-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "review2-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003123104-ccd07ab0",
+      "priorQitemId": "qitem-20261003121811-d329afbc"
+    },
+    {
+      "trailId": "01M40V6M5NJ4WEG935W715SAFS",
+      "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+      "stepId": "qa_check",
+      "stepRole": "qa",
+      "closedAt": "2026-10-03T12:18:11.240Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "docs/qa/coverage/03-operate/SUMMARY.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "code_review",
+          "boundRig": "urlshort-factory",
+          "seat": "review2-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "qa2-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003121811-d329afbc",
+      "priorQitemId": "qitem-20261003114044-007e2031"
+    },
+    {
+      "trailId": "01M40S21K6ZJ6EBRKAX50W6J9G",
+      "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+      "stepId": "implement",
+      "stepRole": "development",
+      "closedAt": "2026-10-03T11:40:44.001Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "missions/01-greenfield-core/slices/03-operate/PROOF.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "qa",
+          "boundRig": "urlshort-factory",
+          "seat": "qa2-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "development-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003114044-007e2031",
+      "priorQitemId": "qitem-20261003094226-6580fb8d"
+    },
+    {
+      "trailId": "01M40RANGJYCADFEYKPSGZ80DS",
+      "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+      "stepId": "implement",
+      "stepRole": "development",
+      "closedAt": "2026-10-03T11:27:57.967Z",
+      "closureReason": "waiting",
+      "closureEvidence": null,
+      "actorSession": "development-agent@urlshort-factory",
+      "nextQitemId": null,
+      "priorQitemId": "qitem-20261003094226-6580fb8d"
+    },
+    {
+      "trailId": "01M40QZC0K101S3GVPN93MJ7Y7",
+      "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+      "stepId": "implement",
+      "stepRole": "development",
+      "closedAt": "2026-10-03T11:21:47.777Z",
+      "closureReason": "waiting",
+      "closureEvidence": null,
+      "actorSession": "development-agent@urlshort-factory",
+      "nextQitemId": null,
+      "priorQitemId": "qitem-20261003094226-6580fb8d"
+    },
+    {
+      "trailId": "01M40PW46GXTMP6M34QCHQRWCW",
+      "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+      "stepId": "implement",
+      "stepRole": "development",
+      "closedAt": "2026-10-03T11:02:32.908Z",
+      "closureReason": "waiting",
+      "closureEvidence": null,
+      "actorSession": "development-agent@urlshort-factory",
+      "nextQitemId": null,
+      "priorQitemId": "qitem-20261003094226-6580fb8d"
+    },
+    {
+      "trailId": "01M40PQQFEFHATC02MW2AJZ0KE",
+      "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+      "stepId": "implement",
+      "stepRole": "development",
+      "closedAt": "2026-10-03T11:00:08.812Z",
+      "closureReason": "waiting",
+      "closureEvidence": null,
+      "actorSession": "development-agent@urlshort-factory",
+      "nextQitemId": null,
+      "priorQitemId": "qitem-20261003094226-6580fb8d"
+    },
+    {
+      "trailId": "01M40NNPABNCTJX5GMWTZD1GGZ",
+      "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+      "stepId": "implement",
+      "stepRole": "development",
+      "closedAt": "2026-10-03T10:41:33.513Z",
+      "closureReason": "waiting",
+      "closureEvidence": null,
+      "actorSession": "development-agent@urlshort-factory",
+      "nextQitemId": null,
+      "priorQitemId": "qitem-20261003094226-6580fb8d"
+    },
+    {
+      "trailId": "01M40MXZS6PKHSJF5FHZAESSDT",
+      "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+      "stepId": "implement",
+      "stepRole": "development",
+      "closedAt": "2026-10-03T10:28:36.770Z",
+      "closureReason": "waiting",
+      "closureEvidence": null,
+      "actorSession": "development-agent@urlshort-factory",
+      "nextQitemId": null,
+      "priorQitemId": "qitem-20261003094226-6580fb8d"
+    },
+    {
+      "trailId": "01M40J9EJ8HTR6D7T46KN83AK4",
+      "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+      "stepId": "plan_lock",
+      "stepRole": "design",
+      "closedAt": "2026-10-03T09:42:26.627Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "missions/01-greenfield-core/NOTES.md",
+        "owner_resolution": {
+          "mode": "explicit",
+          "role": "development",
+          "boundRig": "urlshort-factory",
+          "seat": "development-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "orchestration-lead@urlshort-factory",
+      "nextQitemId": "qitem-20261003094226-6580fb8d",
+      "priorQitemId": "qitem-20261003094019-7bfaf4ab"
+    },
+    {
+      "trailId": "01M40J5JJKHDT57RHMJYMAT4WJ",
+      "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+      "stepId": "design_review",
+      "stepRole": "design_review",
+      "closedAt": "2026-10-03T09:40:19.662Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "docs/review/03-operate/design-review.md",
+        "branch_taken": {
+          "exit": "handoff",
+          "target": "plan_lock"
+        },
+        "owner_resolution": {
+          "mode": "gate",
+          "role": "design",
+          "boundRig": "urlshort-factory",
+          "seat": "orchestration-lead@urlshort-factory"
+        }
+      },
+      "actorSession": "review2-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003094019-7bfaf4ab",
+      "priorQitemId": "qitem-20261003093000-222473fe"
+    },
+    {
+      "trailId": "01M40HJNSXRP2396ZXKZ0BYQVX",
+      "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+      "stepId": "design",
+      "stepRole": "design",
+      "closedAt": "2026-10-03T09:30:00.378Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "missions/01-greenfield-core/slices/03-operate/design.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "design_review",
+          "boundRig": "urlshort-factory",
+          "seat": "review2-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "design-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003093000-222473fe",
+      "priorQitemId": "qitem-20261003092226-699086e9"
+    },
+    {
+      "trailId": "01M40H4TKDTGGM3YXH3YXQEDJY",
+      "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+      "stepId": "design_review",
+      "stepRole": "design_review",
+      "closedAt": "2026-10-03T09:22:26.537Z",
+      "closureReason": "failed",
+      "closureEvidence": {
+        "evidence_ref": "docs/review/03-operate/design-review.md",
+        "branch_taken": {
+          "exit": "failed",
+          "target": "design"
+        },
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "design",
+          "boundRig": "urlshort-factory",
+          "seat": "design-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "review2-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003092226-699086e9",
+      "priorQitemId": "qitem-20261003091111-32efdbe2"
+    },
+    {
+      "trailId": "01M40GG7Q0E1MXBK0Z60ZNYP3X",
+      "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+      "stepId": "design",
+      "stepRole": "design",
+      "closedAt": "2026-10-03T09:11:11.837Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "missions/01-greenfield-core/slices/03-operate/design.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "design_review",
+          "boundRig": "urlshort-factory",
+          "seat": "review2-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "design-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003091111-32efdbe2",
+      "priorQitemId": "qitem-20261003082416-b1057e7a"
+    },
+    {
+      "trailId": "01M40DT9ZFRKD3WY2JVFENQJ0X",
+      "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+      "stepId": "requirements_review",
+      "stepRole": "requirements_review",
+      "closedAt": "2026-10-03T08:24:16.107Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "docs/review/03-operate/requirements-review.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "design",
+          "boundRig": "urlshort-factory",
+          "seat": "design-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "review2-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003082416-b1057e7a",
+      "priorQitemId": "qitem-20261003082131-b709b118"
+    },
+    {
+      "trailId": "01M40DN9BCR8H980F3NJAXF5MH",
+      "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+      "stepId": "requirements",
+      "stepRole": "requirements",
+      "closedAt": "2026-10-03T08:21:31.622Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "missions/01-greenfield-core/slices/03-operate/SPEC.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "requirements_review",
+          "boundRig": "urlshort-factory",
+          "seat": "review2-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "requirements-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003082131-b709b118",
+      "priorQitemId": "qitem-20261003081851-f8f25b02"
+    },
+    {
+      "trailId": "01M40DGD97EK29XQ7YWSCJ00YK",
+      "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+      "stepId": "requirements_review",
+      "stepRole": "requirements_review",
+      "closedAt": "2026-10-03T08:18:51.809Z",
+      "closureReason": "failed",
+      "closureEvidence": {
+        "evidence_ref": "docs/review/03-operate/requirements-review.md",
+        "branch_taken": {
+          "exit": "failed",
+          "target": "requirements"
+        },
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "requirements",
+          "boundRig": "urlshort-factory",
+          "seat": "requirements-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "review2-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003081851-f8f25b02",
+      "priorQitemId": "qitem-20261003081312-64ea3c87"
+    },
+    {
+      "trailId": "01M40D62AMB204HM8TFZ9GGMR5",
+      "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+      "stepId": "requirements",
+      "stepRole": "requirements",
+      "closedAt": "2026-10-03T08:13:12.907Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "missions/01-greenfield-core/slices/03-operate/SPEC.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "requirements_review",
+          "boundRig": "urlshort-factory",
+          "seat": "review2-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "requirements-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003081312-64ea3c87",
+      "priorQitemId": "qitem-20261003080438-4f449e0f"
+    }
+  ],
+  "guidance": {
+    "state": "unselected",
+    "selectionSource": null,
+    "catalogSource": null,
+    "catalogPath": null,
+    "catalogHash": null,
+    "sources": [],
+    "position": "UNKNOWN: component position is not authored. Exact owner matches establish relevance, not a stage; choose from selected components and explicit edges using current evidence. Array order is presentation only.",
+    "ownerSession": null,
+    "unknowns": [],
+    "expansionCommand": "rig workflow guidance '01M40CPBYR97637QGHT57BNEBY' --full",
+    "lines": [
+      "Workflow method: No SDLC composition selected in the available authored context.",
+      "Workflow method: Expand relevant teaching: rig workflow guidance '01M40CPBYR97637QGHT57BNEBY' --full; select another with --component <id>. Read authored caveats and edges before adapting; advice grants no extra assignment."
+    ]
+  },
+  "reconciliation": {
+    "status": "unbound",
+    "adopted": null,
+    "boundDigest": null,
+    "proposedDigest": null,
+    "boundVersion": "1",
+    "proposedVersion": null,
+    "compatible": false,
+    "expectedVersion": 23,
+    "changes": [],
+    "reasons": [
+      "This is not a manifest-bound lifecycle. Inspect its authored spec; lifecycle revision does not migrate arbitrary workflows."
+    ],
+    "composition": {
+      "mode": "unbound",
+      "explanation": "The project profile and mission extension/override define outer steps. Slice manifests bind sources and proof, not automatic nested children. Waves group agent planning; they do not schedule child work. Current packets and blockers carry actual custody.",
+      "boundSlices": [],
+      "executableSteps": [
+        {
+          "id": "requirements",
+          "dependsOn": []
+        },
+        {
+          "id": "requirements_review",
+          "dependsOn": []
+        },
+        {
+          "id": "design",
+          "dependsOn": []
+        },
+        {
+          "id": "design_review",
+          "dependsOn": []
+        },
+        {
+          "id": "plan_lock",
+          "dependsOn": []
+        },
+        {
+          "id": "implement",
+          "dependsOn": []
+        },
+        {
+          "id": "qa_check",
+          "dependsOn": []
+        },
+        {
+          "id": "code_review",
+          "dependsOn": []
+        },
+        {
+          "id": "integrate",
+          "dependsOn": []
+        }
+      ]
+    },
+    "nextAction": "rig workflow trace 01M40CPBYR97637QGHT57BNEBY"
+  },
+  "frontier": [],
+  "failures": [],
+  "unknowns": [],
+  "boundaryObligations": []
+}

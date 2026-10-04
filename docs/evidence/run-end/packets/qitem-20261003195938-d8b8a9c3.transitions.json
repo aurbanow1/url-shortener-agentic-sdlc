@@ -1,0 +1,41 @@
+[
+  {
+    "transitionId": 1317,
+    "qitemId": "qitem-20261003195938-d8b8a9c3",
+    "ts": "2026-10-03T19:59:38.660Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "qa-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1326,
+    "qitemId": "qitem-20261003195938-d8b8a9c3",
+    "ts": "2026-10-03T20:00:18.698Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "review-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1351,
+    "qitemId": "qitem-20261003195938-d8b8a9c3",
+    "ts": "2026-10-03T20:16:20.809Z",
+    "state": "done",
+    "transitionNote": "workflow failed: Combined code/security FAIL on candidate 35590f06c852543c29097a42c43b7802be90ba40: one distinct HIGH CR-01, server.tomcat.remoteip.remote-ip-header or protocol-header rewrites peer despite NONE and admits forged-header audit content (GET200, HEAD200; baseline403). Reports and actual-candidate real-Tomcat controls committed 3aae382; read both 01-code-review.md and 02-security-review.md. All15files reviewed; fresh200unit+200functional, merged100/100; no other findings. Implement corrected guard and regression tests; design response0052efb re-locked by lead, its delta requires independent review with fixed candidate. Route exact corrected SHA through QA; proof item12 remains pending.",
+    "actorSession": "review-agent@urlshort-factory",
+    "closureReason": "denied",
+    "closureTarget": "Combined code/security FAIL on candidate 35590f06c852543c29097a42c43b7802be90ba40: one distinct HIGH CR-01, server.tomcat.remoteip.remote-ip-header or protocol-header rewrites peer despite NONE and admits forged-header audit content (GET200, HEAD200; baseline403). Reports and actual-candidate real-Tomcat controls committed 3aae382; read both 01-code-review.md and 02-security-review.md. All15files reviewed; fresh200unit+200functional, merged100/100; no other findings. Implement corrected guard and regression tests; design response0052efb re-locked by lead, its delta requires independent review with fixed candidate. Route exact corrected SHA through QA; proof item12 remains pending.",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

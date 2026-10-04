@@ -1,0 +1,69 @@
+{
+  "pickup": {
+    "state": "unclaimed"
+  },
+  "waiting": {
+    "obligation": "qitem-20261003042553-03ac8b4b",
+    "owner": "orchestration-lead@urlshort-factory",
+    "state": "handed-off",
+    "actionableSince": null,
+    "blocker": null,
+    "lastMeaningfulChange": {
+      "id": 268,
+      "at": "2026-10-03T04:42:00.877Z"
+    },
+    "liveness": {
+      "subject": "orchestration-lead@urlshort-factory",
+      "activity": "idle-at-prompt",
+      "needsInput": {
+        "count": 0,
+        "reason": null
+      },
+      "confidence": "oracle"
+    },
+    "nextBackstop": {
+      "owner": "orchestration-lead@urlshort-factory",
+      "mechanism": "none (terminal obligation)",
+      "dueAt": null,
+      "intervalSeconds": null
+    },
+    "deadlineAt": null
+  },
+  "qitemId": "qitem-20261003042553-03ac8b4b",
+  "tsCreated": "2026-10-03T04:25:53.376Z",
+  "tsUpdated": "2026-10-03T04:42:00.876Z",
+  "sourceSession": "review-agent@urlshort-factory",
+  "destinationSession": "orchestration-lead@urlshort-factory",
+  "state": "handed-off",
+  "priority": "routine",
+  "tier": "mode2",
+  "tags": [
+    "workflow",
+    "gate",
+    "workflow:lifecycle-urlshort-01-greenfield-core",
+    "instance:01M3ZXEXAMS945ZS0QZ26KZK1V",
+    "step:mission_plan_lock"
+  ],
+  "blockedOn": null,
+  "handedOffTo": "orchestration-lead@urlshort-factory",
+  "handedOffFrom": null,
+  "expiresAt": null,
+  "chainOfRecord": [
+    "qitem-20261003040709-b481dc8d"
+  ],
+  "body": "### Workflow gate: lifecycle-urlshort-01-greenfield-core@1-de9659cfc2f86cdb step mission_plan_lock\n\nWorkflow instance: 01M3ZXEXAMS945ZS0QZ26KZK1V\nPrior step: decomposition_review (reviewer) closed by review-agent@urlshort-factory\nThis step: mission_plan_lock (orchestrator)\nGate: human sign-off — the workflow is PARKED (waiting) until this item is resolved/closed; the flow then continues from this step.\nAsk: Mission decomposition ready — approve slices, waves and gate tiers (mission plan-lock).\nEvidence: SPEC.md\nObjective: Hold the decomposition at the human gate: slices, order, waves, gate tiers and risks as a decision brief. On approval record the mission plan-lock stamp on behalf of the human.\n\nPrior step note: PASS decomposition review on 6b5e17f8830de35f2052eda2fa66d8eda17f4a14; review evidence committed 93b9245. DC-01 fixed: 03 owns 429/Retry-After OpenAPI under ordered custody. DC-02 fixed: 02 merges on its own verdicts before 03 handoff, wave fan-in waits for both accepted slices. Four of four fix files reviewed; full original range 22/22; no open findings. Fresh compile and live adopted binding match 1-de9659cfc2f86cdb, unknowns empty. Human still decides the eight assumed rows, dependency-override placement and FR-17 keep/defer; no product implementation is approved by this review.\n\nWorkflow plan: The plan can change. Inspect authored versus running steps with rig workflow revise 01M3ZXEXAMS945ZS0QZ26KZK1V; file edits alone do not adopt a revision.\nWorkflow plan: Waves guide agent admission/review; only authored executable dependencies schedule steps. Preserve completed judgments and outstanding child custody.\nWorkflow plan: Snapshot guidance from (inspect current source before deciding): /Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/01-greenfield-core/mission.yaml\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/project.yaml\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/01-greenfield-core/mission.yaml\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/AGENTS.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/README.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/requirements.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/architecture.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/java-spring.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/databases.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/qa.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/decomposition.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/brownfield.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/review.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/orchestration.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/release.md\nContinuation: rig workflow project --instance 01M3ZXEXAMS945ZS0QZ26KZK1V --current-packet qitem-20261003042553-03ac8b4b --exit <handoff|waiting|done|failed> --actor-session orchestration-lead@urlshort-factory\nContext: this workflow packet is a shortcut, not the whole story; inspect additional project, mission, and receipt evidence before choosing an authored exit.",
+  "summary": "Mission decomposition ready — approve slices, waves and gate tiers (mission plan-lock).",
+  "evidenceRef": "SPEC.md",
+  "humanIntent": null,
+  "humanDetail": null,
+  "closureReason": "handed_off_to",
+  "closureTarget": "orchestration-lead@urlshort-factory",
+  "closureRequiredAt": null,
+  "claimedAt": null,
+  "lastNudgeAttempt": "2026-10-03T04:39:54.187Z",
+  "lastNudgeResult": "delivered-ack-pending",
+  "lastHeartbeat": null,
+  "resolution": null,
+  "targetRepo": null,
+  "deliveryOutcome": null
+}

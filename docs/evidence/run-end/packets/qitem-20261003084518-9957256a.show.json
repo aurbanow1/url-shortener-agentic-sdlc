@@ -1,0 +1,69 @@
+{
+  "pickup": {
+    "state": "stalled-after-claim",
+    "evidence": "no meaningful queue change for 2020 min; owner activity idle-at-prompt (queue age does not prove idle)"
+  },
+  "waiting": {
+    "obligation": "qitem-20261003084518-9957256a",
+    "owner": "review-agent@urlshort-factory",
+    "state": "done",
+    "actionableSince": null,
+    "blocker": null,
+    "lastMeaningfulChange": {
+      "id": 467,
+      "at": "2026-10-03T09:01:52.160Z"
+    },
+    "liveness": {
+      "subject": "review-agent@urlshort-factory",
+      "activity": "idle-at-prompt",
+      "needsInput": {
+        "count": 0,
+        "reason": null
+      },
+      "confidence": "oracle"
+    },
+    "nextBackstop": {
+      "owner": "review-agent@urlshort-factory",
+      "mechanism": "none (terminal obligation)",
+      "dueAt": null,
+      "intervalSeconds": null
+    },
+    "deadlineAt": null
+  },
+  "qitemId": "qitem-20261003084518-9957256a",
+  "tsCreated": "2026-10-03T08:45:18.459Z",
+  "tsUpdated": "2026-10-03T09:01:52.160Z",
+  "sourceSession": "design-agent@urlshort-factory",
+  "destinationSession": "review-agent@urlshort-factory",
+  "state": "done",
+  "priority": "routine",
+  "tier": "mode2",
+  "tags": [
+    "workflow",
+    "handoff",
+    "workflow:urlshort-slice-delegated",
+    "instance:01M40CP0JVZZWR8226MNN8XCCV"
+  ],
+  "blockedOn": null,
+  "handedOffTo": null,
+  "handedOffFrom": null,
+  "expiresAt": null,
+  "chainOfRecord": [
+    "qitem-20261003082147-22c46f0c"
+  ],
+  "body": "### Workflow handoff: urlshort-slice-delegated@1 step design_review\n\nWorkflow instance: 01M40CP0JVZZWR8226MNN8XCCV\nPrior step: design (design) closed by design-agent@urlshort-factory\nThis step: design_review (design_review)\nObjective: Independent review of design.md (and impact-analysis.md on brownfield slices) against the SPEC: every acceptance criterion reachable, error contract explicit, data model and migration reversible, threat model covering every new entry point, smallest structure that satisfies the SPEC. MUST-FIX or HIGH routes back to design; otherwise the locked set proceeds to plan_lock.\n\nPrior step note: Design candidate 71b2e10 (design 20211ad + qualifications) for 02-analytics against SPEC 7200107 (labels-only change from reviewed 488788f). Click hook in RedirectController (HEAD skipped: the GET mapping serves HEAD), request-thread reduction (origin, UA class, HMAC-SHA256 under a per-UTC-day in-memory salt dropped at day end), one bounded writer (queue 10 000, abort on full) fail-open with one WARN per lost click carrying requestId and the exception class only; stats from one grouped query folded in Java (AC-11 by construction, code-point ties without collation); V2 click table with stored UTC day, FK ON DELETE CASCADE, CHECKs. Verified on Tomcat: design-probe/output.txt C0-C9, S1, S2. ADR-0011..0013, ADR-0004 second amendment, DESIGN.md, ERD, container, click-sequence. Territory: one-line web/OpenApiDocumentTest grant per qitem-20261003082940-4da408ce (slice.yaml). W1-02 decided: one real-server class folded into the ClickStore spy context. No human decision. 03-operate design next.\n\nContinuation: rig workflow project --instance 01M40CP0JVZZWR8226MNN8XCCV --current-packet qitem-20261003084518-9957256a --exit <handoff|waiting|done|failed> --actor-session review-agent@urlshort-factory\nContext: this workflow packet is a shortcut, not the whole story; inspect additional project, mission, and receipt evidence before choosing an authored exit.",
+  "summary": null,
+  "evidenceRef": null,
+  "humanIntent": null,
+  "humanDetail": null,
+  "closureReason": "denied",
+  "closureTarget": "FAIL on design 71b2e10a7a32424f8f816db33db9984d7647bfd1; 12/12 files reviewed, evidence 38c1001. HIGH DR-01 unbounded writer destruction exceeds 10s under the existing slow-store condition; HIGH DR-02 reordered midnight requests replace the current salt and violate same-day hash stability; HIGH DR-04 V2 user_agent_class IN CHECK rejects valid inserts after physical connection retirement on both memory and file H2 2.4.240. Independent executable probes and logs under docs/review/02-analytics/proof. MEDIUM DR-03 align stats HEAD/OPTIONS with SPEC rule 7 in passing. Answer all four findings fixed/disputed with evidence; re-review stays scoped to fixes. Baseline offline check passed (14 up-to-date).",
+  "closureRequiredAt": null,
+  "claimedAt": "2026-10-03T08:45:43.805Z",
+  "lastNudgeAttempt": "2026-10-03T08:45:19.313Z",
+  "lastNudgeResult": "delivered-ack-pending",
+  "lastHeartbeat": null,
+  "resolution": null,
+  "targetRepo": null,
+  "deliveryOutcome": null
+}

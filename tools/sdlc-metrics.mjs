@@ -5,17 +5,25 @@
 // computes them from the exported evidence (docs/evidence/**/instances,
 // docs/evidence/**/packets) or, with --live, straight from the daemon.
 //
-//   node tools/sdlc-metrics.mjs [--live] [--out docs/metrics]
+//   node tools/sdlc-metrics.mjs [--live] [--out docs/metrics] [--save-inputs docs/evidence/run-end] [--check]
+//
+//   --save-inputs <dir>  write the exact traces, transitions and packet records used, so an offline run
+//                        reproduces the result (the folder sits under docs/evidence/ and is read back)
+//   --check              regenerate offline and compare with the committed metrics.json; exit 1 on a difference
 //
 // Definitions (also printed into docs/metrics/README.md):
 //   e2e latency     createdAt -> completedAt of an instance (or now, if active)
 //   step closure    one trail entry; closureReason handoff|done = success, failed = artifact rejected
 //   retry           a failed closure (QA / review / security sent the candidate back) or a step re-entered
 //                   with a non-waiting exit; `waiting` re-presentations of the same step are waits, not retries
-//   rollback        a transition or evidence note mentioning revert/rollback, plus engine resumes (resumeCount)
-//   MTTR            failed closure of step S -> next successful closure of S (mean over occurrences)
+//   rollback        an executed rollback listed in docs/metrics/rollbacks.json with its raw evidence (every
+//                   file must exist), plus reverts that landed on main; plans and descriptions do not count
+//   recovery        engine resumes (resumeCount) and aborts, reported apart from rollbacks
+//   MTTR            failed closure of step S -> next handoff/done closure of S (a `waiting` closure is not a recovery)
 //   human wait      packet parked on human@kernel -> transition recorded by human@kernel
 //   queue wait      packet created -> claimed; work time = claimed -> closed
+// When the same record appears in several exports, the freshest copy wins (trace: instance.version;
+// transitions: highest transitionId; packet: tsUpdated), so folder order never matters.
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
@@ -25,6 +33,9 @@ const live = argv.includes("--live");
 const root = execFileSync("git", ["rev-parse", "--show-toplevel"], { encoding: "utf8" }).trim();
 const outArg = argv.includes("--out") ? argv[argv.indexOf("--out") + 1] : "docs/metrics";
 const outDir = path.isAbsolute(outArg) ? outArg : path.join(root, outArg);
+const saveArg = argv.includes("--save-inputs") ? argv[argv.indexOf("--save-inputs") + 1] : null;
+const check = argv.includes("--check");
+if (check && live) throw new Error("--check regenerates offline; drop --live");
 const now = Date.now();
 
 function rig(...args) {
@@ -37,23 +48,30 @@ const readJson = (p) => JSON.parse(fs.readFileSync(p, "utf8"));
 const glob = (dir, suffix) => (fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.endsWith(suffix)).map((f) => path.join(dir, f)) : []);
 
 // ---- load instances + packets -------------------------------------------------
-const instances = new Map(); // instanceId -> { trace, packets: Map<qitemId, transitions[]>, shows: Map<qitemId, show> }
-const packetFiles = new Map();
-const showFiles = new Map();
+const instances = new Map(); // instanceId -> { trace, mission }
+const packetTransitions = new Map(); // qitemId -> transitions[] (freshest copy)
+const packetShows = new Map(); // qitemId -> show (freshest copy)
+// Freshness of each record kind; a copy replaces the held one only when it is strictly fresher.
+const traceAge = (t) => t?.instance?.version ?? t?.trail?.length ?? -1;
+const transitionsAge = (tr) => Math.max(-1, ...(tr ?? []).map((t) => t.transitionId ?? -1));
+const showAge = (s) => ts(s?.tsUpdated) || -1;
+const keepFresher = (map, key, value, age) => { if (!map.has(key) || age(value) > age(map.get(key))) map.set(key, value); };
 const evidenceRoot = path.join(root, "docs", "evidence");
 if (fs.existsSync(evidenceRoot)) {
   for (const mission of fs.readdirSync(evidenceRoot)) {
     for (const f of glob(path.join(evidenceRoot, mission, "instances"), ".trace.json")) {
       const trace = readJson(f);
-      if (trace?.instance?.instanceId) instances.set(trace.instance.instanceId, { trace, packets: new Map(), shows: new Map(), mission });
+      const id = trace?.instance?.instanceId;
+      if (id && (!instances.has(id) || traceAge(trace) > traceAge(instances.get(id).trace))) instances.set(id, { trace, mission });
     }
-    for (const f of glob(path.join(evidenceRoot, mission, "packets"), ".transitions.json")) packetFiles.set(path.basename(f, ".transitions.json"), f);
-    for (const f of glob(path.join(evidenceRoot, mission, "packets"), ".show.json")) showFiles.set(path.basename(f, ".show.json"), f);
+    for (const f of glob(path.join(evidenceRoot, mission, "packets"), ".transitions.json")) keepFresher(packetTransitions, path.basename(f, ".transitions.json"), readJson(f), transitionsAge);
+    for (const f of glob(path.join(evidenceRoot, mission, "packets"), ".show.json")) keepFresher(packetShows, path.basename(f, ".show.json"), readJson(f), showAge);
   }
 }
 if (live) {
+  // The daemon is the freshest source: its records replace exported copies.
   for (const row of rig("workflow", "list")) {
-    try { instances.set(row.instanceId, { trace: rig("workflow", "trace", row.instanceId), packets: new Map(), shows: new Map(), mission: "(live)" }); } catch { /* skip */ }
+    try { instances.set(row.instanceId, { trace: rig("workflow", "trace", row.instanceId), mission: "(live)" }); } catch { /* skip */ }
   }
 }
 
@@ -67,15 +85,28 @@ function packetIds(inst) {
   return [...ids];
 }
 function loadTransitions(id) {
-  if (packetFiles.has(id)) return readJson(packetFiles.get(id));
-  if (live) { try { return rig("queue", "transitions", id); } catch { return []; } }
-  return [];
+  if (live) { try { packetTransitions.set(id, rig("queue", "transitions", id)); } catch { /* keep the exported copy */ } }
+  return packetTransitions.get(id) ?? [];
 }
 function loadShow(id) {
-  if (showFiles.has(id)) return readJson(showFiles.get(id));
-  if (live) { try { return rig("queue", "show", id, "--full"); } catch { return null; } }
-  return null;
+  if (live) { try { packetShows.set(id, rig("queue", "show", id, "--full")); } catch { /* keep the exported copy */ } }
+  return packetShows.get(id) ?? null;
 }
+
+// Executed rollbacks: the committed register, every evidence file verified, plus reverts that landed on main.
+const register = readJson(path.join(root, "docs", "metrics", "rollbacks.json"));
+for (const e of register.events) for (const f of e.evidence) {
+  if (!fs.existsSync(path.join(root, f))) throw new Error(`rollbacks.json: evidence missing for ${e.instanceId}: ${f}`);
+}
+const rollbacksByInstance = register.events.reduce((m, e) => m.set(e.instanceId, (m.get(e.instanceId) ?? 0) + 1), new Map());
+// Reverts that landed on main: commits reachable from main (a revert merged in from a branch counts),
+// never the checked-out branch, so an unmerged revert cannot inflate the number.
+const mainRev = ["main", "origin/main"].find((r) => {
+  try { execFileSync("git", ["-C", root, "rev-parse", "--verify", "--quiet", `${r}^{commit}`], { stdio: "ignore" }); return true; } catch { return false; }
+});
+if (!mainRev) throw new Error("cannot count reverts on main: neither main nor origin/main exists (fetch main first)");
+const revertsOnMain = execFileSync("git", ["-C", root, "log", mainRev, "--format=%s"], { encoding: "utf8" }).split("\n").filter((s) => s.startsWith('Revert "')).length;
+const used = { traces: [], transitions: new Map(), shows: new Map() };
 
 // ---- per-instance metrics ---------------------------------------------------------
 const report = [];
@@ -85,11 +116,15 @@ for (const [id, inst] of instances) {
   for (const t of trail) if (t.priorQitemId) stepOf.set(t.priorQitemId, t.stepId);
   for (const f of inst.trace.frontier ?? []) if (f.packetId) stepOf.set(f.packetId, f.stepId);
 
+  used.traces.push(inst.trace);
   const packets = [];
   for (const q of packetIds(inst)) {
-    const tr = [...loadTransitions(q)].sort((a, b) => ts(a.ts) - ts(b.ts));
+    const raw = loadTransitions(q);
+    const tr = [...raw].sort((a, b) => ts(a.ts) - ts(b.ts));
     if (!tr.length) continue;
     const show = loadShow(q);
+    used.transitions.set(q, raw);
+    if (show) used.shows.set(q, show);
     const step = stepOf.get(q) ?? (show?.tags ?? []).find((t) => t.startsWith("step:"))?.slice(5) ?? "?";
     const created = ts(tr[0].ts);
     const claimed = ts(tr.find((t) => t.state === "in-progress" && /claim/i.test(t.transitionNote ?? ""))?.ts);
@@ -104,20 +139,20 @@ for (const [id, inst] of instances) {
       const release = tr.slice(i + 1).find((u) => u.actorSession === "human@kernel" || u.state !== "blocked");
       humanWait += (release ? ts(release.ts) : now) - ts(t.ts);
     }
-    const rollbackNotes = tr.filter((t) => /revert|rollback|rolled back/i.test(t.transitionNote ?? "")).length;
-    packets.push({ qitemId: q, step, queueWaitSec: sec(claimed - created), workSec: sec(closed - claimed), humanWaitSec: sec(humanWait), closedState: closedRow?.state ?? null, rollbackNotes });
+    packets.push({ qitemId: q, step, queueWaitSec: sec(claimed - created), workSec: sec(closed - claimed), humanWaitSec: sec(humanWait), closedState: closedRow?.state ?? null });
   }
 
-  const closures = trail.map((t) => ({ step: t.stepId, reason: t.closureReason, at: ts(t.closedAt), note: `${t.closureEvidence?.evidence_ref ?? ""}` }));
+  const closures = trail.map((t) => ({ step: t.stepId, reason: t.closureReason, at: ts(t.closedAt) }));
   const failed = closures.filter((c) => c.reason === "failed");
   // A `waiting` closure re-presents the same step (e.g. the integrator waiting on a slice's proof); it is a wait, not a retry.
   const stepCounts = closures.filter((c) => c.reason !== "waiting").reduce((m, c) => m.set(c.step, (m.get(c.step) ?? 0) + 1), new Map());
   const reentries = [...stepCounts.values()].reduce((a, n) => a + Math.max(0, n - 1), 0);
   const mttrs = failed.map((f) => {
-    const fix = closures.find((c) => c.step === f.step && c.at > f.at && c.reason !== "failed");
+    // Recovery means the same step later passed: a handoff or done closure, never a wait.
+    const fix = closures.find((c) => c.step === f.step && c.at > f.at && (c.reason === "handoff" || c.reason === "done"));
     return fix ? fix.at - f.at : null;
   }).filter((x) => x !== null);
-  const rollbacks = closures.filter((c) => /revert|rollback/i.test(c.note)).length + packets.reduce((a, p) => a + p.rollbackNotes, 0) + (instance.resumeCount ?? 0);
+  const rollbacks = rollbacksByInstance.get(id) ?? 0;
   const end = instance.completedAt ? ts(instance.completedAt) : now;
 
   report.push({
@@ -143,6 +178,8 @@ for (const [id, inst] of instances) {
   });
 }
 
+report.sort((a, b) => (a.instanceId < b.instanceId ? -1 : 1)); // stable order whatever the load order
+
 // ---- totals -------------------------------------------------------------------------
 const terminal = report.filter((r) => ["completed", "failed", "aborted"].includes(r.status));
 const completed = report.filter((r) => r.status === "completed");
@@ -162,7 +199,10 @@ const totals = {
   failedClosures: allFailed,
   stepSuccessRate: allClosures ? +((allClosures - allFailed) / allClosures).toFixed(3) : null,
   retries: report.reduce((a, r) => a + r.retries, 0),
-  rollbacks: report.reduce((a, r) => a + r.rollbacks, 0),
+  rollbacks: register.events.length + revertsOnMain,
+  rollbacksRehearsedOrDrilled: register.events.length,
+  revertsOnMain,
+  resumes: report.reduce((a, r) => a + r.resumeCount, 0),
   mttrMeanSec: mttrAll.length ? Math.round(mttrAll.reduce((a, b) => a + b, 0) / mttrAll.length) : null,
   e2eP50Sec: pct(completed.map((r) => r.e2eLatencySec), 0.5),
   e2eP95Sec: pct(completed.map((r) => r.e2eLatencySec), 0.95),
@@ -170,7 +210,27 @@ const totals = {
   humanWaitTotalSec: [...new Map(report.flatMap((r) => r.packets.map((p) => [p.qitemId, p.humanWaitSec ?? 0]))).values()].reduce((a, b) => a + b, 0),
 };
 
+// ---- check: an offline run must reproduce the committed numbers ---------------------
+if (check) {
+  const committed = readJson(path.join(outDir, "metrics.json"));
+  // Only the generation time and the source label may differ between a live and an offline run.
+  const norm = (m) => JSON.stringify({ totals: { ...m.totals, generatedAt: null }, instances: m.instances.map((r) => ({ ...r, mission: null })) });
+  if (norm(committed) === norm({ totals, instances: report })) { console.log(`metrics check: offline regeneration matches ${path.relative(root, outDir)}/metrics.json`); process.exit(0); }
+  const diff = Object.keys(totals).filter((k) => k !== "generatedAt" && JSON.stringify(totals[k]) !== JSON.stringify(committed.totals[k]));
+  console.error(`metrics check FAILED: totals differ in ${diff.join(", ") || "per-instance rows"}`);
+  process.exit(1);
+}
+
 // ---- write -------------------------------------------------------------------------
+if (saveArg) {
+  const dir = path.isAbsolute(saveArg) ? saveArg : path.join(root, saveArg);
+  fs.mkdirSync(path.join(dir, "instances"), { recursive: true });
+  fs.mkdirSync(path.join(dir, "packets"), { recursive: true });
+  for (const t of used.traces) fs.writeFileSync(path.join(dir, "instances", `${t.instance.instanceId}.trace.json`), JSON.stringify(t, null, 2) + "\n");
+  for (const [q, tr] of used.transitions) fs.writeFileSync(path.join(dir, "packets", `${q}.transitions.json`), JSON.stringify(tr, null, 2) + "\n");
+  for (const [q, s] of used.shows) fs.writeFileSync(path.join(dir, "packets", `${q}.show.json`), JSON.stringify(s, null, 2) + "\n");
+  console.log(`inputs: ${used.traces.length} traces, ${used.transitions.size} packets → ${path.relative(root, dir)}`);
+}
 fs.mkdirSync(outDir, { recursive: true });
 fs.writeFileSync(path.join(outDir, "metrics.json"), JSON.stringify({ totals, instances: report }, null, 2) + "\n");
 const fmt = (s) => (s === null || s === undefined ? "–" : s >= 3600 ? `${(s / 3600).toFixed(1)} h` : s >= 60 ? `${Math.round(s / 60)} min` : `${s} s`);
@@ -188,8 +248,9 @@ Generated ${totals.generatedAt} by \`tools/sdlc-metrics.mjs\` from OpenRig workf
 | Step closures (failed) | ${totals.stepClosures} (${totals.failedClosures}) |
 | Step success rate | ${totals.stepSuccessRate ?? "–"} |
 | Retries (failed closures + step re-entries) | ${totals.retries} |
-| Rollbacks (revert notes + engine resumes) | ${totals.rollbacks} |
-| MTTR, mean (failed closure → next successful closure of that step) | ${fmt(totals.mttrMeanSec)} |
+| Rollbacks executed (rehearsals and drills with raw evidence + reverts on \`main\`) | ${totals.rollbacks} (${totals.rollbacksRehearsedOrDrilled} + ${totals.revertsOnMain}) |
+| Engine recoveries (resumes / aborted instances) | ${totals.resumes} / ${totals.aborted} |
+| MTTR, mean (failed closure → next handoff or done closure of that step) | ${fmt(totals.mttrMeanSec)} |
 | End-to-end latency, completed instances p50 / p95 | ${fmt(totals.e2eP50Sec)} / ${fmt(totals.e2eP95Sec)} |
 | Time parked on the human (all gates) | ${fmt(totals.humanWaitTotalSec)} |
 
@@ -203,11 +264,13 @@ ${rows}
 
 - **Source of truth**: \`rig workflow trace --json\` (append-only step trail; one entry per closed packet with \`closureReason\` handoff/done/failed) and \`rig queue transitions --json\` (every state change of a packet with actor and timestamp). Nothing is self-reported by agents.
 - **Retry** counts an artifact verdict of \`failed\` (QA, code review or security review sent the candidate back) plus any step closed more than once with a non-\`waiting\` exit. A \`waiting\` closure re-presents the same step (the integrator waiting on a slice's proof) and is not counted. One remediation round therefore shows as one failed closure plus two re-entries (the checking step and the building step both run again). A retry is a governance event working as designed, not a defect of the factory.
-- **Rollback** counts transition or evidence notes mentioning revert/rollback and engine \`resumeCount\`; a Git revert by the integrator is visible in \`git log\` as well.
-- **MTTR** is measured from a failed closure to the next successful closure of the same step, i.e. the time to repair the candidate and pass that check again. Instances with no failure have no MTTR (shown as –), not zero.
+- **Rollback** counts only rollbacks that were executed: a merged change reverted, or a migration rolled back with the earlier binary started on the rolled-back data, each checked by the gate or an installed smoke. They are listed in [\`rollbacks.json\`](rollbacks.json) with their raw evidence, and the generator refuses to run if a listed file is missing; reverts that landed on \`main\` are counted from \`git log\`. Plans and descriptions of rollbacks do not count, and engine resumes and aborts are reported separately as recoveries. OpenRig 0.6.3 has no rollback event of its own, so the register is the record; every entry points at raw files.
+- **MTTR** is measured from a failed closure to the next \`handoff\` or \`done\` closure of the same step, i.e. the time to repair the candidate and pass that check again; a \`waiting\` closure is not a recovery. It measures repair of a rejected candidate, not production incident recovery: no production incident occurred. Instances with no failure have no MTTR (shown as –), not zero.
+- **Reproducibility**: when the same record appears in several exports, the freshest copy wins (trace \`instance.version\`, highest \`transitionId\`, packet \`tsUpdated\`). \`docs/evidence/run-end/\` holds the exact inputs of this report, and \`node tools/sdlc-metrics.mjs --check\` regenerates it offline and fails on any difference.
 - **Human wait** is time a packet spent parked on \`human@kernel\`; it is reported separately so agent throughput and human latency are not conflated. The per-instance column sums the gate packets in that instance's trail; the total counts each packet once, because a slice gate also appears in the mission trail as the blocker of \`wave_integration\`.
 - Active instances contribute latency up to the generation time and are excluded from the p50/p95.
 - Token burn per seat is a separate record: \`rig usage top --json\` in \`docs/evidence/<mission>/usage-top.json\`.
+- Notes on earlier snapshots, generated under the previous definitions, are kept in [\`HISTORY.md\`](HISTORY.md).
 `;
 fs.writeFileSync(path.join(outDir, "README.md"), md);
 console.log(`metrics: ${report.length} instance(s) → ${path.relative(root, path.join(outDir, "metrics.json"))}, ${path.relative(root, path.join(outDir, "README.md"))}`);

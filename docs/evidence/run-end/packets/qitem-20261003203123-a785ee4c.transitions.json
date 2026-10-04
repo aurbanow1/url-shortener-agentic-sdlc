@@ -1,0 +1,41 @@
+[
+  {
+    "transitionId": 1390,
+    "qitemId": "qitem-20261003203123-a785ee4c",
+    "ts": "2026-10-03T20:31:23.362Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "review2-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1391,
+    "qitemId": "qitem-20261003203123-a785ee4c",
+    "ts": "2026-10-03T20:31:51.059Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1392,
+    "qitemId": "qitem-20261003203123-a785ee4c",
+    "ts": "2026-10-03T20:33:20.858Z",
+    "state": "done",
+    "transitionNote": "workflow done: INTEGRATED: slice/05-ci-cd merged --no-ff into main as 0aa3695 (.github/ only). QA (qa2, 7/7 judgments) and review (review2, e0c0a12) on the same add7ab5. Gate re-run fresh on main with --rerun-tasks: 14/14 tasks, green (docs/evidence/02-brownfield/integrate-05-ci-cd-check-0aa3695.txt). Tag slice/05-ci-cd/accepted on add7ab5; worktree removed; PROGRESS current. Proof items 5 and 6 read unknown from shared-document drift (accepted on add7ab5, 05-ci-cd sections unchanged per review2), re-judged by the final re-affirmation qitem-20261003195138-8eb72ecb. Open: AC-13 pending the human's push. Delivery stamp at ship sign-off.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": "no-follow-on",
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

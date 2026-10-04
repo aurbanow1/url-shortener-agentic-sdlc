@@ -1,0 +1,117 @@
+[
+  {
+    "transitionId": 1262,
+    "qitemId": "qitem-20261003191531-57bcb230",
+    "ts": "2026-10-03T19:15:31.530Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "review2-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1263,
+    "qitemId": "qitem-20261003191531-57bcb230",
+    "ts": "2026-10-03T19:15:44.069Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1264,
+    "qitemId": "qitem-20261003191531-57bcb230",
+    "ts": "2026-10-03T19:15:51.895Z",
+    "state": "blocked",
+    "transitionNote": "HELD by the lead (gate handler, D11), not refused. Design review PASS on 5a6d168 (review2-agent, c60cd39; 0 findings; 32 independent V4 assertions). Held until both mission-02 w1 slices are merged (wave map v4): the impact analysis was written against f6dd29e, and 01-audit-read changes audit/ (the AuditTrail SELECT the reviewer names). At release I re-check impact-analysis.md and the AuditTrail SELECT against the merged main, confirm V4 after 02-click-retention's V3 (and before any mission-03 number), create .worktrees/04-audit-columns from the merged main, then stamp and hand off. Parked on 02-click-retention's live frontier packet and re-parked as it moves, until its merge.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD",
+    "wake": {
+      "transitionId": 1264,
+      "qitemId": "qitem-20261003191531-57bcb230",
+      "phase": "armed",
+      "kind": "blocker",
+      "ref": "qitem-20261003184336-f1b2d2a0",
+      "deliveryStatus": null
+    }
+  },
+  {
+    "transitionId": 1445,
+    "qitemId": "qitem-20261003191531-57bcb230",
+    "ts": "2026-10-03T21:44:13.978Z",
+    "state": "pending",
+    "transitionNote": "auto-unparked: blocker qitem-20261003184336-f1b2d2a0 reached terminal state 'handed-off'",
+    "actorSession": "dev2-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1449,
+    "qitemId": "qitem-20261003191531-57bcb230",
+    "ts": "2026-10-03T21:44:14.855Z",
+    "state": "pending",
+    "transitionNote": "blocker qitem-20261003184336-f1b2d2a0 wake attempted; delivery=delivered-ack-pending",
+    "actorSession": "queue@system",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD",
+    "wake": {
+      "transitionId": 1449,
+      "qitemId": "qitem-20261003191531-57bcb230",
+      "phase": "fired",
+      "kind": "blocker",
+      "ref": "qitem-20261003184336-f1b2d2a0",
+      "deliveryStatus": "delivered-ack-pending"
+    }
+  },
+  {
+    "transitionId": 1461,
+    "qitemId": "qitem-20261003191531-57bcb230",
+    "ts": "2026-10-03T21:44:27.267Z",
+    "state": "blocked",
+    "transitionNote": "Still HELD until both w1 merges. 02-click-retention handed off early under the 21:42Z custody change (candidate X = a8fc8b6, step 5 = README plus application.properties only) -> qa_check on qa2-agent. Gate re-parked on that packet and moved with click-retention until its merge.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD",
+    "wake": {
+      "transitionId": 1461,
+      "qitemId": "qitem-20261003191531-57bcb230",
+      "phase": "armed",
+      "kind": "blocker",
+      "ref": "qitem-20261003214414-12d75069",
+      "deliveryStatus": null
+    }
+  },
+  {
+    "transitionId": 1502,
+    "qitemId": "qitem-20261003191531-57bcb230",
+    "ts": "2026-10-03T22:35:43.499Z",
+    "state": "handed-off",
+    "transitionNote": "workflow handoff to dev2-agent@urlshort-factory",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": "handed_off_to",
+    "closureTarget": "dev2-agent@urlshort-factory",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

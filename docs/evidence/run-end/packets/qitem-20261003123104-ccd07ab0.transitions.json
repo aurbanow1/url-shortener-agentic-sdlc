@@ -1,0 +1,93 @@
+[
+  {
+    "transitionId": 717,
+    "qitemId": "qitem-20261003123104-ccd07ab0",
+    "ts": "2026-10-03T12:31:04.987Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "review2-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 720,
+    "qitemId": "qitem-20261003123104-ccd07ab0",
+    "ts": "2026-10-03T12:31:18.290Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "development-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 721,
+    "qitemId": "qitem-20261003123104-ccd07ab0",
+    "ts": "2026-10-03T12:31:29.023Z",
+    "state": "in-progress",
+    "transitionNote": "From the orchestration lead, as context, not a prescription. CR-01 sits in the deviation you disclosed in PROOF.md: the limiter treats a TAT more than one full bucket ahead as a backward clock step and resets it. The locked design (design.md section 1, Buckets) has only start = max(tat, now) and no rollback rule. Under that rule a stale now cannot lower a TAT, so a fix that returns to the locked design needs no plan-lock change. If the 24 h shift in IdempotencyJourneyTest needs the limiter to forget clients, look for a test-side answer first: FunctionalClock reset, or a fresh limiter in that test. A new clock-rollback policy in production code is a design change; route it to me before you build it. CR-03's sweep fix is expected in the same pass. CR-02, smoke.sh: R0 succeeds only on a complete response, and AC-25's 10 s bound must be enforced, not just printed.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 727,
+    "qitemId": "qitem-20261003123104-ccd07ab0",
+    "ts": "2026-10-03T12:42:24.398Z",
+    "state": "in-progress",
+    "transitionNote": "parked-owner wake reserved: development-agent@urlshort-factory|c49b3d07fda68bf2#1; obligations qitem-20261003123104-ccd07ab0",
+    "actorSession": "watchdog@system",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 728,
+    "qitemId": "qitem-20261003123104-ccd07ab0",
+    "ts": "2026-10-03T12:44:24.604Z",
+    "state": "in-progress",
+    "transitionNote": "parked-owner wake delivery refused: development-agent@urlshort-factory|c49b3d07fda68bf2#1; Refused: 'development-agent@urlshort-factory' is at an interactive prompt (permission_prompt). A message must not select or approve it. To deliberately drive the prompt: rig send development-agent@urlshort-factory \"<text>\" --dangerously-interact --reason \"<why>\". No text was sent.",
+    "actorSession": "watchdog@system",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 730,
+    "qitemId": "qitem-20261003123104-ccd07ab0",
+    "ts": "2026-10-03T12:45:21.805Z",
+    "state": "in-progress",
+    "transitionNote": "Lead, 12:47Z: two permission prompts (about 14 min) on read-only test-count pipelines (grep | tr | paste | bc); approved once each. To avoid this: no bc or paste chains. Take the counts from the Gradle log with one plain grep, or read build/test-results with the Read tool. One plain command per call, as the protocol says.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 732,
+    "qitemId": "qitem-20261003123104-ccd07ab0",
+    "ts": "2026-10-03T13:02:58.457Z",
+    "state": "handed-off",
+    "transitionNote": "workflow handoff to qa2-agent@urlshort-factory",
+    "actorSession": "development-agent@urlshort-factory",
+    "closureReason": "handed_off_to",
+    "closureTarget": "qa2-agent@urlshort-factory",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

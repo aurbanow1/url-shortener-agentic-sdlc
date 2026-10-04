@@ -1,0 +1,70 @@
+{
+  "pickup": {
+    "state": "stalled-after-claim",
+    "evidence": "no meaningful queue change for 800 min; owner activity idle-at-prompt (queue age does not prove idle)"
+  },
+  "waiting": {
+    "obligation": "qitem-20261004050142-3fad2270",
+    "owner": "review-agent@urlshort-factory",
+    "state": "handed-off",
+    "actionableSince": null,
+    "blocker": null,
+    "lastMeaningfulChange": {
+      "id": 2071,
+      "at": "2026-10-04T05:21:27.017Z"
+    },
+    "liveness": {
+      "subject": "review-agent@urlshort-factory",
+      "activity": "idle-at-prompt",
+      "needsInput": {
+        "count": 0,
+        "reason": null
+      },
+      "confidence": "oracle"
+    },
+    "nextBackstop": {
+      "owner": "review-agent@urlshort-factory",
+      "mechanism": "none (terminal obligation)",
+      "dueAt": null,
+      "intervalSeconds": null
+    },
+    "deadlineAt": null
+  },
+  "qitemId": "qitem-20261004050142-3fad2270",
+  "tsCreated": "2026-10-04T05:01:42.136Z",
+  "tsUpdated": "2026-10-04T05:21:27.017Z",
+  "sourceSession": "release-agent@urlshort-factory",
+  "destinationSession": "review-agent@urlshort-factory",
+  "state": "handed-off",
+  "priority": "routine",
+  "tier": "mode2",
+  "tags": [
+    "workflow",
+    "handoff",
+    "workflow:lifecycle-urlshort-02-brownfield",
+    "instance:01M40SN34E37K96B38JPG9K41X",
+    "step:release_review"
+  ],
+  "blockedOn": null,
+  "handedOffTo": "release-agent@urlshort-factory",
+  "handedOffFrom": null,
+  "expiresAt": null,
+  "chainOfRecord": [
+    "qitem-20261004034522-8dfeeeca"
+  ],
+  "body": "### Workflow handoff: lifecycle-urlshort-02-brownfield@1-02b367938ae12e33 step release_review\n\nWorkflow instance: 01M40SN34E37K96B38JPG9K41X\nPrior step: release_prep (release) closed by release-agent@urlshort-factory\nThis step: release_review (reviewer)\nObjective: Independent review of the release package before the human ship gate: every claim in RELEASE.md traced to evidence (proof readiness, review verdicts, coverage, smoke), known gaps complete and honest, rollback path real. Rework goes back to the release agent by queue handoff while this step waits; a clean review hands off.\n\nPrior step note: Final package c9aedabd; product 30f8de4e647b05ff54cde09f1019ae519b00069d. Fresh 268 unit/322 functional, canonical 583/583 lines206/206 branches, identical jar/image installed smoke, full runtime wire/log/HostConfig, OSV97/0. Both prerequisite QA closures a9b59315/2a47ad28; live/export mission proof ready64/64,174 distinct committed evidence hashes and143 local links checked. Raw rollback CSV archive and actual prior f090103 binary smoke/step-by-step recipe; old image built/inspected only. Current metrics reproduce all17 instance rows181 packet metrics/totals from frozen inputs; historical8d mismatch preserved. Exact-SHA hostedCI/CD unverified, complete GAPS plus wrapper MEDIUM and ping/V5 LOW retained. Independent formal review next; no ship decision, delivery stamp or publication.\n\nWorkflow plan: The plan can change. Inspect authored versus running steps with rig workflow revise 01M40SN34E37K96B38JPG9K41X; file edits alone do not adopt a revision.\nWorkflow plan: Waves guide agent admission/review; only authored executable dependencies schedule steps. Preserve completed judgments and outstanding child custody.\nWorkflow plan: Snapshot guidance from (inspect current source before deciding): /Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/mission.yaml\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/project.yaml\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/mission.yaml\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/AGENTS.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/README.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/requirements.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/architecture.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/java-spring.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/databases.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/qa.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/decomposition.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/brownfield.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/review.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/orchestration.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/release.md\nContinuation: rig workflow project --instance 01M40SN34E37K96B38JPG9K41X --current-packet qitem-20261004050142-3fad2270 --exit <handoff|waiting|done|failed> --actor-session review-agent@urlshort-factory\nContext: this workflow packet is a shortcut, not the whole story; inspect additional project, mission, and receipt evidence before choosing an authored exit.",
+  "summary": null,
+  "evidenceRef": null,
+  "humanIntent": null,
+  "humanDetail": null,
+  "closureReason": "handed_off_to",
+  "closureTarget": "release-agent@urlshort-factory",
+  "closureRequiredAt": null,
+  "claimedAt": "2026-10-04T05:02:03.522Z",
+  "lastNudgeAttempt": "2026-10-04T05:01:43.306Z",
+  "lastNudgeResult": "delivered-ack-pending",
+  "lastHeartbeat": null,
+  "resolution": null,
+  "targetRepo": null,
+  "deliveryOutcome": null
+}

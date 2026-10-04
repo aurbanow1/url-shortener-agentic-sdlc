@@ -1,0 +1,28 @@
+[
+  {
+    "transitionId": 1717,
+    "qitemId": "qitem-20261004002509-de60eb81",
+    "ts": "2026-10-04T00:25:09.250Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1719,
+    "qitemId": "qitem-20261004002509-de60eb81",
+    "ts": "2026-10-04T00:25:16.838Z",
+    "state": "handed-off",
+    "transitionNote": "workflow route: orchestration-lead@urlshort-factory re-routed step wave_review from review-agent@urlshort-factory to review2-agent@urlshort-factory — Both missions entered wave_review at the same minute and both default to review-agent. Mission 03's goes to review2-agent (free after 04-audit-columns' review) so the two wave reviews run in parallel; review2 has not reviewed 01-analytics-v2, so it is also a fresh vantage on it. Mission 02's stays on review-agent, which wrote its pre-review.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": "handed_off_to",
+    "closureTarget": "review2-agent@urlshort-factory",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

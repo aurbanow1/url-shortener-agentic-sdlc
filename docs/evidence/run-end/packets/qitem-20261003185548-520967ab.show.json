@@ -1,0 +1,69 @@
+{
+  "pickup": {
+    "state": "stalled-after-claim",
+    "evidence": "no meaningful queue change for 1421 min; owner activity idle-at-prompt (queue age does not prove idle)"
+  },
+  "waiting": {
+    "obligation": "qitem-20261003185548-520967ab",
+    "owner": "review2-agent@urlshort-factory",
+    "state": "handed-off",
+    "actionableSince": null,
+    "blocker": null,
+    "lastMeaningfulChange": {
+      "id": 1233,
+      "at": "2026-10-03T19:01:15.634Z"
+    },
+    "liveness": {
+      "subject": "review2-agent@urlshort-factory",
+      "activity": "idle-at-prompt",
+      "needsInput": {
+        "count": 0,
+        "reason": null
+      },
+      "confidence": "oracle"
+    },
+    "nextBackstop": {
+      "owner": "review2-agent@urlshort-factory",
+      "mechanism": "none (terminal obligation)",
+      "dueAt": null,
+      "intervalSeconds": null
+    },
+    "deadlineAt": null
+  },
+  "qitemId": "qitem-20261003185548-520967ab",
+  "tsCreated": "2026-10-03T18:55:48.208Z",
+  "tsUpdated": "2026-10-03T19:01:15.633Z",
+  "sourceSession": "requirements-agent@urlshort-factory",
+  "destinationSession": "review2-agent@urlshort-factory",
+  "state": "handed-off",
+  "priority": "routine",
+  "tier": "mode2",
+  "tags": [
+    "workflow",
+    "handoff",
+    "workflow:urlshort-slice-delegated-b",
+    "instance:01M41HG4P6DEVAKTCJC6J9QAWP"
+  ],
+  "blockedOn": null,
+  "handedOffTo": "design2-agent@urlshort-factory",
+  "handedOffFrom": null,
+  "expiresAt": null,
+  "chainOfRecord": [
+    "qitem-20261003184751-a000203f"
+  ],
+  "body": "### Workflow handoff: urlshort-slice-delegated-b@1 step requirements_review\n\nWorkflow instance: 01M41HG4P6DEVAKTCJC6J9QAWP\nPrior step: requirements (requirements) closed by requirements-agent@urlshort-factory\nThis step: requirements_review (requirements_review)\nObjective: Independent review of SPEC.md before anything is designed: every acceptance criterion observable from the public surface, error and privacy paths present, ambiguity-log resolutions sound, proof contract complete, no design leaked in. Findings carry severity; MUST-FIX or HIGH routes back to requirements.\n\nPrior step note: 04-audit-columns SPEC at b95f3e2: 11 ACs, 7 rules, 7 ambiguity rows (6 assumed, 1 decided, none parked). Key assumptions: link reuses its shipped created_at (A-1); link.updated_at on the service clock like created_at/retired_at (A-2); actors anonymous, audit rows' = their actor (A-3); the expired idempotency-key release is a write that moves updated_at (A-5); backfill = latest known write time (A-6); V4 pending plan-lock (A-7). Decided: the audit read does not expose the columns (01-audit-read rule 3, A-4). Design watch-outs: two shipped tests outside territory insert link rows with the v1 column list (AC-9), and the impact analysis must say whether the merged audit read maps rows by a fixed column list (AC-8).\n\nContinuation: rig workflow project --instance 01M41HG4P6DEVAKTCJC6J9QAWP --current-packet qitem-20261003185548-520967ab --exit <handoff|waiting|done|failed> --actor-session review2-agent@urlshort-factory\nContext: this workflow packet is a shortcut, not the whole story; inspect additional project, mission, and receipt evidence before choosing an authored exit.",
+  "summary": null,
+  "evidenceRef": null,
+  "humanIntent": null,
+  "humanDetail": null,
+  "closureReason": "handed_off_to",
+  "closureTarget": "design2-agent@urlshort-factory",
+  "closureRequiredAt": null,
+  "claimedAt": "2026-10-03T18:56:05.879Z",
+  "lastNudgeAttempt": "2026-10-03T18:55:49.226Z",
+  "lastNudgeResult": "verified",
+  "lastHeartbeat": null,
+  "resolution": null,
+  "targetRepo": null,
+  "deliveryOutcome": null
+}
