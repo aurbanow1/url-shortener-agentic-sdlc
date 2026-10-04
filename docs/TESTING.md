@@ -10,10 +10,10 @@ what the honest limits are.
 | Suite | Location | What it proves | Runs in |
 |---|---|---|---|
 | Unit (`test`) | `src/test/java` | a rule or component in isolation, no Spring context (code generation, URL validation, click reduction and salts, the token-bucket limiter, filters, problem details) | `scripts/gw test` (seconds) |
-| Functional (`functionalTest`) | `src/functionalTest/java` | the public HTTP journeys end to end — `@SpringBootTest` + `MockMvc` under the `functional` profile against an in-memory H2 database with Flyway applied; one test per acceptance criterion, named after it (`AC5_wrongMethodIsProblemDetailWithRequestId`) | `scripts/gw functionalTest` |
+| Functional (`functionalTest`) | `src/functionalTest/java` | HTTP journeys with `@SpringBootTest`, both `MockMvc` and real loopback Tomcat requests, under the `functional` profile against H2 with Flyway applied; tests name the acceptance outcomes they cover | `scripts/gw functionalTest` |
 | Installed smoke | `scripts/smoke.sh <base-url>` | a *running* instance (jar or container) answers the journey as a user would: health, ping, create → redirect → read → stats → retire, error cases, metric names, Prometheus, OpenAPI | release prep |
 | Installed lifecycle | `scripts/smoke.sh --jar` / `--drain` / `--inspect` / `--restart` | the plain jar configured by environment; graceful shutdown with a held in-flight request; the container's binding, user, read-only filesystem and stop timeout; links surviving compose restart and down/up under load | release prep |
-| Latency bench | `scripts/smoke.sh --bench <base-url>` (`tools/bench.mjs`) | redirect and create latency at the specified **offered** rates (100/s and 20/s for 60 s), open loop: request *i* is due at *i*/rate s whatever earlier requests do, and latency runs from the due time, so a slow response cannot hide later ones. Click-recording cost (NFR-L3) is GET minus HEAD on the same redirect at the same rate | release prep |
+| Latency bench | `scripts/smoke.sh --bench <base-url>` (`tools/bench.mjs`) | redirect and create latency at the specified **offered** rates (100/s and 20/s for 60 s), open loop: request *i* is due at *i*/rate s whatever earlier requests do, and latency runs from the due time, so a slow response cannot hide later ones. Separate GET/HEAD runs compare redirects with and without click recording | release prep |
 | Dependency advisories | `tools/dep-advisories.mjs` | the resolved runtime classpath checked against the OSV database; raw response kept under the mission's `release/` | release prep (needs network) |
 
 **The gate.** `scripts/gw check` runs both suites and `jacocoTestCoverageVerification`
@@ -26,9 +26,26 @@ acceptance criterion before the production code and must watch it fail for the
 right reason (`test-driven-development` skill); the Code Review Agent checks
 that tests test behaviour, not implementation.
 
-**Independence.** QA and review run on a different model runtime (Codex) than
-the builder (Claude Code), against the exact candidate SHA the builder named;
-the QA Agent is read-only on product code.
+**Independence.** Product builders run Claude Code; QA and code/security
+reviewers run Codex on separate seats against the exact candidate SHA. QA is
+read-only on product code. Human decision D17 moved requirements and release
+authoring to Codex: their independent reviewers can share the author's runtime,
+and requirements author/reviewer can share the model. Separate seats and
+authorship boundaries remain, but those documents and release packages do not
+claim cross-runtime review. SPECs written before D17 retain their original
+attribution. See [the decision record](../PLAN.md) and each review receipt.
+
+**Analytics journeys.** `StatsV2JourneyTest` covers the four per-UTC-day fields,
+same-day distinct visitors, bot inclusion and separation of days.
+`TrustedProxyClickJourneyTest` covers the limiter's shared identity rule and
+aggregate/log privacy; `ClickMetricsJourneyTest` checks recorded/lost counter
+deltas and exactly the static Prometheus labels. The inherited resilience
+journeys also run with trusted proxies configured. Retention journeys check
+startup and scheduled deletion, the cutoff day, validation, failure and the
+operator hold. Statistics use the remaining rows; the process counters remain
+cumulative after deletion. Same-day restart can overcount uniques, and old
+proxy hashes are not repaired. The [analytics SPEC](../missions/03-ambiguous-analytics/slices/01-analytics-v2/SPEC.md)
+states these qualifications; [the runbook](RUNBOOK.md) describes operation.
 
 ## 2. Reading the coverage reports
 
@@ -76,18 +93,23 @@ every mission:
 
 ## 5. Limits (stated, not hidden)
 
-- Functional tests use `MockMvc` (servlet layer in-process), which cannot see
+- `MockMvc` journeys (servlet layer in-process) cannot see
   servlet-container metadata: finding QA-01 (`docs/qa/01-ping/findings.md`) was
   visible only on a live Tomcat. Real sockets are crossed by QA's by-effect
   captures against `bootRun` and by the installed smoke against the jar and the
-  container; only the smoke crosses the container boundary.
+  container. Several functional journeys also start real loopback Tomcat; the
+  installed smoke crosses the container boundary.
 - The H2 database in tests is in-memory; the product's file-mode H2 is exercised
   by the installed smoke, which runs the jar with its shipped datasource, and by
-  the container on its volume. Flyway Community applies the V1/V2 migrations
+  the container on its volume. Flyway Community applies the V1–V4 migrations
   forward only; there is no automated down-migration.
 - The bench runs on the same laptop as the service, against one instance with
   its two rate budgets raised; one 60 s run per scenario is a regression signal,
-  not a capacity claim.
+  not a capacity claim. NFR-L3's `p95(GET) − p95(HEAD)` is a comparison proxy
+  between separate runs, not the p95 of isolated click-recording cost. It includes
+  run-to-run noise and other method differences; both methods still resolve
+  client identity. In-suite fail-open/slow-store checks do not establish release
+  p95/p99. Read the candidate's release benchmark and [GAPS.md](qa/GAPS.md).
 - On a macOS host whose Docker engine runs in a Lima VM, a request still sending
   its body through the published port when the container stops is cut by the
   host's port forwarder (mission 01 `RELEASE.md` §3, AC-28); inside the VM and
