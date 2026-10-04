@@ -261,6 +261,19 @@ later judgment obligation, not an accepted gap or completed acceptance.
 
 No uncovered merged line/branch, failed required AC, or excluded test remains at qa_check. Security and release benchmark items are pending evidence obligations, not accepted absent records. All713 curl responses plus three HEAD wire checks correlate in both console/file sinks; all apps stopped and the worktree left clean at the exact candidate.
 
+### Release judgment — NFR-L1, candidate 50ad9c3
+
+The pending percentile measurement above is closed for this candidate. The
+release benchmark used the preserved jar with one service instance and a
+disposable file-H2 database. Its open-loop redirect phase sustained 100
+redirects/s for 60 s alongside 20 creates/s: 6,000 redirects, zero bad
+responses, p95 3.7 ms and p99 9.5 ms. These meet NFR-L1's p95 ≤20 ms and p99
+≤50 ms limits at the specified rate and duration. This is a result for this
+run only; the load generator shared the host with the service, unrelated host
+activity may have overlapped, and no capacity or container-performance claim
+is made. Evidence: `missions/03-ambiguous-analytics/RELEASE.md` §3 and
+`missions/03-ambiguous-analytics/release/bench-50ad9c3.txt`.
+
 
 ## 04-audit-columns — QA2, candidate 305f8045d45b19a9e3287d5fe3508af6e04db9a4
 
