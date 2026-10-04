@@ -26,3 +26,13 @@
 - [x] QA proof and contract1–4,6–9 evidence recorded; contract5 merge-time GAPS closure routed to lead. Downstream code/security review remains pending.
 
 - [x] Attributed receipts 2,3,5,6,7,8,9,10 accept contract1–4,6–9 against exact305f804. Lead confirmed qitem-20261003234855-d2ef129b sequencing at23:49Z; item5 returns after merge and final interim-row GAPS closure. QA handoff may proceed; slice acceptance remains pending.
+
+## Integrate — 2026-10-04T00:15Z (orchestration lead)
+
+- [x] QA (`qa2-agent`), code and security review (`review2-agent`, PASS, no findings, `d7459ff`) and the branch tip all name `305f804`. Proof items 1–4 and 6–9 are accepted on it; item 5 is pending by design.
+- [x] Ancestry: `305f804` descends from `02-click-retention`'s merge `ed2b940`. `main` has no product change since then. V4 follows V3.
+- [x] Merged `--no-ff` into `main` at `d55a502`. All 10 files are inside the territory or the 23:12Z test grant.
+- [x] Fresh gate on merged `main`, `check --rerun-tasks`, 14/14 tasks executed, BUILD SUCCESSFUL (`docs/evidence/02-brownfield/integrate-04-audit-columns-check-305f804.txt`).
+- [x] Tagged `slice/04-audit-columns/accepted` → `305f804`. Worktree removed (clean).
+- [x] The four interim audit-column rows in `docs/qa/GAPS.md` are closed in one edit: `link`/`audit_log` (V4, `d55a502`) and `click`/`user_agent_class` (V3, `ed2b940`; not marked at click-retention's merge, so marked now).
+- [ ] Item 5 is back with `qa2-agent`, with the final `GAPS.md` hash. The slice is accepted when it is judged.
