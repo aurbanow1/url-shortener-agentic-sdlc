@@ -1,0 +1,38 @@
+{
+  "name": "direct-create",
+  "app": "direct",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/before/001-direct-create.trace",
+    "-X",
+    "POST",
+    "-H",
+    "Content-Type: application/json",
+    "--data",
+    "{\"url\": \"https://example.com/qa06/client-group\"}",
+    "http://localhost:53968/api/links"
+  ],
+  "method": "POST",
+  "path": "/api/links",
+  "raw": "001-direct-create.http",
+  "status": 201,
+  "headers": {
+    "x-request-id": "03702197-621c-4dc6-b343-3a8ff054fff3",
+    "location": "/api/links/cBQ5UOLI",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 01:05:17 GMT"
+  },
+  "json": {
+    "code": "cBQ5UOLI",
+    "shortUrl": "http://localhost:8080/cBQ5UOLI",
+    "url": "https://example.com/qa06/client-group",
+    "state": "active",
+    "createdAt": "2026-10-04T01:05:17.493Z"
+  }
+}

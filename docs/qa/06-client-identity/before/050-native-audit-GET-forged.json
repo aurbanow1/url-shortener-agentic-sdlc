@@ -1,0 +1,33 @@
+{
+  "name": "native-audit-GET-forged",
+  "app": "native",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/before/050-native-audit-GET-forged.trace",
+    "-X",
+    "GET",
+    "-H",
+    "X-Forwarded-For: 127.0.0.2",
+    "http://localhost:54768/api/audit"
+  ],
+  "method": "GET",
+  "path": "/api/audit",
+  "raw": "050-native-audit-GET-forged.http",
+  "status": 403,
+  "headers": {
+    "x-request-id": "5062885e-0f57-4de8-8c46-8a1a93793ff4",
+    "content-type": "application/problem+json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 01:05:37 GMT"
+  },
+  "json": {
+    "instance": "urn:uuid:5062885e-0f57-4de8-8c46-8a1a93793ff4",
+    "status": 403,
+    "title": "Forbidden"
+  }
+}

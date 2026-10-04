@@ -1,0 +1,25 @@
+{
+  "name": "protocol-audit-HEAD-plain",
+  "app": "protocol",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/before/041-protocol-audit-HEAD-plain.trace",
+    "--head",
+    "http://localhost:54581/api/audit"
+  ],
+  "method": "HEAD",
+  "path": "/api/audit",
+  "raw": "041-protocol-audit-HEAD-plain.http",
+  "status": 403,
+  "headers": {
+    "x-request-id": "361346d9-1cd6-49ed-ae18-1a360c6c5da8",
+    "content-type": "application/problem+json",
+    "date": "Sun, 04 Oct 2026 01:05:32 GMT"
+  },
+  "json": null
+}

@@ -1,0 +1,27 @@
+{
+  "name": "both-remoteip-audit-HEAD-forged",
+  "app": "both-remoteip",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/before/047-both-remoteip-audit-HEAD-forged.trace",
+    "--head",
+    "-H",
+    "X-Forwarded-For: 127.0.0.2",
+    "http://localhost:54677/api/audit"
+  ],
+  "method": "HEAD",
+  "path": "/api/audit",
+  "raw": "047-both-remoteip-audit-HEAD-forged.http",
+  "status": 403,
+  "headers": {
+    "x-request-id": "ce87bbe1-ce11-4727-8d5e-f7d7ad24f325",
+    "content-type": "application/problem+json",
+    "date": "Sun, 04 Oct 2026 01:05:34 GMT"
+  },
+  "json": null
+}

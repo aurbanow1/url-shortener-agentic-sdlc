@@ -1,0 +1,237 @@
+== Info: Host localhost:53968 was resolved.
+== Info: IPv6: ::1
+== Info: IPv4: 127.0.0.1
+== Info:   Trying [::1]:53968...
+== Info: connect to ::1 port 53968 from ::1 port 54113 failed: Connection refused
+== Info:   Trying 127.0.0.1:53968...
+== Info: Connected to localhost (127.0.0.1) port 53968
+=> Send header, 89 bytes (0x59)
+0000: GET /v3/api-docs HTTP/1.1
+001b: Host: localhost:53968
+0032: User-Agent: curl/8.7.1
+004a: Accept: */*
+0057: 
+== Info: Request completely sent off
+<= Recv header, 15 bytes (0xf)
+0000: HTTP/1.1 200 
+<= Recv header, 52 bytes (0x34)
+0000: X-Request-Id: d4228b3b-0b7e-4781-9abc-99c119ed3d9d
+<= Recv header, 32 bytes (0x20)
+0000: Content-Type: application/json
+<= Recv header, 23 bytes (0x17)
+0000: Content-Length: 13365
+<= Recv header, 37 bytes (0x25)
+0000: Date: Sun, 04 Oct 2026 01:05:18 GMT
+<= Recv header, 2 bytes (0x2)
+0000: 
+<= Recv data, 13365 bytes (0x3435)
+0000: {"openapi":"3.1.0","info":{"description":"Create, read and retir
+0040: e short links; visitors are redirected with 302.","title":"urlsh
+0080: ort","version":"1"},"servers":[{"url":"/"}],"paths":{"/api/audit
+00c0: ":{"get":{"operationId":"readAudit","parameters":[{"description"
+0100: :"Rows per page","in":"query","name":"limit","required":false,"s
+0140: chema":{"type":"integer","default":50,"maximum":100,"minimum":1}
+0180: },{"description":"The next of the previous page","in":"query","n
+01c0: ame":"cursor","required":false,"schema":{"type":"string"}}],"res
+0200: ponses":{"200":{"content":{"application/json":{"examples":{"page
+0240: ":{"description":"page","value":{"items":[{"occurredAt":"2026-10
+0280: -03T17:29:41.033Z","actor":"anonymous","action":"link.retire","e
+02c0: ntity":"link","entityId":"jHkOIMpK","requestId":"140fc9de-5b8e-4
+0300: c43-9d55-2f0b1e1c7a10","before":{"url":"https://example.com/","s
+0340: tate":"active"},"after":{"url":"https://example.com/","state":"r
+0380: etired"}},{"occurredAt":"2026-10-03T17:28:02.512Z","actor":"anon
+03c0: ymous","action":"link.create","entity":"link","entityId":"jHkOIM
+0400: pK","requestId":"0d6a1f3e-9c27-4b1a-8e5f-6a4c3b2d1e0f","before":
+0440: null,"after":{"url":"https://example.com/","state":"active"}}],"
+0480: next":"MTI"}}},"schema":{"$ref":"#/components/schemas/AuditPage"
+04c0: }}},"description":"One page of audit rows, newest first, and the
+0500:  cursor of the next"},"400":{"content":{"application/problem+jso
+0540: n":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}},"de
+0580: scription":"limit or cursor is malformed"},"403":{"content":{"ap
+05c0: plication/problem+json":{"schema":{"$ref":"#/components/schemas/
+0600: ProblemDetail"}}},"description":"Not a loopback client, or a for
+0640: warding header is present"},"429":{"content":{"application/probl
+0680: em+json":{"examples":{"tooManyRequests":{"value":{"instance":"ur
+06c0: n:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title
+0700: ":"Too Many Requests"}}},"schema":{"$ref":"#/components/schemas/
+0740: ProblemDetail"}}},"description":"Too many requests from this cli
+0780: ent; retry after Retry-After seconds","headers":{"Retry-After":{
+07c0: "description":"Whole seconds until this client's next request is
+0800:  admitted","schema":{"type":"integer","format":"int32","minimum"
+0840: :1}}}},"500":{"content":{"application/problem+json":{"schema":{"
+0880: $ref":"#/components/schemas/ProblemDetail"}}},"description":"The
+08c0:  trail could not be read"}},"summary":"Read the audit trail, new
+0900: est first (loopback only)","tags":["audit-controller"]}},"/api/l
+0940: inks":{"post":{"description":"Without Idempotency-Key every call
+0980:  creates a new link. With a key, a repeat with the same url with
+09c0: in 24 h of the first 201 returns that link (current state); a di
+0a00: fferent url is 422.","operationId":"createLink","parameters":[{"
+0a40: description":"1 to 255 visible ASCII characters; makes a retried
+0a80:  create return the first link","in":"header","name":"Idempotency
+0ac0: -Key","required":false,"schema":{"type":"string"}}],"requestBody
+0b00: ":{"content":{"application/json":{"examples":{"create":{"descrip
+0b40: tion":"create","value":{"url":"https://example.com/some/path?q=1
+0b80: "}}},"schema":{"$ref":"#/components/schemas/CreateLinkRequest"}}
+0bc0: },"required":true},"responses":{"201":{"content":{"application/j
+0c00: son":{"examples":{"created":{"description":"created","value":{"c
+0c40: ode":"Ab3dE9fG","shortUrl":"http://localhost:8080/Ab3dE9fG","url
+0c80: ":"https://example.com/some/path?q=1","state":"active","createdA
+0cc0: t":"2026-10-03T05:12:42.133Z"}}},"schema":{"$ref":"#/components/
+0d00: schemas/LinkResponse"}}},"description":"Created, or replayed for
+0d40:  the same key and url","headers":{"Location":{"description":"/ap
+0d80: i/links/{code}","schema":{"type":"string"},"style":"simple"}}},"
+0dc0: 400":{"content":{"application/problem+json":{"schema":{"$ref":"#
+0e00: /components/schemas/ProblemDetail"}}},"description":"Invalid url
+0e40:  or Idempotency-Key (errors[] names field and rule), or a body t
+0e80: hat is not a JSON object"},"413":{"content":{"application/proble
+0ec0: m+json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}
+0f00: },"description":"Body larger than 16 384 bytes"},"415":{"content
+0f40: ":{"application/problem+json":{"schema":{"$ref":"#/components/sc
+0f80: hemas/ProblemDetail"}}},"description":"Content-Type is not appli
+0fc0: cation/json"},"422":{"content":{"application/problem+json":{"sch
+1000: ema":{"$ref":"#/components/schemas/ProblemDetail"}}},"descriptio
+1040: n":"Idempotency-Key already used with a different url"},"429":{"
+1080: content":{"application/problem+json":{"examples":{"tooManyReques
+10c0: ts":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2
+1100: c7b9f10","status":429,"title":"Too Many Requests"}}},"schema":{"
+1140: $ref":"#/components/schemas/ProblemDetail"}}},"description":"Too
+1180:  many requests from this client; retry after Retry-After seconds
+11c0: ","headers":{"Retry-After":{"description":"Whole seconds until t
+1200: his client's next request is admitted","schema":{"type":"integer
+1240: ","format":"int32","minimum":1}}}},"500":{"content":{"applicatio
+1280: n/problem+json":{"schema":{"$ref":"#/components/schemas/ProblemD
+12c0: etail"}}},"description":"Nothing was stored"}},"summary":"Create
+1300:  a short link for an http(s) URL","tags":["link-controller"]}},"
+1340: /api/links/{code}":{"delete":{"operationId":"retireLink","parame
+1380: ters":[{"in":"path","name":"code","required":true,"schema":{"typ
+13c0: e":"string"}}],"responses":{"204":{"description":"Retired"},"404
+1400: ":{"content":{"application/problem+json":{"schema":{"$ref":"#/co
+1440: mponents/schemas/ProblemDetail"}}},"description":"No link has th
+1480: is code"},"410":{"content":{"application/problem+json":{"schema"
+14c0: :{"$ref":"#/components/schemas/ProblemDetail"}}},"description":"
+1500: Already retired"},"429":{"content":{"application/problem+json":{
+1540: "examples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1
+1580: f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Man
+15c0: y Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDet
+1600: ail"}}},"description":"Too many requests from this client; retry
+1640:  after Retry-After seconds","headers":{"Retry-After":{"descripti
+1680: on":"Whole seconds until this client's next request is admitted"
+16c0: ,"schema":{"type":"integer","format":"int32","minimum":1}}}},"50
+1700: 0":{"content":{"application/problem+json":{"schema":{"$ref":"#/c
+1740: omponents/schemas/ProblemDetail"}}},"description":"Nothing was c
+1780: hanged"}},"summary":"Retire a link; visitors then get 410 and th
+17c0: e record is kept","tags":["link-controller"]},"get":{"operationI
+1800: d":"readLink","parameters":[{"in":"path","name":"code","required
+1840: ":true,"schema":{"type":"string"}}],"responses":{"200":{"content
+1880: ":{"application/json":{"examples":{"link":{"description":"link",
+18c0: "value":{"code":"Ab3dE9fG","shortUrl":"http://localhost:8080/Ab3
+1900: dE9fG","url":"https://example.com/some/path?q=1","state":"active
+1940: ","createdAt":"2026-10-03T05:12:42.133Z"}}},"schema":{"$ref":"#/
+1980: components/schemas/LinkResponse"}}},"description":"The link; sta
+19c0: te is active or retired"},"404":{"content":{"application/problem
+1a00: +json":{"schema":{"$ref":"#/components/schemas/ProblemDetail"}}}
+1a40: ,"description":"No link has this code"},"429":{"content":{"appli
+1a80: cation/problem+json":{"examples":{"tooManyRequests":{"value":{"i
+1ac0: nstance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status
+1b00: ":429,"title":"Too Many Requests"}}},"schema":{"$ref":"#/compone
+1b40: nts/schemas/ProblemDetail"}}},"description":"Too many requests f
+1b80: rom this client; retry after Retry-After seconds","headers":{"Re
+1bc0: try-After":{"description":"Whole seconds until this client's nex
+1c00: t request is admitted","schema":{"type":"integer","format":"int3
+1c40: 2","minimum":1}}}}},"summary":"Read a link by its code","tags":[
+1c80: "link-controller"]}},"/api/links/{code}/stats":{"get":{"operatio
+1cc0: nId":"stats","parameters":[{"in":"path","name":"code","required"
+1d00: :true,"schema":{"type":"string"}}],"responses":{"200":{"content"
+1d40: :{"application/json":{"examples":{"stats":{"description":"stats"
+1d80: ,"value":{"code":"aB3dE5fG","totalClicks":6,"clicksPerDay":[{"da
+1dc0: te":"2026-10-01","clicks":6,"uniqueVisitors":3,"botClicks":1}],"
+1e00: topReferrers":[{"referrer":"https://news.example.com","clicks":4
+1e40: }]}}},"schema":{"$ref":"#/components/schemas/LinkStats"}}},"desc
+1e80: ription":"Total clicks; per UTC day the clicks, unique visitors 
+1ec0: and bot clicks; and the top 10 referrer origins"},"404":{"conten
+1f00: t":{"application/problem+json":{"schema":{"$ref":"#/components/s
+1f40: chemas/ProblemDetail"}}},"description":"No link has this code"},
+1f80: "429":{"content":{"application/problem+json":{"examples":{"tooMa
+1fc0: nyRequests":{"value":{"instance":"urn:uuid:3b1f0e6a-9c2d-4f57-8a
+2000: 41-0d5e2c7b9f10","status":429,"title":"Too Many Requests"}}},"sc
+2040: hema":{"$ref":"#/components/schemas/ProblemDetail"}}},"descripti
+2080: on":"Too many requests from this client; retry after Retry-After
+20c0:  seconds","headers":{"Retry-After":{"description":"Whole seconds
+2100:  until this client's next request is admitted","schema":{"type":
+2140: "integer","format":"int32","minimum":1}}}}},"summary":"Read a li
+2180: nk's click statistics","tags":["stats-controller"]}},"/api/ping"
+21c0: :{"get":{"operationId":"ping","responses":{"200":{"content":{"*/
+2200: *":{"schema":{"$ref":"#/components/schemas/PingResponse"}}},"des
+2240: cription":"OK"},"429":{"content":{"application/problem+json":{"e
+2280: xamples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0
+22c0: e6a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many 
+2300: Requests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetai
+2340: l"}}},"description":"Too many requests from this client; retry a
+2380: fter Retry-After seconds","headers":{"Retry-After":{"description
+23c0: ":"Whole seconds until this client's next request is admitted","
+2400: schema":{"type":"integer","format":"int32","minimum":1}}}}},"tag
+2440: s":["ping-controller"]}},"/{code}":{"get":{"operationId":"redire
+2480: ct","parameters":[{"in":"path","name":"code","required":true,"sc
+24c0: hema":{"type":"string"}}],"responses":{"302":{"description":"Red
+2500: irect to the stored url, not cacheable","headers":{"Cache-Contro
+2540: l":{"description":"no-store","schema":{"type":"string"},"style":
+2580: "simple"},"Location":{"description":"The stored url, byte for by
+25c0: te","schema":{"type":"string"},"style":"simple"}}},"404":{"conte
+2600: nt":{"application/problem+json":{"schema":{"$ref":"#/components/
+2640: schemas/ProblemDetail"}}},"description":"No link has this code"}
+2680: ,"410":{"content":{"application/problem+json":{"schema":{"$ref":
+26c0: "#/components/schemas/ProblemDetail"}}},"description":"The link 
+2700: was retired"},"429":{"content":{"application/problem+json":{"exa
+2740: mples":{"tooManyRequests":{"value":{"instance":"urn:uuid:3b1f0e6
+2780: a-9c2d-4f57-8a41-0d5e2c7b9f10","status":429,"title":"Too Many Re
+27c0: quests"}}},"schema":{"$ref":"#/components/schemas/ProblemDetail"
+2800: }}},"description":"Too many requests from this client; retry aft
+2840: er Retry-After seconds","headers":{"Retry-After":{"description":
+2880: "Whole seconds until this client's next request is admitted","sc
+28c0: hema":{"type":"integer","format":"int32","minimum":1}}}}},"summa
+2900: ry":"Open a short link","tags":["redirect-controller"]}}},"compo
+2940: nents":{"schemas":{"AuditEntry":{"type":"object","properties":{"
+2980: action":{"type":"string","description":"What happened","example"
+29c0: :"link.retire"},"actor":{"type":"string","description":"Who acte
+2a00: d","example":"anonymous"},"after":{"type":"object","description"
+2a40: :"The state after the change, as stored"},"before":{"type":["obj
+2a80: ect","null"],"description":"The state before the change, as stor
+2ac0: ed; null for a create"},"entity":{"type":"string","description":
+2b00: "The kind of thing changed","example":"link"},"entityId":{"type"
+2b40: :"string","description":"The public identifier of the thing chan
+2b80: ged","example":"jHkOIMpK"},"occurredAt":{"type":"string","format
+2bc0: ":"date-time","description":"When the mutation happened (UTC)","
+2c00: example":"2026-10-03T17:29:41.033Z"},"requestId":{"type":"string
+2c40: ","description":"The X-Request-Id of the request that made the c
+2c80: hange"}}},"AuditPage":{"type":"object","properties":{"items":{"t
+2cc0: ype":"array","items":{"$ref":"#/components/schemas/AuditEntry"}}
+2d00: ,"next":{"type":["string","null"],"description":"Pass back as cu
+2d40: rsor for the next page; null on the last page"}}},"CreateLinkReq
+2d80: uest":{"type":"object","properties":{"url":{"type":"string"}}},"
+2dc0: DayClicks":{"type":"object","properties":{"botClicks":{"type":"i
+2e00: nteger","format":"int64","description":"Clicks whose user agent 
+2e40: was classified bot"},"clicks":{"type":"integer","format":"int64"
+2e80: },"date":{"type":"string","format":"date"},"uniqueVisitors":{"ty
+2ec0: pe":"integer","format":"int64","description":"Distinct visitors 
+2f00: that UTC day; never combined across days"}}},"LinkResponse":{"ty
+2f40: pe":"object","properties":{"code":{"type":"string"},"createdAt":
+2f80: {"type":"string","format":"date-time"},"shortUrl":{"type":"strin
+2fc0: g"},"state":{"type":"string"},"url":{"type":"string"}}},"LinkSta
+3000: ts":{"type":"object","properties":{"clicksPerDay":{"type":"array
+3040: ","items":{"$ref":"#/components/schemas/DayClicks"}},"code":{"ty
+3080: pe":"string"},"topReferrers":{"type":"array","items":{"$ref":"#/
+30c0: components/schemas/ReferrerClicks"}},"totalClicks":{"type":"inte
+3100: ger","format":"int64"}}},"PingResponse":{"type":"object","proper
+3140: ties":{"status":{"type":"string"},"time":{"type":"string"}}},"Pr
+3180: oblemDetail":{"type":"object","properties":{"detail":{"type":"st
+31c0: ring"},"errors":{"type":"array","description":"Present on 400 va
+3200: lidation and 422 idempotency-mismatch problems only","items":{"$
+3240: ref":"#/components/schemas/ProblemFieldError"}},"instance":{"typ
+3280: e":"string","format":"uri"},"status":{"type":"integer","format":
+32c0: "int32"},"title":{"type":"string"},"type":{"type":"string","form
+3300: at":"uri"}}},"ProblemFieldError":{"type":"object","properties":{
+3340: "field":{"type":"string"},"message":{"type":"string"},"rule":{"t
+3380: ype":"string"}},"required":["field","message","rule"]},"Referrer
+33c0: Clicks":{"type":"object","properties":{"clicks":{"type":"integer
+3400: ","format":"int64"},"referrer":{"type":"string"}}}}}}
+== Info: Connection #0 to host localhost left intact

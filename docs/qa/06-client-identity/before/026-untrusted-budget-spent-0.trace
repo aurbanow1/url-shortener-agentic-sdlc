@@ -1,0 +1,37 @@
+== Info: Host localhost:54281 was resolved.
+== Info: IPv6: ::1
+== Info: IPv4: 127.0.0.1
+== Info:   Trying [::1]:54281...
+== Info: connect to ::1 port 54281 from ::1 port 54364 failed: Connection refused
+== Info:   Trying 127.0.0.1:54281...
+== Info: Connected to localhost (127.0.0.1) port 54281
+=> Send header, 180 bytes (0xb4)
+0000: GET /api/links/zzzzzzzz HTTP/1.1
+0022: Host: localhost:54281
+0039: User-Agent: curl/8.7.1
+0051: Accept: */*
+005e: X-Forwarded-For: 203.0.113.7
+007c: Forwarded: for=203.0.113.88
+0099: X-Real-IP: 203.0.113.99
+00b2: 
+== Info: Request completely sent off
+<= Recv header, 15 bytes (0xf)
+0000: HTTP/1.1 404 
+<= Recv header, 52 bytes (0x34)
+0000: X-Request-Id: 3467cbff-22eb-4bc3-ae89-8e9c5573e6a3
+<= Recv header, 40 bytes (0x28)
+0000: Content-Type: application/problem+json
+<= Recv header, 28 bytes (0x1c)
+0000: Transfer-Encoding: chunked
+<= Recv header, 37 bytes (0x25)
+0000: Date: Sun, 04 Oct 2026 01:05:24 GMT
+<= Recv header, 2 bytes (0x2)
+0000: 
+<= Recv data, 99 bytes (0x63)
+0000: 5d
+0004: {"instance":"urn:uuid:3467cbff-22eb-4bc3-ae89-8e9c5573e6a3","sta
+0044: tus":404,"title":"Not Found"}
+<= Recv data, 5 bytes (0x5)
+0000: 0
+0003: 
+== Info: Connection #0 to host localhost left intact

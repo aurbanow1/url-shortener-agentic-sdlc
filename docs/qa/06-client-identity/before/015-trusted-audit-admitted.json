@@ -1,0 +1,44 @@
+{
+  "name": "trusted-audit-admitted",
+  "app": "trusted",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/before/015-trusted-audit-admitted.trace",
+    "-X",
+    "GET",
+    "http://localhost:54124/api/audit"
+  ],
+  "method": "GET",
+  "path": "/api/audit",
+  "raw": "015-trusted-audit-admitted.http",
+  "status": 200,
+  "headers": {
+    "x-request-id": "e0587bf9-4add-4860-8f0c-aae3f10a2a8b",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 01:05:21 GMT"
+  },
+  "json": {
+    "items": [
+      {
+        "occurredAt": "2026-10-04T01:05:21.702Z",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entityId": "eGLBmqV8",
+        "requestId": "09982141-8b1f-4cfc-9491-a95bb759d023",
+        "before": null,
+        "after": {
+          "url": "https://example.com/qa06/client-group",
+          "state": "active"
+        }
+      }
+    ],
+    "next": null
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "direct-audit-refused-X-Forwarded-For-0",
+  "app": "direct",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/before/003-direct-audit-refused-X-Forwarded-For-0.trace",
+    "-X",
+    "GET",
+    "-H",
+    "X-Forwarded-For: 198.51.100.9",
+    "http://localhost:52504/api/audit"
+  ],
+  "method": "GET",
+  "path": "/api/audit",
+  "raw": "003-direct-audit-refused-X-Forwarded-For-0.http",
+  "status": 403,
+  "headers": {
+    "x-request-id": "975709af-9874-453b-8176-74b92aa34a42",
+    "content-type": "application/problem+json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 01:03:49 GMT"
+  },
+  "json": {
+    "instance": "urn:uuid:975709af-9874-453b-8176-74b92aa34a42",
+    "status": 403,
+    "title": "Forbidden"
+  }
+}
