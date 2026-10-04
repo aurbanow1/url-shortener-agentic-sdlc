@@ -7,6 +7,6 @@
 
 ## Acceptance
 
-- [ ] Implementation complete
-- [ ] Tests passing
+- [x] Implementation complete — candidate `fb63a88` (commits 1, 1b, 2, 3 of design §7 plus the granted comment)
+- [x] Tests passing — `check --rerun-tasks` green on `fb63a88` (268 unit / 322 functional, 100 % line and branch); every existing journey byte-for-byte unchanged
 - [ ] Review approved

@@ -1,0 +1,28 @@
+06-client-identity — builder by-effect check on the candidate fb63a88 (dev2-agent, 2026-10-04 01:37Z)
+The jar on 127.0.0.1, with 127.0.0.1 listed as a trusted proxy, so the two questions ClientIdentity
+answers can be told apart on the real service: trust decides the resolved client, never audit access.
+
+$ java -jar .worktrees/06-client-identity/build/libs/urlshort.jar --server.address=127.0.0.1 --server.port=18097 \
+    --urlshort.rate-limit.trusted-proxies=127.0.0.1 --spring.datasource.url=jdbc:h2:file:<scratch>/ci-data/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE
+$ scripts/http -s http://127.0.0.1:18097/actuator/health/readiness
+{"status":"UP"}
+
+== Audit guard (ClientIdentity.peerIsConnection + fromLoopback) ==
+$ scripts/http -s -o /dev/null -w "%{http_code}" http://127.0.0.1:18097/api/audit
+200        <- direct loopback peer, no forwarding header
+$ scripts/http -s -H "X-Forwarded-For: 127.0.0.1" http://127.0.0.1:18097/api/audit
+{"instance":"urn:uuid:6405530e-68e3-438b-9045-0acc6cde2aba","status":403,"title":"Forbidden"}
+403        <- forged forwarding header refused although the peer is a listed trusted proxy
+
+== Resolved client (ClientIdentity.resolve in the limiter, ClientIdentity.of in the click recorder) ==
+$ scripts/http -s -X POST -H "Content-Type: application/json" -d '{"url":"https://example.com/ci-effect"}' http://127.0.0.1:18097/api/links
+{"code":"c3Bs3dsO",...,"state":"active",...}
+$ scripts/http -s -o /dev/null -w "%{http_code} " -H "X-Forwarded-For: 203.0.113.1" http://127.0.0.1:18097/c3Bs3dsO http://127.0.0.1:18097/c3Bs3dsO
+302 302
+$ scripts/http -s -o /dev/null -w "%{http_code} " -H "X-Forwarded-For: 203.0.113.2" http://127.0.0.1:18097/c3Bs3dsO
+302
+$ scripts/http -s http://127.0.0.1:18097/api/links/c3Bs3dsO/stats
+{"code":"c3Bs3dsO","totalClicks":3,"clicksPerDay":[{"date":"2026-10-04","clicks":3,"uniqueVisitors":2,"botClicks":0}],"topReferrers":[]}
+<- the two forwarded clients are two visitors: the click hashed the client the limiter charged
+
+Stopped. The before/after comparison against qa2's baseline capture 03e0657 is QA's (SPEC AC-14, AC-15).
