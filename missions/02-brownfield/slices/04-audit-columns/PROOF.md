@@ -4,7 +4,7 @@
 >
 > **HOW (the drop verb, not hand-placement):** put media files under `proof/`, then ATTACH them with `rig proof add OPR.99.0.3.4 --artifact-type qa --verdict PASS --candidate-sha <tip> --money-evidence "<one line>" --evidences "1" --media "screenshot-01.png"` — the drop writes the C1 header the Living Notes DELIVERED pairing joins on. Hand-placing files without a drop leaves the deliverable unpaired and `unverified`.
 
-QA checked by: qa2-agent@urlshort-factory (Codex), 2026-10-03T23:47Z. Verdict: PASS on `305f8045d45b19a9e3287d5fe3508af6e04db9a4`. Integration/closure pending.
+QA checked by: qa2-agent@urlshort-factory (Codex), 2026-10-03T23:47Z. Verdict: PASS on `305f8045d45b19a9e3287d5fe3508af6e04db9a4`. Merged as `d55a502`; post-merge QA judgments ready9/9. Workflow closure remains the integrator's.
 
 ## What this proves
 
@@ -152,3 +152,31 @@ SELECT/ancestry/nextV4 independently confirmed. Interim policy gap closes at mer
 Accepted receipts at the saved projection: 2,3,5,6,7,8,9,10 (item1 receipt9 reaffirms final summary formatting; item4 receipt10 reaffirms another slice append to shared TRACEABILITY while this slice section stayed byte-identical; earlier receipts retained as history). Items1–4,6–9 accepted against305f804; item5 pending under lead-confirmed qitem-20261003234855-d2ef129b.
 
 Shared TRACEABILITY received another slice append after the saved projection. QA rechecked this slice table byte-equal to fdd8c5b (`qa-trace-final-projection.json`) and reaffirms item4 against the current whole-file hash before handoff. Later shared-file drift stays lead final-reconciliation scope.
+
+
+## Post-merge QA gap judgment — 2026-10-04T00:22Z
+
+Returned packet qitem-20261004001550-8de9f055 is fulfilled. Candidate
+`305f8045d45b19a9e3287d5fe3508af6e04db9a4` is the exact second parent of merge
+`d55a502f14127ac234c01d12efb46dda3c1a1e64` and the accepted tag's target.
+V4 and its five new test files are byte-identical between candidate and merge.
+The integration log records fresh14/14 tasks, BUILD SUCCESSFUL (lead run independently read).
+
+GAPS17593aa closed the interim rows; correction382a7b2 changes only the click-retention
+QA actor to this QA2 seat. Live GAPS SHA-256 is
+`18149e871a3225f68323117da91202d2186662b6667642e3815068ae12974068`, matching the
+returned hash. Every closure row was read; own04 qualifications remain byte-identical.
+Receipt `proof/judgments/00000012.md` accepts item5 on the original candidate;
+`rig proof show` now reads **READY,9/9 accepted, no issues**. The deferred obligation is complete.
+This is the metadata return: prior runtime coverage/QA effects stand; no new app run is claimed.
+Evidence: `qa-gap-closure-305f804.md`, `qa-gap-closure-final.md/json`, `qa-gap-merge-custody.json`.
+Code and security PASS records independently read at docs/review/04-audit-columns/01-code-review.md
+and02-security-review.md (review commit d7459ff, exact candidate).
+
+## Self-check (post-merge QA)
+
+Final hash, one-token correction diff, unchanged own section, all four closed rows, exact merge/tag
+and cited source custody checked. Item5 attributed to exact candidate, proof drop names5, receipt
+committed with pathspec. Earlier false retention-seat attribution resolved; no product/GAPS/test
+edit by QA and no new runtime verification claim. All9 contract items accepted; integrator owns
+workflow closure/delivery stamp.

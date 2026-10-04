@@ -9,7 +9,7 @@
 
 - [x] Implementation complete — candidate `305f804`, rebased onto `02-click-retention`'s merge `ed2b940` (`main` `2566c38`); V4 follows V3 (builder, 2026-10-03)
 - [x] Tests passing — `check --rerun-tasks` on `305f804`: unit 218/218, functional 233/233, 557/557 lines, 200/200 branches (`proof/builder-check-305f804.txt`; builder run, QA re-runs independently)
-- [ ] Review approved
+- [x] Review approved — combined code/security PASS on exact305f804 (`d7459ff`, review2-agent; reports read at post-merge QA)
 
 ## Builder
 
@@ -36,3 +36,11 @@
 - [x] Tagged `slice/04-audit-columns/accepted` → `305f804`. Worktree removed (clean).
 - [x] The four interim audit-column rows in `docs/qa/GAPS.md` are closed in one edit: `link`/`audit_log` (V4, `d55a502`) and `click`/`user_agent_class` (V3, `ed2b940`; not marked at click-retention's merge, so marked now).
 - [ ] Item 5 is back with `qa2-agent`, with the final `GAPS.md` hash. The slice is accepted when it is judged.
+
+
+## Post-merge gap return — 2026-10-04T00:22Z
+
+- [x] Candidate305f804 merged asd55a502; second parent/tag exact and cited V4/tests byte-identical.
+- [x] Interim link/audit_log GAPS rows closed by V4 merge; click/user_agent_class rows closed by V3 merge. One false QA-seat attribution corrected at382a7b2, only that token changed.
+- [x] Final GAPS hash18149e871a3225f68323117da91202d2186662b6667642e3815068ae12974068 independently verified; original own gap qualifications unchanged.
+- [x] Receipt12 accepts proof5 against original candidate; **READY9/9**, no issues. Deferred merge-time obligation fulfilled; integrator owns workflow close/stamp.
