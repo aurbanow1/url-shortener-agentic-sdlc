@@ -42,3 +42,16 @@ merged code:
 - **Client hashing row:** "its input is `ClientIdentity.of(request)`".
 - **Operator settings row:** M3S-02 (the `trusted-proxies` comment) is not this slice's to fix
   (D21: no settings change), so it stays as drift.
+
+**Re-checked on the final design** (2026-10-04, after `design2-agent`'s 01:10Z note). Read: the
+final `design.md` at `9f6508a`, and the committed ADR-0015 and ADR-0019 amendments in `57cb9ae`.
+- §1, §2 and §6 carry the draft's substance: the same five members, the same call sites, the guard
+  never given the trusted-proxy list or the resolved client, and amendments to the settling ADRs
+  only.
+- ADR-0019's amendment adds one fact: Boot 4.1.1's valve trigger and the guard both use
+  `StringUtils.hasText`, so a whitespace-only `remoteip` setting installs no valve and leaves the
+  read open. That is the merged guard's behaviour, and a consistent one.
+- The other changes are §5's characterization matrix, which is test placement and not a register
+  matter, and the post-merge M3S-03 wording, now in §6.
+
+**The verdict stands: CONSISTENT, no condition.**
