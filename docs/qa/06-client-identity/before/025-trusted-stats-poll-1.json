@@ -1,0 +1,44 @@
+{
+  "name": "trusted-stats-poll-1",
+  "app": "trusted",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/before/025-trusted-stats-poll-1.trace",
+    "-X",
+    "GET",
+    "http://localhost:54124/api/links/eGLBmqV8/stats"
+  ],
+  "method": "GET",
+  "path": "/api/links/eGLBmqV8/stats",
+  "raw": "025-trusted-stats-poll-1.http",
+  "status": 200,
+  "headers": {
+    "x-request-id": "c65fd0a7-38d8-4c56-9808-e162220297ce",
+    "content-type": "application/json",
+    "content-length": "181",
+    "date": "Sun, 04 Oct 2026 01:05:21 GMT"
+  },
+  "json": {
+    "code": "eGLBmqV8",
+    "totalClicks": 3,
+    "clicksPerDay": [
+      {
+        "date": "2026-10-04",
+        "clicks": 3,
+        "uniqueVisitors": 2,
+        "botClicks": 0
+      }
+    ],
+    "topReferrers": [
+      {
+        "referrer": "https://ref.example",
+        "clicks": 3
+      }
+    ]
+  }
+}

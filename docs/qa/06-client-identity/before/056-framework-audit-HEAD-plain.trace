@@ -1,0 +1,25 @@
+== Info: Host localhost:54877 was resolved.
+== Info: IPv6: ::1
+== Info: IPv4: 127.0.0.1
+== Info:   Trying [::1]:54877...
+== Info: connect to ::1 port 54877 from ::1 port 54965 failed: Connection refused
+== Info:   Trying 127.0.0.1:54877...
+== Info: Connected to localhost (127.0.0.1) port 54877
+=> Send header, 88 bytes (0x58)
+0000: HEAD /api/audit HTTP/1.1
+001a: Host: localhost:54877
+0031: User-Agent: curl/8.7.1
+0049: Accept: */*
+0056: 
+== Info: Request completely sent off
+<= Recv header, 15 bytes (0xf)
+0000: HTTP/1.1 403 
+<= Recv header, 52 bytes (0x34)
+0000: X-Request-Id: 8dbce00d-b42f-4e78-8f76-6a5d76c0d3af
+<= Recv header, 40 bytes (0x28)
+0000: Content-Type: application/problem+json
+<= Recv header, 37 bytes (0x25)
+0000: Date: Sun, 04 Oct 2026 01:05:39 GMT
+<= Recv header, 2 bytes (0x2)
+0000: 
+== Info: Connection #0 to host localhost left intact

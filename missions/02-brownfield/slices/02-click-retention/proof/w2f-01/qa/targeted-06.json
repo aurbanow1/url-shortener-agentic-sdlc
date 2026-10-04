@@ -1,0 +1,62 @@
+{
+  "run": 6,
+  "counts": {
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "methods": [
+    "AC08_aPurgeRunsEveryUtcDayWithoutAnOperator(CapturedOutput)"
+  ],
+  "timeSeconds": "7.542",
+  "purgeEventsInClassOutput": [
+    {
+      "@timestamp": "2026-10-04T00:42:33.307916Z",
+      "log": {
+        "level": "INFO",
+        "logger": "dev.urlshort.click.ClickPurge"
+      },
+      "process": {
+        "pid": 90102,
+        "thread": {}
+      },
+      "service": {
+        "name": "urlshort",
+        "node": {}
+      },
+      "message": "clicks purged",
+      "deleted": 0,
+      "cutoff": "2026-07-06",
+      "retentionDays": 90,
+      "ecs": {
+        "version": "8.11"
+      }
+    },
+    {
+      "@timestamp": "2026-10-04T00:42:38.311983Z",
+      "log": {
+        "level": "INFO",
+        "logger": "dev.urlshort.click.ClickPurge"
+      },
+      "process": {
+        "pid": 90102,
+        "thread": {}
+      },
+      "service": {
+        "name": "urlshort",
+        "node": {}
+      },
+      "message": "clicks purged",
+      "deleted": 2,
+      "cutoff": "2026-07-07",
+      "retentionDays": 90,
+      "ecs": {
+        "version": "8.11"
+      }
+    }
+  ],
+  "log": "targeted-06.txt",
+  "xml": "targeted-06.xml",
+  "note": "startup event may precede the test window; unchanged test asserts exactly one event within its captured window"
+}

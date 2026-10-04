@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuditTrail.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">urlshort</a> &gt; <a href="index.source.html" class="el_package">dev.urlshort.audit</a> &gt; <span class="el_source">AuditTrail.java</span></div><h1>AuditTrail.java</h1><pre class="source lang-java linenums">package dev.urlshort.audit;
+
+import java.nio.charset.StandardCharsets;
+import java.time.OffsetDateTime;
+import java.util.Base64;
+import java.util.List;
+
+import org.springframework.jdbc.core.simple.JdbcClient;
+import org.springframework.stereotype.Component;
+import tools.jackson.databind.json.JsonMapper;
+
+/**
+ * Reads the audit trail one keyset page at a time, newest first by {@code id}, the write sequence of
+ * SPEC rule 4. One {@code SELECT}; {@link AuditLog} stays the only statement that writes the table. The
+ * primary key serves the backwards walk, so a page reads {@code limit + 1} rows at any depth (ADR-0019).
+ */
+@Component
+class AuditTrail {
+
+	static final String PAGE = &quot;SELECT id, occurred_at, actor, action, entity, entity_id, request_id, before_state, after_state&quot;
+			+ &quot; FROM audit_log WHERE id &lt; :before ORDER BY id DESC FETCH FIRST :fetch ROWS ONLY&quot;;
+
+	private final JdbcClient jdbc;
+	private final JsonMapper json;
+
+<span class="fc" id="L26">	AuditTrail(JdbcClient jdbc, JsonMapper json) {</span>
+<span class="fc" id="L27">		this.jdbc = jdbc;</span>
+<span class="fc" id="L28">		this.json = json;</span>
+<span class="fc" id="L29">	}</span>
+
+	/** The newest {@code limit} rows written before the row with id {@code before}. */
+	AuditPage page(int limit, long before) {
+<span class="nc" id="L33">		List&lt;Row&gt; rows = jdbc.sql(PAGE).param(&quot;before&quot;, before).param(&quot;fetch&quot;, limit + 1).query((rs, n) -&gt; {</span>
+<span class="nc" id="L34">			String beforeState = rs.getString(&quot;before_state&quot;);</span>
+<span class="nc" id="L35">			return new Row(rs.getLong(&quot;id&quot;), new AuditEntry(rs.getObject(&quot;occurred_at&quot;, OffsetDateTime.class).toInstant(),</span>
+<span class="nc" id="L36">					rs.getString(&quot;actor&quot;), rs.getString(&quot;action&quot;), rs.getString(&quot;entity&quot;), rs.getString(&quot;entity_id&quot;),</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">					rs.getString(&quot;request_id&quot;), beforeState == null ? null : json.readTree(beforeState),</span>
+<span class="nc" id="L38">					json.readTree(rs.getString(&quot;after_state&quot;))));</span>
+<span class="nc" id="L39">		}).list();</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">		if (rows.size() &lt;= limit) {</span>
+<span class="nc" id="L41">			return new AuditPage(rows.stream().map(Row::entry).toList(), null);</span>
+		}
+<span class="nc" id="L43">		return new AuditPage(rows.subList(0, limit).stream().map(Row::entry).toList(), cursorOf(rows.get(limit - 1).id()));</span>
+	}
+
+	/** The opaque {@code next}: base64url of the id, so a client copies it rather than computes it. */
+	static String cursorOf(long id) {
+<span class="fc" id="L48">		return Base64.getUrlEncoder().withoutPadding().encodeToString(Long.toString(id).getBytes(StandardCharsets.US_ASCII));</span>
+	}
+
+<span class="nc" id="L51">	private record Row(long id, AuditEntry entry) {</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

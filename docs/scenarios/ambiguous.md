@@ -1,6 +1,6 @@
 # Scenario: ambiguous — mission `03-ambiguous-analytics`
 
-> **Draft — completed at mission close.** `[final]` marks what is filled in from
+> **Mission closed 2026-10-04 (`59ff9016`).** Only the metrics row below waits for the final regeneration, filled in from
 > `missions/03-ambiguous-analytics/RELEASE.md` and the evidence export.
 
 ## The ask
@@ -57,9 +57,59 @@ afterwards, and each move is in `missions/03-ambiguous-analytics/NOTES.md`:
 The compiled graph's revision receipts are listed in the mission notes;
 `[final]`: anything that changes between now and the mission close.
 
-## Orchestration and validation `[final]`
+## Orchestration and validation
 
-Delegated plan-lock (D11), build on top of `02-analytics`, QA and combined
-review on the other model family, wave review, release, ship sign-off.
+The slice ran the full workflow, with no failed review at any step. Times
+are UTC, from the instance trace (`01M416Z3CM54YQTX93V4KG0CPS`):
 
-## Metrics `[final]`
+| Step | Closed | Seat | Note |
+|---|---|---|---|
+| requirements, then the ambiguity park | 16:13 | requirements-agent | six questions parked on the human 15:48; answered 16:10 |
+| requirements_review | 16:41 | review-agent | pass |
+| design | 18:42 | design-agent | waited behind mission 02's two designs on the single design seat; the second design seat came later (D16) |
+| design_review | 18:56 | review-agent | pass, one MEDIUM fixed in passing |
+| plan_lock | 20:03 | orchestration-lead | delegated (D11); held behind click-retention, then released early on the human's request |
+| implement | 23:14 | dev2-agent | built stacked on click-retention's reviewed branch; waited four times for that base to settle |
+| qa_check | 00:01 | qa-agent | pass |
+| code_review, with security | 00:18 | review-agent | pass, including the privacy judgment of Q2 B |
+| integrate | 00:24 | orchestration-lead | rebased onto `main` after audit-columns; a range-diff showed all 8 patches identical to the judged `ec466da`; QA re-judged ancestry on `22fc8e2`; fresh gate; merge `c9b66dd` |
+
+What validated the human's decisions:
+- **Q1 B and Q6 A:** `uniqueVisitors` is counted per UTC day, as an upper bound across restarts.
+- **Q2 B:** the client hash is never exposed, and the daily salt is never persisted.
+- **Q3 B:** `botClicks` is reported beside the unchanged figures.
+- **Q5 A:** the existing statistics API gains the fields; the regenerated API document was diffed against the live one.
+
+The slice also closed wave-review finding W2-02: click identity now follows the
+rate limiter's trusted-proxy rule.
+
+### Wave review, release and ship sign-off
+
+- **Wave review, two vantages.** `review-agent` passed the wave with two LOW
+  documentation findings and three INFO observations
+  (`docs/review/03-ambiguous-analytics/wave-1-review-review-agent.md`);
+  `design2-agent` found nothing blocking. One inherited mission-02 HIGH
+  (W2F-01, a click-retention test that could flake on timing) was fixed by the
+  test-only commit `50ad9c3` and re-reviewed.
+- **Release preparation** on `release2-agent`, run in parallel with mission
+  02's work. It covered the jar and the container, each smoke-tested on
+  loopback. It benchmarked at the specified rates: redirect p95 was 3.7 ms
+  against a target of 20 ms, p99 9.5 ms, with no lost click and no quota
+  rejection. It rehearsed the rollback, a revert of `c9b66dd` that keeps V3,
+  V4 and the data. OSV reported 0 advisories on 97 runtime coordinates.
+- **Release review** passed with no findings. It covered a 487-path file
+  ledger, all 12 proof items accepted, and an independent re-derivation of the
+  installed-analytics evidence. That re-derivation mattered because `8cf894a`
+  had been written during a six-minute window in which the Codex seats ran on
+  a fallback model after a usage limit.
+- **Ship sign-off, by the human, 2026-10-04 02:38:55Z:** "approve: ship
+  mission 03 analytics v2 at 50ad9c3 for local use; the exact-SHA hosted CI
+  gap is accepted because the delta from the CI-verified 18db1de is one
+  test-only change".
+- **Proof drift handled honestly.** QA re-affirmed items 1, 2, 5 and 6 after
+  shared documents changed, and each item names the exact byte-level change it
+  checked.
+- **Mission closed** at `59ff9016`, with its backlog recorded in the mission
+  notes.
+
+## Metrics `[final]` (regenerated at the last mission close; see `docs/metrics/README.md`)

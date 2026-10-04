@@ -1,0 +1,14 @@
+{
+  "candidate": "e227acf04e1ea902406532fcebd741f8a86f7f65",
+  "at": "2026-10-04T01:25:57.892314+00:00",
+  "command": "gh api 'repos/aurbanow1/url-shortener-agentic-sdlc/actions/runs?head_sha=e227acf04e1ea902406532fcebd741f8a86f7f65&per_page=100'",
+  "attempts": [
+    "sandbox default HTTP404",
+    "outside sandbox HTTP404"
+  ],
+  "result": {
+    "message": "Not Found",
+    "status": "404"
+  },
+  "conclusion": "Candidate CI/CD runs unavailable on the read surface checked; this does not establish their global absence. No candidate hosted success claimed. Earlier operator runs concern different SHAs."
+}

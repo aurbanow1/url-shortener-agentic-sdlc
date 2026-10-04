@@ -1,0 +1,34 @@
+{
+  "name": "direct-click-A",
+  "app": "direct",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/after/010-direct-click-A.trace",
+    "-X",
+    "GET",
+    "--interface",
+    "127.0.0.1",
+    "-H",
+    "User-Agent: Mozilla/5.0 QA06-BROWSER-CANARY",
+    "-H",
+    "Referer: https://ref.example/private-QA06-path?q=QA06-query#QA06-fragment",
+    "http://localhost:56352/OKAMvZaX"
+  ],
+  "method": "GET",
+  "path": "/OKAMvZaX",
+  "raw": "010-direct-click-A.http",
+  "status": 302,
+  "headers": {
+    "x-request-id": "edb1c2b0-82cf-4335-aa07-477c64a444d3",
+    "location": "https://example.com/qa06/client-group",
+    "cache-control": "no-store",
+    "content-length": "0",
+    "date": "Sun, 04 Oct 2026 01:54:55 GMT"
+  },
+  "json": null
+}

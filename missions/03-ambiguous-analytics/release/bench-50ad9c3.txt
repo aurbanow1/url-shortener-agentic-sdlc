@@ -1,0 +1,11 @@
+Command: scripts/smoke.sh --bench http://127.0.0.1:18230
+Exit: 0
+# bench: the instance's budgets must have been raised (URLSHORT_RATELIMIT_CREATEPERMINUTE, URLSHORT_RATELIMIT_REDIRECTPERMINUTE) so one load client is not refused; refusals show as non-2xx/3xx
+# method: tools/bench.mjs, open loop (request i due at i/rate s whatever earlier ones do), keep-alive connections, on the same machine as the service; latency from the due time to the end of the response; a noisy or short run is a gap, not a pass
+# bench link: 5pngOEZA (its statistics afterwards count the GET redirects whose clicks were stored)
+# 1. redirects 100 req/s and creates 20 req/s together for 60 s (NFR-L1: redirect p95 <= 20 ms, p99 <= 50 ms; NFR-L2: create p95 <= 50 ms)
+create POST /api/links: 1200 requests in 59952 ms (offered 20 req/s for 60 s), achieved 20.0 req/s, non-2xx/3xx 0, p50 2.1 ms, p95 4.5 ms, p99 12.9 ms
+redirect GET /{code}: 6000 requests in 59991 ms (offered 100 req/s for 60 s), achieved 100.0 req/s, non-2xx/3xx 0, p50 1.7 ms, p95 3.7 ms, p99 9.5 ms
+# 2. NFR-L3 (click recording adds <= 2 ms p95): the same redirect alone at 100 req/s for 60 s, GET then HEAD; HEAD runs the same lookup and response and returns before the click is reduced and queued
+redirect GET /{code} alone: 6000 requests in 59992 ms (offered 100 req/s for 60 s), achieved 100.0 req/s, non-2xx/3xx 0, p50 1.3 ms, p95 3.0 ms, p99 8.2 ms
+redirect HEAD /{code} alone: 6000 requests in 59992 ms (offered 100 req/s for 60 s), achieved 100.0 req/s, non-2xx/3xx 0, p50 1.6 ms, p95 4.0 ms, p99 17.1 ms

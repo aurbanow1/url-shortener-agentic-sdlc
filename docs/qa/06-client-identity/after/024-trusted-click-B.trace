@@ -1,0 +1,37 @@
+== Info: Host localhost:56445 was resolved.
+== Info: IPv6: ::1
+== Info: IPv4: 127.0.0.1
+== Info:   Trying [::1]:56445...
+== Info: Name '127.0.0.1' family 30 resolved to '::ffff:127.0.0.1' family 30
+== Info: Local port: 0
+== Info: Immediate connect fail for ::1: Address family not supported by protocol family
+== Info:   Trying 127.0.0.1:56445...
+== Info: Hostname in DNS cache doesn't have needed family, zapped
+== Info: Name '127.0.0.1' family 2 resolved to '127.0.0.1' family 2
+== Info: Local port: 0
+== Info: Connected to localhost (127.0.0.1) port 56445
+=> Send header, 212 bytes (0xd4)
+0000: GET /hiRI8L6f HTTP/1.1
+0018: Host: localhost:56445
+002f: Accept: */*
+003c: User-Agent: Mozilla/5.0 QA06-BROWSER-CANARY
+0069: Referer: https://ref.example/private-QA06-path?q=QA06-query#QA06
+00a9: -fragment
+00b4: X-Forwarded-For: 203.0.113.8
+00d2: 
+== Info: Request completely sent off
+<= Recv header, 15 bytes (0xf)
+0000: HTTP/1.1 302 
+<= Recv header, 52 bytes (0x34)
+0000: X-Request-Id: f4ca969f-aad1-4752-9738-3ca87ea4b218
+<= Recv header, 49 bytes (0x31)
+0000: Location: https://example.com/qa06/client-group
+<= Recv header, 25 bytes (0x19)
+0000: Cache-Control: no-store
+<= Recv header, 19 bytes (0x13)
+0000: Content-Length: 0
+<= Recv header, 37 bytes (0x25)
+0000: Date: Sun, 04 Oct 2026 01:54:57 GMT
+<= Recv header, 2 bytes (0x2)
+0000: 
+== Info: Connection #0 to host localhost left intact

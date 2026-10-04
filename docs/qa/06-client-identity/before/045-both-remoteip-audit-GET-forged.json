@@ -1,0 +1,33 @@
+{
+  "name": "both-remoteip-audit-GET-forged",
+  "app": "both-remoteip",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/before/045-both-remoteip-audit-GET-forged.trace",
+    "-X",
+    "GET",
+    "-H",
+    "X-Forwarded-For: 127.0.0.2",
+    "http://localhost:54677/api/audit"
+  ],
+  "method": "GET",
+  "path": "/api/audit",
+  "raw": "045-both-remoteip-audit-GET-forged.http",
+  "status": 403,
+  "headers": {
+    "x-request-id": "f2c5cb56-4e2c-4e1a-9e4a-e16a934a694a",
+    "content-type": "application/problem+json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 01:05:34 GMT"
+  },
+  "json": {
+    "instance": "urn:uuid:f2c5cb56-4e2c-4e1a-9e4a-e16a934a694a",
+    "status": 403,
+    "title": "Forbidden"
+  }
+}

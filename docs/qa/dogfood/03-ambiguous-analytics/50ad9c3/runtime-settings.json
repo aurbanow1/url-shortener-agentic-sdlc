@@ -1,0 +1,27 @@
+{
+  "candidate": "50ad9c3ab9e65baa4100ede1772b514322957fa5",
+  "jarSource": "/private/tmp/urlshort-mission03-50ad9c3.jar",
+  "installedJar": "/private/tmp/urlshort-m03-dogfood-50ad9c3/urlshort.jar",
+  "sha256": "fbe67b61f0f6f668e65949bc01a92802e5de64015ca78eb2d6bbc0462b2ebde2",
+  "ports": [
+    18232,
+    18233
+  ],
+  "jarUnmodified": true,
+  "extraQAEndpoints": false,
+  "default": {
+    "serverAddress": "127.0.0.1",
+    "trustedProxies": "",
+    "baseUrl": "http://127.0.0.1:18232",
+    "database": "jdbc:h2:file:/private/tmp/urlshort-m03-dogfood-50ad9c3/default/urlshort"
+  },
+  "trusted": {
+    "serverAddress": "127.0.0.1",
+    "trustedProxies": "127.0.0.1",
+    "baseUrl": "http://127.0.0.1:18233",
+    "database": "jdbc:h2:file:/private/tmp/urlshort-m03-dogfood-50ad9c3/trusted/urlshort"
+  },
+  "java": "/opt/homebrew/opt/openjdk@21/bin/java",
+  "consoleFormat": "default ECS JSON, PTY captured separately",
+  "fileFormat": "ecs, supplemental"
+}

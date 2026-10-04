@@ -1,0 +1,31 @@
+== Info: Host localhost:54124 was resolved.
+== Info: IPv6: ::1
+== Info: IPv4: 127.0.0.1
+== Info:   Trying [::1]:54124...
+== Info: connect to ::1 port 54124 from ::1 port 54272 failed: Connection refused
+== Info:   Trying 127.0.0.1:54124...
+== Info: Connected to localhost (127.0.0.1) port 54124
+=> Send header, 102 bytes (0x66)
+0000: GET /api/links/eGLBmqV8/stats HTTP/1.1
+0028: Host: localhost:54124
+003f: User-Agent: curl/8.7.1
+0057: Accept: */*
+0064: 
+== Info: Request completely sent off
+<= Recv header, 15 bytes (0xf)
+0000: HTTP/1.1 200 
+<= Recv header, 52 bytes (0x34)
+0000: X-Request-Id: c65fd0a7-38d8-4c56-9808-e162220297ce
+<= Recv header, 32 bytes (0x20)
+0000: Content-Type: application/json
+<= Recv header, 21 bytes (0x15)
+0000: Content-Length: 181
+<= Recv header, 37 bytes (0x25)
+0000: Date: Sun, 04 Oct 2026 01:05:21 GMT
+<= Recv header, 2 bytes (0x2)
+0000: 
+<= Recv data, 181 bytes (0xb5)
+0000: {"code":"eGLBmqV8","totalClicks":3,"clicksPerDay":[{"date":"2026
+0040: -10-04","clicks":3,"uniqueVisitors":2,"botClicks":0}],"topReferr
+0080: ers":[{"referrer":"https://ref.example","clicks":3}]}
+== Info: Connection #0 to host localhost left intact

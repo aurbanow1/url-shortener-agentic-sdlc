@@ -1,0 +1,32 @@
+diff --git a/src/functionalTest/java/dev/urlshort/click/ClickRetentionScheduleJourneyTest.java b/src/functionalTest/java/dev/urlshort/click/ClickRetentionScheduleJourneyTest.java
+index 8b8f6dc..fac095e 100644
+--- a/src/functionalTest/java/dev/urlshort/click/ClickRetentionScheduleJourneyTest.java
++++ b/src/functionalTest/java/dev/urlshort/click/ClickRetentionScheduleJourneyTest.java
+@@ -85,16 +85,23 @@ class ClickRetentionScheduleJourneyTest {
+ 		shiftTo(scheduled.plusSeconds(1));
+ 		// the suite clock runs at real speed from here, so 60 s of real time is 60 s on the suite clock
+ 		Instant deadline = Instant.now().plus(Duration.ofSeconds(60));
+-		while (days(code).contains(T.minusDays(90)) && Instant.now().isBefore(deadline)) {
++		// the run commits its delete, then logs: wait for both outcomes, or a fast poll can read the rows
++		// before the event is written (W2F-01)
++		while ((days(code).contains(T.minusDays(90)) || runs(output, windowStart).isEmpty())
++				&& Instant.now().isBefore(deadline)) {
+ 			Thread.sleep(100);
+ 		}
+ 
+ 		assertThat(days(code)).containsExactly(T.minusDays(89), T.minusDays(89));
+-		List<JsonNode> runs = output.getAll().substring(windowStart).lines().filter(line -> !line.isBlank())
++		assertThat(runs(output, windowStart)).singleElement()
++				.satisfies(event -> assertThat(event.path("cutoff").asString()).isEqualTo(T.minusDays(89).toString()));
++	}
++
++	/** The {@code clicks purged} events written since {@code windowStart}. */
++	private List<JsonNode> runs(CapturedOutput output, int windowStart) {
++		return output.getAll().substring(windowStart).lines().filter(line -> !line.isBlank())
+ 				.map(jsonMapper::readTree).filter(event -> event.path("message").asString().equals("clicks purged"))
+ 				.toList();
+-		assertThat(runs).singleElement()
+-				.satisfies(event -> assertThat(event.path("cutoff").asString()).isEqualTo(T.minusDays(89).toString()));
+ 	}
+ 
+ 	private List<LocalDate> days(String code) {

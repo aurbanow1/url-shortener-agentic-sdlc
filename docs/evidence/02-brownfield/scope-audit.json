@@ -1,0 +1,158 @@
+{
+  "ok": true,
+  "mission": {
+    "name": "02-brownfield",
+    "railStatus": "present",
+    "frontmatterError": null,
+    "findings": []
+  },
+  "slices": [
+    {
+      "name": "01-audit-read",
+      "railStatus": "present",
+      "frontmatterError": null,
+      "findings": [
+        {
+          "kind": "proof_artifact_c1_invalid",
+          "severity": "medium",
+          "path": "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/01-audit-read/proof/qa-proof-sequencing-35590f0.md",
+          "message": "Proof artifact violates the C1 header contract: no frontmatter header at all (required C1 fields: slice, candidate_sha, artifact_type, verdict, money_evidence).",
+          "remediation": "Re-drop via: rig proof add <slice> --artifact-type <guard|qa|rev1-r1|rev1-r2|adjudication> --verdict <CLEAR|BLOCKING|CONCERNING|PASS|NOT-CLEAR> --candidate-sha <sha> --money-evidence \"<line>\" — or add the missing frontmatter fields in place."
+        }
+      ],
+      "attestations": {
+        "spec": {
+          "by": "orchestration-lead@urlshort-factory",
+          "at": "2026-10-03T20:13:20.403Z",
+          "priors": 1
+        }
+      }
+    },
+    {
+      "name": "02-click-retention",
+      "railStatus": "present",
+      "frontmatterError": null,
+      "findings": [
+        {
+          "kind": "proof_artifact_c1_invalid",
+          "severity": "medium",
+          "path": "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/02-click-retention/proof/qa-custody-a2c34c1.md",
+          "message": "Proof artifact violates the C1 header contract: no frontmatter header at all (required C1 fields: slice, candidate_sha, artifact_type, verdict, money_evidence).",
+          "remediation": "Re-drop via: rig proof add <slice> --artifact-type <guard|qa|rev1-r1|rev1-r2|adjudication> --verdict <CLEAR|BLOCKING|CONCERNING|PASS|NOT-CLEAR> --candidate-sha <sha> --money-evidence \"<line>\" — or add the missing frontmatter fields in place."
+        },
+        {
+          "kind": "proof_artifact_c1_invalid",
+          "severity": "medium",
+          "path": "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/02-click-retention/proof/qa-custody-sequencing.md",
+          "message": "Proof artifact violates the C1 header contract: no frontmatter header at all (required C1 fields: slice, candidate_sha, artifact_type, verdict, money_evidence).",
+          "remediation": "Re-drop via: rig proof add <slice> --artifact-type <guard|qa|rev1-r1|rev1-r2|adjudication> --verdict <CLEAR|BLOCKING|CONCERNING|PASS|NOT-CLEAR> --candidate-sha <sha> --money-evidence \"<line>\" — or add the missing frontmatter fields in place."
+        },
+        {
+          "kind": "proof_artifact_c1_invalid",
+          "severity": "medium",
+          "path": "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/02-click-retention/proof/qa-instrumentation-notes.md",
+          "message": "Proof artifact violates the C1 header contract: no frontmatter header at all (required C1 fields: slice, candidate_sha, artifact_type, verdict, money_evidence).",
+          "remediation": "Re-drop via: rig proof add <slice> --artifact-type <guard|qa|rev1-r1|rev1-r2|adjudication> --verdict <CLEAR|BLOCKING|CONCERNING|PASS|NOT-CLEAR> --candidate-sha <sha> --money-evidence \"<line>\" — or add the missing frontmatter fields in place."
+        }
+      ]
+    },
+    {
+      "name": "03-dogfood-fix",
+      "railStatus": "present",
+      "frontmatterError": null,
+      "findings": []
+    },
+    {
+      "name": "04-audit-columns",
+      "railStatus": "present",
+      "frontmatterError": null,
+      "findings": [
+        {
+          "kind": "proof_artifact_c1_invalid",
+          "severity": "medium",
+          "path": "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/04-audit-columns/proof/qa-gap-closure-final.md",
+          "message": "Proof artifact violates the C1 header contract: no frontmatter header at all (required C1 fields: slice, candidate_sha, artifact_type, verdict, money_evidence).",
+          "remediation": "Re-drop via: rig proof add <slice> --artifact-type <guard|qa|rev1-r1|rev1-r2|adjudication> --verdict <CLEAR|BLOCKING|CONCERNING|PASS|NOT-CLEAR> --candidate-sha <sha> --money-evidence \"<line>\" — or add the missing frontmatter fields in place."
+        },
+        {
+          "kind": "proof_artifact_c1_invalid",
+          "severity": "medium",
+          "path": "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/04-audit-columns/proof/qa-gap-return-17593aa.md",
+          "message": "Proof artifact violates the C1 header contract: no frontmatter header at all (required C1 fields: slice, candidate_sha, artifact_type, verdict, money_evidence).",
+          "remediation": "Re-drop via: rig proof add <slice> --artifact-type <guard|qa|rev1-r1|rev1-r2|adjudication> --verdict <CLEAR|BLOCKING|CONCERNING|PASS|NOT-CLEAR> --candidate-sha <sha> --money-evidence \"<line>\" — or add the missing frontmatter fields in place."
+        },
+        {
+          "kind": "proof_artifact_c1_invalid",
+          "severity": "medium",
+          "path": "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/04-audit-columns/proof/qa-proof-sequencing.md",
+          "message": "Proof artifact violates the C1 header contract: no frontmatter header at all (required C1 fields: slice, candidate_sha, artifact_type, verdict, money_evidence).",
+          "remediation": "Re-drop via: rig proof add <slice> --artifact-type <guard|qa|rev1-r1|rev1-r2|adjudication> --verdict <CLEAR|BLOCKING|CONCERNING|PASS|NOT-CLEAR> --candidate-sha <sha> --money-evidence \"<line>\" — or add the missing frontmatter fields in place."
+        }
+      ]
+    },
+    {
+      "name": "05-ci-cd",
+      "railStatus": "present",
+      "frontmatterError": null,
+      "findings": []
+    },
+    {
+      "name": "06-client-identity",
+      "railStatus": "present",
+      "frontmatterError": null,
+      "findings": []
+    }
+  ],
+  "graph": {
+    "mission": {
+      "id": "OPR.99.0.3",
+      "name": "02-brownfield",
+      "dependsOn": [
+        "OPR.99.0.2"
+      ]
+    },
+    "nodes": [
+      {
+        "id": "OPR.99.0.3.1",
+        "name": "01-audit-read",
+        "dependsOn": []
+      },
+      {
+        "id": "OPR.99.0.3.2",
+        "name": "02-click-retention",
+        "dependsOn": []
+      },
+      {
+        "id": "OPR.99.0.3.3",
+        "name": "03-dogfood-fix",
+        "dependsOn": []
+      },
+      {
+        "id": "OPR.99.0.3.4",
+        "name": "04-audit-columns",
+        "dependsOn": []
+      },
+      {
+        "id": "OPR.99.0.3.5",
+        "name": "05-ci-cd",
+        "dependsOn": []
+      },
+      {
+        "id": "OPR.99.0.3.6",
+        "name": "06-client-identity",
+        "dependsOn": []
+      }
+    ],
+    "ready": [
+      "OPR.99.0.3.1",
+      "OPR.99.0.3.2",
+      "OPR.99.0.3.3",
+      "OPR.99.0.3.4",
+      "OPR.99.0.3.5",
+      "OPR.99.0.3.6"
+    ],
+    "waiting": [],
+    "advisories": []
+  },
+  "totalFindings": 7
+}

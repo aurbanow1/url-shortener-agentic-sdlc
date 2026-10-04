@@ -1,0 +1,27 @@
+{
+  "Id": "33631c91e696b89de9556c25919813d02d18c7f418c559b81d6a4284cdcda421",
+  "Image": "sha256:277703a6510ec2924fef9b423c0f48714c081fd2fe9da76461f54d702afd4b3b",
+  "User": "urlshort",
+  "ReadonlyRootfs": true,
+  "StopTimeout": 20,
+  "PortBindings": {
+    "8080/tcp": [
+      {
+        "HostIp": "127.0.0.1",
+        "HostPort": "18231"
+      }
+    ]
+  },
+  "Mounts": [
+    {
+      "Destination": "/app/data",
+      "Driver": "local",
+      "Mode": "z",
+      "Name": "urlshort-m03-50ad9c3",
+      "Propagation": "",
+      "RW": true,
+      "Source": "/var/lib/docker/volumes/urlshort-m03-50ad9c3/_data",
+      "Type": "volume"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "candidate": "50ad9c3ab9e65baa4100ede1772b514322957fa5",
+  "gate": "scripts/gw --log missions/03-ambiguous-analytics/release/check-50ad9c3.txt --offline check bootJar --rerun-tasks",
+  "suites": {
+    "test": {
+      "tests": 226,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "functionalTest": {
+      "tests": 250,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "coverage": {
+    "test": {
+      "LINE_MISSED": 74,
+      "LINE_COVERED": 508,
+      "BRANCH_MISSED": 8,
+      "BRANCH_COVERED": 198
+    },
+    "functionalTest": {
+      "LINE_MISSED": 34,
+      "LINE_COVERED": 548,
+      "BRANCH_MISSED": 35,
+      "BRANCH_COVERED": 171
+    },
+    "all": {
+      "LINE_MISSED": 0,
+      "LINE_COVERED": 582,
+      "BRANCH_MISSED": 0,
+      "BRANCH_COVERED": 206
+    }
+  },
+  "jar": {
+    "path": "/private/tmp/urlshort-mission03-50ad9c3.jar",
+    "sha256": "fbe67b61f0f6f668e65949bc01a92802e5de64015ca78eb2d6bbc0462b2ebde2"
+  },
+  "sourceHeadAtCapture": "fb3468f77eef5eb7d9ce3533920d2b419ef7ac50",
+  "candidateProductDiff": "",
+  "coverageBasis": "Original CSV class-row sums; authoritative isolated BUNDLE coverage is581/581lines206/206branches, see coverage-canonical-50ad9c3.json",
+  "canonicalVerification": "coverage-canonical-50ad9c3.txt"
+}

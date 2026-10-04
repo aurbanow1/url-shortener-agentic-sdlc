@@ -1,0 +1,33 @@
+{
+  "name": "candidate-remote-empty-GET-forged",
+  "app": "candidate-remote-empty",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/blank-settings/run-20261004T022839335431Z/040-candidate-remote-empty-GET-forged.trace",
+    "-X",
+    "GET",
+    "-H",
+    "X-Forwarded-For: 127.0.0.2",
+    "http://localhost:61012/api/audit"
+  ],
+  "method": "GET",
+  "path": "/api/audit",
+  "raw": "040-candidate-remote-empty-GET-forged.http",
+  "status": 403,
+  "headers": {
+    "x-request-id": "7e221151-2558-4376-b804-c9670967b1ac",
+    "content-type": "application/problem+json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 02:28:57 GMT"
+  },
+  "json": {
+    "instance": "urn:uuid:7e221151-2558-4376-b804-c9670967b1ac",
+    "status": 403,
+    "title": "Forbidden"
+  }
+}

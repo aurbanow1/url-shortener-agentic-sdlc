@@ -1,0 +1,24 @@
+%% Client identity after 06-client-identity (D21): one static web.ClientIdentity, two questions.
+%% Inline in missions/02-brownfield/slices/06-client-identity/design.md §3.
+sequenceDiagram
+    autonumber
+    participant C as Client (maybe via a proxy)
+    participant RL as RateLimitFilter (web)
+    participant CI as ClientIdentity (web, static)
+    participant RC as RedirectController → ClickRecorder (click)
+    participant AC as AuditController (audit)
+
+    Note over AC,CI: at start-up: peerIsConnection(server, tomcat) → boolean field
+    C->>RL: any non-exempt request (peer, maybe X-Forwarded-For)
+    RL->>CI: resolve(request, trustedProxies)
+    CI->>CI: clientOf(peer, X-Forwarded-For, trusted); setAttribute(CLIENT_ATTRIBUTE)
+    CI-->>RL: client → tryTake(budget, client)
+    alt GET /{code} → 302
+        RL->>RC: chain
+        RC->>CI: of(request)
+        CI-->>RC: the charged client (else the peer) → salt.stamp(...)
+    else GET /api/audit
+        RL->>AC: chain
+        AC->>CI: fromLoopback(request): own peer loopback, no forwarding header
+        Note over AC: 403 unless peerIsConnection && fromLoopback (the trusted list is never read)
+    end

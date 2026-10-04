@@ -1,0 +1,697 @@
+{
+  "target": "94aa2c0720bdad876f7ca58e95ba01778dffbd23",
+  "base": "d55a502f14127ac234c01d12efb46dda3c1a1e64",
+  "candidate": "ec466da8da4b1efde9d612c6c8692070cc6fc4b9",
+  "xprime": "22fc8e2f56a9a660e287e83155fb3c5eb3e9dcf1",
+  "product_merge": "c9b66dda0a0d568a8fd659a71926a3ef29ace259",
+  "gate_head": "18db1ded0ca96fdde80bc61f4609bdf927761513",
+  "product_tree_equal_to_gate_head_and_current": true,
+  "all_eight_patches_identical": true,
+  "range_files": {
+    ".claude/settings.json": "fe13b9528a8e927fb39a71b9e831bb484338e70d8cde580c73efe19f3ecac692",
+    "docs/api/openapi.json": "4fe6677149605a41608756adc58edaee562b2562bed22f3f7fffb4570ee03714",
+    "docs/evidence/02-brownfield/integrate-04-audit-columns-check-305f804.txt": "fe227773da76a865f0d0cf5f712ad5b9727bb8623d0f3032d9e90f4cdd384448",
+    "docs/evidence/03-ambiguous-analytics/integrate-01-analytics-v2-range-diff-ec466da-22fc8e2.txt": "8447973dc5c938193b5401f8c69641d67314c64b0f01e3630904feb45fb9ed13",
+    "docs/qa/GAPS.md": "18149e871a3225f68323117da91202d2186662b6667642e3815068ae12974068",
+    "docs/review/01-analytics-v2/01-code-review.md": "fad3cf9870c5393de8f31bf514d6767083a3c1b7ac16141c64b5a1697585585b",
+    "docs/review/01-analytics-v2/02-security-review.md": "aac704bd34322daa97b21e8ac9405fd8fadd41f9d87df1d7e894d46d51b453c8",
+    "docs/review/01-analytics-v2/proof/code-check-ec466da.txt": "9cee1e5089d2283f42b6e3fe4150505c847949d7126b6d1605bc59329e6c5030",
+    "docs/review/01-analytics-v2/proof/evidence-reconciliation-ec466da.json": "ed712dedf4be45b07de5785af73a2be66fef79f04fa09307720d92dd7c7859d5",
+    "docs/review/01-analytics-v2/proof/live-proof-ec466da.json": "19d77eb7be83d310b7e3d11a8eb515c69c3bdd2e697055baac87968dae36dbac",
+    "docs/review/01-analytics-v2/proof/reconcile-ec466da.py": "838f2a3c83cfb1cd1ca644e21b165359d7bb791b2702bd6340df5447395968e5",
+    "docs/review/01-analytics-v2/proof/runtime-dependencies-ec466da.txt": "c1dfbaf061ce45dfda2be2cf3828ca2f20f00c6b0cbe39260b052d1d75a23eeb",
+    "docs/review/REVIEW-LEDGER.md": "1648aea0d9c3bdda242b7f34779686f1b801c32207ff29393257804d0f4a0997",
+    "missions/02-brownfield/NOTES.md": "aa332d2261df30df22d0b47bba20de7c20684c092950b96a97ac2dbdb74e1c88",
+    "missions/02-brownfield/slices/04-audit-columns/PROGRESS.md": "70cd6319fe72a483153cf54db4fe44dd0e722ad6e59c29a9c5579fe36249b1ba",
+    "missions/02-brownfield/slices/04-audit-columns/PROOF.md": "81df1952303e65eed278fa6de0da0315d67b91e0ab14cebc291167ff5f83f979",
+    "missions/02-brownfield/slices/04-audit-columns/proof/judgments/00000012.md": "e9791afaf76045724ab40463432eb9d66618ed6820bf31c6efd8817c570fa52e",
+    "missions/02-brownfield/slices/04-audit-columns/proof/qa-gap-closure-305f804.md": "24155803af2ee93cfa9145357c4abe27063b9343518179b7af673b96e7cc6072",
+    "missions/02-brownfield/slices/04-audit-columns/proof/qa-gap-closure-final.json": "f1abc201eb4273efe70afc837d9e0cf65a312f84751a0b2fc0529b0dbbb96594",
+    "missions/02-brownfield/slices/04-audit-columns/proof/qa-gap-closure-final.md": "af2f7163627221a88fec068e51f7276661f75f7cd00537cb0f4b6969d19c03eb",
+    "missions/02-brownfield/slices/04-audit-columns/proof/qa-gap-merge-custody.json": "9225fe65d34a0b4e342b9ce7c8d8b7645d6df30a5acd8261e8f7cc96580d644a",
+    "missions/02-brownfield/slices/04-audit-columns/proof/qa-gap-return-17593aa.md": "c01e3b62ac1bf5b939424a10ebbc145ddead8c8fbd36e03177c920e0d1460ffb",
+    "missions/03-ambiguous-analytics/NOTES.md": "9e63b2418426974c2ff9a5c15e8293bc36b4ceca8fc510d2481d5707a234f75a",
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/builder-check-xprime-22fc8e2.txt": "aae1e67d4532bc6e341c2486e5901277a177bb5b2acfe61ee115cd491bf56528",
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/judgments/00000011.md": "3d8b6d5088d8f62dae85d11f0f631e65a0bb20c8831ce4c989322e02fea2e92e",
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/judgments/00000012.md": "8ee71f0e533055e95f2dd326937792c541cbaa5aa9dc15d14e520aaf8eaa1e8f",
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-item11-ec466da.md": "5a7d30bc779e1684a56f89b5e3fc740602f7652cb930166243d144a6e89ef3ed",
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-returned-judgments-ec466da.json": "3921795b157fa45870585b929639823d08fc7bfa7691fc8ca78683ca525708f9",
+    "src/functionalTest/java/dev/urlshort/audit/AuditUpgradeJourneyTest.java": "5f0e1a6d5da791b7b1bc94ec2961b2acdb59173d747e8775ea18fbdd5916d777",
+    "src/functionalTest/java/dev/urlshort/click/ClickMetricsJourneyTest.java": "997fca26678f27a3a056ae78c70dafbe1d5f46c829de330b578e5032ea543600",
+    "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java": "3e2d0d9dfca6609fd5aed98b6dd38adf8c7fc8ad228d4f6f14f85de043632daa",
+    "src/functionalTest/java/dev/urlshort/click/ClickResilienceTrustedProxyJourneyTest.java": "c008aa59f079914cae815d324c6577cbb16d54723d6035c3d00022fe1d32a69d",
+    "src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java": "63ba5a2a42dcdac59c3d2dfde55b22c1450a1530bc3a5dcf0b65a691517814ba",
+    "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java": "f7e31b43bd2fee16bf5ad417268fcd9c63f674eaa93b6d871961dd090e70a4a6",
+    "src/functionalTest/java/dev/urlshort/click/StatsV2JourneyTest.java": "a8f08c6b8485bdf6aaca6a950bab71cd4601ac0f31cdc672dafbfbbf0fbe434c",
+    "src/functionalTest/java/dev/urlshort/click/TrustedProxyClickJourneyTest.java": "4e5b97ced03685b737d0a8c6eff1360b5fac656dba6e9325b5599b9192871365",
+    "src/main/java/dev/urlshort/click/ClickRecorder.java": "83fc5b2e8d16d0c58595c2c1b0bbeefd1f25d1a568f4cce3fd88e622eea012b4",
+    "src/main/java/dev/urlshort/click/ClickStore.java": "a37016e80627281589364bcf8ba83acf7a575c266222159cbc6e644b6309c20b",
+    "src/main/java/dev/urlshort/click/LinkStats.java": "3d60892de2d2242e6223002bbf1009d30d3eb543629c2c3d6471800cd339102e",
+    "src/main/java/dev/urlshort/click/StatsController.java": "ab1fbce336dedc98f3e2acc1e9189abeab20fa1d5bd083e8848dcd47ae9561c5",
+    "src/main/java/dev/urlshort/click/package-info.java": "4b2b90690722856a83b923b151e35b6a9fbe635c74f714434a7b2926658d01a2",
+    "src/main/java/dev/urlshort/web/RateLimitFilter.java": "47489a7d385e30b6901db75b100f422b2d0a6f15b490b911a29c8d05c1006abf",
+    "src/test/java/dev/urlshort/click/ClickRecorderTest.java": "c26a22b43ad27f5043d83200274196f0de4a29acd0bfeb0162823590e5d6f39c",
+    "src/test/java/dev/urlshort/click/LinkStatsTest.java": "1f5189cf9c8d8104a7414b16c2f107eea0f9188dd86af4fa66bed72d3274bc65",
+    "src/test/java/dev/urlshort/web/RateLimitFilterTest.java": "52fa66c8649a4c3583ee227d6a5474a9a29ff6b861d9d5a9c6ee99c3af80a2ad"
+  },
+  "all_18_product_paths_equal_candidate_xprime_target_working": true,
+  "suites": {
+    "test": {
+      "tests": 226,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "functionalTest": {
+      "tests": 250,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "xml_hashes": {
+    "build/test-results/test/TEST-dev.urlshort.UrlshortApplicationTests.xml": "32e8a71ca718cf4f8e294650f13d658d5569cb9064eda7cc70925aa94e942a26",
+    "build/test-results/test/TEST-dev.urlshort.audit.AuditControllerTest.xml": "04bbb69e1a1cc18b2a0b4af1fe672e0449ad68dcd9ff1c42949614bc2cfcd56f",
+    "build/test-results/test/TEST-dev.urlshort.audit.AuditLogTest.xml": "94ead26aec716dc6f449f2440e167a0b1d66be0c8559cdaa76ceed163f4d1d38",
+    "build/test-results/test/TEST-dev.urlshort.click.ClickAuditColumnsTest.xml": "7fc3459308eefd6ce85311b650b06273168ec9f707c4403897af311bf39d4790",
+    "build/test-results/test/TEST-dev.urlshort.click.ClickPurgeTest.xml": "e69808cc7c903bfca9645b30bccd22f5896cfaf084ee0714a96ba92f08883862",
+    "build/test-results/test/TEST-dev.urlshort.click.ClickRecorderTest.xml": "40ff92e7016047d627ad222c360b063d1e472faf6156324226f3131f9c328ca9",
+    "build/test-results/test/TEST-dev.urlshort.click.ClickSchemaTest.xml": "c298b0ac13c72833c9f68bbba4b441cd2685199ba826ab8d11cb728d6ee85e21",
+    "build/test-results/test/TEST-dev.urlshort.click.ClickTest.xml": "ba4f6d35650318d8445c4e2cb0d22dba83a0ce2a8db28ec29d9f8c3d1e4152c6",
+    "build/test-results/test/TEST-dev.urlshort.click.DailySaltTest.xml": "a83c397ea58f0864516588a0ad13506eb6b29a716f53f80b94d359c8b74706bc",
+    "build/test-results/test/TEST-dev.urlshort.click.LinkStatsTest.xml": "8a22c222baf559aefe8565af2dd568af4d17b21668e60356d5bda619a0090689",
+    "build/test-results/test/TEST-dev.urlshort.link.LinkAuditColumnsTest.xml": "bd2199a6b9c2532ef9f125a5b1c23ca96f860f7491baa1ee970f0b50902e1839",
+    "build/test-results/test/TEST-dev.urlshort.link.LinkServiceStampTest.xml": "1da27c87e3cb1dc1c022be8eb2729cabb13ef03618083c723d709d8535272009",
+    "build/test-results/test/TEST-dev.urlshort.link.LinkServiceTest.xml": "bcb326968070212961192dc0cff7a11ec2dd19645499be13fef7971f69d17c56",
+    "build/test-results/test/TEST-dev.urlshort.link.LinkTest.xml": "ccdc2f2de73c02a8e626cf8ddb1c98603113dc5c4af05a8a81c5a334db48c50a",
+    "build/test-results/test/TEST-dev.urlshort.link.LinkValidationTest.xml": "d608c162d94e2a69510ccf26b47690cb422c850984808e9d49dc964c084057a1",
+    "build/test-results/test/TEST-dev.urlshort.link.ShortCodesTest.xml": "b8c4a29f86b493e6df1b2e2915bc11313b48059f7cb39672d62af01955d2fd26",
+    "build/test-results/test/TEST-dev.urlshort.ping.PingControllerTest.xml": "5aa3c382a08b55771ebc450bd7c01495d5279ce1c260685598824903641061e4",
+    "build/test-results/test/TEST-dev.urlshort.web.MetricsConfigTest.xml": "ab3fd526d7e7475c7dbefebf28906cf749d04abc762b655827943fcf7d6c9195",
+    "build/test-results/test/TEST-dev.urlshort.web.ProblemDetailsAdviceTest.xml": "7c8ee8ddcdc7b43c545b9341c30110679274a92880af5b2db580000a5282b5fe",
+    "build/test-results/test/TEST-dev.urlshort.web.ProblemsTest.xml": "b69fc00d92a5659665b52dd780e6a5cb4694745cc18710613df1c500df549f62",
+    "build/test-results/test/TEST-dev.urlshort.web.RateLimitFilterTest.xml": "9b8ab22079b9afc84dba31e9f39204c87c11e60ed89e0cc362540e0325c186cb",
+    "build/test-results/test/TEST-dev.urlshort.web.RateLimiterTest.xml": "109c81a70baaf2dfdc899f1524a32f0a55de0c9f6f079c989e0d5f2e2b140cfd",
+    "build/test-results/test/TEST-dev.urlshort.web.RequestBodyLimitFilterTest.xml": "b89a970a7d7e67b3563fa7bdbc3e1b3f10d235cc171bc6ac86b9b533ce37c91d",
+    "build/test-results/test/TEST-dev.urlshort.web.RequestIdFilterTest.xml": "5179971b8f0ab24df7e33000d8ca2bf66df40fc7e631871fbcdb9f12dd4e2197",
+    "build/test-results/functionalTest/TEST-dev.urlshort.HealthJourneyTest.xml": "94c5cde5ff344a418405d854b37b933cf1eb0162e50d43598337c3dcc9a4f197",
+    "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditAccessSettingsJourneyTest.xml": "f72d954c2f2d3e0f7b924fda1c70e961f0386772eff2e1c6bf2ae279c648fbdc",
+    "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditForwardedHeadersJourneyTest.xml": "61d22904bacbe03c833b776bf2fe3ed79513b1ea425d5237c4c2c9796ea4b4f7",
+    "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditJourneyTest.xml": "bfcd310f3ced0e9970206f779bde7b794e444cb525e6afddf946e231d462d8b3",
+    "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditReadFailureJourneyTest.xml": "4acf790f40cfdfd2e49cc8d7cc9f36138e5b807ae0a338921972b49267a2d074",
+    "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditReadJourneyTest.xml": "53dde9a5fa9ee1e1a1ff61ef0e780deb0ae539487eae42208a8ae64b1440268c",
+    "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditUpgradeJourneyTest.xml": "03192bb7f042c1844ff72b2d10c531eb21334942437593b88c19b02521120c80",
+    "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickMetricsJourneyTest.xml": "d761a8d02c52ddbf2dde59a976cca28f4fcaac2d18436a5b07a2564abe2e899d",
+    "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickPurgeFailureJourneyTest.xml": "dc8988c3225b6f36f7a2bb103e389cb77e77df3c6678e60e1a3605c5ad171b52",
+    "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickPurgeHoldJourneyTest.xml": "ad62a8902d594e505580be3a0264ef7f5ad39c28a2f0d0cc785af6894f3cd06f",
+    "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRecordingJourneyTest.xml": "4d3ea74b285cfe8ea7aecba87b3fcf21e08e62bc10609289367cfe788e0acbcd",
+    "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickResilienceJourneyTest.xml": "74da62ec16804f0a57fa8fa63741b2bb790b251485409e32b506ac56b36d1289",
+    "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickResilienceTrustedProxyJourneyTest.xml": "5b65f2309648a41bd227b4e74e0b01e401414fb72d3d4e61d52914a401cdb9f6",
+    "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRetentionJourneyTest.xml": "513b4e7022f4f36290531212beea5cc2b91af37b2fe46f14ac3dad9ca482b843",
+    "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRetentionScheduleJourneyTest.xml": "baf88193b2464df26e9aa52f4cc7023ff8b1dd0fc4298b0d94283a8e2829a5b6",
+    "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRetentionSettingJourneyTest.xml": "3f35b934a66f27b8891bdef1565f8588bdb01d4d0851103f3d47b66ea011d793",
+    "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRetentionStartupJourneyTest.xml": "df59e458d04c609354c21085076506c0502c7aa672466ecea3e08cdfc6820e23",
+    "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickSchemaJourneyTest.xml": "eaee246be1c38ac65f392e228b5088e077a655c9a05720f34dc7c330513d8df0",
+    "build/test-results/functionalTest/TEST-dev.urlshort.click.StatsJourneyTest.xml": "f07d27eeea1d67949521f28a41a52e951b9c1c85e63cfa32177c95e91d37dea2",
+    "build/test-results/functionalTest/TEST-dev.urlshort.click.StatsV2JourneyTest.xml": "48433dd265ad78761b515e7b4d871d898c414fd1486f6d08a7500e0bc8f32c27",
+    "build/test-results/functionalTest/TEST-dev.urlshort.click.TrustedProxyClickJourneyTest.xml": "edb61551681bd88a27fde3ed28972236917b4508be9b28f4b5b10b14f8e6d292",
+    "build/test-results/functionalTest/TEST-dev.urlshort.link.IdempotencyJourneyTest.xml": "b7f78125d5599a94f8d2f09534bd23da51f12502ed9a229a584dd18c64516208",
+    "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkAuditColumnsFailureJourneyTest.xml": "c212e430b3a39ed22b5fd7126065cb2ca4236a3019530f351d4dc5dce2767516",
+    "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkAuditColumnsJourneyTest.xml": "dca9784c2a3ef07b95ebb107673196742d91a689060b8419ff7404bbea0b3589",
+    "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkCreateJourneyTest.xml": "e67b3b0eaed0fe292b002652baeabb77f36967453d5b3d19397b94ef0c2fc1b6",
+    "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkReadRetireJourneyTest.xml": "77f91f794a34a2c138df7bd647d18e191367d5d67292d5117a3038d68b5f7c02",
+    "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkUpgradeJourneyTest.xml": "b4c118bfc285a33a076658cc4ec26d0dba2b3d031d5f4c42cf81e80646aacf22",
+    "build/test-results/functionalTest/TEST-dev.urlshort.link.PublicBaseUrlJourneyTest.xml": "2f3ba810025be0c95f822509ab8a05a9ca61ff00a3cd4b8a43d36333aaa35913",
+    "build/test-results/functionalTest/TEST-dev.urlshort.link.RedirectJourneyTest.xml": "545acaf7a38233d178efd0aec7aeb4242436b595625cb3c350ed71703356cc3f",
+    "build/test-results/functionalTest/TEST-dev.urlshort.ping.PingJourneyTest.xml": "56321e5ea68ce212ed54b5e4ff0103209c744ceb0e955f9a13b11cfea40d6af9",
+    "build/test-results/functionalTest/TEST-dev.urlshort.web.ColdStartJourneyTest.xml": "c7c75168db26a9c566004dcea1064a6c80842bd519f725a4da4aed18a2c9114f",
+    "build/test-results/functionalTest/TEST-dev.urlshort.web.DatabaseDownJourneyTest.xml": "531d58d18597350aad2c493a7589a947d9a4cba7f210a0a0de22eb122b7b6d9a",
+    "build/test-results/functionalTest/TEST-dev.urlshort.web.HealthMetricsJourneyTest$AnonymousScrape.xml": "d6b818644871600963293f88799e7e619cf52ef92ee0d47056eb2f5cb208811d",
+    "build/test-results/functionalTest/TEST-dev.urlshort.web.HealthMetricsJourneyTest.xml": "a4e1370ca07ff9a28d0619a5427655c146df169b0291315a90ef1a0a5accc67d",
+    "build/test-results/functionalTest/TEST-dev.urlshort.web.ObservabilityJourneyTest.xml": "bd73219f5e1d4538fce3e3109bb3648476e7de208b5f2a946b8041fcd0f87ae0",
+    "build/test-results/functionalTest/TEST-dev.urlshort.web.OpenApiDocumentTest$OverTheCreateBudget.xml": "a82c06874ec5f0d5bcf70b8cba5936cbaf4abc4b03fa9a8494e0931c69dcd56b",
+    "build/test-results/functionalTest/TEST-dev.urlshort.web.OpenApiDocumentTest.xml": "b28d7ca8eb4b42a24ee691fd26fe2327c700b1e8d45782810f8512fecbc8094b",
+    "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitDefaultsTest.xml": "72424e86e3f468f97fc747efb507ce6897e80f568a00949f43535d32880fc684",
+    "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitJourneyTest.xml": "1e58d3ce6c83cc9c4b4a2e33266a9e46c38421cfe9c825847ccba87a24204a31",
+    "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitSettingsJourneyTest.xml": "4975f50411a6ebe444b263a53dee09dc51644a5a91b72621359ad61425fcdee4",
+    "build/test-results/functionalTest/TEST-dev.urlshort.web.ShutdownPhaseDefaultTest.xml": "e87b6f929aa89b3d858ef8eb4bbf0b8d9b1f98954f733c2c2bf1b58dc8f4379a",
+    "build/test-results/functionalTest/TEST-dev.urlshort.web.TrustedProxyJourneyTest.xml": "35791dbca09cb464a4bb54e2f41efefe533e8a3793e8588a8591a43f0c363cac"
+  },
+  "coverage": {
+    "test": {
+      "LINE_MISSED": 74,
+      "LINE_COVERED": 508,
+      "BRANCH_MISSED": 8,
+      "BRANCH_COVERED": 198
+    },
+    "functionalTest": {
+      "LINE_MISSED": 34,
+      "LINE_COVERED": 548,
+      "BRANCH_MISSED": 35,
+      "BRANCH_COVERED": 171
+    },
+    "all": {
+      "LINE_MISSED": 0,
+      "LINE_COVERED": 582,
+      "BRANCH_MISSED": 0,
+      "BRANCH_COVERED": 206
+    }
+  },
+  "exec_files": {
+    "build/jacoco/test.exec": {
+      "sha256": "a78c5faee98e96b01653a5f20f702a6ecbdc4833eb31616885b991317cb22ece",
+      "mtime": 1791073616.796563
+    },
+    "build/jacoco/functionalTest.exec": {
+      "sha256": "b2145b8c391c9a5db9ddbfb8686fe11daa0ed6e4473c4ea51e02d020d73f9a2a",
+      "mtime": 1791073675.360293
+    },
+    "build/jacoco/designDogfoodTestProbe.exec": {
+      "sha256": "f01ad9a7333f3cb310842ce6713fee61373c65d643ab0dc6b68421e42be8821f",
+      "mtime": 1791056262.077364
+    }
+  },
+  "coverage_scope": "Recomputed with canonical test.exec and functionalTest.exec only; old designDogfoodTestProbe.exec excluded by review init.",
+  "openapi_changes": [
+    "/components/schemas/DayClicks/properties/botClicks",
+    "/components/schemas/DayClicks/properties/uniqueVisitors",
+    "/paths//api/links/{code}/stats/get/responses/200/content/application/json/examples/stats/value/clicksPerDay",
+    "/paths//api/links/{code}/stats/get/responses/200/content/application/json/examples/stats/value/code",
+    "/paths//api/links/{code}/stats/get/responses/200/content/application/json/examples/stats/value/topReferrers",
+    "/paths//api/links/{code}/stats/get/responses/200/description"
+  ],
+  "live_openapi_equal": true,
+  "probe_checks": 136,
+  "wire_log_joins": [
+    {
+      "method": "POST",
+      "path": "/api/links",
+      "status": 201,
+      "requestId": "1bd9b990-23a9-451d-af9c-81b6309e8dee"
+    },
+    {
+      "method": "GET",
+      "path": "/api/links/XnhuMwgr/stats",
+      "status": 200,
+      "requestId": "3e7a7a56-48ee-4c22-8ee7-35ac3a9b20ac"
+    },
+    {
+      "method": "GET",
+      "path": "/XnhuMwgr",
+      "status": 302,
+      "requestId": "d0818a50-ddff-4655-b72d-eb610af13aa5"
+    },
+    {
+      "method": "GET",
+      "path": "/XnhuMwgr",
+      "status": 302,
+      "requestId": "f4665ffb-1693-4d52-b88c-af45510b5338"
+    },
+    {
+      "method": "GET",
+      "path": "/XnhuMwgr",
+      "status": 302,
+      "requestId": "cfc9f528-6997-42e3-a57f-2c77c633dd7a"
+    },
+    {
+      "method": "GET",
+      "path": "/XnhuMwgr",
+      "status": 302,
+      "requestId": "da5cc532-2f8d-4a66-a1a5-ee145f18bad7"
+    },
+    {
+      "method": "GET",
+      "path": "/api/links/XnhuMwgr/stats",
+      "status": 200,
+      "requestId": "af48f995-784e-490f-86c7-c6414e104c8f"
+    },
+    {
+      "method": "GET",
+      "path": "/actuator/metrics/urlshort.clicks.recorded",
+      "status": 200,
+      "requestId": "acc31faa-17b1-444d-a20a-4bb5d936fb75"
+    },
+    {
+      "method": "GET",
+      "path": "/api/audit",
+      "status": 403,
+      "requestId": "c17d4331-f9b6-40a2-86b6-b639c2ac1c79"
+    },
+    {
+      "method": "GET",
+      "path": "/api/audit",
+      "status": 200,
+      "requestId": "bc7b59ba-201e-4a4a-a81f-5e4aa2ec7d12"
+    },
+    {
+      "method": "GET",
+      "path": "/XnhuMwgr",
+      "status": 302,
+      "requestId": "22f8a78e-58a0-43fd-b078-cefcc547de6e"
+    },
+    {
+      "method": "GET",
+      "path": "/api/links/XnhuMwgr/stats",
+      "status": 200,
+      "requestId": "2e855e70-f61f-4f69-b986-c377eda007d4"
+    },
+    {
+      "method": "POST",
+      "path": "/api/links",
+      "status": 201,
+      "requestId": "4ee82297-3443-4bb7-b5e1-c941822ecf05"
+    },
+    {
+      "method": "GET",
+      "path": "/ZbzadvCd",
+      "status": 302,
+      "requestId": "43cad72b-99dc-4830-b9d2-527884288900"
+    },
+    {
+      "method": "GET",
+      "path": "/api/links/ZbzadvCd/stats",
+      "status": 200,
+      "requestId": "a55fa488-8826-43fb-b9cc-f399a7f1bbcb"
+    },
+    {
+      "method": "GET",
+      "path": "/actuator/metrics/urlshort.clicks.recorded",
+      "status": 200,
+      "requestId": "3163d7bf-ef2f-4b78-819a-fc04302c195a"
+    },
+    {
+      "method": "GET",
+      "path": "/actuator/metrics/urlshort.clicks.lost?tag=reason:write%20failed",
+      "status": 200,
+      "requestId": "a87f4381-97f3-42a9-8314-a04471a2f815"
+    },
+    {
+      "method": "GET",
+      "path": "/actuator/prometheus",
+      "status": 200,
+      "requestId": "ce092a8b-02fa-42b3-b252-e844bf76252e"
+    },
+    {
+      "method": "GET",
+      "path": "/api/links/XnhuMwgr/stats",
+      "status": 200,
+      "requestId": "b5ad8f78-4fed-424d-a496-63d0b0785d2c"
+    },
+    {
+      "method": "GET",
+      "path": "/api/links/XnhuMwgr/stats",
+      "status": 200,
+      "requestId": "09391e0d-4665-47ac-ba3c-567d838239c8"
+    },
+    {
+      "method": "GET",
+      "path": "/actuator/metrics/urlshort.clicks.recorded",
+      "status": 200,
+      "requestId": "3dc44a95-c9ac-490f-b26d-8b28c661960e"
+    },
+    {
+      "method": "POST",
+      "path": "/api/links",
+      "status": 201,
+      "requestId": "5b24eb57-4577-4ba2-b01c-7360d4aa27cc"
+    },
+    {
+      "method": "GET",
+      "path": "/api/links/caE7f7xt/stats",
+      "status": 200,
+      "requestId": "d87d35d4-4359-4599-b8d1-36c3b5f7a0f0"
+    },
+    {
+      "method": "GET",
+      "path": "/caE7f7xt",
+      "status": 302,
+      "requestId": "279d68d5-74cb-4a56-9465-d9f15b2fd4af"
+    },
+    {
+      "method": "GET",
+      "path": "/caE7f7xt",
+      "status": 302,
+      "requestId": "00b941d4-0526-472e-a238-85585c0e1e41"
+    },
+    {
+      "method": "GET",
+      "path": "/caE7f7xt",
+      "status": 302,
+      "requestId": "167cf032-249f-4428-bfac-c4ffeafeba8d"
+    },
+    {
+      "method": "GET",
+      "path": "/caE7f7xt",
+      "status": 302,
+      "requestId": "2e0b6489-400e-40c4-9cf7-05000168675d"
+    },
+    {
+      "method": "GET",
+      "path": "/api/links/caE7f7xt/stats",
+      "status": 200,
+      "requestId": "b38acc56-9394-4f2a-9920-0c88a3bf23cc"
+    },
+    {
+      "method": "GET",
+      "path": "/actuator/metrics/urlshort.clicks.recorded",
+      "status": 200,
+      "requestId": "5b61ffa0-4fae-4b99-a2c0-ae5d094e7f02"
+    },
+    {
+      "method": "GET",
+      "path": "/api/audit",
+      "status": 403,
+      "requestId": "cecba738-f3f5-4ab6-be77-927251ea425e"
+    },
+    {
+      "method": "GET",
+      "path": "/api/audit",
+      "status": 200,
+      "requestId": "53f8d4e0-f6ca-4596-8626-e9f9216acec1"
+    },
+    {
+      "method": "GET",
+      "path": "/caE7f7xt",
+      "status": 302,
+      "requestId": "907a56e0-a189-4d9e-8767-ec6765624b30"
+    },
+    {
+      "method": "GET",
+      "path": "/api/links/caE7f7xt/stats",
+      "status": 200,
+      "requestId": "f5f9a7ba-347c-4846-8a1a-d0142d2ab32e"
+    },
+    {
+      "method": "POST",
+      "path": "/api/links",
+      "status": 201,
+      "requestId": "4bcb39f1-20fa-4d5a-aa6f-254b6f6c1c33"
+    },
+    {
+      "method": "GET",
+      "path": "/jMxY3FkM",
+      "status": 302,
+      "requestId": "e92ae3fb-4961-46c4-9f45-5ba2c2f88913"
+    },
+    {
+      "method": "GET",
+      "path": "/api/links/jMxY3FkM/stats",
+      "status": 200,
+      "requestId": "13fa019d-b77e-4d79-8f9c-edead58bdf89"
+    },
+    {
+      "method": "GET",
+      "path": "/actuator/metrics/urlshort.clicks.recorded",
+      "status": 200,
+      "requestId": "e6cfebbd-51a3-4145-9b57-bdf48b1c016c"
+    },
+    {
+      "method": "GET",
+      "path": "/actuator/metrics/urlshort.clicks.lost?tag=reason:write%20failed",
+      "status": 200,
+      "requestId": "4b85139c-ee7a-4c0e-82c0-eb640d0acfd0"
+    },
+    {
+      "method": "GET",
+      "path": "/actuator/prometheus",
+      "status": 200,
+      "requestId": "8d2a286d-8def-4e15-902c-558d215d22c7"
+    },
+    {
+      "method": "GET",
+      "path": "/api/links/caE7f7xt/stats",
+      "status": 200,
+      "requestId": "e8b3704b-d9d4-41ec-a486-99aeaa4395d6"
+    },
+    {
+      "method": "GET",
+      "path": "/api/links/caE7f7xt/stats",
+      "status": 200,
+      "requestId": "d8f741db-154d-4a60-8f0e-add6a3f8b9f2"
+    },
+    {
+      "method": "GET",
+      "path": "/actuator/metrics/urlshort.clicks.recorded",
+      "status": 200,
+      "requestId": "198ae882-a427-4aba-bea2-095157091328"
+    }
+  ],
+  "write_failure_events": [
+    {
+      "@timestamp": "2026-10-04T00:31:22.151109Z",
+      "log": {
+        "level": "WARN",
+        "logger": "dev.urlshort.click.ClickRecorder"
+      },
+      "process": {
+        "pid": 47873,
+        "thread": {}
+      },
+      "service": {
+        "name": "urlshort",
+        "node": {}
+      },
+      "message": "click lost",
+      "requestId": "43cad72b-99dc-4830-b9d2-527884288900",
+      "reason": "write failed",
+      "errorType": "org.springframework.dao.DataIntegrityViolationException",
+      "ecs": {
+        "version": "8.11"
+      }
+    },
+    {
+      "@timestamp": "2026-10-04T00:31:22.781583Z",
+      "log": {
+        "level": "WARN",
+        "logger": "dev.urlshort.click.ClickRecorder"
+      },
+      "process": {
+        "pid": 47873,
+        "thread": {}
+      },
+      "service": {
+        "name": "urlshort",
+        "node": {}
+      },
+      "message": "click lost",
+      "requestId": "e92ae3fb-4961-46c4-9f45-5ba2c2f88913",
+      "reason": "write failed",
+      "errorType": "org.springframework.dao.DataIntegrityViolationException",
+      "ecs": {
+        "version": "8.11"
+      }
+    }
+  ],
+  "purge_events": [
+    {
+      "@timestamp": "2026-10-04T00:31:22.210510Z",
+      "log": {
+        "level": "INFO",
+        "logger": "dev.urlshort.click.ClickPurge"
+      },
+      "process": {
+        "pid": 47873,
+        "thread": {}
+      },
+      "service": {
+        "name": "urlshort",
+        "node": {}
+      },
+      "message": "clicks purged",
+      "deleted": 5,
+      "cutoff": "2030-01-03",
+      "retentionDays": 90,
+      "ecs": {
+        "version": "8.11"
+      }
+    },
+    {
+      "@timestamp": "2026-10-04T00:31:22.847713Z",
+      "log": {
+        "level": "INFO",
+        "logger": "dev.urlshort.click.ClickPurge"
+      },
+      "process": {
+        "pid": 47873,
+        "thread": {}
+      },
+      "service": {
+        "name": "urlshort",
+        "node": {}
+      },
+      "message": "clicks purged",
+      "deleted": 5,
+      "cutoff": "2030-01-03",
+      "retentionDays": 90,
+      "ecs": {
+        "version": "8.11"
+      }
+    }
+  ],
+  "canaries_absent_from_product_log": [
+    "203.0.113.",
+    "198.51.100.",
+    "wave-PRIVATE",
+    "wave-crawler-PRIVATE",
+    "private-path",
+    "private-query",
+    "https://news.example"
+  ],
+  "two_owned_contexts_closed": true,
+  "proof_states": {
+    "1": "accepted",
+    "2": "accepted",
+    "3": "accepted",
+    "4": "accepted",
+    "5": "accepted",
+    "6": "accepted",
+    "7": "accepted",
+    "8": "accepted",
+    "9": "accepted",
+    "10": "accepted",
+    "11": "accepted",
+    "12": "pending"
+  },
+  "receipt_evidence": {
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/human-decision-transitions.json": {
+      "expected": "c9a7373736ae42e72616c80d7968216c8dc6920731144020215fa7773f72017e",
+      "actual": "c9a7373736ae42e72616c80d7968216c8dc6920731144020215fa7773f72017e",
+      "equal": true
+    },
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/verify.py": {
+      "expected": "867f6e07d58e943b1892b81881ddd53743e8542dca29c13dc7f7f4657afcdc58",
+      "actual": "867f6e07d58e943b1892b81881ddd53743e8542dca29c13dc7f7f4657afcdc58",
+      "equal": true
+    },
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/SPEC.md": {
+      "expected": "7966cb40b9a7ee63ee1198f1c9a033e897bfe4857eab90c21e72727f3e380aad",
+      "actual": "7966cb40b9a7ee63ee1198f1c9a033e897bfe4857eab90c21e72727f3e380aad",
+      "equal": true
+    },
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-check-ec466da.txt": {
+      "expected": "a0219d6975121226e7d5354231b22f540903f4b196d6216862b1c12f5910ab1b",
+      "actual": "a0219d6975121226e7d5354231b22f540903f4b196d6216862b1c12f5910ab1b",
+      "equal": true
+    },
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/verification-summary.json": {
+      "expected": "09dc7a51c039dca4349cb9ad73ecda1cdd3dc1360c5ec20d86b5d98cfa645e98",
+      "actual": "09dc7a51c039dca4349cb9ad73ecda1cdd3dc1360c5ec20d86b5d98cfa645e98",
+      "equal": true
+    },
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/v1-authorized-summary.json": {
+      "expected": "e2851ba19ff0336e19531b54ef1bbddaa7ff61f85b32ef0f3e07bcaef3ddea92",
+      "actual": "e2851ba19ff0336e19531b54ef1bbddaa7ff61f85b32ef0f3e07bcaef3ddea92",
+      "equal": true
+    },
+    "docs/qa/TRACEABILITY.md": {
+      "expected": "9725b167c061e63e48d939014c6807189ea98222f49b99024a9a79b55f8d78ac",
+      "actual": "9725b167c061e63e48d939014c6807189ea98222f49b99024a9a79b55f8d78ac",
+      "equal": true
+    },
+    "docs/qa/coverage/01-analytics-v2/SUMMARY.md": {
+      "expected": "ae2df8c92b13570d098ff5278d20c177c55cb22c23b4b3a70c2307dfee0fe645",
+      "actual": "ae2df8c92b13570d098ff5278d20c177c55cb22c23b4b3a70c2307dfee0fe645",
+      "equal": true
+    },
+    "docs/qa/coverage/01-analytics-v2/all/jacocoTestReport.csv": {
+      "expected": "f9a191b274a33660a442e203bbe55f2920e152d169ba0318ece62573814d2bf8",
+      "actual": "f9a191b274a33660a442e203bbe55f2920e152d169ba0318ece62573814d2bf8",
+      "equal": true
+    },
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/report-hashes.json": {
+      "expected": "3b647c80bc651f1be92c3e45e43665cd7e2a53b2b54117e44e3493a7a5baf958",
+      "actual": "3b647c80bc651f1be92c3e45e43665cd7e2a53b2b54117e44e3493a7a5baf958",
+      "equal": true
+    },
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/source-test-inventory.json": {
+      "expected": "b18d968099b0f869d6ad963ca7b31566eed19849efbfbe1b9ab751f65172c0f2",
+      "actual": "b18d968099b0f869d6ad963ca7b31566eed19849efbfbe1b9ab751f65172c0f2",
+      "equal": true
+    },
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/invocation-attribution.json": {
+      "expected": "f8bf9c122e972e42dd9f81872579ca55d739e8d46a77ec97007480735704616b",
+      "actual": "f8bf9c122e972e42dd9f81872579ca55d739e8d46a77ec97007480735704616b",
+      "equal": true
+    },
+    "docs/qa/GAPS.md": {
+      "expected": "18149e871a3225f68323117da91202d2186662b6667642e3815068ae12974068",
+      "actual": "18149e871a3225f68323117da91202d2186662b6667642e3815068ae12974068",
+      "equal": true
+    },
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-item11-ec466da.md": {
+      "expected": "5a7d30bc779e1684a56f89b5e3fc740602f7652cb930166243d144a6e89ef3ed",
+      "actual": "5a7d30bc779e1684a56f89b5e3fc740602f7652cb930166243d144a6e89ef3ed",
+      "equal": true
+    },
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/http/installed-stats.body": {
+      "expected": "99a3b3083537552f22c5ed0533b95d4170b3eea0c6157aef34492f88d255521b",
+      "actual": "99a3b3083537552f22c5ed0533b95d4170b3eea0c6157aef34492f88d255521b",
+      "equal": true
+    },
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/http-ledger.json": {
+      "expected": "9e2c41d787a512e3fb09c8d5178a5cc96b0f4fe9a12eb186813f4a45f47e6dcc",
+      "actual": "9e2c41d787a512e3fb09c8d5178a5cc96b0f4fe9a12eb186813f4a45f47e6dcc",
+      "equal": true
+    },
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/installed-rows.json": {
+      "expected": "f21cb967d4a10f993220d854f6bb87349034efa6eb72a88ea36c029eb734b40f",
+      "actual": "f21cb967d4a10f993220d854f6bb87349034efa6eb72a88ea36c029eb734b40f",
+      "equal": true
+    },
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/default-click-counters.txt": {
+      "expected": "c2e34da1f98a4e00440076312cc7f12f8a04836e205eaf757f3574cb12acbb1e",
+      "actual": "c2e34da1f98a4e00440076312cc7f12f8a04836e205eaf757f3574cb12acbb1e",
+      "equal": true
+    },
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/trusted-click-counters.txt": {
+      "expected": "ea718bf6aebfd4e66b0d00fd3031043ec280d75b62712299969c74c848f08a8f",
+      "actual": "ea718bf6aebfd4e66b0d00fd3031043ec280d75b62712299969c74c848f08a8f",
+      "equal": true
+    },
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/http/installed-openapi.body": {
+      "expected": "b94f577d27a05f5a6360fbf61ea344dc775aaba489eb29b7a51897d570dd3381",
+      "actual": "b94f577d27a05f5a6360fbf61ea344dc775aaba489eb29b7a51897d570dd3381",
+      "equal": true
+    },
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/openapi-diff.txt": {
+      "expected": "ee14f80776f316bf7e0f8406a0ad0e223c187c77a27e56dac168e55509700241",
+      "actual": "ee14f80776f316bf7e0f8406a0ad0e223c187c77a27e56dac168e55509700241",
+      "equal": true
+    },
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/impact-analysis.md": {
+      "expected": "8620136be730ecb7943d50fdc870266a83622229f31da1a474169544eec9e087",
+      "actual": "8620136be730ecb7943d50fdc870266a83622229f31da1a474169544eec9e087",
+      "equal": true
+    },
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/PROOF.md": {
+      "expected": "146306d3e15b936bbc8a4bb165e645699f3090be175bff906c0d3a409ae2a0e3",
+      "actual": "146306d3e15b936bbc8a4bb165e645699f3090be175bff906c0d3a409ae2a0e3",
+      "equal": true
+    },
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/slice.yaml": {
+      "expected": "0d931111be6d73737c481ed8cc130c5a48157eaf65b036e2a4d100b6baec4665",
+      "actual": "0d931111be6d73737c481ed8cc130c5a48157eaf65b036e2a4d100b6baec4665",
+      "equal": true
+    },
+    "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/shipped-functional-source-provenance-authorized.json": {
+      "expected": "da26c333b6e08d0ce8a644113acbda5eb13e3225fe88dcf8eb920934ccf9a2b2",
+      "actual": "da26c333b6e08d0ce8a644113acbda5eb13e3225fe88dcf8eb920934ccf9a2b2",
+      "equal": true
+    },
+    "docs/review/01-analytics-v2/design-review.md": {
+      "expected": "e1a6291aacb2b2a6a81473e0527fffd3435fa448e645e105d6b25031a8e91092",
+      "actual": "e1a6291aacb2b2a6a81473e0527fffd3435fa448e645e105d6b25031a8e91092",
+      "equal": true
+    },
+    "docs/review/01-analytics-v2/02-security-review.md": {
+      "expected": "aac704bd34322daa97b21e8ac9405fd8fadd41f9d87df1d7e894d46d51b453c8",
+      "actual": "aac704bd34322daa97b21e8ac9405fd8fadd41f9d87df1d7e894d46d51b453c8",
+      "equal": true
+    },
+    "docs/review/01-analytics-v2/proof/evidence-reconciliation-ec466da.json": {
+      "expected": "ed712dedf4be45b07de5785af73a2be66fef79f04fa09307720d92dd7c7859d5",
+      "actual": "ed712dedf4be45b07de5785af73a2be66fef79f04fa09307720d92dd7c7859d5",
+      "equal": true
+    }
+  }
+}

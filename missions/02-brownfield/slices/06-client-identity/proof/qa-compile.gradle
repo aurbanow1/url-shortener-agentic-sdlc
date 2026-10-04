@@ -1,0 +1,12 @@
+allprojects {
+ afterEvaluate {
+  tasks.register("compileQaIdentity", org.gradle.api.tasks.compile.JavaCompile) {
+   dependsOn tasks.named("classes")
+   source = files("/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/06-client-identity/proof/QaIdentityRunner.java")
+   classpath = sourceSets.main.runtimeClasspath
+   def lane = project.projectDir.path.contains(".worktrees/06-client-identity") ? "candidate" : "baseline"
+   destinationDirectory = file("/private/tmp/urlshort-qa2-identity-controls/" + lane + "/classes")
+   doLast { file("/private/tmp/urlshort-qa2-identity-controls/" + lane + "/classpath.txt").text = destinationDirectory.get().asFile.path + File.pathSeparator + sourceSets.main.runtimeClasspath.asPath }
+  }
+ }
+}

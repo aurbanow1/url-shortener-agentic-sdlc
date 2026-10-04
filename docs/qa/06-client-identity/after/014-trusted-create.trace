@@ -1,0 +1,41 @@
+== Info: Host localhost:56445 was resolved.
+== Info: IPv6: ::1
+== Info: IPv4: 127.0.0.1
+== Info:   Trying [::1]:56445...
+== Info: connect to ::1 port 56445 from ::1 port 56489 failed: Connection refused
+== Info:   Trying 127.0.0.1:56445...
+== Info: Connected to localhost (127.0.0.1) port 56445
+=> Send header, 140 bytes (0x8c)
+0000: POST /api/links HTTP/1.1
+001a: Host: localhost:56445
+0031: User-Agent: curl/8.7.1
+0049: Accept: */*
+0056: Content-Type: application/json
+0076: Content-Length: 48
+008a: 
+=> Send data, 48 bytes (0x30)
+0000: {"url": "https://example.com/qa06/client-group"}
+== Info: upload completely sent off: 48 bytes
+<= Recv header, 15 bytes (0xf)
+0000: HTTP/1.1 201 
+<= Recv header, 52 bytes (0x34)
+0000: X-Request-Id: 74a42b54-b26a-4f2c-be78-798fe61803e5
+<= Recv header, 31 bytes (0x1f)
+0000: Location: /api/links/hiRI8L6f
+<= Recv header, 32 bytes (0x20)
+0000: Content-Type: application/json
+<= Recv header, 28 bytes (0x1c)
+0000: Transfer-Encoding: chunked
+<= Recv header, 37 bytes (0x25)
+0000: Date: Sun, 04 Oct 2026 01:54:57 GMT
+<= Recv header, 2 bytes (0x2)
+0000: 
+<= Recv data, 171 bytes (0xab)
+0000: a5
+0004: {"code":"hiRI8L6f","shortUrl":"http://localhost:8080/hiRI8L6f","
+0044: url":"https://example.com/qa06/client-group","state":"active","c
+0084: reatedAt":"2026-10-04T01:54:57.363Z"}
+<= Recv data, 5 bytes (0x5)
+0000: 0
+0003: 
+== Info: Connection #0 to host localhost left intact

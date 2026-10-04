@@ -1,0 +1,33 @@
+{
+  "name": "protocol-audit-GET-forged",
+  "app": "protocol",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/after/040-protocol-audit-GET-forged.trace",
+    "-X",
+    "GET",
+    "-H",
+    "X-Forwarded-For: 127.0.0.2",
+    "http://localhost:56676/api/audit"
+  ],
+  "method": "GET",
+  "path": "/api/audit",
+  "raw": "040-protocol-audit-GET-forged.http",
+  "status": 403,
+  "headers": {
+    "x-request-id": "8eb8d7c3-ef83-466c-8f93-c00842a9338d",
+    "content-type": "application/problem+json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 01:55:06 GMT"
+  },
+  "json": {
+    "instance": "urn:uuid:8eb8d7c3-ef83-466c-8f93-c00842a9338d",
+    "status": 403,
+    "title": "Forbidden"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "/opt/homebrew/opt/openjdk@21/bin/java",
+    "-jar",
+    "/private/tmp/urlshort-qa2-identity-4y4o0srn/urlshort.jar",
+    "--server.address=127.0.0.1",
+    "--server.port=54972",
+    "--spring.datasource.url=jdbc:h2:file:/private/tmp/urlshort-qa2-identity-4y4o0srn/cloud/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+    "--spring.main.cloud-platform=kubernetes"
+  ],
+  "pid": 81017,
+  "database": "/private/tmp/urlshort-qa2-identity-4y4o0srn/cloud"
+}

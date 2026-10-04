@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClickRecorder.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">urlshort</a> &gt; <a href="index.source.html" class="el_package">dev.urlshort.click</a> &gt; <span class="el_source">ClickRecorder.java</span></div><h1>ClickRecorder.java</h1><pre class="source lang-java linenums">package dev.urlshort.click;
+
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Future;
+import java.util.concurrent.RejectedExecutionException;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import dev.urlshort.web.ClientIdentity;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
+import jakarta.annotation.PreDestroy;
+import jakarta.servlet.http.HttpServletRequest;
+import org.jspecify.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
+import org.slf4j.spi.LoggingEventBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+/**
+ * Records one click per redirect without ever delaying, changing or failing it (FR-7, business rules
+ * 1, 2 and 5; ADR-0011). The request is reduced to a {@link Click} on the request thread, and only
+ * that crosses to a single writer thread through a queue of {@value #QUEUE_CAPACITY}.
+ *
+ * &lt;p&gt;Fail open: a click that cannot be reduced (reason {@code reduction failed}), a full or closed queue
+ * ({@code rejected}) or a failed write loses that click and writes exactly one WARN
+ * {@code click lost} carrying the redirect's {@code requestId}, a {@code reason} and the exception's
+ * class, never its message or any click value. On shutdown the writer drains for at most five seconds;
+ * every click still unwritten is then reported once, before {@link #close()} returns (DR-01). Each
+ * click's state decides which of the request thread, the writer or the shutdown reports it, so no
+ * click is reported twice.
+ *
+ * &lt;p&gt;Counters (NFR-O3, ADR-0016 amendment): {@code urlshort.clicks.recorded} counts every insert that
+ * returned, and {@code urlshort.clicks.lost}, tagged with the same {@code reason}, counts every
+ * {@code click lost} event. A click whose insert returns after shutdown claimed it counts in both,
+ * which is the truth for it.
+ */
+@Component
+public class ClickRecorder {
+
+	static final int QUEUE_CAPACITY = 10_000;
+<span class="fc" id="L53">	static final Duration DRAIN_DEADLINE = Duration.ofSeconds(5);</span>
+
+<span class="fc" id="L55">	private static final Logger log = LoggerFactory.getLogger(ClickRecorder.class);</span>
+	private static final int QUEUED = 0;
+	private static final int RUNNING = 1;
+	private static final int DONE = 2;
+	private static final int CLAIMED = 3;
+	private static final String REJECTED = &quot;rejected&quot;;
+	private static final String REDUCTION_FAILED = &quot;reduction failed&quot;;
+	private static final String WRITE_FAILED = &quot;write failed&quot;;
+	private static final String SHUTDOWN_DEADLINE = &quot;shutdown deadline&quot;;
+	private static final String OUTCOME_UNKNOWN = &quot;shutdown deadline, outcome unknown&quot;;
+
+	private final ClickStore store;
+	private final DailySalt salt;
+	private final Duration drainDeadline;
+	private final Counter recorded;
+<span class="fc" id="L70">	private final Map&lt;String, Counter&gt; lostByReason = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L71">	private final Set&lt;ClickWrite&gt; outstanding = ConcurrentHashMap.newKeySet();</span>
+<span class="fc" id="L72">	private final ThreadPoolExecutor writer = new ThreadPoolExecutor(1, 1, 0, TimeUnit.MILLISECONDS,</span>
+			new ArrayBlockingQueue&lt;&gt;(QUEUE_CAPACITY), task -&gt; {
+<span class="fc" id="L74">				Thread thread = new Thread(task, &quot;click-writer&quot;);</span>
+<span class="fc" id="L75">				thread.setDaemon(true);</span>
+<span class="fc" id="L76">				return thread;</span>
+			}, new ThreadPoolExecutor.AbortPolicy());
+
+	@Autowired
+	ClickRecorder(ClickStore store, DailySalt salt, MeterRegistry registry) {
+<span class="fc" id="L81">		this(store, salt, registry, DRAIN_DEADLINE);</span>
+<span class="fc" id="L82">	}</span>
+
+<span class="fc" id="L84">	ClickRecorder(ClickStore store, DailySalt salt, MeterRegistry registry, Duration drainDeadline) {</span>
+<span class="fc" id="L85">		this.store = store;</span>
+<span class="fc" id="L86">		this.salt = salt;</span>
+<span class="fc" id="L87">		this.drainDeadline = drainDeadline;</span>
+<span class="fc" id="L88">		recorded = Counter.builder(&quot;urlshort.clicks.recorded&quot;).description(&quot;Clicks written to the click store&quot;)</span>
+<span class="fc" id="L89">				.register(registry);</span>
+		// every reason registered up front, so the families are scrapeable at zero (ADR-0016 amendment)
+<span class="fc bfc" id="L91" title="All 2 branches covered.">		for (String reason : List.of(REJECTED, REDUCTION_FAILED, WRITE_FAILED, SHUTDOWN_DEADLINE, OUTCOME_UNKNOWN)) {</span>
+<span class="fc" id="L92">			lostByReason.put(reason, Counter.builder(&quot;urlshort.clicks.lost&quot;)</span>
+<span class="fc" id="L93">					.description(&quot;Clicks reported by a click lost event&quot;).tag(&quot;reason&quot;, reason).register(registry));</span>
+<span class="fc" id="L94">		}</span>
+<span class="fc" id="L95">	}</span>
+
+	/**
+	 * Hands the redirect just answered to the click writer; the redirect hook in
+	 * {@code link.RedirectController}. Returns at once and never throws. A {@code HEAD} request is not
+	 * a click (rule 1) and records nothing.
+	 *
+	 * @param linkId the id of the link the Visitor was redirected to
+	 * @param request the redirect request; only its {@code Referer}, {@code User-Agent} and client are
+	 *        read, on this thread. The client is the one the rate limiter charged
+	 *        ({@link ClientIdentity#of}, ADR-0015), else the peer address; it is hashed
+	 *        and never stored
+	 */
+	public void record(long linkId, HttpServletRequest request) {
+<span class="fc bfc" id="L109" title="All 2 branches covered.">		if (&quot;HEAD&quot;.equals(request.getMethod())) {</span>
+<span class="fc" id="L110">			return;</span>
+		}
+		ClickWrite write;
+		try {
+			// the rate limiter's client (rule 6); the peer only where the limiter did not run
+<span class="fc" id="L115">			DailySalt.Stamp stamp = salt.stamp(ClientIdentity.of(request));</span>
+<span class="fc" id="L116">			write = new ClickWrite(new Click(linkId, stamp.at(), LocalDate.ofInstant(stamp.at(), ZoneOffset.UTC),</span>
+<span class="fc" id="L117">					Click.referrerOrigin(request.getHeader(&quot;Referer&quot;)),</span>
+<span class="fc" id="L118">					Click.userAgentClass(request.getHeader(&quot;User-Agent&quot;)), stamp.clientHash()),</span>
+<span class="fc" id="L119">					MDC.get(&quot;requestId&quot;));</span>
+		}
+<span class="fc" id="L121">		catch (Exception ex) {</span>
+<span class="fc" id="L122">			lost(REDUCTION_FAILED, ex);</span>
+<span class="fc" id="L123">			return;</span>
+<span class="fc" id="L124">		}</span>
+<span class="fc" id="L125">		outstanding.add(write);</span>
+		try {
+<span class="fc" id="L127">			writer.execute(write);</span>
+		}
+<span class="fc" id="L129">		catch (RejectedExecutionException ex) {</span>
+<span class="fc" id="L130">			outstanding.remove(write);</span>
+<span class="fc" id="L131">			lost(REJECTED, ex);</span>
+<span class="fc" id="L132">		}</span>
+<span class="fc" id="L133">	}</span>
+
+	/** Waits until every click queued before the call is written or reported; for the functional suite. */
+	void settle() throws Exception {
+<span class="fc" id="L137">		writer.submit(() -&gt; {</span>
+<span class="fc" id="L138">		}).get(10, TimeUnit.SECONDS);</span>
+<span class="fc" id="L139">	}</span>
+
+	/**
+	 * Drains the queue for at most the drain deadline, then stops the writer and reports every click
+	 * not yet written, so a normal process exit right after this returns loses no report.
+	 */
+	@PreDestroy
+	void close() throws InterruptedException {
+<span class="fc" id="L147">		writer.shutdown();</span>
+<span class="fc bfc" id="L148" title="All 2 branches covered.">		if (!writer.awaitTermination(drainDeadline.toMillis(), TimeUnit.MILLISECONDS)) {</span>
+<span class="fc bfc" id="L149" title="All 2 branches covered.">			for (Runnable pending : writer.shutdownNow()) {</span>
+				// a settle() waiting behind a stuck write must not wait for ever
+<span class="fc bfc" id="L151" title="All 2 branches covered.">				if (pending instanceof Future&lt;?&gt; future) {</span>
+<span class="fc" id="L152">					future.cancel(false);</span>
+				}
+<span class="fc" id="L154">			}</span>
+<span class="fc" id="L155">			claimOutstanding();</span>
+		}
+<span class="fc" id="L157">	}</span>
+
+	/** Shutdown takes over every unfinished click and reports it once. */
+	void claimOutstanding() {
+<span class="fc bfc" id="L161" title="All 2 branches covered.">		for (ClickWrite write : outstanding) {</span>
+<span class="fc bfc" id="L162" title="All 2 branches covered.">			if (write.state.compareAndSet(QUEUED, CLAIMED)) {</span>
+<span class="fc" id="L163">				write.reportAtShutdown(SHUTDOWN_DEADLINE);</span>
+			}
+<span class="fc bfc" id="L165" title="All 2 branches covered.">			else if (write.state.compareAndSet(RUNNING, CLAIMED)) {</span>
+				// the insert may still commit after this report, so its outcome is not claimed
+<span class="fc" id="L167">				write.reportAtShutdown(OUTCOME_UNKNOWN);</span>
+			}
+<span class="fc" id="L169">		}</span>
+<span class="fc" id="L170">	}</span>
+
+	/** The one {@code click lost} WARN and its one {@code urlshort.clicks.lost} increment, same reason. */
+	private void lost(String reason, @Nullable Throwable error) {
+<span class="fc" id="L174">		LoggingEventBuilder event = log.atWarn().setMessage(&quot;click lost&quot;).addKeyValue(&quot;reason&quot;, reason);</span>
+<span class="fc bfc" id="L175" title="All 2 branches covered.">		if (error != null) {</span>
+<span class="fc" id="L176">			event = event.addKeyValue(&quot;errorType&quot;, error.getClass().getName());</span>
+		}
+<span class="fc" id="L178">		event.log();</span>
+<span class="fc" id="L179">		lostByReason.get(reason).increment();</span>
+<span class="fc" id="L180">	}</span>
+
+	/** One queued click; whoever moves its state first owns its report. */
+	final class ClickWrite implements Runnable {
+
+		final Click click;
+		final @Nullable String requestId;
+<span class="fc" id="L187">		final AtomicInteger state = new AtomicInteger(QUEUED);</span>
+
+<span class="fc" id="L189">		ClickWrite(Click click, @Nullable String requestId) {</span>
+<span class="fc" id="L190">			this.click = click;</span>
+<span class="fc" id="L191">			this.requestId = requestId;</span>
+<span class="fc" id="L192">		}</span>
+
+		@Override
+		public void run() {
+<span class="fc bfc" id="L196" title="All 2 branches covered.">			if (!state.compareAndSet(QUEUED, RUNNING)) {</span>
+<span class="fc" id="L197">				return;</span>
+			}
+<span class="fc" id="L199">			MDC.put(&quot;requestId&quot;, requestId);</span>
+			try {
+<span class="fc" id="L201">				store.insert(click);</span>
+				// counted whoever owns the report: a write shutdown already claimed can still commit
+<span class="fc" id="L203">				recorded.increment();</span>
+<span class="fc" id="L204">				state.compareAndSet(RUNNING, DONE);</span>
+			}
+<span class="fc" id="L206">			catch (RuntimeException ex) {</span>
+<span class="fc bfc" id="L207" title="All 2 branches covered.">				if (state.compareAndSet(RUNNING, DONE)) {</span>
+<span class="fc" id="L208">					lost(WRITE_FAILED, ex);</span>
+				}
+			}
+			finally {
+<span class="fc" id="L212">				outstanding.remove(this);</span>
+<span class="fc" id="L213">				MDC.remove(&quot;requestId&quot;);</span>
+			}
+<span class="fc" id="L215">		}</span>
+
+		void reportAtShutdown(String reason) {
+<span class="fc" id="L218">			try (MDC.MDCCloseable ignored = MDC.putCloseable(&quot;requestId&quot;, requestId)) {</span>
+<span class="fc" id="L219">				lost(reason, null);</span>
+			}
+<span class="fc" id="L221">		}</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

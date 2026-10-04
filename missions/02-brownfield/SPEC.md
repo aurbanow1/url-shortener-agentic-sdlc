@@ -7,9 +7,9 @@ created: 2026-10-02
 intent: "Change the shipped shortener safely: add an operator-facing, loopback-only audit-read endpoint over the existing audit table (impact analysis first), purge clicks past the retention period, fix a defect found by using the service with a regression test first, and prove retry, rollback, fallback and safe-stop with recorded drills — without breaking existing links."
 depends_on: ["OPR.99.0.2"]
 approved-spec-by: orchestration-lead@urlshort-factory
-approved-spec-at: 2026-10-03T18:30:12.064Z
+approved-spec-at: 2026-10-04T00:35:06.760Z
 provenance: transport:v1
-approved-spec-priors: 2
+approved-spec-priors: 3
 ---
 
 # Mission — Brownfield: enhance and fix the shipped shortener
@@ -115,6 +115,7 @@ The durable trigger for each is a queue item to `release-agent@urlshort-factory`
 - `03-dogfood-fix` (`OPR.99.0.3.3`) — Dogfood defect fix. Low. w2, beside `04-audit-columns` since 18:00Z (disjoint territory). Its defect is W2-01 from mission 01's dogfood report (`305dce5`); territory set at requirements.
 - `04-audit-columns` (`OPR.99.0.3.4`) — Audit columns on `link` and `audit_log`. Low. w2, `-b` judges. Added after the plan-lock; see the amendment below.
 - `05-ci-cd` (`OPR.99.0.3.5`) — CI/CD in GitHub Actions (`ci.yml`, `cd.yml`, `dependabot.yml`). Low. w2, default judges, territory `.github/`. Added after the plan-lock by human decision D14; see the second amendment below.
+- `06-client-identity` (`OPR.99.0.3.6`) — One component for client identity (behaviour-preserving refactor). Low. w3, alone, lane B (`-b`), territory the three call sites plus the new `web/ClientIdentity`. Added after the plan-lock by human decision D21; see the third amendment below.
 
 ## Amendment after the plan-lock (2026-10-03T18:00Z)
 
@@ -130,12 +131,17 @@ The durable trigger for each is a queue item to `release-agent@urlshort-factory`
 
 **Human decision D14** (2026-10-03, `PLAN.md` §10, relayed by the operator on `qitem-20261003182906-74ccb677`): every repository has CI/CD in GitHub Actions (`docs/guidance/ci-cd.md`, `ed1d314`). The operator asked for a low-tier slice with the delegated plan-lock in mission 02's next wave, kept disjoint from the `src/` territories in flight. **Applied:** `05-ci-cd` adds `.github/workflows/ci.yml`, `.github/workflows/cd.yml` and `.github/dependabot.yml` in w2. No product behaviour changes and nothing is published. Seats cannot push, so the first GitHub run is the human's push and stays pending in PROOF until the operator records it. Outcome, amended: five slices in two waves, plus the four labelled drills. Wave map v3.
 
+## Third amendment after the plan-lock (2026-10-04T00:35Z)
+
+**Human decision D21** (2026-10-03 ~17:40 local, relayed by the operator on `qitem-20261004003331-0b5245ad`): add a behaviour-preserving refactor slice, because the assignment's brownfield scope names refactors and none was in the run. Outcome: one component answers "who is this client" (`docs/guidance/architecture.md` §11, register row 1), with behaviour unchanged. **Applied:** `06-client-identity` moves the trusted-proxy rule, the resolved-client request attribute and the audit guard's loopback predicate into a new `web/ClientIdentity`, called by `RateLimitFilter`, `ClickRecorder` and `AuditController`. ADR-0015 names it as the one code path. Its proof follows `docs/guidance/brownfield.md` §6 for refactors: characterization tests first across the identity matrix (including the CR-01 `server.tomcat.remoteip` cases), the move in its own commits, every existing journey unchanged, 100 % coverage, and the API document, schema, responses and log lines unchanged. No new behaviour, setting, endpoint or dependency. It runs in a new w3, alone, on lane B. Every other mission-02 slice and mission 03's `01-analytics-v2` are merged, so no territory is shared. The wave review in progress continues on the five merged slices and later adds this slice's range only. Release prep and ship sign-off wait for it. Mission 03 is unaffected. Outcome, amended: six slices in three waves, plus the four labelled drills. Wave map v6.
+
 ## Status
 
 - 2026-10-03T11:51Z — lifecycle instance `01M40SN34E37K96B38JPG9K41X` created by the operator; decompose claimed by the orchestration lead.
 - 2026-10-03 — decomposed into three slices in two waves with four labelled drills; intent rewritten (aliases and expiry dropped, purge added); handed to `decomposition_review`.
 - 2026-10-03T15:40Z — mission plan-lock approved by the human ("three slices in two waves as briefed, with the four labelled drills; purge stays here with the 90-day default as an operator setting").
 - 2026-10-03T18:00Z — amended under the human's audit-column decision: `04-audit-columns` added to w2; mission plan-lock re-stamped on the human's behalf.
+- 2026-10-04T00:35Z — amended under human decision D21: `06-client-identity` added as w3; mission plan-lock re-stamped on the human's behalf.
 
 ---
 

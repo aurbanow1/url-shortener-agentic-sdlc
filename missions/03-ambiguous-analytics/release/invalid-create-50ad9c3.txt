@@ -1,0 +1,8 @@
+HTTP/1.1 400 
+X-Request-Id: fd489e44-6162-4c61-a487-dfb99b1831ac
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sun, 04 Oct 2026 01:18:11 GMT
+Connection: close
+
+{"instance":"urn:uuid:fd489e44-6162-4c61-a487-dfb99b1831ac","status":400,"title":"Bad Request","errors":[{"field":"url","rule":"scheme","message":"url must start with http:// or https://"}]}

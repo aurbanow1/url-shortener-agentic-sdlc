@@ -1,0 +1,18 @@
+{
+  "candidate": "e227acf04e1ea902406532fcebd741f8a86f7f65",
+  "jar": "/private/tmp/urlshort-m02-dogfood-e227acf/urlshort.jar",
+  "port": 18234,
+  "serverAddress": "127.0.0.1",
+  "publicBaseUrl": "http://127.0.0.1:18234",
+  "retentionDays": 7,
+  "firstPurgeEnabled": false,
+  "restoredPurgeEnabled": true,
+  "originalDatabase": "jdbc:h2:file:/private/tmp/urlshort-m02-dogfood-e227acf/data/urlshort",
+  "backupDirectory": "/private/tmp/urlshort-m02-dogfood-e227acf/stopped-backup",
+  "restoredDatabase": "jdbc:h2:file:/private/tmp/urlshort-m02-dogfood-e227acf/restored/urlshort",
+  "invalidProbe": {
+    "port": 18235,
+    "retentionDays": 0,
+    "exitCode": 1
+  }
+}

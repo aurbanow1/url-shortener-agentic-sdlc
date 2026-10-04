@@ -1,0 +1,37 @@
+== Info: Host localhost:52504 was resolved.
+== Info: IPv6: ::1
+== Info: IPv4: 127.0.0.1
+== Info:   Trying [::1]:52504...
+== Info: connect to ::1 port 52504 from ::1 port 52624 failed: Connection refused
+== Info:   Trying 127.0.0.1:52504...
+== Info: Connected to localhost (127.0.0.1) port 52504
+=> Send header, 87 bytes (0x57)
+0000: GET /api/audit HTTP/1.1
+0019: Host: localhost:52504
+0030: User-Agent: curl/8.7.1
+0048: Accept: */*
+0055: 
+== Info: Request completely sent off
+<= Recv header, 15 bytes (0xf)
+0000: HTTP/1.1 200 
+<= Recv header, 52 bytes (0x34)
+0000: X-Request-Id: 96a4b36d-150f-42ba-b280-6550e5300309
+<= Recv header, 32 bytes (0x20)
+0000: Content-Type: application/json
+<= Recv header, 28 bytes (0x1c)
+0000: Transfer-Encoding: chunked
+<= Recv header, 37 bytes (0x25)
+0000: Date: Sun, 04 Oct 2026 01:03:49 GMT
+<= Recv header, 2 bytes (0x2)
+0000: 
+<= Recv data, 291 bytes (0x123)
+0000: 11c
+0005: {"items":[{"occurredAt":"2026-10-04T01:03:49.185Z","actor":"anon
+0045: ymous","action":"link.create","entity":"link","entityId":"kmHkaZ
+0085: Fm","requestId":"5cbb9b52-77c3-40ba-ba07-6a23c5405088","before":
+00c5: null,"after":{"url":"https://example.com/qa06/client-group","sta
+0105: te":"active"}}],"next":null}
+<= Recv data, 5 bytes (0x5)
+0000: 0
+0003: 
+== Info: Connection #0 to host localhost left intact

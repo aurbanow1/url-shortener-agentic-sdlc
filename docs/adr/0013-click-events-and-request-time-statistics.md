@@ -1,6 +1,6 @@
 # ADR-0013 — Clicks are stored as reduced event rows; statistics are computed per request from one grouped query
 
-- Status: accepted at the `02-analytics` plan-lock (2026-10-03T09:48Z); `01-analytics-v2` amendment accepted at its plan-lock, not merged yet (see *Amendment*)
+- Status: accepted at the `02-analytics` plan-lock (2026-10-03T09:48Z); `01-analytics-v2` amendment accepted at its plan-lock and merged in `c9b66dd` (see *Amendment*)
 - Date: 2026-10-03
 - Slice: `02-analytics`
 

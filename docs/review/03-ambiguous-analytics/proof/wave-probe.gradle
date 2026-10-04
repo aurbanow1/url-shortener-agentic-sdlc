@@ -1,0 +1,17 @@
+allprojects {
+    afterEvaluate {
+        def reviewCompile = tasks.register('compileWaveReview', JavaCompile) {
+            source = files('docs/review/03-ambiguous-analytics/proof/ReviewWaveProbe.java')
+            classpath = sourceSets.main.runtimeClasspath
+            destinationDirectory = layout.buildDirectory.dir('review-wave/classes')
+            dependsOn tasks.named('classes')
+            javaCompiler = javaToolchains.compilerFor { languageVersion = JavaLanguageVersion.of(21) }
+        }
+        tasks.register('reviewWave', JavaExec) {
+            dependsOn reviewCompile
+            classpath = files(reviewCompile.flatMap { it.destinationDirectory }) + sourceSets.main.runtimeClasspath
+            mainClass = 'dev.urlshort.click.ReviewWaveProbe'
+            javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) }
+        }
+    }
+}

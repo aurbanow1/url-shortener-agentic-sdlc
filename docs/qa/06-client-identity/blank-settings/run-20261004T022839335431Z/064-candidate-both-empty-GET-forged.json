@@ -1,0 +1,33 @@
+{
+  "name": "candidate-both-empty-GET-forged",
+  "app": "candidate-both-empty",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/blank-settings/run-20261004T022839335431Z/064-candidate-both-empty-GET-forged.trace",
+    "-X",
+    "GET",
+    "-H",
+    "X-Forwarded-For: 127.0.0.2",
+    "http://localhost:61370/api/audit"
+  ],
+  "method": "GET",
+  "path": "/api/audit",
+  "raw": "064-candidate-both-empty-GET-forged.http",
+  "status": 403,
+  "headers": {
+    "x-request-id": "5835c807-2908-4a9f-b32b-318f56e7fbf7",
+    "content-type": "application/problem+json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 02:29:07 GMT"
+  },
+  "json": {
+    "instance": "urn:uuid:5835c807-2908-4a9f-b32b-318f56e7fbf7",
+    "status": 403,
+    "title": "Forbidden"
+  }
+}

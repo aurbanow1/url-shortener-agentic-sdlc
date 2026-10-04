@@ -1,0 +1,11 @@
+# W2F-01 — HIGH / JUDGMENT-GAP: scheduled-purge test races event publication
+
+Parent wave_review: qitem-20261004002455-b7ea811b, workflow 01M40SN34E37K96B38JPG9K41X. Pinned reviewed mission-02 head d55a502 (range 8e9c065..d55a502); later analytics is independently reviewed.
+
+Reproduced in a new detached worktree with scripts/gw --offline check --rerun-tasks: 218 unit pass; 233 functional, one failure. ClickRetentionScheduleJourneyTest.java:87–96 waits only for days(code) to show the committed deletion, then immediately snapshots CapturedOutput. At line 96 it saw zero purge events; the prior row assertion passed. The saved XML later contains the expected clicks purged event (deleted=2, cutoff=2026-07-07). ClickPurge.java:99–100 performs deleteBefore first, then logs; row visibility does not synchronize with publication of that later event.
+
+Evidence: final-wave-check-d55a502.txt, final-wave-first-failure-d55a502.xml, final-wave-first-run-counts.json in this directory. Isolated unchanged rerun is green (final-wave-schedule-recheck-d55a502.txt/xml), so it does not erase the first failure. Review-only PurgePublicationProbe.java plus purge-probe.init.gradle executes the actual ClickPurge/ClickStore with H2 and a latch at log publication: deletion observed with zero events, then one event after release (purge-publication-control.txt). No product or test was changed by review.
+
+Required change: forward-fix the test to wait, within its existing bound, for both the intended stored-row outcome and the expected log publication. Retain the exact-one-event and cutoff assertions; do not add an arbitrary sleep, suppress logging, loosen the result or alter the product. Route a narrow builder change with independent QA/review and a fresh complete merged gate. The final wave review will recheck this finding and the forward-fix delta. This is HIGH because the real mandatory gate failed and CI can falsely fail intermittently; there is no observed purge-product defect.
+
+The code/structural review otherwise adopts the prior pre-review, verifies the ten V4 delta files against reviewed 305f804, and preserves the existing ping/download backlog. The design second-vantage item qitem-20261004002621-3d2dc808 must also finish before the parent hands off. Full report: docs/review/02-brownfield/wave-review-review-agent.md (final-wave section).

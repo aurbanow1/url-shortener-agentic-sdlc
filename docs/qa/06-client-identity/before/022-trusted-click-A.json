@@ -1,0 +1,36 @@
+{
+  "name": "trusted-click-A",
+  "app": "trusted",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/before/022-trusted-click-A.trace",
+    "-X",
+    "GET",
+    "--interface",
+    "127.0.0.1",
+    "-H",
+    "User-Agent: Mozilla/5.0 QA06-BROWSER-CANARY",
+    "-H",
+    "Referer: https://ref.example/private-QA06-path?q=QA06-query#QA06-fragment",
+    "-H",
+    "X-Forwarded-For: 203.0.113.7",
+    "http://localhost:54124/eGLBmqV8"
+  ],
+  "method": "GET",
+  "path": "/eGLBmqV8",
+  "raw": "022-trusted-click-A.http",
+  "status": 302,
+  "headers": {
+    "x-request-id": "ee242c9a-3324-420e-a69a-1df5a21049d8",
+    "location": "https://example.com/qa06/client-group",
+    "cache-control": "no-store",
+    "content-length": "0",
+    "date": "Sun, 04 Oct 2026 01:05:21 GMT"
+  },
+  "json": null
+}

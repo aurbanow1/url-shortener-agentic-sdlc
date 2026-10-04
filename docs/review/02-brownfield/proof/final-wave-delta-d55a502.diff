@@ -1,0 +1,834 @@
+diff --git a/src/functionalTest/java/dev/urlshort/click/ClickRetentionStartupJourneyTest.java b/src/functionalTest/java/dev/urlshort/click/ClickRetentionStartupJourneyTest.java
+index 8ba3bd9..1a517b8 100644
+--- a/src/functionalTest/java/dev/urlshort/click/ClickRetentionStartupJourneyTest.java
++++ b/src/functionalTest/java/dev/urlshort/click/ClickRetentionStartupJourneyTest.java
+@@ -115,7 +115,8 @@ class ClickRetentionStartupJourneyTest {
+ 				.param("cutoff", T.minusDays(90)).query().listOfRows();
+ 		List<Map<String, Object>> classes = jdbc.sql("SELECT * FROM user_agent_class ORDER BY token").query().listOfRows();
+ 
+-		try (ConfigurableApplicationContext context = start(url, "--urlshort.click.purge-enabled=true")) {
++		try (ConfigurableApplicationContext context = start(url, "--urlshort.click.purge-enabled=true",
++				"--spring.flyway.target=3")) {
+ 			assertThat(jdbc.sql("SELECT \"version\", \"success\" FROM \"flyway_schema_history\""
+ 					+ " WHERE \"version\" IS NOT NULL ORDER BY \"installed_rank\"")
+ 					.query().listOfRows()).extracting(row -> row.get("version") + "=" + row.get("success"))
+diff --git a/src/functionalTest/java/dev/urlshort/link/LinkAuditColumnsFailureJourneyTest.java b/src/functionalTest/java/dev/urlshort/link/LinkAuditColumnsFailureJourneyTest.java
+new file mode 100644
+index 0000000..60abdc0
+--- /dev/null
++++ b/src/functionalTest/java/dev/urlshort/link/LinkAuditColumnsFailureJourneyTest.java
+@@ -0,0 +1,82 @@
++package dev.urlshort.link;
++
++import static org.assertj.core.api.Assertions.assertThat;
++import static org.mockito.ArgumentMatchers.any;
++import static org.mockito.ArgumentMatchers.eq;
++import static org.mockito.Mockito.doThrow;
++import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
++import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
++
++import java.time.Duration;
++import java.util.Map;
++
++import dev.urlshort.audit.AuditLog;
++import org.junit.jupiter.api.AfterEach;
++import org.junit.jupiter.api.Test;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.boot.test.context.SpringBootTest;
++import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
++import org.springframework.dao.DataAccessResourceFailureException;
++import org.springframework.http.MediaType;
++import org.springframework.jdbc.core.simple.JdbcClient;
++import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
++import org.springframework.test.web.servlet.MockMvc;
++import tools.jackson.databind.json.JsonMapper;
++
++/**
++ * AC-5's failed retire (slice 04-audit-columns): when the retire's audit write fails, the transaction
++ * rolls back with its update stamp, so the link stays active with the stamps it had and no audit row is
++ * added. Declares the same {@link AuditLog} spy as {@code AuditJourneyTest}, so the context is shared.
++ */
++@SpringBootTest
++@AutoConfigureMockMvc
++class LinkAuditColumnsFailureJourneyTest {
++
++	@Autowired
++	private MockMvc mockMvc;
++
++	@Autowired
++	private JsonMapper jsonMapper;
++
++	@Autowired
++	private JdbcClient jdbc;
++
++	@Autowired
++	private FunctionalClock clock;
++
++	@MockitoSpyBean
++	private AuditLog auditLog;
++
++	@AfterEach
++	void resetTheClock() {
++		clock.reset();
++	}
++
++	@Test
++	void AC05_aRetireWhoseAuditWriteFailsStampsNothing() throws Exception {
++		clock.freeze();
++		String code = jsonMapper.readTree(mockMvc.perform(post("/api/links").contentType(MediaType.APPLICATION_JSON)
++				.content("{\"url\":\"https://example.com/ac5-d\"}").with(r -> {
++					r.setRemoteAddr("127.0.0.45");
++					return r;
++				})).andReturn().getResponse().getContentAsString()).get("code").asString();
++		Map<String, Object> before = link(code);
++		doThrow(new DataAccessResourceFailureException("audit store unavailable")).when(auditLog)
++				.append(eq("link.retire"), any(), any(), any(), any());
++		clock.shift(Duration.ofMinutes(1));
++
++		int status = mockMvc.perform(delete("/api/links/" + code).with(r -> {
++			r.setRemoteAddr("127.0.0.45");
++			return r;
++		})).andReturn().getResponse().getStatus();
++
++		assertThat(status).isEqualTo(500);
++		assertThat(link(code)).isEqualTo(before).containsEntry("RETIRED_AT", null);
++		assertThat(jdbc.sql("SELECT COUNT(*) FROM audit_log WHERE entity_id = :code AND action = 'link.retire'")
++				.param("code", code).query(Long.class).single()).isZero();
++	}
++
++	private Map<String, Object> link(String code) {
++		return jdbc.sql("SELECT * FROM link WHERE code = :code").param("code", code).query().singleRow();
++	}
++}
+diff --git a/src/functionalTest/java/dev/urlshort/link/LinkAuditColumnsJourneyTest.java b/src/functionalTest/java/dev/urlshort/link/LinkAuditColumnsJourneyTest.java
+new file mode 100644
+index 0000000..cdfa1df
+--- /dev/null
++++ b/src/functionalTest/java/dev/urlshort/link/LinkAuditColumnsJourneyTest.java
+@@ -0,0 +1,273 @@
++package dev.urlshort.link;
++
++import static org.assertj.core.api.Assertions.assertThat;
++import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
++import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
++import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
++
++import java.time.Duration;
++import java.time.Instant;
++import java.time.OffsetDateTime;
++import java.util.List;
++import java.util.Map;
++import java.util.UUID;
++import java.util.concurrent.atomic.AtomicInteger;
++
++import org.jspecify.annotations.Nullable;
++import org.junit.jupiter.api.AfterEach;
++import org.junit.jupiter.api.BeforeEach;
++import org.junit.jupiter.api.Test;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.boot.test.context.SpringBootTest;
++import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
++import org.springframework.http.MediaType;
++import org.springframework.jdbc.core.simple.JdbcClient;
++import org.springframework.mock.web.MockHttpServletResponse;
++import org.springframework.test.web.servlet.MockMvc;
++import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
++import tools.jackson.databind.JsonNode;
++import tools.jackson.databind.json.JsonMapper;
++
++/**
++ * Slice 04-audit-columns: AC-2 to AC-6, AC-8 and AC-10, and business rules 1 to 4 and 7. The suite clock
++ * is frozen and moved by hand, and each test sends from its own loopback peer, so a shifted clock never
++ * leaves a shared rate-limit bucket ahead, and the audit read admits the peer.
++ */
++@SpringBootTest
++@AutoConfigureMockMvc
++class LinkAuditColumnsJourneyTest {
++
++	// a fresh loopback peer per test: a test that moves the clock ahead leaves its peer's bucket ahead too
++	private static final AtomicInteger PEERS = new AtomicInteger();
++
++	private String peer;
++
++	@Autowired
++	private MockMvc mockMvc;
++
++	@Autowired
++	private JsonMapper jsonMapper;
++
++	@Autowired
++	private JdbcClient jdbc;
++
++	@Autowired
++	private FunctionalClock clock;
++
++	@BeforeEach
++	void freezeTheClock() {
++		peer = "127.44.0." + PEERS.incrementAndGet();
++		clock.reset();
++		clock.freeze();
++	}
++
++	@AfterEach
++	void resetTheClock() {
++		clock.reset();
++	}
++
++	@Test
++	void AC02_aCreateStampsTheNewLinkAndItsAuditRow() throws Exception {
++		Instant t = clock.instant();
++
++		String code = code(create("https://example.com/ac2", null));
++
++		Map<String, Object> link = link(code);
++		assertThat(instant(link, "CREATED_AT")).isEqualTo(t);
++		assertThat(instant(link, "UPDATED_AT")).isEqualTo(t);
++		assertThat(link).containsEntry("CREATED_BY", "anonymous").containsEntry("UPDATED_BY", "anonymous");
++		assertStampedAuditRow(code, "link.create");
++	}
++
++	@Test
++	void AC03_aRetireMovesTheLinksUpdateStampOnly() throws Exception {
++		Instant t0 = clock.instant();
++		String code = code(create("https://example.com/ac3", null));
++		clock.shift(Duration.ofHours(1));
++		Instant t1 = clock.instant();
++
++		assertThat(retire(code).getStatus()).isEqualTo(204);
++
++		Map<String, Object> link = link(code);
++		assertThat(instant(link, "CREATED_AT")).isEqualTo(t0);
++		assertThat(instant(link, "UPDATED_AT")).isEqualTo(t1).isEqualTo(instant(link, "RETIRED_AT"));
++		assertThat(link).containsEntry("CREATED_BY", "anonymous").containsEntry("UPDATED_BY", "anonymous");
++		assertStampedAuditRow(code, "link.retire");
++	}
++
++	@Test
++	void AC04_releasingAnExpiredKeyIsAWrite() throws Exception {
++		String key = "key-" + UUID.randomUUID();
++		Instant t0 = clock.instant();
++		String a = code(create("https://example.com/ac4-a", key));
++		clock.shift(Duration.ofHours(25));
++		Instant t1 = clock.instant();
++
++		String b = code(create("https://example.com/ac4-b", key));
++
++		Map<String, Object> released = link(a);
++		Map<String, Object> bound = link(b);
++		assertThat(instant(released, "UPDATED_AT")).isEqualTo(t1).isEqualTo(instant(bound, "CREATED_AT"));
++		assertThat(instant(released, "CREATED_AT")).isEqualTo(t0);
++		assertThat(released).containsEntry("URL", "https://example.com/ac4-a").containsEntry("RETIRED_AT", null)
++				.containsEntry("IDEMPOTENCY_KEY", null).containsEntry("CREATED_BY", "anonymous")
++				.containsEntry("UPDATED_BY", "anonymous");
++		assertThat(instant(bound, "UPDATED_AT")).isEqualTo(t1);
++		assertThat(bound).containsEntry("IDEMPOTENCY_KEY", key);
++	}
++
++	@Test
++	void AC05_requestsThatChangeNothingStampNothing() throws Exception {
++		String key = "key-" + UUID.randomUUID();
++		String url = "https://example.com/ac5";
++		String code = code(create(url, key));
++
++		assertUnchangedBy(() -> create(url, key), 201);
++		assertUnchangedBy(() -> create("https://example.com/ac5-other", key), 422);
++		assertUnchangedBy(() -> send(get("/api/links/" + code)), 200);
++		assertUnchangedBy(() -> send(get("/" + code)), 302);
++
++		List<Map<String, Object>> before = stamps();
++		clock.shift(Duration.ofSeconds(1));
++		Instant retiredAt = clock.instant();
++		assertThat(retire(code).getStatus()).isEqualTo(204);
++		List<Map<String, Object>> after = stamps();
++		assertThat(after).hasSameSizeAs(before);
++		for (int i = 0; i < before.size(); i++) {
++			if (code.equals(before.get(i).get("CODE"))) {
++				assertThat(instant(after.get(i), "UPDATED_AT")).isEqualTo(retiredAt);
++			}
++			else {
++				assertThat(after.get(i)).isEqualTo(before.get(i));
++			}
++		}
++
++		assertUnchangedBy(() -> retire(code), 410);
++	}
++
++	@Test
++	void AC06_auditRowsAreNeverUpdated() throws Exception {
++		String code = code(create("https://example.com/ac6", null));
++		clock.shift(Duration.ofMinutes(1));
++		retire(code);
++
++		assertThat(jdbc.sql("SELECT COUNT(*) FROM audit_log WHERE updated_at <> created_at OR updated_by <> created_by")
++				.query(Long.class).single()).isZero();
++	}
++
++	@Test
++	void AC08_noResponseShowsTheNewColumns() throws Exception {
++		MockHttpServletResponse created = create("https://example.com/ac8", null);
++		String code = code(created);
++		JsonNode read = jsonMapper.readTree(send(get("/api/links/" + code)).getContentAsString());
++		MockHttpServletResponse redirect = send(get("/" + code));
++		JsonNode stats = jsonMapper.readTree(send(get("/api/links/" + code + "/stats")).getContentAsString());
++		clock.shift(Duration.ofMinutes(1));
++		retire(code);
++		JsonNode retired = jsonMapper.readTree(send(get("/api/links/" + code)).getContentAsString());
++		JsonNode audit = jsonMapper.readTree(send(get("/api/audit?limit=2")).getContentAsString());
++
++		List<String> link = List.of("code", "shortUrl", "url", "state", "createdAt");
++		assertThat(jsonMapper.readTree(created.getContentAsString()).propertyNames()).containsExactlyInAnyOrderElementsOf(link);
++		assertThat(read.propertyNames()).containsExactlyInAnyOrderElementsOf(link);
++		assertThat(retired.propertyNames()).containsExactlyInAnyOrderElementsOf(link);
++		assertThat(retired.get("createdAt")).isEqualTo(read.get("createdAt"));
++		assertThat(stats.propertyNames()).containsExactlyInAnyOrder("code", "totalClicks", "clicksPerDay", "topReferrers");
++		assertThat(redirect.getStatus()).isEqualTo(302);
++		assertThat(redirect.getContentAsString()).isEmpty();
++		for (MockHttpServletResponse response : List.of(created, redirect)) {
++			assertThat(response.getHeaderNames()).noneMatch(name -> name.toLowerCase().contains("updated")
++					|| name.toLowerCase().contains("created"));
++		}
++		for (JsonNode row : audit.get("items")) {
++			assertThat(row.propertyNames()).containsExactlyInAnyOrder("occurredAt", "actor", "action", "entity", "entityId",
++					"requestId", "before", "after");
++		}
++		assertThat(audit.get("items").get(0).get("action").asString()).isEqualTo("link.retire");
++	}
++
++	@Test
++	void AC10_theAuditColumnsHoldNoClientValue() throws Exception {
++		String userAgent = "canary-ua-" + UUID.randomUUID();
++		String key = "canary-key-" + UUID.randomUUID();
++		MockHttpServletResponse created = mockMvc.perform(withPeer(post("/api/links").contentType(MediaType.APPLICATION_JSON)
++				.header("User-Agent", userAgent).header("X-Forwarded-For", "192.0.2.10").header("Idempotency-Key", key)
++				.content("{\"url\":\"https://example.com/ac10?q=canary\"}"))).andReturn().getResponse();
++		String code = code(created);
++		clock.shift(Duration.ofMinutes(1));
++		mockMvc.perform(withPeer(delete("/api/links/" + code).header("User-Agent", userAgent)
++				.header("X-Forwarded-For", "192.0.2.10")));
++
++		List<String> actors = jdbc.sql("SELECT created_by FROM link UNION SELECT updated_by FROM link"
++				+ " UNION SELECT created_by FROM audit_log UNION SELECT updated_by FROM audit_log").query(String.class).list();
++		assertThat(actors).containsExactly("anonymous");
++		assertThat(link(code).get("UPDATED_AT")).isInstanceOf(OffsetDateTime.class);
++		assertThat(created.getHeader("X-Request-Id")).isNotBlank();
++	}
++
++	/** The request answers {@code status} and leaves every link's stamps as they were. */
++	private void assertUnchangedBy(Request request, int status) throws Exception {
++		List<Map<String, Object>> before = stamps();
++		clock.shift(Duration.ofSeconds(1));
++
++		assertThat(request.send().getStatus()).isEqualTo(status);
++
++		assertThat(stamps()).isEqualTo(before);
++	}
++
++	private void assertStampedAuditRow(String code, String action) {
++		Map<String, Object> row = jdbc.sql("SELECT * FROM audit_log WHERE entity_id = :code AND action = :action")
++				.param("code", code).param("action", action).query().singleRow();
++		assertThat(row.get("CREATED_AT")).isNotNull().isEqualTo(row.get("UPDATED_AT"));
++		assertThat(row).containsEntry("CREATED_BY", "anonymous").containsEntry("UPDATED_BY", "anonymous")
++				.containsEntry("ACTOR", "anonymous");
++	}
++
++	private List<Map<String, Object>> stamps() {
++		return jdbc.sql("SELECT id, code, created_at, updated_at, created_by, updated_by FROM link ORDER BY id")
++				.query().listOfRows();
++	}
++
++	private Map<String, Object> link(String code) {
++		return jdbc.sql("SELECT * FROM link WHERE code = :code").param("code", code).query().singleRow();
++	}
++
++	private static @Nullable Instant instant(Map<String, Object> row, String column) {
++		Object value = row.get(column);
++		return value == null ? null : ((OffsetDateTime) value).toInstant();
++	}
++
++	private MockHttpServletResponse create(String url, @Nullable String key) throws Exception {
++		MockHttpServletRequestBuilder request = post("/api/links").contentType(MediaType.APPLICATION_JSON)
++				.content(jsonMapper.writeValueAsString(Map.of("url", url)));
++		if (key != null) {
++			request.header("Idempotency-Key", key);
++		}
++		return send(request);
++	}
++
++	private MockHttpServletResponse retire(String code) throws Exception {
++		return send(delete("/api/links/" + code));
++	}
++
++	private MockHttpServletResponse send(MockHttpServletRequestBuilder request) throws Exception {
++		return mockMvc.perform(withPeer(request)).andReturn().getResponse();
++	}
++
++	private MockHttpServletRequestBuilder withPeer(MockHttpServletRequestBuilder request) {
++		return request.with(r -> {
++			r.setRemoteAddr(peer);
++			return r;
++		});
++	}
++
++	private String code(MockHttpServletResponse response) throws Exception {
++		assertThat(response.getStatus()).as(response.getContentAsString()).isEqualTo(201);
++		return jsonMapper.readTree(response.getContentAsString()).get("code").asString();
++	}
++
++	@FunctionalInterface
++	private interface Request {
++		MockHttpServletResponse send() throws Exception;
++	}
++}
+diff --git a/src/functionalTest/java/dev/urlshort/link/LinkUpgradeJourneyTest.java b/src/functionalTest/java/dev/urlshort/link/LinkUpgradeJourneyTest.java
+new file mode 100644
+index 0000000..6900b32
+--- /dev/null
++++ b/src/functionalTest/java/dev/urlshort/link/LinkUpgradeJourneyTest.java
+@@ -0,0 +1,100 @@
++package dev.urlshort.link;
++
++import static org.assertj.core.api.Assertions.assertThat;
++
++import java.nio.file.Path;
++import java.time.Instant;
++import java.time.OffsetDateTime;
++import java.util.Arrays;
++import java.util.Comparator;
++import java.util.List;
++import java.util.Map;
++
++import javax.sql.DataSource;
++
++import dev.urlshort.UrlshortApplication;
++import org.flywaydb.core.Flyway;
++import org.flywaydb.core.api.MigrationInfo;
++import org.flywaydb.core.api.MigrationVersion;
++import org.junit.jupiter.api.Test;
++import org.junit.jupiter.api.io.TempDir;
++import org.springframework.boot.builder.SpringApplicationBuilder;
++import org.springframework.context.ConfigurableApplicationContext;
++import org.springframework.jdbc.core.simple.JdbcClient;
++import org.springframework.jdbc.datasource.DriverManagerDataSource;
++
++/**
++ * AC-7 and business rule 6 (slice 04-audit-columns): a database in the shipped shapes before this slice
++ * (every migration before V4), holding an active link, a retired one, one whose key was released, and
++ * their audit rows (one dated ahead of the clock); the candidate starts on it and V4 backfills every row
++ * without changing a shipped value.
++ */
++class LinkUpgradeJourneyTest {
++
++	private static final String LINK_COLUMNS = "SELECT id, code, url, created_at, retired_at, idempotency_key FROM link ORDER BY id";
++	private static final String AUDIT_COLUMNS = "SELECT id, occurred_at, actor, action, entity, entity_id, request_id,"
++			+ " before_state, after_state FROM audit_log ORDER BY id";
++
++	@TempDir
++	private Path data;
++
++	@Test
++	void AC07_anExistingDatabaseUpgradesInPlace() {
++		String url = "jdbc:h2:file:" + data.resolve("urlshort") + ";MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE";
++		DataSource shipped = new DriverManagerDataSource(url, "sa", "");
++		Flyway.configure().dataSource(shipped).target(beforeV4(shipped)).load().migrate();
++		JdbcClient before = JdbcClient.create(shipped);
++		before.sql("INSERT INTO link (code, url, created_at, retired_at, idempotency_key) VALUES"
++				+ " ('Active12', 'https://example.com/a', TIMESTAMP WITH TIME ZONE '2026-10-01 09:00:00+00', NULL, NULL),"
++				+ " ('Retire12', 'https://example.com/r', TIMESTAMP WITH TIME ZONE '2026-10-01 09:05:00+00',"
++				+ " TIMESTAMP WITH TIME ZONE '2026-10-01 10:00:00+00', NULL),"
++				+ " ('Releas12', 'https://example.com/k', TIMESTAMP WITH TIME ZONE '2026-09-29 08:00:00+00', NULL, NULL),"
++				+ " ('Bound123', 'https://example.com/k2', TIMESTAMP WITH TIME ZONE '2026-10-01 11:00:00+00', NULL, 'K')").update();
++		before.sql("INSERT INTO audit_log (occurred_at, actor, action, entity, entity_id, request_id, before_state, after_state)"
++				+ " VALUES (TIMESTAMP WITH TIME ZONE '2026-10-01 09:00:00+00', 'anonymous', 'link.create', 'link', 'Active12', 'r-1',"
++				+ " NULL, '{\"url\":\"https://example.com/a\",\"state\":\"active\"}'),"
++				+ " (TIMESTAMP WITH TIME ZONE '2026-10-01 10:00:00+00', 'anonymous', 'link.retire', 'link', 'Retire12', 'r-2',"
++				+ " '{\"url\":\"https://example.com/r\",\"state\":\"active\"}', '{\"url\":\"https://example.com/r\",\"state\":\"retired\"}'),"
++				+ " (CURRENT_TIMESTAMP + INTERVAL '1' DAY, 'anonymous', 'link.create', 'link', 'Bound123', 'r-ahead',"
++				+ " NULL, '{\"url\":\"https://example.com/k2\",\"state\":\"active\"}')").update();
++		List<Map<String, Object>> links = before.sql(LINK_COLUMNS).query().listOfRows();
++		List<Map<String, Object>> audits = before.sql(AUDIT_COLUMNS).query().listOfRows();
++
++		try (ConfigurableApplicationContext app = new SpringApplicationBuilder(UrlshortApplication.class)
++				.run("--server.port=0", "--server.address=127.0.0.1", "--spring.datasource.url=" + url)) {
++			Instant upgraded = Instant.now();
++			JdbcClient after = JdbcClient.create(app.getBean(DataSource.class));
++
++			assertThat(after.sql("SELECT \"success\" FROM \"flyway_schema_history\" WHERE \"version\" = '4'").query(Boolean.class)
++					.single()).isTrue();
++			assertThat(after.sql(LINK_COLUMNS).query().listOfRows()).isEqualTo(links);
++			assertThat(after.sql(AUDIT_COLUMNS).query().listOfRows()).isEqualTo(audits);
++			for (Map<String, Object> link : after.sql("SELECT * FROM link").query().listOfRows()) {
++				Object latest = link.get("RETIRED_AT") != null ? link.get("RETIRED_AT") : link.get("CREATED_AT");
++				assertThat(link.get("UPDATED_AT")).as("%s", link.get("CODE")).isEqualTo(latest);
++				assertThat(link).containsEntry("CREATED_BY", "anonymous").containsEntry("UPDATED_BY", "anonymous");
++			}
++			for (Map<String, Object> audit : after.sql("SELECT * FROM audit_log").query().listOfRows()) {
++				Instant written = ((OffsetDateTime) audit.get("CREATED_AT")).toInstant();
++				assertThat(audit.get("UPDATED_AT")).isEqualTo(audit.get("CREATED_AT"));
++				assertThat(written).as("%s not later than the upgrade", audit.get("REQUEST_ID")).isBeforeOrEqualTo(upgraded);
++				Instant occurred = ((OffsetDateTime) audit.get("OCCURRED_AT")).toInstant();
++				if (occurred.isAfter(upgraded)) {
++					assertThat(audit.get("REQUEST_ID")).as("only the row dated ahead is capped").isEqualTo("r-ahead");
++				}
++				else {
++					assertThat(written).as("%s backfilled with its event time", audit.get("REQUEST_ID")).isEqualTo(occurred);
++				}
++				assertThat(audit.get("CREATED_BY")).isEqualTo(audit.get("ACTOR"));
++				assertThat(audit.get("UPDATED_BY")).isEqualTo(audit.get("ACTOR"));
++			}
++		}
++	}
++
++	/** The last migration before V4: V3 once 02-click-retention's is on the classpath, V2 until then. */
++	static MigrationVersion beforeV4(DataSource dataSource) {
++		return Arrays.stream(Flyway.configure().dataSource(dataSource).load().info().all()).map(MigrationInfo::getVersion)
++				.filter(version -> version.compareTo(MigrationVersion.fromVersion("4")) < 0).max(Comparator.naturalOrder())
++				.orElseThrow();
++	}
++}
+diff --git a/src/main/java/dev/urlshort/link/LinkRepository.java b/src/main/java/dev/urlshort/link/LinkRepository.java
+index 43106c4..dabb8e0 100644
+--- a/src/main/java/dev/urlshort/link/LinkRepository.java
++++ b/src/main/java/dev/urlshort/link/LinkRepository.java
+@@ -20,13 +20,24 @@ interface LinkRepository extends Repository<Link, Long> {
+ 
+ 	Optional<Link> findByIdempotencyKey(String idempotencyKey);
+ 
+-	/** Retires the link if it is still active; returns {@code 0} when it was already retired. */
++	/**
++	 * Retires the link if it is still active, stamping the retirement as its update; returns {@code 0}
++	 * when it was already retired.
++	 */
+ 	@Modifying
+-	@Query("UPDATE link SET retired_at = :at WHERE id = :id AND retired_at IS NULL")
++	@Query("UPDATE link SET retired_at = :at, updated_at = :at, updated_by = 'anonymous' WHERE id = :id AND retired_at IS NULL")
+ 	int retire(Long id, Instant at);
+ 
+ 	/** Frees an expired key so it can bind a new link. */
+ 	@Modifying
+ 	@Query("UPDATE link SET idempotency_key = NULL WHERE id = :id")
+ 	int releaseIdempotencyKey(Long id);
++
++	/**
++	 * Stamps a link write as the row's update (slice 04-audit-columns, rule 2): {@code at} is the write's
++	 * instant on the service clock, the actor is {@code anonymous} (NFR-S6).
++	 */
++	@Modifying
++	@Query("UPDATE link SET updated_at = :at, updated_by = 'anonymous' WHERE id = :id")
++	int stamp(Long id, Instant at);
+ }
+diff --git a/src/main/java/dev/urlshort/link/LinkService.java b/src/main/java/dev/urlshort/link/LinkService.java
+index f339105..e9c5e27 100644
+--- a/src/main/java/dev/urlshort/link/LinkService.java
++++ b/src/main/java/dev/urlshort/link/LinkService.java
+@@ -54,12 +54,15 @@ class LinkService {
+ 					throw Problems.idempotencyMismatch();
+ 				}
+ 				links.releaseIdempotencyKey(bound.id());
++				links.stamp(bound.id(), now);
+ 			}
+ 		}
+ 		// ponytail: two concurrent creates with one key both pass the lookup and the loser's insert fails
+ 		// on uq_link_idempotency_key (500, nothing stored, its retry replays); add an out-of-transaction
+ 		// retry if clients hit it
+ 		Link link = links.save(new Link(null, codes.next(), url, now, null, key));
++		// the update stamp on the service clock, so a new row reads as updated when it was created
++		links.stamp(link.id(), now);
+ 		audit.append("link.create", "link", link.code(), null, link.snapshot());
+ 		return link;
+ 	}
+diff --git a/src/main/resources/db/migration/V4__add_link_audit_columns.sql b/src/main/resources/db/migration/V4__add_link_audit_columns.sql
+new file mode 100644
+index 0000000..32a7472
+--- /dev/null
++++ b/src/main/resources/db/migration/V4__add_link_audit_columns.sql
+@@ -0,0 +1,31 @@
++-- V4: audit columns on link and audit_log (04-audit-columns; the human's audit-column policy, ADR-0020 and
++-- its 04-audit-columns amendment). Expand only: nothing dropped, renamed or retyped.
++-- link: created_at already exists (the shipped creation time on the service clock) and is the policy's
++-- created_at. updated_at is set by the application on the service clock at each of the three link writes
++-- (create, retire, key release); its default only fills rows inserted without it (v1-shaped inserts).
++-- created_by/updated_by: 'anonymous', the actor of every request (NFR-S6).
++-- audit_log: created_at/updated_at say when the row was written, by the database clock; occurred_at keeps
++-- the event's time on the service clock. created_by/updated_by equal the row's actor ('anonymous' today,
++-- so the default equals it; a writer with another actor must set them).
++-- Backfill:
++--   a link's updated_at is its latest known write: retired_at when retired, otherwise created_at;
++--   an audit row's created_at = updated_at = its occurred_at, never later than this migration, and its
++--   created_by = updated_by = its actor.
++-- rollback (removes only what V4 added, then forget V4):
++--   ALTER TABLE link DROP COLUMN updated_by; ALTER TABLE link DROP COLUMN created_by;
++--   ALTER TABLE link DROP COLUMN updated_at;
++--   ALTER TABLE audit_log DROP COLUMN updated_by; ALTER TABLE audit_log DROP COLUMN created_by;
++--   ALTER TABLE audit_log DROP COLUMN updated_at; ALTER TABLE audit_log DROP COLUMN created_at;
++--   DELETE FROM "flyway_schema_history" WHERE "version" = '4';
++
++ALTER TABLE link ADD COLUMN updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL;
++ALTER TABLE link ADD COLUMN created_by VARCHAR(64) DEFAULT 'anonymous' NOT NULL;
++ALTER TABLE link ADD COLUMN updated_by VARCHAR(64) DEFAULT 'anonymous' NOT NULL;
++UPDATE link SET updated_at = COALESCE(retired_at, created_at);
++
++ALTER TABLE audit_log ADD COLUMN created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL;
++ALTER TABLE audit_log ADD COLUMN updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL;
++ALTER TABLE audit_log ADD COLUMN created_by VARCHAR(64) DEFAULT 'anonymous' NOT NULL;
++ALTER TABLE audit_log ADD COLUMN updated_by VARCHAR(64) DEFAULT 'anonymous' NOT NULL;
++UPDATE audit_log SET created_at = LEAST(occurred_at, CURRENT_TIMESTAMP), updated_at = LEAST(occurred_at, CURRENT_TIMESTAMP),
++    created_by = actor, updated_by = actor;
+diff --git a/src/test/java/dev/urlshort/click/ClickAuditColumnsTest.java b/src/test/java/dev/urlshort/click/ClickAuditColumnsTest.java
+index 8f57cfc..f578dd8 100644
+--- a/src/test/java/dev/urlshort/click/ClickAuditColumnsTest.java
++++ b/src/test/java/dev/urlshort/click/ClickAuditColumnsTest.java
+@@ -47,7 +47,7 @@ class ClickAuditColumnsTest {
+ 			List<Map<String, Object>> v1Classes = jdbc.sql("SELECT * FROM user_agent_class ORDER BY token").query()
+ 					.listOfRows();
+ 
+-			Flyway.configure().dataSource(dataSource).load().migrate();
++			Flyway.configure().dataSource(dataSource).target("3").load().migrate();
+ 			dataSource.getHikariPoolMXBean().softEvictConnections();
+ 			insertV1(jdbc, linkId, "CURRENT_TIMESTAMP", "CURRENT_DATE", "https://new.example");
+ 
+diff --git a/src/test/java/dev/urlshort/link/LinkAuditColumnsTest.java b/src/test/java/dev/urlshort/link/LinkAuditColumnsTest.java
+new file mode 100644
+index 0000000..ad12e42
+--- /dev/null
++++ b/src/test/java/dev/urlshort/link/LinkAuditColumnsTest.java
+@@ -0,0 +1,161 @@
++package dev.urlshort.link;
++
++import static org.assertj.core.api.Assertions.assertThat;
++
++import java.nio.charset.StandardCharsets;
++import java.sql.Connection;
++import java.util.ArrayList;
++import java.util.Arrays;
++import java.util.Comparator;
++import java.util.List;
++import java.util.Map;
++import java.util.UUID;
++
++import com.zaxxer.hikari.HikariConfig;
++import com.zaxxer.hikari.HikariDataSource;
++import org.flywaydb.core.Flyway;
++import org.flywaydb.core.api.MigrationInfo;
++import org.flywaydb.core.api.MigrationVersion;
++import org.junit.jupiter.api.Test;
++import org.springframework.core.io.ClassPathResource;
++import org.springframework.jdbc.core.simple.JdbcClient;
++
++/**
++ * The audit-column migration on its own databases (slice 04-audit-columns): AC-1, the new columns and
++ * every earlier column and constraint unchanged; AC-11, the rollback written in V4's header, read from
++ * the classpath and run, restores the earlier schema and values, and V4 applies again.
++ */
++class LinkAuditColumnsTest {
++
++	private static final String V4 = "db/migration/V4__add_link_audit_columns.sql";
++	private static final String COLUMNS = "SELECT TABLE_NAME, COLUMN_NAME, DATA_TYPE, IS_NULLABLE, COLUMN_DEFAULT,"
++			+ " CHARACTER_MAXIMUM_LENGTH FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME IN ('LINK', 'AUDIT_LOG')"
++			+ " ORDER BY TABLE_NAME, COLUMN_NAME";
++	private static final String CONSTRAINTS = "SELECT TABLE_NAME, CONSTRAINT_NAME, CONSTRAINT_TYPE"
++			+ " FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_NAME IN ('LINK', 'AUDIT_LOG')"
++			+ " ORDER BY TABLE_NAME, CONSTRAINT_NAME";
++	private static final String SHIPPED_VALUES = "SELECT l.id, l.code, l.url, l.created_at, l.retired_at, l.idempotency_key,"
++			+ " a.occurred_at, a.actor, a.action, a.entity_id, a.request_id, a.before_state, a.after_state"
++			+ " FROM link l JOIN audit_log a ON a.entity_id = l.code ORDER BY a.id";
++
++	@Test
++	void AC1_bothTablesGainTheAuditColumnsAndNothingElseChanges() throws Exception {
++		try (Database before = new Database(true); Database after = new Database(false)) {
++			List<Map<String, Object>> columns = after.jdbc.sql(COLUMNS).query().listOfRows();
++			List<Map<String, Object>> shipped = before.jdbc.sql(COLUMNS).query().listOfRows();
++
++			List<Map<String, Object>> added = new ArrayList<>(columns);
++			added.removeAll(shipped);
++			assertThat(columns).as("every V3 column unchanged").containsAll(shipped);
++			assertThat(added).extracting(row -> row.get("TABLE_NAME") + "." + row.get("COLUMN_NAME") + " "
++					+ row.get("DATA_TYPE") + " " + row.get("IS_NULLABLE") + " " + row.get("COLUMN_DEFAULT")).containsExactlyInAnyOrder(
++							"AUDIT_LOG.CREATED_AT TIMESTAMP WITH TIME ZONE NO CURRENT_TIMESTAMP",
++							"AUDIT_LOG.UPDATED_AT TIMESTAMP WITH TIME ZONE NO CURRENT_TIMESTAMP",
++							"AUDIT_LOG.CREATED_BY CHARACTER VARYING NO 'anonymous'",
++							"AUDIT_LOG.UPDATED_BY CHARACTER VARYING NO 'anonymous'",
++							"LINK.UPDATED_AT TIMESTAMP WITH TIME ZONE NO CURRENT_TIMESTAMP",
++							"LINK.CREATED_BY CHARACTER VARYING NO 'anonymous'",
++							"LINK.UPDATED_BY CHARACTER VARYING NO 'anonymous'");
++			assertThat(added).filteredOn(row -> "CHARACTER VARYING".equals(row.get("DATA_TYPE")))
++					.allSatisfy(row -> assertThat(((Number) row.get("CHARACTER_MAXIMUM_LENGTH")).intValue()).isEqualTo(64));
++			assertThat(after.jdbc.sql(CONSTRAINTS).query().listOfRows()).as("every V3 constraint unchanged")
++					.isEqualTo(before.jdbc.sql(CONSTRAINTS).query().listOfRows());
++		}
++	}
++
++	@Test
++	void AC11_theWrittenRollbackRestoresTheEarlierSchemaAndV4AppliesAgain() throws Exception {
++		try (Database before = new Database(true); Database database = new Database(true)) {
++			database.jdbc.sql("INSERT INTO link (code, url, created_at, retired_at, idempotency_key) VALUES"
++					+ " ('Active12', 'https://example.com/a', TIMESTAMP WITH TIME ZONE '2026-10-01 09:00:00+00', NULL, 'K1'),"
++					+ " ('Retire12', 'https://example.com/r', TIMESTAMP WITH TIME ZONE '2026-10-01 09:05:00+00',"
++					+ " TIMESTAMP WITH TIME ZONE '2026-10-01 10:00:00+00', NULL)").update();
++			database.jdbc.sql("INSERT INTO audit_log (occurred_at, actor, action, entity, entity_id, request_id, before_state, after_state)"
++					+ " VALUES (TIMESTAMP WITH TIME ZONE '2026-10-01 09:00:00+00', 'anonymous', 'link.create', 'link', 'Active12',"
++					+ " 'r-1', NULL, '{\"url\":\"https://example.com/a\",\"state\":\"active\"}'),"
++					+ " (TIMESTAMP WITH TIME ZONE '2026-10-01 10:00:00+00', 'anonymous', 'link.retire', 'link', 'Retire12',"
++					+ " 'r-2', '{\"url\":\"https://example.com/r\",\"state\":\"active\"}', '{\"url\":\"https://example.com/r\",\"state\":\"retired\"}')")
++					.update();
++			List<Map<String, Object>> values = database.jdbc.sql(SHIPPED_VALUES).query().listOfRows();
++			database.migrate(false);
++
++			for (String statement : rollback()) {
++				database.jdbc.sql(statement).update();
++			}
++
++			assertThat(database.jdbc.sql(COLUMNS).query().listOfRows()).isEqualTo(before.jdbc.sql(COLUMNS).query().listOfRows());
++			assertThat(database.jdbc.sql(CONSTRAINTS).query().listOfRows())
++					.isEqualTo(before.jdbc.sql(CONSTRAINTS).query().listOfRows());
++			assertThat(database.jdbc.sql(SHIPPED_VALUES).query().listOfRows()).isEqualTo(values);
++
++			database.migrate(false);
++
++			assertThat(database.jdbc.sql("SELECT COUNT(*) FROM link WHERE updated_at = COALESCE(retired_at, created_at)"
++					+ " AND created_by = 'anonymous' AND updated_by = 'anonymous'").query(Long.class).single()).isEqualTo(2);
++			assertThat(database.jdbc.sql(SHIPPED_VALUES).query().listOfRows()).isEqualTo(values);
++		}
++	}
++
++	/** The statements after V4's {@code -- rollback} line, each comment line stripped of its {@code --}. */
++	private static List<String> rollback() throws Exception {
++		String script = new ClassPathResource(V4).getContentAsString(StandardCharsets.UTF_8);
++		StringBuilder rollback = new StringBuilder();
++		boolean inRollback = false;
++		for (String line : script.lines().toList()) {
++			if (line.startsWith("-- rollback")) {
++				inRollback = true;
++			}
++			else if (inRollback && line.startsWith("--   ")) {
++				rollback.append(line.substring(5)).append(' ');
++			}
++			else if (inRollback) {
++				break;
++			}
++		}
++		List<String> statements = new ArrayList<>();
++		for (String statement : rollback.toString().split(";")) {
++			if (!statement.isBlank()) {
++				statements.add(statement.strip());
++			}
++		}
++		assertThat(statements).as("V4 carries a written rollback").hasSize(8);
++		return statements;
++	}
++
++	/** A fresh in-memory database with the real migrations: all of them, or only those before V4. */
++	private static final class Database implements AutoCloseable {
++
++		private final HikariDataSource dataSource;
++		private final Connection keepOpen;
++		private final JdbcClient jdbc;
++
++		Database(boolean beforeV4) throws Exception {
++			HikariConfig config = new HikariConfig();
++			config.setJdbcUrl("jdbc:h2:mem:link-audit-columns-" + UUID.randomUUID() + ";MODE=PostgreSQL;DB_CLOSE_DELAY=-1");
++			config.setUsername("sa");
++			// one connection is held to keep the database open; Flyway needs two of its own
++			config.setMaximumPoolSize(3);
++			dataSource = new HikariDataSource(config);
++			keepOpen = dataSource.getConnection();
++			jdbc = JdbcClient.create(dataSource);
++			migrate(beforeV4);
++		}
++
++		void migrate(boolean beforeV4) {
++			var flyway = Flyway.configure().dataSource(dataSource);
++			if (beforeV4) {
++				// the last migration before V4: V3 once 02-click-retention's is on the classpath, V2 until then
++				flyway.target(Arrays.stream(flyway.load().info().all()).map(MigrationInfo::getVersion)
++						.filter(version -> version.compareTo(MigrationVersion.fromVersion("4")) < 0)
++						.max(Comparator.naturalOrder()).orElseThrow());
++			}
++			flyway.load().migrate();
++		}
++
++		@Override
++		public void close() throws Exception {
++			keepOpen.close();
++			dataSource.close();
++		}
++	}
++}
+diff --git a/src/test/java/dev/urlshort/link/LinkServiceStampTest.java b/src/test/java/dev/urlshort/link/LinkServiceStampTest.java
+new file mode 100644
+index 0000000..c2c7ef6
+--- /dev/null
++++ b/src/test/java/dev/urlshort/link/LinkServiceStampTest.java
+@@ -0,0 +1,73 @@
++package dev.urlshort.link;
++
++import static org.mockito.ArgumentMatchers.any;
++import static org.mockito.Mockito.inOrder;
++import static org.mockito.Mockito.mock;
++import static org.mockito.Mockito.verify;
++import static org.mockito.Mockito.when;
++
++import java.time.Clock;
++import java.time.Duration;
++import java.time.Instant;
++import java.time.ZoneOffset;
++import java.util.Optional;
++
++import dev.urlshort.audit.AuditLog;
++import org.junit.jupiter.api.Test;
++import org.mockito.InOrder;
++
++/**
++ * Business rule 2 of slice 04-audit-columns at the use-case level: each of the three link writes stamps
++ * the link's update time with the write's own instant. {@code LinkServiceTest} stays as shipped.
++ */
++class LinkServiceStampTest {
++
++	private static final Instant NOW = Instant.parse("2026-10-03T12:00:00Z");
++	private static final String URL = "https://example.com/";
++
++	private final LinkRepository links = mock(LinkRepository.class);
++	private final ShortCodes codes = mock(ShortCodes.class);
++	private final LinkService service = new LinkService(links, codes, mock(AuditLog.class), Clock.fixed(NOW, ZoneOffset.UTC));
++
++	@Test
++	void aCreateStampsTheNewLinkWithItsCreationInstant() {
++		when(codes.next()).thenReturn("Abc12345");
++		when(links.save(any())).thenAnswer(call -> withId(call.getArgument(0), 7L));
++
++		service.create(URL, null);
++
++		InOrder order = inOrder(links);
++		order.verify(links).save(any());
++		order.verify(links).stamp(7L, NOW);
++	}
++
++	@Test
++	void aKeyReleaseStampsTheReleasedLinkWithTheSameInstant() {
++		when(links.findByIdempotencyKey("K")).thenReturn(
++				Optional.of(new Link(3L, "Bound123", URL, NOW.minus(Duration.ofHours(25)), null, "K")));
++		when(codes.next()).thenReturn("New12345");
++		when(links.save(any())).thenAnswer(call -> withId(call.getArgument(0), 8L));
++
++		service.create("https://example.com/other", "K");
++
++		InOrder order = inOrder(links);
++		order.verify(links).releaseIdempotencyKey(3L);
++		order.verify(links).stamp(3L, NOW);
++		order.verify(links).save(any());
++		order.verify(links).stamp(8L, NOW);
++	}
++
++	@Test
++	void aRetireStampsThroughItsConditionalUpdate() {
++		when(links.findByCode("Active12")).thenReturn(Optional.of(new Link(1L, "Active12", URL, NOW, null, null)));
++		when(links.retire(1L, NOW)).thenReturn(1);
++
++		service.retire("Active12");
++
++		verify(links).retire(1L, NOW);
++	}
++
++	private static Link withId(Link link, long id) {
++		return new Link(id, link.code(), link.url(), link.createdAt(), link.retiredAt(), link.idempotencyKey());
++	}
++}

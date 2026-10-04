@@ -1,0 +1,30 @@
+{
+  "counts": {
+    "test": {
+      "tests": 268,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "functionalTest": {
+      "tests": 322,
+      "failures": 2,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "failures": [
+    {
+      "suite": "functionalTest",
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "method": "designDR01_anInvalidPathUnderAnExemptPrefixLogsNoSubmittedValueOnTomcat(CapturedOutput)",
+      "failure": "org.opentest4j.AssertionFailedError: \nexpected: 404\n but was: 401"
+    },
+    {
+      "suite": "functionalTest",
+      "class": "dev.urlshort.web.RateLimitJourneyTest",
+      "method": "AC11_onTomcatThe429IsTheSameProblemMediaTypeAsEveryOtherError()",
+      "failure": "org.opentest4j.AssertionFailedError: \nexpected: 429\n but was: 401"
+    }
+  ]
+}

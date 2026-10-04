@@ -1,0 +1,27 @@
+{
+  "name": "baseline-protocol-space-HEAD-forged",
+  "app": "baseline-protocol-space",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/blank-settings/run-20261004T022839335431Z/023-baseline-protocol-space-HEAD-forged.trace",
+    "--head",
+    "-H",
+    "X-Forwarded-For: 127.0.0.2",
+    "http://localhost:60756/api/audit"
+  ],
+  "method": "HEAD",
+  "path": "/api/audit",
+  "raw": "023-baseline-protocol-space-HEAD-forged.http",
+  "status": 403,
+  "headers": {
+    "x-request-id": "6b2006a3-9f8a-408d-8a08-50557165e5d2",
+    "content-type": "application/problem+json",
+    "date": "Sun, 04 Oct 2026 02:28:49 GMT"
+  },
+  "json": null
+}

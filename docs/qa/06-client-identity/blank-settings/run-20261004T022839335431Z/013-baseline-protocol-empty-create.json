@@ -1,0 +1,38 @@
+{
+  "name": "baseline-protocol-empty-create",
+  "app": "baseline-protocol-empty",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/blank-settings/run-20261004T022839335431Z/013-baseline-protocol-empty-create.trace",
+    "-X",
+    "POST",
+    "-H",
+    "Content-Type: application/json",
+    "--data",
+    "{\"url\": \"https://example.com/qa06/client-group\"}",
+    "http://localhost:60678/api/links"
+  ],
+  "method": "POST",
+  "path": "/api/links",
+  "raw": "013-baseline-protocol-empty-create.http",
+  "status": 201,
+  "headers": {
+    "x-request-id": "8422009c-8fa6-4713-ae02-89dff96d497d",
+    "location": "/api/links/UstHibCl",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 02:28:46 GMT"
+  },
+  "json": {
+    "code": "UstHibCl",
+    "shortUrl": "http://localhost:8080/UstHibCl",
+    "url": "https://example.com/qa06/client-group",
+    "state": "active",
+    "createdAt": "2026-10-04T02:28:46.651Z"
+  }
+}

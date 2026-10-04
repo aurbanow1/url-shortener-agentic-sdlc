@@ -1,0 +1,25 @@
+== Info: Host localhost:56781 was resolved.
+== Info: IPv6: ::1
+== Info: IPv4: 127.0.0.1
+== Info:   Trying [::1]:56781...
+== Info: connect to ::1 port 56781 from ::1 port 56824 failed: Connection refused
+== Info:   Trying 127.0.0.1:56781...
+== Info: Connected to localhost (127.0.0.1) port 56781
+=> Send header, 88 bytes (0x58)
+0000: HEAD /api/audit HTTP/1.1
+001a: Host: localhost:56781
+0031: User-Agent: curl/8.7.1
+0049: Accept: */*
+0056: 
+== Info: Request completely sent off
+<= Recv header, 15 bytes (0xf)
+0000: HTTP/1.1 403 
+<= Recv header, 52 bytes (0x34)
+0000: X-Request-Id: 8c3b868d-c030-4fd5-93e4-307a77c9206c
+<= Recv header, 40 bytes (0x28)
+0000: Content-Type: application/problem+json
+<= Recv header, 37 bytes (0x25)
+0000: Date: Sun, 04 Oct 2026 01:55:10 GMT
+<= Recv header, 2 bytes (0x2)
+0000: 
+== Info: Connection #0 to host localhost left intact

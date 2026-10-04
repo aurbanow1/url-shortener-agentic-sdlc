@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "/opt/homebrew/opt/openjdk@21/bin/java",
+    "-jar",
+    "/private/tmp/urlshort-qa2-identity-idu_b_mk/urlshort.jar",
+    "--server.address=127.0.0.1",
+    "--server.port=56515",
+    "--spring.datasource.url=jdbc:h2:file:/private/tmp/urlshort-qa2-identity-idu_b_mk/untrusted-budget/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+    "--urlshort.rate-limit.create-per-minute=2"
+  ],
+  "pid": 78521,
+  "database": "/private/tmp/urlshort-qa2-identity-idu_b_mk/untrusted-budget"
+}

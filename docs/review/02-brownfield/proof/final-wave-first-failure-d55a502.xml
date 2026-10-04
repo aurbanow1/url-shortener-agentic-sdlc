@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.urlshort.click.ClickRetentionScheduleJourneyTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2026-10-04T00:27:02.946Z" hostname="Andrzejs-MacBook-Pro.local" time="5.243">
+  <properties/>
+  <testcase name="AC08_aPurgeRunsEveryUtcDayWithoutAnOperator(CapturedOutput)" classname="dev.urlshort.click.ClickRetentionScheduleJourneyTest" time="5.056">
+    <failure message="java.lang.AssertionError: &#10;Expected size: 1 but was: 0 in:&#10;[]" type="java.lang.AssertionError">java.lang.AssertionError: 
+Expected size: 1 but was: 0 in:
+[]
+	at dev.urlshort.click.ClickRetentionScheduleJourneyTest.AC08_aPurgeRunsEveryUtcDayWithoutAnOperator(ClickRetentionScheduleJourneyTest.java:96)
+</failure>
+  </testcase>
+  <system-out><![CDATA[{"@timestamp":"2026-10-04T00:27:02.947012Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.click.ClickRetentionScheduleJourneyTest]: ClickRetentionScheduleJourneyTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:02.947910Z","log":{"level":"INFO","logger":"org.springframework.boot.test.context.SpringBootTestContextBootstrapper"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.click.ClickRetentionScheduleJourneyTest","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:02.948251Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.click.ClickRetentionScheduleJourneyTest]: ClickRetentionScheduleJourneyTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:02.948618Z","log":{"level":"INFO","logger":"org.springframework.boot.test.context.SpringBootTestContextBootstrapper"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.click.ClickRetentionScheduleJourneyTest","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:02.955536Z","log":{"level":"INFO","logger":"dev.urlshort.click.ClickRetentionScheduleJourneyTest"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Starting ClickRetentionScheduleJourneyTest using Java 21.0.10 with PID 30186 (started by andrzej in /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/review-wave02-d55a502)","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:02.955661Z","log":{"level":"INFO","logger":"dev.urlshort.click.ClickRetentionScheduleJourneyTest"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"The following 1 profile is active: \"functional\"","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:02.998948Z","log":{"level":"INFO","logger":"org.springframework.data.repository.config.RepositoryConfigurationDelegate"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Bootstrapping Spring Data JDBC repositories in DEFAULT mode.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.001263Z","log":{"level":"INFO","logger":"org.springframework.data.repository.config.RepositoryConfigurationDelegate"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Finished Spring Data repository scanning in 1 ms. Found 1 JDBC repository interface.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.026793Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-15 - Starting...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.028241Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.pool.HikariPool"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-15 - Added connection conn107: url=jdbc:h2:mem:click-retention-schedule user=SA","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.028473Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-15 - Start completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.028664Z","log":{"level":"INFO","logger":"org.flywaydb.core.FlywayExecutor"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Database: jdbc:h2:mem:click-retention-schedule (H2 2.4)","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.030242Z","log":{"level":"WARN","logger":"org.flywaydb.core.internal.database.base.Database"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.031241Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Schema history table \"PUBLIC\".\"flyway_schema_history\" does not exist yet","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.031432Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbValidate"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Successfully validated 4 migrations (execution time 00:00.000s)","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.031830Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Creating Schema History table \"PUBLIC\".\"flyway_schema_history\" ...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.033614Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Current version of schema \"PUBLIC\": << Empty Schema >>","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.034069Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Migrating schema \"PUBLIC\" to version \"1 - create link and audit log\"","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.035220Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Migrating schema \"PUBLIC\" to version \"2 - create click\"","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.036712Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Migrating schema \"PUBLIC\" to version \"3 - add click audit columns\"","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.041026Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Migrating schema \"PUBLIC\" to version \"4 - add link audit columns\"","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.044898Z","log":{"level":"INFO","logger":"org.flywaydb.core.internal.command.DbMigrate"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Successfully applied 4 migrations to schema \"PUBLIC\", now at version v4 (execution time 00:00.006s)","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.124521Z","log":{"level":"INFO","logger":"org.springframework.boot.test.mock.web.SpringBootMockServletContext"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Spring TestDispatcherServlet ''","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.124678Z","log":{"level":"INFO","logger":"org.springframework.test.web.servlet.TestDispatcherServlet"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Initializing Servlet ''","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.125138Z","log":{"level":"INFO","logger":"org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Exposing 3 endpoints beneath base path '/actuator'","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.126073Z","log":{"level":"INFO","logger":"org.springframework.test.web.servlet.TestDispatcherServlet"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Completed initialization in 2 ms","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.130807Z","log":{"level":"INFO","logger":"dev.urlshort.click.ClickRetentionScheduleJourneyTest"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Started ClickRetentionScheduleJourneyTest in 0.181 seconds (process running for 25.209)","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.131158Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.131204Z","log":{"level":"WARN","logger":"org.springdoc.core.events.SpringDocAppInitializer"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.131877Z","log":{"level":"INFO","logger":"dev.urlshort.click.ClickPurge"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"clicks purged","deleted":0,"cutoff":"2026-07-06","retentionDays":90,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.138797Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"2b9f8e38-de02-4355-bb90-f8c5a086e298","status":201,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.141503Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"ed40e1b3-bf76-4d00-9813-183cc0d56027","status":302,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.142600Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"fdbcc9a9-54a2-4eab-905d-68aadc42e615","status":302,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.143240Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"e7925cf0-55f3-4246-a07a-cd73d33fefe2","status":302,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:03.143734Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"a787c1ee-3e28-408e-8fb4-f4fae05d4e83","status":302,"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:08.137847Z","log":{"level":"INFO","logger":"dev.urlshort.click.ClickPurge"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"clicks purged","deleted":2,"cutoff":"2026-07-07","retentionDays":90,"ecs":{"version":"8.11"}}
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /api/links
+       Parameters = {}
+          Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"35"]
+             Body = {"url":"https://example.com/daily"}
+    Session Attrs = {}
+
+Handler:
+             Type = dev.urlshort.link.LinkController
+           Method = dev.urlshort.link.LinkController#createLink(CreateLinkRequest, String)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 201
+    Error message = null
+          Headers = [X-Request-Id:"2b9f8e38-de02-4355-bb90-f8c5a086e298", Location:"/api/links/xfhA3HKB", Content-Type:"application/json"]
+     Content type = application/json
+             Body = {"code":"xfhA3HKB","shortUrl":"http://localhost:8080/xfhA3HKB","url":"https://example.com/daily","state":"active","createdAt":"2026-10-04T00:27:03.135Z"}
+    Forwarded URL = null
+   Redirected URL = /api/links/xfhA3HKB
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /xfhA3HKB
+       Parameters = {}
+          Headers = [Accept:"text/html,application/xhtml+xml,*/*;q=0.8"]
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = dev.urlshort.link.RedirectController
+           Method = dev.urlshort.link.RedirectController#redirect(String, HttpServletRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [X-Request-Id:"ed40e1b3-bf76-4d00-9813-183cc0d56027", Location:"https://example.com/daily", Cache-Control:"no-store"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = https://example.com/daily
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /xfhA3HKB
+       Parameters = {}
+          Headers = [Accept:"text/html,application/xhtml+xml,*/*;q=0.8"]
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = dev.urlshort.link.RedirectController
+           Method = dev.urlshort.link.RedirectController#redirect(String, HttpServletRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [X-Request-Id:"fdbcc9a9-54a2-4eab-905d-68aadc42e615", Location:"https://example.com/daily", Cache-Control:"no-store"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = https://example.com/daily
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /xfhA3HKB
+       Parameters = {}
+          Headers = [Accept:"text/html,application/xhtml+xml,*/*;q=0.8"]
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = dev.urlshort.link.RedirectController
+           Method = dev.urlshort.link.RedirectController#redirect(String, HttpServletRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [X-Request-Id:"e7925cf0-55f3-4246-a07a-cd73d33fefe2", Location:"https://example.com/daily", Cache-Control:"no-store"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = https://example.com/daily
+          Cookies = []
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /xfhA3HKB
+       Parameters = {}
+          Headers = [Accept:"text/html,application/xhtml+xml,*/*;q=0.8"]
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = dev.urlshort.link.RedirectController
+           Method = dev.urlshort.link.RedirectController#redirect(String, HttpServletRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 302
+    Error message = null
+          Headers = [X-Request-Id:"a787c1ee-3e28-408e-8fb4-f4fae05d4e83", Location:"https://example.com/daily", Cache-Control:"no-store"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = https://example.com/daily
+          Cookies = []
+{"@timestamp":"2026-10-04T00:27:08.197928Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-15 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T00:27:08.199663Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":30186,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-15 - Shutdown completed.","ecs":{"version":"8.11"}}
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

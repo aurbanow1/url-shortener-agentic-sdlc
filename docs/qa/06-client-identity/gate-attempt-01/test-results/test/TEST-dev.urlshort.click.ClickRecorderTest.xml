@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.urlshort.click.ClickRecorderTest" tests="19" skipped="0" failures="0" errors="0" timestamp="2026-10-04T01:39:38.995Z" hostname="Andrzejs-MacBook-Pro.local" time="0.288">
+  <properties/>
+  <testcase name="shutdownReasonsAreCountedAndAWriteThatReturnsAfterTheClaimIsStillRecorded()" classname="dev.urlshort.click.ClickRecorderTest" time="0.006"/>
+  <testcase name="aFastStoreIsDrainedOnCloseAndNothingIsReported()" classname="dev.urlshort.click.ClickRecorderTest" time="0.001"/>
+  <testcase name="withoutTheLimitersAttributeThePeerIsHashed()" classname="dev.urlshort.click.ClickRecorderTest" time="0.001"/>
+  <testcase name="aRedirectIsStoredAsItsReducedFactsOnly()" classname="dev.urlshort.click.ClickRecorderTest" time="0.003"/>
+  <testcase name="aWriteThatCompletesAfterShutdownClaimedItIsNotReportedAgain()" classname="dev.urlshort.click.ClickRecorderTest" time="0.001"/>
+  <testcase name="aFailedWriteIsOneWarnWithTheRequestIdAndNoClickValue()" classname="dev.urlshort.click.ClickRecorderTest" time="0.001"/>
+  <testcase name="aReductionFailureIsCountedUnderItsReason()" classname="dev.urlshort.click.ClickRecorderTest" time="0.0"/>
+  <testcase name="everyLostReasonIsRegisteredAtZeroBeforeAnyClick()" classname="dev.urlshort.click.ClickRecorderTest" time="0.003"/>
+  <testcase name="aStoredClickIsCountedAsRecorded()" classname="dev.urlshort.click.ClickRecorderTest" time="0.002"/>
+  <testcase name="aFailedWriteIsCountedUnderItsReason()" classname="dev.urlshort.click.ClickRecorderTest" time="0.001"/>
+  <testcase name="aHeadRequestIsNotAClick()" classname="dev.urlshort.click.ClickRecorderTest" time="0.001"/>
+  <testcase name="aClaimedClickIsNeverWrittenWhenTheWriterReachesItLater()" classname="dev.urlshort.click.ClickRecorderTest" time="0.002"/>
+  <testcase name="aClickThatCannotBeReducedIsOneWarn()" classname="dev.urlshort.click.ClickRecorderTest" time="0.001"/>
+  <testcase name="anAttributeThatIsNotAStringIsIgnoredAndThePeerIsHashed()" classname="dev.urlshort.click.ClickRecorderTest" time="0.001"/>
+  <testcase name="theRateLimitersClientIsHashedWhenTheRequestCarriesIt()" classname="dev.urlshort.click.ClickRecorderTest" time="0.001"/>
+  <testcase name="aClickThatCannotBeQueuedIsOneWarnAndTheRedirectGoesOn()" classname="dev.urlshort.click.ClickRecorderTest" time="0.0"/>
+  <testcase name="aRejectedClickIsCountedUnderItsReason()" classname="dev.urlshort.click.ClickRecorderTest" time="0.0"/>
+  <testcase name="aWriteThatFailsAfterShutdownClaimedItIsNotReportedAgain()" classname="dev.urlshort.click.ClickRecorderTest" time="0.001"/>
+  <testcase name="aStuckWriteIsBoundedAndEveryUnwrittenClickIsReportedOnceBeforeCloseReturns()" classname="dev.urlshort.click.ClickRecorderTest" time="0.223"/>
+  <system-out><![CDATA[2026-10-03T18:39:39.028-07:00  WARN 19424 --- [    Test worker] dev.urlshort.click.ClickRecorder         : click lost
+2026-10-03T18:39:39.028-07:00  WARN 19424 --- [    Test worker] dev.urlshort.click.ClickRecorder         : click lost
+2026-10-03T18:39:39.040-07:00  WARN 19424 --- [   click-writer] dev.urlshort.click.ClickRecorder         : click lost
+2026-10-03T18:39:39.042-07:00  WARN 19424 --- [   click-writer] dev.urlshort.click.ClickRecorder         : click lost
+2026-10-03T18:39:39.044-07:00  WARN 19424 --- [    Test worker] dev.urlshort.click.ClickRecorder         : click lost
+2026-10-03T18:39:39.050-07:00  WARN 19424 --- [   click-writer] dev.urlshort.click.ClickRecorder         : click lost
+2026-10-03T18:39:39.052-07:00  WARN 19424 --- [    Test worker] dev.urlshort.click.ClickRecorder         : click lost
+2026-10-03T18:39:39.053-07:00  WARN 19424 --- [    Test worker] dev.urlshort.click.ClickRecorder         : click lost
+2026-10-03T18:39:39.054-07:00  WARN 19424 --- [    Test worker] dev.urlshort.click.ClickRecorder         : click lost
+2026-10-03T18:39:39.058-07:00  WARN 19424 --- [    Test worker] dev.urlshort.click.ClickRecorder         : click lost
+2026-10-03T18:39:39.059-07:00  WARN 19424 --- [    Test worker] dev.urlshort.click.ClickRecorder         : click lost
+2026-10-03T18:39:39.060-07:00  WARN 19424 --- [   click-writer] dev.urlshort.click.ClickRecorder         : click lost
+2026-10-03T18:39:39.269-07:00  WARN 19424 --- [    Test worker] dev.urlshort.click.ClickRecorder         : click lost
+2026-10-03T18:39:39.272-07:00  WARN 19424 --- [    Test worker] dev.urlshort.click.ClickRecorder         : click lost
+2026-10-03T18:39:39.272-07:00  WARN 19424 --- [    Test worker] dev.urlshort.click.ClickRecorder         : click lost
+2026-10-03T18:39:39.272-07:00  WARN 19424 --- [    Test worker] dev.urlshort.click.ClickRecorder         : click lost
+2026-10-03T18:39:39.274-07:00  WARN 19424 --- [    Test worker] dev.urlshort.click.ClickRecorder         : click lost
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

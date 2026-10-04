@@ -1,0 +1,38 @@
+{
+  "name": "both-remoteip-create-canary",
+  "app": "both-remoteip",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/before/043-both-remoteip-create-canary.trace",
+    "-X",
+    "POST",
+    "-H",
+    "Content-Type: application/json",
+    "--data",
+    "{\"url\": \"https://example.com/qa06/client-group\"}",
+    "http://localhost:54677/api/links"
+  ],
+  "method": "POST",
+  "path": "/api/links",
+  "raw": "043-both-remoteip-create-canary.http",
+  "status": 201,
+  "headers": {
+    "x-request-id": "d51ef286-f07f-4926-94a8-6833517ff214",
+    "location": "/api/links/dmzaboei",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 01:05:34 GMT"
+  },
+  "json": {
+    "code": "dmzaboei",
+    "shortUrl": "http://localhost:8080/dmzaboei",
+    "url": "https://example.com/qa06/client-group",
+    "state": "active",
+    "createdAt": "2026-10-04T01:05:34.371Z"
+  }
+}

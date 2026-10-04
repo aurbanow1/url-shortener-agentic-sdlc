@@ -1,0 +1,872 @@
+{
+  "components" : {
+    "schemas" : {
+      "AuditEntry" : {
+        "properties" : {
+          "action" : {
+            "description" : "What happened",
+            "example" : "link.retire",
+            "type" : "string"
+          },
+          "actor" : {
+            "description" : "Who acted",
+            "example" : "anonymous",
+            "type" : "string"
+          },
+          "after" : {
+            "description" : "The state after the change, as stored",
+            "type" : "object"
+          },
+          "before" : {
+            "description" : "The state before the change, as stored; null for a create",
+            "type" : [ "object", "null" ]
+          },
+          "entity" : {
+            "description" : "The kind of thing changed",
+            "example" : "link",
+            "type" : "string"
+          },
+          "entityId" : {
+            "description" : "The public identifier of the thing changed",
+            "example" : "jHkOIMpK",
+            "type" : "string"
+          },
+          "occurredAt" : {
+            "description" : "When the mutation happened (UTC)",
+            "example" : "2026-10-03T17:29:41.033Z",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "requestId" : {
+            "description" : "The X-Request-Id of the request that made the change",
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "AuditPage" : {
+        "properties" : {
+          "items" : {
+            "items" : {
+              "$ref" : "#/components/schemas/AuditEntry"
+            },
+            "type" : "array"
+          },
+          "next" : {
+            "description" : "Pass back as cursor for the next page; null on the last page",
+            "type" : [ "string", "null" ]
+          }
+        },
+        "type" : "object"
+      },
+      "CreateLinkRequest" : {
+        "properties" : {
+          "url" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "DayClicks" : {
+        "properties" : {
+          "botClicks" : {
+            "description" : "Clicks whose user agent was classified bot",
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "clicks" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "date" : {
+            "format" : "date",
+            "type" : "string"
+          },
+          "uniqueVisitors" : {
+            "description" : "Distinct visitors that UTC day; never combined across days",
+            "format" : "int64",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "LinkResponse" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "createdAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "shortUrl" : {
+            "type" : "string"
+          },
+          "state" : {
+            "type" : "string"
+          },
+          "url" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "LinkStats" : {
+        "properties" : {
+          "clicksPerDay" : {
+            "items" : {
+              "$ref" : "#/components/schemas/DayClicks"
+            },
+            "type" : "array"
+          },
+          "code" : {
+            "type" : "string"
+          },
+          "topReferrers" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ReferrerClicks"
+            },
+            "type" : "array"
+          },
+          "totalClicks" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "PingResponse" : {
+        "properties" : {
+          "status" : {
+            "type" : "string"
+          },
+          "time" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "ProblemDetail" : {
+        "properties" : {
+          "detail" : {
+            "type" : "string"
+          },
+          "errors" : {
+            "description" : "Present on 400 validation and 422 idempotency-mismatch problems only",
+            "items" : {
+              "$ref" : "#/components/schemas/ProblemFieldError"
+            },
+            "type" : "array"
+          },
+          "instance" : {
+            "format" : "uri",
+            "type" : "string"
+          },
+          "status" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "type" : {
+            "format" : "uri",
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "ProblemFieldError" : {
+        "properties" : {
+          "field" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "rule" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "field", "message", "rule" ],
+        "type" : "object"
+      },
+      "ReferrerClicks" : {
+        "properties" : {
+          "clicks" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "referrer" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      }
+    }
+  },
+  "info" : {
+    "description" : "Create, read and retire short links; visitors are redirected with 302.",
+    "title" : "urlshort",
+    "version" : "1"
+  },
+  "openapi" : "3.1.0",
+  "paths" : {
+    "/api/audit" : {
+      "get" : {
+        "operationId" : "readAudit",
+        "parameters" : [ {
+          "description" : "Rows per page",
+          "in" : "query",
+          "name" : "limit",
+          "required" : false,
+          "schema" : {
+            "default" : 50,
+            "maximum" : 100,
+            "minimum" : 1,
+            "type" : "integer"
+          }
+        }, {
+          "description" : "The next of the previous page",
+          "in" : "query",
+          "name" : "cursor",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "page" : {
+                    "description" : "page",
+                    "value" : {
+                      "items" : [ {
+                        "action" : "link.retire",
+                        "actor" : "anonymous",
+                        "after" : {
+                          "state" : "retired",
+                          "url" : "https://example.com/"
+                        },
+                        "before" : {
+                          "state" : "active",
+                          "url" : "https://example.com/"
+                        },
+                        "entity" : "link",
+                        "entityId" : "jHkOIMpK",
+                        "occurredAt" : "2026-10-03T17:29:41.033Z",
+                        "requestId" : "140fc9de-5b8e-4c43-9d55-2f0b1e1c7a10"
+                      }, {
+                        "action" : "link.create",
+                        "actor" : "anonymous",
+                        "after" : {
+                          "state" : "active",
+                          "url" : "https://example.com/"
+                        },
+                        "before" : null,
+                        "entity" : "link",
+                        "entityId" : "jHkOIMpK",
+                        "occurredAt" : "2026-10-03T17:28:02.512Z",
+                        "requestId" : "0d6a1f3e-9c27-4b1a-8e5f-6a4c3b2d1e0f"
+                      } ],
+                      "next" : "MTI"
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/AuditPage"
+                }
+              }
+            },
+            "description" : "One page of audit rows, newest first, and the cursor of the next"
+          },
+          "400" : {
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description" : "limit or cursor is malformed"
+          },
+          "403" : {
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description" : "Not a loopback client, or a forwarding header is present"
+          },
+          "429" : {
+            "content" : {
+              "application/problem+json" : {
+                "examples" : {
+                  "tooManyRequests" : {
+                    "value" : {
+                      "instance" : "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                      "status" : 429,
+                      "title" : "Too Many Requests"
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description" : "Too many requests from this client; retry after Retry-After seconds",
+            "headers" : {
+              "Retry-After" : {
+                "description" : "Whole seconds until this client's next request is admitted",
+                "schema" : {
+                  "format" : "int32",
+                  "minimum" : 1,
+                  "type" : "integer"
+                }
+              }
+            }
+          },
+          "500" : {
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description" : "The trail could not be read"
+          }
+        },
+        "summary" : "Read the audit trail, newest first (loopback only)",
+        "tags" : [ "audit-controller" ]
+      }
+    },
+    "/api/links" : {
+      "post" : {
+        "description" : "Without Idempotency-Key every call creates a new link. With a key, a repeat with the same url within 24 h of the first 201 returns that link (current state); a different url is 422.",
+        "operationId" : "createLink",
+        "parameters" : [ {
+          "description" : "1 to 255 visible ASCII characters; makes a retried create return the first link",
+          "in" : "header",
+          "name" : "Idempotency-Key",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "examples" : {
+                "create" : {
+                  "description" : "create",
+                  "value" : {
+                    "url" : "https://example.com/some/path?q=1"
+                  }
+                }
+              },
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateLinkRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "created" : {
+                    "description" : "created",
+                    "value" : {
+                      "code" : "Ab3dE9fG",
+                      "createdAt" : "2026-10-03T05:12:42.133Z",
+                      "shortUrl" : "http://localhost:8080/Ab3dE9fG",
+                      "state" : "active",
+                      "url" : "https://example.com/some/path?q=1"
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/LinkResponse"
+                }
+              }
+            },
+            "description" : "Created, or replayed for the same key and url",
+            "headers" : {
+              "Location" : {
+                "description" : "/api/links/{code}",
+                "schema" : {
+                  "type" : "string"
+                },
+                "style" : "simple"
+              }
+            }
+          },
+          "400" : {
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description" : "Invalid url or Idempotency-Key (errors[] names field and rule), or a body that is not a JSON object"
+          },
+          "413" : {
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description" : "Body larger than 16 384 bytes"
+          },
+          "415" : {
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description" : "Content-Type is not application/json"
+          },
+          "422" : {
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description" : "Idempotency-Key already used with a different url"
+          },
+          "429" : {
+            "content" : {
+              "application/problem+json" : {
+                "examples" : {
+                  "tooManyRequests" : {
+                    "value" : {
+                      "instance" : "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                      "status" : 429,
+                      "title" : "Too Many Requests"
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description" : "Too many requests from this client; retry after Retry-After seconds",
+            "headers" : {
+              "Retry-After" : {
+                "description" : "Whole seconds until this client's next request is admitted",
+                "schema" : {
+                  "format" : "int32",
+                  "minimum" : 1,
+                  "type" : "integer"
+                }
+              }
+            }
+          },
+          "500" : {
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description" : "Nothing was stored"
+          }
+        },
+        "summary" : "Create a short link for an http(s) URL",
+        "tags" : [ "link-controller" ]
+      }
+    },
+    "/api/links/{code}" : {
+      "delete" : {
+        "operationId" : "retireLink",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "code",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Retired"
+          },
+          "404" : {
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description" : "No link has this code"
+          },
+          "410" : {
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description" : "Already retired"
+          },
+          "429" : {
+            "content" : {
+              "application/problem+json" : {
+                "examples" : {
+                  "tooManyRequests" : {
+                    "value" : {
+                      "instance" : "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                      "status" : 429,
+                      "title" : "Too Many Requests"
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description" : "Too many requests from this client; retry after Retry-After seconds",
+            "headers" : {
+              "Retry-After" : {
+                "description" : "Whole seconds until this client's next request is admitted",
+                "schema" : {
+                  "format" : "int32",
+                  "minimum" : 1,
+                  "type" : "integer"
+                }
+              }
+            }
+          },
+          "500" : {
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description" : "Nothing was changed"
+          }
+        },
+        "summary" : "Retire a link; visitors then get 410 and the record is kept",
+        "tags" : [ "link-controller" ]
+      },
+      "get" : {
+        "operationId" : "readLink",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "code",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "link" : {
+                    "description" : "link",
+                    "value" : {
+                      "code" : "Ab3dE9fG",
+                      "createdAt" : "2026-10-03T05:12:42.133Z",
+                      "shortUrl" : "http://localhost:8080/Ab3dE9fG",
+                      "state" : "active",
+                      "url" : "https://example.com/some/path?q=1"
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/LinkResponse"
+                }
+              }
+            },
+            "description" : "The link; state is active or retired"
+          },
+          "404" : {
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description" : "No link has this code"
+          },
+          "429" : {
+            "content" : {
+              "application/problem+json" : {
+                "examples" : {
+                  "tooManyRequests" : {
+                    "value" : {
+                      "instance" : "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                      "status" : 429,
+                      "title" : "Too Many Requests"
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description" : "Too many requests from this client; retry after Retry-After seconds",
+            "headers" : {
+              "Retry-After" : {
+                "description" : "Whole seconds until this client's next request is admitted",
+                "schema" : {
+                  "format" : "int32",
+                  "minimum" : 1,
+                  "type" : "integer"
+                }
+              }
+            }
+          }
+        },
+        "summary" : "Read a link by its code",
+        "tags" : [ "link-controller" ]
+      }
+    },
+    "/api/links/{code}/stats" : {
+      "get" : {
+        "operationId" : "stats",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "code",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "stats" : {
+                    "description" : "stats",
+                    "value" : {
+                      "clicksPerDay" : [ {
+                        "botClicks" : 1,
+                        "clicks" : 6,
+                        "date" : "2026-10-01",
+                        "uniqueVisitors" : 3
+                      } ],
+                      "code" : "aB3dE5fG",
+                      "topReferrers" : [ {
+                        "clicks" : 4,
+                        "referrer" : "https://news.example.com"
+                      } ],
+                      "totalClicks" : 6
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/LinkStats"
+                }
+              }
+            },
+            "description" : "Total clicks; per UTC day the clicks, unique visitors and bot clicks; and the top 10 referrer origins"
+          },
+          "404" : {
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description" : "No link has this code"
+          },
+          "429" : {
+            "content" : {
+              "application/problem+json" : {
+                "examples" : {
+                  "tooManyRequests" : {
+                    "value" : {
+                      "instance" : "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                      "status" : 429,
+                      "title" : "Too Many Requests"
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description" : "Too many requests from this client; retry after Retry-After seconds",
+            "headers" : {
+              "Retry-After" : {
+                "description" : "Whole seconds until this client's next request is admitted",
+                "schema" : {
+                  "format" : "int32",
+                  "minimum" : 1,
+                  "type" : "integer"
+                }
+              }
+            }
+          }
+        },
+        "summary" : "Read a link's click statistics",
+        "tags" : [ "stats-controller" ]
+      }
+    },
+    "/api/ping" : {
+      "get" : {
+        "operationId" : "ping",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PingResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          },
+          "429" : {
+            "content" : {
+              "application/problem+json" : {
+                "examples" : {
+                  "tooManyRequests" : {
+                    "value" : {
+                      "instance" : "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                      "status" : 429,
+                      "title" : "Too Many Requests"
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description" : "Too many requests from this client; retry after Retry-After seconds",
+            "headers" : {
+              "Retry-After" : {
+                "description" : "Whole seconds until this client's next request is admitted",
+                "schema" : {
+                  "format" : "int32",
+                  "minimum" : 1,
+                  "type" : "integer"
+                }
+              }
+            }
+          }
+        },
+        "tags" : [ "ping-controller" ]
+      }
+    },
+    "/{code}" : {
+      "get" : {
+        "operationId" : "redirect",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "code",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "302" : {
+            "description" : "Redirect to the stored url, not cacheable",
+            "headers" : {
+              "Cache-Control" : {
+                "description" : "no-store",
+                "schema" : {
+                  "type" : "string"
+                },
+                "style" : "simple"
+              },
+              "Location" : {
+                "description" : "The stored url, byte for byte",
+                "schema" : {
+                  "type" : "string"
+                },
+                "style" : "simple"
+              }
+            }
+          },
+          "404" : {
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description" : "No link has this code"
+          },
+          "410" : {
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description" : "The link was retired"
+          },
+          "429" : {
+            "content" : {
+              "application/problem+json" : {
+                "examples" : {
+                  "tooManyRequests" : {
+                    "value" : {
+                      "instance" : "urn:uuid:3b1f0e6a-9c2d-4f57-8a41-0d5e2c7b9f10",
+                      "status" : 429,
+                      "title" : "Too Many Requests"
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description" : "Too many requests from this client; retry after Retry-After seconds",
+            "headers" : {
+              "Retry-After" : {
+                "description" : "Whole seconds until this client's next request is admitted",
+                "schema" : {
+                  "format" : "int32",
+                  "minimum" : 1,
+                  "type" : "integer"
+                }
+              }
+            }
+          }
+        },
+        "summary" : "Open a short link",
+        "tags" : [ "redirect-controller" ]
+      }
+    }
+  },
+  "servers" : [ {
+    "url" : "/"
+  } ]
+}

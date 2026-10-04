@@ -1,0 +1,21 @@
+{
+  "candidate": "e227acf04e1ea902406532fcebd741f8a86f7f65",
+  "checkedAt": "2026-10-04T01:46:52.717Z",
+  "runbook": "RUNBOOK-e227acf.md (copied pinned Git blob)",
+  "liveOpenApiEqualsPinned": true,
+  "problemOptionalErrorsSchemaMatches": true,
+  "counterNamesAndFiveStaticReasonsMatch": true,
+  "environmentVariableSpellingReviewedButNotExecuted": true,
+  "cliPropertyFormsTested": true,
+  "designOperatorBoundary": "| Audit read *01-audit-read* | **`GET /api/audit`**, anonymous and read-only. It is served **only to a loopback peer** (`127.0.0.0/8`, `::1`, IPv4-mapped `127.x`) **sending neither `X-Forwarded-For` nor `Forwarded`**; everything else is `403` with nothing about the trail. **No setting opens it beyond loopback.** **Trust boundary for the Operator:** the service sees only the connection address and the headers. Do not relay `/api/audit` through a local proxy, or have the proxy add a forwarding header, which then refuses. The read is served only while nothing makes Tomcat rewrite the peer: Boot's effective `server.forward-headers-strategy` is `none` (shipped), and neither `server.tomcat.remoteip.remote-ip-header` nor `server.tomcat.remoteip.protocol-header` is set. Setting the strategy (or `SERVER_FORWARDHEADERSSTRATEGY`) to `native` or `framework`, or setting either `remoteip` header, **closes** the read, with every request `403`. A successful read is `200 application/json` whatever the `Accept`; refusals and bad parameters are problems first. Pages are newest first by write sequence (`id`), which is not commit order: `limit` 1–100 (50), `cursor` = the previous page's `next`. A traversal returns every row committed before its first page exactly once and never repeats a row; a row written during it may be missing, and a fresh traversal has it. Under the `/api` rate budget. A failed read is a `500`, never an empty page | ADR-0019; SPEC `01-audit-read` rules 1–9 |",
+  "adrBoundary": [
+    {
+      "line": 160,
+      "text": "    another trigger would need adding here; the real-Tomcat journeys for the known triggers\n    catch a regression in these three, not a new trigger.\n  - What the service cannot see stays the documented boundary (`docs/DESIGN.md` §3; SPEC rule 2,\n    review RQ-04): a local relay that adds no forwarding header looks like a local Operator. The\n    deployment must not relay `/api/audit`, or the relay must add a forwarding header, which then\n    refuses.\n- **Later slices that rewrite the client address must keep the headers.** Wave-review finding\n  W2D-03 (A-9) and mission 03's `01-analytics-v2` (its A-7) may add a request wrapper in"
+    },
+    {
+      "line": 161,
+      "text": "    catch a regression in these three, not a new trigger.\n  - What the service cannot see stays the documented boundary (`docs/DESIGN.md` §3; SPEC rule 2,\n    review RQ-04): a local relay that adds no forwarding header looks like a local Operator. The\n    deployment must not relay `/api/audit`, or the relay must add a forwarding header, which then\n    refuses.\n- **Later slices that rewrite the client address must keep the headers.** Wave-review finding\n  W2D-03 (A-9) and mission 03's `01-analytics-v2` (its A-7) may add a request wrapper in\n  `RateLimitFilter` that overrides `getRemoteAddr()` behind a listed proxy (ADR-0015's sketch)."
+    }
+  ]
+}

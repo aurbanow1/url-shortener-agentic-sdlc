@@ -1,0 +1,37 @@
+{
+  "name": "untrusted-budget-spent-0",
+  "app": "untrusted-budget",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/before/026-untrusted-budget-spent-0.trace",
+    "-X",
+    "GET",
+    "-H",
+    "X-Forwarded-For: 203.0.113.7",
+    "-H",
+    "Forwarded: for=203.0.113.88",
+    "-H",
+    "X-Real-IP: 203.0.113.99",
+    "http://localhost:54281/api/links/zzzzzzzz"
+  ],
+  "method": "GET",
+  "path": "/api/links/zzzzzzzz",
+  "raw": "026-untrusted-budget-spent-0.http",
+  "status": 404,
+  "headers": {
+    "x-request-id": "3467cbff-22eb-4bc3-ae89-8e9c5573e6a3",
+    "content-type": "application/problem+json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 01:05:24 GMT"
+  },
+  "json": {
+    "instance": "urn:uuid:3467cbff-22eb-4bc3-ae89-8e9c5573e6a3",
+    "status": 404,
+    "title": "Not Found"
+  }
+}

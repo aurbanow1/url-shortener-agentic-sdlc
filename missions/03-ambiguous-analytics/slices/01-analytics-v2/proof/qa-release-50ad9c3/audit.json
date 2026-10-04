@@ -1,0 +1,100 @@
+{
+  "candidate": "50ad9c3ab9e65baa4100ede1772b514322957fa5",
+  "checkedAt": "2026-10-04T02:24:17.019762+00:00",
+  "verdict": "PASS: item12 measurement/disclosure and item6 current gap record",
+  "jarSha256": "fbe67b61f0f6f668e65949bc01a92802e5de64015ca78eb2d6bbc0462b2ebde2",
+  "sourceHashes": {
+    "tools/bench.mjs": "9fdc92bb9b59a3d75a8b3034504faa1e3c509b08fea6ab0e9fad656b87ead55f",
+    "scripts/smoke.sh": "eb6e05ac85690400c300ad33be67927645325d7c935a79456f1fc1370fd50f86"
+  },
+  "phases": {
+    "create POST /api/links": {
+      "requests": 1200,
+      "elapsedMs": 59952,
+      "offeredRate": 20,
+      "seconds": 60,
+      "achievedRate": 20.0,
+      "bad": 0,
+      "p50Ms": 2.1,
+      "p95Ms": 4.5,
+      "p99Ms": 12.9
+    },
+    "redirect GET /{code}": {
+      "requests": 6000,
+      "elapsedMs": 59991,
+      "offeredRate": 100,
+      "seconds": 60,
+      "achievedRate": 100.0,
+      "bad": 0,
+      "p50Ms": 1.7,
+      "p95Ms": 3.7,
+      "p99Ms": 9.5
+    },
+    "redirect GET /{code} alone": {
+      "requests": 6000,
+      "elapsedMs": 59992,
+      "offeredRate": 100,
+      "seconds": 60,
+      "achievedRate": 100.0,
+      "bad": 0,
+      "p50Ms": 1.3,
+      "p95Ms": 3.0,
+      "p99Ms": 8.2
+    },
+    "redirect HEAD /{code} alone": {
+      "requests": 6000,
+      "elapsedMs": 59992,
+      "offeredRate": 100,
+      "seconds": 60,
+      "achievedRate": 100.0,
+      "bad": 0,
+      "p50Ms": 1.6,
+      "p95Ms": 4.0,
+      "p99Ms": 17.1
+    }
+  },
+  "logSha256": "567aa5565ec9ae659e65570f359aed34532b2a6809c24555fec3841089bafe67",
+  "totalRequestCompletions": 19216,
+  "benchmarkBlockCompletions": 19201,
+  "serverCompletionWindows": [
+    {
+      "requests": 7200,
+      "start": "2026-10-04T01:04:23.459134Z",
+      "end": "2026-10-04T01:05:23.427440Z",
+      "spanSeconds": 59.968306
+    },
+    {
+      "requests": 6000,
+      "start": "2026-10-04T01:05:23.472916Z",
+      "end": "2026-10-04T01:06:23.460917Z",
+      "spanSeconds": 59.988001
+    },
+    {
+      "requests": 6000,
+      "start": "2026-10-04T01:06:23.514870Z",
+      "end": "2026-10-04T01:07:23.495958Z",
+      "spanSeconds": 59.981088
+    }
+  ],
+  "benchmarkClicks": 12000,
+  "recordedClicksIncludingFourPriorInstalledClicks": 12004,
+  "lostClicks": 0,
+  "quotaRejections": 0,
+  "inputHashes": {
+    "missions/03-ambiguous-analytics/release/bench-50ad9c3.txt": "7542376df1af58d38d1d6a0e2cb58e6b480e06afd209b80c64f376bae3fb5059",
+    "missions/03-ambiguous-analytics/release/bench-stats-50ad9c3.json": "b360bde6abba34f1d704db3a9f59e12a705d2547851497fa629f75d499460a93",
+    "missions/03-ambiguous-analytics/release/bench-prometheus-50ad9c3.txt": "c178597a8f22cff0aef2c47229bd57f065ac82bd00ff1ca09ad2a7e3ffa94fc2",
+    "missions/03-ambiguous-analytics/release/jar-installed-log-50ad9c3.jsonl.gz": "2035c336c8233a697b4f70f8e428159cf45fd69769d669561cf5f2ac560aff8a",
+    "missions/03-ambiguous-analytics/release/artifact-manifest-50ad9c3.json": "1d74b50b9b92cf0f8d2c021d2302e567f1a46155a430319a46da31c53a39961c",
+    "missions/03-ambiguous-analytics/release/GAPS-snapshot.md": "18149e871a3225f68323117da91202d2186662b6667642e3815068ae12974068",
+    "docs/REQUIREMENTS.md": "24d8d981d1a68266a3fc1af24e7664c64e8e698023c2a157b7df26dc983d5acb",
+    "docs/qa/GAPS.md": "004509e6d7d92230fa3273e1c92e3b6b67c7bc42d44f90b6009dd135487fef43"
+  },
+  "qualifications": [
+    "One preserved jar, one PID, file H2, trusted loopback, raised rate budgets; same host as load generator.",
+    "Percentiles are the captured load-generator output. Per-request client latency samples were not retained; QA did not recompute them.",
+    "Server logs carry status/requestId but no method/path; phase attribution uses script ordering and aggregate Prometheus method counts.",
+    "Single-run NFR-L1 regression measurement; no capacity, container performance or isolated GET-minus-HEAD cost claim.",
+    "No new app launch or full candidate QA gate in this proof follow-up. Earlier effects retain their existing attribution."
+  ]
+}

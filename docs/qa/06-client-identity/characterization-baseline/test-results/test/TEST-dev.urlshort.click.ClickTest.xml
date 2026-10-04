@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.urlshort.click.ClickTest" tests="28" skipped="0" failures="0" errors="0" timestamp="2026-10-04T01:54:31.117Z" hostname="Andrzejs-MacBook-Pro.local" time="0.024">
+  <properties/>
+  <testcase name="rule2_aClickHoldsOnlyTheReducedFacts()" classname="dev.urlshort.click.ClickTest" time="0.001"/>
+  <testcase name="[1] header = null" classname="dev.urlshort.click.ClickTest" time="0.001"/>
+  <testcase name="[2] header = &quot;&quot;" classname="dev.urlshort.click.ClickTest" time="0.0"/>
+  <testcase name="[1] header = null" classname="dev.urlshort.click.ClickTest" time="0.0"/>
+  <testcase name="[2] header = &quot;android-app://com.example.app/&quot;" classname="dev.urlshort.click.ClickTest" time="0.0"/>
+  <testcase name="[3] header = &quot;not a url&quot;" classname="dev.urlshort.click.ClickTest" time="0.0"/>
+  <testcase name="[4] header = &quot;ftp://files.example/x&quot;" classname="dev.urlshort.click.ClickTest" time="0.0"/>
+  <testcase name="[5] header = &quot;/relative/path&quot;" classname="dev.urlshort.click.ClickTest" time="0.0"/>
+  <testcase name="[6] header = &quot;http:///no-host&quot;" classname="dev.urlshort.click.ClickTest" time="0.0"/>
+  <testcase name="[7] header = &quot;mailto:someone@example.com&quot;" classname="dev.urlshort.click.ClickTest" time="0.0"/>
+  <testcase name="[1] header = &quot;https://News.Example/a/refpathcanary?t=refquerycanary#reffragcanary&quot;, origin = &quot;https://news.example&quot;" classname="dev.urlshort.click.ClickTest" time="0.001"/>
+  <testcase name="[2] header = &quot;http://blog.example:8081/post&quot;, origin = &quot;http://blog.example:8081&quot;" classname="dev.urlshort.click.ClickTest" time="0.0"/>
+  <testcase name="[3] header = &quot;https://refusercanary:pw@forum.example/x&quot;, origin = &quot;https://forum.example&quot;" classname="dev.urlshort.click.ClickTest" time="0.001"/>
+  <testcase name="[4] header = &quot;http://x.example:80/&quot;, origin = &quot;http://x.example&quot;" classname="dev.urlshort.click.ClickTest" time="0.0"/>
+  <testcase name="[5] header = &quot;https://x.example:443/&quot;, origin = &quot;https://x.example&quot;" classname="dev.urlshort.click.ClickTest" time="0.0"/>
+  <testcase name="[6] header = &quot;http://x.example:443/&quot;, origin = &quot;http://x.example:443&quot;" classname="dev.urlshort.click.ClickTest" time="0.0"/>
+  <testcase name="[7] header = &quot;https://x.example:80/&quot;, origin = &quot;https://x.example:80&quot;" classname="dev.urlshort.click.ClickTest" time="0.0"/>
+  <testcase name="[8] header = &quot;HTTPS://X.EXAMPLE/&quot;, origin = &quot;https://x.example&quot;" classname="dev.urlshort.click.ClickTest" time="0.0"/>
+  <testcase name="[9] header = &quot;http://[::1]:8080/&quot;, origin = &quot;http://[::1]:8080&quot;" classname="dev.urlshort.click.ClickTest" time="0.0"/>
+  <testcase name="[1] header = &quot;Mozilla/5.0 (X11; Linux x86_64) uacanary Firefox/131.0&quot;, userAgentClass = &quot;browser&quot;" classname="dev.urlshort.click.ClickTest" time="0.0"/>
+  <testcase name="[2] header = &quot;Mozilla/5.0 (compatible; Googlebot/2.1; uacanary)&quot;, userAgentClass = &quot;bot&quot;" classname="dev.urlshort.click.ClickTest" time="0.001"/>
+  <testcase name="[3] header = &quot;uacanary-crawler/1.0&quot;, userAgentClass = &quot;bot&quot;" classname="dev.urlshort.click.ClickTest" time="0.0"/>
+  <testcase name="[4] header = &quot;uacanary-spider&quot;, userAgentClass = &quot;bot&quot;" classname="dev.urlshort.click.ClickTest" time="0.0"/>
+  <testcase name="[5] header = &quot;curl/8.7.1 uacanary&quot;, userAgentClass = &quot;other&quot;" classname="dev.urlshort.click.ClickTest" time="0.0"/>
+  <testcase name="[6] header = &quot;SOME-BOT&quot;, userAgentClass = &quot;bot&quot;" classname="dev.urlshort.click.ClickTest" time="0.0"/>
+  <testcase name="[7] header = &quot;mozilla/5.0&quot;, userAgentClass = &quot;other&quot;" classname="dev.urlshort.click.ClickTest" time="0.0"/>
+  <testcase name="[1] length = 2048" classname="dev.urlshort.click.ClickTest" time="0.0"/>
+  <testcase name="[2] length = 2049" classname="dev.urlshort.click.ClickTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

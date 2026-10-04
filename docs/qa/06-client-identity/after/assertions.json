@@ -1,0 +1,3482 @@
+[
+  {
+    "claim": "baseline product tree still current",
+    "pass": true,
+    "detail": "4c945cf11bf38036bba900425dacda9bb8ca7a83"
+  },
+  {
+    "claim": "direct-create curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "direct-create status",
+    "pass": true,
+    "detail": 201
+  },
+  {
+    "claim": "direct-create request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "direct-audit-admitted curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "direct-audit-admitted status",
+    "pass": true,
+    "detail": 200
+  },
+  {
+    "claim": "direct-audit-admitted request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-0 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-0 status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-0 request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-0 problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:30c4e9fc-54b5-4511-bef0-55c1ef03562f",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-0 problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:30c4e9fc-54b5-4511-bef0-55c1ef03562f",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-1 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-1 status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-1 request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-1 problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:e5631f3a-7a9a-49aa-b1c1-ee8907947ea6",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-1 problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:e5631f3a-7a9a-49aa-b1c1-ee8907947ea6",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-2 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-2 status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-2 request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-2 problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:aca08354-2cbc-4e23-9b31-dd5137c57328",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-2 problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:aca08354-2cbc-4e23-9b31-dd5137c57328",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "direct-audit-refused-Forwarded-0 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "direct-audit-refused-Forwarded-0 status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "direct-audit-refused-Forwarded-0 request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "direct-audit-refused-Forwarded-0 problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:a8f117d6-f809-4ad7-bfbc-8935493962b3",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "direct-audit-refused-Forwarded-0 problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:a8f117d6-f809-4ad7-bfbc-8935493962b3",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "direct-audit-refused-Forwarded-1 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "direct-audit-refused-Forwarded-1 status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "direct-audit-refused-Forwarded-1 request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "direct-audit-refused-Forwarded-1 problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:078ec2cc-e303-4a0a-8329-c469de454cfd",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "direct-audit-refused-Forwarded-1 problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:078ec2cc-e303-4a0a-8329-c469de454cfd",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "direct-audit-refused-Forwarded-2 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "direct-audit-refused-Forwarded-2 status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "direct-audit-refused-Forwarded-2 request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "direct-audit-refused-Forwarded-2 problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:7741541b-ac2e-4f12-a09f-a33393f4ba89",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "direct-audit-refused-Forwarded-2 problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:7741541b-ac2e-4f12-a09f-a33393f4ba89",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "instrument-curl-whitespace-omitted curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "instrument-curl-whitespace-omitted status",
+    "pass": true,
+    "detail": 200
+  },
+  {
+    "claim": "instrument-curl-whitespace-omitted request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "curl omitted the whitespace-only header on the wire",
+    "pass": true,
+    "detail": "== Info: Host localhost:56352 was resolved.\n== Info: IPv6: ::1\n== Info: IPv4: 127.0.0.1\n== Info:   Trying [::1]:56352...\n== Info: connect to ::1 port 56352 from ::1 port 56433 failed: Connection refused\n== Info:   Trying 127.0.0.1:56352...\n== Info: Connected to localhost (127.0.0.1) port 56352\n=> Send header, 87 bytes (0x57)\n0000: GET /api/audit HTTP/1.1\n0019: Host: localhost:56352\n0030: User-Agent: curl/8.7.1\n0048: Accept: */*\n0055: \n== Info: Request completely sent off\n<= Recv header, 15 bytes (0xf)\n0000: HTTP/1.1 200 \n<= Recv header, 52 bytes (0x34)\n0000: X-Request-Id: fc9376ad-d8a9-4e88-a690-f6aa556cfb6f\n<= Recv header, 32 bytes (0x20)\n0000: Content-Type: application/json\n<= Recv header, 28 bytes (0x1c)\n0000: Transfer-Encoding: chunked\n<= Recv header, 37 bytes (0x25)\n0000: Date: Sun, 04 Oct 2026 01:54:54 GMT\n<= Recv header, 2 bytes (0x2)\n0000: \n<= Recv data, 291 bytes (0x123)\n0000: 11c\n0005: {\"items\":[{\"occurredAt\":\"2026-10-04T01:54:54.801Z\",\"actor\":\"anon\n0045: ymous\",\"action\":\"link.create\",\"entity\":\"link\",\"entityId\":\"OKAMvZ\n0085: aX\",\"requestId\":\"ca129edf-d5f5-425b-aa49-4e4865bb48b8\",\"before\":\n00c5: null,\"after\":{\"url\":\"https://example.com/qa06/client-group\",\"sta\n0105: te\":\"active\"}}],\"next\":null}\n<= Recv data, 5 bytes (0x5)\n0000: 0\n0003: \n== Info: Connection #0 to host localhost left intact\n"
+  },
+  {
+    "claim": "direct-click-A curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "direct-click-A status",
+    "pass": true,
+    "detail": 302
+  },
+  {
+    "claim": "direct-click-A request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "direct-click-A-forged-forwarding curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "direct-click-A-forged-forwarding status",
+    "pass": true,
+    "detail": 302
+  },
+  {
+    "claim": "direct-click-A-forged-forwarding request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "direct-stats-poll-1 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "direct-stats-poll-1 status",
+    "pass": true,
+    "detail": 200
+  },
+  {
+    "claim": "direct-stats-poll-1 request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "direct-stats exact grouped counts",
+    "pass": true,
+    "detail": {
+      "code": "OKAMvZaX",
+      "totalClicks": 2,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 2,
+          "uniqueVisitors": 1,
+          "botClicks": 0
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://ref.example",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "claim": "direct-stats exact response fields",
+    "pass": true,
+    "detail": {
+      "code": "OKAMvZaX",
+      "totalClicks": 2,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 2,
+          "uniqueVisitors": 1,
+          "botClicks": 0
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://ref.example",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "claim": "live-openapi curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "live-openapi status",
+    "pass": true,
+    "detail": 200
+  },
+  {
+    "claim": "live-openapi request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "live and committed API documents semantically equal",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "direct stopped and port closed",
+    "pass": true,
+    "detail": {
+      "pid": 78094,
+      "exit": 143,
+      "port": 56352
+    }
+  },
+  {
+    "claim": "trusted-create curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "trusted-create status",
+    "pass": true,
+    "detail": 201
+  },
+  {
+    "claim": "trusted-create request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "trusted-audit-admitted curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "trusted-audit-admitted status",
+    "pass": true,
+    "detail": 200
+  },
+  {
+    "claim": "trusted-audit-admitted request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "trusted-audit-refused-X-Forwarded-For-0 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "trusted-audit-refused-X-Forwarded-For-0 status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "trusted-audit-refused-X-Forwarded-For-0 request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "trusted-audit-refused-X-Forwarded-For-0 problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:e54e979f-7463-4a23-8961-e159535a352d",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "trusted-audit-refused-X-Forwarded-For-0 problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:e54e979f-7463-4a23-8961-e159535a352d",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "trusted-audit-refused-X-Forwarded-For-1 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "trusted-audit-refused-X-Forwarded-For-1 status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "trusted-audit-refused-X-Forwarded-For-1 request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "trusted-audit-refused-X-Forwarded-For-1 problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:fb7ddf0b-fa1f-42e5-829a-b4b4a26ccd65",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "trusted-audit-refused-X-Forwarded-For-1 problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:fb7ddf0b-fa1f-42e5-829a-b4b4a26ccd65",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "trusted-audit-refused-X-Forwarded-For-2 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "trusted-audit-refused-X-Forwarded-For-2 status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "trusted-audit-refused-X-Forwarded-For-2 request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "trusted-audit-refused-X-Forwarded-For-2 problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:934b2852-d1c4-4ab2-88ea-4525fe1de3d3",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "trusted-audit-refused-X-Forwarded-For-2 problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:934b2852-d1c4-4ab2-88ea-4525fe1de3d3",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "trusted-audit-refused-Forwarded-0 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "trusted-audit-refused-Forwarded-0 status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "trusted-audit-refused-Forwarded-0 request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "trusted-audit-refused-Forwarded-0 problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:0d57d778-b0be-455f-ad2a-0b9696b71879",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "trusted-audit-refused-Forwarded-0 problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:0d57d778-b0be-455f-ad2a-0b9696b71879",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "trusted-audit-refused-Forwarded-1 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "trusted-audit-refused-Forwarded-1 status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "trusted-audit-refused-Forwarded-1 request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "trusted-audit-refused-Forwarded-1 problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:fb23007a-033f-4ce1-a124-c08a746161e8",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "trusted-audit-refused-Forwarded-1 problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:fb23007a-033f-4ce1-a124-c08a746161e8",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "trusted-audit-refused-Forwarded-2 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "trusted-audit-refused-Forwarded-2 status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "trusted-audit-refused-Forwarded-2 request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "trusted-audit-refused-Forwarded-2 problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:3e7673e9-e46b-42cd-8de1-48fb89cc9a7d",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "trusted-audit-refused-Forwarded-2 problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:3e7673e9-e46b-42cd-8de1-48fb89cc9a7d",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "trusted-click-A curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "trusted-click-A status",
+    "pass": true,
+    "detail": 302
+  },
+  {
+    "claim": "trusted-click-A request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "trusted-click-A-chain curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "trusted-click-A-chain status",
+    "pass": true,
+    "detail": 302
+  },
+  {
+    "claim": "trusted-click-A-chain request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "trusted-click-B curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "trusted-click-B status",
+    "pass": true,
+    "detail": 302
+  },
+  {
+    "claim": "trusted-click-B request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "trusted-stats-poll-1 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "trusted-stats-poll-1 status",
+    "pass": true,
+    "detail": 200
+  },
+  {
+    "claim": "trusted-stats-poll-1 request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "trusted-stats exact grouped counts",
+    "pass": true,
+    "detail": {
+      "code": "hiRI8L6f",
+      "totalClicks": 3,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 3,
+          "uniqueVisitors": 2,
+          "botClicks": 0
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://ref.example",
+          "clicks": 3
+        }
+      ]
+    }
+  },
+  {
+    "claim": "trusted-stats exact response fields",
+    "pass": true,
+    "detail": {
+      "code": "hiRI8L6f",
+      "totalClicks": 3,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 3,
+          "uniqueVisitors": 2,
+          "botClicks": 0
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://ref.example",
+          "clicks": 3
+        }
+      ]
+    }
+  },
+  {
+    "claim": "trusted stopped and port closed",
+    "pass": true,
+    "detail": {
+      "pid": 78277,
+      "exit": 143,
+      "port": 56445
+    }
+  },
+  {
+    "claim": "untrusted-budget-spent-0 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "untrusted-budget-spent-0 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "untrusted-budget-spent-0 request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "untrusted-budget-spent-0 problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:68f44834-fa84-4ea2-bf60-c175ab0b6768",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "untrusted-budget-spent-0 problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:68f44834-fa84-4ea2-bf60-c175ab0b6768",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "untrusted-budget-spent-1 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "untrusted-budget-spent-1 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "untrusted-budget-spent-1 request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "untrusted-budget-spent-1 problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:715da5fe-a3e5-4384-9671-d81fecb84998",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "untrusted-budget-spent-1 problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:715da5fe-a3e5-4384-9671-d81fecb84998",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "untrusted-budget-429 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "untrusted-budget-429 status",
+    "pass": true,
+    "detail": 429
+  },
+  {
+    "claim": "untrusted-budget-429 request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "untrusted-budget-429 problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:990d41a8-9132-4390-a21f-1f16d31ccd7b",
+      "status": 429,
+      "title": "Too Many Requests"
+    }
+  },
+  {
+    "claim": "untrusted-budget-429 problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:990d41a8-9132-4390-a21f-1f16d31ccd7b",
+      "status": 429,
+      "title": "Too Many Requests"
+    }
+  },
+  {
+    "claim": "untrusted-budget retry after positive integer",
+    "pass": true,
+    "detail": {
+      "name": "untrusted-budget-429",
+      "app": "untrusted-budget",
+      "argv": [
+        "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+        "-sS",
+        "--max-time",
+        "8",
+        "-i",
+        "--trace-ascii",
+        "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/after/028-untrusted-budget-429.trace",
+        "-X",
+        "GET",
+        "-H",
+        "X-Forwarded-For: 203.0.113.9",
+        "-H",
+        "Forwarded: for=203.0.113.88",
+        "-H",
+        "X-Real-IP: 203.0.113.99",
+        "http://localhost:56515/api/links/zzzzzzzz"
+      ],
+      "method": "GET",
+      "path": "/api/links/zzzzzzzz",
+      "raw": "028-untrusted-budget-429.http",
+      "status": 429,
+      "headers": {
+        "x-request-id": "990d41a8-9132-4390-a21f-1f16d31ccd7b",
+        "retry-after": "30",
+        "content-type": "application/problem+json",
+        "content-length": "101",
+        "date": "Sun, 04 Oct 2026 01:54:59 GMT"
+      },
+      "json": {
+        "instance": "urn:uuid:990d41a8-9132-4390-a21f-1f16d31ccd7b",
+        "status": 429,
+        "title": "Too Many Requests"
+      }
+    }
+  },
+  {
+    "claim": "untrusted-budget stopped and port closed",
+    "pass": true,
+    "detail": {
+      "pid": 78521,
+      "exit": 143,
+      "port": 56515
+    }
+  },
+  {
+    "claim": "trusted-budget-spent-0 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "trusted-budget-spent-0 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "trusted-budget-spent-0 request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "trusted-budget-spent-0 problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:8613c0ae-cf9a-4492-b8ca-6d6c3c2b74ab",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "trusted-budget-spent-0 problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:8613c0ae-cf9a-4492-b8ca-6d6c3c2b74ab",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "trusted-budget-spent-1 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "trusted-budget-spent-1 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "trusted-budget-spent-1 request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "trusted-budget-spent-1 problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:9f28898c-2f7b-4427-bf08-0ba19669767d",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "trusted-budget-spent-1 problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:9f28898c-2f7b-4427-bf08-0ba19669767d",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "trusted-budget-429 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "trusted-budget-429 status",
+    "pass": true,
+    "detail": 429
+  },
+  {
+    "claim": "trusted-budget-429 request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "trusted-budget-429 problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:e0804904-aa8f-486e-be50-026c753e9fb1",
+      "status": 429,
+      "title": "Too Many Requests"
+    }
+  },
+  {
+    "claim": "trusted-budget-429 problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:e0804904-aa8f-486e-be50-026c753e9fb1",
+      "status": 429,
+      "title": "Too Many Requests"
+    }
+  },
+  {
+    "claim": "trusted-budget retry after positive integer",
+    "pass": true,
+    "detail": {
+      "name": "trusted-budget-429",
+      "app": "trusted-budget",
+      "argv": [
+        "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+        "-sS",
+        "--max-time",
+        "8",
+        "-i",
+        "--trace-ascii",
+        "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/after/031-trusted-budget-429.trace",
+        "-X",
+        "GET",
+        "-H",
+        "X-Forwarded-For: 203.0.113.7",
+        "-H",
+        "Forwarded: for=203.0.113.88",
+        "-H",
+        "X-Real-IP: 203.0.113.99",
+        "http://localhost:56560/api/links/zzzzzzzz"
+      ],
+      "method": "GET",
+      "path": "/api/links/zzzzzzzz",
+      "raw": "031-trusted-budget-429.http",
+      "status": 429,
+      "headers": {
+        "x-request-id": "e0804904-aa8f-486e-be50-026c753e9fb1",
+        "retry-after": "30",
+        "content-type": "application/problem+json",
+        "content-length": "101",
+        "date": "Sun, 04 Oct 2026 01:55:01 GMT"
+      },
+      "json": {
+        "instance": "urn:uuid:e0804904-aa8f-486e-be50-026c753e9fb1",
+        "status": 429,
+        "title": "Too Many Requests"
+      }
+    }
+  },
+  {
+    "claim": "trusted-budget-unrelated-client curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "trusted-budget-unrelated-client status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "trusted-budget-unrelated-client request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "trusted-budget-unrelated-client problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:4198ca7d-a651-4786-8e7e-5f4390b88989",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "trusted-budget-unrelated-client problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:4198ca7d-a651-4786-8e7e-5f4390b88989",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "trusted-budget stopped and port closed",
+    "pass": true,
+    "detail": {
+      "pid": 78634,
+      "exit": 143,
+      "port": 56560
+    }
+  },
+  {
+    "claim": "remote-ip-create-canary curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "remote-ip-create-canary status",
+    "pass": true,
+    "detail": 201
+  },
+  {
+    "claim": "remote-ip-create-canary request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "remote-ip-audit-GET-plain curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "remote-ip-audit-GET-plain status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "remote-ip-audit-GET-plain request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "remote-ip-audit-GET-plain problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:7bf6e27e-1204-4c7d-ab61-df99f45729ad",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "remote-ip-audit-GET-plain problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:7bf6e27e-1204-4c7d-ab61-df99f45729ad",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "remote-ip-audit-GET-forged curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "remote-ip-audit-GET-forged status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "remote-ip-audit-GET-forged request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "remote-ip-audit-GET-forged problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:c4b0e1b8-3c37-4aef-81b3-a6b8d94f9aa4",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "remote-ip-audit-GET-forged problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:c4b0e1b8-3c37-4aef-81b3-a6b8d94f9aa4",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "remote-ip-audit-HEAD-plain curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "remote-ip-audit-HEAD-plain status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "remote-ip-audit-HEAD-plain request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "remote-ip-audit-HEAD-plain HEAD has no body",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "remote-ip-audit-HEAD-forged curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "remote-ip-audit-HEAD-forged status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "remote-ip-audit-HEAD-forged request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "remote-ip-audit-HEAD-forged HEAD has no body",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "remote-ip stopped and port closed",
+    "pass": true,
+    "detail": {
+      "pid": 78814,
+      "exit": 143,
+      "port": 56605
+    }
+  },
+  {
+    "claim": "protocol-create-canary curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "protocol-create-canary status",
+    "pass": true,
+    "detail": 201
+  },
+  {
+    "claim": "protocol-create-canary request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "protocol-audit-GET-plain curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "protocol-audit-GET-plain status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "protocol-audit-GET-plain request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "protocol-audit-GET-plain problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:ba9f2030-3233-4b0c-b98a-2defffeda619",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "protocol-audit-GET-plain problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:ba9f2030-3233-4b0c-b98a-2defffeda619",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "protocol-audit-GET-forged curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "protocol-audit-GET-forged status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "protocol-audit-GET-forged request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "protocol-audit-GET-forged problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:8eb8d7c3-ef83-466c-8f93-c00842a9338d",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "protocol-audit-GET-forged problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:8eb8d7c3-ef83-466c-8f93-c00842a9338d",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "protocol-audit-HEAD-plain curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "protocol-audit-HEAD-plain status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "protocol-audit-HEAD-plain request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "protocol-audit-HEAD-plain HEAD has no body",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "protocol-audit-HEAD-forged curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "protocol-audit-HEAD-forged status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "protocol-audit-HEAD-forged request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "protocol-audit-HEAD-forged HEAD has no body",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "protocol stopped and port closed",
+    "pass": true,
+    "detail": {
+      "pid": 78995,
+      "exit": 143,
+      "port": 56676
+    }
+  },
+  {
+    "claim": "both-remoteip-create-canary curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "both-remoteip-create-canary status",
+    "pass": true,
+    "detail": 201
+  },
+  {
+    "claim": "both-remoteip-create-canary request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "both-remoteip-audit-GET-plain curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "both-remoteip-audit-GET-plain status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "both-remoteip-audit-GET-plain request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "both-remoteip-audit-GET-plain problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:487d0141-5b16-4194-9345-63f6b023f152",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "both-remoteip-audit-GET-plain problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:487d0141-5b16-4194-9345-63f6b023f152",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "both-remoteip-audit-GET-forged curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "both-remoteip-audit-GET-forged status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "both-remoteip-audit-GET-forged request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "both-remoteip-audit-GET-forged problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:6877bca6-0217-4d63-8fb5-0e87d0234fb3",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "both-remoteip-audit-GET-forged problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:6877bca6-0217-4d63-8fb5-0e87d0234fb3",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "both-remoteip-audit-HEAD-plain curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "both-remoteip-audit-HEAD-plain status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "both-remoteip-audit-HEAD-plain request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "both-remoteip-audit-HEAD-plain HEAD has no body",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "both-remoteip-audit-HEAD-forged curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "both-remoteip-audit-HEAD-forged status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "both-remoteip-audit-HEAD-forged request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "both-remoteip-audit-HEAD-forged HEAD has no body",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "both-remoteip stopped and port closed",
+    "pass": true,
+    "detail": {
+      "pid": 79177,
+      "exit": 143,
+      "port": 56728
+    }
+  },
+  {
+    "claim": "native-create-canary curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "native-create-canary status",
+    "pass": true,
+    "detail": 201
+  },
+  {
+    "claim": "native-create-canary request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "native-audit-GET-plain curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "native-audit-GET-plain status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "native-audit-GET-plain request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "native-audit-GET-plain problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:98a927ae-29e8-4e71-b877-64fcd7a6cf52",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "native-audit-GET-plain problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:98a927ae-29e8-4e71-b877-64fcd7a6cf52",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "native-audit-GET-forged curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "native-audit-GET-forged status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "native-audit-GET-forged request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "native-audit-GET-forged problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:a47e5706-1942-4506-acc6-8f240d21e6c5",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "native-audit-GET-forged problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:a47e5706-1942-4506-acc6-8f240d21e6c5",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "native-audit-HEAD-plain curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "native-audit-HEAD-plain status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "native-audit-HEAD-plain request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "native-audit-HEAD-plain HEAD has no body",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "native-audit-HEAD-forged curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "native-audit-HEAD-forged status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "native-audit-HEAD-forged request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "native-audit-HEAD-forged HEAD has no body",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "native stopped and port closed",
+    "pass": true,
+    "detail": {
+      "pid": 79289,
+      "exit": 143,
+      "port": 56781
+    }
+  },
+  {
+    "claim": "framework-create-canary curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "framework-create-canary status",
+    "pass": true,
+    "detail": 201
+  },
+  {
+    "claim": "framework-create-canary request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "framework-audit-GET-plain curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "framework-audit-GET-plain status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "framework-audit-GET-plain request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "framework-audit-GET-plain problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:85d3b1cb-2618-4d9e-86f9-8b6749439746",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "framework-audit-GET-plain problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:85d3b1cb-2618-4d9e-86f9-8b6749439746",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "framework-audit-GET-forged curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "framework-audit-GET-forged status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "framework-audit-GET-forged request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "framework-audit-GET-forged problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:4dfb8ce7-33a9-4a7d-8be5-bbecfa70d602",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "framework-audit-GET-forged problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:4dfb8ce7-33a9-4a7d-8be5-bbecfa70d602",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "framework-audit-HEAD-plain curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "framework-audit-HEAD-plain status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "framework-audit-HEAD-plain request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "framework-audit-HEAD-plain HEAD has no body",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "framework-audit-HEAD-forged curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "framework-audit-HEAD-forged status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "framework-audit-HEAD-forged request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "framework-audit-HEAD-forged HEAD has no body",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "framework stopped and port closed",
+    "pass": true,
+    "detail": {
+      "pid": 79435,
+      "exit": 143,
+      "port": 56831
+    }
+  },
+  {
+    "claim": "cloud-pinned-audit-admitted curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "cloud-pinned-audit-admitted status",
+    "pass": true,
+    "detail": 200
+  },
+  {
+    "claim": "cloud-pinned-audit-admitted request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "cloud-pinned-audit-refused curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "cloud-pinned-audit-refused status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "cloud-pinned-audit-refused request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "cloud-pinned-audit-refused problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:1f7582a1-8942-4ff7-8e8f-219e3080bf6e",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "cloud-pinned-audit-refused problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:1f7582a1-8942-4ff7-8e8f-219e3080bf6e",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "cloud stopped and port closed",
+    "pass": true,
+    "detail": {
+      "pid": 79624,
+      "exit": 143,
+      "port": 56885
+    }
+  },
+  {
+    "claim": "direct-create one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:54.817754Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78094,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "ca129edf-d5f5-425b-aa49-4e4865bb48b8",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "direct-audit-admitted one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:54.839084Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78094,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "cd8d29f1-5e01-4fb7-9ff8-e1182646b798",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-0 one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:54.889922Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78094,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "30c4e9fc-54b5-4511-bef0-55c1ef03562f",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-1 one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:54.906087Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78094,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "e5631f3a-7a9a-49aa-b1c1-ee8907947ea6",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-2 one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:54.920788Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78094,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "aca08354-2cbc-4e23-9b31-dd5137c57328",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "direct-audit-refused-Forwarded-0 one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:54.935013Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78094,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "a8f117d6-f809-4ad7-bfbc-8935493962b3",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "direct-audit-refused-Forwarded-1 one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:54.948984Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78094,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "078ec2cc-e303-4a0a-8329-c469de454cfd",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "direct-audit-refused-Forwarded-2 one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:54.965055Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78094,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "7741541b-ac2e-4f12-a09f-a33393f4ba89",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "instrument-curl-whitespace-omitted one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:54.978183Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78094,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "fc9376ad-d8a9-4e88-a690-f6aa556cfb6f",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "direct-click-A one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:55.020762Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78094,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "edb1c2b0-82cf-4335-aa07-477c64a444d3",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "direct-click-A-forged-forwarding one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:55.034675Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78094,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "46acfe43-c29e-4258-994a-a2f30da6f9d6",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "direct-stats-poll-1 one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:55.054671Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78094,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "cb6ddc52-2021-4ddb-bad8-b69671444044",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "live-openapi one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:55.232902Z",
+        "log": {
+          "level": "INFO",
+          "logger": "org.springdoc.api.AbstractOpenApiResource"
+        },
+        "process": {
+          "pid": 78094,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "Init duration for springdoc-openapi is: 162 ms",
+        "requestId": "ee36df61-1d60-4cf5-a5b0-c0f6d78ba4e0",
+        "ecs": {
+          "version": "8.11"
+        }
+      },
+      {
+        "@timestamp": "2026-10-04T01:54:55.246237Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78094,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "ee36df61-1d60-4cf5-a5b0-c0f6d78ba4e0",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "trusted-create one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:57.413543Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78277,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "74a42b54-b26a-4f2c-be78-798fe61803e5",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "trusted-audit-admitted one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:57.433066Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78277,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "81531af1-a3bc-4f13-b6b7-f835982fafe6",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "trusted-audit-refused-X-Forwarded-For-0 one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:57.454996Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78277,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "e54e979f-7463-4a23-8961-e159535a352d",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "trusted-audit-refused-X-Forwarded-For-1 one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:57.468929Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78277,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "fb7ddf0b-fa1f-42e5-829a-b4b4a26ccd65",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "trusted-audit-refused-X-Forwarded-For-2 one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:57.482576Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78277,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "934b2852-d1c4-4ab2-88ea-4525fe1de3d3",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "trusted-audit-refused-Forwarded-0 one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:57.497743Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78277,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "0d57d778-b0be-455f-ad2a-0b9696b71879",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "trusted-audit-refused-Forwarded-1 one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:57.515019Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78277,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "fb23007a-033f-4ce1-a124-c08a746161e8",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "trusted-audit-refused-Forwarded-2 one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:57.528837Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78277,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "3e7673e9-e46b-42cd-8de1-48fb89cc9a7d",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "trusted-click-A one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:57.566253Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78277,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "15f5c734-dab4-48c8-bb2b-5623785d378c",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "trusted-click-A-chain one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:57.579846Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78277,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "b4fca154-7827-45a9-8e9a-9c0894655d72",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "trusted-click-B one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:57.593043Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78277,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "f4ca969f-aad1-4752-9738-3ca87ea4b218",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "trusted-stats-poll-1 one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:57.611283Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78277,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "b5a3e2af-f0e7-42b3-a690-b7281fdc1e41",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "untrusted-budget-spent-0 one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:59.754487Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78521,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "68f44834-fa84-4ea2-bf60-c175ab0b6768",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "untrusted-budget-spent-1 one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:59.768970Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78521,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "715da5fe-a3e5-4384-9671-d81fecb84998",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "untrusted-budget-429 one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:54:59.780999Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78521,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "990d41a8-9132-4390-a21f-1f16d31ccd7b",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "trusted-budget-spent-0 one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:01.801947Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78634,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "8613c0ae-cf9a-4492-b8ca-6d6c3c2b74ab",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "trusted-budget-spent-1 one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:01.819945Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78634,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "9f28898c-2f7b-4427-bf08-0ba19669767d",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "trusted-budget-429 one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:01.831992Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78634,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "e0804904-aa8f-486e-be50-026c753e9fb1",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "trusted-budget-unrelated-client one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:01.848514Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78634,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "4198ca7d-a651-4786-8e7e-5f4390b88989",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "remote-ip-create-canary one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:04.222703Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78814,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "a543fa63-ba30-4d82-bf30-7d040fda6c2d",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "remote-ip-audit-GET-plain one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:04.252473Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78814,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "7bf6e27e-1204-4c7d-ab61-df99f45729ad",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "remote-ip-audit-GET-forged one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:04.280551Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78814,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "c4b0e1b8-3c37-4aef-81b3-a6b8d94f9aa4",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "remote-ip-audit-HEAD-plain one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:04.303265Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78814,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "a0451ef3-855d-46fb-851f-218da94b525e",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "remote-ip-audit-HEAD-forged one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:04.316632Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78814,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "40b2cc41-cbce-460d-b5a2-277f2a01beab",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "protocol-create-canary one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:06.591110Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78995,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "b36f2a53-cea1-4643-8048-a1037470e3f8",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "protocol-audit-GET-plain one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:06.613717Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78995,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "ba9f2030-3233-4b0c-b98a-2defffeda619",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "protocol-audit-GET-forged one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:06.628267Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78995,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "8eb8d7c3-ef83-466c-8f93-c00842a9338d",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "protocol-audit-HEAD-plain one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:06.644149Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78995,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "e12301b7-eb79-4c9b-a348-95242a69ebc8",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "protocol-audit-HEAD-forged one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:06.656776Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 78995,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "850b15fe-b053-4809-82ac-f85a35b9d072",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "both-remoteip-create-canary one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:08.741030Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 79177,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "bd76a155-5c90-4d98-8fdc-675aff5d5623",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "both-remoteip-audit-GET-plain one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:08.762619Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 79177,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "487d0141-5b16-4194-9345-63f6b023f152",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "both-remoteip-audit-GET-forged one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:08.776954Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 79177,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "6877bca6-0217-4d63-8fb5-0e87d0234fb3",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "both-remoteip-audit-HEAD-plain one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:08.791045Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 79177,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "ae5a448b-e10f-4329-b58a-57cf89e67391",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "both-remoteip-audit-HEAD-forged one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:08.804357Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 79177,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "ad69660b-f169-441c-b570-47ed57fbee7f",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "native-create-canary one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:10.831097Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 79289,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "ca0d57d6-13b8-43e1-805d-9075b63df5d3",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "native-audit-GET-plain one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:10.853191Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 79289,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "98a927ae-29e8-4e71-b877-64fcd7a6cf52",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "native-audit-GET-forged one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:10.870133Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 79289,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "a47e5706-1942-4506-acc6-8f240d21e6c5",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "native-audit-HEAD-plain one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:10.888908Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 79289,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "8c3b868d-c030-4fd5-93e4-307a77c9206c",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "native-audit-HEAD-forged one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:10.902371Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 79289,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "b765f893-d1a9-4936-9dea-0f90dbca050e",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "framework-create-canary one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:13.021772Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 79435,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "0d61e7f8-6614-4fee-a5ac-6f0f29f113fd",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "framework-audit-GET-plain one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:13.044813Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 79435,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "85d3b1cb-2618-4d9e-86f9-8b6749439746",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "framework-audit-GET-forged one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:13.063298Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 79435,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "4dfb8ce7-33a9-4a7d-8be5-bbecfa70d602",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "framework-audit-HEAD-plain one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:13.078398Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 79435,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "34da6687-e71c-4029-83a7-87c4ab5d3ca9",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "framework-audit-HEAD-forged one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:13.095480Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 79435,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "f5344a80-9b6f-4200-9153-bc8a886dd088",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "cloud-pinned-audit-admitted one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:15.071041Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 79624,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "769bcf1f-6e3f-47ea-9cac-dd33cf9a22fc",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "cloud-pinned-audit-refused one matching request log",
+    "pass": true,
+    "detail": [
+      {
+        "@timestamp": "2026-10-04T01:55:15.108666Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 79624,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "1f7582a1-8942-4ff7-8e8f-219e3080bf6e",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "claim": "direct log identity/browsing canaries private",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "trusted log identity/browsing canaries private",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "untrusted-budget log identity/browsing canaries private",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "trusted-budget log identity/browsing canaries private",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "remote-ip log identity/browsing canaries private",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "protocol log identity/browsing canaries private",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "both-remoteip log identity/browsing canaries private",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "native log identity/browsing canaries private",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "framework log identity/browsing canaries private",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "cloud log identity/browsing canaries private",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "no intervening main product change",
+    "pass": true,
+    "detail": "4c945cf11bf38036bba900425dacda9bb8ca7a83"
+  }
+]

@@ -1,0 +1,113 @@
+{
+  "candidate": "50ad9c3ab9e65baa4100ede1772b514322957fa5",
+  "base": "http://127.0.0.1:18231",
+  "mode": "default",
+  "code": "sr9ukJ8z",
+  "stats": {
+    "code": "sr9ukJ8z",
+    "totalClicks": 4,
+    "clicksPerDay": [
+      {
+        "date": "2026-10-04",
+        "clicks": 4,
+        "uniqueVisitors": 1,
+        "botClicks": 1
+      }
+    ],
+    "topReferrers": [
+      {
+        "referrer": "https://marketing.example",
+        "clicks": 4
+      }
+    ]
+  },
+  "recordedDelta": 4,
+  "clickSeries": [
+    "urlshort_clicks_lost_total{reason=\"reduction failed\"} 0.0",
+    "urlshort_clicks_lost_total{reason=\"rejected\"} 0.0",
+    "urlshort_clicks_lost_total{reason=\"shutdown deadline\"} 0.0",
+    "urlshort_clicks_lost_total{reason=\"shutdown deadline, outcome unknown\"} 0.0",
+    "urlshort_clicks_lost_total{reason=\"write failed\"} 0.0",
+    "urlshort_clicks_recorded_total 5.0"
+  ],
+  "openapiEqual": true,
+  "exchanges": [
+    {
+      "label": "readiness",
+      "method": "GET",
+      "path": "/actuator/health/readiness",
+      "status": 200,
+      "requestId": "0b01e709-3fec-4670-a6cb-750a35c6cc5d"
+    },
+    {
+      "label": "create",
+      "method": "POST",
+      "path": "/api/links",
+      "status": 201,
+      "requestId": "8fa30b2f-ec58-408b-849c-3395682668c1"
+    },
+    {
+      "label": "recorded-2",
+      "method": "GET",
+      "path": "/actuator/metrics/urlshort.clicks.recorded",
+      "status": 200,
+      "requestId": "32692954-1e5a-489e-aa97-15ea961f524a"
+    },
+    {
+      "label": "redirect-0",
+      "method": "GET",
+      "path": "/sr9ukJ8z",
+      "status": 302,
+      "requestId": "bf8a7ff5-3704-4538-88c2-6eb6a428f4a3"
+    },
+    {
+      "label": "redirect-1",
+      "method": "GET",
+      "path": "/sr9ukJ8z",
+      "status": 302,
+      "requestId": "66e6eca4-92e0-4adf-bf63-2629ca4c6bf8"
+    },
+    {
+      "label": "redirect-2",
+      "method": "GET",
+      "path": "/sr9ukJ8z",
+      "status": 302,
+      "requestId": "abda6c38-88a4-4577-b752-6044ebbf6c60"
+    },
+    {
+      "label": "redirect-3",
+      "method": "GET",
+      "path": "/sr9ukJ8z",
+      "status": 302,
+      "requestId": "9c9658ba-4b4a-4422-abc6-174257469b8d"
+    },
+    {
+      "label": "stats-0",
+      "method": "GET",
+      "path": "/api/links/sr9ukJ8z/stats",
+      "status": 200,
+      "requestId": "cd964367-21ea-449a-b96f-46e0c992cf5e"
+    },
+    {
+      "label": "recorded-8",
+      "method": "GET",
+      "path": "/actuator/metrics/urlshort.clicks.recorded",
+      "status": 200,
+      "requestId": "dfbdc4d4-9474-46a2-a875-43727e9f8713"
+    },
+    {
+      "label": "prometheus",
+      "method": "GET",
+      "path": "/actuator/prometheus",
+      "status": 200,
+      "requestId": "73006233-5953-440e-a1eb-99592f8d80b5"
+    },
+    {
+      "label": "openapi",
+      "method": "GET",
+      "path": "/v3/api-docs",
+      "status": 200,
+      "requestId": "b269eadf-f216-48ff-a6a2-619387fa257c"
+    }
+  ]
+}

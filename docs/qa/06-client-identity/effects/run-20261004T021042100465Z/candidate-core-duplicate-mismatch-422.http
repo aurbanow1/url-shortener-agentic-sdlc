@@ -1,0 +1,7 @@
+HTTP/1.1 422 
+X-Request-Id: 88a9804a-167d-4605-adae-f41ec2313b2f
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sun, 04 Oct 2026 02:11:35 GMT
+
+{"instance":"urn:uuid:88a9804a-167d-4605-adae-f41ec2313b2f","status":422,"title":"Unprocessable Content","errors":[{"field":"Idempotency-Key","rule":"mismatch","message":"Idempotency-Key was already used with a different url"}]}

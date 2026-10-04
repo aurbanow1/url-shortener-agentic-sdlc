@@ -1,0 +1,155 @@
+[
+  {
+    "claim": "baseline product tree still current",
+    "pass": true,
+    "detail": "50387c729aa575a5eebc505f86c542ed22ff2995"
+  },
+  {
+    "claim": "direct-create curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "direct-create status",
+    "pass": true,
+    "detail": 201
+  },
+  {
+    "claim": "direct-create request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "direct-audit-admitted curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "direct-audit-admitted status",
+    "pass": true,
+    "detail": 200
+  },
+  {
+    "claim": "direct-audit-admitted request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-0 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-0 status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-0 request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-0 problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:6aad1d56-7528-4819-96e3-b937fa59d9da",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-0 problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:6aad1d56-7528-4819-96e3-b937fa59d9da",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-1 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-1 status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-1 request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-1 problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:54c17d3a-7f66-43f9-a238-6dce8bb03784",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-1 problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:54c17d3a-7f66-43f9-a238-6dce8bb03784",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-2 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-2 status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-2 request id",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-2 problem",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:e4f444ed-18a2-489d-bbde-fa8b363e821c",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-2 problem correlation",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:e4f444ed-18a2-489d-bbde-fa8b363e821c",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-3 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "direct-audit-refused-X-Forwarded-For-3 status",
+    "pass": false,
+    "detail": 200
+  },
+  {
+    "claim": "direct stopped and port closed",
+    "pass": true,
+    "detail": {
+      "pid": 52416,
+      "exit": 143,
+      "port": 63793
+    }
+  }
+]

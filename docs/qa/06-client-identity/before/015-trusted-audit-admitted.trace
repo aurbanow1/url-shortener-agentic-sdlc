@@ -1,0 +1,37 @@
+== Info: Host localhost:54124 was resolved.
+== Info: IPv6: ::1
+== Info: IPv4: 127.0.0.1
+== Info:   Trying [::1]:54124...
+== Info: connect to ::1 port 54124 from ::1 port 54252 failed: Connection refused
+== Info:   Trying 127.0.0.1:54124...
+== Info: Connected to localhost (127.0.0.1) port 54124
+=> Send header, 87 bytes (0x57)
+0000: GET /api/audit HTTP/1.1
+0019: Host: localhost:54124
+0030: User-Agent: curl/8.7.1
+0048: Accept: */*
+0055: 
+== Info: Request completely sent off
+<= Recv header, 15 bytes (0xf)
+0000: HTTP/1.1 200 
+<= Recv header, 52 bytes (0x34)
+0000: X-Request-Id: e0587bf9-4add-4860-8f0c-aae3f10a2a8b
+<= Recv header, 32 bytes (0x20)
+0000: Content-Type: application/json
+<= Recv header, 28 bytes (0x1c)
+0000: Transfer-Encoding: chunked
+<= Recv header, 37 bytes (0x25)
+0000: Date: Sun, 04 Oct 2026 01:05:21 GMT
+<= Recv header, 2 bytes (0x2)
+0000: 
+<= Recv data, 291 bytes (0x123)
+0000: 11c
+0005: {"items":[{"occurredAt":"2026-10-04T01:05:21.702Z","actor":"anon
+0045: ymous","action":"link.create","entity":"link","entityId":"eGLBmq
+0085: V8","requestId":"09982141-8b1f-4cfc-9491-a95bb759d023","before":
+00c5: null,"after":{"url":"https://example.com/qa06/client-group","sta
+0105: te":"active"}}],"next":null}
+<= Recv data, 5 bytes (0x5)
+0000: 0
+0003: 
+== Info: Connection #0 to host localhost left intact

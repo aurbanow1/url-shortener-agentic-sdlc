@@ -1,0 +1,33 @@
+{
+  "name": "cloud-pinned-audit-refused",
+  "app": "cloud",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/before/059-cloud-pinned-audit-refused.trace",
+    "-X",
+    "GET",
+    "-H",
+    "X-Forwarded-For: 127.0.0.2",
+    "http://localhost:54972/api/audit"
+  ],
+  "method": "GET",
+  "path": "/api/audit",
+  "raw": "059-cloud-pinned-audit-refused.http",
+  "status": 403,
+  "headers": {
+    "x-request-id": "51518923-fc88-4261-a83d-871e6420367e",
+    "content-type": "application/problem+json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 01:05:42 GMT"
+  },
+  "json": {
+    "instance": "urn:uuid:51518923-fc88-4261-a83d-871e6420367e",
+    "status": 403,
+    "title": "Forbidden"
+  }
+}

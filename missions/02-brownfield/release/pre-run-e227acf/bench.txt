@@ -1,0 +1,18 @@
+# Mission 02 pre-run benchmark
+# Candidate e227acf04e1ea902406532fcebd741f8a86f7f65
+# Artifact: /private/tmp/urlshort-mission02-e227acf.jar, port 18220, same host
+# Tool: scripts/smoke.sh --bench -> tools/bench.mjs, open loop, keep-alive, due-time latency
+# Host coordination: release2's mission03 rollback gate completed before this run;
+# no release2 load generator or Gradle process remained active. This is a single
+# macOS/Colima host observation, not a capacity claim.
+#
+# 1. redirects 100 req/s and creates 20 req/s together for 60 s
+create POST /api/links: 1200 requests in 59952 ms (offered 20 req/s for 60 s), achieved 20.0 req/s, non-2xx/3xx 0, p50 1.9 ms, p95 3.7 ms, p99 7.7 ms
+redirect GET /{code}: 6000 requests in 59995 ms (offered 100 req/s for 60 s), achieved 100.0 req/s, non-2xx/3xx 0, p50 1.5 ms, p95 3.0 ms, p99 6.3 ms
+# 2. redirect GET alone at 100 req/s for 60 s
+redirect GET /{code} alone: 6000 requests in 59991 ms (offered 100 req/s for 60 s), achieved 100.0 req/s, non-2xx/3xx 0, p50 1.4 ms, p95 4.0 ms, p99 16.2 ms
+# 3. redirect HEAD alone at 100 req/s for 60 s
+redirect HEAD /{code} alone: 6000 requests in 59992 ms (offered 100 req/s for 60 s), achieved 100.0 req/s, non-2xx/3xx 0, p50 1.4 ms, p95 2.3 ms, p99 5.2 ms
+# GET-minus-HEAD p95 comparison: 1.7 ms. It is a separate-distribution
+# comparison proxy for the click-recording share, not an isolated added-cost
+# quantile. NFR-L3 is therefore qualified by this limitation.

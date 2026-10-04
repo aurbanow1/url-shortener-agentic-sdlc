@@ -1,0 +1,438 @@
+{
+  "initial_candidate": "9f6508aa89757fa13e722c3358eeccc49e95cf33",
+  "resolution_candidate": "24b80bedb672489482220212eba37295a9ba7fbd",
+  "gate_checkout": "10f1ed8d7190dd3e5c317053a34feed488855ff3",
+  "files": [
+    {
+      "path": "missions/02-brownfield/slices/06-client-identity/design.md",
+      "initial_sha256": "71161cf4692f40d307a1cb6a2f87339752b6a812d5b6a783b416a7067834d96c",
+      "final_sha256": "e1df8233f1f4ce8a48368961a0d10fecb7081ae77b93af5c0c6658fd447dab89",
+      "working_copy_matches_final": true
+    },
+    {
+      "path": "missions/02-brownfield/slices/06-client-identity/impact-analysis.md",
+      "initial_sha256": "4bc546723e7e36ffdc1b42206c01877b049db7fc3407ced4f896e5df485661ac",
+      "final_sha256": "4bc546723e7e36ffdc1b42206c01877b049db7fc3407ced4f896e5df485661ac",
+      "working_copy_matches_final": true
+    },
+    {
+      "path": "docs/DESIGN.md",
+      "initial_sha256": "102c95dece01f42061c42479a997c69ccb90898dbfe26857bca0cf975233eb9d",
+      "final_sha256": "102c95dece01f42061c42479a997c69ccb90898dbfe26857bca0cf975233eb9d",
+      "working_copy_matches_final": true
+    },
+    {
+      "path": "docs/adr/0015-client-identity-trusted-proxies.md",
+      "initial_sha256": "7d294103f4ee10ef642d46e8c52be467c8d2123463bfc01a0a9d8d394de833d7",
+      "final_sha256": "7d294103f4ee10ef642d46e8c52be467c8d2123463bfc01a0a9d8d394de833d7",
+      "working_copy_matches_final": true
+    },
+    {
+      "path": "docs/adr/0019-audit-read-loopback-keyset.md",
+      "initial_sha256": "d7afc4c7267462471d8779c1020a507505cf2d0c4a57452b4b5046c56a0b6a03",
+      "final_sha256": "d7afc4c7267462471d8779c1020a507505cf2d0c4a57452b4b5046c56a0b6a03",
+      "working_copy_matches_final": true
+    },
+    {
+      "path": "docs/diagrams/client-identity-sequence.mmd",
+      "initial_sha256": "0f99db6cac9470fed0447b5516ac753212296f92bf3e8ba49f5f83d5f64a664d",
+      "final_sha256": "0f99db6cac9470fed0447b5516ac753212296f92bf3e8ba49f5f83d5f64a664d",
+      "working_copy_matches_final": true
+    }
+  ],
+  "spec_sha256": "435cc04db59ec06674b79387adc1e3afb165ead7e550b94a3359df2bc375b211",
+  "product_diff_from_initial": "",
+  "baseline_delta": ".../urlshort/click/ClickRetentionScheduleJourneyTest.java | 15 +++++++++++----\n 1 file changed, 11 insertions(+), 4 deletions(-)",
+  "tests": {
+    "test": {
+      "totals": {
+        "tests": 226,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "xmls": [
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.UrlshortApplicationTests.xml",
+          "sha256": "cfd963cda568981c9ad75f6b6cc43a186ce2e3dae0f72cea8adef148427d22f4",
+          "timestamp": "2026-10-04T01:14:50.595Z"
+        },
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.audit.AuditControllerTest.xml",
+          "sha256": "c7bd7d0af155f03080e150ffaff88af8de8cefa0d0a902e60d02c0e6b9fdf858",
+          "timestamp": "2026-10-04T01:14:54.080Z"
+        },
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.audit.AuditLogTest.xml",
+          "sha256": "9e08b2c3b671d703fc35ad0cd33a3695a6cac6cb2a004bb881e35dbe38950555",
+          "timestamp": "2026-10-04T01:14:54.318Z"
+        },
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.click.ClickAuditColumnsTest.xml",
+          "sha256": "ec78b2edf5312995dad472f329dae6ecf09560e98fe5a57cfab23869a86e4d05",
+          "timestamp": "2026-10-04T01:14:54.359Z"
+        },
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.click.ClickPurgeTest.xml",
+          "sha256": "ee6f47818ab0e6a2561e32b20611616abbe2851433bd420a6b2c55987d5c8f87",
+          "timestamp": "2026-10-04T01:14:54.531Z"
+        },
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.click.ClickRecorderTest.xml",
+          "sha256": "0f6bfe6e82bd236d4a6f4765844e9eaadf5e4d5f40accc52b533b041e1541827",
+          "timestamp": "2026-10-04T01:14:54.593Z"
+        },
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.click.ClickSchemaTest.xml",
+          "sha256": "67b8b7a3d484c335e91aa95a8bc722c0949bcc4b64dc8d0bdd48d715f8e5c7a1",
+          "timestamp": "2026-10-04T01:14:54.902Z"
+        },
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.click.ClickTest.xml",
+          "sha256": "536156bf023b0edbb9806a1d88aeb86d2357e69925557a01283ddb0445342337",
+          "timestamp": "2026-10-04T01:14:55.056Z"
+        },
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.click.DailySaltTest.xml",
+          "sha256": "951777e6da357d4cdbf48ab54b62211edaaf2c8f1215a1c8c3496011dd6c8d8d",
+          "timestamp": "2026-10-04T01:14:55.093Z"
+        },
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.click.LinkStatsTest.xml",
+          "sha256": "9baf8f0fbf50659a43d0ee7585510a1a690d93c41cab3d43c2621c13fd3e65bd",
+          "timestamp": "2026-10-04T01:14:55.227Z"
+        },
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.link.LinkAuditColumnsTest.xml",
+          "sha256": "596d777f4f02154bc9f2e8b5ebe248c1eefe43aa41a973f6d82783a37c52c2c1",
+          "timestamp": "2026-10-04T01:14:55.246Z"
+        },
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.link.LinkServiceStampTest.xml",
+          "sha256": "0f96c8df5c63183f98955e0c8964bfb819f1d22ced663f115efed2ec15331ad1",
+          "timestamp": "2026-10-04T01:14:55.593Z"
+        },
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.link.LinkServiceTest.xml",
+          "sha256": "2fe9c45f58cfdce916c764f65d0980e878b8b1bc4d907bb0f892b9aa622bf44d",
+          "timestamp": "2026-10-04T01:14:55.713Z"
+        },
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.link.LinkTest.xml",
+          "sha256": "a3d66e10e69632d8ff6d30b77f75dcef0f9dd64d4fb2ae4e3a5bb64d0ceda41c",
+          "timestamp": "2026-10-04T01:14:55.720Z"
+        },
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.link.LinkValidationTest.xml",
+          "sha256": "888f0d92f1751661a4ff70e271db5a7be448ff4ccb706c967fb932aa3027f66b",
+          "timestamp": "2026-10-04T01:14:55.721Z"
+        },
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.link.ShortCodesTest.xml",
+          "sha256": "b2f2ee9c3f975eb1900fdb97ae2c639e94eb35a5631369d06ef20ac78f3f3905",
+          "timestamp": "2026-10-04T01:14:55.742Z"
+        },
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.ping.PingControllerTest.xml",
+          "sha256": "67fc067f156c430ea50533f91ef3174efaf2e7611a5174bfd82bd1b43936aeab",
+          "timestamp": "2026-10-04T01:14:55.743Z"
+        },
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.web.MetricsConfigTest.xml",
+          "sha256": "cc6b7eb1bd9315745bff96e735999f4ab887cd4b924ae7bdd61f4eb5d183aa7f",
+          "timestamp": "2026-10-04T01:14:55.744Z"
+        },
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.web.ProblemDetailsAdviceTest.xml",
+          "sha256": "aea30b35553f966e7a31b231e40824ea35b630e0e58b6d563f5c91a1a6049077",
+          "timestamp": "2026-10-04T01:14:55.744Z"
+        },
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.web.ProblemsTest.xml",
+          "sha256": "efa778a104441e5d249daa44593da87e7b7855f583c92ba7fb050405dfc93d48",
+          "timestamp": "2026-10-04T01:14:55.753Z"
+        },
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.web.RateLimitFilterTest.xml",
+          "sha256": "5bd8ae5b1876908a536184696ebe5b23c3849491b008f9e0a6b8eaf299e9108d",
+          "timestamp": "2026-10-04T01:14:55.754Z"
+        },
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.web.RateLimiterTest.xml",
+          "sha256": "5fb7dc2279440c9ba55694d1c44a90bb953fab5d0a9e8d6bed77fd248f991729",
+          "timestamp": "2026-10-04T01:14:55.826Z"
+        },
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.web.RequestBodyLimitFilterTest.xml",
+          "sha256": "cf9cecb3c7a3c0a7c4f4bad158d073029b868623ce204bc4d36c1e8b8082e097",
+          "timestamp": "2026-10-04T01:14:55.861Z"
+        },
+        {
+          "path": "build/test-results/test/TEST-dev.urlshort.web.RequestIdFilterTest.xml",
+          "sha256": "0c6cb993a0b5e461c2f507fcf7c2563e3febb3e48a5afa8ceeaf80bef23e275a",
+          "timestamp": "2026-10-04T01:14:55.868Z"
+        }
+      ]
+    },
+    "functionalTest": {
+      "totals": {
+        "tests": 250,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "xmls": [
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.HealthJourneyTest.xml",
+          "sha256": "0228196ab421f66a8ff834ab048e80df717881b55dc61f19386456515e0644f5",
+          "timestamp": "2026-10-04T01:15:02.119Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditAccessSettingsJourneyTest.xml",
+          "sha256": "b4e95ed59dcec31ccef1dc1fa9ddd32a530a35f6f1ba39b4aa9cbe6522c56fd0",
+          "timestamp": "2026-10-04T01:15:05.902Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditForwardedHeadersJourneyTest.xml",
+          "sha256": "e87777ac383323cd6112a9ed5cfb7598e55be6d322c9505c5a3354fdae946f4e",
+          "timestamp": "2026-10-04T01:15:06.436Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditJourneyTest.xml",
+          "sha256": "bc30076a72175c52d5939b45cb55492fa41a0299979fdb725893328d15aa9cae",
+          "timestamp": "2026-10-04T01:15:08.237Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditReadFailureJourneyTest.xml",
+          "sha256": "9348783f0f03b64cafe3b5b5b028a5a6c6d49bae2338c5a9715ee8b2ded8032e",
+          "timestamp": "2026-10-04T01:15:09.415Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditReadJourneyTest.xml",
+          "sha256": "d1e5810998930e84bb96d02b7aad938ae8888f9440198d8ac2bb866e5597e71a",
+          "timestamp": "2026-10-04T01:15:10.323Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.audit.AuditUpgradeJourneyTest.xml",
+          "sha256": "02625a774e5588d65fe3ddefa4037a39ec399891fd3e31729c7fea593a7912e4",
+          "timestamp": "2026-10-04T01:15:11.811Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickMetricsJourneyTest.xml",
+          "sha256": "1a86f636ae02eb4d19295c92e9fd4fa907898917fba9e4f5670be552c578a9a0",
+          "timestamp": "2026-10-04T01:15:12.378Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickPurgeFailureJourneyTest.xml",
+          "sha256": "08a80e19a363055357d11f458cfde5af91b488b2134d2a29221a59987064e976",
+          "timestamp": "2026-10-04T01:15:12.751Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickPurgeHoldJourneyTest.xml",
+          "sha256": "09e762c26e9a6dbeba918646c9ea9eedaf3f6a38da2c0070369ad96840d980e1",
+          "timestamp": "2026-10-04T01:15:13.075Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRecordingJourneyTest.xml",
+          "sha256": "e983786f3159bca4df0d99467c11ac3873cb3caf5ce1438d7598a820a19408eb",
+          "timestamp": "2026-10-04T01:15:19.111Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickResilienceJourneyTest.xml",
+          "sha256": "90e471108cdc761362e156a093bdc250b2972973e0c0efe6020cbdc957116053",
+          "timestamp": "2026-10-04T01:15:19.318Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickResilienceTrustedProxyJourneyTest.xml",
+          "sha256": "5b2d0c6e85209338b1d0b0caabdf096375acbefb90b44ce68ed0d11454b0350b",
+          "timestamp": "2026-10-04T01:15:21.733Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRetentionJourneyTest.xml",
+          "sha256": "4bbfe3ecc6873f10e402784f837a1ae2a8722c0f85cb5accb69356ff2f4579b3",
+          "timestamp": "2026-10-04T01:15:24.037Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRetentionScheduleJourneyTest.xml",
+          "sha256": "82d642ac0b2e599697ebe62dfd3786c8c116d383b7d8b7a17f0bc9a131aea708",
+          "timestamp": "2026-10-04T01:15:25.142Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRetentionSettingJourneyTest.xml",
+          "sha256": "484c2fe8dcd29055857255035c3c3e3b705c634de246c7144eaad3809665063f",
+          "timestamp": "2026-10-04T01:15:30.420Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickRetentionStartupJourneyTest.xml",
+          "sha256": "800de7d1bf2e18775711e43278b453393f25f76e12438bae5e0345693f001fbb",
+          "timestamp": "2026-10-04T01:15:30.687Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.click.ClickSchemaJourneyTest.xml",
+          "sha256": "e2873ad4841560cce578ad2e8dde8bcedee8520b8b0bf0c966c4dfc9bd6b4bf3",
+          "timestamp": "2026-10-04T01:15:45.850Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.click.StatsJourneyTest.xml",
+          "sha256": "7cc2f9965685c228e82893d15d9ae1d518499c64c94aba653238e8d2a9b88ee3",
+          "timestamp": "2026-10-04T01:15:45.860Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.click.StatsV2JourneyTest.xml",
+          "sha256": "ac313a4eafb47df393b067670d767de6d6b633de34c2f013875aed8d1898204d",
+          "timestamp": "2026-10-04T01:15:46.042Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.click.TrustedProxyClickJourneyTest.xml",
+          "sha256": "cbac0bbc66a26d019f7ceee2089c68d2229cbe86ca1ca3059978599ff343abac",
+          "timestamp": "2026-10-04T01:15:46.076Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.link.IdempotencyJourneyTest.xml",
+          "sha256": "6cb17de6532c8ae2729bb51035fd12a5a00c09816aded6e46d25d2a83f0dd2f8",
+          "timestamp": "2026-10-04T01:15:46.238Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkAuditColumnsFailureJourneyTest.xml",
+          "sha256": "ccdc5e204d8c6b6e6cf2ed82664dac27b25a803a414be0fa4dc3433646b32cec",
+          "timestamp": "2026-10-04T01:15:46.274Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkAuditColumnsJourneyTest.xml",
+          "sha256": "54ac45087076225b9d1b87bb1867ec771b2d273a03db5d9fbd0d88c58be2b74d",
+          "timestamp": "2026-10-04T01:15:46.288Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkCreateJourneyTest.xml",
+          "sha256": "a7c0c2f8cc7a5c115d4b7e98b53f89188b090521a1f5ef1a3d0ce5007a152be4",
+          "timestamp": "2026-10-04T01:15:46.321Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkReadRetireJourneyTest.xml",
+          "sha256": "d51b2334f2741351b268d8bc38ac0e92b3d8411075a9507e6aa94d030d999982",
+          "timestamp": "2026-10-04T01:15:46.400Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.link.LinkUpgradeJourneyTest.xml",
+          "sha256": "f3988d28666aaa12efa06f06f9d69ad0645984bd665cc4a0a652adf51c1c554c",
+          "timestamp": "2026-10-04T01:15:46.424Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.link.PublicBaseUrlJourneyTest.xml",
+          "sha256": "6d8270e4ff348f3e04fab980afa4ba9475955f7dc5c94aa94215dba24e0d4b33",
+          "timestamp": "2026-10-04T01:15:46.824Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.link.RedirectJourneyTest.xml",
+          "sha256": "a282e8f2d08df908a11c5347836a7ae183e38ecf7ec41d28a2a4327b64c290b2",
+          "timestamp": "2026-10-04T01:15:46.980Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.ping.PingJourneyTest.xml",
+          "sha256": "2b6b13910a0eee2c7b25f9bb80be1f6b7cb4e5801ffd8e6f488c67f99afcabe6",
+          "timestamp": "2026-10-04T01:15:46.994Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.web.ColdStartJourneyTest.xml",
+          "sha256": "79014bfd03967ed335c13f2aee0dc708ab774e66c31c85bc17dd45c41e2a8af0",
+          "timestamp": "2026-10-04T01:15:47.008Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.web.DatabaseDownJourneyTest.xml",
+          "sha256": "30806604c48cb8799bcc63e465b995b6c05987308bdaa110bb2c847b56e2e867",
+          "timestamp": "2026-10-04T01:15:47.149Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.web.HealthMetricsJourneyTest$AnonymousScrape.xml",
+          "sha256": "45dc8d799a1f247007e8b04a577a4777d64a659a008cffce25496da47fd86288",
+          "timestamp": "2026-10-04T01:15:52.512Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.web.HealthMetricsJourneyTest.xml",
+          "sha256": "07746ec23cecb40c826d6c46910436d6fb89f604c08fab4ad48a042852912378",
+          "timestamp": "2026-10-04T01:15:52.467Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.web.ObservabilityJourneyTest.xml",
+          "sha256": "3c5da9e976f43f614615fe6c194b6e0067d99ca865473fe582d55e16ba394edc",
+          "timestamp": "2026-10-04T01:15:52.763Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.web.OpenApiDocumentTest$OverTheCreateBudget.xml",
+          "sha256": "adf797daefb2d7df05fb1b9a25f7e35cc66d0d1c0b0a2611c71ac1857586a135",
+          "timestamp": "2026-10-04T01:15:52.853Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.web.OpenApiDocumentTest.xml",
+          "sha256": "b27a894995f76ab377bd7395e0f7d66ee5bb2bc7e63a0ee0678418c066e3a82d",
+          "timestamp": "2026-10-04T01:15:52.818Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitDefaultsTest.xml",
+          "sha256": "09c3ba13c36f4d0a26182a9013a9f871e278375dfdcda641453e96e13f5fba94",
+          "timestamp": "2026-10-04T01:15:53.115Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitJourneyTest.xml",
+          "sha256": "2a2b8456f8fcb259a60abd974822d7aefa44bec085147aa358d4c5276c52a5c3",
+          "timestamp": "2026-10-04T01:15:53.117Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.web.RateLimitSettingsJourneyTest.xml",
+          "sha256": "b0d501b2fb0392458dd1d0da3e22f99332dc935aba03044d33dda1582cb91207",
+          "timestamp": "2026-10-04T01:15:54.389Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.web.ShutdownPhaseDefaultTest.xml",
+          "sha256": "99f4ce5cc66b2aa95a8fff60a3fdc958db8807d7eab53d2eb3294064bec88744",
+          "timestamp": "2026-10-04T01:15:54.533Z"
+        },
+        {
+          "path": "build/test-results/functionalTest/TEST-dev.urlshort.web.TrustedProxyJourneyTest.xml",
+          "sha256": "610c1d2dd5fe7f1468ac7a90b10ad806f7302a5eab00032ff7d38f593ba066bc",
+          "timestamp": "2026-10-04T01:15:54.534Z"
+        }
+      ]
+    }
+  },
+  "canonical_coverage": {
+    "LINE_MISSED": 0,
+    "LINE_COVERED": 582,
+    "BRANCH_MISSED": 0,
+    "BRANCH_COVERED": 206,
+    "sha256": "0b952e9d6a458cbd40dbf5139c2bbde0e3bfde8c17218b2e0f0a7d77a221e9fb",
+    "execution_data": [
+      "build/jacoco/test.exec",
+      "build/jacoco/functionalTest.exec"
+    ]
+  },
+  "logs": [
+    {
+      "path": "docs/review/06-client-identity/design-baseline-check.txt",
+      "sha256": "f6e935ffe9b7e86c029239c22a6288a7916be0e38eb7e9909ea762d6e526f20e"
+    },
+    {
+      "path": "docs/review/06-client-identity/design-controls.txt",
+      "sha256": "f889741719b3b724dd5841fd28dac1d7f860adb1bcf3187e14a98a15a3d26314"
+    },
+    {
+      "path": "docs/review/06-client-identity/design-canonical-coverage.txt",
+      "sha256": "0294e2f7ca822c038e31a4d33e26f7d6bd11d98d02288ffdaa7d4420c10992e6"
+    }
+  ],
+  "controls": {
+    "total": 72,
+    "resolver": 19,
+    "peer": 13,
+    "header": 16,
+    "configuration": 24,
+    "scope": "Unchanged baseline methods, not a candidate implementation or new HTTP test"
+  },
+  "dr01_evidence": {
+    "prework_sha": "240b2301d6fb20427e1e4fb1fc4c37f20a585bd9",
+    "prework_functional_sha256": "7e628c7d670834c8cb5ac1412a6df33c03919f3488c8eab098f3475432429794",
+    "initial_design_lines": "223-227, 262-267",
+    "required_ac": "AC-5 fixed day/full oracle; AC-6/7 listed peers under trust; AC-8 both headers including blank/whitespace under trust",
+    "resolution": "24b80be design section 5.2 and Review response"
+  }
+}

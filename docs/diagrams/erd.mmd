@@ -1,4 +1,4 @@
-%% urlshort — entity relationship diagram (kept current by the Design Agent; last: current at main ed2b940, V3 merged; V4 from the 04-audit-columns design, not yet merged)
+%% urlshort — entity relationship diagram (kept current by the Design Agent; last: current at main d55a502, V3 and V4 merged)
 %% No foreign key between link and audit_log by design: audit_log identifies its subject by (entity, entity_id = code)
 %% and must outlive any future deletion of the subject (ADR-0008). click references link by id and goes with it (ADR-0013).
 erDiagram
@@ -9,9 +9,9 @@ erDiagram
         timestamptz created_at "application Clock, ms; also the idempotency binding time"
         timestamptz retired_at "NULL = active; set once by DELETE"
         varchar(255) idempotency_key UK "nullable; bound by the 201 that created the row"
-        timestamptz updated_at "V4 (designed): service clock; create, retire, key release"
-        varchar(64) created_by "V4 (designed): anonymous"
-        varchar(64) updated_by "V4 (designed): anonymous"
+        timestamptz updated_at "V4:service clock; create, retire, key release"
+        varchar(64) created_by "V4:anonymous"
+        varchar(64) updated_by "V4:anonymous"
     }
     AUDIT_LOG {
         bigint id PK "GENERATED ALWAYS AS IDENTITY"
@@ -23,10 +23,10 @@ erDiagram
         varchar(64) request_id "X-Request-Id of the mutating request"
         varchar(4096) before_state "JSON {url,state}; NULL on create"
         varchar(4096) after_state "JSON {url,state}"
-        timestamptz created_at "V4 (designed): row written, database clock"
-        timestamptz updated_at "V4 (designed): equals created_at (append-only)"
-        varchar(64) created_by "V4 (designed): equals actor"
-        varchar(64) updated_by "V4 (designed): equals actor"
+        timestamptz created_at "V4:row written, database clock"
+        timestamptz updated_at "V4:equals created_at (append-only)"
+        varchar(64) created_by "V4:equals actor"
+        varchar(64) updated_by "V4:equals actor"
     }
     CLICK {
         bigint id PK "GENERATED ALWAYS AS IDENTITY"

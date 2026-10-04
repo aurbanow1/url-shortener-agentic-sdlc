@@ -1,0 +1,31 @@
+{
+  "name": "protocol-audit-GET-plain",
+  "app": "protocol",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "--trace-ascii",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/before/039-protocol-audit-GET-plain.trace",
+    "-X",
+    "GET",
+    "http://localhost:54581/api/audit"
+  ],
+  "method": "GET",
+  "path": "/api/audit",
+  "raw": "039-protocol-audit-GET-plain.http",
+  "status": 403,
+  "headers": {
+    "x-request-id": "9ed0b776-7849-45af-8eaa-b069038019f4",
+    "content-type": "application/problem+json",
+    "transfer-encoding": "chunked",
+    "date": "Sun, 04 Oct 2026 01:05:32 GMT"
+  },
+  "json": {
+    "instance": "urn:uuid:9ed0b776-7849-45af-8eaa-b069038019f4",
+    "status": 403,
+    "title": "Forbidden"
+  }
+}

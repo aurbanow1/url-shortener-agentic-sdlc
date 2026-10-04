@@ -1,0 +1,40 @@
+{
+  "pass": true,
+  "hashesVerified": 264,
+  "requests": 59,
+  "statuses": {
+    "201": 7,
+    "200": 7,
+    "403": 33,
+    "302": 5,
+    "404": 5,
+    "429": 2
+  },
+  "distinctRequestIds": 59,
+  "correlatedEvents": 60,
+  "appsStopped": 10,
+  "assertions": 336,
+  "additionalEvent": [
+    {
+      "@timestamp": "2026-10-04T01:05:18.234042Z",
+      "log": {
+        "level": "INFO",
+        "logger": "org.springdoc.api.AbstractOpenApiResource"
+      },
+      "process": {
+        "pid": 79084,
+        "thread": {}
+      },
+      "service": {
+        "name": "urlshort",
+        "version": "0.1.0",
+        "node": {}
+      },
+      "message": "Init duration for springdoc-openapi is: 293 ms",
+      "requestId": "d4228b3b-0b7e-4781-9abc-99c119ed3d9d",
+      "ecs": {
+        "version": "8.11"
+      }
+    }
+  ]
+}

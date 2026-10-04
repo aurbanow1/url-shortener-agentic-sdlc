@@ -1,0 +1,625 @@
+[
+  {
+    "label": "retention hold starts healthy",
+    "pass": true,
+    "observed": {
+      "groups": [
+        "liveness",
+        "readiness"
+      ],
+      "status": "UP"
+    }
+  },
+  {
+    "label": "audit empty exact page",
+    "pass": true,
+    "observed": {
+      "items": [],
+      "next": null
+    }
+  },
+  {
+    "label": "create 0",
+    "pass": true,
+    "observed": {
+      "code": "vdWb3y84",
+      "shortUrl": "http://127.0.0.1:18234/vdWb3y84",
+      "url": "https://example.org/m02-0?operator-canary=m02-url-canary",
+      "state": "active",
+      "createdAt": "2026-10-04T01:38:42.962Z"
+    }
+  },
+  {
+    "label": "create 1",
+    "pass": true,
+    "observed": {
+      "code": "LhARLzoE",
+      "shortUrl": "http://127.0.0.1:18234/LhARLzoE",
+      "url": "https://example.org/m02-1?operator-canary=m02-url-canary",
+      "state": "active",
+      "createdAt": "2026-10-04T01:38:43.190Z"
+    }
+  },
+  {
+    "label": "create 2",
+    "pass": true,
+    "observed": {
+      "code": "jrCkwNNP",
+      "shortUrl": "http://127.0.0.1:18234/jrCkwNNP",
+      "url": "https://example.org/m02-2?operator-canary=m02-url-canary",
+      "state": "active",
+      "createdAt": "2026-10-04T01:38:43.341Z"
+    }
+  },
+  {
+    "label": "retire second",
+    "pass": true,
+    "observed": 204
+  },
+  {
+    "label": "audit exact write order and fields",
+    "pass": true,
+    "observed": {
+      "items": [
+        {
+          "occurredAt": "2026-10-04T01:38:43.478Z",
+          "actor": "anonymous",
+          "action": "link.retire",
+          "entity": "link",
+          "entityId": "LhARLzoE",
+          "requestId": "403eb1e3-a79a-46b7-9304-9bb3f61ee4d5",
+          "before": {
+            "url": "https://example.org/m02-1?operator-canary=m02-url-canary",
+            "state": "active"
+          },
+          "after": {
+            "url": "https://example.org/m02-1?operator-canary=m02-url-canary",
+            "state": "retired"
+          }
+        },
+        {
+          "occurredAt": "2026-10-04T01:38:43.343Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "jrCkwNNP",
+          "requestId": "60895b7c-7360-4918-8e9e-891adc7fd812",
+          "before": null,
+          "after": {
+            "url": "https://example.org/m02-2?operator-canary=m02-url-canary",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-04T01:38:43.192Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "LhARLzoE",
+          "requestId": "1083e356-0b07-4659-b929-5663baff9c41",
+          "before": null,
+          "after": {
+            "url": "https://example.org/m02-1?operator-canary=m02-url-canary",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-04T01:38:43.014Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "vdWb3y84",
+          "requestId": "e1350551-6c5c-498f-bfe6-89c9c5607b87",
+          "before": null,
+          "after": {
+            "url": "https://example.org/m02-0?operator-canary=m02-url-canary",
+            "state": "active"
+          }
+        }
+      ],
+      "next": null
+    }
+  },
+  {
+    "label": "late mutation create",
+    "pass": true,
+    "observed": {
+      "code": "ffOSuRxz",
+      "shortUrl": "http://127.0.0.1:18234/ffOSuRxz",
+      "url": "https://example.org/m02-late?operator-canary=m02-url-canary",
+      "state": "active",
+      "createdAt": "2026-10-04T01:38:43.896Z"
+    }
+  },
+  {
+    "label": "audit pagination excludes later mutation",
+    "pass": true,
+    "observed": [
+      {
+        "occurredAt": "2026-10-04T01:38:43.478Z",
+        "actor": "anonymous",
+        "action": "link.retire",
+        "entity": "link",
+        "entityId": "LhARLzoE",
+        "requestId": "403eb1e3-a79a-46b7-9304-9bb3f61ee4d5",
+        "before": {
+          "url": "https://example.org/m02-1?operator-canary=m02-url-canary",
+          "state": "active"
+        },
+        "after": {
+          "url": "https://example.org/m02-1?operator-canary=m02-url-canary",
+          "state": "retired"
+        }
+      },
+      {
+        "occurredAt": "2026-10-04T01:38:43.343Z",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entityId": "jrCkwNNP",
+        "requestId": "60895b7c-7360-4918-8e9e-891adc7fd812",
+        "before": null,
+        "after": {
+          "url": "https://example.org/m02-2?operator-canary=m02-url-canary",
+          "state": "active"
+        }
+      },
+      {
+        "occurredAt": "2026-10-04T01:38:43.192Z",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entityId": "LhARLzoE",
+        "requestId": "1083e356-0b07-4659-b929-5663baff9c41",
+        "before": null,
+        "after": {
+          "url": "https://example.org/m02-1?operator-canary=m02-url-canary",
+          "state": "active"
+        }
+      },
+      {
+        "occurredAt": "2026-10-04T01:38:43.014Z",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entityId": "vdWb3y84",
+        "requestId": "e1350551-6c5c-498f-bfe6-89c9c5607b87",
+        "before": null,
+        "after": {
+          "url": "https://example.org/m02-0?operator-canary=m02-url-canary",
+          "state": "active"
+        }
+      }
+    ]
+  },
+  {
+    "label": "audit-xff problem/private",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:c7e19965-a3b6-45af-99a3-f99e5837b362",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "label": "audit-forwarded problem/private",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:97bdb7b2-123c-47c4-8f3f-d1a952398043",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "label": "audit-empty-xff problem/private",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:97bd7701-2194-4e1f-bca6-86e5a70d746f",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "label": "audit-post problem/private",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:f0254cd9-f880-41ec-a3c9-9138ca14ef1c",
+      "status": 405,
+      "title": "Method Not Allowed"
+    }
+  },
+  {
+    "label": "audit-limit-zero problem/private",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:21eb38b1-d335-4c3b-84ee-5e4b4609b908",
+      "status": 400,
+      "title": "Bad Request",
+      "errors": [
+        {
+          "field": "limit",
+          "rule": "range",
+          "message": "must be from 1 to 100"
+        }
+      ]
+    }
+  },
+  {
+    "label": "audit-limit-text problem/private",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:d00c7fed-6a92-4631-87ad-0e5e4fa80420",
+      "status": 400,
+      "title": "Bad Request",
+      "errors": [
+        {
+          "field": "limit",
+          "rule": "format",
+          "message": "must be a whole number"
+        }
+      ]
+    }
+  },
+  {
+    "label": "audit-cursor-bad problem/private",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:6d34f79e-ce41-4de9-bdc6-eeac323dda78",
+      "status": 400,
+      "title": "Bad Request",
+      "errors": [
+        {
+          "field": "cursor",
+          "rule": "format",
+          "message": "must be a value returned as next"
+        }
+      ]
+    }
+  },
+  {
+    "label": "missing-stats problem/private",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:d478c647-fafb-4eb0-818c-75d899e71e13",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "label": "retired-visitor problem/private",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:7279a29a-f3b7-4d08-9ccd-a8e8936a38a9",
+      "status": 410,
+      "title": "Gone"
+    }
+  },
+  {
+    "label": "pinned OpenAPI equals installed live document",
+    "pass": true,
+    "observed": {
+      "pinned": "e227acf",
+      "paths": [
+        "/api/audit",
+        "/api/links",
+        "/api/links/{code}",
+        "/api/links/{code}/stats",
+        "/api/ping",
+        "/{code}"
+      ]
+    }
+  },
+  {
+    "label": "problem schema documents field errors",
+    "pass": true,
+    "observed": {
+      "type": "array",
+      "description": "Present on 400 validation and 422 idempotency-mismatch problems only",
+      "items": {
+        "$ref": "#/components/schemas/ProblemFieldError"
+      }
+    }
+  },
+  {
+    "label": "audit document describes privacy/error contract",
+    "pass": true,
+    "observed": {
+      "content": {
+        "application/problem+json": {
+          "schema": {
+            "$ref": "#/components/schemas/ProblemDetail"
+          }
+        }
+      },
+      "description": "Not a loopback client, or a forwarding header is present"
+    }
+  },
+  {
+    "label": "held retention visitor unchanged302",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "held retention records fresh click",
+    "pass": true,
+    "observed": {
+      "code": "vdWb3y84",
+      "totalClicks": 1,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 1,
+          "uniqueVisitors": 1,
+          "botClicks": 0
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 1
+        }
+      ]
+    }
+  },
+  {
+    "label": "recorded metric documented untagged",
+    "pass": true,
+    "observed": {
+      "availableTags": [],
+      "description": "Clicks written to the click store",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 1
+        }
+      ],
+      "name": "urlshort.clicks.recorded"
+    }
+  },
+  {
+    "label": "lost metric five documented reasons",
+    "pass": true,
+    "observed": {
+      "availableTags": [
+        {
+          "tag": "reason",
+          "values": [
+            "shutdown deadline, outcome unknown",
+            "reduction failed",
+            "rejected",
+            "shutdown deadline",
+            "write failed"
+          ]
+        }
+      ],
+      "description": "Clicks reported by a click lost event",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 0
+        }
+      ],
+      "name": "urlshort.clicks.lost"
+    }
+  },
+  {
+    "label": "documented counter series present",
+    "pass": true,
+    "observed": [
+      "urlshort_clicks_lost_total{reason=\"reduction failed\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"rejected\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"shutdown deadline\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"shutdown deadline, outcome unknown\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"write failed\"} 0.0",
+      "urlshort_clicks_recorded_total 1.0"
+    ]
+  },
+  {
+    "label": "read/error/click operations no audit writes",
+    "pass": true,
+    "observed": {
+      "items": [
+        {
+          "occurredAt": "2026-10-04T01:38:43.897Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "ffOSuRxz",
+          "requestId": "6cc9d7d1-c14a-4003-9075-27bb68925fc5",
+          "before": null,
+          "after": {
+            "url": "https://example.org/m02-late?operator-canary=m02-url-canary",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-04T01:38:43.478Z",
+          "actor": "anonymous",
+          "action": "link.retire",
+          "entity": "link",
+          "entityId": "LhARLzoE",
+          "requestId": "403eb1e3-a79a-46b7-9304-9bb3f61ee4d5",
+          "before": {
+            "url": "https://example.org/m02-1?operator-canary=m02-url-canary",
+            "state": "active"
+          },
+          "after": {
+            "url": "https://example.org/m02-1?operator-canary=m02-url-canary",
+            "state": "retired"
+          }
+        },
+        {
+          "occurredAt": "2026-10-04T01:38:43.343Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "jrCkwNNP",
+          "requestId": "60895b7c-7360-4918-8e9e-891adc7fd812",
+          "before": null,
+          "after": {
+            "url": "https://example.org/m02-2?operator-canary=m02-url-canary",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-04T01:38:43.192Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "LhARLzoE",
+          "requestId": "1083e356-0b07-4659-b929-5663baff9c41",
+          "before": null,
+          "after": {
+            "url": "https://example.org/m02-1?operator-canary=m02-url-canary",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-04T01:38:43.014Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "vdWb3y84",
+          "requestId": "e1350551-6c5c-498f-bfe6-89c9c5607b87",
+          "before": null,
+          "after": {
+            "url": "https://example.org/m02-0?operator-canary=m02-url-canary",
+            "state": "active"
+          }
+        }
+      ],
+      "next": null
+    }
+  },
+  {
+    "label": "stopped backup restore health",
+    "pass": true,
+    "observed": {
+      "status": "UP"
+    }
+  },
+  {
+    "label": "stopped backup restore audit",
+    "pass": true,
+    "observed": {
+      "items": [
+        {
+          "occurredAt": "2026-10-04T01:38:43.897Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "ffOSuRxz",
+          "requestId": "6cc9d7d1-c14a-4003-9075-27bb68925fc5",
+          "before": null,
+          "after": {
+            "url": "https://example.org/m02-late?operator-canary=m02-url-canary",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-04T01:38:43.478Z",
+          "actor": "anonymous",
+          "action": "link.retire",
+          "entity": "link",
+          "entityId": "LhARLzoE",
+          "requestId": "403eb1e3-a79a-46b7-9304-9bb3f61ee4d5",
+          "before": {
+            "url": "https://example.org/m02-1?operator-canary=m02-url-canary",
+            "state": "active"
+          },
+          "after": {
+            "url": "https://example.org/m02-1?operator-canary=m02-url-canary",
+            "state": "retired"
+          }
+        },
+        {
+          "occurredAt": "2026-10-04T01:38:43.343Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "jrCkwNNP",
+          "requestId": "60895b7c-7360-4918-8e9e-891adc7fd812",
+          "before": null,
+          "after": {
+            "url": "https://example.org/m02-2?operator-canary=m02-url-canary",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-04T01:38:43.192Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "LhARLzoE",
+          "requestId": "1083e356-0b07-4659-b929-5663baff9c41",
+          "before": null,
+          "after": {
+            "url": "https://example.org/m02-1?operator-canary=m02-url-canary",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-04T01:38:43.014Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "vdWb3y84",
+          "requestId": "e1350551-6c5c-498f-bfe6-89c9c5607b87",
+          "before": null,
+          "after": {
+            "url": "https://example.org/m02-0?operator-canary=m02-url-canary",
+            "state": "active"
+          }
+        }
+      ],
+      "next": null
+    }
+  },
+  {
+    "label": "stopped backup restore stats",
+    "pass": true,
+    "observed": {
+      "code": "vdWb3y84",
+      "totalClicks": 1,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 1,
+          "uniqueVisitors": 1,
+          "botClicks": 0
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 1
+        }
+      ]
+    }
+  },
+  {
+    "label": "stopped backup restore recorded",
+    "pass": true,
+    "observed": {
+      "availableTags": [],
+      "description": "Clicks written to the click store",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 0
+        }
+      ],
+      "name": "urlshort.clicks.recorded"
+    }
+  },
+  {
+    "label": "invalid zero retention refuses startup",
+    "pass": true,
+    "observed": [
+      "{\"@timestamp\":\"2026-10-04T01:42:05.557653Z\",\"log\":{\"level\":\"WARN\",\"logger\":\"org.springframework.boot.web.server.servlet.context.AnnotationConfigServletWebServerApplicationContext\"},\"process\":{\"pid\":29026,\"thread\":{}},\"service\":{\"name\":\"urlshort\",\"version\":\"0.1.0\",\"node\":{}},\"message\":\"Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'clickPurge' defined in URL [jar:nested:/private/tmp/urlshort-m02-dogfood-e227acf/urlshort.jar/!BOOT-INF/classes/!/dev/urlshort/click/ClickPurge.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'urlshort.click-dev.urlshort.click.ClickRetentionProperties': Could not bind properties to 'ClickRetentionProperties' : prefix=urlshort.click, ignoreInvalidFields=false, ignoreUnknownFields=true\",\"tags\":[\"COMMONS-LOGGING\"],\"ecs\":{\"version\":\"8.11\"}}",
+      "{\"@timestamp\":\"2026-10-04T01:42:05.579055Z\",\"log\":{\"level\":\"ERROR\",\"logger\":\"org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter\"},\"process\":{\"pid\":29026,\"thread\":{}},\"service\":{\"name\":\"urlshort\",\"version\":\"0.1.0\",\"node\":{}},\"message\":\"\\n\\n***************************\\nAPPLICATION FAILED TO START\\n***************************\\n\\nDescription:\\n\\nBinding to target dev.urlshort.click.ClickRetentionProperties failed:\\n\\n    Property: urlshort.click.retentionDays\\n    Value: \\\"0\\\"\\n    Origin: \\\"urlshort.click.retention-days\\\" from property source \\\"commandLineArgs\\\"\\n    Reason: must be greater than 0\\n\\n\\nAction:\\n\\nUpdate your application's configuration\\n\",\"tags\":[\"COMMONS-LOGGING\"],\"ecs\":{\"version\":\"8.11\"}}"
+    ],
+    "originalProbeExpectation": "Startup report contains the word positive",
+    "probeCorrection": "The actual validation wording must be greater than 0 is the required positive-value rule; rejected value0 and exact setting origin are shown."
+  }
+]

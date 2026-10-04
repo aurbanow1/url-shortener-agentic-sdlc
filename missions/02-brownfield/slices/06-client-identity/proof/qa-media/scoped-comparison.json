@@ -1,0 +1,91 @@
+{
+  "pass": true,
+  "exactHttpLogPairs": 1017,
+  "metricPairs": [
+    {
+      "scope": "clicks-0/privacy-prometheus",
+      "metadataLines": 150,
+      "series": 155,
+      "businessSamples": [
+        "urlshort_clicks_lost_total{reason=\"reduction failed\"} 0.0",
+        "urlshort_clicks_lost_total{reason=\"rejected\"} 0.0",
+        "urlshort_clicks_lost_total{reason=\"shutdown deadline\"} 0.0",
+        "urlshort_clicks_lost_total{reason=\"shutdown deadline, outcome unknown\"} 0.0",
+        "urlshort_clicks_lost_total{reason=\"write failed\"} 1.0",
+        "urlshort_clicks_recorded_total 21.0",
+        "urlshort_ratelimit_rejections_total{budget=\"create\"} 0.0",
+        "urlshort_ratelimit_rejections_total{budget=\"redirect\"} 0.0"
+      ],
+      "pass": true,
+      "observedSeriesOnlyInBaseline": [
+        [
+          "http_server_requests_seconds_count",
+          "{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SERVER_ERROR\",status=\"503\",uri=\"/actuator/health/**\"}"
+        ],
+        [
+          "http_server_requests_seconds_max",
+          "{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SERVER_ERROR\",status=\"503\",uri=\"/actuator/health/**\"}"
+        ],
+        [
+          "http_server_requests_seconds_sum",
+          "{error=\"none\",exception=\"none\",method=\"GET\",outcome=\"SERVER_ERROR\",status=\"503\",uri=\"/actuator/health/**\"}"
+        ]
+      ],
+      "observedSeriesOnlyInCandidate": [],
+      "observedMetadataOnlyInBaseline": [],
+      "observedMetadataOnlyInCandidate": [],
+      "bodyBytes": [
+        21554,
+        21127
+      ]
+    },
+    {
+      "scope": "clicks-1/privacy-prometheus",
+      "metadataLines": 150,
+      "series": 152,
+      "businessSamples": [
+        "urlshort_clicks_lost_total{reason=\"reduction failed\"} 0.0",
+        "urlshort_clicks_lost_total{reason=\"rejected\"} 0.0",
+        "urlshort_clicks_lost_total{reason=\"shutdown deadline\"} 0.0",
+        "urlshort_clicks_lost_total{reason=\"shutdown deadline, outcome unknown\"} 0.0",
+        "urlshort_clicks_lost_total{reason=\"write failed\"} 1.0",
+        "urlshort_clicks_recorded_total 21.0",
+        "urlshort_ratelimit_rejections_total{budget=\"create\"} 0.0",
+        "urlshort_ratelimit_rejections_total{budget=\"redirect\"} 0.0"
+      ],
+      "pass": true,
+      "observedSeriesOnlyInBaseline": [],
+      "observedSeriesOnlyInCandidate": [
+        [
+          "jvm_gc_concurrent_phase_time_seconds_count",
+          "{action=\"end of concurrent GC pause\",cause=\"No GC\",gc=\"G1 Concurrent GC\"}"
+        ],
+        [
+          "jvm_gc_concurrent_phase_time_seconds_max",
+          "{action=\"end of concurrent GC pause\",cause=\"No GC\",gc=\"G1 Concurrent GC\"}"
+        ],
+        [
+          "jvm_gc_concurrent_phase_time_seconds_sum",
+          "{action=\"end of concurrent GC pause\",cause=\"No GC\",gc=\"G1 Concurrent GC\"}"
+        ]
+      ],
+      "observedMetadataOnlyInBaseline": [],
+      "observedMetadataOnlyInCandidate": [
+        "# HELP jvm_gc_concurrent_phase_time_seconds Time spent in concurrent phase",
+        "# HELP jvm_gc_concurrent_phase_time_seconds_max Time spent in concurrent phase",
+        "# TYPE jvm_gc_concurrent_phase_time_seconds summary",
+        "# TYPE jvm_gc_concurrent_phase_time_seconds_max gauge"
+      ],
+      "bodyBytes": [
+        21133,
+        21756
+      ]
+    }
+  ],
+  "requestsPerLane": 1019,
+  "observedEffectChecksPassed": 10380,
+  "originalComparatorFailureRetained": [
+    "all controlled HTTP/log comparisons identical"
+  ],
+  "scopeCorrection": "Only two Prometheus bodies contain runtime measurements outside the preservation contract. Business metric names/tags/values, responses and correlated events match. Baseline clicks-0 additionally records health 503 series, consistent with polling during startup; raw health responses were not captured, so attribution is an inference. Candidate clicks-1 records the JVM concurrent-GC phase meter; its GC occurrence varies between runs. Outside those two reported instrumentation differences, metadata and series identities match. Full differing values, names and status tags remain in comparison.json and raw captures; AC-12 requires privacy, not identical runtime telemetry."
+}

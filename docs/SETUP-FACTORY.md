@@ -1,6 +1,7 @@
 # Running the factory
 
-The product in this repo builds and runs with Gradle alone (see `README.md`).
+The product in this repo builds and runs with Gradle alone (see [README](../README.md)
+and the [service/factory runbook](RUNBOOK.md)).
 This page is for running the *factory* — the OpenRig rig that produced it.
 
 ## Prerequisites
@@ -33,7 +34,8 @@ specs resolve from the repo alone.
 - Rig posture: `permission_policy: builtin:standard` (Claude `acceptEdits`, Codex `workspace-write`).
 - Claude seats: `.claude/settings.json` (committed) allows `rig`, `git`, `scripts/*`, `tools/*`, `java`, `node`, read-only shell tools, `docker compose|build|run|stop|rm|logs`; **denies** `git push`, `git reset --hard`, `git clean -f`, `rm -rf`, `docker push`. Seats reach the running app only through `scripts/http` (refuses non-loopback URLs) and run Gradle only through `scripts/gw` (`--log <file>` replaces shell redirection).
 - Codex seats: `.codex/rules/urlshort.rules` (project layer) allows the same families and marks `git push`, `git reset --hard`, `git clean`, `docker push` **forbidden**; a forbidden rule overrides any user-level allow. Verify: `codex execpolicy check --pretty --rules "$PWD/.codex/rules/urlshort.rules" git push origin main`.
-- Nothing is published by an agent: no remote is configured, and ship sign-off is a human gate.
+- Nothing is published by an agent. The human configured the Git remote for hosted
+  CI/CD; push, release publication and ship sign-off remain human actions.
 
 ## Models and reasoning effort
 
@@ -51,6 +53,12 @@ OpenRig pins a seat's *model* in its agent spec (`defaults.model`); `rig seat se
 | development-agent, dev2-agent | Claude Code | Claude Opus 5.5 (pinned in `rig/agents/development-agent/agent.yaml`) | high |
 | qa-agent, qa2-agent | Codex | GPT-6.1-Sol (pinned in `rig/agents/qa-agent/agent.yaml`) | xhigh |
 | review-agent, review2-agent | Codex | GPT-6-Astra | xhigh |
+
+D17 moved requirements and release authoring to Codex. Their reviews still
+use a separate seat, but can share the author's runtime; requirements review
+can also share the model. Product implementation remains Claude Code with
+Codex QA/review. Preserve the original runtime/SHA attribution in each receipt;
+do not describe every stage as cross-runtime independent.
 
 Verify after launch: `ps -axo args= | grep -- --model` lists the pinned Claude seats; a Codex seat prints its model and effort in its status bar (`rig capture qa-agent@urlshort-factory`).
 
@@ -93,23 +101,27 @@ rig workflow instantiate-lifecycle "$PWD/missions/00-hello" \
 
 ## Your gates (the human's job)
 
-Open Mission Control: `rig ui open` (or `rig tui`). A seat that needs your
+Open Mission Control with `rig tui`; `rig tui --shared` joins the kernel's
+existing shared terminal (detach with Ctrl-b d). `rig ui open` opens the browser
+UI. A seat that needs your
 decision **parks its packet on `human@kernel`** (OpenRig 0.6.3's human
 registry only supports Slack bindings, so there is no chat ping — the parked
-item is the signal). Decisions are: mission plan-locks, high-tier slice
-plan-locks, ambiguity questions, ship sign-offs. Each carries a summary and an
-evidence path. Decide in the UI or with:
+item is the signal). Mission plan-locks, ambiguity questions and ship sign-offs
+remain human decisions. D11 delegates all slice plan-locks to the orchestration
+lead for this run; [GOVERNANCE.md](GOVERNANCE.md) records the original tier policy
+and that delegation. Each gate carries a summary and an evidence path.
+Decide in Mission Control or with:
 
 ```sh
 rig view show held                                   # everything parked, incl. on you
-rig queue list --json | jq '.[] | select(.blockedOn=="human@kernel") | {qitemId,summary,evidenceRef}'
 rig queue show <qitem> --full
 rig queue resolve <qitem> --decision "approve: <one line of reasoning>"   # unparks + nudges the owner
 ```
 
-The owning seat then records the stamp on your behalf
-(`rig scope … approve --on-behalf-of human@kernel`) — both the decision text
-and the stamp land in the append-only audit log.
+The orchestration lead records mission delivery stamps after the release seat
+reports the recorded ship decision. Other gates follow their owning role's
+contract. Stamps use `rig scope … approve --on-behalf-of human@kernel` to record
+the human's decision; both that decision and the stamp remain in the audit log.
 
 ## Watching and intervening
 
@@ -119,7 +131,8 @@ rig workflow trace <instance>          # the step trail
 rig queue transitions <qitem>          # a packet's audit log
 rig capture <seat>  /  rig transcript <seat> --tail 100
 rig workflow resume|route|abort …      # the orchestration lead's dial; you may use it too
-rig down urlshort-factory --snapshot   # safe-stop everything (restorable with rig up urlshort-factory)
+rig down urlshort-factory --snapshot   # safe-stop with a recorded snapshot
+rig up urlshort-factory --existing --cwd "$PWD"   # resume the existing rig
 ```
 
 ## Evidence

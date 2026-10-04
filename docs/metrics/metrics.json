@@ -1,27 +1,27 @@
 {
   "totals": {
-    "generatedAt": "2026-10-03T17:44:03.313Z",
-    "instances": 12,
-    "active": 6,
-    "completed": 5,
+    "generatedAt": "2026-10-04T03:08:55.760Z",
+    "instances": 17,
+    "active": 3,
+    "completed": 13,
     "failed": 0,
     "aborted": 1,
-    "instanceSuccessRate": 0.833,
-    "stepClosures": 145,
-    "failedClosures": 13,
-    "stepSuccessRate": 0.91,
-    "retries": 36,
-    "rollbacks": 6,
-    "mttrMeanSec": 1410,
-    "e2eP50Sec": 13597,
-    "e2eP95Sec": 20218,
-    "humanWaitTotalSec": 31434
+    "instanceSuccessRate": 0.929,
+    "stepClosures": 240,
+    "failedClosures": 18,
+    "stepSuccessRate": 0.925,
+    "retries": 52,
+    "rollbacks": 9,
+    "mttrMeanSec": 1652,
+    "e2eP50Sec": 20200,
+    "e2eP95Sec": 31241,
+    "humanWaitTotalSec": 31526
   },
   "instances": [
     {
       "instanceId": "01M3Z8AJ1EDFTHQ1HPAWPNP2YN",
       "workflow": "lifecycle-urlshort-00-hello",
-      "mission": "01-greenfield-core",
+      "mission": "03-ambiguous-analytics",
       "status": "completed",
       "createdAt": "2026-10-02T21:29:02.766Z",
       "completedAt": "2026-10-03T03:06:00.711Z",
@@ -115,7 +115,7 @@
     {
       "instanceId": "01M3ZA8Q39QEB3R1QDQCVTER18",
       "workflow": "urlshort-slice",
-      "mission": "01-greenfield-core",
+      "mission": "03-ambiguous-analytics",
       "status": "completed",
       "createdAt": "2026-10-02T22:02:59.561Z",
       "completedAt": "2026-10-03T01:49:36.477Z",
@@ -263,13 +263,13 @@
     {
       "instanceId": "01M3ZXEXAMS945ZS0QZ26KZK1V",
       "workflow": "lifecycle-urlshort-01-greenfield-core",
-      "mission": "01-greenfield-core",
-      "status": "waiting",
+      "mission": "03-ambiguous-analytics",
+      "status": "completed",
       "createdAt": "2026-10-03T03:38:25.492Z",
-      "completedAt": null,
-      "e2eLatencySec": 50738,
-      "hops": 8,
-      "stepClosures": 41,
+      "completedAt": "2026-10-03T17:46:17.223Z",
+      "e2eLatencySec": 50872,
+      "hops": 9,
+      "stepClosures": 43,
       "failedClosures": 0,
       "reentries": 0,
       "retries": 0,
@@ -277,16 +277,25 @@
       "resumeCount": 0,
       "mttrSec": null,
       "humanWaitSec": 1990,
-      "queueWaitSec": 118,
-      "workSec": 46548,
+      "queueWaitSec": 141,
+      "workSec": 48573,
       "packets": [
+        {
+          "qitemId": "qitem-20261003174521-eb318067",
+          "step": "mission_close",
+          "queueWaitSec": 23,
+          "workSec": 32,
+          "humanWaitSec": 0,
+          "closedState": "done",
+          "rollbackNotes": 0
+        },
         {
           "qitemId": "qitem-20261003171157-d2ed38d0",
           "step": "evidence_export",
           "queueWaitSec": 11,
-          "workSec": null,
+          "workSec": 1993,
           "humanWaitSec": 0,
-          "closedState": null,
+          "closedState": "handed-off",
           "rollbackNotes": 0
         },
         {
@@ -366,7 +375,7 @@
     {
       "instanceId": "01M40149S2BGCAKVK83B6VCNKG",
       "workflow": "urlshort-slice",
-      "mission": "01-greenfield-core",
+      "mission": "03-ambiguous-analytics",
       "status": "completed",
       "createdAt": "2026-10-03T04:42:32.098Z",
       "completedAt": "2026-10-03T08:01:09.221Z",
@@ -505,7 +514,7 @@
     {
       "instanceId": "01M40CP0JVZZWR8226MNN8XCCV",
       "workflow": "urlshort-slice-delegated",
-      "mission": "01-greenfield-core",
+      "mission": "03-ambiguous-analytics",
       "status": "completed",
       "createdAt": "2026-10-03T08:04:26.843Z",
       "completedAt": "2026-10-03T11:29:27.481Z",
@@ -653,7 +662,7 @@
     {
       "instanceId": "01M40CPBYR97637QGHT57BNEBY",
       "workflow": "urlshort-slice-delegated-b",
-      "mission": "01-greenfield-core",
+      "mission": "03-ambiguous-analytics",
       "status": "completed",
       "createdAt": "2026-10-03T08:04:38.488Z",
       "completedAt": "2026-10-03T13:58:53.675Z",
@@ -819,30 +828,102 @@
     {
       "instanceId": "01M40RVNDQ0KT7FPWN1KJW0DC3",
       "workflow": "lifecycle-urlshort-03-ambiguous-analytics",
-      "mission": "01-greenfield-core",
-      "status": "active",
+      "mission": "03-ambiguous-analytics",
+      "status": "waiting",
       "createdAt": "2026-10-03T11:37:14.935Z",
       "completedAt": null,
-      "e2eLatencySec": 22008,
-      "hops": 3,
-      "stepClosures": 3,
+      "e2eLatencySec": 55901,
+      "hops": 8,
+      "stepClosures": 10,
       "failedClosures": 0,
       "reentries": 0,
       "retries": 0,
-      "rollbacks": 0,
+      "rollbacks": 1,
       "resumeCount": 0,
       "mttrSec": null,
-      "humanWaitSec": 13836,
-      "queueWaitSec": 56,
-      "workSec": 705,
+      "humanWaitSec": 13928,
+      "queueWaitSec": 191,
+      "workSec": 39967,
       "packets": [
+        {
+          "qitemId": "qitem-20261004024238-651b51b1",
+          "step": "evidence_export",
+          "queueWaitSec": 60,
+          "workSec": null,
+          "humanWaitSec": 0,
+          "closedState": null,
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261004023723-f58044d0",
+          "step": "ship_signoff",
+          "queueWaitSec": null,
+          "workSec": null,
+          "humanWaitSec": 92,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261004024212-e72494e7",
+          "step": "evidence_export",
+          "queueWaitSec": null,
+          "workSec": null,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261004020758-49ceba8e",
+          "step": "release_review",
+          "queueWaitSec": 23,
+          "workSec": 1742,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261004004828-05d2aab9",
+          "step": "release_prep",
+          "queueWaitSec": 30,
+          "workSec": 4741,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 1
+        },
+        {
+          "qitemId": "qitem-20261004002516-ee95930d",
+          "step": "wave_review",
+          "queueWaitSec": 22,
+          "workSec": 1355,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261004004814-04c1642a",
+          "step": "release_prep",
+          "queueWaitSec": null,
+          "workSec": null,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
         {
           "qitemId": "qitem-20261003154114-c0dd70b0",
           "step": "wave_integration",
           "queueWaitSec": 11,
+          "workSec": 31424,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261004002509-de60eb81",
+          "step": "wave_review",
+          "queueWaitSec": null,
           "workSec": null,
           "humanWaitSec": 0,
-          "closedState": null,
+          "closedState": "handed-off",
           "rollbackNotes": 0
         },
         {
@@ -877,13 +958,13 @@
     {
       "instanceId": "01M40SN34E37K96B38JPG9K41X",
       "workflow": "lifecycle-urlshort-02-brownfield",
-      "mission": "01-greenfield-core",
-      "status": "active",
+      "mission": "03-ambiguous-analytics",
+      "status": "waiting",
       "createdAt": "2026-10-03T11:51:08.174Z",
       "completedAt": null,
-      "e2eLatencySec": 21175,
-      "hops": 3,
-      "stepClosures": 3,
+      "e2eLatencySec": 55068,
+      "hops": 4,
+      "stepClosures": 8,
       "failedClosures": 0,
       "reentries": 0,
       "retries": 0,
@@ -891,16 +972,25 @@
       "resumeCount": 0,
       "mttrSec": null,
       "humanWaitSec": 12869,
-      "queueWaitSec": 76,
-      "workSec": 818,
+      "queueWaitSec": 103,
+      "workSec": 32228,
       "packets": [
+        {
+          "qitemId": "qitem-20261004002455-b7ea811b",
+          "step": "wave_review",
+          "queueWaitSec": 27,
+          "workSec": null,
+          "humanWaitSec": 0,
+          "closedState": null,
+          "rollbackNotes": 0
+        },
         {
           "qitemId": "qitem-20261003154117-c072093e",
           "step": "wave_integration",
           "queueWaitSec": 9,
-          "workSec": null,
+          "workSec": 31410,
           "humanWaitSec": 0,
-          "closedState": null,
+          "closedState": "handed-off",
           "rollbackNotes": 0
         },
         {
@@ -935,13 +1025,13 @@
     {
       "instanceId": "01M416Z3CM54YQTX93V4KG0CPS",
       "workflow": "urlshort-slice",
-      "mission": "01-greenfield-core",
-      "status": "active",
+      "mission": "03-ambiguous-analytics",
+      "status": "completed",
       "createdAt": "2026-10-03T15:43:47.604Z",
-      "completedAt": null,
-      "e2eLatencySec": 7216,
-      "hops": 2,
-      "stepClosures": 2,
+      "completedAt": "2026-10-04T00:24:28.721Z",
+      "e2eLatencySec": 31241,
+      "hops": 8,
+      "stepClosures": 15,
       "failedClosures": 0,
       "reentries": 0,
       "retries": 0,
@@ -949,16 +1039,79 @@
       "resumeCount": 0,
       "mttrSec": null,
       "humanWaitSec": 0,
-      "queueWaitSec": 1566,
-      "workSec": 1944,
+      "queueWaitSec": 2259,
+      "workSec": 28976,
       "packets": [
+        {
+          "qitemId": "qitem-20261004001800-cc58cd9d",
+          "step": "integrate",
+          "queueWaitSec": 11,
+          "workSec": 377,
+          "humanWaitSec": 0,
+          "closedState": "done",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261004000110-d0d07fdb",
+          "step": "code_review",
+          "queueWaitSec": 24,
+          "workSec": 986,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003231403-839a47f3",
+          "step": "qa_check",
+          "queueWaitSec": 22,
+          "workSec": 2804,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003200331-90c97f87",
+          "step": "implement",
+          "queueWaitSec": 583,
+          "workSec": 10850,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003185640-3b837606",
+          "step": "plan_lock",
+          "queueWaitSec": 24,
+          "workSec": 3981,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003200325-7115d4e3",
+          "step": "?",
+          "queueWaitSec": null,
+          "workSec": null,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003184238-e2f2be28",
+          "step": "design_review",
+          "queueWaitSec": 29,
+          "workSec": 813,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
         {
           "qitemId": "qitem-20261003164151-fbee7e97",
           "step": "design",
           "queueWaitSec": 26,
-          "workSec": null,
+          "workSec": 7221,
           "humanWaitSec": 0,
-          "closedState": null,
+          "closedState": "handed-off",
           "rollbackNotes": 0
         },
         {
@@ -984,30 +1137,129 @@
     {
       "instanceId": "01M416ZY5N11CDGZBM2DT4GAXS",
       "workflow": "urlshort-slice-delegated",
-      "mission": "01-greenfield-core",
-      "status": "active",
+      "mission": "03-ambiguous-analytics",
+      "status": "completed",
       "createdAt": "2026-10-03T15:44:15.029Z",
-      "completedAt": null,
-      "e2eLatencySec": 7188,
-      "hops": 4,
-      "stepClosures": 4,
-      "failedClosures": 1,
-      "reentries": 2,
-      "retries": 3,
+      "completedAt": "2026-10-03T21:52:12.443Z",
+      "e2eLatencySec": 22077,
+      "hops": 15,
+      "stepClosures": 16,
+      "failedClosures": 3,
+      "reentries": 7,
+      "retries": 10,
       "rollbacks": 0,
       "resumeCount": 0,
-      "mttrSec": 410,
+      "mttrSec": 2479,
       "humanWaitSec": 0,
-      "queueWaitSec": 302,
-      "workSec": 3256,
+      "queueWaitSec": 784,
+      "workSec": 21293,
       "packets": [
+        {
+          "qitemId": "qitem-20261003214424-a56c0575",
+          "step": "integrate",
+          "queueWaitSec": 9,
+          "workSec": 459,
+          "humanWaitSec": 0,
+          "closedState": "done",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003213051-77ffaad3",
+          "step": "code_review",
+          "queueWaitSec": 23,
+          "workSec": 791,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003202154-65e6d10f",
+          "step": "qa_check",
+          "queueWaitSec": 195,
+          "workSec": 3942,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003201620-c74de839",
+          "step": "implement",
+          "queueWaitSec": 11,
+          "workSec": 323,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003195938-d8b8a9c3",
+          "step": "code_review",
+          "queueWaitSec": 40,
+          "workSec": 962,
+          "humanWaitSec": 0,
+          "closedState": "done",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003185423-545a1365",
+          "step": "qa_check",
+          "queueWaitSec": 37,
+          "workSec": 3878,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003182724-0843aca3",
+          "step": "implement",
+          "queueWaitSec": 9,
+          "workSec": 1610,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003182604-c8ff8e2d",
+          "step": "plan_lock",
+          "queueWaitSec": 11,
+          "workSec": 69,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003182016-5973c5c1",
+          "step": "design_review",
+          "queueWaitSec": 30,
+          "workSec": 318,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003175700-cbb50861",
+          "step": "design",
+          "queueWaitSec": 89,
+          "workSec": 1307,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003174406-936f9d9c",
+          "step": "design_review",
+          "queueWaitSec": 28,
+          "workSec": 746,
+          "humanWaitSec": 0,
+          "closedState": "done",
+          "rollbackNotes": 0
+        },
         {
           "qitemId": "qitem-20261003164258-4a95943e",
           "step": "design",
           "queueWaitSec": 35,
-          "workSec": null,
+          "workSec": 3632,
           "humanWaitSec": 0,
-          "closedState": null,
+          "closedState": "handed-off",
           "rollbackNotes": 0
         },
         {
@@ -1051,31 +1303,112 @@
     {
       "instanceId": "01M4170AA9E72WW1BXEA5PX0AP",
       "workflow": "urlshort-slice-delegated-b",
-      "mission": "01-greenfield-core",
-      "status": "active",
+      "mission": "03-ambiguous-analytics",
+      "status": "completed",
       "createdAt": "2026-10-03T15:44:27.465Z",
-      "completedAt": null,
-      "e2eLatencySec": 7176,
-      "hops": 4,
-      "stepClosures": 4,
-      "failedClosures": 1,
-      "reentries": 0,
-      "retries": 1,
-      "rollbacks": 0,
+      "completedAt": "2026-10-03T23:08:34.760Z",
+      "e2eLatencySec": 26647,
+      "hops": 12,
+      "stepClosures": 18,
+      "failedClosures": 2,
+      "reentries": 4,
+      "retries": 6,
+      "rollbacks": 2,
       "resumeCount": 0,
-      "mttrSec": null,
+      "mttrSec": 2265,
       "humanWaitSec": 0,
-      "queueWaitSec": 310,
-      "workSec": 6432,
+      "queueWaitSec": 609,
+      "workSec": 25816,
       "packets": [
+        {
+          "qitemId": "qitem-20261003225239-ed926320",
+          "step": "integrate",
+          "queueWaitSec": 15,
+          "workSec": 940,
+          "humanWaitSec": 0,
+          "closedState": "done",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003223905-762d759f",
+          "step": "code_review",
+          "queueWaitSec": 177,
+          "workSec": 637,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003214414-12d75069",
+          "step": "qa_check",
+          "queueWaitSec": 45,
+          "workSec": 3246,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003184336-f1b2d2a0",
+          "step": "implement",
+          "queueWaitSec": 6,
+          "workSec": 10832,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003183612-3452b207",
+          "step": "plan_lock",
+          "queueWaitSec": 6,
+          "workSec": 215,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003183953-9526315e",
+          "step": "?",
+          "queueWaitSec": null,
+          "workSec": null,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003182930-370196d0",
+          "step": "design_review",
+          "queueWaitSec": 18,
+          "workSec": 384,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003182019-5b56b6ce",
+          "step": "design",
+          "queueWaitSec": 13,
+          "workSec": 539,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003181452-6bc9f909",
+          "step": "design_review",
+          "queueWaitSec": 19,
+          "workSec": 308,
+          "humanWaitSec": 0,
+          "closedState": "done",
+          "rollbackNotes": 1
+        },
         {
           "qitemId": "qitem-20261003173636-643c7c17",
           "step": "design",
           "queueWaitSec": 12,
-          "workSec": null,
+          "workSec": 2283,
           "humanWaitSec": 0,
-          "closedState": null,
-          "rollbackNotes": 0
+          "closedState": "handed-off",
+          "rollbackNotes": 1
         },
         {
           "qitemId": "qitem-20261003172504-1e5d5337",
@@ -1118,7 +1451,7 @@
     {
       "instanceId": "01M41B1ABGY3WR0DKEPZCJE9D3",
       "workflow": "urlshort-drill",
-      "mission": "01-greenfield-core",
+      "mission": "03-ambiguous-analytics",
       "status": "aborted",
       "createdAt": "2026-10-03T16:54:54.576Z",
       "completedAt": "2026-10-03T16:57:48.793Z",
@@ -1151,6 +1484,494 @@
           "workSec": 65,
           "humanWaitSec": 0,
           "closedState": "done",
+          "rollbackNotes": 0
+        }
+      ]
+    },
+    {
+      "instanceId": "01M41HFT4CTYPNWWNB8PJ99NFE",
+      "workflow": "urlshort-slice-delegated-b",
+      "mission": "03-ambiguous-analytics",
+      "status": "completed",
+      "createdAt": "2026-10-03T18:47:40.940Z",
+      "completedAt": "2026-10-03T20:33:20.856Z",
+      "e2eLatencySec": 6340,
+      "hops": 8,
+      "stepClosures": 9,
+      "failedClosures": 0,
+      "reentries": 0,
+      "retries": 0,
+      "rollbacks": 0,
+      "resumeCount": 0,
+      "mttrSec": null,
+      "humanWaitSec": 0,
+      "queueWaitSec": 143,
+      "workSec": 6197,
+      "packets": [
+        {
+          "qitemId": "qitem-20261003203123-a785ee4c",
+          "step": "integrate",
+          "queueWaitSec": 28,
+          "workSec": 90,
+          "humanWaitSec": 0,
+          "closedState": "done",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003202216-eba453ef",
+          "step": "code_review",
+          "queueWaitSec": 20,
+          "workSec": 527,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003195527-d2973fff",
+          "step": "qa_check",
+          "queueWaitSec": 43,
+          "workSec": 1566,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003193221-175d6855",
+          "step": "implement",
+          "queueWaitSec": 8,
+          "workSec": 1378,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003193135-f2f66c25",
+          "step": "plan_lock",
+          "queueWaitSec": 8,
+          "workSec": 38,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003192547-28bfe85e",
+          "step": "design_review",
+          "queueWaitSec": 11,
+          "workSec": 337,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003185656-e4c8b68d",
+          "step": "design",
+          "queueWaitSec": 6,
+          "workSec": 1725,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003185217-9f98ac8d",
+          "step": "requirements_review",
+          "queueWaitSec": 10,
+          "workSec": 269,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003184740-263527f6",
+          "step": "requirements",
+          "queueWaitSec": 9,
+          "workSec": 267,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        }
+      ]
+    },
+    {
+      "instanceId": "01M41HG4P6DEVAKTCJC6J9QAWP",
+      "workflow": "urlshort-slice-delegated-b",
+      "mission": "03-ambiguous-analytics",
+      "status": "completed",
+      "createdAt": "2026-10-03T18:47:51.750Z",
+      "completedAt": "2026-10-04T00:24:31.316Z",
+      "e2eLatencySec": 20200,
+      "hops": 8,
+      "stepClosures": 11,
+      "failedClosures": 0,
+      "reentries": 0,
+      "retries": 0,
+      "rollbacks": 0,
+      "resumeCount": 0,
+      "mttrSec": null,
+      "humanWaitSec": 0,
+      "queueWaitSec": 439,
+      "workSec": 19722,
+      "packets": [
+        {
+          "qitemId": "qitem-20261004001239-8ee629f7",
+          "step": "integrate",
+          "queueWaitSec": 10,
+          "workSec": 701,
+          "humanWaitSec": 0,
+          "closedState": "done",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003235705-60b5c52b",
+          "step": "code_review",
+          "queueWaitSec": 26,
+          "workSec": 908,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003232046-aa44c49f",
+          "step": "qa_check",
+          "queueWaitSec": 59,
+          "workSec": 2120,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003223549-c479c189",
+          "step": "implement",
+          "queueWaitSec": 15,
+          "workSec": 2682,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003191531-57bcb230",
+          "step": "plan_lock",
+          "queueWaitSec": 13,
+          "workSec": 11999,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003223543-96dcbd88",
+          "step": "?",
+          "queueWaitSec": null,
+          "workSec": null,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003190948-2c1e2288",
+          "step": "design_review",
+          "queueWaitSec": 12,
+          "workSec": 331,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003190148-7795836d",
+          "step": "design",
+          "queueWaitSec": 13,
+          "workSec": 468,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003185548-520967ab",
+          "step": "requirements_review",
+          "queueWaitSec": 18,
+          "workSec": 310,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003190115-8ce22243",
+          "step": "?",
+          "queueWaitSec": null,
+          "workSec": null,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003184751-a000203f",
+          "step": "requirements",
+          "queueWaitSec": 273,
+          "workSec": 203,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        }
+      ]
+    },
+    {
+      "instanceId": "01M41HGF6AHB6AZR3Q0KQ8MQR7",
+      "workflow": "urlshort-slice-delegated",
+      "mission": "03-ambiguous-analytics",
+      "status": "completed",
+      "createdAt": "2026-10-03T18:48:02.506Z",
+      "completedAt": "2026-10-03T22:49:55.369Z",
+      "e2eLatencySec": 14513,
+      "hops": 8,
+      "stepClosures": 10,
+      "failedClosures": 0,
+      "reentries": 0,
+      "retries": 0,
+      "rollbacks": 0,
+      "resumeCount": 0,
+      "mttrSec": null,
+      "humanWaitSec": 0,
+      "queueWaitSec": 662,
+      "workSec": 13850,
+      "packets": [
+        {
+          "qitemId": "qitem-20261003224749-c43612f6",
+          "step": "integrate",
+          "queueWaitSec": 10,
+          "workSec": 115,
+          "humanWaitSec": 0,
+          "closedState": "done",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003223352-97e556cd",
+          "step": "code_review",
+          "queueWaitSec": 26,
+          "workSec": 811,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003215524-d56667a8",
+          "step": "qa_check",
+          "queueWaitSec": 37,
+          "workSec": 2270,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003200223-d361adc6",
+          "step": "implement",
+          "queueWaitSec": 13,
+          "workSec": 6768,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003194307-78d5bcf1",
+          "step": "plan_lock",
+          "queueWaitSec": 12,
+          "workSec": 1144,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003193154-cf5ec0b6",
+          "step": "design_review",
+          "queueWaitSec": 26,
+          "workSec": 648,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003190448-afa9115b",
+          "step": "design",
+          "queueWaitSec": 43,
+          "workSec": 1583,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003185900-adac5cf2",
+          "step": "requirements_review",
+          "queueWaitSec": 23,
+          "workSec": 326,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003184802-67941cc3",
+          "step": "requirements",
+          "queueWaitSec": 472,
+          "workSec": 185,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        }
+      ]
+    },
+    {
+      "instanceId": "01M4212A8BKA6JRZHZQBD90D07",
+      "workflow": "urlshort-drill",
+      "mission": "03-ambiguous-analytics",
+      "status": "completed",
+      "createdAt": "2026-10-03T23:19:55.915Z",
+      "completedAt": "2026-10-03T23:32:07.695Z",
+      "e2eLatencySec": 732,
+      "hops": 3,
+      "stepClosures": 4,
+      "failedClosures": 1,
+      "reentries": 2,
+      "retries": 3,
+      "rollbacks": 0,
+      "resumeCount": 0,
+      "mttrSec": 184,
+      "humanWaitSec": 0,
+      "queueWaitSec": 560,
+      "workSec": 172,
+      "packets": [
+        {
+          "qitemId": "qitem-20261003233041-b3b78d0d",
+          "step": "qa_check",
+          "queueWaitSec": 42,
+          "workSec": 44,
+          "humanWaitSec": 0,
+          "closedState": "done",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003232904-3c07d8d6",
+          "step": "implement",
+          "queueWaitSec": 36,
+          "workSec": 62,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003232132-8f1e1f16",
+          "step": "qa_check",
+          "queueWaitSec": 426,
+          "workSec": 26,
+          "humanWaitSec": 0,
+          "closedState": "done",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261003231955-aed54014",
+          "step": "implement",
+          "queueWaitSec": 56,
+          "workSec": 40,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        }
+      ]
+    },
+    {
+      "instanceId": "01M425CY9Z4K03G14Y677AT0PA",
+      "workflow": "urlshort-slice-delegated-b",
+      "mission": "03-ambiguous-analytics",
+      "status": "active",
+      "createdAt": "2026-10-04T00:35:38.431Z",
+      "completedAt": null,
+      "e2eLatencySec": 9197,
+      "hops": 8,
+      "stepClosures": 8,
+      "failedClosures": 1,
+      "reentries": 0,
+      "retries": 1,
+      "rollbacks": 0,
+      "resumeCount": 0,
+      "mttrSec": null,
+      "humanWaitSec": 0,
+      "queueWaitSec": 677,
+      "workSec": 7771,
+      "packets": [
+        {
+          "qitemId": "qitem-20261004025620-a869dc4a",
+          "step": "implement",
+          "queueWaitSec": 7,
+          "workSec": null,
+          "humanWaitSec": 0,
+          "closedState": null,
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261004024533-3e9ae475",
+          "step": "code_review",
+          "queueWaitSec": 12,
+          "workSec": 635,
+          "humanWaitSec": 0,
+          "closedState": "done",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261004013841-c2fa8b43",
+          "step": "qa_check",
+          "queueWaitSec": 30,
+          "workSec": 3982,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261004012507-efa30d6a",
+          "step": "implement",
+          "queueWaitSec": 9,
+          "workSec": 805,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261004012350-fdb23cbc",
+          "step": "plan_lock",
+          "queueWaitSec": 14,
+          "workSec": 64,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261004011019-f67b1c6d",
+          "step": "design_review",
+          "queueWaitSec": 200,
+          "workSec": 611,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261004005458-a071fd65",
+          "step": "design",
+          "queueWaitSec": 372,
+          "workSec": 548,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261004004915-91f40366",
+          "step": "requirements_review",
+          "queueWaitSec": 13,
+          "workSec": 330,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
+          "rollbackNotes": 0
+        },
+        {
+          "qitemId": "qitem-20261004003538-62f6c81e",
+          "step": "requirements",
+          "queueWaitSec": 20,
+          "workSec": 796,
+          "humanWaitSec": 0,
+          "closedState": "handed-off",
           "rollbackNotes": 0
         }
       ]

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.urlshort.web.RateLimitFilterTest" tests="33" skipped="0" failures="0" errors="0" timestamp="2026-10-04T01:54:31.712Z" hostname="Andrzejs-MacBook-Pro.local" time="0.056">
+  <properties/>
+  <testcase name="[1] forwardedFor = null" classname="dev.urlshort.web.RateLimitFilterTest" time="0.0"/>
+  <testcase name="[2] forwardedFor = &quot;&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.0"/>
+  <testcase name="[1] remote = &quot;10.9.9.9&quot;, forwardedFor = &quot;203.0.113.7&quot;, client = &quot;203.0.113.7&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.001"/>
+  <testcase name="[2] remote = &quot;10.9.9.9&quot;, forwardedFor = &quot;198.51.100.1, 203.0.113.7&quot;, client = &quot;203.0.113.7&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.0"/>
+  <testcase name="[3] remote = &quot;10.9.9.9&quot;, forwardedFor = null, client = &quot;10.9.9.9&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.0"/>
+  <testcase name="[4] remote = &quot;10.0.0.5&quot;, forwardedFor = &quot;203.0.113.7&quot;, client = &quot;10.0.0.5&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.0"/>
+  <testcase name="[5] remote = &quot;10.9.9.9&quot;, forwardedFor = &quot; 203.0.113.7 ,  &quot;, client = &quot;203.0.113.7&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.0"/>
+  <testcase name="[6] remote = &quot;10.9.9.9&quot;, forwardedFor = &quot;203.0.113.7, 10.9.9.9&quot;, client = &quot;203.0.113.7&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.0"/>
+  <testcase name="[7] remote = &quot;10.9.9.9&quot;, forwardedFor = &quot;10.9.9.9, 10.9.9.9&quot;, client = &quot;10.9.9.9&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.0"/>
+  <testcase name="[8] remote = &quot;10.9.9.9&quot;, forwardedFor = &quot; , &quot;, client = &quot;10.9.9.9&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.001"/>
+  <testcase name="[1] uri = &quot;/actuator&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.002"/>
+  <testcase name="[2] uri = &quot;/actuator/health&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.0"/>
+  <testcase name="[3] uri = &quot;/actuator/prometheus&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.001"/>
+  <testcase name="[4] uri = &quot;/v3/api-docs&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.0"/>
+  <testcase name="[5] uri = &quot;/v3/api-docs/swagger-config&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.0"/>
+  <testcase name="[6] uri = &quot;/swagger-ui.html&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.0"/>
+  <testcase name="[7] uri = &quot;/swagger-ui/index.html&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.0"/>
+  <testcase name="theFilterReadsOnlyXForwardedForAndOnlyFromATrustedPeer()" classname="dev.urlshort.web.RateLimitFilterTest" time="0.001"/>
+  <testcase name="anEmptyBucketIsA429ProblemWithRetryAfterAndNoChain()" classname="dev.urlshort.web.RateLimitFilterTest" time="0.008"/>
+  <testcase name="eachRejectionIsCountedOnceUnderItsBudgetOnly()" classname="dev.urlshort.web.RateLimitFilterTest" time="0.003"/>
+  <testcase name="[1] uri = &quot;/api&quot;, budget = &quot;CREATE&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.003"/>
+  <testcase name="[2] uri = &quot;/api/&quot;, budget = &quot;CREATE&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.001"/>
+  <testcase name="[3] uri = &quot;/api/links&quot;, budget = &quot;CREATE&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.0"/>
+  <testcase name="[4] uri = &quot;/api/links/Abc12345/stats&quot;, budget = &quot;CREATE&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.001"/>
+  <testcase name="[5] uri = &quot;/api/ping&quot;, budget = &quot;CREATE&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.0"/>
+  <testcase name="[6] uri = &quot;/%61pi/links&quot;, budget = &quot;CREATE&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.001"/>
+  <testcase name="[7] uri = &quot;/apix&quot;, budget = &quot;REDIRECT&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.0"/>
+  <testcase name="[8] uri = &quot;/Abc12345&quot;, budget = &quot;REDIRECT&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.001"/>
+  <testcase name="[9] uri = &quot;/&quot;, budget = &quot;REDIRECT&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.0"/>
+  <testcase name="[10] uri = &quot;/favicon.ico&quot;, budget = &quot;REDIRECT&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.0"/>
+  <testcase name="[11] uri = &quot;/actuatorx&quot;, budget = &quot;REDIRECT&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.0"/>
+  <testcase name="[12] uri = &quot;/swagger-uix&quot;, budget = &quot;REDIRECT&quot;" classname="dev.urlshort.web.RateLimitFilterTest" time="0.0"/>
+  <testcase name="theChargedClientIsLeftOnTheRequestForTheClickRecorderAndAnExemptRequestCarriesNone()" classname="dev.urlshort.web.RateLimitFilterTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

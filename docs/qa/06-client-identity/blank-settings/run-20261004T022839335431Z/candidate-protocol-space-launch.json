@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "/opt/homebrew/opt/openjdk@21/bin/java",
+    "-jar",
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/06-client-identity/build/libs/urlshort.jar",
+    "--server.address=127.0.0.1",
+    "--server.port=61289",
+    "--spring.datasource.url=jdbc:h2:file:/private/tmp/urlshort-qa2-identity-yuj23vjs/candidate-protocol-space/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+    "--server.tomcat.remoteip.protocol-header=   "
+  ],
+  "pid": 12798,
+  "database": "/private/tmp/urlshort-qa2-identity-yuj23vjs/candidate-protocol-space"
+}

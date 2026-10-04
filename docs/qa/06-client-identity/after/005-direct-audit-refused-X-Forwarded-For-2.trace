@@ -1,0 +1,35 @@
+== Info: Host localhost:56352 was resolved.
+== Info: IPv6: ::1
+== Info: IPv4: 127.0.0.1
+== Info:   Trying [::1]:56352...
+== Info: connect to ::1 port 56352 from ::1 port 56425 failed: Connection refused
+== Info:   Trying 127.0.0.1:56352...
+== Info: Connected to localhost (127.0.0.1) port 56352
+=> Send header, 105 bytes (0x69)
+0000: GET /api/audit HTTP/1.1
+0019: Host: localhost:56352
+0030: User-Agent: curl/8.7.1
+0048: Accept: */*
+0055: X-Forwarded-For:
+0067: 
+== Info: Request completely sent off
+<= Recv header, 15 bytes (0xf)
+0000: HTTP/1.1 403 
+<= Recv header, 52 bytes (0x34)
+0000: X-Request-Id: aca08354-2cbc-4e23-9b31-dd5137c57328
+<= Recv header, 40 bytes (0x28)
+0000: Content-Type: application/problem+json
+<= Recv header, 28 bytes (0x1c)
+0000: Transfer-Encoding: chunked
+<= Recv header, 37 bytes (0x25)
+0000: Date: Sun, 04 Oct 2026 01:54:54 GMT
+<= Recv header, 2 bytes (0x2)
+0000: 
+<= Recv data, 99 bytes (0x63)
+0000: 5d
+0004: {"instance":"urn:uuid:aca08354-2cbc-4e23-9b31-dd5137c57328","sta
+0044: tus":403,"title":"Forbidden"}
+<= Recv data, 5 bytes (0x5)
+0000: 0
+0003: 
+== Info: Connection #0 to host localhost left intact
