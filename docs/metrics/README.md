@@ -47,3 +47,16 @@ Generated 2026-10-04T01:52:27.811Z by `tools/sdlc-metrics.mjs` from OpenRig work
 - **Human wait** is time a packet spent parked on `human@kernel`; it is reported separately so agent throughput and human latency are not conflated. The per-instance column sums the gate packets in that instance's trail; the total counts each packet once, because a slice gate also appears in the mission trail as the blocker of `wave_integration`.
 - Active instances contribute latency up to the generation time and are excluded from the p50/p95.
 - Token burn per seat is a separate record: `rig usage top --json` in `docs/evidence/<mission>/usage-top.json`.
+
+## Export-container scope limitation
+
+`tools/sdlc-metrics.mjs` derives rows from every evidence directory it finds.
+The generated per-instance table currently retains the directory as the
+mission label; an export for one mission can therefore contain workflow
+instances belonging to another mission or to a drill. Do not sum those rows as
+a mission aggregate. For mission-specific reporting, use the lifecycle
+instance and slice instance named by the mission's bound graph and cite the
+corresponding `docs/evidence/<mission>/INDEX.md`; for example mission 03's
+lifecycle is `01M40RVNDQ0KT7FPWN1KJW0DC3` and its analytics slice is
+`01M416Z3CM54YQTX93V4KG0CPS`. This is a labeling limitation, not a claim that
+the underlying traces are missing.
