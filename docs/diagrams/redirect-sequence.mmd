@@ -10,7 +10,7 @@ sequenceDiagram
     participant A as AuditLog → H2 audit_log
     participant E as ProblemDetailsAdvice
 
-    V->>F: GET /C  (Accept: text/html,…,*/*;q=0.8)
+    V->>F: GET /C  (Accept: text/html,…,*/*#59;q=0.8)
     F->>RC: chain.doFilter (requestId on MDC)
     RC->>S: resolve(C)
     S->>R: findByCode(C)
