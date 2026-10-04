@@ -1,0 +1,719 @@
+{
+  "configured": true,
+  "revision": "f03355cddfa8da9b6f3ce2b86f8483250351c0e049b6fd42f4226c3efa7ed94c",
+  "state": "unknown",
+  "history": [
+    {
+      "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/judgments/00000001.md",
+      "id": "e304b7df7488af03a2f443756442955c3995431560938cc4cd2d547161b34ff5",
+      "itemId": "item-69607e8c55b496ad521f",
+      "verdict": "accept",
+      "previous": null
+    },
+    {
+      "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/judgments/00000002.md",
+      "id": "4ba6b5050b07555d1f6be731a95a80ec8591a136882409b37bb5aea5e8c0f120",
+      "itemId": "item-576760c33e19929f5c79",
+      "verdict": "accept",
+      "previous": null
+    },
+    {
+      "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/judgments/00000003.md",
+      "id": "e91793f767ec10818e8585312ee17f507874b18c1f3cc17441841d30993b979b",
+      "itemId": "item-35cafbf1019d8f3b8c3b",
+      "verdict": "accept",
+      "previous": null
+    },
+    {
+      "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/judgments/00000004.md",
+      "id": "c0753123dd9a6ae264bcb1b626a98862e3215da0afec623f5b98893d499032d6",
+      "itemId": "item-abef6858d3d9adb6910d",
+      "verdict": "accept",
+      "previous": null
+    },
+    {
+      "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/judgments/00000005.md",
+      "id": "a653757d6c807b6826244962bb7c938523fad42022aff1c62ef7b922a5a994b4",
+      "itemId": "item-243444de5ae36c34c311",
+      "verdict": "accept",
+      "previous": null
+    },
+    {
+      "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/judgments/00000006.md",
+      "id": "01f014db2d4b6e5634f2b9da15578e09a9bf07596359c77dcfc12fefb1dcafd1",
+      "itemId": "item-c61cdb4822d824dfe29a",
+      "verdict": "accept",
+      "previous": null
+    },
+    {
+      "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/judgments/00000007.md",
+      "id": "c64d5020d95a0718cc0d444283271efde1e706e590bd288e857882aebc3f2c85",
+      "itemId": "item-537617c77012bee7f38d",
+      "verdict": "accept",
+      "previous": null
+    },
+    {
+      "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/judgments/00000008.md",
+      "id": "e76e66cfa7c64e3a79e25e1a48e0571d7016674554c856712fe034de03721cc1",
+      "itemId": "item-3a0542176d4c8fcc9083",
+      "verdict": "accept",
+      "previous": null
+    },
+    {
+      "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/judgments/00000009.md",
+      "id": "ebe0cbc3107cd3a6ba0d0236ae3655ba5af3e2d05ea6b345ad5ce3339004fc09",
+      "itemId": "item-736a7048a8ee82dbf5e4",
+      "verdict": "accept",
+      "previous": null
+    },
+    {
+      "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/judgments/00000010.md",
+      "id": "c47cc0d7220f7e1556bcd80ee3ea867ec53f50d9d10c01377ac80242c159ecda",
+      "itemId": "item-837c4ac3a3e0bf831fdd",
+      "verdict": "accept",
+      "previous": null
+    },
+    {
+      "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/judgments/00000011.md",
+      "id": "e53dc647940b4420802a76bafd32af723ec1ef7cc5921e2acb10636e81d51c18",
+      "itemId": "item-99f598bb35c2c32824e8",
+      "verdict": "accept",
+      "previous": null
+    },
+    {
+      "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/judgments/00000012.md",
+      "id": "3de2356f81055aa0e0e88139dda29f60499e67e0752f03239cfab54b2e11d26e",
+      "itemId": "item-c61cdb4822d824dfe29a",
+      "verdict": "accept",
+      "previous": "01f014db2d4b6e5634f2b9da15578e09a9bf07596359c77dcfc12fefb1dcafd1"
+    },
+    {
+      "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/judgments/00000013.md",
+      "id": "d6886378c083befc2be362e972b7fff06fadae0339adcc1586f8c44483a4c191",
+      "itemId": "item-34bef9502121a484d37f",
+      "verdict": "accept",
+      "previous": null
+    },
+    {
+      "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/judgments/00000014.md",
+      "id": "e587d41a636b0ae6b3c585d4efd964ee065b4935556e35ead2e6c3e1d8c6ffd5",
+      "itemId": "item-c61cdb4822d824dfe29a",
+      "verdict": "accept",
+      "previous": "3de2356f81055aa0e0e88139dda29f60499e67e0752f03239cfab54b2e11d26e"
+    }
+  ],
+  "items": [
+    {
+      "id": "item-69607e8c55b496ad521f",
+      "text": "The human's decision is recorded verbatim in this SPEC with its packet id and time, before any design commit for this slice (FR-16). Done at stage 2 (*Decision*).",
+      "index": 1,
+      "source": {
+        "file": "SPEC.md",
+        "line": 258
+      },
+      "revision": "21afc3914f7d9196d80b2b6381f865e2e557fb5309142feabfff440949a16bf6",
+      "state": "unknown",
+      "reason": "Evidence missing or changed; inspect the retained judgment",
+      "judgment": {
+        "version": 1,
+        "scope": "missions/03-ambiguous-analytics/slices/01-analytics-v2",
+        "sequence": 1,
+        "operationId": "e857f9a9a8105f8448f74ee07849c5d2c6fdbd3dd73ec7eacfb32029b39db7ed",
+        "itemId": "item-69607e8c55b496ad521f",
+        "itemRevision": "21afc3914f7d9196d80b2b6381f865e2e557fb5309142feabfff440949a16bf6",
+        "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+        "policySource": "project.yaml",
+        "previous": null,
+        "actor": "qa-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-03T23:59:44.734Z",
+        "verdict": "accept",
+        "reason": "Verbatim human decision transition876 at16:10:30Z is in SPEC with packet/time; stage-two b8c327b predates and is ancestor of first substantive design aa36c8b at18:39:43Z. Scaffold placeholders are not substantive design.",
+        "evidence": [
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/human-decision-transitions.json",
+            "sha256": "c9a7373736ae42e72616c80d7968216c8dc6920731144020215fa7773f72017e"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/verify.py",
+            "sha256": "867f6e07d58e943b1892b81881ddd53743e8542dca29c13dc7f7f4657afcdc58"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/SPEC.md",
+            "sha256": "7966cb40b9a7ee63ee1198f1c9a033e897bfe4857eab90c21e72727f3e380aad"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "ec466da8da4b1efde9d612c6c8692070cc6fc4b9"
+        },
+        "intent": "dc30d493211002792df2e05643bd966143b9d299b01d2a40bef7e8c61d3a8e1b",
+        "id": "e304b7df7488af03a2f443756442955c3995431560938cc4cd2d547161b34ff5"
+      }
+    },
+    {
+      "id": "item-576760c33e19929f5c79",
+      "text": "AC-1 through AC-15 are each covered by a named test (tabled criteria as one parameterised test) and are green on the candidate SHA with `scripts/gw check`.",
+      "index": 2,
+      "source": {
+        "file": "SPEC.md",
+        "line": 259
+      },
+      "revision": "1d13d0e323764904ad70b40da01b91f8eef5f2d16cafbe859a97dbe591f61b8a",
+      "state": "unknown",
+      "reason": "Evidence missing or changed; inspect the retained judgment",
+      "judgment": {
+        "version": 1,
+        "scope": "missions/03-ambiguous-analytics/slices/01-analytics-v2",
+        "sequence": 2,
+        "operationId": "0bcc654b0bffe181b20e3a97d3555d2219cf3b69ae2260232710c7d86f424973",
+        "itemId": "item-576760c33e19929f5c79",
+        "itemRevision": "1d13d0e323764904ad70b40da01b91f8eef5f2d16cafbe859a97dbe591f61b8a",
+        "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+        "policySource": "project.yaml",
+        "previous": null,
+        "actor": "qa-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-03T23:59:45.493Z",
+        "verdict": "accept",
+        "reason": "Fresh exact-candidate221unit/241functional gate is green; all15ACs have named functional tests and independent recorded effects. Original155/155 replay uses only allowed day expectations plus explicit audit enumeration carryforward a12a0e2; literal153/155 retained.",
+        "evidence": [
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-check-ec466da.txt",
+            "sha256": "a0219d6975121226e7d5354231b22f540903f4b196d6216862b1c12f5910ab1b"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/verification-summary.json",
+            "sha256": "09dc7a51c039dca4349cb9ad73ecda1cdd3dc1360c5ec20d86b5d98cfa645e98"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/v1-authorized-summary.json",
+            "sha256": "e2851ba19ff0336e19531b54ef1bbddaa7ff61f85b32ef0f3e07bcaef3ddea92"
+          },
+          {
+            "ref": "docs/qa/TRACEABILITY.md",
+            "sha256": "9725b167c061e63e48d939014c6807189ea98222f49b99024a9a79b55f8d78ac"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "ec466da8da4b1efde9d612c6c8692070cc6fc4b9"
+        },
+        "intent": "7d7d46dc48b82d32a37560e9cce33c0d94316827fbb9b28859a25960fbe6cb68",
+        "id": "4ba6b5050b07555d1f6be731a95a80ec8591a136882409b37bb5aea5e8c0f120"
+      }
+    },
+    {
+      "id": "item-35cafbf1019d8f3b8c3b",
+      "text": "`scripts/gw check` reports 100 % line and 100 % branch coverage on the merged unit and functional data (NFR-M1).",
+      "index": 3,
+      "source": {
+        "file": "SPEC.md",
+        "line": 260
+      },
+      "revision": "d4e897466c62da280b32cd27afe6a8bf57e7b9a7789483cd91ccf2fa85b9ae16",
+      "state": "accepted",
+      "reason": "Independent copied merged CSV sums580/580 lines206/206 branches100/100; fresh coverage verification passed. Separate suite percentages are informational and no exclusions/threshold changes were made.",
+      "judgment": {
+        "version": 1,
+        "scope": "missions/03-ambiguous-analytics/slices/01-analytics-v2",
+        "sequence": 3,
+        "operationId": "3a0625901e2d81a69494eb62b075563d400f411a0f22b90a51c1bea4c969058c",
+        "itemId": "item-35cafbf1019d8f3b8c3b",
+        "itemRevision": "d4e897466c62da280b32cd27afe6a8bf57e7b9a7789483cd91ccf2fa85b9ae16",
+        "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+        "policySource": "project.yaml",
+        "previous": null,
+        "actor": "qa-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-03T23:59:46.206Z",
+        "verdict": "accept",
+        "reason": "Independent copied merged CSV sums580/580 lines206/206 branches100/100; fresh coverage verification passed. Separate suite percentages are informational and no exclusions/threshold changes were made.",
+        "evidence": [
+          {
+            "ref": "docs/qa/coverage/01-analytics-v2/SUMMARY.md",
+            "sha256": "ae2df8c92b13570d098ff5278d20c177c55cb22c23b4b3a70c2307dfee0fe645"
+          },
+          {
+            "ref": "docs/qa/coverage/01-analytics-v2/all/jacocoTestReport.csv",
+            "sha256": "f9a191b274a33660a442e203bbe55f2920e152d169ba0318ece62573814d2bf8"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-check-ec466da.txt",
+            "sha256": "a0219d6975121226e7d5354231b22f540903f4b196d6216862b1c12f5910ab1b"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "ec466da8da4b1efde9d612c6c8692070cc6fc4b9"
+        },
+        "intent": "9598d13cb140530110b9ecc1352975b321547cbeee58beab41377372ba40a6bc",
+        "id": "e91793f767ec10818e8585312ee17f507874b18c1f3cc17441841d30993b979b"
+      }
+    },
+    {
+      "id": "item-abef6858d3d9adb6910d",
+      "text": "Unit and functional JaCoCo reports committed under `docs/qa/coverage/01-analytics-v2/unit/` and `docs/qa/coverage/01-analytics-v2/functional/`.",
+      "index": 4,
+      "source": {
+        "file": "SPEC.md",
+        "line": 261
+      },
+      "revision": "a65796dab1be067734e3b1acea2c3290793de1d3d86cb174ac6b345e19c468fb",
+      "state": "accepted",
+      "reason": "Evidence commit6672ed9 contains copied unit/functional/all reports; all372 file SHA-256 comparisons match fresh candidate build outputs, with HTML/XML/CSV retained.",
+      "judgment": {
+        "version": 1,
+        "scope": "missions/03-ambiguous-analytics/slices/01-analytics-v2",
+        "sequence": 4,
+        "operationId": "e7cb376ad9be80a3ada79a31636156bd288dd14f4b9fa4da15341235fe8ab02b",
+        "itemId": "item-abef6858d3d9adb6910d",
+        "itemRevision": "a65796dab1be067734e3b1acea2c3290793de1d3d86cb174ac6b345e19c468fb",
+        "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+        "policySource": "project.yaml",
+        "previous": null,
+        "actor": "qa-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-03T23:59:46.918Z",
+        "verdict": "accept",
+        "reason": "Evidence commit6672ed9 contains copied unit/functional/all reports; all372 file SHA-256 comparisons match fresh candidate build outputs, with HTML/XML/CSV retained.",
+        "evidence": [
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/report-hashes.json",
+            "sha256": "3b647c80bc651f1be92c3e45e43665cd7e2a53b2b54117e44e3493a7a5baf958"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/verification-summary.json",
+            "sha256": "09dc7a51c039dca4349cb9ad73ecda1cdd3dc1360c5ec20d86b5d98cfa645e98"
+          },
+          {
+            "ref": "docs/qa/coverage/01-analytics-v2/SUMMARY.md",
+            "sha256": "ae2df8c92b13570d098ff5278d20c177c55cb22c23b4b3a70c2307dfee0fe645"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "ec466da8da4b1efde9d612c6c8692070cc6fc4b9"
+        },
+        "intent": "2ee091d3e14797e6f25df096fc36081d07d9c34e4956799ab52ed5e4ab3b369f",
+        "id": "c0753123dd9a6ae264bcb1b626a98862e3215da0afec623f5b98893d499032d6"
+      }
+    },
+    {
+      "id": "item-243444de5ae36c34c311",
+      "text": "`docs/qa/TRACEABILITY.md` holds a table for `01-analytics-v2` mapping AC-1 to AC-15 and rules 1 to 11 to their tests, with the requirement id beside each AC.",
+      "index": 5,
+      "source": {
+        "file": "SPEC.md",
+        "line": 262
+      },
+      "revision": "ce4dee1acf97159a78517d1cd77fc92a182b22ca0ddf7081929bcba08c95da2f",
+      "state": "unknown",
+      "reason": "Evidence missing or changed; inspect the retained judgment",
+      "judgment": {
+        "version": 1,
+        "scope": "missions/03-ambiguous-analytics/slices/01-analytics-v2",
+        "sequence": 5,
+        "operationId": "11c3cf31b67eb324f9e3110a45a11ffbd66e2b705d15e55e5627f76e2a45c77f",
+        "itemId": "item-243444de5ae36c34c311",
+        "itemRevision": "ce4dee1acf97159a78517d1cd77fc92a182b22ca0ddf7081929bcba08c95da2f",
+        "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+        "policySource": "project.yaml",
+        "previous": null,
+        "actor": "qa-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-03T23:59:47.592Z",
+        "verdict": "accept",
+        "reason": "Current TRACEABILITY maps all15ACs and11business rules with requirement IDs; all282 source-method/context rows and462 XML invocations map back, including five inherited resilience methods in each configuration.41 parameterized source methods use disclosed green-group attribution.",
+        "evidence": [
+          {
+            "ref": "docs/qa/TRACEABILITY.md",
+            "sha256": "9725b167c061e63e48d939014c6807189ea98222f49b99024a9a79b55f8d78ac"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/source-test-inventory.json",
+            "sha256": "b18d968099b0f869d6ad963ca7b31566eed19849efbfbe1b9ab751f65172c0f2"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/invocation-attribution.json",
+            "sha256": "f8bf9c122e972e42dd9f81872579ca55d739e8d46a77ec97007480735704616b"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "ec466da8da4b1efde9d612c6c8692070cc6fc4b9"
+        },
+        "intent": "7a5731d4627fb45a8087f7743352ee43e370fac3e186cd2ed12f76df5e0c1e36",
+        "id": "a653757d6c807b6826244962bb7c938523fad42022aff1c62ef7b922a5a994b4"
+      }
+    },
+    {
+      "id": "item-c61cdb4822d824dfe29a",
+      "text": "`docs/qa/GAPS.md` holds a row for `01-analytics-v2`: at least the NFR-L1 numbers until the release bench measures them, and any other honest gap.",
+      "index": 6,
+      "source": {
+        "file": "SPEC.md",
+        "line": 263
+      },
+      "revision": "f9f5c17a6d4cad867ddb04032898cda49f8fbada159ac1ed945a2dd937fbb9d8",
+      "state": "unknown",
+      "reason": "Evidence missing or changed; inspect the retained judgment",
+      "judgment": {
+        "version": 1,
+        "scope": "missions/03-ambiguous-analytics/slices/01-analytics-v2",
+        "sequence": 14,
+        "operationId": "93f8e64f354206018efebe36484dd4fc15fc252c8dbdbde36a86f81ded3937ae",
+        "itemId": "item-c61cdb4822d824dfe29a",
+        "itemRevision": "f9f5c17a6d4cad867ddb04032898cda49f8fbada159ac1ed945a2dd937fbb9d8",
+        "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+        "policySource": "project.yaml",
+        "previous": "3de2356f81055aa0e0e88139dda29f60499e67e0752f03239cfab54b2e11d26e",
+        "actor": "qa-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-04T02:30:51.360Z",
+        "verdict": "accept",
+        "reason": "Reaffirming against current GAPS.md for pinned candidate 50ad9c3 after evidence hash drift. Read the complete analytics gap section and independently rechecked edit 797f8fb against the raw release benchmark. Its numerical closure holds for this run: p95 3.7 ms, p99 9.5 ms at 100 redirects/s for 60 s. Added explicit trusted-loopback, raised-quota and unretained-client-sample qualifications; original suite, fixture, replay and instrument limitations remain. No product regression or threshold waiver found.",
+        "evidence": [
+          {
+            "ref": "docs/qa/GAPS.md",
+            "sha256": "004509e6d7d92230fa3273e1c92e3b6b67c7bc42d44f90b6009dd135487fef43"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-release-50ad9c3/QA.md",
+            "sha256": "d3d76aee8549fa8fafca69fdce4d51df559038e922b35bc3f0c80e92402b0b45"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "50ad9c3ab9e65baa4100ede1772b514322957fa5"
+        },
+        "intent": "03a6dfcdc39a5b6e69af6342cac8ffebfdd1ce1eb38d3d6700ccb42687da9cd7",
+        "id": "e587d41a636b0ae6b3c585d4efd964ee065b4935556e35ead2e6c3e1d8c6ffd5"
+      }
+    },
+    {
+      "id": "item-537617c77012bee7f38d",
+      "text": "`proof/` holds a by-effect capture from the running service: redirects of one link from three peer addresses (one twice, one with a bot `User-Agent`) and the statistics body showing `clicks`, `uniqueVisitors` and `botClicks` for the day, with no hash or address in it. This checks AC-1, AC-2 and AC-4 on the real service. AC-3, AC-5 and AC-7 are proven by the controlled functional tests.",
+      "index": 7,
+      "source": {
+        "file": "SPEC.md",
+        "line": 264
+      },
+      "revision": "b4147071f2c20e235023c37ff747705211f47bb591e0795c3d2b3ddf50df42b6",
+      "state": "accepted",
+      "reason": "Unmodified installed jar actual-loopback trusted XFF clients101 twice,102 browser,103 bot produce day4clicks/3uniques/1bot with aggregate-only body. Controlled actual candidate additionally observes exact SPEC peers and both configurations; snapshots and logs show reduced facts only.",
+      "judgment": {
+        "version": 1,
+        "scope": "missions/03-ambiguous-analytics/slices/01-analytics-v2",
+        "sequence": 7,
+        "operationId": "a8bf21472a3d8cf10592bf40702fb2ecbdb4388919c5e1531c892cd2998e9d95",
+        "itemId": "item-537617c77012bee7f38d",
+        "itemRevision": "b4147071f2c20e235023c37ff747705211f47bb591e0795c3d2b3ddf50df42b6",
+        "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+        "policySource": "project.yaml",
+        "previous": null,
+        "actor": "qa-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-03T23:59:49.022Z",
+        "verdict": "accept",
+        "reason": "Unmodified installed jar actual-loopback trusted XFF clients101 twice,102 browser,103 bot produce day4clicks/3uniques/1bot with aggregate-only body. Controlled actual candidate additionally observes exact SPEC peers and both configurations; snapshots and logs show reduced facts only.",
+        "evidence": [
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/http/installed-stats.body",
+            "sha256": "99a3b3083537552f22c5ed0533b95d4170b3eea0c6157aef34492f88d255521b"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/http-ledger.json",
+            "sha256": "9e2c41d787a512e3fb09c8d5178a5cc96b0f4fe9a12eb186813f4a45f47e6dcc"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/installed-rows.json",
+            "sha256": "f21cb967d4a10f993220d854f6bb87349034efa6eb72a88ea36c029eb734b40f"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/verification-summary.json",
+            "sha256": "09dc7a51c039dca4349cb9ad73ecda1cdd3dc1360c5ec20d86b5d98cfa645e98"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "ec466da8da4b1efde9d612c6c8692070cc6fc4b9"
+        },
+        "intent": "909c592500f0afd0df9d6bc00c26574ee99d9e92361438857bb26f33f58a9805",
+        "id": "c64d5020d95a0718cc0d444283271efde1e706e590bd288e857882aebc3f2c85"
+      }
+    },
+    {
+      "id": "item-3a0542176d4c8fcc9083",
+      "text": "`proof/` holds an excerpt of `GET /actuator/prometheus` showing both click counters (AC-11 by effect).",
+      "index": 8,
+      "source": {
+        "file": "SPEC.md",
+        "line": 265
+      },
+      "revision": "bb0493ebb4dd5ad15723e49a9d8e0c49ece89499c60c35117b7e05604568de51",
+      "state": "accepted",
+      "reason": "Recorded Prometheus excerpts show both click counter families; actual successful inserts give recorded+3 and failed inserts lost+2 in each context, with only static reason labels and matching correlated loss warnings.",
+      "judgment": {
+        "version": 1,
+        "scope": "missions/03-ambiguous-analytics/slices/01-analytics-v2",
+        "sequence": 8,
+        "operationId": "de43aeab933d7aaf84eb4ecaf803ab335c1b1599b223feaa6308523d9ead755e",
+        "itemId": "item-3a0542176d4c8fcc9083",
+        "itemRevision": "bb0493ebb4dd5ad15723e49a9d8e0c49ece89499c60c35117b7e05604568de51",
+        "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+        "policySource": "project.yaml",
+        "previous": null,
+        "actor": "qa-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-03T23:59:49.832Z",
+        "verdict": "accept",
+        "reason": "Recorded Prometheus excerpts show both click counter families; actual successful inserts give recorded+3 and failed inserts lost+2 in each context, with only static reason labels and matching correlated loss warnings.",
+        "evidence": [
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/default-click-counters.txt",
+            "sha256": "c2e34da1f98a4e00440076312cc7f12f8a04836e205eaf757f3574cb12acbb1e"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/trusted-click-counters.txt",
+            "sha256": "ea718bf6aebfd4e66b0d00fd3031043ec280d75b62712299969c74c848f08a8f"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/verification-summary.json",
+            "sha256": "09dc7a51c039dca4349cb9ad73ecda1cdd3dc1360c5ec20d86b5d98cfa645e98"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "ec466da8da4b1efde9d612c6c8692070cc6fc4b9"
+        },
+        "intent": "67229a7536f7de066c67392c04a651861bc962a74f1b8a16d6d2ac7646622280",
+        "id": "e76e66cfa7c64e3a79e25e1a48e0571d7016674554c856712fe034de03721cc1"
+      }
+    },
+    {
+      "id": "item-736a7048a8ee82dbf5e4",
+      "text": "`docs/api/openapi.json` is regenerated on the candidate and QA's diff against the live `/v3/api-docs` is empty (AC-13).",
+      "index": 9,
+      "source": {
+        "file": "SPEC.md",
+        "line": 266
+      },
+      "revision": "a0d51123d98a51683bde6bc5f96b813439a3497da1e2a770338b409d3cb0f7af",
+      "state": "accepted",
+      "reason": "Live installed /v3/api-docs equals candidate committed key-sorted JSON, diff empty; DayClicks schema/example have exactly date/clicks/uniqueVisitors/botClicks, and every other baseline operation is equal.",
+      "judgment": {
+        "version": 1,
+        "scope": "missions/03-ambiguous-analytics/slices/01-analytics-v2",
+        "sequence": 9,
+        "operationId": "23f3a2371a90877de98d0ce3c9bb08cce48d130414f3eed5b6819b53d9a8dfdd",
+        "itemId": "item-736a7048a8ee82dbf5e4",
+        "itemRevision": "a0d51123d98a51683bde6bc5f96b813439a3497da1e2a770338b409d3cb0f7af",
+        "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+        "policySource": "project.yaml",
+        "previous": null,
+        "actor": "qa-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-03T23:59:50.557Z",
+        "verdict": "accept",
+        "reason": "Live installed /v3/api-docs equals candidate committed key-sorted JSON, diff empty; DayClicks schema/example have exactly date/clicks/uniqueVisitors/botClicks, and every other baseline operation is equal.",
+        "evidence": [
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/http/installed-openapi.body",
+            "sha256": "b94f577d27a05f5a6360fbf61ea344dc775aaba489eb29b7a51897d570dd3381"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/openapi-diff.txt",
+            "sha256": "ee14f80776f316bf7e0f8406a0ad0e223c187c77a27e56dac168e55509700241"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/verify.py",
+            "sha256": "867f6e07d58e943b1892b81881ddd53743e8542dca29c13dc7f7f4657afcdc58"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "ec466da8da4b1efde9d612c6c8692070cc6fc4b9"
+        },
+        "intent": "1f321abd945ab4c2e3edd1ab167034f57ff0d12fb1097b830c4df619c2336ed9",
+        "id": "ebe0cbc3107cd3a6ba0d0236ae3655ba5af3e2d05ea6b345ad5ce3339004fc09"
+      }
+    },
+    {
+      "id": "item-837c4ac3a3e0bf831fdd",
+      "text": "The impact analysis over v1 (`impact-analysis.md`) names every v1 test whose exact per-day shape assertion changes (AC-14), the redirect-path change (rule 6), and the cross-mission custody of `click/`, the migration number and `docs/api/openapi.json`.",
+      "index": 10,
+      "source": {
+        "file": "SPEC.md",
+        "line": 267
+      },
+      "revision": "c0cf37ee3cb11ae8decf4d928b7279878c4095ea98c27fa0accfebe4ca297f96",
+      "state": "accepted",
+      "reason": "Impact analysis names both original f6dd29e exact-day assertions, redirect identity change and click/migration/API custody. Later dependency-only retention assertions and single audit expected body are disclosed in builder PROOF and explicit grant35e5951; audit enumerations separately authorized by a12a0e2, not hidden as v2 edits.",
+      "judgment": {
+        "version": 1,
+        "scope": "missions/03-ambiguous-analytics/slices/01-analytics-v2",
+        "sequence": 10,
+        "operationId": "f273aa528b789a5951b89e1c756adb2934d742b885980160955974ec1b7f4e17",
+        "itemId": "item-837c4ac3a3e0bf831fdd",
+        "itemRevision": "c0cf37ee3cb11ae8decf4d928b7279878c4095ea98c27fa0accfebe4ca297f96",
+        "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+        "policySource": "project.yaml",
+        "previous": null,
+        "actor": "qa-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-03T23:59:51.310Z",
+        "verdict": "accept",
+        "reason": "Impact analysis names both original f6dd29e exact-day assertions, redirect identity change and click/migration/API custody. Later dependency-only retention assertions and single audit expected body are disclosed in builder PROOF and explicit grant35e5951; audit enumerations separately authorized by a12a0e2, not hidden as v2 edits.",
+        "evidence": [
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/impact-analysis.md",
+            "sha256": "8620136be730ecb7943d50fdc870266a83622229f31da1a474169544eec9e087"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/PROOF.md",
+            "sha256": "146306d3e15b936bbc8a4bb165e645699f3090be175bff906c0d3a409ae2a0e3"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/slice.yaml",
+            "sha256": "0d931111be6d73737c481ed8cc130c5a48157eaf65b036e2a4d100b6baec4665"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/shipped-functional-source-provenance-authorized.json",
+            "sha256": "da26c333b6e08d0ce8a644113acbda5eb13e3225fe88dcf8eb920934ccf9a2b2"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "ec466da8da4b1efde9d612c6c8692070cc6fc4b9"
+        },
+        "intent": "f78cd2b60f163267831d2fcb38f61c6d359e0411a9f3e9c81182e509e4f1e0ce",
+        "id": "c47cc0d7220f7e1556bcd80ee3ea867ec53f50d9d10c01377ac80242c159ecda"
+      }
+    },
+    {
+      "id": "item-99f598bb35c2c32824e8",
+      "text": "The design and security reviews record that the hash is used only for same-day distinct counts and that the salt is never persisted (rule 5).",
+      "index": 11,
+      "source": {
+        "file": "SPEC.md",
+        "line": 268
+      },
+      "revision": "6f5e2e34920d7388cccb9d5866e14e581d11c01bdde1d105f97e2ba43c98a12f",
+      "state": "accepted",
+      "reason": "Design review97d832c explicitly records same-day-only distinct hash use and memory-only salt. Security PASS61430eb on exact ec466da supplies two rule5/item11 rows: sole link/day-bound COUNT(DISTINCT), no cross-day/join/exposure, synchronized instant/key, quiet expiry/rotation/close, no persistence. Transient in-flight key copies and timer/JVM erasure limits explicitly qualified; candidate Git-tree check agrees.",
+      "judgment": {
+        "version": 1,
+        "scope": "missions/03-ambiguous-analytics/slices/01-analytics-v2",
+        "sequence": 11,
+        "operationId": "61c6b2d5f64480628fc75221d7fed965655801a57e0700d5b2b850e0f4bb0eb0",
+        "itemId": "item-99f598bb35c2c32824e8",
+        "itemRevision": "6f5e2e34920d7388cccb9d5866e14e581d11c01bdde1d105f97e2ba43c98a12f",
+        "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+        "policySource": "project.yaml",
+        "previous": null,
+        "actor": "qa-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-04T00:21:56.956Z",
+        "verdict": "accept",
+        "reason": "Design review97d832c explicitly records same-day-only distinct hash use and memory-only salt. Security PASS61430eb on exact ec466da supplies two rule5/item11 rows: sole link/day-bound COUNT(DISTINCT), no cross-day/join/exposure, synchronized instant/key, quiet expiry/rotation/close, no persistence. Transient in-flight key copies and timer/JVM erasure limits explicitly qualified; candidate Git-tree check agrees.",
+        "evidence": [
+          {
+            "ref": "docs/review/01-analytics-v2/design-review.md",
+            "sha256": "e1a6291aacb2b2a6a81473e0527fffd3435fa448e645e105d6b25031a8e91092"
+          },
+          {
+            "ref": "docs/review/01-analytics-v2/02-security-review.md",
+            "sha256": "aac704bd34322daa97b21e8ac9405fd8fadd41f9d87df1d7e894d46d51b453c8"
+          },
+          {
+            "ref": "docs/review/01-analytics-v2/proof/evidence-reconciliation-ec466da.json",
+            "sha256": "ed712dedf4be45b07de5785af73a2be66fef79f04fa09307720d92dd7c7859d5"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-item11-ec466da.md",
+            "sha256": "5a7d30bc779e1684a56f89b5e3fc740602f7652cb930166243d144a6e89ef3ed"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "ec466da8da4b1efde9d612c6c8692070cc6fc4b9"
+        },
+        "intent": "a6b496965a21787e20fe8a1eb56f86553723df5eb8aae6a05b3860c02506685a",
+        "id": "e53dc647940b4420802a76bafd32af723ec1ef7cc5921e2acb10636e81d51c18"
+      }
+    },
+    {
+      "id": "item-34bef9502121a484d37f",
+      "text": "At `release_prep`, redirect p95/p99 are measured with `scripts/smoke.sh --bench` against NFR-L1, and the result is recorded or the gap stays in `GAPS.md`.",
+      "index": 12,
+      "source": {
+        "file": "SPEC.md",
+        "line": 269
+      },
+      "revision": "58bfb1908518fd6540fa97c038cb983147c9a41736d5db8805f4e615f522d662",
+      "state": "accepted",
+      "reason": "Restored-seat raw recheck on pinned50ad9c3: corrected open-loop method offers100 redirects/s plus20 creates/s for60s;6000GET p95=3.7ms p99=9.5ms withzero bad responses. Independently reconciled19200load completions,12000storedGETclicks,onePID/fileH2,preservedjar hash andzero losses/quotarejections. NFR-L1 measurement closes onlyfor thisrun; same-host/raised-budget/trusted-proxy andunretained-client-sample limits remain explicit; noisolatedGET-minus-HEAD cost claim.",
+      "judgment": {
+        "version": 1,
+        "scope": "missions/03-ambiguous-analytics/slices/01-analytics-v2",
+        "sequence": 13,
+        "operationId": "d93031c8506d604a27694fcae76a6ba45b7e7b6e841c7ca5e46ad8c07f4ffcb2",
+        "itemId": "item-34bef9502121a484d37f",
+        "itemRevision": "58bfb1908518fd6540fa97c038cb983147c9a41736d5db8805f4e615f522d662",
+        "policyRevision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f",
+        "policySource": "project.yaml",
+        "previous": null,
+        "actor": "qa-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-04T02:26:21.226Z",
+        "verdict": "accept",
+        "reason": "Restored-seat raw recheck on pinned50ad9c3: corrected open-loop method offers100 redirects/s plus20 creates/s for60s;6000GET p95=3.7ms p99=9.5ms withzero bad responses. Independently reconciled19200load completions,12000storedGETclicks,onePID/fileH2,preservedjar hash andzero losses/quotarejections. NFR-L1 measurement closes onlyfor thisrun; same-host/raised-budget/trusted-proxy andunretained-client-sample limits remain explicit; noisolatedGET-minus-HEAD cost claim.",
+        "evidence": [
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-release-50ad9c3/audit.json",
+            "sha256": "7ca9963bf93b4e1128fedb3f187c50e16f332c071a0fbf41571abf015f5ed232"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-release-50ad9c3/QA.md",
+            "sha256": "d3d76aee8549fa8fafca69fdce4d51df559038e922b35bc3f0c80e92402b0b45"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/release/bench-50ad9c3.txt",
+            "sha256": "7542376df1af58d38d1d6a0e2cb58e6b480e06afd209b80c64f376bae3fb5059"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/release/bench-stats-50ad9c3.json",
+            "sha256": "b360bde6abba34f1d704db3a9f59e12a705d2547851497fa629f75d499460a93"
+          },
+          {
+            "ref": "missions/03-ambiguous-analytics/release/bench-prometheus-50ad9c3.txt",
+            "sha256": "c178597a8f22cff0aef2c47229bd57f065ac82bd00ff1ca09ad2a7e3ffa94fc2"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "50ad9c3ab9e65baa4100ede1772b514322957fa5"
+        },
+        "intent": "a160acc653f12d2a570d5e2c3a39ac6f9930e22796d5f189a57c956edc582464",
+        "id": "d6886378c083befc2be362e972b7fff06fadae0339adcc1586f8c44483a4c191"
+      }
+    }
+  ],
+  "issues": [],
+  "policy": {
+    "judges": [
+      "qa-agent@urlshort-factory"
+    ],
+    "source": "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/project.yaml",
+    "revision": "6a0dd52c6ca838a0aac94a8bfe73cf5ff494b473b7a4e832ef0b1f4cf9cb1d1f"
+  },
+  "attention": {
+    "scope": "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/03-ambiguous-analytics/slices/01-analytics-v2",
+    "revision": "f03355cddfa8da9b6f3ce2b86f8483250351c0e049b6fd42f4226c3efa7ed94c"
+  },
+  "sourceObservation": {
+    "state": "watching",
+    "revision": "c478a61f8c71f4c55d9a29365cac087f9890455d9aaf1d4e38d35434a947fd42"
+  }
+}

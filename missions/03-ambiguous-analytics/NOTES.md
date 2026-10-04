@@ -120,6 +120,18 @@ this was an input-path issue, not a daemon outage or product defect. The
 standalone packet closed `no-follow-on` at 02:33:35Z (transition 1907);
 the subsequent owned-queue read is empty. No other slice was judged here.
 
+### QA final evidence reaffirmation — 2026-10-04
+
+Packet `qitem-20261004024232-5aea9029`: items 2/5/6 regained acceptance
+with receipts 15/16/17 after byte-equal analytics-section and append-only
+shared-file checks. Extra item 1 was explicitly included by the lead and
+regained acceptance with receipt 18 after a body-equal/frontmatter-only
+check of delivery stamp `7d19fa6`. All four subjects are `50ad9c3`.
+Fresh live proof is ready, 12/12 accepted; all 45 evidence hashes match.
+Evidence: `slices/01-analytics-v2/proof/qa-final-reaffirmation-50ad9c3/`.
+The standalone packet closes no-follow-on; release2 exports the committed
+receipts. No product gate or runtime journey repeated, no other slice judged.
+
 ## Release agent 2 — release_prep continuity
 
 2026-10-04: ownerrelease2-agent, packetqitem-20261004004828-05d2aab9,

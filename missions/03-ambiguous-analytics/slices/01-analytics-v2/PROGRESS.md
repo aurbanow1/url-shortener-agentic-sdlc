@@ -27,3 +27,10 @@
 - [x] Item 6 re-affirmed against current `GAPS.md`, receipt **14** (`e587d41a636b0ae6b3c585d4efd964ee065b4935556e35ead2e6c3e1d8c6ffd5`), subject `50ad9c3`. Rechecked `797f8fb` after restoration; numbers hold, configuration and unretained-client-sample limits added. No capacity or isolated click-cost claim.
 - [x] Fresh live proof read: **ready, 12/12 accepted**, no issues. All other judgments retain their original `ec466da` subject and established integration attribution. Stable audit and before/after reads: `proof/qa-release-50ad9c3/`.
 - Packet `qitem-20261004020825-9237265b` closed as standalone `no-follow-on` at 02:33:35Z (transition 1907). Mission 01/02 drift remains with the lead's separate final-main packet; human ship sign-off remains downstream.
+
+## Final evidence reaffirmation — 2026-10-04 (QA)
+
+- [x] Items 2/5/6 re-affirmed after append-only shared-document changes; analytics sections are unchanged from `d203049`. Receipts **15/16/17**, respectively.
+- [x] Extra item 1 re-affirmed after lead-authorized metadata-only delivery stamp `7d19fa6`; SPEC body and contract unchanged. Receipt **18**.
+- [x] All four subjects are `50ad9c3ab9e65baa4100ede1772b514322957fa5`. Fresh readiness **ready, 12/12 accepted**, no issues; all **45** evidence hashes verified. Record: `proof/qa-final-reaffirmation-50ad9c3/`.
+- Standalone packet `qitem-20261004024232-5aea9029` exits `no-follow-on`; release2 snapshots these committed receipts at evidence export. No new product QA run or other slice judgment.
