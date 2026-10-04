@@ -259,3 +259,11 @@ Committed only this mission's decision/stamp paths. Authored handoff binds
 `missions/03-ambiguous-analytics/RELEASE.md`; release2 owns final export after
 the lead's routing and QA reaffirmation. Nothing pushed, release-tagged,
 published or exposed beyond localhost.
+
+The ship gate exited `handoff` at **2026-10-04T02:42:12.699Z**, creating
+evidence-export packet `qitem-20261004024212-e72494e7`. The engine retained
+the primary release seat despite the requested next owner; the lead then
+routed the existing obligation to `release2-agent@urlshort-factory`.
+Verified the original packet is `handed-off` to that seat at
+**2026-10-04T02:42:38.546Z**. Final export and coordinated QA reaffirmation
+remain downstream work; the ship decision is recorded in commit `414f16c`.
