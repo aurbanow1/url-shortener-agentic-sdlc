@@ -1,3 +1,5 @@
+> Current lifecycle verdict: **NOT READY — W2F-01 HIGH; waiting for a test-only forward fix and the D21 sixth-slice merge.** See the final-wave section below (8e9c065..d55a502). The original pre-review is retained unchanged as history.
+
 # PRE-REVIEW of the merged range at `ed2b940` (draft; wave_review adds 04-audit-columns)
 
 **Draft verdict: no MUST-FIX or HIGH in the reviewed product range.** One
@@ -234,3 +236,81 @@ V3 tests and latest upgrade tests; reconcile living documentation and retain
 the verified W2P-01 correction;
 run the final merged gate; then record both review vantages and the ledger.
 This draft does not pre-accept that delta.
+
+
+# Final wave review — `8e9c065..d55a502`
+
+**Verdict: NOT READY — one HIGH, W2F-01; workflow waits for a test-only forward fix.**
+Reviewer `review-agent@urlshort-factory` (Codex), 2026-10-04 UTC.
+Packet `qitem-20261004002455-b7ea811b`, instance `01M40SN34E37K96B38JPG9K41X`.
+
+This section adopts the preceding independently completed pre-review at `82340b8`, including W2P-01's resolution, and extends it through the fifth mission-02 product merge **d55a502**. Mission 03's analytics merge `94aa2c0` is outside this pinned product range and has its own wave review. No settled finding is reopened. After this review began, human decision D21 added `06-client-identity` as w3 (`5cfdf8a`, instance `01M425CY9Z4K03G14Y677AT0PA`). The lead explicitly requires this packet to retain its five-slice review, then add only that slice's merge delta and the W2F-01 correction before release handoff. This record does not pre-accept the sixth slice.
+
+## Final scope and source claims
+
+At this pinned range the five approved outcomes are local audit read, scheduled click retention, observed dogfood fixes, complete row-audit columns, and CI/CD, with existing links unchanged. The two earlier human-approved scope amendments account for V4 and CI/CD; D21 adds a behavior-preserving shared client-identity component to the remaining mission scope. Read the full mission brief, V4 SPEC/design, ten-file delta, relevant full files, final register and prior independent code/security/QA records.
+
+[Custody inventory](proof/final-wave-custody-d55a502.json) records **51 accumulated product/tool paths**: the prior 43 plus eight new paths; two earlier V3 tests change again. All ten delta paths are byte-identical to independently reviewed candidate `305f804`. The complete range includes 7,635 paths, mostly generated evidence and governance documents; the coverage claim is the complete product/tool subset and relevant contract/evidence changes, not line-reading every generated HTML page. [Range log](proof/final-wave-range-log.txt), [complete source delta](proof/final-wave-delta-d55a502.diff).
+
+| Added/changed since the pre-review | Verdict |
+|---|---|
+| `src/main/java/dev/urlshort/link/LinkRepository.java` | PASS — bound stamp method; retire updates its timestamp in the same conditional write. |
+| `src/main/java/dev/urlshort/link/LinkService.java` | PASS — create/key-release stamps use the same service-clock instant, inside the existing transaction; no-op paths return before mutation. |
+| `src/main/resources/db/migration/V4__add_link_audit_columns.sql` | PASS — seven additive columns, documented defaults/backfill and eight-statement rollback; exact reviewed design. |
+| `src/test/java/dev/urlshort/link/LinkAuditColumnsTest.java` | PASS — schema/constraint preservation and literal header rollback/reapply executed in this fresh unit suite. |
+| `src/test/java/dev/urlshort/link/LinkServiceStampTest.java` | PASS — statement sequencing and common clock instant, complemented by stored-row functional checks. |
+| `src/functionalTest/java/dev/urlshort/link/LinkAuditColumnsJourneyTest.java` | PASS — new stamps, no-op snapshots, invisible columns, static actors and append-only audit rows. |
+| `src/functionalTest/java/dev/urlshort/link/LinkAuditColumnsFailureJourneyTest.java` | PASS — failing audit append rolls back the retirement and update stamp together. |
+| `src/functionalTest/java/dev/urlshort/link/LinkUpgradeJourneyTest.java` | PASS — actual V4 startup preserves old fields, backfills active/retired/released rows and caps future event times. |
+| `src/test/java/dev/urlshort/click/ClickAuditColumnsTest.java` | PASS — authorized target-3 pin; prior assertions retained. |
+| `src/functionalTest/java/dev/urlshort/click/ClickRetentionStartupJourneyTest.java` | PASS — authorized target-3 startup; prior assertions retained, latest-schema coverage supplied by new V4 journeys. |
+
+V4 AC-1–11 survive integration: the new migration/stamp tests all pass in the fresh run. `Link`, public response records, named audit SELECT and OpenAPI are unchanged, so no new column leaks into the API. The application adds no audit UPDATE/DELETE path; the migration's one-time backfill is explicit. Default columns keep legacy inserts valid. Rollback was read and run by the fresh unit test, with restored schema/values and successful reapplication. Installed-directory and stopped-copy rollback evidence remain the attributed QA observations, not a second installed run by this reviewer.
+
+The prior V3 test-coupling item is fixed by `132a884`'s two narrow pins, not weakened assertions. GAPS closure `17593aa` closes all four audited-table debts; `382a7b2` corrects the retention judge to QA2. These are explicit documentary follow-through after the pinned merge. [Live V4 proof](proof/final-wave-v4-proof.json) is **9/9 accepted**, with all **28 evidence references** matching their hashes. This does not supersede the newly observed integrated-suite race.
+
+The four drill records are present in `docs/scenarios/drills.md`; the QA-rejection/remediation fallback is labelled and its recorded completion was added at `315da52`. This wave review does not re-execute rig-stop, abort or container-revert drills or promote their historical results to a new release smoke claim.
+
+## Fresh final gate and reproduced finding
+
+I ran `scripts/gw --offline check --rerun-tasks` with wrapper `--log` in a new clean detached worktree `.worktrees/review-wave02-d55a502` at exact d55a502. **The gate failed:** 218 unit passed, 233 functional ran with one failure. [Gate log](proof/final-wave-check-d55a502.txt), [counts](proof/final-wave-first-run-counts.json), [original failing XML](proof/final-wave-first-failure-d55a502.xml). Coverage/Javadoc tasks were not reached; no fresh final-wave 100% claim is made. Prior candidate/pre-review green coverage remains historical evidence only.
+
+`ClickRetentionScheduleJourneyTest` successfully observed the intended two retained rows, then failed line 96: expected one purge event, observed zero. The completed XML contains the later correct event (`deleted=2`, cutoff `2026-07-07`). Source ordering is `deleteBefore` followed by the log call; the test waits only for rows, so its immediate output snapshot can precede publication.
+
+An unchanged isolated rerun passes ([log](proof/final-wave-schedule-recheck-d55a502.txt), [XML](proof/final-wave-schedule-recheck-d55a502.xml)); this does not resolve the first failure. A deterministic review-only control runs the actual `ClickPurge` and `ClickStore` against H2, placing a latch at log publication: it observes the committed deletion with zero published events, releases the latch, then observes one event. [Probe](proof/PurgePublicationProbe.java), [Gradle init](proof/purge-probe.init.gradle), [control output](proof/purge-publication-control.txt). It deliberately widens a legal scheduling gap; it neither edits the product/test nor claims a naturally delayed production logger.
+
+| ID | Severity / classification | File:line | Evidence / required change |
+|---|---|---|---|
+| W2F-01 | **HIGH / JUDGMENT-GAP** | `src/functionalTest/java/dev/urlshort/click/ClickRetentionScheduleJourneyTest.java:87` and `:96`; producer ordering `src/main/java/dev/urlshort/click/ClickPurge.java:99` | Actual mandatory gate failure plus controlled ordering reproduction above. Wait within the existing bound for both the expected row state and log publication, retaining exact-one-event/cutoff assertions. No arbitrary sleep, logging suppression, weakened assertion or product change. Route a test-only forward fix, independent QA/review, then a fresh complete merged gate. |
+
+Severity reflects intermittent false failures of main/CI, not a claim that purge data or logging is wrong. This test and the producer are unchanged by V4; it is an inherited defect exposed at the accumulated boundary. The SPEC already requires both autonomous deletion and its event, so this is a builder/test judgment gap, not missing product context.
+
+## D20 register at d55a502 — all 13 concerns
+
+| Concern | Final consistency judgment |
+|---|---|
+| Client identity / proxy trust | Consistent with prior qualified verdict: audit guard and NONE pin unchanged; peer-versus-limiter click identity remains carried W2-02 at this pinned head, assigned to the separate analytics mission. |
+| Time | Link writes reuse the application Clock and one create instant; audit row-write defaults use DB time under ADR-0020. Ping Instant.now remains existing LOW backlog. |
+| Schema change | V1–V4 in order; additive V4 and literal rollback proven by this run. V3-specific tests now pin V3. Register's pre-merge V4 wording is a documentation status refresh, not missing DDL. |
+| Audit columns | All four domain tables now satisfy the column policy. Link create/key-release use a targeted stamp inside the same transaction, as the explicit ADR-0020 amendment specifies; retire uses one conditional statement. GAPS closure verified separately. |
+| Error shape | Existing shared ProblemDetail unchanged; failing audit still rolls back and returns safe 500. No new format or handler. |
+| Request ID / logging | Request/event format unchanged. **W2F-01** concerns a test snapshot before background event publication; the eventual correct event is present, with no request id invented for the job. |
+| Audit trail writes | Existing AuditLog remains the only application writer in link transactions; named reader prevents V4 exposure. Key-release housekeeping retains its explicit no-audit-event contract. |
+| Client hashing | DailySalt/storage reduction unchanged at this mission head; analytics changes are outside this range. |
+| Metrics / health | Existing bounded metrics/pathless gauges unchanged. Startup migration occurs before readiness; no new health exposure. |
+| API document | Byte-unchanged from pre-review; no V4 field added. Existing generated equality test passes within the otherwise failing functional suite. |
+| CI/CD | Same gate, bounded workflows and no publishing. **W2F-01 blocks a clean final verdict because this test can make that gate falsely red.** Existing download retry backlog retained. |
+| Background work | The verified W2P-01 correction remains: purge waits without interrupting its DELETE; writer interrupts after its drain and reports uncertain in-flight outcomes. No executor change in V4. |
+| Operator settings | No new setting. Existing README purge-hold omission remains assigned documentation cleanup; defaults/validation unchanged. |
+
+## Remaining dispositions and continuation
+
+No new complexity finding. The targeted stamp preserves the shipped record/API and stays transactional, as already weighed by the design; no new dependency/layer. Preserve the prior ping LOW / CONTEXT-GAP and wrapper-download MEDIUM / JUDGMENT-GAP backlog, with their existing follow-up triggers. Keep the README/status reconciliation on its existing release/export path. W2P-01 stays fixed.
+
+Second vantage is committed at **cda00ef**, closing `qitem-20261004002621-3d2dc808`: [design-agent's report](wave-review-design-agent.md). Its author relationship is explicit: the V4 designer supplies a consistency check, while the independent source/gate judgment is this review and prior QA/review2. All 13 register rows are walked; documentary refreshes are `ea84e77` and `fe9529a`. Its W2F-02 is **this report's W2F-01**, one shared HIGH with one forward-fix route. Its distinct W2F-01 is a LOW future V5 test-pinning risk, carried to the lead's backlog with the trigger that the slice adding V5 pins V4-specific tests; the designer explicitly labels that risk reasoned rather than reproduced under a V5. No present product failure is asserted for that LOW.
+
+New rework is routed to the lead as **qitem-20261004003207-25b6f4c0** ([brief](proof/w2f-01-rework.md)), already delegated to a builder. The mission lifecycle has no review back-edge: this packet exits **waiting** on that item. The D21 sixth-slice dependency remains outstanding even if W2F-01 is resolved first.
+
+On continuation: read the lead's exact forward-fix SHA and independent receipts, verify W2F-01 and any fix-introduced changes, and append the resolution. Wait for the lead's `06-client-identity` merge notice, review that added range with the required structural vantage, and run/reconcile the full merged gate at the named final boundary before handoff. Keep the original five-slice range and later deltas explicit; do not silently substitute analytics into this mission's original product range.
+
+Self-check: original range and final merge pinned; prior 43-path review adopted and ten-file delta fully inspected (51 distinct product/tool files); real failed gate retained; ordering defect empirically reproduced; no source/test/SPEC/design edits; V4 receipts and documentary closure checked; new HIGH has file/line/evidence/repair and a durable routed owner. Final-wave row recorded in REVIEW-LEDGER; not a release approval.

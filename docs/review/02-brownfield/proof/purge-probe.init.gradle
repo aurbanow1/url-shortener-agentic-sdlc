@@ -1,0 +1,16 @@
+allprojects {
+    afterEvaluate {
+        def probeDir = layout.buildDirectory.dir("review-purge-probe")
+        tasks.register("reviewPurgeProbeCompile", JavaCompile) {
+            source = files("/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/review/02-brownfield/proof/PurgePublicationProbe.java")
+            classpath = sourceSets.main.runtimeClasspath
+            destinationDirectory = probeDir
+            dependsOn tasks.named("classes")
+        }
+        tasks.register("reviewPurgeProbe", JavaExec) {
+            dependsOn tasks.named("reviewPurgeProbeCompile")
+            classpath = files(probeDir) + sourceSets.main.runtimeClasspath
+            mainClass = "dev.urlshort.click.PurgePublicationProbe"
+        }
+    }
+}

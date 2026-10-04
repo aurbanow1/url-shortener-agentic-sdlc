@@ -1,0 +1,545 @@
+{
+  "configured": true,
+  "revision": "123266f6490335a2a9f774a7763d4cb301fa77a77369663b3a647a14a4cf7cb9",
+  "state": "ready",
+  "history": [
+    {
+      "ref": "missions/02-brownfield/slices/04-audit-columns/proof/judgments/00000001.md",
+      "id": "209dcf89c920c814747ae0f7d97de2401a40f83eda873197714777d9e73d4269",
+      "itemId": "item-ba82369732d3f8c1ff97",
+      "verdict": "accept",
+      "previous": null
+    },
+    {
+      "ref": "missions/02-brownfield/slices/04-audit-columns/proof/judgments/00000002.md",
+      "id": "785bdb56c7ab859a589d5d41df62f56a5dffe618070db3d5eb7d335da4f5da9b",
+      "itemId": "item-35cafbf1019d8f3b8c3b",
+      "verdict": "accept",
+      "previous": null
+    },
+    {
+      "ref": "missions/02-brownfield/slices/04-audit-columns/proof/judgments/00000003.md",
+      "id": "5f92cbb2c4e54267477c97c88d0a62c5bad1a89c94bf1e8c6f53881be11c28c6",
+      "itemId": "item-82da284964329ffed652",
+      "verdict": "accept",
+      "previous": null
+    },
+    {
+      "ref": "missions/02-brownfield/slices/04-audit-columns/proof/judgments/00000004.md",
+      "id": "df7f7ea1f477774cbbeb9223d42e652430ef19f12fc4a81f95acbf3c58f11ca1",
+      "itemId": "item-d00dbcaadd9ad0337d65",
+      "verdict": "accept",
+      "previous": null
+    },
+    {
+      "ref": "missions/02-brownfield/slices/04-audit-columns/proof/judgments/00000005.md",
+      "id": "4046a8c14bd92ed3d62d65c8245ca603468e62576ea66bb2c2feb95f330d97bd",
+      "itemId": "item-0d34a72c255cdea074e2",
+      "verdict": "accept",
+      "previous": null
+    },
+    {
+      "ref": "missions/02-brownfield/slices/04-audit-columns/proof/judgments/00000006.md",
+      "id": "167e8fdac9343404ce9d988b18badd2b0f60420d55ae085def7ec94d5ecd4ea8",
+      "itemId": "item-928959aa8a0c3888ba61",
+      "verdict": "accept",
+      "previous": null
+    },
+    {
+      "ref": "missions/02-brownfield/slices/04-audit-columns/proof/judgments/00000007.md",
+      "id": "86cc4a7b9e7310669a4a9bd51394856d1643301a8c55868d4c4497442833240c",
+      "itemId": "item-f0d01a640a7962f357d1",
+      "verdict": "accept",
+      "previous": null
+    },
+    {
+      "ref": "missions/02-brownfield/slices/04-audit-columns/proof/judgments/00000008.md",
+      "id": "b70ffc82d9465d4aa6d4bac45fa1fbac74dd99a34e2fcb877c39feaa25ba91dd",
+      "itemId": "item-cee58c4b7a3a31f2b691",
+      "verdict": "accept",
+      "previous": null
+    },
+    {
+      "ref": "missions/02-brownfield/slices/04-audit-columns/proof/judgments/00000009.md",
+      "id": "dd150ce9c318988ce2e31c667dfd6a3f165e0c9dc957a049ad1655d07a521cdb",
+      "itemId": "item-ba82369732d3f8c1ff97",
+      "verdict": "accept",
+      "previous": "209dcf89c920c814747ae0f7d97de2401a40f83eda873197714777d9e73d4269"
+    },
+    {
+      "ref": "missions/02-brownfield/slices/04-audit-columns/proof/judgments/00000010.md",
+      "id": "bfe3e916469bf5bc7149e367c0207818c85d7a91269621e1cfd5d403a3808da4",
+      "itemId": "item-d00dbcaadd9ad0337d65",
+      "verdict": "accept",
+      "previous": "df7f7ea1f477774cbbeb9223d42e652430ef19f12fc4a81f95acbf3c58f11ca1"
+    },
+    {
+      "ref": "missions/02-brownfield/slices/04-audit-columns/proof/judgments/00000011.md",
+      "id": "0beeff6b93bdbcf6e16ccd44862387c72c57e325347d2ce62240edeb04645067",
+      "itemId": "item-d00dbcaadd9ad0337d65",
+      "verdict": "accept",
+      "previous": "bfe3e916469bf5bc7149e367c0207818c85d7a91269621e1cfd5d403a3808da4"
+    },
+    {
+      "ref": "missions/02-brownfield/slices/04-audit-columns/proof/judgments/00000012.md",
+      "id": "36fe98ed3036221216b5eb3077aaa6f4f26e41a66e2ff8de59d1e353c83ac6e9",
+      "itemId": "item-dac69b0f88eacb0a3e2d",
+      "verdict": "accept",
+      "previous": null
+    }
+  ],
+  "items": [
+    {
+      "id": "item-ba82369732d3f8c1ff97",
+      "text": "AC-1 to AC-11 are each covered by a named test (functional, or unit where the design says so), green on the candidate SHA with `scripts/gw check`.",
+      "index": 1,
+      "source": {
+        "file": "SPEC.md",
+        "line": 194
+      },
+      "revision": "58209bae9067822f2a0d65e755cabacc8ce22bf70480dc5c1c747875bc80d337",
+      "state": "accepted",
+      "reason": "Reaffirm against the final summary formatting; observations and test/coverage counts unchanged. Fresh exact-candidate gate 218 unit/233 functional, all 11 ACs independently observed, 94 HTTP requests/787 assertions. SPEC permits named unit schema/rollback tests. Item5 future merge-time closure separately routed and confirmed by lead.",
+      "judgment": {
+        "version": 1,
+        "scope": "missions/02-brownfield/slices/04-audit-columns",
+        "sequence": 9,
+        "operationId": "64e37f09fdc41cbef8ab35327485a1766b43d6050a7679af33cc4dd7f3c01a70",
+        "itemId": "item-ba82369732d3f8c1ff97",
+        "itemRevision": "58209bae9067822f2a0d65e755cabacc8ce22bf70480dc5c1c747875bc80d337",
+        "policyRevision": "3096494e1d474b134665afb5210687e973e282dc2b26b6f3831b0a9fd1477d01",
+        "policySource": "missions/02-brownfield/slices/04-audit-columns/slice.yaml",
+        "previous": "209dcf89c920c814747ae0f7d97de2401a40f83eda873197714777d9e73d4269",
+        "actor": "qa2-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-03T23:52:45.975Z",
+        "verdict": "accept",
+        "reason": "Reaffirm against the final summary formatting; observations and test/coverage counts unchanged. Fresh exact-candidate gate 218 unit/233 functional, all 11 ACs independently observed, 94 HTTP requests/787 assertions. SPEC permits named unit schema/rollback tests. Item5 future merge-time closure separately routed and confirmed by lead.",
+        "evidence": [
+          {
+            "ref": "docs/qa/coverage/04-audit-columns/SUMMARY.md",
+            "sha256": "45f24142730b94f89cfcf485ec889478d51bef6d79501ce1601d512bdbb77398"
+          },
+          {
+            "ref": "missions/02-brownfield/slices/04-audit-columns/proof/qa-junit-summary.json",
+            "sha256": "40a8a419418255d7232f492c1ce9e19096c49eea00d75c2e5487d8294e0feaef"
+          },
+          {
+            "ref": "missions/02-brownfield/slices/04-audit-columns/proof/qa-305f804/run-20261003T234116500899Z/summary.json",
+            "sha256": "df6d4693ea6684ad622e271a4036462cfeddb1fa115b8cefa49c25be00899d98"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "305f8045d45b19a9e3287d5fe3508af6e04db9a4"
+        },
+        "intent": "ae67e01420339585114a485278d599a50ced631d372233bb1797ce59f5e1b86c",
+        "id": "dd150ce9c318988ce2e31c667dfd6a3f165e0c9dc957a049ad1655d07a521cdb"
+      }
+    },
+    {
+      "id": "item-35cafbf1019d8f3b8c3b",
+      "text": "`scripts/gw check` reports 100 % line and 100 % branch coverage on the merged unit and functional data (NFR-M1).",
+      "index": 2,
+      "source": {
+        "file": "SPEC.md",
+        "line": 195
+      },
+      "revision": "e46db9c89a1929d125cdffdf5def954d82e6b8286b7a0cd9321314d26d7edc6b",
+      "state": "accepted",
+      "reason": "Merged CSV independently sums 557/557 lines and 200/200 branches. Fresh canonical test.exec and functionalTest.exec were the only execution inputs; gate verification passed.",
+      "judgment": {
+        "version": 1,
+        "scope": "missions/02-brownfield/slices/04-audit-columns",
+        "sequence": 2,
+        "operationId": "dd46dca669c2777dd87fa2f21d5d4bbd5bd7cd40bebb85f97ee63daad21e06ef",
+        "itemId": "item-35cafbf1019d8f3b8c3b",
+        "itemRevision": "e46db9c89a1929d125cdffdf5def954d82e6b8286b7a0cd9321314d26d7edc6b",
+        "policyRevision": "3096494e1d474b134665afb5210687e973e282dc2b26b6f3831b0a9fd1477d01",
+        "policySource": "missions/02-brownfield/slices/04-audit-columns/slice.yaml",
+        "previous": null,
+        "actor": "qa2-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-03T23:50:43.104Z",
+        "verdict": "accept",
+        "reason": "Merged CSV independently sums 557/557 lines and 200/200 branches. Fresh canonical test.exec and functionalTest.exec were the only execution inputs; gate verification passed.",
+        "evidence": [
+          {
+            "ref": "docs/qa/coverage/04-audit-columns/all/jacocoTestReport.csv",
+            "sha256": "978134cffefa984b304b698f5312d5a25b327b15c7aa5c25eac3494d2afcceb2"
+          },
+          {
+            "ref": "docs/qa/04-audit-columns/check-qa-305f804.txt",
+            "sha256": "95197fe8601eda99a6fab3f11beab7ca65b9bff0db6920a161ae10fde1350d81"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "305f8045d45b19a9e3287d5fe3508af6e04db9a4"
+        },
+        "intent": "6afa8e31064ee42b18e3bcfb9acc392ef8593d667240f0bfc96932b8adefac73",
+        "id": "785bdb56c7ab859a589d5d41df62f56a5dffe618070db3d5eb7d335da4f5da9b"
+      }
+    },
+    {
+      "id": "item-82da284964329ffed652",
+      "text": "Unit and functional JaCoCo reports committed under `docs/qa/coverage/04-audit-columns/unit/` and `docs/qa/coverage/04-audit-columns/functional/`.",
+      "index": 3,
+      "source": {
+        "file": "SPEC.md",
+        "line": 196
+      },
+      "revision": "40b52ac72e660b1f5f8a66b182fc991613c941352e4474729fdfaa7dccf96ed2",
+      "state": "accepted",
+      "reason": "Coverage reports committed in fdd8c5b: unit and functional HTML/XML/CSV plus merged report. Independently rechecked all 366 saved hashes.",
+      "judgment": {
+        "version": 1,
+        "scope": "missions/02-brownfield/slices/04-audit-columns",
+        "sequence": 3,
+        "operationId": "60adc44a73d335cb7217f63334f682da5c1c94937170aaa62e6e12303f5e4bc6",
+        "itemId": "item-82da284964329ffed652",
+        "itemRevision": "40b52ac72e660b1f5f8a66b182fc991613c941352e4474729fdfaa7dccf96ed2",
+        "policyRevision": "3096494e1d474b134665afb5210687e973e282dc2b26b6f3831b0a9fd1477d01",
+        "policySource": "missions/02-brownfield/slices/04-audit-columns/slice.yaml",
+        "previous": null,
+        "actor": "qa2-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-03T23:50:43.842Z",
+        "verdict": "accept",
+        "reason": "Coverage reports committed in fdd8c5b: unit and functional HTML/XML/CSV plus merged report. Independently rechecked all 366 saved hashes.",
+        "evidence": [
+          {
+            "ref": "missions/02-brownfield/slices/04-audit-columns/proof/qa-report-hashes.json",
+            "sha256": "bb1e8511f0c8ea5b90e520714d26afcd02d802da8e6952ade36a11bde868865e"
+          },
+          {
+            "ref": "missions/02-brownfield/slices/04-audit-columns/proof/qa-evidence-recheck.json",
+            "sha256": "16d9c238460ca00f2e5989b2e643256aff1f1f57ee0bca9b411e05ceb9c25091"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "305f8045d45b19a9e3287d5fe3508af6e04db9a4"
+        },
+        "intent": "c8178ae69d08646ef7b6f8ce3aa1c8134e67512412e14c8c579b05137ed67a3c",
+        "id": "5f92cbb2c4e54267477c97c88d0a62c5bad1a89c94bf1e8c6f53881be11c28c6"
+      }
+    },
+    {
+      "id": "item-d00dbcaadd9ad0337d65",
+      "text": "`docs/qa/TRACEABILITY.md` holds a table for `04-audit-columns` mapping AC-1 to AC-11 and rules 1 to 7 to their tests, with the requirement id beside each AC.",
+      "index": 4,
+      "source": {
+        "file": "SPEC.md",
+        "line": 197
+      },
+      "revision": "ed29a864a94a300fec2179c6e2169c01a112c45ac31a4485d3b161118ab2a16b",
+      "state": "accepted",
+      "reason": "Final shared-file reaffirmation before QA handoff: another slice appended TRACEABILITY; all 271 mappings for 04-audit-columns remain byte-identical to fdd8c5b. AC1-11, BR1-7 and requirement IDs present, tests and effects unchanged. Later shared-file drift is lead final-reconciliation scope.",
+      "judgment": {
+        "version": 1,
+        "scope": "missions/02-brownfield/slices/04-audit-columns",
+        "sequence": 11,
+        "operationId": "79754072603e9f4c0def52416d7bdd196e420bcc7290b6b67d0dfd1c0aaecce5",
+        "itemId": "item-d00dbcaadd9ad0337d65",
+        "itemRevision": "ed29a864a94a300fec2179c6e2169c01a112c45ac31a4485d3b161118ab2a16b",
+        "policyRevision": "3096494e1d474b134665afb5210687e973e282dc2b26b6f3831b0a9fd1477d01",
+        "policySource": "missions/02-brownfield/slices/04-audit-columns/slice.yaml",
+        "previous": "bfe3e916469bf5bc7149e367c0207818c85d7a91269621e1cfd5d403a3808da4",
+        "actor": "qa2-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-03T23:57:05.026Z",
+        "verdict": "accept",
+        "reason": "Final shared-file reaffirmation before QA handoff: another slice appended TRACEABILITY; all 271 mappings for 04-audit-columns remain byte-identical to fdd8c5b. AC1-11, BR1-7 and requirement IDs present, tests and effects unchanged. Later shared-file drift is lead final-reconciliation scope.",
+        "evidence": [
+          {
+            "ref": "docs/qa/TRACEABILITY.md",
+            "sha256": "9725b167c061e63e48d939014c6807189ea98222f49b99024a9a79b55f8d78ac"
+          },
+          {
+            "ref": "missions/02-brownfield/slices/04-audit-columns/proof/qa-test-methods.json",
+            "sha256": "51a544d7b583c32dcdc4bf37899420213c56b047835b1820e1572af1319ba2d9"
+          },
+          {
+            "ref": "missions/02-brownfield/slices/04-audit-columns/proof/qa-trace-final-projection.json",
+            "sha256": "2e846374e2e02a248a411edf7a02e0ed79c94c8a0a1c59fdd7c8216f2611b633"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "305f8045d45b19a9e3287d5fe3508af6e04db9a4"
+        },
+        "intent": "5d5cdce37d2269429e30ed50dbe021530e25bbbb4c513261e3d82d7f1e4ac223",
+        "id": "0beeff6b93bdbcf6e16ccd44862387c72c57e325347d2ce62240edeb04645067"
+      }
+    },
+    {
+      "id": "item-dac69b0f88eacb0a3e2d",
+      "text": "`docs/qa/GAPS.md` holds a row for `04-audit-columns` (\"None for this slice\" or each honest gap with its compensating check), and the interim row for `link`/`audit_log` audit columns, if the lead filed one, is closed by this slice's merge.",
+      "index": 5,
+      "source": {
+        "file": "SPEC.md",
+        "line": 198
+      },
+      "revision": "b58e1150bf26700ebee981c3a2e86d3c36e110f829970dc4880529101d32223c",
+      "state": "accepted",
+      "reason": "Post-merge GAPS closure independently verified: V4 link/audit_log rows CLOSED at d55a502, cited migration/tests equal exact candidate; own QA qualifications unchanged. Final hash18149e871a3225f68323117da91202d2186662b6667642e3815068ae12974068 matches;382a7b2 corrects only the retention QA actor to qa2-agent. Deferred sequencing obligation fulfilled.",
+      "judgment": {
+        "version": 1,
+        "scope": "missions/02-brownfield/slices/04-audit-columns",
+        "sequence": 12,
+        "operationId": "365f3ce85a33552229c406f9f4515d9cc633d2da98b16f93aed85f2407caef9c",
+        "itemId": "item-dac69b0f88eacb0a3e2d",
+        "itemRevision": "b58e1150bf26700ebee981c3a2e86d3c36e110f829970dc4880529101d32223c",
+        "policyRevision": "3096494e1d474b134665afb5210687e973e282dc2b26b6f3831b0a9fd1477d01",
+        "policySource": "missions/02-brownfield/slices/04-audit-columns/slice.yaml",
+        "previous": null,
+        "actor": "qa2-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-04T00:20:22.346Z",
+        "verdict": "accept",
+        "reason": "Post-merge GAPS closure independently verified: V4 link/audit_log rows CLOSED at d55a502, cited migration/tests equal exact candidate; own QA qualifications unchanged. Final hash18149e871a3225f68323117da91202d2186662b6667642e3815068ae12974068 matches;382a7b2 corrects only the retention QA actor to qa2-agent. Deferred sequencing obligation fulfilled.",
+        "evidence": [
+          {
+            "ref": "docs/qa/GAPS.md",
+            "sha256": "18149e871a3225f68323117da91202d2186662b6667642e3815068ae12974068"
+          },
+          {
+            "ref": "missions/02-brownfield/slices/04-audit-columns/proof/qa-gap-closure-final.json",
+            "sha256": "f1abc201eb4273efe70afc837d9e0cf65a312f84751a0b2fc0529b0dbbb96594"
+          },
+          {
+            "ref": "missions/02-brownfield/slices/04-audit-columns/proof/qa-gap-merge-custody.json",
+            "sha256": "9225fe65d34a0b4e342b9ce7c8d8b7645d6df30a5acd8261e8f7cc96580d644a"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "305f8045d45b19a9e3287d5fe3508af6e04db9a4"
+        },
+        "intent": "a7a22eb491695e68ae62437897028dadf2d404d00cba36978880be46cb9cd230",
+        "id": "36fe98ed3036221216b5eb3077aaa6f4f26e41a66e2ff8de59d1e353c83ac6e9"
+      }
+    },
+    {
+      "id": "item-0d34a72c255cdea074e2",
+      "text": "`proof/` holds a by-effect capture from the running service started on an `f6dd29e` data directory: the columns of `link` and `audit_log` with type and nullability after the upgrade, and the audit columns of a sample of pre-existing and new rows (AC-1, AC-7, by effect).",
+      "index": 6,
+      "source": {
+        "file": "SPEC.md",
+        "line": 199
+      },
+      "revision": "cb8a1b4f6bdd8036751c5e45c6a1dd5c53b923bb61029774729900ce0c755ac0",
+      "state": "accepted",
+      "reason": "Real f6dd29e jar wrote active, retired and genuinely key-released links; candidate jar upgraded that directory. Schema types/nullability and old/new rows inspected; all legacy values unchanged, correct backfill and future-time cap. Stopped timestamp/future-row fixtures explicitly identified.",
+      "judgment": {
+        "version": 1,
+        "scope": "missions/02-brownfield/slices/04-audit-columns",
+        "sequence": 5,
+        "operationId": "1e3621b1596845527c640037d149ffc0cc5c8bb90865278a1c1786471d1b7073",
+        "itemId": "item-0d34a72c255cdea074e2",
+        "itemRevision": "cb8a1b4f6bdd8036751c5e45c6a1dd5c53b923bb61029774729900ce0c755ac0",
+        "policyRevision": "3096494e1d474b134665afb5210687e973e282dc2b26b6f3831b0a9fd1477d01",
+        "policySource": "missions/02-brownfield/slices/04-audit-columns/slice.yaml",
+        "previous": null,
+        "actor": "qa2-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-03T23:50:45.169Z",
+        "verdict": "accept",
+        "reason": "Real f6dd29e jar wrote active, retired and genuinely key-released links; candidate jar upgraded that directory. Schema types/nullability and old/new rows inspected; all legacy values unchanged, correct backfill and future-time cap. Stopped timestamp/future-row fixtures explicitly identified.",
+        "evidence": [
+          {
+            "ref": "missions/02-brownfield/slices/04-audit-columns/proof/qa-305f804/run-20261003T234116500899Z/upgrade-before-f6.json",
+            "sha256": "dc17fcc87ec0f0c52930e023fe1f68402f623ebe4b4e45f788d42f9b002db423"
+          },
+          {
+            "ref": "missions/02-brownfield/slices/04-audit-columns/proof/qa-305f804/run-20261003T234116500899Z/upgrade-after-candidate.json",
+            "sha256": "6fddc06e38a355103b8bd134293675b84ed296188253b75dec0365e3fbac3347"
+          },
+          {
+            "ref": "missions/02-brownfield/slices/04-audit-columns/proof/qa-305f804/run-20261003T234116500899Z/before-rollback-copy.json",
+            "sha256": "113d98252c42f7e5758e9f55d0959b2d6e6a25e61be7f354cf36279ccbf36a67"
+          },
+          {
+            "ref": "missions/02-brownfield/slices/04-audit-columns/proof/qa-305f804/run-20261003T234116500899Z/jar-hashes.json",
+            "sha256": "0b3c815528e8a4fcc9597c27c6bc80a01388e0be92a738cd7a54ed1af18215dd"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "305f8045d45b19a9e3287d5fe3508af6e04db9a4"
+        },
+        "intent": "8646dae0ceabdfbfab60f81f2326521f966ecde1213bc18ec620b2fe9551036d",
+        "id": "4046a8c14bd92ed3d62d65c8245ca603468e62576ea66bb2c2feb95f330d97bd"
+      }
+    },
+    {
+      "id": "item-928959aa8a0c3888ba61",
+      "text": "`proof/` holds the rollback run of AC-11: the schema before the migration, after it, and after the rollback, and the re-apply.",
+      "index": 7,
+      "source": {
+        "file": "SPEC.md",
+        "line": 200
+      },
+      "revision": "f5253486780f58fcaa4c1487fd865e17dcf470e15b276927065853c7db92e037",
+      "state": "accepted",
+      "reason": "Eight literal header statements ran on a stopped database copy. Prior schema/constraints and all legacy values restored; candidate jar restarted copy and reapplied V4 successfully. Primary directory untouched.",
+      "judgment": {
+        "version": 1,
+        "scope": "missions/02-brownfield/slices/04-audit-columns",
+        "sequence": 6,
+        "operationId": "cca19b225e4650e2562689fefe243c01371c41a80771c283d9c3338012ee8723",
+        "itemId": "item-928959aa8a0c3888ba61",
+        "itemRevision": "f5253486780f58fcaa4c1487fd865e17dcf470e15b276927065853c7db92e037",
+        "policyRevision": "3096494e1d474b134665afb5210687e973e282dc2b26b6f3831b0a9fd1477d01",
+        "policySource": "missions/02-brownfield/slices/04-audit-columns/slice.yaml",
+        "previous": null,
+        "actor": "qa2-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-03T23:50:45.876Z",
+        "verdict": "accept",
+        "reason": "Eight literal header statements ran on a stopped database copy. Prior schema/constraints and all legacy values restored; candidate jar restarted copy and reapplied V4 successfully. Primary directory untouched.",
+        "evidence": [
+          {
+            "ref": "missions/02-brownfield/slices/04-audit-columns/proof/qa-305f804/run-20261003T234116500899Z/rollback-literal-header.json",
+            "sha256": "8f49c5e3b0907ac1890cc578f62a35e097687a6d8fe5611ff7b8538090b9d3bd"
+          },
+          {
+            "ref": "missions/02-brownfield/slices/04-audit-columns/proof/qa-305f804/run-20261003T234116500899Z/rollback-after.json",
+            "sha256": "e4f225ccd104509b8fe3a6ebed8c775a33023ecd869104c5aa1bfc42e98db5b6"
+          },
+          {
+            "ref": "missions/02-brownfield/slices/04-audit-columns/proof/qa-305f804/run-20261003T234116500899Z/rollback-reapplied.json",
+            "sha256": "e1ef29418a9d4876cd9877d8225d2025fb8364fe52cc33c31956f2862ba0b5c5"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "305f8045d45b19a9e3287d5fe3508af6e04db9a4"
+        },
+        "intent": "46e996471ff2feff27452cf588cf4283b944e4e7cf0139e0ea3fe339ad73df24",
+        "id": "167e8fdac9343404ce9d988b18badd2b0f60420d55ae085def7ec94d5ecd4ea8"
+      }
+    },
+    {
+      "id": "item-f0d01a640a7962f357d1",
+      "text": "The migration's header carries a written rollback, and the review records that the rollback was read and run (NFR-X2).",
+      "index": 8,
+      "source": {
+        "file": "SPEC.md",
+        "line": 201
+      },
+      "revision": "531356d9f2bb30e09375921bf808f242e6ac4d72870f168c030130ba10395097",
+      "state": "accepted",
+      "reason": "Candidate migration equals the prior independently reviewed design byte-for-byte. Design review records its literal rollback read/run (32 controls), and QA independently ran that same header and real candidate reapply.",
+      "judgment": {
+        "version": 1,
+        "scope": "missions/02-brownfield/slices/04-audit-columns",
+        "sequence": 7,
+        "operationId": "43b5ccdfd833475a0ed573c3cf0d697f5f4e36a1b6a0ebf5219fdfb986436d39",
+        "itemId": "item-f0d01a640a7962f357d1",
+        "itemRevision": "531356d9f2bb30e09375921bf808f242e6ac4d72870f168c030130ba10395097",
+        "policyRevision": "3096494e1d474b134665afb5210687e973e282dc2b26b6f3831b0a9fd1477d01",
+        "policySource": "missions/02-brownfield/slices/04-audit-columns/slice.yaml",
+        "previous": null,
+        "actor": "qa2-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-03T23:50:46.619Z",
+        "verdict": "accept",
+        "reason": "Candidate migration equals the prior independently reviewed design byte-for-byte. Design review records its literal rollback read/run (32 controls), and QA independently ran that same header and real candidate reapply.",
+        "evidence": [
+          {
+            "ref": "missions/02-brownfield/slices/04-audit-columns/proof/qa-candidate-migration.sql",
+            "sha256": "e1cf67add7d5dc55152504e19a60cbc5f3ad3291c9a1bc1af33e168e6da055a7"
+          },
+          {
+            "ref": "missions/02-brownfield/slices/04-audit-columns/proof/qa-static-checks.json",
+            "sha256": "a29444777a17378291399ef92a09e26b275044fadf5d85fd1c114dc8da1b5b61"
+          },
+          {
+            "ref": "docs/review/04-audit-columns/design-review.md",
+            "sha256": "60fe878a284ce04746e5914b99a5efc8c855a42a3b822bd2ef5f459930677411"
+          },
+          {
+            "ref": "docs/review/04-audit-columns/proof/design-migration-check.txt",
+            "sha256": "6aacf58ccd182bab1f42c37e9ae7262923bf9deee87757fb259a5a408c4158c6"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "305f8045d45b19a9e3287d5fe3508af6e04db9a4"
+        },
+        "intent": "5d9ec80b1e62417b3daf4d57b00a07f3ef7e425ac68865d76e349d7f7bdac679",
+        "id": "86cc4a7b9e7310669a4a9bd51394856d1643301a8c55868d4c4497442833240c"
+      }
+    },
+    {
+      "id": "item-cee58c4b7a3a31f2b691",
+      "text": "`impact-analysis.md` exists before `design.md` and is re-checked against the merged `main` at plan-lock.",
+      "index": 9,
+      "source": {
+        "file": "SPEC.md",
+        "line": 202
+      },
+      "revision": "a5b67d1edcb61703c155f66815b77fa4a75965b4e9bdfa157c30d53e7c1160b3",
+      "state": "accepted",
+      "reason": "Impact analysis commit aecb0d9 precedes design 5a6d168; slice.yaml records merged-main recheck at plan-lock. Exact candidate again checked: named audit SELECT unchanged; retention merge ed2b940 ancestor; V4 next after V3.",
+      "judgment": {
+        "version": 1,
+        "scope": "missions/02-brownfield/slices/04-audit-columns",
+        "sequence": 8,
+        "operationId": "db3ac0601f93b10fb398cd7c65ed4ad81e8b282973632046aa81348b2d34749e",
+        "itemId": "item-cee58c4b7a3a31f2b691",
+        "itemRevision": "a5b67d1edcb61703c155f66815b77fa4a75965b4e9bdfa157c30d53e7c1160b3",
+        "policyRevision": "3096494e1d474b134665afb5210687e973e282dc2b26b6f3831b0a9fd1477d01",
+        "policySource": "missions/02-brownfield/slices/04-audit-columns/slice.yaml",
+        "previous": null,
+        "actor": "qa2-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-03T23:50:47.318Z",
+        "verdict": "accept",
+        "reason": "Impact analysis commit aecb0d9 precedes design 5a6d168; slice.yaml records merged-main recheck at plan-lock. Exact candidate again checked: named audit SELECT unchanged; retention merge ed2b940 ancestor; V4 next after V3.",
+        "evidence": [
+          {
+            "ref": "missions/02-brownfield/slices/04-audit-columns/impact-analysis.md",
+            "sha256": "0e3c3a7ca76c9003ae90cf1b5ac1d1970bf7ec3c3f582f0eb39986a76b2344f4"
+          },
+          {
+            "ref": "missions/02-brownfield/slices/04-audit-columns/slice.yaml",
+            "sha256": "157ec1728a16a9e9db7ff3681c24803db08c15b2aa3dcc3b1c4a6f9b24060b3b"
+          },
+          {
+            "ref": "missions/02-brownfield/slices/04-audit-columns/proof/qa-static-checks.json",
+            "sha256": "a29444777a17378291399ef92a09e26b275044fadf5d85fd1c114dc8da1b5b61"
+          },
+          {
+            "ref": "missions/02-brownfield/slices/04-audit-columns/proof/qa-ancestry.txt",
+            "sha256": "9d9ea7d8cbefccf82ef1b99faf7e5b9f3e90f4dbea681fb1096211112937a9b7"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "305f8045d45b19a9e3287d5fe3508af6e04db9a4"
+        },
+        "intent": "1063e9f4d9d1cb7a1c4990ad8a34b21ba88430282c113334d73c4c44ee65bd4a",
+        "id": "b70ffc82d9465d4aa6d4bac45fa1fbac74dd99a34e2fcb877c39feaa25ba91dd"
+      }
+    }
+  ],
+  "issues": [],
+  "policy": {
+    "judges": [
+      "qa2-agent@urlshort-factory"
+    ],
+    "source": "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/04-audit-columns/slice.yaml",
+    "revision": "3096494e1d474b134665afb5210687e973e282dc2b26b6f3831b0a9fd1477d01"
+  },
+  "attention": {
+    "scope": "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/04-audit-columns",
+    "revision": "123266f6490335a2a9f774a7763d4cb301fa77a77369663b3a647a14a4cf7cb9"
+  },
+  "sourceObservation": {
+    "state": "watching",
+    "revision": "f03a43793a4fa6f324d137186eaa2ca408131baf247ba9cc30c5f4db72de2d74"
+  }
+}
