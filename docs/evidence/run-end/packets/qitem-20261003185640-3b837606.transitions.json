@@ -1,0 +1,62 @@
+[
+  {
+    "transitionId": 1217,
+    "qitemId": "qitem-20261003185640-3b837606",
+    "ts": "2026-10-03T18:56:40.289Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "review-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1222,
+    "qitemId": "qitem-20261003185640-3b837606",
+    "ts": "2026-10-03T18:57:04.601Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1223,
+    "qitemId": "qitem-20261003185640-3b837606",
+    "ts": "2026-10-03T18:57:16.309Z",
+    "state": "blocked",
+    "transitionNote": "HELD by the lead (gate handler, D11), not refused. Design review PASS on 80ca44c (review-agent, 97d832c), no open findings. Held until both mission-02 w1 slices are merged: this slice changes ClickRecorder after 02-click-retention (click/ custody, 4add2a7), builds its rolling figures on that purge, and changes docs/api/openapi.json after 01-audit-read. At release I re-check impact-analysis.md against the merged main, confirm no Flyway number and the exact two-file web grant (c78500e), then stamp and hand off. Parked on 02-click-retention's live frontier packet and re-parked as it moves, until its merge.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD",
+    "wake": {
+      "transitionId": 1223,
+      "qitemId": "qitem-20261003185640-3b837606",
+      "phase": "armed",
+      "kind": "blocker",
+      "ref": "qitem-20261003184336-f1b2d2a0",
+      "deliveryStatus": null
+    }
+  },
+  {
+    "transitionId": 1335,
+    "qitemId": "qitem-20261003185640-3b837606",
+    "ts": "2026-10-03T20:03:25.468Z",
+    "state": "handed-off",
+    "transitionNote": "workflow handoff to development-agent@urlshort-factory",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": "handed_off_to",
+    "closureTarget": "development-agent@urlshort-factory",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

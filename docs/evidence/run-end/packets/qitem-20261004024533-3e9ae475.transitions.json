@@ -1,0 +1,41 @@
+[
+  {
+    "transitionId": 1930,
+    "qitemId": "qitem-20261004024533-3e9ae475",
+    "ts": "2026-10-04T02:45:33.587Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "qa2-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1936,
+    "qitemId": "qitem-20261004024533-3e9ae475",
+    "ts": "2026-10-04T02:45:45.844Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "review2-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1940,
+    "qitemId": "qitem-20261004024533-3e9ae475",
+    "ts": "2026-10-04T02:56:20.400Z",
+    "state": "done",
+    "transitionNote": "workflow failed: Candidate fb63a88a9b92c1fec97ba74686af1a2f30304160: code FAIL, security PASS; one HIGH CR-01 test-only polling-budget race. Actual helper429/NPE170ms under delayed writer, fresh-peer positive control correct3/2. All10 files read; fresh268 unit+322 functional and584/206 merged100/100; QA hashes/raw joins reconcile. Reports/evidence8daec71d; builder repair bounded storage wait then one status-checked HTTP read, retain60/600/fixedday/exactoracles; QA1/11withdrawn,16pending downstream. Residuals: Boot trigger upgrades, skipped-limiter peer fallback, offline advisory check remains release-owned. Read both review files.",
+    "actorSession": "review2-agent@urlshort-factory",
+    "closureReason": "denied",
+    "closureTarget": "Candidate fb63a88a9b92c1fec97ba74686af1a2f30304160: code FAIL, security PASS; one HIGH CR-01 test-only polling-budget race. Actual helper429/NPE170ms under delayed writer, fresh-peer positive control correct3/2. All10 files read; fresh268 unit+322 functional and584/206 merged100/100; QA hashes/raw joins reconcile. Reports/evidence8daec71d; builder repair bounded storage wait then one status-checked HTTP read, retain60/600/fixedday/exactoracles; QA1/11withdrawn,16pending downstream. Residuals: Boot trigger upgrades, skipped-limiter peer fallback, offline advisory check remains release-owned. Read both review files.",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

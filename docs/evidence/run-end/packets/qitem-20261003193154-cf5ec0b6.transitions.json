@@ -1,0 +1,54 @@
+[
+  {
+    "transitionId": 1280,
+    "qitemId": "qitem-20261003193154-cf5ec0b6",
+    "ts": "2026-10-03T19:31:54.176Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "design-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1281,
+    "qitemId": "qitem-20261003193154-cf5ec0b6",
+    "ts": "2026-10-03T19:32:20.017Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "review-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1290,
+    "qitemId": "qitem-20261003193154-cf5ec0b6",
+    "ts": "2026-10-03T19:37:30.391Z",
+    "state": "in-progress",
+    "transitionNote": "All 12 handed design files inspected (initial e8969b5/0d000da/c794f76). Independent real-Tomcat controls pass complete normalized error-body equality for five pre-merge cases, full document delta, both disk gauges and unrelated tag/value retention; negative control proves shape-only D2 misses a title change. Two MEDIUM wording corrections sent to producer: scope D2/full-value AC-4 comparison and old path-selector compatibility (observed 200 to 404). No blocker found. Final review and ledger pending; baseline offline gate up-to-date.",
+    "actorSession": "review-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1291,
+    "qitemId": "qitem-20261003193154-cf5ec0b6",
+    "ts": "2026-10-03T19:43:07.605Z",
+    "state": "handed-off",
+    "transitionNote": "workflow handoff to orchestration-lead@urlshort-factory",
+    "actorSession": "review-agent@urlshort-factory",
+    "closureReason": "handed_off_to",
+    "closureTarget": "orchestration-lead@urlshort-factory",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

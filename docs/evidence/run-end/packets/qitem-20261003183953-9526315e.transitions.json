@@ -1,0 +1,28 @@
+[
+  {
+    "transitionId": 1169,
+    "qitemId": "qitem-20261003183953-9526315e",
+    "ts": "2026-10-03T18:39:53.932Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1177,
+    "qitemId": "qitem-20261003183953-9526315e",
+    "ts": "2026-10-03T18:43:36.328Z",
+    "state": "handed-off",
+    "transitionNote": "workflow route: operator-human@kernel re-routed step implement from development-agent@urlshort-factory to dev2-agent@urlshort-factory — second builder seat added at the human's request to shorten the critical path: development-agent is busy on 01-audit-read's implement, so 02-click-retention's unclaimed implement packet moves to dev2-agent (lane B = dev2 + qa2 + review2)",
+    "actorSession": "operator-human@kernel",
+    "closureReason": "handed_off_to",
+    "closureTarget": "dev2-agent@urlshort-factory",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

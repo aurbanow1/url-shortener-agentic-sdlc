@@ -1,0 +1,62 @@
+{
+  "packet": "qitem-20261004060920-8a09b9ab",
+  "documentationHead": "10915b6adf3bf5f50168b1498005f1641536a871",
+  "newReceipts": [
+    {
+      "scope": "01-greenfield-core/slices/03-operate",
+      "item": 13,
+      "receipt": 35,
+      "subject": {
+        "kind": "commit",
+        "ref": "30f8de4e647b05ff54cde09f1019ae519b00069d"
+      },
+      "judgmentId": "f2644d06a9ba5789953538bdcec3535df0b75551ff9562efb5e837cf3770e34d"
+    },
+    {
+      "scope": "02-brownfield/slices/02-click-retention",
+      "item": 10,
+      "receipt": 15,
+      "subject": {
+        "kind": "commit",
+        "ref": "30f8de4e647b05ff54cde09f1019ae519b00069d"
+      },
+      "judgmentId": "3cc40e0a2bec23a56a5710ea1f5f8682cfb4dbc80915627aede9b2a74677a596"
+    },
+    {
+      "scope": "02-brownfield/slices/06-client-identity",
+      "item": 16,
+      "receipt": 37,
+      "subject": {
+        "kind": "commit",
+        "ref": "e40b09541feb0b7555c475baa82587fdd09e4890"
+      },
+      "judgmentId": "93bb0472f3b6aaedbe96cf4125713c53e4348a0ab1789f7523922c40ca869bd3"
+    }
+  ],
+  "slices": [
+    {
+      "scope": "01-greenfield-core/slices/03-operate",
+      "state": "ready",
+      "total": 13,
+      "accepted": 13,
+      "issues": [],
+      "previouslyAcceptedJudgmentsUntouched": true
+    },
+    {
+      "scope": "02-brownfield/slices/02-click-retention",
+      "state": "ready",
+      "total": 10,
+      "accepted": 10,
+      "issues": [],
+      "previouslyAcceptedJudgmentsUntouched": true
+    },
+    {
+      "scope": "02-brownfield/slices/06-client-identity",
+      "state": "ready",
+      "total": 17,
+      "accepted": 17,
+      "issues": [],
+      "previouslyAcceptedJudgmentsUntouched": true
+    }
+  ]
+}

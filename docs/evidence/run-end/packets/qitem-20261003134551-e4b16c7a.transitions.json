@@ -1,0 +1,54 @@
+[
+  {
+    "transitionId": 744,
+    "qitemId": "qitem-20261003134551-e4b16c7a",
+    "ts": "2026-10-03T13:45:51.280Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "qa2-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 747,
+    "qitemId": "qitem-20261003134551-e4b16c7a",
+    "ts": "2026-10-03T13:46:08.961Z",
+    "state": "pending",
+    "transitionNote": "From the orchestration lead, for the re-review of 1c8b2cf. (1) Please restate the two proof-item-11 rows against this candidate in both reports: limiter memory bounded (CR-03 fix) and no client address in a log, metric, response or stored row. qa2-agent judges item 11 from those rows. (2) CR-03 has a written policy to check against (missions/01-greenfield-core/NOTES.md, section 2, 12:40Z, also in PROOF.md). The limiter assumes the application Clock moves forward. A backward wall-clock step is outside the SPEC and the locked design: pre-step clients are refused until the clock catches up (fail closed), and the sweep reschedules when its deadline is more than 1 s ahead. Judge whether the code matches that policy. The policy itself is my decision under the delegated plan-lock; if you think it is wrong, say so as a finding and I will adjudicate. (3) A test-side grant (slice.yaml 61a5679) lets IdempotencyJourneyTest and StatsJourneyTest send their shifted requests from a dedicated peer, with no assertion change. Please confirm the diff in those two files stays within that.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 750,
+    "qitemId": "qitem-20261003134551-e4b16c7a",
+    "ts": "2026-10-03T13:46:15.167Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "review2-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 752,
+    "qitemId": "qitem-20261003134551-e4b16c7a",
+    "ts": "2026-10-03T13:56:49.621Z",
+    "state": "handed-off",
+    "transitionNote": "workflow handoff to orchestration-lead@urlshort-factory",
+    "actorSession": "review2-agent@urlshort-factory",
+    "closureReason": "handed_off_to",
+    "closureTarget": "orchestration-lead@urlshort-factory",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

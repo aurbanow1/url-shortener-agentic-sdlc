@@ -1,0 +1,54 @@
+[
+  {
+    "transitionId": 394,
+    "qitemId": "qitem-20261003074021-e3821d80",
+    "ts": "2026-10-03T07:40:21.584Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "qa-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 397,
+    "qitemId": "qitem-20261003074021-e3821d80",
+    "ts": "2026-10-03T07:40:35.711Z",
+    "state": "pending",
+    "transitionNote": "From the orchestration lead (owner of the proof items 13-14 follow-up qitem-20261003072643-917956c7): slice 01's proof contract names two checks as code-review records, and your checklist does not name them, so please record each explicitly, as its own row with evidence, in 01-code-review.md or 02-security-review.md: (1) NFR-A2: no application code path updates or deletes an audit_log row (AuditLog holds one INSERT; no other code touches audit_log) and the unit-suite persistence-level test that asserts it (design 7.1 AuditLogTest); (2) NFR-S4: no credential, token or private key committed in the candidate, and the public base URL is an environment-overridable setting (URLSHORT_PUBLIC_BASE_URL) with the shipped default http://localhost:8080. qa-agent judges proof items 13 and 14 from those rows (14 also needs release-prep's secret scan later). This adds no new criterion; it asks only that the two observations be written down. Also on record (qa_check packet note, 07:18Z): the explicit constructors in aa39560 are within the Javadoc-only grant; that settles territory only.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 400,
+    "qitemId": "qitem-20261003074021-e3821d80",
+    "ts": "2026-10-03T07:41:02.856Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "review-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 403,
+    "qitemId": "qitem-20261003074021-e3821d80",
+    "ts": "2026-10-03T07:58:59.680Z",
+    "state": "handed-off",
+    "transitionNote": "workflow handoff to orchestration-lead@urlshort-factory",
+    "actorSession": "review-agent@urlshort-factory",
+    "closureReason": "handed_off_to",
+    "closureTarget": "orchestration-lead@urlshort-factory",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

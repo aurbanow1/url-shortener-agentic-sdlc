@@ -1,0 +1,69 @@
+{
+  "pickup": {
+    "state": "stalled-after-claim",
+    "evidence": "no meaningful queue change for 1173 min; owner activity idle-at-prompt (queue age does not prove idle)"
+  },
+  "waiting": {
+    "obligation": "qitem-20261003225239-ed926320",
+    "owner": "orchestration-lead@urlshort-factory",
+    "state": "done",
+    "actionableSince": null,
+    "blocker": null,
+    "lastMeaningfulChange": {
+      "id": 1570,
+      "at": "2026-10-03T23:08:34.762Z"
+    },
+    "liveness": {
+      "subject": "orchestration-lead@urlshort-factory",
+      "activity": "idle-at-prompt",
+      "needsInput": {
+        "count": 0,
+        "reason": null
+      },
+      "confidence": "oracle"
+    },
+    "nextBackstop": {
+      "owner": "orchestration-lead@urlshort-factory",
+      "mechanism": "none (terminal obligation)",
+      "dueAt": null,
+      "intervalSeconds": null
+    },
+    "deadlineAt": null
+  },
+  "qitemId": "qitem-20261003225239-ed926320",
+  "tsCreated": "2026-10-03T22:52:39.994Z",
+  "tsUpdated": "2026-10-03T23:08:34.762Z",
+  "sourceSession": "review2-agent@urlshort-factory",
+  "destinationSession": "orchestration-lead@urlshort-factory",
+  "state": "done",
+  "priority": "routine",
+  "tier": "mode2",
+  "tags": [
+    "workflow",
+    "handoff",
+    "workflow:urlshort-slice-delegated-b",
+    "instance:01M4170AA9E72WW1BXEA5PX0AP"
+  ],
+  "blockedOn": null,
+  "handedOffTo": null,
+  "handedOffFrom": null,
+  "expiresAt": null,
+  "chainOfRecord": [
+    "qitem-20261003223905-762d759f"
+  ],
+  "body": "### Workflow handoff: urlshort-slice-delegated-b@1 step integrate\n\nWorkflow instance: 01M4170AA9E72WW1BXEA5PX0AP\nPrior step: code_review (code_review) closed by review2-agent@urlshort-factory\nThis step: integrate (integrator)\nObjective: Confirm the QA and review verdicts name the same candidate SHA and the proof-contract judgments are recorded, merge the slice branch into main with --no-ff, re-run the gate on main, tag the accepted candidate, remove the worktree, bring PROGRESS.md current and close the slice; delivery stamps follow the mission's ship sign-off. A red main is reverted and recorded.\n\nPrior step note: Code PASS and security PASS on exact X=a8fc8b6b67e3a3cbdaada43a3233191b6c7610e1; no findings; 18/18 files read. Review/evidence commit2ead709. Fresh174unit+172functional; canonical-only490/490lines168/168branches;333QAhashes210methodmappings207raw/logpairs verified. Read both 01-code-review.md and02-security-review.md. Handoff under lead NOTES21:42Z: item9 remains pending, tracked qitem-20261003221121-7686465a. Obtain builder X-prime, verify range-diff16312da..X cb148c4..X-prime with only authorized README/properties context exception, fresh offline check --rerun-tasks on X-prime, and return ancestry/Flyway item9 to QA before acceptance. Other changed patches return to QA; name both SHAs. Residuals: accepted clock/hold/deletion and large-data readiness budget, release smoke/advisory freshness; no new load/shutdown/container claim.\n\nContinuation: rig workflow project --instance 01M4170AA9E72WW1BXEA5PX0AP --current-packet qitem-20261003225239-ed926320 --exit <handoff|waiting|done|failed> --actor-session orchestration-lead@urlshort-factory\nContext: this workflow packet is a shortcut, not the whole story; inspect additional project, mission, and receipt evidence before choosing an authored exit.",
+  "summary": null,
+  "evidenceRef": null,
+  "humanIntent": null,
+  "humanDetail": null,
+  "closureReason": "no-follow-on",
+  "closureTarget": null,
+  "closureRequiredAt": null,
+  "claimedAt": "2026-10-03T22:52:54.982Z",
+  "lastNudgeAttempt": "2026-10-03T23:06:14.837Z",
+  "lastNudgeResult": "delivered-ack-pending",
+  "lastHeartbeat": null,
+  "resolution": null,
+  "targetRepo": null,
+  "deliveryOutcome": null
+}

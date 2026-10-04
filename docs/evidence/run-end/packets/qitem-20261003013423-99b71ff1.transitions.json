@@ -1,0 +1,41 @@
+[
+  {
+    "transitionId": 165,
+    "qitemId": "qitem-20261003013423-99b71ff1",
+    "ts": "2026-10-03T01:34:23.198Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 167,
+    "qitemId": "qitem-20261003013423-99b71ff1",
+    "ts": "2026-10-03T01:35:10.008Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "qa-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 178,
+    "qitemId": "qitem-20261003013423-99b71ff1",
+    "ts": "2026-10-03T01:49:36.480Z",
+    "state": "done",
+    "transitionNote": "workflow done: QA ACCEPT merge=42a25db4a9c24fba3221c1ade4044719cab39ee3 items=7/7 readiness=ready; fresh main gate unit=6 functional=9 lines=15/15 branches=0/0; tested HEAD=877d6f3 has identical product/test/build inputs; evidence commit=9d2bf92. Saved live captures audited, release checks remain with release.",
+    "actorSession": "qa-agent@urlshort-factory",
+    "closureReason": "no-follow-on",
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

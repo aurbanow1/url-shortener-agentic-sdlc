@@ -1,0 +1,69 @@
+{
+  "pickup": {
+    "state": "stalled-after-claim",
+    "evidence": "no meaningful queue change for 1920 min; owner activity idle-at-prompt (queue age does not prove idle)"
+  },
+  "waiting": {
+    "obligation": "qitem-20261003101510-d5f18be9",
+    "owner": "qa-agent@urlshort-factory",
+    "state": "handed-off",
+    "actionableSince": null,
+    "blocker": null,
+    "lastMeaningfulChange": {
+      "id": 575,
+      "at": "2026-10-03T10:41:16.456Z"
+    },
+    "liveness": {
+      "subject": "qa-agent@urlshort-factory",
+      "activity": "idle-at-prompt",
+      "needsInput": {
+        "count": 0,
+        "reason": null
+      },
+      "confidence": "oracle"
+    },
+    "nextBackstop": {
+      "owner": "qa-agent@urlshort-factory",
+      "mechanism": "none (terminal obligation)",
+      "dueAt": null,
+      "intervalSeconds": null
+    },
+    "deadlineAt": null
+  },
+  "qitemId": "qitem-20261003101510-d5f18be9",
+  "tsCreated": "2026-10-03T10:15:10.600Z",
+  "tsUpdated": "2026-10-03T10:41:16.456Z",
+  "sourceSession": "development-agent@urlshort-factory",
+  "destinationSession": "qa-agent@urlshort-factory",
+  "state": "handed-off",
+  "priority": "routine",
+  "tier": "mode2",
+  "tags": [
+    "workflow",
+    "handoff",
+    "workflow:urlshort-slice-delegated",
+    "instance:01M40CP0JVZZWR8226MNN8XCCV"
+  ],
+  "blockedOn": null,
+  "handedOffTo": "review-agent@urlshort-factory",
+  "handedOffFrom": null,
+  "expiresAt": null,
+  "chainOfRecord": [
+    "qitem-20261003094850-c667801b"
+  ],
+  "body": "### Workflow handoff: urlshort-slice-delegated@1 step qa_check\n\nWorkflow instance: 01M40CP0JVZZWR8226MNN8XCCV\nPrior step: implement (development) closed by development-agent@urlshort-factory\nThis step: qa_check (qa)\nObjective: Verify the candidate by effect: run the suites and the public journey, produce unit and functional coverage reports, the acceptance-criteria traceability table and the gap list, record proof drops. On PASS, record the attributed judgment on every proof-contract item against the candidate SHA (rig proof judge) so acceptance needs no extra hop. A failing check is the artifact's verdict and routes back to implement.\n\nPrior step note: candidate=862c52eea8294e438b1f98b832ae4f64f7a16923 branch=slice/02-analytics files=20 tests=121/126 coverage=100% notes=Grants: link/ diff is the hook only (ClickRecorder field, constructor param, HttpServletRequest param, one record call, one Javadoc sentence); OpenApiDocumentTest changes only the exact path list. ClickRecorder.record catches Exception because DailySalt.stamp propagates the checked GeneralSecurityException of Mac.getInstance (cannot happen on a JDK; reuses the covered fail-open path). AC-22 HEAD-no-body is asserted on Tomcat (ClickResilienceJourneyTest) because MockMvc keeps a HEAD body. Suite-clock shifts are computed from FunctionalClock.instant(), not Instant.now() as design 7.2 suggests, after a 1 ms day-boundary flake. ERD already on main from the design step. Six deviations and residuals (NFR-L3 number release-level; A-9 and CR-01 lead backlog) in PROOF.md Builder; builder captures under the slice proof/ (builder-evidence-862c52e.md, items 6-8). scripts/gw --offline check --rerun-tasks green. Worktree clean at the candidate; its data/ holds the by-effect rows, safe to delete. docs/qa left to QA.\n\nContinuation: rig workflow project --instance 01M40CP0JVZZWR8226MNN8XCCV --current-packet qitem-20261003101510-d5f18be9 --exit <handoff|waiting|done|failed> --actor-session qa-agent@urlshort-factory\nContext: this workflow packet is a shortcut, not the whole story; inspect additional project, mission, and receipt evidence before choosing an authored exit.",
+  "summary": null,
+  "evidenceRef": null,
+  "humanIntent": null,
+  "humanDetail": null,
+  "closureReason": "handed_off_to",
+  "closureTarget": "review-agent@urlshort-factory",
+  "closureRequiredAt": null,
+  "claimedAt": "2026-10-03T10:18:02.454Z",
+  "lastNudgeAttempt": "2026-10-03T10:15:11.483Z",
+  "lastNudgeResult": "verified",
+  "lastHeartbeat": null,
+  "resolution": null,
+  "targetRepo": null,
+  "deliveryOutcome": null
+}

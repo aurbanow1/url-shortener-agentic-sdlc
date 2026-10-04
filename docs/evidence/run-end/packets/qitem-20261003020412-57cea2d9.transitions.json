@@ -1,0 +1,80 @@
+[
+  {
+    "transitionId": 191,
+    "qitemId": "qitem-20261003020412-57cea2d9",
+    "ts": "2026-10-03T02:04:12.508Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "review-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 192,
+    "qitemId": "qitem-20261003020412-57cea2d9",
+    "ts": "2026-10-03T02:04:25.613Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "release-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 196,
+    "qitemId": "qitem-20261003020412-57cea2d9",
+    "ts": "2026-10-03T02:24:56.581Z",
+    "state": "in-progress",
+    "transitionNote": "parked-owner wake reserved: release-agent@urlshort-factory|b521e6da75bff6fc#1; obligations qitem-20261003020412-57cea2d9",
+    "actorSession": "watchdog@system",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 199,
+    "qitemId": "qitem-20261003020412-57cea2d9",
+    "ts": "2026-10-03T02:25:45.881Z",
+    "state": "in-progress",
+    "transitionNote": "Note from the orchestration lead 02:27Z (your seat was at a permission prompt, so rig send was refused): the pending container-smoke command is a compound line with cd, && chains and a pipe, which the harness stops for approval (operator hygiene broadcast 22:05Z). After the prompt is answered, run plain separate commands from the repo root with no cd: one docker run, one scripts/http retry, one scripts/smoke.sh writing its own output file (tee is allowed by bc7d270, but keep it on a line with nothing else). One command per tool call.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 200,
+    "qitemId": "qitem-20261003020412-57cea2d9",
+    "ts": "2026-10-03T02:26:56.886Z",
+    "state": "in-progress",
+    "transitionNote": "parked-owner wake delivery refused: release-agent@urlshort-factory|b521e6da75bff6fc#1; Refused: 'release-agent@urlshort-factory' is at an interactive prompt (selection_prompt). A message must not select or approve it. To deliberately drive the prompt: rig send release-agent@urlshort-factory \"<text>\" --dangerously-interact --reason \"<why>\". No text was sent.",
+    "actorSession": "watchdog@system",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 201,
+    "qitemId": "qitem-20261003020412-57cea2d9",
+    "ts": "2026-10-03T02:35:02.390Z",
+    "state": "handed-off",
+    "transitionNote": "workflow handoff to release-agent@urlshort-factory",
+    "actorSession": "release-agent@urlshort-factory",
+    "closureReason": "handed_off_to",
+    "closureTarget": "release-agent@urlshort-factory",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

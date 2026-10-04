@@ -1,0 +1,166 @@
+{
+  "instance": {
+    "instanceId": "01M4212A8BKA6JRZHZQBD90D07",
+    "workflowName": "urlshort-drill",
+    "workflowVersion": "1",
+    "createdBySession": "release-agent@urlshort-factory",
+    "createdAt": "2026-10-03T23:19:55.915Z",
+    "status": "completed",
+    "currentFrontier": [],
+    "currentStepId": null,
+    "hopCount": 3,
+    "fallbackSynthesis": null,
+    "lastContinuationDecision": {
+      "exit": "done",
+      "actorSession": "qa-agent@urlshort-factory",
+      "closedPacket": "qitem-20261003233041-b3b78d0d",
+      "nextPacket": null,
+      "resultNote": "DRILL1 PASS candidate=8227b8c3bd87b757af377f8a029ebe68a1322452: independently parsed committed JSON, drill=DRILL 1 status=READY; unchanged rule met, DRILL1-01 fixed. Plain-file drill only.",
+      "blockedOn": null,
+      "currentStep": "qa_check",
+      "branchTaken": null
+    },
+    "completedAt": "2026-10-03T23:32:07.695Z",
+    "version": 5,
+    "resumeCount": 0,
+    "hopsBaseline": 0,
+    "boundRig": "urlshort-factory",
+    "lifecycleOperationKey": null,
+    "compiledInputDigest": null,
+    "lifecycleBinding": null,
+    "deadline": {
+      "state": "healthy",
+      "evidence": null
+    }
+  },
+  "trail": [
+    {
+      "trailId": "01M421RMWM31AM51T78XJPCVS6",
+      "instanceId": "01M4212A8BKA6JRZHZQBD90D07",
+      "stepId": "qa_check",
+      "stepRole": "qa",
+      "closedAt": "2026-10-03T23:32:07.695Z",
+      "closureReason": "done",
+      "closureEvidence": {
+        "evidence_ref": "docs/evidence/02-brownfield/drills/drill1-qa-8227b8c.md"
+      },
+      "actorSession": "qa-agent@urlshort-factory",
+      "nextQitemId": null,
+      "priorQitemId": "qitem-20261003233041-b3b78d0d"
+    },
+    {
+      "trailId": "01M421P0T7MGG0AYP8QRZT14E4",
+      "instanceId": "01M4212A8BKA6JRZHZQBD90D07",
+      "stepId": "implement",
+      "stepRole": "drill_worker",
+      "closedAt": "2026-10-03T23:30:41.601Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": ".worktrees/drill-qa-remediation/docs/evidence/02-brownfield/drills/drill1-notes.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "qa",
+          "boundRig": "urlshort-factory",
+          "seat": "qa-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "release-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003233041-b3b78d0d",
+      "priorQitemId": "qitem-20261003232904-3c07d8d6"
+    },
+    {
+      "trailId": "01M421K1K4PD4T9NTB0X6ZGE24",
+      "instanceId": "01M4212A8BKA6JRZHZQBD90D07",
+      "stepId": "qa_check",
+      "stepRole": "qa",
+      "closedAt": "2026-10-03T23:29:04.090Z",
+      "closureReason": "failed",
+      "closureEvidence": {
+        "evidence_ref": "docs/evidence/02-brownfield/drills/drill1-qa-594c9c9.md",
+        "branch_taken": {
+          "exit": "failed",
+          "target": "implement"
+        },
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "drill_worker",
+          "boundRig": "urlshort-factory",
+          "seat": "release-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "qa-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003232904-3c07d8d6",
+      "priorQitemId": "qitem-20261003232132-8f1e1f16"
+    },
+    {
+      "trailId": "01M421586V70ZSA8T6Z98XZ5CK",
+      "instanceId": "01M4212A8BKA6JRZHZQBD90D07",
+      "stepId": "implement",
+      "stepRole": "drill_worker",
+      "closedAt": "2026-10-03T23:21:32.117Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": ".worktrees/drill-qa-remediation/docs/evidence/02-brownfield/drills/drill1-notes.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "qa",
+          "boundRig": "urlshort-factory",
+          "seat": "qa-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "release-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003232132-8f1e1f16",
+      "priorQitemId": "qitem-20261003231955-aed54014"
+    }
+  ],
+  "guidance": {
+    "state": "unselected",
+    "selectionSource": null,
+    "catalogSource": null,
+    "catalogPath": null,
+    "catalogHash": null,
+    "sources": [],
+    "position": "UNKNOWN: component position is not authored. Exact owner matches establish relevance, not a stage; choose from selected components and explicit edges using current evidence. Array order is presentation only.",
+    "ownerSession": null,
+    "unknowns": [],
+    "expansionCommand": "rig workflow guidance '01M4212A8BKA6JRZHZQBD90D07' --full",
+    "lines": [
+      "Workflow method: No SDLC composition selected in the available authored context.",
+      "Workflow method: Expand relevant teaching: rig workflow guidance '01M4212A8BKA6JRZHZQBD90D07' --full; select another with --component <id>. Read authored caveats and edges before adapting; advice grants no extra assignment."
+    ]
+  },
+  "reconciliation": {
+    "status": "unbound",
+    "adopted": null,
+    "boundDigest": null,
+    "proposedDigest": null,
+    "boundVersion": "1",
+    "proposedVersion": null,
+    "compatible": false,
+    "expectedVersion": 5,
+    "changes": [],
+    "reasons": [
+      "This is not a manifest-bound lifecycle. Inspect its authored spec; lifecycle revision does not migrate arbitrary workflows."
+    ],
+    "composition": {
+      "mode": "unbound",
+      "explanation": "The project profile and mission extension/override define outer steps. Slice manifests bind sources and proof, not automatic nested children. Waves group agent planning; they do not schedule child work. Current packets and blockers carry actual custody.",
+      "boundSlices": [],
+      "executableSteps": [
+        {
+          "id": "implement",
+          "dependsOn": []
+        },
+        {
+          "id": "qa_check",
+          "dependsOn": []
+        }
+      ]
+    },
+    "nextAction": "rig workflow trace 01M4212A8BKA6JRZHZQBD90D07"
+  },
+  "frontier": [],
+  "failures": [],
+  "unknowns": [],
+  "boundaryObligations": []
+}

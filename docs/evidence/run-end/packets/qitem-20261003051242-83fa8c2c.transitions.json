@@ -1,0 +1,54 @@
+[
+  {
+    "transitionId": 301,
+    "qitemId": "qitem-20261003051242-83fa8c2c",
+    "ts": "2026-10-03T05:12:42.133Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "review-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 303,
+    "qitemId": "qitem-20261003051242-83fa8c2c",
+    "ts": "2026-10-03T05:12:51.554Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "design-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 307,
+    "qitemId": "qitem-20261003051242-83fa8c2c",
+    "ts": "2026-10-03T05:19:52.767Z",
+    "state": "in-progress",
+    "transitionNote": "Lead routing (operator packet qitem-20261003051852-2c3bd470, human decision 2026-10-03): the Javadoc policy in docs/guidance/java-spring.md section 8 applies to this slice. For design.md: add a Documentation line (Javadoc contract per section 8; package-info.java for link/, audit/, web/) and, in the build plan you hand the builder, the order of the gated pre-feature commits: (1) dependency overrides, (2) javadoc task with -Xdoclint:all -Werror wired into check plus Javadoc on the four existing classes the gate flags (UrlshortApplication, PingController, PingResponse, RequestIdFilter; Javadoc-only grants recorded in slice.yaml), each gated green on its own, before any feature commit. SPEC.md stays as reviewed; no re-review needed for this.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 329,
+    "qitemId": "qitem-20261003051242-83fa8c2c",
+    "ts": "2026-10-03T05:53:47.634Z",
+    "state": "handed-off",
+    "transitionNote": "workflow handoff to review-agent@urlshort-factory",
+    "actorSession": "design-agent@urlshort-factory",
+    "closureReason": "handed_off_to",
+    "closureTarget": "review-agent@urlshort-factory",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "transitionId": 1503,
+    "qitemId": "qitem-20261003223543-96dcbd88",
+    "ts": "2026-10-03T22:35:43.501Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1504,
+    "qitemId": "qitem-20261003223543-96dcbd88",
+    "ts": "2026-10-03T22:35:49.875Z",
+    "state": "handed-off",
+    "transitionNote": "workflow route: orchestration-lead@urlshort-factory re-routed step implement from dev2-agent@urlshort-factory to development-agent@urlshort-factory — development-agent is free after 03-dogfood-fix's QA; dev2-agent holds 02-click-retention (rebase pending) and 01-analytics-v2",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": "handed_off_to",
+    "closureTarget": "development-agent@urlshort-factory",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

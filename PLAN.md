@@ -1,14 +1,14 @@
 # PLAN — Agentic SDLC on OpenRig: URL Shortener
 
-Status: **v2 — decisions D1–D5 recorded (§10); awaiting go for Day 0** · Date: 2026-10-02 · Owner: Andrzej Urbanowicz · Drafted with Claude Code
+Status: **closed — all four missions shipped and closed (the last on 2026-10-04); decisions D1–D21 recorded in §10 (D10 unused)** · Written as v2 on 2026-10-02 (decisions D1–D5 recorded, awaiting go for Day 0) · Owner: Andrzej Urbanowicz · Drafted with Claude Code
 
 ## 0. TL;DR
 
 - **What we deliver:** a URL-shortener service built by a governed multi-agent team running on **OpenRig 0.6.3** (already installed; daemon up on :7433). OpenRig is the *substrate* (seats, queues, workflow engine, proofs, Mission Control). **Our deliverable is the orchestration layer designed on top of it:** a purpose-built rig topology, custom agent specs for ten roles, a three-level graph (rig topology → mission `depends_on` DAG → per-slice `next_hop` workflow) with risk-tiered human gates and bounded remediation loops, governance policy, an evidence exporter and a reliability-metrics tool — plus the product itself.
 - **Three scenarios = three OpenRig missions:** greenfield (core shortener), brownfield (enhancement + bug fix + fault-injection drills), ambiguous (vague analytics ask → ambiguity log → human decision → dynamic re-plan).
 - **The evaluator almost certainly cannot run OpenRig** (tmux + daemon + two logged-in AI harnesses). The submission therefore stands on two legs: (1) the app runs standalone — `./gradlew build && java -jar build/libs/urlshort.jar` (or `docker compose up`); (2) the orchestration is proven by **committed evidence** (workflow traces, queue transition logs, compiled dependency graphs, proof dirs, Mission Control screenshots, metrics) and a `rig bundle` for anyone who does have OpenRig.
-- **Timeline:** Day 0 setup + spikes + hello-slice dry run → Day 1 greenfield → Day 2 brownfield + ambiguous → Day 3 hardening, metrics, final summary, submission (zip).
-- **Decisions taken (§10):** Java 21 + Spring Boot 4.1.1 (Gradle wrapper, Kotlin DSL); `standard` permissions + project allow-list; `product-team` rig snapshotted down (done); zip-only submission.
+- **Timeline:** Day 0 setup + spikes + hello-slice dry run → Day 1 greenfield → Day 2 brownfield + ambiguous → Day 3 hardening, metrics, final summary, submission (zip; superseded by D19: the deliverable is the GitHub repository).
+- **Decisions taken (§10):** Java 21 + Spring Boot 4.1.1 (Gradle wrapper, Kotlin DSL); `standard` permissions + project allow-list; `product-team` rig snapshotted down (done); zip-only submission (superseded by D19: the GitHub repository is the deliverable, and the factory bundle is in `docs/factory/`).
 
 ## 1. Assignment decoded → how we satisfy it → artifact
 
@@ -24,7 +24,7 @@ Sources: PDF §4 core requirements (R1–R8), PDF §5 deliverables (D1–D5), an
 | R6 | Validation & risk control | Risk register, failure-scenario catalogue, guardrails; fault-injection drills with evidence | `docs/RISKS.md`, `docs/scenarios/drills.md` |
 | R7 | Controlled autonomy | Two human gates per slice (plan-lock, ship sign-off) + decision gate for ambiguity; `rig mode` posture; permission policy; "publish is a human act" | `docs/GOVERNANCE.md`, `rig/CULTURE.md`, `rig/rig.yaml` |
 | R8 | Final engineering summary | Plan/rationale, artifacts, risks/trade-offs/validation, assumptions, limitations | `docs/FINAL-SUMMARY.md` |
-| D1 | Working prototype, runnable end-to-end | Standalone app (`./gradlew check bootJar`, `java -jar`), Dockerfile (eclipse-temurin 21) + `docker compose up`; OpenRig bundle for the factory | `README.md`, `Dockerfile`, `compose.yaml`, `dist/urlshort-factory.rigbundle` |
+| D1 | Working prototype, runnable end-to-end | Standalone app (`./gradlew check bootJar`, `java -jar`), Dockerfile (eclipse-temurin 21) + `docker compose up`; OpenRig bundle for the factory | `README.md`, `Dockerfile`, `compose.yaml`, `dist/urlshort-factory.rigbundle` (superseded by D19: `docs/factory/urlshort-factory.rigbundle`) |
 | D2 | Architecture overview (components, orchestration model, control flow, key decisions) | Plain-English doc (OpenRig concepts explained for a reader who has never seen it) with Mermaid diagrams for both layers; ADRs | `docs/ARCHITECTURE.md`, `docs/adr/` |
 | D3 | Three scenarios (decomposition, orchestration, validation) | One mission each + per-scenario narrative linking to evidence | `docs/scenarios/{greenfield,brownfield,ambiguous}.md` |
 | D4 | Setup instructions | App (no OpenRig) and factory (with OpenRig) | `README.md`, `docs/SETUP-FACTORY.md` |

@@ -1,0 +1,127 @@
+{
+  "packet": "qitem-20261004060919-eb2b3934",
+  "actor": "qa-agent@urlshort-factory",
+  "mainReadCommit": "10915b6adf3bf5f50168b1498005f1641536a871",
+  "baselineCommit": "2a47ad282c4a1ef3458599cb86f5e7537f47379d",
+  "files": [
+    {
+      "path": "docs/DESIGN.md",
+      "baselineSha256": "a1028993f33e1c469ad6a81b76f0c019e60de279d0c4444496efe53db960f53d",
+      "currentSha256": "c7e794916d36f24b70352621f00b9547e7fb566227fbbb7aa55c7d101920aa50"
+    },
+    {
+      "path": "README.md",
+      "baselineSha256": "0239a013e2b7b21b3f503fc3437f0eedfc9c0436a406f1b574f018377757a0d5",
+      "currentSha256": "3bdb9dbadc4c7ba89ed3c5a9e4d0807cef69b34ae3790c8206dcf963ab28b408"
+    }
+  ],
+  "items": [
+    {
+      "scope": "01-greenfield-core/slices/02-analytics",
+      "index": 10,
+      "previousSequence": 36,
+      "previousId": "ec138c110f12a3f3391a3b8af637a223b046bfade19a56267d1872a8a6bf25e0",
+      "originalSubject": {
+        "kind": "commit",
+        "ref": "30f8de4e647b05ff54cde09f1019ae519b00069d"
+      }
+    },
+    {
+      "scope": "02-brownfield/slices/01-audit-read",
+      "index": 11,
+      "previousSequence": 30,
+      "previousId": "94126b11b8bc8a06bbae61d2f6f0e0f3b1f5bf3a0f9d26a2f3ca25e1f629c603",
+      "originalSubject": {
+        "kind": "commit",
+        "ref": "30f8de4e647b05ff54cde09f1019ae519b00069d"
+      }
+    },
+    {
+      "scope": "02-brownfield/slices/01-audit-read",
+      "index": 13,
+      "previousSequence": 31,
+      "previousId": "b95cbeeb146d0005c13795d2164a664f6660bb8f6d7b9ec263736c985ef6b3fb",
+      "originalSubject": {
+        "kind": "commit",
+        "ref": "30f8de4e647b05ff54cde09f1019ae519b00069d"
+      }
+    },
+    {
+      "scope": "02-brownfield/slices/03-dogfood-fix",
+      "index": 8,
+      "previousSequence": 13,
+      "previousId": "3275b00d9b5b09f61d08ccd4419b578136dc93b1cfeca57fd0dc80a2a8cb6eaf",
+      "originalSubject": {
+        "kind": "commit",
+        "ref": "30f8de4e647b05ff54cde09f1019ae519b00069d"
+      }
+    }
+  ],
+  "unchangedBoundReferences": 14,
+  "changedBoundReferences": [
+    {
+      "scope": "01-greenfield-core/slices/02-analytics",
+      "index": 10,
+      "path": "docs/DESIGN.md",
+      "old": "a1028993f33e1c469ad6a81b76f0c019e60de279d0c4444496efe53db960f53d",
+      "current": "c7e794916d36f24b70352621f00b9547e7fb566227fbbb7aa55c7d101920aa50"
+    },
+    {
+      "scope": "02-brownfield/slices/01-audit-read",
+      "index": 11,
+      "path": "docs/DESIGN.md",
+      "old": "a1028993f33e1c469ad6a81b76f0c019e60de279d0c4444496efe53db960f53d",
+      "current": "c7e794916d36f24b70352621f00b9547e7fb566227fbbb7aa55c7d101920aa50"
+    },
+    {
+      "scope": "02-brownfield/slices/01-audit-read",
+      "index": 13,
+      "path": "README.md",
+      "old": "0239a013e2b7b21b3f503fc3437f0eedfc9c0436a406f1b574f018377757a0d5",
+      "current": "3bdb9dbadc4c7ba89ed3c5a9e4d0807cef69b34ae3790c8206dcf963ab28b408"
+    },
+    {
+      "scope": "02-brownfield/slices/01-audit-read",
+      "index": 13,
+      "path": "docs/DESIGN.md",
+      "old": "a1028993f33e1c469ad6a81b76f0c019e60de279d0c4444496efe53db960f53d",
+      "current": "c7e794916d36f24b70352621f00b9547e7fb566227fbbb7aa55c7d101920aa50"
+    },
+    {
+      "scope": "02-brownfield/slices/03-dogfood-fix",
+      "index": 8,
+      "path": "docs/DESIGN.md",
+      "old": "a1028993f33e1c469ad6a81b76f0c019e60de279d0c4444496efe53db960f53d",
+      "current": "c7e794916d36f24b70352621f00b9547e7fb566227fbbb7aa55c7d101920aa50"
+    }
+  ],
+  "unexpectedDrift": [],
+  "unchangedADRIndexRows": {
+    "0010": true,
+    "0011": true,
+    "0012": true,
+    "0013": true,
+    "0016": true,
+    "0019": true
+  },
+  "auditDesignRowUnchanged": true,
+  "productBuildDelta": [],
+  "checkedChanges": [
+    {
+      "commit": "859f31d1",
+      "file": "docs/DESIGN.md",
+      "effect": "Three flowchart labels are quoted: RedirectController containing {code}, LinkService containing @Transactional, and StatsController containing {code}. Unquoting restores original label text."
+    },
+    {
+      "commit": "540621ac",
+      "file": "README.md",
+      "effect": "Restructured operator documentation explicitly states direct loopback, neither forwarding header, no opening setting, connection/header trust boundary and local-proxy refusal instruction."
+    },
+    {
+      "commit": "10915b6a",
+      "file": "docs/DESIGN.md",
+      "effect": "Configuration adds purge-enabled; API row records accepted ADR0010 and undecided API exposure; data-model list adds V4; exposure backlog wording clarified. Relevant ADR index rows and Audit read row unchanged."
+    }
+  ],
+  "scope": "Only four assigned items; original product subjects retained. No new product run and no edits to bound documents."
+}

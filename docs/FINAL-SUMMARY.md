@@ -31,7 +31,7 @@ Two deliverables in one repository:
   rollback, safe-stop and dynamic re-planning (`docs/ARCHITECTURE.md`,
   `docs/GOVERNANCE.md`, `rig/`).
 
-The plan of record and its decision log (D1–D21) are in `PLAN.md`; every
+The plan of record and its decision log (D1–D21; D10 unused) are in `PLAN.md`; every
 assignment clause is mapped to the guide section and the artefact that proves
 it in `docs/guidance/README.md` §2.
 
@@ -40,7 +40,7 @@ it in `docs/guidance/README.md` §2.
 | Assignment item | Artefact | Status |
 |---|---|---|
 | §4.1 requirement understanding | `docs/REQUIREMENTS.md` (44 FR/NFR rows tagged stated / derived / decided / dropped), slice `SPEC.md`s with ambiguity logs, the mission-03 ambiguity park and the human's six answers | done |
-| §4.2 decomposition | `missions/*/mission.yaml`, `slices/*/slice.yaml`, `docs/evidence/*/compiled-graph.json`, wave maps, plan-lock briefs | done (3 missions) |
+| §4.2 decomposition | `missions/*/mission.yaml`, `slices/*/slice.yaml`, `docs/evidence/*/compiled-graph.json`, wave maps, plan-lock briefs | done (4 missions: the 00-hello dry run plus three scenarios) |
 | §4.3 brownfield reasoning | `missions/02-brownfield/slices/*/impact-analysis.md` (six slices, the D21 refactor included), `docs/scenarios/brownfield.md` §Codebase reasoning, including the forwarded-header path one analysis missed and review caught | done |
 | §4.4 orchestration | `rig/workflows/*.yaml`, `project.yaml#lifecycle`, `docs/GOVERNANCE.md`, `docs/evidence/*/` (trails, packets, gates), `docs/metrics/`, `docs/scenarios/drills.md` | done |
 | §4.5 engineering output | `src/`, Flyway `V1`–`V4`, `docs/api/openapi.json`, Javadoc on every public type (`-Xdoclint:all -Werror` in `check`), `docs/DESIGN.md`, ADRs | done |
@@ -54,7 +54,7 @@ it in `docs/guidance/README.md` §2.
 
 | Mission | Scenario | What it demonstrated | Narrative |
 |---|---|---|---|
-| `00-hello` | dry run | one endpoint through every step and both human gates; two bounded remediation loops (DR-01, QA-01); stuck-sweep recovery; a refused `workflow revise` | `docs/scenarios/drills.md` |
+| `00-hello` | dry run | one endpoint through every step and all three human gates; two bounded remediation loops (DR-01, QA-01); stuck-sweep recovery; a refused `workflow revise` | `docs/scenarios/drills.md` |
 | `01-greenfield-core` | greenfield | 3 slices in 2 waves (parallel wave with ordered custody of shared files), 28+ ACs per slice, review loops that caught a flaky test, a rate-limiter race and a fail-open smoke reader before merge; release with bench, OSV, secret scan; one explicitly human-decided gap (AC-28 host forwarder) | `docs/scenarios/greenfield.md` |
 | `02-brownfield` | brownfield | six slices on shipped code: an enhancement read (audit), a purge with written rollback, a dogfood-sourced bug fix with regression tests first, an expand migration for the human's audit-column policy, CI/CD, and a behaviour-preserving refactor proven by characterization tests and before/after captures (D21); impact analyses first; a security finding caught by review after QA (CR-01); four drills (QA rejection loop, revert after failed smoke, stop→route, resume+abort); shipped at `30f8de4e` under the human's local-use sign-off, with the V4/V3 migration rollback rehearsed on a copy of its data | `docs/scenarios/brownfield.md` |
 | `03-ambiguous-analytics` | ambiguous | "marketing wants better analytics" turned into six decisions with options and consequences, parked on the human before design, built to the decided scope; stacked on mission 02's click work; shipped at `50ad9c3` under the human's sign-off with one disclosed and since-closed CI gap | `docs/scenarios/ambiguous.md` |
@@ -86,12 +86,15 @@ it in `docs/guidance/README.md` §2.
 | Instance success rate (completed ÷ terminal) | 0.941; every product instance completed |
 | Step closures (failed) | 254 (18); step success 0.929 |
 | Retries (failed verdicts + step re-entries) | 55, all review loops working as designed |
-| Rollback text matches + engine resumes | 10; a heuristic, no production rollback was executed |
-| MTTR (failed check → next closure of that step) | 29 min mean |
+| Rollbacks executed | 6: release rehearsals and drills, each with raw evidence (`docs/metrics/rollbacks.json`); no revert reached `main`, and no production rollback was needed |
+| Engine recoveries | 1 resume and 1 abort, both DRILL 4 |
+| MTTR (failed check → next handoff or done of that step) | 31 min, the mean over 16 repairs: repair of a rejected candidate, not incident recovery |
 | End-to-end latency, completed instances | p50 5.6 h, p95 15.7 h |
 | Time parked on the human | 8.8 h, reported apart from agent throughput |
 
-  The derivations and their limits are in `docs/metrics/README.md`; per-mission
+  `node tools/sdlc-metrics.mjs --check` regenerates these numbers offline from
+  `docs/evidence/run-end/` and fails on any difference. The derivations and their
+  limits are in `docs/metrics/README.md`; per-mission
   rows are in each scenario's Metrics section.
 
 ## 5. Risks, trade-offs and decisions
@@ -177,11 +180,23 @@ are recorded verbatim in the queue transitions exported under `docs/evidence/`.
     loopback listener (LOW);
   - `totalClicks` documented as "retained click rows" rather than implying a
     lifetime total, in its Javadoc and API schema (M3S-01, LOW); the README and
-    runbook already say it correctly.
+    runbook already say it correctly;
+  - a future `V5` migration must pin the V4-specific tests, as V4 had to for
+    V3 (LOW, owner: the V5 author).
 - GitHub has no CI run on the exact commit the human signed off for mission 02
-  (`30f8de4e`), because agents never push. The human accepted that because the
-  code passed CI one documentation-only change earlier (`e43ed246`, pull
-  request #14). The final pull request runs the gate on everything shipped.
+  (`30f8de4e`), nor for mission 03 (`50ad9c3`), because agents never push. The
+  human accepted each: mission 02's code passed CI one documentation-only
+  change earlier (`e43ed246`, pull request #14), and mission 03's one test-only
+  change earlier (`18db1de`). Later CI runs on `main` include both.
+- `scripts/http`, the curl wrapper agents use for HTTP checks, at first
+  checked only that a URL argument began with a loopback address, so
+  `http://127.0.0.1.example.invalid/` or `--url=…` passed (found by the final
+  fact-check and two external reviews). It now accepts only the curl options
+  the repository's callers use, so redirect following, proxies, `--next` and
+  `--url` are refused; it checks every destination exactly, clears proxy
+  variables and ignores `~/.curlrc`. `scripts/http-guard-check.sh` runs 36
+  cases and a proxy-variable check in CI. It remains an argument guard: for
+  the Codex seats the hard network boundary is their sandbox.
 
 ## 8. How to verify in 15 minutes
 

@@ -1,0 +1,28 @@
+[
+  {
+    "transitionId": 1337,
+    "qitemId": "qitem-20261003200325-7115d4e3",
+    "ts": "2026-10-03T20:03:25.472Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1339,
+    "qitemId": "qitem-20261003200325-7115d4e3",
+    "ts": "2026-10-03T20:03:31.287Z",
+    "state": "handed-off",
+    "transitionNote": "workflow route: orchestration-lead@urlshort-factory re-routed step implement from development-agent@urlshort-factory to dev2-agent@urlshort-factory — Human's run-waiting-tasks request, option 2: analytics-v2 builds on dev2-agent stacked on slice/02-click-retention (dev2 is that slice's builder, so one builder keeps the stack coherent); development-agent is building 03-dogfood-fix",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": "handed_off_to",
+    "closureTarget": "dev2-agent@urlshort-factory",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

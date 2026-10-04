@@ -1,0 +1,41 @@
+[
+  {
+    "transitionId": 223,
+    "qitemId": "qitem-20261003030415-a2011998",
+    "ts": "2026-10-03T03:04:15.801Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "release-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 224,
+    "qitemId": "qitem-20261003030415-a2011998",
+    "ts": "2026-10-03T03:04:35.804Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 225,
+    "qitemId": "qitem-20261003030415-a2011998",
+    "ts": "2026-10-03T03:06:00.713Z",
+    "state": "done",
+    "transitionNote": "workflow done: Mission 00-hello closed at commit 42b20e0. Doghouse delivered: GET /api/ping on main at 42a25db4 (tag slice/01-ping/accepted) with server-issued request id and structured JSON log, through every slice step and all three human gates (mission plan-lock, slice plan-lock, ship sign-off), delivery stamp recorded on the human's behalf, nothing published. PROGRESS and NOTES current; no worktrees remain; evidence exported at 818da73 under docs/evidence/00-hello/. Backlog for mission 01 (ordered) and factory findings in missions/00-hello/NOTES.md section 2 'Mission close' and the mission SPEC. Final status sent to the human; awaiting instruction before any mission 01 lifecycle is instantiated.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": "no-follow-on",
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

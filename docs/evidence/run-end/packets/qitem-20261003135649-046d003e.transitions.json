@@ -1,0 +1,41 @@
+[
+  {
+    "transitionId": 755,
+    "qitemId": "qitem-20261003135649-046d003e",
+    "ts": "2026-10-03T13:56:49.627Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "review2-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 759,
+    "qitemId": "qitem-20261003135649-046d003e",
+    "ts": "2026-10-03T13:57:08.866Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 760,
+    "qitemId": "qitem-20261003135649-046d003e",
+    "ts": "2026-10-03T13:58:53.677Z",
+    "state": "done",
+    "transitionNote": "workflow done: 03-operate integrated and closed. Candidate 1c8b2cf: QA PASS (qa2, f7ee87e) and code+security re-review PASS (review2, 48381d4) on the same SHA; descends from 091ff46. Merged --no-ff as 8e9c065 (26 files, all in territory and grants). Gate green on main: unit 165, functional 155, 0 failures, coverage verification passed. Tag slice/03-operate/accepted on 1c8b2cf; worktree removed; PROGRESS current at 7d2b19a. Proof items 1-10 and 12 accepted; item 11 with qa2 (qitem-20261003135618-4e62dbf5), item 13 at release_prep (qitem-20261003120849-f4cbfa97). Delivery stamp after ship sign-off. Hops 15 of 30.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": "no-follow-on",
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

@@ -1,0 +1,69 @@
+{
+  "pickup": {
+    "state": "unclaimed"
+  },
+  "waiting": {
+    "obligation": "qitem-20261004023723-f58044d0",
+    "owner": "release-agent@urlshort-factory",
+    "state": "handed-off",
+    "actionableSince": null,
+    "blocker": null,
+    "lastMeaningfulChange": {
+      "id": 1919,
+      "at": "2026-10-04T02:42:12.696Z"
+    },
+    "liveness": {
+      "subject": "release-agent@urlshort-factory",
+      "activity": "idle-at-prompt",
+      "needsInput": {
+        "count": 0,
+        "reason": null
+      },
+      "confidence": "oracle"
+    },
+    "nextBackstop": {
+      "owner": "release-agent@urlshort-factory",
+      "mechanism": "none (terminal obligation)",
+      "dueAt": null,
+      "intervalSeconds": null
+    },
+    "deadlineAt": null
+  },
+  "qitemId": "qitem-20261004023723-f58044d0",
+  "tsCreated": "2026-10-04T02:37:23.268Z",
+  "tsUpdated": "2026-10-04T02:42:12.696Z",
+  "sourceSession": "review-agent@urlshort-factory",
+  "destinationSession": "release-agent@urlshort-factory",
+  "state": "handed-off",
+  "priority": "routine",
+  "tier": "mode2",
+  "tags": [
+    "workflow",
+    "gate",
+    "workflow:lifecycle-urlshort-03-ambiguous-analytics",
+    "instance:01M40RVNDQ0KT7FPWN1KJW0DC3",
+    "step:ship_signoff"
+  ],
+  "blockedOn": null,
+  "handedOffTo": "release-agent@urlshort-factory",
+  "handedOffFrom": null,
+  "expiresAt": null,
+  "chainOfRecord": [
+    "qitem-20261004020758-49ceba8e"
+  ],
+  "body": "### Workflow gate: lifecycle-urlshort-03-ambiguous-analytics@1-67227ca5beeca2c2 step ship_signoff\n\nWorkflow instance: 01M40RVNDQ0KT7FPWN1KJW0DC3\nPrior step: release_review (reviewer) closed by review-agent@urlshort-factory\nThis step: ship_signoff (release)\nGate: human sign-off — the workflow is PARKED (waiting) until this item is resolved/closed; the flow then continues from this step.\nAsk: Release candidate prepared and proven — sign off to ship (publishing stays a human act).\nEvidence: RELEASE.md\nObjective: Hold the ship decision at the human gate against RELEASE.md. Approval records delivery stamps for the mission's slices; nothing is published by an agent.\n\nPrior step note: PASS: final release review93d55bd on package14815f9, exact product50ad9c3ab9e65baa4100ede1772b514322957fa5. All12 proof items accepted; QA receipts13/14 restored-seat return,41 current references across33 committed files, preserved snapshots and empty product delta independently verified. Prior revieweedc97f rederived840 raw hashes405 response/log joins38 stats. No new findings. Human decision must retain exact hosted CI/CD unverifiedHTTP404, wave LOWs and measurement/operational limits; no D21 dependency. No ship stamp or publication by reviewer. Final export follows human decision.\n\nWorkflow plan: The plan can change. Inspect authored versus running steps with rig workflow revise 01M40RVNDQ0KT7FPWN1KJW0DC3; file edits alone do not adopt a revision.\nWorkflow plan: Waves guide agent admission/review; only authored executable dependencies schedule steps. Preserve completed judgments and outstanding child custody.\nWorkflow plan: Snapshot guidance from (inspect current source before deciding): /Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/03-ambiguous-analytics/mission.yaml\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/project.yaml\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/03-ambiguous-analytics/mission.yaml\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/AGENTS.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/README.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/requirements.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/architecture.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/java-spring.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/databases.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/qa.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/decomposition.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/brownfield.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/review.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/orchestration.md\nContext reference: /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/guidance/release.md\nContinuation: rig workflow project --instance 01M40RVNDQ0KT7FPWN1KJW0DC3 --current-packet qitem-20261004023723-f58044d0 --exit <handoff|waiting|done|failed> --actor-session release-agent@urlshort-factory\nContext: this workflow packet is a shortcut, not the whole story; inspect additional project, mission, and receipt evidence before choosing an authored exit.",
+  "summary": "Release candidate prepared and proven — sign off to ship (publishing stays a human act).",
+  "evidenceRef": "RELEASE.md",
+  "humanIntent": null,
+  "humanDetail": null,
+  "closureReason": "handed_off_to",
+  "closureTarget": "release-agent@urlshort-factory",
+  "closureRequiredAt": null,
+  "claimedAt": null,
+  "lastNudgeAttempt": "2026-10-04T02:38:56.514Z",
+  "lastNudgeResult": "delivered-ack-pending",
+  "lastHeartbeat": null,
+  "resolution": null,
+  "targetRepo": null,
+  "deliveryOutcome": null
+}

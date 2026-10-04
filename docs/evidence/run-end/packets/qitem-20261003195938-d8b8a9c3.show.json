@@ -1,0 +1,69 @@
+{
+  "pickup": {
+    "state": "stalled-after-claim",
+    "evidence": "no meaningful queue change for 1346 min; owner activity idle-at-prompt (queue age does not prove idle)"
+  },
+  "waiting": {
+    "obligation": "qitem-20261003195938-d8b8a9c3",
+    "owner": "review-agent@urlshort-factory",
+    "state": "done",
+    "actionableSince": null,
+    "blocker": null,
+    "lastMeaningfulChange": {
+      "id": 1351,
+      "at": "2026-10-03T20:16:20.809Z"
+    },
+    "liveness": {
+      "subject": "review-agent@urlshort-factory",
+      "activity": "idle-at-prompt",
+      "needsInput": {
+        "count": 0,
+        "reason": null
+      },
+      "confidence": "oracle"
+    },
+    "nextBackstop": {
+      "owner": "review-agent@urlshort-factory",
+      "mechanism": "none (terminal obligation)",
+      "dueAt": null,
+      "intervalSeconds": null
+    },
+    "deadlineAt": null
+  },
+  "qitemId": "qitem-20261003195938-d8b8a9c3",
+  "tsCreated": "2026-10-03T19:59:38.660Z",
+  "tsUpdated": "2026-10-03T20:16:20.808Z",
+  "sourceSession": "qa-agent@urlshort-factory",
+  "destinationSession": "review-agent@urlshort-factory",
+  "state": "done",
+  "priority": "routine",
+  "tier": "mode2",
+  "tags": [
+    "workflow",
+    "handoff",
+    "workflow:urlshort-slice-delegated",
+    "instance:01M416ZY5N11CDGZBM2DT4GAXS"
+  ],
+  "blockedOn": null,
+  "handedOffTo": null,
+  "handedOffFrom": null,
+  "expiresAt": null,
+  "chainOfRecord": [
+    "qitem-20261003185423-545a1365"
+  ],
+  "body": "### Workflow handoff: urlshort-slice-delegated@1 step code_review\n\nWorkflow instance: 01M416ZY5N11CDGZBM2DT4GAXS\nPrior step: qa_check (qa) closed by qa-agent@urlshort-factory\nThis step: code_review (code_review)\nObjective: Independent review of the exact candidate against SPEC and design: every changed file read, findings with severity and evidence, anti-slop and drift checks, review ledger updated — and a review of the QA evidence itself (traceability complete, coverage honest, gaps real). In the same packet, the security & compliance review of the same candidate: shortener-specific checklist (open redirect, scheme allow-list, injection, rate-limit bypass, PII and log hygiene, error leakage, exposure), dependency check, verdict on the threat model — written as 01-code-review.md and 02-security-review.md with one exit. MUST-FIX or HIGH in either routes back to implement.\n\nPrior step note: QA PASS candidate=35590f06c852543c29097a42c43b7802be90ba40 unit=200 functional=200 coverage=100/100; all 21 AC effects within SPEC, AC17 only grant428e9e1; 271curl captures, installed upgrade and exact two-page/403 exchange. Evidence29a141e/63e04b5; attributed receipts1-12 committed. Items1-11,13 accepted; item12 returns after security review via qitem-20261003194346-b74b8081. Apps stopped, candidate clean.\n\nContinuation: rig workflow project --instance 01M416ZY5N11CDGZBM2DT4GAXS --current-packet qitem-20261003195938-d8b8a9c3 --exit <handoff|waiting|done|failed> --actor-session review-agent@urlshort-factory\nContext: this workflow packet is a shortcut, not the whole story; inspect additional project, mission, and receipt evidence before choosing an authored exit.",
+  "summary": null,
+  "evidenceRef": null,
+  "humanIntent": null,
+  "humanDetail": null,
+  "closureReason": "denied",
+  "closureTarget": "Combined code/security FAIL on candidate 35590f06c852543c29097a42c43b7802be90ba40: one distinct HIGH CR-01, server.tomcat.remoteip.remote-ip-header or protocol-header rewrites peer despite NONE and admits forged-header audit content (GET200, HEAD200; baseline403). Reports and actual-candidate real-Tomcat controls committed 3aae382; read both 01-code-review.md and 02-security-review.md. All15files reviewed; fresh200unit+200functional, merged100/100; no other findings. Implement corrected guard and regression tests; design response0052efb re-locked by lead, its delta requires independent review with fixed candidate. Route exact corrected SHA through QA; proof item12 remains pending.",
+  "closureRequiredAt": null,
+  "claimedAt": "2026-10-03T20:00:18.698Z",
+  "lastNudgeAttempt": "2026-10-03T19:59:39.862Z",
+  "lastNudgeResult": "delivered-ack-pending",
+  "lastHeartbeat": null,
+  "resolution": null,
+  "targetRepo": null,
+  "deliveryOutcome": null
+}

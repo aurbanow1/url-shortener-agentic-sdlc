@@ -14,7 +14,7 @@ demand at the step that needs them; they are not a reading list to recite.
 | [architecture.md](architecture.md) — structure, boundaries, API and data design, security, reliability, ADRs, diagrams, and the cross-cutting concerns register owned by `design-agent` (§11) | Design Agent; Review Agent (`design_review`, `wave_review`); Planning | before writing or reviewing a `design.md`; at `decompose` |
 | [brownfield.md](brownfield.md) — impact analysis, safe change management, bug fixes, refactors, test/doc improvements | Design Agent (impact analysis); Development Agent; Review Agent | any slice that changes shipped behaviour |
 | [java-spring.md](java-spring.md) — Java 21 and Spring Boot 4 practices for this codebase, incl. the Javadoc contract (§8) | Development Agent; Design Agent; Review Agent (`code_review`) | before the first line of code on a slice; while reviewing code |
-| [databases.md](databases.md) — schema ownership, migrations, modelling, transactions, data lifecycle | Design Agent; Development Agent; Review Agent (`design_review`, `security_review`) | any slice touching a table or a query |
+| [databases.md](databases.md) — schema ownership, migrations, modelling, transactions, data lifecycle | Design Agent; Development Agent; Review Agent (`design_review`, and the security checklist inside `code_review`) | any slice touching a table or a query |
 | [qa.md](qa.md) — test strategy, by-effect verification, coverage policy, evidence, findings | QA Agent; Development Agent (tests first); Review Agent (`code_review` audits QA) | before writing tests; before `qa_check`; before judging proof items |
 | [review.md](review.md) — independence, proof of complete coverage, severities, issue → resolution → re-review, the security checklist | Review Agent (every review step); authors receiving findings | before any review; when answering findings |
 | [orchestration.md](orchestration.md) — exit semantics, bounded retries, exception dial, rollback, safe-stop, re-planning, human checkpoints, lineage | orchestration lead; every seat for the exit rules | at every mission step; when a loop does not converge |
@@ -35,8 +35,8 @@ Rules of the library:
 ## 2. Assignment coverage — item → guide → artefact that proves it
 
 The assignment (`PLAN.md` §1 decodes it) is satisfied by artefacts; the guides
-say how each artefact reaches the bar. Status is kept in `PLAN.md` §1 and the
-final summary; this table is the map.
+say how each artefact reaches the bar. Status is kept in `docs/FINAL-SUMMARY.md` §2;
+this table is the map.
 
 | Assignment item | Guide section(s) | Artefact |
 |---|---|---|
@@ -49,7 +49,7 @@ final summary; this table is the map.
 | §4.7 Controlled autonomy — agents execute, humans approve | orchestration.md §8; decomposition.md §4, §6 | gate packets and `rig queue resolve` records, stamps `--on-behalf-of human@kernel`, `rig/CULTURE.md` |
 | §4.8 Final engineering summary | release.md §8 | `docs/FINAL-SUMMARY.md` |
 | §7 Expectation — agents under defined autonomy boundaries; humans own oversight, approvals, final quality | orchestration.md §8; review.md §1; `docs/GOVERNANCE.md` (principle + delegation record) | role `Never` lists, permission policies, gate packets and `rig queue resolve` records, D11 |
-| §5 Working prototype, runnable end to end | release.md §3; java-spring.md §5; ci-cd.md §2 | `scripts/gw check`, `java -jar build/libs/urlshort.jar`, `Dockerfile`, `compose.yaml`, `.github/workflows/ci.yml` and `cd.yml` (the gate and a loopback smoke on every pull request and push to `main`) |
+| §5 Working prototype, runnable end to end | release.md §3; java-spring.md §5; ci-cd.md §2 | `scripts/gw check`, `java -jar build/libs/urlshort.jar`, `Dockerfile`, `compose.yaml`, `.github/workflows/ci.yml` (the gate on every pull request and push to `main`) and `cd.yml` (a loopback smoke of the jar and an image build on every push to `main`) |
 | §5 Architecture overview | architecture.md §1–§2, §9 | `docs/ARCHITECTURE.md`, `docs/diagrams/`, `docs/adr/` |
 | §5 Three scenarios | decomposition.md; brownfield.md; requirements.md §3 (ambiguity) | missions 01–03, `docs/scenarios/*.md` |
 | §5 Setup instructions | release.md §3 (smoke), `docs/SETUP-FACTORY.md` | `README.md`, `docs/SETUP-FACTORY.md` |

@@ -1,15 +1,47 @@
 #!/usr/bin/env bash
-# Localhost-only curl for seats:   scripts/http <curl args...> <http://localhost|127.0.0.1[:port]/...>
-# Lets agents exercise the running app by effect without a blanket curl
-# allowance: every URL argument must point at the loopback host.
+# Loopback-only curl for seats:   scripts/http <curl args...> <http://localhost|127.0.0.1|[::1][:port]/...>
+# Lets agents exercise the running app by effect without a blanket curl allowance.
+# Allow-list: only the curl options this repository's callers use are accepted; any other option
+# (redirect following, proxies, --next, --url, config files, ...) is refused, and so is the
+# --opt=value form, which curl does not accept. Every other argument, and every argument after --,
+# must be a URL on exactly localhost, 127.0.0.1 or [::1]. Proxy variables are cleared and curl runs
+# with -q (no ~/.curlrc) and --noproxy '*', so nothing routes the request elsewhere.
+# Check: scripts/http-guard-check.sh (CI runs it).
 set -euo pipefail
-for a in "$@"; do
+
+refuse() { echo "scripts/http: refusing $1" >&2; exit 2; }
+loopback='^https?://(localhost|127\.0\.0\.1|\[::1\])(:[0-9]{1,5})?([/?#].*)?$'
+long_flag=" --silent --show-error --fail --include --head --path-as-is --use-ascii --verbose "
+long_value=" --header --data --data-binary --data-raw --request --output --write-out --dump-header --upload-file --max-time --connect-timeout --trace-ascii --interface "
+short_flag="sSfiIBv"
+short_value="HdXowDTm"   # -H -d -X -o -w -D -T -m: the value is the rest of the argument or the next one
+
+i=0; args=("$@"); end=0
+while [ $i -lt ${#args[@]} ]; do
+  a=${args[$i]}
+  if [ $end -eq 1 ]; then   # after --, curl reads every argument as a URL
+    [[ "$a" =~ $loopback ]] || refuse "non-loopback destination after --: $a"
+    i=$((i + 1)); continue
+  fi
   case "$a" in
-    http://*|https://*)
-      case "$a" in
-        http://localhost*|http://127.0.0.1*|http://\[::1\]*) ;;
-        *) echo "scripts/http: refusing non-loopback URL: $a" >&2; exit 2 ;;
-      esac ;;
+    --) end=1 ;;
+    --*=*) refuse "option in --opt=value form: $a" ;;
+    --*)
+      if [[ "$long_value" == *" $a "* ]]; then i=$((i + 1))
+      elif [[ "$long_flag" != *" $a "* ]]; then refuse "option not on the allow-list: $a"; fi ;;
+    -?*)
+      opts=${a#-}
+      for ((j = 0; j < ${#opts}; j++)); do
+        c=${opts:$j:1}
+        if [[ "$short_value" == *"$c"* ]]; then
+          [ $((j + 1)) -eq ${#opts} ] && i=$((i + 1))   # value is the next argument
+          break                                         # or the rest of this one
+        fi
+        [[ "$short_flag" == *"$c"* ]] || refuse "option not on the allow-list: -$c"
+      done ;;
+    *) [[ "$a" =~ $loopback ]] || refuse "non-loopback destination: $a" ;;
   esac
+  i=$((i + 1))
 done
-exec curl "$@"
+unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY ALL_PROXY all_proxy NO_PROXY no_proxy
+exec curl -q --noproxy '*' "$@"

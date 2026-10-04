@@ -14,7 +14,7 @@ approved at the mission plan-lock.
 
 | Wave | Slice | Outcome | Brownfield obligation |
 |---|---|---|---|
-| w1 | `01-audit-read` | an Operator reads the audit trail through a read-only, paginated, loopback-only-by-default endpoint over the existing `audit_log` table (FR-17) | `impact-analysis.md` before design; existing links unchanged (FR-13) |
+| w1 | `01-audit-read` | an Operator reads the audit trail through a read-only, paginated, loopback-only endpoint over the existing `audit_log` table (FR-17) | `impact-analysis.md` before design; existing links unchanged (FR-13) |
 | w1 | `02-click-retention` | clicks older than the retention period (90 days, operator setting) are deleted on schedule (NFR-P2) | migration with written rollback (NFR-X2); purge by stored UTC day only |
 | w2 | `03-dogfood-fix` | a defect found by using the shipped service is fixed with a regression test first (FR-14); tests and docs it touches match shipped behaviour (FR-15) | input: QA's dogfood report from mission 01's release prep (two known defects confirmed) |
 | w2 | `04-audit-columns` | the human's audit-column policy (created/updated at and by) reaches `link` and `audit_log` through one expand migration, V4 | added mid-mission by a human decision; migration with written rollback; no response shape changes |
@@ -24,11 +24,13 @@ approved at the mission plan-lock.
 Shared-file custody inside w1: `application.properties` and the next Flyway
 version number, `01` first; disjoint feature packages (`audit/` vs `click/`).
 
-The plan changed twice while the mission ran, each time recorded as a
-revision of the mission's compiled graph with a receipt, and with the
-mission plan-lock re-stamped on the human's behalf:
+The plan changed three times while the mission ran, each change recorded as
+a revision of the mission's compiled graph with a receipt, and with the
+mission plan-lock re-stamped on the human's behalf; three slices were added:
 
 - **Two slices added by human decisions** (`04-audit-columns`, `05-ci-cd`).
+- **A refactor slice added as wave 3** by human decision D21
+  (`06-client-identity`); the mission's release and sign-off waited for it.
 - **Wave 2 pulled forward** (wave map v4): its requirements and designs ran
   during wave 1's builds once a second designer and builder existed (D15,
   D16). Its builds still waited for the code they depend on. Two slices were
@@ -68,7 +70,7 @@ document unchanged.
 ## Orchestration and the drills
 
 Delegated slice plan-locks (D11); concurrent w1 instances on the two judge
-pairs; w2 launched after w1 integrated. Drills, each labelled and recorded in
+pairs; w2's builds waited for w1. Drills, each labelled and recorded in
 `docs/scenarios/drills.md`, none on a product slice:
 
 | Drill | What was exercised | Evidence |
@@ -109,15 +111,15 @@ Mission 02 closed at `2522e6c2`, with its backlog recorded in
 
 ## Metrics
 
-From `docs/metrics/README.md`, the run-end refresh (generated
-2026-10-04T05:38:42Z from the live daemon after this mission closed, every
-instance terminal):
+From `docs/metrics/README.md` (generated from the live daemon after the last
+mission closed, every instance terminal; `node tools/sdlc-metrics.mjs --check`
+reproduces it offline from `docs/evidence/run-end/`):
 
-| Instance | E2E latency | Hops | Closures | Retries | Rollback text matches | Human wait | MTTR |
+| Instance | E2E latency | Hops | Closures | Retries | Rollbacks executed | Human wait | MTTR |
 |---|---|---|---|---|---|---|---|
 | mission lifecycle `02-brownfield` | 17.7 h | 9 | 14 | 0 | 2 | 3.6 h | – |
 | `01-audit-read` | 6.1 h | 15 | 16 | 10 | 0 | 0 s | 41 min |
-| `02-click-retention` | 7.4 h | 12 | 18 | 6 | 2 | 0 s | 38 min |
+| `02-click-retention` | 7.4 h | 12 | 18 | 6 | 0 | 0 s | 38 min |
 | `03-dogfood-fix` | 1.8 h | 8 | 9 | 0 | 0 | 0 s | – |
 | `04-audit-columns` | 5.6 h | 8 | 11 | 0 | 0 | 0 s | – |
 | `05-ci-cd` | 4.0 h | 8 | 10 | 0 | 0 | 0 s | – |
@@ -126,10 +128,12 @@ instance terminal):
 The six slices had six failed closures behind 20 retry counts: the audit read's
 requirements, design and code review (CR-01), two retention design reviews,
 and the refactor's test-only polling race. Each retry is a review loop working
-as designed. No rollback was executed in production. The "rollback" column is
-a text-match heuristic: the lifecycle's two hits are the plan brief that names
-a revert drill and the ship gate's summary of the rollback recipe; retention's
-two describe its migration rollback requirement. The real drills and the V4/V3
-rehearsal have their own evidence (above). Human wait is the mission plan-lock
+as designed. No production rollback was needed. The lifecycle's two
+executed rollbacks are DRILL 2 (the integrator's revert after a failed
+installed smoke) and the final V4/V3 migration rollback with the previous
+release's jar started on the rolled-back data. Both are listed with their raw
+evidence in `docs/metrics/rollbacks.json`. The pre-run rehearsal rolled the
+schema back too, but the current candidate then re-applied V3 and V4, so it
+is recorded there as not counted. Human wait is the mission plan-lock
 (12,869 s) and the ship gate (100 s). The delegated slice plan-locks went to
 the lead, so they count as 0 s here.

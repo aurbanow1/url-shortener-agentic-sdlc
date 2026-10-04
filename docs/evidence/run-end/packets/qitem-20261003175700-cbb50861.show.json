@@ -1,0 +1,69 @@
+{
+  "pickup": {
+    "state": "stalled-after-claim",
+    "evidence": "no meaningful queue change for 1462 min; owner activity idle-at-prompt (queue age does not prove idle)"
+  },
+  "waiting": {
+    "obligation": "qitem-20261003175700-cbb50861",
+    "owner": "design-agent@urlshort-factory",
+    "state": "handed-off",
+    "actionableSince": null,
+    "blocker": null,
+    "lastMeaningfulChange": {
+      "id": 1131,
+      "at": "2026-10-03T18:20:16.934Z"
+    },
+    "liveness": {
+      "subject": "design-agent@urlshort-factory",
+      "activity": "idle-at-prompt",
+      "needsInput": {
+        "count": 0,
+        "reason": null
+      },
+      "confidence": "oracle"
+    },
+    "nextBackstop": {
+      "owner": "design-agent@urlshort-factory",
+      "mechanism": "none (terminal obligation)",
+      "dueAt": null,
+      "intervalSeconds": null
+    },
+    "deadlineAt": null
+  },
+  "qitemId": "qitem-20261003175700-cbb50861",
+  "tsCreated": "2026-10-03T17:57:00.856Z",
+  "tsUpdated": "2026-10-03T18:20:16.934Z",
+  "sourceSession": "review-agent@urlshort-factory",
+  "destinationSession": "design-agent@urlshort-factory",
+  "state": "handed-off",
+  "priority": "routine",
+  "tier": "mode2",
+  "tags": [
+    "workflow",
+    "handoff",
+    "workflow:urlshort-slice-delegated",
+    "instance:01M416ZY5N11CDGZBM2DT4GAXS"
+  ],
+  "blockedOn": null,
+  "handedOffTo": "review-agent@urlshort-factory",
+  "handedOffFrom": null,
+  "expiresAt": null,
+  "chainOfRecord": [
+    "qitem-20261003174406-936f9d9c"
+  ],
+  "body": "### Workflow handoff: urlshort-slice-delegated@1 step design\n\nWorkflow instance: 01M416ZY5N11CDGZBM2DT4GAXS\nPrior step: design_review (design_review) closed by review-agent@urlshort-factory\nThis step: design (design)\nObjective: Write design.md (API contract, data model and migration, sequence, logging/audit events, threat model), ADRs for cross-cutting decisions, and an impact analysis for brownfield slices.\n\nPrior step note: Design FAIL on b55c549 (impact a686b2a, design c1be728), review commit 97e434a. DR-01 HIGH: native/framework override of the properties-file none default admits forged loopback forwarding headers; independent real-Tomcat controls reproduce it. Author acknowledged no decision permits the exception and proposed refusing unless effective ServerProperties strategy is NONE; verify both override modes and unset/cloud behavior. DR-02 MEDIUM: strict Accept selects safe 406 before promised guard/400 validation; reconcile precedence and add controls in passing. All 10 handed files reviewed; baseline offline check passes UP-TO-DATE, no candidate implementation claimed. Read docs/review/01-audit-read/design-review.md and proof/access-controls.txt; answer both findings, update ADR/shared contract and test mapping, then return exact revised SHA for focused re-review.\n\nContinuation: rig workflow project --instance 01M416ZY5N11CDGZBM2DT4GAXS --current-packet qitem-20261003175700-cbb50861 --exit <handoff|waiting|done|failed> --actor-session design-agent@urlshort-factory\nContext: this workflow packet is a shortcut, not the whole story; inspect additional project, mission, and receipt evidence before choosing an authored exit.",
+  "summary": null,
+  "evidenceRef": null,
+  "humanIntent": null,
+  "humanDetail": null,
+  "closureReason": "handed_off_to",
+  "closureTarget": "review-agent@urlshort-factory",
+  "closureRequiredAt": null,
+  "claimedAt": "2026-10-03T18:14:58.423Z",
+  "lastNudgeAttempt": "2026-10-03T18:14:53.492Z",
+  "lastNudgeResult": "delivered-ack-pending",
+  "lastHeartbeat": null,
+  "resolution": null,
+  "targetRepo": null,
+  "deliveryOutcome": null
+}

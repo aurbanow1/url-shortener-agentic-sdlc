@@ -1,0 +1,54 @@
+[
+  {
+    "transitionId": 2082,
+    "qitemId": "qitem-20261004052612-42705c30",
+    "ts": "2026-10-04T05:26:12.702Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "release-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 2089,
+    "qitemId": "qitem-20261004052612-42705c30",
+    "ts": "2026-10-04T05:27:35.658Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "release-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 2092,
+    "qitemId": "qitem-20261004052612-42705c30",
+    "ts": "2026-10-04T05:31:40.174Z",
+    "state": "in-progress",
+    "transitionNote": "Coordination correction: ship_signoff handoff note said lead informed before handoff, but the attempted rig send failed a daemon connection; actual delivered notice followed at05:26Z. Human decision and mission delivery stamp were already committed10df955a. Lead explicitly authorized final export05:27Z after six slice delivery stamps2020d53b and fresh ready proof; no SPEC QA round is needed. Mission03 QA7bd25702 is downstream of this export, not its blocker. Current raw export preserves review PASS446eca31, human2078 and64/64 ready proof; reviewed preparation/runtime/metrics files remain immutable and dated, with their prior export archived separately.",
+    "actorSession": "release-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 2093,
+    "qitemId": "qitem-20261004052612-42705c30",
+    "ts": "2026-10-04T05:34:46.517Z",
+    "state": "handed-off",
+    "transitionNote": "workflow handoff to orchestration-lead@urlshort-factory",
+    "actorSession": "release-agent@urlshort-factory",
+    "closureReason": "handed_off_to",
+    "closureTarget": "orchestration-lead@urlshort-factory",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

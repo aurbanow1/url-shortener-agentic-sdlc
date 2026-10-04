@@ -1,0 +1,69 @@
+{
+  "pickup": {
+    "state": "stalled-after-claim",
+    "evidence": "no meaningful queue change for 1462 min; owner activity idle-at-prompt (queue age does not prove idle)"
+  },
+  "waiting": {
+    "obligation": "qitem-20261003181452-6bc9f909",
+    "owner": "review2-agent@urlshort-factory",
+    "state": "done",
+    "actionableSince": null,
+    "blocker": null,
+    "lastMeaningfulChange": {
+      "id": 1137,
+      "at": "2026-10-03T18:20:19.038Z"
+    },
+    "liveness": {
+      "subject": "review2-agent@urlshort-factory",
+      "activity": "idle-at-prompt",
+      "needsInput": {
+        "count": 0,
+        "reason": null
+      },
+      "confidence": "oracle"
+    },
+    "nextBackstop": {
+      "owner": "review2-agent@urlshort-factory",
+      "mechanism": "none (terminal obligation)",
+      "dueAt": null,
+      "intervalSeconds": null
+    },
+    "deadlineAt": null
+  },
+  "qitemId": "qitem-20261003181452-6bc9f909",
+  "tsCreated": "2026-10-03T18:14:52.528Z",
+  "tsUpdated": "2026-10-03T18:20:19.038Z",
+  "sourceSession": "design-agent@urlshort-factory",
+  "destinationSession": "review2-agent@urlshort-factory",
+  "state": "done",
+  "priority": "routine",
+  "tier": "mode2",
+  "tags": [
+    "workflow",
+    "handoff",
+    "workflow:urlshort-slice-delegated-b",
+    "instance:01M4170AA9E72WW1BXEA5PX0AP"
+  ],
+  "blockedOn": null,
+  "handedOffTo": null,
+  "handedOffFrom": null,
+  "expiresAt": null,
+  "chainOfRecord": [
+    "qitem-20261003173636-643c7c17"
+  ],
+  "body": "### Workflow handoff: urlshort-slice-delegated-b@1 step design_review\n\nWorkflow instance: 01M4170AA9E72WW1BXEA5PX0AP\nPrior step: design (design) closed by design-agent@urlshort-factory\nThis step: design_review (design_review)\nObjective: Independent review of design.md (and impact-analysis.md on brownfield slices) against the SPEC: every acceptance criterion reachable, error contract explicit, data model and migration reversible, threat model covering every new entry point, smallest structure that satisfies the SPEC. MUST-FIX or HIGH routes back to design; otherwise the locked set proceeds to plan_lock.\n\nPrior step note: Rework 59c8762 answers design review DR-01 and DR-02; see design.md Review response. DR-01: urlshort.click.purge-enabled (default true) is an operator hold (incident or legal hold, the lead's condition): false means no startup run, no daily tick, and a WARN click purge off at every start. The functional overlay sets it false (one line, granted by the lead at cec7032), so no shared context ever purges and your overlap cannot arise. AC-7, AC-8 and AC-13 enable it in their own closed contexts. No shipped test file changes. Probe A8off (output-5.txt): 0 runs in 11 s past the next 00:10Z. In-suite proof: ClickPurgeHoldJourneyTest in the default context. DR-02: AC-4 is asserted on the failure-analysis event only, and the A4 row is corrected (root=warn hid the Hikari and Flyway INFO URL lines). Requirements was asked at 17:52Z to note the hold under rules 1 and 3 and the overlay line under AC-14, in passing.\n\nContinuation: rig workflow project --instance 01M4170AA9E72WW1BXEA5PX0AP --current-packet qitem-20261003181452-6bc9f909 --exit <handoff|waiting|done|failed> --actor-session review2-agent@urlshort-factory\nContext: this workflow packet is a shortcut, not the whole story; inspect additional project, mission, and receipt evidence before choosing an authored exit.",
+  "summary": null,
+  "evidenceRef": null,
+  "humanIntent": null,
+  "humanDetail": null,
+  "closureReason": "denied",
+  "closureTarget": "Design re-review FAIL on 59c8762e660cd0b9a83e08a8dbf28b7ac9746e6c against current SPEC 32b1ae2. Seven delta files reviewed. DR-01 and DR-02 fixed: authorized hold/functional overlay removes scheduled log overlap; AC-4 assertion scoped to failure-analysis event. Fresh hold probe SUCCESS, no runs and two retained rows after 11 seconds past scheduled time. New DR-03 HIGH: AC-16 audit-column V3 migration absent from design, impact analysis and test strategy; design still says no migration. Supply DDL, defaults/backfill, v1 insert compatibility, rollback and AC-16/upgrade evidence plan; link/audit_log remain assigned to 04-audit-columns. DR-04 MEDIUM: hold WARN must name the setting; map AC-15 with pre-start old rows and both 60-second observation points. Producer acknowledged missing migration and WARN detail. Commit a2ec57fc0d72b76330e030d8f733ae82785598cd. Next re-review scoped to DR-03/04 and new migration; DR-01/02 remain settled.",
+  "closureRequiredAt": null,
+  "claimedAt": "2026-10-03T18:15:11.255Z",
+  "lastNudgeAttempt": "2026-10-03T18:14:53.551Z",
+  "lastNudgeResult": "delivered-ack-pending",
+  "lastHeartbeat": null,
+  "resolution": null,
+  "targetRepo": null,
+  "deliveryOutcome": null
+}

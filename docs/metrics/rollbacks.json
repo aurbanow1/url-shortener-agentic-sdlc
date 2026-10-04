@@ -1,0 +1,90 @@
+{
+  "definition": "A rollback is counted only when it was executed: a merged change reverted, or a schema migration rolled back with the earlier binary started on the rolled-back data, and the result checked by the gate or an installed smoke (a smoke step for a feature the rollback removed is expected to fail, and the entry says so). Each event names its raw evidence; tools/sdlc-metrics.mjs refuses to run if a listed file is missing. Rollback plans, rollback descriptions and engine resumes are not rollbacks. Reverts that landed on main are counted from git separately: commits reachable from main (origin/main when there is no local main) whose subject starts with 'Revert \"'; a revert merged into main from a branch has landed on main and counts. Entries under notCounted are kept with the reason they do not meet this definition.",
+  "events": [
+    {
+      "evidenceCommittedAt": "2026-10-03T03:02:39Z",
+      "mission": "00-hello",
+      "instanceId": "01M3Z8AJ1EDFTHQ1HPAWPNP2YN",
+      "kind": "revert",
+      "what": "Revert of the 01-ping merge on a throwaway branch; gate green on the reverted tree (the rehearsal's commit a9f3d2f was on a throwaway branch and is not kept; RELEASE.md §8 and drills.md name the tree)",
+      "evidence": [
+        "missions/00-hello/release/rollback-rehearsal-check.txt",
+        "missions/00-hello/RELEASE.md",
+        "docs/scenarios/drills.md"
+      ]
+    },
+    {
+      "evidenceCommittedAt": "2026-10-03T15:29:11Z",
+      "mission": "01-greenfield-core",
+      "instanceId": "01M3ZXEXAMS945ZS0QZ26KZK1V",
+      "kind": "revert",
+      "what": "Revert of the 03-operate merge on a detached throwaway commit (e6f062a, not kept); gate green on the reverted tree (RELEASE.md §8 and drills.md name the tree)",
+      "evidence": [
+        "missions/01-greenfield-core/release/rollback-rehearsal-check-e6f062a.txt",
+        "missions/01-greenfield-core/RELEASE.md",
+        "docs/scenarios/drills.md"
+      ]
+    },
+    {
+      "evidenceCommittedAt": "2026-10-03T16:27:44Z",
+      "mission": "01-greenfield-core",
+      "instanceId": "01M3ZXEXAMS945ZS0QZ26KZK1V",
+      "kind": "container-rollback",
+      "what": "Operational rollback of the running container to the reverted build on the same volume, loopback bind kept, then roll-forward (release-review rework RR-01). The installed smoke passes the whole public journey and stops, as expected, at the rate-limit metric the revert removes (SMOKE FAIL: metric urlshort.ratelimit.rejections not listed); a pre-existing link redirects and reads identically before, during and after",
+      "evidence": [
+        "missions/01-greenfield-core/release/rollback-smoke-8104e05.txt",
+        "missions/01-greenfield-core/release/rollforward-compose-up-f090103.txt",
+        "missions/01-greenfield-core/release/rollback-link-before.json",
+        "missions/01-greenfield-core/release/rollback-link-after.json"
+      ]
+    },
+    {
+      "evidenceCommittedAt": "2026-10-03T16:33:39Z",
+      "mission": "02-brownfield",
+      "instanceId": "01M40SN34E37K96B38JPG9K41X",
+      "kind": "revert",
+      "what": "DRILL 2: integrator git revert -m 1 of a merged fault after the installed smoke failed; gate and smoke green on the reverted tree",
+      "evidence": [
+        "docs/evidence/02-brownfield/drills/drill2-smoke-failed-3a75746.txt",
+        "docs/evidence/02-brownfield/drills/drill2-check-ef2272e.txt",
+        "docs/evidence/02-brownfield/drills/drill2-smoke-passed-ef2272e.txt"
+      ]
+    },
+    {
+      "evidenceCommittedAt": "2026-10-04T02:07:03Z",
+      "mission": "03-ambiguous-analytics",
+      "instanceId": "01M40RVNDQ0KT7FPWN1KJW0DC3",
+      "kind": "revert",
+      "what": "Branch-only revert of the analytics-v2 change; gate and installed smoke on copied data green",
+      "evidence": [
+        "missions/03-ambiguous-analytics/release/rollback-check-50ad9c3.txt",
+        "missions/03-ambiguous-analytics/release/rollback-smoke-50ad9c3.txt"
+      ]
+    },
+    {
+      "evidenceCommittedAt": "2026-10-04T05:01:12Z",
+      "mission": "02-brownfield",
+      "instanceId": "01M40SN34E37K96B38JPG9K41X",
+      "kind": "migration-rollback",
+      "what": "Final V4 then V3 rollback on a stopped-data copy; the previous release's jar (f090103) started on it and passed smoke",
+      "evidence": [
+        "missions/02-brownfield/release/final-30f8de4e/rollback.md",
+        "missions/02-brownfield/release/final-30f8de4e/rollback-prior-smoke.txt"
+      ]
+    }
+  ],
+  "notCounted": [
+    {
+      "evidenceCommittedAt": "2026-10-04T01:54:11Z",
+      "mission": "02-brownfield",
+      "instanceId": "01M40SN34E37K96B38JPG9K41X",
+      "kind": "migration-rollback",
+      "what": "Pre-run V4 then V3 rollback on a stopped-data copy, then re-applied and smoked",
+      "evidence": [
+        "missions/02-brownfield/release/pre-run-e227acf/rollback-verification.md",
+        "missions/02-brownfield/release/pre-run-e227acf/rollback-reapplied-smoke.txt"
+      ],
+      "reason": "The schema was rolled back (V4 then V3, Flyway history and row hashes verified), but the binary then started on it was the current candidate, which re-applied V3 and V4 before the smoke (rollback-verification.md step 4). The earlier binary never ran on the rolled-back schema, so this is a rollback rehearsal of the schema only, not a counted rollback. The final rehearsal on 30f8de4e, which did start the earlier jar, is counted."
+    }
+  ]
+}

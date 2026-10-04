@@ -1,0 +1,75 @@
+[
+  {
+    "transitionId": 967,
+    "qitemId": "qitem-20261003165209-ce7abb0e",
+    "ts": "2026-10-03T16:52:09.285Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "review-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 968,
+    "qitemId": "qitem-20261003165209-ce7abb0e",
+    "ts": "2026-10-03T16:52:09.287Z",
+    "state": "blocked",
+    "transitionNote": "workflow gate: parked on human@kernel pending sign-off",
+    "actorSession": "review-agent@urlshort-factory",
+    "closureReason": "blocked_on",
+    "closureTarget": "human@kernel",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 973,
+    "qitemId": "qitem-20261003165209-ce7abb0e",
+    "ts": "2026-10-03T16:52:54.572Z",
+    "state": "blocked",
+    "transitionNote": "DECISION BRIEF, from the orchestration lead (the full page is missions/01-greenfield-core/RELEASE.md section 1; the review is docs/review/01-greenfield-core/release-review.md at 7bb0efe). WHAT SHIPS: main's product at 8e9c065 (three slices: create and redirect, click analytics, operations). Proven by a fresh gate (165 unit and 155 functional tests, 100 percent line and branch coverage); jar and container run on loopback; latency at the specified 100 redirects/s and 20 creates/s, with redirect p95 2.2 ms against a 20 ms target; 0 dependency advisories; no secrets. CURRENT PROOF STATE: 39 of 40 items accepted, no unknowns. RELEASE.md section 1's proof paragraph was written before the judgments and still says 'not ready'; the current state is in the review. YOUR ONE JUDGMENT, AC-28: during docker compose restart, a request still sending its body through 127.0.0.1:8080 on this Mac gets no reply, 6 of 6 runs. It completes through Docker's own published port inside the VM (2 of 2) and from inside the container (2 of 2), and the jar drains 3 of 3. So the cut is in the Lima Mac-to-VM port forwarder, not in the service. I did not narrow AC-28 to make it pass; whether to accept the gap is your call. OPTIONS: approve, shipping with the gap disclosed (recommended: the service drains correctly on every path that reaches it directly, and the scope is a single loopback node); or hold until AC-28 is checked on a native Linux Docker host, which this installation does not have. ALSO FOR YOU TO KNOW (no action needed): I decided the shutdown boundary under D11 (connections the server never accepted are counted, not judged; 0 measured; reversible by you now). Two defects found by the dogfood pass (an API error-schema gap, and a disk path in the metrics output) go to mission 02's fix slice. Behind a configured proxy, clicks from different clients share one hash; nothing shipped reads it. The added cost of click recording on latency is measured only as a proxy, a limit the SPEC allows. Rollback is rehearsed: one revert with the port kept on loopback. IF YOU APPROVE: your words go into 03-operate's SPEC as your decision on AC-28; qa2 re-judges item 13; then I record the delivery stamps for the three slices on your behalf, and evidence export and mission close follow. Nothing is pushed or published by any agent. A reply such as 'approve: ship with the AC-28 host gap' or 'hold' is enough.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD",
+    "wake": {
+      "transitionId": 973,
+      "qitemId": "qitem-20261003165209-ce7abb0e",
+      "phase": "armed",
+      "kind": "timer",
+      "ref": "01M41AXN5CJF0AFZ2QG9FK1CTD",
+      "deliveryStatus": null
+    }
+  },
+  {
+    "transitionId": 1011,
+    "qitemId": "qitem-20261003165209-ce7abb0e",
+    "ts": "2026-10-03T17:11:19.239Z",
+    "state": "in-progress",
+    "transitionNote": "approve: ship 8e9c065 (package 973bc1a). AC-28's published-port clause is accepted as a disclosed host gap of macOS Docker's forwarder: amend AC-28 to be measured on paths that reach the service directly (jar, in-VM port publish, container namespace), record the forwarder cut in GAPS and RISKS, and have qa2 re-judge item 13 against the amended criterion before the delivery stamps.",
+    "actorSession": "human@kernel",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": "human-decision-resolved",
+    "ownerNotificationLevel": "NOTICE"
+  },
+  {
+    "transitionId": 1012,
+    "qitemId": "qitem-20261003165209-ce7abb0e",
+    "ts": "2026-10-03T17:11:57.821Z",
+    "state": "handed-off",
+    "transitionNote": "workflow handoff to release-agent@urlshort-factory",
+    "actorSession": "release-agent@urlshort-factory",
+    "closureReason": "handed_off_to",
+    "closureTarget": "release-agent@urlshort-factory",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

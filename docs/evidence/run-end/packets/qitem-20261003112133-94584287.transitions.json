@@ -1,0 +1,41 @@
+[
+  {
+    "transitionId": 624,
+    "qitemId": "qitem-20261003112133-94584287",
+    "ts": "2026-10-03T11:21:33.836Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "qa-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 632,
+    "qitemId": "qitem-20261003112133-94584287",
+    "ts": "2026-10-03T11:22:06.579Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "review-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 635,
+    "qitemId": "qitem-20261003112133-94584287",
+    "ts": "2026-10-03T11:27:44.090Z",
+    "state": "handed-off",
+    "transitionNote": "workflow handoff to orchestration-lead@urlshort-factory",
+    "actorSession": "review-agent@urlshort-factory",
+    "closureReason": "handed_off_to",
+    "closureTarget": "orchestration-lead@urlshort-factory",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

@@ -1,0 +1,452 @@
+{
+  "instance": {
+    "instanceId": "01M4170AA9E72WW1BXEA5PX0AP",
+    "workflowName": "urlshort-slice-delegated-b",
+    "workflowVersion": "1",
+    "createdBySession": "orchestration-lead@urlshort-factory",
+    "createdAt": "2026-10-03T15:44:27.465Z",
+    "status": "completed",
+    "currentFrontier": [],
+    "currentStepId": null,
+    "hopCount": 12,
+    "fallbackSynthesis": null,
+    "lastContinuationDecision": {
+      "exit": "done",
+      "actorSession": "orchestration-lead@urlshort-factory",
+      "closedPacket": "qitem-20261003225239-ed926320",
+      "nextPacket": null,
+      "resultNote": "INTEGRATED: X' = a2c34c1 merged --no-ff into main as ed2b940 (18 files, inside territory and grants). QA (items 1-8, 10) and review judged X = a8fc8b6; range-diff 16312da..a8fc8b6 vs 2ead709..a2c34c1 shows only application.properties context in patch 7; fresh gate on X' green; item 9 judged on X' by qa2 (ready 10/10). Gate re-run fresh on main with --rerun-tasks: 14/14 green (docs/evidence/02-brownfield/integrate-02-click-retention-check-ed2b940.txt). Tag slice/02-click-retention/accepted on X' a2c34c1; worktree removed; PROGRESS current. Wave 1 complete. Delivery stamp at ship sign-off.",
+      "blockedOn": null,
+      "currentStep": "integrate",
+      "branchTaken": null
+    },
+    "completedAt": "2026-10-03T23:08:34.760Z",
+    "version": 20,
+    "resumeCount": 0,
+    "hopsBaseline": 0,
+    "boundRig": "urlshort-factory",
+    "lifecycleOperationKey": null,
+    "compiledInputDigest": null,
+    "lifecycleBinding": null,
+    "deadline": {
+      "state": "healthy",
+      "evidence": null
+    }
+  },
+  "trail": [
+    {
+      "trailId": "01M420DH2J2RZJHTXQTSVAJGFG",
+      "instanceId": "01M4170AA9E72WW1BXEA5PX0AP",
+      "stepId": "integrate",
+      "stepRole": "integrator",
+      "closedAt": "2026-10-03T23:08:34.760Z",
+      "closureReason": "done",
+      "closureEvidence": {
+        "evidence_ref": "missions/02-brownfield/NOTES.md"
+      },
+      "actorSession": "orchestration-lead@urlshort-factory",
+      "nextQitemId": null,
+      "priorQitemId": "qitem-20261003225239-ed926320"
+    },
+    {
+      "trailId": "01M41ZGCNWE9RVHFDDR2WVGQFZ",
+      "instanceId": "01M4170AA9E72WW1BXEA5PX0AP",
+      "stepId": "code_review",
+      "stepRole": "code_review",
+      "closedAt": "2026-10-03T22:52:39.981Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "docs/review/02-click-retention/01-code-review.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "integrator",
+          "boundRig": "urlshort-factory",
+          "seat": "orchestration-lead@urlshort-factory"
+        }
+      },
+      "actorSession": "review2-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003225239-ed926320",
+      "priorQitemId": "qitem-20261003223905-762d759f"
+    },
+    {
+      "trailId": "01M41YQHKP77HX8VHSEKQSW99S",
+      "instanceId": "01M4170AA9E72WW1BXEA5PX0AP",
+      "stepId": "qa_check",
+      "stepRole": "qa",
+      "closedAt": "2026-10-03T22:39:05.832Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "docs/qa/coverage/02-click-retention/SUMMARY.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "code_review",
+          "boundRig": "urlshort-factory",
+          "seat": "review2-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "qa2-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003223905-762d759f",
+      "priorQitemId": "qitem-20261003214414-12d75069"
+    },
+    {
+      "trailId": "01M41VK2XT02DES9H3DQS5XEMV",
+      "instanceId": "01M4170AA9E72WW1BXEA5PX0AP",
+      "stepId": "implement",
+      "stepRole": "development",
+      "closedAt": "2026-10-03T21:44:13.971Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "missions/02-brownfield/slices/02-click-retention/PROOF.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "qa",
+          "boundRig": "urlshort-factory",
+          "seat": "qa2-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "dev2-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003214414-12d75069",
+      "priorQitemId": "qitem-20261003184336-f1b2d2a0"
+    },
+    {
+      "trailId": "01M41TV405SFGZF4TE7ES4FGZZ",
+      "instanceId": "01M4170AA9E72WW1BXEA5PX0AP",
+      "stepId": "implement",
+      "stepRole": "development",
+      "closedAt": "2026-10-03T21:31:08.675Z",
+      "closureReason": "waiting",
+      "closureEvidence": {
+        "evidence_ref": "missions/02-brownfield/slices/02-click-retention/PROOF.md"
+      },
+      "actorSession": "dev2-agent@urlshort-factory",
+      "nextQitemId": null,
+      "priorQitemId": "qitem-20261003184336-f1b2d2a0"
+    },
+    {
+      "trailId": "01M41PX8YFTBHXHAF0FTEVD19G",
+      "instanceId": "01M4170AA9E72WW1BXEA5PX0AP",
+      "stepId": "implement",
+      "stepRole": "development",
+      "closedAt": "2026-10-03T20:22:24.972Z",
+      "closureReason": "waiting",
+      "closureEvidence": {
+        "evidence_ref": "missions/02-brownfield/slices/02-click-retention/PROOF.md"
+      },
+      "actorSession": "dev2-agent@urlshort-factory",
+      "nextQitemId": null,
+      "priorQitemId": "qitem-20261003184336-f1b2d2a0"
+    },
+    {
+      "trailId": "01M41PKVVGR5YDS79CBSPQ179M",
+      "instanceId": "01M4170AA9E72WW1BXEA5PX0AP",
+      "stepId": "implement",
+      "stepRole": "development",
+      "closedAt": "2026-10-03T20:17:16.652Z",
+      "closureReason": "waiting",
+      "closureEvidence": {
+        "evidence_ref": "missions/02-brownfield/slices/02-click-retention/PROOF.md"
+      },
+      "actorSession": "dev2-agent@urlshort-factory",
+      "nextQitemId": null,
+      "priorQitemId": "qitem-20261003184336-f1b2d2a0"
+    },
+    {
+      "trailId": "01M41NM6A1BVPBD7J9WGSCMAF8",
+      "instanceId": "01M4170AA9E72WW1BXEA5PX0AP",
+      "stepId": "implement",
+      "stepRole": "development",
+      "closedAt": "2026-10-03T19:59:58.782Z",
+      "closureReason": "waiting",
+      "closureEvidence": {
+        "evidence_ref": "missions/02-brownfield/slices/02-click-retention/PROOF.md"
+      },
+      "actorSession": "dev2-agent@urlshort-factory",
+      "nextQitemId": null,
+      "priorQitemId": "qitem-20261003184336-f1b2d2a0"
+    },
+    {
+      "trailId": "01M41JWN28NKAC4Y5Y4DH19XCW",
+      "instanceId": "01M4170AA9E72WW1BXEA5PX0AP",
+      "stepId": "implement",
+      "stepRole": "development",
+      "closedAt": "2026-10-03T19:12:10.306Z",
+      "closureReason": "waiting",
+      "closureEvidence": {
+        "evidence_ref": "missions/02-brownfield/slices/02-click-retention/PROOF.md"
+      },
+      "actorSession": "dev2-agent@urlshort-factory",
+      "nextQitemId": null,
+      "priorQitemId": "qitem-20261003184336-f1b2d2a0"
+    },
+    {
+      "trailId": "01M41H1J2EVFWQY97H90N8AXWZ",
+      "instanceId": "01M4170AA9E72WW1BXEA5PX0AP",
+      "stepId": "plan_lock",
+      "stepRole": "design",
+      "closedAt": "2026-10-03T18:39:53.928Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "missions/02-brownfield/NOTES.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "development",
+          "boundRig": "urlshort-factory",
+          "seat": "development-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "orchestration-lead@urlshort-factory",
+      "nextQitemId": "qitem-20261003183953-9526315e",
+      "priorQitemId": "qitem-20261003183612-3452b207"
+    },
+    {
+      "trailId": "01M41GTT7XRMY47CAKCXSXT0B3",
+      "instanceId": "01M4170AA9E72WW1BXEA5PX0AP",
+      "stepId": "design_review",
+      "stepRole": "design_review",
+      "closedAt": "2026-10-03T18:36:12.919Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "docs/review/02-click-retention/design-review.md",
+        "branch_taken": {
+          "exit": "handoff",
+          "target": "plan_lock"
+        },
+        "owner_resolution": {
+          "mode": "gate",
+          "role": "design",
+          "boundRig": "urlshort-factory",
+          "seat": "orchestration-lead@urlshort-factory"
+        }
+      },
+      "actorSession": "review2-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003183612-3452b207",
+      "priorQitemId": "qitem-20261003182930-370196d0"
+    },
+    {
+      "trailId": "01M41GEH1D7V56HABPN64KFBWR",
+      "instanceId": "01M4170AA9E72WW1BXEA5PX0AP",
+      "stepId": "design",
+      "stepRole": "design",
+      "closedAt": "2026-10-03T18:29:30.279Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "missions/02-brownfield/slices/02-click-retention/design.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "design_review",
+          "boundRig": "urlshort-factory",
+          "seat": "review2-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "design-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003182930-370196d0",
+      "priorQitemId": "qitem-20261003182019-5b56b6ce"
+    },
+    {
+      "trailId": "01M41FXPQ0KY2F9XE1G3EBS5SG",
+      "instanceId": "01M4170AA9E72WW1BXEA5PX0AP",
+      "stepId": "design_review",
+      "stepRole": "design_review",
+      "closedAt": "2026-10-03T18:20:19.037Z",
+      "closureReason": "failed",
+      "closureEvidence": {
+        "evidence_ref": "docs/review/02-click-retention/design-review.md",
+        "branch_taken": {
+          "exit": "failed",
+          "target": "design"
+        },
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "design",
+          "boundRig": "urlshort-factory",
+          "seat": "design-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "review2-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003182019-5b56b6ce",
+      "priorQitemId": "qitem-20261003181452-6bc9f909"
+    },
+    {
+      "trailId": "01M41FKQVJWFH8AVRFZFERY46Y",
+      "instanceId": "01M4170AA9E72WW1BXEA5PX0AP",
+      "stepId": "design",
+      "stepRole": "design",
+      "closedAt": "2026-10-03T18:14:52.520Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "missions/02-brownfield/slices/02-click-retention/design.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "design_review",
+          "boundRig": "urlshort-factory",
+          "seat": "review2-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "design-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003181452-6bc9f909",
+      "priorQitemId": "qitem-20261003173636-643c7c17"
+    },
+    {
+      "trailId": "01M41DDNXGTMMJBHEJQ49HCNPS",
+      "instanceId": "01M4170AA9E72WW1BXEA5PX0AP",
+      "stepId": "design_review",
+      "stepRole": "design_review",
+      "closedAt": "2026-10-03T17:36:36.777Z",
+      "closureReason": "failed",
+      "closureEvidence": {
+        "evidence_ref": "docs/review/02-click-retention/design-review.md",
+        "branch_taken": {
+          "exit": "failed",
+          "target": "design"
+        },
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "design",
+          "boundRig": "urlshort-factory",
+          "seat": "design-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "review2-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003173636-643c7c17",
+      "priorQitemId": "qitem-20261003172504-1e5d5337"
+    },
+    {
+      "trailId": "01M41CRHD6MMP7MCZYHMB1KSM3",
+      "instanceId": "01M4170AA9E72WW1BXEA5PX0AP",
+      "stepId": "design",
+      "stepRole": "design",
+      "closedAt": "2026-10-03T17:25:04.031Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "missions/02-brownfield/slices/02-click-retention/design.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "design_review",
+          "boundRig": "urlshort-factory",
+          "seat": "review2-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "design-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003172504-1e5d5337",
+      "priorQitemId": "qitem-20261003163546-70ed3e48"
+    },
+    {
+      "trailId": "01M419Y9KCHZXKXAJ7KMADSCD4",
+      "instanceId": "01M4170AA9E72WW1BXEA5PX0AP",
+      "stepId": "requirements_review",
+      "stepRole": "requirements_review",
+      "closedAt": "2026-10-03T16:35:46.921Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "docs/review/02-click-retention/requirements-review.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "design",
+          "boundRig": "urlshort-factory",
+          "seat": "design-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "review2-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003163546-70ed3e48",
+      "priorQitemId": "qitem-20261003155116-26bce90f"
+    },
+    {
+      "trailId": "01M417CSX61RKR43ZGX0XJT5VN",
+      "instanceId": "01M4170AA9E72WW1BXEA5PX0AP",
+      "stepId": "requirements",
+      "stepRole": "requirements",
+      "closedAt": "2026-10-03T15:51:16.642Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "missions/02-brownfield/slices/02-click-retention/SPEC.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "requirements_review",
+          "boundRig": "urlshort-factory",
+          "seat": "review2-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "requirements-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003155116-26bce90f",
+      "priorQitemId": "qitem-20261003154427-8eccec4f"
+    }
+  ],
+  "guidance": {
+    "state": "unselected",
+    "selectionSource": null,
+    "catalogSource": null,
+    "catalogPath": null,
+    "catalogHash": null,
+    "sources": [],
+    "position": "UNKNOWN: component position is not authored. Exact owner matches establish relevance, not a stage; choose from selected components and explicit edges using current evidence. Array order is presentation only.",
+    "ownerSession": null,
+    "unknowns": [],
+    "expansionCommand": "rig workflow guidance '01M4170AA9E72WW1BXEA5PX0AP' --full",
+    "lines": [
+      "Workflow method: No SDLC composition selected in the available authored context.",
+      "Workflow method: Expand relevant teaching: rig workflow guidance '01M4170AA9E72WW1BXEA5PX0AP' --full; select another with --component <id>. Read authored caveats and edges before adapting; advice grants no extra assignment."
+    ]
+  },
+  "reconciliation": {
+    "status": "unbound",
+    "adopted": null,
+    "boundDigest": null,
+    "proposedDigest": null,
+    "boundVersion": "1",
+    "proposedVersion": null,
+    "compatible": false,
+    "expectedVersion": 20,
+    "changes": [],
+    "reasons": [
+      "This is not a manifest-bound lifecycle. Inspect its authored spec; lifecycle revision does not migrate arbitrary workflows."
+    ],
+    "composition": {
+      "mode": "unbound",
+      "explanation": "The project profile and mission extension/override define outer steps. Slice manifests bind sources and proof, not automatic nested children. Waves group agent planning; they do not schedule child work. Current packets and blockers carry actual custody.",
+      "boundSlices": [],
+      "executableSteps": [
+        {
+          "id": "requirements",
+          "dependsOn": []
+        },
+        {
+          "id": "requirements_review",
+          "dependsOn": []
+        },
+        {
+          "id": "design",
+          "dependsOn": []
+        },
+        {
+          "id": "design_review",
+          "dependsOn": []
+        },
+        {
+          "id": "plan_lock",
+          "dependsOn": []
+        },
+        {
+          "id": "implement",
+          "dependsOn": []
+        },
+        {
+          "id": "qa_check",
+          "dependsOn": []
+        },
+        {
+          "id": "code_review",
+          "dependsOn": []
+        },
+        {
+          "id": "integrate",
+          "dependsOn": []
+        }
+      ]
+    },
+    "nextAction": "rig workflow trace 01M4170AA9E72WW1BXEA5PX0AP"
+  },
+  "frontier": [],
+  "failures": [],
+  "unknowns": [],
+  "boundaryObligations": []
+}

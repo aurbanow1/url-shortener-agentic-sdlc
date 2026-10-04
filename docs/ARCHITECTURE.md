@@ -35,7 +35,7 @@ policy, evidence, metrics — is authored in this repository.
 | Role specs | `rig/agents/<role>/` | one AgentSpec per seat: `guidance/role.md` is the contract (deliverables = step exit criteria, "never" list), `startup/context.md` the first-minute checklist |
 | Factory protocol | `rig/startup/project.md` | delivered to every seat before boot: how packets are worked and closed, gate mechanics, evidence paths, command hygiene |
 | Culture | `rig/CULTURE.md` | the constitution: truth over appearance, hot-potato closure, independence where it matters, humans own approvals and publishing |
-| Slice workflow | `rig/workflows/urlshort-slice*.workflow.yaml` | the per-slice SDLC graph (two variants differing only in who holds the plan-lock) |
+| Slice workflow | `rig/workflows/urlshort-slice*.workflow.yaml` | the per-slice SDLC graph in three variants (`urlshort-slice`, `urlshort-slice-delegated`, and `urlshort-slice-delegated-b`, which resolves to the second seats); since D11 every variant sends the plan-lock to the orchestration lead. `urlshort-drill` is a two-step workflow for the labelled mission 02 drills |
 | Mission lifecycle | `project.yaml#lifecycle` | the mission-level dependency graph |
 | Work tree | `missions/`, `project.yaml`, `workspace.yaml` | missions, slices, proof policy (`qa-agent` judges) |
 | Guardrails | `.claude/settings.json`, `.codex/rules/urlshort.rules` | allow-lists for build/inspection commands; `git push`, history rewrites and publishing denied/forbidden |
@@ -55,13 +55,13 @@ review independence for those two steps, chosen by the human.
 ```mermaid
 flowchart TB
   H([human · gates and decisions])
-  O[orchestration-lead<br/>Orchestrator · Planning · Integrator]
-  R[requirements-agent]
-  D[design-agent]
-  B[development-agent]
-  Q[qa-agent · Codex]
-  V[review-agent · Codex<br/>Code Review · Security & Compliance]
-  L[release-agent<br/>Release & Reliability]
+  O["orchestration-lead · Claude<br/>Orchestrator · Planning · Integrator"]
+  R["requirements-agent · Codex"]
+  D["design-agent, design2-agent · Claude"]
+  B["development-agent, dev2-agent · Claude"]
+  Q["qa-agent, qa2-agent · Codex"]
+  V["review-agent, review2-agent · Codex<br/>Code Review · Security & Compliance"]
+  L["release-agent, release2-agent · Codex<br/>Release & Reliability"]
   O -- delegates_to --> R & D & B & Q & V & L
   Q -. can_observe .-> B
   V -. can_observe .-> B & Q
@@ -70,6 +70,8 @@ flowchart TB
   R & D & B & Q & V & L -- escalates_to --> O
   O == parked packets ==> H
 ```
+
+Seats that hold the same role share a box; `rig/rig.yaml` lists the edges seat by seat (for example, only `qa2-agent` and `review2-agent` observe `dev2-agent`).
 
 | Seat | Roles | Deliverables that are its exit criteria |
 |---|---|---|
@@ -85,15 +87,15 @@ flowchart TB
 
 | Seat | Runtime | Model | Reasoning effort | Where it is set |
 |---|---|---|---|---|
-| `design-agent`, `design2-agent` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | **xhigh** — set per session by the operator after each launch (`rig send --raw <seat> "/effort xhigh"`, verified with `/effort status`) |
-| `orchestration-lead` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | high (D12, 2026-10-03: few short turns, backstopped by review-before-gate) |
+| `design-agent`, `design2-agent` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | **xhigh** (D9, D16) | `defaults.model` in its agent spec; effort set per session by the operator after each launch (`rig send --raw <seat> "/effort xhigh"`, verified with `/effort status`) |
+| `orchestration-lead` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | high (D12, 2026-10-03: few short turns, backstopped by review-before-gate) | `defaults.model` in its agent spec; effort `high` is the project default in `.claude/settings.json`, applied live with `rig send --raw orchestration-lead@urlshort-factory "/effort high"` (D12) |
 | `requirements-agent` | Codex | GPT-6-Astra (`gpt-6-astra`) | xhigh | `defaults.model` in its agent spec (D17, 2026-10-03); effort from `~/.codex/config.toml` |
 | `release-agent`, `release2-agent` | Codex | GPT-6.1-Sol (`gpt-6.1-sol`) | xhigh | `defaults.model` in its agent spec (D17, 2026-10-03); effort from `~/.codex/config.toml` |
 | `development-agent`, `dev2-agent` | Claude Code | Claude Opus 5.5 (`claude-opus-5-5`) | high (D7) | `rig/agents/development-agent/agent.yaml` → `defaults.model`; effort from `modelSettings.claude-opus-5-5` |
 | `qa-agent`, `qa2-agent` | Codex | GPT-6.1-Sol (`gpt-6.1-sol`) | xhigh | `rig/agents/qa-agent/agent.yaml` → `defaults.model`; effort from `~/.codex/config.toml` `model_reasoning_effort` |
 | `review-agent`, `review2-agent` | Codex | GPT-6-Astra (`gpt-6-astra`) | xhigh | runtime default (`~/.codex/config.toml`) |
 
-Effort is a runtime setting, not an OpenRig field; the factory runs the design seat at `xhigh`, the other Claude author seats including the lead at `high` (D7/D9/D12), and the Codex judge seats at `xhigh` (`docs/SETUP-FACTORY.md`). Every review step runs on the other family from the author (Codex judges Claude), and every Claude seat runs Opus 5.5 (D8); independence comes from the Codex judges, not from model diversity inside the Claude family.
+Effort is a runtime setting, not an OpenRig field; the factory runs the design seats at `xhigh`, the other Claude author seats including the lead at `high` (D7/D9/D12), and the Codex judge seats at `xhigh` (`docs/SETUP-FACTORY.md`). Every review step runs on the other family from the author (Codex judges Claude), and every Claude seat runs Opus 5.5 (D8); independence comes from the Codex judges, not from model diversity inside the Claude family.
 
 ### 2.3 Control flow: three graphs
 
@@ -122,7 +124,7 @@ flowchart LR
   RQR -- failed --> REQ
   RQR --> DES[design] --> DSR[design_review]
   DSR -- failed --> DES
-  DSR --> PL{{plan_lock<br/>human or lead, by tier}}
+  DSR --> PL{{plan_lock<br/>orchestration lead since D11}}
   PL --> IMPL[implement] --> QA[qa_check]
   QA -- failed --> IMPL
   QA --> CR[code_review]
@@ -167,7 +169,7 @@ risk tier is there too.
 | A reviewer for every chunk, not only for code | requirements, design, decomposition and release packages are reviewed by an independent seat before they are consumed or put in front of the human; the human is never the first reviewer |
 | Own role specs instead of OpenRig's builtin agents | the brief names the agents; contracts had to be specific (Java/Spring/Gradle, exact artifacts, exit semantics). The builtins' generic guidance stays vendored for reference |
 | Release steps live at mission level, not per slice | shipping is a high-impact act; clean slice closeouts auto-continue instead of manufacturing a human gate each time |
-| Risk-tiered plan-lock | human attention goes to foundations, migrations, security-relevant and ambiguous slices; low-tier plan-locks are delegated and recorded |
+| Risk-tiered plan-lock (superseded by D11) | human attention goes to foundations, migrations, security-relevant and ambiguous slices; low-tier plan-locks are delegated and recorded. Since D11 every slice plan-lock is delegated to the orchestration lead and recorded; mission plan-locks and ship sign-offs stay human |
 | Cross-runtime review (Codex judges Claude's work) | independence that does not rely on prompting alone |
 | Slice code in git worktrees, documents in the main checkout | isolation for concurrent slices without breaking OpenRig's scope/proof verbs, which read the main work tree |
 | Metrics derived from engine records, not agent reports | the trails and transition logs are append-only and attributed; self-reported status is not evidence |
@@ -201,7 +203,7 @@ the system view in [`DESIGN.md`](DESIGN.md) and the decisions in
 
 ## 5. Known limits
 
-**Scalability (assignment §6).** The service keeps no state outside the database: no sessions, no in-memory caches that matter, idempotency and rate-limit state are designed to live in the store. Scaling out is therefore a deployment change — PostgreSQL instead of the embedded H2 file (the planned brownfield move, `docs/guidance/databases.md` §5) and N stateless instances behind a load balancer with a shared rate-limit store — not a rewrite. The prototype deliberately runs single-node on H2 (NFR-R4 states the ceiling; `docs/RISKS.md` records it).
+**Scalability (assignment §6).** The service keeps no sessions and no caches that matter, and idempotency keys live in the database. Rate-limit state does not: the GCRA buckets are in memory, per instance, and reset on restart (ADR-0014). Scaling out therefore needs a shared rate-limiter store and PostgreSQL instead of the embedded H2 file (`docs/guidance/databases.md` §5), with N instances behind a load balancer; neither is built. The prototype deliberately runs single-node on H2 (NFR-R4 states the ceiling; `docs/RISKS.md` records it).
 
 
 - OpenRig 0.6.3 keeps one live packet per workflow instance; intra-instance
@@ -213,4 +215,5 @@ the system view in [`DESIGN.md`](DESIGN.md) and the decisions in
   (`rig send --dangerously-interact --reason …`).
 - Codex seats run sandboxed without network; the Gradle wrapper is allow-listed
   to run outside the sandbox, and advisory-database dependency checks run at
-  release prep on a Claude seat.
+  release prep on the release seat (Codex since D17), with the network call
+  approved by the operator.

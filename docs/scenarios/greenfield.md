@@ -65,13 +65,13 @@ review from two vantages · release review FAIL → rework → PASS · ship sign
 
 ## Metrics
 
-From `docs/metrics/README.md`, the run-end refresh (generated 2026-10-04T05:38:42Z from the live daemon after the last mission closed; the slice rows are unchanged from the mission 01 export, and the lifecycle row now includes its own `mission_close`):
+From `docs/metrics/README.md` (generated from the live daemon after the last mission closed, every instance terminal; `node tools/sdlc-metrics.mjs --check` reproduces it offline from `docs/evidence/run-end/`):
 
-| Instance | E2E latency | Hops | Closures | Retries | Rollbacks | Human wait | MTTR |
+| Instance | E2E latency | Hops | Closures | Retries | Rollbacks executed | Human wait | MTTR |
 |---|---|---|---|---|---|---|---|
 | mission lifecycle `01-greenfield-core` | 14.1 h | 9 | 43 | 0 | 2 | 33 min | – |
-| `01-create-redirect` | 3.3 h | 12 | 13 | 6 | 1 | 0 s | 17 min |
+| `01-create-redirect` | 3.3 h | 12 | 13 | 6 | 0 | 0 s | 17 min |
 | `02-analytics` | 3.4 h | 13 | 16 | 7 | 0 | 0 s | 36 min |
-| `03-operate` | 5.9 h | 15 | 22 | 10 | 1 | 0 s | 36 min |
+| `03-operate` | 5.9 h | 15 | 22 | 10 | 0 | 0 s | 36 min |
 
-Retries count failed verdicts plus step re-entries (the review loops listed above); the two rollbacks are the integrator's rehearsed reverts, not reverts of `main`. Human wait is the time packets spent parked on `human@kernel` — the mission plan-lock and the ship sign-off — reported separately from agent throughput.
+Retries count failed verdicts plus step re-entries (the review loops listed above); the lifecycle's two executed rollbacks are the release's revert rehearsal of `03-operate` and the operational container rollback and roll-forward (release-review rework RR-01); no revert reached `main`. Human wait is the time packets spent parked on `human@kernel` — the mission plan-lock and the ship sign-off — reported separately from agent throughput.

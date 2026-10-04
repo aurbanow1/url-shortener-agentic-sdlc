@@ -1,0 +1,41 @@
+[
+  {
+    "transitionId": 553,
+    "qitemId": "qitem-20261003101510-d5f18be9",
+    "ts": "2026-10-03T10:15:10.600Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "development-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 558,
+    "qitemId": "qitem-20261003101510-d5f18be9",
+    "ts": "2026-10-03T10:18:02.455Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "qa-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 575,
+    "qitemId": "qitem-20261003101510-d5f18be9",
+    "ts": "2026-10-03T10:41:16.456Z",
+    "state": "handed-off",
+    "transitionNote": "workflow handoff to review-agent@urlshort-factory",
+    "actorSession": "qa-agent@urlshort-factory",
+    "closureReason": "handed_off_to",
+    "closureTarget": "review-agent@urlshort-factory",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

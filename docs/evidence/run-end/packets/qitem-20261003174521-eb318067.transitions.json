@@ -1,0 +1,41 @@
+[
+  {
+    "transitionId": 1091,
+    "qitemId": "qitem-20261003174521-eb318067",
+    "ts": "2026-10-03T17:45:21.987Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "release-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1092,
+    "qitemId": "qitem-20261003174521-eb318067",
+    "ts": "2026-10-03T17:45:44.736Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1093,
+    "qitemId": "qitem-20261003174521-eb318067",
+    "ts": "2026-10-03T17:46:17.225Z",
+    "state": "done",
+    "transitionNote": "workflow done: Mission 01 closed. Shipped 8e9c065 under the human's sign-off (transition 1011; AC-28 amended to the direct paths, the host forwarder cut disclosed in GAPS and RISKS). Delivery stamps on all three slices, proof ready at each stamp. Evidence exported at e975fb7. PROGRESS all checked; NOTES carry the closing summary and the follow-on backlog: W2-01 to mission 02's dogfood fix, W2-02 to mission 03, W2-03, W2-04, W2-05 in passing, plus three factory items (shared-doc proof drift, prompt stalls, the evidence-export operation key). 02-analytics item 10 reads unknown after mission 02's DESIGN.md edit; that is recorded drift, not a mission 01 change, and not re-affirmed because it would recur. No worktrees left for this mission; nothing pushed or published.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": "no-follow-on",
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

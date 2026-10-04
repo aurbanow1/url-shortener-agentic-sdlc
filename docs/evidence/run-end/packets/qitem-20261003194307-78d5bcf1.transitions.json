@@ -1,0 +1,117 @@
+[
+  {
+    "transitionId": 1292,
+    "qitemId": "qitem-20261003194307-78d5bcf1",
+    "ts": "2026-10-03T19:43:07.607Z",
+    "state": "pending",
+    "transitionNote": "created",
+    "actorSession": "review-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1293,
+    "qitemId": "qitem-20261003194307-78d5bcf1",
+    "ts": "2026-10-03T19:43:19.434Z",
+    "state": "in-progress",
+    "transitionNote": "claimed",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1294,
+    "qitemId": "qitem-20261003194307-78d5bcf1",
+    "ts": "2026-10-03T19:43:26.456Z",
+    "state": "blocked",
+    "transitionNote": "HELD by the lead (gate handler, D11), not refused. Design review PASS on 0982cb5 (review-agent, 6e17587; DR-01/02 MEDIUM fixed in passing; no open findings). Held until both mission-02 w1 slices are merged (wave map v4). At release: re-check impact-analysis.md against the merged main (01-audit-read regenerates openapi.json); settle the openapi.json order against mission 03's 01-analytics-v2 (whichever is plan-locked second rebases and regenerates); narrow the territory to the design's grant (new web/MetricsConfig plus its unit test; Problems.java and application.properties dropped) by rig workflow revise; create .worktrees/03-dogfood-fix from the merged main; then stamp. Builder: test-first commits; QA captures all six responses on the candidate. Parked on 02-click-retention's live frontier packet.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD",
+    "wake": {
+      "transitionId": 1294,
+      "qitemId": "qitem-20261003194307-78d5bcf1",
+      "phase": "armed",
+      "kind": "blocker",
+      "ref": "qitem-20261003184336-f1b2d2a0",
+      "deliveryStatus": null
+    }
+  },
+  {
+    "transitionId": 1300,
+    "qitemId": "qitem-20261003194307-78d5bcf1",
+    "ts": "2026-10-03T19:46:55.147Z",
+    "state": "blocked",
+    "transitionNote": "Hold condition changed (wave map v5, 19:50Z, operator's suggestion, my call): released at 01-audit-read's merge, not both w1 merges. The design's narrowed territory (revision receipt 11, already adopted: OpenApiConfig, new MetricsConfig plus test, OpenApiDocumentTest and HealthMetricsJourneyTest additions, openapi.json, README check) shares nothing with 02-click-retention; its only overlap is audit-read's openapi.json and OpenApiDocumentTest. At release: re-check impact-analysis.md against the merged main, create the worktree from it, stamp, and hand off to development-agent. This slice is plan-locked before analytics-v2, so analytics-v2 rebases onto it for openapi.json. Now parked on audit-read's live frontier packet and moved with it until audit-read's merge.",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": "transport:v1",
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD",
+    "wake": {
+      "transitionId": 1300,
+      "qitemId": "qitem-20261003194307-78d5bcf1",
+      "phase": "armed",
+      "kind": "blocker",
+      "ref": "qitem-20261003185423-545a1365",
+      "deliveryStatus": null
+    }
+  },
+  {
+    "transitionId": 1315,
+    "qitemId": "qitem-20261003194307-78d5bcf1",
+    "ts": "2026-10-03T19:59:38.658Z",
+    "state": "pending",
+    "transitionNote": "auto-unparked: blocker qitem-20261003185423-545a1365 reached terminal state 'handed-off'",
+    "actorSession": "qa-agent@urlshort-factory",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  },
+  {
+    "transitionId": 1320,
+    "qitemId": "qitem-20261003194307-78d5bcf1",
+    "ts": "2026-10-03T19:59:39.892Z",
+    "state": "pending",
+    "transitionNote": "blocker qitem-20261003185423-545a1365 wake attempted; delivery=delivered-ack-pending",
+    "actorSession": "queue@system",
+    "closureReason": null,
+    "closureTarget": null,
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD",
+    "wake": {
+      "transitionId": 1320,
+      "qitemId": "qitem-20261003194307-78d5bcf1",
+      "phase": "fired",
+      "kind": "blocker",
+      "ref": "qitem-20261003185423-545a1365",
+      "deliveryStatus": "delivered-ack-pending"
+    }
+  },
+  {
+    "transitionId": 1330,
+    "qitemId": "qitem-20261003194307-78d5bcf1",
+    "ts": "2026-10-03T20:02:23.723Z",
+    "state": "handed-off",
+    "transitionNote": "workflow handoff to development-agent@urlshort-factory",
+    "actorSession": "orchestration-lead@urlshort-factory",
+    "closureReason": "handed_off_to",
+    "closureTarget": "development-agent@urlshort-factory",
+    "identityProvenance": null,
+    "ownerNotificationKind": null,
+    "ownerNotificationLevel": "RECORD"
+  }
+]

@@ -1,0 +1,378 @@
+{
+  "instance": {
+    "instanceId": "01M416Z3CM54YQTX93V4KG0CPS",
+    "workflowName": "urlshort-slice",
+    "workflowVersion": "1",
+    "createdBySession": "orchestration-lead@urlshort-factory",
+    "createdAt": "2026-10-03T15:43:47.604Z",
+    "status": "completed",
+    "currentFrontier": [],
+    "currentStepId": null,
+    "hopCount": 8,
+    "fallbackSynthesis": null,
+    "lastContinuationDecision": {
+      "exit": "done",
+      "actorSession": "orchestration-lead@urlshort-factory",
+      "closedPacket": "qitem-20261004001800-cc58cd9d",
+      "nextPacket": null,
+      "resultNote": "Integrated. Judged candidate ec466da (QA qa-agent; review-agent code+security PASS 61430eb; proof 1-11 accepted, 12 pending release_prep by design), rebased to X' 22fc8e2 onto main d55a502 (range-diff all 8 identical). Merged --no-ff at 94aa2c0; fresh gate on main green 14/14; tag slice/01-analytics-v2/accepted -> 22fc8e2; worktree removed; PROGRESS current.",
+      "blockedOn": null,
+      "currentStep": "integrate",
+      "branchTaken": null
+    },
+    "completedAt": "2026-10-04T00:24:28.721Z",
+    "version": 17,
+    "resumeCount": 0,
+    "hopsBaseline": 0,
+    "boundRig": "urlshort-factory",
+    "lifecycleOperationKey": null,
+    "compiledInputDigest": null,
+    "lifecycleBinding": null,
+    "deadline": {
+      "state": "healthy",
+      "evidence": null
+    }
+  },
+  "trail": [
+    {
+      "trailId": "01M424RG9M3YCHAYND4TSZHWY0",
+      "instanceId": "01M416Z3CM54YQTX93V4KG0CPS",
+      "stepId": "integrate",
+      "stepRole": "integrator",
+      "closedAt": "2026-10-04T00:24:28.721Z",
+      "closureReason": "done",
+      "closureEvidence": {
+        "evidence_ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/PROGRESS.md"
+      },
+      "actorSession": "orchestration-lead@urlshort-factory",
+      "nextQitemId": null,
+      "priorQitemId": "qitem-20261004001800-cc58cd9d"
+    },
+    {
+      "trailId": "01M424K4XX23D30CTV39N50Z85",
+      "instanceId": "01M416Z3CM54YQTX93V4KG0CPS",
+      "stepId": "integrate",
+      "stepRole": "integrator",
+      "closedAt": "2026-10-04T00:21:33.232Z",
+      "closureReason": "waiting",
+      "closureEvidence": {
+        "evidence_ref": "docs/evidence/03-ambiguous-analytics/integrate-01-analytics-v2-range-diff-ec466da-22fc8e2.txt"
+      },
+      "actorSession": "orchestration-lead@urlshort-factory",
+      "nextQitemId": null,
+      "priorQitemId": "qitem-20261004001800-cc58cd9d"
+    },
+    {
+      "trailId": "01M424FYKH98KQ0A3QY3P1RTZ4",
+      "instanceId": "01M416Z3CM54YQTX93V4KG0CPS",
+      "stepId": "integrate",
+      "stepRole": "integrator",
+      "closedAt": "2026-10-04T00:19:48.462Z",
+      "closureReason": "waiting",
+      "closureEvidence": {
+        "evidence_ref": "missions/03-ambiguous-analytics/NOTES.md"
+      },
+      "actorSession": "orchestration-lead@urlshort-factory",
+      "nextQitemId": null,
+      "priorQitemId": "qitem-20261004001800-cc58cd9d"
+    },
+    {
+      "trailId": "01M424CMZM8AMCAMZP2PEZ862V",
+      "instanceId": "01M416Z3CM54YQTX93V4KG0CPS",
+      "stepId": "code_review",
+      "stepRole": "code_review",
+      "closedAt": "2026-10-04T00:18:00.297Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "docs/review/01-analytics-v2/01-code-review.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "integrator",
+          "boundRig": "urlshort-factory",
+          "seat": "orchestration-lead@urlshort-factory"
+        }
+      },
+      "actorSession": "review-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261004001800-cc58cd9d",
+      "priorQitemId": "qitem-20261004000110-d0d07fdb"
+    },
+    {
+      "trailId": "01M423DTCEQF0Z2PM3ANHY6ZWN",
+      "instanceId": "01M416Z3CM54YQTX93V4KG0CPS",
+      "stepId": "qa_check",
+      "stepRole": "qa",
+      "closedAt": "2026-10-04T00:01:10.021Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "docs/qa/coverage/01-analytics-v2/SUMMARY.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "code_review",
+          "boundRig": "urlshort-factory",
+          "seat": "review-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "qa-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261004000110-d0d07fdb",
+      "priorQitemId": "qitem-20261003231403-839a47f3"
+    },
+    {
+      "trailId": "01M420QJAJCXB3G4PN97Q511ZE",
+      "instanceId": "01M416Z3CM54YQTX93V4KG0CPS",
+      "stepId": "implement",
+      "stepRole": "development",
+      "closedAt": "2026-10-03T23:14:03.725Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/PROOF.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "qa",
+          "boundRig": "urlshort-factory",
+          "seat": "qa-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "dev2-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003231403-839a47f3",
+      "priorQitemId": "qitem-20261003200331-90c97f87"
+    },
+    {
+      "trailId": "01M41ZGYG9YQSTCBRTCJZW5EM1",
+      "instanceId": "01M416Z3CM54YQTX93V4KG0CPS",
+      "stepId": "implement",
+      "stepRole": "development",
+      "closedAt": "2026-10-03T22:52:58.246Z",
+      "closureReason": "waiting",
+      "closureEvidence": {
+        "evidence_ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/PROOF.md"
+      },
+      "actorSession": "dev2-agent@urlshort-factory",
+      "nextQitemId": null,
+      "priorQitemId": "qitem-20261003200331-90c97f87"
+    },
+    {
+      "trailId": "01M41YQYS1J05HC66CW7PHMTM9",
+      "instanceId": "01M416Z3CM54YQTX93V4KG0CPS",
+      "stepId": "implement",
+      "stepRole": "development",
+      "closedAt": "2026-10-03T22:39:19.326Z",
+      "closureReason": "waiting",
+      "closureEvidence": {
+        "evidence_ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/PROOF.md"
+      },
+      "actorSession": "dev2-agent@urlshort-factory",
+      "nextQitemId": null,
+      "priorQitemId": "qitem-20261003200331-90c97f87"
+    },
+    {
+      "trailId": "01M41VNRZVAYCZ6VJ5JWYNHTG9",
+      "instanceId": "01M416Z3CM54YQTX93V4KG0CPS",
+      "stepId": "implement",
+      "stepRole": "development",
+      "closedAt": "2026-10-03T21:45:42.131Z",
+      "closureReason": "waiting",
+      "closureEvidence": {
+        "evidence_ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/PROOF.md"
+      },
+      "actorSession": "dev2-agent@urlshort-factory",
+      "nextQitemId": null,
+      "priorQitemId": "qitem-20261003200331-90c97f87"
+    },
+    {
+      "trailId": "01M41QCG3CSJZXQMATNJFGJ0TW",
+      "instanceId": "01M416Z3CM54YQTX93V4KG0CPS",
+      "stepId": "implement",
+      "stepRole": "development",
+      "closedAt": "2026-10-03T20:30:43.817Z",
+      "closureReason": "waiting",
+      "closureEvidence": {
+        "evidence_ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/PROOF.md"
+      },
+      "actorSession": "dev2-agent@urlshort-factory",
+      "nextQitemId": null,
+      "priorQitemId": "qitem-20261003200331-90c97f87"
+    },
+    {
+      "trailId": "01M41NTG51CWB870XXVE34CDAY",
+      "instanceId": "01M416Z3CM54YQTX93V4KG0CPS",
+      "stepId": "plan_lock",
+      "stepRole": "design",
+      "closedAt": "2026-10-03T20:03:25.466Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "missions/03-ambiguous-analytics/NOTES.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "development",
+          "boundRig": "urlshort-factory",
+          "seat": "development-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "orchestration-lead@urlshort-factory",
+      "nextQitemId": "qitem-20261003200325-7115d4e3",
+      "priorQitemId": "qitem-20261003185640-3b837606"
+    },
+    {
+      "trailId": "01M41J08V2HDC2F4V6EC9BPEXZ",
+      "instanceId": "01M416Z3CM54YQTX93V4KG0CPS",
+      "stepId": "design_review",
+      "stepRole": "design_review",
+      "closedAt": "2026-10-03T18:56:40.280Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "docs/review/01-analytics-v2/design-review.md",
+        "branch_taken": {
+          "exit": "handoff",
+          "target": "plan_lock"
+        },
+        "owner_resolution": {
+          "mode": "gate",
+          "role": "design",
+          "boundRig": "urlshort-factory",
+          "seat": "orchestration-lead@urlshort-factory"
+        }
+      },
+      "actorSession": "review-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003185640-3b837606",
+      "priorQitemId": "qitem-20261003184238-e2f2be28"
+    },
+    {
+      "trailId": "01M41H6JWRS3TKJKN5308Q0MYB",
+      "instanceId": "01M416Z3CM54YQTX93V4KG0CPS",
+      "stepId": "design",
+      "stepRole": "design",
+      "closedAt": "2026-10-03T18:42:38.609Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/design.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "design_review",
+          "boundRig": "urlshort-factory",
+          "seat": "review-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "design-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003184238-e2f2be28",
+      "priorQitemId": "qitem-20261003164151-fbee7e97"
+    },
+    {
+      "trailId": "01M41A9E0526SNSWB4X0CEMT10",
+      "instanceId": "01M416Z3CM54YQTX93V4KG0CPS",
+      "stepId": "requirements_review",
+      "stepRole": "requirements_review",
+      "closedAt": "2026-10-03T16:41:51.871Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "docs/review/01-analytics-v2/requirements-review.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "design",
+          "boundRig": "urlshort-factory",
+          "seat": "design-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "review-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003164151-fbee7e97",
+      "priorQitemId": "qitem-20261003161333-c4da0117"
+    },
+    {
+      "trailId": "01M418NK3D62P6MCBK8Z6M2DZB",
+      "instanceId": "01M416Z3CM54YQTX93V4KG0CPS",
+      "stepId": "requirements",
+      "stepRole": "requirements",
+      "closedAt": "2026-10-03T16:13:33.159Z",
+      "closureReason": "handoff",
+      "closureEvidence": {
+        "evidence_ref": "missions/03-ambiguous-analytics/slices/01-analytics-v2/SPEC.md",
+        "owner_resolution": {
+          "mode": "preferred_targets",
+          "role": "requirements_review",
+          "boundRig": "urlshort-factory",
+          "seat": "review-agent@urlshort-factory"
+        }
+      },
+      "actorSession": "requirements-agent@urlshort-factory",
+      "nextQitemId": "qitem-20261003161333-c4da0117",
+      "priorQitemId": "qitem-20261003154347-19e96a75"
+    }
+  ],
+  "guidance": {
+    "state": "unselected",
+    "selectionSource": null,
+    "catalogSource": null,
+    "catalogPath": null,
+    "catalogHash": null,
+    "sources": [],
+    "position": "UNKNOWN: component position is not authored. Exact owner matches establish relevance, not a stage; choose from selected components and explicit edges using current evidence. Array order is presentation only.",
+    "ownerSession": null,
+    "unknowns": [],
+    "expansionCommand": "rig workflow guidance '01M416Z3CM54YQTX93V4KG0CPS' --full",
+    "lines": [
+      "Workflow method: No SDLC composition selected in the available authored context.",
+      "Workflow method: Expand relevant teaching: rig workflow guidance '01M416Z3CM54YQTX93V4KG0CPS' --full; select another with --component <id>. Read authored caveats and edges before adapting; advice grants no extra assignment."
+    ]
+  },
+  "reconciliation": {
+    "status": "unbound",
+    "adopted": null,
+    "boundDigest": null,
+    "proposedDigest": null,
+    "boundVersion": "1",
+    "proposedVersion": null,
+    "compatible": false,
+    "expectedVersion": 17,
+    "changes": [],
+    "reasons": [
+      "This is not a manifest-bound lifecycle. Inspect its authored spec; lifecycle revision does not migrate arbitrary workflows."
+    ],
+    "composition": {
+      "mode": "unbound",
+      "explanation": "The project profile and mission extension/override define outer steps. Slice manifests bind sources and proof, not automatic nested children. Waves group agent planning; they do not schedule child work. Current packets and blockers carry actual custody.",
+      "boundSlices": [],
+      "executableSteps": [
+        {
+          "id": "requirements",
+          "dependsOn": []
+        },
+        {
+          "id": "requirements_review",
+          "dependsOn": []
+        },
+        {
+          "id": "design",
+          "dependsOn": []
+        },
+        {
+          "id": "design_review",
+          "dependsOn": []
+        },
+        {
+          "id": "plan_lock",
+          "dependsOn": []
+        },
+        {
+          "id": "implement",
+          "dependsOn": []
+        },
+        {
+          "id": "qa_check",
+          "dependsOn": []
+        },
+        {
+          "id": "code_review",
+          "dependsOn": []
+        },
+        {
+          "id": "integrate",
+          "dependsOn": []
+        }
+      ]
+    },
+    "nextAction": "rig workflow trace 01M416Z3CM54YQTX93V4KG0CPS"
+  },
+  "frontier": [],
+  "failures": [],
+  "unknowns": [],
+  "boundaryObligations": []
+}
