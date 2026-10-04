@@ -1,7 +1,8 @@
 # Scenario: ambiguous — mission `03-ambiguous-analytics`
 
-> **Mission closed 2026-10-04 (`59ff9016`).** Only the metrics row below waits for the final regeneration, filled in from
-> `missions/03-ambiguous-analytics/RELEASE.md` and the evidence export.
+> **Mission closed 2026-10-04 (`59ff9016`).** Facts are from
+> `missions/03-ambiguous-analytics/RELEASE.md`, the evidence export and the
+> run-end refresh of `docs/metrics/`.
 
 ## The ask
 
@@ -54,8 +55,8 @@ afterwards, and each move is in `missions/03-ambiguous-analytics/NOTES.md`:
   candidate must descend from click-retention's merge commit, checked at
   integration.
 
-The compiled graph's revision receipts are listed in the mission notes;
-`[final]`: anything that changes between now and the mission close.
+The compiled graph was revised four times, each source-only with the
+frontier preserved; the receipts are listed in the mission notes.
 
 ## Orchestration and validation
 
@@ -112,4 +113,20 @@ rate limiter's trusted-proxy rule.
 - **Mission closed** at `59ff9016`, with its backlog recorded in the mission
   notes.
 
-## Metrics `[final]` (regenerated at the last mission close; see `docs/metrics/README.md`)
+## Metrics
+
+From `docs/metrics/README.md`, the run-end refresh (generated
+2026-10-04T05:38:42Z from the live daemon after the last mission closed):
+
+| Instance | E2E latency | Hops | Closures | Retries | Rollback text matches | Human wait | MTTR |
+|---|---|---|---|---|---|---|---|
+| mission lifecycle `03-ambiguous-analytics` | 15.7 h | 9 | 12 | 0 | 1 | 3.9 h | – |
+| `01-analytics-v2` | 8.7 h | 8 | 15 | 0 | 0 | 0 s counted | – |
+
+No step failed, so there is no MTTR (shown as –, not zero). The slice passed
+every check the first time; the ambiguity was settled before design, by the
+human's six decisions. The lifecycle's one rollback match is a coordination
+note ("waiting for your rollback gate completion"), not a rollback. Human wait is the mission plan-lock (13,836 s) and the ship gate
+(92 s). The slice's 22-minute ambiguity park is real but uncounted, because
+the generator recognises only engine gate parks. The slice's latency includes
+the time it waited for mission 02's click work it was stacked on.

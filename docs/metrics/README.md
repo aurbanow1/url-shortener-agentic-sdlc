@@ -1,19 +1,19 @@
 # SDLC reliability metrics
 
-Generated 2026-10-04T04:46:43.295Z by `tools/sdlc-metrics.mjs` from OpenRig workflow trails and queue transition logs (live daemon read).
+Generated 2026-10-04T05:38:42.350Z by `tools/sdlc-metrics.mjs` from OpenRig workflow trails and queue transition logs (live daemon read).
 
 ## Totals
 
 | Metric | Value |
 |---|---|
-| Workflow instances (active / completed / failed / aborted) | 17 (1 / 15 / 0 / 1) |
-| Instance success rate (completed ÷ terminal) | 0.938 |
-| Step closures (failed) | 249 (18) |
-| Step success rate | 0.928 |
+| Workflow instances (active / completed / failed / aborted) | 17 (0 / 16 / 0 / 1) |
+| Instance success rate (completed ÷ terminal) | 0.941 |
+| Step closures (failed) | 254 (18) |
+| Step success rate | 0.929 |
 | Retries (failed closures + step re-entries) | 55 |
-| Rollbacks (revert notes + engine resumes) | 9 |
+| Rollbacks (revert notes + engine resumes) | 10 |
 | MTTR, mean (failed closure → next successful closure of that step) | 29 min |
-| End-to-end latency, completed instances p50 / p95 | 5.6 h / 14.1 h |
+| End-to-end latency, completed instances p50 / p95 | 5.6 h / 15.7 h |
 | Time parked on the human (all gates) | 8.8 h |
 
 ## Per instance
@@ -27,7 +27,7 @@ Generated 2026-10-04T04:46:43.295Z by `tools/sdlc-metrics.mjs` from OpenRig work
 | 01M40CP0JV… | urlshort-slice-delegated | completed | 3.4 h | 13 | 16 | 7 | 0 | 0 s | 36 min |
 | 01M40CPBYR… | urlshort-slice-delegated-b | completed | 5.9 h | 15 | 22 | 10 | 1 | 0 s | 36 min |
 | 01M40RVNDQ… | 03-ambiguous-analytics | completed | 15.7 h | 9 | 12 | 0 | 1 | 3.9 h | – |
-| 01M40SN34E… | 02-brownfield | active | 16.9 h | 5 | 9 | 0 | 1 | 3.6 h | – |
+| 01M40SN34E… | 02-brownfield | completed | 17.7 h | 9 | 14 | 0 | 2 | 3.6 h | – |
 | 01M416Z3CM… | urlshort-slice | completed | 8.7 h | 8 | 15 | 0 | 0 | 0 s | – |
 | 01M416ZY5N… | urlshort-slice-delegated | completed | 6.1 h | 15 | 16 | 10 | 0 | 0 s | 41 min |
 | 01M4170AA9… | urlshort-slice-delegated-b | completed | 7.4 h | 12 | 18 | 6 | 2 | 0 s | 38 min |
@@ -113,3 +113,22 @@ Current factory totals17instances,15completed/1active/1aborted;249closures/18fai
 ## Self-check
 
 The fresh generator output was archived and reproduced from the preserved raw input set: all17 instance rows, packet metrics and totals match, with only live/export labeling normalized. The product and mission03 frozen evidence remain unchanged; no publication.
+
+## Run-end refresh (all instances terminal)
+
+Generated 2026-10-04T05:38:42.350Z with `--live` in a scratch git workspace
+that contains **no** export directories, so every trace and packet was read
+from the daemon and no exported copy could override a newer record. It was run
+after mission 02's `mission_close` (lifecycle `01M40SN34E37K96B38JPG9K41X`
+completed 2026-10-04T05:35:35.988Z), so this is the factory's final state: 17
+instances, 16 completed, 1 aborted (DRILL 4), none active.
+
+Against the mission 02 preparation refresh above, only the mission 02
+lifecycle row changed: active to completed, five more step closures
+(release_review through mission_close), and one more rollback text match. That
+match is the ship sign-off packet, whose gate summary describes the rollback
+recipe; no rollback was executed. Its counted human wait, 12,969 s, is the
+12,869 s mission plan-lock plus the 100 s ship gate. Totals moved accordingly
+(254 closures, 10 rollback heuristic hits, completed-instance E2E p95 15.7 h).
+Every qualification above (scope labels, the rollback heuristic, MTTR as a
+mean of per-instance means, omitted custom parks) still applies.
