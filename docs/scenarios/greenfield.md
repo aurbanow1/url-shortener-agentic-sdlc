@@ -1,7 +1,7 @@
 # Scenario: greenfield — mission `01-greenfield-core`
 
-> Numbers marked `[final]` are copied from `missions/01-greenfield-core/RELEASE.md`
-> and `docs/metrics/` at mission close.
+> Numbers are copied from `missions/01-greenfield-core/RELEASE.md` and the
+> run-end refresh of `docs/metrics/`.
 
 ## Decomposition
 
@@ -44,11 +44,11 @@ What the loops caught before merge:
 ## Validation
 
 - Fresh gate on the shipped SHA: 165 unit + 155 functional tests, 0 failures,
-  442/442 lines and 162/162 branches merged, Javadoc doclint green `[final]`.
+  442/442 lines and 162/162 branches merged, Javadoc doclint green.
 - Installed smoke of the jar and the container on loopback; bench at the
   specified offered rates: redirects 100/s with p95 2.2 ms (target ≤ 20 ms),
   creates 20/s with p95 2.8 ms (≤ 50 ms), no measurable added p95 from click
-  recording `[final]`.
+  recording.
 - OSV: 0 advisories on 97 runtime dependencies (the ten open at the dry run
   were closed by the overrides); secret scan clean.
 - One criterion the human decided: AC-28's published-port clause is cut by
@@ -65,11 +65,11 @@ review from two vantages · release review FAIL → rework → PASS · ship sign
 
 ## Metrics
 
-From `docs/metrics/README.md` (generated 2026-10-03T17:44:03.313Z from the workflow trails and queue transitions exported under `docs/evidence/01-greenfield-core/`):
+From `docs/metrics/README.md`, the run-end refresh (generated 2026-10-04T05:38:42Z from the live daemon after the last mission closed; the slice rows are unchanged from the mission 01 export, and the lifecycle row now includes its own `mission_close`):
 
 | Instance | E2E latency | Hops | Closures | Retries | Rollbacks | Human wait | MTTR |
 |---|---|---|---|---|---|---|---|
-| mission lifecycle `01-greenfield-core` | 14.1 h | 8 | 41 | 0 | 2 | 33 min | – |
+| mission lifecycle `01-greenfield-core` | 14.1 h | 9 | 43 | 0 | 2 | 33 min | – |
 | `01-create-redirect` | 3.3 h | 12 | 13 | 6 | 1 | 0 s | 17 min |
 | `02-analytics` | 3.4 h | 13 | 16 | 7 | 0 | 0 s | 36 min |
 | `03-operate` | 5.9 h | 15 | 22 | 10 | 1 | 0 s | 36 min |

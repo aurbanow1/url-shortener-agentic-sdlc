@@ -22,6 +22,8 @@ locked-artifacts:
     kind: spec
 provenance: transport:v1
 approved-spec-priors: 1
+approved-by: orchestration-lead@urlshort-factory
+approved-at: 2026-10-04T05:26:31.783Z
 ---
 
 # Slice 01 — Audit trail read (moved from mission 01 as its `04-audit-read` by the fast plan of 2026-10-03; prerequisite: mission 01 shipped the `audit_log` table)

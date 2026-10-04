@@ -1,0 +1,105 @@
+{
+  "candidate": "30f8de4e647b05ff54cde09f1019ae519b00069d",
+  "artifact": "container 222433bf5990",
+  "records": [
+    {
+      "label": "health",
+      "command": "scripts/http -sS -i http://127.0.0.1:18241/actuator/health",
+      "chunk_id": "09d754",
+      "wall_time_seconds": 0.00000675,
+      "exit_code": 0,
+      "original_token_count": 61,
+      "output": "HTTP/1.1 200 \r\nX-Request-Id: b8640459-2ab2-4cf9-b19a-ef0328577bea\r\nContent-Type: application/vnd.spring-boot.actuator.v3+json\r\nTransfer-Encoding: chunked\r\nDate: Sun, 04 Oct 2026 04:15:57 GMT\r\n\r\n{\"groups\":[\"liveness\",\"readiness\"],\"status\":\"UP\"}"
+    },
+    {
+      "label": "create",
+      "command": "scripts/http -sS -i -H 'Content-Type: application/json' -d '{\"url\":\"https://example.com/mission02-final\"}' http://127.0.0.1:18241/api/links",
+      "chunk_id": "6c7205",
+      "wall_time_seconds": 0.000006125,
+      "exit_code": 0,
+      "original_token_count": 90,
+      "output": "HTTP/1.1 201 \r\nX-Request-Id: e4e2fc31-9088-49ff-a49b-b0b32b867627\r\nLocation: /api/links/lgGaomzq\r\nContent-Type: application/json\r\nTransfer-Encoding: chunked\r\nDate: Sun, 04 Oct 2026 04:15:57 GMT\r\n\r\n{\"code\":\"lgGaomzq\",\"shortUrl\":\"http://localhost:8080/lgGaomzq\",\"url\":\"https://example.com/mission02-final\",\"state\":\"active\",\"createdAt\":\"2026-10-04T04:15:57.790Z\"}"
+    },
+    {
+      "label": "redirect",
+      "command": "scripts/http -sS -i -H 'Referer: https://example.net/private?q=canary' http://127.0.0.1:18241/lgGaomzq",
+      "chunk_id": "5817b4",
+      "wall_time_seconds": 0.000006,
+      "exit_code": 0,
+      "original_token_count": 50,
+      "output": "HTTP/1.1 302 \r\nX-Request-Id: 34dd527f-1e75-4775-8bff-066fe466982a\r\nLocation: https://example.com/mission02-final\r\nCache-Control: no-store\r\nContent-Length: 0\r\nDate: Sun, 04 Oct 2026 04:15:57 GMT\r\n\r\n"
+    },
+    {
+      "label": "head",
+      "command": "scripts/http -sS -I http://127.0.0.1:18241/lgGaomzq",
+      "chunk_id": "bb0a74",
+      "wall_time_seconds": 0.000007166,
+      "exit_code": 0,
+      "original_token_count": 45,
+      "output": "HTTP/1.1 302 \r\nX-Request-Id: 9b49323b-0f70-4643-bcd6-1d329ba90602\r\nLocation: https://example.com/mission02-final\r\nCache-Control: no-store\r\nDate: Sun, 04 Oct 2026 04:15:57 GMT\r\n\r\n"
+    },
+    {
+      "label": "read",
+      "command": "scripts/http -sS -i http://127.0.0.1:18241/api/links/lgGaomzq",
+      "chunk_id": "150a1c",
+      "wall_time_seconds": 0.000006458,
+      "exit_code": 0,
+      "original_token_count": 81,
+      "output": "HTTP/1.1 200 \r\nX-Request-Id: 28ce0e7e-5c5b-4f2f-9124-1341efe69a11\r\nContent-Type: application/json\r\nContent-Length: 163\r\nDate: Sun, 04 Oct 2026 04:15:57 GMT\r\n\r\n{\"code\":\"lgGaomzq\",\"shortUrl\":\"http://localhost:8080/lgGaomzq\",\"url\":\"https://example.com/mission02-final\",\"state\":\"active\",\"createdAt\":\"2026-10-04T04:15:57.790Z\"}"
+    },
+    {
+      "label": "stats",
+      "command": "scripts/http -sS -i http://127.0.0.1:18241/api/links/lgGaomzq/stats",
+      "chunk_id": "d062a3",
+      "wall_time_seconds": 0.000006208,
+      "exit_code": 0,
+      "original_token_count": 85,
+      "output": "HTTP/1.1 200 \r\nX-Request-Id: a4849810-3ebc-46ff-810b-0935e33878fc\r\nContent-Type: application/json\r\nContent-Length: 181\r\nDate: Sun, 04 Oct 2026 04:15:58 GMT\r\n\r\n{\"code\":\"lgGaomzq\",\"totalClicks\":1,\"clicksPerDay\":[{\"date\":\"2026-10-04\",\"clicks\":1,\"uniqueVisitors\":1,\"botClicks\":0}],\"topReferrers\":[{\"referrer\":\"https://example.net\",\"clicks\":1}]}"
+    },
+    {
+      "label": "bad-create",
+      "command": "scripts/http -sS -i -H 'Content-Type: application/json' -d '{\"url\":\"not-a-url-final-canary\"}' http://127.0.0.1:18241/api/links",
+      "chunk_id": "9a7638",
+      "wall_time_seconds": 0.00000625,
+      "exit_code": 0,
+      "original_token_count": 96,
+      "output": "HTTP/1.1 400 \r\nX-Request-Id: f95c9b3c-5c03-47f2-9b17-fa391248963e\r\nContent-Type: application/problem+json\r\nTransfer-Encoding: chunked\r\nDate: Sun, 04 Oct 2026 04:15:58 GMT\r\nConnection: close\r\n\r\n{\"instance\":\"urn:uuid:f95c9b3c-5c03-47f2-9b17-fa391248963e\",\"status\":400,\"title\":\"Bad Request\",\"errors\":[{\"field\":\"url\",\"rule\":\"scheme\",\"message\":\"url must start with http:// or https://\"}]}"
+    },
+    {
+      "label": "unknown",
+      "command": "scripts/http -sS -i http://127.0.0.1:18241/api/links/notfoundfinal",
+      "chunk_id": "a7e65d",
+      "wall_time_seconds": 0.000007291,
+      "exit_code": 0,
+      "original_token_count": 67,
+      "output": "HTTP/1.1 404 \r\nX-Request-Id: 72266fd7-7f14-4e7a-a04e-5e5e9fac6242\r\nContent-Type: application/problem+json\r\nTransfer-Encoding: chunked\r\nDate: Sun, 04 Oct 2026 04:15:58 GMT\r\n\r\n{\"instance\":\"urn:uuid:72266fd7-7f14-4e7a-a04e-5e5e9fac6242\",\"status\":404,\"title\":\"Not Found\"}"
+    },
+    {
+      "label": "forged-audit",
+      "command": "scripts/http -sS -i -H 'X-Forwarded-For: 127.0.0.1' http://127.0.0.1:18241/api/links/lgGaomzq/audit",
+      "chunk_id": "716b2d",
+      "wall_time_seconds": 0.000006167,
+      "exit_code": 0,
+      "original_token_count": 67,
+      "output": "HTTP/1.1 404 \r\nX-Request-Id: 9f80c420-5100-4811-8eee-3983f20ef3aa\r\nContent-Type: application/problem+json\r\nTransfer-Encoding: chunked\r\nDate: Sun, 04 Oct 2026 04:15:58 GMT\r\n\r\n{\"instance\":\"urn:uuid:9f80c420-5100-4811-8eee-3983f20ef3aa\",\"status\":404,\"title\":\"Not Found\"}"
+    },
+    {
+      "label": "retire",
+      "command": "scripts/http -sS -i -X DELETE http://127.0.0.1:18241/api/links/lgGaomzq",
+      "chunk_id": "d0050d",
+      "wall_time_seconds": 0.000006708,
+      "exit_code": 0,
+      "original_token_count": 27,
+      "output": "HTTP/1.1 204 \r\nX-Request-Id: b8b9e604-e98c-4cc4-90d4-6c979715d627\r\nDate: Sun, 04 Oct 2026 04:15:58 GMT\r\n\r\n"
+    },
+    {
+      "label": "retired-redirect",
+      "command": "scripts/http -sS -i http://127.0.0.1:18241/lgGaomzq",
+      "chunk_id": "23b1fb",
+      "wall_time_seconds": 0.000006708,
+      "exit_code": 0,
+      "original_token_count": 66,
+      "output": "HTTP/1.1 410 \r\nX-Request-Id: 195b298b-27c4-4be4-8525-dbc0d5caf583\r\nContent-Type: application/problem+json\r\nTransfer-Encoding: chunked\r\nDate: Sun, 04 Oct 2026 04:15:58 GMT\r\n\r\n{\"instance\":\"urn:uuid:195b298b-27c4-4be4-8525-dbc0d5caf583\",\"status\":410,\"title\":\"Gone\"}"
+    }
+  ]
+}

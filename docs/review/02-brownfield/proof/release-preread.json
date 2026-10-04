@@ -1,0 +1,1171 @@
+{
+  "historical_package": "47e3a07",
+  "metrics_pin": "8d3c536",
+  "checks": {
+    "source_inventory_rows": [
+      134,
+      134
+    ],
+    "artifact_hashes": {
+      "hostJar": {
+        "bytes": 39635446,
+        "sha256": "fbe67b61f0f6f668e65949bc01a92802e5de64015ca78eb2d6bbc0462b2ebde2"
+      },
+      "imageJar": {
+        "bytes": 39635446,
+        "sha256": "fbe67b61f0f6f668e65949bc01a92802e5de64015ca78eb2d6bbc0462b2ebde2"
+      }
+    },
+    "coverage": {
+      "INSTRUCTION": {
+        "covered": 2929,
+        "missed": 0
+      },
+      "BRANCH": {
+        "covered": 206,
+        "missed": 0
+      },
+      "LINE": {
+        "covered": 581,
+        "missed": 0
+      },
+      "COMPLEXITY": {
+        "covered": 266,
+        "missed": 0
+      },
+      "METHOD": {
+        "covered": 163,
+        "missed": 0
+      },
+      "CLASS": {
+        "covered": 51,
+        "missed": 0
+      }
+    },
+    "gate_log_success": true,
+    "rollback": {
+      "archive_sha256": "f9c180b250c2e136b0361d313f4589acfa0b3cceb1269036e95a27f2f786ee24",
+      "stages": {
+        "before": {
+          "rows_excluding_header": {
+            "link.csv": 1203,
+            "audit_log.csv": 1204,
+            "click.csv": 12003,
+            "user_agent_class.csv": 4
+          },
+          "columns": 48,
+          "constraints": 12,
+          "versions": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        "after-v4": {
+          "rows_excluding_header": {
+            "link.csv": 1203,
+            "audit_log.csv": 1204,
+            "click.csv": 12003,
+            "user_agent_class.csv": 4
+          },
+          "columns": 41,
+          "constraints": 12,
+          "versions": [
+            "1",
+            "2",
+            "3"
+          ],
+          "removed_columns": [
+            [
+              "AUDIT_LOG",
+              "CREATED_AT"
+            ],
+            [
+              "AUDIT_LOG",
+              "CREATED_BY"
+            ],
+            [
+              "AUDIT_LOG",
+              "UPDATED_AT"
+            ],
+            [
+              "AUDIT_LOG",
+              "UPDATED_BY"
+            ],
+            [
+              "LINK",
+              "CREATED_BY"
+            ],
+            [
+              "LINK",
+              "UPDATED_AT"
+            ],
+            [
+              "LINK",
+              "UPDATED_BY"
+            ]
+          ]
+        },
+        "after-v3": {
+          "rows_excluding_header": {
+            "link.csv": 1203,
+            "audit_log.csv": 1204,
+            "click.csv": 12003,
+            "user_agent_class.csv": 4
+          },
+          "columns": 33,
+          "constraints": 12,
+          "versions": [
+            "1",
+            "2"
+          ],
+          "removed_columns": [
+            [
+              "CLICK",
+              "CREATED_AT"
+            ],
+            [
+              "CLICK",
+              "CREATED_BY"
+            ],
+            [
+              "CLICK",
+              "UPDATED_AT"
+            ],
+            [
+              "CLICK",
+              "UPDATED_BY"
+            ],
+            [
+              "USER_AGENT_CLASS",
+              "CREATED_AT"
+            ],
+            [
+              "USER_AGENT_CLASS",
+              "CREATED_BY"
+            ],
+            [
+              "USER_AGENT_CLASS",
+              "UPDATED_AT"
+            ],
+            [
+              "USER_AGENT_CLASS",
+              "UPDATED_BY"
+            ]
+          ]
+        },
+        "reapplied": {
+          "rows_excluding_header": {
+            "link.csv": 1204,
+            "audit_log.csv": 1206,
+            "click.csv": 12004,
+            "user_agent_class.csv": 4
+          },
+          "columns": 48,
+          "constraints": 12,
+          "versions": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ]
+        }
+      },
+      "unchanged_hashes": {
+        "link.csv": "ce7846db820dd380db42632712c9462a4e89fd2e6a4967d8624d9e8225814ba5",
+        "audit_log.csv": "434f798418ad0d9bcc0081579a0eb35824c7be1b73ae3713ec86c7eb60551fc1",
+        "click.csv": "5f41c89e4e040a7dc31631e5b9b533e2830f14224f9f5f570e40ad16e62b7c61",
+        "user_agent_class.csv": "c7143b0ca2e90c912d376d5b7acc30f1519638b92493f4fae3bbce1e9574485f"
+      }
+    },
+    "clicks_per_link": {
+      "1": 1,
+      "2": 2,
+      "3": 12000
+    },
+    "stored_probe": {
+      "clicks": 2,
+      "unique_hashes": 1,
+      "classes": {
+        "bot": 1,
+        "browser": 1
+      }
+    },
+    "wire": {
+      "jar_response_log_joins": 7,
+      "stats": [
+        {
+          "code": "snUv3xWU",
+          "totalClicks": 2,
+          "clicksPerDay": [
+            {
+              "date": "2026-10-04",
+              "clicks": 2,
+              "uniqueVisitors": 1,
+              "botClicks": 1
+            }
+          ],
+          "topReferrers": []
+        },
+        {
+          "code": "GBWj1f3N",
+          "totalClicks": 2,
+          "clicksPerDay": [
+            {
+              "date": "2026-10-04",
+              "clicks": 2,
+              "uniqueVisitors": 1,
+              "botClicks": 1
+            }
+          ],
+          "topReferrers": []
+        }
+      ],
+      "request_log_status_counts": {
+        "200": 15,
+        "405": 1,
+        "201": 1203,
+        "302": 18004,
+        "400": 2,
+        "404": 3,
+        "204": 1,
+        "410": 1,
+        "403": 1
+      },
+      "probe": {
+        "clicks": 2,
+        "unique_hashes": 1,
+        "classes": {
+          "bot": 1,
+          "browser": 1
+        }
+      }
+    },
+    "bench_summary": "# Mission 02 pre-run benchmark\n# Candidate e227acf04e1ea902406532fcebd741f8a86f7f65\n# Artifact: /private/tmp/urlshort-mission02-e227acf.jar, port 18220, same host\n# Tool: scripts/smoke.sh --bench -> tools/bench.mjs, open loop, keep-alive, due-time latency\n# Host coordination: release2's mission03 rollback gate completed before this run;\n# no release2 load generator or Gradle process remained active. This is a single\n# macOS/Colima host observation, not a capacity claim.\n#\n# 1. redirects 100 req/s and creates 20 req/s together for 60 s\ncreate POST /api/links: 1200 requests in 59952 ms (offered 20 req/s for 60 s), achieved 20.0 req/s, non-2xx/3xx 0, p50 1.9 ms, p95 3.7 ms, p99 7.7 ms\nredirect GET /{code}: 6000 requests in 59995 ms (offered 100 req/s for 60 s), achieved 100.0 req/s, non-2xx/3xx 0, p50 1.5 ms, p95 3.0 ms, p99 6.3 ms\n# 2. redirect GET alone at 100 req/s for 60 s\nredirect GET /{code} alone: 6000 requests in 59991 ms (offered 100 req/s for 60 s), achieved 100.0 req/s, non-2xx/3xx 0, p50 1.4 ms, p95 4.0 ms, p99 16.2 ms\n# 3. redirect HEAD alone at 100 req/s for 60 s\nredirect HEAD /{code} alone: 6000 requests in 59992 ms (offered 100 req/s for 60 s), achieved 100.0 req/s, non-2xx/3xx 0, p50 1.4 ms, p95 2.3 ms, p99 5.2 ms\n# GET-minus-HEAD p95 comparison: 1.7 ms. It is a separate-distribution\n# comparison proxy for the click-recording share, not an isolated added-cost\n# quantile. NFR-L3 is therefore qualified by this limitation.\n",
+    "metrics": {
+      "totals": {
+        "generatedAt": "2026-10-04T01:52:27.811Z",
+        "instances": 17,
+        "active": 3,
+        "completed": 13,
+        "failed": 0,
+        "aborted": 1,
+        "instanceSuccessRate": 0.929,
+        "stepClosures": 230,
+        "failedClosures": 17,
+        "stepSuccessRate": 0.926,
+        "retries": 51,
+        "rollbacks": 8,
+        "mttrMeanSec": 1652,
+        "e2eP50Sec": 20200,
+        "e2eP95Sec": 31241,
+        "humanWaitTotalSec": 31434
+      },
+      "instance_rows": [
+        {
+          "instance": "01M3Z8AJ1EDFTHQ1HPAWPNP2YN",
+          "status": "completed",
+          "stepClosures": 21,
+          "failedClosures": 0,
+          "reentries": 0,
+          "retries": 0,
+          "rollbacks": 0,
+          "humanWaitSec": 1870,
+          "mttrSec": null,
+          "e2eLatencySec": 20218
+        },
+        {
+          "instance": "01M3ZA8Q39QEB3R1QDQCVTER18",
+          "status": "completed",
+          "stepClosures": 14,
+          "failedClosures": 2,
+          "reentries": 4,
+          "retries": 6,
+          "rollbacks": 0,
+          "humanWaitSec": 869,
+          "mttrSec": 1244,
+          "e2eLatencySec": 13597
+        },
+        {
+          "instance": "01M3ZXEXAMS945ZS0QZ26KZK1V",
+          "status": "completed",
+          "stepClosures": 43,
+          "failedClosures": 0,
+          "reentries": 0,
+          "retries": 0,
+          "rollbacks": 2,
+          "humanWaitSec": 1990,
+          "mttrSec": null,
+          "e2eLatencySec": 50872
+        },
+        {
+          "instance": "01M40149S2BGCAKVK83B6VCNKG",
+          "status": "completed",
+          "stepClosures": 13,
+          "failedClosures": 2,
+          "reentries": 4,
+          "retries": 6,
+          "rollbacks": 1,
+          "humanWaitSec": 0,
+          "mttrSec": 1025,
+          "e2eLatencySec": 11917
+        },
+        {
+          "instance": "01M40CP0JVZZWR8226MNN8XCCV",
+          "status": "completed",
+          "stepClosures": 16,
+          "failedClosures": 2,
+          "reentries": 5,
+          "retries": 7,
+          "rollbacks": 0,
+          "humanWaitSec": 0,
+          "mttrSec": 2189,
+          "e2eLatencySec": 12301
+        },
+        {
+          "instance": "01M40CPBYR97637QGHT57BNEBY",
+          "status": "completed",
+          "stepClosures": 22,
+          "failedClosures": 3,
+          "reentries": 7,
+          "retries": 10,
+          "rollbacks": 1,
+          "humanWaitSec": 0,
+          "mttrSec": 2181,
+          "e2eLatencySec": 21255
+        },
+        {
+          "instance": "01M40RVNDQ0KT7FPWN1KJW0DC3",
+          "status": "active",
+          "stepClosures": 5,
+          "failedClosures": 0,
+          "reentries": 0,
+          "retries": 0,
+          "rollbacks": 1,
+          "humanWaitSec": 13836,
+          "mttrSec": null,
+          "e2eLatencySec": 51313
+        },
+        {
+          "instance": "01M40SN34E37K96B38JPG9K41X",
+          "status": "waiting",
+          "stepClosures": 8,
+          "failedClosures": 0,
+          "reentries": 0,
+          "retries": 0,
+          "rollbacks": 1,
+          "humanWaitSec": 12869,
+          "mttrSec": null,
+          "e2eLatencySec": 50480
+        },
+        {
+          "instance": "01M416Z3CM54YQTX93V4KG0CPS",
+          "status": "completed",
+          "stepClosures": 15,
+          "failedClosures": 0,
+          "reentries": 0,
+          "retries": 0,
+          "rollbacks": 0,
+          "humanWaitSec": 0,
+          "mttrSec": null,
+          "e2eLatencySec": 31241
+        },
+        {
+          "instance": "01M416ZY5N11CDGZBM2DT4GAXS",
+          "status": "completed",
+          "stepClosures": 16,
+          "failedClosures": 3,
+          "reentries": 7,
+          "retries": 10,
+          "rollbacks": 0,
+          "humanWaitSec": 0,
+          "mttrSec": 2479,
+          "e2eLatencySec": 22077
+        },
+        {
+          "instance": "01M4170AA9E72WW1BXEA5PX0AP",
+          "status": "completed",
+          "stepClosures": 18,
+          "failedClosures": 2,
+          "reentries": 4,
+          "retries": 6,
+          "rollbacks": 2,
+          "humanWaitSec": 0,
+          "mttrSec": 2265,
+          "e2eLatencySec": 26647
+        },
+        {
+          "instance": "01M41B1ABGY3WR0DKEPZCJE9D3",
+          "status": "aborted",
+          "stepClosures": 2,
+          "failedClosures": 2,
+          "reentries": 1,
+          "retries": 3,
+          "rollbacks": 1,
+          "humanWaitSec": 0,
+          "mttrSec": null,
+          "e2eLatencySec": 174
+        },
+        {
+          "instance": "01M41HFT4CTYPNWWNB8PJ99NFE",
+          "status": "completed",
+          "stepClosures": 9,
+          "failedClosures": 0,
+          "reentries": 0,
+          "retries": 0,
+          "rollbacks": 0,
+          "humanWaitSec": 0,
+          "mttrSec": null,
+          "e2eLatencySec": 6340
+        },
+        {
+          "instance": "01M41HG4P6DEVAKTCJC6J9QAWP",
+          "status": "completed",
+          "stepClosures": 11,
+          "failedClosures": 0,
+          "reentries": 0,
+          "retries": 0,
+          "rollbacks": 0,
+          "humanWaitSec": 0,
+          "mttrSec": null,
+          "e2eLatencySec": 20200
+        },
+        {
+          "instance": "01M41HGF6AHB6AZR3Q0KQ8MQR7",
+          "status": "completed",
+          "stepClosures": 10,
+          "failedClosures": 0,
+          "reentries": 0,
+          "retries": 0,
+          "rollbacks": 0,
+          "humanWaitSec": 0,
+          "mttrSec": null,
+          "e2eLatencySec": 14513
+        },
+        {
+          "instance": "01M4212A8BKA6JRZHZQBD90D07",
+          "status": "completed",
+          "stepClosures": 4,
+          "failedClosures": 1,
+          "reentries": 2,
+          "retries": 3,
+          "rollbacks": 0,
+          "humanWaitSec": 0,
+          "mttrSec": 184,
+          "e2eLatencySec": 732
+        },
+        {
+          "instance": "01M425CY9Z4K03G14Y677AT0PA",
+          "status": "active",
+          "stepClosures": 6,
+          "failedClosures": 0,
+          "reentries": 0,
+          "retries": 0,
+          "rollbacks": 0,
+          "humanWaitSec": 0,
+          "mttrSec": null,
+          "e2eLatencySec": 4609
+        }
+      ],
+      "non_success_mttr_endpoints": [],
+      "event_weighted_mttr_seconds": 1841,
+      "raw_export_differences": [
+        {
+          "packet": "qitem-20261004004828-05d2aab9",
+          "field": "rollbackNotes",
+          "from_raw": 1,
+          "reported": 0,
+          "source": "docs/evidence/02-brownfield/packets/qitem-20261004004828-05d2aab9.transitions.json"
+        },
+        {
+          "instance": "01M40RVNDQ0KT7FPWN1KJW0DC3",
+          "field": "rollbacks",
+          "from_raw": 1,
+          "reported": 0
+        },
+        {
+          "instance": "01M425CY9Z4K03G14Y677AT0PA",
+          "field": "stepClosures",
+          "from_raw": 6,
+          "reported": 3
+        },
+        {
+          "field": "stepClosures",
+          "from_raw": 233,
+          "reported": 230
+        },
+        {
+          "field": "rollbacks",
+          "from_raw": 9,
+          "reported": 8
+        }
+      ],
+      "not_first_success_endpoints": []
+    },
+    "secret_scan": {
+      "text_blobs": 9236,
+      "binary_blobs_not_scanned": 497,
+      "positive_controls": [
+        "private key",
+        "AWS access key",
+        "GitHub token"
+      ],
+      "findings": []
+    },
+    "historical_advisory_response": {
+      "queriedAt": "2026-10-04T01:06:49.753Z",
+      "queries": 97,
+      "empty_results": 97,
+      "network_requery": false
+    },
+    "drills": {
+      "drill1": {
+        "closures": [
+          [
+            "implement",
+            "handoff",
+            "2026-10-03T23:21:32.117Z"
+          ],
+          [
+            "qa_check",
+            "failed",
+            "2026-10-03T23:29:04.090Z"
+          ],
+          [
+            "implement",
+            "handoff",
+            "2026-10-03T23:30:41.601Z"
+          ],
+          [
+            "qa_check",
+            "done",
+            "2026-10-03T23:32:07.695Z"
+          ]
+        ],
+        "authorization": 1602
+      },
+      "drill2": {
+        "reverted_tree_identical_to": "ad83fb6",
+        "revert": "ef2272e",
+        "failed_and_passed_smoke_logs": true
+      },
+      "drill3": {
+        "stranded_unclaimed": true,
+        "route": 986,
+        "zero_step_advance": true,
+        "restored_ready": true
+      },
+      "drill4": {
+        "aborted": true,
+        "resume_count": 1,
+        "redrive_canceled": true,
+        "aborted_resume_rejection": "lead-attributed receipt 1006"
+      }
+    },
+    "links": {
+      "count": 70,
+      "missing_files": [],
+      "unmatched_anchors": [],
+      "targets": [
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/release/pre-run-e227acf/gate-artifact.json",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/release/pre-run-e227acf/toolchain.txt",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/release/pre-run-e227acf/artifact-comparison.json",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/release/pre-run-e227acf/image-inspect.json",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/release/pre-run-e227acf/docker-build.txt",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "docs/guidance/ci-cd.md",
+          "anchor": "5-release-package"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "scripts/smoke.sh",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/release/pre-run-e227acf/container-smoke.txt",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/release/pre-run-e227acf/jar.jsonl",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/release/pre-run-e227acf/installed-v2.json",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/release/pre-run-e227acf/advisories.json",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/release/pre-run-e227acf/secret-scan.json",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "docs/review/REVIEW-LEDGER.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/slices/01-audit-read/SPEC.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/slices/01-audit-read/design.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/slices/01-audit-read/PROOF.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "docs/qa/coverage/01-audit-read/SUMMARY.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/slices/02-click-retention/SPEC.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/slices/02-click-retention/design.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/slices/02-click-retention/PROOF.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "docs/qa/coverage/02-click-retention/SUMMARY.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/slices/03-dogfood-fix/SPEC.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/slices/03-dogfood-fix/design.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/slices/03-dogfood-fix/PROOF.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "docs/qa/coverage/03-dogfood-fix/SUMMARY.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/slices/04-audit-columns/SPEC.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/slices/04-audit-columns/design.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/slices/04-audit-columns/PROOF.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "docs/qa/coverage/04-audit-columns/SUMMARY.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/slices/05-ci-cd/SPEC.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/slices/05-ci-cd/design.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/slices/05-ci-cd/PROOF.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "docs/qa/coverage/05-ci-cd/SUMMARY.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "docs/qa/dogfood/02-brownfield.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/release/pre-run-e227acf/bench.txt",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/release/pre-run-e227acf/GAPS-snapshot.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "docs/qa/GAPS.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/release/pre-run-e227acf/rollback-verification.md",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/release/pre-run-e227acf/rollback-v4.sql",
+          "anchor": ""
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "missions/02-brownfield/release/pre-run-e227acf/rollback-v3.sql",
+          "anchor": ""
+        },
+        {
+          "from": "docs/scenarios/drills.md",
+          "target": "docs/evidence/02-brownfield/drills/drill1/INDEX.md",
+          "anchor": ""
+        },
+        {
+          "from": "docs/scenarios/drills.md",
+          "target": "docs/evidence/02-brownfield/drills/drill1-qa-594c9c9.md",
+          "anchor": ""
+        },
+        {
+          "from": "docs/scenarios/drills.md",
+          "target": "docs/evidence/02-brownfield/drills/drill1-qa-8227b8c.md",
+          "anchor": ""
+        },
+        {
+          "from": "docs/scenarios/drills.md",
+          "target": "docs/review/01-audit-read/01-code-review.md",
+          "anchor": ""
+        },
+        {
+          "from": "docs/scenarios/drills.md",
+          "target": "docs/review/01-audit-read/02-security-review.md",
+          "anchor": ""
+        },
+        {
+          "from": "docs/scenarios/drills.md",
+          "target": "docs/review/01-audit-read/proof/code-controls-35590f0.txt",
+          "anchor": ""
+        },
+        {
+          "from": "docs/scenarios/drills.md",
+          "target": "docs/qa/01-audit-read/findings.md",
+          "anchor": ""
+        },
+        {
+          "from": "docs/scenarios/drills.md",
+          "target": "missions/02-brownfield/slices/01-audit-read/design.md",
+          "anchor": ""
+        },
+        {
+          "from": "docs/scenarios/drills.md",
+          "target": "missions/02-brownfield/slices/01-audit-read/PROOF.md",
+          "anchor": ""
+        },
+        {
+          "from": "docs/scenarios/drills.md",
+          "target": "missions/02-brownfield/NOTES.md",
+          "anchor": ""
+        },
+        {
+          "from": "docs/scenarios/drills.md",
+          "target": "missions/02-brownfield/NOTES.md",
+          "anchor": ""
+        },
+        {
+          "from": "docs/scenarios/drills.md",
+          "target": "missions/02-brownfield/NOTES.md",
+          "anchor": ""
+        },
+        {
+          "from": "docs/scenarios/drills.md",
+          "target": "missions/03-ambiguous-analytics/NOTES.md",
+          "anchor": ""
+        },
+        {
+          "from": "docs/scenarios/drills.md",
+          "target": "missions/02-brownfield/NOTES.md",
+          "anchor": ""
+        },
+        {
+          "from": "docs/scenarios/drills.md",
+          "target": "missions/03-ambiguous-analytics/release/rollback.patch",
+          "anchor": ""
+        },
+        {
+          "from": "docs/scenarios/drills.md",
+          "target": "missions/03-ambiguous-analytics/release/rollback-check-50ad9c3.txt",
+          "anchor": ""
+        },
+        {
+          "from": "docs/scenarios/drills.md",
+          "target": "missions/03-ambiguous-analytics/release/rollback-gate-summary-50ad9c3.json",
+          "anchor": ""
+        },
+        {
+          "from": "docs/scenarios/drills.md",
+          "target": "missions/03-ambiguous-analytics/release/rollback-smoke-50ad9c3.txt",
+          "anchor": ""
+        },
+        {
+          "from": "docs/scenarios/drills.md",
+          "target": "missions/03-ambiguous-analytics/release/rollback-stats-before-50ad9c3.txt",
+          "anchor": ""
+        },
+        {
+          "from": "docs/scenarios/drills.md",
+          "target": "missions/03-ambiguous-analytics/release/rollback-counter-50ad9c3.txt",
+          "anchor": ""
+        },
+        {
+          "from": "docs/scenarios/drills.md",
+          "target": "missions/03-ambiguous-analytics/release/teardown-50ad9c3.json",
+          "anchor": ""
+        },
+        {
+          "from": "docs/scenarios/drills.md",
+          "target": "missions/03-ambiguous-analytics/RELEASE.md",
+          "anchor": "8-rollback"
+        },
+        {
+          "from": "README.md",
+          "target": "docs/RUNBOOK.md",
+          "anchor": ""
+        },
+        {
+          "from": "README.md",
+          "target": "missions/03-ambiguous-analytics/slices/01-analytics-v2/SPEC.md",
+          "anchor": ""
+        },
+        {
+          "from": "README.md",
+          "target": ".github/workflows/ci.yml",
+          "anchor": ""
+        },
+        {
+          "from": "README.md",
+          "target": ".github/workflows/cd.yml",
+          "anchor": ""
+        },
+        {
+          "from": "README.md",
+          "target": ".github/dependabot.yml",
+          "anchor": ""
+        },
+        {
+          "from": "README.md",
+          "target": "docs/guidance/ci-cd.md",
+          "anchor": ""
+        },
+        {
+          "from": "README.md",
+          "target": "missions/02-brownfield/slices/05-ci-cd/PROOF.md",
+          "anchor": "ac-13-first-github-runs-recorded-by-the-operator-2026-10-03"
+        },
+        {
+          "from": "README.md",
+          "target": "docs/SETUP-FACTORY.md",
+          "anchor": ""
+        }
+      ]
+    },
+    "historical_input_hashes": {
+      "missions/02-brownfield/release/pre-run-e227acf/gate-artifact.json": "b7f8734ad21bd6cf1836cd4a4cd8c402b1c20c67458dc2d00df30176b8fc87b3",
+      "missions/02-brownfield/release/pre-run-e227acf/source-before.json": "bae9923c7ee1a3998e3ce56e025963cc1ecc482fae04e683a367d5e2979b9d68",
+      "missions/02-brownfield/release/pre-run-e227acf/source-after-gate.json": "586d2f6bf19ea5385709e14c266a465504c02903d6ebd041c3776566b3ad5f94",
+      "missions/02-brownfield/release/pre-run-e227acf/artifact-comparison.json": "5940d72f78b0b21b735b053279f45a47097e556d720ec5615cfe226b19b9e75c",
+      "missions/02-brownfield/release/pre-run-e227acf/coverage-report-hashes.json": "cbce0242dc089d86659eacd65a3030fa1fdeed97cc75919e4eab21d297da2207",
+      "missions/02-brownfield/release/pre-run-e227acf/canonical-jacocoTestReport.xml": "667243ffa20cb9a8e99bcbae1eaec79d19ebec7c6705a2957ff932a21db1d8fd",
+      "missions/02-brownfield/release/pre-run-e227acf/canonical-jacocoTestReport.csv": "0b952e9d6a458cbd40dbf5139c2bbde0e3bfde8c17218b2e0f0a7d77a221e9fb",
+      "missions/02-brownfield/release/pre-run-e227acf/coverage-canonical.json": "0938283b7c510e2f75da0d9be87ef7c7cf1da095cf2d71ef44153e0e0dcf9fe9",
+      "missions/02-brownfield/release/pre-run-e227acf/check-bootjar.txt": "33603477cae24e25b686ec934b8f970d99ff3fef049c18f063bf2c9d6f50adf7",
+      "missions/02-brownfield/release/pre-run-e227acf/rollback-v3.sql": "06252fcd931fbe1252fe195dc9f2fcc26d44ee9cfa6dc9985d76fe1a2c068477",
+      "missions/02-brownfield/release/pre-run-e227acf/rollback-v4.sql": "03472f6a00ca961de4b6937adacc4157d22882472d65a3e0f4c4ca808c631fb2",
+      "missions/02-brownfield/release/pre-run-e227acf/rollback-reapplied-smoke.txt": "280816d97298c8e0fe9a705491f4f92e854be49987f3db868c6a0524347e02f3",
+      "missions/02-brownfield/release/pre-run-e227acf/installed-v2.json": "fcaf51aab6e38ede9309104f19583c049c5de393860112734b5af21e44558b76",
+      "missions/02-brownfield/release/pre-run-e227acf/jar.jsonl": "7a18a1ffeeb7cfcc2661012cf0cedbee0a57ff6555a65a9d00e7eb17dc71ba8d",
+      "missions/02-brownfield/release/pre-run-e227acf/jar-prometheus.txt": "0a11dc02dc759aed8250d6ca5447a3cc2589d74f56f7315572577165e616ad8a",
+      "missions/02-brownfield/release/pre-run-e227acf/container-prometheus.txt": "bedeea50edfbbba57820f53bb7809e553cb738bf8afc35fc1a4775d0a7f7f13e",
+      "missions/02-brownfield/release/pre-run-e227acf/bench.txt": "7aef418b6c0c080a6a2a5bd9b68ab5de70a20a372199c09f64ee727e4749ff77",
+      "docs/metrics/metrics.json": "c26f9df5eaa5f30410411e11b712b6cd9cc52ca2b62ae6a064e45f065a05fa57",
+      "docs/evidence/00-hello/instances/01M3Z8AJ1EDFTHQ1HPAWPNP2YN.trace.json": "796a518b44aab95389f8767dd4012280e9b797049fcdc7ad2a0f95a5fcc91600",
+      "docs/evidence/00-hello/instances/01M3ZA8Q39QEB3R1QDQCVTER18.trace.json": "37d2846b2f21960b18cc8deebee427c7a9502d3fc85e5f9ac0acf2e8fca04ae2",
+      "docs/evidence/01-greenfield-core/instances/01M3Z8AJ1EDFTHQ1HPAWPNP2YN.trace.json": "796a518b44aab95389f8767dd4012280e9b797049fcdc7ad2a0f95a5fcc91600",
+      "docs/evidence/01-greenfield-core/instances/01M3ZA8Q39QEB3R1QDQCVTER18.trace.json": "37d2846b2f21960b18cc8deebee427c7a9502d3fc85e5f9ac0acf2e8fca04ae2",
+      "docs/evidence/01-greenfield-core/instances/01M3ZXEXAMS945ZS0QZ26KZK1V.trace.json": "fb4998ae134fd2451ad500e9f08fc76e015ca414c3d79e5711f9175e3716c6e5",
+      "docs/evidence/01-greenfield-core/instances/01M40149S2BGCAKVK83B6VCNKG.trace.json": "0d5c818c0009fb7b55680fe6c04a6205c086cdabdbadef3b0fe46fd9e1b5552b",
+      "docs/evidence/01-greenfield-core/instances/01M40CP0JVZZWR8226MNN8XCCV.trace.json": "a2fd414f708c2c471cc0dae878e36d36d1589542f71f5f77c4f31734b41d215c",
+      "docs/evidence/01-greenfield-core/instances/01M40CPBYR97637QGHT57BNEBY.trace.json": "fcd3bb1112ed1059bcbf9580c66565e1ea3b164651917ed49245e2627cf5afec",
+      "docs/evidence/01-greenfield-core/instances/01M40RVNDQ0KT7FPWN1KJW0DC3.trace.json": "994bbc1f7fd1d7da5e0bf2e75a654420ad3572e8eed8d408620e4fbc05c9444a",
+      "docs/evidence/01-greenfield-core/instances/01M40SN34E37K96B38JPG9K41X.trace.json": "cff7b056c1b829b6facb54e72c67cedffc2ebb639bfb26bea5450feb8c309e00",
+      "docs/evidence/01-greenfield-core/instances/01M416Z3CM54YQTX93V4KG0CPS.trace.json": "d87e0e63a8308bed600cba6f76bd2cb6425e994f082368125cea83d9df4bb046",
+      "docs/evidence/01-greenfield-core/instances/01M416ZY5N11CDGZBM2DT4GAXS.trace.json": "b63d2ffd732ef232ce3ac4ade1a59fe2f8f06c57a677041a54b00151ee7f3100",
+      "docs/evidence/01-greenfield-core/instances/01M4170AA9E72WW1BXEA5PX0AP.trace.json": "951077f02eb15332696e615c47378188461e1b6daf77f87a9edb8ea82af2a70f",
+      "docs/evidence/01-greenfield-core/instances/01M41B1ABGY3WR0DKEPZCJE9D3.trace.json": "a5f5f30f9340cf1abfdb0944f90a60fb3452ccf2781747bb0b62144d90068a5b",
+      "docs/evidence/02-brownfield/instances/01M3Z8AJ1EDFTHQ1HPAWPNP2YN.trace.json": "796a518b44aab95389f8767dd4012280e9b797049fcdc7ad2a0f95a5fcc91600",
+      "docs/evidence/02-brownfield/instances/01M3ZA8Q39QEB3R1QDQCVTER18.trace.json": "37d2846b2f21960b18cc8deebee427c7a9502d3fc85e5f9ac0acf2e8fca04ae2",
+      "docs/evidence/02-brownfield/instances/01M3ZXEXAMS945ZS0QZ26KZK1V.trace.json": "53ed84e394a35355b7c91cf24aff34cd77779f7618902eec428e7ed99fb5cc0c",
+      "docs/evidence/02-brownfield/instances/01M40149S2BGCAKVK83B6VCNKG.trace.json": "0d5c818c0009fb7b55680fe6c04a6205c086cdabdbadef3b0fe46fd9e1b5552b",
+      "docs/evidence/02-brownfield/instances/01M40CP0JVZZWR8226MNN8XCCV.trace.json": "a2fd414f708c2c471cc0dae878e36d36d1589542f71f5f77c4f31734b41d215c",
+      "docs/evidence/02-brownfield/instances/01M40CPBYR97637QGHT57BNEBY.trace.json": "fcd3bb1112ed1059bcbf9580c66565e1ea3b164651917ed49245e2627cf5afec",
+      "docs/evidence/02-brownfield/instances/01M40RVNDQ0KT7FPWN1KJW0DC3.trace.json": "91a6de6420da2b1b375409766bd993fad9c0c6e6212ff8c07195f99fc63929dc",
+      "docs/evidence/02-brownfield/instances/01M40SN34E37K96B38JPG9K41X.trace.json": "e666fb9266138d743205f7dde502c858ce20cecbb33bb4e7cd117be12515362a",
+      "docs/evidence/02-brownfield/instances/01M416Z3CM54YQTX93V4KG0CPS.trace.json": "a3a0a1a3704c53109d072ea0ccfe3e65d8317fba0e1e34eb21ca4842d9aa8796",
+      "docs/evidence/02-brownfield/instances/01M416ZY5N11CDGZBM2DT4GAXS.trace.json": "9f680e1d008e9c397c145c82381a3bd4d961af0f859fe44b269550243575580d",
+      "docs/evidence/02-brownfield/instances/01M4170AA9E72WW1BXEA5PX0AP.trace.json": "4a8da73e7d26bdc10a020c5d269c62f109dda56d2c3561449a9630e7a158e83d",
+      "docs/evidence/02-brownfield/instances/01M41B1ABGY3WR0DKEPZCJE9D3.trace.json": "a5f5f30f9340cf1abfdb0944f90a60fb3452ccf2781747bb0b62144d90068a5b",
+      "docs/evidence/02-brownfield/instances/01M41HFT4CTYPNWWNB8PJ99NFE.trace.json": "e60e5dddd69432c81197788041dddf5cd26f4c657d2c5ec28995bd6e35d7b1ef",
+      "docs/evidence/02-brownfield/instances/01M41HG4P6DEVAKTCJC6J9QAWP.trace.json": "9da0106c176083f8c333c2df4ceb43f759b92abcc59cf967d3c2866289e30059",
+      "docs/evidence/02-brownfield/instances/01M41HGF6AHB6AZR3Q0KQ8MQR7.trace.json": "da0bc6b93240af2f252d15d80bbe6e324294257c443392ef67bec0965f0c4f6c",
+      "docs/evidence/02-brownfield/instances/01M4212A8BKA6JRZHZQBD90D07.trace.json": "5d6f4ff9aa6fe2de4dac18a0e1bcb29b3094e15183bfc772501912d4e2ae432c",
+      "docs/evidence/02-brownfield/instances/01M425CY9Z4K03G14Y677AT0PA.trace.json": "72066a4260d2d766e4448e49aa49febc7b0828ec426c9373e5557d111e09f711",
+      "docs/evidence/02-brownfield/packets/qitem-20261003030415-a2011998.transitions.json": "d81cfcc669cacda3fade8c7bca72c9ba769f9919211863fadf4d205d5b4884b2",
+      "docs/evidence/02-brownfield/packets/qitem-20261003024639-d36d76cc.transitions.json": "8694c734f8efb77f2db8cfb73dc849f551e407da675f681858bbe1a31b1777af",
+      "docs/evidence/02-brownfield/packets/qitem-20261003023502-f807af1f.transitions.json": "6d328db6e010b36c522f553273c3ad759c45881b49975812cebf144abaaaae4b",
+      "docs/evidence/02-brownfield/packets/qitem-20261003020412-57cea2d9.transitions.json": "a5b7940b677cc47f6f3dec7dc0bef990b4f1e621ff1b3b3c2a177ce00fa891c5",
+      "docs/evidence/02-brownfield/packets/qitem-20261003015049-51d1ba00.transitions.json": "eb6159025f0696e26c8bc27ee5485c81c8f4cd72e891fc279960b95a3fd56075",
+      "docs/evidence/02-brownfield/packets/qitem-20261002220222-65f568f1.transitions.json": "9189a6bd689f3b3c0062937256c12236426568c408650018d650cabb5365235b",
+      "docs/evidence/02-brownfield/packets/qitem-20261002213817-6d848ac6.transitions.json": "675eeda9bbdb734c879ded46b79fbc9f19cac1c5c20f1ad74bdefe1229cadf52",
+      "docs/evidence/02-brownfield/packets/qitem-20261002212902-0f6e128b.transitions.json": "77d5ab944bf396f032ee0f31f0285cd49d179fa478514e93c01fc749852b893c",
+      "docs/evidence/02-brownfield/packets/qitem-20261003013423-99b71ff1.transitions.json": "ca7107438a4322909ba7f1aa63dc7ddd5371aabb814b15c7a8d9efbf7c5c8d32",
+      "docs/evidence/02-brownfield/packets/qitem-20261003013220-670f8532.transitions.json": "1612fd58e5d34e59be0aec8b021e1278aad33d0e9ccecc6e55ce9fbb6a3e9ccd",
+      "docs/evidence/02-brownfield/packets/qitem-20261003010318-807bbf8a.transitions.json": "e26045e832b939cb552157beca169fff5b879dbe186f28c8f0b3c2135894f861",
+      "docs/evidence/02-brownfield/packets/qitem-20261003005806-5aaa453e.transitions.json": "4a0e92a2845ce7ea1bb90d22e007a5519690bed13c23519d73e44063e846e7e0",
+      "docs/evidence/02-brownfield/packets/qitem-20261003004117-c920fe49.transitions.json": "502ba9f6ef62c30bd39126075043bfa056861d9b9576d7781c0f8eaad22e6cdc",
+      "docs/evidence/02-brownfield/packets/qitem-20261003003003-9cb0ed55.transitions.json": "92222d8fd4de3d11e2b289ffdd8c58ab69112830ba0e9f37a846fe0dee043a3e",
+      "docs/evidence/02-brownfield/packets/qitem-20261002235024-355f67c0.transitions.json": "86304de021e0d4f90a6652d3dbeb278152f1cfa8285b47370f6f3c2ccff824b2",
+      "docs/evidence/02-brownfield/packets/qitem-20261002232943-d0903176.transitions.json": "405142f731f312abc74ea494cdd8e4d371cade981d8c01ab6a1ff22b3a46e5cb",
+      "docs/evidence/02-brownfield/packets/qitem-20261002231236-cdda3066.transitions.json": "0c0607b48ee2d924f18f8bcaa0ed83034eaad56951a487cfba880e31980faeab",
+      "docs/evidence/02-brownfield/packets/qitem-20261002230841-dc5cdf2b.transitions.json": "8c07e09fd533e14c0279799bc4c368980b5be19bb6274f0a46a52f946bf5cc93",
+      "docs/evidence/02-brownfield/packets/qitem-20261002225911-1ad25865.transitions.json": "17a00dd03099a87c5408fdf20bba74d32cf121e5ff9dc5e3c8ef9e72feecdd58",
+      "docs/evidence/02-brownfield/packets/qitem-20261002225126-b5c94d4f.transitions.json": "ae537a49bd07631914479baec97e7668bcb7b74256442deb33aeddfa394d2f2e",
+      "docs/evidence/02-brownfield/packets/qitem-20261002221159-a35e50bc.transitions.json": "3b9a3f0098032aa12916e76594b4534d150f866151042ad4c389af9999ba1c1c",
+      "docs/evidence/02-brownfield/packets/qitem-20261002220259-281a4efc.transitions.json": "01ecd1c6181fc2bc17e573ccf406bde5a5159d6090ca1b2cfd243e9301decf5b",
+      "docs/evidence/02-brownfield/packets/qitem-20261003174521-eb318067.transitions.json": "856aee53574046b0589cb8f9f740881d5aeb8a56d457e901304516cfa1615f88",
+      "docs/evidence/02-brownfield/packets/qitem-20261003171157-d2ed38d0.transitions.json": "03206f0a3f8f25a5c5277ffe232d404835a9339672741f0fc26ae8b13ab5247f",
+      "docs/evidence/02-brownfield/packets/qitem-20261003165209-ce7abb0e.transitions.json": "c1bb6657bc33694fe591a996f30fc5207368b5722d842d5d3e29293de33571bd",
+      "docs/evidence/02-brownfield/packets/qitem-20261003153114-04cfbe0a.transitions.json": "696f84b2705c6857b5335d47720188aa39d7c0319ccb8e8c0ca03a58a9af75f0",
+      "docs/evidence/02-brownfield/packets/qitem-20261003142414-ac899454.transitions.json": "eeaeb1ba228eb339365be364c8c0d3326482b296255921b80eb93de39e686a7b",
+      "docs/evidence/02-brownfield/packets/qitem-20261003135957-0f6e0c8b.transitions.json": "f80d692be04730f3fcc557e707529353ad8419e806afd9a5d36aad91c5a9712f",
+      "docs/evidence/02-brownfield/packets/qitem-20261003044200-384e9544.transitions.json": "98382922c1f43fc83799db1cec57bac792fe22c4592f02864c8c6ebbb2cf4f05",
+      "docs/evidence/02-brownfield/packets/qitem-20261003042553-03ac8b4b.transitions.json": "40d684f5c9916999438aead04119ded8b16872ad84641c3894f0384c2b073ce9",
+      "docs/evidence/02-brownfield/packets/qitem-20261003040709-b481dc8d.transitions.json": "4dc31907b9062f85c329867a609b5eb676a41e2a5b8591f41d39da4efba7cc97",
+      "docs/evidence/02-brownfield/packets/qitem-20261003033825-0148d3da.transitions.json": "2ca7d5aea21809b846c40be81213a0156a114afdacb5a711aaefea23ad60bb6d",
+      "docs/evidence/02-brownfield/packets/qitem-20261003075859-7a5a6e93.transitions.json": "d0f44562d6738be30ef06b2bd44cba7601b6b321d74b5381109f537b02dcaded",
+      "docs/evidence/02-brownfield/packets/qitem-20261003074021-e3821d80.transitions.json": "8e898b2f3266bf12dc2bcf89acc31e0b4c65e887ebb29c1bbd8fbfb594baf8e3",
+      "docs/evidence/02-brownfield/packets/qitem-20261003071605-40d1d3aa.transitions.json": "08a759fd30c035553f4f64546d9bfe9b4c3a442f4101fb54a66b983921f5deae",
+      "docs/evidence/02-brownfield/packets/qitem-20261003063930-0cb9c7eb.transitions.json": "33b1cafec506f3ef5a57204a774450552cd58831c21a15d28b7f9b94a3256cb9",
+      "docs/evidence/02-brownfield/packets/qitem-20261003063348-182b23df.transitions.json": "a56d710ec2e90d917f14a84424cfc1da33f29f37fbeaeed79484ed49712de444",
+      "docs/evidence/02-brownfield/packets/qitem-20261003062552-16fc9d48.transitions.json": "68c210a988adc941ab5325fd4a45a5e08d64edc9b454c1d869cb09eb2981a252",
+      "docs/evidence/02-brownfield/packets/qitem-20261003060343-3eb84b99.transitions.json": "417a9e97ff8a81a1b4aadf9edabaf9c3eb7af5fd32ca5454fbf0c5fe55c4d0b3",
+      "docs/evidence/02-brownfield/packets/qitem-20261003055347-01d2d207.transitions.json": "5de8ff2366fc51e3f6ca3e9bb950f6f7720664941a6c087393eb52c9b7fd7fb7",
+      "docs/evidence/02-brownfield/packets/qitem-20261003051242-83fa8c2c.transitions.json": "8e7b3a6eb084b3a22f3faa948ca7f087ddfb9faecf9623874acbd4d9902177c0",
+      "docs/evidence/02-brownfield/packets/qitem-20261003051110-97f19fd2.transitions.json": "6d52eef10e7c48229e8abf24b16145335bdcca41dce201ed7294b86ce66023f9",
+      "docs/evidence/02-brownfield/packets/qitem-20261003050836-02bc7593.transitions.json": "1a131c9f11c29785bba2d47069b536a176853dd161bf2d713f9c8de0cc92200c",
+      "docs/evidence/02-brownfield/packets/qitem-20261003050304-b7cdaab5.transitions.json": "c25e3ec9035ae5e588855abe5dd47da31962ba4397f2601ee1b27875db74d8b3",
+      "docs/evidence/02-brownfield/packets/qitem-20261003044232-a7194f1d.transitions.json": "ffdbbebc03b6426b1d5e66b23af359b1c43e6723c32d5beb0428afebe2a0f79b",
+      "docs/evidence/02-brownfield/packets/qitem-20261003112744-2dd7d3cb.transitions.json": "4eb80a66a2842c0650b7c551f4d1e4c55081b4a8319f6e10259b0f790875d539",
+      "docs/evidence/02-brownfield/packets/qitem-20261003112133-94584287.transitions.json": "b44d5c0015b5d4b52e63e67e946080e26b65bd9a7a8d5b8ed1888e72d573fb59",
+      "docs/evidence/02-brownfield/packets/qitem-20261003110223-756ec012.transitions.json": "01a072117a0b7e423fef600e83242882357a615e0777452ce0c0484aa9b3fefd",
+      "docs/evidence/02-brownfield/packets/qitem-20261003105943-d93e6776.transitions.json": "1df36aca77dd905b8c14252f050a22f55e564a353b39285c8fe50dc4095ce462",
+      "docs/evidence/02-brownfield/packets/qitem-20261003104116-a5a61dcb.transitions.json": "e2472384533766ba335df600a4005a9f7e648b01d6935fb963e79b5ff9e792ce",
+      "docs/evidence/02-brownfield/packets/qitem-20261003101510-d5f18be9.transitions.json": "b6eb5864f2c29bcd0d7193cc69da99870b29aff0d1e011715f52cc630af6db79",
+      "docs/evidence/02-brownfield/packets/qitem-20261003094850-c667801b.transitions.json": "f95d76cf82a04cbf396580d48d40bbc83fe46251d816e8f85bd9f01f6587841b",
+      "docs/evidence/02-brownfield/packets/qitem-20261003094649-844b6a83.transitions.json": "75f4df83e1d34224ea7bf5ffacaf21b1fcfe869bf87dc2487cf91f85cc885d25",
+      "docs/evidence/02-brownfield/packets/qitem-20261003092345-52dd8a6e.transitions.json": "16323be89a0445abd7faeb9d12a944d310e8f2eab628cb277eca545d3e98d5e1",
+      "docs/evidence/02-brownfield/packets/qitem-20261003090152-625de326.transitions.json": "b7977206caa82c9feaa08a28cd71bcb1687dcf7d7d800a86ce1e3438d8cb50d3",
+      "docs/evidence/02-brownfield/packets/qitem-20261003084518-9957256a.transitions.json": "230e033af7cae6a0f70740cf046ee0c10ba1f8907b441cd5e3f2f56891f4a7ab",
+      "docs/evidence/02-brownfield/packets/qitem-20261003082147-22c46f0c.transitions.json": "2893948e579dc06ef2b080eb7c784e54875d509485a4f9adf88dad9fcf1acbc3",
+      "docs/evidence/02-brownfield/packets/qitem-20261003081331-87faf358.transitions.json": "5ab68584b2da3415feabaf01f3a2b5f7a0136fda757b8b3eadf87451579d6b3c",
+      "docs/evidence/02-brownfield/packets/qitem-20261003080426-686ea065.transitions.json": "7e66eefb444cf16b876a0f5a7f9ec8bc64462745f9feb9a35c4838fabf81bc4a",
+      "docs/evidence/02-brownfield/packets/qitem-20261003135649-046d003e.transitions.json": "c4edfcf792b3a4d3561218ab6b3dd8cce70e0c32fb283412e9f174bcd5c82af4",
+      "docs/evidence/02-brownfield/packets/qitem-20261003134551-e4b16c7a.transitions.json": "32a8f9c40a41c75e918fc63843007ea9211f9421c0fc4920f6570aaaffa11a66",
+      "docs/evidence/02-brownfield/packets/qitem-20261003130258-8d163c70.transitions.json": "88bf73af7f4b994b77af75b01626ab09f1ae06e251e7906325ed452c0f88472b",
+      "docs/evidence/02-brownfield/packets/qitem-20261003123104-ccd07ab0.transitions.json": "a39f860d0ad2e1fd92ba3e8b5fd0fb2d9f7ae91d52eac7053e03ba0bb9e38cb2",
+      "docs/evidence/02-brownfield/packets/qitem-20261003121811-d329afbc.transitions.json": "952a3a1c259bfda587a2887325cb14b427a32500563344ca962fb47a887f17d7",
+      "docs/evidence/02-brownfield/packets/qitem-20261003114044-007e2031.transitions.json": "4487c647fcbe2e5d2359831993a764fbfc5fd713cc39e13c8cbfdf8049d9bc36",
+      "docs/evidence/02-brownfield/packets/qitem-20261003094226-6580fb8d.transitions.json": "f383053dece3cfa20014f0c5366ab4ca3082210478951594e7d6d9cfa5d72e52",
+      "docs/evidence/02-brownfield/packets/qitem-20261003094019-7bfaf4ab.transitions.json": "dca20d21d6cd5b82cd9e7dd2fb651b2b618c9203bda0ebb65e502eff28645e34",
+      "docs/evidence/02-brownfield/packets/qitem-20261003093000-222473fe.transitions.json": "11d32fa279163cb69c9551b76e373e662cc3208e640362cec89d3cd4f9ed2782",
+      "docs/evidence/02-brownfield/packets/qitem-20261003092226-699086e9.transitions.json": "1ba562128d8e2c0d56a16b6f43cdb712a14d427ea6350a9b8c18320736c5440f",
+      "docs/evidence/02-brownfield/packets/qitem-20261003091111-32efdbe2.transitions.json": "75c36ce282bbe8266210c817544f440a757544e04ed619e818d047273a6c5baf",
+      "docs/evidence/02-brownfield/packets/qitem-20261003082416-b1057e7a.transitions.json": "f9c512edea6f724868d204aec4c54bab3f8417dd858f6157e72ff15d96104881",
+      "docs/evidence/02-brownfield/packets/qitem-20261003082131-b709b118.transitions.json": "440b1cd1ed16ce36fb1001670ad5b053ac8fae368e3fc573400e7173b3931d07",
+      "docs/evidence/02-brownfield/packets/qitem-20261003081851-f8f25b02.transitions.json": "4a20d90c673257cfe35c7826c68d06fce1e2a1ac49394672c488033447ff3530",
+      "docs/evidence/02-brownfield/packets/qitem-20261003081312-64ea3c87.transitions.json": "6b7e41d791470cd585ffdb100f529057efcdb3b03cc1ed0c544e1801875a419c",
+      "docs/evidence/02-brownfield/packets/qitem-20261003080438-4f449e0f.transitions.json": "6925072afdad9e19377c40d59ca7e42c5c270b62cbbdaac53e5d66db4d0b5115",
+      "docs/evidence/02-brownfield/packets/qitem-20261004004828-05d2aab9.transitions.json": "6564d5ca7d78275d31bfadcdb1ef65920194f1244932fa4280382b2300c3100f",
+      "docs/evidence/02-brownfield/packets/qitem-20261004002516-ee95930d.transitions.json": "abdc913654994a05b8300587bd3d8168105ab804f1b1e20f4c98cfafa47efcc8",
+      "docs/evidence/02-brownfield/packets/qitem-20261004004814-04c1642a.transitions.json": "e492ab290e8d4371e048381371be68fa08747135909598a72ccb31c6ddbf542a",
+      "docs/evidence/02-brownfield/packets/qitem-20261003154114-c0dd70b0.transitions.json": "a5d968aa65c641573cf6ec9c42bb2b7100b2e36412e9f22dc6d98758e882f769",
+      "docs/evidence/02-brownfield/packets/qitem-20261004002509-de60eb81.transitions.json": "3407b049b27d4d6f2673ebed174e86885ae6ffd33d9e3ff2b482e4b36125372f",
+      "docs/evidence/02-brownfield/packets/qitem-20261003114944-9bd32a00.transitions.json": "5598cc8449064ad64819feed90d14795cf3f68dc482efcf1bea87b60783b48f4",
+      "docs/evidence/02-brownfield/packets/qitem-20261003114345-f739a1d5.transitions.json": "0e32090946c9f38bda666aedf7dad0da544344ae365d7d8f0c6ee8457b17ba90",
+      "docs/evidence/02-brownfield/packets/qitem-20261003113714-4cbdf1e0.transitions.json": "5c0cf900d1eea554a4462a4d2298ae1feb3ab92d2f273d84548d7c8ac844e7e0",
+      "docs/evidence/02-brownfield/packets/qitem-20261004002455-b7ea811b.transitions.json": "0576b7ee833e8f43d46e9fb965487da3fd12dc9537cde1136602cc2636b5f525",
+      "docs/evidence/02-brownfield/packets/qitem-20261003154117-c072093e.transitions.json": "2ef39e1b095ea46f4dbb11597e603719fbd63b07b274c5acf266060d7fd173ff",
+      "docs/evidence/02-brownfield/packets/qitem-20261003120551-4e8acd30.transitions.json": "77ec505025e4e72d534845b3abc587300906f6ac1b1cb88b99bcc41a137a978d",
+      "docs/evidence/02-brownfield/packets/qitem-20261003115740-6f882a4a.transitions.json": "85eb23377ffcb6834feb02f6f5ccb17fcc8bf7ccf8ab7c2dcfb271b0c096604a",
+      "docs/evidence/02-brownfield/packets/qitem-20261003115108-61e03251.transitions.json": "a17bdb332e7e3d9a69aa0470f96211031d285a8b50402097350d7a0453ea56f0",
+      "docs/evidence/02-brownfield/packets/qitem-20261004001800-cc58cd9d.transitions.json": "7659b51ea7a6aa1950a3b0d5b8b1515c9e020210bdd56825a92136103a21dfbe",
+      "docs/evidence/02-brownfield/packets/qitem-20261004000110-d0d07fdb.transitions.json": "f9c7e1bc5fb686da0925ec19694d5be60798aa1a086bb937e0a0c82d51b1ae38",
+      "docs/evidence/02-brownfield/packets/qitem-20261003231403-839a47f3.transitions.json": "4286d392a9e66ca4c757f407f66e6103728d6149f8e514184bd2930e9adee544",
+      "docs/evidence/02-brownfield/packets/qitem-20261003200331-90c97f87.transitions.json": "aba8ca964f82f0d246841c3ef665a5fdf33874b4067645bff7f52dcc58f8b566",
+      "docs/evidence/02-brownfield/packets/qitem-20261003185640-3b837606.transitions.json": "2be9390bc242b2bfe63587996edcd8d8ac1628e8f0f38635d5bad3453fd546d0",
+      "docs/evidence/02-brownfield/packets/qitem-20261003200325-7115d4e3.transitions.json": "d37f29bf9c73851c4503c4374dc378401ddfaef8331d99e2060e7f1babaec030",
+      "docs/evidence/02-brownfield/packets/qitem-20261003184238-e2f2be28.transitions.json": "39869962eb6127755c8cdfd95c6a85be89b33c471cf1b021dc91748c04b816e9",
+      "docs/evidence/02-brownfield/packets/qitem-20261003164151-fbee7e97.transitions.json": "c20052e4064ee884ff78e58210893049715a3c303e7f75afa33ae8201d5ab094",
+      "docs/evidence/02-brownfield/packets/qitem-20261003161333-c4da0117.transitions.json": "b33b5f0f65aee82da198018ad8b090450088d6e94d7f93f84d78dd8227e3b313",
+      "docs/evidence/02-brownfield/packets/qitem-20261003154347-19e96a75.transitions.json": "c9a7373736ae42e72616c80d7968216c8dc6920731144020215fa7773f72017e",
+      "docs/evidence/02-brownfield/packets/qitem-20261003214424-a56c0575.transitions.json": "00e65378154243c2e520560e74a3f8241450ee29e8161f9c4d3cd800941aa0a1",
+      "docs/evidence/02-brownfield/packets/qitem-20261003213051-77ffaad3.transitions.json": "58f89af6bc7151bc0492ce35f494440ad7a36f9cbfe8bd79662211cf8a777179",
+      "docs/evidence/02-brownfield/packets/qitem-20261003202154-65e6d10f.transitions.json": "bbb73d18e6e246866a61c7cd4e12379e186857952a49907276b57260297fe4c5",
+      "docs/evidence/02-brownfield/packets/qitem-20261003201620-c74de839.transitions.json": "f3044e49d773a8940aeb39807da8a153a476f3ca742ce0ae34d167c637afa495",
+      "docs/evidence/02-brownfield/packets/qitem-20261003195938-d8b8a9c3.transitions.json": "04b1704f5c9b49d5d43ed926412c3856f06ccd9310fa6a01dda30bce2491bad6",
+      "docs/evidence/02-brownfield/packets/qitem-20261003185423-545a1365.transitions.json": "9e17f3e0cb34740882a2fe577ee03b68fed17bbc4ad1107a76d685aaa304b133",
+      "docs/evidence/02-brownfield/packets/qitem-20261003182724-0843aca3.transitions.json": "58a4ced396bc0594b004759175f3c22649a357bd9121f7aed9afb17a3d34703f",
+      "docs/evidence/02-brownfield/packets/qitem-20261003182604-c8ff8e2d.transitions.json": "9e1a4dd848b9901f538560f799a08326f12d0d7822ea6f4736cf2167b66c2f89",
+      "docs/evidence/02-brownfield/packets/qitem-20261003182016-5973c5c1.transitions.json": "b207c97d371cd4856e806beae431d3e624040a753d26fb7bad80264382500bf2",
+      "docs/evidence/02-brownfield/packets/qitem-20261003175700-cbb50861.transitions.json": "ae8d839b5be2ad2fe61f99c66575fdab6e0b88580a96023ace3442aba8b7593e",
+      "docs/evidence/02-brownfield/packets/qitem-20261003174406-936f9d9c.transitions.json": "9cf1217be97a4be86b1e53a999543f796f87be0f6a3c402b4cc3aff565421d87",
+      "docs/evidence/02-brownfield/packets/qitem-20261003164258-4a95943e.transitions.json": "c84adf80800d42213024550938a3cd3ab5cd0b68528156a9c8fb2d2827a764bc",
+      "docs/evidence/02-brownfield/packets/qitem-20261003163921-0a8e2926.transitions.json": "38ff03bdcdf27c4a7ba9b7ee3caed756cb5394775e6503f4106d84a76dc54fc2",
+      "docs/evidence/02-brownfield/packets/qitem-20261003163608-f96c8e6c.transitions.json": "ff6613fdbd96a339db82f94ca210dc152d2d587e40c3f55bbbe7375782e8f06e",
+      "docs/evidence/02-brownfield/packets/qitem-20261003154828-764bc65c.transitions.json": "591f34c41a4653c3629778a70693ebfc731b71a2ac3de36f64636e496f00f4fe",
+      "docs/evidence/02-brownfield/packets/qitem-20261003154415-a6020a5f.transitions.json": "7c9854d50cd9934db13e9884cd8604488b422aa6fd5ce41bfd4be37c6716594c",
+      "docs/evidence/02-brownfield/packets/qitem-20261003225239-ed926320.transitions.json": "75c18d31422f3d0f6f1d33de61ad74c87c60599308a5b0519242b452dfa90e46",
+      "docs/evidence/02-brownfield/packets/qitem-20261003223905-762d759f.transitions.json": "0405acaa375cf23cf02abf8cefcb152a2a10d4fe8c191d35413f5c0fa1fb9cac",
+      "docs/evidence/02-brownfield/packets/qitem-20261003214414-12d75069.transitions.json": "0bd1f5574271260fb838a994eb344a5059332b41a85ad1be8cad8042474cefb8",
+      "docs/evidence/02-brownfield/packets/qitem-20261003184336-f1b2d2a0.transitions.json": "733a90d5ae8370ea535818603e5629dc95fdcd1b76a207cc7ebbbbc1c8f9eb1c",
+      "docs/evidence/02-brownfield/packets/qitem-20261003183612-3452b207.transitions.json": "1191cb19cedaee05ca55034c3651be2ae98a31c7c4157d4e1200478fce388303",
+      "docs/evidence/02-brownfield/packets/qitem-20261003183953-9526315e.transitions.json": "0905a4659dd4f372c487f35ad6230870d3ff8d8a5cc6e0a83e4278f003609751",
+      "docs/evidence/02-brownfield/packets/qitem-20261003182930-370196d0.transitions.json": "3d84798db60be7dfafc27e5858d0e721e35c6fdd480b9c93236e7bad0e226f69",
+      "docs/evidence/02-brownfield/packets/qitem-20261003182019-5b56b6ce.transitions.json": "1fdd8308ac66a5aefdeb19c522839ff76c3f5f4c7e2ce2952399df6c0191d0bc",
+      "docs/evidence/02-brownfield/packets/qitem-20261003181452-6bc9f909.transitions.json": "f9a9861b1802c10281060a8e067ebc291d9d4e6bd12faa72431a6b23c8fd6447",
+      "docs/evidence/02-brownfield/packets/qitem-20261003173636-643c7c17.transitions.json": "d875f90159f240cb17a0105aadb2bcdace395cdda9cedfe32db661b4ae1e785d",
+      "docs/evidence/02-brownfield/packets/qitem-20261003172504-1e5d5337.transitions.json": "c54e9ae182b60052f633cefa67bd691cbd477fa5a787dbe0601439213ea6558f",
+      "docs/evidence/02-brownfield/packets/qitem-20261003163546-70ed3e48.transitions.json": "e82e6b5cc36662d61f7c37791fcba695f6a2ad73e1f4a60cc0ae0c0b046e06ef",
+      "docs/evidence/02-brownfield/packets/qitem-20261003155116-26bce90f.transitions.json": "bfc3c1861f7c0d0b918e308a8a37090f672ec517c3550aa2a86034484b1bf6e8",
+      "docs/evidence/02-brownfield/packets/qitem-20261003154427-8eccec4f.transitions.json": "4202df897cbbcc9903b92e7c84cd5475f848c096806535f5c30d566326a6345d",
+      "docs/evidence/02-brownfield/packets/qitem-20261003165738-c5d9694f.transitions.json": "efc531f4e05b5954eb94c45327011bcce8a016c8dd778e8a28552dc15744dd20",
+      "docs/evidence/02-brownfield/packets/qitem-20261003165532-4a59045f.transitions.json": "0126b321b45bb5be2d3188d4dc6c94c4b0d6d577f7ffe47493dcd05bf72cb681",
+      "docs/evidence/02-brownfield/packets/qitem-20261003203123-a785ee4c.transitions.json": "5416b2b2fdcb11170ba580b2d5fa5af7aecc2f5369412d50fb9467ad9f8b05eb",
+      "docs/evidence/02-brownfield/packets/qitem-20261003202216-eba453ef.transitions.json": "249e709eb24a7c278a016137faf51337b129b761b1e31167367d0799b641e085",
+      "docs/evidence/02-brownfield/packets/qitem-20261003195527-d2973fff.transitions.json": "320c47abd6456d324f93ad153c45c4c00b288525d4ecda4c8a0c31fe230075c0",
+      "docs/evidence/02-brownfield/packets/qitem-20261003193221-175d6855.transitions.json": "384a7b5c1ad93bec7ca43c3ae68cbe6df40108bdff47152ed78b41470e6a7ffc",
+      "docs/evidence/02-brownfield/packets/qitem-20261003193135-f2f66c25.transitions.json": "616d89ee47432a2f03d2098884acf5e86930c3dd3dbbede7ca19c1691344ae8d",
+      "docs/evidence/02-brownfield/packets/qitem-20261003192547-28bfe85e.transitions.json": "d77f7a603e4de2dccdebbd83ea57f5ee16cbcfb64ce3fc55847ee72c67009314",
+      "docs/evidence/02-brownfield/packets/qitem-20261003185656-e4c8b68d.transitions.json": "823b5d7373e9af1bc1bc01555fea94d5aa73e2f401ad18d3555699e27439a812",
+      "docs/evidence/02-brownfield/packets/qitem-20261003185217-9f98ac8d.transitions.json": "021e915ca68018edd3e232b0a347099e9018c2422d52fc97ebe5e6c70e9299bd",
+      "docs/evidence/02-brownfield/packets/qitem-20261003184740-263527f6.transitions.json": "a9ab8b745b84b108a877a2e8254bd0a76dcf0fc9836c669981fb4c2942a5bd12",
+      "docs/evidence/02-brownfield/packets/qitem-20261004001239-8ee629f7.transitions.json": "05bff40f226c18933e0c8e42fee1025c9293a73cd612bda2583b1e44cb2bb178",
+      "docs/evidence/02-brownfield/packets/qitem-20261003235705-60b5c52b.transitions.json": "75e680e17015b87dee735b1e34686143bc279fdd464f05e942dd5711fea5c2f6",
+      "docs/evidence/02-brownfield/packets/qitem-20261003232046-aa44c49f.transitions.json": "90edc6664bdcf89ba864d7b375abdfe4c72839e8e58ac3fb1be878926f9877cb",
+      "docs/evidence/02-brownfield/packets/qitem-20261003223549-c479c189.transitions.json": "2b681f18759b7fb0b7a6d69fe5ad917e7f4bf53d465df14bd6ace870f445c61d",
+      "docs/evidence/02-brownfield/packets/qitem-20261003191531-57bcb230.transitions.json": "3859633f615af19c5913f3b92053a6c9d08b539ea21457e8dcb83d466da1563f",
+      "docs/evidence/02-brownfield/packets/qitem-20261003223543-96dcbd88.transitions.json": "7c7a186cdf0e0fa3df21839892cbb7c6b4543711f542715d0b1dde9e7962f3a5",
+      "docs/evidence/02-brownfield/packets/qitem-20261003190948-2c1e2288.transitions.json": "9646852bb6f97c0ec631f950c9398868242918a1d5aaaf2cb7ac2dacdf3e0a1a",
+      "docs/evidence/02-brownfield/packets/qitem-20261003190148-7795836d.transitions.json": "e891f37338dd89ee2bffe28be56a20d0c3a102a566fd23afeab0000bf70bcd53",
+      "docs/evidence/02-brownfield/packets/qitem-20261003185548-520967ab.transitions.json": "d6168eeb22d638c01aa16a857190db2d95b7239801a1b1d03cc546c2a3300834",
+      "docs/evidence/02-brownfield/packets/qitem-20261003190115-8ce22243.transitions.json": "daae6f90b79ae3532652fa8f144a59602c86d886bd7dce41fab999ef7eddee81",
+      "docs/evidence/02-brownfield/packets/qitem-20261003184751-a000203f.transitions.json": "7cf2bb06a8ba963f5497d37e6562bb3d2172a4c20b860c5cd8f06ea902357195",
+      "docs/evidence/02-brownfield/packets/qitem-20261003224749-c43612f6.transitions.json": "06eabfd1bac86094c5b5dd3d000b9715cd07a8904b924e79c4726772b152fe57",
+      "docs/evidence/02-brownfield/packets/qitem-20261003223352-97e556cd.transitions.json": "48dc448b70fa116a34d359daa5459929d02e3e45111cae9db5a128749e5a5773",
+      "docs/evidence/02-brownfield/packets/qitem-20261003215524-d56667a8.transitions.json": "2bad7de18cc14745d33db6df27d12d420c8654f438c75d2abd084b49915b701b",
+      "docs/evidence/02-brownfield/packets/qitem-20261003200223-d361adc6.transitions.json": "88dbe49b3ae006051d472baaa84b95a65475039bf65cc80e8f4afa470aceca47",
+      "docs/evidence/02-brownfield/packets/qitem-20261003194307-78d5bcf1.transitions.json": "8dc2971e535084ec6113322c675669331abd6648684b98e07431e8a5c707cb09",
+      "docs/evidence/02-brownfield/packets/qitem-20261003193154-cf5ec0b6.transitions.json": "c876ce17a3d7094e325d9c285f545ed946bc694f6c5f302a8b4457c29da8641b",
+      "docs/evidence/02-brownfield/packets/qitem-20261003190448-afa9115b.transitions.json": "27f318ef9d49fb96a763f40c798db7578fcaf1d09a2ce1ab2e43c11d7fb6fa36",
+      "docs/evidence/02-brownfield/packets/qitem-20261003185900-adac5cf2.transitions.json": "195f5f6380756c44c9d2b20241b1833bcd2c6e7e1d8090edb3deeb29405748d9",
+      "docs/evidence/02-brownfield/packets/qitem-20261003184802-67941cc3.transitions.json": "20dfbb68b8c9150974e264360af0054d70e8dda56d0ca421a6726c12378f4453",
+      "docs/evidence/02-brownfield/packets/qitem-20261003233041-b3b78d0d.transitions.json": "292789593163c6e1e59ca3c87f55effec0848fe53b409ecd8650995b9dec5c6c",
+      "docs/evidence/02-brownfield/packets/qitem-20261003232904-3c07d8d6.transitions.json": "6b1ec3b1027542b6ff6bccbcca6a38fc9f707e4eae21a82d8adca25d8ef40029",
+      "docs/evidence/02-brownfield/packets/qitem-20261003232132-8f1e1f16.transitions.json": "72e8adc4e1c705731afc412b3a433d339a16059eedf73539d697ecc275e50326",
+      "docs/evidence/02-brownfield/packets/qitem-20261003231955-aed54014.transitions.json": "928d24861bedad067468c7b51edec1b6653dc99aeee183f146678ea8c3bae648",
+      "docs/evidence/02-brownfield/packets/qitem-20261004011019-f67b1c6d.transitions.json": "4a6174149fa4674fb3517aca949206dd12f1cea39c6f628fb98845cfa186e24b",
+      "docs/evidence/02-brownfield/packets/qitem-20261004005458-a071fd65.transitions.json": "7346518d8e2950dfe52f6109b00029ecf3ce74180d74973236bf782478bdb5e4",
+      "docs/evidence/02-brownfield/packets/qitem-20261004004915-91f40366.transitions.json": "ce44943499357d8032d37d8b640cd72bfc456290df7b20c5db0cafd0862cb85a",
+      "docs/evidence/02-brownfield/packets/qitem-20261004003538-62f6c81e.transitions.json": "eb640bd3cd5f5a6be0d51405ab1123c41928880cd25f1f94f2b7fc913b36853c",
+      "missions/02-brownfield/release/pre-run-e227acf/secret-scan.json": "2ffc1ffd630dd626457fee27733ef27a205b6c996c5ee72cc4d62321ac78277e",
+      "missions/02-brownfield/release/pre-run-e227acf/advisories.json": "5913e95cb5b0248472016c3b1c81d9542e01c0520ec38360890349d7df7dd976",
+      "docs/evidence/02-brownfield/drills/drill1/initial/drill1-candidate.json": "26813823cdc07adeb23de091e026e21cd65a25c9a63046dccb1f59cc0d3e02e6",
+      "docs/evidence/02-brownfield/drills/drill1/corrected/drill1-candidate.json": "f854ea4a662496ee0fefdeb29767b2438e06ddfbe9feba6e089b8ae0725fa0d7",
+      "docs/evidence/02-brownfield/drills/drill1/instances/01M4212A8BKA6JRZHZQBD90D07.trace.json": "5d6f4ff9aa6fe2de4dac18a0e1bcb29b3094e15183bfc772501912d4e2ae432c",
+      "docs/evidence/02-brownfield/drills/drill1/packets/qitem-20261003231955-aed54014.transitions.json": "928d24861bedad067468c7b51edec1b6653dc99aeee183f146678ea8c3bae648",
+      "docs/evidence/02-brownfield/drills/drill1/packets/qitem-20261003232132-8f1e1f16.transitions.json": "72e8adc4e1c705731afc412b3a433d339a16059eedf73539d697ecc275e50326",
+      "docs/evidence/02-brownfield/drills/drill1/packets/qitem-20261003232904-3c07d8d6.transitions.json": "6b1ec3b1027542b6ff6bccbcca6a38fc9f707e4eae21a82d8adca25d8ef40029",
+      "docs/evidence/02-brownfield/drills/drill1/packets/qitem-20261003233041-b3b78d0d.transitions.json": "292789593163c6e1e59ca3c87f55effec0848fe53b409ecd8650995b9dec5c6c",
+      "docs/evidence/02-brownfield/drills/drill1/tracking-item.transitions.json": "b9856c8916dce801530b8c88eae7c387b1b33c252649ffba2dc699d89cb5c2dd",
+      "docs/evidence/02-brownfield/drills/drill2-smoke-failed-3a75746.txt": "dbf1eff0f6e5f5b570c16f8ac80fd1faa0002a264dfd9a08a184fcf9fc99d597",
+      "docs/evidence/02-brownfield/drills/drill2-smoke-passed-ef2272e.txt": "c507eeed3d0e9afd76e7103415038325cc530cdc8f6e9a731f3d8b7f0cf47d8a",
+      "docs/evidence/02-brownfield/drills/drill2-check-ef2272e.txt": "5ec3b73d9b9aae9baab7682968093d5ddcf48f149b463a4fd4c7803b52dfc768",
+      "docs/evidence/02-brownfield/drills/drill3-ps-after-stop.json": "29e3bb51de336b3f8148cda42b32e8d20698972bd3070b24303ca63f6259a154",
+      "docs/evidence/02-brownfield/drills/drill3-ps-after-relaunch.json": "5dad03d8edc9449dc3af1e14eca842ad78e781c59f48c58e921d826aa28c6d19",
+      "docs/evidence/02-brownfield/drills/drill3-entry-packet-stranded.json": "703baae865626c8c0fbd3b5d2a86e0c8a0a2229910cafed74e65bd81e0f7a9ec",
+      "docs/evidence/02-brownfield/drills/drill3-old-packet-transitions.json": "77e2b12635eaf119bf6103e28e70eb197e74fadf4cd4ec42b1b584b161fc41b5",
+      "docs/evidence/02-brownfield/drills/drill3-instance-trace.json": "d5ca5f506ab49b42262bc655904abee8593ea6674c4d1dfd33ac5527d4d074d6",
+      "docs/evidence/02-brownfield/drills/drill4-instance-show.json": "c268ceb5b5244b9191b6f668452a4a41787967261062180a345c64ba8cd2088d",
+      "docs/evidence/02-brownfield/drills/drill4-redrive-packet-transitions.json": "efc531f4e05b5954eb94c45327011bcce8a016c8dd778e8a28552dc15744dd20",
+      "docs/evidence/02-brownfield/drills/drill4-lead-receipt.json": "5aada1a9fd1f38fac18659fc8f42151804c65717d723e84a5142ba12148091ae",
+      "missions/02-brownfield/RELEASE.md": "370dae5029977cab943e73914cf029b2adae5f42b0e69348877cb7b29a31b30e"
+    }
+  },
+  "limitations": [
+    "Historical suite counts are the authored gate-artifact summary; no retained per-test XML is in this pre-run directory. No new build is claimed.",
+    "Benchmark percentiles are tool output, not independently recomputed from per-request latency samples. Database confirms 12003 stored GET clicks; per-run log counts are corroborative only.",
+    "The pre-run image inspect describes image metadata, not a retained container HostConfig inspection. Read-only root and host publishing need the final container inspection.",
+    "The pre-run wire JSON supports stats/counters; it does not retain full invalid-URL and forged-audit responses or container JSON log joins. Jar statuses corroborate 400/403 but cannot alone prove body hygiene. Final installed captures must supply that proof.",
+    "Metrics differ from the committed historical export: retain the original with a source-custody qualification, and verify the refreshed package against its own committed inputs."
+  ]
+}

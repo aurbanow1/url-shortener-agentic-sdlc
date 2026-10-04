@@ -57,6 +57,21 @@ only), then `scripts/smoke.sh`. The smoke script's other modes (`--jar`, `--insp
 `--drain`, `--bench`) and their host prerequisites are listed in its header. What shipped in each mission, with its evidence and
 known gaps, is in `missions/<mission>/RELEASE.md`.
 
+## CI/CD and the repository
+
+[ci.yml](.github/workflows/ci.yml) runs `./gradlew check` on every pull request
+and pushes to `main`. [cd.yml](.github/workflows/cd.yml) builds the jar,
+smokes it on loopback and builds the image; it publishes nothing.
+[Dependabot](.github/dependabot.yml) proposes Gradle and GitHub Actions updates
+weekly.
+
+The repository's commit history is the deliverable (D19), with stacked pull
+requests per D13. Hosted runs exist only for commits pushed to GitHub;
+agents never push. See the [CI/CD guide](docs/guidance/ci-cd.md) and
+[AC-13's first green hosted runs](missions/02-brownfield/slices/05-ci-cd/PROOF.md#ac-13-first-github-runs-recorded-by-the-operator-2026-10-03)
+for the workflow contract and earlier run evidence, with its SHA and access
+qualifications.
+
 ## Read the SDLC evidence (no OpenRig needed)
 
 | Question | Where |

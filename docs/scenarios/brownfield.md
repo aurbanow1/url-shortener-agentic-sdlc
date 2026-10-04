@@ -1,8 +1,8 @@
 # Scenario: brownfield — mission `02-brownfield`
 
-> **Draft — completed at mission close.** Facts below are from the mission brief,
-> the decomposition review and the live run so far; `[final]` marks what is
-> filled in from `missions/02-brownfield/RELEASE.md` and the evidence export.
+> **Mission closed 2026-10-04 (`2522e6c2`).** Validation is from
+> `missions/02-brownfield/RELEASE.md`; metrics are from the run-end refresh of
+> `docs/metrics/`.
 
 ## Decomposition
 
@@ -74,13 +74,62 @@ pairs; w2 launched after w1 integrated. Drills, each labelled and recorded in
 | Drill | What was exercised | Evidence |
 |---|---|---|
 | QA rejects a candidate → remediation loop | DRILL 1, labelled drill instance `urlshort-drill` (no natural QA rejection occurred; the day's natural rejection was a code review, CR-01) | QA failed the deliberately defective candidate (MUST-FIX DRILL1-01) at 23:29:04Z, the fix was re-checked and the instance completed (`01M4212A8BKA6JRZHZQBD90D07`); `docs/scenarios/drills.md` |
-| Integrator `git revert` after a failed installed smoke | throwaway branch and worktree off `main` | rehearsed at mission 01 release prep (`rollback-rehearsal`); `[final]` |
+| Integrator `git revert` after a failed installed smoke | DRILL 2, 16:20–16:35Z, throwaway branch and worktree off `main` | a merged fault (`Cache-Control: no-store` dropped) failed the installed smoke; the lead's `git revert -m 1` restored a tree equal to `main`, and gate and smoke passed again; `main` never touched; `docs/scenarios/drills.md` |
 | `rig seat stop` → `rig workflow route` | DRILL 3, 16:54–16:56Z | the stranded step was re-owned by the lead's route without advancing or losing it, and the stopped seat came back; ordinary routes during the run (capacity moves) are listed separately as natural routing events; `docs/scenarios/drills.md` |
 | `rig workflow resume` then `abort` | DRILL 4, 16:57–16:58Z; order taken from the CLI's own contract | a failed step redriven once, then the whole instance safely stopped (`01M41B1ABGY3WR0DKEPZCJE9D3`); `docs/scenarios/drills.md` |
 
-## Validation `[final]`
+## Validation
 
-Gate on the shipped SHA, regression journeys from mission 01 unchanged,
-migration rollback rehearsed, installed smoke, release review, ship sign-off.
+From `missions/02-brownfield/RELEASE.md` (product `30f8de4e`) and the release
+review (`docs/review/02-brownfield/release-review.md`, PASS at `446eca31`):
 
-## Metrics `[final]`
+| Check | Result |
+|---|---|
+| Fresh gate on the shipped commit | 268 unit and 322 functional tests, zero failures; 583/583 lines and 206/206 branches; Javadoc doclint. The reviewer re-ran all 590 tests independently |
+| Regression on shipped behaviour (FR-13) | mission 01's journeys run unchanged in the same suite; links created before the change keep redirecting |
+| Installed smoke | the jar (127.0.0.1:18240) and the container image (127.0.0.1:18241, read-only root, UID 10001) both passed `scripts/smoke.sh`; the image's jar equals the tested jar byte for byte |
+| Migration rollback | V4 then V3 rolled back on a copy of real data; the row counts prove versions 1–4, then 1–3, then 1–2, then 1–4 again with older data unchanged. Then the previous binary (`f090103`) started on the rolled-back copy and passed smoke |
+| Dependency advisories | OSV on 97 runtime coordinates: zero advisories (point in time) |
+| Hosted CI | the refactored code passed GitHub's `gate` in pull request #14, and `main`'s CI and CD runs after it; the shipped commit differs from it in documentation only |
+| Proof | 64/64 items accepted across the six slices, re-affirmed where shared documents drifted |
+| Ship sign-off, by the human, 2026-10-04 05:23:06Z | "approve: ship mission 02 (six slices) at 30f8de4e for local use; the exact-SHA hosted CI gap is accepted because the delta from the CI-verified e43ed246 (pull request #14) is documentation only; the release's measurement limits are accepted" |
+
+Not proven, and stated as such in the release package (§7): remote TCP and
+IPv6 behaviour, natural disk failure, a large purge catch-up, and performance
+on the intended host. The latency figures are dated, single-host quantiles
+from a macOS developer machine (Docker in Colima), and no load test was re-run
+on the shipped commit. GitHub has no run on the exact shipped commit, because
+agents never push. The original host-path criterion AC-28 did not pass; the
+amended criterion was accepted by a human decision. The refactor's own revert
+is described but was not executed; the integrator revert drill covers that
+path generically.
+
+Mission 02 closed at `2522e6c2`, with its backlog recorded in
+`missions/02-brownfield/NOTES.md`.
+
+## Metrics
+
+From `docs/metrics/README.md`, the run-end refresh (generated
+2026-10-04T05:38:42Z from the live daemon after this mission closed, every
+instance terminal):
+
+| Instance | E2E latency | Hops | Closures | Retries | Rollback text matches | Human wait | MTTR |
+|---|---|---|---|---|---|---|---|
+| mission lifecycle `02-brownfield` | 17.7 h | 9 | 14 | 0 | 2 | 3.6 h | – |
+| `01-audit-read` | 6.1 h | 15 | 16 | 10 | 0 | 0 s | 41 min |
+| `02-click-retention` | 7.4 h | 12 | 18 | 6 | 2 | 0 s | 38 min |
+| `03-dogfood-fix` | 1.8 h | 8 | 9 | 0 | 0 | 0 s | – |
+| `04-audit-columns` | 5.6 h | 8 | 11 | 0 | 0 | 0 s | – |
+| `05-ci-cd` | 4.0 h | 8 | 10 | 0 | 0 | 0 s | – |
+| `06-client-identity` | 3.2 h | 11 | 14 | 4 | 0 | 0 s | 35 min |
+
+The six slices had six failed closures behind 20 retry counts: the audit read's
+requirements, design and code review (CR-01), two retention design reviews,
+and the refactor's test-only polling race. Each retry is a review loop working
+as designed. No rollback was executed in production. The "rollback" column is
+a text-match heuristic: the lifecycle's two hits are the plan brief that names
+a revert drill and the ship gate's summary of the rollback recipe; retention's
+two describe its migration rollback requirement. The real drills and the V4/V3
+rehearsal have their own evidence (above). Human wait is the mission plan-lock
+(12,869 s) and the ship gate (100 s). The delegated slice plan-locks went to
+the lead, so they count as 0 s here.

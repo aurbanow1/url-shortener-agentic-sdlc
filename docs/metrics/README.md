@@ -1,19 +1,19 @@
 # SDLC reliability metrics
 
-Generated 2026-10-04T03:08:55.760Z by `tools/sdlc-metrics.mjs` from OpenRig workflow trails and queue transition logs (docs/evidence exports).
+Generated 2026-10-04T05:38:42.350Z by `tools/sdlc-metrics.mjs` from OpenRig workflow trails and queue transition logs (live daemon read).
 
 ## Totals
 
 | Metric | Value |
 |---|---|
-| Workflow instances (active / completed / failed / aborted) | 17 (3 / 13 / 0 / 1) |
-| Instance success rate (completed ÷ terminal) | 0.929 |
-| Step closures (failed) | 240 (18) |
-| Step success rate | 0.925 |
-| Retries (failed closures + step re-entries) | 52 |
-| Rollbacks (revert notes + engine resumes) | 9 |
-| MTTR, mean (failed closure → next successful closure of that step) | 28 min |
-| End-to-end latency, completed instances p50 / p95 | 5.6 h / 8.7 h |
+| Workflow instances (active / completed / failed / aborted) | 17 (0 / 16 / 0 / 1) |
+| Instance success rate (completed ÷ terminal) | 0.941 |
+| Step closures (failed) | 254 (18) |
+| Step success rate | 0.929 |
+| Retries (failed closures + step re-entries) | 55 |
+| Rollbacks (revert notes + engine resumes) | 10 |
+| MTTR, mean (failed closure → next successful closure of that step) | 29 min |
+| End-to-end latency, completed instances p50 / p95 | 5.6 h / 15.7 h |
 | Time parked on the human (all gates) | 8.8 h |
 
 ## Per instance
@@ -26,8 +26,8 @@ Generated 2026-10-04T03:08:55.760Z by `tools/sdlc-metrics.mjs` from OpenRig work
 | 01M40149S2… | urlshort-slice | completed | 3.3 h | 12 | 13 | 6 | 1 | 0 s | 17 min |
 | 01M40CP0JV… | urlshort-slice-delegated | completed | 3.4 h | 13 | 16 | 7 | 0 | 0 s | 36 min |
 | 01M40CPBYR… | urlshort-slice-delegated-b | completed | 5.9 h | 15 | 22 | 10 | 1 | 0 s | 36 min |
-| 01M40RVNDQ… | 03-ambiguous-analytics | waiting | 15.5 h | 8 | 10 | 0 | 1 | 3.9 h | – |
-| 01M40SN34E… | 02-brownfield | waiting | 15.3 h | 4 | 8 | 0 | 1 | 3.6 h | – |
+| 01M40RVNDQ… | 03-ambiguous-analytics | completed | 15.7 h | 9 | 12 | 0 | 1 | 3.9 h | – |
+| 01M40SN34E… | 02-brownfield | completed | 17.7 h | 9 | 14 | 0 | 2 | 3.6 h | – |
 | 01M416Z3CM… | urlshort-slice | completed | 8.7 h | 8 | 15 | 0 | 0 | 0 s | – |
 | 01M416ZY5N… | urlshort-slice-delegated | completed | 6.1 h | 15 | 16 | 10 | 0 | 0 s | 41 min |
 | 01M4170AA9… | urlshort-slice-delegated-b | completed | 7.4 h | 12 | 18 | 6 | 2 | 0 s | 38 min |
@@ -36,7 +36,7 @@ Generated 2026-10-04T03:08:55.760Z by `tools/sdlc-metrics.mjs` from OpenRig work
 | 01M41HG4P6… | urlshort-slice-delegated-b | completed | 5.6 h | 8 | 11 | 0 | 0 | 0 s | – |
 | 01M41HGF6A… | urlshort-slice-delegated | completed | 4.0 h | 8 | 10 | 0 | 0 | 0 s | – |
 | 01M4212A8B… | urlshort-drill | completed | 12 min | 3 | 4 | 3 | 0 | 0 s | 3 min |
-| 01M425CY9Z… | urlshort-slice-delegated-b | active | 2.6 h | 8 | 8 | 1 | 0 | 0 s | – |
+| 01M425CY9Z… | urlshort-slice-delegated-b | completed | 3.2 h | 11 | 14 | 4 | 0 | 0 s | 35 min |
 
 ## Derivations and honest limits
 
@@ -101,10 +101,34 @@ and trail events come from the earlier export; completed-instance percentiles
 exclude those unfinished instances. Future export/mission-close events are
 not part of this snapshot.
 
+
+## Mission02 final preparation refresh
+
+Generated2026-10-04T04:46:43.295Z with --live in an isolated workspace containing only the fresh mission02 raw export. The unchanged generator also prefers exported packet files over live reads, so isolation prevents stale mission03 packet/trace copies from overriding current mission02 evidence. All17 instance rows and every packet metric reproduce from [frozen inputs](../../missions/02-brownfield/release/final-30f8de4e/final-metrics-inputs.tar.gz) and the [provenance](../../missions/02-brownfield/release/final-30f8de4e/final-metrics-provenance.json); [replay](../../missions/02-brownfield/release/final-30f8de4e/final-metrics-replay.json) freezes only generation time and normalizes the export-directory label. The seven bound mission02 instances are identified in its RELEASE, not by this table's mission label.
+
+The older8d3c536 report cannot be reproduced from its committed inputs: they yield233closures/9rollback heuristic hits instead of230/8; D21 has6closures versus3 and a release coordination note adds one text match. The missing then-used mission03 input set remains a historical custody qualification, not a silently corrected snapshot. Later mission03's committed/frozen c735190b snapshot above is a separate record.
+
+Current factory totals17instances,15completed/1active/1aborted;249closures/18failed;55retry counts;9rollback heuristics;1711s mean-of-instance MTTR. Mission02 lifecycle itself has0failed/0retries and no measured MTTR; its6slices have6failed closures and20retry counts across requirements/design/code repair loops. These are factory governance events, not production incidents. Human gate wait counted for its lifecycle is12869s; custom/delegated parks can be omitted.
+
 ## Self-check
 
-Read the committed export identity and final validation, ran the metrics
-generator, reconciled the two bound instance rows with the exported traces
-and gate transitions, and retained the scope/derivation limits above. This
-refresh changes only shared metrics; the product and frozen preparation
-metrics keep their existing evidence scope. Nothing published.
+The fresh generator output was archived and reproduced from the preserved raw input set: all17 instance rows, packet metrics and totals match, with only live/export labeling normalized. The product and mission03 frozen evidence remain unchanged; no publication.
+
+## Run-end refresh (all instances terminal)
+
+Generated 2026-10-04T05:38:42.350Z with `--live` in a scratch git workspace
+that contains **no** export directories, so every trace and packet was read
+from the daemon and no exported copy could override a newer record. It was run
+after mission 02's `mission_close` (lifecycle `01M40SN34E37K96B38JPG9K41X`
+completed 2026-10-04T05:35:35.988Z), so this is the factory's final state: 17
+instances, 16 completed, 1 aborted (DRILL 4), none active.
+
+Against the mission 02 preparation refresh above, only the mission 02
+lifecycle row changed: active to completed, five more step closures
+(release_review through mission_close), and one more rollback text match. That
+match is the ship sign-off packet, whose gate summary describes the rollback
+recipe; no rollback was executed. Its counted human wait, 12,969 s, is the
+12,869 s mission plan-lock plus the 100 s ship gate. Totals moved accordingly
+(254 closures, 10 rollback heuristic hits, completed-instance E2E p95 15.7 h).
+Every qualification above (scope labels, the rollback heuristic, MTTR as a
+mean of per-instance means, omitted custom parks) still applies.

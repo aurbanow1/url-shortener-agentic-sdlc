@@ -1,6 +1,6 @@
 # Evidence export — 02-brownfield
 
-Exported 2026-10-04T01:52:24Z by tools/evidence-export.sh from OpenRig 0.6.3 (8b5e9488).
+Exported 2026-10-04T05:30:09Z by tools/evidence-export.sh from OpenRig 0.6.3 (8b5e9488).
 
 | Artifact | Governance clause (docs/GOVERNANCE.md) |
 |---|---|
@@ -18,7 +18,7 @@ Exported 2026-10-04T01:52:24Z by tools/evidence-export.sh from OpenRig 0.6.3 (8b
 
 Approval stamps are not in this export: they live in the stamped files' frontmatter (missions/<m>/SPEC.md, slices/*/SPEC.md: approved-spec-*, approved-*) with append-only audit rows daemon-side; the decision text behind each stamp is in the gate packet's transitions here.
 
-Instances exported: 17; packets exported: 187.
+Instances exported: 17; packets exported: 204.
 
 ## Packets (workflow · step · state · owner)
 
@@ -166,7 +166,7 @@ Instances exported: 17; packets exported: 187.
 | qitem-20261003193154-cf5ec0b6 | urlshort-slice-delegated | design_review | handed-off | review-agent |
 | qitem-20261003193221-175d6855 | urlshort-slice-delegated-b | implement | handed-off | dev2-agent |
 | qitem-20261003194307-78d5bcf1 | urlshort-slice-delegated | plan_lock | handed-off | orchestration-lead |
-| qitem-20261003195138-8eb72ecb | - | - | blocked | orchestration-lead |
+| qitem-20261003195138-8eb72ecb | - | - | done | orchestration-lead |
 | qitem-20261003195527-d2973fff | urlshort-slice-delegated-b | qa_check | handed-off | qa2-agent |
 | qitem-20261003195938-d8b8a9c3 | urlshort-slice-delegated | code_review | done | review-agent |
 | qitem-20261003200223-d361adc6 | urlshort-slice-delegated | implement | handed-off | development-agent |
@@ -196,20 +196,38 @@ Instances exported: 17; packets exported: 187.
 | qitem-20261004000110-d0d07fdb | urlshort-slice | code_review | handed-off | review-agent |
 | qitem-20261004001239-8ee629f7 | urlshort-slice-delegated-b | integrate | done | orchestration-lead |
 | qitem-20261004001800-cc58cd9d | urlshort-slice | integrate | done | orchestration-lead |
-| qitem-20261004002455-b7ea811b | 02-brownfield | wave_review | blocked | review-agent |
+| qitem-20261004002455-b7ea811b | 02-brownfield | wave_review | handed-off | review-agent |
 | qitem-20261004002509-de60eb81 | 03-ambiguous-analytics | wave_review | handed-off | review-agent |
 | qitem-20261004002516-ee95930d | 03-ambiguous-analytics | wave_review | handed-off | review2-agent |
 | qitem-20261004003331-0b5245ad | - | - | done | orchestration-lead |
 | qitem-20261004003538-62f6c81e | urlshort-slice-delegated-b | requirements | handed-off | requirements-agent |
 | qitem-20261004004814-04c1642a | 03-ambiguous-analytics | release_prep | handed-off | release-agent |
-| qitem-20261004004828-05d2aab9 | 03-ambiguous-analytics | release_prep | in-progress | release2-agent |
+| qitem-20261004004828-05d2aab9 | 03-ambiguous-analytics | release_prep | handed-off | release2-agent |
 | qitem-20261004004915-91f40366 | urlshort-slice-delegated-b | requirements_review | handed-off | review2-agent |
 | qitem-20261004005331-36607695 | - | of | blocked | orchestration-lead |
 | qitem-20261004005458-a071fd65 | urlshort-slice-delegated-b | design | handed-off | design2-agent |
 | qitem-20261004011019-f67b1c6d | urlshort-slice-delegated-b | design_review | handed-off | review2-agent |
 | qitem-20261004012350-fdb23cbc | urlshort-slice-delegated-b | plan_lock | handed-off | orchestration-lead |
 | qitem-20261004012507-efa30d6a | urlshort-slice-delegated-b | implement | handed-off | dev2-agent |
-| qitem-20261004013841-c2fa8b43 | urlshort-slice-delegated-b | qa_check | in-progress | qa2-agent |
+| qitem-20261004013841-c2fa8b43 | urlshort-slice-delegated-b | qa_check | handed-off | qa2-agent |
+| qitem-20261004020758-49ceba8e | 03-ambiguous-analytics | release_review | handed-off | review-agent |
+| qitem-20261004023723-f58044d0 | 03-ambiguous-analytics | ship_signoff | handed-off | release-agent |
+| qitem-20261004024212-e72494e7 | 03-ambiguous-analytics | evidence_export | handed-off | release-agent |
+| qitem-20261004024238-651b51b1 | 03-ambiguous-analytics | evidence_export | handed-off | release2-agent |
+| qitem-20261004024533-3e9ae475 | urlshort-slice-delegated-b | code_review | done | review2-agent |
+| qitem-20261004025620-a869dc4a | urlshort-slice-delegated-b | implement | handed-off | dev2-agent |
+| qitem-20261004025925-a5886b4c | urlshort-slice-delegated-b | qa_check | handed-off | qa2-agent |
+| qitem-20261004031539-0bd7032a | 03-ambiguous-analytics | mission_close | done | orchestration-lead |
+| qitem-20261004032752-d162e1b3 | urlshort-slice-delegated-b | code_review | handed-off | review2-agent |
+| qitem-20261004033137-1400c73d | urlshort-slice-delegated-b | integrate | done | orchestration-lead |
+| qitem-20261004034522-8dfeeeca | 02-brownfield | release_prep | handed-off | release-agent |
+| qitem-20261004041605-18a958ae | - | - | done | qa2-agent |
+| qitem-20261004041607-09149d20 | - | - | done | qa-agent |
+| qitem-20261004042358-6587e4be | - | - | done | qa2-agent |
+| qitem-20261004050142-3fad2270 | 02-brownfield | release_review | handed-off | review-agent |
+| qitem-20261004052127-b89c249b | 02-brownfield | ship_signoff | handed-off | release-agent |
+| qitem-20261004052612-42705c30 | 02-brownfield | evidence_export | in-progress | release-agent |
+| qitem-20261004052725-7bd25702 | - | - | blocked | qa-agent |
 | qitem-recovery-84c436485c1dd14a | - | - | done | release2-agent |
 
 ## Step trails (closed at · step · exit · packet · actor)
@@ -377,6 +395,13 @@ Instances exported: 17; packets exported: 187.
 
 | Closed at | Step | Exit | Packet | Actor |
 |---|---|---|---|---|
+| 2026-10-04T03:16:47.236Z | mission_close | done | qitem-20261004031539-0bd7032a | orchestration-lead |
+| 2026-10-04T03:15:39.170Z | evidence_export | handoff | qitem-20261004024238-651b51b1 | release2-agent |
+| 2026-10-04T02:45:37.223Z | evidence_export | waiting | qitem-20261004024238-651b51b1 | release2-agent |
+| 2026-10-04T02:42:12.694Z | ship_signoff | handoff | qitem-20261004023723-f58044d0 | release-agent |
+| 2026-10-04T02:37:23.264Z | release_review | handoff | qitem-20261004020758-49ceba8e | review-agent |
+| 2026-10-04T02:17:07.184Z | release_review | waiting | qitem-20261004020758-49ceba8e | review-agent |
+| 2026-10-04T02:07:58.977Z | release_prep | handoff | qitem-20261004004828-05d2aab9 | release2-agent |
 | 2026-10-04T00:48:14.139Z | wave_review | handoff | qitem-20261004002516-ee95930d | review2-agent |
 | 2026-10-04T00:25:09.237Z | wave_integration | handoff | qitem-20261003154114-c0dd70b0 | orchestration-lead |
 | 2026-10-03T15:41:14.371Z | mission_plan_lock | handoff | qitem-20261003114944-9bd32a00 | orchestration-lead |
@@ -387,6 +412,10 @@ Instances exported: 17; packets exported: 187.
 
 | Closed at | Step | Exit | Packet | Actor |
 |---|---|---|---|---|
+| 2026-10-04T05:26:12.694Z | ship_signoff | handoff | qitem-20261004052127-b89c249b | release-agent |
+| 2026-10-04T05:21:27.014Z | release_review | handoff | qitem-20261004050142-3fad2270 | review-agent |
+| 2026-10-04T05:01:42.124Z | release_prep | handoff | qitem-20261004034522-8dfeeeca | release-agent |
+| 2026-10-04T03:45:22.728Z | wave_review | handoff | qitem-20261004002455-b7ea811b | review-agent |
 | 2026-10-04T00:55:49.808Z | wave_review | waiting | qitem-20261004002455-b7ea811b | review-agent |
 | 2026-10-04T00:49:13.783Z | wave_review | waiting | qitem-20261004002455-b7ea811b | review-agent |
 | 2026-10-04T00:43:26.777Z | wave_review | waiting | qitem-20261004002455-b7ea811b | review-agent |
@@ -525,9 +554,35 @@ Instances exported: 17; packets exported: 187.
 
 | Closed at | Step | Exit | Packet | Actor |
 |---|---|---|---|---|
+| 2026-10-04T03:45:35.625Z | integrate | done | qitem-20261004033137-1400c73d | orchestration-lead |
+| 2026-10-04T03:37:35.520Z | integrate | waiting | qitem-20261004033137-1400c73d | orchestration-lead |
+| 2026-10-04T03:33:52.923Z | integrate | waiting | qitem-20261004033137-1400c73d | orchestration-lead |
+| 2026-10-04T03:31:37.315Z | code_review | handoff | qitem-20261004032752-d162e1b3 | review2-agent |
+| 2026-10-04T03:27:52.590Z | qa_check | handoff | qitem-20261004025925-a5886b4c | qa2-agent |
+| 2026-10-04T02:59:25.589Z | implement | handoff | qitem-20261004025620-a869dc4a | dev2-agent |
+| 2026-10-04T02:56:20.397Z | code_review | failed | qitem-20261004024533-3e9ae475 | review2-agent |
+| 2026-10-04T02:45:33.578Z | qa_check | handoff | qitem-20261004013841-c2fa8b43 | qa2-agent |
 | 2026-10-04T01:38:41.837Z | implement | handoff | qitem-20261004012507-efa30d6a | dev2-agent |
 | 2026-10-04T01:25:07.857Z | plan_lock | handoff | qitem-20261004012350-fdb23cbc | orchestration-lead |
 | 2026-10-04T01:23:50.737Z | design_review | handoff | qitem-20261004011019-f67b1c6d | review2-agent |
 | 2026-10-04T01:10:19.303Z | design | handoff | qitem-20261004005458-a071fd65 | design2-agent |
 | 2026-10-04T00:54:58.619Z | requirements_review | handoff | qitem-20261004004915-91f40366 | review2-agent |
 | 2026-10-04T00:49:15.260Z | requirements | handoff | qitem-20261004003538-62f6c81e | requirements-agent |
+
+## Final export and custody
+
+This is the final mission02 audit export after independent review446eca31 PASS, human2078 local-use approval, mission delivery10df955a and six slice stamps2020d53b. [RELEASE](../../../missions/02-brownfield/RELEASE.md) is the claim-to-evidence map. Current mission proof is ready64/64. The lead rechecked all six slices after stamps and explicitly waived the unnecessary SPEC-only round because no item drifted; no QA blocker for mission02 remains.
+
+- Human approval checkpoints and cross-stage lineage: [ship gate transitions](packets/qitem-20261004052127-b89c249b.transitions.json) preserve the exact decision and qualified RELEASE path; [review trail](instances/01M40SN34E37K96B38JPG9K41X.trace.json) records release_review and ship_signoff handoffs. Stamps live in committed SPEC frontmatter, not in this export directory.
+- Audit-grade observability and controlled autonomy: [proof readiness](proof-readiness.json), all packet shows/transitions and generated tables preserve attributed judgments and current custody. [Final validation](final-validation.json) checks committed proof-reference hashes, delivery stamps, raw JSON and links.
+- Explicit dependency graph and dynamic re-planning: the compiled graph is the authored disk projection; bound revisions and adoption history remain in instance shows. Other missions and drills are also exported; directory labels do not establish mission membership.
+- Reliability metrics and rollback: [reviewed preparation export and dated metrics](../../../missions/02-brownfield/release/final-evidence-export/preparation-export-ad0c01f6.tar.gz) preserve the complete prior snapshot. Shared metrics still freeze at04:46:43Z and derive from their archived inputs, not from these later refreshed records. All50 reviewed final-preparation files remain unchanged. Historical8d discrepancy, text-match rollback/resume heuristic, mean-of-instance MTTR and omitted custom waits remain explicit. [Derivations](../../metrics/README.md) and [four drills](../../scenarios/drills.md) retain those boundaries.
+- Safe-stop and ordering: [mission03 QA7bd25702](packets/qitem-20261004052725-7bd25702.show.json) is parked on this export and runs afterwards; it does not block mission02. A connection failure prevented the intended pre-handoff lead notification; successful delivery followed05:26Z and the lead authorized export05:27Z. [Export transitions](packets/qitem-20261004052612-42705c30.transitions.json) correct the earlier timing claim.
+
+The frozen preparation validation refers to the archived preparation snapshot; final-validation.json covers current records. Usage is a rolling24h snapshot, not a mission-only bill. This capture precedes its own evidence_export closure and mission_close, so those later events are not falsely claimed present. No product rerun, push, release tag, publication or remote exposure.
+
+Final validation parses477 raw JSON files (excluding its own generated report),17 instance trails and205 packet shows. The exporter header counts204 trail-named packets; the table additionally includes the downstream mission03 QA packet. All174 distinct current proof-reference files match committed bytes;148 local links/anchors open. All50 frozen preparation files and the archived preparation manifest match their reviewed pin.
+
+## Self-check
+
+Final verification opens current raw records and local links, checks human decision verbatim, all seven delivery stamps and ready64/64 proof against committed bytes, and validates every frozen preparation file plus the prior export archive. No original artifact, metrics or known gap was silently rewritten. Final report counts are recorded in final-validation.json. Later mission03 QA and the cross-mission FINAL-SUMMARY remain lead custody.

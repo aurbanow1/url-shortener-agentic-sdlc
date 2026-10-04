@@ -1,0 +1,665 @@
+{
+  "historicalProduct": "e227acf04e1ea902406532fcebd741f8a86f7f65",
+  "finalCandidate": "30f8de4e647b05ff54cde09f1019ae519b00069d",
+  "metricsCommit": "8d3c536",
+  "auditedAt": "2026-10-04T04:27:54.110701+00:00",
+  "limits": [
+    "Historical 226/250 suite counts are retained from the manifest; the fresh final XML independently proves 268/322. Historical per-suite XML was not archived by the pre-run.",
+    "Benchmark counts and printed quantiles re-read from bench.txt. No per-request latency sample archive exists, so quantiles are not independently recomputed; no final-SHA load rerun is claimed.",
+    "Historical metrics keep their export-directory labels, text-match rollback heuristic, omitted custom human waits and mean-of-means/non-failed MTTR limitations; no production incident rate inferred."
+  ],
+  "oldJars": [
+    {
+      "path": "/private/tmp/urlshort-mission02-e227acf.jar",
+      "bytes": 39635446,
+      "sha256": "fbe67b61f0f6f668e65949bc01a92802e5de64015ca78eb2d6bbc0462b2ebde2"
+    },
+    {
+      "path": "/private/tmp/urlshort-mission02-image-e227acf.jar",
+      "bytes": 39635446,
+      "sha256": "fbe67b61f0f6f668e65949bc01a92802e5de64015ca78eb2d6bbc0462b2ebde2"
+    }
+  ],
+  "oldCanonicalCounters": {
+    "INSTRUCTION": {
+      "missed": 0,
+      "covered": 2929
+    },
+    "BRANCH": {
+      "missed": 0,
+      "covered": 206
+    },
+    "LINE": {
+      "missed": 0,
+      "covered": 581
+    },
+    "COMPLEXITY": {
+      "missed": 0,
+      "covered": 266
+    },
+    "METHOD": {
+      "missed": 0,
+      "covered": 163
+    },
+    "CLASS": {
+      "missed": 0,
+      "covered": 51
+    }
+  },
+  "oldGateSuiteCounts": {
+    "test": {
+      "tests": 226,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "functionalTest": {
+      "tests": 250,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "oldAdvisories": {
+    "queriedAt": "2026-10-04T01:06:49.753Z",
+    "dependencies": 97,
+    "findings": 0
+  },
+  "unchangedReuseInputs": [
+    "build.gradle.kts",
+    "settings.gradle.kts",
+    "gradle",
+    "Dockerfile",
+    "compose.yaml",
+    "src/main/resources/db/migration",
+    "scripts/smoke.sh",
+    "tools/bench.mjs",
+    ".github"
+  ],
+  "reviewedSourceDelta": [
+    "src/functionalTest/java/dev/urlshort/web/ClientIdentityCharacterizationJourneyTest.java",
+    "src/main/java/dev/urlshort/audit/AuditController.java",
+    "src/main/java/dev/urlshort/click/ClickRecorder.java",
+    "src/main/java/dev/urlshort/web/ClientIdentity.java",
+    "src/main/java/dev/urlshort/web/RateLimitFilter.java",
+    "src/main/resources/application.properties",
+    "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "src/test/java/dev/urlshort/web/ClientIdentityTest.java",
+    "src/test/java/dev/urlshort/web/RateLimitFilterTest.java"
+  ],
+  "finalSourceEqualsReviewedE40": true,
+  "benchmarkRawTextSha256": "7aef418b6c0c080a6a2a5bd9b68ab5de70a20a372199c09f64ee727e4749ff77",
+  "rollbackStages": {
+    "before": {
+      "audit_log.csv": {
+        "sha256": "434f798418ad0d9bcc0081579a0eb35824c7be1b73ae3713ec86c7eb60551fc1",
+        "dataRows": 1204,
+        "header": [
+          "ID",
+          "OCCURRED_AT",
+          "ACTOR",
+          "ACTION",
+          "ENTITY",
+          "ENTITY_ID",
+          "REQUEST_ID",
+          "BEFORE_STATE",
+          "AFTER_STATE"
+        ]
+      },
+      "click.csv": {
+        "sha256": "5f41c89e4e040a7dc31631e5b9b533e2830f14224f9f5f570e40ad16e62b7c61",
+        "dataRows": 12003,
+        "header": [
+          "ID",
+          "LINK_ID",
+          "CLICKED_AT",
+          "CLICKED_ON",
+          "REFERRER",
+          "USER_AGENT_CLASS",
+          "CLIENT_HASH"
+        ]
+      },
+      "columns.csv": {
+        "sha256": "e0ebe85185913cdd02e491c3bdb01129e249b3d4b878d2d6cf05fa671b0ac636",
+        "dataRows": 48,
+        "header": [
+          "TABLE_NAME",
+          "COLUMN_NAME",
+          "DATA_TYPE",
+          "IS_NULLABLE",
+          "COLUMN_DEFAULT"
+        ]
+      },
+      "constraints.csv": {
+        "sha256": "70d92491b5255ffc2981f082e5004f713300d56df9ce087478103d5bcacf5d9e",
+        "dataRows": 12,
+        "header": [
+          "TABLE_NAME",
+          "CONSTRAINT_NAME",
+          "CONSTRAINT_TYPE"
+        ]
+      },
+      "flyway.csv": {
+        "sha256": "726b5bbef27aab19563a9d9cf1d7a5cdf0ae9580daf02a7dec4e6d251b6ac3fe",
+        "dataRows": 5,
+        "header": [
+          "version",
+          "description",
+          "success"
+        ]
+      },
+      "link.csv": {
+        "sha256": "ce7846db820dd380db42632712c9462a4e89fd2e6a4967d8624d9e8225814ba5",
+        "dataRows": 1203,
+        "header": [
+          "ID",
+          "CODE",
+          "URL",
+          "CREATED_AT",
+          "RETIRED_AT",
+          "IDEMPOTENCY_KEY"
+        ]
+      },
+      "user_agent_class.csv": {
+        "sha256": "c7143b0ca2e90c912d376d5b7acc30f1519638b92493f4fae3bbce1e9574485f",
+        "dataRows": 4,
+        "header": [
+          "TOKEN"
+        ]
+      },
+      "versions": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    "after-v4": {
+      "audit_log.csv": {
+        "sha256": "434f798418ad0d9bcc0081579a0eb35824c7be1b73ae3713ec86c7eb60551fc1",
+        "dataRows": 1204,
+        "header": [
+          "ID",
+          "OCCURRED_AT",
+          "ACTOR",
+          "ACTION",
+          "ENTITY",
+          "ENTITY_ID",
+          "REQUEST_ID",
+          "BEFORE_STATE",
+          "AFTER_STATE"
+        ]
+      },
+      "click.csv": {
+        "sha256": "5f41c89e4e040a7dc31631e5b9b533e2830f14224f9f5f570e40ad16e62b7c61",
+        "dataRows": 12003,
+        "header": [
+          "ID",
+          "LINK_ID",
+          "CLICKED_AT",
+          "CLICKED_ON",
+          "REFERRER",
+          "USER_AGENT_CLASS",
+          "CLIENT_HASH"
+        ]
+      },
+      "columns.csv": {
+        "sha256": "bde5b3109a23f866bd26c1955668b2d3b7d1d73aa1c6402a4171c35afe1713a8",
+        "dataRows": 41,
+        "header": [
+          "TABLE_NAME",
+          "COLUMN_NAME",
+          "DATA_TYPE",
+          "IS_NULLABLE",
+          "COLUMN_DEFAULT"
+        ]
+      },
+      "constraints.csv": {
+        "sha256": "70d92491b5255ffc2981f082e5004f713300d56df9ce087478103d5bcacf5d9e",
+        "dataRows": 12,
+        "header": [
+          "TABLE_NAME",
+          "CONSTRAINT_NAME",
+          "CONSTRAINT_TYPE"
+        ]
+      },
+      "flyway.csv": {
+        "sha256": "2a7346d427fcf6ded3595c0552aac22e9a06327b09e01eaff54f9911c1513ef3",
+        "dataRows": 4,
+        "header": [
+          "version",
+          "description",
+          "success"
+        ]
+      },
+      "link.csv": {
+        "sha256": "ce7846db820dd380db42632712c9462a4e89fd2e6a4967d8624d9e8225814ba5",
+        "dataRows": 1203,
+        "header": [
+          "ID",
+          "CODE",
+          "URL",
+          "CREATED_AT",
+          "RETIRED_AT",
+          "IDEMPOTENCY_KEY"
+        ]
+      },
+      "user_agent_class.csv": {
+        "sha256": "c7143b0ca2e90c912d376d5b7acc30f1519638b92493f4fae3bbce1e9574485f",
+        "dataRows": 4,
+        "header": [
+          "TOKEN"
+        ]
+      },
+      "versions": [
+        "1",
+        "2",
+        "3"
+      ]
+    },
+    "after-v3": {
+      "audit_log.csv": {
+        "sha256": "434f798418ad0d9bcc0081579a0eb35824c7be1b73ae3713ec86c7eb60551fc1",
+        "dataRows": 1204,
+        "header": [
+          "ID",
+          "OCCURRED_AT",
+          "ACTOR",
+          "ACTION",
+          "ENTITY",
+          "ENTITY_ID",
+          "REQUEST_ID",
+          "BEFORE_STATE",
+          "AFTER_STATE"
+        ]
+      },
+      "click.csv": {
+        "sha256": "5f41c89e4e040a7dc31631e5b9b533e2830f14224f9f5f570e40ad16e62b7c61",
+        "dataRows": 12003,
+        "header": [
+          "ID",
+          "LINK_ID",
+          "CLICKED_AT",
+          "CLICKED_ON",
+          "REFERRER",
+          "USER_AGENT_CLASS",
+          "CLIENT_HASH"
+        ]
+      },
+      "columns.csv": {
+        "sha256": "3f66052c7602f50ffe25a27136c3fddb2af3f2975fa8ba91c74573f32b05d80c",
+        "dataRows": 33,
+        "header": [
+          "TABLE_NAME",
+          "COLUMN_NAME",
+          "DATA_TYPE",
+          "IS_NULLABLE",
+          "COLUMN_DEFAULT"
+        ]
+      },
+      "constraints.csv": {
+        "sha256": "70d92491b5255ffc2981f082e5004f713300d56df9ce087478103d5bcacf5d9e",
+        "dataRows": 12,
+        "header": [
+          "TABLE_NAME",
+          "CONSTRAINT_NAME",
+          "CONSTRAINT_TYPE"
+        ]
+      },
+      "flyway.csv": {
+        "sha256": "1f8e10979b39107e95007a3038d9f2a06bb6ed598ae17698a6b723fe6ee84c3a",
+        "dataRows": 3,
+        "header": [
+          "version",
+          "description",
+          "success"
+        ]
+      },
+      "link.csv": {
+        "sha256": "ce7846db820dd380db42632712c9462a4e89fd2e6a4967d8624d9e8225814ba5",
+        "dataRows": 1203,
+        "header": [
+          "ID",
+          "CODE",
+          "URL",
+          "CREATED_AT",
+          "RETIRED_AT",
+          "IDEMPOTENCY_KEY"
+        ]
+      },
+      "user_agent_class.csv": {
+        "sha256": "c7143b0ca2e90c912d376d5b7acc30f1519638b92493f4fae3bbce1e9574485f",
+        "dataRows": 4,
+        "header": [
+          "TOKEN"
+        ]
+      },
+      "versions": [
+        "1",
+        "2"
+      ]
+    },
+    "reapplied": {
+      "audit_log.csv": {
+        "sha256": "ff46fcba29327c43b324c126fd9a45663baff9bf2ecdb6d24395bf3809d3286a",
+        "dataRows": 1206,
+        "header": [
+          "ID",
+          "OCCURRED_AT",
+          "ACTOR",
+          "ACTION",
+          "ENTITY",
+          "ENTITY_ID",
+          "REQUEST_ID",
+          "BEFORE_STATE",
+          "AFTER_STATE"
+        ]
+      },
+      "click.csv": {
+        "sha256": "751b4a402b96ac457e286e7690f0176b0025618eab2020693569c77b72424d4b",
+        "dataRows": 12004,
+        "header": [
+          "ID",
+          "LINK_ID",
+          "CLICKED_AT",
+          "CLICKED_ON",
+          "REFERRER",
+          "USER_AGENT_CLASS",
+          "CLIENT_HASH"
+        ]
+      },
+      "columns.csv": {
+        "sha256": "e0ebe85185913cdd02e491c3bdb01129e249b3d4b878d2d6cf05fa671b0ac636",
+        "dataRows": 48,
+        "header": [
+          "TABLE_NAME",
+          "COLUMN_NAME",
+          "DATA_TYPE",
+          "IS_NULLABLE",
+          "COLUMN_DEFAULT"
+        ]
+      },
+      "constraints.csv": {
+        "sha256": "70d92491b5255ffc2981f082e5004f713300d56df9ce087478103d5bcacf5d9e",
+        "dataRows": 12,
+        "header": [
+          "TABLE_NAME",
+          "CONSTRAINT_NAME",
+          "CONSTRAINT_TYPE"
+        ]
+      },
+      "flyway.csv": {
+        "sha256": "726b5bbef27aab19563a9d9cf1d7a5cdf0ae9580daf02a7dec4e6d251b6ac3fe",
+        "dataRows": 5,
+        "header": [
+          "version",
+          "description",
+          "success"
+        ]
+      },
+      "link.csv": {
+        "sha256": "b1272c439c545cb379096ac9e02d14e1b40f0b1c9b07f376f63bf535b7b557ec",
+        "dataRows": 1204,
+        "header": [
+          "ID",
+          "CODE",
+          "URL",
+          "CREATED_AT",
+          "RETIRED_AT",
+          "IDEMPOTENCY_KEY"
+        ]
+      },
+      "user_agent_class.csv": {
+        "sha256": "c7143b0ca2e90c912d376d5b7acc30f1519638b92493f4fae3bbce1e9574485f",
+        "dataRows": 4,
+        "header": [
+          "TOKEN"
+        ]
+      },
+      "versions": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    }
+  },
+  "oldSecretRescan": {
+    "textFiles": 9236,
+    "binaryFiles": 497,
+    "findings": []
+  },
+  "historicalMetrics": {
+    "generatedAt": "2026-10-04T01:52:27.811Z",
+    "historicalTotals": {
+      "generatedAt": "2026-10-04T01:52:27.811Z",
+      "instances": 17,
+      "active": 3,
+      "completed": 13,
+      "failed": 0,
+      "aborted": 1,
+      "instanceSuccessRate": 0.929,
+      "stepClosures": 230,
+      "failedClosures": 17,
+      "stepSuccessRate": 0.926,
+      "retries": 51,
+      "rollbacks": 8,
+      "mttrMeanSec": 1652,
+      "e2eP50Sec": 20200,
+      "e2eP95Sec": 31241,
+      "humanWaitTotalSec": 31434
+    },
+    "rederivedCommittedRows": [
+      {
+        "instanceId": "01M3Z8AJ1EDFTHQ1HPAWPNP2YN",
+        "stepClosures": 21,
+        "failedClosures": 0,
+        "reentries": 0,
+        "retries": 0,
+        "rollbacks": 0,
+        "humanWaitSec": 1870,
+        "mttrSec": null,
+        "e2eLatencySec": 20218
+      },
+      {
+        "instanceId": "01M3ZA8Q39QEB3R1QDQCVTER18",
+        "stepClosures": 14,
+        "failedClosures": 2,
+        "reentries": 4,
+        "retries": 6,
+        "rollbacks": 0,
+        "humanWaitSec": 869,
+        "mttrSec": 1244,
+        "e2eLatencySec": 13597
+      },
+      {
+        "instanceId": "01M3ZXEXAMS945ZS0QZ26KZK1V",
+        "stepClosures": 43,
+        "failedClosures": 0,
+        "reentries": 0,
+        "retries": 0,
+        "rollbacks": 2,
+        "humanWaitSec": 1990,
+        "mttrSec": null,
+        "e2eLatencySec": 50872
+      },
+      {
+        "instanceId": "01M40149S2BGCAKVK83B6VCNKG",
+        "stepClosures": 13,
+        "failedClosures": 2,
+        "reentries": 4,
+        "retries": 6,
+        "rollbacks": 1,
+        "humanWaitSec": 0,
+        "mttrSec": 1025,
+        "e2eLatencySec": 11917
+      },
+      {
+        "instanceId": "01M40CP0JVZZWR8226MNN8XCCV",
+        "stepClosures": 16,
+        "failedClosures": 2,
+        "reentries": 5,
+        "retries": 7,
+        "rollbacks": 0,
+        "humanWaitSec": 0,
+        "mttrSec": 2189,
+        "e2eLatencySec": 12301
+      },
+      {
+        "instanceId": "01M40CPBYR97637QGHT57BNEBY",
+        "stepClosures": 22,
+        "failedClosures": 3,
+        "reentries": 7,
+        "retries": 10,
+        "rollbacks": 1,
+        "humanWaitSec": 0,
+        "mttrSec": 2181,
+        "e2eLatencySec": 21255
+      },
+      {
+        "instanceId": "01M40RVNDQ0KT7FPWN1KJW0DC3",
+        "stepClosures": 5,
+        "failedClosures": 0,
+        "reentries": 0,
+        "retries": 0,
+        "rollbacks": 1,
+        "humanWaitSec": 13836,
+        "mttrSec": null,
+        "e2eLatencySec": 51313
+      },
+      {
+        "instanceId": "01M40SN34E37K96B38JPG9K41X",
+        "stepClosures": 8,
+        "failedClosures": 0,
+        "reentries": 0,
+        "retries": 0,
+        "rollbacks": 1,
+        "humanWaitSec": 12869,
+        "mttrSec": null,
+        "e2eLatencySec": 50480
+      },
+      {
+        "instanceId": "01M416Z3CM54YQTX93V4KG0CPS",
+        "stepClosures": 15,
+        "failedClosures": 0,
+        "reentries": 0,
+        "retries": 0,
+        "rollbacks": 0,
+        "humanWaitSec": 0,
+        "mttrSec": null,
+        "e2eLatencySec": 31241
+      },
+      {
+        "instanceId": "01M416ZY5N11CDGZBM2DT4GAXS",
+        "stepClosures": 16,
+        "failedClosures": 3,
+        "reentries": 7,
+        "retries": 10,
+        "rollbacks": 0,
+        "humanWaitSec": 0,
+        "mttrSec": 2479,
+        "e2eLatencySec": 22077
+      },
+      {
+        "instanceId": "01M4170AA9E72WW1BXEA5PX0AP",
+        "stepClosures": 18,
+        "failedClosures": 2,
+        "reentries": 4,
+        "retries": 6,
+        "rollbacks": 2,
+        "humanWaitSec": 0,
+        "mttrSec": 2265,
+        "e2eLatencySec": 26647
+      },
+      {
+        "instanceId": "01M41B1ABGY3WR0DKEPZCJE9D3",
+        "stepClosures": 2,
+        "failedClosures": 2,
+        "reentries": 1,
+        "retries": 3,
+        "rollbacks": 1,
+        "humanWaitSec": 0,
+        "mttrSec": null,
+        "e2eLatencySec": 174
+      },
+      {
+        "instanceId": "01M41HFT4CTYPNWWNB8PJ99NFE",
+        "stepClosures": 9,
+        "failedClosures": 0,
+        "reentries": 0,
+        "retries": 0,
+        "rollbacks": 0,
+        "humanWaitSec": 0,
+        "mttrSec": null,
+        "e2eLatencySec": 6340
+      },
+      {
+        "instanceId": "01M41HG4P6DEVAKTCJC6J9QAWP",
+        "stepClosures": 11,
+        "failedClosures": 0,
+        "reentries": 0,
+        "retries": 0,
+        "rollbacks": 0,
+        "humanWaitSec": 0,
+        "mttrSec": null,
+        "e2eLatencySec": 20200
+      },
+      {
+        "instanceId": "01M41HGF6AHB6AZR3Q0KQ8MQR7",
+        "stepClosures": 10,
+        "failedClosures": 0,
+        "reentries": 0,
+        "retries": 0,
+        "rollbacks": 0,
+        "humanWaitSec": 0,
+        "mttrSec": null,
+        "e2eLatencySec": 14513
+      },
+      {
+        "instanceId": "01M4212A8BKA6JRZHZQBD90D07",
+        "stepClosures": 4,
+        "failedClosures": 1,
+        "reentries": 2,
+        "retries": 3,
+        "rollbacks": 0,
+        "humanWaitSec": 0,
+        "mttrSec": 184,
+        "e2eLatencySec": 732
+      },
+      {
+        "instanceId": "01M425CY9Z4K03G14Y677AT0PA",
+        "stepClosures": 6,
+        "failedClosures": 0,
+        "reentries": 0,
+        "retries": 0,
+        "rollbacks": 0,
+        "humanWaitSec": 0,
+        "mttrSec": null,
+        "e2eLatencySec": 4609
+      }
+    ],
+    "differences": [
+      {
+        "instance": "01M40RVNDQ0KT7FPWN1KJW0DC3",
+        "packet": "qitem-20261004004828-05d2aab9",
+        "field": "rollbackNotes",
+        "committedRaw": 1,
+        "historicalMetric": 0
+      },
+      {
+        "instance": "01M40RVNDQ0KT7FPWN1KJW0DC3",
+        "field": "rollbacks",
+        "committedRaw": 1,
+        "historicalMetric": 0
+      },
+      {
+        "instance": "01M425CY9Z4K03G14Y677AT0PA",
+        "field": "stepClosures",
+        "committedRaw": 6,
+        "historicalMetric": 3
+      }
+    ],
+    "inputCompleteness": "The historical generator labels every row 03-ambiguous-analytics, but git ls-tree at 8d3c536 contains no committed docs/evidence/03-ambiguous-analytics raw export. Its then-present uncommitted inputs are not recoverable from that commit. Do not claim exact historical reproduction or reuse these totals as final release metrics."
+  }
+}
