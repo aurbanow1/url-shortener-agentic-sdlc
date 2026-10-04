@@ -1,0 +1,11 @@
+ .../click/ClickRetentionStartupJourneyTest.java    |   3 +-
+ .../link/LinkAuditColumnsFailureJourneyTest.java   |  82 +++++++
+ .../urlshort/link/LinkAuditColumnsJourneyTest.java | 273 +++++++++++++++++++++
+ .../dev/urlshort/link/LinkUpgradeJourneyTest.java  | 100 ++++++++
+ .../java/dev/urlshort/link/LinkRepository.java     |  15 +-
+ src/main/java/dev/urlshort/link/LinkService.java   |   3 +
+ .../db/migration/V4__add_link_audit_columns.sql    |  31 +++
+ .../dev/urlshort/click/ClickAuditColumnsTest.java  |   2 +-
+ .../dev/urlshort/link/LinkAuditColumnsTest.java    | 161 ++++++++++++
+ .../dev/urlshort/link/LinkServiceStampTest.java    |  73 ++++++
+ 10 files changed, 739 insertions(+), 4 deletions(-)

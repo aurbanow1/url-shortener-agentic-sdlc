@@ -1,0 +1,27 @@
+{
+  "sequence": 39,
+  "name": "rate-17",
+  "app": "default-limiter",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "GET",
+    "http://localhost:18162/api/audit?limit=1"
+  ],
+  "status": 200,
+  "headers": {
+    "x-request-id": "a55fb23b-3922-473c-a640-12376709759c",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sat, 03 Oct 2026 23:38:23 GMT"
+  },
+  "body": "{\"items\":[],\"next\":null}",
+  "json": {
+    "items": [],
+    "next": null
+  }
+}

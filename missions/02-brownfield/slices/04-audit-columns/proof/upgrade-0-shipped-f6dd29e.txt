@@ -1,0 +1,25 @@
+AC-7 by effect, part 0: the shipped service writes the data directory (builder, 2026-10-03 ~23:12Z)
+
+Jar: built from f6dd29e (temporary detached worktree, scripts/gw --offline bootJar), run as
+  java -jar shipped-f6dd29e.jar --server.port=18093 --server.address=127.0.0.1
+       --spring.datasource.url=jdbc:h2:file:<scratch>/columns-data/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE
+
+POST /api/links {"url":"https://example.com/active"} with Idempotency-Key: upgrade-key-1
+  {"code":"UMH8eWrN","shortUrl":"http://localhost:8080/UMH8eWrN","url":"https://example.com/active","state":"active","createdAt":"2026-10-03T23:11:55.378Z"}
+POST /api/links {"url":"https://example.com/retired"}
+  {"code":"y3zlxoFh","shortUrl":"http://localhost:8080/y3zlxoFh","url":"https://example.com/retired","state":"active","createdAt":"2026-10-03T23:11:55.840Z"}
+DELETE /api/links/y3zlxoFh
+  204
+GET /UMH8eWrN
+  302 https://example.com/active
+GET /api/links/UMH8eWrN
+  200 {"code":"UMH8eWrN","shortUrl":"http://localhost:8080/UMH8eWrN","url":"https://example.com/active","state":"active","createdAt":"2026-10-03T23:11:55.378Z"}
+
+Then SIGTERM (the log ends with the pool shutdown).
+
+The candidate jar (slice/04-audit-columns at f784ed7, rebased on 02-click-retention's merge) then started on the same
+directory: Flyway applied 2 migrations (V3, V4; jar-log-upgrade.txt), and upgrade-1 to upgrade-4 were captured. The
+granted test-only edits after f784ed7, if any, do not change the jar.
+
+Not covered by this capture: a link whose key was released. On the real clock a release needs a 24-hour wait;
+LinkUpgradeJourneyTest covers that row in the shipped shape.

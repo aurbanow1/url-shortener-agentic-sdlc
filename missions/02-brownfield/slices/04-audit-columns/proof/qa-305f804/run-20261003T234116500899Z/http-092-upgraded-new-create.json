@@ -1,0 +1,35 @@
+{
+  "sequence": 92,
+  "name": "upgraded-new-create",
+  "app": "candidate-new-writes",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "POST",
+    "-H",
+    "Content-Type: application/json",
+    "--data",
+    "{\"url\": \"https://example.com/upgraded-new\"}",
+    "http://localhost:18164/api/links"
+  ],
+  "status": 201,
+  "headers": {
+    "x-request-id": "819c372d-dff0-4490-8919-da44ae4d598d",
+    "location": "/api/links/ipHQ2AqP",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sat, 03 Oct 2026 23:41:34 GMT"
+  },
+  "body": "{\"code\":\"ipHQ2AqP\",\"shortUrl\":\"http://localhost:18164/ipHQ2AqP\",\"url\":\"https://example.com/upgraded-new\",\"state\":\"active\",\"createdAt\":\"2026-10-03T23:41:34.584Z\"}",
+  "json": {
+    "code": "ipHQ2AqP",
+    "shortUrl": "http://localhost:18164/ipHQ2AqP",
+    "url": "https://example.com/upgraded-new",
+    "state": "active",
+    "createdAt": "2026-10-03T23:41:34.584Z"
+  }
+}

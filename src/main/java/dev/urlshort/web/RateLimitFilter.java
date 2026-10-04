@@ -35,10 +35,17 @@ import tools.jackson.databind.json.JsonMapper;
  * method, content type or path are examined. The {@code 429} is written here, in the same shape as
  * every other problem body; this filter writes no log event, the request's one event is the
  * request-id filter's {@code request completed} with status {@code 429}.
+ *
+ * <p>Every charged request carries its client in {@link #CLIENT_ATTRIBUTE}; the peer address itself
+ * is never rewritten, so every other reader of {@code getRemoteAddr()} sees the real peer
+ * (ADR-0015 amendment, ADR-0019).
  */
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE + 2)
-class RateLimitFilter extends OncePerRequestFilter {
+public class RateLimitFilter extends OncePerRequestFilter {
+
+	/** Request attribute holding the client this request was charged to (ADR-0015); read by the click recorder. */
+	public static final String CLIENT_ATTRIBUTE = RateLimitFilter.class.getName() + ".client";
 
 	private final RateLimiter limiter;
 	private final Set<String> trustedProxies;
@@ -66,8 +73,10 @@ class RateLimitFilter extends OncePerRequestFilter {
 			return;
 		}
 		Budget budget = path.equals("/api") || path.startsWith("/api/") ? Budget.CREATE : Budget.REDIRECT;
-		long retryAfter = limiter.tryTake(budget,
-				clientOf(request.getRemoteAddr(), request.getHeader("X-Forwarded-For"), trustedProxies));
+		String client = clientOf(request.getRemoteAddr(), request.getHeader("X-Forwarded-For"), trustedProxies);
+		// left for the click recorder, so a click's hashed client is the client charged here (ADR-0015)
+		request.setAttribute(CLIENT_ATTRIBUTE, client);
+		long retryAfter = limiter.tryTake(budget, client);
 		if (retryAfter == 0) {
 			chain.doFilter(request, response);
 			return;

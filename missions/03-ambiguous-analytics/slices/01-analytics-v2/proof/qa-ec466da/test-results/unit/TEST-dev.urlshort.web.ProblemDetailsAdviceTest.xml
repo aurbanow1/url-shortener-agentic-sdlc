@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.urlshort.web.ProblemDetailsAdviceTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-10-03T23:14:58.811Z" hostname="Andrzejs-MacBook-Pro.local" time="0.01">
+  <properties/>
+  <testcase name="errorOriginIsNoneWhenNoFrameIsOurs()" classname="dev.urlshort.web.ProblemDetailsAdviceTest" time="0.001"/>
+  <testcase name="frameworkDetailThatEchoesClientInputIsCleared()" classname="dev.urlshort.web.ProblemDetailsAdviceTest" time="0.004"/>
+  <testcase name="aNonProblemBodyPassesThroughUntouched()" classname="dev.urlshort.web.ProblemDetailsAdviceTest" time="0.0"/>
+  <testcase name="unreadableBodyWithoutALimitErrorStays400WithoutTheFrameworkDetail()" classname="dev.urlshort.web.ProblemDetailsAdviceTest" time="0.002"/>
+  <testcase name="unhandledExceptionIsABare500AndOneMessageFreeEvent()" classname="dev.urlshort.web.ProblemDetailsAdviceTest" time="0.001"/>
+  <testcase name="domainProblemKeepsItsErrorsAndGetsTheRequestIdAsInstance()" classname="dev.urlshort.web.ProblemDetailsAdviceTest" time="0.001"/>
+  <testcase name="unwrapsABodyLimitErrorRaisedInsideTheJsonReaderTo413()" classname="dev.urlshort.web.ProblemDetailsAdviceTest" time="0.001"/>
+  <system-out><![CDATA[2026-10-03T16:14:58.812-07:00 ERROR 61219 --- [    Test worker] dev.urlshort.web.ProblemDetailsAdvice    : request failed
+2026-10-03T16:14:58.819-07:00 ERROR 61219 --- [    Test worker] dev.urlshort.web.ProblemDetailsAdvice    : request failed
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

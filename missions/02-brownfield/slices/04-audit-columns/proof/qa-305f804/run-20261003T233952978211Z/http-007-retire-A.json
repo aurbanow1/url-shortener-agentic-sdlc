@@ -1,0 +1,26 @@
+{
+  "sequence": 7,
+  "name": "retire-A",
+  "app": "controlled",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "DELETE",
+    "-H",
+    "User-Agent: QA04-USERAGENT-CANARY",
+    "-H",
+    "X-Forwarded-For: 192.0.2.10",
+    "http://localhost:18161/api/links/x6IcAkPb"
+  ],
+  "status": 204,
+  "headers": {
+    "x-request-id": "03837f61-edbb-49d9-b949-80693f812a94",
+    "date": "Sat, 03 Oct 2026 23:39:55 GMT"
+  },
+  "body": "",
+  "json": null
+}

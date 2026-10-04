@@ -53,7 +53,7 @@ class AuditUpgradeJourneyTest {
 
 			// statistics first: the redirect below records a click of its own
 			assertThat(json.readTree(get(base + "/api/links/" + ACTIVE + "/stats").body())).isEqualTo(json.readTree(
-					"{\"code\":\"" + ACTIVE + "\",\"totalClicks\":3,\"clicksPerDay\":[{\"date\":\"2026-10-01\",\"clicks\":3}],"
+					"{\"code\":\"" + ACTIVE + "\",\"totalClicks\":3,\"clicksPerDay\":[{\"date\":\"2026-10-01\",\"clicks\":3,\"uniqueVisitors\":1,\"botClicks\":0}],"
 							+ "\"topReferrers\":[{\"referrer\":\"https://ref.example\",\"clicks\":2}]}"));
 			HttpResponse<String> redirect = get(base + "/" + ACTIVE);
 			assertThat(redirect.statusCode()).isEqualTo(302);

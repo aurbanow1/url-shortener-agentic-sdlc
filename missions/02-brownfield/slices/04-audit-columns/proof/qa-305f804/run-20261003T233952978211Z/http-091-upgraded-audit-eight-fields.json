@@ -1,0 +1,109 @@
+{
+  "sequence": 91,
+  "name": "upgraded-audit-eight-fields",
+  "app": "candidate-upgrade",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "GET",
+    "http://localhost:18164/api/audit?limit=100"
+  ],
+  "status": 200,
+  "headers": {
+    "x-request-id": "27cf6796-ab5e-4b52-9212-983c4b24defe",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sat, 03 Oct 2026 23:40:08 GMT"
+  },
+  "body": "{\"items\":[{\"occurredAt\":\"2026-10-05T23:40:05.249789Z\",\"actor\":\"anonymous\",\"action\":\"link.create\",\"entity\":\"link\",\"entityId\":\"Tj0dJea7\",\"requestId\":\"qa04-future-event\",\"before\":null,\"after\":{\"url\":\"https://example.com/shipped-A\",\"state\":\"active\"}},{\"occurredAt\":\"2026-10-03T23:40:04.659Z\",\"actor\":\"anonymous\",\"action\":\"link.create\",\"entity\":\"link\",\"entityId\":\"bL8ZAjp2\",\"requestId\":\"580da7e1-a711-41de-a7ea-76beaa1a9fcb\",\"before\":null,\"after\":{\"url\":\"https://example.com/shipped-C\",\"state\":\"active\"}},{\"occurredAt\":\"2026-10-03T23:40:04.621Z\",\"actor\":\"anonymous\",\"action\":\"link.create\",\"entity\":\"link\",\"entityId\":\"6bSYJpB0\",\"requestId\":\"f76a1d84-5161-45b8-826b-b5c3804540e9\",\"before\":null,\"after\":{\"url\":\"https://example.com/shipped-B\",\"state\":\"active\"}},{\"occurredAt\":\"2026-10-03T23:40:02.030Z\",\"actor\":\"anonymous\",\"action\":\"link.retire\",\"entity\":\"link\",\"entityId\":\"fHGZZHO2\",\"requestId\":\"4030c58c-ecbb-4e98-9665-bec757ba4ec7\",\"before\":{\"url\":\"https://example.com/shipped-R\",\"state\":\"active\"},\"after\":{\"url\":\"https://example.com/shipped-R\",\"state\":\"retired\"}},{\"occurredAt\":\"2026-10-03T23:40:02.003Z\",\"actor\":\"anonymous\",\"action\":\"link.create\",\"entity\":\"link\",\"entityId\":\"fHGZZHO2\",\"requestId\":\"284ae7ce-be3a-4f57-ab10-e6e8e977d319\",\"before\":null,\"after\":{\"url\":\"https://example.com/shipped-R\",\"state\":\"active\"}},{\"occurredAt\":\"2026-10-03T23:40:01.966Z\",\"actor\":\"anonymous\",\"action\":\"link.create\",\"entity\":\"link\",\"entityId\":\"Tj0dJea7\",\"requestId\":\"b57e697f-c665-4e55-8bc3-d0ae346e6bfb\",\"before\":null,\"after\":{\"url\":\"https://example.com/shipped-A\",\"state\":\"active\"}}],\"next\":null}",
+  "json": {
+    "items": [
+      {
+        "occurredAt": "2026-10-05T23:40:05.249789Z",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entityId": "Tj0dJea7",
+        "requestId": "qa04-future-event",
+        "before": null,
+        "after": {
+          "url": "https://example.com/shipped-A",
+          "state": "active"
+        }
+      },
+      {
+        "occurredAt": "2026-10-03T23:40:04.659Z",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entityId": "bL8ZAjp2",
+        "requestId": "580da7e1-a711-41de-a7ea-76beaa1a9fcb",
+        "before": null,
+        "after": {
+          "url": "https://example.com/shipped-C",
+          "state": "active"
+        }
+      },
+      {
+        "occurredAt": "2026-10-03T23:40:04.621Z",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entityId": "6bSYJpB0",
+        "requestId": "f76a1d84-5161-45b8-826b-b5c3804540e9",
+        "before": null,
+        "after": {
+          "url": "https://example.com/shipped-B",
+          "state": "active"
+        }
+      },
+      {
+        "occurredAt": "2026-10-03T23:40:02.030Z",
+        "actor": "anonymous",
+        "action": "link.retire",
+        "entity": "link",
+        "entityId": "fHGZZHO2",
+        "requestId": "4030c58c-ecbb-4e98-9665-bec757ba4ec7",
+        "before": {
+          "url": "https://example.com/shipped-R",
+          "state": "active"
+        },
+        "after": {
+          "url": "https://example.com/shipped-R",
+          "state": "retired"
+        }
+      },
+      {
+        "occurredAt": "2026-10-03T23:40:02.003Z",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entityId": "fHGZZHO2",
+        "requestId": "284ae7ce-be3a-4f57-ab10-e6e8e977d319",
+        "before": null,
+        "after": {
+          "url": "https://example.com/shipped-R",
+          "state": "active"
+        }
+      },
+      {
+        "occurredAt": "2026-10-03T23:40:01.966Z",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entityId": "Tj0dJea7",
+        "requestId": "b57e697f-c665-4e55-8bc3-d0ae346e6bfb",
+        "before": null,
+        "after": {
+          "url": "https://example.com/shipped-A",
+          "state": "active"
+        }
+      }
+    ],
+    "next": null
+  }
+}

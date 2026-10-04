@@ -54,12 +54,15 @@ class LinkService {
 					throw Problems.idempotencyMismatch();
 				}
 				links.releaseIdempotencyKey(bound.id());
+				links.stamp(bound.id(), now);
 			}
 		}
 		// ponytail: two concurrent creates with one key both pass the lookup and the loser's insert fails
 		// on uq_link_idempotency_key (500, nothing stored, its retry replays); add an out-of-transaction
 		// retry if clients hit it
 		Link link = links.save(new Link(null, codes.next(), url, now, null, key));
+		// the update stamp on the service clock, so a new row reads as updated when it was created
+		links.stamp(link.id(), now);
 		audit.append("link.create", "link", link.code(), null, link.snapshot());
 		return link;
 	}

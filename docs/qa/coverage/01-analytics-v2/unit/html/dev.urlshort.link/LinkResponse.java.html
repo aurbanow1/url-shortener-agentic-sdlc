@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LinkResponse.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">urlshort</a> &gt; <a href="index.source.html" class="el_package">dev.urlshort.link</a> &gt; <span class="el_source">LinkResponse.java</span></div><h1>LinkResponse.java</h1><pre class="source lang-java linenums">package dev.urlshort.link;
+
+import java.time.Instant;
+
+/**
+ * A link as the Creator sees it: exactly these five fields (A-2).
+ *
+ * @param code the short code
+ * @param shortUrl the operator's public base URL, {@code /} and the code
+ * @param url the target, byte for byte as submitted
+ * @param state {@code active} or {@code retired}
+ * @param createdAt the creation instant, ISO-8601 UTC with {@code Z}
+ */
+<span class="nc" id="L14">record LinkResponse(String code, String shortUrl, String url, String state, Instant createdAt) {</span>
+
+	static LinkResponse of(Link link, String publicBaseUrl) {
+<span class="nc" id="L17">		return new LinkResponse(link.code(), publicBaseUrl + &quot;/&quot; + link.code(), link.url(), link.state(),</span>
+<span class="nc" id="L18">				link.createdAt());</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

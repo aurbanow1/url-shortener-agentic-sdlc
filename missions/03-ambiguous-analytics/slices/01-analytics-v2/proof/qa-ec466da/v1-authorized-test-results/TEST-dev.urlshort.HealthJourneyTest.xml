@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.urlshort.HealthJourneyTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-03T23:32:17.950Z" hostname="Andrzejs-MacBook-Pro.local" time="0.042">
+  <properties/>
+  <testcase name="healthEndpointReportsUp()" classname="dev.urlshort.HealthJourneyTest" time="0.035"/>
+  <system-out><![CDATA[{"@timestamp":"2026-10-03T23:32:17.951349Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":27658,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.HealthJourneyTest]: HealthJourneyTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T23:32:17.954697Z","log":{"level":"INFO","logger":"org.springframework.boot.test.context.SpringBootTestContextBootstrapper"},"process":{"pid":27658,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.HealthJourneyTest","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T23:32:17.955403Z","log":{"level":"INFO","logger":"org.springframework.test.context.support.AnnotationConfigContextLoaderUtils"},"process":{"pid":27658,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Could not detect default configuration classes for test class [dev.urlshort.HealthJourneyTest]: HealthJourneyTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T23:32:17.956246Z","log":{"level":"INFO","logger":"org.springframework.boot.test.context.SpringBootTestContextBootstrapper"},"process":{"pid":27658,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.HealthJourneyTest","tags":["COMMONS-LOGGING"],"ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-03T23:32:17.972247Z","log":{"level":"INFO","logger":"dev.urlshort.web.RequestIdFilter"},"process":{"pid":27658,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"request completed","requestId":"f3b52780-d4f8-43c2-ad66-45a8e40d3002","status":200,"ecs":{"version":"8.11"}}
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

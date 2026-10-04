@@ -1,0 +1,29 @@
+version | success
+null    | TRUE
+1       | TRUE
+2       | TRUE
+3       | TRUE
+4       | TRUE
+(5 rows, 4 ms)
+TABLE_NAME | COLUMN_NAME | IS_NULLABLE | COLUMN_DEFAULT
+AUDIT_LOG  | CREATED_AT  | NO          | CURRENT_TIMESTAMP
+AUDIT_LOG  | CREATED_BY  | NO          | 'anonymous'
+AUDIT_LOG  | UPDATED_AT  | NO          | CURRENT_TIMESTAMP
+AUDIT_LOG  | UPDATED_BY  | NO          | 'anonymous'
+LINK       | CREATED_AT  | NO          | null
+LINK       | CREATED_BY  | NO          | 'anonymous'
+LINK       | UPDATED_AT  | NO          | CURRENT_TIMESTAMP
+LINK       | UPDATED_BY  | NO          | 'anonymous'
+(8 rows, 10 ms)
+CODE     | CREATED_AT                 | RETIRED_AT                 | UPDATED_AT                 | CREATED_BY | UPDATED_BY
+UMH8eWrN | 2026-10-03 16:11:55.378-07 | null                       | 2026-10-03 16:11:55.378-07 | anonymous  | anonymous
+y3zlxoFh | 2026-10-03 16:11:55.84-07  | 2026-10-03 16:11:59.997-07 | 2026-10-03 16:11:59.997-07 | anonymous  | anonymous
+s8mxUyiD | 2026-10-03 16:17:16.13-07  | 2026-10-03 16:17:20.406-07 | 2026-10-03 16:17:20.406-07 | anonymous  | anonymous
+(3 rows, 0 ms)
+ID | OCCURRED_AT                | CREATED_AT                 | UPDATED_AT                 | CREATED_BY | UPDATED_BY
+1  | 2026-10-03 23:11:55.645+00 | 2026-10-03 23:11:55.645+00 | 2026-10-03 23:11:55.645+00 | anonymous  | anonymous
+2  | 2026-10-03 23:11:55.841+00 | 2026-10-03 23:11:55.841+00 | 2026-10-03 23:11:55.841+00 | anonymous  | anonymous
+3  | 2026-10-03 23:12:00.003+00 | 2026-10-03 23:12:00.003+00 | 2026-10-03 23:12:00.003+00 | anonymous  | anonymous
+4  | 2026-10-03 23:17:16.164+00 | 2026-10-03 23:17:16.164+00 | 2026-10-03 23:17:16.164+00 | anonymous  | anonymous
+5  | 2026-10-03 23:17:20.407+00 | 2026-10-03 23:17:20.407+00 | 2026-10-03 23:17:20.407+00 | anonymous  | anonymous
+(5 rows, 0 ms)

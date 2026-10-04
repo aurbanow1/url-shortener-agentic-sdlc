@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RateLimiter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">urlshort</a> &gt; <a href="index.source.html" class="el_package">dev.urlshort.web</a> &gt; <span class="el_source">RateLimiter.java</span></div><h1>RateLimiter.java</h1><pre class="source lang-java linenums">package dev.urlshort.web;
+
+import java.time.Clock;
+import java.time.Instant;
+import java.util.EnumMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.function.LongPredicate;
+import java.util.function.LongSupplier;
+
+import org.springframework.stereotype.Component;
+
+/**
+ * Per-client token buckets for the two budgets (business rules 2 to 4, 8; ADR-0014). Each bucket is
+ * stored in its GCRA form, one theoretical arrival time (TAT) per client: with {@code N} tokens per
+ * minute the emission interval is {@code I = 60 s / N} and the tolerance {@code T = I × (N − 1)}, so a
+ * bucket holds {@code N} tokens, refills {@code N / 60} per second, and is full again exactly when
+ * {@code TAT ≤ now}.
+ *
+ * &lt;p&gt;State is in memory, per instance, and bounded: at most once per second of application-clock
+ * time, a call releases every client whose bucket is full again, so after any such call only clients
+ * admitted in the previous 61 s remain. While no limited request arrives nothing is added or
+ * removed. Thread-safe: each bucket changes under {@link ConcurrentHashMap#compute}, which also reads
+ * the clock, so a request never decides on a time older than the TAT it sees; the release removes an
+ * entry only while it still holds the value it tested.
+ *
+ * &lt;p&gt;The application clock is the wall clock. A backward step is outside the contract and fails closed:
+ * a client's bucket refills only from its stored TAT, so a recently active client waits up to the length
+ * of the step. The release is rescheduled at the next request after a step of more than a second; a
+ * shorter step delays it by less than two seconds.
+ */
+@Component
+class RateLimiter {
+
+	private static final long SECOND = 1_000_000_000L;
+
+	private final Clock clock;
+<span class="fc" id="L40">	private final Map&lt;Budget, Buckets&gt; buckets = new EnumMap&lt;&gt;(Budget.class);</span>
+<span class="fc" id="L41">	private final AtomicLong nextSweep = new AtomicLong(Long.MIN_VALUE);</span>
+
+<span class="fc" id="L43">	RateLimiter(RateLimitProperties properties, Clock clock) {</span>
+<span class="fc" id="L44">		this.clock = clock;</span>
+<span class="fc" id="L45">		buckets.put(Budget.CREATE, new Buckets(properties.createPerMinute()));</span>
+<span class="fc" id="L46">		buckets.put(Budget.REDIRECT, new Buckets(properties.redirectPerMinute()));</span>
+<span class="fc" id="L47">	}</span>
+
+	/**
+	 * Takes one token from the client's bucket in {@code budget}.
+	 *
+	 * @return {@code 0} when admitted; otherwise the {@code Retry-After} in whole seconds, at least
+	 *         {@code 1}: the time until the bucket holds a token again, rounded up. A refusal takes
+	 *         nothing.
+	 */
+	long tryTake(Budget budget, String client) {
+<span class="fc" id="L57">		releaseFullBuckets(now());</span>
+<span class="fc" id="L58">		return buckets.get(budget).tryTake(client, this::now);</span>
+	}
+
+	private long now() {
+<span class="fc" id="L62">		Instant instant = clock.instant();</span>
+<span class="fc" id="L63">		return Math.addExact(Math.multiplyExact(instant.getEpochSecond(), SECOND), instant.getNano());</span>
+	}
+
+	/** The number of clients currently held for {@code budget}; for the memory-bound tests. */
+	int clients(Budget budget) {
+<span class="fc" id="L68">		return buckets.get(budget).tats.size();</span>
+	}
+
+	private void releaseFullBuckets(long now) {
+		// due once a second. A deadline more than two seconds ahead follows a backward clock step; the
+		// margin keeps a concurrent request whose clock read was slightly older from sweeping again.
+<span class="fc bfc" id="L74" title="All 4 branches covered.">		LongPredicate due = next -&gt; now &gt;= next || next - now &gt; 2 * SECOND;</span>
+<span class="fc bfc" id="L75" title="All 4 branches covered.">		if (due.test(nextSweep.getAndUpdate(next -&gt; due.test(next) ? now + SECOND : next))) {</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">			buckets.values().forEach(b -&gt; b.tats.values().removeIf(tat -&gt; tat &lt;= now));</span>
+		}
+<span class="fc" id="L78">	}</span>
+
+	/** The two budgets of business rule 1; the lower-case name is the counter's {@code budget} tag. */
+<span class="fc" id="L81">	enum Budget {</span>
+<span class="fc" id="L82">		CREATE, REDIRECT;</span>
+
+		String tag() {
+<span class="fc" id="L85">			return name().toLowerCase(Locale.ROOT);</span>
+		}
+	}
+
+	private static final class Buckets {
+
+		private final long interval;
+		private final long tolerance;
+<span class="fc" id="L93">		private final ConcurrentHashMap&lt;String, Long&gt; tats = new ConcurrentHashMap&lt;&gt;();</span>
+
+<span class="fc" id="L95">		Buckets(int perMinute) {</span>
+<span class="fc" id="L96">			interval = 60 * SECOND / perMinute;</span>
+<span class="fc" id="L97">			tolerance = interval * (perMinute - 1);</span>
+<span class="fc" id="L98">		}</span>
+
+		long tryTake(String client, LongSupplier clock) {
+<span class="fc" id="L101">			long[] retryAfter = new long[1];</span>
+<span class="fc" id="L102">			tats.compute(client, (key, tat) -&gt; {</span>
+<span class="fc" id="L103">				long now = clock.getAsLong();</span>
+<span class="fc bfc" id="L104" title="All 2 branches covered.">				long start = tat == null ? now : Math.max(tat, now);</span>
+<span class="fc" id="L105">				long wait = start - tolerance - now;</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">				if (wait &gt; 0) {</span>
+<span class="fc" id="L107">					retryAfter[0] = Math.ceilDiv(wait, SECOND);</span>
+<span class="fc" id="L108">					return tat;</span>
+				}
+<span class="fc" id="L110">				return start + interval;</span>
+			});
+<span class="fc" id="L112">			return retryAfter[0];</span>
+		}
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

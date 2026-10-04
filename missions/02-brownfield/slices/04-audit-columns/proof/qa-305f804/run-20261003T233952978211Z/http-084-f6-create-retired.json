@@ -1,0 +1,35 @@
+{
+  "sequence": 84,
+  "name": "f6-create-retired",
+  "app": "f6-writer-1",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "POST",
+    "-H",
+    "Content-Type: application/json",
+    "--data",
+    "{\"url\": \"https://example.com/shipped-R\"}",
+    "http://localhost:18163/api/links"
+  ],
+  "status": 201,
+  "headers": {
+    "x-request-id": "284ae7ce-be3a-4f57-ab10-e6e8e977d319",
+    "location": "/api/links/fHGZZHO2",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sat, 03 Oct 2026 23:40:02 GMT"
+  },
+  "body": "{\"code\":\"fHGZZHO2\",\"shortUrl\":\"http://localhost:18163/fHGZZHO2\",\"url\":\"https://example.com/shipped-R\",\"state\":\"active\",\"createdAt\":\"2026-10-03T23:40:02.002Z\"}",
+  "json": {
+    "code": "fHGZZHO2",
+    "shortUrl": "http://localhost:18163/fHGZZHO2",
+    "url": "https://example.com/shipped-R",
+    "state": "active",
+    "createdAt": "2026-10-03T23:40:02.002Z"
+  }
+}

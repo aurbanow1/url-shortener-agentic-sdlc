@@ -1,0 +1,49 @@
+commit bfc642dbf6bc0988c0a7142074aa31bd761ca0ce
+Author:     Andrzej Urbanowicz <andrzej.urbanowicz@tribble.ai>
+AuthorDate: Sat Oct 3 16:32:38 2026 -0700
+Commit:     Andrzej Urbanowicz <andrzej.urbanowicz@tribble.ai>
+CommitDate: Sat Oct 3 16:32:38 2026 -0700
+
+    docs(02-click-retention): ADR-0011 and ADR-0018 no longer claim neither job interrupts JDBC
+    
+    The 02-click-retention amendment to ADR-0011 and ADR-0018's shutdown consequence said neither
+    background job interrupts a JDBC call. That is false for the click writer: ClickRecorder.close
+    calls shutdownNow after its 5 s drain, which interrupts a running insert, and ADR-0011's own
+    shutdown section already says so (a running insert may ignore the interrupt and commit, hence
+    'outcome unknown'). Only the purge never interrupts: it waits up to 3 s for a run in progress.
+    Both ADRs now state each job's behaviour. Wording only; no design or behaviour change.
+    
+    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+diff --git a/docs/adr/0011-click-handoff-bounded-single-writer.md b/docs/adr/0011-click-handoff-bounded-single-writer.md
+index 46c53bb..0b87a3a 100644
+--- a/docs/adr/0011-click-handoff-bounded-single-writer.md
++++ b/docs/adr/0011-click-handoff-bounded-single-writer.md
+@@ -110,7 +110,8 @@ configuration. The click purge (ADR-0018) is that second feature. It keeps the p
+ - **Still no scheduler framework.** Spring's `@Scheduled` with a cron trigger cannot follow the
+   suite-controlled clock: it arms against the clock and then sleeps real time (ADR-0018, probe S1).
+   `@EnableScheduling` would also switch scheduling on for the whole application for one job.
+-- **Each owner controls its own shutdown, and neither interrupts a JDBC call.** The writer drains
+-  for at most 5 s, as above. The purge waits for a run in progress for at most 3 s. Both are
+-  `@PreDestroy` methods, so their waits add up after the graceful phase (ADR-0018's budget).
++- **Each owner controls its own shutdown.** The writer drains for at most 5 s, then
++  `shutdownNow()` interrupts it; a running insert may ignore that and commit, hence "outcome
++  unknown" (above). The purge waits for a run in progress for at most 3 s and never interrupts it.
++  Both are `@PreDestroy` methods, so their waits add up after the graceful phase (ADR-0018's budget).
+ - A third asynchronous feature, or one that needs a pool, reopens the shared-executor question.
+diff --git a/docs/adr/0018-click-retention-daily-purge.md b/docs/adr/0018-click-retention-daily-purge.md
+index e028acb..5460387 100644
+--- a/docs/adr/0018-click-retention-daily-purge.md
++++ b/docs/adr/0018-click-retention-daily-purge.md
+@@ -123,8 +123,9 @@ The click table (ADR-0013) stores `clicked_on`. Its only index besides the keys
+ - **Clock.** A forward step of the host clock deletes up to that many days early, and a host
+   clock years ahead deletes every click. The INFO event's `cutoff` shows it. The Operator owns
+   the host clock. This is an accepted residual (slice design §6). A backward step deletes nothing.
+-- **Shutdown.** The purge adds at most 3 s after the graceful phase. Nothing interrupts a JDBC
+-  call, consistent with ADR-0011's no-interrupt stance on H2.
++- **Shutdown.** The purge adds at most 3 s after the graceful phase. The purge never interrupts
++  its `DELETE`. The click writer, by contrast, interrupts after its drain deadline and reports a
++  running insert as outcome unknown (ADR-0011).
+ - **Tests.**
+   - No shared functional context purges (the hold in the overlay), so no purge line can enter a
+     shipped journey's capture window.

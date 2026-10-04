@@ -1,6 +1,6 @@
 # ADR-0019 — Audit read: loopback by peer address with forwarding headers refused, forwarded-header handling pinned off, keyset pages by write sequence
 
-- Status: proposed by `01-audit-read` (2026-10-03); accepted at that slice's plan-lock
+- Status: accepted at the `01-audit-read` plan-lock (2026-10-03), re-locked after the `remoteip` correction (`0052efb`); merged in `cb148c4`
 - Date: 2026-10-03
 - Slice: `01-audit-read` (mission 02)
 

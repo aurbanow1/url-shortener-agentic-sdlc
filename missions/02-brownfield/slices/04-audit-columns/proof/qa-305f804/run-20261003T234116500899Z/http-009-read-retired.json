@@ -1,0 +1,30 @@
+{
+  "sequence": 9,
+  "name": "read-retired",
+  "app": "controlled",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "GET",
+    "http://localhost:18161/api/links/YnyAVdn6"
+  ],
+  "status": 200,
+  "headers": {
+    "x-request-id": "2092e1b2-4afa-4865-b38c-06dd377397d0",
+    "content-type": "application/json",
+    "content-length": "152",
+    "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+  },
+  "body": "{\"code\":\"YnyAVdn6\",\"shortUrl\":\"http://localhost:18161/YnyAVdn6\",\"url\":\"https://example.com/qa04-A\",\"state\":\"retired\",\"createdAt\":\"2026-08-01T12:00:00Z\"}",
+  "json": {
+    "code": "YnyAVdn6",
+    "shortUrl": "http://localhost:18161/YnyAVdn6",
+    "url": "https://example.com/qa04-A",
+    "state": "retired",
+    "createdAt": "2026-08-01T12:00:00Z"
+  }
+}

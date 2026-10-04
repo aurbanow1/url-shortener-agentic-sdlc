@@ -1,0 +1,18 @@
+{
+  "packet": "qitem-20261004001550-8de9f055",
+  "candidate": "305f8045d45b19a9e3287d5fe3508af6e04db9a4",
+  "merge": "d55a502f14127ac234c01d12efb46dda3c1a1e64",
+  "closureCommit": "17593aa",
+  "actorCorrectionCommit": "382a7b2",
+  "finalGapsSha256": "18149e871a3225f68323117da91202d2186662b6667642e3815068ae12974068",
+  "onlyChangeAfterClosure": "one click-row QA actor qa-agent -> qa2-agent",
+  "ownQaSectionUnchangedFrom": "fdd8c5b",
+  "closedRows": {
+    "click": "| click @8e9c065 | Missing created_at, updated_at, created_by and updated_by; clicked_at is the event timestamp, not the row-audit timestamp | Human audit-column policy applies to event tables; the Visitor's actor is anonymous | 02-brownfield / 02-click-retention, w1: **V3 expand migration**, SPEC 32b1ae2 AC-16. Preserve existing columns, backfill all four new columns, verify timezone-aware non-null timestamps with updated_at = created_at for insert-only rows and actor columns anonymous; preserve clicked_at and privacy reductions | **CLOSED** at `02-click-retention`'s merge `ed2b940` (candidate `a2c34c1`, QA `qa2-agent`, AC-16 accepted): `V3__add_click_audit_columns.sql`; `ClickAuditColumnsTest`, `ClickRetentionStartupJourneyTest.AC13_AC16\u2026`. Closed late, at `04-audit-columns`' merge, together with the rows below |",
+    "user_agent_class": "| user_agent_class @8e9c065 | Missing created_at, updated_at, created_by and updated_by | Human audit-column policy applies to reference tables; seeded rows have actor system | 02-brownfield / 02-click-retention, w1: **V3 expand migration**, SPEC 32b1ae2 AC-16. Preserve tokens/constraints, backfill all four new columns, verify timezone-aware non-null timestamps and created_by = updated_by = system; updated_at = created_at for existing seed rows | **CLOSED** at `02-click-retention`'s merge `ed2b940` (same V3 and tests as the `click` row) |",
+    "link": "| link @8e9c065 | created_at already exists (timezone-aware, non-null, without a database default); missing updated_at, created_by and updated_by | Human policy requires complete row-audit columns and maintenance on every write | 02-brownfield / 04-audit-columns, w2: **expand migration using the next free Flyway number after V3**. Retain existing created_at values, supply the policy's insert default/maintenance, backfill missing columns, verify actor columns and updated_at on subsequent link writes; existing links retain their meaning | **CLOSED** at `04-audit-columns`' merge `d55a502` (candidate `305f804`, QA `qa2-agent`): `V4__add_link_audit_columns.sql`; `LinkAuditColumnsTest`, `LinkServiceStampTest`, `LinkUpgradeJourneyTest`, `LinkAuditColumnsJourneyTest`, `LinkAuditColumnsFailureJourneyTest` |",
+    "audit_log": "| audit_log @8e9c065 | Missing created_at, updated_at, created_by and updated_by; existing occurred_at/actor remain domain-event fields | Human audit-column policy applies to append-only audit tables too | 02-brownfield / 04-audit-columns, w2: **expand migration using the next free Flyway number after V3**. Preserve existing audit fields, backfill row-audit columns, verify inserts set updated_at = created_at and maintain actor columns; **audit_log stays append-only, with no application UPDATE/DELETE path** | **CLOSED** at `04-audit-columns`' merge `d55a502` (same V4 and tests as the `link` row) |"
+  },
+  "freshIntegrateGateRead": "docs/evidence/02-brownfield/integrate-04-audit-columns-check-305f804.txt;14/14 executed BUILD SUCCESSFUL; recorded by lead, independently read by QA",
+  "scope": "metadata proof5 return, not another application QA run"
+}

@@ -1,0 +1,111 @@
+{
+  "candidate": "ec466da8da4b1efde9d612c6c8692070cc6fc4b9",
+  "base": "2566c38c2e8c434e93703a3dabc2edba14eca60c",
+  "changedFiles": [
+    "docs/api/openapi.json",
+    "src/functionalTest/java/dev/urlshort/audit/AuditUpgradeJourneyTest.java",
+    "src/functionalTest/java/dev/urlshort/click/ClickMetricsJourneyTest.java",
+    "src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java",
+    "src/functionalTest/java/dev/urlshort/click/ClickResilienceTrustedProxyJourneyTest.java",
+    "src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java",
+    "src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java",
+    "src/functionalTest/java/dev/urlshort/click/StatsV2JourneyTest.java",
+    "src/functionalTest/java/dev/urlshort/click/TrustedProxyClickJourneyTest.java",
+    "src/main/java/dev/urlshort/click/ClickRecorder.java",
+    "src/main/java/dev/urlshort/click/ClickStore.java",
+    "src/main/java/dev/urlshort/click/LinkStats.java",
+    "src/main/java/dev/urlshort/click/StatsController.java",
+    "src/main/java/dev/urlshort/click/package-info.java",
+    "src/main/java/dev/urlshort/web/RateLimitFilter.java",
+    "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "src/test/java/dev/urlshort/click/LinkStatsTest.java",
+    "src/test/java/dev/urlshort/web/RateLimitFilterTest.java"
+  ],
+  "freshTests": {
+    "test": {
+      "tests": 221,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "functionalTest": {
+      "tests": 241,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "freshCoverage": {
+    "test": {
+      "LINE_MISSED": 74,
+      "LINE_COVERED": 506,
+      "BRANCH_MISSED": 8,
+      "BRANCH_COVERED": 198
+    },
+    "functionalTest": {
+      "LINE_MISSED": 34,
+      "LINE_COVERED": 546,
+      "BRANCH_MISSED": 35,
+      "BRANCH_COVERED": 171
+    },
+    "all": {
+      "LINE_MISSED": 0,
+      "LINE_COVERED": 580,
+      "BRANCH_MISSED": 0,
+      "BRANCH_COVERED": 206
+    }
+  },
+  "executionData": [
+    "functionalTest.exec",
+    "test.exec"
+  ],
+  "qaReportHashes": 372,
+  "rawArchiveFiles": 1601,
+  "curlResponses": 713,
+  "headWireResponses": 3,
+  "bothLogSinks": {
+    "installed": 24,
+    "default": 425,
+    "trusted": 267
+  },
+  "recomputedStats": [
+    "ac01-stats",
+    "ac01-empty-stats",
+    "ac02-stats",
+    "ac04-stats",
+    "ac05-stats",
+    "ac08-stats",
+    "ac06-seven-stats",
+    "ac06-referrers-stats",
+    "ac09-stats",
+    "ac03-stats",
+    "ac06-days-stats",
+    "default-metric-stats",
+    "default-slow-retry-stats",
+    "default-concurrent-stats",
+    "default-stats-read",
+    "default-v1-canaries-stats",
+    "default-purge-check-0",
+    "default-purge-check-1",
+    "default-purge-check-2",
+    "default-purge-check-3",
+    "ac07-stats",
+    "trusted-metric-stats",
+    "trusted-slow-retry-stats",
+    "trusted-concurrent-stats",
+    "trusted-stats-read",
+    "trusted-v1-canaries-stats",
+    "trusted-purge-check-0",
+    "trusted-purge-check-1",
+    "trusted-purge-check-2",
+    "trusted-purge-check-3"
+  ],
+  "sourceMethods": 282,
+  "mappedInvocations": 462,
+  "proofReferenceHashes": 32,
+  "pendingProof": [
+    11,
+    12
+  ],
+  "allChecksPassed": true
+}

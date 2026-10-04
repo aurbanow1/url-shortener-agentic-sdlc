@@ -1,0 +1,2668 @@
+[
+  {
+    "http": 1,
+    "name": "create-A",
+    "requestId": "995f6978-bcbb-40a3-9826-baac12e4da61",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:18.871563Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62306,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "995f6978-bcbb-40a3-9826-baac12e4da61",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 2,
+    "name": "replay-A",
+    "requestId": "52ffc1da-37fa-4867-8c77-086a47870e23",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:18.958757Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62306,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "52ffc1da-37fa-4867-8c77-086a47870e23",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 3,
+    "name": "mismatch-A",
+    "requestId": "cbd6dc93-1160-4ded-a112-9308a2a06e6d",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:19.028207Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62306,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "cbd6dc93-1160-4ded-a112-9308a2a06e6d",
+        "status": 422,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 4,
+    "name": "read-A",
+    "requestId": "81a36fff-f64f-4b81-9174-6e5bff264338",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:19.079582Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62306,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "81a36fff-f64f-4b81-9174-6e5bff264338",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 5,
+    "name": "redirect-A",
+    "requestId": "0e0961b5-1041-4a7c-a89b-87cfba2bd315",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:19.141350Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62306,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "0e0961b5-1041-4a7c-a89b-87cfba2bd315",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 6,
+    "name": "stats-A",
+    "requestId": "743d877e-fb72-4330-83e2-7cf577d51c10",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:19.211862Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62306,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "743d877e-fb72-4330-83e2-7cf577d51c10",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 7,
+    "name": "retire-A",
+    "requestId": "80b2b772-7161-441e-9bb7-1b472e8422a2",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:19.265373Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62306,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "80b2b772-7161-441e-9bb7-1b472e8422a2",
+        "status": 204,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 8,
+    "name": "retire-again",
+    "requestId": "6d2f2ce5-4ec1-4a4f-b308-26afe5a9e4c1",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:19.424876Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62306,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "6d2f2ce5-4ec1-4a4f-b308-26afe5a9e4c1",
+        "status": 410,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 9,
+    "name": "read-retired",
+    "requestId": "2092e1b2-4afa-4865-b38c-06dd377397d0",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:19.474674Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62306,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "2092e1b2-4afa-4865-b38c-06dd377397d0",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 10,
+    "name": "redirect-retired",
+    "requestId": "ca400085-c224-40ba-a2f7-b112f468f2dd",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:19.493050Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62306,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "ca400085-c224-40ba-a2f7-b112f468f2dd",
+        "status": 410,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 11,
+    "name": "expired-key-create-B",
+    "requestId": "e2482aa1-7ece-4dbf-a644-38ed62dc4e60",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:19.528828Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62306,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "e2482aa1-7ece-4dbf-a644-38ed62dc4e60",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 12,
+    "name": "create-D",
+    "requestId": "e146e60d-b9f1-43bc-9616-7494b33e2a2e",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:19.597803Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62306,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "e146e60d-b9f1-43bc-9616-7494b33e2a2e",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 13,
+    "name": "audit-insert-fails",
+    "requestId": "06f32ed7-c34c-41d3-a5b9-d633825c8793",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:19.675350Z",
+        "log": {
+          "level": "ERROR",
+          "logger": "dev.urlshort.web.ProblemDetailsAdvice"
+        },
+        "process": {
+          "pid": 62306,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request failed",
+        "requestId": "06f32ed7-c34c-41d3-a5b9-d633825c8793",
+        "errorChain": "org.springframework.dao.DataIntegrityViolationException <- org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException",
+        "errorOrigin": "dev.urlshort.audit.AuditLog.append(AuditLog.java:67)",
+        "ecs": {
+          "version": "8.11"
+        }
+      },
+      {
+        "@timestamp": "2026-10-03T23:41:19.676138Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62306,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "06f32ed7-c34c-41d3-a5b9-d633825c8793",
+        "status": 500,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 14,
+    "name": "D-still-redirects",
+    "requestId": "f6b64036-a8e9-4519-8820-b404caec7e36",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:19.745355Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62306,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "f6b64036-a8e9-4519-8820-b404caec7e36",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 15,
+    "name": "audit-eight-fields",
+    "requestId": "fd044d98-84b7-4b33-bc5b-0fa5ad4657b5",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:19.763748Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62306,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "fd044d98-84b7-4b33-bc5b-0fa5ad4657b5",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 16,
+    "name": "audit-forwarded-refused",
+    "requestId": "39e94313-933e-424f-989d-754c59675923",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:19.778804Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62306,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "39e94313-933e-424f-989d-754c59675923",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 17,
+    "name": "audit-invalid-limit",
+    "requestId": "a2301bdb-b472-42a1-b417-9514a82cb29b",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:19.793938Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62306,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "a2301bdb-b472-42a1-b417-9514a82cb29b",
+        "status": 400,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 18,
+    "name": "bad-url",
+    "requestId": "8e772254-553a-49f0-8864-98c8dfdc496e",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:19.820799Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62306,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "8e772254-553a-49f0-8864-98c8dfdc496e",
+        "status": 400,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 19,
+    "name": "missing-url",
+    "requestId": "2390df15-3174-4c4d-b96e-73168166ae14",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:19.836030Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62306,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "2390df15-3174-4c4d-b96e-73168166ae14",
+        "status": 400,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 20,
+    "name": "bad-key",
+    "requestId": "277e4574-b4d2-4c00-a0a9-51a33fa775fc",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:19.850019Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62306,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "277e4574-b4d2-4c00-a0a9-51a33fa775fc",
+        "status": 400,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 21,
+    "name": "unknown-code",
+    "requestId": "1b7126f1-d28e-4757-9675-e1768b901588",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:19.865518Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62306,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "1b7126f1-d28e-4757-9675-e1768b901588",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 22,
+    "name": "rate-00",
+    "requestId": "4195b408-9a04-42e8-a91b-3ab5f71c30cb",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.425379Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "4195b408-9a04-42e8-a91b-3ab5f71c30cb",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 23,
+    "name": "rate-01",
+    "requestId": "57ba0811-68d0-4846-a1dd-acc71a456f32",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.443060Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "57ba0811-68d0-4846-a1dd-acc71a456f32",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 24,
+    "name": "rate-02",
+    "requestId": "f4a9dbec-ee94-4d4f-8e9e-b9241f0aa08f",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.465087Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "f4a9dbec-ee94-4d4f-8e9e-b9241f0aa08f",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 25,
+    "name": "rate-03",
+    "requestId": "4d6b35c3-f753-44ad-b2ce-2a52331d6681",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.482183Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "4d6b35c3-f753-44ad-b2ce-2a52331d6681",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 26,
+    "name": "rate-04",
+    "requestId": "af8a2477-14d2-41d4-9408-44b0306b18b3",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.499214Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "af8a2477-14d2-41d4-9408-44b0306b18b3",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 27,
+    "name": "rate-05",
+    "requestId": "738f78b8-c2f7-42bc-a31b-7de5063e344f",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.516586Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "738f78b8-c2f7-42bc-a31b-7de5063e344f",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 28,
+    "name": "rate-06",
+    "requestId": "64fa1dae-9b67-4b27-8a30-40544046231b",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.533741Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "64fa1dae-9b67-4b27-8a30-40544046231b",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 29,
+    "name": "rate-07",
+    "requestId": "a333f297-bb6b-43ea-8928-622e3031a7ac",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.550921Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "a333f297-bb6b-43ea-8928-622e3031a7ac",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 30,
+    "name": "rate-08",
+    "requestId": "34b80b40-61d8-484f-b742-bdf8004b2323",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.568070Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "34b80b40-61d8-484f-b742-bdf8004b2323",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 31,
+    "name": "rate-09",
+    "requestId": "303b1faf-7fed-4ba5-8f90-300d25f8de9a",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.585996Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "303b1faf-7fed-4ba5-8f90-300d25f8de9a",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 32,
+    "name": "rate-10",
+    "requestId": "ef4e78fb-28a4-4b18-a3f2-d21f96049410",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.604074Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "ef4e78fb-28a4-4b18-a3f2-d21f96049410",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 33,
+    "name": "rate-11",
+    "requestId": "290d807a-8880-496b-91d7-1290217d6f5c",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.622423Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "290d807a-8880-496b-91d7-1290217d6f5c",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 34,
+    "name": "rate-12",
+    "requestId": "33f7c336-c461-4cf6-81be-4d3c90a2707b",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.640404Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "33f7c336-c461-4cf6-81be-4d3c90a2707b",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 35,
+    "name": "rate-13",
+    "requestId": "81166c10-95fe-450a-8912-ba881a0620e6",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.658530Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "81166c10-95fe-450a-8912-ba881a0620e6",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 36,
+    "name": "rate-14",
+    "requestId": "c9d345cb-6ca7-456e-b9e9-cd0e4d6da83c",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.677983Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "c9d345cb-6ca7-456e-b9e9-cd0e4d6da83c",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 37,
+    "name": "rate-15",
+    "requestId": "1bba7e2d-aa2d-4af8-bf2e-d48d56686da5",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.695833Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "1bba7e2d-aa2d-4af8-bf2e-d48d56686da5",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 38,
+    "name": "rate-16",
+    "requestId": "67e45180-49c1-4055-aca7-a4adf758aa32",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.715445Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "67e45180-49c1-4055-aca7-a4adf758aa32",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 39,
+    "name": "rate-17",
+    "requestId": "86911c54-7a43-4e3d-bb41-ffd332315919",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.733930Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "86911c54-7a43-4e3d-bb41-ffd332315919",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 40,
+    "name": "rate-18",
+    "requestId": "4040e61f-3e85-44f6-9947-c94de4472a41",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.754549Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "4040e61f-3e85-44f6-9947-c94de4472a41",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 41,
+    "name": "rate-19",
+    "requestId": "fab972e1-5e7c-475e-b21c-7483faf97043",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.780662Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "fab972e1-5e7c-475e-b21c-7483faf97043",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 42,
+    "name": "rate-20",
+    "requestId": "cfa1f079-35ed-4b1b-b1e7-f4d98fabfc70",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.799703Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "cfa1f079-35ed-4b1b-b1e7-f4d98fabfc70",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 43,
+    "name": "rate-21",
+    "requestId": "1d1e6f31-7950-4ed3-acf6-79642ec06417",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.818727Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "1d1e6f31-7950-4ed3-acf6-79642ec06417",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 44,
+    "name": "rate-22",
+    "requestId": "b03a5925-b9f7-4a3e-9c82-0f33603a995b",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.839682Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "b03a5925-b9f7-4a3e-9c82-0f33603a995b",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 45,
+    "name": "rate-23",
+    "requestId": "80f50796-70b4-4283-b049-ecd04e0e9dd6",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.864693Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "80f50796-70b4-4283-b049-ecd04e0e9dd6",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 46,
+    "name": "rate-24",
+    "requestId": "e64acb81-6d34-4782-9791-cec8e392cccb",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.886378Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "e64acb81-6d34-4782-9791-cec8e392cccb",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 47,
+    "name": "rate-25",
+    "requestId": "7c3fd7fb-5e19-4c54-8cf3-261c8c23e889",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.905446Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "7c3fd7fb-5e19-4c54-8cf3-261c8c23e889",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 48,
+    "name": "rate-26",
+    "requestId": "5f2b4033-65d6-484a-a8e1-5b7c497ff73e",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.925242Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "5f2b4033-65d6-484a-a8e1-5b7c497ff73e",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 49,
+    "name": "rate-27",
+    "requestId": "ea38a65a-f740-4e3f-a25f-f42f8461357d",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.952816Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "ea38a65a-f740-4e3f-a25f-f42f8461357d",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 50,
+    "name": "rate-28",
+    "requestId": "6616dd78-3f6f-4f32-908e-3934180dc9ef",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.972368Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "6616dd78-3f6f-4f32-908e-3934180dc9ef",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 51,
+    "name": "rate-29",
+    "requestId": "84540a97-8e47-442a-a73b-a2e299d58046",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:22.992372Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "84540a97-8e47-442a-a73b-a2e299d58046",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 52,
+    "name": "rate-30",
+    "requestId": "9a9bf264-8a6d-4025-9bc5-b78e2649a8af",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.011919Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "9a9bf264-8a6d-4025-9bc5-b78e2649a8af",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 53,
+    "name": "rate-31",
+    "requestId": "049e305c-d688-47ee-a31d-811f580f25c4",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.034517Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "049e305c-d688-47ee-a31d-811f580f25c4",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 54,
+    "name": "rate-32",
+    "requestId": "d6e5960a-76d0-478c-88fe-994d5d81c761",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.056168Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "d6e5960a-76d0-478c-88fe-994d5d81c761",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 55,
+    "name": "rate-33",
+    "requestId": "c9d56c8f-4a38-4007-9fa5-6faf95be9e71",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.076104Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "c9d56c8f-4a38-4007-9fa5-6faf95be9e71",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 56,
+    "name": "rate-34",
+    "requestId": "3701b2f4-30d0-4691-8806-a0f3dadc4e20",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.097507Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "3701b2f4-30d0-4691-8806-a0f3dadc4e20",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 57,
+    "name": "rate-35",
+    "requestId": "77140e42-5bd8-4b59-9ee6-5351f1191c11",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.119800Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "77140e42-5bd8-4b59-9ee6-5351f1191c11",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 58,
+    "name": "rate-36",
+    "requestId": "cb599d1b-0b5e-4dd4-829c-d660d27cd38b",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.140638Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "cb599d1b-0b5e-4dd4-829c-d660d27cd38b",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 59,
+    "name": "rate-37",
+    "requestId": "2995f457-7309-402b-bc96-d1393060b08c",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.160619Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "2995f457-7309-402b-bc96-d1393060b08c",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 60,
+    "name": "rate-38",
+    "requestId": "01121e52-d115-4a27-87c4-d3e15f14562b",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.181179Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "01121e52-d115-4a27-87c4-d3e15f14562b",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 61,
+    "name": "rate-39",
+    "requestId": "30e18a8f-8bac-4325-a9f0-976685728592",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.201850Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "30e18a8f-8bac-4325-a9f0-976685728592",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 62,
+    "name": "rate-40",
+    "requestId": "94713035-84a7-46dc-9e4e-190c891d03a4",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.224629Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "94713035-84a7-46dc-9e4e-190c891d03a4",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 63,
+    "name": "rate-41",
+    "requestId": "38a15e39-8492-4b23-bd89-54bf55c877a9",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.245805Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "38a15e39-8492-4b23-bd89-54bf55c877a9",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 64,
+    "name": "rate-42",
+    "requestId": "3763674e-a868-4c88-b94e-57a34eeabbf5",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.266767Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "3763674e-a868-4c88-b94e-57a34eeabbf5",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 65,
+    "name": "rate-43",
+    "requestId": "b4d162bd-f4a2-4e0c-9c5e-ba602e8ac72e",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.287377Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "b4d162bd-f4a2-4e0c-9c5e-ba602e8ac72e",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 66,
+    "name": "rate-44",
+    "requestId": "dd4bc607-64a1-4b26-9703-70dbe1e24309",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.308729Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "dd4bc607-64a1-4b26-9703-70dbe1e24309",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 67,
+    "name": "rate-45",
+    "requestId": "7f072d8f-215b-4d7f-a3c5-eac5bd51de2e",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.330596Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "7f072d8f-215b-4d7f-a3c5-eac5bd51de2e",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 68,
+    "name": "rate-46",
+    "requestId": "29c95470-c031-489d-a870-2a2ab99a67cb",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.351749Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "29c95470-c031-489d-a870-2a2ab99a67cb",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 69,
+    "name": "rate-47",
+    "requestId": "c90ac3fd-d8fe-4e02-b540-5d9e8c0bdee9",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.373427Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "c90ac3fd-d8fe-4e02-b540-5d9e8c0bdee9",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 70,
+    "name": "rate-48",
+    "requestId": "b459316d-8bfb-493a-ab98-2cd6454e4a5b",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.395702Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "b459316d-8bfb-493a-ab98-2cd6454e4a5b",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 71,
+    "name": "rate-49",
+    "requestId": "dec7e3b7-5f6b-44f4-aab5-882027d8814a",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.417850Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "dec7e3b7-5f6b-44f4-aab5-882027d8814a",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 72,
+    "name": "rate-50",
+    "requestId": "ce934eea-cfa3-4377-8cf1-96981b763091",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.440786Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "ce934eea-cfa3-4377-8cf1-96981b763091",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 73,
+    "name": "rate-51",
+    "requestId": "31a18510-ffa4-4ae5-8957-7c5d8b12134f",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.468675Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "31a18510-ffa4-4ae5-8957-7c5d8b12134f",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 74,
+    "name": "rate-52",
+    "requestId": "f88132f1-1bce-4077-91dc-a9f375abfb74",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.491027Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "f88132f1-1bce-4077-91dc-a9f375abfb74",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 75,
+    "name": "rate-53",
+    "requestId": "74f58c24-811a-4d04-8255-9c1a74b1d526",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.514747Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "74f58c24-811a-4d04-8255-9c1a74b1d526",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 76,
+    "name": "rate-54",
+    "requestId": "d4d9f4a8-d933-4aaa-8f50-772e30181eef",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.537650Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "d4d9f4a8-d933-4aaa-8f50-772e30181eef",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 77,
+    "name": "rate-55",
+    "requestId": "854a5891-3e13-4005-8d02-5810ad277b41",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.560255Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "854a5891-3e13-4005-8d02-5810ad277b41",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 78,
+    "name": "rate-56",
+    "requestId": "7f5d030b-f7b6-4321-9718-918da865adbd",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.582182Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "7f5d030b-f7b6-4321-9718-918da865adbd",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 79,
+    "name": "rate-57",
+    "requestId": "e7d9fcb4-f204-48ab-99b4-c4c32375f022",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.605229Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "e7d9fcb4-f204-48ab-99b4-c4c32375f022",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 80,
+    "name": "rate-58",
+    "requestId": "667bfb01-fcca-4c40-a776-4afa76087dec",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.628870Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "667bfb01-fcca-4c40-a776-4afa76087dec",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 81,
+    "name": "rate-59",
+    "requestId": "e911d4c0-f743-410d-8193-939e54d3dc88",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.652266Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "e911d4c0-f743-410d-8193-939e54d3dc88",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 82,
+    "name": "rate-60",
+    "requestId": "b6ea9fb7-e675-4f9f-81ad-5446453a3818",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:23.675478Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62570,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "b6ea9fb7-e675-4f9f-81ad-5446453a3818",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 83,
+    "name": "f6-create-release-A",
+    "requestId": "6753311e-d43e-4e8f-98ef-4ab1e50fd652",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:25.859622Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62860,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "6753311e-d43e-4e8f-98ef-4ab1e50fd652",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 84,
+    "name": "f6-create-retired",
+    "requestId": "8d4fddd1-5bc4-441e-b03c-ca56a2651f79",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:25.881574Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62860,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "8d4fddd1-5bc4-441e-b03c-ca56a2651f79",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 85,
+    "name": "f6-retire-R",
+    "requestId": "27051fff-b7da-4423-a043-b36156fb043e",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:25.907502Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 62860,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "27051fff-b7da-4423-a043-b36156fb043e",
+        "status": 204,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 86,
+    "name": "f6-create-release-B",
+    "requestId": "b1a6308d-3db0-46a9-8c9f-42d5e9346185",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:28.530604Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 63060,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "b1a6308d-3db0-46a9-8c9f-42d5e9346185",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 87,
+    "name": "f6-create-active",
+    "requestId": "b465050f-0c88-42fa-afe8-28fe21aab7b5",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:28.553157Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 63060,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "b465050f-0c88-42fa-afe8-28fe21aab7b5",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 88,
+    "name": "f6-redirect-active",
+    "requestId": "a4bece29-39d7-4aaf-a8b9-3968705a2a1b",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:28.581520Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 63060,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "a4bece29-39d7-4aaf-a8b9-3968705a2a1b",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 89,
+    "name": "upgraded-active-read",
+    "requestId": "8c124ba1-a9ec-448f-8b88-34aad5cc5de9",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:31.968009Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 63312,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "8c124ba1-a9ec-448f-8b88-34aad5cc5de9",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 90,
+    "name": "upgraded-retired-redirect",
+    "requestId": "9eb414d1-6c6c-4468-95bf-e157f2cc74dd",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:32.003955Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 63312,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "9eb414d1-6c6c-4468-95bf-e157f2cc74dd",
+        "status": 410,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 91,
+    "name": "upgraded-audit-eight-fields",
+    "requestId": "3d3c76f5-542e-49d6-8543-7cf417795036",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:32.035937Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 63312,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "3d3c76f5-542e-49d6-8543-7cf417795036",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 92,
+    "name": "upgraded-new-create",
+    "requestId": "819c372d-dff0-4490-8919-da44ae4d598d",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:34.633246Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 63437,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "819c372d-dff0-4490-8919-da44ae4d598d",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 93,
+    "name": "upgraded-new-retire",
+    "requestId": "0fd9f26b-afb0-494c-861e-162511e9b4d4",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:34.671449Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 63437,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "0fd9f26b-afb0-494c-861e-162511e9b4d4",
+        "status": 204,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  {
+    "http": 94,
+    "name": "reapplied-audit-read",
+    "requestId": "508ccd15-b2a3-4ef0-abd0-327caffea225",
+    "logs": [
+      {
+        "@timestamp": "2026-10-03T23:41:38.481961Z",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": 63726,
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "version": "0.1.0",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "508ccd15-b2a3-4ef0-abd0-327caffea225",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  }
+]

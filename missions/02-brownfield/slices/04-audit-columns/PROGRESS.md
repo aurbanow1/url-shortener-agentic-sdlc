@@ -7,11 +7,40 @@
 
 ## Acceptance
 
-- [ ] Implementation complete — built test-first as `49f0cee` on `main` `583278c`; the candidate is the rebase onto `02-click-retention`'s merge, which is pending (builder, 2026-10-03)
-- [ ] Tests passing — `check --rerun-tasks` on `49f0cee`: unit 208/208, functional 211/211, 496/496 lines, 194/194 branches (`proof/builder-check-49f0cee.txt`); to be re-run on the rebased candidate
-- [ ] Review approved
+- [x] Implementation complete — candidate `305f804`, rebased onto `02-click-retention`'s merge `ed2b940` (`main` `2566c38`); V4 follows V3 (builder, 2026-10-03)
+- [x] Tests passing — `check --rerun-tasks` on `305f804`: unit 218/218, functional 233/233, 557/557 lines, 200/200 branches (`proof/builder-check-305f804.txt`; builder run, QA re-runs independently)
+- [x] Review approved — combined code/security PASS on exact305f804 (`d7459ff`, review2-agent; reports read at post-merge QA)
 
 ## Builder
 
 - [x] Test first: `8f72b2f` red (`proof/builder-red-functional.txt`, `builder-red-unit.txt`), then `49f0cee` green
-- [ ] Rebase onto `02-click-retention`'s merge commit, confirm V4 is the next Flyway number, re-run `check`, run the by-effect upgrade, hand off that SHA
+- [x] Rebased onto `02-click-retention`'s merge. V4 is the next Flyway number. Two shipped tests pinned to V3 under the lead's grant `132a884`. `check` re-run green.
+- [x] By-effect upgrade from the real `f6dd29e` jar (`proof/upgrade-0` to `upgrade-4`, `jar-log-upgrade.txt`)
+
+
+## QA — 2026-10-03T23:47Z
+
+- [x] Independent exact-candidate gate:218 unit + 233 functional; zero failures/errors/skips; merged 557/557 lines 200/200 branches.
+- [x] Every AC observed independently:94 HTTP requests,787 assertions; real f6 upgrade, literal rollback on copy and candidate reapply;7 apps stopped.
+- [x]366 coverage report hashes;271-method traceability; gaps/fixture scope recorded; baseline213/224 inherited invocations passed with only grant 132a884's two migration pins.
+- [x] QA proof and contract1–4,6–9 evidence recorded; contract5 merge-time GAPS closure routed to lead. Downstream code/security review remains pending.
+
+- [x] Attributed receipts 2,3,5,6,7,8,9,10 accept contract1–4,6–9 against exact305f804. Lead confirmed qitem-20261003234855-d2ef129b sequencing at23:49Z; item5 returns after merge and final interim-row GAPS closure. QA handoff may proceed; slice acceptance remains pending.
+
+## Integrate — 2026-10-04T00:15Z (orchestration lead)
+
+- [x] QA (`qa2-agent`), code and security review (`review2-agent`, PASS, no findings, `d7459ff`) and the branch tip all name `305f804`. Proof items 1–4 and 6–9 are accepted on it; item 5 is pending by design.
+- [x] Ancestry: `305f804` descends from `02-click-retention`'s merge `ed2b940`. `main` has no product change since then. V4 follows V3.
+- [x] Merged `--no-ff` into `main` at `d55a502`. All 10 files are inside the territory or the 23:12Z test grant.
+- [x] Fresh gate on merged `main`, `check --rerun-tasks`, 14/14 tasks executed, BUILD SUCCESSFUL (`docs/evidence/02-brownfield/integrate-04-audit-columns-check-305f804.txt`).
+- [x] Tagged `slice/04-audit-columns/accepted` → `305f804`. Worktree removed (clean).
+- [x] The four interim audit-column rows in `docs/qa/GAPS.md` are closed in one edit: `link`/`audit_log` (V4, `d55a502`) and `click`/`user_agent_class` (V3, `ed2b940`; not marked at click-retention's merge, so marked now).
+- [ ] Item 5 is back with `qa2-agent`, with the final `GAPS.md` hash. The slice is accepted when it is judged.
+
+
+## Post-merge gap return — 2026-10-04T00:22Z
+
+- [x] Candidate305f804 merged asd55a502; second parent/tag exact and cited V4/tests byte-identical.
+- [x] Interim link/audit_log GAPS rows closed by V4 merge; click/user_agent_class rows closed by V3 merge. One false QA-seat attribution corrected at382a7b2, only that token changed.
+- [x] Final GAPS hash18149e871a3225f68323117da91202d2186662b6667642e3815068ae12974068 independently verified; original own gap qualifications unchanged.
+- [x] Receipt12 accepts proof5 against original candidate; **READY9/9**, no issues. Deferred merge-time obligation fulfilled; integrator owns workflow close/stamp.

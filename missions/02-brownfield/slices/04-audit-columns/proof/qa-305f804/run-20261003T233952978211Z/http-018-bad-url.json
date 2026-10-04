@@ -1,0 +1,40 @@
+{
+  "sequence": 18,
+  "name": "bad-url",
+  "app": "controlled",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "POST",
+    "-H",
+    "Content-Type: application/json",
+    "--data",
+    "{\"url\": \"javascript:alert(1)\"}",
+    "http://localhost:18161/api/links"
+  ],
+  "status": 400,
+  "headers": {
+    "x-request-id": "980b044d-d150-4d68-a3d0-a426b566e466",
+    "content-type": "application/problem+json",
+    "transfer-encoding": "chunked",
+    "date": "Sat, 03 Oct 2026 23:39:56 GMT",
+    "connection": "close"
+  },
+  "body": "{\"instance\":\"urn:uuid:980b044d-d150-4d68-a3d0-a426b566e466\",\"status\":400,\"title\":\"Bad Request\",\"errors\":[{\"field\":\"url\",\"rule\":\"scheme\",\"message\":\"url must start with http:// or https://\"}]}",
+  "json": {
+    "instance": "urn:uuid:980b044d-d150-4d68-a3d0-a426b566e466",
+    "status": 400,
+    "title": "Bad Request",
+    "errors": [
+      {
+        "field": "url",
+        "rule": "scheme",
+        "message": "url must start with http:// or https://"
+      }
+    ]
+  }
+}

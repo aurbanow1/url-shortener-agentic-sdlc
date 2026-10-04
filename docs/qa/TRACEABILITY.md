@@ -1936,3 +1936,615 @@ checks are recorded in the slice QA proof and `proof/qa-effects-final-a8fc8b6/`.
 The external instrumentation changes no product or canonical test source.
 Proof item 9 stays pending X′ under the lead's recorded 21:42Z custody exception;
 it is tracked by qitem-20261003221121-7686465a before acceptance.
+
+
+## 04-audit-columns — QA2, candidate 305f8045d45b19a9e3287d5fe3508af6e04db9a4
+
+Fresh218 unit /233 functional invocations, zero failures/errors/skips. Every current271 source
+method appears below exactly once; saved XML, method/invocation mapping and baseline hashes are in
+`missions/02-brownfield/slices/04-audit-columns/proof/qa-junit/`, `qa-test-methods.json` and
+`qa-baseline-file-hashes.json`. AC9 regression includes all437 inherited invocations; only the two
+migration-version pins are changed under explicit grant132a884. No assertion is changed.
+
+| AC / requirement / business rule | Test class#method | Suite | Result |
+|---|---|---|---|
+| AC-9 / FR-13 baseline regression; inherited scope: BR-4 startup prerequisite; coverage gate (baseline) | UrlshortApplicationTests#contextLoads | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-4 startup prerequisite; coverage gate (baseline main entry point) | UrlshortApplicationTests#mainBootsWithoutAWebServer | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditControllerTest#loopbackPeersAreAdmitted | unit | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditControllerTest#otherPeersAreRefused | unit | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditControllerTest#aMissingPeerIsRefused | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditControllerTest#aForwardingHeaderRefusesEvenFromLoopback | unit | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditControllerTest#theShippedStrategyAdmitsALoopbackRequest | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditControllerTest#anyOtherStrategyClosesTheEndpoint | unit | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditControllerTest#anUnsetStrategyClosesTheEndpoint | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditControllerTest#aRemoteIpHeaderSettingClosesTheEndpoint | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditControllerTest#aProtocolHeaderSettingClosesTheEndpoint | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditControllerTest#emptyRemoteIpSettingsKeepTheEndpointOpen | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditControllerTest#limitDefaultsTo50AndAcceptsItsBounds | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditControllerTest#limitOutsideItsRangeIsARangeProblem | unit | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditControllerTest#aLimitThatIsNotAWholeNumberIsAFormatProblem | unit | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditControllerTest#aCursorIsTheBase64urlOfAPositiveId | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditControllerTest#aMalformedCursorIsAFormatProblem | unit | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-9; AC-22, AC-23, AC-25; NFR-A1, NFR-A2 | audit.AuditLogTest#theWriterOffersOnlyAppendAndItsOnlyStatementIsAnInsert | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-9; AC-22, AC-23, AC-25; NFR-A1, NFR-A2 | audit.AuditLogTest#appendWritesOneRowWithServerOwnedValues | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-13, AC-16; NFR-X2, FR-13, audit-column policy | click.ClickAuditColumnsTest#theClickTablesGainFilledAuditColumnsAndKeepEveryV1ColumnAndConstraint | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-1, AC-9; BR-2, BR-6; NFR-P2/O2 | click.ClickPurgeTest#aRunDeletesBeforeTheEarliestKeptDayAndLogsOneInfo | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-3; BR-1, BR-2; NFR-P2 | click.ClickPurgeTest#theCutoffFollowsThePeriod | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-8; BR-3; NFR-P2 | click.ClickPurgeTest#theTickRunsOnceADayFromTenPastMidnight | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-3; NFR-P2; backward-clock rule | click.ClickPurgeTest#aClockThatStepsBackRunsNothing | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-10; BR-3, BR-6; NFR-P2/O2 | click.ClickPurgeTest#aFailedRunIsOneWarnWithTheClassOnlyAndIsNotRetriedBeforeTheNextDay | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-7; BR-3, BR-5; NFR-P2 | click.ClickPurgeTest#startRunsOnThePurgeThreadAndReturnsAfterTheRun | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-1, AC-2; BR-3, BR-5; NFR-P2 | click.ClickPurgeTest#runNowRunsOnThePurgeThread | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-15; BR-3, BR-6; NFR-P2 | click.ClickPurgeTest#onHoldStartDeletesNothingAndSaysSoOnce | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting | click.ClickRecorderTest#aHeadRequestIsNotAClick | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting | click.ClickRecorderTest#aRedirectIsStoredAsItsReducedFactsOnly | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting | click.ClickRecorderTest#aFailedWriteIsOneWarnWithTheRequestIdAndNoClickValue | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting | click.ClickRecorderTest#aClickThatCannotBeQueuedIsOneWarnAndTheRedirectGoesOn | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-12; BR-7; FR-15, NFR-O1/O2 | click.ClickRecorderTest#aClickThatCannotBeReducedIsOneWarn | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting | click.ClickRecorderTest#aFastStoreIsDrainedOnCloseAndNothingIsReported | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting | click.ClickRecorderTest#aStuckWriteIsBoundedAndEveryUnwrittenClickIsReportedOnceBeforeCloseReturns | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting | click.ClickRecorderTest#aClaimedClickIsNeverWrittenWhenTheWriterReachesItLater | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting | click.ClickRecorderTest#aWriteThatFailsAfterShutdownClaimedItIsNotReportedAgain | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-1, AC-2, AC-14, AC-15, AC-19; BR-1, BR-2, BR-5, BR-9; FR-7, NFR-L3, NFR-O1/O2; bounded shutdown accounting | click.ClickRecorderTest#aWriteThatCompletesAfterShutdownClaimedItIsNotReportedAgain | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-1, AC-4; BR-2, BR-4; NFR-P1; migration constraints after DDL connection retirement | click.ClickSchemaTest#theClickConstraintsStillWorkAfterTheDdlConnectionIsRetired | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-3, AC-4; BR-2, BR-3, BR-4; FR-7, NFR-P1 | click.ClickTest#theReferrerIsReducedToItsOrigin | unit | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-3, AC-4; BR-2, BR-3, BR-4; FR-7, NFR-P1 | click.ClickTest#aReferrerThatIsNotAnHttpOriginIsNone | unit | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-3, AC-4; BR-2, BR-3, BR-4; FR-7, NFR-P1 | click.ClickTest#theReferrerLengthCapIs2048 | unit | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-3, AC-4; BR-2, BR-3, BR-4; FR-7, NFR-P1 | click.ClickTest#theUserAgentIsReducedToAClass | unit | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-3, AC-4; BR-2, BR-3, BR-4; FR-7, NFR-P1 | click.ClickTest#anAbsentOrEmptyUserAgentIsUnknown | unit | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-3, AC-4; BR-2, BR-3, BR-4; FR-7, NFR-P1 | click.ClickTest#rule2_aClickHoldsOnlyTheReducedFacts | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-5; BR-4; NFR-P1; salt lifetime and midnight ownership | click.DailySaltTest#sameAddressAndDayHashEquallyAndTheStampCarriesTheClocksInstant | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-5; BR-4; NFR-P1; salt lifetime and midnight ownership | click.DailySaltTest#anotherAddressOrAnotherDayHashesDifferently | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-5; BR-4; NFR-P1; salt lifetime and midnight ownership | click.DailySaltTest#theHashIsNeverTheUnsaltedDigest | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-5; BR-4; NFR-P1; salt lifetime and midnight ownership | click.DailySaltTest#aSelectionMadeBeforeMidnightKeepsItsDayAndNeverReplacesTheNextDaysSalt | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-5; BR-4; NFR-P1; salt lifetime and midnight ownership | click.DailySaltTest#aStaleExpiryIsANoOpAndTheCurrentDaysExpiryDropsTheSalt | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-5; BR-4; NFR-P1; salt lifetime and midnight ownership | click.DailySaltTest#closeDropsTheSalt | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-5; BR-4; NFR-P1; salt lifetime and midnight ownership | click.DailySaltTest#aSaltIsDroppedAtTheEndOfItsDayWithoutAnyFurtherClick | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-7, AC-9, AC-10, AC-11; BR-3, BR-7; FR-8 | click.LinkStatsTest#noRowsIsZeroAndTwoEmptyLists | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-7, AC-9, AC-10, AC-11; BR-3, BR-7; FR-8 | click.LinkStatsTest#daysAreSummedAscendingAndClicksWithoutAReferrerCountOnlyInTheTotals | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-7, AC-9, AC-10, AC-11; BR-3, BR-7; FR-8 | click.LinkStatsTest#referrersAreRankedByClicksThenByCodePointAndCappedAtTen | unit | PASS on305f804; individual XML |
+| AC-1 / policy, NFR-X2; BR-5 | link.LinkAuditColumnsTest#AC1_bothTablesGainTheAuditColumnsAndNothingElseChanges | unit | PASS on305f804; individual XML |
+| AC-11 / NFR-X2; BR-5 | link.LinkAuditColumnsTest#AC11_theWrittenRollbackRestoresTheEarlierSchemaAndV4AppliesAgain | unit | PASS on305f804; individual XML |
+| AC-2 / policy; BR-1, BR-2, BR-3 | link.LinkServiceStampTest#aCreateStampsTheNewLinkWithItsCreationInstant | unit | PASS on305f804; individual XML |
+| AC-4 / policy; BR-1, BR-2, BR-3 | link.LinkServiceStampTest#aKeyReleaseStampsTheReleasedLinkWithTheSameInstant | unit | PASS on305f804; individual XML |
+| AC-3 / policy; BR-1, BR-2, BR-3 | link.LinkServiceStampTest#aRetireStampsThroughItsConditionalUpdate | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1 | link.LinkServiceTest#createWithoutAKeyInsertsAndAuditsTheNewLink | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1 | link.LinkServiceTest#createWithAnUnboundKeyBindsIt | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1 | link.LinkServiceTest#replayWithinTheWindowReturnsTheBoundLinkAndWritesNothing | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1 | link.LinkServiceTest#mismatchWithinTheWindowIs422AndKeepsTheBinding | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1 | link.LinkServiceTest#anExpiredKeyIsReleasedAndBindsANewLink | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1 | link.LinkServiceTest#readOfAnUnknownCodeIs404 | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1 | link.LinkServiceTest#resolveSendsVisitorsToActiveLinksOnly | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1 | link.LinkServiceTest#retireUpdatesConditionallyAndAuditsBeforeAndAfter | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-4, BR-5, BR-6, BR-9; FR-1, FR-4, FR-9, NFR-A1 | link.LinkServiceTest#retireThatChangesNoRowIs410AndWritesNoAuditRow | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-6; FR-4 | link.LinkTest#stateIsActiveUntilRetiredAtIsSet | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-3, BR-5, BR-8; AC-4, AC-20; FR-5, NFR-S1 | link.LinkValidationTest#eachRejectedUrlFailsExactlyItsRule | unit | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-3, BR-5, BR-8; AC-4, AC-20; FR-5, NFR-S1 | link.LinkValidationTest#validUrlsPass | unit | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-3, BR-5, BR-8; AC-4, AC-20; FR-5, NFR-S1 | link.LinkValidationTest#exactly2048CharactersIsAccepted | unit | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-3, BR-5, BR-8; AC-4, AC-20; FR-5, NFR-S1 | link.LinkValidationTest#malformedKeysFailFormat | unit | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-3, BR-5, BR-8; AC-4, AC-20; FR-5, NFR-S1 | link.LinkValidationTest#keysLongerThan255FailFormat | unit | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-3, BR-5, BR-8; AC-4, AC-20; FR-5, NFR-S1 | link.LinkValidationTest#absentOrVisibleAsciiKeysPass | unit | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-1; FR-1 | link.ShortCodesTest#codesAreEightCharactersFromTheAlphanumericAlphabet | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-1; FR-1 | link.ShortCodesTest#aDrawThatSpellsAReservedSegmentIsDrawnAgain | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-1, AC-2; BR-4, BR-5, BR-6 | ping.PingControllerTest#answersOkWithTheCurrentUtcInstant | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13; AC-6; BR-4; FR-14, FR-15 | web.MetricsConfigTest#onlyThePathTagIsDropped | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-8, BR-10; AC-5, AC-7, AC-24, AC-26, AC-27; NFR-R6 | web.ProblemDetailsAdviceTest#unwrapsABodyLimitErrorRaisedInsideTheJsonReaderTo413 | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-8, BR-10; AC-5, AC-7, AC-24, AC-26, AC-27; NFR-R6 | web.ProblemDetailsAdviceTest#unreadableBodyWithoutALimitErrorStays400WithoutTheFrameworkDetail | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-8, BR-10; AC-5, AC-7, AC-24, AC-26, AC-27; NFR-R6 | web.ProblemDetailsAdviceTest#frameworkDetailThatEchoesClientInputIsCleared | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-8, BR-10; AC-5, AC-7, AC-24, AC-26, AC-27; NFR-R6 | web.ProblemDetailsAdviceTest#domainProblemKeepsItsErrorsAndGetsTheRequestIdAsInstance | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-8, BR-10; AC-5, AC-7, AC-24, AC-26, AC-27; NFR-R6 | web.ProblemDetailsAdviceTest#unhandledExceptionIsABare500AndOneMessageFreeEvent | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-8, BR-10; AC-5, AC-7, AC-24, AC-26, AC-27; NFR-R6 | web.ProblemDetailsAdviceTest#errorOriginIsNoneWhenNoFrameIsOurs | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-8, BR-10; AC-5, AC-7, AC-24, AC-26, AC-27; NFR-R6 | web.ProblemDetailsAdviceTest#aNonProblemBodyPassesThroughUntouched | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-8; AC-4, AC-14, AC-18, AC-20; FR-5, FR-6, FR-9 | web.ProblemsTest#validationIs400WithExactlyOneFieldError | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-8; AC-4, AC-14, AC-18, AC-20; FR-5, FR-6, FR-9 | web.ProblemsTest#notFoundAndGoneAreBareProblems | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-8; AC-4, AC-14, AC-18, AC-20; FR-5, FR-6, FR-9 | web.ProblemsTest#idempotencyMismatchIs422NamingTheHeaderAndRule | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-1; request classification/exemptions; NFR-R2 | web.RateLimitFilterTest#rule1_limitedRequestsAreChargedToTheirBudget | unit | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-1; request classification/exemptions; NFR-R2 | web.RateLimitFilterTest#rule1_operatorSurfacesAreNeitherChargedNorLimited | unit | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-7, AC-8; BR-5; NFR-R2 | web.RateLimitFilterTest#rule5_theClientIsThePeerOrTheRightMostUntrustedForwardedHop | unit | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-7, AC-8; BR-5; NFR-R2 | web.RateLimitFilterTest#rule5_anAbsentOrEmptyHeaderFromATrustedProxyChargesTheProxy | unit | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-7, AC-8; BR-5; NFR-R2 | web.RateLimitFilterTest#theFilterReadsOnlyXForwardedForAndOnlyFromATrustedPeer | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-1, AC-2, AC-11; BR-3, BR-4, BR-6; FR-10, NFR-R2, NFR-P1 | web.RateLimitFilterTest#anEmptyBucketIsA429ProblemWithRetryAfterAndNoChain | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-17; BR-6, BR-10; FR-10, NFR-O3 | web.RateLimitFilterTest#eachRejectionIsCountedOnceUnderItsBudgetOnly | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-3; BR-2, BR-3, BR-4; FR-10, NFR-R2 | web.RateLimiterTest#AC03a_anExactlyEmptyBucketRefillsOneTokenAfterExactlyOneSecond | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-3; BR-2, BR-3, BR-4; FR-10, NFR-R2 | web.RateLimiterTest#AC03b_retryAfterIsRoundedUpAndHonoured | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-4; BR-2; NFR-R2 | web.RateLimiterTest#AC04_aQuietMinuteRefillsTheWholeBucket | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-3, AC-9; BR-2, BR-3; FR-10, NFR-R2 | web.RateLimiterTest#refusalsTakeNothing | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-5, AC-6; BR-1, BR-2; NFR-R2 | web.RateLimiterTest#budgetsAndClientsAreIndependent | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-3; BR-4; FR-10, NFR-R2 | web.RateLimiterTest#retryAfterIsTheWaitForOneTokenInWholeSeconds | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-1, AC-3; BR-2, BR-3, BR-4; FR-10, NFR-R2; CR-01/SEC-01 ordering regression | web.RateLimiterTest#aRequestOvertakenByNewerOnesDecidesOnTheTimeItReachesTheBucket | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-2; NFR-R2; disclosed fail-closed backward-clock limit, lead transition 726 | web.RateLimiterTest#afterABackwardClockStepTheBucketRefillsFromItsStoredTat | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-8; non-functional limiter memory bound; NFR-R2 | web.RateLimiterTest#fullBucketsAreReleasedByTheNextRequestButNotWhileIdle | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-2, BR-8; non-functional limiter memory bound; NFR-R2 | web.RateLimiterTest#aBucketThatIsNotYetFullSurvivesTheRelease | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-8; non-functional limiter memory bound; NFR-R2 | web.RateLimiterTest#theReleaseRunsAtMostOncePerSecond | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-8; NFR-R2; CR-03 rollback cleanup regression | web.RateLimiterTest#theReleaseResumesAfterABackwardClockStep | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-7; NFR-S3; body-limit stream mechanics | web.RequestBodyLimitFilterTest#aBodyOfExactlyTheLimitIsReadInFull | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-7; NFR-S3; body-limit stream mechanics | web.RequestBodyLimitFilterTest#theFirstByteOverTheLimitIs413OnTheBulkReadPath | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-7; NFR-S3; body-limit stream mechanics | web.RequestBodyLimitFilterTest#singleByteReadsCountTooAndEndOfStreamIsPassedThrough | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-7; NFR-S3; body-limit stream mechanics | web.RequestBodyLimitFilterTest#theWrappedStreamIsCreatedOnceSoTheCountCannotBeReset | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-7; NFR-S3; body-limit stream mechanics | web.RequestBodyLimitFilterTest#servletStreamStateAndListenerDelegateToTheContainerStream | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-3, AC-6; BR-2, BR-3, BR-8 (MDC lifecycle) | web.RequestIdFilterTest#issuesOneIdOnHeaderAndMdcBeforeTheChainRunsAndClearsMdcAfter | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-4, AC-8; BR-1, BR-2 | web.RequestIdFilterTest#ignoresInboundRequestIdAndIssuesADifferentIdPerRequest | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-10; AC-26, AC-27; NFR-O1, NFR-O2 | web.RequestIdFilterTest#writesOneRequestCompletedEventWithTheStatusAndTheIdButNotTheMethod | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-1, BR-8 (request context isolated after failure) | web.RequestIdFilterTest#clearsMdcWhenTheChainThrows | unit | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-4 (baseline health responsibility) | HealthJourneyTest#healthEndpointReportsUp | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditAccessSettingsJourneyTest#AC13_AC14_noSettingOpensTheEndpointBeyondLoopback | functional | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditAccessSettingsJourneyTest#aPlainLoopbackReadStillWorksUnderTheseSettings | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditForwardedHeadersJourneyTest#theShippedFilePinsTheForwardedHeaderStrategyOff | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditForwardedHeadersJourneyTest#onADetectedCloudPlatformThePinKeepsAForgedLoopbackHeaderOut | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditForwardedHeadersJourneyTest#anOverrideOfThePinClosesTheEndpoint | functional | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditForwardedHeadersJourneyTest#aTomcatRemoteIpSettingClosesTheEndpoint | functional | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-22; NFR-A1; BR-9, BR-12 | audit.AuditJourneyTest#AC22_createWritesExactlyOneAuditRow | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-23; NFR-A1; BR-6, BR-9, BR-12 | audit.AuditJourneyTest#AC23_retireWritesExactlyOneAuditRow | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-24; NFR-A1, NFR-R6; BR-6, BR-8, BR-9, BR-10 | audit.AuditJourneyTest#AC24_aFailedAuditWriteRollsTheRetireBackAndFailsClosed | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-25; NFR-A2; BR-9 | audit.AuditJourneyTest#AC25_auditRowsAreAppendOnlyUnderEveryOperation | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditReadFailureJourneyTest#AC21_aFailedReadIsA500ProblemNeverAnEmptyOrPartialPage | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC01_anEmptyTrailIsAnEmptyPage | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC02_aCreateRowIsReadableAsWritten | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC03_aRetireRowCarriesBeforeAndAfter | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC04_rowsComeNewestFirstInTheOrderTheyWereWritten | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC05_everyFieldMatchesTheStoredRow | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC06_pagesFollowNextToTheEnd | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC07_theDefaultAndMaximumPageSizes | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC08_pagingIsStableWhileRowsAreWritten | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC09_invalidPagingParametersAreRefusedNamingTheField | functional | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC10_readingChangesNothing | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC11_aNonLoopbackClientIsRefused | functional | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC12_everyLoopbackAddressIsAdmitted | functional | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC13_forwardingHeadersNeverGrantAccess | functional | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#theGuardAndTheValidationComeBeforeContentNegotiation | functional | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC15_requestCorrelationOnTheNewPaths | functional | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC16_auditContentAndClientValuesStayOutOfTheLogs | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC19_theLiveApiDocumentDescribesTheAuditRead | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditReadJourneyTest#AC20_aTraversalAcrossAnInFlightWriteNeitherRepeatsNorSkipsCommittedRows | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13 | audit.AuditUpgradeJourneyTest#AC18_anExistingDatabaseUpgradesInPlaceAndKeepsItsLinksAndRows | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-10 / NFR-P2, NFR-O2; BR-3, BR-6 | click.ClickPurgeFailureJourneyTest#AC10_aFailedRunIsReportedAndLeavesTheServiceWorking | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-12 / FR-15, NFR-O1/O2; BR-7 | click.ClickPurgeFailureJourneyTest#AC12_aClickThatCannotBeReducedIsOneWarnWithItsOwnReason | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-14, AC-15; BR-3; FR-13, NFR-P2 | click.ClickPurgeHoldJourneyTest#theSharedContextsHoldThePurge | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-1; BR-1, BR-2, BR-6; FR-7 | click.ClickRecordingJourneyTest#AC01_aRedirectRecordsExactlyOneClickWithItsTime | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-2; BR-1; FR-7 | click.ClickRecordingJourneyTest#AC02_onlyARedirectIsAClick | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-3; BR-2, BR-3; FR-7, NFR-P1 | click.ClickRecordingJourneyTest#AC03_theReferrerIsStoredAsItsOriginOnly | functional | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-4; BR-2, BR-4; FR-7, NFR-P1 | click.ClickRecordingJourneyTest#AC04_theUserAgentIsStoredAsAClassOnly | functional | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-5; BR-2, BR-4; FR-7, NFR-P1 | click.ClickRecordingJourneyTest#AC05_theClientAddressIsStoredOnlyAsASaltedHashThatRotatesEveryUtcDay | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-6; BR-4; FR-7, NFR-P1 | click.ClickRecordingJourneyTest#AC06_forwardingHeadersDoNotChangeTheRecordedClient | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-17; BR-2, BR-7; NFR-P1 | click.ClickRecordingJourneyTest#AC17_theStatisticsExposeAggregatesOnly | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-18; BR-9; NFR-O2, NFR-P1 | click.ClickRecordingJourneyTest#AC18_noClickDataReachesTheLogs | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-14; BR-5; FR-7, NFR-L3 | click.ClickResilienceJourneyTest#AC14_aSlowClickStoreDoesNotSlowTheRedirect | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-15; BR-5, BR-9; FR-7, NFR-L3 | click.ClickResilienceJourneyTest#AC15_AC19_aFailingClickStoreDoesNotFailTheRedirectAndTheLossIsOneCorrelatedWarn | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-16; BR-1, BR-2, BR-6; FR-7 | click.ClickResilienceJourneyTest#AC16_concurrentRedirectsLoseNoClicksAndTheRequestIsNeverReadAfterItsResponse | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-18; BR-9; NFR-O2, NFR-P1 | click.ClickResilienceJourneyTest#AC18_AC19_onTomcatClickDataStaysOutOfTheLogsAndEveryEventIsCorrelated | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-22; BR-1, BR-7; FR-8 | click.ClickResilienceJourneyTest#AC22_headOnTheStatisticsPathHasNoBodyAndRecordsNothing | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-1 / NFR-P2; BR-2 | click.ClickRetentionJourneyTest#AC01_theBoundaryDayIsKeptAndTheDayBeforeItIsDeleted | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-2 / NFR-P2; BR-2 | click.ClickRetentionJourneyTest#AC02_theWindowMovesWithTheDay | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-5 / FR-13, NFR-P2; BR-4 | click.ClickRetentionJourneyTest#AC05_statisticsCoverTheRetainedClicksOnly | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-6 / FR-13; BR-4 | click.ClickRetentionJourneyTest#AC06_linksRedirectsAndTheAuditTrailAreUntouched | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9 / NFR-P2, NFR-O2; BR-6 | click.ClickRetentionJourneyTest#AC09_eachRunLogsOneInfoWithItsCountCutoffAndPeriodAndNoClickValue | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-11 / FR-13; BR-5 | click.ClickRetentionJourneyTest#AC11_aRedirectWhileOldClicksAreBeingDeletedIsServedAndCounted | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-8 / NFR-P2; BR-3 | click.ClickRetentionScheduleJourneyTest#AC08_aPurgeRunsEveryUtcDayWithoutAnOperator | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-3 / NFR-P2; BR-1, BR-2 | click.ClickRetentionSettingJourneyTest#AC03_thePeriodIsAnOperatorSetting | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-4 / NFR-P2; BR-1 | click.ClickRetentionStartupJourneyTest#AC04_anInvalidPeriodStopsTheServiceFromStarting | functional | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-7 / NFR-P2; BR-3 | click.ClickRetentionStartupJourneyTest#AC07_aPurgeRunsAtStartup | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-13 / FR-13, NFR-X2, audit-column policy; BR-4; AC-16 / NFR-X2, audit-column policy | click.ClickRetentionStartupJourneyTest#AC13_AC16_anExistingDataDirectoryUpgradesInPlace | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-15 / NFR-P2; BR-3, BR-6 | click.ClickRetentionStartupJourneyTest#AC15_aPausedPurgeDeletesNothingAndSaysSoAtEveryStart | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-1, AC-4; BR-2, BR-4; FR-7, NFR-P1; pooled-connection retirement smoke | click.ClickSchemaJourneyTest#everyUserAgentClassIsRecordedAfterThePoolRetiresItsConnections | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-7; BR-7; FR-8 | click.StatsJourneyTest#AC07_aLinkWithNoClicksHasEmptyStatistics | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-8, AC-11; BR-1, BR-7; FR-8 | click.StatsJourneyTest#AC08_totalClicksCountsEveryRedirect | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9, AC-11; BR-2, BR-7; FR-8 | click.StatsJourneyTest#AC09_clicksPerDayAreGroupedByUtcCalendarDay | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-10, AC-11; BR-3, BR-7; FR-8 | click.StatsJourneyTest#AC10_topReferrersAreRankedAndCapped | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-12; BR-1, BR-7, BR-8; FR-8 | click.StatsJourneyTest#AC12_aRetiredLinksStatisticsAreStillReadable | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-13; BR-7, BR-9; FR-8 | click.StatsJourneyTest#AC13_statisticsOfAnUnknownCodeAndWrongMethodsAreProblemDetails | functional | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-19; BR-9; NFR-O1, NFR-O2 | click.StatsJourneyTest#AC19_theStatisticsPathAndASettledRedirectAreCorrelated | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-20; BR-8; FR-2, FR-4, FR-6, NFR-A1 regression | click.StatsJourneyTest#AC20_redirectAndAuditBehaviourAreUnchanged | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-21; BR-7; NFR-M3 | click.StatsJourneyTest#AC21_theLiveApiDocumentDescribesTheStatisticsEndpoint | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-22; BR-1, BR-7; FR-8 | click.StatsJourneyTest#AC22_headAndOptionsKeepTheFrameworkDefaultsAndRecordNothing | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-17; FR-9; BR-5, BR-9 | link.IdempotencyJourneyTest#AC17_aReplayReturnsTheFirstLink | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-18; FR-9, NFR-R5; BR-5, BR-8, BR-9 | link.IdempotencyJourneyTest#AC18_sameKeyWithADifferentUrlIsRefusedAndTheBindingSurvives | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-19; NFR-R5; BR-5 | link.IdempotencyJourneyTest#AC19_aKeyIsHonouredFor24HoursAndNotLongerAndARejectionDoesNotExtendIt | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-20; FR-9, FR-5; BR-5, BR-8 | link.IdempotencyJourneyTest#AC20_aMalformedKeyIsRefused | functional | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-20; FR-9, FR-5; BR-5, BR-8 | link.IdempotencyJourneyTest#AC20_aKeyOf255VisibleCharactersIsAccepted | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-21; FR-9; BR-5 | link.IdempotencyJourneyTest#AC21_aRejectedCreateDoesNotConsumeTheKey | functional | PASS on305f804; individual XML |
+| AC-5 / policy; BR-2, BR-4 | link.LinkAuditColumnsFailureJourneyTest#AC05_aRetireWhoseAuditWriteFailsStampsNothing | functional | PASS on305f804; individual XML |
+| AC-2 / policy; BR-1, BR-3 | link.LinkAuditColumnsJourneyTest#AC02_aCreateStampsTheNewLinkAndItsAuditRow | functional | PASS on305f804; individual XML |
+| AC-3 / policy; BR-1, BR-2, BR-3 | link.LinkAuditColumnsJourneyTest#AC03_aRetireMovesTheLinksUpdateStampOnly | functional | PASS on305f804; individual XML |
+| AC-4 / policy; BR-1, BR-2, BR-3 | link.LinkAuditColumnsJourneyTest#AC04_releasingAnExpiredKeyIsAWrite | functional | PASS on305f804; individual XML |
+| AC-5 / policy; BR-2, BR-4 | link.LinkAuditColumnsJourneyTest#AC05_requestsThatChangeNothingStampNothing | functional | PASS on305f804; individual XML |
+| AC-6 / policy, NFR-A2; BR-4 | link.LinkAuditColumnsJourneyTest#AC06_auditRowsAreNeverUpdated | functional | PASS on305f804; individual XML |
+| AC-8 / FR-13; BR-7 | link.LinkAuditColumnsJourneyTest#AC08_noResponseShowsTheNewColumns | functional | PASS on305f804; individual XML |
+| AC-10 / NFR-P1, NFR-O2; BR-3 | link.LinkAuditColumnsJourneyTest#AC10_theAuditColumnsHoldNoClientValue | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-1; FR-1; BR-1, BR-2, BR-11, BR-12 | link.LinkCreateJourneyTest#AC01_validUrlBecomesAShortLink | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-2; FR-1; BR-1, BR-4 | link.LinkCreateJourneyTest#AC02_everyCreateWithoutAKeyIsANewLink | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-3; FR-1, NFR-S4; BR-11 | link.LinkCreateJourneyTest#AC03_shortUrlUsesTheShippedBaseNeverTheHostHeader | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-4; FR-5, NFR-S1; BR-3, BR-8 | link.LinkCreateJourneyTest#AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule | functional | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-4; FR-5, NFR-S1; BR-3, BR-8 | link.LinkCreateJourneyTest#AC04_aUrlOfExactly2048CharactersIsAccepted | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-5; FR-5; BR-8 | link.LinkCreateJourneyTest#AC05_bodyThatIsNotAJsonObjectIsRefused | functional | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-6; FR-5, NFR-S3; BR-8 | link.LinkCreateJourneyTest#AC06_nonJsonContentTypeIsRefused | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-7; NFR-S3; BR-8 | link.LinkCreateJourneyTest#AC07_bodyIsRefusedAtTheSixteenKibLimit | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-16; FR-6 (surface regression); BR-1 | link.LinkCreateJourneyTest#AC16_redirectRouteDoesNotShadowTheExistingSurface | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-8; FR-3; BR-2, BR-6, BR-11, BR-12 | link.LinkReadRetireJourneyTest#AC08_readingALinkReturnsItsDetails | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; FR-3, FR-4; BR-6 | link.LinkReadRetireJourneyTest#AC09_aRetiredLinkIsStillReadableWithItsState | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-10; FR-4; BR-6, BR-9 | link.LinkReadRetireJourneyTest#AC10_retiringALinkIs204WithAnEmptyBody | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-11; FR-4; BR-6, BR-9 | link.LinkReadRetireJourneyTest#AC11_retiringAnAlreadyRetiredLinkIs410AndNotASecondMutation | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-14; FR-6; BR-8 | link.LinkReadRetireJourneyTest#AC14_unknownCodeIs404OnEveryLinkOperation | functional | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-15; FR-6; BR-8 | link.LinkReadRetireJourneyTest#AC15_wrongMethodIs405 | functional | PASS on305f804; individual XML |
+| AC-1, AC-7 / policy, NFR-X2, FR-13; BR-5, BR-6 | link.LinkUpgradeJourneyTest#AC07_anExistingDatabaseUpgradesInPlace | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-3; FR-1, NFR-S4; BR-11 | link.PublicBaseUrlJourneyTest#AC03_shortUrlUsesTheConfiguredBaseNeverTheHostHeader | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-12; FR-2; BR-2, BR-7 | link.RedirectJourneyTest#AC12_visitorIsRedirectedWithANonCacheable302 | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-13; FR-4; BR-6, BR-8 | link.RedirectJourneyTest#AC13_aRetiredLinkTellsTheVisitorItIsGone | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-7; AC-12; FR-2 | link.RedirectJourneyTest#rule7_queryStringOnTheShortLinkIsNotForwarded | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-1; BR-4, BR-6 | ping.PingJourneyTest#AC1_pingAnswersOkAsJson | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-2; BR-5 | ping.PingJourneyTest#AC2_timeIsCurrentUtcInstant | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-3; BR-2, BR-3 | ping.PingJourneyTest#AC3_everyResponseCarriesRequestId | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-4; BR-2 | ping.PingJourneyTest#AC4_requestIdsAreUniquePerRequest | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-5; BR-3, BR-7 | ping.PingJourneyTest#AC5_wrongMethodIsProblemDetailWithRequestId | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-6; BR-8 | ping.PingJourneyTest#AC6_pingIsLoggedAsJsonWithRequestId | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-7; BR-1, logging obligation | ping.PingJourneyTest#AC7_logEventCarriesNoClientAddressOrUserAgent | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-8; BR-1 | ping.PingJourneyTest#AC8_clientSuppliedRequestIdIsIgnored | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-26; NFR-O1, NFR-O2; BR-10 | web.ColdStartJourneyTest#AC26_theFirstRequestOnARealServerLogsOnlyItsOwnCorrelatedEvents | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-14, AC-15; BR-9; NFR-R1 | web.DatabaseDownJourneyTest#AC14_AC15_readinessFollowsTheDatabaseAndLivenessDoesNot | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-13; BR-9; NFR-R1 | web.HealthMetricsJourneyTest#AC13_livenessAndReadinessAreUpWithAWorkingDatabase | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-15; BR-9; NFR-R1 | web.HealthMetricsJourneyTest#AC15_healthBodiesDiscloseNothingAboutTheInstallation | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-18; BR-10; NFR-O3 | web.HealthMetricsJourneyTest#AC18_redirectsAreCountedByRouteTemplate | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13; AC-6; BR-4; FR-14, FR-15 | web.HealthMetricsJourneyTest#AC6_diskGaugesCarryNoInstallationPath | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13; AC-6; BR-4; FR-14, FR-15 | web.HealthMetricsJourneyTest$AnonymousScrape#AC6_theScrapeCarriesNoInstallationPath | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-26; NFR-O1, NFR-O2; BR-10 | web.ObservabilityJourneyTest#AC26_everyResponseCarriesARequestIdAndEveryEventOfTheRequestTheSameId | functional | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-27; NFR-O2; BR-10 | web.ObservabilityJourneyTest#AC27_noClientControlledValueReachesTheLogs | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-27; NFR-O2; BR-10 | web.ObservabilityJourneyTest#AC27_aDatabaseFailureQuotingTheKeyLogsOnlyClassNames | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-8, BR-10; AC-27; FR-5, FR-6, NFR-O2 | web.ObservabilityJourneyTest#rule8_problemBodiesAndLogsNeverEchoASubmittedValue | functional | PASS on305f804; green class parameterized group |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-28; NFR-M3; proof item 10 | web.OpenApiDocumentTest#NFRM3_committedDocumentEqualsTheLiveOne | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-28; NFR-M3 | web.OpenApiDocumentTest#AC28_liveDocumentDescribesTheSlice | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-20; BR-1; FR-10, NFR-M3 | web.OpenApiDocumentTest#AC20_everyOperationDocumentsTheTooManyRequestsProblem | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13; AC-1; BR-2, BR-3; FR-14 | web.OpenApiDocumentTest#AC1_problemSchemaDocumentsErrorsAndNoProperties | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13; AC-2; BR-2, BR-3; FR-14 | web.OpenApiDocumentTest#AC2_problemBodiesConformToTheDocumentedSchema | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-5; FR-13; AC-2; BR-2, BR-3; FR-14 | web.OpenApiDocumentTest$OverTheCreateBudget#AC2_theTooManyRequestsProblemConformsToo | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-1, AC-2, AC-10; BR-11; NFR-R2 | web.RateLimitDefaultsTest#theShippedConfigurationCarriesTheDecidedBudgets | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-1, AC-2, AC-10; BR-11; NFR-R2 | web.RateLimitDefaultsTest#theSettingsRecordDefaultsToTheSameBudgets | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-1; BR-2, BR-3; FR-10, NFR-R2 | web.RateLimitJourneyTest#AC01_theCreateBudgetAdmits60AndRefusesThe61st | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-2; BR-1, BR-2; FR-10, NFR-R2 | web.RateLimitJourneyTest#AC02_theRedirectBudgetAdmits600AndRefusesThe601st | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-3; BR-2, BR-3, BR-4; FR-10, NFR-R2 | web.RateLimitJourneyTest#AC03a_retryAfterIsTruthfulFromAnExactlyEmptyBucket | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-3; BR-2, BR-3, BR-4; FR-10, NFR-R2 | web.RateLimitJourneyTest#AC03b_retryAfterIsAnUpperBoundFromAPartlyRefilledBucket | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-4; BR-2; NFR-R2 | web.RateLimitJourneyTest#AC04_aFullBudgetReturnsAfterAQuietMinute | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-5; BR-1, BR-2; NFR-R2 | web.RateLimitJourneyTest#AC05_theTwoBudgetsAreIndependent | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-6; BR-2; NFR-R2 | web.RateLimitJourneyTest#AC06_clientsAreIndependent | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-7; BR-5; NFR-R2 | web.RateLimitJourneyTest#AC07_aForgedForwardedAddressDoesNotChangeTheClient | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-9; BR-3, BR-4; FR-10, NFR-R2 | web.RateLimitJourneyTest#AC09_everyRequestInABudgetCountsAndTheLimitIsCheckedFirst | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-11; BR-6; FR-10, NFR-O1, NFR-P1 | web.RateLimitJourneyTest#AC11_theTooManyRequestsProblemNamesNoClient | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-12; BR-6, BR-7; NFR-O1/O2, NFR-P1 | web.RateLimitJourneyTest#AC12_eachRejectionIsLoggedOnceCorrelatedAndWithoutClientValues | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-1; request classification/exemptions; NFR-R2 | web.RateLimitJourneyTest#rule1_percentEncodingDoesNotMoveARequestToTheLargerBudget | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-1; request classification/exemptions; NFR-R2 | web.RateLimitJourneyTest#rule1_operatorSurfacesAreNeverLimited | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-1; request classification/exemptions; NFR-R2 | web.RateLimitJourneyTest#rule1_aDotDotSegmentUnderAnExemptPrefixReachesNoLimitedOperation | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-16; BR-10; NFR-O3 | web.RateLimitJourneyTest#AC16_theMetricsSurfaceListsTheFourKindsOfMetric | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-17; BR-6, BR-10; FR-10, NFR-O3 | web.RateLimitJourneyTest#AC17_everyRejectionIsCountedOnceByBudget | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-19; BR-6, BR-10; NFR-O3, NFR-P1 | web.RateLimitJourneyTest#AC19_metricsAreExposedForScrapingWithoutClientOrLinkValues | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: BR-1, BR-6; design DR-01; NFR-O1/O2, NFR-P1 | web.RateLimitJourneyTest#designDR01_anInvalidPathUnderAnExemptPrefixLogsNoSubmittedValueOnTomcat | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-11; BR-6; FR-10, NFR-O1, NFR-P1 | web.RateLimitJourneyTest#AC11_onTomcatThe429IsTheSameProblemMediaTypeAsEveryOtherError | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-10; BR-11; NFR-R2 | web.RateLimitSettingsJourneyTest#AC10_theBudgetsAreOperatorSettings | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-25, AC-28; BR-13; NFR-R3 (configuration prerequisite only) | web.ShutdownPhaseDefaultTest#theShippedGracefulShutdownPhaseIsTenSeconds | functional | PASS on305f804; individual XML |
+| AC-9 / FR-13 baseline regression; inherited scope: AC-8; BR-5; NFR-R2 | web.TrustedProxyJourneyTest#AC08_aTrustedProxysForwardedAddressIdentifiesTheClient | functional | PASS on305f804; individual XML |
+| AC-11 / NFR-X2; BR-5 | external QaAuditColumnsRunner#main (literal-header JDBC rollback, then candidate jar HTTP restart; qa_by_effect.py) | functional by effect | PASS on305f804; missions/02-brownfield/slices/04-audit-columns/proof/qa-305f804/run-20261003T234116500899Z/rollback-after.json and rollback-reapplied.json |
+
+AC1/11 deliberately use the named unit migration tests allowed by SPEC proof item1/design§7.
+AC1 also has the functional in-place upgrade; AC11's real-directory rollback/reapply is independently
+exercised by the external functional driver above. The formal JUnit functional rollback gap and its
+compensating check are explicit in GAPS. Named failures, privacy checks and HTTP/log/row joins are
+in the QA proof; no AC is inferred solely from a green gate. BR1–7 and requirement IDs are attached.
+
+## 01-analytics-v2 — candidate ec466da8da4b1efde9d612c6c8692070cc6fc4b9
+
+Independent gate: 221 unit / 241 functional invocations, no failures/errors/skips. The original f6dd29e replay is 155/155 with only the two per-day shape expectations and the two inherited audit enumerations authorized by a12a0e2. The earlier literal 153/155 result is retained. Every test below maps to an analytics AC or business rule; inherited names keep their originating slice numbers and are read as regression guards, not renumbered v2 criteria. Requirement ids follow this SPEC and its inherited privacy/operations rules.
+
+| AC / business rule | Requirement id | Test class#method | Suite | Result |
+|---|---|---|---|---|
+| AC-1 | FR-8 v2, FR-13 | StatsV2JourneyTest#AC01_thePerDayElementCarriesFourFigures | functional | PASS on ec466da; AC-14 with explicit lead reading |
+| AC-2 | FR-8 v2 | StatsV2JourneyTest#AC02_uniqueVisitorsCountDistinctClientsWithinAUtcDay | functional | PASS on ec466da; AC-14 with explicit lead reading |
+| AC-3 | FR-8 v2, NFR-P1 | StatsV2JourneyTest#AC03_uniquesArePerUtcDayAndNeverCombinedAcrossDays | functional | PASS on ec466da; AC-14 with explicit lead reading |
+| AC-4 | FR-8 v2 | StatsV2JourneyTest#AC04_botClicksAreCountedPerDayAndNothingElseChangesMeaning | functional | PASS on ec466da; AC-14 with explicit lead reading |
+| AC-5 | FR-8 v2 | StatsV2JourneyTest#AC05_oneClientsBotAndBrowserClicksAreOneVisitor | functional | PASS on ec466da; AC-14 with explicit lead reading |
+| AC-6 | FR-13 | StatsJourneyTest#AC08_totalClicksCountsEveryRedirect; #AC09_clicksPerDayAreGroupedByUtcCalendarDay; #AC10_topReferrersAreRankedAndCapped | functional | PASS on ec466da; AC-14 with explicit lead reading |
+| AC-7 | NFR-P1, FR-8 v2, W2-02 | TrustedProxyClickJourneyTest#AC07_behindATrustedProxyUniquesCountTheForwardedClients | functional | PASS on ec466da; AC-14 with explicit lead reading |
+| AC-8 | NFR-P1 | StatsV2JourneyTest#AC08_withoutATrustedProxyForwardingHeadersChangeNothing | functional | PASS on ec466da; AC-14 with explicit lead reading |
+| AC-9 | NFR-P1 | TrustedProxyClickJourneyTest#AC09_theStatisticsStillExposeAggregatesOnly; ClickRecordingJourneyTest#AC17_theStatisticsExposeAggregatesOnly | functional | PASS on ec466da; AC-14 with explicit lead reading |
+| AC-10 | NFR-O3 | ClickMetricsJourneyTest#AC10_recordedAndLostClicksAreCounted | functional | PASS on ec466da; AC-14 with explicit lead reading |
+| AC-11 | NFR-O3, NFR-P1 | ClickMetricsJourneyTest#AC11_theClickCountersAreScrapeableAndNameNoClient | functional | PASS on ec466da; AC-14 with explicit lead reading |
+| AC-12 | NFR-O1, NFR-O2 | TrustedProxyClickJourneyTest#AC12_trustedProxyRedirectsLogNoForwardedValueOrAddress; ClickRecordingJourneyTest#AC18_noClickDataReachesTheLogs; ClickResilienceJourneyTest#AC18_AC19_onTomcatClickDataStaysOutOfTheLogsAndEveryEventIsCorrelated | functional | PASS on ec466da; AC-14 with explicit lead reading |
+| AC-13 | NFR-M3 | StatsV2JourneyTest#AC13_theApiDocumentDescribesTheV2PerDayElement; OpenApiDocumentTest#NFRM3_committedDocumentEqualsTheLiveOne | functional | PASS on ec466da; AC-14 with explicit lead reading |
+| AC-14 | FR-13 | Original f6dd29e 155 invocations, independently replayed with only granted expectations; all current functional methods below | functional | PASS on ec466da; AC-14 with explicit lead reading |
+| AC-15 | FR-13, NFR-L1 | ClickResilienceJourneyTest and ClickResilienceTrustedProxyJourneyTest#AC14_aSlowClickStoreDoesNotSlowTheRedirect; #AC15_AC19_aFailingClickStoreDoesNotFailTheRedirectAndTheLossIsOneCorrelatedWarn; #AC16_concurrentRedirectsLoseNoClicksAndTheRequestIsNeverReadAfterItsResponse | functional | PASS on ec466da; AC-14 with explicit lead reading |
+| BR-1 | FR-13 | StatsJourneyTest#AC07_aLinkWithNoClicksHasEmptyStatistics; #AC13_statisticsOfAnUnknownCodeAndWrongMethodsAreProblemDetails; #AC22_headAndOptionsKeepTheFrameworkDefaultsAndRecordNothing | functional + unit where named | PASS on ec466da |
+| BR-2 | FR-8 v2 | StatsV2JourneyTest#AC04_botClicksAreCountedPerDayAndNothingElseChangesMeaning | functional + unit where named | PASS on ec466da |
+| BR-3 | FR-8 v2, NFR-P1 | StatsV2JourneyTest#AC02_uniqueVisitorsCountDistinctClientsWithinAUtcDay; #AC03_uniquesArePerUtcDayAndNeverCombinedAcrossDays; DailySaltTest (inventory below) | functional + unit where named | PASS on ec466da |
+| BR-4 | FR-8 v2 | StatsV2JourneyTest#AC04_botClicksAreCountedPerDayAndNothingElseChangesMeaning; #AC05_oneClientsBotAndBrowserClicksAreOneVisitor | functional + unit where named | PASS on ec466da |
+| BR-5 | NFR-P1 | TrustedProxyClickJourneyTest#AC09_theStatisticsStillExposeAggregatesOnly; DailySaltTest and ClickRecorderTest (inventory below); downstream review item 11 | functional + unit where named | PASS observable effects; construction/security judgment remains item 11 |
+| BR-6 | FR-13, NFR-P1 | TrustedProxyClickJourneyTest#AC07_behindATrustedProxyUniquesCountTheForwardedClients; StatsV2JourneyTest#AC08_withoutATrustedProxyForwardingHeadersChangeNothing; RateLimitFilterTest (inventory below) | functional + unit where named | PASS on ec466da |
+| BR-7 | NFR-P2 | ClickRetentionJourneyTest; ClickRetentionScheduleJourneyTest; ClickRetentionStartupJourneyTest; ClickPurgeTest (each method below) | functional + unit where named | PASS on ec466da |
+| BR-8 | FR-13, NFR-M3 | OpenApiDocumentTest#AC28_liveDocumentDescribesTheSlice; #NFRM3_committedDocumentEqualsTheLiveOne | functional + unit where named | PASS on ec466da |
+| BR-9 | FR-8 v2 | StatsV2JourneyTest#AC03_uniquesArePerUtcDayAndNeverCombinedAcrossDays; StatsJourneyTest#AC09_clicksPerDayAreGroupedByUtcCalendarDay | functional + unit where named | PASS on ec466da |
+| BR-10 | NFR-O3 | ClickMetricsJourneyTest#AC10_recordedAndLostClicksAreCounted; #AC11_theClickCountersAreScrapeableAndNameNoClient; ClickRecorderTest (all five reasons below) | functional + unit where named | PASS on ec466da |
+| BR-11 | NFR-O1, NFR-O2, NFR-P1 | TrustedProxyClickJourneyTest#AC12_trustedProxyRedirectsLogNoForwardedValueOrAddress; ClickRecordingJourneyTest#AC18_noClickDataReachesTheLogs | functional + unit where named | PASS on ec466da |
+
+### Every candidate test back to its rule
+
+Exact source and invocation inventories: missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-ec466da/source-test-inventory.json and invocation-attribution.json. Some parameterized XML displays omit the source method: those rows are attributed to their green class parameterized group, not asserted as a unique per-method XML join. Five inherited resilience methods execute in each of two contexts.
+
+| Test class#method | Suite | Maps to | Result / attribution |
+|---|---|---|---|
+| dev.urlshort.HealthJourneyTest#healthEndpointReportsUp | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.audit.AuditAccessSettingsJourneyTest#AC13_AC14_noSettingOpensTheEndpointBeyondLoopback | functional | BR-1, AC-14 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.audit.AuditAccessSettingsJourneyTest#aPlainLoopbackReadStillWorksUnderTheseSettings | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.audit.AuditForwardedHeadersJourneyTest#aTomcatRemoteIpSettingClosesTheEndpoint | functional | BR-1, AC-14 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.audit.AuditForwardedHeadersJourneyTest#anOverrideOfThePinClosesTheEndpoint | functional | BR-1, AC-14 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.audit.AuditForwardedHeadersJourneyTest#onADetectedCloudPlatformThePinKeepsAForgedLoopbackHeaderOut | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.audit.AuditForwardedHeadersJourneyTest#theShippedFilePinsTheForwardedHeaderStrategyOff | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.audit.AuditJourneyTest#AC22_createWritesExactlyOneAuditRow | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.audit.AuditJourneyTest#AC23_retireWritesExactlyOneAuditRow | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.audit.AuditJourneyTest#AC24_aFailedAuditWriteRollsTheRetireBackAndFailsClosed | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.audit.AuditJourneyTest#AC25_auditRowsAreAppendOnlyUnderEveryOperation | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.audit.AuditReadFailureJourneyTest#AC21_aFailedReadIsA500ProblemNeverAnEmptyOrPartialPage | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.audit.AuditReadJourneyTest#AC01_anEmptyTrailIsAnEmptyPage | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.audit.AuditReadJourneyTest#AC02_aCreateRowIsReadableAsWritten | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.audit.AuditReadJourneyTest#AC03_aRetireRowCarriesBeforeAndAfter | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.audit.AuditReadJourneyTest#AC04_rowsComeNewestFirstInTheOrderTheyWereWritten | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.audit.AuditReadJourneyTest#AC05_everyFieldMatchesTheStoredRow | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.audit.AuditReadJourneyTest#AC06_pagesFollowNextToTheEnd | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.audit.AuditReadJourneyTest#AC07_theDefaultAndMaximumPageSizes | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.audit.AuditReadJourneyTest#AC08_pagingIsStableWhileRowsAreWritten | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.audit.AuditReadJourneyTest#AC09_invalidPagingParametersAreRefusedNamingTheField | functional | BR-1, AC-14 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.audit.AuditReadJourneyTest#AC10_readingChangesNothing | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.audit.AuditReadJourneyTest#AC11_aNonLoopbackClientIsRefused | functional | BR-1, AC-14 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.audit.AuditReadJourneyTest#AC12_everyLoopbackAddressIsAdmitted | functional | BR-1, AC-14 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.audit.AuditReadJourneyTest#AC13_forwardingHeadersNeverGrantAccess | functional | BR-1, AC-14 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.audit.AuditReadJourneyTest#AC15_requestCorrelationOnTheNewPaths | functional | BR-1, AC-14 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.audit.AuditReadJourneyTest#AC16_auditContentAndClientValuesStayOutOfTheLogs | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.audit.AuditReadJourneyTest#AC19_theLiveApiDocumentDescribesTheAuditRead | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.audit.AuditReadJourneyTest#AC20_aTraversalAcrossAnInFlightWriteNeitherRepeatsNorSkipsCommittedRows | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.audit.AuditReadJourneyTest#theGuardAndTheValidationComeBeforeContentNegotiation | functional | BR-1, AC-14 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.audit.AuditUpgradeJourneyTest#AC18_anExistingDatabaseUpgradesInPlaceAndKeepsItsLinksAndRows | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickMetricsJourneyTest#AC10_recordedAndLostClicksAreCounted | functional | AC-10 | PASS — named XML invocation |
+| dev.urlshort.click.ClickMetricsJourneyTest#AC11_theClickCountersAreScrapeableAndNameNoClient | functional | AC-11 | PASS — named XML invocation |
+| dev.urlshort.click.ClickPurgeFailureJourneyTest#AC10_aFailedRunIsReportedAndLeavesTheServiceWorking | functional | BR-7, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickPurgeFailureJourneyTest#AC12_aClickThatCannotBeReducedIsOneWarnWithItsOwnReason | functional | BR-7, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickPurgeHoldJourneyTest#theSharedContextsHoldThePurge | functional | BR-7, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRecordingJourneyTest#AC01_aRedirectRecordsExactlyOneClickWithItsTime | functional | BR-5, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRecordingJourneyTest#AC02_onlyARedirectIsAClick | functional | BR-5, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRecordingJourneyTest#AC03_theReferrerIsStoredAsItsOriginOnly | functional | BR-5, AC-14 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.click.ClickRecordingJourneyTest#AC04_theUserAgentIsStoredAsAClassOnly | functional | BR-4, AC-14 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.click.ClickRecordingJourneyTest#AC05_theClientAddressIsStoredOnlyAsASaltedHashThatRotatesEveryUtcDay | functional | BR-5, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRecordingJourneyTest#AC06_forwardingHeadersDoNotChangeTheRecordedClient | functional | BR-5, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRecordingJourneyTest#AC17_theStatisticsExposeAggregatesOnly | functional | AC-9, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRecordingJourneyTest#AC18_noClickDataReachesTheLogs | functional | AC-12, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickResilienceJourneyTest#AC14_aSlowClickStoreDoesNotSlowTheRedirect | functional | AC-15, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickResilienceJourneyTest#AC15_AC19_aFailingClickStoreDoesNotFailTheRedirectAndTheLossIsOneCorrelatedWarn | functional | AC-15, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickResilienceJourneyTest#AC16_concurrentRedirectsLoseNoClicksAndTheRequestIsNeverReadAfterItsResponse | functional | AC-15, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickResilienceJourneyTest#AC18_AC19_onTomcatClickDataStaysOutOfTheLogsAndEveryEventIsCorrelated | functional | AC-12, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickResilienceJourneyTest#AC22_headOnTheStatisticsPathHasNoBodyAndRecordsNothing | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickResilienceTrustedProxyJourneyTest#AC14_aSlowClickStoreDoesNotSlowTheRedirect | functional | AC-15, AC-14 | PASS — named XML invocation (inherited) |
+| dev.urlshort.click.ClickResilienceTrustedProxyJourneyTest#AC15_AC19_aFailingClickStoreDoesNotFailTheRedirectAndTheLossIsOneCorrelatedWarn | functional | AC-15, AC-14 | PASS — named XML invocation (inherited) |
+| dev.urlshort.click.ClickResilienceTrustedProxyJourneyTest#AC16_concurrentRedirectsLoseNoClicksAndTheRequestIsNeverReadAfterItsResponse | functional | AC-15, AC-14 | PASS — named XML invocation (inherited) |
+| dev.urlshort.click.ClickResilienceTrustedProxyJourneyTest#AC18_AC19_onTomcatClickDataStaysOutOfTheLogsAndEveryEventIsCorrelated | functional | AC-12, AC-14 | PASS — named XML invocation (inherited) |
+| dev.urlshort.click.ClickResilienceTrustedProxyJourneyTest#AC22_headOnTheStatisticsPathHasNoBodyAndRecordsNothing | functional | BR-1, AC-14 | PASS — named XML invocation (inherited) |
+| dev.urlshort.click.ClickRetentionJourneyTest#AC01_theBoundaryDayIsKeptAndTheDayBeforeItIsDeleted | functional | BR-7, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRetentionJourneyTest#AC02_theWindowMovesWithTheDay | functional | BR-7, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRetentionJourneyTest#AC05_statisticsCoverTheRetainedClicksOnly | functional | BR-7, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRetentionJourneyTest#AC06_linksRedirectsAndTheAuditTrailAreUntouched | functional | BR-7, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRetentionJourneyTest#AC09_eachRunLogsOneInfoWithItsCountCutoffAndPeriodAndNoClickValue | functional | BR-7, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRetentionJourneyTest#AC11_aRedirectWhileOldClicksAreBeingDeletedIsServedAndCounted | functional | BR-7, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRetentionScheduleJourneyTest#AC08_aPurgeRunsEveryUtcDayWithoutAnOperator | functional | BR-7, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRetentionSettingJourneyTest#AC03_thePeriodIsAnOperatorSetting | functional | BR-7, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRetentionStartupJourneyTest#AC04_anInvalidPeriodStopsTheServiceFromStarting | functional | BR-7, AC-14 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.click.ClickRetentionStartupJourneyTest#AC07_aPurgeRunsAtStartup | functional | BR-7, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRetentionStartupJourneyTest#AC13_AC16_anExistingDataDirectoryUpgradesInPlace | functional | BR-7, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRetentionStartupJourneyTest#AC15_aPausedPurgeDeletesNothingAndSaysSoAtEveryStart | functional | BR-7, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.ClickSchemaJourneyTest#everyUserAgentClassIsRecordedAfterThePoolRetiresItsConnections | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.StatsJourneyTest#AC07_aLinkWithNoClicksHasEmptyStatistics | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.StatsJourneyTest#AC08_totalClicksCountsEveryRedirect | functional | AC-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.StatsJourneyTest#AC09_clicksPerDayAreGroupedByUtcCalendarDay | functional | AC-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.StatsJourneyTest#AC10_topReferrersAreRankedAndCapped | functional | AC-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.StatsJourneyTest#AC12_aRetiredLinksStatisticsAreStillReadable | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.StatsJourneyTest#AC13_statisticsOfAnUnknownCodeAndWrongMethodsAreProblemDetails | functional | BR-1, AC-14 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.click.StatsJourneyTest#AC19_theStatisticsPathAndASettledRedirectAreCorrelated | functional | AC-12, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.StatsJourneyTest#AC20_redirectAndAuditBehaviourAreUnchanged | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.StatsJourneyTest#AC21_theLiveApiDocumentDescribesTheStatisticsEndpoint | functional | AC-13, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.StatsJourneyTest#AC22_headAndOptionsKeepTheFrameworkDefaultsAndRecordNothing | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.click.StatsV2JourneyTest#AC01_thePerDayElementCarriesFourFigures | functional | AC-1 | PASS — named XML invocation |
+| dev.urlshort.click.StatsV2JourneyTest#AC02_uniqueVisitorsCountDistinctClientsWithinAUtcDay | functional | AC-2 | PASS — named XML invocation |
+| dev.urlshort.click.StatsV2JourneyTest#AC03_uniquesArePerUtcDayAndNeverCombinedAcrossDays | functional | AC-3 | PASS — named XML invocation |
+| dev.urlshort.click.StatsV2JourneyTest#AC04_botClicksAreCountedPerDayAndNothingElseChangesMeaning | functional | AC-4 | PASS — named XML invocation |
+| dev.urlshort.click.StatsV2JourneyTest#AC05_oneClientsBotAndBrowserClicksAreOneVisitor | functional | AC-5 | PASS — named XML invocation |
+| dev.urlshort.click.StatsV2JourneyTest#AC08_withoutATrustedProxyForwardingHeadersChangeNothing | functional | AC-8 | PASS — named XML invocation |
+| dev.urlshort.click.StatsV2JourneyTest#AC13_theApiDocumentDescribesTheV2PerDayElement | functional | AC-13 | PASS — named XML invocation |
+| dev.urlshort.click.TrustedProxyClickJourneyTest#AC07_behindATrustedProxyUniquesCountTheForwardedClients | functional | AC-7 | PASS — named XML invocation |
+| dev.urlshort.click.TrustedProxyClickJourneyTest#AC09_theStatisticsStillExposeAggregatesOnly | functional | AC-9 | PASS — named XML invocation |
+| dev.urlshort.click.TrustedProxyClickJourneyTest#AC12_trustedProxyRedirectsLogNoForwardedValueOrAddress | functional | AC-12 | PASS — named XML invocation |
+| dev.urlshort.link.IdempotencyJourneyTest#AC17_aReplayReturnsTheFirstLink | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.link.IdempotencyJourneyTest#AC18_sameKeyWithADifferentUrlIsRefusedAndTheBindingSurvives | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.link.IdempotencyJourneyTest#AC19_aKeyIsHonouredFor24HoursAndNotLongerAndARejectionDoesNotExtendIt | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.link.IdempotencyJourneyTest#AC20_aKeyOf255VisibleCharactersIsAccepted | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.link.IdempotencyJourneyTest#AC20_aMalformedKeyIsRefused | functional | BR-1, AC-14 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.link.IdempotencyJourneyTest#AC21_aRejectedCreateDoesNotConsumeTheKey | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.link.LinkCreateJourneyTest#AC01_validUrlBecomesAShortLink | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.link.LinkCreateJourneyTest#AC02_everyCreateWithoutAKeyIsANewLink | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.link.LinkCreateJourneyTest#AC03_shortUrlUsesTheShippedBaseNeverTheHostHeader | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.link.LinkCreateJourneyTest#AC04_aUrlOfExactly2048CharactersIsAccepted | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.link.LinkCreateJourneyTest#AC04_targetOutsideTheAllowListIsRejectedNamingFieldAndRule | functional | BR-1, AC-14 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.link.LinkCreateJourneyTest#AC05_bodyThatIsNotAJsonObjectIsRefused | functional | BR-1, AC-14 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.link.LinkCreateJourneyTest#AC06_nonJsonContentTypeIsRefused | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.link.LinkCreateJourneyTest#AC07_bodyIsRefusedAtTheSixteenKibLimit | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.link.LinkCreateJourneyTest#AC16_redirectRouteDoesNotShadowTheExistingSurface | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.link.LinkReadRetireJourneyTest#AC08_readingALinkReturnsItsDetails | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.link.LinkReadRetireJourneyTest#AC09_aRetiredLinkIsStillReadableWithItsState | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.link.LinkReadRetireJourneyTest#AC10_retiringALinkIs204WithAnEmptyBody | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.link.LinkReadRetireJourneyTest#AC11_retiringAnAlreadyRetiredLinkIs410AndNotASecondMutation | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.link.LinkReadRetireJourneyTest#AC14_unknownCodeIs404OnEveryLinkOperation | functional | BR-1, AC-14 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.link.LinkReadRetireJourneyTest#AC15_wrongMethodIs405 | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.link.PublicBaseUrlJourneyTest#AC03_shortUrlUsesTheConfiguredBaseNeverTheHostHeader | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.link.RedirectJourneyTest#AC12_visitorIsRedirectedWithANonCacheable302 | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.link.RedirectJourneyTest#AC13_aRetiredLinkTellsTheVisitorItIsGone | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.link.RedirectJourneyTest#rule7_queryStringOnTheShortLinkIsNotForwarded | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.ping.PingJourneyTest#AC1_pingAnswersOkAsJson | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.ping.PingJourneyTest#AC2_timeIsCurrentUtcInstant | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.ping.PingJourneyTest#AC3_everyResponseCarriesRequestId | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.ping.PingJourneyTest#AC4_requestIdsAreUniquePerRequest | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.ping.PingJourneyTest#AC5_wrongMethodIsProblemDetailWithRequestId | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.ping.PingJourneyTest#AC6_pingIsLoggedAsJsonWithRequestId | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.ping.PingJourneyTest#AC7_logEventCarriesNoClientAddressOrUserAgent | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.ping.PingJourneyTest#AC8_clientSuppliedRequestIdIsIgnored | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.ColdStartJourneyTest#AC26_theFirstRequestOnARealServerLogsOnlyItsOwnCorrelatedEvents | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.DatabaseDownJourneyTest#AC14_AC15_readinessFollowsTheDatabaseAndLivenessDoesNot | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.HealthMetricsJourneyTest#AC13_livenessAndReadinessAreUpWithAWorkingDatabase | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.HealthMetricsJourneyTest#AC15_healthBodiesDiscloseNothingAboutTheInstallation | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.HealthMetricsJourneyTest#AC18_redirectsAreCountedByRouteTemplate | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.HealthMetricsJourneyTest#AC6_diskGaugesCarryNoInstallationPath | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.HealthMetricsJourneyTest$AnonymousScrape#AC6_theScrapeCarriesNoInstallationPath | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.ObservabilityJourneyTest#AC26_everyResponseCarriesARequestIdAndEveryEventOfTheRequestTheSameId | functional | BR-11, AC-14 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.web.ObservabilityJourneyTest#AC27_aDatabaseFailureQuotingTheKeyLogsOnlyClassNames | functional | BR-11, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.ObservabilityJourneyTest#AC27_noClientControlledValueReachesTheLogs | functional | BR-11, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.ObservabilityJourneyTest#rule8_problemBodiesAndLogsNeverEchoASubmittedValue | functional | BR-11, AC-14 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.web.OpenApiDocumentTest#AC1_problemSchemaDocumentsErrorsAndNoProperties | functional | BR-8, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.OpenApiDocumentTest#AC20_everyOperationDocumentsTheTooManyRequestsProblem | functional | BR-8, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.OpenApiDocumentTest#AC28_liveDocumentDescribesTheSlice | functional | BR-8, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.OpenApiDocumentTest#AC2_problemBodiesConformToTheDocumentedSchema | functional | BR-8, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.OpenApiDocumentTest#NFRM3_committedDocumentEqualsTheLiveOne | functional | BR-8, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.OpenApiDocumentTest$OverTheCreateBudget#AC2_theTooManyRequestsProblemConformsToo | functional | BR-8, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitDefaultsTest#theSettingsRecordDefaultsToTheSameBudgets | functional | BR-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitDefaultsTest#theShippedConfigurationCarriesTheDecidedBudgets | functional | BR-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitJourneyTest#AC01_theCreateBudgetAdmits60AndRefusesThe61st | functional | BR-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitJourneyTest#AC02_theRedirectBudgetAdmits600AndRefusesThe601st | functional | BR-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitJourneyTest#AC03a_retryAfterIsTruthfulFromAnExactlyEmptyBucket | functional | BR-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitJourneyTest#AC03b_retryAfterIsAnUpperBoundFromAPartlyRefilledBucket | functional | BR-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitJourneyTest#AC04_aFullBudgetReturnsAfterAQuietMinute | functional | BR-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitJourneyTest#AC05_theTwoBudgetsAreIndependent | functional | BR-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitJourneyTest#AC06_clientsAreIndependent | functional | BR-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitJourneyTest#AC07_aForgedForwardedAddressDoesNotChangeTheClient | functional | BR-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitJourneyTest#AC09_everyRequestInABudgetCountsAndTheLimitIsCheckedFirst | functional | BR-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitJourneyTest#AC11_onTomcatThe429IsTheSameProblemMediaTypeAsEveryOtherError | functional | BR-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitJourneyTest#AC11_theTooManyRequestsProblemNamesNoClient | functional | BR-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitJourneyTest#AC12_eachRejectionIsLoggedOnceCorrelatedAndWithoutClientValues | functional | BR-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitJourneyTest#AC16_theMetricsSurfaceListsTheFourKindsOfMetric | functional | BR-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitJourneyTest#AC17_everyRejectionIsCountedOnceByBudget | functional | BR-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitJourneyTest#AC19_metricsAreExposedForScrapingWithoutClientOrLinkValues | functional | BR-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitJourneyTest#designDR01_anInvalidPathUnderAnExemptPrefixLogsNoSubmittedValueOnTomcat | functional | BR-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitJourneyTest#rule1_aDotDotSegmentUnderAnExemptPrefixReachesNoLimitedOperation | functional | BR-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitJourneyTest#rule1_operatorSurfacesAreNeverLimited | functional | BR-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitJourneyTest#rule1_percentEncodingDoesNotMoveARequestToTheLargerBudget | functional | BR-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitSettingsJourneyTest#AC10_theBudgetsAreOperatorSettings | functional | BR-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.ShutdownPhaseDefaultTest#theShippedGracefulShutdownPhaseIsTenSeconds | functional | BR-1, AC-14 | PASS — named XML invocation |
+| dev.urlshort.web.TrustedProxyJourneyTest#AC08_aTrustedProxysForwardedAddressIdentifiesTheClient | functional | BR-6, AC-14 | PASS — named XML invocation |
+| dev.urlshort.UrlshortApplicationTests#contextLoads | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.UrlshortApplicationTests#mainBootsWithoutAWebServer | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.audit.AuditControllerTest#aCursorIsTheBase64urlOfAPositiveId | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.audit.AuditControllerTest#aForwardingHeaderRefusesEvenFromLoopback | unit | BR-1 (inherited service/management regression) | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.audit.AuditControllerTest#aLimitThatIsNotAWholeNumberIsAFormatProblem | unit | BR-1 (inherited service/management regression) | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.audit.AuditControllerTest#aMalformedCursorIsAFormatProblem | unit | BR-1 (inherited service/management regression) | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.audit.AuditControllerTest#aMissingPeerIsRefused | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.audit.AuditControllerTest#aProtocolHeaderSettingClosesTheEndpoint | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.audit.AuditControllerTest#aRemoteIpHeaderSettingClosesTheEndpoint | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.audit.AuditControllerTest#anUnsetStrategyClosesTheEndpoint | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.audit.AuditControllerTest#anyOtherStrategyClosesTheEndpoint | unit | BR-1 (inherited service/management regression) | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.audit.AuditControllerTest#emptyRemoteIpSettingsKeepTheEndpointOpen | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.audit.AuditControllerTest#limitDefaultsTo50AndAcceptsItsBounds | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.audit.AuditControllerTest#limitOutsideItsRangeIsARangeProblem | unit | BR-1 (inherited service/management regression) | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.audit.AuditControllerTest#loopbackPeersAreAdmitted | unit | BR-1 (inherited service/management regression) | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.audit.AuditControllerTest#otherPeersAreRefused | unit | BR-1 (inherited service/management regression) | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.audit.AuditControllerTest#theShippedStrategyAdmitsALoopbackRequest | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.audit.AuditLogTest#appendWritesOneRowWithServerOwnedValues | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.audit.AuditLogTest#theWriterOffersOnlyAppendAndItsOnlyStatementIsAnInsert | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.click.ClickAuditColumnsTest#theClickTablesGainFilledAuditColumnsAndKeepEveryV1ColumnAndConstraint | unit | BR-5 | PASS — named XML invocation |
+| dev.urlshort.click.ClickPurgeTest#aClockThatStepsBackRunsNothing | unit | BR-7 | PASS — named XML invocation |
+| dev.urlshort.click.ClickPurgeTest#aFailedRunIsOneWarnWithTheClassOnlyAndIsNotRetriedBeforeTheNextDay | unit | BR-7 | PASS — named XML invocation |
+| dev.urlshort.click.ClickPurgeTest#aRunDeletesBeforeTheEarliestKeptDayAndLogsOneInfo | unit | BR-7 | PASS — named XML invocation |
+| dev.urlshort.click.ClickPurgeTest#onHoldStartDeletesNothingAndSaysSoOnce | unit | BR-7 | PASS — named XML invocation |
+| dev.urlshort.click.ClickPurgeTest#runNowRunsOnThePurgeThread | unit | BR-7 | PASS — named XML invocation |
+| dev.urlshort.click.ClickPurgeTest#startRunsOnThePurgeThreadAndReturnsAfterTheRun | unit | BR-7 | PASS — named XML invocation |
+| dev.urlshort.click.ClickPurgeTest#theCutoffFollowsThePeriod | unit | BR-7 | PASS — named XML invocation |
+| dev.urlshort.click.ClickPurgeTest#theTickRunsOnceADayFromTenPastMidnight | unit | BR-7 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRecorderTest#aClaimedClickIsNeverWrittenWhenTheWriterReachesItLater | unit | BR-2/4/6/10/11 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRecorderTest#aClickThatCannotBeQueuedIsOneWarnAndTheRedirectGoesOn | unit | BR-2/4/6/10/11 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRecorderTest#aClickThatCannotBeReducedIsOneWarn | unit | BR-2/4/6/10/11 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRecorderTest#aFailedWriteIsCountedUnderItsReason | unit | BR-2/4/6/10/11 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRecorderTest#aFailedWriteIsOneWarnWithTheRequestIdAndNoClickValue | unit | BR-2/4/6/10/11 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRecorderTest#aFastStoreIsDrainedOnCloseAndNothingIsReported | unit | BR-2/4/6/10/11 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRecorderTest#aHeadRequestIsNotAClick | unit | BR-2/4/6/10/11 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRecorderTest#aRedirectIsStoredAsItsReducedFactsOnly | unit | BR-2/4/6/10/11 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRecorderTest#aReductionFailureIsCountedUnderItsReason | unit | BR-2/4/6/10/11 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRecorderTest#aRejectedClickIsCountedUnderItsReason | unit | BR-2/4/6/10/11 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRecorderTest#aStoredClickIsCountedAsRecorded | unit | BR-2/4/6/10/11 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRecorderTest#aStuckWriteIsBoundedAndEveryUnwrittenClickIsReportedOnceBeforeCloseReturns | unit | BR-2/4/6/10/11 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRecorderTest#aWriteThatCompletesAfterShutdownClaimedItIsNotReportedAgain | unit | BR-2/4/6/10/11 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRecorderTest#aWriteThatFailsAfterShutdownClaimedItIsNotReportedAgain | unit | BR-2/4/6/10/11 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRecorderTest#everyLostReasonIsRegisteredAtZeroBeforeAnyClick | unit | BR-2/4/6/10/11 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRecorderTest#shutdownReasonsAreCountedAndAWriteThatReturnsAfterTheClaimIsStillRecorded | unit | BR-2/4/6/10/11 | PASS — named XML invocation |
+| dev.urlshort.click.ClickRecorderTest#theRateLimitersClientIsHashedWhenTheRequestCarriesIt | unit | BR-2/4/6/10/11 | PASS — named XML invocation |
+| dev.urlshort.click.ClickSchemaTest#theClickConstraintsStillWorkAfterTheDdlConnectionIsRetired | unit | BR-5 | PASS — named XML invocation |
+| dev.urlshort.click.ClickTest#aReferrerThatIsNotAnHttpOriginIsNone | unit | BR-2/4/5/9 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.click.ClickTest#anAbsentOrEmptyUserAgentIsUnknown | unit | BR-2/4/5/9 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.click.ClickTest#rule2_aClickHoldsOnlyTheReducedFacts | unit | BR-2/4/5/9 | PASS — named XML invocation |
+| dev.urlshort.click.ClickTest#theReferrerIsReducedToItsOrigin | unit | BR-2/4/5/9 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.click.ClickTest#theReferrerLengthCapIs2048 | unit | BR-2/4/5/9 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.click.ClickTest#theUserAgentIsReducedToAClass | unit | BR-2/4/5/9 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.click.DailySaltTest#aSaltIsDroppedAtTheEndOfItsDayWithoutAnyFurtherClick | unit | BR-3/5/9 | PASS — named XML invocation |
+| dev.urlshort.click.DailySaltTest#aSelectionMadeBeforeMidnightKeepsItsDayAndNeverReplacesTheNextDaysSalt | unit | BR-3/5/9 | PASS — named XML invocation |
+| dev.urlshort.click.DailySaltTest#aStaleExpiryIsANoOpAndTheCurrentDaysExpiryDropsTheSalt | unit | BR-3/5/9 | PASS — named XML invocation |
+| dev.urlshort.click.DailySaltTest#anotherAddressOrAnotherDayHashesDifferently | unit | BR-3/5/9 | PASS — named XML invocation |
+| dev.urlshort.click.DailySaltTest#closeDropsTheSalt | unit | BR-3/5/9 | PASS — named XML invocation |
+| dev.urlshort.click.DailySaltTest#sameAddressAndDayHashEquallyAndTheStampCarriesTheClocksInstant | unit | BR-3/5/9 | PASS — named XML invocation |
+| dev.urlshort.click.DailySaltTest#theHashIsNeverTheUnsaltedDigest | unit | BR-3/5/9 | PASS — named XML invocation |
+| dev.urlshort.click.LinkStatsTest#daysAreSummedAscendingWithTheirFiguresAndClicksWithoutAReferrerCountOnlyInTheTotals | unit | BR-3/4/9 | PASS — named XML invocation |
+| dev.urlshort.click.LinkStatsTest#noRowsIsZeroAndTwoEmptyLists | unit | BR-3/4/9 | PASS — named XML invocation |
+| dev.urlshort.click.LinkStatsTest#referrersAreRankedByClicksThenByCodePointAndCappedAtTen | unit | BR-3/4/9 | PASS — named XML invocation |
+| dev.urlshort.link.LinkServiceTest#anExpiredKeyIsReleasedAndBindsANewLink | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.link.LinkServiceTest#createWithAnUnboundKeyBindsIt | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.link.LinkServiceTest#createWithoutAKeyInsertsAndAuditsTheNewLink | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.link.LinkServiceTest#mismatchWithinTheWindowIs422AndKeepsTheBinding | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.link.LinkServiceTest#readOfAnUnknownCodeIs404 | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.link.LinkServiceTest#replayWithinTheWindowReturnsTheBoundLinkAndWritesNothing | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.link.LinkServiceTest#resolveSendsVisitorsToActiveLinksOnly | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.link.LinkServiceTest#retireThatChangesNoRowIs410AndWritesNoAuditRow | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.link.LinkServiceTest#retireUpdatesConditionallyAndAuditsBeforeAndAfter | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.link.LinkTest#stateIsActiveUntilRetiredAtIsSet | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.link.LinkValidationTest#absentOrVisibleAsciiKeysPass | unit | BR-1 (inherited service/management regression) | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.link.LinkValidationTest#eachRejectedUrlFailsExactlyItsRule | unit | BR-1 (inherited service/management regression) | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.link.LinkValidationTest#exactly2048CharactersIsAccepted | unit | BR-1 (inherited service/management regression) | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.link.LinkValidationTest#keysLongerThan255FailFormat | unit | BR-1 (inherited service/management regression) | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.link.LinkValidationTest#malformedKeysFailFormat | unit | BR-1 (inherited service/management regression) | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.link.LinkValidationTest#validUrlsPass | unit | BR-1 (inherited service/management regression) | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.link.ShortCodesTest#aDrawThatSpellsAReservedSegmentIsDrawnAgain | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.link.ShortCodesTest#codesAreEightCharactersFromTheAlphanumericAlphabet | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.ping.PingControllerTest#answersOkWithTheCurrentUtcInstant | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.web.MetricsConfigTest#onlyThePathTagIsDropped | unit | BR-10/11 | PASS — named XML invocation |
+| dev.urlshort.web.ProblemDetailsAdviceTest#aNonProblemBodyPassesThroughUntouched | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.web.ProblemDetailsAdviceTest#domainProblemKeepsItsErrorsAndGetsTheRequestIdAsInstance | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.web.ProblemDetailsAdviceTest#errorOriginIsNoneWhenNoFrameIsOurs | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.web.ProblemDetailsAdviceTest#frameworkDetailThatEchoesClientInputIsCleared | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.web.ProblemDetailsAdviceTest#unhandledExceptionIsABare500AndOneMessageFreeEvent | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.web.ProblemDetailsAdviceTest#unreadableBodyWithoutALimitErrorStays400WithoutTheFrameworkDetail | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.web.ProblemDetailsAdviceTest#unwrapsABodyLimitErrorRaisedInsideTheJsonReaderTo413 | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.web.ProblemsTest#idempotencyMismatchIs422NamingTheHeaderAndRule | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.web.ProblemsTest#notFoundAndGoneAreBareProblems | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.web.ProblemsTest#validationIs400WithExactlyOneFieldError | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitFilterTest#anEmptyBucketIsA429ProblemWithRetryAfterAndNoChain | unit | BR-6 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitFilterTest#eachRejectionIsCountedOnceUnderItsBudgetOnly | unit | BR-6 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitFilterTest#rule1_limitedRequestsAreChargedToTheirBudget | unit | BR-6 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.web.RateLimitFilterTest#rule1_operatorSurfacesAreNeitherChargedNorLimited | unit | BR-6 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.web.RateLimitFilterTest#rule5_anAbsentOrEmptyHeaderFromATrustedProxyChargesTheProxy | unit | BR-6 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.web.RateLimitFilterTest#rule5_theClientIsThePeerOrTheRightMostUntrustedForwardedHop | unit | BR-6 | PASS — green class parameterized group; XML display omits method |
+| dev.urlshort.web.RateLimitFilterTest#theChargedClientIsLeftOnTheRequestForTheClickRecorderAndAnExemptRequestCarriesNone | unit | BR-6 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimitFilterTest#theFilterReadsOnlyXForwardedForAndOnlyFromATrustedPeer | unit | BR-6 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimiterTest#AC03a_anExactlyEmptyBucketRefillsOneTokenAfterExactlyOneSecond | unit | BR-6 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimiterTest#AC03b_retryAfterIsRoundedUpAndHonoured | unit | BR-6 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimiterTest#AC04_aQuietMinuteRefillsTheWholeBucket | unit | BR-6 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimiterTest#aBucketThatIsNotYetFullSurvivesTheRelease | unit | BR-6 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimiterTest#aRequestOvertakenByNewerOnesDecidesOnTheTimeItReachesTheBucket | unit | BR-6 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimiterTest#afterABackwardClockStepTheBucketRefillsFromItsStoredTat | unit | BR-6 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimiterTest#budgetsAndClientsAreIndependent | unit | BR-6 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimiterTest#fullBucketsAreReleasedByTheNextRequestButNotWhileIdle | unit | BR-6 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimiterTest#refusalsTakeNothing | unit | BR-6 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimiterTest#retryAfterIsTheWaitForOneTokenInWholeSeconds | unit | BR-6 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimiterTest#theReleaseResumesAfterABackwardClockStep | unit | BR-6 | PASS — named XML invocation |
+| dev.urlshort.web.RateLimiterTest#theReleaseRunsAtMostOncePerSecond | unit | BR-6 | PASS — named XML invocation |
+| dev.urlshort.web.RequestBodyLimitFilterTest#aBodyOfExactlyTheLimitIsReadInFull | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.web.RequestBodyLimitFilterTest#servletStreamStateAndListenerDelegateToTheContainerStream | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.web.RequestBodyLimitFilterTest#singleByteReadsCountTooAndEndOfStreamIsPassedThrough | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.web.RequestBodyLimitFilterTest#theFirstByteOverTheLimitIs413OnTheBulkReadPath | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.web.RequestBodyLimitFilterTest#theWrappedStreamIsCreatedOnceSoTheCountCannotBeReset | unit | BR-1 (inherited service/management regression) | PASS — named XML invocation |
+| dev.urlshort.web.RequestIdFilterTest#clearsMdcWhenTheChainThrows | unit | BR-11 | PASS — named XML invocation |
+| dev.urlshort.web.RequestIdFilterTest#ignoresInboundRequestIdAndIssuesADifferentIdPerRequest | unit | BR-11 | PASS — named XML invocation |
+| dev.urlshort.web.RequestIdFilterTest#issuesOneIdOnHeaderAndMdcBeforeTheChainRunsAndClearsMdcAfter | unit | BR-11 | PASS — named XML invocation |
+| dev.urlshort.web.RequestIdFilterTest#writesOneRequestCompletedEventWithTheStatusAndTheIdButNotTheMethod | unit | BR-11 | PASS — named XML invocation |

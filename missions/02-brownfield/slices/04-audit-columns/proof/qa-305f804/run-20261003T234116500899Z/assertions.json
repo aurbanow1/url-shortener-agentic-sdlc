@@ -1,0 +1,6900 @@
+[
+  {
+    "claim": "exact candidate",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "candidate worktree clean",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "f6 baseline exact",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC1 fresh history V1-V4",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "create-A curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "create-A status",
+    "pass": true,
+    "detail": 201
+  },
+  {
+    "claim": "create-A requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "995f6978-bcbb-40a3-9826-baac12e4da61",
+      "location": "/api/links/YnyAVdn6",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:18 GMT"
+    }
+  },
+  {
+    "claim": "create-A no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "995f6978-bcbb-40a3-9826-baac12e4da61",
+      "location": "/api/links/YnyAVdn6",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:18 GMT"
+    }
+  },
+  {
+    "claim": "create-A exact shipped fields",
+    "pass": true,
+    "detail": {
+      "code": "YnyAVdn6",
+      "shortUrl": "http://localhost:18161/YnyAVdn6",
+      "url": "https://example.com/qa04-A",
+      "state": "active",
+      "createdAt": "2026-08-01T12:00:00Z"
+    }
+  },
+  {
+    "claim": "AC2 equal filled audit row clocks",
+    "pass": true,
+    "detail": {
+      "id": "1",
+      "occurred_at": "2026-08-01 12:00:00+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "YnyAVdn6",
+      "request_id": "995f6978-bcbb-40a3-9826-baac12e4da61",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/qa04-A\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 16:41:18.850642-07",
+      "updated_at": "2026-10-03 16:41:18.850642-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC2 actor equality",
+    "pass": true,
+    "detail": {
+      "id": "1",
+      "occurred_at": "2026-08-01 12:00:00+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "YnyAVdn6",
+      "request_id": "995f6978-bcbb-40a3-9826-baac12e4da61",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/qa04-A\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 16:41:18.850642-07",
+      "updated_at": "2026-10-03 16:41:18.850642-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC2 link business clocks",
+    "pass": true,
+    "detail": {
+      "id": "1",
+      "code": "YnyAVdn6",
+      "url": "https://example.com/qa04-A",
+      "created_at": "2026-08-01 05:00:00-07",
+      "retired_at": null,
+      "idempotency_key": "QA04-IDEMPOTENCY-CANARY",
+      "updated_at": "2026-08-01 05:00:00-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC2 actors",
+    "pass": true,
+    "detail": {
+      "id": "1",
+      "code": "YnyAVdn6",
+      "url": "https://example.com/qa04-A",
+      "created_at": "2026-08-01 05:00:00-07",
+      "retired_at": null,
+      "idempotency_key": "QA04-IDEMPOTENCY-CANARY",
+      "updated_at": "2026-08-01 05:00:00-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC2 audit requestId",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "replay-A curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "replay-A status",
+    "pass": true,
+    "detail": 201
+  },
+  {
+    "claim": "replay-A requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "52ffc1da-37fa-4867-8c77-086a47870e23",
+      "location": "/api/links/YnyAVdn6",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:18 GMT"
+    }
+  },
+  {
+    "claim": "replay-A no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "52ffc1da-37fa-4867-8c77-086a47870e23",
+      "location": "/api/links/YnyAVdn6",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:18 GMT"
+    }
+  },
+  {
+    "claim": "AC5 replay-A link unchanged",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC6 replay-A trail unchanged",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "replay-A exact shipped fields",
+    "pass": true,
+    "detail": {
+      "code": "YnyAVdn6",
+      "shortUrl": "http://localhost:18161/YnyAVdn6",
+      "url": "https://example.com/qa04-A",
+      "state": "active",
+      "createdAt": "2026-08-01T12:00:00Z"
+    }
+  },
+  {
+    "claim": "replay same body",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "mismatch-A curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "mismatch-A status",
+    "pass": true,
+    "detail": 422
+  },
+  {
+    "claim": "mismatch-A requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "cbd6dc93-1160-4ded-a112-9308a2a06e6d",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "mismatch-A no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "cbd6dc93-1160-4ded-a112-9308a2a06e6d",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "mismatch-A RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:cbd6dc93-1160-4ded-a112-9308a2a06e6d",
+      "status": 422,
+      "title": "Unprocessable Content",
+      "errors": [
+        {
+          "field": "Idempotency-Key",
+          "rule": "mismatch",
+          "message": "Idempotency-Key was already used with a different url"
+        }
+      ]
+    }
+  },
+  {
+    "claim": "mismatch-A problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:cbd6dc93-1160-4ded-a112-9308a2a06e6d",
+      "status": 422,
+      "title": "Unprocessable Content",
+      "errors": [
+        {
+          "field": "Idempotency-Key",
+          "rule": "mismatch",
+          "message": "Idempotency-Key was already used with a different url"
+        }
+      ]
+    }
+  },
+  {
+    "claim": "AC5 mismatch-A link unchanged",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC6 mismatch-A trail unchanged",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "read-A curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "read-A status",
+    "pass": true,
+    "detail": 200
+  },
+  {
+    "claim": "read-A requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "81a36fff-f64f-4b81-9174-6e5bff264338",
+      "content-type": "application/json",
+      "content-length": "151",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "read-A no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "81a36fff-f64f-4b81-9174-6e5bff264338",
+      "content-type": "application/json",
+      "content-length": "151",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "AC5 read-A link unchanged",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC6 read-A trail unchanged",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "read-A exact shipped fields",
+    "pass": true,
+    "detail": {
+      "code": "YnyAVdn6",
+      "shortUrl": "http://localhost:18161/YnyAVdn6",
+      "url": "https://example.com/qa04-A",
+      "state": "active",
+      "createdAt": "2026-08-01T12:00:00Z"
+    }
+  },
+  {
+    "claim": "redirect-A curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "redirect-A status",
+    "pass": true,
+    "detail": 302
+  },
+  {
+    "claim": "redirect-A requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "0e0961b5-1041-4a7c-a89b-87cfba2bd315",
+      "location": "https://example.com/qa04-A",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "redirect-A no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "0e0961b5-1041-4a7c-a89b-87cfba2bd315",
+      "location": "https://example.com/qa04-A",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "AC5 redirect-A link unchanged",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC6 redirect-A trail unchanged",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC8 redirect location and empty body",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "stats-A curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "stats-A status",
+    "pass": true,
+    "detail": 200
+  },
+  {
+    "claim": "stats-A requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "743d877e-fb72-4330-83e2-7cf577d51c10",
+      "content-type": "application/json",
+      "content-length": "103",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "stats-A no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "743d877e-fb72-4330-83e2-7cf577d51c10",
+      "content-type": "application/json",
+      "content-length": "103",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "AC5 stats-A link unchanged",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC6 stats-A trail unchanged",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "stats-A exact shipped fields",
+    "pass": true,
+    "detail": {
+      "code": "YnyAVdn6",
+      "totalClicks": 1,
+      "clicksPerDay": [
+        {
+          "date": "2026-08-01",
+          "clicks": 1
+        }
+      ],
+      "topReferrers": []
+    }
+  },
+  {
+    "claim": "retire-A curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "retire-A status",
+    "pass": true,
+    "detail": 204
+  },
+  {
+    "claim": "retire-A requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "80b2b772-7161-441e-9bb7-1b472e8422a2",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "retire-A no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "80b2b772-7161-441e-9bb7-1b472e8422a2",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "AC3 retirement business clock",
+    "pass": true,
+    "detail": {
+      "id": "1",
+      "code": "YnyAVdn6",
+      "url": "https://example.com/qa04-A",
+      "created_at": "2026-08-01 05:00:00-07",
+      "retired_at": "2026-08-01 05:02:00-07",
+      "idempotency_key": "QA04-IDEMPOTENCY-CANARY",
+      "updated_at": "2026-08-01 05:02:00-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC3 creation unchanged",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC3 equal filled audit row clocks",
+    "pass": true,
+    "detail": {
+      "id": "2",
+      "occurred_at": "2026-08-01 12:02:00+00",
+      "actor": "anonymous",
+      "action": "link.retire",
+      "entity": "link",
+      "entity_id": "YnyAVdn6",
+      "request_id": "80b2b772-7161-441e-9bb7-1b472e8422a2",
+      "before_state": "{\"url\":\"https://example.com/qa04-A\",\"state\":\"active\"}",
+      "after_state": "{\"url\":\"https://example.com/qa04-A\",\"state\":\"retired\"}",
+      "created_at": "2026-10-03 16:41:19.264985-07",
+      "updated_at": "2026-10-03 16:41:19.264985-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC3 actor equality",
+    "pass": true,
+    "detail": {
+      "id": "2",
+      "occurred_at": "2026-08-01 12:02:00+00",
+      "actor": "anonymous",
+      "action": "link.retire",
+      "entity": "link",
+      "entity_id": "YnyAVdn6",
+      "request_id": "80b2b772-7161-441e-9bb7-1b472e8422a2",
+      "before_state": "{\"url\":\"https://example.com/qa04-A\",\"state\":\"active\"}",
+      "after_state": "{\"url\":\"https://example.com/qa04-A\",\"state\":\"retired\"}",
+      "created_at": "2026-10-03 16:41:19.264985-07",
+      "updated_at": "2026-10-03 16:41:19.264985-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC3 audit requestId",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "retire-again curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "retire-again status",
+    "pass": true,
+    "detail": 410
+  },
+  {
+    "claim": "retire-again requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "6d2f2ce5-4ec1-4a4f-b308-26afe5a9e4c1",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "retire-again no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "6d2f2ce5-4ec1-4a4f-b308-26afe5a9e4c1",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "retire-again RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:6d2f2ce5-4ec1-4a4f-b308-26afe5a9e4c1",
+      "status": 410,
+      "title": "Gone"
+    }
+  },
+  {
+    "claim": "retire-again problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:6d2f2ce5-4ec1-4a4f-b308-26afe5a9e4c1",
+      "status": 410,
+      "title": "Gone"
+    }
+  },
+  {
+    "claim": "AC5 repeat retire unchanged",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "read-retired curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "read-retired status",
+    "pass": true,
+    "detail": 200
+  },
+  {
+    "claim": "read-retired requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "2092e1b2-4afa-4865-b38c-06dd377397d0",
+      "content-type": "application/json",
+      "content-length": "152",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "read-retired no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "2092e1b2-4afa-4865-b38c-06dd377397d0",
+      "content-type": "application/json",
+      "content-length": "152",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "read-retired exact shipped fields",
+    "pass": true,
+    "detail": {
+      "code": "YnyAVdn6",
+      "shortUrl": "http://localhost:18161/YnyAVdn6",
+      "url": "https://example.com/qa04-A",
+      "state": "retired",
+      "createdAt": "2026-08-01T12:00:00Z"
+    }
+  },
+  {
+    "claim": "AC8 retired createdAt preserved",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "redirect-retired curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "redirect-retired status",
+    "pass": true,
+    "detail": 410
+  },
+  {
+    "claim": "redirect-retired requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "ca400085-c224-40ba-a2f7-b112f468f2dd",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "redirect-retired no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "ca400085-c224-40ba-a2f7-b112f468f2dd",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "redirect-retired RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:ca400085-c224-40ba-a2f7-b112f468f2dd",
+      "status": 410,
+      "title": "Gone"
+    }
+  },
+  {
+    "claim": "redirect-retired problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:ca400085-c224-40ba-a2f7-b112f468f2dd",
+      "status": 410,
+      "title": "Gone"
+    }
+  },
+  {
+    "claim": "expired-key-create-B curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "expired-key-create-B status",
+    "pass": true,
+    "detail": 201
+  },
+  {
+    "claim": "expired-key-create-B requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "e2482aa1-7ece-4dbf-a644-38ed62dc4e60",
+      "location": "/api/links/Va1m8J6Z",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "expired-key-create-B no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "e2482aa1-7ece-4dbf-a644-38ed62dc4e60",
+      "location": "/api/links/Va1m8J6Z",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "AC4 released key",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC4 A updated equals B created",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC4 prior data preserved",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC4-B equal filled audit row clocks",
+    "pass": true,
+    "detail": {
+      "id": "3",
+      "occurred_at": "2026-08-02 13:00:00+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "Va1m8J6Z",
+      "request_id": "e2482aa1-7ece-4dbf-a644-38ed62dc4e60",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/qa04-A-B\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 16:41:19.527081-07",
+      "updated_at": "2026-10-03 16:41:19.527081-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC4-B actor equality",
+    "pass": true,
+    "detail": {
+      "id": "3",
+      "occurred_at": "2026-08-02 13:00:00+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "Va1m8J6Z",
+      "request_id": "e2482aa1-7ece-4dbf-a644-38ed62dc4e60",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/qa04-A-B\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 16:41:19.527081-07",
+      "updated_at": "2026-10-03 16:41:19.527081-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "create-D curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "create-D status",
+    "pass": true,
+    "detail": 201
+  },
+  {
+    "claim": "create-D requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "e146e60d-b9f1-43bc-9616-7494b33e2a2e",
+      "location": "/api/links/GRG09ldE",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "create-D no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "e146e60d-b9f1-43bc-9616-7494b33e2a2e",
+      "location": "/api/links/GRG09ldE",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "audit-insert-fails curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "audit-insert-fails status",
+    "pass": true,
+    "detail": 500
+  },
+  {
+    "claim": "audit-insert-fails requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "06f32ed7-c34c-41d3-a5b9-d633825c8793",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT",
+      "connection": "close"
+    }
+  },
+  {
+    "claim": "audit-insert-fails no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "06f32ed7-c34c-41d3-a5b9-d633825c8793",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT",
+      "connection": "close"
+    }
+  },
+  {
+    "claim": "audit-insert-fails RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:06f32ed7-c34c-41d3-a5b9-d633825c8793",
+      "status": 500,
+      "title": "Internal Server Error"
+    }
+  },
+  {
+    "claim": "audit-insert-fails problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:06f32ed7-c34c-41d3-a5b9-d633825c8793",
+      "status": 500,
+      "title": "Internal Server Error"
+    }
+  },
+  {
+    "claim": "AC5 actual failed INSERT rolls back every link column",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC5 no failed audit appended",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "D-still-redirects curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "D-still-redirects status",
+    "pass": true,
+    "detail": 302
+  },
+  {
+    "claim": "D-still-redirects requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "f6b64036-a8e9-4519-8820-b404caec7e36",
+      "location": "https://example.com/qa04-D",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "D-still-redirects no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "f6b64036-a8e9-4519-8820-b404caec7e36",
+      "location": "https://example.com/qa04-D",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "audit-eight-fields curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "audit-eight-fields status",
+    "pass": true,
+    "detail": 200
+  },
+  {
+    "claim": "audit-eight-fields requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "fd044d98-84b7-4b33-bc5b-0fa5ad4657b5",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "audit-eight-fields no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "fd044d98-84b7-4b33-bc5b-0fa5ad4657b5",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "audit-eight-fields exact shipped fields",
+    "pass": true,
+    "detail": {
+      "items": [
+        {
+          "occurredAt": "2026-08-02T13:00:00Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "GRG09ldE",
+          "requestId": "e146e60d-b9f1-43bc-9616-7494b33e2a2e",
+          "before": null,
+          "after": {
+            "url": "https://example.com/qa04-D",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-08-02T13:00:00Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "Va1m8J6Z",
+          "requestId": "e2482aa1-7ece-4dbf-a644-38ed62dc4e60",
+          "before": null,
+          "after": {
+            "url": "https://example.com/qa04-A-B",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-08-01T12:02:00Z",
+          "actor": "anonymous",
+          "action": "link.retire",
+          "entity": "link",
+          "entityId": "YnyAVdn6",
+          "requestId": "80b2b772-7161-441e-9bb7-1b472e8422a2",
+          "before": {
+            "url": "https://example.com/qa04-A",
+            "state": "active"
+          },
+          "after": {
+            "url": "https://example.com/qa04-A",
+            "state": "retired"
+          }
+        },
+        {
+          "occurredAt": "2026-08-01T12:00:00Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "YnyAVdn6",
+          "requestId": "995f6978-bcbb-40a3-9826-baac12e4da61",
+          "before": null,
+          "after": {
+            "url": "https://example.com/qa04-A",
+            "state": "active"
+          }
+        }
+      ],
+      "next": null
+    }
+  },
+  {
+    "claim": "audit-eight-fields row0 eight fields",
+    "pass": true,
+    "detail": {
+      "occurredAt": "2026-08-02T13:00:00Z",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entityId": "GRG09ldE",
+      "requestId": "e146e60d-b9f1-43bc-9616-7494b33e2a2e",
+      "before": null,
+      "after": {
+        "url": "https://example.com/qa04-D",
+        "state": "active"
+      }
+    }
+  },
+  {
+    "claim": "audit-eight-fields row1 eight fields",
+    "pass": true,
+    "detail": {
+      "occurredAt": "2026-08-02T13:00:00Z",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entityId": "Va1m8J6Z",
+      "requestId": "e2482aa1-7ece-4dbf-a644-38ed62dc4e60",
+      "before": null,
+      "after": {
+        "url": "https://example.com/qa04-A-B",
+        "state": "active"
+      }
+    }
+  },
+  {
+    "claim": "audit-eight-fields row2 eight fields",
+    "pass": true,
+    "detail": {
+      "occurredAt": "2026-08-01T12:02:00Z",
+      "actor": "anonymous",
+      "action": "link.retire",
+      "entity": "link",
+      "entityId": "YnyAVdn6",
+      "requestId": "80b2b772-7161-441e-9bb7-1b472e8422a2",
+      "before": {
+        "url": "https://example.com/qa04-A",
+        "state": "active"
+      },
+      "after": {
+        "url": "https://example.com/qa04-A",
+        "state": "retired"
+      }
+    }
+  },
+  {
+    "claim": "audit-eight-fields row3 eight fields",
+    "pass": true,
+    "detail": {
+      "occurredAt": "2026-08-01T12:00:00Z",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entityId": "YnyAVdn6",
+      "requestId": "995f6978-bcbb-40a3-9826-baac12e4da61",
+      "before": null,
+      "after": {
+        "url": "https://example.com/qa04-A",
+        "state": "active"
+      }
+    }
+  },
+  {
+    "claim": "audit-forwarded-refused curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "audit-forwarded-refused status",
+    "pass": true,
+    "detail": 403
+  },
+  {
+    "claim": "audit-forwarded-refused requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "39e94313-933e-424f-989d-754c59675923",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "audit-forwarded-refused no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "39e94313-933e-424f-989d-754c59675923",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "audit-forwarded-refused RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:39e94313-933e-424f-989d-754c59675923",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "audit-forwarded-refused problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:39e94313-933e-424f-989d-754c59675923",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "claim": "audit-invalid-limit curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "audit-invalid-limit status",
+    "pass": true,
+    "detail": 400
+  },
+  {
+    "claim": "audit-invalid-limit requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "a2301bdb-b472-42a1-b417-9514a82cb29b",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT",
+      "connection": "close"
+    }
+  },
+  {
+    "claim": "audit-invalid-limit no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "a2301bdb-b472-42a1-b417-9514a82cb29b",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT",
+      "connection": "close"
+    }
+  },
+  {
+    "claim": "audit-invalid-limit RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:a2301bdb-b472-42a1-b417-9514a82cb29b",
+      "status": 400,
+      "title": "Bad Request",
+      "errors": [
+        {
+          "field": "limit",
+          "rule": "range",
+          "message": "must be from 1 to 100"
+        }
+      ]
+    }
+  },
+  {
+    "claim": "audit-invalid-limit problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:a2301bdb-b472-42a1-b417-9514a82cb29b",
+      "status": 400,
+      "title": "Bad Request",
+      "errors": [
+        {
+          "field": "limit",
+          "rule": "range",
+          "message": "must be from 1 to 100"
+        }
+      ]
+    }
+  },
+  {
+    "claim": "bad-url curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "bad-url status",
+    "pass": true,
+    "detail": 400
+  },
+  {
+    "claim": "bad-url requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "8e772254-553a-49f0-8864-98c8dfdc496e",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT",
+      "connection": "close"
+    }
+  },
+  {
+    "claim": "bad-url no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "8e772254-553a-49f0-8864-98c8dfdc496e",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT",
+      "connection": "close"
+    }
+  },
+  {
+    "claim": "bad-url RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:8e772254-553a-49f0-8864-98c8dfdc496e",
+      "status": 400,
+      "title": "Bad Request",
+      "errors": [
+        {
+          "field": "url",
+          "rule": "scheme",
+          "message": "url must start with http:// or https://"
+        }
+      ]
+    }
+  },
+  {
+    "claim": "bad-url problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:8e772254-553a-49f0-8864-98c8dfdc496e",
+      "status": 400,
+      "title": "Bad Request",
+      "errors": [
+        {
+          "field": "url",
+          "rule": "scheme",
+          "message": "url must start with http:// or https://"
+        }
+      ]
+    }
+  },
+  {
+    "claim": "missing-url curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "missing-url status",
+    "pass": true,
+    "detail": 400
+  },
+  {
+    "claim": "missing-url requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "2390df15-3174-4c4d-b96e-73168166ae14",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT",
+      "connection": "close"
+    }
+  },
+  {
+    "claim": "missing-url no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "2390df15-3174-4c4d-b96e-73168166ae14",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT",
+      "connection": "close"
+    }
+  },
+  {
+    "claim": "missing-url RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:2390df15-3174-4c4d-b96e-73168166ae14",
+      "status": 400,
+      "title": "Bad Request",
+      "errors": [
+        {
+          "field": "url",
+          "rule": "required",
+          "message": "url is required"
+        }
+      ]
+    }
+  },
+  {
+    "claim": "missing-url problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:2390df15-3174-4c4d-b96e-73168166ae14",
+      "status": 400,
+      "title": "Bad Request",
+      "errors": [
+        {
+          "field": "url",
+          "rule": "required",
+          "message": "url is required"
+        }
+      ]
+    }
+  },
+  {
+    "claim": "bad-key curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "bad-key status",
+    "pass": true,
+    "detail": 400
+  },
+  {
+    "claim": "bad-key requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "277e4574-b4d2-4c00-a0a9-51a33fa775fc",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT",
+      "connection": "close"
+    }
+  },
+  {
+    "claim": "bad-key no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "277e4574-b4d2-4c00-a0a9-51a33fa775fc",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT",
+      "connection": "close"
+    }
+  },
+  {
+    "claim": "bad-key RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:277e4574-b4d2-4c00-a0a9-51a33fa775fc",
+      "status": 400,
+      "title": "Bad Request",
+      "errors": [
+        {
+          "field": "Idempotency-Key",
+          "rule": "format",
+          "message": "Idempotency-Key must be 1 to 255 visible ASCII characters"
+        }
+      ]
+    }
+  },
+  {
+    "claim": "bad-key problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:277e4574-b4d2-4c00-a0a9-51a33fa775fc",
+      "status": 400,
+      "title": "Bad Request",
+      "errors": [
+        {
+          "field": "Idempotency-Key",
+          "rule": "format",
+          "message": "Idempotency-Key must be 1 to 255 visible ASCII characters"
+        }
+      ]
+    }
+  },
+  {
+    "claim": "unknown-code curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "unknown-code status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "unknown-code requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "1b7126f1-d28e-4757-9675-e1768b901588",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "unknown-code no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "1b7126f1-d28e-4757-9675-e1768b901588",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:19 GMT"
+    }
+  },
+  {
+    "claim": "unknown-code RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:1b7126f1-d28e-4757-9675-e1768b901588",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "unknown-code problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:1b7126f1-d28e-4757-9675-e1768b901588",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "bad inputs do not change trail",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC10 actors row0",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC10 client values absent row0",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC10 actors row1",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC10 client values absent row1",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC10 actors row2",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC10 client values absent row2",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC10 actors row3",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC10 client values absent row3",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC10 actors row4",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC10 client values absent row4",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC10 actors row5",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC10 client values absent row5",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC10 actors row6",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC10 client values absent row6",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC6-row-1 equal filled audit row clocks",
+    "pass": true,
+    "detail": {
+      "id": "1",
+      "occurred_at": "2026-08-01 12:00:00+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "YnyAVdn6",
+      "request_id": "995f6978-bcbb-40a3-9826-baac12e4da61",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/qa04-A\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 16:41:18.850642-07",
+      "updated_at": "2026-10-03 16:41:18.850642-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC6-row-1 actor equality",
+    "pass": true,
+    "detail": {
+      "id": "1",
+      "occurred_at": "2026-08-01 12:00:00+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "YnyAVdn6",
+      "request_id": "995f6978-bcbb-40a3-9826-baac12e4da61",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/qa04-A\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 16:41:18.850642-07",
+      "updated_at": "2026-10-03 16:41:18.850642-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC6-row-2 equal filled audit row clocks",
+    "pass": true,
+    "detail": {
+      "id": "2",
+      "occurred_at": "2026-08-01 12:02:00+00",
+      "actor": "anonymous",
+      "action": "link.retire",
+      "entity": "link",
+      "entity_id": "YnyAVdn6",
+      "request_id": "80b2b772-7161-441e-9bb7-1b472e8422a2",
+      "before_state": "{\"url\":\"https://example.com/qa04-A\",\"state\":\"active\"}",
+      "after_state": "{\"url\":\"https://example.com/qa04-A\",\"state\":\"retired\"}",
+      "created_at": "2026-10-03 16:41:19.264985-07",
+      "updated_at": "2026-10-03 16:41:19.264985-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC6-row-2 actor equality",
+    "pass": true,
+    "detail": {
+      "id": "2",
+      "occurred_at": "2026-08-01 12:02:00+00",
+      "actor": "anonymous",
+      "action": "link.retire",
+      "entity": "link",
+      "entity_id": "YnyAVdn6",
+      "request_id": "80b2b772-7161-441e-9bb7-1b472e8422a2",
+      "before_state": "{\"url\":\"https://example.com/qa04-A\",\"state\":\"active\"}",
+      "after_state": "{\"url\":\"https://example.com/qa04-A\",\"state\":\"retired\"}",
+      "created_at": "2026-10-03 16:41:19.264985-07",
+      "updated_at": "2026-10-03 16:41:19.264985-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC6-row-3 equal filled audit row clocks",
+    "pass": true,
+    "detail": {
+      "id": "3",
+      "occurred_at": "2026-08-02 13:00:00+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "Va1m8J6Z",
+      "request_id": "e2482aa1-7ece-4dbf-a644-38ed62dc4e60",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/qa04-A-B\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 16:41:19.527081-07",
+      "updated_at": "2026-10-03 16:41:19.527081-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC6-row-3 actor equality",
+    "pass": true,
+    "detail": {
+      "id": "3",
+      "occurred_at": "2026-08-02 13:00:00+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "Va1m8J6Z",
+      "request_id": "e2482aa1-7ece-4dbf-a644-38ed62dc4e60",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/qa04-A-B\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 16:41:19.527081-07",
+      "updated_at": "2026-10-03 16:41:19.527081-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC6-row-4 equal filled audit row clocks",
+    "pass": true,
+    "detail": {
+      "id": "4",
+      "occurred_at": "2026-08-02 13:00:00+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "GRG09ldE",
+      "request_id": "e146e60d-b9f1-43bc-9616-7494b33e2a2e",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/qa04-D\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 16:41:19.59636-07",
+      "updated_at": "2026-10-03 16:41:19.59636-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC6-row-4 actor equality",
+    "pass": true,
+    "detail": {
+      "id": "4",
+      "occurred_at": "2026-08-02 13:00:00+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "GRG09ldE",
+      "request_id": "e146e60d-b9f1-43bc-9616-7494b33e2a2e",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/qa04-D\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 16:41:19.59636-07",
+      "updated_at": "2026-10-03 16:41:19.59636-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "controlled process stopped",
+    "pass": true,
+    "detail": {
+      "pid": 62306,
+      "exit": 0
+    }
+  },
+  {
+    "claim": "rate-00 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-00 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-00 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "4195b408-9a04-42e8-a91b-3ab5f71c30cb",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-00 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "4195b408-9a04-42e8-a91b-3ab5f71c30cb",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-00 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:4195b408-9a04-42e8-a91b-3ab5f71c30cb",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-00 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:4195b408-9a04-42e8-a91b-3ab5f71c30cb",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-01 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-01 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-01 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "57ba0811-68d0-4846-a1dd-acc71a456f32",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-01 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "57ba0811-68d0-4846-a1dd-acc71a456f32",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-01 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:57ba0811-68d0-4846-a1dd-acc71a456f32",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-01 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:57ba0811-68d0-4846-a1dd-acc71a456f32",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-02 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-02 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-02 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "f4a9dbec-ee94-4d4f-8e9e-b9241f0aa08f",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-02 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "f4a9dbec-ee94-4d4f-8e9e-b9241f0aa08f",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-02 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:f4a9dbec-ee94-4d4f-8e9e-b9241f0aa08f",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-02 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:f4a9dbec-ee94-4d4f-8e9e-b9241f0aa08f",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-03 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-03 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-03 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "4d6b35c3-f753-44ad-b2ce-2a52331d6681",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-03 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "4d6b35c3-f753-44ad-b2ce-2a52331d6681",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-03 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:4d6b35c3-f753-44ad-b2ce-2a52331d6681",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-03 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:4d6b35c3-f753-44ad-b2ce-2a52331d6681",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-04 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-04 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-04 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "af8a2477-14d2-41d4-9408-44b0306b18b3",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-04 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "af8a2477-14d2-41d4-9408-44b0306b18b3",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-04 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:af8a2477-14d2-41d4-9408-44b0306b18b3",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-04 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:af8a2477-14d2-41d4-9408-44b0306b18b3",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-05 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-05 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-05 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "738f78b8-c2f7-42bc-a31b-7de5063e344f",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-05 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "738f78b8-c2f7-42bc-a31b-7de5063e344f",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-05 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:738f78b8-c2f7-42bc-a31b-7de5063e344f",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-05 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:738f78b8-c2f7-42bc-a31b-7de5063e344f",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-06 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-06 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-06 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "64fa1dae-9b67-4b27-8a30-40544046231b",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-06 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "64fa1dae-9b67-4b27-8a30-40544046231b",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-06 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:64fa1dae-9b67-4b27-8a30-40544046231b",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-06 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:64fa1dae-9b67-4b27-8a30-40544046231b",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-07 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-07 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-07 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "a333f297-bb6b-43ea-8928-622e3031a7ac",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-07 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "a333f297-bb6b-43ea-8928-622e3031a7ac",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-07 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:a333f297-bb6b-43ea-8928-622e3031a7ac",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-07 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:a333f297-bb6b-43ea-8928-622e3031a7ac",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-08 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-08 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-08 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "34b80b40-61d8-484f-b742-bdf8004b2323",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-08 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "34b80b40-61d8-484f-b742-bdf8004b2323",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-08 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:34b80b40-61d8-484f-b742-bdf8004b2323",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-08 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:34b80b40-61d8-484f-b742-bdf8004b2323",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-09 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-09 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-09 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "303b1faf-7fed-4ba5-8f90-300d25f8de9a",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-09 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "303b1faf-7fed-4ba5-8f90-300d25f8de9a",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-09 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:303b1faf-7fed-4ba5-8f90-300d25f8de9a",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-09 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:303b1faf-7fed-4ba5-8f90-300d25f8de9a",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-10 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-10 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-10 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "ef4e78fb-28a4-4b18-a3f2-d21f96049410",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-10 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "ef4e78fb-28a4-4b18-a3f2-d21f96049410",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-10 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:ef4e78fb-28a4-4b18-a3f2-d21f96049410",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-10 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:ef4e78fb-28a4-4b18-a3f2-d21f96049410",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-11 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-11 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-11 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "290d807a-8880-496b-91d7-1290217d6f5c",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-11 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "290d807a-8880-496b-91d7-1290217d6f5c",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-11 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:290d807a-8880-496b-91d7-1290217d6f5c",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-11 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:290d807a-8880-496b-91d7-1290217d6f5c",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-12 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-12 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-12 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "33f7c336-c461-4cf6-81be-4d3c90a2707b",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-12 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "33f7c336-c461-4cf6-81be-4d3c90a2707b",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-12 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:33f7c336-c461-4cf6-81be-4d3c90a2707b",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-12 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:33f7c336-c461-4cf6-81be-4d3c90a2707b",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-13 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-13 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-13 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "81166c10-95fe-450a-8912-ba881a0620e6",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-13 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "81166c10-95fe-450a-8912-ba881a0620e6",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-13 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:81166c10-95fe-450a-8912-ba881a0620e6",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-13 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:81166c10-95fe-450a-8912-ba881a0620e6",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-14 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-14 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-14 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "c9d345cb-6ca7-456e-b9e9-cd0e4d6da83c",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-14 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "c9d345cb-6ca7-456e-b9e9-cd0e4d6da83c",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-14 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:c9d345cb-6ca7-456e-b9e9-cd0e4d6da83c",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-14 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:c9d345cb-6ca7-456e-b9e9-cd0e4d6da83c",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-15 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-15 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-15 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "1bba7e2d-aa2d-4af8-bf2e-d48d56686da5",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-15 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "1bba7e2d-aa2d-4af8-bf2e-d48d56686da5",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-15 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:1bba7e2d-aa2d-4af8-bf2e-d48d56686da5",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-15 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:1bba7e2d-aa2d-4af8-bf2e-d48d56686da5",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-16 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-16 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-16 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "67e45180-49c1-4055-aca7-a4adf758aa32",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-16 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "67e45180-49c1-4055-aca7-a4adf758aa32",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-16 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:67e45180-49c1-4055-aca7-a4adf758aa32",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-16 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:67e45180-49c1-4055-aca7-a4adf758aa32",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-17 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-17 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-17 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "86911c54-7a43-4e3d-bb41-ffd332315919",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-17 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "86911c54-7a43-4e3d-bb41-ffd332315919",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-17 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:86911c54-7a43-4e3d-bb41-ffd332315919",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-17 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:86911c54-7a43-4e3d-bb41-ffd332315919",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-18 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-18 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-18 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "4040e61f-3e85-44f6-9947-c94de4472a41",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-18 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "4040e61f-3e85-44f6-9947-c94de4472a41",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-18 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:4040e61f-3e85-44f6-9947-c94de4472a41",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-18 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:4040e61f-3e85-44f6-9947-c94de4472a41",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-19 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-19 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-19 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "fab972e1-5e7c-475e-b21c-7483faf97043",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-19 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "fab972e1-5e7c-475e-b21c-7483faf97043",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-19 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:fab972e1-5e7c-475e-b21c-7483faf97043",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-19 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:fab972e1-5e7c-475e-b21c-7483faf97043",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-20 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-20 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-20 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "cfa1f079-35ed-4b1b-b1e7-f4d98fabfc70",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-20 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "cfa1f079-35ed-4b1b-b1e7-f4d98fabfc70",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-20 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:cfa1f079-35ed-4b1b-b1e7-f4d98fabfc70",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-20 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:cfa1f079-35ed-4b1b-b1e7-f4d98fabfc70",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-21 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-21 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-21 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "1d1e6f31-7950-4ed3-acf6-79642ec06417",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-21 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "1d1e6f31-7950-4ed3-acf6-79642ec06417",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-21 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:1d1e6f31-7950-4ed3-acf6-79642ec06417",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-21 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:1d1e6f31-7950-4ed3-acf6-79642ec06417",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-22 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-22 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-22 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "b03a5925-b9f7-4a3e-9c82-0f33603a995b",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-22 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "b03a5925-b9f7-4a3e-9c82-0f33603a995b",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-22 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:b03a5925-b9f7-4a3e-9c82-0f33603a995b",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-22 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:b03a5925-b9f7-4a3e-9c82-0f33603a995b",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-23 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-23 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-23 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "80f50796-70b4-4283-b049-ecd04e0e9dd6",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-23 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "80f50796-70b4-4283-b049-ecd04e0e9dd6",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-23 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:80f50796-70b4-4283-b049-ecd04e0e9dd6",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-23 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:80f50796-70b4-4283-b049-ecd04e0e9dd6",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-24 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-24 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-24 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "e64acb81-6d34-4782-9791-cec8e392cccb",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-24 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "e64acb81-6d34-4782-9791-cec8e392cccb",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-24 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:e64acb81-6d34-4782-9791-cec8e392cccb",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-24 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:e64acb81-6d34-4782-9791-cec8e392cccb",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-25 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-25 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-25 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "7c3fd7fb-5e19-4c54-8cf3-261c8c23e889",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-25 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "7c3fd7fb-5e19-4c54-8cf3-261c8c23e889",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-25 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:7c3fd7fb-5e19-4c54-8cf3-261c8c23e889",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-25 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:7c3fd7fb-5e19-4c54-8cf3-261c8c23e889",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-26 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-26 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-26 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "5f2b4033-65d6-484a-a8e1-5b7c497ff73e",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-26 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "5f2b4033-65d6-484a-a8e1-5b7c497ff73e",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-26 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:5f2b4033-65d6-484a-a8e1-5b7c497ff73e",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-26 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:5f2b4033-65d6-484a-a8e1-5b7c497ff73e",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-27 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-27 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-27 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "ea38a65a-f740-4e3f-a25f-f42f8461357d",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-27 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "ea38a65a-f740-4e3f-a25f-f42f8461357d",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-27 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:ea38a65a-f740-4e3f-a25f-f42f8461357d",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-27 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:ea38a65a-f740-4e3f-a25f-f42f8461357d",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-28 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-28 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-28 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "6616dd78-3f6f-4f32-908e-3934180dc9ef",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-28 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "6616dd78-3f6f-4f32-908e-3934180dc9ef",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-28 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:6616dd78-3f6f-4f32-908e-3934180dc9ef",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-28 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:6616dd78-3f6f-4f32-908e-3934180dc9ef",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-29 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-29 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-29 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "84540a97-8e47-442a-a73b-a2e299d58046",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-29 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "84540a97-8e47-442a-a73b-a2e299d58046",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+    }
+  },
+  {
+    "claim": "rate-29 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:84540a97-8e47-442a-a73b-a2e299d58046",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-29 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:84540a97-8e47-442a-a73b-a2e299d58046",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-30 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-30 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-30 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "9a9bf264-8a6d-4025-9bc5-b78e2649a8af",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-30 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "9a9bf264-8a6d-4025-9bc5-b78e2649a8af",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-30 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:9a9bf264-8a6d-4025-9bc5-b78e2649a8af",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-30 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:9a9bf264-8a6d-4025-9bc5-b78e2649a8af",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-31 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-31 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-31 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "049e305c-d688-47ee-a31d-811f580f25c4",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-31 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "049e305c-d688-47ee-a31d-811f580f25c4",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-31 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:049e305c-d688-47ee-a31d-811f580f25c4",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-31 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:049e305c-d688-47ee-a31d-811f580f25c4",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-32 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-32 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-32 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "d6e5960a-76d0-478c-88fe-994d5d81c761",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-32 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "d6e5960a-76d0-478c-88fe-994d5d81c761",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-32 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:d6e5960a-76d0-478c-88fe-994d5d81c761",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-32 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:d6e5960a-76d0-478c-88fe-994d5d81c761",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-33 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-33 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-33 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "c9d56c8f-4a38-4007-9fa5-6faf95be9e71",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-33 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "c9d56c8f-4a38-4007-9fa5-6faf95be9e71",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-33 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:c9d56c8f-4a38-4007-9fa5-6faf95be9e71",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-33 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:c9d56c8f-4a38-4007-9fa5-6faf95be9e71",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-34 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-34 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-34 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "3701b2f4-30d0-4691-8806-a0f3dadc4e20",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-34 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "3701b2f4-30d0-4691-8806-a0f3dadc4e20",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-34 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:3701b2f4-30d0-4691-8806-a0f3dadc4e20",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-34 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:3701b2f4-30d0-4691-8806-a0f3dadc4e20",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-35 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-35 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-35 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "77140e42-5bd8-4b59-9ee6-5351f1191c11",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-35 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "77140e42-5bd8-4b59-9ee6-5351f1191c11",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-35 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:77140e42-5bd8-4b59-9ee6-5351f1191c11",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-35 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:77140e42-5bd8-4b59-9ee6-5351f1191c11",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-36 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-36 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-36 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "cb599d1b-0b5e-4dd4-829c-d660d27cd38b",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-36 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "cb599d1b-0b5e-4dd4-829c-d660d27cd38b",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-36 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:cb599d1b-0b5e-4dd4-829c-d660d27cd38b",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-36 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:cb599d1b-0b5e-4dd4-829c-d660d27cd38b",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-37 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-37 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-37 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "2995f457-7309-402b-bc96-d1393060b08c",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-37 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "2995f457-7309-402b-bc96-d1393060b08c",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-37 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:2995f457-7309-402b-bc96-d1393060b08c",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-37 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:2995f457-7309-402b-bc96-d1393060b08c",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-38 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-38 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-38 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "01121e52-d115-4a27-87c4-d3e15f14562b",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-38 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "01121e52-d115-4a27-87c4-d3e15f14562b",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-38 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:01121e52-d115-4a27-87c4-d3e15f14562b",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-38 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:01121e52-d115-4a27-87c4-d3e15f14562b",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-39 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-39 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-39 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "30e18a8f-8bac-4325-a9f0-976685728592",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-39 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "30e18a8f-8bac-4325-a9f0-976685728592",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-39 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:30e18a8f-8bac-4325-a9f0-976685728592",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-39 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:30e18a8f-8bac-4325-a9f0-976685728592",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-40 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-40 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-40 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "94713035-84a7-46dc-9e4e-190c891d03a4",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-40 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "94713035-84a7-46dc-9e4e-190c891d03a4",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-40 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:94713035-84a7-46dc-9e4e-190c891d03a4",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-40 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:94713035-84a7-46dc-9e4e-190c891d03a4",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-41 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-41 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-41 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "38a15e39-8492-4b23-bd89-54bf55c877a9",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-41 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "38a15e39-8492-4b23-bd89-54bf55c877a9",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-41 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:38a15e39-8492-4b23-bd89-54bf55c877a9",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-41 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:38a15e39-8492-4b23-bd89-54bf55c877a9",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-42 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-42 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-42 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "3763674e-a868-4c88-b94e-57a34eeabbf5",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-42 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "3763674e-a868-4c88-b94e-57a34eeabbf5",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-42 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:3763674e-a868-4c88-b94e-57a34eeabbf5",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-42 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:3763674e-a868-4c88-b94e-57a34eeabbf5",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-43 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-43 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-43 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "b4d162bd-f4a2-4e0c-9c5e-ba602e8ac72e",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-43 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "b4d162bd-f4a2-4e0c-9c5e-ba602e8ac72e",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-43 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:b4d162bd-f4a2-4e0c-9c5e-ba602e8ac72e",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-43 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:b4d162bd-f4a2-4e0c-9c5e-ba602e8ac72e",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-44 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-44 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-44 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "dd4bc607-64a1-4b26-9703-70dbe1e24309",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-44 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "dd4bc607-64a1-4b26-9703-70dbe1e24309",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-44 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:dd4bc607-64a1-4b26-9703-70dbe1e24309",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-44 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:dd4bc607-64a1-4b26-9703-70dbe1e24309",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-45 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-45 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-45 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "7f072d8f-215b-4d7f-a3c5-eac5bd51de2e",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-45 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "7f072d8f-215b-4d7f-a3c5-eac5bd51de2e",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-45 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:7f072d8f-215b-4d7f-a3c5-eac5bd51de2e",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-45 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:7f072d8f-215b-4d7f-a3c5-eac5bd51de2e",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-46 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-46 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-46 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "29c95470-c031-489d-a870-2a2ab99a67cb",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-46 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "29c95470-c031-489d-a870-2a2ab99a67cb",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-46 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:29c95470-c031-489d-a870-2a2ab99a67cb",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-46 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:29c95470-c031-489d-a870-2a2ab99a67cb",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-47 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-47 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-47 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "c90ac3fd-d8fe-4e02-b540-5d9e8c0bdee9",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-47 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "c90ac3fd-d8fe-4e02-b540-5d9e8c0bdee9",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-47 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:c90ac3fd-d8fe-4e02-b540-5d9e8c0bdee9",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-47 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:c90ac3fd-d8fe-4e02-b540-5d9e8c0bdee9",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-48 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-48 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-48 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "b459316d-8bfb-493a-ab98-2cd6454e4a5b",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-48 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "b459316d-8bfb-493a-ab98-2cd6454e4a5b",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-48 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:b459316d-8bfb-493a-ab98-2cd6454e4a5b",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-48 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:b459316d-8bfb-493a-ab98-2cd6454e4a5b",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-49 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-49 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-49 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "dec7e3b7-5f6b-44f4-aab5-882027d8814a",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-49 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "dec7e3b7-5f6b-44f4-aab5-882027d8814a",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-49 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:dec7e3b7-5f6b-44f4-aab5-882027d8814a",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-49 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:dec7e3b7-5f6b-44f4-aab5-882027d8814a",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-50 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-50 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-50 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "ce934eea-cfa3-4377-8cf1-96981b763091",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-50 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "ce934eea-cfa3-4377-8cf1-96981b763091",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-50 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:ce934eea-cfa3-4377-8cf1-96981b763091",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-50 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:ce934eea-cfa3-4377-8cf1-96981b763091",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-51 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-51 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-51 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "31a18510-ffa4-4ae5-8957-7c5d8b12134f",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-51 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "31a18510-ffa4-4ae5-8957-7c5d8b12134f",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-51 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:31a18510-ffa4-4ae5-8957-7c5d8b12134f",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-51 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:31a18510-ffa4-4ae5-8957-7c5d8b12134f",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-52 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-52 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-52 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "f88132f1-1bce-4077-91dc-a9f375abfb74",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-52 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "f88132f1-1bce-4077-91dc-a9f375abfb74",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-52 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:f88132f1-1bce-4077-91dc-a9f375abfb74",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-52 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:f88132f1-1bce-4077-91dc-a9f375abfb74",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-53 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-53 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-53 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "74f58c24-811a-4d04-8255-9c1a74b1d526",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-53 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "74f58c24-811a-4d04-8255-9c1a74b1d526",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-53 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:74f58c24-811a-4d04-8255-9c1a74b1d526",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-53 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:74f58c24-811a-4d04-8255-9c1a74b1d526",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-54 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-54 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-54 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "d4d9f4a8-d933-4aaa-8f50-772e30181eef",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-54 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "d4d9f4a8-d933-4aaa-8f50-772e30181eef",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-54 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:d4d9f4a8-d933-4aaa-8f50-772e30181eef",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-54 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:d4d9f4a8-d933-4aaa-8f50-772e30181eef",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-55 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-55 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-55 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "854a5891-3e13-4005-8d02-5810ad277b41",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-55 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "854a5891-3e13-4005-8d02-5810ad277b41",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-55 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:854a5891-3e13-4005-8d02-5810ad277b41",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-55 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:854a5891-3e13-4005-8d02-5810ad277b41",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-56 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-56 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-56 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "7f5d030b-f7b6-4321-9718-918da865adbd",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-56 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "7f5d030b-f7b6-4321-9718-918da865adbd",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-56 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:7f5d030b-f7b6-4321-9718-918da865adbd",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-56 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:7f5d030b-f7b6-4321-9718-918da865adbd",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-57 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-57 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-57 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "e7d9fcb4-f204-48ab-99b4-c4c32375f022",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-57 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "e7d9fcb4-f204-48ab-99b4-c4c32375f022",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-57 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:e7d9fcb4-f204-48ab-99b4-c4c32375f022",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-57 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:e7d9fcb4-f204-48ab-99b4-c4c32375f022",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-58 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-58 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-58 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "667bfb01-fcca-4c40-a776-4afa76087dec",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-58 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "667bfb01-fcca-4c40-a776-4afa76087dec",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-58 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:667bfb01-fcca-4c40-a776-4afa76087dec",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-58 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:667bfb01-fcca-4c40-a776-4afa76087dec",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-59 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-59 status",
+    "pass": true,
+    "detail": 404
+  },
+  {
+    "claim": "rate-59 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "e911d4c0-f743-410d-8193-939e54d3dc88",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-59 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "e911d4c0-f743-410d-8193-939e54d3dc88",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-59 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:e911d4c0-f743-410d-8193-939e54d3dc88",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-59 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:e911d4c0-f743-410d-8193-939e54d3dc88",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "claim": "rate-60 curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rate-60 status",
+    "pass": true,
+    "detail": 429
+  },
+  {
+    "claim": "rate-60 requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "b6ea9fb7-e675-4f9f-81ad-5446453a3818",
+      "retry-after": "1",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-60 no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "b6ea9fb7-e675-4f9f-81ad-5446453a3818",
+      "retry-after": "1",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "Sat, 03 Oct 2026 23:41:23 GMT"
+    }
+  },
+  {
+    "claim": "rate-60 RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:b6ea9fb7-e675-4f9f-81ad-5446453a3818",
+      "status": 429,
+      "title": "Too Many Requests"
+    }
+  },
+  {
+    "claim": "rate-60 problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:b6ea9fb7-e675-4f9f-81ad-5446453a3818",
+      "status": 429,
+      "title": "Too Many Requests"
+    }
+  },
+  {
+    "claim": "429 retry header",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "default-limiter process stopped",
+    "pass": true,
+    "detail": {
+      "pid": 62570,
+      "exit": 0
+    }
+  },
+  {
+    "claim": "f6-create-release-A curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "f6-create-release-A status",
+    "pass": true,
+    "detail": 201
+  },
+  {
+    "claim": "f6-create-release-A requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "6753311e-d43e-4e8f-98ef-4ab1e50fd652",
+      "location": "/api/links/HN18dQsv",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:25 GMT"
+    }
+  },
+  {
+    "claim": "f6-create-release-A no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "6753311e-d43e-4e8f-98ef-4ab1e50fd652",
+      "location": "/api/links/HN18dQsv",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:25 GMT"
+    }
+  },
+  {
+    "claim": "f6-create-retired curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "f6-create-retired status",
+    "pass": true,
+    "detail": 201
+  },
+  {
+    "claim": "f6-create-retired requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "8d4fddd1-5bc4-441e-b03c-ca56a2651f79",
+      "location": "/api/links/hndYxOXM",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:25 GMT"
+    }
+  },
+  {
+    "claim": "f6-create-retired no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "8d4fddd1-5bc4-441e-b03c-ca56a2651f79",
+      "location": "/api/links/hndYxOXM",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:25 GMT"
+    }
+  },
+  {
+    "claim": "f6-retire-R curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "f6-retire-R status",
+    "pass": true,
+    "detail": 204
+  },
+  {
+    "claim": "f6-retire-R requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "27051fff-b7da-4423-a043-b36156fb043e",
+      "date": "Sat, 03 Oct 2026 23:41:25 GMT"
+    }
+  },
+  {
+    "claim": "f6-retire-R no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "27051fff-b7da-4423-a043-b36156fb043e",
+      "date": "Sat, 03 Oct 2026 23:41:25 GMT"
+    }
+  },
+  {
+    "claim": "f6-writer-1 process stopped",
+    "pass": true,
+    "detail": {
+      "pid": 62860,
+      "exit": 143
+    }
+  },
+  {
+    "claim": "f6-clock-fixture JDBC exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "f6-create-release-B curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "f6-create-release-B status",
+    "pass": true,
+    "detail": 201
+  },
+  {
+    "claim": "f6-create-release-B requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "b1a6308d-3db0-46a9-8c9f-42d5e9346185",
+      "location": "/api/links/PYYxocF2",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:28 GMT"
+    }
+  },
+  {
+    "claim": "f6-create-release-B no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "b1a6308d-3db0-46a9-8c9f-42d5e9346185",
+      "location": "/api/links/PYYxocF2",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:28 GMT"
+    }
+  },
+  {
+    "claim": "f6-create-active curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "f6-create-active status",
+    "pass": true,
+    "detail": 201
+  },
+  {
+    "claim": "f6-create-active requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "b465050f-0c88-42fa-afe8-28fe21aab7b5",
+      "location": "/api/links/W6Ck7ND1",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:28 GMT"
+    }
+  },
+  {
+    "claim": "f6-create-active no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "b465050f-0c88-42fa-afe8-28fe21aab7b5",
+      "location": "/api/links/W6Ck7ND1",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:28 GMT"
+    }
+  },
+  {
+    "claim": "f6-redirect-active curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "f6-redirect-active status",
+    "pass": true,
+    "detail": 302
+  },
+  {
+    "claim": "f6-redirect-active requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "a4bece29-39d7-4aaf-a8b9-3968705a2a1b",
+      "location": "https://example.com/shipped-C",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 23:41:28 GMT"
+    }
+  },
+  {
+    "claim": "f6-redirect-active no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "a4bece29-39d7-4aaf-a8b9-3968705a2a1b",
+      "location": "https://example.com/shipped-C",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "Sat, 03 Oct 2026 23:41:28 GMT"
+    }
+  },
+  {
+    "claim": "f6-writer-2 process stopped",
+    "pass": true,
+    "detail": {
+      "pid": 63060,
+      "exit": 143
+    }
+  },
+  {
+    "claim": "f6-future-event-fixture JDBC exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "upgrade-before-f6 JDBC exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "AC7 real shipped key release",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "upgraded-active-read curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "upgraded-active-read status",
+    "pass": true,
+    "detail": 200
+  },
+  {
+    "claim": "upgraded-active-read requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "8c124ba1-a9ec-448f-8b88-34aad5cc5de9",
+      "content-type": "application/json",
+      "content-length": "158",
+      "date": "Sat, 03 Oct 2026 23:41:31 GMT"
+    }
+  },
+  {
+    "claim": "upgraded-active-read no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "8c124ba1-a9ec-448f-8b88-34aad5cc5de9",
+      "content-type": "application/json",
+      "content-length": "158",
+      "date": "Sat, 03 Oct 2026 23:41:31 GMT"
+    }
+  },
+  {
+    "claim": "upgraded-retired-redirect curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "upgraded-retired-redirect status",
+    "pass": true,
+    "detail": 410
+  },
+  {
+    "claim": "upgraded-retired-redirect requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "9eb414d1-6c6c-4468-95bf-e157f2cc74dd",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:32 GMT"
+    }
+  },
+  {
+    "claim": "upgraded-retired-redirect no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "9eb414d1-6c6c-4468-95bf-e157f2cc74dd",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:32 GMT"
+    }
+  },
+  {
+    "claim": "upgraded-retired-redirect RFC9457",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:9eb414d1-6c6c-4468-95bf-e157f2cc74dd",
+      "status": 410,
+      "title": "Gone"
+    }
+  },
+  {
+    "claim": "upgraded-retired-redirect problem requestId",
+    "pass": true,
+    "detail": {
+      "instance": "urn:uuid:9eb414d1-6c6c-4468-95bf-e157f2cc74dd",
+      "status": 410,
+      "title": "Gone"
+    }
+  },
+  {
+    "claim": "upgraded-audit-eight-fields curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "upgraded-audit-eight-fields status",
+    "pass": true,
+    "detail": 200
+  },
+  {
+    "claim": "upgraded-audit-eight-fields requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "3d3c76f5-542e-49d6-8543-7cf417795036",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:32 GMT"
+    }
+  },
+  {
+    "claim": "upgraded-audit-eight-fields no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "3d3c76f5-542e-49d6-8543-7cf417795036",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:32 GMT"
+    }
+  },
+  {
+    "claim": "upgraded-audit-eight-fields exact shipped fields",
+    "pass": true,
+    "detail": {
+      "items": [
+        {
+          "occurredAt": "2026-10-05T23:41:29.151533Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "HN18dQsv",
+          "requestId": "qa04-future-event",
+          "before": null,
+          "after": {
+            "url": "https://example.com/shipped-A",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-03T23:41:28.552Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "W6Ck7ND1",
+          "requestId": "b465050f-0c88-42fa-afe8-28fe21aab7b5",
+          "before": null,
+          "after": {
+            "url": "https://example.com/shipped-C",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-03T23:41:28.514Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "PYYxocF2",
+          "requestId": "b1a6308d-3db0-46a9-8c9f-42d5e9346185",
+          "before": null,
+          "after": {
+            "url": "https://example.com/shipped-B",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-03T23:41:25.906Z",
+          "actor": "anonymous",
+          "action": "link.retire",
+          "entity": "link",
+          "entityId": "hndYxOXM",
+          "requestId": "27051fff-b7da-4423-a043-b36156fb043e",
+          "before": {
+            "url": "https://example.com/shipped-R",
+            "state": "active"
+          },
+          "after": {
+            "url": "https://example.com/shipped-R",
+            "state": "retired"
+          }
+        },
+        {
+          "occurredAt": "2026-10-03T23:41:25.880Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "hndYxOXM",
+          "requestId": "8d4fddd1-5bc4-441e-b03c-ca56a2651f79",
+          "before": null,
+          "after": {
+            "url": "https://example.com/shipped-R",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-03T23:41:25.843Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "HN18dQsv",
+          "requestId": "6753311e-d43e-4e8f-98ef-4ab1e50fd652",
+          "before": null,
+          "after": {
+            "url": "https://example.com/shipped-A",
+            "state": "active"
+          }
+        }
+      ],
+      "next": null
+    }
+  },
+  {
+    "claim": "upgraded-audit-eight-fields row0 eight fields",
+    "pass": true,
+    "detail": {
+      "occurredAt": "2026-10-05T23:41:29.151533Z",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entityId": "HN18dQsv",
+      "requestId": "qa04-future-event",
+      "before": null,
+      "after": {
+        "url": "https://example.com/shipped-A",
+        "state": "active"
+      }
+    }
+  },
+  {
+    "claim": "upgraded-audit-eight-fields row1 eight fields",
+    "pass": true,
+    "detail": {
+      "occurredAt": "2026-10-03T23:41:28.552Z",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entityId": "W6Ck7ND1",
+      "requestId": "b465050f-0c88-42fa-afe8-28fe21aab7b5",
+      "before": null,
+      "after": {
+        "url": "https://example.com/shipped-C",
+        "state": "active"
+      }
+    }
+  },
+  {
+    "claim": "upgraded-audit-eight-fields row2 eight fields",
+    "pass": true,
+    "detail": {
+      "occurredAt": "2026-10-03T23:41:28.514Z",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entityId": "PYYxocF2",
+      "requestId": "b1a6308d-3db0-46a9-8c9f-42d5e9346185",
+      "before": null,
+      "after": {
+        "url": "https://example.com/shipped-B",
+        "state": "active"
+      }
+    }
+  },
+  {
+    "claim": "upgraded-audit-eight-fields row3 eight fields",
+    "pass": true,
+    "detail": {
+      "occurredAt": "2026-10-03T23:41:25.906Z",
+      "actor": "anonymous",
+      "action": "link.retire",
+      "entity": "link",
+      "entityId": "hndYxOXM",
+      "requestId": "27051fff-b7da-4423-a043-b36156fb043e",
+      "before": {
+        "url": "https://example.com/shipped-R",
+        "state": "active"
+      },
+      "after": {
+        "url": "https://example.com/shipped-R",
+        "state": "retired"
+      }
+    }
+  },
+  {
+    "claim": "upgraded-audit-eight-fields row4 eight fields",
+    "pass": true,
+    "detail": {
+      "occurredAt": "2026-10-03T23:41:25.880Z",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entityId": "hndYxOXM",
+      "requestId": "8d4fddd1-5bc4-441e-b03c-ca56a2651f79",
+      "before": null,
+      "after": {
+        "url": "https://example.com/shipped-R",
+        "state": "active"
+      }
+    }
+  },
+  {
+    "claim": "upgraded-audit-eight-fields row5 eight fields",
+    "pass": true,
+    "detail": {
+      "occurredAt": "2026-10-03T23:41:25.843Z",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entityId": "HN18dQsv",
+      "requestId": "6753311e-d43e-4e8f-98ef-4ab1e50fd652",
+      "before": null,
+      "after": {
+        "url": "https://example.com/shipped-A",
+        "state": "active"
+      }
+    }
+  },
+  {
+    "claim": "candidate-upgrade process stopped",
+    "pass": true,
+    "detail": {
+      "pid": 63312,
+      "exit": 143
+    }
+  },
+  {
+    "claim": "upgrade-after-candidate JDBC exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "AC7 every legacy link/audit value preserved",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC7 history V1-V4 successful",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC1 all legacy column metadata preserved",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC1 constraints unchanged",
+    "pass": true,
+    "detail": {
+      "before": [
+        {
+          "table_name": "AUDIT_LOG",
+          "constraint_type": "PRIMARY KEY",
+          "column_name": "ID",
+          "ordinal_position": "1",
+          "check_clause": null
+        },
+        {
+          "table_name": "LINK",
+          "constraint_type": "CHECK",
+          "column_name": null,
+          "ordinal_position": null,
+          "check_clause": "\"URL\" <> ''"
+        },
+        {
+          "table_name": "LINK",
+          "constraint_type": "CHECK",
+          "column_name": null,
+          "ordinal_position": null,
+          "check_clause": "CHAR_LENGTH(\"CODE\") >= 6"
+        },
+        {
+          "table_name": "LINK",
+          "constraint_type": "PRIMARY KEY",
+          "column_name": "ID",
+          "ordinal_position": "1",
+          "check_clause": null
+        },
+        {
+          "table_name": "LINK",
+          "constraint_type": "UNIQUE",
+          "column_name": "CODE",
+          "ordinal_position": "1",
+          "check_clause": null
+        },
+        {
+          "table_name": "LINK",
+          "constraint_type": "UNIQUE",
+          "column_name": "IDEMPOTENCY_KEY",
+          "ordinal_position": "1",
+          "check_clause": null
+        }
+      ],
+      "after": [
+        {
+          "table_name": "AUDIT_LOG",
+          "constraint_type": "PRIMARY KEY",
+          "column_name": "ID",
+          "ordinal_position": "1",
+          "check_clause": null
+        },
+        {
+          "table_name": "LINK",
+          "constraint_type": "CHECK",
+          "column_name": null,
+          "ordinal_position": null,
+          "check_clause": "\"URL\" <> ''"
+        },
+        {
+          "table_name": "LINK",
+          "constraint_type": "CHECK",
+          "column_name": null,
+          "ordinal_position": null,
+          "check_clause": "CHAR_LENGTH(\"CODE\") >= 6"
+        },
+        {
+          "table_name": "LINK",
+          "constraint_type": "PRIMARY KEY",
+          "column_name": "ID",
+          "ordinal_position": "1",
+          "check_clause": null
+        },
+        {
+          "table_name": "LINK",
+          "constraint_type": "UNIQUE",
+          "column_name": "CODE",
+          "ordinal_position": "1",
+          "check_clause": null
+        },
+        {
+          "table_name": "LINK",
+          "constraint_type": "UNIQUE",
+          "column_name": "IDEMPOTENCY_KEY",
+          "ordinal_position": "1",
+          "check_clause": null
+        }
+      ]
+    }
+  },
+  {
+    "claim": "AC1 LINK added exactly",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC1 LINK.UPDATED_AT type/nullability",
+    "pass": true,
+    "detail": {
+      "table_name": "LINK",
+      "column_name": "UPDATED_AT",
+      "data_type": "TIMESTAMP WITH TIME ZONE",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "character_maximum_length": null,
+      "datetime_precision": "6"
+    }
+  },
+  {
+    "claim": "AC1 LINK.CREATED_BY type/nullability",
+    "pass": true,
+    "detail": {
+      "table_name": "LINK",
+      "column_name": "CREATED_BY",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "NO",
+      "column_default": "'anonymous'",
+      "character_maximum_length": "64",
+      "datetime_precision": null
+    }
+  },
+  {
+    "claim": "AC1 LINK.UPDATED_BY type/nullability",
+    "pass": true,
+    "detail": {
+      "table_name": "LINK",
+      "column_name": "UPDATED_BY",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "NO",
+      "column_default": "'anonymous'",
+      "character_maximum_length": "64",
+      "datetime_precision": null
+    }
+  },
+  {
+    "claim": "AC1 AUDIT_LOG added exactly",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC1 AUDIT_LOG.CREATED_AT type/nullability",
+    "pass": true,
+    "detail": {
+      "table_name": "AUDIT_LOG",
+      "column_name": "CREATED_AT",
+      "data_type": "TIMESTAMP WITH TIME ZONE",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "character_maximum_length": null,
+      "datetime_precision": "6"
+    }
+  },
+  {
+    "claim": "AC1 AUDIT_LOG.UPDATED_AT type/nullability",
+    "pass": true,
+    "detail": {
+      "table_name": "AUDIT_LOG",
+      "column_name": "UPDATED_AT",
+      "data_type": "TIMESTAMP WITH TIME ZONE",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "character_maximum_length": null,
+      "datetime_precision": "6"
+    }
+  },
+  {
+    "claim": "AC1 AUDIT_LOG.CREATED_BY type/nullability",
+    "pass": true,
+    "detail": {
+      "table_name": "AUDIT_LOG",
+      "column_name": "CREATED_BY",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "NO",
+      "column_default": "'anonymous'",
+      "character_maximum_length": "64",
+      "datetime_precision": null
+    }
+  },
+  {
+    "claim": "AC1 AUDIT_LOG.UPDATED_BY type/nullability",
+    "pass": true,
+    "detail": {
+      "table_name": "AUDIT_LOG",
+      "column_name": "UPDATED_BY",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "NO",
+      "column_default": "'anonymous'",
+      "character_maximum_length": "64",
+      "datetime_precision": null
+    }
+  },
+  {
+    "claim": "AC7 HN18dQsv latest known write",
+    "pass": true,
+    "detail": {
+      "id": "1",
+      "code": "HN18dQsv",
+      "url": "https://example.com/shipped-A",
+      "created_at": "2026-10-01 16:41:25.798-07",
+      "retired_at": null,
+      "idempotency_key": null,
+      "updated_at": "2026-10-01 16:41:25.798-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC7 HN18dQsv anonymous actors",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC7 hndYxOXM latest known write",
+    "pass": true,
+    "detail": {
+      "id": "2",
+      "code": "hndYxOXM",
+      "url": "https://example.com/shipped-R",
+      "created_at": "2026-10-03 16:41:25.879-07",
+      "retired_at": "2026-10-03 16:41:25.905-07",
+      "idempotency_key": null,
+      "updated_at": "2026-10-03 16:41:25.905-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC7 hndYxOXM anonymous actors",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC7 PYYxocF2 latest known write",
+    "pass": true,
+    "detail": {
+      "id": "3",
+      "code": "PYYxocF2",
+      "url": "https://example.com/shipped-B",
+      "created_at": "2026-10-03 16:41:28.457-07",
+      "retired_at": null,
+      "idempotency_key": "shipped-key",
+      "updated_at": "2026-10-03 16:41:28.457-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC7 PYYxocF2 anonymous actors",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC7 W6Ck7ND1 latest known write",
+    "pass": true,
+    "detail": {
+      "id": "4",
+      "code": "W6Ck7ND1",
+      "url": "https://example.com/shipped-C",
+      "created_at": "2026-10-03 16:41:28.551-07",
+      "retired_at": null,
+      "idempotency_key": null,
+      "updated_at": "2026-10-03 16:41:28.551-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC7 W6Ck7ND1 anonymous actors",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC7-audit-1 equal filled audit row clocks",
+    "pass": true,
+    "detail": {
+      "id": "1",
+      "occurred_at": "2026-10-03 23:41:25.843+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "HN18dQsv",
+      "request_id": "6753311e-d43e-4e8f-98ef-4ab1e50fd652",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/shipped-A\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 23:41:25.843+00",
+      "updated_at": "2026-10-03 23:41:25.843+00",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC7-audit-1 actor equality",
+    "pass": true,
+    "detail": {
+      "id": "1",
+      "occurred_at": "2026-10-03 23:41:25.843+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "HN18dQsv",
+      "request_id": "6753311e-d43e-4e8f-98ef-4ab1e50fd652",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/shipped-A\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 23:41:25.843+00",
+      "updated_at": "2026-10-03 23:41:25.843+00",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC7 row time <= upgrade",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC7 past event backfilled exactly",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC7-audit-2 equal filled audit row clocks",
+    "pass": true,
+    "detail": {
+      "id": "2",
+      "occurred_at": "2026-10-03 23:41:25.88+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "hndYxOXM",
+      "request_id": "8d4fddd1-5bc4-441e-b03c-ca56a2651f79",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/shipped-R\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 23:41:25.88+00",
+      "updated_at": "2026-10-03 23:41:25.88+00",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC7-audit-2 actor equality",
+    "pass": true,
+    "detail": {
+      "id": "2",
+      "occurred_at": "2026-10-03 23:41:25.88+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "hndYxOXM",
+      "request_id": "8d4fddd1-5bc4-441e-b03c-ca56a2651f79",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/shipped-R\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 23:41:25.88+00",
+      "updated_at": "2026-10-03 23:41:25.88+00",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC7 row time <= upgrade",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC7 past event backfilled exactly",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC7-audit-3 equal filled audit row clocks",
+    "pass": true,
+    "detail": {
+      "id": "3",
+      "occurred_at": "2026-10-03 23:41:25.906+00",
+      "actor": "anonymous",
+      "action": "link.retire",
+      "entity": "link",
+      "entity_id": "hndYxOXM",
+      "request_id": "27051fff-b7da-4423-a043-b36156fb043e",
+      "before_state": "{\"url\":\"https://example.com/shipped-R\",\"state\":\"active\"}",
+      "after_state": "{\"url\":\"https://example.com/shipped-R\",\"state\":\"retired\"}",
+      "created_at": "2026-10-03 23:41:25.906+00",
+      "updated_at": "2026-10-03 23:41:25.906+00",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC7-audit-3 actor equality",
+    "pass": true,
+    "detail": {
+      "id": "3",
+      "occurred_at": "2026-10-03 23:41:25.906+00",
+      "actor": "anonymous",
+      "action": "link.retire",
+      "entity": "link",
+      "entity_id": "hndYxOXM",
+      "request_id": "27051fff-b7da-4423-a043-b36156fb043e",
+      "before_state": "{\"url\":\"https://example.com/shipped-R\",\"state\":\"active\"}",
+      "after_state": "{\"url\":\"https://example.com/shipped-R\",\"state\":\"retired\"}",
+      "created_at": "2026-10-03 23:41:25.906+00",
+      "updated_at": "2026-10-03 23:41:25.906+00",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC7 row time <= upgrade",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC7 past event backfilled exactly",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC7-audit-4 equal filled audit row clocks",
+    "pass": true,
+    "detail": {
+      "id": "4",
+      "occurred_at": "2026-10-03 23:41:28.514+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "PYYxocF2",
+      "request_id": "b1a6308d-3db0-46a9-8c9f-42d5e9346185",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/shipped-B\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 23:41:28.514+00",
+      "updated_at": "2026-10-03 23:41:28.514+00",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC7-audit-4 actor equality",
+    "pass": true,
+    "detail": {
+      "id": "4",
+      "occurred_at": "2026-10-03 23:41:28.514+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "PYYxocF2",
+      "request_id": "b1a6308d-3db0-46a9-8c9f-42d5e9346185",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/shipped-B\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 23:41:28.514+00",
+      "updated_at": "2026-10-03 23:41:28.514+00",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC7 row time <= upgrade",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC7 past event backfilled exactly",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC7-audit-5 equal filled audit row clocks",
+    "pass": true,
+    "detail": {
+      "id": "5",
+      "occurred_at": "2026-10-03 23:41:28.552+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "W6Ck7ND1",
+      "request_id": "b465050f-0c88-42fa-afe8-28fe21aab7b5",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/shipped-C\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 23:41:28.552+00",
+      "updated_at": "2026-10-03 23:41:28.552+00",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC7-audit-5 actor equality",
+    "pass": true,
+    "detail": {
+      "id": "5",
+      "occurred_at": "2026-10-03 23:41:28.552+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "W6Ck7ND1",
+      "request_id": "b465050f-0c88-42fa-afe8-28fe21aab7b5",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/shipped-C\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 23:41:28.552+00",
+      "updated_at": "2026-10-03 23:41:28.552+00",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC7 row time <= upgrade",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC7 past event backfilled exactly",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC7-audit-6 equal filled audit row clocks",
+    "pass": true,
+    "detail": {
+      "id": "6",
+      "occurred_at": "2026-10-05 16:41:29.151533-07",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "HN18dQsv",
+      "request_id": "qa04-future-event",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/shipped-A\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 16:41:31.317418-07",
+      "updated_at": "2026-10-03 16:41:31.317418-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC7-audit-6 actor equality",
+    "pass": true,
+    "detail": {
+      "id": "6",
+      "occurred_at": "2026-10-05 16:41:29.151533-07",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "HN18dQsv",
+      "request_id": "qa04-future-event",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/shipped-A\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 16:41:31.317418-07",
+      "updated_at": "2026-10-03 16:41:31.317418-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC7 row time <= upgrade",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC7 future event capped without changing occurred_at",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "upgraded-new-create curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "upgraded-new-create status",
+    "pass": true,
+    "detail": 201
+  },
+  {
+    "claim": "upgraded-new-create requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "819c372d-dff0-4490-8919-da44ae4d598d",
+      "location": "/api/links/ipHQ2AqP",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:34 GMT"
+    }
+  },
+  {
+    "claim": "upgraded-new-create no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "819c372d-dff0-4490-8919-da44ae4d598d",
+      "location": "/api/links/ipHQ2AqP",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:34 GMT"
+    }
+  },
+  {
+    "claim": "upgraded-new-retire curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "upgraded-new-retire status",
+    "pass": true,
+    "detail": 204
+  },
+  {
+    "claim": "upgraded-new-retire requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "0fd9f26b-afb0-494c-861e-162511e9b4d4",
+      "date": "Sat, 03 Oct 2026 23:41:34 GMT"
+    }
+  },
+  {
+    "claim": "upgraded-new-retire no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "0fd9f26b-afb0-494c-861e-162511e9b4d4",
+      "date": "Sat, 03 Oct 2026 23:41:34 GMT"
+    }
+  },
+  {
+    "claim": "candidate-new-writes process stopped",
+    "pass": true,
+    "detail": {
+      "pid": 63437,
+      "exit": 143
+    }
+  },
+  {
+    "claim": "before-rollback-copy JDBC exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "AC6-upgraded-audit-1 equal filled audit row clocks",
+    "pass": true,
+    "detail": {
+      "id": "1",
+      "occurred_at": "2026-10-03 23:41:25.843+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "HN18dQsv",
+      "request_id": "6753311e-d43e-4e8f-98ef-4ab1e50fd652",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/shipped-A\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 23:41:25.843+00",
+      "updated_at": "2026-10-03 23:41:25.843+00",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC6-upgraded-audit-1 actor equality",
+    "pass": true,
+    "detail": {
+      "id": "1",
+      "occurred_at": "2026-10-03 23:41:25.843+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "HN18dQsv",
+      "request_id": "6753311e-d43e-4e8f-98ef-4ab1e50fd652",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/shipped-A\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 23:41:25.843+00",
+      "updated_at": "2026-10-03 23:41:25.843+00",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC6-upgraded-audit-2 equal filled audit row clocks",
+    "pass": true,
+    "detail": {
+      "id": "2",
+      "occurred_at": "2026-10-03 23:41:25.88+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "hndYxOXM",
+      "request_id": "8d4fddd1-5bc4-441e-b03c-ca56a2651f79",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/shipped-R\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 23:41:25.88+00",
+      "updated_at": "2026-10-03 23:41:25.88+00",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC6-upgraded-audit-2 actor equality",
+    "pass": true,
+    "detail": {
+      "id": "2",
+      "occurred_at": "2026-10-03 23:41:25.88+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "hndYxOXM",
+      "request_id": "8d4fddd1-5bc4-441e-b03c-ca56a2651f79",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/shipped-R\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 23:41:25.88+00",
+      "updated_at": "2026-10-03 23:41:25.88+00",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC6-upgraded-audit-3 equal filled audit row clocks",
+    "pass": true,
+    "detail": {
+      "id": "3",
+      "occurred_at": "2026-10-03 23:41:25.906+00",
+      "actor": "anonymous",
+      "action": "link.retire",
+      "entity": "link",
+      "entity_id": "hndYxOXM",
+      "request_id": "27051fff-b7da-4423-a043-b36156fb043e",
+      "before_state": "{\"url\":\"https://example.com/shipped-R\",\"state\":\"active\"}",
+      "after_state": "{\"url\":\"https://example.com/shipped-R\",\"state\":\"retired\"}",
+      "created_at": "2026-10-03 23:41:25.906+00",
+      "updated_at": "2026-10-03 23:41:25.906+00",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC6-upgraded-audit-3 actor equality",
+    "pass": true,
+    "detail": {
+      "id": "3",
+      "occurred_at": "2026-10-03 23:41:25.906+00",
+      "actor": "anonymous",
+      "action": "link.retire",
+      "entity": "link",
+      "entity_id": "hndYxOXM",
+      "request_id": "27051fff-b7da-4423-a043-b36156fb043e",
+      "before_state": "{\"url\":\"https://example.com/shipped-R\",\"state\":\"active\"}",
+      "after_state": "{\"url\":\"https://example.com/shipped-R\",\"state\":\"retired\"}",
+      "created_at": "2026-10-03 23:41:25.906+00",
+      "updated_at": "2026-10-03 23:41:25.906+00",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC6-upgraded-audit-4 equal filled audit row clocks",
+    "pass": true,
+    "detail": {
+      "id": "4",
+      "occurred_at": "2026-10-03 23:41:28.514+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "PYYxocF2",
+      "request_id": "b1a6308d-3db0-46a9-8c9f-42d5e9346185",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/shipped-B\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 23:41:28.514+00",
+      "updated_at": "2026-10-03 23:41:28.514+00",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC6-upgraded-audit-4 actor equality",
+    "pass": true,
+    "detail": {
+      "id": "4",
+      "occurred_at": "2026-10-03 23:41:28.514+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "PYYxocF2",
+      "request_id": "b1a6308d-3db0-46a9-8c9f-42d5e9346185",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/shipped-B\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 23:41:28.514+00",
+      "updated_at": "2026-10-03 23:41:28.514+00",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC6-upgraded-audit-5 equal filled audit row clocks",
+    "pass": true,
+    "detail": {
+      "id": "5",
+      "occurred_at": "2026-10-03 23:41:28.552+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "W6Ck7ND1",
+      "request_id": "b465050f-0c88-42fa-afe8-28fe21aab7b5",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/shipped-C\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 23:41:28.552+00",
+      "updated_at": "2026-10-03 23:41:28.552+00",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC6-upgraded-audit-5 actor equality",
+    "pass": true,
+    "detail": {
+      "id": "5",
+      "occurred_at": "2026-10-03 23:41:28.552+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "W6Ck7ND1",
+      "request_id": "b465050f-0c88-42fa-afe8-28fe21aab7b5",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/shipped-C\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 23:41:28.552+00",
+      "updated_at": "2026-10-03 23:41:28.552+00",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC6-upgraded-audit-6 equal filled audit row clocks",
+    "pass": true,
+    "detail": {
+      "id": "6",
+      "occurred_at": "2026-10-05 16:41:29.151533-07",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "HN18dQsv",
+      "request_id": "qa04-future-event",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/shipped-A\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 16:41:31.317418-07",
+      "updated_at": "2026-10-03 16:41:31.317418-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC6-upgraded-audit-6 actor equality",
+    "pass": true,
+    "detail": {
+      "id": "6",
+      "occurred_at": "2026-10-05 16:41:29.151533-07",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "HN18dQsv",
+      "request_id": "qa04-future-event",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/shipped-A\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 16:41:31.317418-07",
+      "updated_at": "2026-10-03 16:41:31.317418-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC6-upgraded-audit-7 equal filled audit row clocks",
+    "pass": true,
+    "detail": {
+      "id": "7",
+      "occurred_at": "2026-10-03 23:41:34.616+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "ipHQ2AqP",
+      "request_id": "819c372d-dff0-4490-8919-da44ae4d598d",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/upgraded-new\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 16:41:34.608953-07",
+      "updated_at": "2026-10-03 16:41:34.608953-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC6-upgraded-audit-7 actor equality",
+    "pass": true,
+    "detail": {
+      "id": "7",
+      "occurred_at": "2026-10-03 23:41:34.616+00",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entity_id": "ipHQ2AqP",
+      "request_id": "819c372d-dff0-4490-8919-da44ae4d598d",
+      "before_state": null,
+      "after_state": "{\"url\":\"https://example.com/upgraded-new\",\"state\":\"active\"}",
+      "created_at": "2026-10-03 16:41:34.608953-07",
+      "updated_at": "2026-10-03 16:41:34.608953-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC6-upgraded-audit-8 equal filled audit row clocks",
+    "pass": true,
+    "detail": {
+      "id": "8",
+      "occurred_at": "2026-10-03 23:41:34.67+00",
+      "actor": "anonymous",
+      "action": "link.retire",
+      "entity": "link",
+      "entity_id": "ipHQ2AqP",
+      "request_id": "0fd9f26b-afb0-494c-861e-162511e9b4d4",
+      "before_state": "{\"url\":\"https://example.com/upgraded-new\",\"state\":\"active\"}",
+      "after_state": "{\"url\":\"https://example.com/upgraded-new\",\"state\":\"retired\"}",
+      "created_at": "2026-10-03 16:41:34.671041-07",
+      "updated_at": "2026-10-03 16:41:34.671041-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC6-upgraded-audit-8 actor equality",
+    "pass": true,
+    "detail": {
+      "id": "8",
+      "occurred_at": "2026-10-03 23:41:34.67+00",
+      "actor": "anonymous",
+      "action": "link.retire",
+      "entity": "link",
+      "entity_id": "ipHQ2AqP",
+      "request_id": "0fd9f26b-afb0-494c-861e-162511e9b4d4",
+      "before_state": "{\"url\":\"https://example.com/upgraded-new\",\"state\":\"active\"}",
+      "after_state": "{\"url\":\"https://example.com/upgraded-new\",\"state\":\"retired\"}",
+      "created_at": "2026-10-03 16:41:34.671041-07",
+      "updated_at": "2026-10-03 16:41:34.671041-07",
+      "created_by": "anonymous",
+      "updated_by": "anonymous"
+    }
+  },
+  {
+    "claim": "AC11 literal header eight statements",
+    "pass": true,
+    "detail": [
+      "ALTER TABLE link DROP COLUMN updated_by",
+      "ALTER TABLE link DROP COLUMN created_by",
+      "ALTER TABLE link DROP COLUMN updated_at",
+      "ALTER TABLE audit_log DROP COLUMN updated_by",
+      "ALTER TABLE audit_log DROP COLUMN created_by",
+      "ALTER TABLE audit_log DROP COLUMN updated_at",
+      "ALTER TABLE audit_log DROP COLUMN created_at",
+      "DELETE FROM \"flyway_schema_history\" WHERE \"version\" = '4'"
+    ]
+  },
+  {
+    "claim": "rollback-literal-header JDBC exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "rollback-after JDBC exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "AC11 exact pre-V4 metadata/constraints",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC11 every legacy value preserved",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC11 keeps V1-V3",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "reapplied-audit-read curl exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "reapplied-audit-read status",
+    "pass": true,
+    "detail": 200
+  },
+  {
+    "claim": "reapplied-audit-read requestId",
+    "pass": true,
+    "detail": {
+      "x-request-id": "508ccd15-b2a3-4ef0-abd0-327caffea225",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:38 GMT"
+    }
+  },
+  {
+    "claim": "reapplied-audit-read no added-column headers",
+    "pass": true,
+    "detail": {
+      "x-request-id": "508ccd15-b2a3-4ef0-abd0-327caffea225",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "Sat, 03 Oct 2026 23:41:38 GMT"
+    }
+  },
+  {
+    "claim": "reapplied-audit-read exact shipped fields",
+    "pass": true,
+    "detail": {
+      "items": [
+        {
+          "occurredAt": "2026-10-03T23:41:34.670Z",
+          "actor": "anonymous",
+          "action": "link.retire",
+          "entity": "link",
+          "entityId": "ipHQ2AqP",
+          "requestId": "0fd9f26b-afb0-494c-861e-162511e9b4d4",
+          "before": {
+            "url": "https://example.com/upgraded-new",
+            "state": "active"
+          },
+          "after": {
+            "url": "https://example.com/upgraded-new",
+            "state": "retired"
+          }
+        },
+        {
+          "occurredAt": "2026-10-03T23:41:34.616Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "ipHQ2AqP",
+          "requestId": "819c372d-dff0-4490-8919-da44ae4d598d",
+          "before": null,
+          "after": {
+            "url": "https://example.com/upgraded-new",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-05T23:41:29.151533Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "HN18dQsv",
+          "requestId": "qa04-future-event",
+          "before": null,
+          "after": {
+            "url": "https://example.com/shipped-A",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-03T23:41:28.552Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "W6Ck7ND1",
+          "requestId": "b465050f-0c88-42fa-afe8-28fe21aab7b5",
+          "before": null,
+          "after": {
+            "url": "https://example.com/shipped-C",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-03T23:41:28.514Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "PYYxocF2",
+          "requestId": "b1a6308d-3db0-46a9-8c9f-42d5e9346185",
+          "before": null,
+          "after": {
+            "url": "https://example.com/shipped-B",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-03T23:41:25.906Z",
+          "actor": "anonymous",
+          "action": "link.retire",
+          "entity": "link",
+          "entityId": "hndYxOXM",
+          "requestId": "27051fff-b7da-4423-a043-b36156fb043e",
+          "before": {
+            "url": "https://example.com/shipped-R",
+            "state": "active"
+          },
+          "after": {
+            "url": "https://example.com/shipped-R",
+            "state": "retired"
+          }
+        },
+        {
+          "occurredAt": "2026-10-03T23:41:25.880Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "hndYxOXM",
+          "requestId": "8d4fddd1-5bc4-441e-b03c-ca56a2651f79",
+          "before": null,
+          "after": {
+            "url": "https://example.com/shipped-R",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-03T23:41:25.843Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "HN18dQsv",
+          "requestId": "6753311e-d43e-4e8f-98ef-4ab1e50fd652",
+          "before": null,
+          "after": {
+            "url": "https://example.com/shipped-A",
+            "state": "active"
+          }
+        }
+      ],
+      "next": null
+    }
+  },
+  {
+    "claim": "reapplied-audit-read row0 eight fields",
+    "pass": true,
+    "detail": {
+      "occurredAt": "2026-10-03T23:41:34.670Z",
+      "actor": "anonymous",
+      "action": "link.retire",
+      "entity": "link",
+      "entityId": "ipHQ2AqP",
+      "requestId": "0fd9f26b-afb0-494c-861e-162511e9b4d4",
+      "before": {
+        "url": "https://example.com/upgraded-new",
+        "state": "active"
+      },
+      "after": {
+        "url": "https://example.com/upgraded-new",
+        "state": "retired"
+      }
+    }
+  },
+  {
+    "claim": "reapplied-audit-read row1 eight fields",
+    "pass": true,
+    "detail": {
+      "occurredAt": "2026-10-03T23:41:34.616Z",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entityId": "ipHQ2AqP",
+      "requestId": "819c372d-dff0-4490-8919-da44ae4d598d",
+      "before": null,
+      "after": {
+        "url": "https://example.com/upgraded-new",
+        "state": "active"
+      }
+    }
+  },
+  {
+    "claim": "reapplied-audit-read row2 eight fields",
+    "pass": true,
+    "detail": {
+      "occurredAt": "2026-10-05T23:41:29.151533Z",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entityId": "HN18dQsv",
+      "requestId": "qa04-future-event",
+      "before": null,
+      "after": {
+        "url": "https://example.com/shipped-A",
+        "state": "active"
+      }
+    }
+  },
+  {
+    "claim": "reapplied-audit-read row3 eight fields",
+    "pass": true,
+    "detail": {
+      "occurredAt": "2026-10-03T23:41:28.552Z",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entityId": "W6Ck7ND1",
+      "requestId": "b465050f-0c88-42fa-afe8-28fe21aab7b5",
+      "before": null,
+      "after": {
+        "url": "https://example.com/shipped-C",
+        "state": "active"
+      }
+    }
+  },
+  {
+    "claim": "reapplied-audit-read row4 eight fields",
+    "pass": true,
+    "detail": {
+      "occurredAt": "2026-10-03T23:41:28.514Z",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entityId": "PYYxocF2",
+      "requestId": "b1a6308d-3db0-46a9-8c9f-42d5e9346185",
+      "before": null,
+      "after": {
+        "url": "https://example.com/shipped-B",
+        "state": "active"
+      }
+    }
+  },
+  {
+    "claim": "reapplied-audit-read row5 eight fields",
+    "pass": true,
+    "detail": {
+      "occurredAt": "2026-10-03T23:41:25.906Z",
+      "actor": "anonymous",
+      "action": "link.retire",
+      "entity": "link",
+      "entityId": "hndYxOXM",
+      "requestId": "27051fff-b7da-4423-a043-b36156fb043e",
+      "before": {
+        "url": "https://example.com/shipped-R",
+        "state": "active"
+      },
+      "after": {
+        "url": "https://example.com/shipped-R",
+        "state": "retired"
+      }
+    }
+  },
+  {
+    "claim": "reapplied-audit-read row6 eight fields",
+    "pass": true,
+    "detail": {
+      "occurredAt": "2026-10-03T23:41:25.880Z",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entityId": "hndYxOXM",
+      "requestId": "8d4fddd1-5bc4-441e-b03c-ca56a2651f79",
+      "before": null,
+      "after": {
+        "url": "https://example.com/shipped-R",
+        "state": "active"
+      }
+    }
+  },
+  {
+    "claim": "reapplied-audit-read row7 eight fields",
+    "pass": true,
+    "detail": {
+      "occurredAt": "2026-10-03T23:41:25.843Z",
+      "actor": "anonymous",
+      "action": "link.create",
+      "entity": "link",
+      "entityId": "HN18dQsv",
+      "requestId": "6753311e-d43e-4e8f-98ef-4ab1e50fd652",
+      "before": null,
+      "after": {
+        "url": "https://example.com/shipped-A",
+        "state": "active"
+      }
+    }
+  },
+  {
+    "claim": "candidate-reapply process stopped",
+    "pass": true,
+    "detail": {
+      "pid": 63726,
+      "exit": 143
+    }
+  },
+  {
+    "claim": "rollback-reapplied JDBC exit",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "claim": "AC11 reapply exact expanded schema",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC11 reapply preserves legacy values",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC11 reapply V1-V4 successful",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "log match create-A",
+    "pass": true,
+    "detail": "995f6978-bcbb-40a3-9826-baac12e4da61"
+  },
+  {
+    "claim": "log match replay-A",
+    "pass": true,
+    "detail": "52ffc1da-37fa-4867-8c77-086a47870e23"
+  },
+  {
+    "claim": "log match mismatch-A",
+    "pass": true,
+    "detail": "cbd6dc93-1160-4ded-a112-9308a2a06e6d"
+  },
+  {
+    "claim": "log match read-A",
+    "pass": true,
+    "detail": "81a36fff-f64f-4b81-9174-6e5bff264338"
+  },
+  {
+    "claim": "log match redirect-A",
+    "pass": true,
+    "detail": "0e0961b5-1041-4a7c-a89b-87cfba2bd315"
+  },
+  {
+    "claim": "log match stats-A",
+    "pass": true,
+    "detail": "743d877e-fb72-4330-83e2-7cf577d51c10"
+  },
+  {
+    "claim": "log match retire-A",
+    "pass": true,
+    "detail": "80b2b772-7161-441e-9bb7-1b472e8422a2"
+  },
+  {
+    "claim": "log match retire-again",
+    "pass": true,
+    "detail": "6d2f2ce5-4ec1-4a4f-b308-26afe5a9e4c1"
+  },
+  {
+    "claim": "log match read-retired",
+    "pass": true,
+    "detail": "2092e1b2-4afa-4865-b38c-06dd377397d0"
+  },
+  {
+    "claim": "log match redirect-retired",
+    "pass": true,
+    "detail": "ca400085-c224-40ba-a2f7-b112f468f2dd"
+  },
+  {
+    "claim": "log match expired-key-create-B",
+    "pass": true,
+    "detail": "e2482aa1-7ece-4dbf-a644-38ed62dc4e60"
+  },
+  {
+    "claim": "log match create-D",
+    "pass": true,
+    "detail": "e146e60d-b9f1-43bc-9616-7494b33e2a2e"
+  },
+  {
+    "claim": "log match audit-insert-fails",
+    "pass": true,
+    "detail": "06f32ed7-c34c-41d3-a5b9-d633825c8793"
+  },
+  {
+    "claim": "log match D-still-redirects",
+    "pass": true,
+    "detail": "f6b64036-a8e9-4519-8820-b404caec7e36"
+  },
+  {
+    "claim": "log match audit-eight-fields",
+    "pass": true,
+    "detail": "fd044d98-84b7-4b33-bc5b-0fa5ad4657b5"
+  },
+  {
+    "claim": "log match audit-forwarded-refused",
+    "pass": true,
+    "detail": "39e94313-933e-424f-989d-754c59675923"
+  },
+  {
+    "claim": "log match audit-invalid-limit",
+    "pass": true,
+    "detail": "a2301bdb-b472-42a1-b417-9514a82cb29b"
+  },
+  {
+    "claim": "log match bad-url",
+    "pass": true,
+    "detail": "8e772254-553a-49f0-8864-98c8dfdc496e"
+  },
+  {
+    "claim": "log match missing-url",
+    "pass": true,
+    "detail": "2390df15-3174-4c4d-b96e-73168166ae14"
+  },
+  {
+    "claim": "log match bad-key",
+    "pass": true,
+    "detail": "277e4574-b4d2-4c00-a0a9-51a33fa775fc"
+  },
+  {
+    "claim": "log match unknown-code",
+    "pass": true,
+    "detail": "1b7126f1-d28e-4757-9675-e1768b901588"
+  },
+  {
+    "claim": "log match rate-00",
+    "pass": true,
+    "detail": "4195b408-9a04-42e8-a91b-3ab5f71c30cb"
+  },
+  {
+    "claim": "log match rate-01",
+    "pass": true,
+    "detail": "57ba0811-68d0-4846-a1dd-acc71a456f32"
+  },
+  {
+    "claim": "log match rate-02",
+    "pass": true,
+    "detail": "f4a9dbec-ee94-4d4f-8e9e-b9241f0aa08f"
+  },
+  {
+    "claim": "log match rate-03",
+    "pass": true,
+    "detail": "4d6b35c3-f753-44ad-b2ce-2a52331d6681"
+  },
+  {
+    "claim": "log match rate-04",
+    "pass": true,
+    "detail": "af8a2477-14d2-41d4-9408-44b0306b18b3"
+  },
+  {
+    "claim": "log match rate-05",
+    "pass": true,
+    "detail": "738f78b8-c2f7-42bc-a31b-7de5063e344f"
+  },
+  {
+    "claim": "log match rate-06",
+    "pass": true,
+    "detail": "64fa1dae-9b67-4b27-8a30-40544046231b"
+  },
+  {
+    "claim": "log match rate-07",
+    "pass": true,
+    "detail": "a333f297-bb6b-43ea-8928-622e3031a7ac"
+  },
+  {
+    "claim": "log match rate-08",
+    "pass": true,
+    "detail": "34b80b40-61d8-484f-b742-bdf8004b2323"
+  },
+  {
+    "claim": "log match rate-09",
+    "pass": true,
+    "detail": "303b1faf-7fed-4ba5-8f90-300d25f8de9a"
+  },
+  {
+    "claim": "log match rate-10",
+    "pass": true,
+    "detail": "ef4e78fb-28a4-4b18-a3f2-d21f96049410"
+  },
+  {
+    "claim": "log match rate-11",
+    "pass": true,
+    "detail": "290d807a-8880-496b-91d7-1290217d6f5c"
+  },
+  {
+    "claim": "log match rate-12",
+    "pass": true,
+    "detail": "33f7c336-c461-4cf6-81be-4d3c90a2707b"
+  },
+  {
+    "claim": "log match rate-13",
+    "pass": true,
+    "detail": "81166c10-95fe-450a-8912-ba881a0620e6"
+  },
+  {
+    "claim": "log match rate-14",
+    "pass": true,
+    "detail": "c9d345cb-6ca7-456e-b9e9-cd0e4d6da83c"
+  },
+  {
+    "claim": "log match rate-15",
+    "pass": true,
+    "detail": "1bba7e2d-aa2d-4af8-bf2e-d48d56686da5"
+  },
+  {
+    "claim": "log match rate-16",
+    "pass": true,
+    "detail": "67e45180-49c1-4055-aca7-a4adf758aa32"
+  },
+  {
+    "claim": "log match rate-17",
+    "pass": true,
+    "detail": "86911c54-7a43-4e3d-bb41-ffd332315919"
+  },
+  {
+    "claim": "log match rate-18",
+    "pass": true,
+    "detail": "4040e61f-3e85-44f6-9947-c94de4472a41"
+  },
+  {
+    "claim": "log match rate-19",
+    "pass": true,
+    "detail": "fab972e1-5e7c-475e-b21c-7483faf97043"
+  },
+  {
+    "claim": "log match rate-20",
+    "pass": true,
+    "detail": "cfa1f079-35ed-4b1b-b1e7-f4d98fabfc70"
+  },
+  {
+    "claim": "log match rate-21",
+    "pass": true,
+    "detail": "1d1e6f31-7950-4ed3-acf6-79642ec06417"
+  },
+  {
+    "claim": "log match rate-22",
+    "pass": true,
+    "detail": "b03a5925-b9f7-4a3e-9c82-0f33603a995b"
+  },
+  {
+    "claim": "log match rate-23",
+    "pass": true,
+    "detail": "80f50796-70b4-4283-b049-ecd04e0e9dd6"
+  },
+  {
+    "claim": "log match rate-24",
+    "pass": true,
+    "detail": "e64acb81-6d34-4782-9791-cec8e392cccb"
+  },
+  {
+    "claim": "log match rate-25",
+    "pass": true,
+    "detail": "7c3fd7fb-5e19-4c54-8cf3-261c8c23e889"
+  },
+  {
+    "claim": "log match rate-26",
+    "pass": true,
+    "detail": "5f2b4033-65d6-484a-a8e1-5b7c497ff73e"
+  },
+  {
+    "claim": "log match rate-27",
+    "pass": true,
+    "detail": "ea38a65a-f740-4e3f-a25f-f42f8461357d"
+  },
+  {
+    "claim": "log match rate-28",
+    "pass": true,
+    "detail": "6616dd78-3f6f-4f32-908e-3934180dc9ef"
+  },
+  {
+    "claim": "log match rate-29",
+    "pass": true,
+    "detail": "84540a97-8e47-442a-a73b-a2e299d58046"
+  },
+  {
+    "claim": "log match rate-30",
+    "pass": true,
+    "detail": "9a9bf264-8a6d-4025-9bc5-b78e2649a8af"
+  },
+  {
+    "claim": "log match rate-31",
+    "pass": true,
+    "detail": "049e305c-d688-47ee-a31d-811f580f25c4"
+  },
+  {
+    "claim": "log match rate-32",
+    "pass": true,
+    "detail": "d6e5960a-76d0-478c-88fe-994d5d81c761"
+  },
+  {
+    "claim": "log match rate-33",
+    "pass": true,
+    "detail": "c9d56c8f-4a38-4007-9fa5-6faf95be9e71"
+  },
+  {
+    "claim": "log match rate-34",
+    "pass": true,
+    "detail": "3701b2f4-30d0-4691-8806-a0f3dadc4e20"
+  },
+  {
+    "claim": "log match rate-35",
+    "pass": true,
+    "detail": "77140e42-5bd8-4b59-9ee6-5351f1191c11"
+  },
+  {
+    "claim": "log match rate-36",
+    "pass": true,
+    "detail": "cb599d1b-0b5e-4dd4-829c-d660d27cd38b"
+  },
+  {
+    "claim": "log match rate-37",
+    "pass": true,
+    "detail": "2995f457-7309-402b-bc96-d1393060b08c"
+  },
+  {
+    "claim": "log match rate-38",
+    "pass": true,
+    "detail": "01121e52-d115-4a27-87c4-d3e15f14562b"
+  },
+  {
+    "claim": "log match rate-39",
+    "pass": true,
+    "detail": "30e18a8f-8bac-4325-a9f0-976685728592"
+  },
+  {
+    "claim": "log match rate-40",
+    "pass": true,
+    "detail": "94713035-84a7-46dc-9e4e-190c891d03a4"
+  },
+  {
+    "claim": "log match rate-41",
+    "pass": true,
+    "detail": "38a15e39-8492-4b23-bd89-54bf55c877a9"
+  },
+  {
+    "claim": "log match rate-42",
+    "pass": true,
+    "detail": "3763674e-a868-4c88-b94e-57a34eeabbf5"
+  },
+  {
+    "claim": "log match rate-43",
+    "pass": true,
+    "detail": "b4d162bd-f4a2-4e0c-9c5e-ba602e8ac72e"
+  },
+  {
+    "claim": "log match rate-44",
+    "pass": true,
+    "detail": "dd4bc607-64a1-4b26-9703-70dbe1e24309"
+  },
+  {
+    "claim": "log match rate-45",
+    "pass": true,
+    "detail": "7f072d8f-215b-4d7f-a3c5-eac5bd51de2e"
+  },
+  {
+    "claim": "log match rate-46",
+    "pass": true,
+    "detail": "29c95470-c031-489d-a870-2a2ab99a67cb"
+  },
+  {
+    "claim": "log match rate-47",
+    "pass": true,
+    "detail": "c90ac3fd-d8fe-4e02-b540-5d9e8c0bdee9"
+  },
+  {
+    "claim": "log match rate-48",
+    "pass": true,
+    "detail": "b459316d-8bfb-493a-ab98-2cd6454e4a5b"
+  },
+  {
+    "claim": "log match rate-49",
+    "pass": true,
+    "detail": "dec7e3b7-5f6b-44f4-aab5-882027d8814a"
+  },
+  {
+    "claim": "log match rate-50",
+    "pass": true,
+    "detail": "ce934eea-cfa3-4377-8cf1-96981b763091"
+  },
+  {
+    "claim": "log match rate-51",
+    "pass": true,
+    "detail": "31a18510-ffa4-4ae5-8957-7c5d8b12134f"
+  },
+  {
+    "claim": "log match rate-52",
+    "pass": true,
+    "detail": "f88132f1-1bce-4077-91dc-a9f375abfb74"
+  },
+  {
+    "claim": "log match rate-53",
+    "pass": true,
+    "detail": "74f58c24-811a-4d04-8255-9c1a74b1d526"
+  },
+  {
+    "claim": "log match rate-54",
+    "pass": true,
+    "detail": "d4d9f4a8-d933-4aaa-8f50-772e30181eef"
+  },
+  {
+    "claim": "log match rate-55",
+    "pass": true,
+    "detail": "854a5891-3e13-4005-8d02-5810ad277b41"
+  },
+  {
+    "claim": "log match rate-56",
+    "pass": true,
+    "detail": "7f5d030b-f7b6-4321-9718-918da865adbd"
+  },
+  {
+    "claim": "log match rate-57",
+    "pass": true,
+    "detail": "e7d9fcb4-f204-48ab-99b4-c4c32375f022"
+  },
+  {
+    "claim": "log match rate-58",
+    "pass": true,
+    "detail": "667bfb01-fcca-4c40-a776-4afa76087dec"
+  },
+  {
+    "claim": "log match rate-59",
+    "pass": true,
+    "detail": "e911d4c0-f743-410d-8193-939e54d3dc88"
+  },
+  {
+    "claim": "log match rate-60",
+    "pass": true,
+    "detail": "b6ea9fb7-e675-4f9f-81ad-5446453a3818"
+  },
+  {
+    "claim": "log match f6-create-release-A",
+    "pass": true,
+    "detail": "6753311e-d43e-4e8f-98ef-4ab1e50fd652"
+  },
+  {
+    "claim": "log match f6-create-retired",
+    "pass": true,
+    "detail": "8d4fddd1-5bc4-441e-b03c-ca56a2651f79"
+  },
+  {
+    "claim": "log match f6-retire-R",
+    "pass": true,
+    "detail": "27051fff-b7da-4423-a043-b36156fb043e"
+  },
+  {
+    "claim": "log match f6-create-release-B",
+    "pass": true,
+    "detail": "b1a6308d-3db0-46a9-8c9f-42d5e9346185"
+  },
+  {
+    "claim": "log match f6-create-active",
+    "pass": true,
+    "detail": "b465050f-0c88-42fa-afe8-28fe21aab7b5"
+  },
+  {
+    "claim": "log match f6-redirect-active",
+    "pass": true,
+    "detail": "a4bece29-39d7-4aaf-a8b9-3968705a2a1b"
+  },
+  {
+    "claim": "log match upgraded-active-read",
+    "pass": true,
+    "detail": "8c124ba1-a9ec-448f-8b88-34aad5cc5de9"
+  },
+  {
+    "claim": "log match upgraded-retired-redirect",
+    "pass": true,
+    "detail": "9eb414d1-6c6c-4468-95bf-e157f2cc74dd"
+  },
+  {
+    "claim": "log match upgraded-audit-eight-fields",
+    "pass": true,
+    "detail": "3d3c76f5-542e-49d6-8543-7cf417795036"
+  },
+  {
+    "claim": "log match upgraded-new-create",
+    "pass": true,
+    "detail": "819c372d-dff0-4490-8919-da44ae4d598d"
+  },
+  {
+    "claim": "log match upgraded-new-retire",
+    "pass": true,
+    "detail": "0fd9f26b-afb0-494c-861e-162511e9b4d4"
+  },
+  {
+    "claim": "log match reapplied-audit-read",
+    "pass": true,
+    "detail": "508ccd15-b2a3-4ef0-abd0-327caffea225"
+  },
+  {
+    "claim": "AC10 no client canaries or raw IP in logs",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC8 no added audit columns in logs",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "AC5 actual JDBC constraint failure observed",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "claim": "candidate left exact SHA",
+    "pass": true,
+    "detail": null
+  }
+]

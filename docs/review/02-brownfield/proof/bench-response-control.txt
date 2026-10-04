@@ -1,0 +1,11 @@
+Command: node docs/review/02-brownfield/proof/bench-response-control.mjs
+Runtime: Node.js v24.18.0; pinned target ed2b940 tools/bench.mjs.
+First sandbox attempt: listen EPERM on 127.0.0.1; control did not execute.
+Authorized loopback rerun: exit 0.
+
+{"mode":"complete","code":0,"signal":null,"timedOut":false,"stdout":"complete: 1 requests in 11 ms (offered 1 req/s for 1 s), achieved 93.1 req/s, non-2xx/3xx 0, p50 10.7 ms, p95 10.7 ms, p99 10.7 ms","stderr":""}
+{"mode":"truncated","code":13,"signal":null,"timedOut":false,"stdout":"","stderr":"Warning: Detected unsettled top-level await at tools/bench.mjs:57"}
+
+The truncated response is not counted as a successful latency sample and does not hang
+this process. Node exits nonzero, which smoke.sh --bench propagates. No finding.
+This is a failure-classification control, not a service benchmark or a Node 18 run.

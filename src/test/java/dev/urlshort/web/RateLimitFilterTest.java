@@ -157,6 +157,23 @@ class RateLimitFilterTest {
 				counter -> assertThat(counter.getId().getTags()).extracting("key").containsExactly("budget"));
 	}
 
+	@Test
+	void theChargedClientIsLeftOnTheRequestForTheClickRecorderAndAnExemptRequestCarriesNone() throws Exception {
+		when(limiter.tryTake(any(), anyString())).thenReturn(0L);
+		MockHttpServletRequest limited = request("/Abc12345");
+		limited.setRemoteAddr("10.9.9.9");
+		limited.addHeader("X-Forwarded-For", "198.51.100.1, 203.0.113.8");
+		MockHttpServletRequest exempt = request("/actuator/health");
+
+		filter.doFilter(limited, new MockHttpServletResponse(), new MockFilterChain());
+		filter.doFilter(exempt, new MockHttpServletResponse(), new MockFilterChain());
+
+		verify(limiter).tryTake(Budget.REDIRECT, "203.0.113.8");
+		assertThat(limited.getAttribute(RateLimitFilter.CLIENT_ATTRIBUTE)).isEqualTo("203.0.113.8");
+		assertThat(limited.getRemoteAddr()).as("the peer address is never rewritten").isEqualTo("10.9.9.9");
+		assertThat(exempt.getAttribute(RateLimitFilter.CLIENT_ATTRIBUTE)).isNull();
+	}
+
 	private static MockHttpServletRequest request(String uri) {
 		MockHttpServletRequest request = new MockHttpServletRequest("POST", uri);
 		request.setRemoteAddr("10.0.0.1");

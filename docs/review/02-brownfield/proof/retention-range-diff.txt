@@ -1,0 +1,20 @@
+1:  0498c56 = 1:  7cc24df test(02-click-retention): a click reduction failure reports its own reason
+2:  2c5b8e8 = 2:  6764393 fix(02-click-retention): click lost reason "reduction failed" (W2-05)
+3:  1d63e4c = 3:  b841fb6 test(02-click-retention): the click tables carry audit columns
+4:  632ecb9 = 4:  ccee69b feat(02-click-retention): V3 audit columns on click and user_agent_class
+5:  64abbfe = 5:  e39a9d4 test(02-click-retention): retention purge journeys and tick rules
+6:  056c8db = 6:  7383462 feat(02-click-retention): daily click purge with a retention setting
+7:  a8fc8b6 ! 7:  a2c34c1 feat(02-click-retention): shipped retention setting
+    @@ README.md: returns a `code` and `shortUrl`; `GET /{code}` redirects (302); `GET
+      read-only filesystem, H2 file database in the `urlshort-data` volume, published on `127.0.0.1:8080`
+     
+      ## src/main/resources/application.properties ##
+    -@@ src/main/resources/application.properties: urlshort.rate-limit.create-per-minute=60
+    - urlshort.rate-limit.redirect-per-minute=600
+    - urlshort.rate-limit.trusted-proxies=
+    +@@ src/main/resources/application.properties: urlshort.rate-limit.trusted-proxies=
+    + # X-Forwarded-For, which Boot otherwise enables on a detected cloud platform.
+    + server.forward-headers-strategy=none
+      
+     +# Click retention (NFR-P2): clicks older than this many UTC days are deleted at startup and daily at 00:10Z; a positive whole number. Overridable by URLSHORT_CLICK_RETENTIONDAYS (ADR-0018).
+     +urlshort.click.retention-days=90

@@ -1,0 +1,62 @@
+# urlshort-drill — a labelled DRILL instance for the mission 02 fault-injection
+# drills that must not touch product work: DRILL 3 (rig seat stop, then
+# rig workflow route) and DRILL 4 (rig workflow abort, then resume), and DRILL 1
+# (QA rejects a candidate, remediation loop) if no natural QA rejection happens.
+# Two steps, no product code, no writes to main. The drill_worker seat is chosen
+# at instantiate time with --entry-owner (the DRILL 3 stop target: idle, empty
+# queue, relaunch path named, stopped only after the lead approves).
+workflow:
+  id: urlshort-drill
+  version: 1
+  objective: >-
+    DRILL only: exercise the factory's retry, fallback and safe-stop paths on a
+    labelled instance that carries no product code and writes nothing to main.
+  target:
+    rig: urlshort-factory
+  entry:
+    role: drill_worker
+  coordination_terminal_turn_rule: hot_potato
+  exception_routing:
+    default: orchestrator
+    orchestrator_role: orchestrator
+  roles:
+    drill_worker:
+      preferred_targets: [release-agent@urlshort-factory]
+    qa:
+      preferred_targets: [qa-agent@urlshort-factory]
+    orchestrator:
+      preferred_targets: [orchestration-lead@urlshort-factory]
+  steps:
+    - id: implement
+      actor_role: drill_worker
+      objective: >-
+        DRILL: produce a drill candidate, a plain file under
+        docs/evidence/02-brownfield/drills/ committed by its own seat with a
+        pathspec, never product code and never on main's product paths. Hand
+        off its path and commit to qa_check.
+      allowed_exits: [handoff, waiting, failed]
+      next_hop:
+        mode: require
+        suggested_roles: [qa]
+    - id: qa_check
+      actor_role: qa
+      objective: >-
+        DRILL: check the drill candidate against the drill's stated pass rule.
+        A candidate built to fail is failed (routes back to implement); a
+        candidate that meets the rule closes the instance with done.
+      allowed_exits: [done, waiting, failed]
+      next_hop:
+        on:
+          failed: implement
+  invariants:
+    continuation_required: true
+    preserve_lineage: true
+    closure_required: true
+    allowed_exits: [handoff, waiting, done, failed]
+  loop_guards:
+    max_hops: 8
+    spawn_budget: 0
+  closure:
+    success: DRILL closed; every drill it carried is recorded in docs/scenarios/drills.md.
+    degraded: DRILL stopped with a named blocker, an abort awaiting resume, or a max_hops trip.
+    failed: A drill step failed as an exception; the finding and owner are routed through the orchestrator.

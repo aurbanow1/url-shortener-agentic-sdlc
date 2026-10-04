@@ -1,0 +1,144 @@
+# PRE-REVIEW of the merged range at `ed2b940` (draft; wave_review adds 04-audit-columns)
+
+Mission 02 wave review, structure and drift: the design agent's second vantage. The review agent
+holds the primary vantage. Asked by the orchestration lead, `qitem-20261003231759-0606a747`, as a
+plain queue item ahead of the workflow step, because the human asked for more in parallel (operator
+`qitem-20261003231707-8c00c321`). Author: `design-agent@urlshort-factory`, 2026-10-03.
+
+**Range.** `8e9c065..ed2b940`. Four slices are merged:
+- `05-ci-cd` `0aa3695`;
+- `01-audit-read` `cb148c4`;
+- `03-dogfood-fix` `5c264db`;
+- `02-click-retention` `ed2b940`.
+
+Also in the range: the Gradle 9.8.0 wrapper (`f3e6b0b`, renormalised by `9bbf6e5`), and mission
+01's release commits to `scripts/smoke.sh` (`34308c9`, `3ec7ab4`, `973bc1a`). `04-audit-columns`
+is not merged and is out of this draft.
+
+**Where my own design is the subject.** I designed `01-audit-read`, `02-click-retention` and
+`03-dogfood-fix`, so three of the four merges are my designs. `05-ci-cd` was designed by
+`design2-agent`. Findings against my designs are marked **(mine)** and are not softened. An
+independent reader should weigh this vantage accordingly: the review agent's primary vantage is
+the independent one.
+
+## What I inspected
+
+| Area | Read |
+|---|---|
+| Product, merged | `git diff --stat 8e9c065 ed2b940` over product files (41 files). Full reads at `ed2b940` of: `audit/AuditController`, `audit/AuditTrail`, `click/ClickPurge`, `click/ClickRetentionProperties`, `web/MetricsConfig`, `V3__add_click_audit_columns.sql`, `docs/api/openapi.json`, `.github/workflows/ci.yml` and `cd.yml`, `AuditUpgradeJourneyTest`, and `AuditForwardedHeadersJourneyTest.start`. Diffs of `ClickRecorder`, `ClickStore`, `OpenApiConfig`, `application.properties`, `README.md` and `OpenApiDocumentTest`. `HealthMetricsJourneyTest` as merged |
+| Designs and decisions | the three designs of mine with their review responses (including `01-audit-read`'s `0052efb` correction); ADR-0010, 0011, 0013, 0015, 0016, 0018, 0019 and 0020; `docs/DESIGN.md`; the register (`docs/guidance/architecture.md` §11) |
+| Gates | the integrator's fresh `check` on each merge: `docs/evidence/02-brownfield/integrate-*-check-*.txt`, all four `BUILD SUCCESSFUL`, 14 of 14 tasks executed. I ran no build myself |
+| Gaps | `docs/qa/GAPS.md`: the audit-column rows, QA-OPR-02, and the `02-click-retention` QA section |
+| Mission 01 forward items | `docs/review/01-greenfield-core/wave-2-review-design-agent.md` (W2D-01 to W2D-07) |
+
+## Structure and coherence
+
+| Check | Result |
+|---|---|
+| Package boundaries | `audit/` gains its only reader (`AuditController`, `AuditTrail`, `AuditEntry`, `AuditPage`). `AuditLog` stays the only writer, and `AuditTrail` names its columns, so V4 can add columns without changing a response. `click/` gains `ClickPurge`, `ClickRetentionProperties` and `ClickStore.deleteBefore`. `web/` gains `MetricsConfig` and a second `OpenApiConfig` customiser. Features still depend on `web.Problems`, never the reverse (no `web/` file names a feature package: grep). `audit/` now depends on Boot's `ServerProperties` and `TomcatServerProperties`, by design (ADR-0019, P7) |
+| Filter chain and budgets | unchanged. `/api/audit` is charged to the create budget like every `/api` path; `/actuator/**` and the API document stay exempt |
+| One problem shape | the audit read's `400` and `403` come from `Problems.validation` and `ErrorResponseException`, through the one advice. The document now describes the one shape. `OpenApiDocumentTest.AC2_…` checks six real bodies against it, the audit read's `400` and the limiter's `429` included |
+| One clock | `ClickPurge` reads the application `Clock` on a 5 s tick. V3's row-write timestamps use the database clock, as `databases.md` §4 and ADR-0020 say. `PingController`'s `Instant.now()` is carried drift (register) |
+| Background work and shutdown | two owned single-thread executors (`click-writer`, `click-purge`); no `@Async` or `@Scheduled` (grep). On paper, the worst-case shutdown is the 10 s graceful phase, then up to 5 s of click drain, then up to 3 s of purge close: 18 s inside compose's 20 s `stop_grace_period`. The margin fell from 5 s to 2 s (W2P-04) |
+| Readiness | the startup purge is awaited on `ApplicationReadyEvent`, so readiness waits for it (ADR-0018); `05-ci-cd`'s jar smoke on an empty database is unaffected |
+| Schema | V1 to V3. V3 is byte-identical to the designed file (`diff` with `missions/02-brownfield/slices/02-click-retention/design-probe/migration/V3__add_click_audit_columns.sql`: empty) |
+| Settings | the shipped file gains the forwarded-header pin (commented as part of ADR-0019, not an operator knob), `urlshort.click.retention-days=90` and `urlshort.click.purge-enabled=true`, each with an operator comment |
+| API document | `/api/audit` with its `200`, `400`, `403`, `429` and `500`; `ProblemDetail` with optional `errors` of `ProblemFieldError` and no `properties`. Committed equals live by `OpenApiDocumentTest`, green in each integrate gate. Custody was respected: `01-audit-read` regenerated first, `03-dogfood-fix` on top, and both are present |
+| CI/CD | `ci.yml`: `gate` on every `pull_request` with no filter, `main` and on demand. `cd.yml`: `package` on `main` and on demand, a jar smoke on `127.0.0.1`, `docker build` with no push. Both have `contents: read`, SHA-pinned actions, `timeout-minutes: 20`, cancelling concurrency, explicit `bash`, `persist-credentials: false` and `cache-provider: basic`. `${{ }}` appears only in `concurrency.group` (both) and in `cd.yml`'s step `env:`, never in a `run:` block. This matches `docs/DESIGN.md` §3's CI/CD row |
+
+## Drift: SPEC → design → merged
+
+| Slice | Designer | Result |
+|---|---|---|
+| `05-ci-cd` | `design2-agent` | No drift found at this vantage (CI/CD row above). The `--jar` smoke mode that `cd.yml` relies on came from mission 01's release commits on `main`, outside a slice (W2P-07) |
+| `01-audit-read` | **mine** | Code matches design §1 as corrected at `0052efb`. The guard is strategy `NONE` and both `remoteip` headers unset. The keyset `SELECT` is verbatim, the cursor is base64url of the `id`, the `200` is preset to `application/json`, and the pin is in the shipped file. The builder added `@ConditionalOnWebApplication(SERVLET)`, which the design did not name: outside a servlet application the endpoint does not exist, which fails closed. `README.md` gained the endpoint line under its grant |
+| `03-dogfood-fix` | **mine** | Code matches design §1. The builder put the `ProblemFieldError` schema in a local variable, avoiding the unchecked call the design noted. `MetricsConfig` is the one-line `ignoreTags("path")`. Tests match §7: the nested `429` context, the nested `@AutoConfigureMetrics` scrape, AC-2 including the audit read's `400`, and `MetricsConfigTest`. `GAPS.md` QA-OPR-02 is closed |
+| `02-click-retention` | **mine** | Code matches the design and its four review answers: the hold with its WARN, `runNow()` for the suite, the `reduction failed` reason (W2D-05), one `DELETE` per run, and V3 verbatim. **Drift (mine):** `README.md` names `URLSHORT_CLICK_RETENTIONDAYS` but not `URLSHORT_CLICK_PURGEENABLED`. My README grant request predates the DR-01 rework that added the hold, and I did not widen it (W2P-01) |
+
+**Mission 01 forward items closed in this range:**
+- W2D-01, the problem schema: closed by `03-dogfood-fix`.
+- W2D-04, the disk path: closed by `03-dogfood-fix`.
+- W2D-05, the reduction reason: closed by `02-click-retention`.
+- W2D-03, the two notions of client: still open on `main`; closes with `01-analytics-v2`, pending merge.
+- W2D-02, status lines stale after merges: **recurred** (W2P-03).
+
+## Findings
+
+| Id | Severity | Evidence | Finding | Disposition / repair |
+|---|---|---|---|---|
+| W2P-01 | LOW | `README.md` at `ed2b940` (settings sentence); `application.properties` (`urlshort.click.purge-enabled`); `02-click-retention` design §9, *Grant request for the lead at plan-lock* | **(mine)** The README lists every operator setting's environment variable except the purge hold, `URLSHORT_CLICK_PURGEENABLED`. An Operator reading the README cannot find the incident and legal-hold switch. It is documented only in `application.properties`, `DESIGN.md` §3 and ADR-0018 | One line in `README.md`'s settings sentence. Route: lead backlog, under a README grant to the next slice that holds `README.md`, or in passing by the lead. The register's *Operator settings* row names it as drift |
+| W2P-02 | LOW | `docs/qa/GAPS.md` lines 82–83 | The `click @8e9c065` and `user_agent_class @8e9c065` audit-column rows still read "OPEN until 02-click-retention merges", after that merge at `ed2b940`. V3 added and backfilled all four columns on both tables (`ClickAuditColumnsTest`; QA2's section at line 235) | QA owns `GAPS.md`: close both rows with the merge SHA and V3's evidence. Route: QA, through the lead. No product change |
+| W2P-03 | MEDIUM | `docs/DESIGN.md` preamble and 28 markers; `diagrams/container.mmd`, `erd.mmd`; ADR-0010, 0011, 0013, 0015, 0016, 0018, 0019 and 0020 status lines; DESIGN.md §7 | **(mine, recurrence of W2D-02)** After four merges, the system design still marked all four slices as designed. The ADR index listed 0018 to 0020 as "proposed". Merged or plan-locked amendments still read "proposed". ADR-0019's index row omitted the `remoteip` closure | **Fixed in this step**, commit `4975d25`. **Process repair, so it stops recurring:** at integrate, the lead files a plain queue item to `design-agent` ("<slice> merged at <sha>"), and I refresh the markers and status lines then. My design-time step cannot see a merge, which is why this recurred. The lead decides |
+| W2P-04 | INFO | `application.properties` (`timeout-per-shutdown-phase=10s`); `ClickRecorder.DRAIN_DEADLINE` 5 s; `ClickPurge.CLOSE_DEADLINE` 3 s; `compose.yaml` `stop_grace_period: 20s` (ADR-0017) | Worst-case shutdown on paper: 18 s inside a 20 s grace; mission 01's budget was 15 s. The purge close waits only if a run is in progress, so the common case is unchanged | Nothing to change now; `release_prep` measures shutdown on the merged candidate (`scripts/smoke.sh --drain`), with a purge run in flight if it can arrange one |
+| W2P-05 | INFO | `AuditUpgradeJourneyTest` (clicks dated 2026-10-01, started through `SpringApplicationBuilder` on the functional clock, which tracks real time); `application-functional.properties` (`urlshort.click.purge-enabled=false`) | A cross-slice dependency. The audit read's upgrade journey seeds clicks with a fixed date and asserts the exact statistics. After 2026-12-30 those clicks are older than the 90-day period. The test stays green only because the functional overlay holds the purge in every context it starts. If the hold were lifted from the overlay, this `audit/` test would fail on that date | Record only. The overlay comment names the log-window reason; the next edit to that comment can add this one. A dated fixture in a test that starts the application should pass `--urlshort.click.purge-enabled=false` itself, or seed relative to the clock |
+| W2P-06 | INFO | `AuditUpgradeJourneyTest` (exact v1 statistics body); `35e5951` (the `01-analytics-v2` grant) | An `audit/` test pins `click/`'s statistics contract exactly, as `01-audit-read` AC-18 ("statistics unchanged") asks. `01-analytics-v2` needed a grant to change it | Expected by the AC; noted so wave review can see the coupling. A later upgrade test can compare against the shipped jar's own response rather than a literal |
+| W2P-07 | INFO | `git log 8e9c065..ed2b940 -- scripts/smoke.sh` | `scripts/smoke.sh`'s `--jar` mode, which `cd.yml` runs on every `main` push, came from mission 01's release commits on `main`, not from a slice, and was reviewed in mission 01's release review. Mission 02's CD therefore depends on a script no mission 02 slice owns | Record only. The next slice that changes `smoke.sh` runs the CD job's command locally before handoff |
+| W2P-08 | INFO | `audit/AuditController` (`TomcatServerProperties`, `ponytail:` comment); ADR-0019 *Consequences* | The guard mirrors Boot 4.1.1's three valve triggers. A Boot upgrade that adds a trigger would reopen the read, and no test would notice, because the real-Tomcat journeys cover the known three | Already a named ceiling in ADR-0019 and the code. Add to the Boot-upgrade checklist when one exists: re-read `TomcatWebServerFactoryCustomizer.customizeRemoteIpValve` |
+
+**Added after the draft:** a finding from the review agent's vantage against my wording.
+
+| Id | Severity | Evidence | Finding | Disposition / repair |
+|---|---|---|---|---|
+| W2P-09 | MEDIUM | `ClickRecorder.close` (`shutdownNow()` after a failed `awaitTermination`); `ClickPurge.close` (waits only); ADR-0011 lines 57–61 | **(mine, found by `review-agent`, 23:30Z)** My register row *Background work* (`5f90090`), `DESIGN.md`'s *Asynchronous work* row, ADR-0011's `02-click-retention` amendment and ADR-0018's shutdown consequence all said neither background job interrupts a JDBC call. That is true only for the purge. The writer interrupts its thread after the 5 s drain, and reports a running insert as `shutdown deadline, outcome unknown` | **Fixed:** register and `DESIGN.md` at `2d3de57`; both ADRs at `bfc642d`, with the lead's OK, as wording only. No design or behaviour change |
+
+**Carried drift on `main`, not new:**
+- `ClickRecorder` hashes the raw peer (W2D-03), which `01-analytics-v2` closes;
+- `PingController.Instant.now()`, on the lead's backlog as `qitem-20261003213157-c0a336f9`.
+
+## Register walk (D20), one line per concern, range `8e9c065..ed2b940`
+
+Register as updated in commit `5f90090`.
+
+| Concern | Line |
+|---|---|
+| Client identity and proxy trust | **Consistent, with carried drift.** The audit read admits only while nothing can rewrite the peer, and the pin is shipped. The limiter's `clientOf` is unchanged. Drift: the click hash still uses the raw peer (W2D-03), which `01-analytics-v2` closes |
+| Time | **Consistent, with carried drift.** `ClickPurge` is on the application `Clock` and polls it. V3's row-write defaults use the database clock by policy. Drift: `PingController` (backlog) |
+| Schema change | **Consistent.** V3 is expand-only with its rollback in the header, the number assigned at plan-lock (ordered custody). The register gained the pin-the-target rule after two V3 tests broke on V4 (`b115e7b`) |
+| Audit columns | **Consistent in code; drift in the gaps list.** `click` and `user_agent_class` have all four columns by default; `link` and `audit_log` wait for V4. `GAPS.md` still lists the first two as open (W2P-02) |
+| Error shape | **Consistent.** The audit read uses the one path. The document now describes the one shape, and six real bodies are checked against it: from three controllers (`LinkController`, `RedirectController`, `AuditController`) and the limiter |
+| Request id and logging | **Consistent.** The purge's events carry no request id and log exception classes only. Shared test contexts hold the purge, so log-window journeys stay clean |
+| Audit trail writes | **Consistent.** `AuditLog` is the only writer; `AuditTrail` is the only reader, with one `SELECT` that names its columns. The purge writes no audit row, because clicks are not mutations |
+| Client hashing for analytics | **Consistent, with carried drift.** `DailySalt` is unchanged; its input address is the drift above |
+| Metrics and health exposure | **Consistent.** No meter carries a filesystem path (`MetricsConfig`); exposure is unchanged |
+| API document | **Consistent.** Ordered custody held (audit-read, then dogfood-fix); committed equals live in every integrate gate |
+| CI/CD | **Consistent.** Both workflows keep `ci-cd.md` §3; nothing is published |
+| Background work (new row) | **Consistent.** Two owned executors, with bounded close deadlines that never interrupt JDBC; no scheduler framework. The shutdown sum is W2P-04 |
+| Operator settings (new row) | **Drift (mine).** Two new settings with defaults, a constraint and operator comments, but the README omits `URLSHORT_CLICK_PURGEENABLED` (W2P-01) |
+
+## `01-analytics-v2` register lines (pending merge; locked design `80ca44c`, candidate `ec466da` in QA)
+
+Drafted from the locked design; they are in the register marked *(pending merge)*. Once it merges, I
+check them against the merged code and drop the marker.
+
+- **Client identity.** `RateLimitFilter` becomes `public`, with
+  `public static final String CLIENT_ATTRIBUTE`. Each non-exempt request carries `clientOf`'s
+  result in that attribute before it is charged. `ClickRecorder` hashes the attribute and falls back
+  to `getRemoteAddr()` only when it is absent; that path is reached by unit tests. `clientOf` stays
+  package-private, and `getRemoteAddr()` is never rewritten, so the audit read's guard is unaffected
+  (ADR-0015 amendment). This closes W2D-03.
+- **Time.** Unique visitors are counted only within `GROUP BY clicked_on`, and `clicked_on` is the
+  UTC day of the salt that produced the hash, because `DailySalt.stamp` picks the instant and the
+  key together (ADR-0012, ADR-0013 amendment). No figure combines days. A restart within a day draws
+  a new salt, so the figure is an upper bound.
+- **Error shape.** No new error path. The statistics endpoint keeps v1's `404` problem; the new
+  per-day fields appear only in the `200`.
+- **Metrics** (also settled): `urlshort.clicks.recorded` and `urlshort.clicks.lost{reason}`, with
+  every reason from a static vocabulary registered at zero (ADR-0016 amendment).
+
+## Not verified by this vantage
+
+- No build, test or HTTP run of my own on `ed2b940`. I relied on the integrator's four gate logs
+  and on QA's by-effect captures for the slices.
+- The shutdown sum (W2P-04) is arithmetic on configuration, not a measurement.
+- The GitHub-hosted CI and CD runs: not observed by me; `05-ci-cd`'s AC-13 record holds them.
+- `04-audit-columns` (not merged) and `01-analytics-v2` beyond its locked design.
+
+## Self-check
+
+- Every merged slice in the range was compared with its design and, where relevant, its SPEC. The
+  three that are my designs are marked, with the drift found in them (W2P-01, W2P-03) stated as
+  mine.
+- Each register concern has one line for this range, the two new rows included. The register and
+  `DESIGN.md` edits are committed separately (`5f90090`, `4975d25`) before this file.
+- Each finding names its evidence, a severity and an owner. Nothing here is a product change I
+  made; the two documentation repairs are mine, and are done.

@@ -1,0 +1,36 @@
+{
+  "sequence": 17,
+  "name": "audit-invalid-limit",
+  "app": "controlled",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "GET",
+    "http://localhost:18161/api/audit?limit=0"
+  ],
+  "status": 400,
+  "headers": {
+    "x-request-id": "19de1147-05d1-4fae-932f-566aa20d3cd8",
+    "content-type": "application/problem+json",
+    "transfer-encoding": "chunked",
+    "date": "Sat, 03 Oct 2026 23:39:56 GMT",
+    "connection": "close"
+  },
+  "body": "{\"instance\":\"urn:uuid:19de1147-05d1-4fae-932f-566aa20d3cd8\",\"status\":400,\"title\":\"Bad Request\",\"errors\":[{\"field\":\"limit\",\"rule\":\"range\",\"message\":\"must be from 1 to 100\"}]}",
+  "json": {
+    "instance": "urn:uuid:19de1147-05d1-4fae-932f-566aa20d3cd8",
+    "status": 400,
+    "title": "Bad Request",
+    "errors": [
+      {
+        "field": "limit",
+        "rule": "range",
+        "message": "must be from 1 to 100"
+      }
+    ]
+  }
+}

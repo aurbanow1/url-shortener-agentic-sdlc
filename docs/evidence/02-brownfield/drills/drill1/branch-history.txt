@@ -1,0 +1,31 @@
+commit 8227b8c3bd87b757af377f8a029ebe68a1322452
+Author:     Andrzej Urbanowicz <andrzej.urbanowicz@tribble.ai>
+AuthorDate: Sat Oct 3 16:30:20 2026 -0700
+Commit:     Andrzej Urbanowicz <andrzej.urbanowicz@tribble.ai>
+CommitDate: Sat Oct 3 16:30:20 2026 -0700
+
+    fix(02-brownfield): correct the labelled QA drill candidate
+    
+    Answer DRILL1-01 by setting the plain-file candidate to READY and record the actual failed QA exit and default-owner routing.
+    
+    Co-Authored-By: Codex <noreply@openai.com>
+
+ .../02-brownfield/drills/drill1-candidate.json     |  2 +-
+ docs/evidence/02-brownfield/drills/drill1-notes.md | 26 +++++++++++++++++-----
+ 2 files changed, 22 insertions(+), 6 deletions(-)
+
+commit 594c9c9756e3a32a309d7a47dd91497ddcc31134
+Author:     Andrzej Urbanowicz <andrzej.urbanowicz@tribble.ai>
+AuthorDate: Sat Oct 3 16:20:52 2026 -0700
+Commit:     Andrzej Urbanowicz <andrzej.urbanowicz@tribble.ai>
+CommitDate: Sat Oct 3 16:20:52 2026 -0700
+
+    test(02-brownfield): seed a labelled failing QA drill candidate
+    
+    Set BROKEN against the documented READY rule to exercise independent QA rejection before remediation.
+    
+    Co-Authored-By: Codex <noreply@openai.com>
+
+ .../02-brownfield/drills/drill1-candidate.json     |  4 +++
+ docs/evidence/02-brownfield/drills/drill1-notes.md | 37 ++++++++++++++++++++++
+ 2 files changed, 41 insertions(+)

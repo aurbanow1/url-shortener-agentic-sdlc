@@ -1,0 +1,41 @@
+{
+  "sequence": 1,
+  "name": "create-A",
+  "app": "controlled",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "POST",
+    "-H",
+    "User-Agent: QA04-USERAGENT-CANARY",
+    "-H",
+    "X-Forwarded-For: 192.0.2.10",
+    "-H",
+    "Idempotency-Key: QA04-IDEMPOTENCY-CANARY",
+    "-H",
+    "Content-Type: application/json",
+    "--data",
+    "{\"url\": \"https://example.com/qa04-A\"}",
+    "http://localhost:18161/api/links"
+  ],
+  "status": 201,
+  "headers": {
+    "x-request-id": "c3b85b35-e86c-4daa-9a1e-1467d7b95259",
+    "location": "/api/links/lmI3a530",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sat, 03 Oct 2026 23:32:02 GMT"
+  },
+  "body": "{\"code\":\"lmI3a530\",\"shortUrl\":\"http://localhost:18161/lmI3a530\",\"url\":\"https://example.com/qa04-A\",\"state\":\"active\",\"createdAt\":\"2026-08-01T12:00:00Z\"}",
+  "json": {
+    "code": "lmI3a530",
+    "shortUrl": "http://localhost:18161/lmI3a530",
+    "url": "https://example.com/qa04-A",
+    "state": "active",
+    "createdAt": "2026-08-01T12:00:00Z"
+  }
+}

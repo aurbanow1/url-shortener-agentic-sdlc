@@ -1,0 +1,83 @@
+{
+  "sequence": 15,
+  "name": "audit-eight-fields",
+  "app": "controlled",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "GET",
+    "http://localhost:18161/api/audit?limit=100"
+  ],
+  "status": 200,
+  "headers": {
+    "x-request-id": "af7959fd-4f55-4d18-abb9-1e15d857a8ba",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sat, 03 Oct 2026 23:39:56 GMT"
+  },
+  "body": "{\"items\":[{\"occurredAt\":\"2026-08-02T13:00:00Z\",\"actor\":\"anonymous\",\"action\":\"link.create\",\"entity\":\"link\",\"entityId\":\"TcKBtpPn\",\"requestId\":\"691f37be-854c-47c6-905c-931986d01cbf\",\"before\":null,\"after\":{\"url\":\"https://example.com/qa04-D\",\"state\":\"active\"}},{\"occurredAt\":\"2026-08-02T13:00:00Z\",\"actor\":\"anonymous\",\"action\":\"link.create\",\"entity\":\"link\",\"entityId\":\"DBxeyTUb\",\"requestId\":\"9a8105d5-42c7-41a3-a435-11b9a1e6ea38\",\"before\":null,\"after\":{\"url\":\"https://example.com/qa04-A-B\",\"state\":\"active\"}},{\"occurredAt\":\"2026-08-01T12:02:00Z\",\"actor\":\"anonymous\",\"action\":\"link.retire\",\"entity\":\"link\",\"entityId\":\"x6IcAkPb\",\"requestId\":\"03837f61-edbb-49d9-b949-80693f812a94\",\"before\":{\"url\":\"https://example.com/qa04-A\",\"state\":\"active\"},\"after\":{\"url\":\"https://example.com/qa04-A\",\"state\":\"retired\"}},{\"occurredAt\":\"2026-08-01T12:00:00Z\",\"actor\":\"anonymous\",\"action\":\"link.create\",\"entity\":\"link\",\"entityId\":\"x6IcAkPb\",\"requestId\":\"6f1e6cf4-e03b-4ba7-848d-7956f96df692\",\"before\":null,\"after\":{\"url\":\"https://example.com/qa04-A\",\"state\":\"active\"}}],\"next\":null}",
+  "json": {
+    "items": [
+      {
+        "occurredAt": "2026-08-02T13:00:00Z",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entityId": "TcKBtpPn",
+        "requestId": "691f37be-854c-47c6-905c-931986d01cbf",
+        "before": null,
+        "after": {
+          "url": "https://example.com/qa04-D",
+          "state": "active"
+        }
+      },
+      {
+        "occurredAt": "2026-08-02T13:00:00Z",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entityId": "DBxeyTUb",
+        "requestId": "9a8105d5-42c7-41a3-a435-11b9a1e6ea38",
+        "before": null,
+        "after": {
+          "url": "https://example.com/qa04-A-B",
+          "state": "active"
+        }
+      },
+      {
+        "occurredAt": "2026-08-01T12:02:00Z",
+        "actor": "anonymous",
+        "action": "link.retire",
+        "entity": "link",
+        "entityId": "x6IcAkPb",
+        "requestId": "03837f61-edbb-49d9-b949-80693f812a94",
+        "before": {
+          "url": "https://example.com/qa04-A",
+          "state": "active"
+        },
+        "after": {
+          "url": "https://example.com/qa04-A",
+          "state": "retired"
+        }
+      },
+      {
+        "occurredAt": "2026-08-01T12:00:00Z",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entityId": "x6IcAkPb",
+        "requestId": "6f1e6cf4-e03b-4ba7-848d-7956f96df692",
+        "before": null,
+        "after": {
+          "url": "https://example.com/qa04-A",
+          "state": "active"
+        }
+      }
+    ],
+    "next": null
+  }
+}

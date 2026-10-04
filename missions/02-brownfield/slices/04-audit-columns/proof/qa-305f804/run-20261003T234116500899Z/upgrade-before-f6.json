@@ -1,0 +1,306 @@
+{
+  "sql": [
+    "SELECT table_name,column_name,data_type,is_nullable,column_default,character_maximum_length,datetime_precision FROM information_schema.columns WHERE table_schema='PUBLIC' AND table_name IN ('LINK','AUDIT_LOG') ORDER BY table_name,ordinal_position",
+    "SELECT c.table_name,c.constraint_type,k.column_name,k.ordinal_position,cc.check_clause FROM information_schema.table_constraints c LEFT JOIN information_schema.key_column_usage k ON c.constraint_schema=k.constraint_schema AND c.constraint_name=k.constraint_name LEFT JOIN information_schema.check_constraints cc ON c.constraint_schema=cc.constraint_schema AND c.constraint_name=cc.constraint_name WHERE c.table_schema='PUBLIC' AND c.table_name IN ('LINK','AUDIT_LOG') ORDER BY c.table_name,c.constraint_type,k.column_name,k.ordinal_position,cc.check_clause",
+    "SELECT id,code,url,created_at,retired_at,idempotency_key FROM link ORDER BY id",
+    "SELECT id,occurred_at,actor,action,entity,entity_id,request_id,before_state,after_state FROM audit_log ORDER BY id",
+    "SELECT \"version\",\"description\",\"success\" FROM \"flyway_schema_history\" WHERE \"version\" IS NOT NULL ORDER BY \"installed_rank\""
+  ],
+  "results": [
+    [
+      {
+        "table_name": "AUDIT_LOG",
+        "column_name": "ID",
+        "data_type": "BIGINT",
+        "is_nullable": "NO",
+        "column_default": null,
+        "character_maximum_length": null,
+        "datetime_precision": null
+      },
+      {
+        "table_name": "AUDIT_LOG",
+        "column_name": "OCCURRED_AT",
+        "data_type": "TIMESTAMP WITH TIME ZONE",
+        "is_nullable": "NO",
+        "column_default": null,
+        "character_maximum_length": null,
+        "datetime_precision": "6"
+      },
+      {
+        "table_name": "AUDIT_LOG",
+        "column_name": "ACTOR",
+        "data_type": "CHARACTER VARYING",
+        "is_nullable": "NO",
+        "column_default": null,
+        "character_maximum_length": "64",
+        "datetime_precision": null
+      },
+      {
+        "table_name": "AUDIT_LOG",
+        "column_name": "ACTION",
+        "data_type": "CHARACTER VARYING",
+        "is_nullable": "NO",
+        "column_default": null,
+        "character_maximum_length": "64",
+        "datetime_precision": null
+      },
+      {
+        "table_name": "AUDIT_LOG",
+        "column_name": "ENTITY",
+        "data_type": "CHARACTER VARYING",
+        "is_nullable": "NO",
+        "column_default": null,
+        "character_maximum_length": "32",
+        "datetime_precision": null
+      },
+      {
+        "table_name": "AUDIT_LOG",
+        "column_name": "ENTITY_ID",
+        "data_type": "CHARACTER VARYING",
+        "is_nullable": "NO",
+        "column_default": null,
+        "character_maximum_length": "64",
+        "datetime_precision": null
+      },
+      {
+        "table_name": "AUDIT_LOG",
+        "column_name": "REQUEST_ID",
+        "data_type": "CHARACTER VARYING",
+        "is_nullable": "NO",
+        "column_default": null,
+        "character_maximum_length": "64",
+        "datetime_precision": null
+      },
+      {
+        "table_name": "AUDIT_LOG",
+        "column_name": "BEFORE_STATE",
+        "data_type": "CHARACTER VARYING",
+        "is_nullable": "YES",
+        "column_default": null,
+        "character_maximum_length": "4096",
+        "datetime_precision": null
+      },
+      {
+        "table_name": "AUDIT_LOG",
+        "column_name": "AFTER_STATE",
+        "data_type": "CHARACTER VARYING",
+        "is_nullable": "NO",
+        "column_default": null,
+        "character_maximum_length": "4096",
+        "datetime_precision": null
+      },
+      {
+        "table_name": "LINK",
+        "column_name": "ID",
+        "data_type": "BIGINT",
+        "is_nullable": "NO",
+        "column_default": null,
+        "character_maximum_length": null,
+        "datetime_precision": null
+      },
+      {
+        "table_name": "LINK",
+        "column_name": "CODE",
+        "data_type": "CHARACTER VARYING",
+        "is_nullable": "NO",
+        "column_default": null,
+        "character_maximum_length": "32",
+        "datetime_precision": null
+      },
+      {
+        "table_name": "LINK",
+        "column_name": "URL",
+        "data_type": "CHARACTER VARYING",
+        "is_nullable": "NO",
+        "column_default": null,
+        "character_maximum_length": "2048",
+        "datetime_precision": null
+      },
+      {
+        "table_name": "LINK",
+        "column_name": "CREATED_AT",
+        "data_type": "TIMESTAMP WITH TIME ZONE",
+        "is_nullable": "NO",
+        "column_default": null,
+        "character_maximum_length": null,
+        "datetime_precision": "6"
+      },
+      {
+        "table_name": "LINK",
+        "column_name": "RETIRED_AT",
+        "data_type": "TIMESTAMP WITH TIME ZONE",
+        "is_nullable": "YES",
+        "column_default": null,
+        "character_maximum_length": null,
+        "datetime_precision": "6"
+      },
+      {
+        "table_name": "LINK",
+        "column_name": "IDEMPOTENCY_KEY",
+        "data_type": "CHARACTER VARYING",
+        "is_nullable": "YES",
+        "column_default": null,
+        "character_maximum_length": "255",
+        "datetime_precision": null
+      }
+    ],
+    [
+      {
+        "table_name": "AUDIT_LOG",
+        "constraint_type": "PRIMARY KEY",
+        "column_name": "ID",
+        "ordinal_position": "1",
+        "check_clause": null
+      },
+      {
+        "table_name": "LINK",
+        "constraint_type": "CHECK",
+        "column_name": null,
+        "ordinal_position": null,
+        "check_clause": "\"URL\" <> ''"
+      },
+      {
+        "table_name": "LINK",
+        "constraint_type": "CHECK",
+        "column_name": null,
+        "ordinal_position": null,
+        "check_clause": "CHAR_LENGTH(\"CODE\") >= 6"
+      },
+      {
+        "table_name": "LINK",
+        "constraint_type": "PRIMARY KEY",
+        "column_name": "ID",
+        "ordinal_position": "1",
+        "check_clause": null
+      },
+      {
+        "table_name": "LINK",
+        "constraint_type": "UNIQUE",
+        "column_name": "CODE",
+        "ordinal_position": "1",
+        "check_clause": null
+      },
+      {
+        "table_name": "LINK",
+        "constraint_type": "UNIQUE",
+        "column_name": "IDEMPOTENCY_KEY",
+        "ordinal_position": "1",
+        "check_clause": null
+      }
+    ],
+    [
+      {
+        "id": "1",
+        "code": "HN18dQsv",
+        "url": "https://example.com/shipped-A",
+        "created_at": "2026-10-01 16:41:25.798-07",
+        "retired_at": null,
+        "idempotency_key": null
+      },
+      {
+        "id": "2",
+        "code": "hndYxOXM",
+        "url": "https://example.com/shipped-R",
+        "created_at": "2026-10-03 16:41:25.879-07",
+        "retired_at": "2026-10-03 16:41:25.905-07",
+        "idempotency_key": null
+      },
+      {
+        "id": "3",
+        "code": "PYYxocF2",
+        "url": "https://example.com/shipped-B",
+        "created_at": "2026-10-03 16:41:28.457-07",
+        "retired_at": null,
+        "idempotency_key": "shipped-key"
+      },
+      {
+        "id": "4",
+        "code": "W6Ck7ND1",
+        "url": "https://example.com/shipped-C",
+        "created_at": "2026-10-03 16:41:28.551-07",
+        "retired_at": null,
+        "idempotency_key": null
+      }
+    ],
+    [
+      {
+        "id": "1",
+        "occurred_at": "2026-10-03 23:41:25.843+00",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entity_id": "HN18dQsv",
+        "request_id": "6753311e-d43e-4e8f-98ef-4ab1e50fd652",
+        "before_state": null,
+        "after_state": "{\"url\":\"https://example.com/shipped-A\",\"state\":\"active\"}"
+      },
+      {
+        "id": "2",
+        "occurred_at": "2026-10-03 23:41:25.88+00",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entity_id": "hndYxOXM",
+        "request_id": "8d4fddd1-5bc4-441e-b03c-ca56a2651f79",
+        "before_state": null,
+        "after_state": "{\"url\":\"https://example.com/shipped-R\",\"state\":\"active\"}"
+      },
+      {
+        "id": "3",
+        "occurred_at": "2026-10-03 23:41:25.906+00",
+        "actor": "anonymous",
+        "action": "link.retire",
+        "entity": "link",
+        "entity_id": "hndYxOXM",
+        "request_id": "27051fff-b7da-4423-a043-b36156fb043e",
+        "before_state": "{\"url\":\"https://example.com/shipped-R\",\"state\":\"active\"}",
+        "after_state": "{\"url\":\"https://example.com/shipped-R\",\"state\":\"retired\"}"
+      },
+      {
+        "id": "4",
+        "occurred_at": "2026-10-03 23:41:28.514+00",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entity_id": "PYYxocF2",
+        "request_id": "b1a6308d-3db0-46a9-8c9f-42d5e9346185",
+        "before_state": null,
+        "after_state": "{\"url\":\"https://example.com/shipped-B\",\"state\":\"active\"}"
+      },
+      {
+        "id": "5",
+        "occurred_at": "2026-10-03 23:41:28.552+00",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entity_id": "W6Ck7ND1",
+        "request_id": "b465050f-0c88-42fa-afe8-28fe21aab7b5",
+        "before_state": null,
+        "after_state": "{\"url\":\"https://example.com/shipped-C\",\"state\":\"active\"}"
+      },
+      {
+        "id": "6",
+        "occurred_at": "2026-10-05 16:41:29.151533-07",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entity_id": "HN18dQsv",
+        "request_id": "qa04-future-event",
+        "before_state": null,
+        "after_state": "{\"url\":\"https://example.com/shipped-A\",\"state\":\"active\"}"
+      }
+    ],
+    [
+      {
+        "version": "1",
+        "description": "create link and audit log",
+        "success": "TRUE"
+      },
+      {
+        "version": "2",
+        "description": "create click",
+        "success": "TRUE"
+      }
+    ]
+  ]
+}

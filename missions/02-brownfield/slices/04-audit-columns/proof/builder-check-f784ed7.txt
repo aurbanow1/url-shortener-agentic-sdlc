@@ -1,0 +1,34 @@
+> Task :compileJava
+> Task :processResources
+> Task :classes
+> Task :jar
+> Task :compileTestJava
+> Task :processTestResources
+> Task :testClasses
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+
+> Task :test
+
+ClickAuditColumnsTest > theClickTablesGainFilledAuditColumnsAndKeepEveryV1ColumnAndConstraint() FAILED
+    org.opentest4j.AssertionFailedError at ClickAuditColumnsTest.java:62
+
+2026-10-03T16:09:07.803-07:00  INFO 38589 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-10-03T16:09:07.804-07:00  INFO 38589 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-10-03T16:09:07.806-07:00  INFO 38589 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2026-10-03T16:09:07.807-07:00  INFO 38589 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+
+> Task :test FAILED
+
+218 tests completed, 1 failed
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':test'.
+> There were failing tests. See the report at: file:///Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/04-audit-columns/build/reports/tests/test/index.html
+
+* Try:
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 12s
+6 actionable tasks: 6 executed

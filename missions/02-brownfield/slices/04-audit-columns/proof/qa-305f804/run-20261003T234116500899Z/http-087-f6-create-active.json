@@ -1,0 +1,35 @@
+{
+  "sequence": 87,
+  "name": "f6-create-active",
+  "app": "f6-writer-2",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "POST",
+    "-H",
+    "Content-Type: application/json",
+    "--data",
+    "{\"url\": \"https://example.com/shipped-C\"}",
+    "http://localhost:18163/api/links"
+  ],
+  "status": 201,
+  "headers": {
+    "x-request-id": "b465050f-0c88-42fa-afe8-28fe21aab7b5",
+    "location": "/api/links/W6Ck7ND1",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sat, 03 Oct 2026 23:41:28 GMT"
+  },
+  "body": "{\"code\":\"W6Ck7ND1\",\"shortUrl\":\"http://localhost:18163/W6Ck7ND1\",\"url\":\"https://example.com/shipped-C\",\"state\":\"active\",\"createdAt\":\"2026-10-03T23:41:28.551Z\"}",
+  "json": {
+    "code": "W6Ck7ND1",
+    "shortUrl": "http://localhost:18163/W6Ck7ND1",
+    "url": "https://example.com/shipped-C",
+    "state": "active",
+    "createdAt": "2026-10-03T23:41:28.551Z"
+  }
+}

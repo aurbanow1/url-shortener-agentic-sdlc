@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuditEntry.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">urlshort</a> &gt; <a href="index.source.html" class="el_package">dev.urlshort.audit</a> &gt; <span class="el_source">AuditEntry.java</span></div><h1>AuditEntry.java</h1><pre class="source lang-java linenums">package dev.urlshort.audit;
+
+import java.time.Instant;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import org.jspecify.annotations.Nullable;
+import tools.jackson.databind.JsonNode;
+
+/**
+ * One audit row as the read returns it, exactly SPEC rule 3's fields, every value as stored.
+ *
+ * @param occurredAt when the mutation happened, by the application clock
+ * @param actor who acted; {@code anonymous} for every row (NFR-S6)
+ * @param action what happened, for example {@code link.retire}
+ * @param entity the kind of thing changed, for example {@code link}
+ * @param entityId the public identifier of the thing changed
+ * @param requestId the {@code X-Request-Id} of the request that made the change
+ * @param before the stored state before the change; {@code null} when the change created the thing
+ * @param after the stored state after the change
+ */
+<span class="fc" id="L21">record AuditEntry(</span>
+		@Schema(description = &quot;When the mutation happened (UTC)&quot;, example = &quot;2026-10-03T17:29:41.033Z&quot;) Instant occurredAt,
+		@Schema(description = &quot;Who acted&quot;, example = &quot;anonymous&quot;) String actor,
+		@Schema(description = &quot;What happened&quot;, example = &quot;link.retire&quot;) String action,
+		@Schema(description = &quot;The kind of thing changed&quot;, example = &quot;link&quot;) String entity,
+		@Schema(description = &quot;The public identifier of the thing changed&quot;, example = &quot;jHkOIMpK&quot;) String entityId,
+		@Schema(description = &quot;The X-Request-Id of the request that made the change&quot;) String requestId,
+		// an open JSON object: without Object.class springdoc describes JsonNode's own getters; types, not
+		// type, because the document is OpenAPI 3.1
+		@Schema(implementation = Object.class, types = { &quot;object&quot;, &quot;null&quot; },
+				description = &quot;The state before the change, as stored; null for a create&quot;) @Nullable JsonNode before,
+		@Schema(implementation = Object.class, types = &quot;object&quot;, description = &quot;The state after the change, as stored&quot;) JsonNode after) {
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

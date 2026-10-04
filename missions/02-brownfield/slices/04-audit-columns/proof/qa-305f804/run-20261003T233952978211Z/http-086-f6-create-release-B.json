@@ -1,0 +1,37 @@
+{
+  "sequence": 86,
+  "name": "f6-create-release-B",
+  "app": "f6-writer-2",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "POST",
+    "-H",
+    "Idempotency-Key: shipped-key",
+    "-H",
+    "Content-Type: application/json",
+    "--data",
+    "{\"url\": \"https://example.com/shipped-B\"}",
+    "http://localhost:18163/api/links"
+  ],
+  "status": 201,
+  "headers": {
+    "x-request-id": "f76a1d84-5161-45b8-826b-b5c3804540e9",
+    "location": "/api/links/6bSYJpB0",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "date": "Sat, 03 Oct 2026 23:40:04 GMT"
+  },
+  "body": "{\"code\":\"6bSYJpB0\",\"shortUrl\":\"http://localhost:18163/6bSYJpB0\",\"url\":\"https://example.com/shipped-B\",\"state\":\"active\",\"createdAt\":\"2026-10-03T23:40:04.571Z\"}",
+  "json": {
+    "code": "6bSYJpB0",
+    "shortUrl": "http://localhost:18163/6bSYJpB0",
+    "url": "https://example.com/shipped-B",
+    "state": "active",
+    "createdAt": "2026-10-03T23:40:04.571Z"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "sequence": 26,
+  "name": "rate-04",
+  "app": "default-limiter",
+  "argv": [
+    "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/scripts/http",
+    "-sS",
+    "--max-time",
+    "8",
+    "-i",
+    "-X",
+    "GET",
+    "http://localhost:18162/api/links/zzzzzzzz"
+  ],
+  "status": 404,
+  "headers": {
+    "x-request-id": "af8a2477-14d2-41d4-9408-44b0306b18b3",
+    "content-type": "application/problem+json",
+    "transfer-encoding": "chunked",
+    "date": "Sat, 03 Oct 2026 23:41:22 GMT"
+  },
+  "body": "{\"instance\":\"urn:uuid:af8a2477-14d2-41d4-9408-44b0306b18b3\",\"status\":404,\"title\":\"Not Found\"}",
+  "json": {
+    "instance": "urn:uuid:af8a2477-14d2-41d4-9408-44b0306b18b3",
+    "status": 404,
+    "title": "Not Found"
+  }
+}

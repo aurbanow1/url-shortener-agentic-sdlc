@@ -1,0 +1,270 @@
+[
+  [
+    {
+      "table_name": "AUDIT_LOG",
+      "column_name": "ID",
+      "data_type": "BIGINT",
+      "is_nullable": "NO",
+      "column_default": null,
+      "character_maximum_length": null,
+      "datetime_precision": null
+    },
+    {
+      "table_name": "AUDIT_LOG",
+      "column_name": "OCCURRED_AT",
+      "data_type": "TIMESTAMP WITH TIME ZONE",
+      "is_nullable": "NO",
+      "column_default": null,
+      "character_maximum_length": null,
+      "datetime_precision": "6"
+    },
+    {
+      "table_name": "AUDIT_LOG",
+      "column_name": "ACTOR",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "NO",
+      "column_default": null,
+      "character_maximum_length": "64",
+      "datetime_precision": null
+    },
+    {
+      "table_name": "AUDIT_LOG",
+      "column_name": "ACTION",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "NO",
+      "column_default": null,
+      "character_maximum_length": "64",
+      "datetime_precision": null
+    },
+    {
+      "table_name": "AUDIT_LOG",
+      "column_name": "ENTITY",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "NO",
+      "column_default": null,
+      "character_maximum_length": "32",
+      "datetime_precision": null
+    },
+    {
+      "table_name": "AUDIT_LOG",
+      "column_name": "ENTITY_ID",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "NO",
+      "column_default": null,
+      "character_maximum_length": "64",
+      "datetime_precision": null
+    },
+    {
+      "table_name": "AUDIT_LOG",
+      "column_name": "REQUEST_ID",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "NO",
+      "column_default": null,
+      "character_maximum_length": "64",
+      "datetime_precision": null
+    },
+    {
+      "table_name": "AUDIT_LOG",
+      "column_name": "BEFORE_STATE",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "YES",
+      "column_default": null,
+      "character_maximum_length": "4096",
+      "datetime_precision": null
+    },
+    {
+      "table_name": "AUDIT_LOG",
+      "column_name": "AFTER_STATE",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "NO",
+      "column_default": null,
+      "character_maximum_length": "4096",
+      "datetime_precision": null
+    },
+    {
+      "table_name": "AUDIT_LOG",
+      "column_name": "CREATED_AT",
+      "data_type": "TIMESTAMP WITH TIME ZONE",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "character_maximum_length": null,
+      "datetime_precision": "6"
+    },
+    {
+      "table_name": "AUDIT_LOG",
+      "column_name": "UPDATED_AT",
+      "data_type": "TIMESTAMP WITH TIME ZONE",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "character_maximum_length": null,
+      "datetime_precision": "6"
+    },
+    {
+      "table_name": "AUDIT_LOG",
+      "column_name": "CREATED_BY",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "NO",
+      "column_default": "'anonymous'",
+      "character_maximum_length": "64",
+      "datetime_precision": null
+    },
+    {
+      "table_name": "AUDIT_LOG",
+      "column_name": "UPDATED_BY",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "NO",
+      "column_default": "'anonymous'",
+      "character_maximum_length": "64",
+      "datetime_precision": null
+    },
+    {
+      "table_name": "LINK",
+      "column_name": "ID",
+      "data_type": "BIGINT",
+      "is_nullable": "NO",
+      "column_default": null,
+      "character_maximum_length": null,
+      "datetime_precision": null
+    },
+    {
+      "table_name": "LINK",
+      "column_name": "CODE",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "NO",
+      "column_default": null,
+      "character_maximum_length": "32",
+      "datetime_precision": null
+    },
+    {
+      "table_name": "LINK",
+      "column_name": "URL",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "NO",
+      "column_default": null,
+      "character_maximum_length": "2048",
+      "datetime_precision": null
+    },
+    {
+      "table_name": "LINK",
+      "column_name": "CREATED_AT",
+      "data_type": "TIMESTAMP WITH TIME ZONE",
+      "is_nullable": "NO",
+      "column_default": null,
+      "character_maximum_length": null,
+      "datetime_precision": "6"
+    },
+    {
+      "table_name": "LINK",
+      "column_name": "RETIRED_AT",
+      "data_type": "TIMESTAMP WITH TIME ZONE",
+      "is_nullable": "YES",
+      "column_default": null,
+      "character_maximum_length": null,
+      "datetime_precision": "6"
+    },
+    {
+      "table_name": "LINK",
+      "column_name": "IDEMPOTENCY_KEY",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "YES",
+      "column_default": null,
+      "character_maximum_length": "255",
+      "datetime_precision": null
+    },
+    {
+      "table_name": "LINK",
+      "column_name": "UPDATED_AT",
+      "data_type": "TIMESTAMP WITH TIME ZONE",
+      "is_nullable": "NO",
+      "column_default": "CURRENT_TIMESTAMP",
+      "character_maximum_length": null,
+      "datetime_precision": "6"
+    },
+    {
+      "table_name": "LINK",
+      "column_name": "CREATED_BY",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "NO",
+      "column_default": "'anonymous'",
+      "character_maximum_length": "64",
+      "datetime_precision": null
+    },
+    {
+      "table_name": "LINK",
+      "column_name": "UPDATED_BY",
+      "data_type": "CHARACTER VARYING",
+      "is_nullable": "NO",
+      "column_default": "'anonymous'",
+      "character_maximum_length": "64",
+      "datetime_precision": null
+    }
+  ],
+  [
+    {
+      "table_name": "AUDIT_LOG",
+      "constraint_type": "PRIMARY KEY",
+      "column_name": "ID",
+      "ordinal_position": "1",
+      "check_clause": null
+    },
+    {
+      "table_name": "LINK",
+      "constraint_type": "CHECK",
+      "column_name": null,
+      "ordinal_position": null,
+      "check_clause": "\"URL\" <> ''"
+    },
+    {
+      "table_name": "LINK",
+      "constraint_type": "CHECK",
+      "column_name": null,
+      "ordinal_position": null,
+      "check_clause": "CHAR_LENGTH(\"CODE\") >= 6"
+    },
+    {
+      "table_name": "LINK",
+      "constraint_type": "PRIMARY KEY",
+      "column_name": "ID",
+      "ordinal_position": "1",
+      "check_clause": null
+    },
+    {
+      "table_name": "LINK",
+      "constraint_type": "UNIQUE",
+      "column_name": "CODE",
+      "ordinal_position": "1",
+      "check_clause": null
+    },
+    {
+      "table_name": "LINK",
+      "constraint_type": "UNIQUE",
+      "column_name": "IDEMPOTENCY_KEY",
+      "ordinal_position": "1",
+      "check_clause": null
+    }
+  ],
+  [],
+  [],
+  [
+    {
+      "version": "1",
+      "description": "create link and audit log",
+      "success": "TRUE"
+    },
+    {
+      "version": "2",
+      "description": "create click",
+      "success": "TRUE"
+    },
+    {
+      "version": "3",
+      "description": "add click audit columns",
+      "success": "TRUE"
+    },
+    {
+      "version": "4",
+      "description": "add link audit columns",
+      "success": "TRUE"
+    }
+  ]
+]
