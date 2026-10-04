@@ -1,15 +1,46 @@
 #!/usr/bin/env bash
-# Localhost-only curl for seats:   scripts/http <curl args...> <http://localhost|127.0.0.1[:port]/...>
-# Lets agents exercise the running app by effect without a blanket curl
-# allowance: every URL argument must point at the loopback host.
+# Loopback-only curl for seats:   scripts/http <curl args...> <http://localhost|127.0.0.1|[::1][:port]/...>
+# Lets agents exercise the running app by effect without a blanket curl allowance.
+# Every destination must be http(s) on exactly localhost, 127.0.0.1 or [::1]: each argument that
+# is not an option or an option's value is checked as a URL. Options that change or add the
+# destination (--url, proxies, --connect-to, --resolve, unix sockets, following redirects) or read
+# arguments from elsewhere (-K/--config) are refused; so is any --opt=value form, which curl does not
+# accept. ~/.curlrc and proxy settings are ignored (-q, --noproxy). Check: scripts/http-guard-check.sh
 set -euo pipefail
-for a in "$@"; do
+
+refuse() { echo "scripts/http: refusing $1" >&2; exit 2; }
+loopback='^https?://(localhost|127\.0\.0\.1|\[::1\])(:[0-9]{1,5})?([/?#].*)?$'
+# curl options that take a value; the value is skipped, not checked as a URL.
+long_value=" --header --data --data-raw --data-binary --data-urlencode --json --form --request --output --write-out --max-time --connect-timeout --user-agent --referer --cookie --cookie-jar --user --upload-file --dump-header --retry --retry-delay --retry-max-time --range --limit-rate --max-filesize --trace --trace-ascii --stderr --time-cond --expect100-timeout --keepalive-time "
+long_refused=" --url --proxy --preproxy --proxy-user --proxytunnel --socks4 --socks4a --socks5 --socks5-hostname --connect-to --resolve --unix-socket --abstract-unix-socket --config --location --location-trusted --doh-url "
+short_value="HdFXowmAebcuTDrz"   # -H -d -F -X -o -w -m -A -e -b -c -u -T -D -r -z
+short_refused="xKL"                # proxy, config file, follow redirects
+
+i=0; args=("$@"); end=0
+while [ $i -lt ${#args[@]} ]; do
+  a=${args[$i]}
+  if [ $end -eq 1 ]; then   # after --, curl reads every argument as a URL
+    [[ "$a" =~ $loopback ]] || refuse "non-loopback destination after --: $a"
+    i=$((i + 1)); continue
+  fi
   case "$a" in
-    http://*|https://*)
-      case "$a" in
-        http://localhost*|http://127.0.0.1*|http://\[::1\]*) ;;
-        *) echo "scripts/http: refusing non-loopback URL: $a" >&2; exit 2 ;;
-      esac ;;
+    --) end=1 ;;
+    --*=*) refuse "option in --opt=value form: $a" ;;
+    --*)
+      [[ "$long_refused" == *" $a "* ]] && refuse "option that can change the destination: $a"
+      [[ "$long_value" == *" $a "* ]] && i=$((i + 1)) ;;
+    -?*)
+      opts=${a#-}
+      for ((j = 0; j < ${#opts}; j++)); do
+        c=${opts:$j:1}
+        [[ "$short_refused" == *"$c"* ]] && refuse "option that can change the destination: -$c"
+        if [[ "$short_value" == *"$c"* ]]; then
+          [ $((j + 1)) -eq ${#opts} ] && i=$((i + 1))   # value is the next argument
+          break                                         # or the rest of this one
+        fi
+      done ;;
+    *) [[ "$a" =~ $loopback ]] || refuse "non-loopback destination: $a" ;;
   esac
+  i=$((i + 1))
 done
-exec curl "$@"
+exec curl -q --noproxy '*' "$@"

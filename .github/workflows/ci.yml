@@ -40,6 +40,8 @@ jobs:
           # The MIT-licensed cache. The default provider is proprietary and only a preview for
           # private repositories.
           cache-provider: basic
+      # The seats' loopback-only curl wrapper: every accepted and refused case, against a stand-in curl.
+      - run: bash scripts/http-guard-check.sh
       - run: ./gradlew check --no-daemon
       - if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
