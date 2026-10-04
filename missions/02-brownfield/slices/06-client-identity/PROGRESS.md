@@ -23,7 +23,7 @@
 - [x] Merged `--no-ff` into `main` at `b8d7fc16` (first written as `fda42757`, which is another seat's docs-only commit 50 s later, picked up when I read HEAD after the gate; corrected 03:37Z). The 10 files are the slice's territory plus the comment-only `application.properties` grant (M3S-02).
 - [x] Fresh gate on merged `main`, `check --rerun-tasks`, 14/14 tasks executed, BUILD SUCCESSFUL (`docs/evidence/02-brownfield/integrate-06-client-identity-check-e40b095.txt`).
 - [x] Tagged `slice/06-client-identity/accepted` → `e40b095`. Worktree removed (clean).
-- [ ] Item 16: `design-agent` updates `architecture.md` §11 row 1 and `docs/DESIGN.md` against the merged code; then item 16 returns to `qa2-agent` with the hashes. The slice closes after that judgment.
+- [x] Item 16: `design-agent` updated `architecture.md` §11 row 1 and `docs/DESIGN.md` against the merged code (`3b2ecd0b`, hashes verified by me); item 16 returned to `qa2-agent`, accepted as receipt 36 (`dd3d69ad`). Proof ready 17/17. Slice closed 03:46Z.
 
 ## QA post-merge follow-up — 2026-10-04
 
