@@ -1,0 +1,40 @@
+{
+  "candidate": "4f247f4da7868d3b124008f1c0571946dfa43c29",
+  "baseline": "5cfdf8ad9fcc5ae1963e1a0c20bf50764008eefd",
+  "spec_sha256": "435cc04db59ec06674b79387adc1e3afb165ead7e550b94a3359df2bc375b211",
+  "spec_matches_handoff": true,
+  "changed_files": [
+    "missions/02-brownfield/slices/06-client-identity/SPEC.md"
+  ],
+  "ac_count": 15,
+  "all_ac_given_when_then": true,
+  "requirements_table_rows": [
+    "FR-13",
+    "FR-10, NFR-R2",
+    "FR-7, FR-8",
+    "FR-17, NFR-S6",
+    "NFR-P1",
+    "NFR-O1, NFR-O2",
+    "NFR-R6",
+    "NFR-M3",
+    "NFR-M1",
+    "NFR-M2"
+  ],
+  "ambiguity_rows": 6,
+  "proof_items": 17,
+  "selected_baseline_source_equal": {
+    "src/main/java/dev/urlshort/web/RateLimitFilter.java": true,
+    "src/main/java/dev/urlshort/audit/AuditController.java": true,
+    "src/main/java/dev/urlshort/click/ClickRecorder.java": true,
+    "src/main/java/dev/urlshort/web/RateLimiter.java": true,
+    "src/test/java/dev/urlshort/audit/AuditControllerTest.java": true,
+    "src/test/java/dev/urlshort/web/RateLimitFilterTest.java": true,
+    "src/functionalTest/java/dev/urlshort/audit/AuditAccessSettingsJourneyTest.java": true,
+    "src/functionalTest/java/dev/urlshort/audit/AuditForwardedHeadersJourneyTest.java": true,
+    "docs/api/openapi.json": true
+  },
+  "product_delta_from_baseline": "none",
+  "decision": "D21 qitem-20261004003331-0b5245ad",
+  "independence": "Separate author/reviewer seats on Codex; human-authorized D17, PLAN.md:298 and mission NOTES:71; not cross-runtime independence.",
+  "runtime_verification": "No new product runtime claim: requirements-only review. Own preceding wave gate and effects tested identical product; this slice must produce baseline/candidate characterization and live equivalence downstream."
+}
