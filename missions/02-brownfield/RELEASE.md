@@ -1,14 +1,16 @@
 # Mission 02 release package — candidate 30f8de4e
 
-Prepared on main at **30f8de4e647b05ff54cde09f1019ae519b00069d**, after all six slices merged and both wave vantages passed. The pre-run at e227acf remains immutable history. Independent release review and human ship sign-off are pending. Nothing was pushed, tagged as a release or published.
+Prepared on main at **30f8de4e647b05ff54cde09f1019ae519b00069d**, after all six slices merged and both wave vantages passed. The pre-run at e227acf remains immutable history. Independent release review is **PASS**, committed446eca31, on packagead0c01f6. Human ship sign-off is pending on **qitem-20261004052127-b89c249b**, parked on human@kernel. Nothing was pushed, tagged as a release or published.
 
 ## 1. Decision brief for ship sign-off
 
 This candidate adds local paginated audit read, configurable scheduled click retention, the observed ProblemDetail/OpenAPI and anonymous-metric fixes, V3/V4 row-audit columns, GitHub CI/CD and weekly Dependabot, and the behavior-preserving ClientIdentity refactor. Existing links remain covered by unchanged regression journeys. The exact candidate passed a fresh 590-test gate, canonical 100% line/branch coverage and installed jar/image smoke. Independent QA/reviews and [four labelled drills](../../docs/scenarios/drills.md) are recorded.
 
+[Formal release review](../../docs/review/02-brownfield/release-review.md),446eca31, independently reran590 tests and installed jar smoke; reconciled583/206 coverage,64/64 proof with174 committed evidence hashes,143 preparation links, all frozen metrics and raw rollback/container evidence. PR-01/02/03 and RR-01 are resolved; no MUST-FIX/HIGH remains. It is a separate-author, same-runtime review under the recorded D17 arrangement. A fresh ship-gate proof read at2026-10-04T05:22Z remains **ready64/64**, no issues, at the same revision as the [reviewed readiness snapshot](release/final-30f8de4e/proof-ready.json). This status annotation preserves the reviewed artifact and evidence snapshots.
+
 The [mission SPEC](SPEC.md) quotes the human's original plan decision: “three slices in two waves as briefed, with the four labelled drills; purge stays here with the 90-day default as an operator setting”. Audit columns, CI/CD D14 and refactor D21 were explicitly added; the latest spec stamp is by the lead on behalf of the human at 2026-10-04T00:35:06.760Z. D21 requires one client-identity component with unchanged behavior. No mission02 delivery stamp or ship approval is claimed.
 
-**Recommended default:** approve local use after independent review, explicitly accepting the missing exact-candidate hosted CI/CD and §7 limits. Alternative: hold for the human to push the candidate, obtain both hosted runs and repeat measurements on the intended host; this adds runner/operator and measurement time. Rollback: stop writers and copy stopped H2 data; revert D21 alone to the preserved pre-run image, or reverse V4 then V3 and deploy the prepared mission01 binary.
+**Recommended default:** approve local use, explicitly accepting the missing exact-candidate hosted CI/CD and §7 limits. Alternative: hold for the human to push the candidate, obtain both hosted runs and repeat measurements on the intended host; this adds runner/operator and measurement time. Rollback: stop writers and copy stopped H2 data; revert D21 alone to the preserved pre-run image, or reverse V4 then V3 and deploy the prepared mission01 binary.
 
 ## 2. Artifact and gate
 
