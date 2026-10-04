@@ -19,6 +19,8 @@ locked-artifacts:
     path: design.md
     kind: spec
 provenance: transport:v1
+approved-by: orchestration-lead@urlshort-factory
+approved-at: 2026-10-04T05:26:34.749Z
 ---
 
 # Slice 05 — CI/CD
