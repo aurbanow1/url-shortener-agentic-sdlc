@@ -166,6 +166,40 @@ Gate qitem-20261004052127-b89c249b, transition2078, actor human@kernel,2026-10-0
   - **`release_prep`** (`qitem-20261004034522-8dfeeeca`) on `release-agent`, the lifecycle default and this mission's release seat under D18. My conditions are on the packet: re-run the SHA-bound parts on `main` ≥ `b8d7fc16` with a range-diff from the pre-run's `e227acf`; re-check `47e3a07`/`8d3c536` against raw files (fallback window); land the README CI/CD section (`qitem-20261004033811-cd6da024`); proof drift is handled once, after the stamps. The re-affirmation item `8eb72ecb` is parked on `release_prep`.
 - 2026-10-04T04:16Z — **Re-affirmation moved earlier, before release review.** `release-agent`, on final candidate `30f8de4e` (README CI/CD section `30f8de4e`; gate 268/322, 583/583 lines, 206/206 branches; jar and image smoke pass), reports 15 drifted proof items across the five non-refactor slices. All six slices are now merged, so the shared documents should hold still. Re-affirming now lets release review and the human's ship decision see ready proof, instead of 15 unknowns. **Routed by each slice's proof judge:** `qa2-agent` `qitem-20261004041605-18a958ae` (`03-operate`, `02-click-retention`, `04-audit-columns`, `05-ci-cd`) and `qa-agent` `qitem-20261004041607-09149d20` (`01-create-redirect`, `02-analytics`, `01-audit-read`, `03-dogfood-fix`), both citing `30f8de4e`. `release-agent` hands off `release_prep` only after both close and quotes their readiness. `8eb72ecb` stays open for a small post-stamp round (SPEC-cited items) before export.
 - 2026-10-04T04:17Z — **Human request "can you run something in parallel"** (operator `qitem-20261004041701-bad13eb4`). Its proposal 1, mission 01's re-affirmation now, was already covered by the two items I routed one minute earlier (mission 01's three slices are in them). Proposal 2 taken: `review-agent` pre-reads the stable sections of `RELEASE.md` (`qitem-20261004041721-d7a24707`): rollback V3/V4, gaps, drills, evidence links, metrics, the README CI/CD section. It also checks the pre-run commits `47e3a07`/`8d3c536` against their raw files, independently of `release-agent`'s own re-check. The draft is headed "PRE-READ at <sha>". The real `release_review` then checks only the final-build delta.
+- **MISSION CLOSED 2026-10-04T05:36Z** (`mission_close` packet `qitem-20261004053446-9ff105d1`).
+  - **Human ship decision:** transition 2078, 05:23:06Z, verbatim: "approve: ship mission 02 (six slices) at 30f8de4e for local use; the exact-SHA hosted CI gap is accepted because the delta from the CI-verified e43ed246 (pull request #14) is documentation only; the release's measurement limits are accepted".
+  - **Stamps:** mission delivery stamp (`release-agent`, `10df955a`); six slice delivery stamps (me, `2020d53b`). All six slices still read ready afterwards, so there was no post-stamp round.
+  - **Shipped:** product `30f8de4e`, six slices:
+    - `05-ci-cd` (`0aa3695`);
+    - `01-audit-read` (`cb148c4`);
+    - `03-dogfood-fix` (`5c264db`);
+    - `02-click-retention` (`ed2b940`, test fix W2F-01 `50ad9c3`);
+    - `04-audit-columns` (`d55a502`);
+    - `06-client-identity`, D21 (`b8d7fc16`).
+    - Four labelled drills.
+  - **Evidence:** `docs/evidence/02-brownfield/INDEX.md` at `3cb580dc` (17 instances, 205 packets, 477 raw JSON, proof 64/64, 174 committed references). Release package `missions/02-brownfield/RELEASE.md`; release review PASS `446eca31`; wave review PASS `bd74b509`.
+  - **Proof:** re-affirmed once before release review on `30f8de4e` (`a9b59315`, `2a47ad28`). The content-changed items (RF-01..03, `02-analytics` #10) were verified as reviewed later corrections.
+  - **Worktrees:** every slice worktree was removed at its merge (`.worktrees/w2f-01` too). Left in place, each owned by the seat that made it:
+    - `release-agent`'s `.worktrees/drill-qa-remediation` (its evidence is exported);
+    - the throwaway review checkouts `.worktrees/review-*`;
+    - QA temp worktrees under `/private/tmp`.
+  - **Follow-on backlog, each with an owner or trigger:**
+    - MEDIUM: the Gradle wrapper has a 10 s download timeout and 0 retries. It needs a bounded retry/timeout; next CI touch, sooner on a third blocker.
+    - LOW: ping uses `Instant.now()` directly → inject the shared `Clock` on the next touch of `ping/`.
+    - LOW: future V5 migrations must pin the V4-specific tests (the V3 lesson) → the V5 author.
+    - LOW: functional journeys can reach a foreign loopback listener → `server.address=127.0.0.1` in those contexts, follow-on.
+    - INFO W2D21-01/02: a stale manifest exclusion and the README correction note.
+    - Hosted GitHub CI for `30f8de4e`: 0 runs until the human pushes; accepted.
+    - The historical metrics snapshot `8d3c536` does not replay exactly (233/9 vs 230/8); qualified, and the final metrics are fresh and reproducible.
+    - Mission 01's AC-28 host gap remains accepted.
+    - Mission 03's M3S-01 (`totalClicks` wording) is still open there.
+  - **Factory lessons for the retro** (also in the lead's memory):
+    - Shared-doc and stamp proof drift recurred: re-affirm once after the last merge, before release review.
+    - Two Codex weaker-model windows: re-derive the affected work.
+    - Codex `rig` calls with plumbing run sandboxed, and non-`missions/` evidence paths resolve slice-relative.
+    - Read the merge SHA right after `git merge`; another seat's commit landed during my gate.
+    - Gate packets ignore `--next-owner`.
+  - **Still open across missions:** `qa-agent`'s last append-only re-affirmation of mission 03's `01-analytics-v2` items 2/5/6 (`qitem-20261004052725-7bd25702`), then my final readiness check across all eleven slices for the operator's `docs/FINAL-SUMMARY.md`.
 
 ## 3. Design agent
 
