@@ -20,4 +20,5 @@ Do not duplicate inherited mission-02 HIGH W2F-01: its one forward-fix owner is
 qitem-20261004003207-25b6f4c0 and review-agent's cd88fd3 record. This wave's green gate
 does not settle that race. Final shared release must include its reviewed correction and a fresh
 complete gate. Proof12/NFR-L1 remains release_prep's obligation under
-qitem-20261003195138-8eb72ecb. A future D21 identity change needs its own assigned review.
+qitem-20261003195138-8eb72ecb. D21 explicitly leaves mission03 independent: it does not wait for06-client-identity.
+If a later release candidate includes that change, use its separately assigned review.
