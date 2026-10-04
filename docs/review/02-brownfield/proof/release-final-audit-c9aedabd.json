@@ -1,0 +1,2764 @@
+{
+  "package": "c9aedabd",
+  "product": "30f8de4e647b05ff54cde09f1019ae519b00069d",
+  "checks": {
+    "product_delta": {
+      "paths": [
+        "src/functionalTest/java/dev/urlshort/web/ClientIdentityCharacterizationJourneyTest.java",
+        "src/main/java/dev/urlshort/audit/AuditController.java",
+        "src/main/java/dev/urlshort/click/ClickRecorder.java",
+        "src/main/java/dev/urlshort/web/ClientIdentity.java",
+        "src/main/java/dev/urlshort/web/RateLimitFilter.java",
+        "src/main/resources/application.properties",
+        "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+        "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+        "src/test/java/dev/urlshort/web/ClientIdentityTest.java",
+        "src/test/java/dev/urlshort/web/RateLimitFilterTest.java"
+      ],
+      "equal_to_reviewed_candidate": "e40b095",
+      "package_product_diff_empty": true
+    },
+    "input_tree_rows": 133,
+    "jars": [
+      {
+        "path": "/private/tmp/urlshort-mission02-30f8de4e.jar",
+        "sha256": "fd6cf6f0c6c117c6138f50f9a2924c3f397edd65ae69b4a6dafebc4e6146132e",
+        "bytes": 39636410
+      },
+      {
+        "path": "/private/tmp/urlshort-mission02-image-30f8de4e.jar",
+        "sha256": "fd6cf6f0c6c117c6138f50f9a2924c3f397edd65ae69b4a6dafebc4e6146132e",
+        "bytes": 39636410
+      }
+    ],
+    "fresh_compiled_entries_equal_jar": 62,
+    "gate": {
+      "producer": {
+        "test": {
+          "tests": 268,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "functionalTest": {
+          "tests": 322,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      "reviewer": {
+        "functionalTest": {
+          "tests": 322,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "test": {
+          "tests": 268,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      "matching_reports": 74,
+      "exact_case_display_matches": 72,
+      "runtime_display_qualifications": [
+        "functionalTest/TEST-dev.urlshort.link.LinkReadRetireJourneyTest.xml",
+        "functionalTest/TEST-dev.urlshort.web.ObservabilityJourneyTest.xml"
+      ],
+      "normalization": "only MockHttpServletRequestBuilder identity hex and generated canary parameter; all other name/status/index bytes retained"
+    },
+    "coverage": {
+      "INSTRUCTION": {
+        "missed": 0,
+        "covered": 2940
+      },
+      "BRANCH": {
+        "missed": 0,
+        "covered": 206
+      },
+      "LINE": {
+        "missed": 0,
+        "covered": 583
+      },
+      "COMPLEXITY": {
+        "missed": 0,
+        "covered": 269
+      },
+      "METHOD": {
+        "missed": 0,
+        "covered": 166
+      },
+      "CLASS": {
+        "missed": 0,
+        "covered": 52
+      }
+    },
+    "runtime": {
+      "joined_exchanges": [
+        {
+          "label": "health",
+          "status": 200,
+          "requestId": "b8640459-2ab2-4cf9-b19a-ef0328577bea"
+        },
+        {
+          "label": "create",
+          "status": 201,
+          "requestId": "e4e2fc31-9088-49ff-a49b-b0b32b867627"
+        },
+        {
+          "label": "redirect",
+          "status": 302,
+          "requestId": "34dd527f-1e75-4775-8bff-066fe466982a"
+        },
+        {
+          "label": "head",
+          "status": 302,
+          "requestId": "9b49323b-0f70-4643-bcd6-1d329ba90602"
+        },
+        {
+          "label": "read",
+          "status": 200,
+          "requestId": "28ce0e7e-5c5b-4f2f-9124-1341efe69a11"
+        },
+        {
+          "label": "stats",
+          "status": 200,
+          "requestId": "a4849810-3ebc-46ff-810b-0935e33878fc"
+        },
+        {
+          "label": "bad-create",
+          "status": 400,
+          "requestId": "f95c9b3c-5c03-47f2-9b17-fa391248963e"
+        },
+        {
+          "label": "unknown",
+          "status": 404,
+          "requestId": "72266fd7-7f14-4e7a-a04e-5e5e9fac6242"
+        },
+        {
+          "label": "forged-audit",
+          "status": 404,
+          "requestId": "9f80c420-5100-4811-8eee-3983f20ef3aa"
+        },
+        {
+          "label": "retire",
+          "status": 204,
+          "requestId": "b8b9e604-e98c-4cc4-90d4-6c979715d627"
+        },
+        {
+          "label": "retired-redirect",
+          "status": 410,
+          "requestId": "195b298b-27c4-4be4-8525-dbc0d5caf583"
+        },
+        {
+          "label": "actual-audit",
+          "status": 403,
+          "requestId": "4d6470a6-1360-47ee-ba02-d75e8a2b861e"
+        }
+      ],
+      "console_events": 65,
+      "non_json_launcher_line": [
+        "Picked up JAVA_TOOL_OPTIONS: -XX:MaxRAMPercentage=75"
+      ],
+      "historical_wrong_audit_url_excluded": true
+    },
+    "container": {
+      "id": "222433bf5990b13fa97d2e1d88cc5425ba0989755ee42163e9f8f930c8a5ce22",
+      "image": "sha256:827a4f977e3ee8c60b03d8c1c0db949b6a015e59819fcb23f4d60cb509e312b2",
+      "loopback_readonly_data_mount": true,
+      "stopped": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 143,
+        "Error": "",
+        "StartedAt": "2026-10-04T03:55:00.094469503Z",
+        "FinishedAt": "2026-10-04T04:17:44.945446244Z"
+      }
+    },
+    "proof": {
+      "revision": "18cdad7919e0d77e78f066dea1cd22d9c2110cb2cfce83c5b110e2248675dd33",
+      "counts": {
+        "01-audit-read": 13,
+        "02-click-retention": 10,
+        "03-dogfood-fix": 8,
+        "04-audit-columns": 9,
+        "05-ci-cd": 7,
+        "06-client-identity": 17
+      },
+      "evidence_files": 174,
+      "subjects": {
+        "30f8de4e647b05ff54cde09f1019ae519b00069d": 15,
+        "7ac8af56ed04c27bbefbd416b3976c544d2f274a": 8,
+        "a8fc8b6b67e3a3cbdaada43a3233191b6c7610e1": 6,
+        "a2c34c146c75cfabe24b16ec9e30ad40628dd676": 1,
+        "4fe70427bd0d182e886d6a19b217daa1d9e39f5d": 5,
+        "305f8045d45b19a9e3287d5fe3508af6e04db9a4": 7,
+        "add7ab5ca37dcd6f51aef3cd43c85455e1be6d14": 5,
+        "e40b09541feb0b7555c475baa82587fdd09e4890": 17
+      },
+      "judges": {
+        "qa-agent@urlshort-factory": 21,
+        "qa2-agent@urlshort-factory": 43
+      },
+      "evidence": {
+        "docs/qa/coverage/01-audit-read/SUMMARY.md": "20f4e679e767948ac35299c4ceda655d757d4778f7ccfd23c01b3f1c580bfc55",
+        "docs/qa/TRACEABILITY.md": "03764784b7c110d930e311436d290039b4dc17fda66caded4e25659e76b18b15",
+        "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/verification.json": "fdb1d554b61863bca034d8ab1267076ab371d455441ec74cea78065dac6bdc85",
+        "docs/qa/coverage/01-audit-read/all/jacocoTestReport.csv": "da4866cc281b6e29b2e604fcb79cd784292319fcb3990e58ab3f04b74135ccad",
+        "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/report-copy-hashes.json": "1894339cfa570d0f53a46b7e56c5a0c3579b74438eb13000aeee1ac506ff8695",
+        "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/source-methods.json": "b68ba0582e9336840e7d7ff5211de58a52abf7d0b2ba1acc02d35aa27d908ea5",
+        "docs/qa/GAPS.md": "6c50db0328c51453d424d6295e3ba020df4da5cbdd2f09fb4857ccdaf7a3b3f1",
+        "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/console-verification.json": "8afc9e4497a2dfa8f547ba85f41fa0c2fa4faff6e471b648556b99d99a79eb5d",
+        "missions/02-brownfield/slices/01-audit-read/impact-analysis.md": "4441c2ea917e3f9c5f17716dab435f46744668cb53b19fb1800d2c3008859a62",
+        "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/artifact-provenance.json": "0d7819453e9c4ef93f6b3c5ac00cf59b25718ebb1922b920ad5e6d34b9f279e1",
+        "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/qa-http-ledger.json": "186b4f62f74ae0a39bb5c7e8324c70a99c311fb1d927ff2bc416568011d8ef87",
+        "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/qa-upgrade-before.json": "2f869617af4e16b3346bba89f82eb8201f8a19976f8f6cd7513feecf87357579",
+        "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/qa-upgrade-after.json": "f79c285276d6d089c2313420e4ec70c6003e2c7c3ef8729316b9e846ba84de0c",
+        "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/observability-console-exchange.txt": "c1674be0d50a69699e59347f3640ed1c0bb87658c7dd6610061923051850dc85",
+        "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/qa-exchange.jsonl": "814360b3d73a88753c4d6ccf420772d050c27000ad951931ce1affcb3aef57a9",
+        "missions/02-brownfield/slices/01-audit-read/design.md": "0654b71588d3e3847fb1c7d5fcf4617733dac3a1a1d659d3e5547a5f19edf78b",
+        "missions/02-brownfield/slices/01-audit-read/proof/qa-recheck-7ac8af5/api-diff.txt": "085110d034ba95be1a9d443988414be8a7b5bd155e71f8e296ea5e2bc26e9194",
+        "docs/adr/0019-audit-read-loopback-keyset.md": "31fd2e466a7ded3006f22362305c61391a3e7964447d39416f1b85adc0ae583e",
+        "docs/DESIGN.md": "a1028993f33e1c469ad6a81b76f0c019e60de279d0c4444496efe53db960f53d",
+        "docs/review/01-audit-read/02-security-review.md": "a4fe405e2d9720b1598543cdeeec08e117129df514b16eadae4293e364e178c4",
+        "missions/02-brownfield/slices/01-audit-read/proof/qa-item12-record-check-7ac8af5.json": "ca6eeb0caddb79d072d3e4b3d1b63dcbd06191bc6ccfc91b988f8bc6484679e2",
+        "missions/02-brownfield/slices/01-audit-read/proof/qa-item12-security-7ac8af5.md": "0788eeb65e938609593b790255dafad6a9b8beff26c96d51dda5c50ce51fd16a",
+        "README.md": "0239a013e2b7b21b3f503fc3437f0eedfc9c0436a406f1b574f018377757a0d5",
+        "docs/qa/coverage/02-click-retention/SUMMARY.md": "faa08ce4abdcd6f23cfce6e206b0f8ec150690cc874870208c608af79d7a4165",
+        "missions/02-brownfield/slices/02-click-retention/proof/qa-check-a8fc8b6.txt": "dab1ab2efa3af1db9f90be8cddb5040265a0bb663f51c04bd3cd8bda0f8bac21",
+        "missions/02-brownfield/slices/02-click-retention/proof/qa-traceability-audit-a8fc8b6.json": "3c7c5a5176531cebf497f501420b25496eac83a8b25a8bceb5f6554d2ac39a56",
+        "missions/02-brownfield/slices/02-click-retention/proof/qa-effects-final-a8fc8b6/effects.json": "8ed1e2542fb4e860d76384a3c4456829b236496c2368d752eeecd0c7ad8f2e44",
+        "docs/qa/coverage/02-click-retention/all/jacocoTestReport.csv": "bb273aee84246c988b7e4e388e0c1345f684f937a200cee0f4cab88cb49cc7dd",
+        "missions/02-brownfield/slices/02-click-retention/proof/qa-coverage-audit-a8fc8b6.json": "2a299a32e62b46f0e362a357494324a9f77bcebe672728530844183f519658ae",
+        "docs/qa/coverage/02-click-retention/unit/html/index.html": "4976e6eff15953f121b362c03a5ac179536ff6c10de8b64a901464b4d9cb05d1",
+        "docs/qa/coverage/02-click-retention/functional/html/index.html": "088d491239c92a5229a84a7e79f01f7f81b6b7815fe06c916c91b35b61f1a111",
+        "docs/qa/final-reaffirmation/qa2-section-checks.json": "8567ad15daa85ba47bac0c0bb39326059836171984dc36928029e40eaaeff4cc",
+        "docs/qa/final-reaffirmation/qa2-eligible-checks.json": "ca98ef171b423da2834d88b9e0315bd922f334fbd64e2e96a8b721958750a527",
+        "docs/qa/final-reaffirmation/qa2-version-lookup.json": "129afb9d38f816e665b160edd223a44a96314f40128491340832fab0a108da64",
+        "missions/02-brownfield/slices/02-click-retention/proof/qa-custody-sequencing.md": "6420b1a62c76189dc57abe2bfe595827625d5292df6a537eefce68f6f4a98110",
+        "docs/qa/final-reaffirmation/qa2-content-checks.json": "15b06576cffd4da27954576c8c90eabd8ae95852a4c1eb1422493c5f3e69cd96",
+        "missions/02-brownfield/slices/02-click-retention/proof/qa-effects-final-a8fc8b6/startup-counts.json": "a1b79ef94084f3a16e771fb53db81b98bb9d6e872e4a84437bdc9e1622bd02bc",
+        "missions/02-brownfield/slices/02-click-retention/proof/qa-effects-final-a8fc8b6/baseline-f6dd29e.jsonl": "e3141352d1159a7dfb9bba61f7e64b1f7581ed0975e6d2cb8748eec6d7afa407",
+        "missions/02-brownfield/slices/02-click-retention/proof/qa-effects-final-a8fc8b6/candidate-installed.jsonl": "0194af2b36ff10ba50c6df0e1dd05361170c03e53f12bcc8a406a52ba3064691",
+        "missions/02-brownfield/slices/02-click-retention/proof/qa-effects-final-a8fc8b6/upgrade-before.json": "c609650ac439844ec0b2e8100b5a24ef9bfc5ce165ef10fef3ac2c22f5d761cf",
+        "missions/02-brownfield/slices/02-click-retention/proof/qa-effects-final-a8fc8b6/upgrade-after.json": "e158e138e7e0cda6c8fbf10c9a7e4869b07b022c9e1795be7173e08ee73021bd",
+        "missions/02-brownfield/slices/02-click-retention/proof/qa-migration-V3-a8fc8b6.sql": "908715401b5c84aa8b4d1525b91a9bd472d2a9ada605a8dbd5651ff1fdfc5fb6",
+        "docs/review/02-click-retention/design-review.md": "2eb8d3605563cb8c59236b916df6d747c8777248b5f6d5c4de8e373efa2f2557",
+        "docs/review/02-click-retention/proof/migration-rereview-f044cbe.txt": "585b85a225f1dd2ea82e1ff5500915cef89540c59ebf7f19e324501011997909",
+        "missions/02-brownfield/slices/02-click-retention/proof/qa-adrs-and-rollback-a8fc8b6.json": "a4d9b3f5b98f5b28087491d17892063a11843c25a7f8be06ac5462258525bf52",
+        "missions/02-brownfield/slices/02-click-retention/proof/qa-effects-final-a8fc8b6/v2-schema-detail.json": "26f147e67e2fb8f6cc24b6cb52d30fe484b3593fb4f811dec43d8a00ac437791",
+        "missions/02-brownfield/slices/02-click-retention/proof/qa-effects-final-a8fc8b6/v3-schema-detail.json": "23ef9ce2a81515bc213a3c891a32d4e2d0a75ebef99d2ec7b94b65df4e417ec5",
+        "missions/02-brownfield/slices/02-click-retention/proof/qa-effects-final-a8fc8b6/fresh-schema.json": "af43eb0e9aada07107f968a45dc62e29fc1452858665e203c4b9303dc228bfe4",
+        "missions/02-brownfield/slices/02-click-retention/proof/qa-custody-a2c34c1.md": "91fa118ef37998f1dc9785c5c08d3bbb4a93f83f491f41d52a3ecef5d3d37ff3",
+        "missions/02-brownfield/slices/02-click-retention/proof/qa-custody-git-checks-a2c34c1.json": "52264c4c7b33d1db72bc986a3748d9346250a617ecae900045fa9489c8e48220",
+        "missions/02-brownfield/slices/02-click-retention/proof/qa-custody-shared-hunks-a2c34c1.json": "12bacd3798d79f05785db043cf6a375bf01893417f53e01b52a51ef8250362d0",
+        "missions/02-brownfield/slices/02-click-retention/proof/qa-custody-coverage-audit-a2c34c1.json": "0039f5e236594d253716cbbe6e48a8125827dfff8b585e16e6c6740b24588a81",
+        "docs/evidence/02-brownfield/integrate-02-click-retention-xprime-check-a2c34c1.txt": "0f0edba2f801368387882e0b26eb011d4fcdacc88eb43bf9b5969a25f2e8787f",
+        "docs/adr/0018-click-retention-daily-purge.md": "53bd72ed7ed74817835ace4d9c85126796f7751404c242d64c9300d074ba1acb",
+        "docs/adr/0020-audit-columns-expand-migration.md": "c9978210247a70938ca5ed2fe38a9a13f87794fae1590d85b92a2318e02a8d19",
+        "docs/adr/0011-click-handoff-bounded-single-writer.md": "6d01495a14e56ac11139ce86b2d83ab03a686d1d02d0535d075675a1d8a16e24",
+        "docs/adr/0013-click-events-and-request-time-statistics.md": "737898715b892fd2c62ea9d53e22c04920c744843e86b649d33aac711599bd0d",
+        "docs/qa/coverage/03-dogfood-fix/SUMMARY.md": "d9fb8d66d34e829cc0f1c8c14c32a188f39ae81f46a0fe841bd5ac2ce5c92aec",
+        "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/verification.json": "e65230904433fabdb01a2825d95eb0d12cea619721259050fca24621d8d04373",
+        "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/document-checks.json": "6c6f34f6bd0bb617ecf3097494f18ccf09497b6711f1749fd8179040c3185b13",
+        "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/red-openapi-cce7cf7.txt": "5bc421b525766390f182bb86f907d35cb1a29883d3dd1d040799b959e585beb2",
+        "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/red-metrics-72dfffb.txt": "0c1a5c63e0a3c9f83a129418b5b0343f6cbde9c87e4aa2159acd804edd273cff",
+        "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/regression-red-controls.json": "ee931c1509ebc7fe2a27ec9e01e11748680e871cfc955d406bb01045d974c5ce",
+        "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/history-and-document-checks.json": "f5b2a3719c7c5dc278175a24f3c51018df7e23725dfacdcbb704d005c215901c",
+        "docs/qa/coverage/03-dogfood-fix/all/jacocoTestReport.csv": "80e7004828e63f1eb1ac8132995996b45114a59aee09d1f4a6adcffe63baf943",
+        "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-check-4fe7042.txt": "752f69db6364001a78040a8381f4df17db34ec8d68ef3a0405b9ff007bbc13d0",
+        "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/coverage.json": "908e8aef61568c67802511dc58349324793841974c12a8a937ad7b9fae518bb7",
+        "docs/qa/coverage/03-dogfood-fix/unit/html/index.html": "0e84bb1c70cb1eca543fff86204ba8110784780f6244b0237b3295b939d72377",
+        "docs/qa/coverage/03-dogfood-fix/unit/jacocoTestReport.csv": "3a5c63c3539787712dcad47d391fa0a60793851ad950e0163cfd156213f76fb7",
+        "docs/qa/coverage/03-dogfood-fix/functional/html/index.html": "17ce9124d70a0c71d534a3d6f5bb1dbf95c5aedb9c22a6562e47482ced2e5c84",
+        "docs/qa/coverage/03-dogfood-fix/functional/jacocoTestReport.csv": "b54e2409ad65932fae46a6febe47f47a9a455a32040eac810caaa174d1794b2d",
+        "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/report-hashes.json": "55390dc129484e6fe546e2b63a93c29c855f98769027b10dfa385471bdb1e469",
+        "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-trace-reaffirmation-4fe7042.json": "d395fca70abb15baa1e11f6189fb70ddf76336f200e5866e85f192e45bd68a05",
+        "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/source-methods.json": "0ea09e87f31fa53e4b204a7d8dc10764328cbdf512006e3fd9d6ccfa1c13d2af",
+        "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-gap-reaffirmation-4fe7042.json": "08f2c86778598ed926372258257523b0b55dd12231e54f09086d59140fd06dfa",
+        "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/http/candidate-disk-free.body": "c80c53ac129f96f5d6a68c711f391bdbc2650eff2d7cc065b81d98a3fea2e11f",
+        "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/http/candidate-prometheus.body": "e0a926bc812885d71db2e05f5cd3d02bccea3f78ea98be4c0492650470a8ebc9",
+        "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/http/candidate-bad-create.headers": "fb48a33962c5585a202553e4f2e10e95044cf06d18c3766e6b9ffacc98d5ccd1",
+        "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/http/candidate-bad-create.body": "cd141266a07c04cffe199b3de68d85e07cec12983d9385386e67234f03182de0",
+        "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/after-schema.json": "8fe6ed30940840a9a1b09cf8daded413fd5def739ae46c660d12b118decea187",
+        "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/committed-vs-live.diff": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/installed-launch-arguments.json": "2ff5d5e155c5db33379d0b5c4a21290f4d24cea8d9d224effdaecd5d03b16b4f",
+        "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/request-log-correlation.json": "95260887b519a69145eeef671c992f563736642bdee81b1f696feee84db03669",
+        "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/ports-stopped.json": "1b1609d02778208dd425fa6016cb2bab5ce871dabf080779ce285e97223041c6",
+        "docs/adr/0010-committed-openapi-document.md": "5bace20d079891aad98ee766365d2cdc21bdaf7038467051511e35641e2a77b6",
+        "docs/adr/0016-metrics-and-health-exposure.md": "13d0764579d6775f8650c675145f2e7bcdeb87497b4360d5360713f669704b73",
+        "docs/qa/coverage/04-audit-columns/SUMMARY.md": "45f24142730b94f89cfcf485ec889478d51bef6d79501ce1601d512bdbb77398",
+        "missions/02-brownfield/slices/04-audit-columns/proof/qa-junit-summary.json": "40a8a419418255d7232f492c1ce9e19096c49eea00d75c2e5487d8294e0feaef",
+        "missions/02-brownfield/slices/04-audit-columns/proof/qa-305f804/run-20261003T234116500899Z/summary.json": "df6d4693ea6684ad622e271a4036462cfeddb1fa115b8cefa49c25be00899d98",
+        "docs/qa/coverage/04-audit-columns/all/jacocoTestReport.csv": "978134cffefa984b304b698f5312d5a25b327b15c7aa5c25eac3494d2afcceb2",
+        "docs/qa/04-audit-columns/check-qa-305f804.txt": "95197fe8601eda99a6fab3f11beab7ca65b9bff0db6920a161ae10fde1350d81",
+        "missions/02-brownfield/slices/04-audit-columns/proof/qa-report-hashes.json": "bb1e8511f0c8ea5b90e520714d26afcd02d802da8e6952ade36a11bde868865e",
+        "missions/02-brownfield/slices/04-audit-columns/proof/qa-evidence-recheck.json": "16d9c238460ca00f2e5989b2e643256aff1f1f57ee0bca9b411e05ceb9c25091",
+        "missions/02-brownfield/slices/04-audit-columns/proof/qa-test-methods.json": "51a544d7b583c32dcdc4bf37899420213c56b047835b1820e1572af1319ba2d9",
+        "missions/02-brownfield/slices/04-audit-columns/proof/qa-trace-final-projection.json": "2e846374e2e02a248a411edf7a02e0ed79c94c8a0a1c59fdd7c8216f2611b633",
+        "missions/02-brownfield/slices/04-audit-columns/proof/qa-gap-closure-final.json": "f1abc201eb4273efe70afc837d9e0cf65a312f84751a0b2fc0529b0dbbb96594",
+        "missions/02-brownfield/slices/04-audit-columns/proof/qa-gap-merge-custody.json": "9225fe65d34a0b4e342b9ce7c8d8b7645d6df30a5acd8261e8f7cc96580d644a",
+        "missions/02-brownfield/slices/04-audit-columns/proof/qa-305f804/run-20261003T234116500899Z/upgrade-before-f6.json": "dc17fcc87ec0f0c52930e023fe1f68402f623ebe4b4e45f788d42f9b002db423",
+        "missions/02-brownfield/slices/04-audit-columns/proof/qa-305f804/run-20261003T234116500899Z/upgrade-after-candidate.json": "6fddc06e38a355103b8bd134293675b84ed296188253b75dec0365e3fbac3347",
+        "missions/02-brownfield/slices/04-audit-columns/proof/qa-305f804/run-20261003T234116500899Z/before-rollback-copy.json": "113d98252c42f7e5758e9f55d0959b2d6e6a25e61be7f354cf36279ccbf36a67",
+        "missions/02-brownfield/slices/04-audit-columns/proof/qa-305f804/run-20261003T234116500899Z/jar-hashes.json": "0b3c815528e8a4fcc9597c27c6bc80a01388e0be92a738cd7a54ed1af18215dd",
+        "missions/02-brownfield/slices/04-audit-columns/proof/qa-305f804/run-20261003T234116500899Z/rollback-literal-header.json": "8f49c5e3b0907ac1890cc578f62a35e097687a6d8fe5611ff7b8538090b9d3bd",
+        "missions/02-brownfield/slices/04-audit-columns/proof/qa-305f804/run-20261003T234116500899Z/rollback-after.json": "e4f225ccd104509b8fe3a6ebed8c775a33023ecd869104c5aa1bfc42e98db5b6",
+        "missions/02-brownfield/slices/04-audit-columns/proof/qa-305f804/run-20261003T234116500899Z/rollback-reapplied.json": "e1ef29418a9d4876cd9877d8225d2025fb8364fe52cc33c31956f2862ba0b5c5",
+        "missions/02-brownfield/slices/04-audit-columns/proof/qa-candidate-migration.sql": "e1cf67add7d5dc55152504e19a60cbc5f3ad3291c9a1bc1af33e168e6da055a7",
+        "missions/02-brownfield/slices/04-audit-columns/proof/qa-static-checks.json": "a29444777a17378291399ef92a09e26b275044fadf5d85fd1c114dc8da1b5b61",
+        "docs/review/04-audit-columns/design-review.md": "60fe878a284ce04746e5914b99a5efc8c855a42a3b822bd2ef5f459930677411",
+        "docs/review/04-audit-columns/proof/design-migration-check.txt": "6aacf58ccd182bab1f42c37e9ae7262923bf9deee87757fb259a5a408c4158c6",
+        "missions/02-brownfield/slices/04-audit-columns/impact-analysis.md": "0e3c3a7ca76c9003ae90cf1b5ac1d1970bf7ec3c3f582f0eb39986a76b2344f4",
+        "missions/02-brownfield/slices/04-audit-columns/slice.yaml": "157ec1728a16a9e9db7ff3681c24803db08c15b2aa3dcc3b1c4a6f9b24060b3b",
+        "missions/02-brownfield/slices/04-audit-columns/proof/qa-ancestry.txt": "9d9ea7d8cbefccf82ef1b99faf7e5b9f3e90f4dbea681fb1096211112937a9b7",
+        "missions/02-brownfield/slices/05-ci-cd/proof/qa-file-checks-add7ab5.txt": "0265a6648ccdc608634fa0ca2135471a98eff835a0ebf8aa2c9e4f6245b5efa3",
+        "docs/qa/05-ci-cd/check-candidate.mjs": "1ea034e5884760e5e121c7ac003721e313a71e13134407e7fa543de7e3f5e6d6",
+        "missions/02-brownfield/slices/05-ci-cd/proof/qa-check-add7ab5.txt": "ab0ae8eb40e785a1e04eaf4dc82d0ecfb2a972c3b23b9121f27bb8972a330128",
+        "missions/02-brownfield/slices/05-ci-cd/proof/qa-bootjar-add7ab5.txt": "ccbe714fd6b4691123fbd398fdc97a11db9d18ed9ffc41c3cbe82237d6c04405",
+        "missions/02-brownfield/slices/05-ci-cd/proof/qa-smoke-add7ab5.txt": "ab4766e59f7a1ef0f5777c002e5fc62b56150812ef5231cf65645e22e056ccbb",
+        "missions/02-brownfield/slices/05-ci-cd/proof/qa-jar-log-add7ab5.jsonl": "cd31c99c55f96d423314865259ddd120ee598f9ab55b21907a7a83c59117cb3a",
+        "missions/02-brownfield/slices/05-ci-cd/proof/qa-diff-add7ab5.txt": "ce463971162ca4b980391662c7d52314fa72048d5b4c6c731219be4ab284bbe2",
+        "missions/02-brownfield/slices/05-ci-cd/proof/docker-build-pull-add7ab5.txt": "0c1056426a1728cd8f200a0257d9dc44c7d8fce2a8dfa0f338d4838e97ee0b35",
+        "missions/02-brownfield/slices/05-ci-cd/proof/builder-docker-build-pull-add7ab5.md": "4ca12125322e604695384a16ad53c2f9a431220aeef1ce8949e469a06f6486df",
+        "missions/02-brownfield/slices/05-ci-cd/proof/action-pins-ls-remote.txt": "b7cea6d9c79ddc9f47b60de7334bd3bda5094d0781f810535ebc535cf240de24",
+        "missions/02-brownfield/slices/05-ci-cd/proof/builder-action-pins-add7ab5.md": "da59016ea36e995fdd0bce519e255aee2cca8a4ced36b2410273a7394b90f6ce",
+        "docs/qa/coverage/05-ci-cd/SUMMARY.md": "0b5a697c5f6d48e9b0c96a345332b93053dfe59aef57b6a6f261ae01de49431b",
+        "docs/qa/coverage/05-ci-cd/unit/jacocoTestReport.csv": "fa8e599f97befb7c95ec33021cf58d51cc71e6cb443eedb7d1dda15443161f8b",
+        "docs/qa/coverage/05-ci-cd/functional/jacocoTestReport.csv": "ee6fe10504c1c3c91c65074ef5a75510622bd5214f92b8fbfa64eb4631be3f24",
+        "docs/qa/coverage/05-ci-cd/all/jacocoTestReport.csv": "d2bf064150b749764588b4cdbd1444ae0913f34c51f009adbfcc69951521d113",
+        "missions/02-brownfield/slices/05-ci-cd/proof/qa-report-audit-add7ab5.json": "725203560eedafd5a6c00324901005e02d9cd41dad93f43fe8fd99e65d82cad5",
+        "docs/qa/05-ci-cd/github-run-judgment.md": "a3ca30219668e8e7663e4a3292c78861788e104f03550edc6c1d3bf7863ff92d",
+        "missions/02-brownfield/slices/05-ci-cd/proof/qa-ac13-operator-record-b6b4a29.txt": "8fd0a87c7f81620845949c89d3631589b9b04328a8a374bcbf12843ab0f5a14f",
+        "missions/02-brownfield/slices/05-ci-cd/PROOF.md": "ffd54c74e1d7ffa1774943020133d6d3ed015ec25c80ff86dae0b1936fe09ac7",
+        "docs/qa/05-ci-cd/github-access-attempts.json": "9dd0538feb164756c69202d71f8af95aeac11946ecabb9c47dcd7dc2082c5e85",
+        "docs/qa/06-client-identity/recheck-e40b095/check.txt": "4317b836a3bb3729c8f66ff37945049fa076bf8df04a7992237c36231de8964b",
+        "docs/qa/06-client-identity/recheck-e40b095/gate-summary.json": "8ea9dd8e5f796e11faf6e266faa424cf8d3887661b5d7b6e61a1ee5cdb8cfabd",
+        "docs/qa/06-client-identity/recheck-e40b095/held-writer-probe.txt": "bdb16643037cd8b995a34cf39db425460b377960edc95d2231d151e660777e2e",
+        "docs/qa/06-client-identity/recheck-e40b095/current-characterization-on-original/summary.json": "631bba4907b0f570686ab09f9daa67f3dc8a2068d529004b96f43076e92452d8",
+        "docs/qa/06-client-identity/recheck-e40b095/matrix-effects/run-20261004T030728543427Z/summary.json": "aaed7dd12040d2595ba5e354c81c89d5f5ae8ea4caf3a88a3b2c8df45a53ec8b",
+        "docs/qa/06-client-identity/recheck-e40b095/README.md": "3eef605a710e4b2ec6db95fc03535cb3d17631230d700ed96996415176659ad6",
+        "docs/qa/06-client-identity/recheck-e40b095/source-custody.json": "1d29491576b15034fbf3584da04f8a7c7c7d2541468bbd0f69ff57afb24d924a",
+        "docs/qa/06-client-identity/recheck-e40b095/jar-custody.json": "6c48ddd79276479924a4d14b560b67ae9ad4ed987a08743e35a792d6932ab1b1",
+        "docs/qa/06-client-identity/recheck-e40b095/historic-custody-aliases.json": "ebbb75966e65ab7b00f5f29256334e0f26545bed7e9bd65d0f2c2e9dc7399206",
+        "docs/qa/06-client-identity/effects/run-20261004T021042100465Z/baseline-origin-fixtures.json": "7ecf65049e0691cebf90ceb1afc7305cca168cf7f0cffb2ae20b73a1ff71d6ae",
+        "docs/qa/06-client-identity/effects/run-20261004T021042100465Z/scoped-comparison.json": "9e770d12d65dc2f10284a8b8804928d0674fa5b5ead98c7842d465df623bcddc",
+        "docs/qa/06-client-identity/recheck-e40b095/matrix-effects/run-20261004T030728543427Z/requests.jsonl": "ff59b873aca7c74776af1bf3608a5fbe5c129e8dfc9c24057c6d01681d3d2619",
+        "docs/qa/06-client-identity/recheck-e40b095/matrix-comparison.json": "c67dc5fc891d4586818e2c2d578957a42f18072eebbb1d2013df63ad847e25e6",
+        "docs/qa/06-client-identity/recheck-e40b095/held-writer-summary.json": "0ec830bc938537c3e37ba08626c493de7c9ae4196184c0d05f1c0d7f1030404c",
+        "docs/qa/06-client-identity/effects/run-20261004T021042100465Z/privacy-additional-checks.json": "8b2d44cec569a4bea5c1bff0e8e49a2b201e5d55400940806e3feadfcd866bf7",
+        "docs/qa/06-client-identity/after/summary.json": "cfab4d8ccb9a36197ba638cd6b76f1dd06d13b98b78161f7ad496e8105359b25",
+        "docs/qa/06-client-identity/blank-settings/run-20261004T022839335431Z/summary.json": "df255bbac751db9d9ae6d3665604c0c6754ce6c93bfb7ea5c03876c3495fa192",
+        "docs/qa/06-client-identity/source-custody.json": "e123d47c69bc22fdc0d1dc07554cd7988707cf1879505c12d8dc871557e7caa7",
+        "docs/qa/06-client-identity/effects/run-20261004T021042100465Z/substitutions.json": "d4e23f3751b80c5cf1115dfb57c68aec0c5db81d45edb1b01df25d9f63654736",
+        "docs/qa/06-client-identity/after/jar-comparison.json": "d3ff20f1fa30bcec24ea1d0fadbcc66956f6d56d5c82324eb1ac77c42ba03e12",
+        "docs/qa/06-client-identity/recheck-e40b095/matrix-substitutions.json": "3bc892fabecd675c376e4be707b73e8dca875d032f24d9f86b1add700b4e15ce",
+        "docs/qa/06-client-identity/after/jar-scoped-comparison.json": "5d36ce3c58e6087ad9dd78695bad877cb925c3f535f51d241d12b2b72f897ea0",
+        "docs/qa/06-client-identity/check-characterization-1b.txt": "70ca00e3223258d388dfaa04a9eafd016727195147b7cc01318e438612cdecfd",
+        "docs/qa/06-client-identity/recheck-e40b095/candidate.diff": "5260fdd3fc1eeb8c1220226a7bcf78cbb5de91b6e7373f9e2b9c28b72f50de34",
+        "docs/qa/06-client-identity/recheck-e40b095/current-characterization-on-original.txt": "4bea7a4c97f204eb3b4b583899e7e5d96fb8245dbbbd511797b5ea960f9fd5a8",
+        "docs/qa/06-client-identity/candidate-source.diff": "88b6a4e1530bb9cf979733c00029594a4706ead2f20dcabce15e9c1f78dd1d6c",
+        "docs/qa/06-client-identity/localhost-collision.md": "8201a5402363d2df0b620095140977da2cbf5191d6f5fa6b373155c0f3e118e1",
+        "docs/qa/coverage/06-client-identity/SUMMARY.md": "144a508e786b8cda020ae088aa8a7f776a3a877ab011dc62ddd4a3b79ab0c73c",
+        "docs/qa/06-client-identity/recheck-e40b095/coverage-hashes.json": "d369c3f346f8658c50809f38c548f9470dd3585ee04c3c6583e5762dd79e4903",
+        "docs/qa/06-client-identity/recheck-e40b095/test-inventory.json": "1167e329160c4004271aad8eb8cbae9aa62dfada33004205c7af4e25a2bc4016",
+        "docs/qa/06-client-identity/findings.md": "9399a338cacf9ecc337a29275468022abfed4f17147b7d17635702c125a3af7d",
+        "docs/qa/06-client-identity/item16-followup.md": "5ba988d3224f0b954a423770cee49b036ddc5ac36a111bcd6dd8e237f0ec8d36",
+        "missions/02-brownfield/slices/06-client-identity/proof/qa-item16-custody.json": "55240d0954e331f08a61c3a1ba6080f88b3414026cbe2de06f7dcc9a89cb3c24",
+        "missions/02-brownfield/slices/06-client-identity/impact-analysis.md": "4bc546723e7e36ffdc1b42206c01877b049db7fc3407ced4f896e5df485661ac",
+        "missions/02-brownfield/slices/06-client-identity/design.md": "e1df8233f1f4ce8a48368961a0d10fecb7081ae77b93af5c0c6658fd447dab89",
+        "docs/adr/0015-client-identity-trusted-proxies.md": "3b45541c4ad4823907a0023284c589ba84ec5b8d2ab935dacee98013dd37c0fb",
+        "docs/review/06-client-identity/01-code-review.md": "3e55222157c0b77739454151e1d0e4edd89592b5d597d24afd91d8f611ab31d3",
+        "docs/review/06-client-identity/02-security-review.md": "9be98d1722fb095bc8997abca6fe88e20160eff448bf1504d867b88ef69fdba6",
+        "docs/guidance/architecture.md": "cc903c2fec89e3c456991d27038e9ef88be3ea5ce7421a51732cecc4fd3b2129",
+        "docs/evidence/02-brownfield/integrate-06-client-identity-check-e40b095.txt": "5bb260b5ad164ae112646cf0f5408d122034112216d4a367d52c8d3cd6fbc0f0",
+        "missions/02-brownfield/slices/06-client-identity/proof/qa-item16-e40b095.md": "637f84ef4a3d2fc5b1d2df002ad4565571b3d66e73dab1cb8b00e25360f5cb79",
+        "missions/02-brownfield/slices/06-client-identity/proof/qa-e40b095.md": "45b6c8918341852146e2bd0b7dbf5cdd1e851c3fa147b483e2fcd843d04bf104",
+        "docs/qa/06-client-identity/recheck-e40b095/artifact-hashes-final.json": "394da672d518d640d584c8c5b4db3fb71e0aaaa7b918b867222dc4d42d2c6e39"
+      }
+    },
+    "rollback": {
+      "jar": {
+        "commit": "f09010396d584fdf41702bb99856aa17a1ec1206",
+        "bytes": 39612970,
+        "sha256": "c584c8943cf05bc75b11c1021010dc741b2f46cc8ca6175b054ceffa7f0e79a8",
+        "command": "scripts/gw --offline -p /private/tmp/urlshort-mission02-rollback-f090103 bootJar",
+        "port": 18242,
+        "pid": 9004,
+        "DDLOrder": [
+          "V4",
+          "V3"
+        ],
+        "source": "stopped copy of pre-run before-data/urlshort.mv.db"
+      },
+      "prior_source_files_match": 40,
+      "schema2_startup_and_shutdown_log": true,
+      "raw_stages_unchanged": true,
+      "old_image_separately_smoked": false,
+      "old_log_format": "plain file log despite .jsonl suffix"
+    },
+    "metrics": {
+      "manifest_inputs": 430,
+      "archive_members": 432,
+      "rows": [
+        {
+          "instance": "01M3Z8AJ1EDFTHQ1HPAWPNP2YN",
+          "closures": 21,
+          "failed": 0,
+          "retries": 0
+        },
+        {
+          "instance": "01M3ZA8Q39QEB3R1QDQCVTER18",
+          "closures": 14,
+          "failed": 2,
+          "retries": 6
+        },
+        {
+          "instance": "01M3ZXEXAMS945ZS0QZ26KZK1V",
+          "closures": 43,
+          "failed": 0,
+          "retries": 0
+        },
+        {
+          "instance": "01M40149S2BGCAKVK83B6VCNKG",
+          "closures": 13,
+          "failed": 2,
+          "retries": 6
+        },
+        {
+          "instance": "01M40CP0JVZZWR8226MNN8XCCV",
+          "closures": 16,
+          "failed": 2,
+          "retries": 7
+        },
+        {
+          "instance": "01M40CPBYR97637QGHT57BNEBY",
+          "closures": 22,
+          "failed": 3,
+          "retries": 10
+        },
+        {
+          "instance": "01M40RVNDQ0KT7FPWN1KJW0DC3",
+          "closures": 12,
+          "failed": 0,
+          "retries": 0
+        },
+        {
+          "instance": "01M40SN34E37K96B38JPG9K41X",
+          "closures": 9,
+          "failed": 0,
+          "retries": 0
+        },
+        {
+          "instance": "01M416Z3CM54YQTX93V4KG0CPS",
+          "closures": 15,
+          "failed": 0,
+          "retries": 0
+        },
+        {
+          "instance": "01M416ZY5N11CDGZBM2DT4GAXS",
+          "closures": 16,
+          "failed": 3,
+          "retries": 10
+        },
+        {
+          "instance": "01M4170AA9E72WW1BXEA5PX0AP",
+          "closures": 18,
+          "failed": 2,
+          "retries": 6
+        },
+        {
+          "instance": "01M41B1ABGY3WR0DKEPZCJE9D3",
+          "closures": 2,
+          "failed": 2,
+          "retries": 3
+        },
+        {
+          "instance": "01M41HFT4CTYPNWWNB8PJ99NFE",
+          "closures": 9,
+          "failed": 0,
+          "retries": 0
+        },
+        {
+          "instance": "01M41HG4P6DEVAKTCJC6J9QAWP",
+          "closures": 11,
+          "failed": 0,
+          "retries": 0
+        },
+        {
+          "instance": "01M41HGF6AHB6AZR3Q0KQ8MQR7",
+          "closures": 10,
+          "failed": 0,
+          "retries": 0
+        },
+        {
+          "instance": "01M4212A8BKA6JRZHZQBD90D07",
+          "closures": 4,
+          "failed": 1,
+          "retries": 3
+        },
+        {
+          "instance": "01M425CY9Z4K03G14Y677AT0PA",
+          "closures": 14,
+          "failed": 1,
+          "retries": 4
+        }
+      ],
+      "totals": {
+        "generatedAt": "2026-10-04T04:46:43.295Z",
+        "instances": 17,
+        "active": 1,
+        "completed": 15,
+        "failed": 0,
+        "aborted": 1,
+        "instanceSuccessRate": 0.938,
+        "stepClosures": 249,
+        "failedClosures": 18,
+        "stepSuccessRate": 0.928,
+        "retries": 55,
+        "rollbacks": 9,
+        "mttrMeanSec": 1711,
+        "e2eP50Sec": 20200,
+        "e2eP95Sec": 50872,
+        "humanWaitTotalSec": 31526
+      },
+      "all_field_generator_replay": "separately executed verify-metrics.py; pass"
+    },
+    "RR-01": {
+      "severity": "LOW",
+      "file": "missions/02-brownfield/release/final-30f8de4e/hosted-runs.json:1",
+      "evidence": "Committed leading + makes JSON invalid; content read after explicitly removing that one byte for diagnosis only. Producer correction requested; original preserved at package pin.",
+      "resolution": "fixed",
+      "correction_commit": "ad0c01f6b517340ad3fb5a64fcc143c078196232",
+      "corrected_sha256": "cc47737b1550471f100f6ce3624130d1eeb53cfcb2bb55b36fad933c59c65751",
+      "proof": "Exact single-file delta removes only the leading plus; corrected JSON parses; candidate, response and qualification unchanged."
+    },
+    "package_file_hashes": {
+      "missions/02-brownfield/release/final-30f8de4e/GAPS-snapshot.md": "6c50db0328c51453d424d6295e3ba020df4da5cbdd2f09fb4857ccdaf7a3b3f1",
+      "missions/02-brownfield/release/final-30f8de4e/README.md": "e526018eaa2fe1e9c2a378da2a4c832957f87b4beaf70f4fbd364303ab21354b",
+      "missions/02-brownfield/release/final-30f8de4e/advisories.json": "6dafd59bfb31e0a65e0b3a27b8b223cc69740f3d840a6e504fcb0fec3879bad0",
+      "missions/02-brownfield/release/final-30f8de4e/artifact-comparison.json": "59201e58b8d93f0caa4364f9c7dc2192496588d5163c521c13dd98db570da94c",
+      "missions/02-brownfield/release/final-30f8de4e/audit-forbidden.txt": "a235b64ba3845507ac1364a104efeed4d2477fe771df9f15cc9f33051ee8573a",
+      "missions/02-brownfield/release/final-30f8de4e/audit-prerun.py": "536fee67558427eb1e914743971b65bbad94e82a01723b13cbf828524a7acab7",
+      "missions/02-brownfield/release/final-30f8de4e/candidate-input-tree.txt": "ede8b711956e602f9c19df50df8eff2e7fe49efcedc1d333d6f2990be502503a",
+      "missions/02-brownfield/release/final-30f8de4e/canonical-jacocoTestReport.csv": "dea47f0e17be6110794a64c87c6948bbd3f402e058e9773addb70ddafadeb410",
+      "missions/02-brownfield/release/final-30f8de4e/canonical-jacocoTestReport.xml": "ea15d023c948553aed9f06960b980707c1102107772cf38caf56e80c53733598",
+      "missions/02-brownfield/release/final-30f8de4e/check-bootjar.txt": "71ee555d99e8b32bc849928889651b037d45baa3f8e1b4eb9ed5a5ee6ab0a042",
+      "missions/02-brownfield/release/final-30f8de4e/container-console.jsonl": "a0340d0516c98d4eac5af857ab4f3647a250b33678f4afd5a0125dbd2c1ee951",
+      "missions/02-brownfield/release/final-30f8de4e/container-inspect.json": "428272677f8d2a300067509e2e5ace663c5fcfde3d4fc11cc525144693903d2c",
+      "missions/02-brownfield/release/final-30f8de4e/container-smoke.txt": "73e4d4973380d3957df1632fa216de58dfc1099e43c704b736bf3b9f855e4b1b",
+      "missions/02-brownfield/release/final-30f8de4e/container-stopped.json": "73471a015759fd29a0c50c62c415383976d902b51175a6542bb22edab66269e0",
+      "missions/02-brownfield/release/final-30f8de4e/coverage-canonical.txt": "21c0459073172a155b6c5cdddc5cacb50c58841d49ed50bb0025b861f0afc7a6",
+      "missions/02-brownfield/release/final-30f8de4e/coverage-exec.tar.gz": "561859fc29e9a25a2e4f6ab17cf1ec9deb9ef04f1213fdb18eb6b61d18a05224",
+      "missions/02-brownfield/release/final-30f8de4e/dependencies.txt": "b26afdb21daf61f8438ad3e125e558764b46041f1c70207979a2eaefd2ec042d",
+      "missions/02-brownfield/release/final-30f8de4e/docker-build.txt": "9b54a3d8f9102c14f251437b8bfdf94d045b9daef2b662fa8d1dc13f3c8cbc02",
+      "missions/02-brownfield/release/final-30f8de4e/docker-version.txt": "4fdfeed3875c1662e225c367ea765e9864ed7303fd53fc663a6c1af68a796fe8",
+      "missions/02-brownfield/release/final-30f8de4e/final-metrics-inputs.tar.gz": "ed4a7ac5285565215fe162ad18d6da7c433cbe2e95489f13c58cc6cb25287976",
+      "missions/02-brownfield/release/final-30f8de4e/final-metrics-provenance.json": "f31957ab1bf1d018b3d4cc79391df7848acb7a84c01d218c6090bc46f5d73d5d",
+      "missions/02-brownfield/release/final-30f8de4e/final-metrics-replay.json": "355ccab5964d4b984551fa38da93011901fce4732ded23be0896d26d6bb771d9",
+      "missions/02-brownfield/release/final-30f8de4e/final-metrics.json": "1c7a25225cb59310b0953af02a376ca9fdfb20fd975da8bb682dbe63106c0aca",
+      "missions/02-brownfield/release/final-30f8de4e/fresh-test-xml.tar.gz": "f66d3963f0244ac541362fef79f1c50a641272bf551a155de4010bf90f48ae6e",
+      "missions/02-brownfield/release/final-30f8de4e/gate-artifact.json": "452c4341b5da8556fd0105faf35a97e0e34cd8e879b944066e3d3a2e48021a81",
+      "missions/02-brownfield/release/final-30f8de4e/historical-metrics-8d3c536-inputs.tar.gz": "a819065c35bdeb1d6d827e9f42aa561eb5dc2d22c63838cbc29f742b3aa327de",
+      "missions/02-brownfield/release/final-30f8de4e/hosted-runs.json": "6728322a69469c8a9705bf7b4722accc7d9f6691ebdbb425ee5f94b29fd2a4ed",
+      "missions/02-brownfield/release/final-30f8de4e/image-inspect.json": "91ac1abc1ff4964f052127d9a61c5af6f4939f14a73ac81b0f1df1285b4d2273",
+      "missions/02-brownfield/release/final-30f8de4e/initial-export-validation.json": "133104462139fef73898d924704b02f8ea7f3d53eb5fa18a7c7403f8f2cccfc2",
+      "missions/02-brownfield/release/final-30f8de4e/installed-wire.json": "751c4c60dac0271a3a96319f4358d15ad40d7d73afe2eddfca9f1f32266aa604",
+      "missions/02-brownfield/release/final-30f8de4e/jar-console.jsonl": "e7330c6ec90383ad1703885876d8c377c00df89f2f564cb2f269506db21aebcf",
+      "missions/02-brownfield/release/final-30f8de4e/jar-smoke.txt": "8227c2b7bddf1477434092d9e6961fa99d25a6e49a0f85b3048b0374d98c0d46",
+      "missions/02-brownfield/release/final-30f8de4e/metrics-before.json": "0271fb745efe6a97c85b6bae8318406881107658c8e097b4a796cfac3efe26d3",
+      "missions/02-brownfield/release/final-30f8de4e/metrics-readme-before.md": "ac263bb2dcd8f005a8949c64d8604d46720010f010f68775cddf02f6bf799af9",
+      "missions/02-brownfield/release/final-30f8de4e/prerun-revalidation.json": "d2bb8db5dad7e6090f9feddc626f541747099fcd1d998bebac7ada9422ce0604",
+      "missions/02-brownfield/release/final-30f8de4e/product-delta.diff": "916a393ad263b48f993cb645f62b6a7d7db34e8bdf6a03e0568edbd9d0e847fd",
+      "missions/02-brownfield/release/final-30f8de4e/proof-prep.json": "cf6442357e461acc05bf1a710f09aaa71fc6487227cbc2c10e7b06e8e6c38e86",
+      "missions/02-brownfield/release/final-30f8de4e/proof-ready.json": "842158e5d408a35fc814c1002a233345ca8b9219d41ab8f4bf3858aba190b15e",
+      "missions/02-brownfield/release/final-30f8de4e/rollback-artifact.json": "9792e22f41fe4abb8422d297879cf3dd351221b6df54742ba6432a33cd746f44",
+      "missions/02-brownfield/release/final-30f8de4e/rollback-bootjar.txt": "4f92d56f253485065a4fcfb35c8fa98151730345c2c5a734ba1092217fc46616",
+      "missions/02-brownfield/release/final-30f8de4e/rollback-build-qualification.txt": "48af033401acf8a33ea1e380f3094bb10b6bf4c263341be208f402869ac28de5",
+      "missions/02-brownfield/release/final-30f8de4e/rollback-image-inspect.json": "071da201d7a4e707c9f47cc0a13748bb94e3b0ebb65c7f291f54699e76e0edd3",
+      "missions/02-brownfield/release/final-30f8de4e/rollback-prior-smoke.txt": "8cbef308efce73f6c633416aab1540bff283454db815dcd70954b3300dd15887",
+      "missions/02-brownfield/release/final-30f8de4e/rollback-prior.jsonl": "af7578ea9dac283570514d0da1666c5149a2e57f8d1e889bf937791108eb61b3",
+      "missions/02-brownfield/release/final-30f8de4e/rollback-raw-csv.tar.gz": "f9c180b250c2e136b0361d313f4589acfa0b3cceb1269036e95a27f2f786ee24",
+      "missions/02-brownfield/release/final-30f8de4e/rollback-runtime.Dockerfile": "9f1fa9bde2e75925eaeb5f5bd477a5d199e0dadfece2f9272736d4894757f0a0",
+      "missions/02-brownfield/release/final-30f8de4e/rollback.md": "8639c52432da9b3dd750c14b5b868cbed9849fad95bb40ec8211b285303551b9",
+      "missions/02-brownfield/release/final-30f8de4e/toolchain.txt": "f147bc4c6686ab868a5346cce6a3bc186c6e9dd3a22f1998ec0403a6758aebd3",
+      "missions/02-brownfield/release/final-30f8de4e/verify-metrics.py": "3102cc5cb450f089389e8054159406d60e2baee8818699ad7b58158fad34ba15",
+      "missions/02-brownfield/release/final-30f8de4e/verify-package.py": "a5e92131c163514d357d3a9b4bdc9f7b0412aa753dff1c8c83b1825cb096db51"
+    },
+    "osv": {
+      "at": "2026-10-04T04:21:27.259Z",
+      "queries": 97,
+      "advisories": 0
+    },
+    "links": {
+      "count": 143,
+      "targets": [
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/scenarios/drills.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "SPEC.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/gate-artifact.json"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/check-bootjar.txt"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/fresh-test-xml.tar.gz"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/toolchain.txt"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/candidate-input-tree.txt"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/docker-build.txt"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/image-inspect.json"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/artifact-comparison.json"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/coverage-canonical.txt"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/canonical-jacocoTestReport.xml"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/canonical-jacocoTestReport.csv"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/coverage-exec.tar.gz"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/docker-version.txt"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/product-delta.diff"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/prerun-revalidation.json"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/hosted-runs.json"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "slices/05-ci-cd/PROOF.md#ac-13-first-github-runs-recorded-by-the-operator-2026-10-03"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/guidance/ci-cd.md#5-release-package"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/proof-prep.json"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/qa/final-reaffirmation/qa2.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/qa/final-reaffirmation/qa.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/evidence/02-brownfield/INDEX.md#packets-workflow--step--state--owner"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/proof-ready.json"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../scripts/smoke.sh"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/jar-smoke.txt"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/jar-console.jsonl"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/container-smoke.txt"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/container-console.jsonl"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/installed-wire.json"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/audit-forbidden.txt"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/container-inspect.json"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/container-stopped.json"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/dependencies.txt"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/advisories.json"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/review/REVIEW-LEDGER.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/RISKS.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/prerun-revalidation.json"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/review/02-brownfield/wave-review-review-agent.md#added-d21-range--pass-at-b8d7fc16--fda42757"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/review/02-brownfield/wave-review-design-agent.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "slices/01-audit-read/SPEC.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "slices/01-audit-read/design.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "slices/01-audit-read/PROOF.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/qa/coverage/01-audit-read/SUMMARY.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/review/01-audit-read/01-code-review.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/review/01-audit-read/02-security-review.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "slices/02-click-retention/SPEC.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "slices/02-click-retention/design.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "slices/02-click-retention/PROOF.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/qa/coverage/02-click-retention/SUMMARY.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/review/02-click-retention/01-code-review.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/review/02-click-retention/02-security-review.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "slices/03-dogfood-fix/SPEC.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "slices/03-dogfood-fix/design.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "slices/03-dogfood-fix/PROOF.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/qa/coverage/03-dogfood-fix/SUMMARY.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/review/03-dogfood-fix/01-code-review.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/review/03-dogfood-fix/02-security-review.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "slices/04-audit-columns/SPEC.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "slices/04-audit-columns/design.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "slices/04-audit-columns/PROOF.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/qa/coverage/04-audit-columns/SUMMARY.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/review/04-audit-columns/01-code-review.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/review/04-audit-columns/02-security-review.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "slices/05-ci-cd/SPEC.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "slices/05-ci-cd/design.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "slices/05-ci-cd/PROOF.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/qa/coverage/05-ci-cd/SUMMARY.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/review/05-ci-cd/01-code-review.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/review/05-ci-cd/02-security-review.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "slices/06-client-identity/SPEC.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "slices/06-client-identity/design.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "slices/06-client-identity/PROOF.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/qa/coverage/06-client-identity/SUMMARY.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/review/06-client-identity/01-code-review.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/review/06-client-identity/02-security-review.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/qa/TRACEABILITY.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/qa/GAPS.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/review/REVIEW-LEDGER.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/qa/06-client-identity/item16-followup.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/qa/dogfood/02-brownfield.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/evidence/02-brownfield/INDEX.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/GOVERNANCE.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/final-metrics.json"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/final-metrics-inputs.tar.gz"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/final-metrics-provenance.json"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/final-metrics-replay.json"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/metrics/README.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/prerun-revalidation.json"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/historical-metrics-8d3c536-inputs.tar.gz"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/pre-run-e227acf/bench.txt"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/qa/GAPS.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/GAPS-snapshot.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/rollback.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/pre-run-e227acf/rollback-v4.sql"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/pre-run-e227acf/rollback-v3.sql"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/rollback-raw-csv.tar.gz"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/rollback-artifact.json"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/rollback-bootjar.txt"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/rollback-prior-smoke.txt"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/rollback-prior.jsonl"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/rollback-image-inspect.json"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/rollback-runtime.Dockerfile"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "release/final-30f8de4e/rollback-build-qualification.txt"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/scenarios/drills.md"
+        },
+        {
+          "from": "missions/02-brownfield/RELEASE.md",
+          "target": "../../docs/evidence/02-brownfield/prep-validation.json"
+        },
+        {
+          "from": "docs/metrics/README.md",
+          "target": "../evidence/03-ambiguous-analytics/INDEX.md"
+        },
+        {
+          "from": "docs/metrics/README.md",
+          "target": "../evidence/03-ambiguous-analytics/final-validation.json"
+        },
+        {
+          "from": "docs/metrics/README.md",
+          "target": "../../missions/02-brownfield/release/final-30f8de4e/final-metrics-inputs.tar.gz"
+        },
+        {
+          "from": "docs/metrics/README.md",
+          "target": "../../missions/02-brownfield/release/final-30f8de4e/final-metrics-provenance.json"
+        },
+        {
+          "from": "docs/metrics/README.md",
+          "target": "../../missions/02-brownfield/release/final-30f8de4e/final-metrics-replay.json"
+        },
+        {
+          "from": "README.md",
+          "target": "docs/RUNBOOK.md"
+        },
+        {
+          "from": "README.md",
+          "target": "missions/03-ambiguous-analytics/slices/01-analytics-v2/SPEC.md"
+        },
+        {
+          "from": "README.md",
+          "target": ".github/workflows/ci.yml"
+        },
+        {
+          "from": "README.md",
+          "target": ".github/workflows/cd.yml"
+        },
+        {
+          "from": "README.md",
+          "target": ".github/dependabot.yml"
+        },
+        {
+          "from": "README.md",
+          "target": "docs/guidance/ci-cd.md"
+        },
+        {
+          "from": "README.md",
+          "target": "missions/02-brownfield/slices/05-ci-cd/PROOF.md#ac-13-first-github-runs-recorded-by-the-operator-2026-10-03"
+        },
+        {
+          "from": "README.md",
+          "target": "docs/SETUP-FACTORY.md"
+        },
+        {
+          "from": "docs/evidence/02-brownfield/INDEX.md",
+          "target": "../../../missions/02-brownfield/RELEASE.md"
+        },
+        {
+          "from": "docs/evidence/02-brownfield/INDEX.md",
+          "target": "scope-audit.json"
+        },
+        {
+          "from": "docs/evidence/02-brownfield/INDEX.md",
+          "target": "compiled-graph.json"
+        },
+        {
+          "from": "docs/evidence/02-brownfield/INDEX.md",
+          "target": "proof-readiness.json"
+        },
+        {
+          "from": "docs/evidence/02-brownfield/INDEX.md",
+          "target": "../../../missions/02-brownfield/RELEASE.md#2-artifact-and-gate"
+        },
+        {
+          "from": "docs/evidence/02-brownfield/INDEX.md",
+          "target": "../../scenarios/drills.md"
+        },
+        {
+          "from": "docs/evidence/02-brownfield/INDEX.md",
+          "target": "../../metrics/README.md"
+        },
+        {
+          "from": "docs/evidence/02-brownfield/INDEX.md",
+          "target": "../../../missions/02-brownfield/release/final-30f8de4e/final-metrics-inputs.tar.gz"
+        },
+        {
+          "from": "docs/evidence/02-brownfield/INDEX.md",
+          "target": "prep-validation.json"
+        },
+        {
+          "from": "docs/evidence/02-brownfield/INDEX-notes.md",
+          "target": "../../../missions/02-brownfield/RELEASE.md"
+        },
+        {
+          "from": "docs/evidence/02-brownfield/INDEX-notes.md",
+          "target": "scope-audit.json"
+        },
+        {
+          "from": "docs/evidence/02-brownfield/INDEX-notes.md",
+          "target": "compiled-graph.json"
+        },
+        {
+          "from": "docs/evidence/02-brownfield/INDEX-notes.md",
+          "target": "proof-readiness.json"
+        },
+        {
+          "from": "docs/evidence/02-brownfield/INDEX-notes.md",
+          "target": "../../../missions/02-brownfield/RELEASE.md#2-artifact-and-gate"
+        },
+        {
+          "from": "docs/evidence/02-brownfield/INDEX-notes.md",
+          "target": "../../scenarios/drills.md"
+        },
+        {
+          "from": "docs/evidence/02-brownfield/INDEX-notes.md",
+          "target": "../../metrics/README.md"
+        },
+        {
+          "from": "docs/evidence/02-brownfield/INDEX-notes.md",
+          "target": "../../../missions/02-brownfield/release/final-30f8de4e/final-metrics-inputs.tar.gz"
+        },
+        {
+          "from": "docs/evidence/02-brownfield/INDEX-notes.md",
+          "target": "prep-validation.json"
+        },
+        {
+          "from": "missions/02-brownfield/release/final-30f8de4e/README.md",
+          "target": "../../RELEASE.md"
+        },
+        {
+          "from": "missions/02-brownfield/release/final-30f8de4e/README.md",
+          "target": "final-metrics-provenance.json"
+        },
+        {
+          "from": "missions/02-brownfield/release/final-30f8de4e/README.md",
+          "target": "final-metrics-replay.json"
+        },
+        {
+          "from": "missions/02-brownfield/release/final-30f8de4e/README.md",
+          "target": "rollback.md"
+        },
+        {
+          "from": "missions/02-brownfield/release/final-30f8de4e/README.md",
+          "target": "rollback-raw-csv.tar.gz"
+        }
+      ]
+    },
+    "file_coverage": {
+      "changed_files": 263,
+      "export_json_parsed": 469,
+      "manifest_hashes": 468,
+      "ledger": [
+        {
+          "path": "docs/evidence/02-brownfield/INDEX-notes.md",
+          "sha256": "c3026cb9f1f23c4e29a29d1dc387b56955a53a7bf68d58a162aaa2b205565f15",
+          "verdict": "PASS within stated scope",
+          "method": "Read final prose/data and diff; release claims, links, dispositions and frozen metrics checked."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/INDEX.md",
+          "sha256": "12132442a277b6fc3b72f777c26e844491b10641b05fc9ef6c2d35d4a8e4ca64",
+          "verdict": "PASS within stated scope",
+          "method": "Read final prose/data and diff; release claims, links, dispositions and frozen metrics checked."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/compiled-graph.json",
+          "sha256": "f0e252bce960016cb806c14a8fc99bacfd234737ed87c02dbc2979e9f82ffb7c",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/instances/01M40RVNDQ0KT7FPWN1KJW0DC3.show.json",
+          "sha256": "f8589dabf9dbc769ee937123528516249d6ab4e226642bfd72f93e52fcf4a4f5",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/instances/01M40RVNDQ0KT7FPWN1KJW0DC3.trace.json",
+          "sha256": "14fe54ce1c4d288b7fdf3a52b7f76dac269119d1f124ae1167bd28fec6b653b6",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/instances/01M40SN34E37K96B38JPG9K41X.show.json",
+          "sha256": "b1f568513929c583532af43fe0a8ab61f6c1935e79f4e670868ab8740d2e540e",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/instances/01M40SN34E37K96B38JPG9K41X.trace.json",
+          "sha256": "7975ff8abbcd032591cf91ff42c54aac64c4553e00eab40d5189298bffd22973",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/instances/01M425CY9Z4K03G14Y677AT0PA.show.json",
+          "sha256": "32a044a5c7c0554f5a57ab38006a26ba6f37f659a6e2764a91c2c755cceaced3",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/instances/01M425CY9Z4K03G14Y677AT0PA.trace.json",
+          "sha256": "b121692c8e09122eff61fbeed52e84490b037621d0618acfdfd47f06b108a725",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261002212902-0f6e128b.show.json",
+          "sha256": "b49d0795ad2fe167076172266982df2749830f8361c2b45a03c28febe7e1ab19",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261002220222-65f568f1.show.json",
+          "sha256": "be7dde13295dcf68271fbef7203e7c433d5d14ac383d8af9e9d40d0f7fc47583",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261002220259-281a4efc.show.json",
+          "sha256": "13f856c84e3bfb75e0730744105a5b29994857558e3b370b1a01866d170eb9f9",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261002221159-a35e50bc.show.json",
+          "sha256": "954d258dffdf06fff7eab0141b6b37a93a25b67725a2696b56895f9ee9b8f050",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261002225126-b5c94d4f.show.json",
+          "sha256": "42b875983cdc9b968c96ea3964a075ddb164e6a680ca7a0778173b5d9f651a7b",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261002225911-1ad25865.show.json",
+          "sha256": "0947660d78f0742dd051b6c58b4a1813450fc40a3c9f09a1caf991a6d63def4f",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261002230841-dc5cdf2b.show.json",
+          "sha256": "88cac0149fd349197916969bf6ea0079559bcc3bcd60e4d60883d8685d073b82",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261002232943-d0903176.show.json",
+          "sha256": "d47c49b49aec01ae587ba6a31c49d118bfca04364582c9929a4c7ca1e6f60fe5",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261002235024-355f67c0.show.json",
+          "sha256": "a92c8bf9350d1e7fb54b7a23d23525fe2ae94208881de2b7236cde17ed3eb872",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003003003-9cb0ed55.show.json",
+          "sha256": "e877d8b553ddc926aac25b350ee268ce6550797a55d98dae43e4f381df39614c",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003004117-c920fe49.show.json",
+          "sha256": "dd765683d56dad4d143606b03ec555ad6becdd8e34e5bb4b3c4c6bfa3c952945",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003005806-5aaa453e.show.json",
+          "sha256": "a2ebc7b1be8754e5c5eebcbb98f381fc8b2d65ae756d736ca1e7af0561ed0dc9",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003010318-807bbf8a.show.json",
+          "sha256": "0c186ba59cf1017230618ebde2e3e86c9f911b2501e9af0ea9e1b7bb5cb7ada0",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003013220-670f8532.show.json",
+          "sha256": "faf0bf1d4eaa168f3aeab2f64107d2e68a1ee073783f49c1a77ed7edaa8a4f23",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003013423-99b71ff1.show.json",
+          "sha256": "ab3f77df0cde4d012aef3394f8c3d034cf2064d0b233614b9821d964deea9d4c",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003015049-51d1ba00.show.json",
+          "sha256": "a2ba256735be8ae5d8fbd1bc6e013a5a58852a2dfddb5cd1e052a8daba08bd26",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003030415-a2011998.show.json",
+          "sha256": "20d4971e89f6951c3b55653bf90cbf5a8cf1fd7ac984e2f6b38d38260085e82b",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003033825-0148d3da.show.json",
+          "sha256": "ff7ac9f193d64f22de6b7b308330b0604452f629997a84d90c4034f0fc2fe557",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003040709-b481dc8d.show.json",
+          "sha256": "0e334f11d7d1ec0032234447c808f0c7417f959c6b987343793f653eb8a33456",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003044200-384e9544.show.json",
+          "sha256": "45417754afc6332f57a99539b083a1e49981e595456209343b85e0eab4d32f40",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003044232-a7194f1d.show.json",
+          "sha256": "63dd17c101c15fdf64e6c7aa5b03d73229236aa9a71b3f7d58b92dcde58adccb",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003050304-b7cdaab5.show.json",
+          "sha256": "f437de4fb1a5364cd126f36a60bf94252d79acff595d4dabc87a04cadf305853",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003050836-02bc7593.show.json",
+          "sha256": "32903fcb7f356dffb9cf28da96d5084d54ebd068ddad526c0ef1e917167191f8",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003051110-97f19fd2.show.json",
+          "sha256": "3fedb0621b4a16e3e7d5a792725a3a214f221b2a090971354aa32227e967d965",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003051242-83fa8c2c.show.json",
+          "sha256": "b3dd4527444952145955bbb99a8d6157aa45f126acb96dbaeb65e86e5a724b02",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003051852-2c3bd470.show.json",
+          "sha256": "ab4553404202bebb76ea71b8485b09b9e8977e981e2b95d531e9da1881691b89",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003052736-7830d02a.show.json",
+          "sha256": "14f055bc51418de25647fa5789826d0925a3a5a6617fb4db9d7444ad36825ee2",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003054407-8b9603ab.show.json",
+          "sha256": "c66561f5f74013d2d1f3c3fa17fafc25067aac739bd071975b49fece10020b17",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003055347-01d2d207.show.json",
+          "sha256": "0cde39dd8caa85c70a61fcd9c9edc6dfba4807254d2082cabd76f6b3d6205805",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003060343-3eb84b99.show.json",
+          "sha256": "b2a8859c8be630ce93fc369b1fc2e4a1960d34cf9efaa536810c0b02e1280d9e",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003062552-16fc9d48.show.json",
+          "sha256": "5a35aa5f02c64e8ddf02b372dfe9daf3e3bc23ca1a9b7bceb418e4176e0eef8a",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003063348-182b23df.show.json",
+          "sha256": "0695136505eb74901d406c207266e4e61a4e3d6635d7aa397394f392e91da8bc",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003063930-0cb9c7eb.show.json",
+          "sha256": "21a0dcf562dce81108341803dbc2147e26056f14ec74144babf7b470e44fce46",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003071605-40d1d3aa.show.json",
+          "sha256": "e8d19a6ffef581c58c241867772a8567da6ffbd65695f07bdb9c935cf6c8168a",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003074021-e3821d80.show.json",
+          "sha256": "1c30ccc3e3f9914b7a1c6b259035abe00c5d39c8b3ba1cf845f1717a4c20448d",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003075859-7a5a6e93.show.json",
+          "sha256": "703cd70b55da717d2b334fd461e7b73dce7220e6c61e6d2c688a5577ade94d31",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003080033-20dc594e.show.json",
+          "sha256": "99d1b176506d3c8fc715aacbc145787c726f713f294879fecb0c4d0da6f01a06",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003080426-686ea065.show.json",
+          "sha256": "303cf2488302673753f011cb7c566d8a69ce5113bcfb72b61d98d1474704dc7b",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003080438-4f449e0f.show.json",
+          "sha256": "ecf5c7b423a6e47a05b646328a839979b2301c63b222f78f33d410b9ceaa0824",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003081312-64ea3c87.show.json",
+          "sha256": "3a681fb66c479a1ffd13503d221f2fbbc9d9c5ec5344253e019bbd0275d2b6bb",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003081331-87faf358.show.json",
+          "sha256": "503e1e438d8b755e66f43c1043ed1b8e966dbd7c2c65a0e32e56c685eee90ccd",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003081851-f8f25b02.show.json",
+          "sha256": "61a36fae18837e86da53e3b9180a90849b3397fe0b42947822c6eeea2e9e058f",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003082131-b709b118.show.json",
+          "sha256": "3f0090259fb1b336e3c1339a55516045bf926cb6ed99a466a11e920f715723cf",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003082147-22c46f0c.show.json",
+          "sha256": "6eee3566636b9bd84b5145a309df3c25919b140063b4ec7da76ed2ac90931483",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003082416-b1057e7a.show.json",
+          "sha256": "ef7c57dab76f813bf1ed1f71b1ea2645e1ef2f7ffcb305db0f3c4cfdb61b80fd",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003084518-9957256a.show.json",
+          "sha256": "d108d54bdd13f2d24ea3a77770c4093cb2dcfa354e3a977ae41cfc557e82bb14",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003090152-625de326.show.json",
+          "sha256": "8623e690d5a551686a1382d1d53d48eb095191d810e1b450861ff0ef1e8df781",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003091111-32efdbe2.show.json",
+          "sha256": "a49620ea3210b4c3f42ca2908107cc2dd197b1ade4e97a5ec75ce53a061075e8",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003092226-699086e9.show.json",
+          "sha256": "2dc7f428386cef7dfd4ac935dd90e478ab7f7095169c80aa8989d4de19d0cdbc",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003092345-52dd8a6e.show.json",
+          "sha256": "648c13ff93fc70d4ddec74e1de8a1cee4719d260bf4e66532ec1cd348e8f871b",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003093000-222473fe.show.json",
+          "sha256": "01763c8edfda3e29be9d1d700972f8707082e56bd6eeca8ea7f244962a334e91",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003094019-7bfaf4ab.show.json",
+          "sha256": "570768bc953b15cca19012ec145a7ea87aba69d9d6df25b4e561a76ca00f07a1",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003094226-6580fb8d.show.json",
+          "sha256": "131aafa46c883f67773f8591e9e0c07bafab68e763c5b6f50f4a728eed4af4fb",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003094649-844b6a83.show.json",
+          "sha256": "ffcfe009073e499c96a47018785455c3e1ec36db3134232316548b53090d7def",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003094850-c667801b.show.json",
+          "sha256": "0082b703f415cc98265341dfce25a81a079def172a8ad0ff9f7fd6530a3861ce",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003101510-d5f18be9.show.json",
+          "sha256": "449b8c1fab5e436b66218d3bbba3816e13cf9b5781e6aaab868266c7a6e3a956",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003103240-18e29a17.show.json",
+          "sha256": "fdd580413440f0f3292a17eae9a05bfb81f86c2b25c9358011ec4e8a6baf7cc1",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003104116-a5a61dcb.show.json",
+          "sha256": "5cbbe5d4327c677b4991eb44cde827bd640bd1d0df6b16857ccfd6181ff450d8",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003105943-d93e6776.show.json",
+          "sha256": "da2d895c04e17348456b6988503b6ec1fa0fce5126d0c2800b19e055059a995f",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003110223-756ec012.show.json",
+          "sha256": "9803a14a6beb4b515b748001fdcc5847b457da0df34406645b3f102817e86d5a",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003112133-94584287.show.json",
+          "sha256": "5c13331aca551a35691da8bd588562c2a419e4733d2477d576b697dd030fd722",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003112744-2dd7d3cb.show.json",
+          "sha256": "42ac944a51f8af0e1f4eeaa2f5c27d016c05a6d308c931121b6a9721e1ff3489",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003112820-9f4000bb.show.json",
+          "sha256": "b8ebb998b66f9482c05a71d85d93934f75d3d20e57631fcaf8bed853bd5e60c9",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003113714-4cbdf1e0.show.json",
+          "sha256": "d000f67a62b0af27112f93b1675ad6247a2917ebabb99614ab6e6932e931cc14",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003114044-007e2031.show.json",
+          "sha256": "5811cefb2dcf1eaf70fa522cabad17a1f1aa25a986f05e68d8f011128f88d44f",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003114345-f739a1d5.show.json",
+          "sha256": "364e2e067194092718e7ddb47b7dea2233934138683e62034cdf11574609df36",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003115108-61e03251.show.json",
+          "sha256": "5f77f81e34781b26108d206aed8abc80906faa2a7be2f2ea94daaae5939b4a25",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003115740-6f882a4a.show.json",
+          "sha256": "8fa175795678e64f9889ad5c3ec5b6acb6112d641a818ab020dfa2e24df8d41f",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003120849-f4cbfa97.show.json",
+          "sha256": "090d0a08b635e888874fc8f8b052bce5eab26e4dafc2948ae346e4ee1638d424",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003121811-d329afbc.show.json",
+          "sha256": "98ddb0c61335df0ca3823ab55bcae3cb2dcd4b326e4a36dc4be1a3a7649dabc9",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003123104-ccd07ab0.show.json",
+          "sha256": "9d9329132400d844f7dabfbba254dacd7238f9e5db9c3afe866853750c34e25b",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003130258-8d163c70.show.json",
+          "sha256": "7fba454d7d735c71ccd1ee438c44c779c205f1890dbe7365d2e489246b094a47",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003134551-e4b16c7a.show.json",
+          "sha256": "0043538df79bd5024bda7917041036c0976f0c79459ba8c284f14357909a75a1",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003135618-4e62dbf5.show.json",
+          "sha256": "bc1fa88fcb15074b59ae3431c162ea0fe20e3510193463bc8c7ce2aa5d2a7d80",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003135649-046d003e.show.json",
+          "sha256": "ffd4408c922f75ba358f5b609c30a02eb335db10d41c334398998d6d853d5648",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003135957-0f6e0c8b.show.json",
+          "sha256": "d1273696f69f4e67083af2743461849d1fbd0c4adf5560f5f86f2931a7eeacb1",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003153114-04cfbe0a.show.json",
+          "sha256": "6443fa694be89f91f8ec0a8a2445229f21f9e9dadcc17b0e29b142bbe1568de5",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003154114-c0dd70b0.show.json",
+          "sha256": "47dd463b5c18da4d8b3df37e75cbb70cd62432bc68a9c33dba71a79d3d37d7a1",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003154117-c072093e.show.json",
+          "sha256": "107a70960f9ad7c07b15ba4a6272afc5336568ce9f90aa3ebd34912c2db4f092",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003154347-19e96a75.show.json",
+          "sha256": "8fd95e33e1e80ac8815934781fc5c872b4045105e241c351970c8d87c8212ebf",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003154415-a6020a5f.show.json",
+          "sha256": "c3cea03450ddbfc0e0cb2a5907845e99544edeb50a8813bb0fdcecacf7a8ec1f",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003154427-8eccec4f.show.json",
+          "sha256": "48367f8f0cb4f532dee9ed5bca7fef4c5625fd826529f2b5ab4122aecd8bbc0d",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003154828-764bc65c.show.json",
+          "sha256": "e811c8df7258a60904cd6e7c98129ed8f133b637c50a7fa414b4320c96b59221",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003155116-26bce90f.show.json",
+          "sha256": "729da7f7d89d5c11390a3b17e468a4a0737137fb30f29fa79bb74f44a65f3f35",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003161333-c4da0117.show.json",
+          "sha256": "51ac2b245d3a75f1ca672dfa204c7030c7dc0d82917cbc7de15b730159f002dd",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003163546-70ed3e48.show.json",
+          "sha256": "95240755cb47a5aa82411af43732730f181d3a77f4a320752e5eeb0cf3078315",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003163608-f96c8e6c.show.json",
+          "sha256": "10c593bacf3e0706c1a8b3c39193a4c94c12e3aaf74082347766b56a075454a4",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003163921-0a8e2926.show.json",
+          "sha256": "9f2fc7f33a4b57f972ba0e7fa8dbe99ca707d989d65c3d52f603543e8139b6ec",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003164151-fbee7e97.show.json",
+          "sha256": "57d689a8c8b00e5188362ab9f049271fdea284bb4c01f1d4d9560198454a2355",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003164258-4a95943e.show.json",
+          "sha256": "cd0856594c5e52db3839efed2fd3b0572e8ae178a298f81fd1fe72aa7045606e",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003172504-1e5d5337.show.json",
+          "sha256": "646a74a912ad134cf7c0cdcce4ae88b324ffda582a1e5c97afd63e970c18d5e2",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003173636-643c7c17.show.json",
+          "sha256": "fc36d2ba9fabc9f5ad0be8097f5bf1223b649c7f6b497f663919d85409ff3cef",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003174406-936f9d9c.show.json",
+          "sha256": "b9474b64f2eb095d93724d99a333eec1b04cb4a1f1cfdbc68287f919c7e6226d",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003174521-eb318067.show.json",
+          "sha256": "c7ab60df1443b18bfc390bfb3cf04782303c31dea4443bb2ea98197b38a90c9f",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003175330-fb054f2f.show.json",
+          "sha256": "5ac50026a3a32209516c30854740ce4cf02ee49ce44d1ceddffc63ba80c2c9bd",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003175700-cbb50861.show.json",
+          "sha256": "29064ab13a827bf18cd602690cf73291b3f36ddd84241929f8bb2df2e96e61c7",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003181452-6bc9f909.show.json",
+          "sha256": "f24d35bb1da3893dad6389c44f7248a06569a3cacc49786e4e0959affa4bbca5",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003182016-5973c5c1.show.json",
+          "sha256": "249e0e3d7fc0869f2eae52504377de271dbd786525a8a86a210064c94b794beb",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003182019-5b56b6ce.show.json",
+          "sha256": "cf0d06eff2a2afcdf19468d5fead870fdc944e1aab59251c0f1adadb29215b4f",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003182604-c8ff8e2d.show.json",
+          "sha256": "5743123c8934046dc8923217bdab46b4e904915152a37dad417f045400381b10",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003182724-0843aca3.show.json",
+          "sha256": "155eb9a8ade9080472ebef1f0e5747fcb7c6a228241df7c8b5be3ef71dbacd9e",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003182906-74ccb677.show.json",
+          "sha256": "35f4b71d35ab31208a17b0f27f2a178f31bf04b81dd2c3ad073da625fa9e73cb",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003182930-370196d0.show.json",
+          "sha256": "3319c8913a3247ae93939a8d3ba434b312a746be5349f1969a98196397c51c38",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003183612-3452b207.show.json",
+          "sha256": "478e22d200ab1deb4730060cc754ed52a99fee4e12582757ca0e53b3f19fc14d",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003184238-e2f2be28.show.json",
+          "sha256": "8cfbbbf31ed0212d5eda90883b63502b4b7e8ebfdda5d9725df62bb9866930e1",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003184336-f1b2d2a0.show.json",
+          "sha256": "1531382199b9a763963874d7914a8cf71bd6dab9e04729262d91351065122f39",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003184740-263527f6.show.json",
+          "sha256": "39b59b7c42f3fdff280deb0749965ede1be79692e37ff5fe9e12c2c72ed588b3",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003184751-a000203f.show.json",
+          "sha256": "664e1a1237117c385d1ccd640ff8c05fb7c0aecf23e989870e7d85f2da227059",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003184802-67941cc3.show.json",
+          "sha256": "7914b2313108ec731904591559252a8e02d3ebde9c5529b4a382da1c69a7d5a0",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003185217-9f98ac8d.show.json",
+          "sha256": "f31b806cea7d339f6d6a662c4f7fca0b3d96d3284d8b826f53d3554b74f13410",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003185423-545a1365.show.json",
+          "sha256": "25eba60634af574b2780897eb7b9fa0755985f3b725c9f83f944b443ef5954ea",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003185548-520967ab.show.json",
+          "sha256": "a30a0bedabc1580637e5e247c11985dfe83eff3aa91a84cfaa6a8819dc0d11b9",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003185640-3b837606.show.json",
+          "sha256": "38fcfc2563426bbbd5347a9d87634d422ffb5a1e8fb004475afabca774adf154",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003185656-e4c8b68d.show.json",
+          "sha256": "1a0d1ee21a3a4e31dac33c67b05a77271b872b42e8ad8960b050ddbea0bfb8ee",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003185900-adac5cf2.show.json",
+          "sha256": "27bdb74f4ee2f085ff3f933b8234b5b08b3d86a468d1895f090e1cc8d4b4988e",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003190148-7795836d.show.json",
+          "sha256": "fd2255435b84aa579e38da297bbaad37563ae6047cbae5f678810455b8f41e02",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003190448-afa9115b.show.json",
+          "sha256": "7f44c75348ad7b391690c99b2259d60c792b5d2dd899fcdd79f529cb6476a5af",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003190948-2c1e2288.show.json",
+          "sha256": "d239c84bc55208820144fb1aedd092bdfd135f3df956b36f4eb91281a8ef6412",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003191531-57bcb230.show.json",
+          "sha256": "b14ae13b888fb7ae81c38c1b325a2ef83467a072c5bfa61f89ec9fb38dbe7e94",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003192547-28bfe85e.show.json",
+          "sha256": "c7218be3ef5a5301e84077d523857338ddcde641475dbfeeb45a506da05a02b6",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003193135-f2f66c25.show.json",
+          "sha256": "c74b1c8873169742b16e2079a8202960e9df2981be4be840a9a6c373d900688b",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003193154-cf5ec0b6.show.json",
+          "sha256": "48deebb01ffe86c28f30f98a85931f44129ffb74d34d14f0af52ceda3c4b3b06",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003193221-175d6855.show.json",
+          "sha256": "138b11a3d85c3e7960d4b01b0947a2824dd59d194bebb75fac56b6606da77629",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003194307-78d5bcf1.show.json",
+          "sha256": "1961b31e9908f20165a8a37031273df3d15874f7112e9f295a3b7ebe32017feb",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003195138-8eb72ecb.show.json",
+          "sha256": "c585021cf18fcefdf12fd499a680349faff18cbb8ef2f60a87ba9ce243bec95a",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003195138-8eb72ecb.transitions.json",
+          "sha256": "394bae274d836efdcb42ea856dd4a14d77db6ac7d6e80bfa97a98d8dad4f5bfd",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003195527-d2973fff.show.json",
+          "sha256": "34253039e978303b54ba6b342f656f64238aecdae4649c54782e73910d94df8b",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003195938-d8b8a9c3.show.json",
+          "sha256": "fd929223b5f2d9ff38027e9835deabb3a9e6e274ca4959e6cb0130b6f0fed197",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003200223-d361adc6.show.json",
+          "sha256": "4f92ef3491e58de22b74a949422e389a21264baf077bebcdbd3ca950c044657d",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003200331-90c97f87.show.json",
+          "sha256": "bdd8d8a72112c4d25267af055f14dd6bbd05e64190354fa7b74ba9d04337b5f8",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003201620-c74de839.show.json",
+          "sha256": "013ea88b0cc8f620ca4edac1c1b61d2cf61022d8b5185ff677a06f7d7ec54ab2",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003202154-65e6d10f.show.json",
+          "sha256": "a820cc2ae3a633e117eb45a1408f9327544011077ab599847ef404f379f2590c",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003202216-eba453ef.show.json",
+          "sha256": "bdadc3f8d7fcd67634bea51d7b244e301cc411452e176b669fc35406d2c6f274",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003203123-a785ee4c.show.json",
+          "sha256": "c8f67e0ce47e659c2b8076b52a21c98116feba1a4f3f675ed237b731ab7a340f",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003213051-77ffaad3.show.json",
+          "sha256": "be0bbf126f74b293bc3eb86dacd3fd1da1b0cd5f442b638563a875f974a27815",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003214414-12d75069.show.json",
+          "sha256": "ca5d8599baeeec19ec657c4b30962b60f2acdce4fdc763e07d462872289fea13",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003214424-a56c0575.show.json",
+          "sha256": "b023e9e3810cb4965326e9a2911faee1e638011f1cb37442b1fbf06067636dad",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003215524-d56667a8.show.json",
+          "sha256": "70579bef95ffd37afbf01b81fefb5ada278cd6c23abfb9fe823764de89bc63c1",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003223352-97e556cd.show.json",
+          "sha256": "cf123c92652e4e56f40ef9fe784a211f5fd9d7b29920025cd9dd6f6681f92b06",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003223549-c479c189.show.json",
+          "sha256": "ebbed6c9c22498479dfe5151e50b8dd46a0d69a684c37d0fe78accb1697f66eb",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003223905-762d759f.show.json",
+          "sha256": "1ce24eba708bb5e4cadbfee8e40ea186d0c6f5ca405286d8589655e4cff77b6a",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003224749-c43612f6.show.json",
+          "sha256": "0e5dab4032e2748a24d633b9bc3f17ff763ecff56bf307e9a0bc7f2f2f234324",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003225239-ed926320.show.json",
+          "sha256": "3e78cbf14a516a624ca1e9eb93ccc8cf045f439eb666ca2500b172f2b6310650",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003231403-839a47f3.show.json",
+          "sha256": "b2c70a0e5ea1a9d8b1d9bc1495a448275f081ec044014f054b4812758ca46130",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003232046-aa44c49f.show.json",
+          "sha256": "633838fa5a60c3276f2c121856898779c284223d398c96174f8c55264138f22c",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003232132-8f1e1f16.show.json",
+          "sha256": "00cbdac5204aef450db5bba4544a5324766fcdbb6b12ee177ead9fe35fd08c58",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003233041-b3b78d0d.show.json",
+          "sha256": "860b6487be25ab8a84a0a70c03dc64ee9a1e06f6b4aa3883ab564f1c53f9352e",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261003235705-60b5c52b.show.json",
+          "sha256": "b5918a244d9499b86118bd0e3698faae605111aa248c028f60d9982409d63b01",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004000110-d0d07fdb.show.json",
+          "sha256": "c3cee120597afe683c06daea1360ac70197c6232e4dcec6d560192b0b7726271",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004001239-8ee629f7.show.json",
+          "sha256": "c6939c549466354b229a757584bf332e8be76a1e36e95199414a28250d1cfb99",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004001800-cc58cd9d.show.json",
+          "sha256": "0a41ea4fa0b3cd2392c6a564cffd96b034441e8a25c46895855b79460ae255ee",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004002455-b7ea811b.show.json",
+          "sha256": "bacecdbeabd57379dd099ea25978f59f07bdc7f8ab31981b52f80b8eee349055",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004002455-b7ea811b.transitions.json",
+          "sha256": "2b8c881e4ba4a194c5eb9de687677a6859f210cd2c4457d84fda0f702ad33cfc",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004002516-ee95930d.show.json",
+          "sha256": "d3b964b61680d92d86dfb190c970e0f846826639f5ffe98d8e3721203388e029",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004003331-0b5245ad.show.json",
+          "sha256": "4ddc8690a0b04654cf87f2923731991d037d3e0df6b31bf167e8f124ef5c9211",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004003538-62f6c81e.show.json",
+          "sha256": "a139c5c9daf64534e8cd50e11f235b2e245cb7fcdd0c04b5db829c0b6f4f887d",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004004828-05d2aab9.show.json",
+          "sha256": "2d18566806e177e1284c64c92927b76eda820f1922aa3434794dce831e5be7c4",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004004828-05d2aab9.transitions.json",
+          "sha256": "b95536afe7ec74235c4a8a8e031ba74bcc4c58533c6ec57acb0f3f2619252987",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004004915-91f40366.show.json",
+          "sha256": "e37667f50fc01aa6a9ad99c0a72956612691c2d2d4c77189b3817512846b5736",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004005458-a071fd65.show.json",
+          "sha256": "44963c38c3520ae5946048998fde0d96be9781b88d36f4d939e8b1c004d0e703",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004011019-f67b1c6d.show.json",
+          "sha256": "710ba0fab910cc11066bd5657efdc4520b903995285d83d7284c3c8723e1b863",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004012350-fdb23cbc.show.json",
+          "sha256": "6da6708422089ee0da5f730c47857277b3cd8e1b2d2e2409b54cb6f5fc01bba4",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004012507-efa30d6a.show.json",
+          "sha256": "7f59795dc68f3eed1e95f7e529983aea0aa619a0758095bd4a8cdcfbab12181a",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004013841-c2fa8b43.show.json",
+          "sha256": "fa6fb3753970e3f9ef41049bba8e768369be83f4453ee4c687e344b942b0e7e1",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004013841-c2fa8b43.transitions.json",
+          "sha256": "ceb13789cbb65ebcc880543472b89e7e310bf7bc133aa6e81b9872f6b730e095",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004020758-49ceba8e.show.json",
+          "sha256": "5c75f8854ff643645cd258f1aef6c3c4886322f47b46a4bdd9fedb3580d6b2fe",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004020758-49ceba8e.transitions.json",
+          "sha256": "7a55aed19d6630fcd750c889114e00c7d4488e15743f2d333d7ce9c513325072",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004023723-f58044d0.show.json",
+          "sha256": "d09eaf82bd1811b21d07da53e312b7e56151b3cc2d1d8c7fb676eedac5d4682d",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004023723-f58044d0.transitions.json",
+          "sha256": "d243d1cd68c1dcc370fed0d81f2ddc04b2a714e02c7b1d625ee9009e1450717a",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004024212-e72494e7.show.json",
+          "sha256": "a858cdb6aa10c500fec8898291a2f53cb2d8df8f0d58922cd9d4b8f40e2a243b",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004024212-e72494e7.transitions.json",
+          "sha256": "e3ac84f4cf37037bc8cb95384d4fe6f5eacfd382d0b92ed4fc7f77b7bc4b8b33",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004024238-651b51b1.show.json",
+          "sha256": "5c706f6b674eddb07120102ae2e8067b5d783add1e89dbc05217a2457355a94c",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004024238-651b51b1.transitions.json",
+          "sha256": "98ac97e5e335462d4260a8fd287fe70061e17b72e3512edc7fa66bc3050fb069",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004024533-3e9ae475.show.json",
+          "sha256": "c3984d30da9f5e5dddf35e19f6bf9fa7d7b633066a05409d972199febce2c53d",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004024533-3e9ae475.transitions.json",
+          "sha256": "dc20e2b3ab26ffd46109eeef2a00e0c19cfbca76bf4033ae199bab25d7e1f699",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004025620-a869dc4a.show.json",
+          "sha256": "84c44f9e20e5f03fd91405e6355c15d7882f1266ecbe6239e62211981479ea7c",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004025620-a869dc4a.transitions.json",
+          "sha256": "fd75cb9cb1da0f15f568b70bb29dbb9f6ea29740b3e2a605379a413edbf1922e",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004025925-a5886b4c.show.json",
+          "sha256": "329d14d776bb103a069cf96df9a89f9857c0ba863e27c8216bf16eb0b28e8ca7",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004025925-a5886b4c.transitions.json",
+          "sha256": "24499dd39830b6118204ea84e22d87ae9e4c52bf9fa16e99bded1c3d23760f6f",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004031539-0bd7032a.show.json",
+          "sha256": "12b643538d6b65b5c9aa68b56c21f4c4c6d4c2c2990a5ec6ef95856a48cf10d8",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004031539-0bd7032a.transitions.json",
+          "sha256": "b2ef18f62b373e5a8061c984ed714058e998bbbc992feff16ea87b1937dd39bd",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004032752-d162e1b3.show.json",
+          "sha256": "8d9f33f4562069f609988974e8dc3fba18080821c82c6e33900c3ba803635f0b",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004032752-d162e1b3.transitions.json",
+          "sha256": "6657717687dc7a228d2bb46461ab2dc994d15eb60d0474a98b5d154da36d5cec",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004033137-1400c73d.show.json",
+          "sha256": "a590ce3a597f59f0e52d767826c974e4cee0903f9bde360c42c2ecd0d1130a3b",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004033137-1400c73d.transitions.json",
+          "sha256": "e474eb62a746e2f2555dd4b96ff488879cdffddf0c319e70ed5dfc65a19cd5e7",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004034522-8dfeeeca.show.json",
+          "sha256": "714ab090222c9a0aacab54d915cc05e5f73e871608af0693de0c102978441d98",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004034522-8dfeeeca.transitions.json",
+          "sha256": "3e2899cce1f5e5040825b0b75cb2444d36c1c3d63fde9746526e4061e5e65ffc",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004041605-18a958ae.show.json",
+          "sha256": "a48a8a1a09b3e5f85ea219373e6b2e6194464a02eac2582cca572b75c405890f",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004041605-18a958ae.transitions.json",
+          "sha256": "90bcf185d0b12d1e0da9d1405ab60120cd28fe231fd74dff38316ba17830010a",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004041607-09149d20.show.json",
+          "sha256": "becf7d11380e3c020757b78f51dccc62b8062d6cd9acd6a49175a5892772b189",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004041607-09149d20.transitions.json",
+          "sha256": "4a64d047d46cd83306e094d2e4c24fab737f85b8396adfad5b7bc7b5f1028c0a",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004042358-6587e4be.show.json",
+          "sha256": "e7b88ad1d43e2c20a8e746ef58b725ef5986537a1f2e5731bec4c95de80996fd",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/packets/qitem-20261004042358-6587e4be.transitions.json",
+          "sha256": "db2abd2f6ffe48c0f68c931f21f48cc21b26dcd5344f6de1b7d6308a2bc64295",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/prep-validation.json",
+          "sha256": "357e3acca0217afad47a1b3f5cdfd46fc992c1f855a873c78044fd4c44fa1360",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/proof-readiness.json",
+          "sha256": "842158e5d408a35fc814c1002a233345ca8b9219d41ab8f4bf3858aba190b15e",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/queue-active.json",
+          "sha256": "c9a3595a40130a2b378e7a06c6ac222ebeadb102b88000ab241295c812942f68",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/scope-audit.json",
+          "sha256": "3a5ad00e871d632f4d42b1338907af9c169eea8a50538bbc5829bea42de458f8",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/usage-top.json",
+          "sha256": "a3167f83daefc87706cad55562f5a699eb288ac73c174d5cfbe8d4c38da598d9",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/workflow-list.json",
+          "sha256": "02b484ccc9ad99a70e942a801eaa6c015271a70443e9c0b1c9b3955787934b96",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/evidence/02-brownfield/workflow-status.json",
+          "sha256": "f4172cf5075aedc42eb57d42e42c1f31b2a0775a2b16626ac5c435a91ea8c8a6",
+          "verdict": "PASS within stated scope",
+          "method": "Parsed entire exported JSON; checked preparation manifest/hash, current readiness or frozen engine metric context as applicable. Other mission records retain their own judgments."
+        },
+        {
+          "path": "docs/metrics/README.md",
+          "sha256": "bea3be6e208d6c48f1821975ed738f41768804b674a80eecb5022aa3212124df",
+          "verdict": "PASS within stated scope",
+          "method": "Read final prose/data and diff; release claims, links, dispositions and frozen metrics checked."
+        },
+        {
+          "path": "docs/metrics/metrics.json",
+          "sha256": "1c7a25225cb59310b0953af02a376ca9fdfb20fd975da8bb682dbe63106c0aca",
+          "verdict": "PASS within stated scope",
+          "method": "Read final prose/data and diff; release claims, links, dispositions and frozen metrics checked."
+        },
+        {
+          "path": "missions/02-brownfield/NOTES.md",
+          "sha256": "b5a274a6fffa0ab4df6067875f2ea6b32357086547f9350cf5c31ca9f6f86842",
+          "verdict": "PASS within stated scope",
+          "method": "Read final prose/data and diff; release claims, links, dispositions and frozen metrics checked."
+        },
+        {
+          "path": "missions/02-brownfield/RELEASE.md",
+          "sha256": "617fc64fa44447052dd31d31da384746ab0b4315848e283dcb4e3a2151766ac8",
+          "verdict": "PASS within stated scope",
+          "method": "Read final prose/data and diff; release claims, links, dispositions and frozen metrics checked."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/GAPS-snapshot.md",
+          "sha256": "6c50db0328c51453d424d6295e3ba020df4da5cbdd2f09fb4857ccdaf7a3b3f1",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/README.md",
+          "sha256": "e526018eaa2fe1e9c2a378da2a4c832957f87b4beaf70f4fbd364303ab21354b",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/advisories.json",
+          "sha256": "6dafd59bfb31e0a65e0b3a27b8b223cc69740f3d840a6e504fcb0fec3879bad0",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/artifact-comparison.json",
+          "sha256": "59201e58b8d93f0caa4364f9c7dc2192496588d5163c521c13dd98db570da94c",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/audit-forbidden.txt",
+          "sha256": "a235b64ba3845507ac1364a104efeed4d2477fe771df9f15cc9f33051ee8573a",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/audit-prerun.py",
+          "sha256": "536fee67558427eb1e914743971b65bbad94e82a01723b13cbf828524a7acab7",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/candidate-input-tree.txt",
+          "sha256": "ede8b711956e602f9c19df50df8eff2e7fe49efcedc1d333d6f2990be502503a",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/canonical-jacocoTestReport.csv",
+          "sha256": "dea47f0e17be6110794a64c87c6948bbd3f402e058e9773addb70ddafadeb410",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/canonical-jacocoTestReport.xml",
+          "sha256": "ea15d023c948553aed9f06960b980707c1102107772cf38caf56e80c53733598",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/check-bootjar.txt",
+          "sha256": "71ee555d99e8b32bc849928889651b037d45baa3f8e1b4eb9ed5a5ee6ab0a042",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/container-console.jsonl",
+          "sha256": "a0340d0516c98d4eac5af857ab4f3647a250b33678f4afd5a0125dbd2c1ee951",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/container-inspect.json",
+          "sha256": "428272677f8d2a300067509e2e5ace663c5fcfde3d4fc11cc525144693903d2c",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/container-smoke.txt",
+          "sha256": "73e4d4973380d3957df1632fa216de58dfc1099e43c704b736bf3b9f855e4b1b",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/container-stopped.json",
+          "sha256": "73471a015759fd29a0c50c62c415383976d902b51175a6542bb22edab66269e0",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/coverage-canonical.txt",
+          "sha256": "21c0459073172a155b6c5cdddc5cacb50c58841d49ed50bb0025b861f0afc7a6",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/coverage-exec.tar.gz",
+          "sha256": "561859fc29e9a25a2e4f6ab17cf1ec9deb9ef04f1213fdb18eb6b61d18a05224",
+          "verdict": "PASS within stated scope",
+          "method": "Archive read: 2 files; test/coverage, historical rollback or metric inputs reconciled as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/dependencies.txt",
+          "sha256": "b26afdb21daf61f8438ad3e125e558764b46041f1c70207979a2eaefd2ec042d",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/docker-build.txt",
+          "sha256": "9b54a3d8f9102c14f251437b8bfdf94d045b9daef2b662fa8d1dc13f3c8cbc02",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/docker-version.txt",
+          "sha256": "4fdfeed3875c1662e225c367ea765e9864ed7303fd53fc663a6c1af68a796fe8",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/final-metrics-inputs.tar.gz",
+          "sha256": "ed4a7ac5285565215fe162ad18d6da7c433cbe2e95489f13c58cc6cb25287976",
+          "verdict": "PASS within stated scope",
+          "method": "Archive read: 432 files; test/coverage, historical rollback or metric inputs reconciled as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/final-metrics-provenance.json",
+          "sha256": "f31957ab1bf1d018b3d4cc79391df7848acb7a84c01d218c6090bc46f5d73d5d",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/final-metrics-replay.json",
+          "sha256": "355ccab5964d4b984551fa38da93011901fce4732ded23be0896d26d6bb771d9",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/final-metrics.json",
+          "sha256": "1c7a25225cb59310b0953af02a376ca9fdfb20fd975da8bb682dbe63106c0aca",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/fresh-test-xml.tar.gz",
+          "sha256": "f66d3963f0244ac541362fef79f1c50a641272bf551a155de4010bf90f48ae6e",
+          "verdict": "PASS within stated scope",
+          "method": "Archive read: 74 files; test/coverage, historical rollback or metric inputs reconciled as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/gate-artifact.json",
+          "sha256": "452c4341b5da8556fd0105faf35a97e0e34cd8e879b944066e3d3a2e48021a81",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/historical-metrics-8d3c536-inputs.tar.gz",
+          "sha256": "a819065c35bdeb1d6d827e9f42aa561eb5dc2d22c63838cbc29f742b3aa327de",
+          "verdict": "PASS within stated scope",
+          "method": "Archive read: 357 files; test/coverage, historical rollback or metric inputs reconciled as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/hosted-runs.json",
+          "sha256": "6728322a69469c8a9705bf7b4722accc7d9f6691ebdbb425ee5f94b29fd2a4ed",
+          "verdict": "LOW RR-01",
+          "method": "RR-01 LOW: invalid leading plus reproduced; content read, producer correction pending."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/image-inspect.json",
+          "sha256": "91ac1abc1ff4964f052127d9a61c5af6f4939f14a73ac81b0f1df1285b4d2273",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/initial-export-validation.json",
+          "sha256": "133104462139fef73898d924704b02f8ea7f3d53eb5fa18a7c7403f8f2cccfc2",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/installed-wire.json",
+          "sha256": "751c4c60dac0271a3a96319f4358d15ad40d7d73afe2eddfca9f1f32266aa604",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/jar-console.jsonl",
+          "sha256": "e7330c6ec90383ad1703885876d8c377c00df89f2f564cb2f269506db21aebcf",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/jar-smoke.txt",
+          "sha256": "8227c2b7bddf1477434092d9e6961fa99d25a6e49a0f85b3048b0374d98c0d46",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/metrics-before.json",
+          "sha256": "0271fb745efe6a97c85b6bae8318406881107658c8e097b4a796cfac3efe26d3",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/metrics-readme-before.md",
+          "sha256": "ac263bb2dcd8f005a8949c64d8604d46720010f010f68775cddf02f6bf799af9",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/prerun-revalidation.json",
+          "sha256": "d2bb8db5dad7e6090f9feddc626f541747099fcd1d998bebac7ada9422ce0604",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/product-delta.diff",
+          "sha256": "916a393ad263b48f993cb645f62b6a7d7db34e8bdf6a03e0568edbd9d0e847fd",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/proof-prep.json",
+          "sha256": "cf6442357e461acc05bf1a710f09aaa71fc6487227cbc2c10e7b06e8e6c38e86",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/proof-ready.json",
+          "sha256": "842158e5d408a35fc814c1002a233345ca8b9219d41ab8f4bf3858aba190b15e",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/rollback-artifact.json",
+          "sha256": "9792e22f41fe4abb8422d297879cf3dd351221b6df54742ba6432a33cd746f44",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/rollback-bootjar.txt",
+          "sha256": "4f92d56f253485065a4fcfb35c8fa98151730345c2c5a734ba1092217fc46616",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/rollback-build-qualification.txt",
+          "sha256": "48af033401acf8a33ea1e380f3094bb10b6bf4c263341be208f402869ac28de5",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/rollback-image-inspect.json",
+          "sha256": "071da201d7a4e707c9f47cc0a13748bb94e3b0ebb65c7f291f54699e76e0edd3",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/rollback-prior-smoke.txt",
+          "sha256": "8cbef308efce73f6c633416aab1540bff283454db815dcd70954b3300dd15887",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/rollback-prior.jsonl",
+          "sha256": "af7578ea9dac283570514d0da1666c5149a2e57f8d1e889bf937791108eb61b3",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/rollback-raw-csv.tar.gz",
+          "sha256": "f9c180b250c2e136b0361d313f4589acfa0b3cceb1269036e95a27f2f786ee24",
+          "verdict": "PASS within stated scope",
+          "method": "Archive read: 28 files; test/coverage, historical rollback or metric inputs reconciled as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/rollback-runtime.Dockerfile",
+          "sha256": "9f1fa9bde2e75925eaeb5f5bd477a5d199e0dadfece2f9272736d4894757f0a0",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/rollback.md",
+          "sha256": "8639c52432da9b3dd750c14b5b868cbed9849fad95bb40ec8211b285303551b9",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/toolchain.txt",
+          "sha256": "f147bc4c6686ab868a5346cce6a3bc186c6e9dd3a22f1998ec0403a6758aebd3",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/verify-metrics.py",
+          "sha256": "3102cc5cb450f089389e8054159406d60e2baee8818699ad7b58158fad34ba15",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        },
+        {
+          "path": "missions/02-brownfield/release/final-30f8de4e/verify-package.py",
+          "sha256": "a5e92131c163514d357d3a9b4bdc9f7b0412aa753dff1c8c83b1825cb096db51",
+          "verdict": "PASS within stated scope",
+          "method": "Read/parsed complete release evidence; reconciled with pinned source, fresh gate, runtime exchanges, artifact bytes or historical checks as described in report."
+        }
+      ]
+    }
+  },
+  "final_package": "ad0c01f6b517340ad3fb5a64fcc143c078196232"
+}

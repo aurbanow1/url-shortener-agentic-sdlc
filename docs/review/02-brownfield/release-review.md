@@ -1,4 +1,13 @@
-# PRE-READ at e425469e (draft; release_review adds the final build)
+# Mission 02 release review — PASS for human sign-off
+
+Final package **ad0c01f6b517340ad3fb5a64fcc143c078196232**, initial package
+**c9aedabd**; product **30f8de4e647b05ff54cde09f1019ae519b00069d**.
+The [formal review below](#formal-release_review--c9aedabd) supersedes the
+draft outcome. No MUST-FIX/HIGH remains; all three pre-read corrections and
+the one new LOW formatting finding are fixed. This verdict hands the package
+to the human's local-use decision; it does not approve shipping or publication.
+
+## Historical pre-read at e425469e
 
 **Draft outcome: pre-read complete; no release verdict or ship approval.**
 This is plain assignment `qitem-20261004041721-d7a24707`, requested in parallel
@@ -119,3 +128,104 @@ all four rollback stages; checked drill custody and local links. Product,
 tests, SPECs, designs and shared ledger were not edited. No new service,
 build, dependency query, push, tag or publication was performed. Formal
 release judgment and its ledger row remain for the authored workflow packet.
+
+## Formal release_review — c9aedabd
+
+Reviewer: `review-agent@urlshort-factory` (Codex), 2026-10-04 UTC.
+Packet `qitem-20261004050142-3fad2270`; instance
+`01M40SN34E37K96B38JPG9K41X`. The purpose is a usable local release of all six
+mission-02 slices, with existing links preserved and an executable way back.
+Confidence is high within the named local/H2 evidence; final hosted CI/CD and
+the original AC-28 host path remain unverified/unmet as documented.
+
+This is a separate-author review of release-agent's package. Both seats use
+Codex under the recorded D17 runtime arrangement; it is not a different-model
+family review. I read the final claims against raw evidence, accepted slice
+reviews, current QA reaffirmations and the final wave review. Source/build/
+runtime inputs at this product pin equal reviewed `e40b095`; the ten-path
+pre-run delta was already fully covered by the two wave vantages. No product
+delta was introduced by release preparation.
+
+The [independent audit](proof/release-final-audit-c9aedabd.json) includes a
+file-by-file hash, method and verdict for all **263 changed package paths**:
+56 primary files and 207 exported JSON records. All 469 export JSON files were
+parsed, with 468 manifest hashes checked; unrelated mission records retain
+their original judgments. The 50 final-release files include all archive
+members, read and reconciled by type. This is content reconciliation, not a
+claim that every exported historical product was reviewed anew. The audit
+script is [release-final-audit.py](proof/release-final-audit.py); it depends on
+the retained local jars and this review's detached build directory. The
+saved result remains readable without those temporary inputs.
+
+### Independent commands and artifact custody
+
+~~~sh
+scripts/gw --log docs/review/02-brownfield/proof/release-check-30f8de4e.txt --offline -p .worktrees/review-release02-30f8de4e check --rerun-tasks
+scripts/smoke.sh --jar /private/tmp/urlshort-mission02-30f8de4e.jar 18244 docs/review/02-brownfield/proof/release-jar-30f8de4e.jsonl
+python3 docs/review/02-brownfield/proof/release-final-audit.py
+python3 missions/02-brownfield/release/final-30f8de4e/verify-metrics.py
+~~~
+
+All completed successfully. The [fresh gate](proof/release-check-30f8de4e.txt)
+ran all 14 tasks: **268 unit + 322 functional**, zero failures/errors/skips;
+**583/583 source lines and 206/206 branches**. The class CSV sums 584 lines;
+shared nested-class source lines explain that difference. All 74 producer and
+reviewer XML reports agree in test counts/statuses. Two reports' parameterized
+display names required only runtime object-id/generated-canary normalization;
+the exact rule and files are disclosed in the audit. No tests were omitted.
+
+The two actual saved release jars independently hash to
+`fd6cf6f0c6c117c6138f50f9a2924c3f397edd65ae69b4a6dafebc4e6146132e`
+(39,636,410 bytes). All **62 compiled class/resource entries** match the fresh
+exact-pin build byte for byte. My [installed smoke](proof/release-smoke-30f8de4e.txt)
+passed the public journey, environment overrides and 10 admissions followed
+by 429 for the trusted test client; the [log](proof/release-jar-30f8de4e.jsonl)
+is retained. The wrapper stopped its disposable app/database. The detached
+worktree is clean.
+
+### Release guidance §9 checklist
+
+| Item | Status | Evidence and scope |
+|---|---|---|
+| 1. Claims trace to the stated SHA | pass | Final RELEASE, 133 input-tree rows, 263-path ledger, all 143 local links/anchors and the ten-path source equality check reconcile. Historical benchmark quantiles and dogfood are explicitly dated/reused, not a new final-SHA performance claim. |
+| 2. Fresh gate, coverage and ready proof | pass | Own 590-test gate and coverage above; [own live snapshot](proof/release-proof-live-c9aedabd.json) is ready **64/64** at the same revision as the package. All **174 distinct judgment evidence files** match their receipt hashes, committed package bytes and current files. QA/QA2 closures `2a47ad28`/`a9b59315` preserve author/run attribution and the scoped content-change dispositions. |
+| 3. Both installed artifacts smoked on loopback | pass | Own jar run plus audit of producer's jar/image smoke, 65 container JSON events and full wire captures. Twelve exchanges join by requestId/status, including complete non-echoing 400 and actual `/api/audit` 403. The initial wrong audit URL's 404 is retained as an instrument error. HostConfig binds 127.0.0.1:18241, read-only root, writable disposable data and 20s stop timeout; image/source specify non-root UID10001. Stopped inspect matches the captured container; graceful shutdown is logged. I did not repeat Docker startup. |
+| 4. Advisories and remediation | pass | Final runtime graph and raw OSV response: **97 queries, zero advisories**, timestamp 04:21:27.259Z. This is a point-in-time result; no new advisory query by this reviewer. No unresolved advisory requires a remediation row. The pre-read's bounded tracked-blob secret scan and exclusions remain explicit. |
+| 5. Complete gaps and review residue | pass | Final GAPS snapshot is byte-identical to the judged shared file. Wrapper MEDIUM, ping/V5/localhost LOWs, two structural INFOs, single-node H2, peer/proxy limits, bounded dogfood/load and original AC-28 host failure remain visible. Exact-candidate hosted CI/CD has zero represented runs and is explicitly unverified. |
+| 6. Executable rollback and loss stated | pass | Exact merge/image targets and loopback-pinned recipe read. All 28 committed CSVs match the pre-read's independently checked four schema/data stages. Actual prior `f090103` jar hash/size and all 40 prior source/build files match; startup validates schema V2 with no migration, then smoke/shutdown pass. The source-revert drill supplies the mission rehearsal. D21-specific revert and separately built old-image startup are explicitly not claimed executed. Purged clicks/audit metadata and later writes lost on backup restore are named. |
+| 7. Metrics derive from engine records | pass | All 430 provenance hashes in the 432-file archive match; original generator bytes match the product pin. I reran the frozen-time replay: all 17 instance rows, 181 packet metrics and totals match. Independently counted 249 closures/18 failed/55 retries. Historical 233/9 versus 230/8 discrepancy remains disclosed; export labels, text-match rollback heuristic, mean-of-instance MTTR and omitted custom human waits retain their limits. |
+| 8. Human choice and publication boundary | pass | Brief recommends local use after review with explicit limits; alternative is hold for human push/hosted runs/target-host measurement. No ship stamp is claimed. Reviewed release history contains local docs commits; local Git tags are only accepted-slice tags. No push, release-tag, publication or remote exposure was performed in this review; producer records retain the same preparation boundary. Human/export work remains downstream. |
+
+### Findings and resolutions
+
+| ID | Severity | File:line / evidence | Resolution |
+|---|---|---|---|
+| PR-01 | MEDIUM, pre-read | Historical metrics mismatch reproduced above; final RELEASE §6 and archived generator inputs | **fixed** at c9aedabd. Original discrepancy preserved; final all-field replay independently passes with the limitations stated. |
+| PR-02 | MEDIUM, pre-read | Historical RELEASE:160 omitted the retained wrapper MEDIUM; final §7 | **fixed** at c9aedabd. Lead owns timeout/retry follow-up after missions 02/03, sooner on a third blocking incident; LOW/INFO residue retained. |
+| PR-03 | LOW, pre-read | Historical rollback-verification.md:32 said headers included | **fixed** at c9aedabd. Final §8 explicitly says excluded and qualifies the old mistake; raw CSV counts agree. |
+| RR-01 | LOW | `missions/02-brownfield/release/final-30f8de4e/hosted-runs.json:1` at c9aedabd begins `+{`; Python JSON parsing fails at column 1 | Remove the stray leading plus. Producer corrected in passing; focused re-review below. |
+
+### Re-review ad0c01f6
+
+**RR-01 fixed.** Git shows exactly one changed file and an exact one-byte
+deletion. The corrected JSON parses and preserves product SHA, zero runs and
+the unverified-hosted-CI qualification. Independent audit records corrected
+SHA-256 `cc47737b1550471f100f6ce3624130d1eeb53cfcb2bb55b36fad933c59c65751`.
+All other package bytes are unchanged, so the substantive checks above apply.
+No new finding or gate rerun is needed for this evidence-only correction.
+
+**Final verdict: PASS / handoff to human ship_signoff.** No open MUST-FIX,
+HIGH or new MEDIUM/LOW remains. Existing wrapper MEDIUM stays on the lead's
+recorded trigger; ping/V5/localhost LOWs may remain backlog. The human still
+decides local use with exact-SHA hosted CI/CD unverified and the stated
+operational limits. This review neither waives the original AC-28 failure nor
+grants publication authority.
+
+### Formal self-check
+
+Fresh exact-pin gate and installed jar smoke completed, apps stopped, full
+package ledger and current proof hashes reconciled, metrics replayed, prior
+findings disposed and correction re-read. Container/rollback executions are
+producer-attributed raw evidence independently audited here, not new reviewer
+runs. Product/tests/SPEC/design were untouched. No new human decision or
+release stamp was invented; the authored handoff carries this final record.
