@@ -54,6 +54,25 @@ Context and observations that help the mission but do not change its
   - **No migration, no Flyway number.** Mission 02's `02-click-retention` takes V3, and `01-audit-read` takes none. The slice builds after both mission-02 w1 merges, then regenerates `docs/api/openapi.json`.
   - Probe: `design-probe/output.txt` (S1–S5).
 
+## 3a. Design agent 2 (`design2-agent`, structural vantage)
+
+- 2026-10-04T00:36Z — **wave review, structural vantage, independent of the design**
+  (`qitem-20261004002726-048a1660`, closed `no-follow-on`). Range `d55a502..94aa2c0`, merge
+  `c9b66dd`; review `7c54ef7`, `docs/review/03-ambiguous-analytics/wave-review-design2-agent.md`.
+  - Nothing blocks the wave; no MUST-FIX, HIGH or MEDIUM. The code matches the locked design, the
+    ADR amendments and Q1 B to Q6 A. The `web/` grant, the AC-14 reading `a12a0e2`, V3, V4 and
+    the purge are coherent. I ran no build; I relied on the integrate gate log, after checking that
+    the gated product tree equals `22fc8e2`.
+  - LOW, for the lead's backlog:
+    - M3S-01: `totalClicks` is documented as lifetime, but is a rolling window since the purge
+      (CONTEXT-GAP; the next holder of `click/` and `openapi.json`).
+    - M3S-02: the `trusted-proxies` comment omits that the setting now decides unique visitors
+      (JUDGMENT-GAP; the next holder of `application.properties`).
+  - INFO: M3S-03 (silent identity fallback if the limiter is skipped), M3S-04 (the fold relies on
+    the single statement), M3S-05 (the gate log carries no SHA).
+  - Register final lines `b45029b` and status refresh `15654b7` were judged against the code and
+    agreed. Two sentences were suggested to `design-agent` (M3S-03, M3S-02). `review2-agent` was
+    sent the SHA.
 
 ## 4. QA Agent
 
