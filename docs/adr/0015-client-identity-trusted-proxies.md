@@ -1,6 +1,6 @@
 # ADR-0015 — Client identity: the peer address, or the right-most untrusted `X-Forwarded-For` entry behind a listed proxy
 
-- Status: accepted at the `03-operate` plan-lock (2026-10-03T09:41Z; status line set 09:48Z); `01-analytics-v2` amendment accepted at its plan-lock and merged in `c9b66dd`; `06-client-identity` amendment proposed (see *Amendment* sections)
+- Status: accepted at the `03-operate` plan-lock (2026-10-03T09:41Z; status line set 09:48Z); `01-analytics-v2` amendment accepted at its plan-lock and merged in `c9b66dd`; `06-client-identity` amendment accepted at its plan-lock and merged in `b8d7fc16` (see *Amendment* sections)
 - Date: 2026-10-03
 - Slice: `03-operate`
 

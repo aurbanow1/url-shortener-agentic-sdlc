@@ -1,0 +1,93 @@
+{
+  "pass": true,
+  "merge": "b8d7fc165ad079eca1b321eb44015264f18493ec",
+  "reviewedHead": "fda427573dfeea7e27602e99b094e2bd6363c2d3",
+  "candidate": "e40b09541feb0b7555c475baa82587fdd09e4890",
+  "candidateAndMergedProductIdentical": true,
+  "originalFunctionalFilesUnchanged": 43,
+  "changedProductFiles": [
+    "src/functionalTest/java/dev/urlshort/web/ClientIdentityCharacterizationJourneyTest.java",
+    "src/main/java/dev/urlshort/audit/AuditController.java",
+    "src/main/java/dev/urlshort/click/ClickRecorder.java",
+    "src/main/java/dev/urlshort/web/ClientIdentity.java",
+    "src/main/java/dev/urlshort/web/RateLimitFilter.java",
+    "src/main/resources/application.properties",
+    "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "src/test/java/dev/urlshort/web/ClientIdentityTest.java",
+    "src/test/java/dev/urlshort/web/RateLimitFilterTest.java"
+  ],
+  "qaHashes": {
+    "current": 672,
+    "coverage": 378,
+    "historical": 3490
+  },
+  "freshGate": {
+    "test": {
+      "tests": 268,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "functionalTest": {
+      "tests": 322,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "coverageCsv": {
+    "test": {
+      "LINE_MISSED": 74,
+      "LINE_COVERED": 510,
+      "BRANCH_MISSED": 8,
+      "BRANCH_COVERED": 198
+    },
+    "functionalTest": {
+      "LINE_MISSED": 34,
+      "LINE_COVERED": 550,
+      "BRANCH_MISSED": 34,
+      "BRANCH_COVERED": 172
+    },
+    "all": {
+      "LINE_MISSED": 0,
+      "LINE_COVERED": 584,
+      "BRANCH_MISSED": 0,
+      "BRANCH_COVERED": 206
+    }
+  },
+  "coverageBundle": {
+    "INSTRUCTION": {
+      "missed": 0,
+      "covered": 2940
+    },
+    "BRANCH": {
+      "missed": 0,
+      "covered": 206
+    },
+    "LINE": {
+      "missed": 0,
+      "covered": 583
+    },
+    "COMPLEXITY": {
+      "missed": 0,
+      "covered": 269
+    },
+    "METHOD": {
+      "missed": 0,
+      "covered": 166
+    },
+    "CLASS": {
+      "missed": 0,
+      "covered": 52
+    }
+  },
+  "canonicalExecutionFiles": [
+    "functionalTest.exec",
+    "test.exec"
+  ],
+  "independentBaselineToCurrentRawLogComparisons": 159,
+  "exactGroupingRows": 12,
+  "substitutions": "Only response-derived UUID/code associations, HTTP Date, JSON event timestamp and PID. No status, field, value, event count, grouping or target substitution.",
+  "generatedOpenApiByteIdentical": true
+}

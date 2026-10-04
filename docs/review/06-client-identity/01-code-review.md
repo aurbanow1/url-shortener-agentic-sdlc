@@ -86,3 +86,32 @@ No complexity finding. The single static utility is D21's explicit structural re
 **Do not integrate fb63a88.** Return once to implement for CR-01, then QA and focused re-review. Security verdict: PASS, with existing Boot-upgrade, fallback-path and offline-advisory limits retained. No new non-blocking backlog item. The producer's proposed repair is not yet accepted.
 
 Candidate and clean worktree checked; all ten files read; fresh gate and independent reproducer executed; every finding has location, consequence, evidence and required change. This report, security report, independent evidence and two ledger rows are committed with explicit review-only paths. Product/tests/spec/design remain untouched by the reviewer.
+
+## Re-review e40b09541feb0b7555c475baa82587fdd09e4890
+
+2026-10-04, packet `qitem-20261004032752-d162e1b3`. **PASS — CR-01 fixed; no new finding.** Independent Codex re-review of the Claude builder's response in `PROOF.md`, scoped to the finding and its one-file repair. Exact clean worktree HEAD matches QA. Earlier findings and evidence above remain historical.
+
+| File changed since fb63a88 | Re-review verdict |
+|---|---|
+| `src/functionalTest/java/dev/urlshort/web/ClientIdentityCharacterizationJourneyTest.java` | PASS; full file accounted for against the earlier complete read and the complete one-file diff (16 additions/9 removals). `settledStats` now polls a parameterized count of this link's stored click rows, then performs one statistics request and asserts 200 before parsing. Its caller passes the existing JdbcClient. All other contents are unchanged. |
+
+| Finding | Resolution | Independent evidence |
+|---|---|---|
+| CR-01 HIGH | **Fixed.** Waiting no longer spends the rate budget. The ten-second bound, explicit shipped 60/600 settings, frozen fixed day and complete grouping/privacy assertions remain. The 20 ms interval spaces condition checks; elapsed time is not the success condition. | [StatsPollingResolutionProbe.java](StatsPollingResolutionProbe.java) derives from the original reviewer reproducer, calls the actual candidate helper and holds the real writer for three seconds. Without trust: **3031 ms**; with P trusted: **3056 ms**. Each helper makes **one** HTTP stats read, no 429/NPE, passes the entire original day/count/privacy oracle, then an independent fresh-peer read confirms 200 / three clicks / two visitors / zero bots on 2026-10-01. Both app contexts close. [Full output](polling-resolution-e40b095.txt). |
+
+The resolution probe deliberately expects success after the writer's timed release. It does not mistake the old reproduction's failure-expecting exit for a successful regression test. Commands run from the exact worktree:
+
+```text
+../../scripts/gw --log /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/review/06-client-identity/code-check-e40b095.txt --offline check --rerun-tasks
+../../scripts/gw --log /Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/review/06-client-identity/polling-resolution-e40b095.txt --offline -I ../../docs/review/06-client-identity/polling-resolution-probe.gradle identityPollingResolutionProbe identityPollingTrustedResolutionProbe
+```
+
+Both exit 0. Fresh full gate: **268 unit + 322 functional**, no failures/errors/skips, Javadoc green; **584/584 lines and 206/206 branches**, only canonical unit/functional execution data. The external resolution probe contributes no JaCoCo data. Fresh CSV copies are named `code-coverage-e40b095-*.csv`.
+
+[audit-recheck-e40b095.py](audit-recheck-e40b095.py) independently reconciles the return; [results](code-verification-e40b095.json): **672 current artifact hashes**, **378 coverage hashes**, all **3,490 historical hashes** through **379 explicit archived-coverage aliases**, **326 source/report mappings**, and all **159 fresh affected raw HTTP/complete log pairs** against the earlier candidate with the declared substitutions. All 818 recorded affected-effect assertions pass. QA's external current-characterization replay reports **72/72** green invocations on original production; inspected the shadow-compilation init, source provenance and XML rather than claiming to have rerun that replay. The original 43 functional source files remain unchanged.
+
+Product, unit-test, build and API trees/blobs equal fb63a88; the actual retained bootJar hash is again `92e1b7aef3b91749facdc39bfbc35cc8df8367119294d801436a7db34b38e58f`. Consequently unaffected AC effects and the security checklist carry from the earlier review under QA guidance §5; they were not all re-executed. Runtime dependency graph was freshly queried offline and is identical. No complexity finding from the focused Ponytail pass; no new layer/dependency or policy change.
+
+[Live proof snapshot](proof-at-review-e40b095.json): **1–15 and 17 accepted on exact e40b095**, item **16 pending**, no issues. That downstream register/current-system update and post-merge QA return remain authorized by lead transition 1882; this review supplies only the independent-review part. No premature final acceptance.
+
+**Merge readiness: PASS for integration.** Security re-review also PASS. No remaining CR-01 action and no new non-blocking item. Existing deployment/framework/advisory limitations remain named in the security report. Self-check: one changed file of one reviewed, exact candidate and unchanged production verified, independent delayed-writer controls and full gate executed, QA archive qualifications preserved, both resolution ledger rows recorded; only review artifacts changed.

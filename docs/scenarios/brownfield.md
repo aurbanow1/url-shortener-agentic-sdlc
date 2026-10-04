@@ -19,6 +19,7 @@ approved at the mission plan-lock.
 | w2 | `03-dogfood-fix` | a defect found by using the shipped service is fixed with a regression test first (FR-14); tests and docs it touches match shipped behaviour (FR-15) | input: QA's dogfood report from mission 01's release prep (two known defects confirmed) |
 | w2 | `04-audit-columns` | the human's audit-column policy (created/updated at and by) reaches `link` and `audit_log` through one expand migration, V4 | added mid-mission by a human decision; migration with written rollback; no response shape changes |
 | w2 | `05-ci-cd` | CI/CD in GitHub Actions: the `check` gate on every pull request and on `main`, a loopback smoke of the shippable jar, weekly dependency proposals | added mid-mission by human decision D14; `.github/` only |
+| w3 | `06-client-identity` | a behaviour-preserving refactor: one `web/ClientIdentity` answers "who is this client" for the rate limiter, click recording and the audit guard (architecture.md §11 row 1, ADR-0015) | added by human decision D21 after the coverage review found no pure refactor; characterization tests first, the move in separate commits, QA before-and-after captures of responses and logs |
 
 Shared-file custody inside w1: `application.properties` and the next Flyway
 version number, `01` first; disjoint feature packages (`audit/` vs `click/`).
@@ -52,10 +53,19 @@ first, and where that risk was caught or mitigated.
 
 The audit-read row is the scenario's most useful record: a ranked risk with a
 probe and a pin still had a second activation path. The independent review on
-the other model family found it before merge. `[final]`: the re-review verdict
-and the merged SHA.
+the other model family found it before merge. The corrected guard passed QA's
+re-check and the re-review, and merged as `cb148c4`.
 
-## Orchestration and the drills `[final]`
+The refactor (`06-client-identity`) then gave that concern its one code path.
+Its own code review failed once on a test, not on the refactor: a new
+characterization test polled statistics under the rate limiter's fixed budget,
+which a slow write could exhaust (CR-01, HIGH, because the gate must be
+deterministic). The fix waited on storage instead of polling, QA re-checked
+the 12 identity and grouping rows on the fixed build, and the re-review
+passed. The refactor merged as `b8d7fc16`, with every journey and the API
+document unchanged.
+
+## Orchestration and the drills
 
 Delegated slice plan-locks (D11); concurrent w1 instances on the two judge
 pairs; w2 launched after w1 integrated. Drills, each labelled and recorded in
@@ -63,10 +73,10 @@ pairs; w2 launched after w1 integrated. Drills, each labelled and recorded in
 
 | Drill | What was exercised | Evidence |
 |---|---|---|
-| QA rejects a candidate → remediation loop | natural if one occurs, else a labelled drill instance | `[final]` |
+| QA rejects a candidate → remediation loop | DRILL 1, labelled drill instance `urlshort-drill` (no natural QA rejection occurred; the day's natural rejection was a code review, CR-01) | QA failed the deliberately defective candidate (MUST-FIX DRILL1-01) at 23:29:04Z, the fix was re-checked and the instance completed (`01M4212A8BKA6JRZHZQBD90D07`); `docs/scenarios/drills.md` |
 | Integrator `git revert` after a failed installed smoke | throwaway branch and worktree off `main` | rehearsed at mission 01 release prep (`rollback-rehearsal`); `[final]` |
-| `rig seat stop` → `rig workflow route` | labelled drill instance (`urlshort-drill`) | `[final]` |
-| `rig workflow abort` + `resume` | labelled drill instance | aborted instance `01M41B1ABGY3WR0DKEPZCJE9D3`; `[final]` |
+| `rig seat stop` → `rig workflow route` | DRILL 3, 16:54–16:56Z | the stranded step was re-owned by the lead's route without advancing or losing it, and the stopped seat came back; ordinary routes during the run (capacity moves) are listed separately as natural routing events; `docs/scenarios/drills.md` |
+| `rig workflow resume` then `abort` | DRILL 4, 16:57–16:58Z; order taken from the CLI's own contract | a failed step redriven once, then the whole instance safely stopped (`01M41B1ABGY3WR0DKEPZCJE9D3`); `docs/scenarios/drills.md` |
 
 ## Validation `[final]`
 

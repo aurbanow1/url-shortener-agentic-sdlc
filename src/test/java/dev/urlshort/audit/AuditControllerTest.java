@@ -6,6 +6,7 @@ import static org.mockito.Mockito.mock;
 
 import java.util.List;
 
+import dev.urlshort.web.ClientIdentity;
 import dev.urlshort.web.Problems.FieldError;
 import org.jspecify.annotations.Nullable;
 import org.junit.jupiter.api.Test;
@@ -28,13 +29,13 @@ class AuditControllerTest {
 	@ParameterizedTest
 	@ValueSource(strings = { "127.0.0.1", "127.0.0.2", "127.255.255.254", "::1", "0:0:0:0:0:0:0:1", "::ffff:127.0.0.1" })
 	void loopbackPeersAreAdmitted(String peer) {
-		assertThat(AuditController.fromLoopback(request(peer))).isTrue();
+		assertThat(ClientIdentity.fromLoopback(request(peer))).isTrue();
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = { "192.0.2.10", "10.0.0.7", "::ffff:192.0.2.10", "fe80::1", "0.0.0.0", "::", "", "1::2::3" })
 	void otherPeersAreRefused(String peer) {
-		assertThat(AuditController.fromLoopback(request(peer))).isFalse();
+		assertThat(ClientIdentity.fromLoopback(request(peer))).isFalse();
 	}
 
 	@Test
@@ -42,7 +43,7 @@ class AuditControllerTest {
 		MockHttpServletRequest request = request("127.0.0.1");
 		request.setRemoteAddr(null);
 
-		assertThat(AuditController.fromLoopback(request)).isFalse();
+		assertThat(ClientIdentity.fromLoopback(request)).isFalse();
 	}
 
 	@ParameterizedTest
@@ -51,7 +52,7 @@ class AuditControllerTest {
 		MockHttpServletRequest request = request("127.0.0.1");
 		request.addHeader(header, "127.0.0.1");
 
-		assertThat(AuditController.fromLoopback(request)).isFalse();
+		assertThat(ClientIdentity.fromLoopback(request)).isFalse();
 	}
 
 	@Test
@@ -96,6 +97,25 @@ class AuditControllerTest {
 
 		assertThat(controller(ForwardHeadersStrategy.NONE, tomcat).page(null, null, request("127.0.0.1")).getStatusCode())
 				.isEqualTo(HttpStatus.OK);
+	}
+
+	@Test
+	void whitespaceOnlyRemoteIpSettingsAreUnsetAndKeepTheEndpointOpen() {
+		TomcatServerProperties tomcat = new TomcatServerProperties();
+		tomcat.getRemoteip().setRemoteIpHeader("  ");
+		tomcat.getRemoteip().setProtocolHeader("  ");
+
+		assertThat(controller(ForwardHeadersStrategy.NONE, tomcat).page(null, null, request("127.0.0.1")).getStatusCode())
+				.isEqualTo(HttpStatus.OK);
+	}
+
+	@Test
+	void bothRemoteIpSettingsTogetherCloseTheEndpoint() {
+		TomcatServerProperties tomcat = new TomcatServerProperties();
+		tomcat.getRemoteip().setRemoteIpHeader("x-forwarded-for");
+		tomcat.getRemoteip().setProtocolHeader("x-forwarded-proto");
+
+		assertForbidden(controller(ForwardHeadersStrategy.NONE, tomcat));
 	}
 
 	@Test

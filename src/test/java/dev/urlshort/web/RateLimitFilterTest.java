@@ -85,13 +85,13 @@ class RateLimitFilterTest {
 		"10.9.9.9, ' , ', 10.9.9.9" })
 	void rule5_theClientIsThePeerOrTheRightMostUntrustedForwardedHop(String remote, String forwardedFor,
 			String client) {
-		assertThat(RateLimitFilter.clientOf(remote, forwardedFor, Set.of("10.9.9.9"))).isEqualTo(client);
+		assertThat(ClientIdentity.clientOf(remote, forwardedFor, Set.of("10.9.9.9"))).isEqualTo(client);
 	}
 
 	@ParameterizedTest
 	@NullAndEmptySource
 	void rule5_anAbsentOrEmptyHeaderFromATrustedProxyChargesTheProxy(String forwardedFor) {
-		assertThat(RateLimitFilter.clientOf("10.9.9.9", forwardedFor, Set.of("10.9.9.9"))).isEqualTo("10.9.9.9");
+		assertThat(ClientIdentity.clientOf("10.9.9.9", forwardedFor, Set.of("10.9.9.9"))).isEqualTo("10.9.9.9");
 	}
 
 	@Test
@@ -169,9 +169,9 @@ class RateLimitFilterTest {
 		filter.doFilter(exempt, new MockHttpServletResponse(), new MockFilterChain());
 
 		verify(limiter).tryTake(Budget.REDIRECT, "203.0.113.8");
-		assertThat(limited.getAttribute(RateLimitFilter.CLIENT_ATTRIBUTE)).isEqualTo("203.0.113.8");
+		assertThat(limited.getAttribute(ClientIdentity.CLIENT_ATTRIBUTE)).isEqualTo("203.0.113.8");
 		assertThat(limited.getRemoteAddr()).as("the peer address is never rewritten").isEqualTo("10.9.9.9");
-		assertThat(exempt.getAttribute(RateLimitFilter.CLIENT_ATTRIBUTE)).isNull();
+		assertThat(exempt.getAttribute(ClientIdentity.CLIENT_ATTRIBUTE)).isNull();
 	}
 
 	private static MockHttpServletRequest request(String uri) {

@@ -262,3 +262,86 @@ Register as committed at `ea84e77`.
 - The one new miss I found is mine, classified with evidence and a route. The primary vantage's
   HIGH, whose design-level cause is mine, is recorded as W2F-02 and not claimed as this vantage's
   finding. ID collisions with the review agent's file are mapped.
+
+---
+
+## Added range, 2026-10-04: `06-client-identity` (D21), `50ad9c3..fda42757`
+
+Asked by the lead (`qitem-20261004033410-cc340df3`) and the step owner, review-agent
+(`qitem-20261004033531-e96f5a30`, parent `qitem-20261004002455-b7ea811b`). Judgments on the first
+five slices and the W2F-01/W2F-02 resolutions stand unchanged.
+
+**Independence.** `design2-agent` designed this slice. I did not design it, so this delta's
+structural vantage is independent of its design. Two caveats the reader should weigh:
+- The code it moves comes from two of my designs: the audit guard from `01-audit-read`, the client
+  hand-off from `01-analytics-v2`.
+- I gave its register consistency verdict (`6fcb134`, re-checked at `a6dc733`) and made the post-merge
+  register and `DESIGN.md` update (`3b2ecd0b`). That update is judged here too; QA's item 16 judges it
+  separately.
+
+**Range.**
+- The slice: commits `240b230..e40b095`; two-parent merge `b8d7fc16` (second parent `e40b0954`);
+  documentation commit `fda42757`. Locked design `24b80be`. ADR-0015 and ADR-0019 amendments
+  (`57cb9ae`). Independent evidence: QA's recheck `cb67827a` and the code and security re-review
+  `981eb8e0`.
+- Also in the range, outside the slice: mission 03's `README.md` documentation commit `e227acf0`.
+
+### What I inspected
+
+- `git diff --stat 50ad9c3 fda42757` over product files (11 files).
+- The full diff of the three call sites (`RateLimitFilter`, `ClickRecorder`, `AuditController`) and of
+  the three existing unit tests.
+- `ClientIdentity` in full at `fda42757`.
+- A grep for every `ClientIdentity.` call and every `CLIENT_ATTRIBUTE` in `src/main`.
+- `ClientIdentityTest`, for reflection left over from commit 1.
+- The `README.md` and `application.properties` diffs; `slice.yaml`'s territory and grant.
+- The final design §1, §2 and §6, and the ADR amendment texts.
+- No build of my own: the integrator's and the review agent's gates hold that evidence.
+
+### Structure against the locked design and D21
+
+| Check | Result |
+|---|---|
+| One authority | `web.ClientIdentity`: `public final`, private constructor, no state, no bean. It is the only holder of the trusted-proxy rule, the resolved-client attribute and the audit guard's predicate. `CLIENT_ATTRIBUTE` is defined only there |
+| Bodies moved verbatim | `clientOf` and `fromLoopback` are byte-identical to the removed `RateLimitFilter.clientOf` and `AuditController.fromLoopback`. `peerIsConnection` is the removed constructor expression with its comment and `ponytail:` ceiling. `resolve` is the limiter's two removed lines, and `of` is the recorder's removed ternary |
+| Two separate questions | `resolve` and `of` (resolved client) and `peerIsConnection` and `fromLoopback` (direct peer) are separate methods. Neither guard method takes the trusted list or reads the attribute, so trusting a proxy cannot open `/api/audit` |
+| Three call sites | `RateLimitFilter` calls `resolve` after the exempt check and before `tryTake`, the same order as before. `ClickRecorder` calls `of`. `AuditController` calls `peerIsConnection` in its constructor and `fromLoopback` per request, with its servlet condition kept |
+| Preserved interfaces | `RateLimitFilter` is package-private again; nothing outside `web/` names it (grep). `AuditController`'s constructor signature is unchanged. No setting, endpoint, response, log event, meter, migration or dependency is added. `docs/api/openapi.json` is unchanged in the range, and no existing functional journey changed |
+| Tests | In `RateLimitFilterTest`, `AuditControllerTest` and `ClickRecorderTest`, every removed line is a reference rename with the same expected value; the rest are added cases. `ClientIdentityTest` has no reflection left (grep) |
+| Territory | Every product file is in `slice.yaml`'s territory. `application.properties` gained one comment line under the lead's comment-only grant (`fb63a88a`). Note W2D21-01 |
+
+### Findings for the added range
+
+| Id | Severity / class | Evidence | Finding | Disposition |
+|---|---|---|---|---|
+| W2D21-01 | INFO / CONTEXT-GAP | `slice.yaml` lines 64–71 (the comment-only grant on `application.properties`) and line 73 ("NOT in territory: … application.properties") | The territory comment still lists `application.properties` as excluded, while the lines above grant it for one comment. The merged change keeps within the grant: one comment line and no key or value | Record only. If the lead touches the file again, line 73 can be dropped. No effect on the product |
+| W2D21-02 | INFO | `e227acf0` (mission 03 documentation) in the range | `README.md` changed in this range outside the slice. I read it against the code: the trusted-proxy rule, the audit read's direct-loopback rule, the statistics fields, the purge and the counters all match. It also lists `URLSHORT_CLICK_PURGEENABLED`, which closes my W2P-01 | Record; W2P-01 is **closed** |
+
+There is no MUST-FIX, HIGH, MEDIUM or LOW in the added range.
+
+### Register walk at `fda42757` (register as committed at `3b2ecd0b`)
+
+| Concern | Verdict |
+|---|---|
+| Client identity and proxy trust | **Consistent; now one code path.** `web.ClientIdentity` with two separate questions; the row names its methods and callers, and the M3S-03 rule now reads "must still call `ClientIdentity.resolve`" |
+| Time | **Consistent; carried drift.** Untouched by the slice. `PingController`'s `Instant.now()` remains on the lead's backlog (checked at `fda42757`) |
+| Schema change | **Consistent; carried drift.** No migration in the range. W2F-01 (V4's tests migrate to latest) remains on the lead's backlog |
+| Audit columns | **Consistent.** Untouched |
+| Error shape | **Consistent.** The audit guard still throws `ErrorResponseException(FORBIDDEN)` through the one advice, and the limiter still writes its own `429`; no new error path |
+| Request id and logging | **Consistent.** `ClientIdentity` logs nothing; no event changed |
+| Audit trail writes | **Consistent.** Untouched |
+| Client hashing for analytics | **Consistent.** The hash's input is `ClientIdentity.of(request)`, the same string as before (the same ternary, moved) |
+| Metrics and health exposure | **Consistent.** Untouched |
+| API document | **Consistent.** Not regenerated, because nothing changed it; committed equals live in the gates |
+| CI/CD | **Consistent.** Untouched |
+| Background work | **Consistent.** Untouched |
+| Operator settings | **Consistent; drift closed.** The `trusted-proxies` comment now says the list also decides unique visitors and never grants audit access (`fb63a88a`, M3S-02). `README.md` lists every environment variable (W2P-01). The row records both as resolved |
+
+### Verdict for the added range
+
+**PASS from this structural vantage.** The merged code is the locked design: one static authority,
+bodies moved verbatim, two separate questions, the same three call sites and unchanged interfaces.
+That is D21's outcome, a single authority with no new behaviour. The register and `DESIGN.md` are
+current at `fda42757`, and my two open LOW items from the five-slice range are now closed:
+W2P-01 here, and M3S-02 in the register. Remaining backlog is unchanged: the ping clock, W2F-01 and
+the Gradle download retries.

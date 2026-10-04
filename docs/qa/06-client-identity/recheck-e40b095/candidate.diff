@@ -1,0 +1,45 @@
+diff --git a/src/functionalTest/java/dev/urlshort/web/ClientIdentityCharacterizationJourneyTest.java b/src/functionalTest/java/dev/urlshort/web/ClientIdentityCharacterizationJourneyTest.java
+index 0a670a09..c10d3cfc 100644
+--- a/src/functionalTest/java/dev/urlshort/web/ClientIdentityCharacterizationJourneyTest.java
++++ b/src/functionalTest/java/dev/urlshort/web/ClientIdentityCharacterizationJourneyTest.java
+@@ -119,16 +119,23 @@ class ClientIdentityCharacterizationJourneyTest {
+ 				.getContentAsString()).get("code").asString();
+ 	}
+ 
+-	/** Statistics once {@code clicks} clicks are stored; the recorder writes asynchronously. */
+-	static JsonNode settledStats(MockMvc mockMvc, JsonMapper jsonMapper, String code, long clicks) throws Exception {
++	/**
++	 * Statistics once {@code clicks} clicks are stored. The recorder writes asynchronously, so this waits,
++	 * bounded, on the stored rows, which spends no rate-limit budget, and then reads the statistics once:
++	 * polling the rate-limited endpoint itself would exhaust a frozen budget while a slow write is pending
++	 * (CR-01).
++	 */
++	static JsonNode settledStats(MockMvc mockMvc, JsonMapper jsonMapper, JdbcClient jdbc, String code, long clicks)
++			throws Exception {
+ 		Instant deadline = Instant.now().plusSeconds(10);
+-		JsonNode stats;
+-		do {
+-			stats = jsonMapper.readTree(mockMvc.perform(get("/api/links/" + code + "/stats")).andReturn().getResponse()
+-					.getContentAsString());
++		while (jdbc.sql("SELECT COUNT(*) FROM click c JOIN link l ON l.id = c.link_id WHERE l.code = :code")
++				.param("code", code).query(Long.class).single() < clicks && Instant.now().isBefore(deadline)) {
++			Thread.sleep(20);
+ 		}
+-		while (stats.get("totalClicks").asLong() < clicks && Instant.now().isBefore(deadline));
+-		return stats;
++		MockHttpServletResponse response = mockMvc.perform(get("/api/links/" + code + "/stats")).andReturn()
++				.getResponse();
++		assertThat(response.getStatus()).as(response.getContentAsString()).isEqualTo(200);
++		return jsonMapper.readTree(response.getContentAsString());
+ 	}
+ 
+ 	/**
+@@ -144,7 +151,7 @@ class ClientIdentityCharacterizationJourneyTest {
+ 					.isEqualTo(302);
+ 		}
+ 
+-		JsonNode stats = settledStats(mockMvc, jsonMapper, code, 3);
++		JsonNode stats = settledStats(mockMvc, jsonMapper, jdbc, code, 3);
+ 		assertThat(stats.get("totalClicks").asLong()).isEqualTo(3);
+ 		assertThat(stats.get("clicksPerDay")).singleElement().satisfies(day -> {
+ 			assertThat(day.get("date").asString()).isEqualTo(DAY.toString());

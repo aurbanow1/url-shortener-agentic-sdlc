@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.urlshort.link.LinkAuditColumnsTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-04T03:01:27.081Z" hostname="Andrzejs-MacBook-Pro.local" time="0.319">
+  <properties/>
+  <testcase name="AC1_bothTablesGainTheAuditColumnsAndNothingElseChanges()" classname="dev.urlshort.link.LinkAuditColumnsTest" time="0.147"/>
+  <testcase name="AC11_theWrittenRollbackRestoresTheEarlierSchemaAndV4AppliesAgain()" classname="dev.urlshort.link.LinkAuditColumnsTest" time="0.172"/>
+  <system-out><![CDATA[2026-10-03T20:01:27.082-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2026-10-03T20:01:27.083-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-5 - Added connection conn32: url=jdbc:h2:mem:link-audit-columns-4a7cb0db-204d-4915-9f99-f6c3feadbc38 user=SA
+2026-10-03T20:01:27.083-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2026-10-03T20:01:27.089-07:00  INFO 35687 --- [    Test worker] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:link-audit-columns-4a7cb0db-204d-4915-9f99-f6c3feadbc38 (H2 2.4)
+2026-10-03T20:01:27.091-07:00  WARN 35687 --- [    Test worker] o.f.c.internal.database.base.Database    : Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026-10-03T20:01:27.094-07:00  INFO 35687 --- [    Test worker] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+2026-10-03T20:01:27.124-07:00  INFO 35687 --- [    Test worker] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:link-audit-columns-4a7cb0db-204d-4915-9f99-f6c3feadbc38 (H2 2.4)
+2026-10-03T20:01:27.126-07:00  WARN 35687 --- [    Test worker] o.f.c.internal.database.base.Database    : Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026-10-03T20:01:27.129-07:00  INFO 35687 --- [    Test worker] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+2026-10-03T20:01:27.129-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbValidate     : Successfully validated 4 migrations (execution time 00:00.001s)
+2026-10-03T20:01:27.130-07:00  INFO 35687 --- [    Test worker] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+2026-10-03T20:01:27.132-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": << Empty Schema >>
+2026-10-03T20:01:27.134-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1 - create link and audit log"
+2026-10-03T20:01:27.138-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "2 - create click"
+2026-10-03T20:01:27.142-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "3 - add click audit columns"
+2026-10-03T20:01:27.154-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Successfully applied 3 migrations to schema "PUBLIC", now at version v3 (execution time 00:00.013s)
+2026-10-03T20:01:27.154-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
+2026-10-03T20:01:27.155-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-6 - Added connection conn35: url=jdbc:h2:mem:link-audit-columns-e8edb14b-8a5c-43bc-9a7d-9221e3521950 user=SA
+2026-10-03T20:01:27.155-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
+2026-10-03T20:01:27.160-07:00  INFO 35687 --- [    Test worker] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:link-audit-columns-e8edb14b-8a5c-43bc-9a7d-9221e3521950 (H2 2.4)
+2026-10-03T20:01:27.162-07:00  WARN 35687 --- [    Test worker] o.f.c.internal.database.base.Database    : Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026-10-03T20:01:27.164-07:00  INFO 35687 --- [    Test worker] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+2026-10-03T20:01:27.165-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbValidate     : Successfully validated 4 migrations (execution time 00:00.001s)
+2026-10-03T20:01:27.165-07:00  INFO 35687 --- [    Test worker] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+2026-10-03T20:01:27.194-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": << Empty Schema >>
+2026-10-03T20:01:27.195-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1 - create link and audit log"
+2026-10-03T20:01:27.198-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "2 - create click"
+2026-10-03T20:01:27.202-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "3 - add click audit columns"
+2026-10-03T20:01:27.212-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "4 - add link audit columns"
+2026-10-03T20:01:27.219-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Successfully applied 4 migrations to schema "PUBLIC", now at version v4 (execution time 00:00.016s)
+2026-10-03T20:01:27.226-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
+2026-10-03T20:01:27.228-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
+2026-10-03T20:01:27.228-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown initiated...
+2026-10-03T20:01:27.228-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown completed.
+2026-10-03T20:01:27.229-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Starting...
+2026-10-03T20:01:27.230-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-7 - Added connection conn38: url=jdbc:h2:mem:link-audit-columns-c696f703-662c-4b5f-9eef-c1c08901b98a user=SA
+2026-10-03T20:01:27.230-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Start completed.
+2026-10-03T20:01:27.234-07:00  INFO 35687 --- [    Test worker] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:link-audit-columns-c696f703-662c-4b5f-9eef-c1c08901b98a (H2 2.4)
+2026-10-03T20:01:27.236-07:00  WARN 35687 --- [    Test worker] o.f.c.internal.database.base.Database    : Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026-10-03T20:01:27.238-07:00  INFO 35687 --- [    Test worker] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+2026-10-03T20:01:27.271-07:00  INFO 35687 --- [    Test worker] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:link-audit-columns-c696f703-662c-4b5f-9eef-c1c08901b98a (H2 2.4)
+2026-10-03T20:01:27.272-07:00  WARN 35687 --- [    Test worker] o.f.c.internal.database.base.Database    : Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026-10-03T20:01:27.274-07:00  INFO 35687 --- [    Test worker] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+2026-10-03T20:01:27.274-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbValidate     : Successfully validated 4 migrations (execution time 00:00.001s)
+2026-10-03T20:01:27.274-07:00  INFO 35687 --- [    Test worker] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+2026-10-03T20:01:27.276-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": << Empty Schema >>
+2026-10-03T20:01:27.277-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1 - create link and audit log"
+2026-10-03T20:01:27.281-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "2 - create click"
+2026-10-03T20:01:27.285-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "3 - add click audit columns"
+2026-10-03T20:01:27.294-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Successfully applied 3 migrations to schema "PUBLIC", now at version v3 (execution time 00:00.010s)
+2026-10-03T20:01:27.294-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Starting...
+2026-10-03T20:01:27.295-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-8 - Added connection conn41: url=jdbc:h2:mem:link-audit-columns-65715938-90f9-43f7-8293-7c576b9cc86c user=SA
+2026-10-03T20:01:27.295-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Start completed.
+2026-10-03T20:01:27.298-07:00  INFO 35687 --- [    Test worker] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:link-audit-columns-65715938-90f9-43f7-8293-7c576b9cc86c (H2 2.4)
+2026-10-03T20:01:27.299-07:00  WARN 35687 --- [    Test worker] o.f.c.internal.database.base.Database    : Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026-10-03T20:01:27.301-07:00  INFO 35687 --- [    Test worker] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+2026-10-03T20:01:27.335-07:00  INFO 35687 --- [    Test worker] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:link-audit-columns-65715938-90f9-43f7-8293-7c576b9cc86c (H2 2.4)
+2026-10-03T20:01:27.337-07:00  WARN 35687 --- [    Test worker] o.f.c.internal.database.base.Database    : Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026-10-03T20:01:27.338-07:00  INFO 35687 --- [    Test worker] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+2026-10-03T20:01:27.338-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbValidate     : Successfully validated 4 migrations (execution time 00:00.000s)
+2026-10-03T20:01:27.339-07:00  INFO 35687 --- [    Test worker] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+2026-10-03T20:01:27.340-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": << Empty Schema >>
+2026-10-03T20:01:27.341-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1 - create link and audit log"
+2026-10-03T20:01:27.343-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "2 - create click"
+2026-10-03T20:01:27.346-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "3 - add click audit columns"
+2026-10-03T20:01:27.354-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Successfully applied 3 migrations to schema "PUBLIC", now at version v3 (execution time 00:00.008s)
+2026-10-03T20:01:27.358-07:00  INFO 35687 --- [    Test worker] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:link-audit-columns-65715938-90f9-43f7-8293-7c576b9cc86c (H2 2.4)
+2026-10-03T20:01:27.359-07:00  WARN 35687 --- [    Test worker] o.f.c.internal.database.base.Database    : Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026-10-03T20:01:27.361-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbValidate     : Successfully validated 4 migrations (execution time 00:00.001s)
+2026-10-03T20:01:27.362-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": 3
+2026-10-03T20:01:27.364-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "4 - add link audit columns"
+2026-10-03T20:01:27.372-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "PUBLIC", now at version v4 (execution time 00:00.007s)
+2026-10-03T20:01:27.388-07:00  INFO 35687 --- [    Test worker] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:link-audit-columns-65715938-90f9-43f7-8293-7c576b9cc86c (H2 2.4)
+2026-10-03T20:01:27.389-07:00  WARN 35687 --- [    Test worker] o.f.c.internal.database.base.Database    : Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026-10-03T20:01:27.391-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbValidate     : Successfully validated 4 migrations (execution time 00:00.001s)
+2026-10-03T20:01:27.392-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": 3
+2026-10-03T20:01:27.393-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "4 - add link audit columns"
+2026-10-03T20:01:27.399-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "PUBLIC", now at version v4 (execution time 00:00.005s)
+2026-10-03T20:01:27.400-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown initiated...
+2026-10-03T20:01:27.400-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown completed.
+2026-10-03T20:01:27.400-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown initiated...
+2026-10-03T20:01:27.400-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown completed.
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

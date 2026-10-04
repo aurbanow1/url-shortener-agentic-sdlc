@@ -1,0 +1,24 @@
+allprojects {
+    afterEvaluate {
+        def compileProbe = tasks.register('compileIdentityPollingResolutionProbe', JavaCompile) {
+            source = files('../../docs/review/06-client-identity/StatsPollingResolutionProbe.java')
+            classpath = sourceSets.functionalTest.runtimeClasspath
+            destinationDirectory = layout.buildDirectory.dir('review-identity-polling-resolution/classes')
+            dependsOn tasks.named('functionalTestClasses')
+            javaCompiler = javaToolchains.compilerFor { languageVersion = JavaLanguageVersion.of(21) }
+        }
+        tasks.register('identityPollingResolutionProbe', JavaExec) {
+            dependsOn compileProbe
+            classpath = files(compileProbe.flatMap { it.destinationDirectory }) + sourceSets.functionalTest.runtimeClasspath
+            mainClass = 'dev.urlshort.web.StatsPollingResolutionProbe'
+            javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) }
+        }
+        tasks.register('identityPollingTrustedResolutionProbe', JavaExec) {
+            dependsOn compileProbe
+            classpath = files(compileProbe.flatMap { it.destinationDirectory }) + sourceSets.functionalTest.runtimeClasspath
+            mainClass = 'dev.urlshort.web.StatsPollingResolutionProbe'
+            args 'trusted'
+            javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) }
+        }
+    }
+}

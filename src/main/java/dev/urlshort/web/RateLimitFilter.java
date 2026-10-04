@@ -13,7 +13,6 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.jspecify.annotations.Nullable;
 import org.slf4j.MDC;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -36,16 +35,13 @@ import tools.jackson.databind.json.JsonMapper;
  * every other problem body; this filter writes no log event, the request's one event is the
  * request-id filter's {@code request completed} with status {@code 429}.
  *
- * <p>Every charged request carries its client in {@link #CLIENT_ATTRIBUTE}; the peer address itself
- * is never rewritten, so every other reader of {@code getRemoteAddr()} sees the real peer
- * (ADR-0015 amendment, ADR-0019).
+ * <p>Every charged request carries its client in {@link ClientIdentity#CLIENT_ATTRIBUTE}; the peer
+ * address itself is never rewritten, so every other reader of {@code getRemoteAddr()} sees the real
+ * peer (ADR-0015 amendment, ADR-0019).
  */
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE + 2)
-public class RateLimitFilter extends OncePerRequestFilter {
-
-	/** Request attribute holding the client this request was charged to (ADR-0015); read by the click recorder. */
-	public static final String CLIENT_ATTRIBUTE = RateLimitFilter.class.getName() + ".client";
+class RateLimitFilter extends OncePerRequestFilter {
 
 	private final RateLimiter limiter;
 	private final Set<String> trustedProxies;
@@ -73,9 +69,7 @@ public class RateLimitFilter extends OncePerRequestFilter {
 			return;
 		}
 		Budget budget = path.equals("/api") || path.startsWith("/api/") ? Budget.CREATE : Budget.REDIRECT;
-		String client = clientOf(request.getRemoteAddr(), request.getHeader("X-Forwarded-For"), trustedProxies);
-		// left for the click recorder, so a click's hashed client is the client charged here (ADR-0015)
-		request.setAttribute(CLIENT_ATTRIBUTE, client);
+		String client = ClientIdentity.resolve(request, trustedProxies);
 		long retryAfter = limiter.tryTake(budget, client);
 		if (retryAfter == 0) {
 			chain.doFilter(request, response);
@@ -97,22 +91,4 @@ public class RateLimitFilter extends OncePerRequestFilter {
 				|| path.equals("/swagger-ui.html") || path.startsWith("/swagger-ui/");
 	}
 
-	/**
-	 * The client a request is charged to (business rule 5): the peer address, unless the peer is a
-	 * trusted proxy; then the right-most {@code X-Forwarded-For} entry that is not itself a trusted
-	 * proxy, or the peer when there is none. No other header is read.
-	 */
-	static String clientOf(String remote, @Nullable String forwardedFor, Set<String> trusted) {
-		if (!trusted.contains(remote) || forwardedFor == null) {
-			return remote;
-		}
-		String[] hops = forwardedFor.split(",");
-		for (int i = hops.length - 1; i >= 0; i--) {
-			String hop = hops[i].trim();
-			if (!hop.isEmpty() && !trusted.contains(hop)) {
-				return hop;
-			}
-		}
-		return remote;
-	}
 }

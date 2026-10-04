@@ -1,0 +1,6471 @@
+{
+  "matrix-0/M01-create-spend-1": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-0/M01-create-spend-1>",
+      "location": "/api/links/<code:matrix-0/M01-create-spend-1>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-0/M01-create-spend-1>",
+      "shortUrl": "http://localhost:8080/<code:matrix-0/M01-create-spend-1>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:08:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-0>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-0/M01-create-spend-1>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-0/M01-create-spend-2": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-0/M01-create-spend-2>",
+      "location": "/api/links/<code:matrix-0/M01-create-spend-2>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-0/M01-create-spend-2>",
+      "shortUrl": "http://localhost:8080/<code:matrix-0/M01-create-spend-2>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:08:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-0>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-0/M01-create-spend-2>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-0/M01-create-shared-429": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-0/M01-create-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-0/M01-create-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-0>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-0/M01-create-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-0/M01-create-independent": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-0/M01-create-independent>",
+      "location": "/api/links/<code:matrix-0/M01-create-independent>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-0/M01-create-independent>",
+      "shortUrl": "http://localhost:8080/<code:matrix-0/M01-create-independent>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:08:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-0>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-0/M01-create-independent>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-0/M01-redirect-spend-1": {
+    "method": "GET",
+    "path": "/<code:matrix-0/M01-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-0/M01-redirect-spend-1>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-0>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-0/M01-redirect-spend-1>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-0/M01-redirect-spend-2": {
+    "method": "GET",
+    "path": "/<code:matrix-0/M01-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-0/M01-redirect-spend-2>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-0>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-0/M01-redirect-spend-2>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-0/M01-redirect-shared-429": {
+    "method": "GET",
+    "path": "/<code:matrix-0/M01-create-independent>",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-0/M01-redirect-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-0/M01-redirect-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-0>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-0/M01-redirect-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-0/M01-redirect-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-0/M01-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-0/M01-redirect-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-0>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-0/M01-redirect-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-0/M01-stats-fixture": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-0/M01-stats-fixture>",
+      "location": "/api/links/<code:matrix-0/M01-stats-fixture>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-0/M01-stats-fixture>",
+      "shortUrl": "http://localhost:8080/<code:matrix-0/M01-stats-fixture>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:12:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-0>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-0/M01-stats-fixture>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-0/M01-stats-row": {
+    "method": "GET",
+    "path": "/<code:matrix-0/M01-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-0/M01-stats-row>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-0>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-0/M01-stats-row>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-0/M01-stats-reference": {
+    "method": "GET",
+    "path": "/<code:matrix-0/M01-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-0/M01-stats-reference>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-0>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-0/M01-stats-reference>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-0/M01-stats-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-0/M01-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-0/M01-stats-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-0>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-0/M01-stats-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-0/M01-stats": {
+    "method": "GET",
+    "path": "/api/links/<code:matrix-0/M01-stats-fixture>/stats",
+    "status": 200,
+    "headers": {
+      "x-request-id": "<request:matrix-0/M01-stats>",
+      "content-type": "application/json",
+      "content-length": "181",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-0/M01-stats-fixture>",
+      "totalClicks": 3,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-01",
+          "clicks": 3,
+          "uniqueVisitors": 2,
+          "botClicks": 0
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://ref.example",
+          "clicks": 3
+        }
+      ]
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-0>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-0/M01-stats>",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M02-create-spend-1": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M02-create-spend-1>",
+      "location": "/api/links/<code:matrix-1/M02-create-spend-1>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M02-create-spend-1>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M02-create-spend-1>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:16:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M02-create-spend-1>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M02-create-spend-2": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M02-create-spend-2>",
+      "location": "/api/links/<code:matrix-1/M02-create-spend-2>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M02-create-spend-2>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M02-create-spend-2>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:16:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M02-create-spend-2>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M02-create-shared-429": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M02-create-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-1/M02-create-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M02-create-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M02-create-independent": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M02-create-independent>",
+      "location": "/api/links/<code:matrix-1/M02-create-independent>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M02-create-independent>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M02-create-independent>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:16:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M02-create-independent>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M02-redirect-spend-1": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M02-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M02-redirect-spend-1>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M02-redirect-spend-1>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M02-redirect-spend-2": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M02-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M02-redirect-spend-2>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M02-redirect-spend-2>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M02-redirect-shared-429": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M02-create-independent>",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M02-redirect-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-1/M02-redirect-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M02-redirect-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M02-redirect-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M02-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M02-redirect-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M02-redirect-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M02-stats-fixture": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M02-stats-fixture>",
+      "location": "/api/links/<code:matrix-1/M02-stats-fixture>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M02-stats-fixture>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M02-stats-fixture>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:20:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M02-stats-fixture>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M02-stats-row": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M02-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M02-stats-row>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M02-stats-row>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M02-stats-reference": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M02-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M02-stats-reference>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M02-stats-reference>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M02-stats-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M02-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M02-stats-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M02-stats-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M02-stats": {
+    "method": "GET",
+    "path": "/api/links/<code:matrix-1/M02-stats-fixture>/stats",
+    "status": 200,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M02-stats>",
+      "content-type": "application/json",
+      "content-length": "181",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M02-stats-fixture>",
+      "totalClicks": 3,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-01",
+          "clicks": 3,
+          "uniqueVisitors": 2,
+          "botClicks": 0
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://ref.example",
+          "clicks": 3
+        }
+      ]
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M02-stats>",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M03-create-spend-1": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M03-create-spend-1>",
+      "location": "/api/links/<code:matrix-1/M03-create-spend-1>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M03-create-spend-1>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M03-create-spend-1>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:24:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M03-create-spend-1>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M03-create-spend-2": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M03-create-spend-2>",
+      "location": "/api/links/<code:matrix-1/M03-create-spend-2>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M03-create-spend-2>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M03-create-spend-2>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:24:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M03-create-spend-2>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M03-create-shared-429": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M03-create-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-1/M03-create-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M03-create-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M03-create-independent": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M03-create-independent>",
+      "location": "/api/links/<code:matrix-1/M03-create-independent>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M03-create-independent>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M03-create-independent>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:24:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M03-create-independent>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M03-redirect-spend-1": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M03-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M03-redirect-spend-1>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M03-redirect-spend-1>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M03-redirect-spend-2": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M03-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M03-redirect-spend-2>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M03-redirect-spend-2>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M03-redirect-shared-429": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M03-create-independent>",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M03-redirect-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-1/M03-redirect-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M03-redirect-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M03-redirect-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M03-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M03-redirect-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M03-redirect-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M03-stats-fixture": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M03-stats-fixture>",
+      "location": "/api/links/<code:matrix-1/M03-stats-fixture>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M03-stats-fixture>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M03-stats-fixture>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:28:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M03-stats-fixture>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M03-stats-row": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M03-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M03-stats-row>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M03-stats-row>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M03-stats-reference": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M03-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M03-stats-reference>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M03-stats-reference>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M03-stats-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M03-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M03-stats-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M03-stats-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M03-stats": {
+    "method": "GET",
+    "path": "/api/links/<code:matrix-1/M03-stats-fixture>/stats",
+    "status": 200,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M03-stats>",
+      "content-type": "application/json",
+      "content-length": "181",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M03-stats-fixture>",
+      "totalClicks": 3,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-01",
+          "clicks": 3,
+          "uniqueVisitors": 2,
+          "botClicks": 0
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://ref.example",
+          "clicks": 3
+        }
+      ]
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M03-stats>",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M04-create-spend-1": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M04-create-spend-1>",
+      "location": "/api/links/<code:matrix-1/M04-create-spend-1>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M04-create-spend-1>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M04-create-spend-1>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:32:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M04-create-spend-1>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M04-create-spend-2": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M04-create-spend-2>",
+      "location": "/api/links/<code:matrix-1/M04-create-spend-2>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M04-create-spend-2>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M04-create-spend-2>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:32:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M04-create-spend-2>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M04-create-shared-429": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M04-create-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-1/M04-create-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M04-create-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M04-create-independent": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M04-create-independent>",
+      "location": "/api/links/<code:matrix-1/M04-create-independent>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M04-create-independent>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M04-create-independent>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:32:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M04-create-independent>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M04-redirect-spend-1": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M04-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M04-redirect-spend-1>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M04-redirect-spend-1>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M04-redirect-spend-2": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M04-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M04-redirect-spend-2>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M04-redirect-spend-2>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M04-redirect-shared-429": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M04-create-independent>",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M04-redirect-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-1/M04-redirect-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M04-redirect-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M04-redirect-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M04-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M04-redirect-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M04-redirect-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M04-stats-fixture": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M04-stats-fixture>",
+      "location": "/api/links/<code:matrix-1/M04-stats-fixture>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M04-stats-fixture>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M04-stats-fixture>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:36:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M04-stats-fixture>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M04-stats-row": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M04-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M04-stats-row>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M04-stats-row>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M04-stats-reference": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M04-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M04-stats-reference>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M04-stats-reference>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M04-stats-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M04-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M04-stats-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M04-stats-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M04-stats": {
+    "method": "GET",
+    "path": "/api/links/<code:matrix-1/M04-stats-fixture>/stats",
+    "status": 200,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M04-stats>",
+      "content-type": "application/json",
+      "content-length": "181",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M04-stats-fixture>",
+      "totalClicks": 3,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-01",
+          "clicks": 3,
+          "uniqueVisitors": 2,
+          "botClicks": 0
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://ref.example",
+          "clicks": 3
+        }
+      ]
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M04-stats>",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M05-create-spend-1": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M05-create-spend-1>",
+      "location": "/api/links/<code:matrix-2/M05-create-spend-1>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-2/M05-create-spend-1>",
+      "shortUrl": "http://localhost:8080/<code:matrix-2/M05-create-spend-1>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:40:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M05-create-spend-1>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M05-create-spend-2": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M05-create-spend-2>",
+      "location": "/api/links/<code:matrix-2/M05-create-spend-2>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-2/M05-create-spend-2>",
+      "shortUrl": "http://localhost:8080/<code:matrix-2/M05-create-spend-2>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:40:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M05-create-spend-2>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M05-create-shared-429": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M05-create-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-2/M05-create-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M05-create-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M05-create-independent": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M05-create-independent>",
+      "location": "/api/links/<code:matrix-2/M05-create-independent>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-2/M05-create-independent>",
+      "shortUrl": "http://localhost:8080/<code:matrix-2/M05-create-independent>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:40:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M05-create-independent>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M05-redirect-spend-1": {
+    "method": "GET",
+    "path": "/<code:matrix-2/M05-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M05-redirect-spend-1>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M05-redirect-spend-1>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M05-redirect-spend-2": {
+    "method": "GET",
+    "path": "/<code:matrix-2/M05-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M05-redirect-spend-2>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M05-redirect-spend-2>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M05-redirect-shared-429": {
+    "method": "GET",
+    "path": "/<code:matrix-2/M05-create-independent>",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M05-redirect-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-2/M05-redirect-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M05-redirect-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M05-redirect-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-2/M05-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M05-redirect-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M05-redirect-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M05-stats-fixture": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M05-stats-fixture>",
+      "location": "/api/links/<code:matrix-2/M05-stats-fixture>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-2/M05-stats-fixture>",
+      "shortUrl": "http://localhost:8080/<code:matrix-2/M05-stats-fixture>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:44:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M05-stats-fixture>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M05-stats-row": {
+    "method": "GET",
+    "path": "/<code:matrix-2/M05-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M05-stats-row>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M05-stats-row>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M05-stats-reference": {
+    "method": "GET",
+    "path": "/<code:matrix-2/M05-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M05-stats-reference>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M05-stats-reference>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M05-stats-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-2/M05-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M05-stats-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M05-stats-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M05-stats": {
+    "method": "GET",
+    "path": "/api/links/<code:matrix-2/M05-stats-fixture>/stats",
+    "status": 200,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M05-stats>",
+      "content-type": "application/json",
+      "content-length": "181",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-2/M05-stats-fixture>",
+      "totalClicks": 3,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-01",
+          "clicks": 3,
+          "uniqueVisitors": 2,
+          "botClicks": 0
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://ref.example",
+          "clicks": 3
+        }
+      ]
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M05-stats>",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M06-create-spend-1": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M06-create-spend-1>",
+      "location": "/api/links/<code:matrix-1/M06-create-spend-1>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M06-create-spend-1>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M06-create-spend-1>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:48:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M06-create-spend-1>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M06-create-spend-2": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M06-create-spend-2>",
+      "location": "/api/links/<code:matrix-1/M06-create-spend-2>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M06-create-spend-2>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M06-create-spend-2>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:48:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M06-create-spend-2>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M06-create-shared-429": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M06-create-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-1/M06-create-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M06-create-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M06-create-independent": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M06-create-independent>",
+      "location": "/api/links/<code:matrix-1/M06-create-independent>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M06-create-independent>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M06-create-independent>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:48:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M06-create-independent>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M06-redirect-spend-1": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M06-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M06-redirect-spend-1>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M06-redirect-spend-1>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M06-redirect-spend-2": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M06-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M06-redirect-spend-2>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M06-redirect-spend-2>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M06-redirect-shared-429": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M06-create-independent>",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M06-redirect-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-1/M06-redirect-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M06-redirect-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M06-redirect-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M06-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M06-redirect-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M06-redirect-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M06-stats-fixture": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M06-stats-fixture>",
+      "location": "/api/links/<code:matrix-1/M06-stats-fixture>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M06-stats-fixture>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M06-stats-fixture>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:52:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M06-stats-fixture>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M06-stats-row": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M06-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M06-stats-row>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M06-stats-row>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M06-stats-reference": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M06-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M06-stats-reference>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M06-stats-reference>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M06-stats-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M06-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M06-stats-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M06-stats-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M06-stats": {
+    "method": "GET",
+    "path": "/api/links/<code:matrix-1/M06-stats-fixture>/stats",
+    "status": 200,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M06-stats>",
+      "content-type": "application/json",
+      "content-length": "181",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M06-stats-fixture>",
+      "totalClicks": 3,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-01",
+          "clicks": 3,
+          "uniqueVisitors": 2,
+          "botClicks": 0
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://ref.example",
+          "clicks": 3
+        }
+      ]
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M06-stats>",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M07-create-spend-1": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M07-create-spend-1>",
+      "location": "/api/links/<code:matrix-2/M07-create-spend-1>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-2/M07-create-spend-1>",
+      "shortUrl": "http://localhost:8080/<code:matrix-2/M07-create-spend-1>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:56:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M07-create-spend-1>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M07-create-spend-2": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M07-create-spend-2>",
+      "location": "/api/links/<code:matrix-2/M07-create-spend-2>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-2/M07-create-spend-2>",
+      "shortUrl": "http://localhost:8080/<code:matrix-2/M07-create-spend-2>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:56:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M07-create-spend-2>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M07-create-shared-429": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M07-create-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-2/M07-create-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M07-create-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M07-create-independent": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M07-create-independent>",
+      "location": "/api/links/<code:matrix-2/M07-create-independent>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-2/M07-create-independent>",
+      "shortUrl": "http://localhost:8080/<code:matrix-2/M07-create-independent>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T12:56:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M07-create-independent>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M07-redirect-spend-1": {
+    "method": "GET",
+    "path": "/<code:matrix-2/M07-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M07-redirect-spend-1>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M07-redirect-spend-1>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M07-redirect-spend-2": {
+    "method": "GET",
+    "path": "/<code:matrix-2/M07-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M07-redirect-spend-2>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M07-redirect-spend-2>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M07-redirect-shared-429": {
+    "method": "GET",
+    "path": "/<code:matrix-2/M07-create-independent>",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M07-redirect-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-2/M07-redirect-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M07-redirect-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M07-redirect-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-2/M07-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M07-redirect-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M07-redirect-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M07-stats-fixture": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M07-stats-fixture>",
+      "location": "/api/links/<code:matrix-2/M07-stats-fixture>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-2/M07-stats-fixture>",
+      "shortUrl": "http://localhost:8080/<code:matrix-2/M07-stats-fixture>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T13:00:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M07-stats-fixture>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M07-stats-row": {
+    "method": "GET",
+    "path": "/<code:matrix-2/M07-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M07-stats-row>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M07-stats-row>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M07-stats-reference": {
+    "method": "GET",
+    "path": "/<code:matrix-2/M07-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M07-stats-reference>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M07-stats-reference>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M07-stats-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-2/M07-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M07-stats-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M07-stats-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-2/M07-stats": {
+    "method": "GET",
+    "path": "/api/links/<code:matrix-2/M07-stats-fixture>/stats",
+    "status": 200,
+    "headers": {
+      "x-request-id": "<request:matrix-2/M07-stats>",
+      "content-type": "application/json",
+      "content-length": "181",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-2/M07-stats-fixture>",
+      "totalClicks": 3,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-01",
+          "clicks": 3,
+          "uniqueVisitors": 2,
+          "botClicks": 0
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://ref.example",
+          "clicks": 3
+        }
+      ]
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-2>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-2/M07-stats>",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M08-create-spend-1": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M08-create-spend-1>",
+      "location": "/api/links/<code:matrix-1/M08-create-spend-1>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M08-create-spend-1>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M08-create-spend-1>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T13:04:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M08-create-spend-1>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M08-create-spend-2": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M08-create-spend-2>",
+      "location": "/api/links/<code:matrix-1/M08-create-spend-2>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M08-create-spend-2>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M08-create-spend-2>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T13:04:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M08-create-spend-2>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M08-create-shared-429": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M08-create-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-1/M08-create-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M08-create-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M08-create-independent": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M08-create-independent>",
+      "location": "/api/links/<code:matrix-1/M08-create-independent>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M08-create-independent>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M08-create-independent>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T13:04:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M08-create-independent>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M08-redirect-spend-1": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M08-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M08-redirect-spend-1>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M08-redirect-spend-1>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M08-redirect-spend-2": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M08-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M08-redirect-spend-2>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M08-redirect-spend-2>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M08-redirect-shared-429": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M08-create-independent>",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M08-redirect-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-1/M08-redirect-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M08-redirect-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M08-redirect-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M08-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M08-redirect-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M08-redirect-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M08-stats-fixture": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M08-stats-fixture>",
+      "location": "/api/links/<code:matrix-1/M08-stats-fixture>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M08-stats-fixture>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M08-stats-fixture>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T13:08:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M08-stats-fixture>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M08-stats-row": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M08-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M08-stats-row>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M08-stats-row>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M08-stats-reference": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M08-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M08-stats-reference>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M08-stats-reference>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M08-stats-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M08-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M08-stats-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M08-stats-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M08-stats": {
+    "method": "GET",
+    "path": "/api/links/<code:matrix-1/M08-stats-fixture>/stats",
+    "status": 200,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M08-stats>",
+      "content-type": "application/json",
+      "content-length": "181",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M08-stats-fixture>",
+      "totalClicks": 3,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-01",
+          "clicks": 3,
+          "uniqueVisitors": 2,
+          "botClicks": 0
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://ref.example",
+          "clicks": 3
+        }
+      ]
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M08-stats>",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M09-create-spend-1": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M09-create-spend-1>",
+      "location": "/api/links/<code:matrix-1/M09-create-spend-1>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M09-create-spend-1>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M09-create-spend-1>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T13:12:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M09-create-spend-1>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M09-create-spend-2": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M09-create-spend-2>",
+      "location": "/api/links/<code:matrix-1/M09-create-spend-2>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M09-create-spend-2>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M09-create-spend-2>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T13:12:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M09-create-spend-2>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M09-create-shared-429": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M09-create-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-1/M09-create-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M09-create-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M09-create-independent": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M09-create-independent>",
+      "location": "/api/links/<code:matrix-1/M09-create-independent>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M09-create-independent>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M09-create-independent>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T13:12:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M09-create-independent>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M09-redirect-spend-1": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M09-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M09-redirect-spend-1>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M09-redirect-spend-1>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M09-redirect-spend-2": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M09-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M09-redirect-spend-2>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M09-redirect-spend-2>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M09-redirect-shared-429": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M09-create-independent>",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M09-redirect-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-1/M09-redirect-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M09-redirect-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M09-redirect-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M09-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M09-redirect-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M09-redirect-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M09-stats-fixture": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M09-stats-fixture>",
+      "location": "/api/links/<code:matrix-1/M09-stats-fixture>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M09-stats-fixture>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M09-stats-fixture>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T13:16:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M09-stats-fixture>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M09-stats-row": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M09-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M09-stats-row>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M09-stats-row>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M09-stats-reference": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M09-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M09-stats-reference>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M09-stats-reference>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M09-stats-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M09-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M09-stats-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M09-stats-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M09-stats": {
+    "method": "GET",
+    "path": "/api/links/<code:matrix-1/M09-stats-fixture>/stats",
+    "status": 200,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M09-stats>",
+      "content-type": "application/json",
+      "content-length": "181",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M09-stats-fixture>",
+      "totalClicks": 3,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-01",
+          "clicks": 3,
+          "uniqueVisitors": 2,
+          "botClicks": 0
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://ref.example",
+          "clicks": 3
+        }
+      ]
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M09-stats>",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M10-create-spend-1": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M10-create-spend-1>",
+      "location": "/api/links/<code:matrix-1/M10-create-spend-1>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M10-create-spend-1>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M10-create-spend-1>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T13:20:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M10-create-spend-1>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M10-create-spend-2": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M10-create-spend-2>",
+      "location": "/api/links/<code:matrix-1/M10-create-spend-2>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M10-create-spend-2>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M10-create-spend-2>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T13:20:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M10-create-spend-2>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M10-create-shared-429": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M10-create-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-1/M10-create-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M10-create-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M10-create-independent": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M10-create-independent>",
+      "location": "/api/links/<code:matrix-1/M10-create-independent>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M10-create-independent>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M10-create-independent>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T13:20:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M10-create-independent>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M10-redirect-spend-1": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M10-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M10-redirect-spend-1>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M10-redirect-spend-1>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M10-redirect-spend-2": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M10-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M10-redirect-spend-2>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M10-redirect-spend-2>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M10-redirect-shared-429": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M10-create-independent>",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M10-redirect-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-1/M10-redirect-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M10-redirect-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M10-redirect-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M10-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M10-redirect-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M10-redirect-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M10-stats-fixture": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M10-stats-fixture>",
+      "location": "/api/links/<code:matrix-1/M10-stats-fixture>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M10-stats-fixture>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M10-stats-fixture>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T13:24:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M10-stats-fixture>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M10-stats-row": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M10-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M10-stats-row>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M10-stats-row>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M10-stats-reference": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M10-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M10-stats-reference>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M10-stats-reference>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M10-stats-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M10-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M10-stats-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M10-stats-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M10-stats": {
+    "method": "GET",
+    "path": "/api/links/<code:matrix-1/M10-stats-fixture>/stats",
+    "status": 200,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M10-stats>",
+      "content-type": "application/json",
+      "content-length": "181",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M10-stats-fixture>",
+      "totalClicks": 3,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-01",
+          "clicks": 3,
+          "uniqueVisitors": 2,
+          "botClicks": 0
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://ref.example",
+          "clicks": 3
+        }
+      ]
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M10-stats>",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M11-create-spend-1": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M11-create-spend-1>",
+      "location": "/api/links/<code:matrix-1/M11-create-spend-1>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M11-create-spend-1>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M11-create-spend-1>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T13:28:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M11-create-spend-1>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M11-create-spend-2": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M11-create-spend-2>",
+      "location": "/api/links/<code:matrix-1/M11-create-spend-2>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M11-create-spend-2>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M11-create-spend-2>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T13:28:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M11-create-spend-2>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M11-create-shared-429": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M11-create-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-1/M11-create-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M11-create-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M11-create-independent": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M11-create-independent>",
+      "location": "/api/links/<code:matrix-1/M11-create-independent>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M11-create-independent>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M11-create-independent>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T13:28:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M11-create-independent>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M11-redirect-spend-1": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M11-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M11-redirect-spend-1>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M11-redirect-spend-1>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M11-redirect-spend-2": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M11-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M11-redirect-spend-2>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M11-redirect-spend-2>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M11-redirect-shared-429": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M11-create-independent>",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M11-redirect-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-1/M11-redirect-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M11-redirect-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M11-redirect-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M11-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M11-redirect-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M11-redirect-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M11-stats-fixture": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M11-stats-fixture>",
+      "location": "/api/links/<code:matrix-1/M11-stats-fixture>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M11-stats-fixture>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M11-stats-fixture>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T13:32:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M11-stats-fixture>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M11-stats-row": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M11-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M11-stats-row>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M11-stats-row>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M11-stats-reference": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M11-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M11-stats-reference>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M11-stats-reference>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M11-stats-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M11-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M11-stats-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M11-stats-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M11-stats": {
+    "method": "GET",
+    "path": "/api/links/<code:matrix-1/M11-stats-fixture>/stats",
+    "status": 200,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M11-stats>",
+      "content-type": "application/json",
+      "content-length": "181",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M11-stats-fixture>",
+      "totalClicks": 3,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-01",
+          "clicks": 3,
+          "uniqueVisitors": 2,
+          "botClicks": 0
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://ref.example",
+          "clicks": 3
+        }
+      ]
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M11-stats>",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M12-create-spend-1": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M12-create-spend-1>",
+      "location": "/api/links/<code:matrix-1/M12-create-spend-1>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M12-create-spend-1>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M12-create-spend-1>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T13:36:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M12-create-spend-1>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M12-create-spend-2": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M12-create-spend-2>",
+      "location": "/api/links/<code:matrix-1/M12-create-spend-2>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M12-create-spend-2>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M12-create-spend-2>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T13:36:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M12-create-spend-2>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M12-create-shared-429": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M12-create-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-1/M12-create-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M12-create-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M12-create-independent": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M12-create-independent>",
+      "location": "/api/links/<code:matrix-1/M12-create-independent>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M12-create-independent>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M12-create-independent>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T13:36:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M12-create-independent>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M12-redirect-spend-1": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M12-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M12-redirect-spend-1>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M12-redirect-spend-1>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M12-redirect-spend-2": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M12-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M12-redirect-spend-2>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M12-redirect-spend-2>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M12-redirect-shared-429": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M12-create-independent>",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M12-redirect-shared-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-1/M12-redirect-shared-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M12-redirect-shared-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M12-redirect-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M12-create-independent>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M12-redirect-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M12-redirect-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M12-stats-fixture": {
+    "method": "POST",
+    "path": "/api/links",
+    "status": 201,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M12-stats-fixture>",
+      "location": "/api/links/<code:matrix-1/M12-stats-fixture>",
+      "content-type": "application/json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M12-stats-fixture>",
+      "shortUrl": "http://localhost:8080/<code:matrix-1/M12-stats-fixture>",
+      "url": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "state": "active",
+      "createdAt": "2026-10-01T13:40:00Z"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M12-stats-fixture>",
+        "status": 201,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M12-stats-row": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M12-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M12-stats-row>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M12-stats-row>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M12-stats-reference": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M12-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M12-stats-reference>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M12-stats-reference>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M12-stats-independent": {
+    "method": "GET",
+    "path": "/<code:matrix-1/M12-stats-fixture>",
+    "status": 302,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M12-stats-independent>",
+      "location": "https://example.com/QA06-AUDIT-TARGET-CANARY",
+      "cache-control": "no-store",
+      "content-length": "0",
+      "date": "<HTTP-Date>"
+    },
+    "json": null,
+    "body": "",
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M12-stats-independent>",
+        "status": 302,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-1/M12-stats": {
+    "method": "GET",
+    "path": "/api/links/<code:matrix-1/M12-stats-fixture>/stats",
+    "status": 200,
+    "headers": {
+      "x-request-id": "<request:matrix-1/M12-stats>",
+      "content-type": "application/json",
+      "content-length": "181",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "code": "<code:matrix-1/M12-stats-fixture>",
+      "totalClicks": 3,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-01",
+          "clicks": 3,
+          "uniqueVisitors": 2,
+          "botClicks": 0
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://ref.example",
+          "clicks": 3
+        }
+      ]
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-1>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-1/M12-stats>",
+        "status": 200,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-0/precedence-available-403": {
+    "method": "GET",
+    "path": "/api/audit?limit=0",
+    "status": 403,
+    "headers": {
+      "x-request-id": "<request:matrix-0/precedence-available-403>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-0/precedence-available-403>",
+      "status": 403,
+      "title": "Forbidden"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-0>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-0/precedence-available-403>",
+        "status": 403,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-0/precedence-spend": {
+    "method": "GET",
+    "path": "/api/links/zzzzzzzz",
+    "status": 404,
+    "headers": {
+      "x-request-id": "<request:matrix-0/precedence-spend>",
+      "content-type": "application/problem+json",
+      "transfer-encoding": "chunked",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-0/precedence-spend>",
+      "status": 404,
+      "title": "Not Found"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-0>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-0/precedence-spend>",
+        "status": 404,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  },
+  "matrix-0/precedence-spent-429": {
+    "method": "GET",
+    "path": "/api/audit?limit=0",
+    "status": 429,
+    "headers": {
+      "x-request-id": "<request:matrix-0/precedence-spent-429>",
+      "retry-after": "30",
+      "content-type": "application/problem+json",
+      "content-length": "101",
+      "date": "<HTTP-Date>"
+    },
+    "json": {
+      "instance": "urn:uuid:<request:matrix-0/precedence-spent-429>",
+      "status": 429,
+      "title": "Too Many Requests"
+    },
+    "body": null,
+    "events": [
+      {
+        "@timestamp": "<log-time:0>",
+        "log": {
+          "level": "INFO",
+          "logger": "dev.urlshort.web.RequestIdFilter"
+        },
+        "process": {
+          "pid": "<pid:matrix-0>",
+          "thread": {}
+        },
+        "service": {
+          "name": "urlshort",
+          "node": {}
+        },
+        "message": "request completed",
+        "requestId": "<request:matrix-0/precedence-spent-429>",
+        "status": 429,
+        "ecs": {
+          "version": "8.11"
+        }
+      }
+    ]
+  }
+}

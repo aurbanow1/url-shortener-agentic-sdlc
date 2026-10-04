@@ -25,7 +25,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
-import dev.urlshort.web.RateLimitFilter;
+import dev.urlshort.web.ClientIdentity;
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -258,13 +258,32 @@ class ClickRecorderTest {
 	@Test
 	void theRateLimitersClientIsHashedWhenTheRequestCarriesIt() throws Exception {
 		MockHttpServletRequest request = request("GET", "req-proxied");
-		request.setAttribute(RateLimitFilter.CLIENT_ATTRIBUTE, "198.51.100.5");
+		request.setAttribute(ClientIdentity.CLIENT_ATTRIBUTE, "198.51.100.5");
 
 		recorder.record(1L, request);
 		recorder.settle();
 
 		verify(salt).stamp("198.51.100.5");
 		verify(salt, never()).stamp("203.0.113.77");
+	}
+
+	@Test
+	void withoutTheLimitersAttributeThePeerIsHashed() throws Exception {
+		recorder.record(1L, request("GET", "req-no-attribute"));
+		recorder.settle();
+
+		verify(salt).stamp("203.0.113.77");
+	}
+
+	@Test
+	void anAttributeThatIsNotAStringIsIgnoredAndThePeerIsHashed() throws Exception {
+		MockHttpServletRequest request = request("GET", "req-integer-attribute");
+		request.setAttribute(ClientIdentity.CLIENT_ATTRIBUTE, 42);
+
+		recorder.record(1L, request);
+		recorder.settle();
+
+		verify(salt).stamp("203.0.113.77");
 	}
 
 	@Test

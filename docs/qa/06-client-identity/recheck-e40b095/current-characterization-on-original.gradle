@@ -1,0 +1,24 @@
+allprojects {
+    afterEvaluate {
+        def compileShadow = tasks.register('compileQaCurrentCharacterization', JavaCompile) {
+            source = files('/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/06-client-identity/src/functionalTest/java/dev/urlshort/web/ClientIdentityCharacterizationJourneyTest.java')
+            classpath = sourceSets.functionalTest.runtimeClasspath
+            destinationDirectory = file('/private/tmp/urlshort-qa2-e40-characterization/classes')
+            dependsOn tasks.named('functionalTestClasses')
+            javaCompiler = javaToolchains.compilerFor { languageVersion = JavaLanguageVersion.of(21) }
+        }
+        tasks.register('qaCurrentCharacterizationOnOriginal', Test) {
+            dependsOn compileShadow
+            testClassesDirs = files(compileShadow.flatMap { it.destinationDirectory })
+            classpath = files(compileShadow.flatMap { it.destinationDirectory }) + sourceSets.functionalTest.runtimeClasspath
+            useJUnitPlatform()
+            systemProperty 'spring.profiles.active', 'functional'
+            javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) }
+            // This external compatibility replay makes no coverage claim. Keep it
+            // out of the old baseline's canonical coverage execution data.
+            jacoco.enabled = false
+            reports.junitXml.outputLocation = file('/Users/andrzej/Documents/projekty/test/openrig/url-shortener/docs/qa/06-client-identity/recheck-e40b095/current-characterization-on-original/xml')
+            reports.html.required = false
+        }
+    }
+}

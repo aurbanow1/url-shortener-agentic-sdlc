@@ -1,0 +1,46 @@
+> Task :compileJava
+> Task :processResources
+> Task :classes
+> Task :jar
+> Task :compileFunctionalTestJava
+> Task :processFunctionalTestResources
+> Task :functionalTestClasses
+
+> Task :compileQaCurrentCharacterization
+warning: unknown enum constant Status.STABLE
+  reason: class file for org.apiguardian.api.API$Status not found
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.DEPRECATED
+warning: unknown enum constant Status.DEPRECATED
+warning: unknown enum constant Status.DEPRECATED
+warning: unknown enum constant Status.DEPRECATED
+warning: unknown enum constant Status.DEPRECATED
+warning: unknown enum constant Status.DEPRECATED
+warning: unknown enum constant Status.DEPRECATED
+warning: unknown enum constant Status.EXPERIMENTAL
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.MAINTAINED
+warning: unknown enum constant Status.MAINTAINED
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.MAINTAINED
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.MAINTAINED
+warning: unknown enum constant Status.STABLE
+22 warnings
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+{"@timestamp":"2026-10-04T03:06:52.129327Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":55825,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-3 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T03:06:52.129699Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":55825,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-3 - Shutdown completed.","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T03:06:52.130503Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":55825,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-6 - Shutdown initiated...","ecs":{"version":"8.11"}}
+{"@timestamp":"2026-10-04T03:06:52.130674Z","log":{"level":"INFO","logger":"com.zaxxer.hikari.HikariDataSource"},"process":{"pid":55825,"thread":{}},"service":{"name":"urlshort","node":{}},"message":"HikariPool-6 - Shutdown completed.","ecs":{"version":"8.11"}}
+
+> Task :qaCurrentCharacterizationOnOriginal
+
+[Incubating] Problems report is available at: file:///private/tmp/urlshort-qa2-identity-1b/build/reports/problems/problems-report.html
+
+BUILD SUCCESSFUL in 8s
+7 actionable tasks: 7 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.8.0/userguide/configuration_cache_enabling.html
