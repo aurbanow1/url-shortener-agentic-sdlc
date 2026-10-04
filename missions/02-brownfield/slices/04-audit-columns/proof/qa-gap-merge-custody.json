@@ -1,0 +1,39 @@
+{
+  "candidate": "305f8045d45b19a9e3287d5fe3508af6e04db9a4",
+  "merge": "d55a502f14127ac234c01d12efb46dda3c1a1e64",
+  "secondParentAndAcceptedTagExact": true,
+  "citedMigrationAndTests": [
+    {
+      "path": "src/main/resources/db/migration/V4__add_link_audit_columns.sql",
+      "candidateAndMergeEqual": true,
+      "sha256": "e1cf67add7d5dc55152504e19a60cbc5f3ad3291c9a1bc1af33e168e6da055a7"
+    },
+    {
+      "path": "src/test/java/dev/urlshort/link/LinkAuditColumnsTest.java",
+      "candidateAndMergeEqual": true,
+      "sha256": "2ffcea452b8aaa4d8043a846842e0d6f58744dce4cf32773f565c263c44f6117"
+    },
+    {
+      "path": "src/test/java/dev/urlshort/link/LinkServiceStampTest.java",
+      "candidateAndMergeEqual": true,
+      "sha256": "afc65ca054fe6809f5f4adedaaa187875f1d8a3531da1d8f1006262575a8d7a6"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/link/LinkUpgradeJourneyTest.java",
+      "candidateAndMergeEqual": true,
+      "sha256": "303fe35b190cf93972d475da17b13281c2f5a7875a3349232aac28ba427ba658"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/link/LinkAuditColumnsJourneyTest.java",
+      "candidateAndMergeEqual": true,
+      "sha256": "9c417adc044984478a76ca00ded3b979a9ffd16ffc5a0164ed538dc1a223128d"
+    },
+    {
+      "path": "src/functionalTest/java/dev/urlshort/link/LinkAuditColumnsFailureJourneyTest.java",
+      "candidateAndMergeEqual": true,
+      "sha256": "d4303cbf341fa4802c179f398b020cb027f49302dc60e3cbce76ffd4bbbfc27a"
+    }
+  ],
+  "initialGapsHash": "48e489114ba7adfc7622746b877893d3bbf7aae9986a096d9b7b7d4f693d8612",
+  "pendingCorrection": "line82 click retention QA actor qa-agent should qa2-agent; qitem-20261004001811-00cc4191"
+}

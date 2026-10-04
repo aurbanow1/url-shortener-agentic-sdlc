@@ -31,6 +31,8 @@ Context and observations that help the mission but do not change its
 
 - 2026-10-03T23:47Z — QA2 `04-audit-columns` packet qitem-20261003232046-aa44c49f: exact305f804 independent gate/effects complete (218/233;557/200;94 HTTP/787 assertions), preparing evidence commit/judgments and handoff. Review pending.
 
+- 2026-10-04T00:18Z — QA2 post-merge04 proof5 return qitem-20261004001550-8de9f055: merge/tag/cited files correct and GAPS hash matched, but click row line82 misattributes QA to qa-agent. Parked on correction qitem-20261004001811-00cc4191; judge5 only after corrected hash.
+
 ## 2. Orchestration lead
 
 - 2026-10-03T11:52Z — decompose. Read the mission SPEC as the operator updated it (D7 inputs: "two slices + drills"; NFR-P2 lands here if mission 01 did not deliver it), `PLAN.md` D7 in the human's words, `docs/REQUIREMENTS.md` rows FR-13…FR-17, NFR-S6, P2, X2, the existing `01-audit-read` scaffold, `docs/scenarios/drills.md` (the 00-hello rehearsal pattern), and what mission 01's designs left for this mission: `01-create-redirect`'s "the audit-read slice adds the index its pagination needs" and `02-analytics`'s "a 90-day purge is one `DELETE … WHERE clicked_on < ?` … needing at most a second index". Decomposition and orchestration guides read earlier this session for mission 03.
@@ -398,3 +400,5 @@ Context and observations that help the mission but do not change its
 - 2026-10-03T23:51Z — QA2: 04-audit-columns evidence committed fdd8c5b; receipts1–8 accept proof1–4,6–9 against exact305f804. Lead confirmed qitem-20261003234855-d2ef129b at23:49Z: qa_check hands off now, item5 returns only after merge/interim GAPS closure with final hash. QA proof5 remains pending, not accepted in advance. Notes and evidence are explicit-pathspec commits; downstream review remains pending.
 
 - 2026-10-03T23:56Z — QA2 final 04 handoff: shared TRACE append again changed item4 hash while this slice section stayed byte-identical to fdd8c5b; final projection/reaffirmation recorded. Do not rerun product QA for this metadata drift. Evidence/receipts committed; item5 returns after merge as lead-confirmed, and any later common-file drift remains lead final reconciliation.
+
+- 2026-10-04T00:18Z — QA2: post-merge04 proof5 verification found one wrong attribution in GAPS line82 (click-retention actor is qa2-agent, receipt11 confirms X-prime). Report proof/qa-gap-return-17593aa.md; correction qitem-20261004001811-00cc4191 to lead, owned return qitem-20261004001550-8de9f055 blocked on it with continuation. Exact merged305f804/tag and V4/five test files independently byte-equal; no product or AC failure, no rerun required. Item5 remains pending until final corrected GAPS hash.
