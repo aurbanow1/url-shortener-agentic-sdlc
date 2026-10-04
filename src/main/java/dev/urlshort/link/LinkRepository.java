@@ -20,13 +20,24 @@ interface LinkRepository extends Repository<Link, Long> {
 
 	Optional<Link> findByIdempotencyKey(String idempotencyKey);
 
-	/** Retires the link if it is still active; returns {@code 0} when it was already retired. */
+	/**
+	 * Retires the link if it is still active, stamping the retirement as its update; returns {@code 0}
+	 * when it was already retired.
+	 */
 	@Modifying
-	@Query("UPDATE link SET retired_at = :at WHERE id = :id AND retired_at IS NULL")
+	@Query("UPDATE link SET retired_at = :at, updated_at = :at, updated_by = 'anonymous' WHERE id = :id AND retired_at IS NULL")
 	int retire(Long id, Instant at);
 
 	/** Frees an expired key so it can bind a new link. */
 	@Modifying
 	@Query("UPDATE link SET idempotency_key = NULL WHERE id = :id")
 	int releaseIdempotencyKey(Long id);
+
+	/**
+	 * Stamps a link write as the row's update (slice 04-audit-columns, rule 2): {@code at} is the write's
+	 * instant on the service clock, the actor is {@code anonymous} (NFR-S6).
+	 */
+	@Modifying
+	@Query("UPDATE link SET updated_at = :at, updated_by = 'anonymous' WHERE id = :id")
+	int stamp(Long id, Instant at);
 }

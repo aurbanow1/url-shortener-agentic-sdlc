@@ -115,7 +115,8 @@ class ClickRetentionStartupJourneyTest {
 				.param("cutoff", T.minusDays(90)).query().listOfRows();
 		List<Map<String, Object>> classes = jdbc.sql("SELECT * FROM user_agent_class ORDER BY token").query().listOfRows();
 
-		try (ConfigurableApplicationContext context = start(url, "--urlshort.click.purge-enabled=true")) {
+		try (ConfigurableApplicationContext context = start(url, "--urlshort.click.purge-enabled=true",
+				"--spring.flyway.target=3")) {
 			assertThat(jdbc.sql("SELECT \"version\", \"success\" FROM \"flyway_schema_history\""
 					+ " WHERE \"version\" IS NOT NULL ORDER BY \"installed_rank\"")
 					.query().listOfRows()).extracting(row -> row.get("version") + "=" + row.get("success"))
