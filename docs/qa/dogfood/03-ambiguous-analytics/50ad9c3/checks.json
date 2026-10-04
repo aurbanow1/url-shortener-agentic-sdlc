@@ -1,0 +1,3421 @@
+[
+  {
+    "label": "default create/baseURL/server-id",
+    "pass": true,
+    "observed": {
+      "code": "m5eGjsgl",
+      "shortUrl": "http://127.0.0.1:18232/m5eGjsgl",
+      "url": "https://example.org/campaign?offer=m03dogfood#landing",
+      "state": "active",
+      "createdAt": "2026-10-04T01:01:23.018Z"
+    }
+  },
+  {
+    "label": "default empty exact stats",
+    "pass": true,
+    "observed": {
+      "code": "m5eGjsgl",
+      "totalClicks": 0,
+      "clicksPerDay": [],
+      "topReferrers": []
+    }
+  },
+  {
+    "label": "default idempotent retry",
+    "pass": true,
+    "observed": {
+      "code": "m5eGjsgl",
+      "shortUrl": "http://127.0.0.1:18232/m5eGjsgl",
+      "url": "https://example.org/campaign?offer=m03dogfood#landing",
+      "state": "active",
+      "createdAt": "2026-10-04T01:01:23.018Z"
+    }
+  },
+  {
+    "label": "default mismatched retry",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:9a86a973-82b5-4748-8884-5c8c56465a5b",
+      "status": 422,
+      "title": "Unprocessable Content",
+      "errors": [
+        {
+          "field": "Idempotency-Key",
+          "rule": "mismatch",
+          "message": "Idempotency-Key was already used with a different url"
+        }
+      ]
+    }
+  },
+  {
+    "label": "default one create audit",
+    "pass": true,
+    "observed": {
+      "items": [
+        {
+          "occurredAt": "2026-10-04T01:01:23.120Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "m5eGjsgl",
+          "requestId": "3ea7b90b-d4cc-40cb-89bb-b54799218e77",
+          "before": null,
+          "after": {
+            "url": "https://example.org/campaign?offer=m03dogfood#landing",
+            "state": "active"
+          }
+        }
+      ],
+      "next": null
+    }
+  },
+  {
+    "label": "trusted create/baseURL/server-id",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "shortUrl": "http://127.0.0.1:18233/TcbGM3Cp",
+      "url": "https://example.org/campaign?offer=m03dogfood#landing",
+      "state": "active",
+      "createdAt": "2026-10-04T01:01:24.319Z"
+    }
+  },
+  {
+    "label": "trusted empty exact stats",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "totalClicks": 0,
+      "clicksPerDay": [],
+      "topReferrers": []
+    }
+  },
+  {
+    "label": "trusted idempotent retry",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "shortUrl": "http://127.0.0.1:18233/TcbGM3Cp",
+      "url": "https://example.org/campaign?offer=m03dogfood#landing",
+      "state": "active",
+      "createdAt": "2026-10-04T01:01:24.319Z"
+    }
+  },
+  {
+    "label": "trusted mismatched retry",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:070beffa-d593-408f-affe-e15a6d5b1340",
+      "status": 422,
+      "title": "Unprocessable Content",
+      "errors": [
+        {
+          "field": "Idempotency-Key",
+          "rule": "mismatch",
+          "message": "Idempotency-Key was already used with a different url"
+        }
+      ]
+    }
+  },
+  {
+    "label": "trusted one create audit",
+    "pass": true,
+    "observed": {
+      "items": [
+        {
+          "occurredAt": "2026-10-04T01:01:24.404Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "TcbGM3Cp",
+          "requestId": "1dea41f3-8c65-4c14-9517-cbc5a67b919e",
+          "before": null,
+          "after": {
+            "url": "https://example.org/campaign?offer=m03dogfood#landing",
+            "state": "active"
+          }
+        }
+      ],
+      "next": null
+    }
+  },
+  {
+    "label": "default a-browser-1 redirect",
+    "pass": true,
+    "observed": {
+      "status": 302,
+      "location": "https://example.org/campaign?offer=m03dogfood#landing"
+    }
+  },
+  {
+    "label": "default a-browser-2 redirect",
+    "pass": true,
+    "observed": {
+      "status": 302,
+      "location": "https://example.org/campaign?offer=m03dogfood#landing"
+    }
+  },
+  {
+    "label": "default a-bot redirect",
+    "pass": true,
+    "observed": {
+      "status": 302,
+      "location": "https://example.org/campaign?offer=m03dogfood#landing"
+    }
+  },
+  {
+    "label": "default b-crawler redirect",
+    "pass": true,
+    "observed": {
+      "status": 302,
+      "location": "https://example.org/campaign?offer=m03dogfood#landing"
+    }
+  },
+  {
+    "label": "default c-spider redirect",
+    "pass": true,
+    "observed": {
+      "status": 302,
+      "location": "https://example.org/campaign?offer=m03dogfood#landing"
+    }
+  },
+  {
+    "label": "default c-other redirect",
+    "pass": true,
+    "observed": {
+      "status": 302,
+      "location": "https://example.org/campaign?offer=m03dogfood#landing"
+    }
+  },
+  {
+    "label": "default proxy-missing-xff redirect",
+    "pass": true,
+    "observed": {
+      "status": 302,
+      "location": "https://example.org/campaign?offer=m03dogfood#landing"
+    }
+  },
+  {
+    "label": "default mixed counts/raw/bot/proxy",
+    "pass": true,
+    "observed": {
+      "code": "m5eGjsgl",
+      "totalClicks": 7,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 7,
+          "uniqueVisitors": 1,
+          "botClicks": 3
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 3
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "default referrer origins",
+    "pass": true,
+    "observed": [
+      {
+        "referrer": "https://news.example.org",
+        "clicks": 3
+      },
+      {
+        "referrer": "https://second.example.org:8443",
+        "clicks": 2
+      }
+    ]
+  },
+  {
+    "label": "trusted a-browser-1 redirect",
+    "pass": true,
+    "observed": {
+      "status": 302,
+      "location": "https://example.org/campaign?offer=m03dogfood#landing"
+    }
+  },
+  {
+    "label": "trusted a-browser-2 redirect",
+    "pass": true,
+    "observed": {
+      "status": 302,
+      "location": "https://example.org/campaign?offer=m03dogfood#landing"
+    }
+  },
+  {
+    "label": "trusted a-bot redirect",
+    "pass": true,
+    "observed": {
+      "status": 302,
+      "location": "https://example.org/campaign?offer=m03dogfood#landing"
+    }
+  },
+  {
+    "label": "trusted b-crawler redirect",
+    "pass": true,
+    "observed": {
+      "status": 302,
+      "location": "https://example.org/campaign?offer=m03dogfood#landing"
+    }
+  },
+  {
+    "label": "trusted c-spider redirect",
+    "pass": true,
+    "observed": {
+      "status": 302,
+      "location": "https://example.org/campaign?offer=m03dogfood#landing"
+    }
+  },
+  {
+    "label": "trusted c-other redirect",
+    "pass": true,
+    "observed": {
+      "status": 302,
+      "location": "https://example.org/campaign?offer=m03dogfood#landing"
+    }
+  },
+  {
+    "label": "trusted proxy-missing-xff redirect",
+    "pass": true,
+    "observed": {
+      "status": 302,
+      "location": "https://example.org/campaign?offer=m03dogfood#landing"
+    }
+  },
+  {
+    "label": "trusted mixed counts/raw/bot/proxy",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "totalClicks": 7,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 7,
+          "uniqueVisitors": 4,
+          "botClicks": 3
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 3
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "trusted referrer origins",
+    "pass": true,
+    "observed": [
+      {
+        "referrer": "https://news.example.org",
+        "clicks": 3
+      },
+      {
+        "referrer": "https://second.example.org:8443",
+        "clicks": 2
+      }
+    ]
+  },
+  {
+    "label": "null problem",
+    "pass": true,
+    "observed": {
+      "status": 400,
+      "json": {
+        "instance": "urn:uuid:8137f142-835d-49a2-904c-9aa409e4170c",
+        "status": 400,
+        "title": "Bad Request"
+      }
+    }
+  },
+  {
+    "label": "array problem",
+    "pass": true,
+    "observed": {
+      "status": 400,
+      "json": {
+        "instance": "urn:uuid:2f2bc208-f71e-4d13-aeec-888160b63805",
+        "status": 400,
+        "title": "Bad Request"
+      }
+    }
+  },
+  {
+    "label": "missing problem",
+    "pass": true,
+    "observed": {
+      "status": 400,
+      "json": {
+        "instance": "urn:uuid:7bae0fe7-372e-4cc4-a86c-9e63c7e7fa58",
+        "status": 400,
+        "title": "Bad Request",
+        "errors": [
+          {
+            "field": "url",
+            "rule": "required",
+            "message": "url is required"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "label": "blank problem",
+    "pass": true,
+    "observed": {
+      "status": 400,
+      "json": {
+        "instance": "urn:uuid:cc7d014d-dd6b-4b6b-9a6d-26d8d55bd63a",
+        "status": 400,
+        "title": "Bad Request",
+        "errors": [
+          {
+            "field": "url",
+            "rule": "required",
+            "message": "url is required"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "label": "non-string problem",
+    "pass": true,
+    "observed": {
+      "status": 400,
+      "json": {
+        "instance": "urn:uuid:6dc74b71-ad7d-4d0a-b227-3ca6921b6aa8",
+        "status": 400,
+        "title": "Bad Request",
+        "errors": [
+          {
+            "field": "url",
+            "rule": "scheme",
+            "message": "url must start with http:// or https://"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "label": "object problem",
+    "pass": true,
+    "observed": {
+      "status": 400,
+      "json": {
+        "instance": "urn:uuid:35672c69-57f1-49ac-a023-5b16afd40726",
+        "status": 400,
+        "title": "Bad Request"
+      }
+    }
+  },
+  {
+    "label": "relative problem",
+    "pass": true,
+    "observed": {
+      "status": 400,
+      "json": {
+        "instance": "urn:uuid:cefb3864-e038-4178-8718-f3bd043a4c4f",
+        "status": 400,
+        "title": "Bad Request",
+        "errors": [
+          {
+            "field": "url",
+            "rule": "scheme",
+            "message": "url must start with http:// or https://"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "label": "javascript problem",
+    "pass": true,
+    "observed": {
+      "status": 400,
+      "json": {
+        "instance": "urn:uuid:6ef23b03-00e0-4f0a-98ff-4887407aa336",
+        "status": 400,
+        "title": "Bad Request",
+        "errors": [
+          {
+            "field": "url",
+            "rule": "scheme",
+            "message": "url must start with http:// or https://"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "label": "userinfo problem",
+    "pass": true,
+    "observed": {
+      "status": 400,
+      "json": {
+        "instance": "urn:uuid:b46f29ee-822e-4528-821e-98d9d555db88",
+        "status": 400,
+        "title": "Bad Request",
+        "errors": [
+          {
+            "field": "url",
+            "rule": "credentials",
+            "message": "url must not contain credentials"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "label": "leading-space problem",
+    "pass": true,
+    "observed": {
+      "status": 400,
+      "json": {
+        "instance": "urn:uuid:16449373-05f8-4baf-8275-5855c6616c23",
+        "status": 400,
+        "title": "Bad Request",
+        "errors": [
+          {
+            "field": "url",
+            "rule": "scheme",
+            "message": "url must start with http:// or https://"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "label": "trailing-space problem",
+    "pass": true,
+    "observed": {
+      "status": 400,
+      "json": {
+        "instance": "urn:uuid:72206d19-7451-418b-be7c-ab97c2db1639",
+        "status": 400,
+        "title": "Bad Request",
+        "errors": [
+          {
+            "field": "url",
+            "rule": "malformed",
+            "message": "url must be an absolute URL with a host"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "label": "malformed problem",
+    "pass": true,
+    "observed": {
+      "status": 400,
+      "json": {
+        "instance": "urn:uuid:d5a2eba4-978b-4f3d-a38b-c47fedd24fee",
+        "status": 400,
+        "title": "Bad Request"
+      }
+    }
+  },
+  {
+    "label": "text problem",
+    "pass": true,
+    "observed": {
+      "status": 415,
+      "json": {
+        "instance": "urn:uuid:48788eaa-80f1-4c6f-aee5-0904d585e4f4",
+        "status": 415,
+        "title": "Unsupported Media Type"
+      }
+    }
+  },
+  {
+    "label": "oversize problem",
+    "pass": true,
+    "observed": {
+      "status": 413,
+      "json": {
+        "instance": "urn:uuid:25cb4864-b701-477b-9e6c-74d976db155b",
+        "status": 413,
+        "title": "Content Too Large"
+      }
+    }
+  },
+  {
+    "label": "missing-link status",
+    "pass": true,
+    "observed": {
+      "status": 404,
+      "body": "{\"instance\":\"urn:uuid:ccc26ebb-77ad-4fc4-b939-ead0ebaa8ac1\",\"status\":404,\"title\":\"Not Found\"}"
+    }
+  },
+  {
+    "label": "missing-link private problem",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:ccc26ebb-77ad-4fc4-b939-ead0ebaa8ac1",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "label": "missing-stats status",
+    "pass": true,
+    "observed": {
+      "status": 404,
+      "body": "{\"instance\":\"urn:uuid:1759be74-7cb6-464e-9aec-1b9ef4ab985d\",\"status\":404,\"title\":\"Not Found\"}"
+    }
+  },
+  {
+    "label": "missing-stats private problem",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:1759be74-7cb6-464e-9aec-1b9ef4ab985d",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "label": "missing-visitor status",
+    "pass": true,
+    "observed": {
+      "status": 404,
+      "body": "{\"instance\":\"urn:uuid:3df4cda7-c403-4c46-ac1e-18ddbe452aa6\",\"status\":404,\"title\":\"Not Found\"}"
+    }
+  },
+  {
+    "label": "missing-visitor private problem",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:3df4cda7-c403-4c46-ac1e-18ddbe452aa6",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "label": "stats-post status",
+    "pass": true,
+    "observed": {
+      "status": 405,
+      "body": "{\"instance\":\"urn:uuid:bc89a6c6-a0b5-4fb1-8f0c-cfbc1218eba2\",\"status\":405,\"title\":\"Method Not Allowed\"}",
+      "allow": "GET"
+    }
+  },
+  {
+    "label": "stats-post private problem",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:bc89a6c6-a0b5-4fb1-8f0c-cfbc1218eba2",
+      "status": 405,
+      "title": "Method Not Allowed"
+    }
+  },
+  {
+    "label": "stats-delete status",
+    "pass": true,
+    "observed": {
+      "status": 405,
+      "body": "{\"instance\":\"urn:uuid:f55ea8d5-f3e5-4854-8f43-8e005e6bb4af\",\"status\":405,\"title\":\"Method Not Allowed\"}",
+      "allow": "GET"
+    }
+  },
+  {
+    "label": "stats-delete private problem",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:f55ea8d5-f3e5-4854-8f43-8e005e6bb4af",
+      "status": 405,
+      "title": "Method Not Allowed"
+    }
+  },
+  {
+    "label": "visitor-post status",
+    "pass": true,
+    "observed": {
+      "status": 405,
+      "body": "{\"instance\":\"urn:uuid:b2c0a48c-a8f7-4169-ad71-1d6504ec84bd\",\"status\":405,\"title\":\"Method Not Allowed\"}",
+      "allow": "GET"
+    }
+  },
+  {
+    "label": "visitor-post private problem",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:b2c0a48c-a8f7-4169-ad71-1d6504ec84bd",
+      "status": 405,
+      "title": "Method Not Allowed"
+    }
+  },
+  {
+    "label": "stats-options status",
+    "pass": true,
+    "observed": {
+      "status": 200,
+      "body": "",
+      "allow": "GET,HEAD,OPTIONS"
+    }
+  },
+  {
+    "label": "visitor-options status",
+    "pass": true,
+    "observed": {
+      "status": 200,
+      "body": "",
+      "allow": "GET,HEAD,OPTIONS"
+    }
+  },
+  {
+    "label": "errors/methods never click",
+    "pass": true,
+    "observed": {
+      "code": "m5eGjsgl",
+      "totalClicks": 7,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 7,
+          "uniqueVisitors": 1,
+          "botClicks": 3
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 3
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "default audit xff deny",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:df4ab2a5-022c-479b-aba3-c0c87ea58c08",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "label": "default audit proto ignored as specified",
+    "pass": true,
+    "observed": {
+      "items": [
+        {
+          "occurredAt": "2026-10-04T01:01:23.120Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "m5eGjsgl",
+          "requestId": "3ea7b90b-d4cc-40cb-89bb-b54799218e77",
+          "before": null,
+          "after": {
+            "url": "https://example.org/campaign?offer=m03dogfood#landing",
+            "state": "active"
+          }
+        }
+      ],
+      "next": null
+    },
+    "originalExpectation": "403 (overbroad dogfood assumption)",
+    "contractCorrection": "01-audit-read SPEC rule 2 refuses X-Forwarded-For and Forwarded only; other headers do not grant/deny access."
+  },
+  {
+    "label": "default audit forwarded deny",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:41b138f3-0d6a-4b70-8667-278e74022d3e",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "label": "default audit real-ip ignored as specified",
+    "pass": true,
+    "observed": {
+      "items": [
+        {
+          "occurredAt": "2026-10-04T01:01:23.120Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "m5eGjsgl",
+          "requestId": "3ea7b90b-d4cc-40cb-89bb-b54799218e77",
+          "before": null,
+          "after": {
+            "url": "https://example.org/campaign?offer=m03dogfood#landing",
+            "state": "active"
+          }
+        }
+      ],
+      "next": null
+    },
+    "originalExpectation": "403 (overbroad dogfood assumption)",
+    "contractCorrection": "01-audit-read SPEC rule 2 refuses X-Forwarded-For and Forwarded only; other headers do not grant/deny access."
+  },
+  {
+    "label": "trusted audit xff deny",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:3cb91d51-7512-4ff7-aab4-12a404b7b059",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "label": "trusted audit proto ignored as specified",
+    "pass": true,
+    "observed": {
+      "items": [
+        {
+          "occurredAt": "2026-10-04T01:01:24.404Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "TcbGM3Cp",
+          "requestId": "1dea41f3-8c65-4c14-9517-cbc5a67b919e",
+          "before": null,
+          "after": {
+            "url": "https://example.org/campaign?offer=m03dogfood#landing",
+            "state": "active"
+          }
+        }
+      ],
+      "next": null
+    },
+    "originalExpectation": "403 (overbroad dogfood assumption)",
+    "contractCorrection": "01-audit-read SPEC rule 2 refuses X-Forwarded-For and Forwarded only; other headers do not grant/deny access."
+  },
+  {
+    "label": "trusted audit forwarded deny",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:fa8e21b9-fb10-48a9-b334-d486c12a0df9",
+      "status": 403,
+      "title": "Forbidden"
+    }
+  },
+  {
+    "label": "trusted audit real-ip ignored as specified",
+    "pass": true,
+    "observed": {
+      "items": [
+        {
+          "occurredAt": "2026-10-04T01:01:24.404Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "TcbGM3Cp",
+          "requestId": "1dea41f3-8c65-4c14-9517-cbc5a67b919e",
+          "before": null,
+          "after": {
+            "url": "https://example.org/campaign?offer=m03dogfood#landing",
+            "state": "active"
+          }
+        }
+      ],
+      "next": null
+    },
+    "originalExpectation": "403 (overbroad dogfood assumption)",
+    "contractCorrection": "01-audit-read SPEC rule 2 refuses X-Forwarded-For and Forwarded only; other headers do not grant/deny access."
+  },
+  {
+    "label": "errors/reads/clicks audit unchanged",
+    "pass": true,
+    "observed": {
+      "items": [
+        {
+          "occurredAt": "2026-10-04T01:01:23.120Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "m5eGjsgl",
+          "requestId": "3ea7b90b-d4cc-40cb-89bb-b54799218e77",
+          "before": null,
+          "after": {
+            "url": "https://example.org/campaign?offer=m03dogfood#landing",
+            "state": "active"
+          }
+        }
+      ],
+      "next": null
+    }
+  },
+  {
+    "label": "default limit-zero",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:a655bf55-755a-4e51-9da6-8d748b100508",
+      "status": 400,
+      "title": "Bad Request",
+      "errors": [
+        {
+          "field": "limit",
+          "rule": "range",
+          "message": "must be from 1 to 100"
+        }
+      ]
+    }
+  },
+  {
+    "label": "default limit-big",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:9b8acf01-3fc0-4896-bfcf-45a3d918b66e",
+      "status": 400,
+      "title": "Bad Request",
+      "errors": [
+        {
+          "field": "limit",
+          "rule": "range",
+          "message": "must be from 1 to 100"
+        }
+      ]
+    }
+  },
+  {
+    "label": "default limit-text",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:5c891fd1-786d-4bf5-86a4-0b0cad48b4e3",
+      "status": 400,
+      "title": "Bad Request",
+      "errors": [
+        {
+          "field": "limit",
+          "rule": "format",
+          "message": "must be a whole number"
+        }
+      ]
+    }
+  },
+  {
+    "label": "default cursor-bad",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:2e790b93-e54b-4403-9ce0-75cdb66c1b41",
+      "status": 400,
+      "title": "Bad Request",
+      "errors": [
+        {
+          "field": "cursor",
+          "rule": "format",
+          "message": "must be a value returned as next"
+        }
+      ]
+    }
+  },
+  {
+    "label": "default read active",
+    "pass": true,
+    "observed": {
+      "code": "m5eGjsgl",
+      "shortUrl": "http://127.0.0.1:18232/m5eGjsgl",
+      "url": "https://example.org/campaign?offer=m03dogfood#landing",
+      "state": "active",
+      "createdAt": "2026-10-04T01:01:23.018Z"
+    }
+  },
+  {
+    "label": "default recorded count",
+    "pass": true,
+    "observed": {
+      "availableTags": [],
+      "description": "Clicks written to the click store",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 7
+        }
+      ],
+      "name": "urlshort.clicks.recorded"
+    }
+  },
+  {
+    "label": "default scrape families",
+    "pass": true,
+    "observed": [
+      "urlshort_clicks_lost_total{reason=\"reduction failed\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"rejected\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"shutdown deadline\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"shutdown deadline, outcome unknown\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"write failed\"} 0.0",
+      "urlshort_clicks_recorded_total 7.0"
+    ]
+  },
+  {
+    "label": "trusted limit-zero",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:db829b84-e6ba-4eba-aec9-71029de9a95b",
+      "status": 400,
+      "title": "Bad Request",
+      "errors": [
+        {
+          "field": "limit",
+          "rule": "range",
+          "message": "must be from 1 to 100"
+        }
+      ]
+    }
+  },
+  {
+    "label": "trusted limit-big",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:b8bd48df-b6b5-4946-acee-323389377fbc",
+      "status": 400,
+      "title": "Bad Request",
+      "errors": [
+        {
+          "field": "limit",
+          "rule": "range",
+          "message": "must be from 1 to 100"
+        }
+      ]
+    }
+  },
+  {
+    "label": "trusted limit-text",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:8b8b8545-9258-4de0-ae3a-2331f6eec7ef",
+      "status": 400,
+      "title": "Bad Request",
+      "errors": [
+        {
+          "field": "limit",
+          "rule": "format",
+          "message": "must be a whole number"
+        }
+      ]
+    }
+  },
+  {
+    "label": "trusted cursor-bad",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:6477f4f0-b991-4c4c-b8ee-901289e7d1d3",
+      "status": 400,
+      "title": "Bad Request",
+      "errors": [
+        {
+          "field": "cursor",
+          "rule": "format",
+          "message": "must be a value returned as next"
+        }
+      ]
+    }
+  },
+  {
+    "label": "trusted read active",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "shortUrl": "http://127.0.0.1:18233/TcbGM3Cp",
+      "url": "https://example.org/campaign?offer=m03dogfood#landing",
+      "state": "active",
+      "createdAt": "2026-10-04T01:01:24.319Z"
+    }
+  },
+  {
+    "label": "trusted recorded count",
+    "pass": true,
+    "observed": {
+      "availableTags": [],
+      "description": "Clicks written to the click store",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 7
+        }
+      ],
+      "name": "urlshort.clicks.recorded"
+    }
+  },
+  {
+    "label": "trusted scrape families",
+    "pass": true,
+    "observed": [
+      "urlshort_clicks_lost_total{reason=\"reduction failed\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"rejected\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"shutdown deadline\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"shutdown deadline, outcome unknown\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"write failed\"} 0.0",
+      "urlshort_clicks_recorded_total 7.0"
+    ]
+  },
+  {
+    "label": "default HEAD not click",
+    "pass": true,
+    "observed": {
+      "code": "m5eGjsgl",
+      "totalClicks": 7,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 7,
+          "uniqueVisitors": 1,
+          "botClicks": 3
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 3
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "trusted HEAD not click",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "totalClicks": 7,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 7,
+          "uniqueVisitors": 4,
+          "botClicks": 3
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 3
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "mismatch preserves original binding",
+    "pass": true,
+    "observed": {
+      "code": "m5eGjsgl",
+      "shortUrl": "http://127.0.0.1:18232/m5eGjsgl",
+      "url": "https://example.org/campaign?offer=m03dogfood#landing",
+      "state": "active",
+      "createdAt": "2026-10-04T01:01:23.018Z"
+    }
+  },
+  {
+    "label": "unkeyed same URL new code",
+    "pass": true,
+    "observed": {
+      "code": "gat7NL36",
+      "shortUrl": "http://127.0.0.1:18232/gat7NL36",
+      "url": "https://example.org/campaign?offer=m03dogfood#landing",
+      "state": "active",
+      "createdAt": "2026-10-04T01:03:40.193Z"
+    }
+  },
+  {
+    "label": "retire204 no body",
+    "pass": true,
+    "observed": {
+      "status": 204,
+      "body": ""
+    }
+  },
+  {
+    "label": "retired-visitor",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:34d8a88f-e28a-44da-b2a5-269f65f9f248",
+      "status": 410,
+      "title": "Gone"
+    }
+  },
+  {
+    "label": "retired-again",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:9389ca0b-3790-402f-aefa-175ad0b2ebcc",
+      "status": 410,
+      "title": "Gone"
+    }
+  },
+  {
+    "label": "retired-read HTML negotiation",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:1e529191-d374-4b36-bc36-4e8c9c352a5d",
+      "status": 406,
+      "title": "Not Acceptable"
+    },
+    "originalExpectation": "200 while sending Accept: text/html (overbroad dogfood assumption)",
+    "contractCorrection": "Browser Accept applies to redirect/error scenarios; management success is application/json and framework negotiation yields406 for text/html."
+  },
+  {
+    "label": "retired-stats HTML negotiation",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:02430cea-e1a7-4f37-8617-399e1d44603d",
+      "status": 406,
+      "title": "Not Acceptable"
+    },
+    "originalExpectation": "200 while sending Accept: text/html (overbroad dogfood assumption)",
+    "contractCorrection": "Browser Accept applies to redirect/error scenarios; management success is application/json and framework negotiation yields406 for text/html."
+  },
+  {
+    "label": "retirement stats retained7 HTML negotiation",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:02430cea-e1a7-4f37-8617-399e1d44603d",
+      "status": 406,
+      "title": "Not Acceptable"
+    },
+    "originalExpectation": "200 while sending Accept: text/html (overbroad dogfood assumption)",
+    "contractCorrection": "Browser Accept applies to redirect/error scenarios; management success is application/json and framework negotiation yields406 for text/html."
+  },
+  {
+    "label": "retry current retired state",
+    "pass": true,
+    "observed": {
+      "code": "m5eGjsgl",
+      "shortUrl": "http://127.0.0.1:18232/m5eGjsgl",
+      "url": "https://example.org/campaign?offer=m03dogfood#landing",
+      "state": "retired",
+      "createdAt": "2026-10-04T01:01:23.018Z"
+    }
+  },
+  {
+    "label": "three exact audit mutations",
+    "pass": true,
+    "observed": {
+      "items": [
+        {
+          "occurredAt": "2026-10-04T01:03:40.346Z",
+          "actor": "anonymous",
+          "action": "link.retire",
+          "entity": "link",
+          "entityId": "m5eGjsgl",
+          "requestId": "7ebf0014-f29c-4029-80e5-56b0fc467dcc",
+          "before": {
+            "url": "https://example.org/campaign?offer=m03dogfood#landing",
+            "state": "active"
+          },
+          "after": {
+            "url": "https://example.org/campaign?offer=m03dogfood#landing",
+            "state": "retired"
+          }
+        },
+        {
+          "occurredAt": "2026-10-04T01:03:40.201Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "gat7NL36",
+          "requestId": "a00106f5-5ff1-49ec-917f-b68cad9685d2",
+          "before": null,
+          "after": {
+            "url": "https://example.org/campaign?offer=m03dogfood#landing",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-04T01:01:23.120Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "m5eGjsgl",
+          "requestId": "3ea7b90b-d4cc-40cb-89bb-b54799218e77",
+          "before": null,
+          "after": {
+            "url": "https://example.org/campaign?offer=m03dogfood#landing",
+            "state": "active"
+          }
+        }
+      ],
+      "next": null
+    }
+  },
+  {
+    "label": "default-retired-read-json",
+    "pass": true,
+    "observed": {
+      "code": "m5eGjsgl",
+      "shortUrl": "http://127.0.0.1:18232/m5eGjsgl",
+      "url": "https://example.org/campaign?offer=m03dogfood#landing",
+      "state": "retired",
+      "createdAt": "2026-10-04T01:01:23.018Z"
+    }
+  },
+  {
+    "label": "default-retired-stats-json",
+    "pass": true,
+    "observed": {
+      "code": "m5eGjsgl",
+      "totalClicks": 7,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 7,
+          "uniqueVisitors": 1,
+          "botClicks": 3
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 3
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "new write while paging",
+    "pass": true,
+    "observed": {
+      "code": "WmPBkocz",
+      "shortUrl": "http://127.0.0.1:18232/WmPBkocz",
+      "url": "https://example.org/new-write-during-traversal",
+      "state": "active",
+      "createdAt": "2026-10-04T01:04:27.263Z"
+    }
+  },
+  {
+    "label": "cursor traversal snapshot excludes later write",
+    "pass": true,
+    "observed": [
+      {
+        "occurredAt": "2026-10-04T01:04:26.970Z",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entityId": "ZG5AjfNM",
+        "requestId": "1f5b9ee9-45b6-4772-8aa1-c07790e90011",
+        "before": null,
+        "after": {
+          "url": "https://example.org/",
+          "state": "active"
+        }
+      },
+      {
+        "occurredAt": "2026-10-04T01:04:26.470Z",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entityId": "3tfbnAQ3",
+        "requestId": "ae7c7d55-dade-4dba-be6b-da3b31f460a3",
+        "before": null,
+        "after": {
+          "url": "https://example.org/",
+          "state": "active"
+        }
+      },
+      {
+        "occurredAt": "2026-10-04T01:03:40.346Z",
+        "actor": "anonymous",
+        "action": "link.retire",
+        "entity": "link",
+        "entityId": "m5eGjsgl",
+        "requestId": "7ebf0014-f29c-4029-80e5-56b0fc467dcc",
+        "before": {
+          "url": "https://example.org/campaign?offer=m03dogfood#landing",
+          "state": "active"
+        },
+        "after": {
+          "url": "https://example.org/campaign?offer=m03dogfood#landing",
+          "state": "retired"
+        }
+      },
+      {
+        "occurredAt": "2026-10-04T01:03:40.201Z",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entityId": "gat7NL36",
+        "requestId": "a00106f5-5ff1-49ec-917f-b68cad9685d2",
+        "before": null,
+        "after": {
+          "url": "https://example.org/campaign?offer=m03dogfood#landing",
+          "state": "active"
+        }
+      },
+      {
+        "occurredAt": "2026-10-04T01:01:23.120Z",
+        "actor": "anonymous",
+        "action": "link.create",
+        "entity": "link",
+        "entityId": "m5eGjsgl",
+        "requestId": "3ea7b90b-d4cc-40cb-89bb-b54799218e77",
+        "before": null,
+        "after": {
+          "url": "https://example.org/campaign?offer=m03dogfood#landing",
+          "state": "active"
+        }
+      }
+    ],
+    "originalExpectation": "3 rows (forgot two successful exploratory creates before first page)",
+    "contractCorrection": "Captured first page was after blank-header-omitted and multi-key creates, so pre-traversal mutation count is5."
+  },
+  {
+    "label": "explicit empty key rejected (curl semicolon)",
+    "pass": true,
+    "observed": {
+      "instance": "urn:uuid:8e282785-13d2-48b5-afed-48dd3ac5aea9",
+      "status": 400,
+      "title": "Bad Request",
+      "errors": [
+        {
+          "field": "Idempotency-Key",
+          "rule": "format",
+          "message": "Idempotency-Key must be 1 to 255 visible ASCII characters"
+        }
+      ]
+    }
+  },
+  {
+    "label": "trusted forwarded-ignored status",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "trusted realip-ignored status",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "trusted chain-trusted-last status",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "trusted chain-all-trusted status",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "trusted xff-empty status",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "proxy chain/ignored alternate headers",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "totalClicks": 12,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 12,
+          "uniqueVisitors": 5,
+          "botClicks": 3
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 8
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "private URL allowed no network fetch",
+    "pass": true,
+    "observed": {
+      "code": "PI8xBouk",
+      "shortUrl": "http://127.0.0.1:18233/PI8xBouk",
+      "url": "http://localhost:9999/private-target-is-never-fetched",
+      "state": "active",
+      "createdAt": "2026-10-04T01:05:17.461Z"
+    }
+  },
+  {
+    "label": "ranking visit 0-0",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "ranking visit 0-1",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "ranking visit 0-2",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "ranking visit 1-0",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "ranking visit 1-1",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "ranking visit 2-0",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "ranking visit 3-0",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "ranking visit 4-0",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "ranking visit 5-0",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "ranking visit 6-0",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "ranking visit 7-0",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "ranking visit 8-0",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "ranking visit 9-0",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "ranking visit 10-0",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "ranking visit 11-0",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "top10 bounds/ties/UTC ignored query",
+    "pass": true,
+    "observed": {
+      "code": "PI8xBouk",
+      "totalClicks": 15,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 15,
+          "uniqueVisitors": 12,
+          "botClicks": 0
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://ref00.example.org",
+          "clicks": 3
+        },
+        {
+          "referrer": "https://ref01.example.org",
+          "clicks": 2
+        },
+        {
+          "referrer": "https://ref02.example.org",
+          "clicks": 1
+        },
+        {
+          "referrer": "https://ref03.example.org",
+          "clicks": 1
+        },
+        {
+          "referrer": "https://ref04.example.org",
+          "clicks": 1
+        },
+        {
+          "referrer": "https://ref05.example.org",
+          "clicks": 1
+        },
+        {
+          "referrer": "https://ref06.example.org",
+          "clicks": 1
+        },
+        {
+          "referrer": "https://ref07.example.org",
+          "clicks": 1
+        },
+        {
+          "referrer": "https://ref08.example.org",
+          "clicks": 1
+        },
+        {
+          "referrer": "https://ref09.example.org",
+          "clicks": 1
+        }
+      ]
+    }
+  },
+  {
+    "label": "100 concurrent visitors all302",
+    "pass": true,
+    "observed": {
+      "statusCounts": {
+        "302": 100
+      }
+    }
+  },
+  {
+    "label": "100 concurrent settled exact",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "totalClicks": 112,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 112,
+          "uniqueVisitors": 15,
+          "botClicks": 23
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://parallel.example.org",
+          "clicks": 100
+        },
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 8
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "concurrent recorded matches all links",
+    "pass": true,
+    "observed": {
+      "availableTags": [],
+      "description": "Clicks written to the click store",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 127
+        }
+      ],
+      "name": "urlshort.clicks.recorded"
+    }
+  },
+  {
+    "label": "concurrent no lost",
+    "pass": true,
+    "observed": {
+      "availableTags": [
+        {
+          "tag": "reason",
+          "values": [
+            "shutdown deadline, outcome unknown",
+            "reduction failed",
+            "rejected",
+            "shutdown deadline",
+            "write failed"
+          ]
+        }
+      ],
+      "description": "Clicks reported by a click lost event",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 0
+        }
+      ],
+      "name": "urlshort.clicks.lost"
+    }
+  },
+  {
+    "label": "API budget produces refusal",
+    "pass": true,
+    "observed": {
+      "200": 60,
+      "429": 15
+    }
+  },
+  {
+    "label": "rate refusal privacy/retry header",
+    "pass": true,
+    "observed": [
+      {
+        "status": 429,
+        "retryAfter": "1"
+      },
+      {
+        "status": 429,
+        "retryAfter": "1"
+      },
+      {
+        "status": 429,
+        "retryAfter": "1"
+      },
+      {
+        "status": 429,
+        "retryAfter": "1"
+      },
+      {
+        "status": 429,
+        "retryAfter": "1"
+      },
+      {
+        "status": 429,
+        "retryAfter": "1"
+      },
+      {
+        "status": 429,
+        "retryAfter": "1"
+      },
+      {
+        "status": 429,
+        "retryAfter": "1"
+      },
+      {
+        "status": 429,
+        "retryAfter": "1"
+      },
+      {
+        "status": 429,
+        "retryAfter": "1"
+      },
+      {
+        "status": 429,
+        "retryAfter": "1"
+      },
+      {
+        "status": 429,
+        "retryAfter": "1"
+      },
+      {
+        "status": 429,
+        "retryAfter": "1"
+      },
+      {
+        "status": 429,
+        "retryAfter": "1"
+      },
+      {
+        "status": 429,
+        "retryAfter": "1"
+      }
+    ]
+  },
+  {
+    "label": "operator endpoints stay accessible during API refusal",
+    "pass": true,
+    "observed": {
+      "health": {
+        "groups": [
+          "liveness",
+          "readiness"
+        ],
+        "status": "UP"
+      },
+      "readiness": {
+        "status": "UP"
+      },
+      "metrics": 200
+    }
+  },
+  {
+    "label": "trusted clients separate API buckets",
+    "pass": true,
+    "observed": 200
+  },
+  {
+    "label": "retryAfter natural recovery",
+    "pass": true,
+    "observed": {
+      "status": 200,
+      "waitMs": 1100
+    }
+  },
+  {
+    "label": "paced visit 0-0",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced visit 0-1",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced visit 0-2",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced settled figures 0",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "totalClicks": 115,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 115,
+          "uniqueVisitors": 17,
+          "botClicks": 24
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://parallel.example.org",
+          "clicks": 100
+        },
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 8
+        },
+        {
+          "referrer": "https://return.example.org",
+          "clicks": 3
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "retired retained unchanged 0",
+    "pass": true,
+    "observed": {
+      "code": "m5eGjsgl",
+      "totalClicks": 7,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 7,
+          "uniqueVisitors": 1,
+          "botClicks": 3
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 3
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "paced counter agrees 0",
+    "pass": true,
+    "observed": {
+      "availableTags": [],
+      "description": "Clicks written to the click store",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 130
+        }
+      ],
+      "name": "urlshort.clicks.recorded"
+    }
+  },
+  {
+    "label": "paced visit 1-0",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced visit 1-1",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced visit 1-2",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced settled figures 1",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "totalClicks": 118,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 118,
+          "uniqueVisitors": 17,
+          "botClicks": 25
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://parallel.example.org",
+          "clicks": 100
+        },
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 8
+        },
+        {
+          "referrer": "https://return.example.org",
+          "clicks": 6
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "retired retained unchanged 1",
+    "pass": true,
+    "observed": {
+      "code": "m5eGjsgl",
+      "totalClicks": 7,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 7,
+          "uniqueVisitors": 1,
+          "botClicks": 3
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 3
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "paced counter agrees 1",
+    "pass": true,
+    "observed": {
+      "availableTags": [],
+      "description": "Clicks written to the click store",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 133
+        }
+      ],
+      "name": "urlshort.clicks.recorded"
+    }
+  },
+  {
+    "label": "paced visit 2-0",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced visit 2-1",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced visit 2-2",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced settled figures 2",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "totalClicks": 121,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 121,
+          "uniqueVisitors": 17,
+          "botClicks": 26
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://parallel.example.org",
+          "clicks": 100
+        },
+        {
+          "referrer": "https://return.example.org",
+          "clicks": 9
+        },
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 8
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "retired retained unchanged 2",
+    "pass": true,
+    "observed": {
+      "code": "m5eGjsgl",
+      "totalClicks": 7,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 7,
+          "uniqueVisitors": 1,
+          "botClicks": 3
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 3
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "paced counter agrees 2",
+    "pass": true,
+    "observed": {
+      "availableTags": [],
+      "description": "Clicks written to the click store",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 136
+        }
+      ],
+      "name": "urlshort.clicks.recorded"
+    }
+  },
+  {
+    "label": "paced visit 3-0",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced visit 3-1",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced visit 3-2",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced settled figures 3",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "totalClicks": 124,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 124,
+          "uniqueVisitors": 17,
+          "botClicks": 27
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://parallel.example.org",
+          "clicks": 100
+        },
+        {
+          "referrer": "https://return.example.org",
+          "clicks": 12
+        },
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 8
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "retired retained unchanged 3",
+    "pass": true,
+    "observed": {
+      "code": "m5eGjsgl",
+      "totalClicks": 7,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 7,
+          "uniqueVisitors": 1,
+          "botClicks": 3
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 3
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "paced counter agrees 3",
+    "pass": true,
+    "observed": {
+      "availableTags": [],
+      "description": "Clicks written to the click store",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 139
+        }
+      ],
+      "name": "urlshort.clicks.recorded"
+    }
+  },
+  {
+    "label": "paced visit 4-0",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced visit 4-1",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced visit 4-2",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced settled figures 4",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "totalClicks": 127,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 127,
+          "uniqueVisitors": 17,
+          "botClicks": 28
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://parallel.example.org",
+          "clicks": 100
+        },
+        {
+          "referrer": "https://return.example.org",
+          "clicks": 15
+        },
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 8
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "retired retained unchanged 4",
+    "pass": true,
+    "observed": {
+      "code": "m5eGjsgl",
+      "totalClicks": 7,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 7,
+          "uniqueVisitors": 1,
+          "botClicks": 3
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 3
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "paced counter agrees 4",
+    "pass": true,
+    "observed": {
+      "availableTags": [],
+      "description": "Clicks written to the click store",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 142
+        }
+      ],
+      "name": "urlshort.clicks.recorded"
+    }
+  },
+  {
+    "label": "paced visit 5-0",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced visit 5-1",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced visit 5-2",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced settled figures 5",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "totalClicks": 130,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 130,
+          "uniqueVisitors": 17,
+          "botClicks": 29
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://parallel.example.org",
+          "clicks": 100
+        },
+        {
+          "referrer": "https://return.example.org",
+          "clicks": 18
+        },
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 8
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "retired retained unchanged 5",
+    "pass": true,
+    "observed": {
+      "code": "m5eGjsgl",
+      "totalClicks": 7,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 7,
+          "uniqueVisitors": 1,
+          "botClicks": 3
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 3
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "paced counter agrees 5",
+    "pass": true,
+    "observed": {
+      "availableTags": [],
+      "description": "Clicks written to the click store",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 145
+        }
+      ],
+      "name": "urlshort.clicks.recorded"
+    }
+  },
+  {
+    "label": "paced visit 6-0",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced visit 6-1",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced visit 6-2",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced settled figures 6",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "totalClicks": 133,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 133,
+          "uniqueVisitors": 17,
+          "botClicks": 30
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://parallel.example.org",
+          "clicks": 100
+        },
+        {
+          "referrer": "https://return.example.org",
+          "clicks": 21
+        },
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 8
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "retired retained unchanged 6",
+    "pass": true,
+    "observed": {
+      "code": "m5eGjsgl",
+      "totalClicks": 7,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 7,
+          "uniqueVisitors": 1,
+          "botClicks": 3
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 3
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "paced counter agrees 6",
+    "pass": true,
+    "observed": {
+      "availableTags": [],
+      "description": "Clicks written to the click store",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 148
+        }
+      ],
+      "name": "urlshort.clicks.recorded"
+    }
+  },
+  {
+    "label": "paced visit 7-0",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced visit 7-1",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced visit 7-2",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced settled figures 7",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "totalClicks": 136,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 136,
+          "uniqueVisitors": 17,
+          "botClicks": 31
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://parallel.example.org",
+          "clicks": 100
+        },
+        {
+          "referrer": "https://return.example.org",
+          "clicks": 24
+        },
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 8
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "retired retained unchanged 7",
+    "pass": true,
+    "observed": {
+      "code": "m5eGjsgl",
+      "totalClicks": 7,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 7,
+          "uniqueVisitors": 1,
+          "botClicks": 3
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 3
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "paced counter agrees 7",
+    "pass": true,
+    "observed": {
+      "availableTags": [],
+      "description": "Clicks written to the click store",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 151
+        }
+      ],
+      "name": "urlshort.clicks.recorded"
+    }
+  },
+  {
+    "label": "paced visit 8-0",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced visit 8-1",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced visit 8-2",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced settled figures 8",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "totalClicks": 139,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 139,
+          "uniqueVisitors": 17,
+          "botClicks": 32
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://parallel.example.org",
+          "clicks": 100
+        },
+        {
+          "referrer": "https://return.example.org",
+          "clicks": 27
+        },
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 8
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "retired retained unchanged 8",
+    "pass": true,
+    "observed": {
+      "code": "m5eGjsgl",
+      "totalClicks": 7,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 7,
+          "uniqueVisitors": 1,
+          "botClicks": 3
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 3
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "paced counter agrees 8",
+    "pass": true,
+    "observed": {
+      "availableTags": [],
+      "description": "Clicks written to the click store",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 154
+        }
+      ],
+      "name": "urlshort.clicks.recorded"
+    }
+  },
+  {
+    "label": "paced visit 9-0",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced visit 9-1",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced visit 9-2",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "paced settled figures 9",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "totalClicks": 142,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 142,
+          "uniqueVisitors": 17,
+          "botClicks": 33
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://parallel.example.org",
+          "clicks": 100
+        },
+        {
+          "referrer": "https://return.example.org",
+          "clicks": 30
+        },
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 8
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "retired retained unchanged 9",
+    "pass": true,
+    "observed": {
+      "code": "m5eGjsgl",
+      "totalClicks": 7,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 7,
+          "uniqueVisitors": 1,
+          "botClicks": 3
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 3
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "paced counter agrees 9",
+    "pass": true,
+    "observed": {
+      "availableTags": [],
+      "description": "Clicks written to the click store",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 157
+        }
+      ],
+      "name": "urlshort.clicks.recorded"
+    }
+  },
+  {
+    "label": "pre-restart campaign readable",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "totalClicks": 142,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 142,
+          "uniqueVisitors": 17,
+          "botClicks": 33
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://parallel.example.org",
+          "clicks": 100
+        },
+        {
+          "referrer": "https://return.example.org",
+          "clicks": 30
+        },
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 8
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "pre-restart ranking readable",
+    "pass": true,
+    "observed": {
+      "code": "PI8xBouk",
+      "totalClicks": 15,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 15,
+          "uniqueVisitors": 12,
+          "botClicks": 0
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://ref00.example.org",
+          "clicks": 3
+        },
+        {
+          "referrer": "https://ref01.example.org",
+          "clicks": 2
+        },
+        {
+          "referrer": "https://ref02.example.org",
+          "clicks": 1
+        },
+        {
+          "referrer": "https://ref03.example.org",
+          "clicks": 1
+        },
+        {
+          "referrer": "https://ref04.example.org",
+          "clicks": 1
+        },
+        {
+          "referrer": "https://ref05.example.org",
+          "clicks": 1
+        },
+        {
+          "referrer": "https://ref06.example.org",
+          "clicks": 1
+        },
+        {
+          "referrer": "https://ref07.example.org",
+          "clicks": 1
+        },
+        {
+          "referrer": "https://ref08.example.org",
+          "clicks": 1
+        },
+        {
+          "referrer": "https://ref09.example.org",
+          "clicks": 1
+        }
+      ]
+    }
+  },
+  {
+    "label": "pre-restart audit readable",
+    "pass": true,
+    "observed": {
+      "items": [
+        {
+          "occurredAt": "2026-10-04T01:05:17.466Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "PI8xBouk",
+          "requestId": "b1e8de26-ba59-478f-ac0e-ffc20842d0bb",
+          "before": null,
+          "after": {
+            "url": "http://localhost:9999/private-target-is-never-fetched",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-04T01:01:24.404Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "TcbGM3Cp",
+          "requestId": "1dea41f3-8c65-4c14-9517-cbc5a67b919e",
+          "before": null,
+          "after": {
+            "url": "https://example.org/campaign?offer=m03dogfood#landing",
+            "state": "active"
+          }
+        }
+      ],
+      "next": null
+    }
+  },
+  {
+    "label": "pre-restart link readable",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "shortUrl": "http://127.0.0.1:18233/TcbGM3Cp",
+      "url": "https://example.org/campaign?offer=m03dogfood#landing",
+      "state": "active",
+      "createdAt": "2026-10-04T01:01:24.319Z"
+    }
+  },
+  {
+    "label": "pre-restart recorded readable",
+    "pass": true,
+    "observed": {
+      "availableTags": [],
+      "description": "Clicks written to the click store",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 157
+        }
+      ],
+      "name": "urlshort.clicks.recorded"
+    }
+  },
+  {
+    "label": "pre-restart lost readable",
+    "pass": true,
+    "observed": {
+      "availableTags": [
+        {
+          "tag": "reason",
+          "values": [
+            "shutdown deadline, outcome unknown",
+            "reduction failed",
+            "rejected",
+            "shutdown deadline",
+            "write failed"
+          ]
+        }
+      ],
+      "description": "Clicks reported by a click lost event",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 0
+        }
+      ],
+      "name": "urlshort.clicks.lost"
+    }
+  },
+  {
+    "label": "restart healthy",
+    "pass": true,
+    "observed": {
+      "groups": [
+        "liveness",
+        "readiness"
+      ],
+      "status": "UP"
+    }
+  },
+  {
+    "label": "restart campaign same persistence or counter reset",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "totalClicks": 142,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 142,
+          "uniqueVisitors": 17,
+          "botClicks": 33
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://parallel.example.org",
+          "clicks": 100
+        },
+        {
+          "referrer": "https://return.example.org",
+          "clicks": 30
+        },
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 8
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "restart ranking same persistence or counter reset",
+    "pass": true,
+    "observed": {
+      "code": "PI8xBouk",
+      "totalClicks": 15,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 15,
+          "uniqueVisitors": 12,
+          "botClicks": 0
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://ref00.example.org",
+          "clicks": 3
+        },
+        {
+          "referrer": "https://ref01.example.org",
+          "clicks": 2
+        },
+        {
+          "referrer": "https://ref02.example.org",
+          "clicks": 1
+        },
+        {
+          "referrer": "https://ref03.example.org",
+          "clicks": 1
+        },
+        {
+          "referrer": "https://ref04.example.org",
+          "clicks": 1
+        },
+        {
+          "referrer": "https://ref05.example.org",
+          "clicks": 1
+        },
+        {
+          "referrer": "https://ref06.example.org",
+          "clicks": 1
+        },
+        {
+          "referrer": "https://ref07.example.org",
+          "clicks": 1
+        },
+        {
+          "referrer": "https://ref08.example.org",
+          "clicks": 1
+        },
+        {
+          "referrer": "https://ref09.example.org",
+          "clicks": 1
+        }
+      ]
+    }
+  },
+  {
+    "label": "restart audit same persistence or counter reset",
+    "pass": true,
+    "observed": {
+      "items": [
+        {
+          "occurredAt": "2026-10-04T01:05:17.466Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "PI8xBouk",
+          "requestId": "b1e8de26-ba59-478f-ac0e-ffc20842d0bb",
+          "before": null,
+          "after": {
+            "url": "http://localhost:9999/private-target-is-never-fetched",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-04T01:01:24.404Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "TcbGM3Cp",
+          "requestId": "1dea41f3-8c65-4c14-9517-cbc5a67b919e",
+          "before": null,
+          "after": {
+            "url": "https://example.org/campaign?offer=m03dogfood#landing",
+            "state": "active"
+          }
+        }
+      ],
+      "next": null
+    }
+  },
+  {
+    "label": "restart link same persistence or counter reset",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "shortUrl": "http://127.0.0.1:18233/TcbGM3Cp",
+      "url": "https://example.org/campaign?offer=m03dogfood#landing",
+      "state": "active",
+      "createdAt": "2026-10-04T01:01:24.319Z"
+    }
+  },
+  {
+    "label": "restart recorded same persistence or counter reset",
+    "pass": true,
+    "observed": {
+      "availableTags": [],
+      "description": "Clicks written to the click store",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 0
+        }
+      ],
+      "name": "urlshort.clicks.recorded"
+    }
+  },
+  {
+    "label": "restart lost same persistence or counter reset",
+    "pass": true,
+    "observed": {
+      "availableTags": [
+        {
+          "tag": "reason",
+          "values": [
+            "shutdown deadline, outcome unknown",
+            "reduction failed",
+            "rejected",
+            "shutdown deadline",
+            "write failed"
+          ]
+        }
+      ],
+      "description": "Clicks reported by a click lost event",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 0
+        }
+      ],
+      "name": "urlshort.clicks.lost"
+    }
+  },
+  {
+    "label": "after restart visitor302",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "documented restart unique upper bound",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "totalClicks": 143,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 143,
+          "uniqueVisitors": 18,
+          "botClicks": 33
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://parallel.example.org",
+          "clicks": 100
+        },
+        {
+          "referrer": "https://return.example.org",
+          "clicks": 31
+        },
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 8
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "new process recorded1 independent of retained rows",
+    "pass": true,
+    "observed": {
+      "availableTags": [],
+      "description": "Clicks written to the click store",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 1
+        }
+      ],
+      "name": "urlshort.clicks.recorded"
+    }
+  },
+  {
+    "label": "restart click/read adds no audit",
+    "pass": true,
+    "observed": {
+      "items": [
+        {
+          "occurredAt": "2026-10-04T01:05:17.466Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "PI8xBouk",
+          "requestId": "b1e8de26-ba59-478f-ac0e-ffc20842d0bb",
+          "before": null,
+          "after": {
+            "url": "http://localhost:9999/private-target-is-never-fetched",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-04T01:01:24.404Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "TcbGM3Cp",
+          "requestId": "1dea41f3-8c65-4c14-9517-cbc5a67b919e",
+          "before": null,
+          "after": {
+            "url": "https://example.org/campaign?offer=m03dogfood#landing",
+            "state": "active"
+          }
+        }
+      ],
+      "next": null
+    }
+  },
+  {
+    "label": "post restart scrape1 and loss0",
+    "pass": true,
+    "observed": [
+      "urlshort_clicks_lost_total{reason=\"reduction failed\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"rejected\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"shutdown deadline\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"shutdown deadline, outcome unknown\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"write failed\"} 0.0",
+      "urlshort_clicks_recorded_total 1.0"
+    ]
+  },
+  {
+    "label": "never opened duplicate still empty",
+    "pass": true,
+    "observed": {
+      "code": "gat7NL36",
+      "totalClicks": 0,
+      "clicksPerDay": [],
+      "topReferrers": []
+    }
+  },
+  {
+    "label": "default final audit six mutations only",
+    "pass": true,
+    "observed": {
+      "items": [
+        {
+          "occurredAt": "2026-10-04T01:04:27.265Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "WmPBkocz",
+          "requestId": "eb0664b0-11b7-4448-8634-90511e46ceb2",
+          "before": null,
+          "after": {
+            "url": "https://example.org/new-write-during-traversal",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-04T01:04:26.970Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "ZG5AjfNM",
+          "requestId": "1f5b9ee9-45b6-4772-8aa1-c07790e90011",
+          "before": null,
+          "after": {
+            "url": "https://example.org/",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-04T01:04:26.470Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "3tfbnAQ3",
+          "requestId": "ae7c7d55-dade-4dba-be6b-da3b31f460a3",
+          "before": null,
+          "after": {
+            "url": "https://example.org/",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-04T01:03:40.346Z",
+          "actor": "anonymous",
+          "action": "link.retire",
+          "entity": "link",
+          "entityId": "m5eGjsgl",
+          "requestId": "7ebf0014-f29c-4029-80e5-56b0fc467dcc",
+          "before": {
+            "url": "https://example.org/campaign?offer=m03dogfood#landing",
+            "state": "active"
+          },
+          "after": {
+            "url": "https://example.org/campaign?offer=m03dogfood#landing",
+            "state": "retired"
+          }
+        },
+        {
+          "occurredAt": "2026-10-04T01:03:40.201Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "gat7NL36",
+          "requestId": "a00106f5-5ff1-49ec-917f-b68cad9685d2",
+          "before": null,
+          "after": {
+            "url": "https://example.org/campaign?offer=m03dogfood#landing",
+            "state": "active"
+          }
+        },
+        {
+          "occurredAt": "2026-10-04T01:01:23.120Z",
+          "actor": "anonymous",
+          "action": "link.create",
+          "entity": "link",
+          "entityId": "m5eGjsgl",
+          "requestId": "3ea7b90b-d4cc-40cb-89bb-b54799218e77",
+          "before": null,
+          "after": {
+            "url": "https://example.org/campaign?offer=m03dogfood#landing",
+            "state": "active"
+          }
+        }
+      ],
+      "next": null
+    }
+  },
+  {
+    "label": "default only seven successful redirects recorded",
+    "pass": true,
+    "observed": {
+      "availableTags": [],
+      "description": "Clicks written to the click store",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 7
+        }
+      ],
+      "name": "urlshort.clicks.recorded"
+    }
+  },
+  {
+    "label": "default no lost clicks",
+    "pass": true,
+    "observed": {
+      "availableTags": [
+        {
+          "tag": "reason",
+          "values": [
+            "shutdown deadline, outcome unknown",
+            "reduction failed",
+            "rejected",
+            "shutdown deadline",
+            "write failed"
+          ]
+        }
+      ],
+      "description": "Clicks reported by a click lost event",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 0
+        }
+      ],
+      "name": "urlshort.clicks.lost"
+    }
+  },
+  {
+    "label": "default no client labels on click counters",
+    "pass": true,
+    "observed": [
+      "urlshort_clicks_lost_total{reason=\"reduction failed\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"rejected\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"shutdown deadline\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"shutdown deadline, outcome unknown\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"write failed\"} 0.0",
+      "urlshort_clicks_recorded_total 7.0"
+    ]
+  },
+  {
+    "label": "trusted no client labels on click counters",
+    "pass": true,
+    "observed": [
+      "urlshort_clicks_lost_total{reason=\"reduction failed\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"rejected\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"shutdown deadline\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"shutdown deadline, outcome unknown\"} 0.0",
+      "urlshort_clicks_lost_total{reason=\"write failed\"} 0.0",
+      "urlshort_clicks_recorded_total 1.0"
+    ]
+  },
+  {
+    "label": "restart repeat browser302",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "restart repeat bot302",
+    "pass": true,
+    "observed": 302
+  },
+  {
+    "label": "same post-restart visitor/browser-bot shared unique",
+    "pass": true,
+    "observed": {
+      "code": "TcbGM3Cp",
+      "totalClicks": 145,
+      "clicksPerDay": [
+        {
+          "date": "2026-10-04",
+          "clicks": 145,
+          "uniqueVisitors": 18,
+          "botClicks": 34
+        }
+      ],
+      "topReferrers": [
+        {
+          "referrer": "https://parallel.example.org",
+          "clicks": 100
+        },
+        {
+          "referrer": "https://return.example.org",
+          "clicks": 33
+        },
+        {
+          "referrer": "https://news.example.org",
+          "clicks": 8
+        },
+        {
+          "referrer": "https://second.example.org:8443",
+          "clicks": 2
+        }
+      ]
+    }
+  },
+  {
+    "label": "restart recorded3",
+    "pass": true,
+    "observed": {
+      "availableTags": [],
+      "description": "Clicks written to the click store",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 3
+        }
+      ],
+      "name": "urlshort.clicks.recorded"
+    }
+  },
+  {
+    "label": "restart no lost",
+    "pass": true,
+    "observed": {
+      "availableTags": [
+        {
+          "tag": "reason",
+          "values": [
+            "shutdown deadline, outcome unknown",
+            "reduction failed",
+            "rejected",
+            "shutdown deadline",
+            "write failed"
+          ]
+        }
+      ],
+      "description": "Clicks reported by a click lost event",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 0
+        }
+      ],
+      "name": "urlshort.clicks.lost"
+    }
+  },
+  {
+    "label": "default final healthUP",
+    "pass": true,
+    "observed": {
+      "groups": [
+        "liveness",
+        "readiness"
+      ],
+      "status": "UP"
+    }
+  },
+  {
+    "label": "trusted final healthUP",
+    "pass": true,
+    "observed": {
+      "groups": [
+        "liveness",
+        "readiness"
+      ],
+      "status": "UP"
+    }
+  }
+]
