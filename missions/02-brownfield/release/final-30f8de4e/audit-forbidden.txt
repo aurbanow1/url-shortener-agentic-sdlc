@@ -1,0 +1,9 @@
+Command: scripts/http -sS -i -H 'X-Forwarded-For: 127.0.0.1' http://127.0.0.1:18241/api/audit
+The earlier link-specific /audit URL in installed-wire.json was an instrument error (404). This is the actual endpoint.
+HTTP/1.1 403
+X-Request-Id: 4d6470a6-1360-47ee-ba02-d75e8a2b861e
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Sun, 04 Oct 2026 04:16:49 GMT
+
+{"instance":"urn:uuid:4d6470a6-1360-47ee-ba02-d75e8a2b861e","status":403,"title":"Forbidden"}

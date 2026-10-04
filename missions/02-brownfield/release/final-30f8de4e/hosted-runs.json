@@ -1,0 +1,10 @@
++{
+  "candidate": "30f8de4e647b05ff54cde09f1019ae519b00069d",
+  "command": "gh api 'repos/aurbanow1/url-shortener-agentic-sdlc/actions/runs?head_sha=30f8de4e647b05ff54cde09f1019ae519b00069d&per_page=100'",
+  "response": {
+    "total_count": 0,
+    "workflow_runs": []
+  },
+  "conclusion": "No hosted CI/CD run is represented by this exact-SHA API query; no candidate hosted success claimed.",
+  "instrumentCorrection": "An initial lookup used the wrong repository and returned404; excluded from candidate evidence. This corrected authorized repository query succeeded."
+}

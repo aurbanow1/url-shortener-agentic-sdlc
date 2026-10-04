@@ -1,6 +1,6 @@
 # Evidence export — 02-brownfield
 
-Exported 2026-10-04T01:52:24Z by tools/evidence-export.sh from OpenRig 0.6.3 (8b5e9488).
+Exported 2026-10-04T04:58:46Z by tools/evidence-export.sh from OpenRig 0.6.3 (8b5e9488).
 
 | Artifact | Governance clause (docs/GOVERNANCE.md) |
 |---|---|
@@ -18,7 +18,7 @@ Exported 2026-10-04T01:52:24Z by tools/evidence-export.sh from OpenRig 0.6.3 (8b
 
 Approval stamps are not in this export: they live in the stamped files' frontmatter (missions/<m>/SPEC.md, slices/*/SPEC.md: approved-spec-*, approved-*) with append-only audit rows daemon-side; the decision text behind each stamp is in the gate packet's transitions here.
 
-Instances exported: 17; packets exported: 187.
+Instances exported: 17; packets exported: 201.
 
 ## Packets (workflow · step · state · owner)
 
@@ -196,20 +196,34 @@ Instances exported: 17; packets exported: 187.
 | qitem-20261004000110-d0d07fdb | urlshort-slice | code_review | handed-off | review-agent |
 | qitem-20261004001239-8ee629f7 | urlshort-slice-delegated-b | integrate | done | orchestration-lead |
 | qitem-20261004001800-cc58cd9d | urlshort-slice | integrate | done | orchestration-lead |
-| qitem-20261004002455-b7ea811b | 02-brownfield | wave_review | blocked | review-agent |
+| qitem-20261004002455-b7ea811b | 02-brownfield | wave_review | handed-off | review-agent |
 | qitem-20261004002509-de60eb81 | 03-ambiguous-analytics | wave_review | handed-off | review-agent |
 | qitem-20261004002516-ee95930d | 03-ambiguous-analytics | wave_review | handed-off | review2-agent |
 | qitem-20261004003331-0b5245ad | - | - | done | orchestration-lead |
 | qitem-20261004003538-62f6c81e | urlshort-slice-delegated-b | requirements | handed-off | requirements-agent |
 | qitem-20261004004814-04c1642a | 03-ambiguous-analytics | release_prep | handed-off | release-agent |
-| qitem-20261004004828-05d2aab9 | 03-ambiguous-analytics | release_prep | in-progress | release2-agent |
+| qitem-20261004004828-05d2aab9 | 03-ambiguous-analytics | release_prep | handed-off | release2-agent |
 | qitem-20261004004915-91f40366 | urlshort-slice-delegated-b | requirements_review | handed-off | review2-agent |
 | qitem-20261004005331-36607695 | - | of | blocked | orchestration-lead |
 | qitem-20261004005458-a071fd65 | urlshort-slice-delegated-b | design | handed-off | design2-agent |
 | qitem-20261004011019-f67b1c6d | urlshort-slice-delegated-b | design_review | handed-off | review2-agent |
 | qitem-20261004012350-fdb23cbc | urlshort-slice-delegated-b | plan_lock | handed-off | orchestration-lead |
 | qitem-20261004012507-efa30d6a | urlshort-slice-delegated-b | implement | handed-off | dev2-agent |
-| qitem-20261004013841-c2fa8b43 | urlshort-slice-delegated-b | qa_check | in-progress | qa2-agent |
+| qitem-20261004013841-c2fa8b43 | urlshort-slice-delegated-b | qa_check | handed-off | qa2-agent |
+| qitem-20261004020758-49ceba8e | 03-ambiguous-analytics | release_review | handed-off | review-agent |
+| qitem-20261004023723-f58044d0 | 03-ambiguous-analytics | ship_signoff | handed-off | release-agent |
+| qitem-20261004024212-e72494e7 | 03-ambiguous-analytics | evidence_export | handed-off | release-agent |
+| qitem-20261004024238-651b51b1 | 03-ambiguous-analytics | evidence_export | handed-off | release2-agent |
+| qitem-20261004024533-3e9ae475 | urlshort-slice-delegated-b | code_review | done | review2-agent |
+| qitem-20261004025620-a869dc4a | urlshort-slice-delegated-b | implement | handed-off | dev2-agent |
+| qitem-20261004025925-a5886b4c | urlshort-slice-delegated-b | qa_check | handed-off | qa2-agent |
+| qitem-20261004031539-0bd7032a | 03-ambiguous-analytics | mission_close | done | orchestration-lead |
+| qitem-20261004032752-d162e1b3 | urlshort-slice-delegated-b | code_review | handed-off | review2-agent |
+| qitem-20261004033137-1400c73d | urlshort-slice-delegated-b | integrate | done | orchestration-lead |
+| qitem-20261004034522-8dfeeeca | 02-brownfield | release_prep | in-progress | release-agent |
+| qitem-20261004041605-18a958ae | - | - | done | qa2-agent |
+| qitem-20261004041607-09149d20 | - | - | done | qa-agent |
+| qitem-20261004042358-6587e4be | - | - | done | qa2-agent |
 | qitem-recovery-84c436485c1dd14a | - | - | done | release2-agent |
 
 ## Step trails (closed at · step · exit · packet · actor)
@@ -377,6 +391,13 @@ Instances exported: 17; packets exported: 187.
 
 | Closed at | Step | Exit | Packet | Actor |
 |---|---|---|---|---|
+| 2026-10-04T03:16:47.236Z | mission_close | done | qitem-20261004031539-0bd7032a | orchestration-lead |
+| 2026-10-04T03:15:39.170Z | evidence_export | handoff | qitem-20261004024238-651b51b1 | release2-agent |
+| 2026-10-04T02:45:37.223Z | evidence_export | waiting | qitem-20261004024238-651b51b1 | release2-agent |
+| 2026-10-04T02:42:12.694Z | ship_signoff | handoff | qitem-20261004023723-f58044d0 | release-agent |
+| 2026-10-04T02:37:23.264Z | release_review | handoff | qitem-20261004020758-49ceba8e | review-agent |
+| 2026-10-04T02:17:07.184Z | release_review | waiting | qitem-20261004020758-49ceba8e | review-agent |
+| 2026-10-04T02:07:58.977Z | release_prep | handoff | qitem-20261004004828-05d2aab9 | release2-agent |
 | 2026-10-04T00:48:14.139Z | wave_review | handoff | qitem-20261004002516-ee95930d | review2-agent |
 | 2026-10-04T00:25:09.237Z | wave_integration | handoff | qitem-20261003154114-c0dd70b0 | orchestration-lead |
 | 2026-10-03T15:41:14.371Z | mission_plan_lock | handoff | qitem-20261003114944-9bd32a00 | orchestration-lead |
@@ -387,6 +408,7 @@ Instances exported: 17; packets exported: 187.
 
 | Closed at | Step | Exit | Packet | Actor |
 |---|---|---|---|---|
+| 2026-10-04T03:45:22.728Z | wave_review | handoff | qitem-20261004002455-b7ea811b | review-agent |
 | 2026-10-04T00:55:49.808Z | wave_review | waiting | qitem-20261004002455-b7ea811b | review-agent |
 | 2026-10-04T00:49:13.783Z | wave_review | waiting | qitem-20261004002455-b7ea811b | review-agent |
 | 2026-10-04T00:43:26.777Z | wave_review | waiting | qitem-20261004002455-b7ea811b | review-agent |
@@ -525,9 +547,31 @@ Instances exported: 17; packets exported: 187.
 
 | Closed at | Step | Exit | Packet | Actor |
 |---|---|---|---|---|
+| 2026-10-04T03:45:35.625Z | integrate | done | qitem-20261004033137-1400c73d | orchestration-lead |
+| 2026-10-04T03:37:35.520Z | integrate | waiting | qitem-20261004033137-1400c73d | orchestration-lead |
+| 2026-10-04T03:33:52.923Z | integrate | waiting | qitem-20261004033137-1400c73d | orchestration-lead |
+| 2026-10-04T03:31:37.315Z | code_review | handoff | qitem-20261004032752-d162e1b3 | review2-agent |
+| 2026-10-04T03:27:52.590Z | qa_check | handoff | qitem-20261004025925-a5886b4c | qa2-agent |
+| 2026-10-04T02:59:25.589Z | implement | handoff | qitem-20261004025620-a869dc4a | dev2-agent |
+| 2026-10-04T02:56:20.397Z | code_review | failed | qitem-20261004024533-3e9ae475 | review2-agent |
+| 2026-10-04T02:45:33.578Z | qa_check | handoff | qitem-20261004013841-c2fa8b43 | qa2-agent |
 | 2026-10-04T01:38:41.837Z | implement | handoff | qitem-20261004012507-efa30d6a | dev2-agent |
 | 2026-10-04T01:25:07.857Z | plan_lock | handoff | qitem-20261004012350-fdb23cbc | orchestration-lead |
 | 2026-10-04T01:23:50.737Z | design_review | handoff | qitem-20261004011019-f67b1c6d | review2-agent |
 | 2026-10-04T01:10:19.303Z | design | handoff | qitem-20261004005458-a071fd65 | design2-agent |
 | 2026-10-04T00:54:58.619Z | requirements_review | handoff | qitem-20261004004915-91f40366 | review2-agent |
 | 2026-10-04T00:49:15.260Z | requirements | handoff | qitem-20261004003538-62f6c81e | requirements-agent |
+
+## Preparation snapshot and custody
+
+This export is the preparation state before independent release review, the human ship decision and delivery stamps. [RELEASE.md](../../../missions/02-brownfield/RELEASE.md) is the decision brief and claim-to-evidence map. The generated packet and step-trail tables above are the primary routing record; the export directory also contains other missions' instances, so its label is not ownership.
+
+- Governance “Explicit dependency graph”, “Cross-stage context and decision lineage”, “Bounded retries” and “Human approval checkpoints”: [scope audit](scope-audit.json), [compiled graph](compiled-graph.json), all instance trails and packet transitions preserve plan stamps, running revisions, independent verdicts, review loops and human decisions.
+- Governance proof and verification duties: [current readiness](proof-readiness.json) follows QA2 a9b59315 and QA 2a47ad28, both ordinary reaffirmation packets closed. Their full shows/transitions and the content-change disposition packet6587e4be are supplemental packet records. Mission02 is ready64/64; this does not substitute a release review or human approval.
+- Governance release boundary: [exact-candidate gate, runtime, rollback and gap evidence](../../../missions/02-brownfield/RELEASE.md#2-artifact-and-gate) bind product30f8de4e. Exact-SHA hosted CI/CD remains unverified; all known gaps and owned advisory backlog are preserved.
+- Governance reliability/audit duties: [four drills](../../scenarios/drills.md), [metric derivations](../../metrics/README.md) and [frozen reproducible inputs](../../../missions/02-brownfield/release/final-30f8de4e/final-metrics-inputs.tar.gz) distinguish actual rehearsals from rollback-note heuristics. Metrics freeze at04:46:43Z; this later readiness export does not rewrite that input set. Historical8d3c536 discrepancy remains qualified.
+- [Preparation validation](prep-validation.json) records parse counts, committed proof-reference checks and current hashes. Usage is the exported rolling24h window, not an isolated mission-only bill.
+
+The export script's header counts198 trail-named packets; the generated table additionally includes three supplemental ordinary QA packets, giving201 packet records and17 instance trails. Final validation parses468 raw JSON files and opens143 local links/anchors;174 distinct current proof-reference files match committed bytes.
+
+Nothing was pushed, release-tagged, published or exposed beyond localhost. Final-state evidence_export and SPEC-cited reaffirmation follow delivery stamps under lead custody.

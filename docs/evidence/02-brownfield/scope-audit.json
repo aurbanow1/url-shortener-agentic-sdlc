@@ -100,7 +100,15 @@
       "name": "06-client-identity",
       "railStatus": "present",
       "frontmatterError": null,
-      "findings": []
+      "findings": [
+        {
+          "kind": "proof_artifact_c1_invalid",
+          "severity": "medium",
+          "path": "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/02-brownfield/slices/06-client-identity/proof/qa-proof-sequencing-fb63a88.md",
+          "message": "Proof artifact violates the C1 header contract: no frontmatter header at all (required C1 fields: slice, candidate_sha, artifact_type, verdict, money_evidence).",
+          "remediation": "Re-drop via: rig proof add <slice> --artifact-type <guard|qa|rev1-r1|rev1-r2|adjudication> --verdict <CLEAR|BLOCKING|CONCERNING|PASS|NOT-CLEAR> --candidate-sha <sha> --money-evidence \"<line>\" — or add the missing frontmatter fields in place."
+        }
+      ]
     }
   ],
   "graph": {
@@ -154,5 +162,5 @@
     "waiting": [],
     "advisories": []
   },
-  "totalFindings": 7
+  "totalFindings": 8
 }
