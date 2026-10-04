@@ -229,6 +229,22 @@ Context and observations that help the mission but do not change its
     reopen the pull request.
   - `04-audit-columns`' design packet was re-routed to `design-agent` by the operator at 19:01Z
     (load balance), so I hold no other packet.
+- 2026-10-04T01:11Z — **`06-client-identity` design handed to `design_review`** (D21; instance
+  `01M425CY9Z4K03G14Y677AT0PA`; review2 `qitem-20261004011019-f67b1c6d`).
+  - Pre-work drafts `c6b5560` and `84ba733` (lead's `qitem-20261004004918-ac7ea2a4`, closed) were
+    promoted on SPEC `4f247f4`, which passed review unchanged: impact analysis `6772b68` first, then
+    design `57cb9ae` and `9f6508a`, with the ADR-0015 and ADR-0019 amendments and `DESIGN.md`.
+  - Register row 1: CONSISTENT, no condition (`design-agent`, `6fcb134`).
+  - Shape: a static `web.ClientIdentity`, not a bean, because `UrlshortApplicationTests` boots with
+    no web server and so has no `ServerProperties`. It asks two separate questions:
+    - the resolved client (`clientOf`, `resolve`, `of`) for the limiter and the click recorder;
+    - the direct peer (`peerIsConnection`, `fromLoopback`) for the audit guard, which never reads
+      the trusted list.
+  - Design §5 is the one matrix: `dev2-agent`'s `240b230` kept, the remaining edges added before the
+    move, the draft's duplicates dropped. It states the lead's two conditions. AC-3 runs on a frozen
+    clock in its own context (the default context's clock runs).
+  - Commit plan: tests (`240b230`, then 1b), a production-only move with delegates, then the
+    re-point together with the delegate deletion.
 
 ## 4. Development agent
 
