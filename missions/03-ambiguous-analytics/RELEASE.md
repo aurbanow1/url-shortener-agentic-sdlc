@@ -48,9 +48,12 @@ at 16:10:30.782Z, transition **876**:
 
 **Proof status:** the [captured attributed readiness](release/proof-readiness-50ad9c3.json)
 is **not-ready: items 1–11 accepted, item 12 pending**. The NFR-L1 measurement
-is now recorded in §3. Independent QA judgment and any shared-evidence
-reaffirmation return through lead-owned `qitem-20261003195138-8eb72ecb`, which
-is parked on this release-prep packet. No self-judgment is substituted.
+is now recorded in §3. Per the lead's 02:06Z routing decision, a separate QA item to analytics'
+judge `qa-agent` returns item12 and any drifted analytics-v2 judgments, pinned
+to50ad9c3, in parallel with release review and before ship sign-off. Its
+packet is created after this handoff. Global `qitem-20261003195138-8eb72ecb`
+retains mission01/02 drift on their final main; mission03 does not wait for
+D21. No self-judgment is substituted.
 [Current sequencing record](NOTES.md) and [exported proof](../../docs/evidence/03-ambiguous-analytics/proof-readiness.json).
 
 **Recommended default:** finish independent release review and QA's item-12
@@ -270,7 +273,7 @@ Living GAPS/proof hashes may change after this snapshot; QA alone reaffirms them
 
 | Gap / qualification | Current disposition and evidence | Owner |
 |---|---|---|
-| NFR-L1 proof12 | Percentiles now measured within bounds (§3); attributed judgment still pending. Historical GAPS pending row is not silently marked accepted. | QA through lead return `qitem-20261003195138-8eb72ecb` |
+| NFR-L1 proof12 | Percentiles now measured within bounds (§3); attributed judgment still pending. Historical GAPS pending row is not silently marked accepted. | QA through a separate lead-routed analytics item after prep, pinned50ad9c3 |
 | Hosted CI/CD exact SHA | HTTP404 means unverified access; no candidate run URL/conclusion. Earlier successful runs and configuration-only failure-upload/lint evidence retain their own subject. No red hosted run, artifact-content review or wholly uncached image corroboration. | Human/operator supplies hosted record; release/review report it |
 | M3S-01 LOW | `totalClicks` Javadoc/schema can imply lifetime; README/RUNBOOK correctly explain retained rows, but candidate source/API wording remains. | Next authorized `click/` + OpenAPI holder; no slice scheduled |
 | M3S-02 LOW | Candidate property comment omits analytics identity effect; shared docs explain it. Later D21 owns comment-only repair; no later-tree claim here. | Mission02 `06-client-identity` |

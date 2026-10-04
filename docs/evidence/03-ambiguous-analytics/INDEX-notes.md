@@ -19,8 +19,10 @@ actual analytics merge isc9b66dd. Release authoring, release review, independent
 QA benchmark judgment, human ship decision and final export are successive
 obligations; this prep snapshot does not claim future events.
 
-Lead-owned qitem-20261003195138-8eb72ecb returns independent proof12 judgment
-and evidence-hash reaffirmation after preparation. The final evidence_export
+Per the lead's02:06Z decision, a separate QA item returns analytics proof12
+and any drifted analytics-v2 judgments on50ad9c3 after this prep handoff,
+parallel with release review and before ship sign-off. Global
+qitem-20261003195138-8eb72ecb retains mission01/02 drift on their final main. The final evidence_export
 step must refresh this directory after the human gate. QA-authored8cf894a
 fell within the recorded01:27–01:33Z Luna Reserve window; release2's current-model
 raw re-derivation is linked from RELEASE §3 and independent release review

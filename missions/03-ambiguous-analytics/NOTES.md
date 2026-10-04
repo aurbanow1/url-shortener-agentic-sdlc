@@ -106,8 +106,10 @@ unverified, never borrow a3d6867 runs. Export01:23:04Z has17rig instances and
 183packets, INDEX maps governance; validated407JSONfiles. Shared docs e227acf
 read; coordinated metrics8d3c536 generated01:52:27Z read by exactinstance IDs,
 export-directory ownership label caveat and customambiguity-wait omission
-retained. Proof1–11accepted,12pending independentQA via lead-owned
-qitem-20261003195138-8eb72ecb after prep, before final export.
+retained. Proof1–11accepted,12pending independent QA via a separate lead-routed item on50ad9c3, after prep and
+parallel with release review, before ship sign-off (lead decision02:06Z).
+Global qitem-20261003195138-8eb72ecb keeps mission01/02 final-main drift; noD21
+dependency for mission03.
 
 DogfoodQA8cf894a boundedPASS/no new defects. Lead's4891097 records01:27–01:33Z
 Luna Reserve window;8cf894a was QA-authored in it. Current-model release2audit
