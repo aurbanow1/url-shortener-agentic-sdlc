@@ -1,4 +1,20 @@
-# PRE-REVIEW of the merged range at `ed2b940` (draft; wave_review adds 04-audit-columns)
+# Mission 02 wave review — structure and drift (design agent, second vantage), final at `d55a502`
+
+**Verdict from this structural vantage: the merged code is coherent with its designs and the
+register. I found no MUST-FIX and no HIGH.** The step is not clean, though: the primary vantage
+found a HIGH test race at `d55a502` in `02-click-retention`'s AC-8 journey. Its design-level cause
+is mine (W2F-02), and the lead has routed a test-only forward fix. Mine besides:
+- one new LOW, W2F-01: the V4 tests migrate to latest;
+- one carried LOW, W2P-01: the README purge-hold variable.
+
+Everything else is resolved or recorded below.
+
+The file began as the PRE-REVIEW of `8e9c065..ed2b940`. Those sections follow unchanged. The
+**Final wave** section at the end adds `ed2b940..d55a502` and the 13-row register walk at `d55a502`.
+
+---
+
+## PRE-REVIEW of the merged range at `ed2b940` (draft; wave_review adds 04-audit-columns)
 
 Mission 02 wave review, structure and drift: the design agent's second vantage. The review agent
 holds the primary vantage. Asked by the orchestration lead, `qitem-20261003231759-0606a747`, as a
@@ -142,3 +158,107 @@ check them against the merged code and drop the marker.
   `DESIGN.md` edits are committed separately (`5f90090`, `4975d25`) before this file.
 - Each finding names its evidence, a severity and an owner. Nothing here is a product change I
   made; the two documentation repairs are mine, and are done.
+
+---
+
+## Final wave: `ed2b940..d55a502`, and the accumulated range `8e9c065..d55a502`
+
+Asked by the lead (`qitem-20261004002548-140c0e49`) and by the step owner, review-agent
+(`qitem-20261004002621-3d2dc808`, parent `qitem-20261004002455-b7ea811b`). Written 2026-10-04.
+
+**Where my own design is the subject.** I designed `04-audit-columns`, the only product slice in
+this delta, as well as `01-audit-read`, `02-click-retention` and `03-dogfood-fix` earlier in the
+range. `05-ci-cd` is `design2-agent`'s. What follows compares merged code with my own designs, so it
+is a consistency check, not an independent judgment. The independent evidence is QA's (`qa2-agent`
+on `305f804`), the code and security review's (`review2-agent`), and the review agent's own vantage
+and final offline gate on the merged range. Mission 03 (`01-analytics-v2`) is outside this range.
+Its structural vantage went to `design2-agent` (lead, 00:27Z), because I designed that slice too.
+
+### What I inspected in the delta
+
+| Area | Read |
+|---|---|
+| Product | `git diff --stat ed2b940 d55a502` over product files (10 files). The full diff of `LinkRepository`, `LinkService`, `ClickAuditColumnsTest` and `ClickRetentionStartupJourneyTest`. `diff` of the merged `V4__add_link_audit_columns.sql` with the designed file. `LinkAuditColumnsTest` (cases and its `Database.migrate`) and `LinkUpgradeJourneyTest` in full. A grep for any `UPDATE` or `DELETE` of `audit_log` in `src/main` |
+| Integration | `d55a502`'s parents (`d7459ff`, second parent `305f804`: a `--no-ff` merge) and its message; the grant `132a884` |
+| Documents | `docs/qa/GAPS.md` rows 82–85 after `17593aa` and `382a7b2`; my `04-audit-columns` design §1, §3 and §7; ADR-0020 and its amendment |
+
+### `04-audit-columns` against its locked design and ADR-0020
+
+| Check | Result |
+|---|---|
+| Migration | V4 is byte-identical to the designed `design-probe/migration/V4__add_link_audit_columns.sql` (`diff`: empty): expand only, with the eight-statement rollback in its header |
+| Link stamping | `LinkRepository.retire` stamps `updated_at = :at, updated_by = 'anonymous'` in its own conditional `UPDATE`. The new `stamp(id, at)` runs after a key release and after the insert, inside `LinkService.create`'s transaction with its single `now`. This is design §1 exactly. `Link`, the responses and `AuditLog` are unchanged |
+| Append-only audit | the only statement that updates `audit_log` is V4's one-time backfill. `src/main` has no application `UPDATE` or `DELETE` of it |
+| Coverage of the mechanisms | every test design §7 names is present: `LinkAuditColumnsTest` (AC-1, and AC-11 running the header's rollback read from the classpath), `LinkServiceStampTest`, `LinkAuditColumnsJourneyTest`, `LinkAuditColumnsFailureJourneyTest` (an audit failure rolls the retire and its stamp back) and `LinkUpgradeJourneyTest` (a pre-V4 file database upgraded in place). The pre-V4 state is computed as "the last version below 4", which survived V3's arrival. The post-V4 state is not pinned (W2F-01) |
+| The two V3 pins (`132a884`) | `ClickAuditColumnsTest`'s second migrate gains `.target("3")`, and `ClickRetentionStartupJourneyTest.AC13_AC16`'s start gains `--spring.flyway.target=3`. No assertion changed. This matches the grant and the register's schema rule |
+| Integration shape | a `--no-ff` merge, as for the other four. Its subject, `feat(04-audit-columns): …`, differs from the other four's `Merge slice/…`; that is cosmetic and has no effect |
+
+### Documentary follow-through (not product in the range)
+
+`17593aa` closes the `GAPS.md` rows for `link` and `audit_log` at `d55a502`. It also closes the
+`click` and `user_agent_class` rows at `ed2b940`, stating that they were closed late. `382a7b2`
+corrects the named QA judge. This resolves my W2P-02.
+
+### Findings, final
+
+| Id | Severity / class | Evidence | Finding | Disposition |
+|---|---|---|---|---|
+| W2F-01 | LOW / JUDGMENT-GAP **(mine)** | `LinkAuditColumnsTest.Database.migrate(false)` → `flyway.load().migrate()` (latest); `AC11_…` runs V4's rollback and then `migrate(false)` again; `LinkUpgradeJourneyTest` starts the application unpinned; my design §7: AC-1 "after all migrations", AC-11 "migrate to latest" | After V4, the slice's own schema tests migrate to latest, not to `4`. Once any V5 exists, AC-11's rollback-and-re-apply fails by construction: Flyway finds V4 unapplied below an applied V5. AC-1 and AC-7 also fail if V5 touches `link` or `audit_log`. This is the class the register's schema row records, which cost the `132a884` grant. My design specified "latest", and the slice's build pinned V3's tests but not its own | No product risk today. **Repair:** the slice that takes V5 pins `migrate(false)` to `target("4")`, and the upgrade journey's start to `--spring.flyway.target=4`, as `132a884` did. **Route:** lead backlog, with that trigger; named as drift in the register's schema row (`ea84e77`) |
+
+| W2F-02 | HIGH (the review agent's finding) / JUDGMENT-GAP **(mine, design origin)** | the review agent's first full gate at `d55a502` failed `ClickRetentionScheduleJourneyTest:96` with zero `clicks purged` events while the deletion was already visible (`docs/review/02-brownfield/proof/final-wave-first-failure-d55a502.xml`); a focused rerun passes; its publication control shows a committed deletion with zero published events, then one (`…/purge-publication-control.txt`). `ClickPurge.run` logs only after `store.deleteBefore` returns; my design §7 AC-8 row: "poll the rows for at most 60 s", then "one `clicks purged` line" | The journey waits for the rows, then reads the log once. The run publishes its event after the `DELETE` commits, so a check in that window sees the deletion and no event: a race in the test, not in the product. **Its cause is my test row.** It told the builder to poll the rows and then expect the line, and probe A8b timed the deletion, not the event. | **Test-only forward fix**, routed by the lead through the review agent. The test polls for the event, or for both, within the same 60 s bound, then asserts the single event's `cutoff`. No product change. This vantage did not find it; it is recorded here because the design that caused it is mine |
+
+**Earlier items, status at `d55a502`:**
+
+| Id | Status |
+|---|---|
+| W2P-01 (README purge-hold variable, LOW, mine) | **Open.** `README.md` is unchanged in the delta and still omits `URLSHORT_CLICK_PURGEENABLED`. The review agent records it as LOW CONTEXT-GAP for shared-document reconciliation. Route unchanged: the lead, under a README grant or in passing |
+| W2P-02 (`GAPS.md` rows not closed after V3, LOW) | **Resolved** by `17593aa` and `382a7b2` |
+| W2P-03 (stale design documents after merges, MEDIUM, mine) | **Resolved twice:** at `ed2b940` (`4975d25`) and at `d55a502` (`fe9529a`). The process proposal stands, so it stops recurring: at integrate, the lead files me a queue item per merge |
+| W2P-09 (no-interrupt wording, MEDIUM, mine; the review agent's W2P-01) | **Resolved** at `2d3de57` and `bfc642d`. The review agent's file numbers this finding W2P-01. Its W2P-01 and this file's W2P-01 are different findings |
+| W2P-04 to W2P-08 (INFO) | Unchanged. W2P-04's shutdown sum stays 18 s: V4 adds no background work |
+
+**Backlog carried, not new:**
+- the ping clock (`qitem-20261003213157-c0a336f9`);
+- the Gradle download retries (MEDIUM, NOTES §2 22:00Z and 23:06Z, triggered after missions 02 and
+  03 ship);
+- the click hash's raw peer (W2D-03), which closes with mission 03's `01-analytics-v2` and is
+  outside this range.
+
+### Register walk (D20) at `d55a502`, all 13 rows
+
+Register as committed at `ea84e77`.
+
+| Concern | Verdict (structure / drift) |
+|---|---|
+| Client identity and proxy trust | **Consistent; carried drift.** The audit read's guard and the pin are unchanged by V4. The click hash still uses the raw peer (W2D-03), which closes with mission 03, outside this range |
+| Time | **Consistent; carried drift.** `link.updated_at` takes the write's own instant from the application `Clock`; `audit_log`'s row-write times use the database clock, by policy. `PingController` remains backlog |
+| Schema change | **Consistent, one drift (W2F-01).** V3 and V4 are expand-only with written rollbacks and numbers assigned at plan-lock, and V3's tests are pinned. V4's own tests are not |
+| Audit columns | **Consistent.** All four tables carry the columns: defaults for the insert-only three, and `link`'s update stamp in the transaction of each write. The `GAPS.md` rows are closed |
+| Error shape | **Consistent.** The delta adds no error path. An audit failure on retire rolls back the stamp with the retire (`LinkAuditColumnsFailureJourneyTest`) |
+| Request id and logging | **Consistent.** No new log event |
+| Audit trail writes | **Consistent.** `AuditLog` remains the only writer; V4's backfill is the only `UPDATE` of `audit_log`, at migration time. `AuditTrail` still names its columns, so no new column reaches a response |
+| Client hashing for analytics | **Consistent.** Untouched in the range |
+| Metrics and health exposure | **Consistent.** Untouched in the delta |
+| API document | **Consistent.** Not regenerated in the delta; no response changed, as V4's design required |
+| CI/CD | **Consistent.** Untouched in the delta |
+| Background work | **Consistent.** No new job; the no-interrupt wording is corrected (W2P-09) |
+| Operator settings | **Carried drift (W2P-01).** No new setting in the delta |
+
+### Not verified by this vantage (final)
+
+- No build or test run of my own. The integrator's gate on the merged main is in
+  `docs/evidence/02-brownfield/integrate-04-audit-columns-check-305f804.txt`. The review agent runs
+  the final offline gate on the merged range.
+- W2F-01's failure under a V5 is reasoned from the code (Flyway refuses to apply a lower unapplied
+  version without out-of-order), not run.
+
+### Self-check (final)
+
+- The delta's only product slice was compared with its locked design and ADR-0020, and marked as
+  my design. The two V3 pins were checked against their grant.
+- The `GAPS.md` closures were read as documentary follow-through, not as product.
+- All 13 register rows have a final verdict. The register (`ea84e77`) and the design documents
+  (`fe9529a`) are committed before this section.
+- The one new miss I found is mine, classified with evidence and a route. The primary vantage's
+  HIGH, whose design-level cause is mine, is recorded as W2F-02 and not claimed as this vantage's
+  finding. ID collisions with the review agent's file are mapped.
