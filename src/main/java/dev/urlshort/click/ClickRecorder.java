@@ -15,7 +15,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import dev.urlshort.web.RateLimitFilter;
+import dev.urlshort.web.ClientIdentity;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 import jakarta.annotation.PreDestroy;
@@ -102,7 +102,7 @@ public class ClickRecorder {
 	 * @param linkId the id of the link the Visitor was redirected to
 	 * @param request the redirect request; only its {@code Referer}, {@code User-Agent} and client are
 	 *        read, on this thread. The client is the one the rate limiter charged
-	 *        ({@link RateLimitFilter#CLIENT_ATTRIBUTE}, ADR-0015), else the peer address; it is hashed
+	 *        ({@link ClientIdentity#of}, ADR-0015), else the peer address; it is hashed
 	 *        and never stored
 	 */
 	public void record(long linkId, HttpServletRequest request) {
@@ -112,9 +112,7 @@ public class ClickRecorder {
 		ClickWrite write;
 		try {
 			// the rate limiter's client (rule 6); the peer only where the limiter did not run
-			String address = request.getAttribute(RateLimitFilter.CLIENT_ATTRIBUTE) instanceof String client
-					? client : request.getRemoteAddr();
-			DailySalt.Stamp stamp = salt.stamp(address);
+			DailySalt.Stamp stamp = salt.stamp(ClientIdentity.of(request));
 			write = new ClickWrite(new Click(linkId, stamp.at(), LocalDate.ofInstant(stamp.at(), ZoneOffset.UTC),
 					Click.referrerOrigin(request.getHeader("Referer")),
 					Click.userAgentClass(request.getHeader("User-Agent")), stamp.clientHash()),
