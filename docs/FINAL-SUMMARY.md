@@ -1,9 +1,9 @@
 # Final engineering summary — urlshort on an agentic SDLC
 
-> **Status: DRAFT, completed at mission 03 close.** Sections marked `[final]` are
-> filled from the release packages and the evidence exports when the last
-> mission closes; everything else is already true of the repository as it
-> stands.
+> **Status: missions 00, 01 and 03 closed; mission 02 in its release wrap-up.** What
+> remains `[final]` is filled from mission 02's release package, its evidence
+> export and the final metrics regeneration; everything else is true of the
+> repository as it stands.
 
 ## 1. What was built, and how
 
@@ -16,7 +16,11 @@ Two deliverables in one repository:
   analytics, per-client rate limiting, liveness/readiness, Prometheus metrics,
   graceful shutdown, a non-root read-only container. Run it with
   `scripts/gw check` → `java -jar build/libs/urlshort.jar` or
-  `docker compose up --build` (`README.md`).
+  `docker compose up --build` (`README.md`). The deliverable is the private
+  GitHub repository `aurbanow1/url-shortener-agentic-sdlc` (D19), whose `main`
+  is verified by GitHub Actions: the `check` gate on every pull request and on
+  `main`, and a CD job that builds the jar and the image and smokes the jar on
+  loopback without publishing anything (D14).
 - **The factory** — the orchestration layer that built it on OpenRig 0.6.3: a
   rig of twelve seats (five on Claude Opus 5.5, seven on OpenAI models: QA, review, requirements and release), three
   slice workflows and a mission lifecycle with entry/exit gates, independent
@@ -24,7 +28,7 @@ Two deliverables in one repository:
   rollback, safe-stop and dynamic re-planning (`docs/ARCHITECTURE.md`,
   `docs/GOVERNANCE.md`, `rig/`).
 
-The plan of record and its decision log (D1–D12) are in `PLAN.md`; every
+The plan of record and its decision log (D1–D21) are in `PLAN.md`; every
 assignment clause is mapped to the guide section and the artefact that proves
 it in `docs/guidance/README.md` §2.
 
@@ -34,13 +38,13 @@ it in `docs/guidance/README.md` §2.
 |---|---|---|
 | §4.1 requirement understanding | `docs/REQUIREMENTS.md` (44 FR/NFR rows tagged stated / derived / decided / dropped), slice `SPEC.md`s with ambiguity logs, the mission-03 ambiguity park and the human's six answers | done |
 | §4.2 decomposition | `missions/*/mission.yaml`, `slices/*/slice.yaml`, `docs/evidence/*/compiled-graph.json`, wave maps, plan-lock briefs | done (3 missions) |
-| §4.3 brownfield reasoning | `missions/02-brownfield/slices/*/impact-analysis.md` (five slices), `docs/scenarios/brownfield.md` §Codebase reasoning, including the forwarded-header path one analysis missed and review caught | done; merge outcomes `[final]` |
+| §4.3 brownfield reasoning | `missions/02-brownfield/slices/*/impact-analysis.md` (six slices, the D21 refactor included), `docs/scenarios/brownfield.md` §Codebase reasoning, including the forwarded-header path one analysis missed and review caught | done |
 | §4.4 orchestration | `rig/workflows/*.yaml`, `project.yaml#lifecycle`, `docs/GOVERNANCE.md`, `docs/evidence/*/` (trails, packets, gates), `docs/metrics/`, `docs/scenarios/drills.md` | done |
-| §4.5 engineering output | `src/`, Flyway `V1`/`V2`, `docs/api/openapi.json`, Javadoc on every public type (`-Xdoclint:all -Werror` in `check`), `docs/DESIGN.md`, ADRs | done |
+| §4.5 engineering output | `src/`, Flyway `V1`–`V4`, `docs/api/openapi.json`, Javadoc on every public type (`-Xdoclint:all -Werror` in `check`), `docs/DESIGN.md`, ADRs | done |
 | §4.6 validation and risk control | `docs/RISKS.md`, `docs/scenarios/drills.md`, permission policies, loopback-only tooling, CI/CD on GitHub Actions (`.github/workflows/`, D14) with the first runs recorded in `missions/02-brownfield/slices/05-ci-cd/PROOF.md` | done |
 | §4.7 controlled autonomy | gate packets and `rig queue resolve` records, delegation records (D11), role `Never` lists | done |
-| §4.8 final summary | this document | `[final]` |
-| §5 deliverables | prototype, `docs/ARCHITECTURE.md`, `docs/scenarios/*.md`, `README.md` + `docs/SETUP-FACTORY.md`, `docs/TESTING.md` | `[final]` for the scenario narratives |
+| §4.8 final summary | this document | done except mission 02's outcome and the final metrics `[final]` |
+| §5 deliverables | prototype, `docs/ARCHITECTURE.md`, `docs/scenarios/*.md`, `README.md` + `docs/SETUP-FACTORY.md`, `docs/TESTING.md`, the GitHub repository with its stacked pull requests and green CI/CD runs | greenfield and ambiguous narratives done; brownfield outcome `[final]` |
 | AI-SDLC artefacts | stories + ACs (`SPEC.md`), design docs + Mermaid, error handling/logging/audit + conventional commits, review files + `docs/review/REVIEW-LEDGER.md`, QA coverage/traceability/gaps | done |
 
 ## 3. The three scenarios `[final]`
@@ -49,8 +53,8 @@ it in `docs/guidance/README.md` §2.
 |---|---|---|---|
 | `00-hello` | dry run | one endpoint through every step and both human gates; two bounded remediation loops (DR-01, QA-01); stuck-sweep recovery; a refused `workflow revise` | `docs/scenarios/drills.md` |
 | `01-greenfield-core` | greenfield | 3 slices in 2 waves (parallel wave with ordered custody of shared files), 28+ ACs per slice, review loops that caught a flaky test, a rate-limiter race and a fail-open smoke reader before merge; release with bench, OSV, secret scan; one explicitly human-decided gap (AC-28 host forwarder) | `docs/scenarios/greenfield.md` |
-| `02-brownfield` | brownfield | impact analyses on shipped code, a purge with written rollback, a dogfood-sourced bug fix with regression test first, four labelled drills (QA rejection loop, revert after failed smoke, stop→route, abort+resume) | `docs/scenarios/brownfield.md` |
-| `03-ambiguous-analytics` | ambiguous | "marketing wants better analytics" turned into six decisions with options and consequences, parked on the human before design, built to the decided scope | `docs/scenarios/ambiguous.md` |
+| `02-brownfield` | brownfield | six slices on shipped code: an enhancement read (audit), a purge with written rollback, a dogfood-sourced bug fix with regression tests first, an expand migration for the human's audit-column policy, CI/CD, and a behaviour-preserving refactor proven by characterization tests and before/after captures (D21); impact analyses first; a security finding caught by review after QA (CR-01); four drills (QA rejection loop, revert after failed smoke, stop→route, resume+abort); outcome `[final]` | `docs/scenarios/brownfield.md` |
+| `03-ambiguous-analytics` | ambiguous | "marketing wants better analytics" turned into six decisions with options and consequences, parked on the human before design, built to the decided scope; stacked on mission 02's click work; shipped at `50ad9c3` under the human's sign-off with one disclosed and since-closed CI gap | `docs/scenarios/ambiguous.md` |
 
 ## 4. Validation `[final]`
 
@@ -69,14 +73,20 @@ it in `docs/guidance/README.md` §2.
 
 ## 5. Risks, trade-offs and decisions
 
-`docs/RISKS.md` and `PLAN.md` §10 (D1–D12). The ones that shaped the result:
+`docs/RISKS.md` and `PLAN.md` §10 (D1–D21). The ones that shaped the result:
 Java/Spring Boot 4 on Gradle; `standard` permissions with allow-lists rather
 than autonomy without guardrails; an independent reviewer after every chunk
 plus an author self-check inside it; slice plan-locks delegated to the lead
 (D11) while mission plan-locks, ambiguity decisions and ship sign-offs stayed
 human; a timed auto-approval was considered and rejected; scope trimmed under
 the fast plan (custom alias and expiry dropped, audit-read moved to the
-brownfield mission).
+brownfield mission). Later in the run the human added seats where the trails
+showed queues (second builder, designer and release seat, D15, D16, D18),
+moved requirements and release to Codex models (D17, with a disclosed cost to
+review independence), made the GitHub repository the deliverable with stacked
+pull requests and CI/CD (D13, D14, D19), gave architecture consistency an
+owner instead of a new seat (D20), and added the refactor the assignment's
+scope names (D21).
 
 ## 6. Assumptions
 
@@ -115,13 +125,31 @@ are recorded verbatim in the queue transitions exported under `docs/evidence/`.
 - Proof judgments bind the exact bytes of their evidence. Shared documents
   that later slices extend (traceability, gaps, the ERD) turn shipped items
   from accepted to unknown. They are re-affirmed by QA on the final `main`;
-  `[final]`: the outcome.
+  mission 03's affected items were re-affirmed against the exact byte-level
+  change; mission 01's `[final]`.
 - One dependency update (the Gradle wrapper, 9.7.1 to 9.8.0) was merged on
-  GitHub outside the rig's review; `[final]`: how it was brought into the
-  rig's `main`.
-- `[final]` anything not delivered by mission 03 close.
+  GitHub outside the rig's review. The lead adopted the same change in the
+  rig's `main` with a fresh gate and a warmed Gradle home (`f3e6b0b`), so the
+  rig and GitHub build with the same Gradle.
+- The Codex account hit its weekly usage limit once (about 18:27–18:33 local).
+  The seats fell back to a weaker model until the human reset the usage. Later
+  an operator keystroke on a rate-limit prompt left two seats on that model at
+  medium effort for about 20 minutes, until the operator relaunched them. Work
+  from those windows was re-checked: release review independently re-derived
+  the one evidence commit, and the restored QA seat redid its proof item from
+  raw files.
+- Several pull requests were merged on GitHub before their `gate` check
+  finished. Every such gate later passed, and `main`'s CI and CD runs after
+  each merge are green; the later pull requests were merged only on green.
+- Gradle's distribution server failed twice during CI (a 503 and a
+  timeout). The failed jobs were re-run green, and making the gate tolerant
+  of that is a recorded MEDIUM backlog item.
+- `[final]` anything not delivered by mission 02's close.
 
 ## 8. How to verify in 15 minutes
+
+The same gate runs on GitHub for every pull request; the green runs are linked
+from the pull requests in the repository.
 
 ```sh
 scripts/gw check                        # gate: both suites, 100 % merged coverage, Javadoc
