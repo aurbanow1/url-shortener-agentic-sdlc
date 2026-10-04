@@ -5,13 +5,13 @@ slice. Slice-level detail lives in `missions/<m>/slices/<s>/design.md`;
 decisions live in [`adr/`](adr/). Diagrams in [`diagrams/`](diagrams/) are the
 single source for the pictures below.
 
-Last updated: 2026-10-03, current at `main` `ed2b940` (mission 02 wave pre-review).
+Last updated: 2026-10-04, current at `main` `d55a502` (mission 02 wave review).
 `main` carries `01-ping`, `01-create-redirect` (`16c355f`), `02-analytics`
 (`091ff46`), `03-operate` (`8e9c065`), and mission 02's `05-ci-cd` (`0aa3695`),
-`01-audit-read` (`cb148c4`), `03-dogfood-fix` (`5c264db`) and `02-click-retention`
-(`ed2b940`). Everything below describes merged code, except items marked
-***04-audit-columns (designed)*** or ***01-analytics-v2 (designed)***: those are
-the locked design of a slice in flight and are not merged yet.
+`01-audit-read` (`cb148c4`), `03-dogfood-fix` (`5c264db`), `02-click-retention`
+(`ed2b940`) and `04-audit-columns` (`d55a502`). Everything below describes merged code,
+except items marked ***01-analytics-v2 (designed)***: that is the locked design of a
+slice not merged at `d55a502`.
 An italic slice name (*02-analytics*, *03-operate*) marks the slice that
 introduced an item.
 
@@ -45,7 +45,7 @@ flowchart LR
         K[(Clock · tickMillis UTC)]
     end
     L[(stdout · ECS JSON lines)]
-    H[(H2 file DB · data/<br/>Flyway V1: link, audit_log<br/>V2: click · V3: click audit columns)]
+    H[(H2 file DB · data/<br/>Flyway V1: link, audit_log<br/>V2: click · V3, V4: audit columns)]
     C -->|HTTP| F1 --> OB --> RL --> F2 --> D
     RL -.->|429 problem+json, Retry-After| C
     D --> LC
@@ -501,9 +501,9 @@ erDiagram
         timestamptz created_at
         timestamptz retired_at
         varchar(255) idempotency_key UK
-        timestamptz updated_at "V4, designed: service clock"
-        varchar(64) created_by "V4, designed: anonymous"
-        varchar(64) updated_by "V4, designed: anonymous"
+        timestamptz updated_at "V4: service clock"
+        varchar(64) created_by "V4: anonymous"
+        varchar(64) updated_by "V4: anonymous"
     }
     AUDIT_LOG {
         bigint id PK
@@ -515,10 +515,10 @@ erDiagram
         varchar(64) request_id
         varchar(4096) before_state
         varchar(4096) after_state
-        timestamptz created_at "V4, designed: database clock"
-        timestamptz updated_at "V4, designed: equals created_at"
-        varchar(64) created_by "V4, designed: = actor"
-        varchar(64) updated_by "V4, designed: = actor"
+        timestamptz created_at "V4: database clock"
+        timestamptz updated_at "V4: equals created_at"
+        varchar(64) created_by "V4: = actor"
+        varchar(64) updated_by "V4: = actor"
     }
     CLICK {
         bigint id PK
@@ -575,7 +575,7 @@ erDiagram
     for classes), all `NOT NULL` with defaults, so writers keep their v1 column lists;
   - pre-existing clicks are backfilled from `clicked_at`;
   - `clicked_at` stays the click's time on the service clock.
-  - ***04-audit-columns (designed)***, V4 (ADR-0020 amendment):
+  - *04-audit-columns*, V4 (ADR-0020 amendment):
     - `link` keeps `created_at` and gains `updated_at` (service clock), stamped by its three writes:
       the retire's conditional `UPDATE`, and `LinkRepository.stamp` after the create's insert and
       after a key release. It also gains `created_by`/`updated_by` (`anonymous`).
@@ -642,7 +642,7 @@ The audit-read slice (mission 02) adds no table.
 | [0017](adr/0017-container-hardening-and-shutdown.md) | Container hardening; 10 s graceful shutdown inside a 20 s stop grace | 03-operate | accepted at plan-lock 2026-10-03 |
 | [0018](adr/0018-click-retention-daily-purge.md) | Click retention: one `DELETE` per run, at startup (before readiness) and daily at 00:10Z, decided on the application clock; `urlshort.click.retention-days` (90), the hold `urlshort.click.purge-enabled` | 02-click-retention | accepted at plan-lock 2026-10-03; merged `ed2b940` |
 | [0019](adr/0019-audit-read-loopback-keyset.md) | Audit read: loopback peer with forwarding headers refused, `server.forward-headers-strategy=none` pinned, and closed whenever a setting can rewrite the peer (another strategy, either `server.tomcat.remoteip` header); keyset pages by write sequence (`id`), base64url cursor, no index | 01-audit-read | accepted at plan-lock 2026-10-03 (re-locked after the `remoteip` correction); merged `cb148c4` |
-| [0020](adr/0020-audit-columns-expand-migration.md) | Audit columns: database-clock defaults, constant actors (`anonymous`, `system`), backfill from domain time, one expand migration per table set with a written rollback | 02-click-retention; amended by 04-audit-columns (`link` keeps `created_at`, `updated_at` on the service clock stamped by its three writes) | accepted at plan-lock 2026-10-03, merged `ed2b940` (V3); 04-audit-columns amendment accepted at its plan-lock, not merged |
+| [0020](adr/0020-audit-columns-expand-migration.md) | Audit columns: database-clock defaults, constant actors (`anonymous`, `system`), backfill from domain time, one expand migration per table set with a written rollback | 02-click-retention; amended by 04-audit-columns (`link` keeps `created_at`, `updated_at` on the service clock stamped by its three writes) | accepted at plan-lock 2026-10-03, merged `ed2b940` (V3); 04-audit-columns amendment accepted at its plan-lock, merged `d55a502` (V4) |
 
 Pending, each lands with the slice that introduces the concern: the
 production profile's API-document exposure is still open (`/v3/api-docs`
@@ -669,3 +669,4 @@ and `/swagger-ui.html` stay on and unlimited).
 | 2026-10-03 | 03-dogfood-fix (design) | W2-01: `OpenApiConfig` gains a customiser that corrects the API document's `ProblemDetail` component to the wire (optional `errors` of `ProblemFieldError`, no `properties`); `docs/api/openapi.json` regenerated, responses unchanged. W2-03: new `web.MetricsConfig` with `MeterFilter.ignoreTags("path")`, so the disk gauges carry no installation path. Regression assertions added to `OpenApiDocumentTest` and `HealthMetricsJourneyTest`, each with one nested context (a one-per-minute create budget for the `429`; `@AutoConfigureMetrics` for the scrape). ADR-0010 and ADR-0016 amended |
 | 2026-10-03 | 05-ci-cd (design) | GitHub Actions: `ci.yml` (`gate` = `./gradlew check` on every pull request, `main` and on demand, reports always uploaded), `cd.yml` (`package`: `bootJar`, `scripts/smoke.sh --jar` on loopback, `docker build` without a push, jar and smoke logs uploaded), `dependabot.yml` (actions and Gradle, weekly). Read-only token, SHA-pinned actions, no secrets, timeouts, cancelling concurrency, explicit `bash` for `pipefail`, MIT cache provider. No product change, no ADR (D14 and `docs/guidance/ci-cd.md` are the record); the CI/CD row in §3 and stack facts in §4 |
 | 2026-10-03 | mission 02 wave pre-review (design agent) | Current at `main` `ed2b940`: `05-ci-cd`, `01-audit-read`, `03-dogfood-fix` and `02-click-retention` are no longer marked designed. The system view drops its "designed" labels and shows V3; the ERD's V3 columns are labelled as merged; the ADR index statuses are corrected for the amendments that were plan-locked or merged, and ADR-0019's row names the `remoteip` closure. `04-audit-columns` and `01-analytics-v2` stay marked designed |
+| 2026-10-04 | mission 02 wave review (design agent) | Current at `main` `d55a502`: `04-audit-columns` is merged, so its V4 columns in the ERD and §5 lose the designed label, the system view shows V4, and ADR-0020's amendment reads merged. `01-analytics-v2` stays marked designed at this commit |

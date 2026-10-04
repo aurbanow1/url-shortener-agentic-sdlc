@@ -1,4 +1,4 @@
-%% urlshort — container view (kept current by the Design Agent; last: current at main ed2b940, ClickPurge and the audit read merged)
+%% urlshort — container view (kept current by the Design Agent; last: current at main d55a502, mission 02 merged)
 flowchart LR
     C[Creator / Visitor / Analyst / Operator<br/>container: 127.0.0.1:8080 only]
     subgraph urlshort [urlshort · Spring Boot 4.1 · Java 21 · uid 10001 · read-only root + tmpfs /tmp]
@@ -26,7 +26,7 @@ flowchart LR
         K[(Clock · tickMillis UTC)]
     end
     L[(stdout · ECS JSON lines)]
-    H[(H2 file DB · data/<br/>Flyway V1: link, audit_log<br/>V2: click · V3: click audit columns)]
+    H[(H2 file DB · data/<br/>Flyway V1: link, audit_log<br/>V2: click · V3, V4: audit columns)]
     C -->|HTTP| F1 --> OB --> RL --> F2 --> D
     RL -.->|429 problem+json, Retry-After| C
     D --> LC
