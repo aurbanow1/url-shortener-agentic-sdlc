@@ -22,3 +22,10 @@ does not settle that race. Final shared release must include its reviewed correc
 complete gate. Proof12/NFR-L1 remains release_prep's obligation under
 qitem-20261003195138-8eb72ecb. D21 explicitly leaves mission03 independent: it does not wait for06-client-identity.
 If a later release candidate includes that change, use its separately assigned review.
+
+## Status update — 2026-10-04 00:55Z
+
+Inherited W2F-01 is now fixed on merge50ad9c3, with independent re-review79eda7e
+and closed lead rework custody. Review2 verified the committed resolution artifacts;
+see the wave report addendum. The prior open wording above records the handoff-time state.
+The two LOW items and proof12 obligation are unchanged.
