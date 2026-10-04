@@ -344,3 +344,147 @@ No finding. One existing event filter is shared by the poll and assertion; no de
 **Lifecycle continuation:** remain **waiting** on lead-owned **qitem-20261004005331-36607695**, the canonical merge notification for `06-client-identity` (D21). [Continuation brief](proof/d21-wave-continuation.md). At its closure, inspect the exact accepted candidate, merge range and gate; add that range and its structural/register review before release_prep. Do not reopen settled findings or infer sixth-slice acceptance from this test repair.
 
 Self-check: exact SHA and clean worktree verified before/after; one changed file fully read and accounted for; own complete gate and upstream hashes checked; original red evidence retained; resolution and ledger row recorded; only review evidence edited. No release approval or publication.
+
+## Added D21 range — PASS at b8d7fc16 / fda42757
+
+2026-10-04 UTC, review-agent (Codex), same wave packet `qitem-20261004002455-b7ea811b`.
+The lead's merge notification `qitem-20261004005331-36607695` is closed. The actual two-parent
+merge is **b8d7fc165ad079eca1b321eb44015264f18493ec**, second parent the accepted candidate
+**e40b09541feb0b7555c475baa82587fdd09e4890**. Returned review head
+**fda427573dfeea7e27602e99b094e2bd6363c2d3** is the next documentation commit; the lead corrected
+the merge label in NOTES/PROGRESS. I verified all three have identical source, tests, build,
+scripts, workflows, container and API trees. My clean detached worktree is
+`.worktrees/review-wave02-fda42757`.
+
+**Context/confidence: high.** D21 asks for one authority for client identity while preserving
+two distinct answers: the visitor charged/hashed, and the direct peer admitted to the audit
+trail. This addition completes that outcome without changing the shortener's public contract.
+I read the SPEC, locked design and impact analysis, both ADR amendments, all ten changed
+source/config/test files in full, and the intervening README change. Independence: dev2/design2
+authored this refactor; I did not. Prior five-slice review, analytics review and settled W2F-01
+correction remain attributed to their original ranges. The added range is **50ad9c3..fda42757**.
+
+### Complete file ledger for the added product range
+
+| File | Verdict |
+|---|---|
+| `src/main/java/dev/urlshort/web/ClientIdentity.java` | PASS — stateless owner of the existing trust scan, request attribute and two audit predicates; no new parser or trust policy. |
+| `src/main/java/dev/urlshort/web/RateLimitFilter.java` | PASS — resolves after exemption and before charging; the same request object and peer reach downstream consumers. Filter returns to package-private. |
+| `src/main/java/dev/urlshort/click/ClickRecorder.java` | PASS — the same attribute-or-peer ternary moves behind `of`; hash timing, reduction, writer, counters and loss reporting are unchanged. |
+| `src/main/java/dev/urlshort/audit/AuditController.java` | PASS — configuration guard still computed once; per-request direct-peer guard precedes validation/negotiation. It never uses the visitor attribute or trusted list. |
+| `src/main/resources/application.properties` | PASS — one granted comment names trusted proxies' existing analytics effect and absence of audit authority; no setting/value change. |
+| `src/test/java/dev/urlshort/web/ClientIdentityTest.java` | PASS — exact-text trust, opaque tokens, blank hops, loopback forms and forwarding-header presence preserve prior answers. |
+| `src/test/java/dev/urlshort/web/RateLimitFilterTest.java` | PASS — references change; existing expected values, budget/429 and unchanged-peer assertions remain. |
+| `src/test/java/dev/urlshort/click/ClickRecorderTest.java` | PASS — reference change plus absent/non-string attribute cases; existing loss, shutdown, privacy and metric assertions remain. |
+| `src/test/java/dev/urlshort/audit/AuditControllerTest.java` | PASS — predicate reference change plus both-header/whitespace settings; existing admission/refusal and parameter assertions remain. |
+| `src/functionalTest/java/dev/urlshort/web/ClientIdentityCharacterizationJourneyTest.java` | PASS — all new matrix/budget/audit/settings contexts inspected. Corrected helper waits on stored rows then performs one checked HTTP read; full date/3-click/2-visitor/privacy oracle remains. Real-server contexts exercise both remote-IP triggers. |
+| `README.md` | PASS — intervening mission-03 documentation `e227acf0`, separately identified: loopback command, retained statistics, salt restart behavior, proxy rules, hold setting and counters agree with integrated source. Closes the structural vantage's missing purge-hold documentation. |
+
+The verification script enumerates the ten source/config/test paths; README is the eleventh,
+documentary path above. This is a delta review, not a claim to reread every historical evidence
+export committed during the interval. Addressed documentary inputs also include the manifest,
+SPEC/design/impact/proof, QA summary/traceability/gaps, ADR-0015/0019, current DESIGN/register,
+the merge gate and the two attributed slice review reports.
+
+### Preservation and empirical evidence
+
+**Own fresh gate:** `scripts/gw --offline check --rerun-tasks`, with wrapper `--log`, succeeded
+with all 14 tasks executed: **268 unit + 322 functional**, zero failures/errors/skips; Javadoc
+and coverage verification passed. Only canonical `test.exec` and `functionalTest.exec` exist.
+Merged CSV totals are **584/584 lines, 206/206 branches**; JaCoCo's source-deduplicated BUNDLE
+is **583/583 lines, 206/206 branches**, both 100%. This is the same class-versus-source line
+count distinction as earlier reviews, not a coverage gap. Generated OpenAPI is byte-identical
+to the committed document. [Gate](proof/d21-check-fda42757.txt),
+[CSV](proof/d21-coverage-fda42757.csv), [reconciliation](proof/d21-reconciliation-fda42757.json),
+[reproducible passive verifier](proof/d21-verify.py).
+
+All **43 pre-existing functional files** are byte-unchanged from `50ad9c3`; the new suite adds
+72 invocations. Source chronology separates characterization (`240b230`, completed `1b4e0a7`)
+from the production move (`7e232599`), reference cleanup (`d0e74c43`), comment (`fb63a88a`) and
+test-only repair (`e40b0954`). The characterized `1b4e0a7` production tree equals `50ad9c3`.
+ADR amendments `57cb9aee` precede the production move by recorded commit time. QA independently
+ran the baseline characterization and replayed the corrected 72 invocations on original
+production; I checked that evidence and tree relationship, rather than claiming another
+baseline application run.
+
+My passive audit verifies **672 current QA hashes, 378 coverage-resource hashes and 3490
+historical hashes**, with the declared archive aliases. I independently parsed **159 saved
+original-baseline/current-candidate response pairs**, reconstructed their request-ID joins
+from full JSON logs, and compared all response fields and complete correlated events.
+Only response-derived generated UUID/code associations, HTTP Date, log timestamp and PID were
+substituted. All pairs agree. All twelve matrix statistics have exactly one fixed UTC day,
+3 clicks, 2 unique visitors and 0 bots; shared budgets give 429/Retry-After 30 while unrelated
+clients succeed. This uses raw evidence, not just QA's comparison result.
+
+AC-1/2/11/13 preservation is supported by unchanged production outside the moved rules, the
+fresh unchanged journeys and QA's original before/after effects. AC-3/4/5 are exercised by the
+fresh budget/grouping contexts and the independently reconciled matrix. AC-6–10 include the
+direct-peer/header cases and real Tomcat rewriting settings in this run. AC-12/14 retain
+privacy/correlation assertions, the raw matrix joins and QA's broader recorded canary effects;
+AC-15 has the independently checked identical generated document. Full live-jar, copied-H2 and
+all original canary observations remain **attributed QA evidence**, not new installed runs
+by me. QA's simulated-peer fixture, telemetry-comparison qualifications and class-level
+parameterized attributions remain explicit in its README/GAPS; no network-topology, shutdown
+or performance guarantee is added.
+
+Review2's **CR-01 is fixed**, as independently re-reviewed at `981eb8e0`: its delayed-writer
+controls invoke the actual helper, wait about three seconds and observe one HTTP statistics
+read without 429/NPE. I read the corrected helper and retained full oracle, verified candidate
+equality and reran the full integrated gate. This does not reopen the settled failure or claim
+to have rerun its artificial latch control. Our earlier retention **W2F-01 stays fixed**.
+
+### D20 register — all 13 concerns at the final boundary
+
+| Concern | Judgment |
+|---|---|
+| Client identity / proxy trust | Consistent: sole rule/attribute owner is `ClientIdentity`; separate direct-peer predicates never consult visitor identity. |
+| Time | Consistent with carried ping `Instant.now()` LOW backlog; refactor adds no clock. |
+| Schema change | Unchanged V1–V4; future V5 owner must pin V4-specific tests (existing structural LOW). |
+| Audit columns | Unchanged; all four tables retain the resolved V3/V4 policy. |
+| Error shape | Same MVC advice and limiter 429; audit refusal remains before parameter/content checks. |
+| Request ID / logging | No new event, field or logger; server-issued correlation and privacy survive the move. |
+| Audit trail writes | Unchanged insert-only application path in link transactions; read remains separately guarded. |
+| Client hashing | Same daily salt and hash input via `ClientIdentity.of`; storage/query/salt lifetime unchanged. |
+| Metrics / health | Same bounded tags/counters/exposure; no identity telemetry added. |
+| API document | No diff; fresh generator result equals committed bytes. |
+| CI/CD | No workflow/build change; complete merged gate green. Existing download-retry MEDIUM remains backlog. |
+| Background work | Writer/purge ownership, bounds and interrupt distinction unchanged; prior wording correction stands. |
+| Operator settings | No new setting; granted proxy comment and README now explain existing effects/hold variable. |
+
+I read post-merge register/DESIGN update **3b2ecd0b** and ADR status update **8e55ddcc** against
+the source. They name the actual merge and three callers, preserve the two predicates and
+remove stale designed/status labels. Structural vantage **fea4749b** closes
+`qitem-20261004033531-e96f5a30`: [design-agent report](wave-review-design-agent.md). The designer
+of this refactor was design2; the structural reviewer discloses authorship of historical
+code being moved and of register upkeep. This independent source/gate review also checks
+that upkeep. Both required vantages are now recorded.
+
+### Findings, disposition and Ponytail review
+
+No new MUST-FIX/HIGH/MEDIUM/LOW. No complexity finding: one static authority replaces
+distributed rules without a bean, interface, dependency or duplicate implementation; the
+Boot-upgrade `ponytail:` ceiling is retained. Existing ping LOW, future-V5 pin LOW and Gradle
+download-retry MEDIUM stay with the lead's recorded backlog, not fixes demanded by this delta.
+
+I adopt the structural report's **W2D21-01 INFO / CONTEXT-GAP**: `slice.yaml:73` still lists
+`application.properties` as excluded below its explicit comment-only grant at lines 64–71.
+The authorized one-comment change is unambiguous; correct the stale exclusion when next
+editing the manifest. **W2D21-02 INFO** records the intervening README change and closes that
+vantage's W2P-01 documentation item; it is not a new product defect. The initial merge-SHA
+mislabel was corrected in passing by the lead and is recorded above, with product equality
+verified. No forward-fix slice is needed for these informational records.
+
+**Final wave verdict: PASS; handoff to release_prep.** Six mission-02 slices are merged,
+both vantages are complete and no MUST-FIX/HIGH remains. The observed
+[proof snapshot](proof/d21-proof-snapshot.json) has 16/17 accepted for 06-client-identity;
+only item 16 awaits the attributed post-merge register/independent-review judgment under
+the lead's existing downstream custody. It must be completed for release readiness; this
+wave verdict does not impersonate QA or claim a ship approval. Release preparation may
+continue while that documentary judgment returns. Boot-trigger maintenance, headerless
+local-relay boundary, unchanged offline-advisory and operational qualifications remain.
+
+Self-check: exact returned head/actual merge/QA candidate reconciled; all 11 added-range
+product/document paths read; own complete gate, coverage and raw evidence checked; all
+13 concerns recorded and both vantages linked; settled findings preserved; ledger row
+appended; only review artifacts edited. No product, test, SPEC or design edits, publishing
+or release approval.
