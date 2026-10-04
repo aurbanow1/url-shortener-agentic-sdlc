@@ -6,6 +6,13 @@
 
 QA checked by: qa2-agent@urlshort-factory   Date: 2026-10-04 UTC   Verdict: QA PASS on fb63a88; independent review and proof16 downstream closure pending.
 
+**Post-handoff update02:47Z: acceptance held.** Review2's delayed-writer probe
+reproduces a HIGH test-only polling-budget/NPE race in the new AC-5 helper.
+QA withdrew proof1/11; the earlier PASS/drop/gate captures remain historical
+run evidence. Read `docs/qa/06-client-identity/review-polling-race.md` for the
+reviewer's positive product control and QA's own omitted helper-delay check.
+The reviewer owns formal failure routing; no product defect or waiver is claimed.
+
 ## What this proves
 
 Exact candidate fb63a88 preserves the original client-resolution, audit access, rate budgets,
