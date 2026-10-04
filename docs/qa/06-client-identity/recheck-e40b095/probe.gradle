@@ -1,0 +1,24 @@
+allprojects {
+    afterEvaluate {
+        def compileProbe = tasks.register('compileQaStatsPollingResolution', JavaCompile) {
+            source = files('../../docs/qa/06-client-identity/recheck-e40b095/QaStatsPollingResolution.java')
+            classpath = sourceSets.functionalTest.runtimeClasspath
+            destinationDirectory = layout.buildDirectory.dir('qa-stats-polling-resolution/classes')
+            dependsOn tasks.named('functionalTestClasses')
+            javaCompiler = javaToolchains.compilerFor { languageVersion = JavaLanguageVersion.of(21) }
+        }
+        tasks.register('qaStatsPollingResolution', JavaExec) {
+            dependsOn compileProbe
+            classpath = files(compileProbe.flatMap { it.destinationDirectory }) + sourceSets.functionalTest.runtimeClasspath
+            mainClass = 'dev.urlshort.web.QaStatsPollingResolution'
+            javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) }
+        }
+        tasks.register("qaStatsPollingTrustedResolution", JavaExec) {
+            dependsOn compileProbe
+            classpath = files(compileProbe.flatMap { it.destinationDirectory }) + sourceSets.functionalTest.runtimeClasspath
+            mainClass = "dev.urlshort.web.QaStatsPollingResolution"
+            args "trusted"
+            javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) }
+        }
+    }
+}

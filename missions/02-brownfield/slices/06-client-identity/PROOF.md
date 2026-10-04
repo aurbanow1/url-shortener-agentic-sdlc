@@ -4,14 +4,18 @@
 >
 > **HOW (the drop verb, not hand-placement):** put media files under `proof/`, then ATTACH them with `rig proof add OPR.99.0.3.6 --artifact-type qa --verdict PASS --candidate-sha <tip> --money-evidence "<one line>" --evidences "1" --media "screenshot-01.png"` — the drop writes the C1 header the Living Notes DELIVERED pairing joins on. Hand-placing files without a drop leaves the deliverable unpaired and `unverified`.
 
-QA checked by: qa2-agent@urlshort-factory   Date: 2026-10-04 UTC   Verdict: QA PASS on fb63a88; independent review and proof16 downstream closure pending.
+QA checked by: qa2-agent@urlshort-factory   Date: 2026-10-04 UTC   Current verdict: QA PASS on e40b095; CR-01 resolution observed, independent re-review and proof16 downstream closure pending.
 
-**Post-handoff update02:47Z: acceptance held.** Review2's delayed-writer probe
+**Historical post-handoff update02:47Z onfb63a88: acceptance held.** Review2's delayed-writer probe
 reproduces a HIGH test-only polling-budget/NPE race in the new AC-5 helper.
 QA withdrew proof1/11; the earlier PASS/drop/gate captures remain historical
 run evidence. Read `docs/qa/06-client-identity/review-polling-race.md` for the
 reviewer's positive product control and QA's own omitted helper-delay check.
 The reviewer owns formal failure routing; no product defect or waiver is claimed.
+
+The current e40b095 QA re-check below observes the correction with the actual
+helper/writer hold and restores the affected candidate judgments. This preserves
+the original failure and does not substitute for independent code re-review.
 
 ## What this proves
 
@@ -25,6 +29,7 @@ judgment; future independent review, merge and register-owner updates are not ac
 Dropped via `rig proof add … --evidences … --media …` (one drop per verdict; media attached, never only hand-listed):
 
 - proof/qa-fb63a88.md — QA drop, items1–15/17, attached coverage SUMMARY and observation/custody records.
+- proof/qa-e40b095.md — current QA re-check drop; same product/jar, repaired characterization helper, own fresh gate and affected effects.
 - docs/qa/06-client-identity/README.md — independent observations, comparisons and instrument qualifications.
 - docs/qa/coverage/06-client-identity/SUMMARY.md — fresh gate, per-suite and merged CSV totals.
 
@@ -154,8 +159,59 @@ day/count/privacy assertion. One file, test only, no production change.
   - The two requests are the helper's single read and the probe's positive control.
   - The probe was written to expect the old failure, so its closing `AssertionError` ("expected
     helper to fail …") and `BUILD FAILED` are the signal that the race is gone. Its
-    `probe writer deadline` line is its own held writer timing out, because no `429` came to release
+  `probe writer deadline` line is its own held writer timing out, because no `429` came to release
     it early.
 - **Gate on `e40b095`:** `scripts/gw --offline check --rerun-tasks` gives unit 268, functional 322,
   0 failures; merged lines 584/584, branches 206/206 (100 %). Log
   [`proof/check-cr01-fix.txt`](proof/check-cr01-fix.txt).
+
+## QA Re-check e40b09541feb0b7555c475baa82587fdd09e4890
+
+Independent QA2/Codex, packet qitem-20261004025925-a5886b4c: **QA PASS**, CR-01
+resolution observed. Own fresh 268 unit and 322 functional tests, zero failures/errors/skips,
+Javadoc/coverage green; CSV merged 584/584 lines, 206/206 branches. Fresh 378 copied
+resources verified. All43 original functional files remain unchanged; new delta
+from fb63a88 changes only the new helper's waiting/read order and caller, keeping
+the 10-second bound, shipped60/600, every matrix/day/count/privacy oracle.
+
+The actual candidate helper with a deliberately held real writer passes under
+both no trust andP trust after 3036/3042ms. It makes one helper statistics read,
+plus the probe's separate positive control; zero 429s/NPEs. The entire 3-click/
+2-visitor/UTC-day/privacy oracle passes. Own external probe exits 0, not the
+builder's retained negative-expectation probe result. The corrected current
+characterization also passes 72 invocations when externally shadow-compiled onto
+original 1b production without editing its tests/source. Baseline characterization
+chronology remains the original pre-move commit; this compatibility replay shows
+the corrected wait preserves those oracles.
+
+Fresh affected AC-4/5/10 by-effect replay: all 12 exact trust-matrix rows,
+159 real HTTP responses/818 assertions,3 apps stopped. Every raw status/body and
+complete request-id event window joins; all 159 pairs match prior candidate under
+only UUID/code/HTTP-Date/log-time/PID substitutions. Fixed time/day, headers,
+stable problem/body fields and event level/message/count remain literal.
+
+Production/unit trees and rebuilt jar bytes are identical to fb63a88 (jar 92e1b7a…);
+under QA guidance §5, the other AC effects are carried from independently observed
+prior QA, not all rerun. All prior qualifications persist. The old canonical
+coverage and SUMMARY are preserved under archive-fb63a88, with 379 explicit aliases
+verifying all 3490 original artifact hashes. Current 326 method mappings are
+checked against all 74 fresh reports; 56 class-only parameterized attributions
+remain honestly labelled. TRACE/GAPS append the current candidate and QA-observed
+CR-01 closure; formal code re-review remains its own pending step.
+
+Evidence: `docs/qa/06-client-identity/recheck-e40b095/README.md`, `check.txt`,
+`held-writer-probe.txt`, `current-characterization-on-original/`, `validation.json`,
+matrix captures and current coverage SUMMARY. `docs/qa/06-client-identity/findings.md`
+records the affected finding's QA resolution. Renewed judgments 1–15/17 bind
+e40b095; item 16 still returns after review/merge/design-owner updates, per lead transition 1882.
+
+### Self-check
+
+Exact clean candidate/diff inspected; own full gate and affected public effects;
+actual helper delayed rather than settling outside it; no budget raise, retry or
+weakened oracle; original-production current characterization replay; raw/log/row
+joins and substitutions read; CSV totals/fresh378/historical3490 hashes checked;
+both-way 326 mappings/GAPS written; valid local-media drop; all 3 HTTP apps and
+both probe JVMs stopped; candidate unchanged; no product/test edit. Evidence,
+renewed judgments and receipts committed before qa_check handoff. Formal review
+and downstream 16 are not prematurely accepted.

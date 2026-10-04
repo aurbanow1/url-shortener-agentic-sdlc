@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClickStore.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">urlshort</a> &gt; <a href="index.source.html" class="el_package">dev.urlshort.click</a> &gt; <span class="el_source">ClickStore.java</span></div><h1>ClickStore.java</h1><pre class="source lang-java linenums">package dev.urlshort.click;
+
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import org.jspecify.annotations.Nullable;
+import org.springframework.jdbc.core.simple.JdbcClient;
+import org.springframework.stereotype.Component;
+
+/**
+ * The {@code click} table (ADR-0013): one insert per recorded click, the one statement the
+ * statistics are folded from, and the retention delete. Reads {@code link} only to turn a code into
+ * its id.
+ */
+@Component
+class ClickStore {
+
+	private final JdbcClient jdbc;
+
+<span class="fc" id="L25">	ClickStore(JdbcClient jdbc) {</span>
+<span class="fc" id="L26">		this.jdbc = jdbc;</span>
+<span class="fc" id="L27">	}</span>
+
+	void insert(Click click) {
+<span class="nc" id="L30">		jdbc.sql(&quot;INSERT INTO click (link_id, clicked_at, clicked_on, referrer, user_agent_class, client_hash)&quot;</span>
+				+ &quot; VALUES (:linkId, :clickedAt, :clickedOn, :referrer, :userAgentClass, :clientHash)&quot;)
+<span class="nc" id="L32">				.param(&quot;linkId&quot;, click.linkId())</span>
+<span class="nc" id="L33">				.param(&quot;clickedAt&quot;, click.clickedAt().atOffset(ZoneOffset.UTC))</span>
+<span class="nc" id="L34">				.param(&quot;clickedOn&quot;, click.clickedOn())</span>
+<span class="nc" id="L35">				.param(&quot;referrer&quot;, click.referrer())</span>
+<span class="nc" id="L36">				.param(&quot;userAgentClass&quot;, click.userAgentClass())</span>
+<span class="nc" id="L37">				.param(&quot;clientHash&quot;, click.clientHash())</span>
+<span class="nc" id="L38">				.update();</span>
+<span class="nc" id="L39">	}</span>
+
+	/**
+	 * Deletes every click stored on a UTC day before {@code cutoff}, in one statement and one
+	 * transaction; a table scan by design (ADR-0018). Returns the number of clicks deleted.
+	 */
+	int deleteBefore(LocalDate cutoff) {
+<span class="fc" id="L46">		return jdbc.sql(&quot;DELETE FROM click WHERE clicked_on &lt; :cutoff&quot;).param(&quot;cutoff&quot;, cutoff).update();</span>
+	}
+
+	/** The link's id by its code, read only to find its clicks; empty when no link has the code. */
+	Optional&lt;Long&gt; findLinkId(String code) {
+<span class="nc" id="L51">		return jdbc.sql(&quot;SELECT id FROM link WHERE code = :code&quot;).param(&quot;code&quot;, code).query(Long.class).optional();</span>
+	}
+
+	/**
+	 * The link's clicks per (UTC day, referrer origin), and per UTC day its distinct client hashes and
+	 * {@code bot} clicks, in one statement and so one snapshot (ADR-0013 and its 01-analytics-v2
+	 * amendment). This is the only read of {@code client_hash}: it is compared only within its own
+	 * {@code clicked_on}, the day of the salt that produced it, and never leaves the statement (rule 5).
+	 */
+	Stats stats(long linkId) {
+<span class="nc" id="L61">		List&lt;DayReferrerCount&gt; referrers = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L62">		Map&lt;LocalDate, DayFigures&gt; days = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L63">		jdbc.sql(&quot;SELECT clicked_on, referrer, COUNT(*) AS clicks, CAST(NULL AS BIGINT) AS unique_visitors,&quot;</span>
+				+ &quot; CAST(NULL AS BIGINT) AS bot_clicks FROM click WHERE link_id = :linkId GROUP BY clicked_on, referrer&quot;
+				+ &quot; UNION ALL&quot;
+				+ &quot; SELECT clicked_on, NULL, NULL, COUNT(DISTINCT client_hash),&quot;
+				+ &quot; SUM(CASE WHEN user_agent_class = 'bot' THEN 1 ELSE 0 END)&quot;
+				+ &quot; FROM click WHERE link_id = :linkId GROUP BY clicked_on&quot;)
+<span class="nc" id="L69">				.param(&quot;linkId&quot;, linkId)</span>
+<span class="nc" id="L70">				.query(rs -&gt; {</span>
+<span class="nc" id="L71">					LocalDate day = rs.getObject(&quot;clicked_on&quot;, LocalDate.class);</span>
+<span class="nc" id="L72">					Long uniqueVisitors = rs.getObject(&quot;unique_visitors&quot;, Long.class);</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">					if (uniqueVisitors == null) {</span>
+<span class="nc" id="L74">						referrers.add(new DayReferrerCount(day, rs.getString(&quot;referrer&quot;), rs.getLong(&quot;clicks&quot;)));</span>
+					}
+					else {
+<span class="nc" id="L77">						days.put(day, new DayFigures(day, uniqueVisitors, rs.getLong(&quot;bot_clicks&quot;)));</span>
+					}
+<span class="nc" id="L79">				});</span>
+<span class="nc" id="L80">		return new Stats(referrers, days);</span>
+	}
+
+	/**
+	 * The statistics statement's rows, split by branch.
+	 *
+	 * @param referrers one group per (UTC day, referrer origin), as v1
+	 * @param days the per-day figures, one entry for every day that has a referrer group
+	 */
+<span class="fc" id="L89">	record Stats(List&lt;DayReferrerCount&gt; referrers, Map&lt;LocalDate, DayFigures&gt; days) {</span>
+	}
+
+	/**
+	 * One UTC day's v2 figures.
+	 *
+	 * @param day the UTC day
+	 * @param uniqueVisitors distinct client hashes among that day's clicks
+	 * @param botClicks that day's clicks of user-agent class {@code bot}
+	 */
+<span class="fc" id="L99">	record DayFigures(LocalDate day, long uniqueVisitors, long botClicks) {</span>
+	}
+
+	/**
+	 * One group of the statistics query.
+	 *
+	 * @param day the UTC day
+	 * @param referrer the referrer origin, or {@code null} for clicks without one
+	 * @param clicks the clicks in the group
+	 */
+<span class="fc" id="L109">	record DayReferrerCount(LocalDate day, @Nullable String referrer, long clicks) {</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

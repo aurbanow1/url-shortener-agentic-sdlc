@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.urlshort.UrlshortApplicationTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-04T03:01:22.975Z" hostname="Andrzejs-MacBook-Pro.local" time="3.06">
+  <properties/>
+  <testcase name="mainBootsWithoutAWebServer()" classname="dev.urlshort.UrlshortApplicationTests" time="0.641"/>
+  <testcase name="contextLoads()" classname="dev.urlshort.UrlshortApplicationTests" time="0.002"/>
+  <system-out><![CDATA[20:01:23.099 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [dev.urlshort.UrlshortApplicationTests]: UrlshortApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:01:23.173 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.UrlshortApplicationTests
+20:01:23.232 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [dev.urlshort.UrlshortApplicationTests]: UrlshortApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:01:23.233 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration dev.urlshort.UrlshortApplication for test class dev.urlshort.UrlshortApplicationTests
+2026-10-03T20:01:23.433-07:00  INFO 35687 --- [    Test worker] dev.urlshort.UrlshortApplicationTests    : Starting UrlshortApplicationTests using Java 21.0.10 with PID 35687 (started by andrzej in /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/06-client-identity)
+2026-10-03T20:01:23.434-07:00  INFO 35687 --- [    Test worker] dev.urlshort.UrlshortApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2026-10-03T20:01:23.972-07:00  INFO 35687 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2026-10-03T20:01:24.001-07:00  INFO 35687 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 25 ms. Found 1 JDBC repository interface.
+2026-10-03T20:01:24.335-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-03T20:01:24.505-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:urlshort-unit user=SA
+2026-10-03T20:01:24.507-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-03T20:01:24.514-07:00  INFO 35687 --- [    Test worker] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:urlshort-unit (H2 2.4)
+2026-10-03T20:01:24.550-07:00  WARN 35687 --- [    Test worker] o.f.c.internal.database.base.Database    : Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026-10-03T20:01:24.565-07:00  INFO 35687 --- [    Test worker] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+2026-10-03T20:01:24.567-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbValidate     : Successfully validated 4 migrations (execution time 00:00.009s)
+2026-10-03T20:01:24.572-07:00  INFO 35687 --- [    Test worker] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+2026-10-03T20:01:24.592-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": << Empty Schema >>
+2026-10-03T20:01:24.595-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1 - create link and audit log"
+2026-10-03T20:01:24.606-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "2 - create click"
+2026-10-03T20:01:24.617-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "3 - add click audit columns"
+2026-10-03T20:01:24.646-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "4 - add link audit columns"
+2026-10-03T20:01:24.661-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Successfully applied 4 migrations to schema "PUBLIC", now at version v4 (execution time 00:00.048s)
+2026-10-03T20:01:25.314-07:00  INFO 35687 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-10-03T20:01:25.343-07:00  INFO 35687 --- [    Test worker] dev.urlshort.UrlshortApplicationTests    : Started UrlshortApplicationTests in 2.073 seconds (process running for 8.006)
+2026-10-03T20:01:25.380-07:00  WARN 35687 --- [    Test worker] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-03T20:01:25.380-07:00  WARN 35687 --- [    Test worker] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-03T20:01:25.388-07:00  INFO 35687 --- [    click-purge] dev.urlshort.click.ClickPurge            : clicks purged
+2026-10-03T20:01:25.834-07:00  INFO 35687 --- [    Test worker] dev.urlshort.UrlshortApplication         : Starting UrlshortApplication using Java 21.0.10 with PID 35687 (started by andrzej in /Users/andrzej/Documents/projekty/test/openrig/url-shortener/.worktrees/06-client-identity)
+2026-10-03T20:01:25.834-07:00  INFO 35687 --- [    Test worker] dev.urlshort.UrlshortApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-10-03T20:01:25.899-07:00  INFO 35687 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2026-10-03T20:01:25.904-07:00  INFO 35687 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 1 JDBC repository interface.
+2026-10-03T20:01:25.934-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-10-03T20:01:25.935-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection conn10: url=jdbc:h2:mem:urlshort-unit user=SA
+2026-10-03T20:01:25.935-07:00  INFO 35687 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-10-03T20:01:25.935-07:00  INFO 35687 --- [    Test worker] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:urlshort-unit (H2 2.4)
+2026-10-03T20:01:25.937-07:00  WARN 35687 --- [    Test worker] o.f.c.internal.database.base.Database    : Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026-10-03T20:01:25.943-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbValidate     : Successfully validated 4 migrations (execution time 00:00.004s)
+2026-10-03T20:01:25.944-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": 4
+2026-10-03T20:01:25.945-07:00  INFO 35687 --- [    Test worker] o.f.core.internal.command.DbMigrate      : Schema "PUBLIC" is up to date. No migration necessary.
+2026-10-03T20:01:26.019-07:00  INFO 35687 --- [    Test worker] dev.urlshort.UrlshortApplication         : Started UrlshortApplication in 0.194 seconds (process running for 8.681)
+2026-10-03T20:01:26.020-07:00  INFO 35687 --- [    click-purge] dev.urlshort.click.ClickPurge            : clicks purged
+]]></system-out>
+  <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/Users/andrzej/Documents/projekty/test/openrig/url-shortener/.gradle-home/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.18.11/82212e5b3633e7a65fca8bec525762cfb6c9bae4/byte-buddy-agent-1.18.11.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

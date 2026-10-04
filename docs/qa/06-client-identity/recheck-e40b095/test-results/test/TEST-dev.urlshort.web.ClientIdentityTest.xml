@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.urlshort.web.ClientIdentityTest" tests="38" skipped="0" failures="0" errors="0" timestamp="2026-10-04T03:01:27.574Z" hostname="Andrzejs-MacBook-Pro.local" time="0.017">
+  <properties/>
+  <testcase name="[1] value = &quot;203.0.113.7&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[2] value = &quot;127.0.0.1&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[3] value = &quot;&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[4] value = &quot;   &quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[1] peer = &quot;127.0.0.1&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[2] peer = &quot;127.0.0.2&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[3] peer = &quot;127.255.255.254&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[4] peer = &quot;::1&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.001"/>
+  <testcase name="[5] peer = &quot;0:0:0:0:0:0:0:1&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[6] peer = &quot;::ffff:127.0.0.1&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[1] peer = &quot;192.0.2.10&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[2] peer = &quot;10.0.0.7&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[3] peer = &quot;::ffff:192.0.2.10&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.001"/>
+  <testcase name="[4] peer = &quot;fe80::1&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[5] peer = &quot;&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[1] trusted = &quot;&quot;, peer = &quot;10.9.9.9&quot;, forwardedFor = &quot;203.0.113.7&quot;, client = &quot;10.9.9.9&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.001"/>
+  <testcase name="[2] trusted = &quot;10.9.9.9&quot;, peer = &quot;10.0.0.5&quot;, forwardedFor = &quot;203.0.113.7&quot;, client = &quot;10.0.0.5&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[3] trusted = &quot;10.9.9.9&quot;, peer = &quot;10.9.9.9&quot;, forwardedFor = &quot;203.0.113.7&quot;, client = &quot;203.0.113.7&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[4] trusted = &quot;10.9.9.9&quot;, peer = &quot;10.9.9.9&quot;, forwardedFor = &quot;198.51.100.1, 203.0.113.7&quot;, client = &quot;203.0.113.7&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[5] trusted = &quot;10.9.9.9,10.9.9.8&quot;, peer = &quot;10.9.9.9&quot;, forwardedFor = &quot;203.0.113.8, 203.0.113.7, 10.9.9.8&quot;, client = &quot;203.0.113.7&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[6] trusted = &quot;10.9.9.9&quot;, peer = &quot;10.9.9.9&quot;, forwardedFor = &quot;  203.0.113.7 ,  &quot;, client = &quot;203.0.113.7&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[7] trusted = &quot;10.9.9.9,10.9.9.8&quot;, peer = &quot;10.9.9.9&quot;, forwardedFor = &quot;10.9.9.9, 10.9.9.8&quot;, client = &quot;10.9.9.9&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[8] trusted = &quot;10.9.9.9&quot;, peer = &quot;10.9.9.9&quot;, forwardedFor = null, client = &quot;10.9.9.9&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[9] trusted = &quot;10.9.9.9&quot;, peer = &quot;10.9.9.9&quot;, forwardedFor = &quot;&quot;, client = &quot;10.9.9.9&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.001"/>
+  <testcase name="[10] trusted = &quot;10.9.9.9&quot;, peer = &quot;10.9.9.9&quot;, forwardedFor = &quot; , &quot;, client = &quot;10.9.9.9&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[11] trusted = &quot;&quot;, peer = &quot;127.0.0.1&quot;, forwardedFor = null, client = &quot;127.0.0.1&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[12] trusted = &quot;&quot;, peer = &quot;::1&quot;, forwardedFor = &quot;203.0.113.7&quot;, client = &quot;::1&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[13] trusted = &quot;10.9.9.9&quot;, peer = &quot;10.9.9.9&quot;, forwardedFor = &quot;203.0.113.7, 203.0.113.8&quot;, client = &quot;203.0.113.8&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.001"/>
+  <testcase name="[14] trusted = &quot;10.9.9.9&quot;, peer = &quot;10.9.9.9&quot;, forwardedFor = &quot;203.0.113.7,,&quot;, client = &quot;203.0.113.7&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[15] trusted = &quot;10.9.9.9&quot;, peer = &quot;10.9.9.9&quot;, forwardedFor = &quot;\t203.0.113.7\t&quot;, client = &quot;203.0.113.7&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.001"/>
+  <testcase name="[16] trusted = &quot;10.9.9.9&quot;, peer = &quot;10.9.9.9&quot;, forwardedFor = &quot;unknown&quot;, client = &quot;unknown&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[17] trusted = &quot;10.9.9.9&quot;, peer = &quot;10.9.9.9&quot;, forwardedFor = &quot;[2001:db8::1]:443&quot;, client = &quot;[2001:db8::1]:443&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[18] trusted = &quot;10.9.9.9&quot;, peer = &quot;10.9.9.9&quot;, forwardedFor = &quot;203.0.113.7:8080&quot;, client = &quot;203.0.113.7:8080&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.001"/>
+  <testcase name="[19] trusted = &quot;::1&quot;, peer = &quot;0:0:0:0:0:0:0:1&quot;, forwardedFor = &quot;203.0.113.7&quot;, client = &quot;0:0:0:0:0:0:0:1&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[1] value = &quot;for=203.0.113.7&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[2] value = &quot;for=127.0.0.1&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[3] value = &quot;&quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <testcase name="[4] value = &quot;   &quot;" classname="dev.urlshort.web.ClientIdentityTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
