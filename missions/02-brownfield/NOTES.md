@@ -101,6 +101,10 @@ Context and observations that help the mission but do not change its
     - `qa2-agent` `qitem-20261004004922-defcdcb0`: a before-capture on current `main`.
     - Rule in each: a difference from the reviewed SPEC or design revises the pre-work, never pushes it through.
   - **Mission 03:** its `release_prep` went to `release2-agent` at 00:48Z (D18, routed at the start to avoid a move mid-step). It does not depend on D21; `review2-agent` clarified its own report to say so. It needed W2F-01's reviewed fix on `main`, which is now merged, with a green full gate at `50ad9c3`.
+- 2026-10-04T00:55Z — **Release prep pre-run, and the wave review's dependency.**
+  - **Pre-run:** human request "any way to complete faster without changing scope" (operator `qitem-20261004005409-51bcc9fc`). `release-agent` runs the full mission-02 release evidence now on `main` ≥ `0fb0c44` as a plain item (`qitem-20261004005451-9e2c091d`). `RELEASE.md` is headed "prepared on <sha>, pending the refactor merge". The real `release_prep` step, after `06-client-identity` merges and the wave review adds its range, re-runs only what binds to the final SHA: fresh gate, short installed smoke, OSV if dependencies changed (they must not), and the range-diff showing the delta is the refactor alone. A behaviour change found in the refactor re-runs the affected sections.
+  - **Wave review dependency:** the `wave_review` packet parks on `qitem-20261004005331-36607695`, which I hold. It stays parked on the refactor slice's live frontier, and I re-park it as the slice moves. At the slice's integrate I close it with the candidate and merge SHAs, the proof and merged-gate paths, and the range to add. `review-agent`'s parallel row `03f51cda` crossed with it and was cancelled.
+  - `review-agent` re-reviewed W2F-01 on `50ad9c3`: 226/250 tests, 582/206 coverage, finding fixed.
 
 ## 3. Design agent
 
