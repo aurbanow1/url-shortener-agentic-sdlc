@@ -46,18 +46,24 @@ at 16:10:30.782Z, transition **876**:
 | Q5 A: reader | Existing statistics API | B CSV; C HTML dashboard; D cross-link view |
 | Q6 A: day | UTC calendar days | B timezone parameter; C operator-selected zone |
 
-**Proof status:** the [captured attributed readiness](release/proof-readiness-50ad9c3.json)
-is **not-ready: items 1–11 accepted, item 12 pending**. The NFR-L1 measurement
-is now recorded in §3. Per the lead's 02:06Z routing decision, a separate QA item to analytics'
-judge `qa-agent` returns item12 and any drifted analytics-v2 judgments, pinned
-to50ad9c3, in parallel with release review and before ship sign-off. Its
-packet is created after this handoff. Global `qitem-20261003195138-8eb72ecb`
-retains mission01/02 drift on their final main; mission03 does not wait for
-D21. No self-judgment is substituted.
-[Current sequencing record](NOTES.md) and [exported proof](../../docs/evidence/03-ambiguous-analytics/proof-readiness.json).
+**Proof status:** the [post-QA attributed readiness](release/proof-readiness-after-qa-50ad9c3.json)
+is **ready: all 12 items accepted, no issues**. QA's
+[receipt 13](slices/01-analytics-v2/proof/judgments/00000013.md) accepts item 12
+and [receipt 14](slices/01-analytics-v2/proof/judgments/00000014.md) reaffirms
+item 6, both against `50ad9c3`. The [restored-seat QA return](slices/01-analytics-v2/proof/qa-release-50ad9c3/QA.md)
+and [raw audit](slices/01-analytics-v2/proof/qa-release-50ad9c3/audit.json)
+support the bounded NFR-L1 closure and current GAPS qualifications (§§3/7).
+The [original prep readiness](release/proof-readiness-50ad9c3.json), with
+items 1–11 accepted and item 12 pending, and the earlier
+[exported proof](../../docs/evidence/03-ambiguous-analytics/proof-readiness.json)
+remain unchanged as history. QA returned through
+`qitem-20261004020825-9237265b`, separately from global
+`qitem-20261003195138-8eb72ecb`, which retains mission01/02 drift on their
+final main. Mission03 does not wait for D21. No self-judgment is substituted.
+[Sequencing record](NOTES.md), [receipt/hash verification](release/post-qa-verification-50ad9c3.json).
 
-**Recommended default:** finish independent release review and QA's item-12
-return, then approve this pinned pre-D21 candidate for local use, retaining
+**Recommended default:** finish the independent release review's focused
+receipt/document check, then approve this pinned pre-D21 candidate for local use, retaining
 §7's limits. Exact-candidate hosted CI/CD is unverified and must be visible
 in the human's decision. The alternative is to hold for a human-triggered
 hosted CI/CD record, costing another external verification cycle. Rollback is
@@ -157,7 +163,22 @@ not an isolated added-cost quantile. One laptop, service/load generator on
 the same host, active factory seats, no container benchmark or capacity claim.
 The mission-02 load generator started only after our load and rollback gate
 ended; overlap of unrelated host activity remains a qualification.
-QA alone judges proof item 12 from this measurement/disclosure.
+QA accepted proof item 12 in receipt 13 from this measurement/disclosure.
+Its [independent audit](slices/01-analytics-v2/proof/qa-release-50ad9c3/audit.json)
+reconciles 19,200 load completions, one PID/file-H2 custody, stored GET clicks
+and aggregate method/counter counts. Per-request client latency samples were
+not retained; the captured generator percentiles were not independently
+recomputed. Server logs omit paths/methods, so phase attribution uses script
+ordering plus aggregate Prometheus counts. This closes the measurement gap
+for the specified candidate and run, with those qualifications retained.
+
+Per the lead's 02:16Z notice, QA authored the initial NFR-L1 verdict/GAPS
+edit `797f8fb` on GPT-6-Luna medium. Per the lead's restoration
+condition, QA re-derived the raw benchmark and rechecked that edit on its
+restored seat before recording receipts 13/14. Its numbers and bounded
+closure held; commit `f825706` adds the configuration and sample-retention
+qualifications. The [QA return](slices/01-analytics-v2/proof/qa-release-50ad9c3/QA.md)
+supplies the new attribution; the earlier fallback attempt supplies none.
 
 QA dogfood `qitem-20261004005528-6b84b233`, commit **`8cf894a`**, explored the
 preserved jar on ports 18232/18233 for 20m13s: **no new defects** in its bounded
@@ -173,7 +194,10 @@ current model from the archived raw responses, all 840 hashes, all 405 wire/log
 joins, aggregate/ranking/error/limiter/concurrent/restart observations.
 No correction was required within that audit scope.
 [Audit program](release/rederive-dogfood.py), [fresh result](release/dogfood-rederivation-8cf894a.json).
-Release review must independently re-check the same window/commit.
+The [independent release review](../../docs/review/03-ambiguous-analytics/release-review.md)
+at `eedc97f` separately re-derived all 840 raw hashes, 405 wire/log joins and
+38 statistics bodies from preceding request inputs; no correction was needed.
+Its final disposition still awaits the focused post-QA document/receipt check.
 
 Installed smoke does not re-prove natural UTC midnight, natural disk failure,
 90-day aging, purge-in-progress shutdown, full container restart/down-up or
@@ -210,6 +234,8 @@ image OS-package scanning or future advisory status.
 | Independent code / security | [Code PASS](../../docs/review/01-analytics-v2/01-code-review.md), [security PASS](../../docs/review/01-analytics-v2/02-security-review.md), exact `ec466da`, record `61430eb`; item11 construction judged in [QA return](slices/01-analytics-v2/proof/qa-item11-ec466da.md) |
 | Integration / wave | X′ `22fc8e2`, merge `c9b66dd`; [merged gate](../../docs/evidence/03-ambiguous-analytics/integrate-01-analytics-v2-check-22fc8e2.txt), [independent wave PASS](../../docs/review/03-ambiguous-analytics/wave-1-review-review-agent.md), [structural vantage](../../docs/review/03-ambiguous-analytics/wave-review-design2-agent.md) `7c54ef7`/`9928513` |
 | Shared W2F-01 repair | Test candidate `0552b81`, merge `50ad9c3`, [owning re-review](../../docs/review/02-brownfield/wave-review-review-agent.md) `79eda7e`, [integration gate](../../docs/evidence/02-brownfield/integrate-w2f-01-check-0552b81.txt); our fresh gate in §2 |
+| Release QA return | [Restored-seat review](slices/01-analytics-v2/proof/qa-release-50ad9c3/QA.md) and [audit](slices/01-analytics-v2/proof/qa-release-50ad9c3/audit.json), `f825706`; final receipts/readiness `d203049`; receipts [13](slices/01-analytics-v2/proof/judgments/00000013.md) / [14](slices/01-analytics-v2/proof/judgments/00000014.md) on `50ad9c3`; [current captured readiness](release/proof-readiness-after-qa-50ad9c3.json) ready |
+| Independent release review | [Package review and raw re-derivation](../../docs/review/03-ambiguous-analytics/release-review.md), `eedc97f`: no new finding; focused final receipt/document disposition pending |
 | Shared QA/review context | [TRACEABILITY](../../docs/qa/TRACEABILITY.md), [GAPS](../../docs/qa/GAPS.md), [review ledger](../../docs/review/REVIEW-LEDGER.md), [cross-cutting register](../../docs/guidance/architecture.md) |
 
 The governance-indexed [export INDEX](../../docs/evidence/03-ambiguous-analytics/INDEX.md)
@@ -265,15 +291,19 @@ No production outage or recovery SLO is established by those figures.
 
 ## 7. Known gaps, complete
 
-The entire current shared gap record is copied byte-for-byte as
-[GAPS-snapshot.md](release/GAPS-snapshot.md), with hash in the artifact manifest.
+The post-QA shared gap record is copied byte-for-byte as
+[GAPS-after-qa-50ad9c3.md](release/GAPS-after-qa-50ad9c3.md), SHA-256
+`004509e6d7d92230fa3273e1c92e3b6b67c7bc42d44f90b6009dd135487fef43`,
+matching receipt 14 and the [post-QA verification](release/post-qa-verification-50ad9c3.json).
+The original [GAPS-snapshot.md](release/GAPS-snapshot.md) and its manifest
+hash remain unchanged as preparation history.
 Every historical row/qualification remains available; the table below reconciles
 its applicable sections and the review residue at this exact candidate.
 Living GAPS/proof hashes may change after this snapshot; QA alone reaffirms them.
 
 | Gap / qualification | Current disposition and evidence | Owner |
 |---|---|---|
-| NFR-L1 proof12 | Percentiles now measured within bounds (§3); attributed judgment still pending. Historical GAPS pending row is not silently marked accepted. | QA through a separate lead-routed analytics item after prep, pinned50ad9c3 |
+| NFR-L1 proof12 | CLOSED for the specified run by QA receipt13: p95 3.7ms/p99 9.5ms at100 redirects/s for60s, zero bad responses. Same-host activity, trusted loopback, raised budgets and unretained client latency samples remain qualified (§3). Historical pending row is preserved beside the attributed closure. | QA return qitem-20261004020825-9237265b, pinned50ad9c3 |
 | Hosted CI/CD exact SHA | HTTP404 means unverified access; no candidate run URL/conclusion. Earlier successful runs and configuration-only failure-upload/lint evidence retain their own subject. No red hosted run, artifact-content review or wholly uncached image corroboration. | Human/operator supplies hosted record; release/review report it |
 | M3S-01 LOW | `totalClicks` Javadoc/schema can imply lifetime; README/RUNBOOK correctly explain retained rows, but candidate source/API wording remains. | Next authorized `click/` + OpenAPI holder; no slice scheduled |
 | M3S-02 LOW | Candidate property comment omits analytics identity effect; shared docs explain it. Later D21 owns comment-only repair; no later-tree claim here. | Mission02 `06-client-identity` |
@@ -293,7 +323,7 @@ Living GAPS/proof hashes may change after this snapshot; QA alone reaffirms them
 | Audit-read HIGH historical defect | QA-AUD-01/CR-01 fixed at7ac8af5, mergedcb148c4; default/forged/override controls independently rechecked. Prior rejection preserved, no waiver. | Mission02 QA/review; GAPS re-check |
 | W2F-01 historical test race | Fixed by0552b81 merged50ad9c3; ten scheduled-test repeats and owning independent re-review, then fresh whole gate. Failure records remain historical; no claim a green run alone disproved the race. | Owning review79eda7e; wave residual resolution |
 | Benchmark and factory metric limits | Same-host single-run regression only; GET−HEAD unisolated; export-container mission labels and custom-human-wait omission disclosed in§6. | Release/custodian; future measurement-tool holder |
-| Model fallback window | QA-authored8cf894a fell in01:27–01:33Z Luna Reserve window; current-model raw audit passed, independent release review still required. D17 means release author/reviewer can share runtime; separate authorship retained. | Release2 and independent release reviewer |
+| Model fallback / restoration | QA-authored8cf894a fell in01:27–01:33Z Luna Reserve window; release2 and independent release review re-derived its bounded claims. The initial NFR-L1 edit797f8fb was also rechecked on QA's restored seat before receipts13/14. D17 permits shared runtime; separate authorship retained. | QA, release2 and independent release reviewer; linked audits in§3 |
 
 Closed historical gaps remain visible above; none is presented as an open
 HIGH or silently erased. Full source-specific controlled probes, parser/capture
@@ -358,9 +388,11 @@ patch permit recovery without claiming a previously published rollback image.
 ## 9. Self-check
 
 - Decision brief quotes actual human transitions and links stamped SPECs;
-  six alternatives are recorded. Shipping/release-review/proof12 remain pending.
+  six alternatives are recorded. All12 proof items accepted through QA;
+  focused final release review and human shipping decision remain pending.
 - Fresh exact-product gate and preserved jar/image identities are linked;
-  every local evidence link is validated before commit. [Verification](release/package-verification.json). Hosted runs are unverified.
+  every local evidence link is validated before commit. [Prep verification](release/package-verification.json),
+  [post-QA verification](release/post-qa-verification-50ad9c3.json). Hosted runs are unverified.
 - Both loopback artifacts passed installed journeys and logs; byte-identical
   jar custody, teardown and untested lifecycle cases are explicit.
 - Runtime dependency resolution and fresh network OSV response inspected:
@@ -369,10 +401,12 @@ patch permit recovery without claiming a previously published rollback image.
   INDEX supplies packet/step tables. Final export remains downstream of the gate.
 - Shared metrics generated at8d3c536; own instance rows and factory totals
   distinguished, zero counts and missing MTTR/human-wait limits read plainly.
-- Full GAPS copied byte-for-byte; current closures, review LOWs, operational
-  limits and the model fallback window retained with owners.
+- Post-QA GAPS copied byte-for-byte and matched to receipt14; original pending
+  snapshots/manifest remain unchanged. Closures, review LOWs, operational
+  limits and both model recheck obligations are retained with owners.
 - Rollback rehearsed, gate and copied-data installed smoke passed; no analytics
   down migration; data-loss and later-tree limits described step by step.
-- Current-model audit of QA's8cf894a opens raw bytes and re-derives bounded
-  claims; independent release review is still required. Nothing pushed,
+- Current-model audit of QA's8cf894a and independent release re-derivation
+  open raw bytes; QA's restored-seat receipts bind the benchmark/GAPS return.
+  Focused final release review is pending. Nothing pushed,
   release-tagged, published or exposed beyond localhost.

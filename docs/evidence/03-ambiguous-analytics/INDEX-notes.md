@@ -27,3 +27,28 @@ step must refresh this directory after the human gate. QA-authored8cf894a
 fell within the recorded01:27–01:33Z Luna Reserve window; release2's current-model
 raw re-derivation is linked from RELEASE §3 and independent release review
 must re-check it. See [GOVERNANCE](../../GOVERNANCE.md) for clause definitions.
+
+## Post-QA supplement
+
+The preceding tables and raw exports retain the preparation state. The
+[post-QA readiness capture](../../../missions/03-ambiguous-analytics/release/proof-readiness-after-qa-50ad9c3.json)
+now reports **ready, 12/12 accepted, no issues**. Independent QA accepted
+item12 in [receipt13](../../../missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/judgments/00000013.md)
+and reaffirmed item6 in [receipt14](../../../missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/judgments/00000014.md),
+both against the same pre-D21 candidate50ad9c3. These evidence the governance
+clauses for independent review, decision lineage and audit-grade traceability.
+
+The [restored-seat QA return](../../../missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-release-50ad9c3/QA.md)
+and [raw audit](../../../missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-release-50ad9c3/audit.json)
+recheck797f8fb before the new judgments. The
+[post-QA complete GAPS copy](../../../missions/03-ambiguous-analytics/release/GAPS-after-qa-50ad9c3.md)
+matches receipt14's hash; the original pending snapshot and artifact manifest
+remain unchanged. [Verification](../../../missions/03-ambiguous-analytics/release/post-qa-verification-50ad9c3.json)
+checks those hashes, preserved history and current local evidence links.
+
+The [independent release package audit](../../review/03-ambiguous-analytics/release-review.md)
+at eedc97f also re-derived8cf894a's840raw hashes,405response/log joins and
+38statistics bodies. Its focused final receipt/document disposition and the
+human ship decision remain pending. Exact-candidate hosted CI/CD stays
+unverified. This supplement does not replace the final-state export or claim
+a human approval; nothing was published.
