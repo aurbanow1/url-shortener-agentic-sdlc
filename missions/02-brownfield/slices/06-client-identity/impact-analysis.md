@@ -1,15 +1,18 @@
-# DRAFT — Impact analysis — 06-client-identity
+# Impact analysis — 06-client-identity
 
-> **DRAFT, pre-work.** Written by `design2-agent@urlshort-factory` on 2026-10-04 at the lead's
-> request (`qitem-20261004004918-ac7ea2a4`), so the refactor's design step can start from it. It is
-> **not** the slice's impact analysis. `impact-analysis.md` is written at the design step, after the
-> reviewed SPEC. If the reviewed SPEC differs from an assumption here, this draft is revised, never
-> pushed through.
->
-> **Inputs:** D21 (`PLAN.md` §10; mission 02 SPEC, third amendment); `slice.yaml`; the unreviewed
-> SPEC draft as of 2026-10-04T00:48Z (baseline `5cfdf8a`, AC-1 to AC-15, rules 1 to 6); the code on
-> `main` `50ad9c3`. Its product code differs from `5cfdf8a` only in
-> `ClickRetentionScheduleJourneyTest`, the unrelated W2F-01 fix.
+Written before `design.md` (`docs/guidance/brownfield.md` §2) by `design2-agent@urlshort-factory`,
+2026-10-04, for SPEC `4f247f4` (requirements review PASS, no findings, `b68ff80`). It was drafted as
+pre-work in `c6b5560` (`impact-analysis.draft.md`, at the lead's request
+`qitem-20261004004918-ac7ea2a4`) and promoted at the design step. The reviewed SPEC is the one the
+draft followed, so no assumption changed.
+
+**Inputs:**
+- D21 (`PLAN.md` §10; mission 02 SPEC, third amendment);
+- `slice.yaml`;
+- SPEC `4f247f4` (baseline `5cfdf8a`, AC-1 to AC-15, rules 1 to 6);
+- the code on `main` `50ad9c3`, whose product code differs from `5cfdf8a` only in
+  `ClickRetentionScheduleJourneyTest` (the unrelated W2F-01 fix);
+- `dev2-agent`'s characterization pre-work `240b230` on `slice/06-client-identity`.
 
 ## Change in one sentence
 
@@ -99,11 +102,11 @@ so its renamed key (if the design renames it) is invisible outside the process.
 
 | If the move is wrong | Worst case | Detection |
 |---|---|---|
-| The rule changes an edge (trim, empty entry, exact-text match, multi-proxy chain, opaque token) | a client charged to the wrong bucket; uniques wrong behind a proxy | `RateLimitFilterTest` rule-5 rows; the characterization matrix (design draft §5) on the baseline and on the candidate |
+| The rule changes an edge (trim, empty entry, exact-text match, multi-proxy chain, opaque token) | a client charged to the wrong bucket; uniques wrong behind a proxy | `RateLimitFilterTest` rule-5 rows; the characterization matrix (design §5) on the baseline and on the candidate |
 | The attribute is set after charging, not at all, or under another key than the reader uses | uniques behind a proxy silently fall back to the proxy's address | `TrustedProxyClickJourneyTest.AC07`; the characterization AC-5 rows |
 | The two questions merge (audit uses the resolved client) | **a trusted proxy's forwarded `127.0.0.1` would open `/api/audit`** | `AuditAccessSettingsJourneyTest` (trusted list contains the forged sources); characterization AC-7 and AC-8 rows "with the peer listed as trusted"; the security review reads the move line by line (`slice.yaml`) |
 | `peerIsConnection` loses a condition (CR-01) | the valve rewrites the peer and a forged loopback header is admitted | `AuditForwardedHeadersJourneyTest` on a real Tomcat; `AuditControllerTest` |
-| `ClientIdentity` becomes a bean that needs `ServerProperties` | the context fails to start in `UrlshortApplicationTests.mainBootsWithoutAWebServer` (`web-application-type=none`), where those beans do not exist | that unit test (it is why the design draft keeps the class static) |
+| `ClientIdentity` becomes a bean that needs `ServerProperties` | the context fails to start in `UrlshortApplicationTests.mainBootsWithoutAWebServer` (`web-application-type=none`), where those beans do not exist | that unit test (it is why the design keeps the class static) |
 
 ## Compatibility (FR-13)
 
@@ -115,16 +118,22 @@ so its renamed key (if the design renames it) is invisible outside the process.
 
 ## Test impact
 
-- **Added first, green on the baseline:** the characterization cases of design draft §5. They are a
-  new functional journey `ClientIdentityCharacterizationJourneyTest`, plus unit rows added to
-  `RateLimitFilterTest`, `AuditControllerTest` and `ClickRecorderTest` against today's members.
-- **Changed with the move:** only the references in those three unit tests:
+- **Added first, green on the baseline** (design §5):
+  - already committed by `dev2-agent` in `240b230`: the new unit test `web/ClientIdentityTest` and
+    the new journey `web/ClientIdentityCharacterizationJourneyTest`, both against today's members
+    (`fromLoopback` reached reflectively until it moves);
+  - to complete the matrix before the move: added rows in `ClientIdentityTest`, added cases in
+    `AuditControllerTest` and `ClickRecorderTest`, and two nested contexts and two real-server cases
+    in the journey.
+- **Changed with the move:** references only, in `RateLimitFilterTest`, `AuditControllerTest` and
+  `ClickRecorderTest`:
   - `RateLimitFilter.clientOf` becomes `ClientIdentity.clientOf`;
   - `RateLimitFilter.CLIENT_ATTRIBUTE` becomes `ClientIdentity.CLIENT_ATTRIBUTE`;
   - `AuditController.fromLoopback` becomes `ClientIdentity.fromLoopback`.
 
-  Every assertion is unchanged; any other change is a grant request named in `PROOF.md`
-  (`slice.yaml`).
+  Every existing assertion in those three files stays byte for byte; any other change is a grant
+  request named in `PROOF.md` (`slice.yaml`). In `ClientIdentityTest`, a file this slice adds, the
+  reflective helper gives way to the direct call.
 - **Removed:** none. **Existing functional journeys:** byte-for-byte unchanged.
 
 ## Observability impact
@@ -136,15 +145,18 @@ and the click counters are unchanged.
 
 | # | Risk | Mitigation | Owner step |
 |---|---|---|---|
-| 1 | The audit guard and the resolved client get merged | two separately named questions in `ClientIdentity` (design draft §2); trust-listed characterization rows; line-by-line security review | design → QA → security review |
+| 1 | The audit guard and the resolved client get merged | two separately named questions in `ClientIdentity` (design §2); trust-listed characterization rows; line-by-line security review | design → QA → security review |
 | 2 | A rule edge drifts in the move | characterization first, green on the baseline, rerun unchanged after; the move commit touches no test | build → QA |
 | 3 | Context start-up breaks in the non-web test | a static class, no new bean | design |
 | 4 | Javadoc doclint on the new public type | every public member documented, `@param` and `@return` included | build |
 
-## Self-check (draft)
+## Self-check
 
 - Every caller and every test that names a moved member is listed, from a grep on `50ad9c3`; every
   journey that exercises one is listed with what it pins.
 - The CR-01 cases are listed with their current pins and the gaps a characterization case closes.
-- Not verified here: the reviewed SPEC (this draft follows the unreviewed one); running anything.
-  The characterization cases are dev2's pre-work.
+  Boot 4.1.1's valve trigger was read in bytecode: it uses `StringUtils.hasText` on both headers,
+  the same test as the guard (design §5).
+- The reviewed SPEC `4f247f4` is the one the draft followed.
+- **Not verified here:** running anything. The characterization tests in `240b230` pass on the
+  baseline by their author's run; QA reruns them.
