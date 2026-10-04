@@ -177,11 +177,19 @@ are recorded verbatim in the queue transitions exported under `docs/evidence/`.
     loopback listener (LOW);
   - `totalClicks` documented as "retained click rows" rather than implying a
     lifetime total, in its Javadoc and API schema (M3S-01, LOW); the README and
-    runbook already say it correctly.
+    runbook already say it correctly;
+  - a future `V5` migration must pin the V4-specific tests, as V4 had to for
+    V3 (LOW, owner: the V5 author).
 - GitHub has no CI run on the exact commit the human signed off for mission 02
-  (`30f8de4e`), because agents never push. The human accepted that because the
-  code passed CI one documentation-only change earlier (`e43ed246`, pull
-  request #14). The final pull request runs the gate on everything shipped.
+  (`30f8de4e`), nor for mission 03 (`50ad9c3`), because agents never push. The
+  human accepted each: mission 02's code passed CI one documentation-only
+  change earlier (`e43ed246`, pull request #14), and mission 03's one test-only
+  change earlier (`18db1de`). Later CI runs on `main` include both.
+- `scripts/http`, the curl wrapper agents use for HTTP checks, refuses URLs
+  that do not start with a loopback address. It checks only that prefix, so it
+  guards against accidents and is not a security boundary. For the Codex
+  seats, the hard network boundary is their sandbox, which has no network.
+  Found in the final fact-check; not changed.
 
 ## 8. How to verify in 15 minutes
 
