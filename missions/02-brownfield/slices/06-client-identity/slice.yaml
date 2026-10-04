@@ -61,6 +61,14 @@ territory:
   - src/test/java/dev/urlshort/audit/AuditControllerTest.java
   # New characterization journeys only (new files); existing journeys stay unchanged.
   - src/functionalTest/java/dev/urlshort/web/ClientIdentityCharacterizationJourneyTest.java
+  # COMMENT-ONLY GRANT (lead, 2026-10-04T01:24Z, at plan-lock; mission 03 wave review M3S-02, LOW,
+  # qitem-20261004004643-c5f63115, owner recorded in mission 03 NOTES 00:48Z): the comment above
+  # urlshort.rate-limit.trusted-proxies gains one sentence saying the same list also decides which
+  # client is hashed for per-day unique visitors (it never grants audit access). No property key,
+  # value or other line changes; it is not a new or renamed setting (D21). Its own commit,
+  # docs(06-client-identity): ..., separate from the test and move commits; QA confirms the file's
+  # only diff is that comment.
+  - src/main/resources/application.properties
 # NOT in territory: every existing functional journey, docs/api/openapi.json (must regenerate
 # identical), application.properties, db/migration/, build.gradle.kts. ADRs are edited by the design
 # step in the main checkout.

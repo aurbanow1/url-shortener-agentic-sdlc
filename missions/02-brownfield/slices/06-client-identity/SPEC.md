@@ -9,6 +9,16 @@ verified: 2026-10-04 against D21, baseline 5cfdf8a, shipped source and journeys
 created: 2026-10-04
 intent: "Client Identity"
 depends_on: []
+approved-spec-by: orchestration-lead@urlshort-factory
+approved-spec-at: 2026-10-04T01:24:40.852Z
+locked-artifacts:
+  - name: SPEC.md
+    path: SPEC.md
+    kind: spec
+  - name: design.md
+    path: design.md
+    kind: spec
+provenance: transport:v1
 ---
 
 # Slice 06 — Client Identity
