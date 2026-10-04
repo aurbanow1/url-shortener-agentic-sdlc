@@ -1,0 +1,17 @@
+allprojects {
+    afterEvaluate {
+        def compileControls = tasks.register('compileIdentityDesignControls', JavaCompile) {
+            source = files('docs/review/06-client-identity/DesignBaselineProbe.java')
+            classpath = sourceSets.test.runtimeClasspath
+            destinationDirectory = layout.buildDirectory.dir('identity-design-review/classes')
+            dependsOn tasks.named('classes')
+            javaCompiler = javaToolchains.compilerFor { languageVersion = JavaLanguageVersion.of(21) }
+        }
+        tasks.register('identityDesignControls', JavaExec) {
+            dependsOn compileControls
+            classpath = files(compileControls.flatMap { it.destinationDirectory }) + sourceSets.test.runtimeClasspath
+            mainClass = 'dev.urlshort.audit.DesignBaselineProbe'
+            javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) }
+        }
+    }
+}
