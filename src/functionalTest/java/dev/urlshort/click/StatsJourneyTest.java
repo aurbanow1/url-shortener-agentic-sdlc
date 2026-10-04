@@ -110,8 +110,10 @@ class StatsJourneyTest {
 		assertThat(response.getStatus()).isEqualTo(200);
 		JsonNode stats = jsonMapper.readTree(response.getContentAsString());
 
-		assertThat(stats.get("clicksPerDay")).isEqualTo(jsonMapper.readTree("[{\"date\":\"2026-10-01\",\"clicks\":2},"
-				+ "{\"date\":\"2026-10-02\",\"clicks\":3},{\"date\":\"2026-10-04\",\"clicks\":1}]"));
+		assertThat(stats.get("clicksPerDay")).isEqualTo(jsonMapper.readTree(
+				"[{\"date\":\"2026-10-01\",\"clicks\":2,\"uniqueVisitors\":1,\"botClicks\":0},"
+				+ "{\"date\":\"2026-10-02\",\"clicks\":3,\"uniqueVisitors\":1,\"botClicks\":0},"
+				+ "{\"date\":\"2026-10-04\",\"clicks\":1,\"uniqueVisitors\":1,\"botClicks\":0}]"));
 		assertThat(stats.get("totalClicks").asLong()).isEqualTo(6);
 		assertConsistent(stats);
 	}

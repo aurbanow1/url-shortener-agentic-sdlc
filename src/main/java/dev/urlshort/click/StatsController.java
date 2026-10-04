@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 class StatsController {
 
-	private static final String EXAMPLE = "{\"code\":\"Ab3dE9fG\",\"totalClicks\":6,\"clicksPerDay\":["
-			+ "{\"date\":\"2026-10-01\",\"clicks\":2},{\"date\":\"2026-10-02\",\"clicks\":3},"
-			+ "{\"date\":\"2026-10-04\",\"clicks\":1}],\"topReferrers\":[{\"referrer\":\"https://a.example\",\"clicks\":5}]}";
+	private static final String EXAMPLE = "{\"code\":\"aB3dE5fG\",\"totalClicks\":6,\"clicksPerDay\":["
+			+ "{\"date\":\"2026-10-01\",\"clicks\":6,\"uniqueVisitors\":3,\"botClicks\":1}],"
+			+ "\"topReferrers\":[{\"referrer\":\"https://news.example.com\",\"clicks\":4}]}";
 
 	private final ClickStore store;
 
@@ -32,7 +32,7 @@ class StatsController {
 
 	@GetMapping("/api/links/{code:[A-Za-z0-9]{6,32}}/stats")
 	@Operation(summary = "Read a link's click statistics", responses = {
-		@ApiResponse(responseCode = "200", description = "Total clicks, clicks per UTC day and the top 10 referrer origins",
+		@ApiResponse(responseCode = "200", description = "Total clicks; per UTC day the clicks, unique visitors and bot clicks; and the top 10 referrer origins",
 				content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
 						schema = @Schema(implementation = LinkStats.class),
 						examples = @ExampleObject(name = "stats", value = EXAMPLE))),
@@ -40,6 +40,6 @@ class StatsController {
 				mediaType = "application/problem+json", schema = @Schema(implementation = ProblemDetail.class))) })
 	LinkStats stats(@PathVariable String code) {
 		long linkId = store.findLinkId(code).orElseThrow(Problems::notFound);
-		return LinkStats.of(code, store.countByDayAndReferrer(linkId));
+		return LinkStats.of(code, store.stats(linkId));
 	}
 }

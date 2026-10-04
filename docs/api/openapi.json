@@ -69,6 +69,11 @@
       },
       "DayClicks" : {
         "properties" : {
+          "botClicks" : {
+            "description" : "Clicks whose user agent was classified bot",
+            "format" : "int64",
+            "type" : "integer"
+          },
           "clicks" : {
             "format" : "int64",
             "type" : "integer"
@@ -76,6 +81,11 @@
           "date" : {
             "format" : "date",
             "type" : "string"
+          },
+          "uniqueVisitors" : {
+            "description" : "Distinct visitors that UTC day; never combined across days",
+            "format" : "int64",
+            "type" : "integer"
           }
         },
         "type" : "object"
@@ -658,19 +668,15 @@
                     "description" : "stats",
                     "value" : {
                       "clicksPerDay" : [ {
-                        "clicks" : 2,
-                        "date" : "2026-10-01"
-                      }, {
-                        "clicks" : 3,
-                        "date" : "2026-10-02"
-                      }, {
-                        "clicks" : 1,
-                        "date" : "2026-10-04"
+                        "botClicks" : 1,
+                        "clicks" : 6,
+                        "date" : "2026-10-01",
+                        "uniqueVisitors" : 3
                       } ],
-                      "code" : "Ab3dE9fG",
+                      "code" : "aB3dE5fG",
                       "topReferrers" : [ {
-                        "clicks" : 5,
-                        "referrer" : "https://a.example"
+                        "clicks" : 4,
+                        "referrer" : "https://news.example.com"
                       } ],
                       "totalClicks" : 6
                     }
@@ -681,7 +687,7 @@
                 }
               }
             },
-            "description" : "Total clicks, clicks per UTC day and the top 10 referrer origins"
+            "description" : "Total clicks; per UTC day the clicks, unique visitors and bot clicks; and the top 10 referrer origins"
           },
           "404" : {
             "content" : {
