@@ -9,7 +9,7 @@ what the honest limits are.
 
 | Suite | Location | What it proves | Runs in |
 |---|---|---|---|
-| Unit (`test`) | `src/test/java` | a rule or component in isolation, no Spring context (code generation, URL validation, click reduction and salts, the token-bucket limiter, filters, problem details) | `scripts/gw test` (seconds) |
+| Unit (`test`) | `src/test/java` | a rule or component in isolation, no Spring context (code generation, URL validation, click reduction and salts, the GCRA limiter (ADR-0014), filters, problem details) | `scripts/gw test` (seconds) |
 | Functional (`functionalTest`) | `src/functionalTest/java` | HTTP journeys with `@SpringBootTest`, both `MockMvc` and real loopback Tomcat requests, under the `functional` profile against H2 with Flyway applied; tests name the acceptance outcomes they cover | `scripts/gw functionalTest` |
 | Installed smoke | `scripts/smoke.sh <base-url>` | a *running* instance (jar or container) answers the journey as a user would: health, ping, create → redirect → read → stats → retire, error cases, metric names, Prometheus, OpenAPI | release prep |
 | Installed lifecycle | `scripts/smoke.sh --jar` / `--drain` / `--inspect` / `--restart` | the plain jar configured by environment; graceful shutdown with a held in-flight request; the container's binding, user, read-only filesystem and stop timeout; links surviving compose restart and down/up under load | release prep |
@@ -19,7 +19,9 @@ what the honest limits are.
 **The gate.** `scripts/gw check` runs both suites and `jacocoTestCoverageVerification`
 over their merged execution data with `LINE` and `BRANCH` minimum `1.0`. A
 candidate cannot leave the Development Agent, pass QA, or be merged by the
-Integrator while the gate is red.
+Integrator while the gate is red. In GitHub Actions, `.github/workflows/ci.yml`
+runs the same `check` task (as `./gradlew check`) on every pull request and
+every push to `main` (D14).
 
 **Test-first.** The Development Agent writes the failing test for each
 acceptance criterion before the production code and must watch it fail for the

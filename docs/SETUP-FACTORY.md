@@ -11,7 +11,7 @@ This page is for running the *factory* — the OpenRig rig that produced it.
 | macOS/Linux, Node 22/24, tmux | OpenRig runtime | `rig preflight` |
 | OpenRig 0.6.3 | the control plane (`npm i -g @openrig/cli@0.6.3`) | `rig --version` |
 | Claude Code, logged in | 5 seats run on Claude | `claude --version` |
-| Codex CLI, logged in | QA and review seats run on Codex (cross-runtime independence) | `codex login status` |
+| Codex CLI, logged in | 7 seats run on Codex: QA, review, requirements and release (cross-runtime independence for code) | `codex login status` |
 | JDK 21 | Gradle 9 / Spring Boot 4 | `/opt/homebrew/opt/openjdk@21/bin/java -version` (edit `scripts/env.sh` for another path) |
 | Docker (optional) | installed-smoke of the image | `docker info` |
 
@@ -39,9 +39,9 @@ specs resolve from the repo alone.
 
 ## Models and reasoning effort
 
-OpenRig pins a seat's *model* in its agent spec (`defaults.model`); `rig seat set-model <seat> --model <id>` changes a live seat (audited, effective at the seat's next launch). Reasoning *effort* is a runtime setting: the project `.claude/settings.json` sets the default for Claude seats, and a seat can raise its own with the `/effort <level>` slash command (`low|medium|high|xhigh|max`; `/effort status` reads it back), which is how the design seat runs at `xhigh` while the rest stay at `high`. From the operator shell it must be sent raw — `rig send --raw <seat> "/effort xhigh"` — because the default From/To envelope turns a slash command into plain message text; a `startup.actions` `send_text` cannot do it (startup text is delivered as a message, not as a command), so after every launch of `design-agent` the operator runs `rig send --raw <seat> "/effort xhigh"` and confirms with `/effort status`. Set the runtime defaults once before `rig up`:
+OpenRig pins a seat's *model* in its agent spec (`defaults.model`); `rig seat set-model <seat> --model <id>` changes a live seat (audited, effective at the seat's next launch). Reasoning *effort* is a runtime setting: the project `.claude/settings.json` sets the default for Claude seats, and a seat can raise its own with the `/effort <level>` slash command (`low|medium|high|xhigh|max`; `/effort status` reads it back), which is how the design seats run at `xhigh` while the rest stay at `high`. From the operator shell it must be sent raw — `rig send --raw <seat> "/effort xhigh"` — because the default From/To envelope turns a slash command into plain message text; a `startup.actions` `send_text` cannot do it (startup text is delivered as a message, not as a command), so after every launch of `design-agent` and `design2-agent` the operator runs `rig send --raw <seat> "/effort xhigh"` and confirms with `/effort status`. Set the runtime defaults once before `rig up`:
 
-- Claude Code — every seat's model is pinned to `claude-opus-5-5` in its agent spec (`defaults.model`), so the user-level `"model"` alias does not matter for seats; the project's `.claude/settings.json` sets `"effortLevel": "high"` for the author seats (project scope overrides user scope), plus `"modelSettings": {"claude-opus-5-5": {"effortLevel": "xhigh"}}` for the builder.
+- Claude Code — every seat's model is pinned to `claude-opus-5-5` in its agent spec (`defaults.model`), so the user-level `"model"` alias does not matter for seats; the project's `.claude/settings.json` sets `"effortLevel": "high"` for the author seats (project scope overrides user scope), plus `"modelSettings": {"claude-opus-5-5": {"effortLevel": "high"}}`, so the builders run at `high` (D7).
 - Codex — `~/.codex/config.toml`: `model = "gpt-6-astra"`, `model_reasoning_effort = "xhigh"`.
 
 | Seat | Runtime | Model | Effort |

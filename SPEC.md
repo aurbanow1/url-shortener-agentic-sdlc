@@ -19,9 +19,9 @@ Missions are the three assignment scenarios:
 
 | Mission | Scenario | Outcome |
 |---|---|---|
-| `00-hello` | dry run | one trivial endpoint through every pipeline step and both human gates |
+| `00-hello` | dry run | one trivial endpoint through every pipeline step and all three human gates (mission plan-lock, slice plan-lock, ship sign-off) |
 | `01-greenfield-core` | greenfield | create + redirect, analytics, reliability features |
-| `02-brownfield` | brownfield | expiry + custom alias enhancement, a bug fix, fault-injection drills |
+| `02-brownfield` | brownfield | audit-trail read, click retention, a dogfood bug fix, audit columns, CI/CD, a behaviour-preserving refactor, labelled fault-injection drills (expiry and custom aliases were dropped, D7) |
 | `03-ambiguous-analytics` | ambiguous | "better analytics" resolved through an ambiguity log and a human decision |
 
 The product requirements baseline — functional and non-functional, each row

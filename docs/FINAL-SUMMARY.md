@@ -31,7 +31,7 @@ Two deliverables in one repository:
   rollback, safe-stop and dynamic re-planning (`docs/ARCHITECTURE.md`,
   `docs/GOVERNANCE.md`, `rig/`).
 
-The plan of record and its decision log (D1–D21) are in `PLAN.md`; every
+The plan of record and its decision log (D1–D21; D10 unused) are in `PLAN.md`; every
 assignment clause is mapped to the guide section and the artefact that proves
 it in `docs/guidance/README.md` §2.
 
@@ -40,7 +40,7 @@ it in `docs/guidance/README.md` §2.
 | Assignment item | Artefact | Status |
 |---|---|---|
 | §4.1 requirement understanding | `docs/REQUIREMENTS.md` (44 FR/NFR rows tagged stated / derived / decided / dropped), slice `SPEC.md`s with ambiguity logs, the mission-03 ambiguity park and the human's six answers | done |
-| §4.2 decomposition | `missions/*/mission.yaml`, `slices/*/slice.yaml`, `docs/evidence/*/compiled-graph.json`, wave maps, plan-lock briefs | done (3 missions) |
+| §4.2 decomposition | `missions/*/mission.yaml`, `slices/*/slice.yaml`, `docs/evidence/*/compiled-graph.json`, wave maps, plan-lock briefs | done (4 missions: the 00-hello dry run plus three scenarios) |
 | §4.3 brownfield reasoning | `missions/02-brownfield/slices/*/impact-analysis.md` (six slices, the D21 refactor included), `docs/scenarios/brownfield.md` §Codebase reasoning, including the forwarded-header path one analysis missed and review caught | done |
 | §4.4 orchestration | `rig/workflows/*.yaml`, `project.yaml#lifecycle`, `docs/GOVERNANCE.md`, `docs/evidence/*/` (trails, packets, gates), `docs/metrics/`, `docs/scenarios/drills.md` | done |
 | §4.5 engineering output | `src/`, Flyway `V1`–`V4`, `docs/api/openapi.json`, Javadoc on every public type (`-Xdoclint:all -Werror` in `check`), `docs/DESIGN.md`, ADRs | done |
@@ -54,7 +54,7 @@ it in `docs/guidance/README.md` §2.
 
 | Mission | Scenario | What it demonstrated | Narrative |
 |---|---|---|---|
-| `00-hello` | dry run | one endpoint through every step and both human gates; two bounded remediation loops (DR-01, QA-01); stuck-sweep recovery; a refused `workflow revise` | `docs/scenarios/drills.md` |
+| `00-hello` | dry run | one endpoint through every step and all three human gates; two bounded remediation loops (DR-01, QA-01); stuck-sweep recovery; a refused `workflow revise` | `docs/scenarios/drills.md` |
 | `01-greenfield-core` | greenfield | 3 slices in 2 waves (parallel wave with ordered custody of shared files), 28+ ACs per slice, review loops that caught a flaky test, a rate-limiter race and a fail-open smoke reader before merge; release with bench, OSV, secret scan; one explicitly human-decided gap (AC-28 host forwarder) | `docs/scenarios/greenfield.md` |
 | `02-brownfield` | brownfield | six slices on shipped code: an enhancement read (audit), a purge with written rollback, a dogfood-sourced bug fix with regression tests first, an expand migration for the human's audit-column policy, CI/CD, and a behaviour-preserving refactor proven by characterization tests and before/after captures (D21); impact analyses first; a security finding caught by review after QA (CR-01); four drills (QA rejection loop, revert after failed smoke, stop→route, resume+abort); shipped at `30f8de4e` under the human's local-use sign-off, with the V4/V3 migration rollback rehearsed on a copy of its data | `docs/scenarios/brownfield.md` |
 | `03-ambiguous-analytics` | ambiguous | "marketing wants better analytics" turned into six decisions with options and consequences, parked on the human before design, built to the decided scope; stacked on mission 02's click work; shipped at `50ad9c3` under the human's sign-off with one disclosed and since-closed CI gap | `docs/scenarios/ambiguous.md` |

@@ -14,7 +14,7 @@ approved at the mission plan-lock.
 
 | Wave | Slice | Outcome | Brownfield obligation |
 |---|---|---|---|
-| w1 | `01-audit-read` | an Operator reads the audit trail through a read-only, paginated, loopback-only-by-default endpoint over the existing `audit_log` table (FR-17) | `impact-analysis.md` before design; existing links unchanged (FR-13) |
+| w1 | `01-audit-read` | an Operator reads the audit trail through a read-only, paginated, loopback-only endpoint over the existing `audit_log` table (FR-17) | `impact-analysis.md` before design; existing links unchanged (FR-13) |
 | w1 | `02-click-retention` | clicks older than the retention period (90 days, operator setting) are deleted on schedule (NFR-P2) | migration with written rollback (NFR-X2); purge by stored UTC day only |
 | w2 | `03-dogfood-fix` | a defect found by using the shipped service is fixed with a regression test first (FR-14); tests and docs it touches match shipped behaviour (FR-15) | input: QA's dogfood report from mission 01's release prep (two known defects confirmed) |
 | w2 | `04-audit-columns` | the human's audit-column policy (created/updated at and by) reaches `link` and `audit_log` through one expand migration, V4 | added mid-mission by a human decision; migration with written rollback; no response shape changes |
@@ -24,11 +24,13 @@ approved at the mission plan-lock.
 Shared-file custody inside w1: `application.properties` and the next Flyway
 version number, `01` first; disjoint feature packages (`audit/` vs `click/`).
 
-The plan changed twice while the mission ran, each time recorded as a
-revision of the mission's compiled graph with a receipt, and with the
-mission plan-lock re-stamped on the human's behalf:
+The plan changed three times while the mission ran, each change recorded as
+a revision of the mission's compiled graph with a receipt, and with the
+mission plan-lock re-stamped on the human's behalf; three slices were added:
 
 - **Two slices added by human decisions** (`04-audit-columns`, `05-ci-cd`).
+- **A refactor slice added as wave 3** by human decision D21
+  (`06-client-identity`); the mission's release and sign-off waited for it.
 - **Wave 2 pulled forward** (wave map v4): its requirements and designs ran
   during wave 1's builds once a second designer and builder existed (D15,
   D16). Its builds still waited for the code they depend on. Two slices were
@@ -68,7 +70,7 @@ document unchanged.
 ## Orchestration and the drills
 
 Delegated slice plan-locks (D11); concurrent w1 instances on the two judge
-pairs; w2 launched after w1 integrated. Drills, each labelled and recorded in
+pairs; w2's builds waited for w1. Drills, each labelled and recorded in
 `docs/scenarios/drills.md`, none on a product slice:
 
 | Drill | What was exercised | Evidence |
