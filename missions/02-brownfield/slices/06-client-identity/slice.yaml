@@ -1,0 +1,69 @@
+schema: openrig.slice/v0alpha1
+kind: slice
+composition:
+  mission: ../../mission.yaml
+  slice_markdown:
+    spec: SPEC.md
+    progress: PROGRESS.md
+    proof: PROOF.md
+metadata:
+  id: 06-client-identity
+# Gate tier decides the workflow variant: high -> urlshort-slice, low -> urlshort-slice-delegated.
+# Since D11 both route the slice plan-lock to the orchestration lead.
+tier: low
+tier_reason: delegated plan-lock (D11), as the human's decision D21 states. A behaviour-preserving refactor with no endpoint, setting, schema, response or log change; characterization tests pin today's answers before any code moves, and the independent QA and review compare before and after. The audit guard (ADR-0019, CR-01) moves, which is security-relevant, so the design review and security review read that move line by line.
+# ORIGIN: human decision D21 (2026-10-03 ~17:40 local), relayed by the operator on
+# qitem-20261004003331-0b5245ad: the assignment's brownfield scope names refactors, and none was in
+# the run. Outcome: one component answers "who is this client" (docs/guidance/architecture.md
+# section 11, register row 1). Behaviour is unchanged.
+# DELIVERABLE: a new web/ClientIdentity that owns three things which today live in three places:
+#   - the trusted-proxy rule (RateLimitFilter.clientOf, ADR-0015);
+#   - the request attribute carrying the resolved client (RateLimitFilter.CLIENT_ATTRIBUTE, set before
+#     the budget is charged; read by ClickRecorder since 01-analytics-v2);
+#   - the audit guard's predicate "direct loopback peer, no X-Forwarded-For or Forwarded header, no
+#     remote-IP rewriting configured" (AuditController.fromLoopback and peerIsConnection, ADR-0019,
+#     with 01-audit-read's CR-01 fix).
+# RateLimitFilter, ClickRecorder and AuditController call ClientIdentity instead of deriving the client.
+# ADR-0015 is amended by this slice's design to name ClientIdentity as the one code path (and ADR-0019
+# where the guard moves). The register row is updated by its owner, design-agent (D20), after merge.
+# PROOF OBLIGATIONS (docs/guidance/brownfield.md section 6, refactors; from D21):
+#   - characterization tests come FIRST and pin today's exact answers across the matrix: peer,
+#     X-Forwarded-For and Forwarded headers, trusted-proxy lists, loopback or not, and both Tomcat
+#     server.tomcat.remoteip header settings (the CR-01 cases);
+#   - the move lands in its own commits, separate from test changes;
+#   - every existing journey passes UNCHANGED, notably AuditForwardedHeadersJourneyTest,
+#     AuditAccessSettingsJourneyTest, the RateLimit* and TrustedProxy journeys, and analytics-v2's
+#     unique-visitor journeys (StatsV2JourneyTest, TrustedProxyClickJourneyTest);
+#   - coverage stays at 100 %; the API document, schema, responses and log lines are unchanged: QA diffs
+#     the regenerated docs/api/openapi.json and compares live responses before and after;
+#   - no new behaviour, setting, endpoint or dependency.
+# UNIT TESTS of the three call sites: RateLimitFilterTest, ClickRecorderTest and AuditControllerTest
+# reference clientOf, CLIENT_ATTRIBUTE and fromLoopback directly, so they are in territory to follow the
+# moved API (references only). Every assertion they make about behaviour stays; a changed assertion is a
+# grant request to the lead, named in PROOF.md. Functional journeys are NOT in territory: they must pass
+# byte-for-byte unchanged, which is the refactor's proof.
+# WAVE w3 (wave map v6): alone. Every other mission-02 slice and mission 03's 01-analytics-v2 are merged
+# (main 94aa2c0 and later), so nothing in flight shares these files. The W2F-01 test fix
+# (fix/w2f-01, ClickRetentionScheduleJourneyTest only) is disjoint.
+# Launch on rig/workflows/urlshort-slice-delegated-b.workflow.yaml (lane B: design2-agent, dev2-agent,
+# qa2-agent, review2-agent), as D21 suggests; qa2-agent is this slice's proof judge.
+proofPolicy:
+  judges:
+    - qa2-agent@urlshort-factory
+territory:
+  - src/main/java/dev/urlshort/web/ClientIdentity.java
+  - src/test/java/dev/urlshort/web/ClientIdentityTest.java
+  - src/main/java/dev/urlshort/web/RateLimitFilter.java
+  - src/test/java/dev/urlshort/web/RateLimitFilterTest.java
+  - src/main/java/dev/urlshort/click/ClickRecorder.java
+  - src/test/java/dev/urlshort/click/ClickRecorderTest.java
+  - src/main/java/dev/urlshort/audit/AuditController.java
+  - src/test/java/dev/urlshort/audit/AuditControllerTest.java
+  # New characterization journeys only (new files); existing journeys stay unchanged.
+  - src/functionalTest/java/dev/urlshort/web/ClientIdentityCharacterizationJourneyTest.java
+# NOT in territory: every existing functional journey, docs/api/openapi.json (must regenerate
+# identical), application.properties, db/migration/, build.gradle.kts. ADRs are edited by the design
+# step in the main checkout.
+execution:
+  actor_role: requirements
+  depends_on: []
