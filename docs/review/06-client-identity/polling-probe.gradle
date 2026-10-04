@@ -1,0 +1,17 @@
+allprojects {
+    afterEvaluate {
+        def compileProbe = tasks.register('compileIdentityPollingProbe', JavaCompile) {
+            source = files('../../docs/review/06-client-identity/StatsPollingProbe.java')
+            classpath = sourceSets.functionalTest.runtimeClasspath
+            destinationDirectory = layout.buildDirectory.dir('review-identity-polling/classes')
+            dependsOn tasks.named('functionalTestClasses')
+            javaCompiler = javaToolchains.compilerFor { languageVersion = JavaLanguageVersion.of(21) }
+        }
+        tasks.register('identityPollingProbe', JavaExec) {
+            dependsOn compileProbe
+            classpath = files(compileProbe.flatMap { it.destinationDirectory }) + sourceSets.functionalTest.runtimeClasspath
+            mainClass = 'dev.urlshort.web.StatsPollingProbe'
+            javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(21) }
+        }
+    }
+}

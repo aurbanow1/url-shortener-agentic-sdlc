@@ -1,0 +1,87 @@
+{
+  "candidate": "fb63a88a9b92c1fec97ba74686af1a2f30304160",
+  "base": "50ad9c3ab9e65baa4100ede1772b514322957fa5",
+  "changedFiles": [
+    "src/functionalTest/java/dev/urlshort/web/ClientIdentityCharacterizationJourneyTest.java",
+    "src/main/java/dev/urlshort/audit/AuditController.java",
+    "src/main/java/dev/urlshort/click/ClickRecorder.java",
+    "src/main/java/dev/urlshort/web/ClientIdentity.java",
+    "src/main/java/dev/urlshort/web/RateLimitFilter.java",
+    "src/main/resources/application.properties",
+    "src/test/java/dev/urlshort/audit/AuditControllerTest.java",
+    "src/test/java/dev/urlshort/click/ClickRecorderTest.java",
+    "src/test/java/dev/urlshort/web/ClientIdentityTest.java",
+    "src/test/java/dev/urlshort/web/RateLimitFilterTest.java"
+  ],
+  "unchangedOriginalFunctionalFiles": 43,
+  "characterizationPrecedesMoveWithOriginalProduction": true,
+  "hashChecks": {
+    "qaArtifacts": {
+      "files": 3490,
+      "mismatches": []
+    },
+    "coverage": {
+      "files": 378,
+      "mismatches": []
+    }
+  },
+  "freshTests": {
+    "test": {
+      "tests": 268,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "functionalTest": {
+      "tests": 322,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "freshCoverage": {
+    "test": {
+      "LINE_MISSED": 74,
+      "LINE_COVERED": 510,
+      "BRANCH_MISSED": 8,
+      "BRANCH_COVERED": 198
+    },
+    "functionalTest": {
+      "LINE_MISSED": 34,
+      "LINE_COVERED": 550,
+      "BRANCH_MISSED": 34,
+      "BRANCH_COVERED": 172
+    },
+    "all": {
+      "LINE_MISSED": 0,
+      "LINE_COVERED": 584,
+      "BRANCH_MISSED": 0,
+      "BRANCH_COVERED": 206
+    }
+  },
+  "executionData": [
+    "functionalTest.exec",
+    "test.exec"
+  ],
+  "inventory": {
+    "mappings": 326,
+    "uniqueSourceMethods": 321,
+    "reports": 74,
+    "classOnly": 56
+  },
+  "traceabilityACs": 15,
+  "controlledRawResponsesAndLogJoins": 2041,
+  "controlledExactNormalizedPairs": 1017,
+  "retainedMetricDifferences": [
+    "clicks-0/privacy-prometheus",
+    "clicks-1/privacy-prometheus"
+  ],
+  "metricBusinessSamplesPerPair": 8,
+  "controlledLogPrivacyApps": 19,
+  "jarAndBlankRaw": {
+    "before": 59,
+    "after": 59,
+    "blank-settings/run-20261004T022839335431Z": 72
+  },
+  "scope": "Saved evidence audited; no repeat of QA external apps. Fresh reviewer gate and independently reproduced CR-01 are separate evidence."
+}
