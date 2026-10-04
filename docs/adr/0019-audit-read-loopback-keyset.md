@@ -1,6 +1,6 @@
 # ADR-0019 — Audit read: loopback by peer address with forwarding headers refused, forwarded-header handling pinned off, keyset pages by write sequence
 
-- Status: accepted at the `01-audit-read` plan-lock (2026-10-03), re-locked after the `remoteip` correction (`0052efb`); merged in `cb148c4`
+- Status: accepted at the `01-audit-read` plan-lock (2026-10-03), re-locked after the `remoteip` correction (`0052efb`); merged in `cb148c4`; `06-client-identity` amendment proposed (see *Amendment*)
 - Date: 2026-10-03
 - Slice: `01-audit-read` (mission 02)
 
@@ -186,3 +186,27 @@ it is the table's only index.
   primary-key scan are both supported. The identity column is portable.
 - Verified before implementation: `missions/02-brownfield/slices/01-audit-read/design-probe/output.txt`
   (P1 to P6) and `remote-ip-output.txt` (P7, after code review).
+
+## Amendment — `06-client-identity` (2026-10-04, proposed; behaviour unchanged)
+
+Human decision D21 puts every answer to "who is this client" in one place, `web.ClientIdentity`. The
+guard's two halves move there unchanged:
+- `peerIsConnection(server, tomcat)`: the effective forwarded-header strategy is `NONE`, and neither
+  `server.tomcat.remoteip.remote-ip-header` nor `protocol-header` has text (the CR-01 correction);
+- `fromLoopback(request)`: the peer is a loopback address, and neither `X-Forwarded-For` nor
+  `Forwarded` is present.
+
+`AuditController` keeps its servlet condition and its constructor. It computes the first once and
+calls the second per request, so the order (the guard before validation and content negotiation) is
+unchanged.
+
+Both halves answer about the connection's own peer and **never consult the trusted-proxy list or the
+resolved client** of ADR-0015. Trusting a proxy for rate limits therefore cannot open the read, and
+`ClientIdentity` keeps the two questions in separate methods (`06-client-identity` SPEC rule 1).
+
+The `ponytail:` ceiling moves with the expression: Boot adding a valve trigger needs a line here. In
+Boot 4.1.1 the trigger tests both headers with `StringUtils.hasText`, the same test as the guard, so
+whitespace-only settings install no valve and keep the read open (`06-client-identity` design §5).
+
+Characterization tests pin every case on the baseline and after the move (`06-client-identity`
+design §5).

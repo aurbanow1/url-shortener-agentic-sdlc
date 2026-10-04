@@ -1,6 +1,6 @@
 # ADR-0015 — Client identity: the peer address, or the right-most untrusted `X-Forwarded-For` entry behind a listed proxy
 
-- Status: accepted at the `03-operate` plan-lock (2026-10-03T09:41Z; status line set 09:48Z); `01-analytics-v2` amendment accepted at its plan-lock and merged in `c9b66dd` (see *Amendment*)
+- Status: accepted at the `03-operate` plan-lock (2026-10-03T09:41Z; status line set 09:48Z); `01-analytics-v2` amendment accepted at its plan-lock and merged in `c9b66dd`; `06-client-identity` amendment proposed (see *Amendment* sections)
 - Date: 2026-10-03
 - Slice: `03-operate`
 
@@ -69,3 +69,25 @@ SPEC rule 6, A-7), so one rule and one setting govern both the rate limit and un
   only the hash of the chosen client is stored, as before (NFR-P1).
 - Hashes stored before the change are not rewritten (SPEC rule 6). On the shipped deployment, which
   lists no trusted proxy, the attribute equals the peer, so nothing changes there.
+
+## Amendment — `06-client-identity` (2026-10-04, proposed; behaviour unchanged)
+
+Human decision D21: one code path answers "who is this client". **`web.ClientIdentity` owns this
+ADR's rule and its hand-off:**
+- `clientOf(remote, forwardedFor, trusted)`, moved verbatim from `RateLimitFilter`;
+- `resolve(request, trusted)`, which records the result in `ClientIdentity.CLIENT_ATTRIBUTE` and
+  returns it. The limiter calls it after the exempt check and before it charges, as before;
+- `of(request)`, the recorded client, else the peer. The click recorder calls it.
+
+The limiter keeps the setting (`urlshort.rate-limit.trusted-proxies`, `RateLimitProperties`) and
+passes it in. `RateLimitFilter` returns to package-private: it was public only so `click/` could read
+the constant, which now lives in `ClientIdentity`.
+
+**A static class, not a bean.** The rule holds no state. The beans the audit half reads
+(`ServerProperties`, `TomcatServerProperties`, ADR-0019) do not exist in a non-web context, where
+`UrlshortApplicationTests.mainBootsWithoutAWebServer` still starts the limiter and the click
+recorder.
+
+**The audit read's question is not this one.** ADR-0019's guard has its own methods in the same
+class and never uses this rule or the resolved client. Characterization tests pin every edge on the
+baseline and after the move (`06-client-identity` design §5).
