@@ -271,8 +271,16 @@ responses, p95 3.7 ms and p99 9.5 ms. These meet NFR-L1's p95 ≤20 ms and p99
 ≤50 ms limits at the specified rate and duration. This is a result for this
 run only; the load generator shared the host with the service, unrelated host
 activity may have overlapped, and no capacity or container-performance claim
-is made. Evidence: `missions/03-ambiguous-analytics/RELEASE.md` §3 and
-`missions/03-ambiguous-analytics/release/bench-50ad9c3.txt`.
+is made. The measured configuration trusts the loopback proxy and raises
+both rate budgets to 1,000,000/minute, as recorded in the release manifest.
+Percentiles come from the captured load-generator output; per-request client
+latency samples were not retained, so QA independently reconciled completion
+counts and the measurement method but did not recompute those quantiles.
+The restored-seat recheck of `797f8fb` confirms its numbers and bounded
+closure; these added qualifications preserve the measurement's scope.
+Evidence: `missions/03-ambiguous-analytics/RELEASE.md` §3,
+`missions/03-ambiguous-analytics/release/bench-50ad9c3.txt`, and
+`missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-release-50ad9c3/audit.json`.
 
 
 ## 04-audit-columns — QA2, candidate 305f8045d45b19a9e3287d5fe3508af6e04db9a4
