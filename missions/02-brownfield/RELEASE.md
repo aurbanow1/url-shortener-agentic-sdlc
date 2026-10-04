@@ -1,6 +1,6 @@
 # Mission 02 release package — candidate 30f8de4e
 
-Prepared on main at **30f8de4e647b05ff54cde09f1019ae519b00069d**, after all six slices merged and both wave vantages passed. The pre-run at e227acf remains immutable history. Independent release review is **PASS**, committed446eca31, on packagead0c01f6. Human ship sign-off is pending on **qitem-20261004052127-b89c249b**, parked on human@kernel. Nothing was pushed, tagged as a release or published.
+Prepared on main at **30f8de4e647b05ff54cde09f1019ae519b00069d**, after all six slices merged and both wave vantages passed. The pre-run at e227acf remains immutable history. Independent release review is **PASS**, committed446eca31, on packagead0c01f6. Human ship sign-off **approved local use** on qitem-20261004052127-b89c249b, transition2078 at2026-10-04T05:23:06.540Z; the [durable decision](release/ship-signoff-transitions.json) accepts the exact-SHA hosted CI gap and measurement limits. Nothing was pushed, tagged as a release or published.
 
 ## 1. Decision brief for ship sign-off
 
@@ -8,9 +8,9 @@ This candidate adds local paginated audit read, configurable scheduled click ret
 
 [Formal release review](../../docs/review/02-brownfield/release-review.md),446eca31, independently reran590 tests and installed jar smoke; reconciled583/206 coverage,64/64 proof with174 committed evidence hashes,143 preparation links, all frozen metrics and raw rollback/container evidence. PR-01/02/03 and RR-01 are resolved; no MUST-FIX/HIGH remains. It is a separate-author, same-runtime review under the recorded D17 arrangement. A fresh ship-gate proof read at2026-10-04T05:22Z remains **ready64/64**, no issues, at the same revision as the [reviewed readiness snapshot](release/final-30f8de4e/proof-ready.json). This status annotation preserves the reviewed artifact and evidence snapshots.
 
-The [mission SPEC](SPEC.md) quotes the human's original plan decision: “three slices in two waves as briefed, with the four labelled drills; purge stays here with the 90-day default as an operator setting”. Audit columns, CI/CD D14 and refactor D21 were explicitly added; the latest spec stamp is by the lead on behalf of the human at 2026-10-04T00:35:06.760Z. D21 requires one client-identity component with unchanged behavior. No mission02 delivery stamp or ship approval is claimed.
+The [mission SPEC](SPEC.md) quotes the human's original plan decision: “three slices in two waves as briefed, with the four labelled drills; purge stays here with the 90-day default as an operator setting”. Audit columns, CI/CD D14 and refactor D21 were explicitly added; the latest spec stamp is by the lead on behalf of the human at 2026-10-04T00:35:06.760Z. D21 requires one client-identity component with unchanged behavior. The mission delivery stamp was recorded by release-agent on behalf of human@kernel at2026-10-04T05:24:24.131Z, action01M42NXNY58M6EVQCMPG349RK4. Six slice delivery stamps and the SPEC-only proof round remain under lead custody before final export.
 
-**Recommended default:** approve local use, explicitly accepting the missing exact-candidate hosted CI/CD and §7 limits. Alternative: hold for the human to push the candidate, obtain both hosted runs and repeat measurements on the intended host; this adds runner/operator and measurement time. Rollback: stop writers and copy stopped H2 data; revert D21 alone to the preserved pre-run image, or reverse V4 then V3 and deploy the prepared mission01 binary.
+**Decision:** the human approved the recommended local-use default and accepted the missing exact-candidate hosted CI and §7 measurement limits. The original alternative was to hold for a human push, both hosted runs and intended-host measurements. The decision's rationale references CI-verified e43ed246/PR14; this is preserved as human decision text in [NOTES](NOTES.md). The exact30f8de4e query still contains0 runs, so exact-SHA hosted success remains unverified. Rollback: stop writers and copy stopped H2 data; revert D21 alone to the preserved pre-run image, or reverse V4 then V3 and deploy the prepared mission01 binary.
 
 ## 2. Artifact and gate
 
@@ -125,7 +125,7 @@ Earlier [integrator revert drill](../../docs/scenarios/drills.md) supplies the m
 
 ## Self-check
 
-- Exact candidate, honoured scope stamps, pending human gate, default/alternative recorded.
+- Exact candidate, honoured scope stamps and human local-use decision recorded; original default/alternative retained.
 - Fresh gate/coverage and identical installed artifacts captured; final source equals reviewed e40b095; no exclusion added.
 - Both smokes passed; container full wire/log/HostConfig and jar logs retained; own services/container/volume stopped.
 - Fresh OSV97/0 and bounded secret-scan method/limits recorded.

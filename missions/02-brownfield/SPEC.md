@@ -10,6 +10,8 @@ approved-spec-by: orchestration-lead@urlshort-factory
 approved-spec-at: 2026-10-04T00:35:06.760Z
 provenance: transport:v1
 approved-spec-priors: 3
+approved-by: release-agent@urlshort-factory
+approved-at: 2026-10-04T05:24:24.131Z
 ---
 
 # Mission — Brownfield: enhance and fix the shipped shortener
