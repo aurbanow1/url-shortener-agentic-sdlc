@@ -11,6 +11,7 @@ Context and observations that help the mission but do not change its
 
 ## 1. Top of mind
 
+- 2026-10-04T02:38:55.409Z — **Human ship approval recorded**, transition 1916 on canonical gate `qitem-20261004023723-f58044d0`: mission03 analytics v2 at `50ad9c3` for local use, with the exact-SHA hosted CI gap accepted. Mission delivery stamp recorded by `release-agent` on behalf of `human@kernel` at 02:39:25.458Z. Verbatim decision and current proof-drift qualification are in the release-agent section below. Final evidence export belongs to `release2-agent` under D18; the lead coordinates QA reaffirmation after shared D21 evidence commits. No publication follows from this approval.
 - Lifecycle instance: `01M40RVNDQ0KT7FPWN1KJW0DC3` (`lifecycle-urlshort-03-ambiguous-analytics`), operation key `urlshort-03-ambiguous-analytics-lifecycle-1`, created by `operator-human@kernel` 2026-10-03T11:37:14Z at the orchestration lead's request (`qitem-20261003094253-537ab7dc`, fast plan item 5: decompose in parallel once mission 01's wave 2 builds). Entry packet (decompose) `qitem-20261003113714-4cbdf1e0`, claimed 11:37:29Z by the orchestration lead.
 - Slice: `01-analytics-v2` (`OPR.99.0.4.1`), tier high, wave w1, alone. Wave map v1: `docs/evidence/03-ambiguous-analytics/wave-map.md`, queue row `qitem-20261003114210-1c6a50a1` (closed as a composition record).
 - Compiled graph: `docs/evidence/03-ambiguous-analytics/compiled-graph.json`, `unknowns` empty. Revision receipts: (1) `revision-7350d685c252fac429c78a11`, composition adopted, digest `3635bf63…` → `865d9b70…`; (2) `revision-f7dca08ae962cadb65ec94be`, manifest names the brownfield impact analysis, `865d9b70…` → `3bee4e79…`. Both source-only, frontier preserved.
@@ -185,3 +186,76 @@ focused final receipt/document disposition. The exact candidate and hosted
 CI/CD HTTP404 qualification are unchanged. No push, release tag, publication
 or non-loopback exposure. Send the doc-only refresh SHA to review-agent for
 that focused check before any human ship handoff.
+
+## Release agent 2 — final review and human-gate custody
+
+2026-10-04: final independent release review93d55bd PASS on package14815f9
+and product50ad9c3. The engine created existing ship_signoff gate
+qitem-20261004023723-f58044d0 under the primary release-agent and parked it
+on human@kernel. Lead confirmed that ownership; release2 does not create
+another gate, stamp delivery or publish. Lead routes the later evidence_export
+to release2 after the human decision (D18).
+
+A fresh live proof read after the final review reports unknown2/5/6 and
+accepted for the other nine. QA2's uncommitted additions append D21 QA
+sections to shared TRACEABILITY/GAPS, moving whole-file hashes without an
+observed edit to the analytics sections. The new raw capture is
+release/proof-readiness-shared-doc-drift-50ad9c3.json. The final PASS and
+immutable12/12 snapshot retain their capture-time scope; they are not
+presented as current live readiness after the appendages. Lead, gate owner
+and reviewer were informed to arrange analytics QA reaffirmation after
+the shared docs commit, before relying on fresh live readiness at the gate.
+Product remains50ad9c3; no D21 product dependency or new product defect is
+inferred. RELEASE/INDEX status annotations retain hosted-CI unverified and
+all reviewed qualifications. Human decision and final export remain pending.
+
+This paragraph records the pre-approval observation; the human's subsequent
+decision is recorded in the following section.
+
+## Release agent — human ship sign-off
+
+Canonical gate `qitem-20261004023723-f58044d0` remains with
+`release-agent@urlshort-factory`, as the lead directed. Human transition
+**1916**, **2026-10-04T02:38:55.409Z**, resolved it from blocked to
+in-progress. Decision recorded verbatim:
+
+> approve: ship mission 03 analytics v2 at 50ad9c3 for local use; the exact-SHA hosted CI gap is accepted because the delta from the CI-verified 18db1de is one test-only change
+
+This approval covers product `50ad9c3ab9e65baa4100ede1772b514322957fa5`,
+release package `14815f9`, independently reviewed PASS at `93d55bd`.
+It accepts the hosted-CI gap; it does not establish a hosted run for this
+exact SHA or remove any release qualification. The existing wave LOWs,
+rollback recipe, model-window rechecks and measurement/operational limits
+remain in [RELEASE.md](RELEASE.md) and the independent release review.
+
+Executed `rig scope mission approve 03-ambiguous-analytics --scope delivery
+--on-behalf-of human@kernel`: successful mission delivery stamp at
+**2026-10-04T02:39:25.458Z**, actor `release-agent@urlshort-factory`, delegation
+`human@kernel`, action `01M42CFK8KZ35EY9RH0WBTNBN6`. No self-approval was
+substituted for the recorded human decision. Lead notified for any required
+slice stamps and D18 routing of the following evidence-export packet.
+
+The reviewed post-QA snapshot was ready with all12 items accepted.
+The fresh live proof read during this handoff is **unknown** for items
+**2, 5 and 6**: shared `docs/qa/TRACEABILITY.md` and `docs/qa/GAPS.md` have
+uncommitted mission02 `06-client-identity` additions, so whole-file hashes
+no longer match the retained receipts. The observed diffs have additions
+only; settled receipts and pinned mission03 product claims are preserved.
+Release2 independently observed the same drift and has asked the lead to
+route QA reaffirmation after those shared documents commit. That evidence
+custody work precedes the final export; it does not add D21 to this product
+candidate. Do not describe the historical ready snapshot as live readiness.
+
+### Self-check
+
+Read the actual gate transition and verbatim human decision before stamping;
+verified the mission SPEC records the returned actor/time; checked live
+proof and shared-document drift; retained exact-SHA CI and release limits.
+Fresh scope audit also reports one MEDIUM C1-header advisory on the historical
+`slices/01-analytics-v2/proof/qa-item11-ec466da.md` (no frontmatter). This is
+reported to the lead/export custodian; it is not a new product finding or a
+reason to silently change already-judged evidence bytes.
+Committed only this mission's decision/stamp paths. Authored handoff binds
+`missions/03-ambiguous-analytics/RELEASE.md`; release2 owns final export after
+the lead's routing and QA reaffirmation. Nothing pushed, release-tagged,
+published or exposed beyond localhost.

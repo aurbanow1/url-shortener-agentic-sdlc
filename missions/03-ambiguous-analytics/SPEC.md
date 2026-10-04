@@ -9,6 +9,8 @@ depends_on: ["OPR.99.0.2"]
 approved-spec-by: orchestration-lead@urlshort-factory
 approved-spec-at: 2026-10-03T15:40:43.879Z
 provenance: transport:v1
+approved-by: release-agent@urlshort-factory
+approved-at: 2026-10-04T02:39:25.458Z
 ---
 
 # Mission — Ambiguous: marketing wants better analytics
