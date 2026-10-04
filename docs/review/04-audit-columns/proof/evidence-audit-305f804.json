@@ -1,0 +1,103 @@
+{
+  "candidate": "305f8045d45b19a9e3287d5fe3508af6e04db9a4",
+  "base": "2566c38c2e8c434e93703a3dabc2edba14eca60c",
+  "changedFiles": {
+    "src/functionalTest/java/dev/urlshort/click/ClickRetentionStartupJourneyTest.java": "509f954b60396e4ace5f6e00cb9dd92a2e5780471ff75dc3993aa9e3086f8497",
+    "src/functionalTest/java/dev/urlshort/link/LinkAuditColumnsFailureJourneyTest.java": "d4303cbf341fa4802c179f398b020cb027f49302dc60e3cbce76ffd4bbbfc27a",
+    "src/functionalTest/java/dev/urlshort/link/LinkAuditColumnsJourneyTest.java": "9c417adc044984478a76ca00ded3b979a9ffd16ffc5a0164ed538dc1a223128d",
+    "src/functionalTest/java/dev/urlshort/link/LinkUpgradeJourneyTest.java": "303fe35b190cf93972d475da17b13281c2f5a7875a3349232aac28ba427ba658",
+    "src/main/java/dev/urlshort/link/LinkRepository.java": "c268a0987051229debd5b586c5f94565a6209d9e9972821e0deb98eeb2f65199",
+    "src/main/java/dev/urlshort/link/LinkService.java": "0947d4e31b5f9dae1e7747dfd2b6ae7d7493eb92cbf56fe32b264a6393621021",
+    "src/main/resources/db/migration/V4__add_link_audit_columns.sql": "e1cf67add7d5dc55152504e19a60cbc5f3ad3291c9a1bc1af33e168e6da055a7",
+    "src/test/java/dev/urlshort/click/ClickAuditColumnsTest.java": "adb7c556ee7f296ba24f8efbd0a9153f9aae3a864540e8ff1b74abca16eee1de",
+    "src/test/java/dev/urlshort/link/LinkAuditColumnsTest.java": "2ffcea452b8aaa4d8043a846842e0d6f58744dce4cf32773f565c263c44f6117",
+    "src/test/java/dev/urlshort/link/LinkServiceStampTest.java": "afc65ca054fe6809f5f4adedaaa187875f1d8a3531da1d8f1006262575a8d7a6"
+  },
+  "savedReportHashesMatched": 366,
+  "freshSuites": {
+    "unit": {
+      "tests": 218,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "functional": {
+      "tests": 233,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "freshCoverage": {
+    "unit": {
+      "counts": {
+        "LINE_MISSED": 67,
+        "LINE_COVERED": 490,
+        "BRANCH_MISSED": 6,
+        "BRANCH_COVERED": 194
+      },
+      "csvSha256": "b1826368218fd98807e844c6f7300113aa18c17c2fdf2ef3c1afb0dca4edcb4c"
+    },
+    "functional": {
+      "counts": {
+        "LINE_MISSED": 34,
+        "LINE_COVERED": 523,
+        "BRANCH_MISSED": 34,
+        "BRANCH_COVERED": 166
+      },
+      "csvSha256": "3860f9f72a79b0f7d046ed21a7807a4adcff5668d9e2566616f03c71a689d152"
+    },
+    "all": {
+      "counts": {
+        "LINE_MISSED": 0,
+        "LINE_COVERED": 557,
+        "BRANCH_MISSED": 0,
+        "BRANCH_COVERED": 200
+      },
+      "csvSha256": "978134cffefa984b304b698f5312d5a25b327b15c7aa5c25eac3494d2afcceb2"
+    }
+  },
+  "coverageInputs": [
+    "functionalTest.exec",
+    "test.exec"
+  ],
+  "baselineFiles": {
+    "total": 59,
+    "unchanged": 57,
+    "grantedV3Pins": [
+      "src/functionalTest/java/dev/urlshort/click/ClickRetentionStartupJourneyTest.java",
+      "src/test/java/dev/urlshort/click/ClickAuditColumnsTest.java"
+    ]
+  },
+  "methodMappings": {
+    "total": 271,
+    "individualXmlNames": 230,
+    "classOnlyParameterized": 41,
+    "traceSectionUnchanged": true
+  },
+  "migrationSha256": "e1cf67add7d5dc55152504e19a60cbc5f3ad3291c9a1bc1af33e168e6da055a7",
+  "savedEffectsReconciled": {
+    "passingAssertions": 787,
+    "responseLogJoins": 94,
+    "createRetireReleaseStamps": true,
+    "actualJdbcFailureRollback": true,
+    "oldMetadataConstraintsValuesPreserved": true,
+    "literalRollbackStatements": 8,
+    "rollbackReapplyObserved": true,
+    "jarHashesMatched": 2,
+    "appsRecordedStopped": 7
+  },
+  "proofStates": {
+    "1": "accepted",
+    "2": "accepted",
+    "3": "accepted",
+    "4": "accepted",
+    "5": "pending",
+    "6": "accepted",
+    "7": "accepted",
+    "8": "accepted",
+    "9": "accepted"
+  },
+  "receiptHashMismatches": [],
+  "scope": "Fresh canonical suites executed by reviewer; saved QA effects audited, not a new execution of external driver. Item 5 remains post-merge, per assigned packet and lead decision."
+}
