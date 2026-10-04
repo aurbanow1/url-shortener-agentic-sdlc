@@ -1,0 +1,296 @@
+{
+  "packet": "qitem-20261004060920-8a09b9ab",
+  "documentationHead": "10915b6adf3bf5f50168b1498005f1641536a871",
+  "actor": "qa2-agent@urlshort-factory",
+  "previousReceipts": [
+    {
+      "scope": "01-greenfield-core/slices/03-operate",
+      "index": 13,
+      "priorReceipt": "missions/01-greenfield-core/slices/03-operate/proof/judgments/00000034.md"
+    },
+    {
+      "scope": "02-brownfield/slices/02-click-retention",
+      "index": 10,
+      "priorReceipt": "missions/02-brownfield/slices/02-click-retention/proof/judgments/00000014.md"
+    },
+    {
+      "scope": "02-brownfield/slices/06-client-identity",
+      "index": 16,
+      "priorReceipt": "missions/02-brownfield/slices/06-client-identity/proof/judgments/00000036.md"
+    }
+  ],
+  "evidence": [
+    {
+      "scope": "01-greenfield-core/slices/03-operate",
+      "item": 13,
+      "subjectUnchanged": {
+        "kind": "commit",
+        "ref": "30f8de4e647b05ff54cde09f1019ae519b00069d"
+      },
+      "boundFiles": [
+        {
+          "path": "docs/qa/03-operate/release-rejudgment-55a197a.md",
+          "priorSha256": "cb517d99370507b0ec743cc7fa00ef9e415c5f3f3d38a6c0008da1181c0d43cd",
+          "currentSha256": "cb517d99370507b0ec743cc7fa00ef9e415c5f3f3d38a6c0008da1181c0d43cd",
+          "unchanged": true
+        },
+        {
+          "path": "docs/qa/03-operate/release-rejudgment-audit-55a197a.json",
+          "priorSha256": "0996b96f521d561147632ef08605ca05bcaecf1c96175f0da69e6ee65b633f1d",
+          "currentSha256": "0996b96f521d561147632ef08605ca05bcaecf1c96175f0da69e6ee65b633f1d",
+          "unchanged": true
+        },
+        {
+          "path": "missions/01-greenfield-core/slices/03-operate/SPEC.md",
+          "priorSha256": "85dd302077e31dd45d88e4ca4fa8be8218ffe3af5246b9f84c34e23027c9e2b4",
+          "currentSha256": "85dd302077e31dd45d88e4ca4fa8be8218ffe3af5246b9f84c34e23027c9e2b4",
+          "unchanged": true
+        },
+        {
+          "path": "docs/qa/GAPS.md",
+          "priorSha256": "6c50db0328c51453d424d6295e3ba020df4da5cbdd2f09fb4857ccdaf7a3b3f1",
+          "currentSha256": "6c50db0328c51453d424d6295e3ba020df4da5cbdd2f09fb4857ccdaf7a3b3f1",
+          "unchanged": true
+        },
+        {
+          "path": "docs/RISKS.md",
+          "priorSha256": "3d2b140725cbf445970e187ad433ed0d67cb73f98d18c485190e2e359cfc787a",
+          "currentSha256": "ecf183e4402d055d9be3bc6a1018e6c3405148d1d925fd92201098a20a79020d",
+          "unchanged": false
+        },
+        {
+          "path": "missions/01-greenfield-core/release/smoke-restart-container-f090103-run6.txt",
+          "priorSha256": "bc4519eaea2f59efc3bc112fa2bb6f057eb494dafed309b2ee47b7d9e81fb423",
+          "currentSha256": "bc4519eaea2f59efc3bc112fa2bb6f057eb494dafed309b2ee47b7d9e81fb423",
+          "unchanged": true
+        },
+        {
+          "path": "missions/01-greenfield-core/release/r0-vm-published-port-f090103-run1.txt",
+          "priorSha256": "969b15eec7888ea72e146cb14cdaafaa77d966088679b300475625045a58a504",
+          "currentSha256": "969b15eec7888ea72e146cb14cdaafaa77d966088679b300475625045a58a504",
+          "unchanged": true
+        },
+        {
+          "path": "missions/01-greenfield-core/release/r0-vm-published-port-f090103-run2.txt",
+          "priorSha256": "c98fb01659f32455ff3688f50bec43c0dd72e54c02f47cb86fb593e944d0821d",
+          "currentSha256": "c98fb01659f32455ff3688f50bec43c0dd72e54c02f47cb86fb593e944d0821d",
+          "unchanged": true
+        },
+        {
+          "path": "missions/01-greenfield-core/release/r0-in-namespace-control-f090103.txt",
+          "priorSha256": "41b6de3d5e12370a0f1bff1d080b36f1b1b0b9e403f3c7b15b11ede0048eae2a",
+          "currentSha256": "41b6de3d5e12370a0f1bff1d080b36f1b1b0b9e403f3c7b15b11ede0048eae2a",
+          "unchanged": true
+        },
+        {
+          "path": "missions/01-greenfield-core/release/smoke-inspect-container-f090103.txt",
+          "priorSha256": "27876214b05aaf097b7d57022a02e2296c778871ef3992a3ec9e4ea0b78353c1",
+          "currentSha256": "27876214b05aaf097b7d57022a02e2296c778871ef3992a3ec9e4ea0b78353c1",
+          "unchanged": true
+        },
+        {
+          "path": "missions/01-greenfield-core/release/bench-jar-f090103.txt",
+          "priorSha256": "42594b334cf5c05a103ac83a6393d35b0183f7d5870f425f81d0f5490c622322",
+          "currentSha256": "42594b334cf5c05a103ac83a6393d35b0183f7d5870f425f81d0f5490c622322",
+          "unchanged": true
+        },
+        {
+          "path": "docs/qa/final-reaffirmation/qa2-content-checks.json",
+          "priorSha256": "15b06576cffd4da27954576c8c90eabd8ae95852a4c1eb1422493c5f3e69cd96",
+          "currentSha256": "15b06576cffd4da27954576c8c90eabd8ae95852a4c1eb1422493c5f3e69cd96",
+          "unchanged": true
+        },
+        {
+          "path": "docs/qa/final-reaffirmation/qa2-version-lookup.json",
+          "priorSha256": "129afb9d38f816e665b160edd223a44a96314f40128491340832fab0a108da64",
+          "currentSha256": "129afb9d38f816e665b160edd223a44a96314f40128491340832fab0a108da64",
+          "unchanged": true
+        }
+      ]
+    },
+    {
+      "scope": "02-brownfield/slices/02-click-retention",
+      "item": 10,
+      "subjectUnchanged": {
+        "kind": "commit",
+        "ref": "30f8de4e647b05ff54cde09f1019ae519b00069d"
+      },
+      "boundFiles": [
+        {
+          "path": "docs/DESIGN.md",
+          "priorSha256": "a1028993f33e1c469ad6a81b76f0c019e60de279d0c4444496efe53db960f53d",
+          "currentSha256": "c7e794916d36f24b70352621f00b9547e7fb566227fbbb7aa55c7d101920aa50",
+          "unchanged": false
+        },
+        {
+          "path": "docs/adr/0018-click-retention-daily-purge.md",
+          "priorSha256": "53bd72ed7ed74817835ace4d9c85126796f7751404c242d64c9300d074ba1acb",
+          "currentSha256": "53bd72ed7ed74817835ace4d9c85126796f7751404c242d64c9300d074ba1acb",
+          "unchanged": true
+        },
+        {
+          "path": "docs/adr/0020-audit-columns-expand-migration.md",
+          "priorSha256": "c9978210247a70938ca5ed2fe38a9a13f87794fae1590d85b92a2318e02a8d19",
+          "currentSha256": "c9978210247a70938ca5ed2fe38a9a13f87794fae1590d85b92a2318e02a8d19",
+          "unchanged": true
+        },
+        {
+          "path": "docs/adr/0011-click-handoff-bounded-single-writer.md",
+          "priorSha256": "6d01495a14e56ac11139ce86b2d83ab03a686d1d02d0535d075675a1d8a16e24",
+          "currentSha256": "6d01495a14e56ac11139ce86b2d83ab03a686d1d02d0535d075675a1d8a16e24",
+          "unchanged": true
+        },
+        {
+          "path": "docs/adr/0013-click-events-and-request-time-statistics.md",
+          "priorSha256": "737898715b892fd2c62ea9d53e22c04920c744843e86b649d33aac711599bd0d",
+          "currentSha256": "737898715b892fd2c62ea9d53e22c04920c744843e86b649d33aac711599bd0d",
+          "unchanged": true
+        },
+        {
+          "path": "missions/02-brownfield/slices/02-click-retention/proof/qa-adrs-and-rollback-a8fc8b6.json",
+          "priorSha256": "a4d9b3f5b98f5b28087491d17892063a11843c25a7f8be06ac5462258525bf52",
+          "currentSha256": "a4d9b3f5b98f5b28087491d17892063a11843c25a7f8be06ac5462258525bf52",
+          "unchanged": true
+        },
+        {
+          "path": "docs/qa/final-reaffirmation/qa2-content-checks.json",
+          "priorSha256": "15b06576cffd4da27954576c8c90eabd8ae95852a4c1eb1422493c5f3e69cd96",
+          "currentSha256": "15b06576cffd4da27954576c8c90eabd8ae95852a4c1eb1422493c5f3e69cd96",
+          "unchanged": true
+        },
+        {
+          "path": "docs/qa/final-reaffirmation/qa2-version-lookup.json",
+          "priorSha256": "129afb9d38f816e665b160edd223a44a96314f40128491340832fab0a108da64",
+          "currentSha256": "129afb9d38f816e665b160edd223a44a96314f40128491340832fab0a108da64",
+          "unchanged": true
+        }
+      ]
+    },
+    {
+      "scope": "02-brownfield/slices/06-client-identity",
+      "item": 16,
+      "subjectUnchanged": {
+        "kind": "commit",
+        "ref": "e40b09541feb0b7555c475baa82587fdd09e4890"
+      },
+      "boundFiles": [
+        {
+          "path": "docs/qa/06-client-identity/item16-followup.md",
+          "priorSha256": "5ba988d3224f0b954a423770cee49b036ddc5ac36a111bcd6dd8e237f0ec8d36",
+          "currentSha256": "5ba988d3224f0b954a423770cee49b036ddc5ac36a111bcd6dd8e237f0ec8d36",
+          "unchanged": true
+        },
+        {
+          "path": "missions/02-brownfield/slices/06-client-identity/proof/qa-item16-custody.json",
+          "priorSha256": "55240d0954e331f08a61c3a1ba6080f88b3414026cbe2de06f7dcc9a89cb3c24",
+          "currentSha256": "55240d0954e331f08a61c3a1ba6080f88b3414026cbe2de06f7dcc9a89cb3c24",
+          "unchanged": true
+        },
+        {
+          "path": "missions/02-brownfield/slices/06-client-identity/impact-analysis.md",
+          "priorSha256": "4bc546723e7e36ffdc1b42206c01877b049db7fc3407ced4f896e5df485661ac",
+          "currentSha256": "4bc546723e7e36ffdc1b42206c01877b049db7fc3407ced4f896e5df485661ac",
+          "unchanged": true
+        },
+        {
+          "path": "missions/02-brownfield/slices/06-client-identity/design.md",
+          "priorSha256": "e1df8233f1f4ce8a48368961a0d10fecb7081ae77b93af5c0c6658fd447dab89",
+          "currentSha256": "d0e5f259aef06c0bc268ad09841b578756532addecaeefdfed2a0fce7909117c",
+          "unchanged": false
+        },
+        {
+          "path": "docs/adr/0015-client-identity-trusted-proxies.md",
+          "priorSha256": "3b45541c4ad4823907a0023284c589ba84ec5b8d2ab935dacee98013dd37c0fb",
+          "currentSha256": "3b45541c4ad4823907a0023284c589ba84ec5b8d2ab935dacee98013dd37c0fb",
+          "unchanged": true
+        },
+        {
+          "path": "docs/adr/0019-audit-read-loopback-keyset.md",
+          "priorSha256": "31fd2e466a7ded3006f22362305c61391a3e7964447d39416f1b85adc0ae583e",
+          "currentSha256": "31fd2e466a7ded3006f22362305c61391a3e7964447d39416f1b85adc0ae583e",
+          "unchanged": true
+        },
+        {
+          "path": "docs/review/06-client-identity/01-code-review.md",
+          "priorSha256": "3e55222157c0b77739454151e1d0e4edd89592b5d597d24afd91d8f611ab31d3",
+          "currentSha256": "3e55222157c0b77739454151e1d0e4edd89592b5d597d24afd91d8f611ab31d3",
+          "unchanged": true
+        },
+        {
+          "path": "docs/review/06-client-identity/02-security-review.md",
+          "priorSha256": "9be98d1722fb095bc8997abca6fe88e20160eff448bf1504d867b88ef69fdba6",
+          "currentSha256": "9be98d1722fb095bc8997abca6fe88e20160eff448bf1504d867b88ef69fdba6",
+          "unchanged": true
+        },
+        {
+          "path": "docs/guidance/architecture.md",
+          "priorSha256": "cc903c2fec89e3c456991d27038e9ef88be3ea5ce7421a51732cecc4fd3b2129",
+          "currentSha256": "cc903c2fec89e3c456991d27038e9ef88be3ea5ce7421a51732cecc4fd3b2129",
+          "unchanged": true
+        },
+        {
+          "path": "docs/DESIGN.md",
+          "priorSha256": "a1028993f33e1c469ad6a81b76f0c019e60de279d0c4444496efe53db960f53d",
+          "currentSha256": "c7e794916d36f24b70352621f00b9547e7fb566227fbbb7aa55c7d101920aa50",
+          "unchanged": false
+        },
+        {
+          "path": "docs/evidence/02-brownfield/integrate-06-client-identity-check-e40b095.txt",
+          "priorSha256": "5bb260b5ad164ae112646cf0f5408d122034112216d4a367d52c8d3cd6fbc0f0",
+          "currentSha256": "5bb260b5ad164ae112646cf0f5408d122034112216d4a367d52c8d3cd6fbc0f0",
+          "unchanged": true
+        },
+        {
+          "path": "missions/02-brownfield/slices/06-client-identity/proof/qa-item16-e40b095.md",
+          "priorSha256": "637f84ef4a3d2fc5b1d2df002ad4565571b3d66e73dab1cb8b00e25360f5cb79",
+          "currentSha256": "637f84ef4a3d2fc5b1d2df002ad4565571b3d66e73dab1cb8b00e25360f5cb79",
+          "unchanged": true
+        }
+      ]
+    }
+  ],
+  "changedFiles": {
+    "docs/RISKS.md": {
+      "retainedCommit": "30f8de4e647b05ff54cde09f1019ae519b00069d",
+      "retainedSha256": "3d2b140725cbf445970e187ad433ed0d67cb73f98d18c485190e2e359cfc787a",
+      "currentSha256": "ecf183e4402d055d9be3bc6a1018e6c3405148d1d925fd92201098a20a79020d",
+      "diff": "--- 30f8de4e:docs/RISKS.md\n\n+++ 10915b6adf3bf5f50168b1498005f1641536a871:docs/RISKS.md\n\n@@ -11 +11 @@\n\n-| Unbounded remediation loop (builder and QA ping-pong forever) | hop count climbs; no merge | `loop_guards.max_hops: 24` sized from the graph (9 steps + 3 rounds \u00d7 4-hop loop); a trip is an exception routed to the orchestration lead; `rig workflow resume --decision` grants exactly one more window | `rig/workflows/*`, traces in `docs/evidence/<m>/instances/` |\n+| Unbounded remediation loop (builder and QA ping-pong forever) | hop count climbs; no merge | `loop_guards.max_hops: 30` sized from the graph (9 baseline steps + 2 requirements-review rounds \u00d7 2 hops + 2 design-review rounds \u00d7 2 hops + 3 remediation rounds \u00d7 the 3-hop loop `implement \u2192 qa_check \u2192 code_review` = 26, rounded up to 30); a trip is an exception routed to the orchestration lead; `rig workflow resume --decision` grants exactly one more window | `rig/workflows/*`, traces in `docs/evidence/<m>/instances/` |\n@@ -14 +14 @@\n\n-| Agent publishes or pushes | remote changes, tags, registries | no remote configured; `git push` denied for Claude and `forbidden` for Codex; release agent prepares and stops at the gate | `.claude/settings.json`, `.codex/rules/urlshort.rules` |\n+| Agent publishes or pushes | remote changes, tags, registries | a GitHub remote exists (D13), but only the human pushes; `git push` denied for Claude and `forbidden` for Codex; release agent prepares and stops at the gate | `.claude/settings.json`, `.codex/rules/urlshort.rules` |\n@@ -28 +28 @@\n\n-| Alias collisions and reserved paths (`/api`, `/actuator`) | alias charset, length and reserved-word rules; 409 on duplicates | functional tests per AC |\n+| Short-code collisions and reserved paths (`/api`, `/actuator`) | 8 random characters from `[A-Za-z0-9]` drawn with `SecureRandom` (62\u2078 codes); a draw equal to a reserved first segment (`api`, `actuator`, `v3`, `swagger-ui`, `error`) is drawn again; `UNIQUE (code)` makes a collision fail the insert closed (`500`, nothing stored, the client retries) (ADR-0007). Custom aliases were dropped (D7) | `ShortCodesTest`, `uq_link_code` in V1, ADR-0007 |\n@@ -33 +33 @@\n\n-| Schema change breaks existing links (brownfield) | impact analysis with migration + rollback plan before plan-lock; reversible migrations | `impact-analysis.md`, design ADRs |\n+| Schema change breaks existing links (brownfield) | impact analysis with migration + rollback plan before plan-lock; Flyway applies migrations forward only, so each brownfield migration ships with a written rollback, rehearsed for V3 and V4 on a stopped data copy in mission 02 | `impact-analysis.md`, design ADRs, `missions/02-brownfield/RELEASE.md` \u00a78 |\n@@ -41 +41 @@\n\n-| One builder seat | wave parallelism is across stages and slice instances; a second builder is a `rig grow` away when implementation becomes the bottleneck |\n+| Two builder seats (`development-agent`, `dev2-agent`) | wave parallelism is across stages and slice instances; the second builder was added (D15) when two slices waited in `implement` on one seat |\n@@ -43,0 +44 @@\n\n+| Single-node prototype (embedded H2 file, no replication, no HA) | accepted for the assignment; rate-limit state is in memory per instance (ADR-0014), so scaling out needs a shared limiter store and PostgreSQL, neither built (NFR-R4, `docs/ARCHITECTURE.md` \u00a75) |\n@@ -48 +49 @@\n\n-- One human decision-maker (the author) resolves all gates.\n+- One human decision-maker (the author) resolves mission plan-locks, ambiguity decisions and ship sign-offs; slice plan-locks after `01-ping` are delegated to the orchestration lead (D11).\n@@ -50,2 +50,0 @@\n\n-\n-| Single-node prototype (embedded H2 file, no replication, no HA) | accepted for the assignment; the design keeps all state in the database so the move to PostgreSQL + N stateless instances is a deployment change (NFR-R4, `docs/ARCHITECTURE.md` \u00a75) | operator |\n"
+    },
+    "docs/DESIGN.md": {
+      "retainedCommit": "30f8de4e647b05ff54cde09f1019ae519b00069d",
+      "retainedSha256": "a1028993f33e1c469ad6a81b76f0c019e60de279d0c4444496efe53db960f53d",
+      "currentSha256": "c7e794916d36f24b70352621f00b9547e7fb566227fbbb7aa55c7d101920aa50",
+      "diff": "--- 30f8de4e:docs/DESIGN.md\n\n+++ 10915b6adf3bf5f50168b1498005f1641536a871:docs/DESIGN.md\n\n@@ -29 +29 @@\n\n-        RC[RedirectController<br/>link \u00b7 /{code} \u00b7 click hook]\n+        RC[\"RedirectController<br/>link \u00b7 /{code} \u00b7 click hook\"]\n@@ -31 +31 @@\n\n-        S[LinkService<br/>@Transactional]\n+        S[\"LinkService<br/>@Transactional\"]\n@@ -38 +38 @@\n\n-        SC[StatsController<br/>click \u00b7 /api/links/{code}/stats]\n+        SC[\"StatsController<br/>click \u00b7 /api/links/{code}/stats\"]\n@@ -141 +141 @@\n\n-| Configuration | `@ConfigurationProperties` records with defaults; first operator setting `urlshort.public-base-url` (default `http://localhost:8080`, env `URLSHORT_PUBLIC_BASE_URL`); `Host`/forwarding headers never used for it; *03-operate*: `urlshort.rate-limit.create-per-minute` (60, `URLSHORT_RATELIMIT_CREATEPERMINUTE`), `\u2026redirect-per-minute` (600), `\u2026trusted-proxies` (empty, comma-separated exact addresses); *02-click-retention*: `urlshort.click.retention-days` (90, `URLSHORT_CLICK_RETENTIONDAYS`, Retention row); *01-audit-read*: `server.forward-headers-strategy=none` pinned, as part of the audit read's loopback rule (Audit read row), not an operator knob | 01-create-redirect design \u00a72.7; ADR-0014; ADR-0018; ADR-0019 |\n+| Configuration | `@ConfigurationProperties` records with defaults; first operator setting `urlshort.public-base-url` (default `http://localhost:8080`, env `URLSHORT_PUBLIC_BASE_URL`); `Host`/forwarding headers never used for it; *03-operate*: `urlshort.rate-limit.create-per-minute` (60, `URLSHORT_RATELIMIT_CREATEPERMINUTE`), `\u2026redirect-per-minute` (600), `\u2026trusted-proxies` (empty, comma-separated exact addresses); *02-click-retention*: `urlshort.click.retention-days` (90, `URLSHORT_CLICK_RETENTIONDAYS`, Retention row), `urlshort.click.purge-enabled` (`true`, `URLSHORT_CLICK_PURGEENABLED`, the purge hold, Retention row); *01-audit-read*: `server.forward-headers-strategy=none` pinned, as part of the audit read's loopback rule (Audit read row), not an operator knob | 01-create-redirect design \u00a72.7; ADR-0014; ADR-0018; ADR-0019 |\n@@ -148 +148 @@\n\n-| API document | `docs/api/openapi.json` generated by the functional suite, key-sorted, fixed `servers`; the suite fails on drift; `springdoc.override-with-generic-response=false` (no untyped generic error entries from the advice) and `springdoc.writer-with-order-by-keys=true` shipped; `/v3/api-docs` and `/swagger-ui.html` on in every profile until `03-operate` decides the production profile. Regenerate with `scripts/gw functionalTest --tests '*OpenApiDocumentTest*'`, then `cp build/openapi/openapi.json docs/api/openapi.json`. *03-dogfood-fix*: the `ProblemDetail` component is corrected to the wire by a customiser (Errors row) | ADR-0010 (amendment proposed) |\n+| API document | `docs/api/openapi.json` generated by the functional suite, key-sorted, fixed `servers`; the suite fails on drift; `springdoc.override-with-generic-response=false` (no untyped generic error entries from the advice) and `springdoc.writer-with-order-by-keys=true` shipped; `/v3/api-docs` and `/swagger-ui.html` on in every profile; whether a production profile hides them is not decided (open backlog item). Regenerate with `scripts/gw functionalTest --tests '*OpenApiDocumentTest*'`, then `cp build/openapi/openapi.json docs/api/openapi.json`. *03-dogfood-fix*: the `ProblemDetail` component is corrected to the wire by a customiser (Errors row) | ADR-0010 (amended by 03-dogfood-fix; amendment accepted) |\n@@ -493 +493,2 @@\n\n-`V3__add_click_audit_columns.sql`. ERD source: `diagrams/erd.mmd`.\n+`V3__add_click_audit_columns.sql`; *04-audit-columns*:\n+`V4__add_link_audit_columns.sql`. ERD source: `diagrams/erd.mmd`.\n@@ -651,3 +652,3 @@\n\n-Pending, each lands with the slice that introduces the concern: the\n-production profile's API-document exposure is still open (`/v3/api-docs`\n-and `/swagger-ui.html` stay on and unlimited).\n+Open backlog item, not decided: whether a production profile hides the API\n+document. `/v3/api-docs` and `/swagger-ui.html` stay on in every profile and\n+are not rate-limited.\n"
+    },
+    "missions/02-brownfield/slices/06-client-identity/design.md": {
+      "retainedCommit": "30f8de4e647b05ff54cde09f1019ae519b00069d",
+      "retainedSha256": "e1df8233f1f4ce8a48368961a0d10fecb7081ae77b93af5c0c6658fd447dab89",
+      "currentSha256": "d0e5f259aef06c0bc268ad09841b578756532addecaeefdfed2a0fce7909117c",
+      "diff": "--- 30f8de4e:missions/02-brownfield/slices/06-client-identity/design.md\n\n+++ 10915b6adf3bf5f50168b1498005f1641536a871:missions/02-brownfield/slices/06-client-identity/design.md\n\n@@ -115 +115 @@\n\n-    CI->>CI: clientOf(peer, X-Forwarded-For, trusted); setAttribute(CLIENT_ATTRIBUTE)\n+    CI->>CI: clientOf(peer, X-Forwarded-For, trusted)#59; setAttribute(CLIENT_ATTRIBUTE)\n"
+    }
+  },
+  "checks": {
+    "productAndBuildDiff": "",
+    "checkedProductPaths": [
+      "src",
+      "build.gradle.kts",
+      "settings.gradle.kts",
+      "gradle",
+      "Dockerfile",
+      "compose.yaml"
+    ],
+    "mermaidClientDesignEqualAfterOnlyEntityAndLabelQuoteNormalization": true,
+    "mermaidSystemDesign859f31d1EqualAfterOnlyLabelQuoteNormalization": true,
+    "retentionADR0011_0013_0018_0020IndexRowsByteEqual": true,
+    "clientIdentityAndAuditRulesByteEqual": true,
+    "architectureGuidanceByteEqual": true,
+    "originalAC28HostGapRiskRowByteEqual": true,
+    "humanTransition1011AndNativeLinuxQualificationRetained": true,
+    "purgeHoldMatchesShippedTrueDefault": true,
+    "apiDocumentAmendmentAcceptedAndExposureBacklogRemainExplicit": true,
+    "dataModelV4SummaryRestored": true,
+    "workflowMaxHops30Observed": true,
+    "readmeAuditTrustBoundaryRetained": true,
+    "scope": "Original subjects and original performance/human-exception/custody claims retained. No new product run, renderer parse, remote operation, release/mission reopen or later-content acceptance. Checked source bytes and retained evidence only."
+  }
+}

@@ -1,0 +1,385 @@
+{
+  "packet": "qitem-20261004060920-8a09b9ab",
+  "documentationHead": "10915b6adf3bf5f50168b1498005f1641536a871",
+  "items": [
+    {
+      "scope": "01-greenfield-core/slices/03-operate",
+      "index": 13,
+      "claim": "At `release_prep` (recorded in `missions/01-greenfield-core/RELEASE.md`, not judged at `qa_check`): AC-21 to AC-28 pass against the container and the jar, with `docker inspect` output for AC-22, AC-23 and AC-28 and the bench numbers judged against NFR-L1 and NFR-L2.",
+      "beforeState": "unknown",
+      "priorReceipt": "missions/01-greenfield-core/slices/03-operate/proof/judgments/00000034.md",
+      "priorJudgment": {
+        "version": 1,
+        "scope": "missions/01-greenfield-core/slices/03-operate",
+        "sequence": 34,
+        "operationId": "5be7ec0b6c1eb39e4841a9c41b939da7b5ee6b1051e56494fd761bb7e30eedc2",
+        "itemId": "item-98415f93cc41ce4ac373",
+        "itemRevision": "886eb2f26e7144bf689c61d6e443f7c3479e6ec848336469dd29e45ae37e6c93",
+        "policyRevision": "3096494e1d474b134665afb5210687e973e282dc2b26b6f3831b0a9fd1477d01",
+        "policySource": "missions/01-greenfield-core/slices/03-operate/slice.yaml",
+        "previous": "9f9e638dad6938ff370b5395f77ec079d2c645b70a00a3705795b9eeb63edf4b",
+        "actor": "qa2-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-04T04:33:01.223Z",
+        "verdict": "accept",
+        "reason": "Final-main 30f8de4e content verification RF-01: later disk-gauge closure33c5b44a/merge5c264db independently reviewed inf49e3934 and supported by retained captures. All original release raw files, stamped SPEC, RISKS and human-exception audits retain exact hashes. Human transition1011 and amended55a197a still govern; retain six failed host attempts and prior original-criterion rejection. Renew original release judgment only; this does not accept later dogfood content on operate behalf. No new container, benchmark or host-success claim.",
+        "evidence": [
+          {
+            "ref": "docs/qa/03-operate/release-rejudgment-55a197a.md",
+            "sha256": "cb517d99370507b0ec743cc7fa00ef9e415c5f3f3d38a6c0008da1181c0d43cd"
+          },
+          {
+            "ref": "docs/qa/03-operate/release-rejudgment-audit-55a197a.json",
+            "sha256": "0996b96f521d561147632ef08605ca05bcaecf1c96175f0da69e6ee65b633f1d"
+          },
+          {
+            "ref": "missions/01-greenfield-core/slices/03-operate/SPEC.md",
+            "sha256": "85dd302077e31dd45d88e4ca4fa8be8218ffe3af5246b9f84c34e23027c9e2b4"
+          },
+          {
+            "ref": "docs/qa/GAPS.md",
+            "sha256": "6c50db0328c51453d424d6295e3ba020df4da5cbdd2f09fb4857ccdaf7a3b3f1"
+          },
+          {
+            "ref": "docs/RISKS.md",
+            "sha256": "3d2b140725cbf445970e187ad433ed0d67cb73f98d18c485190e2e359cfc787a"
+          },
+          {
+            "ref": "missions/01-greenfield-core/release/smoke-restart-container-f090103-run6.txt",
+            "sha256": "bc4519eaea2f59efc3bc112fa2bb6f057eb494dafed309b2ee47b7d9e81fb423"
+          },
+          {
+            "ref": "missions/01-greenfield-core/release/r0-vm-published-port-f090103-run1.txt",
+            "sha256": "969b15eec7888ea72e146cb14cdaafaa77d966088679b300475625045a58a504"
+          },
+          {
+            "ref": "missions/01-greenfield-core/release/r0-vm-published-port-f090103-run2.txt",
+            "sha256": "c98fb01659f32455ff3688f50bec43c0dd72e54c02f47cb86fb593e944d0821d"
+          },
+          {
+            "ref": "missions/01-greenfield-core/release/r0-in-namespace-control-f090103.txt",
+            "sha256": "41b6de3d5e12370a0f1bff1d080b36f1b1b0b9e403f3c7b15b11ede0048eae2a"
+          },
+          {
+            "ref": "missions/01-greenfield-core/release/smoke-inspect-container-f090103.txt",
+            "sha256": "27876214b05aaf097b7d57022a02e2296c778871ef3992a3ec9e4ea0b78353c1"
+          },
+          {
+            "ref": "missions/01-greenfield-core/release/bench-jar-f090103.txt",
+            "sha256": "42594b334cf5c05a103ac83a6393d35b0183f7d5870f425f81d0f5490c622322"
+          },
+          {
+            "ref": "docs/qa/final-reaffirmation/qa2-content-checks.json",
+            "sha256": "15b06576cffd4da27954576c8c90eabd8ae95852a4c1eb1422493c5f3e69cd96"
+          },
+          {
+            "ref": "docs/qa/final-reaffirmation/qa2-version-lookup.json",
+            "sha256": "129afb9d38f816e665b160edd223a44a96314f40128491340832fab0a108da64"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "30f8de4e647b05ff54cde09f1019ae519b00069d"
+        },
+        "intent": "d2fd3a6c4fd1030947bc3fc994121579ed271d04a0eb110dde812ae33e2cdd87",
+        "id": "e78fbafa603ff01e9732e74f72ef2b7db878cd7b7b989ddac04ec715d680cefe"
+      },
+      "previouslyAccepted": [
+        {
+          "index": 1,
+          "judgmentId": "a8d307b185d66d41d37d4f866bee24efe435a5870cbade90c4d8754fae432e05"
+        },
+        {
+          "index": 2,
+          "judgmentId": "8b1635d76fa088d93d05887fa699b4af33ec36142b01dbb1eb22883128ee576b"
+        },
+        {
+          "index": 3,
+          "judgmentId": "ff7c243c9048f5e05554649a09d470a7cf39ecd5ffc77469de51d9c2e9793706"
+        },
+        {
+          "index": 4,
+          "judgmentId": "5b1641286cd0f0ae17dc113d76c43979b1e03ca560df2c1d5016bb5a3cae5b17"
+        },
+        {
+          "index": 5,
+          "judgmentId": "d095832b0f3ef5bd7eadedf428d04e05ccbcbed095804fab6952fb02b22fb682"
+        },
+        {
+          "index": 6,
+          "judgmentId": "f65ca442699cff618e80cfb0860ebfe91d5ffea988bec8c69a1ce0b5ed1b9cff"
+        },
+        {
+          "index": 7,
+          "judgmentId": "b0be17b5d31d70b55817978eeb86aee42ee18f14b3bde55167d0a5a1699137da"
+        },
+        {
+          "index": 8,
+          "judgmentId": "81a90e28727283a9a9b8a7b07a7b8a2d6a818951b4317daada5254b12d02da3b"
+        },
+        {
+          "index": 9,
+          "judgmentId": "f74e3ab45b2dfb388af7a8136d795fea804f13e8051e1ef06fb8a42b2bd216d9"
+        },
+        {
+          "index": 10,
+          "judgmentId": "9b72882574e730b9248ac61cf8f3bfb9c25bc6da6a175fc6ce1770ec5b792497"
+        },
+        {
+          "index": 11,
+          "judgmentId": "215444beb7ccc6ef8bd1744dcfa5ad70d7a90a64f294e31fc384563674999298"
+        },
+        {
+          "index": 12,
+          "judgmentId": "70cd5f68f9e01e7312771873fa1b8fc9cfc019a1662fef55288bad21d6f7e01c"
+        }
+      ]
+    },
+    {
+      "scope": "02-brownfield/slices/02-click-retention",
+      "index": 10,
+      "claim": "The ADRs named under *Non-functional* exist and are indexed in `docs/DESIGN.md` §7 before the commits that depend on them (NFR-M2).",
+      "beforeState": "unknown",
+      "priorReceipt": "missions/02-brownfield/slices/02-click-retention/proof/judgments/00000014.md",
+      "priorJudgment": {
+        "version": 1,
+        "scope": "missions/02-brownfield/slices/02-click-retention",
+        "sequence": 14,
+        "operationId": "a28a921718a19d6d0db7e1eacaf45241a6f7f0342ccde8e834400448a9aa9d51",
+        "itemId": "item-d138531d67fe7c9f3eae",
+        "itemRevision": "1b06944b9dd41fff077bf48ec6a080e8a959b64dbdaf9761187d6f7158eb156c",
+        "policyRevision": "3096494e1d474b134665afb5210687e973e282dc2b26b6f3831b0a9fd1477d01",
+        "policySource": "missions/02-brownfield/slices/02-click-retention/slice.yaml",
+        "previous": "76c93c3a8267245482b1eb93ff9d0c20f76d6c0522d699a715a4604a4538ec00",
+        "actor": "qa2-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-04T04:33:02.862Z",
+        "verdict": "accept",
+        "reason": "Final-main 30f8de4e content verification RF-03: ADR existence/index/precedence at16312da still proven by unchanged original audit. Later wordingbfc642d/register2d3de57 correctly distinguishes writer5s drain then shutdownNow/outcome unknown from purge3s non-interrupting wait, matching pinned source and W2P-01 re-review82340b8/final wavebd74b509. Hold index first added4975d25f and retained by3b2ecd0b; pre-implementation ADR already defines it. Renew original NFR-M2 claim only; this does not accept later amendments/content on retention behalf. No new behavior or test claim.",
+        "evidence": [
+          {
+            "ref": "docs/DESIGN.md",
+            "sha256": "a1028993f33e1c469ad6a81b76f0c019e60de279d0c4444496efe53db960f53d"
+          },
+          {
+            "ref": "docs/adr/0018-click-retention-daily-purge.md",
+            "sha256": "53bd72ed7ed74817835ace4d9c85126796f7751404c242d64c9300d074ba1acb"
+          },
+          {
+            "ref": "docs/adr/0020-audit-columns-expand-migration.md",
+            "sha256": "c9978210247a70938ca5ed2fe38a9a13f87794fae1590d85b92a2318e02a8d19"
+          },
+          {
+            "ref": "docs/adr/0011-click-handoff-bounded-single-writer.md",
+            "sha256": "6d01495a14e56ac11139ce86b2d83ab03a686d1d02d0535d075675a1d8a16e24"
+          },
+          {
+            "ref": "docs/adr/0013-click-events-and-request-time-statistics.md",
+            "sha256": "737898715b892fd2c62ea9d53e22c04920c744843e86b649d33aac711599bd0d"
+          },
+          {
+            "ref": "missions/02-brownfield/slices/02-click-retention/proof/qa-adrs-and-rollback-a8fc8b6.json",
+            "sha256": "a4d9b3f5b98f5b28087491d17892063a11843c25a7f8be06ac5462258525bf52"
+          },
+          {
+            "ref": "docs/qa/final-reaffirmation/qa2-content-checks.json",
+            "sha256": "15b06576cffd4da27954576c8c90eabd8ae95852a4c1eb1422493c5f3e69cd96"
+          },
+          {
+            "ref": "docs/qa/final-reaffirmation/qa2-version-lookup.json",
+            "sha256": "129afb9d38f816e665b160edd223a44a96314f40128491340832fab0a108da64"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "30f8de4e647b05ff54cde09f1019ae519b00069d"
+        },
+        "intent": "30c7884e6453d412afcdb2c7cfb7deddc43a2cac87dcbda328465a03ae4df9d9",
+        "id": "011418f511f419139d3c8c66549a7a574d78f813664192f1d74d55d4f2df24f7"
+      },
+      "previouslyAccepted": [
+        {
+          "index": 1,
+          "judgmentId": "421220c4a9683d1db1336dbb94bb598e8f7c17f6ee4c1e8ed3c9d4ddecab92bf"
+        },
+        {
+          "index": 2,
+          "judgmentId": "eab883659175140cae5fa03074efe116911163342c61bc540a4daed89c78bdc0"
+        },
+        {
+          "index": 3,
+          "judgmentId": "b8d9bf01970543d750595471b659dec9783eac0e04d2de87cdc7a61e23bb973b"
+        },
+        {
+          "index": 4,
+          "judgmentId": "184ad57f2ccdb6aae02572afadaae9beed1ea074dc2b98b3c20f13c85a45f519"
+        },
+        {
+          "index": 5,
+          "judgmentId": "533030c2a95a08a0ff42449d6f0134f5614c140d32cc2858d631feaeea024971"
+        },
+        {
+          "index": 6,
+          "judgmentId": "b0d883a8c0234e15b6226fbabe1a6f97dfffd802d386826ce5bf1c9e25365d0a"
+        },
+        {
+          "index": 7,
+          "judgmentId": "3983c40e0fb52c392131aeef6399ee68bdffb875788630f7007de2c4624d132e"
+        },
+        {
+          "index": 8,
+          "judgmentId": "845a9ef2769d807adf2d899960876cb92391312ecbff4e418c594ecc9d550f0d"
+        },
+        {
+          "index": 9,
+          "judgmentId": "7e08626cf1ce0217e8c6dfe16d19ed43a90c9cc484fa47b54abc691a57bec66d"
+        }
+      ]
+    },
+    {
+      "scope": "02-brownfield/slices/06-client-identity",
+      "index": 16,
+      "claim": "Impact analysis committed before design; amended ADR-0015/0019 precede dependent code; independent review verifies the single-authority outcome and all three consumers against D21. After merge, the register owner updates architecture guidance row 1 and the current system description.",
+      "beforeState": "unknown",
+      "priorReceipt": "missions/02-brownfield/slices/06-client-identity/proof/judgments/00000036.md",
+      "priorJudgment": {
+        "version": 1,
+        "scope": "missions/02-brownfield/slices/06-client-identity",
+        "sequence": 36,
+        "operationId": "745bab9c096bdb8ce68e7fd17de1208f37399ef7cedbc12f4f409ca5708ba331",
+        "itemId": "item-8d8b501c0d38a6fe6b5a",
+        "itemRevision": "20d0dd25f4e708c09d9c0a070018d34af595666167f663d629fe06861551dd5c",
+        "policyRevision": "3096494e1d474b134665afb5210687e973e282dc2b26b6f3831b0a9fd1477d01",
+        "policySource": "missions/02-brownfield/slices/06-client-identity/slice.yaml",
+        "previous": null,
+        "actor": "qa2-agent@urlshort-factory",
+        "provenance": "transport:v1",
+        "at": "2026-10-04T03:42:04.909Z",
+        "verdict": "accept",
+        "reason": "Impact 6772b68 precedes design/ADR amendments 57cb9ae and production move 7e23259; independent code/security review 981eb8e0 verifies D21 and all three consumers. Exact candidate is second parent of no-ff merge b8d7fc16. Register owner update 3b2ecd0b follows merge; final architecture row 1 and current DESIGN name the stateless authority and separate resolved-client/direct-peer methods, matching merged code and the packet hashes. Document snapshot fda42757 contains the merge. Current main source equals candidate. Earlier run checks remain attributed; no new app/test run or product edit.",
+        "evidence": [
+          {
+            "ref": "docs/qa/06-client-identity/item16-followup.md",
+            "sha256": "5ba988d3224f0b954a423770cee49b036ddc5ac36a111bcd6dd8e237f0ec8d36"
+          },
+          {
+            "ref": "missions/02-brownfield/slices/06-client-identity/proof/qa-item16-custody.json",
+            "sha256": "55240d0954e331f08a61c3a1ba6080f88b3414026cbe2de06f7dcc9a89cb3c24"
+          },
+          {
+            "ref": "missions/02-brownfield/slices/06-client-identity/impact-analysis.md",
+            "sha256": "4bc546723e7e36ffdc1b42206c01877b049db7fc3407ced4f896e5df485661ac"
+          },
+          {
+            "ref": "missions/02-brownfield/slices/06-client-identity/design.md",
+            "sha256": "e1df8233f1f4ce8a48368961a0d10fecb7081ae77b93af5c0c6658fd447dab89"
+          },
+          {
+            "ref": "docs/adr/0015-client-identity-trusted-proxies.md",
+            "sha256": "3b45541c4ad4823907a0023284c589ba84ec5b8d2ab935dacee98013dd37c0fb"
+          },
+          {
+            "ref": "docs/adr/0019-audit-read-loopback-keyset.md",
+            "sha256": "31fd2e466a7ded3006f22362305c61391a3e7964447d39416f1b85adc0ae583e"
+          },
+          {
+            "ref": "docs/review/06-client-identity/01-code-review.md",
+            "sha256": "3e55222157c0b77739454151e1d0e4edd89592b5d597d24afd91d8f611ab31d3"
+          },
+          {
+            "ref": "docs/review/06-client-identity/02-security-review.md",
+            "sha256": "9be98d1722fb095bc8997abca6fe88e20160eff448bf1504d867b88ef69fdba6"
+          },
+          {
+            "ref": "docs/guidance/architecture.md",
+            "sha256": "cc903c2fec89e3c456991d27038e9ef88be3ea5ce7421a51732cecc4fd3b2129"
+          },
+          {
+            "ref": "docs/DESIGN.md",
+            "sha256": "a1028993f33e1c469ad6a81b76f0c019e60de279d0c4444496efe53db960f53d"
+          },
+          {
+            "ref": "docs/evidence/02-brownfield/integrate-06-client-identity-check-e40b095.txt",
+            "sha256": "5bb260b5ad164ae112646cf0f5408d122034112216d4a367d52c8d3cd6fbc0f0"
+          },
+          {
+            "ref": "missions/02-brownfield/slices/06-client-identity/proof/qa-item16-e40b095.md",
+            "sha256": "637f84ef4a3d2fc5b1d2df002ad4565571b3d66e73dab1cb8b00e25360f5cb79"
+          }
+        ],
+        "subject": {
+          "kind": "commit",
+          "ref": "e40b09541feb0b7555c475baa82587fdd09e4890"
+        },
+        "intent": "ed5574f4b33c327dddd03748dba4e465efe969a87fce9e6d45d72ec45a730d41",
+        "id": "70a4fe78211611f5e82caf7075ec40ed7f0e467c3435bf6e6e1c9c861e5e3fd1"
+      },
+      "previouslyAccepted": [
+        {
+          "index": 1,
+          "judgmentId": "2ce3deb5b8feadbc063424f2beb54f10e8d316861d68c426cee461db66d2a744"
+        },
+        {
+          "index": 2,
+          "judgmentId": "298f6b0b7d562f613b61f5d8dcf7a1018aa14777c0c9e6bb039d5e49b7ecf3e3"
+        },
+        {
+          "index": 3,
+          "judgmentId": "ed5b303a2769cfe83e5a5a4201a7c4aff50ff081ea27b64183b2f41e523df6f8"
+        },
+        {
+          "index": 4,
+          "judgmentId": "e7e241b98630dbf3ce18bc097991035fa571b16b475dec0c8b941b93070b6922"
+        },
+        {
+          "index": 5,
+          "judgmentId": "f9018d4e757fcad34e1e2f30aee38a5bc134f22ca5e77c238786809103a1ad1c"
+        },
+        {
+          "index": 6,
+          "judgmentId": "7f2c4127011210b3bf0273303138f7a2038fbb6f1ecd11419e299ea9228143a6"
+        },
+        {
+          "index": 7,
+          "judgmentId": "c3e8adcc5164ad77da402e53898504f4527dc334ef0932669a9c641ba5757051"
+        },
+        {
+          "index": 8,
+          "judgmentId": "0cbcbb56e07c505e2ef7488dadc3598c3c5c293ea80b174525062f72215f753b"
+        },
+        {
+          "index": 9,
+          "judgmentId": "9b502a40ff01c0d86bc17e4ad8704a228222875396a4ee3fdb278cae49ba3cf3"
+        },
+        {
+          "index": 10,
+          "judgmentId": "5c7f4c181fa7e9de8e768fbf1a11ea2dd1e705aeabec64898c1020a6817a8723"
+        },
+        {
+          "index": 11,
+          "judgmentId": "22eeff306f502c84613803df3209856e7adcb860d891bd7fc2006814a6aa9216"
+        },
+        {
+          "index": 12,
+          "judgmentId": "11e7a49ab74c9a68fe0bc1cd2ad29017d654af8b52b1198dd3ad26680dbb50bc"
+        },
+        {
+          "index": 13,
+          "judgmentId": "04092b8db7d40c5b6f60f2432c329990197e881960f4e6e7b361857237f3f895"
+        },
+        {
+          "index": 14,
+          "judgmentId": "9572a1cda948fcf5be42b6d6edfb5bf2de4a4c91ab3204ab7cc731013d6708c2"
+        },
+        {
+          "index": 15,
+          "judgmentId": "41582f0358f62d8723dee2aaa67a0f13265f2f20fe3d8869652e693483667f84"
+        },
+        {
+          "index": 17,
+          "judgmentId": "bc2a1d52e8e9bc576a8c9c4219dfd2ebd8cb63eb04f3025c1f89724ba8cef3f4"
+        }
+      ]
+    }
+  ]
+}
