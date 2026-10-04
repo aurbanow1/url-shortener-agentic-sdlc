@@ -1,0 +1,19 @@
+{
+  "candidate": "0552b815e39b9899fa4fdaacf3ea3454e116720c",
+  "base": "cda00ef",
+  "changedFiles": [
+    "src/functionalTest/java/dev/urlshort/click/ClickRetentionScheduleJourneyTest.java"
+  ],
+  "testOnly": true,
+  "existingSleepUnchanged": "100ms inside existing bounded poll; no new sleep",
+  "deadlineUnchanged": "60s",
+  "retainedAssertions": [
+    "exact two surviving cutoff-day rows",
+    "singleElement purge event",
+    "exact next-day cutoff"
+  ],
+  "predicate": "keep polling while old rows remain OR purge event missing",
+  "productAndBuildDiffEmpty": true,
+  "beforeSha256": "18e8477c1c61732e76a5da75181f1ea602093b0085f6ed793a797a1ffbaf4127",
+  "afterSha256": "561cd84275bc73d36e9c62e260bdc34d01e748f626dbdabe220d77722a699b63"
+}
