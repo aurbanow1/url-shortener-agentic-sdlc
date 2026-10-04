@@ -1,9 +1,12 @@
 # Final engineering summary — urlshort on an agentic SDLC
 
-> **Status: missions 00, 01 and 03 closed; mission 02 in its release wrap-up.** What
-> remains `[final]` is filled from mission 02's release package, its evidence
-> export and the final metrics regeneration; everything else is true of the
-> repository as it stands.
+> **Status: complete.** All four missions are closed (mission 02 last, at
+> `2522e6c2`, 2026-10-04 05:36Z). Every mission and every slice reads ready:
+> 123 of 123 proof items accepted across eleven slices (`rig proof show`,
+> 2026-10-04 05:46Z, after the last re-affirmation `ba34d9e6`). Its
+> project-level field reads `not-ready` only because it aggregates *active*
+> missions and none remains. The metrics are the run-end refresh, read from
+> the live daemon with every workflow instance terminal.
 
 ## 1. What was built, and how
 
@@ -32,7 +35,7 @@ The plan of record and its decision log (D1–D21) are in `PLAN.md`; every
 assignment clause is mapped to the guide section and the artefact that proves
 it in `docs/guidance/README.md` §2.
 
-## 2. Artefact map (assignment item → artefact → status) `[final]`
+## 2. Artefact map (assignment item → artefact → status)
 
 | Assignment item | Artefact | Status |
 |---|---|---|
@@ -43,33 +46,53 @@ it in `docs/guidance/README.md` §2.
 | §4.5 engineering output | `src/`, Flyway `V1`–`V4`, `docs/api/openapi.json`, Javadoc on every public type (`-Xdoclint:all -Werror` in `check`), `docs/DESIGN.md`, ADRs | done |
 | §4.6 validation and risk control | `docs/RISKS.md`, `docs/scenarios/drills.md`, permission policies, loopback-only tooling, CI/CD on GitHub Actions (`.github/workflows/`, D14) with the first runs recorded in `missions/02-brownfield/slices/05-ci-cd/PROOF.md` | done |
 | §4.7 controlled autonomy | gate packets and `rig queue resolve` records, delegation records (D11), role `Never` lists | done |
-| §4.8 final summary | this document | done except mission 02's outcome and the final metrics `[final]` |
-| §5 deliverables | prototype, `docs/ARCHITECTURE.md`, `docs/scenarios/*.md`, `README.md` + `docs/SETUP-FACTORY.md`, `docs/TESTING.md`, the GitHub repository with its stacked pull requests and green CI/CD runs | greenfield and ambiguous narratives done; brownfield outcome `[final]` |
+| §4.8 final summary | this document | done |
+| §5 deliverables | prototype, `docs/ARCHITECTURE.md`, `docs/scenarios/*.md`, `README.md` + `docs/SETUP-FACTORY.md`, `docs/TESTING.md`, the GitHub repository with its stacked pull requests and green CI/CD runs | done |
 | AI-SDLC artefacts | stories + ACs (`SPEC.md`), design docs + Mermaid, error handling/logging/audit + conventional commits, review files + `docs/review/REVIEW-LEDGER.md`, QA coverage/traceability/gaps | done |
 
-## 3. The three scenarios `[final]`
+## 3. The three scenarios
 
 | Mission | Scenario | What it demonstrated | Narrative |
 |---|---|---|---|
 | `00-hello` | dry run | one endpoint through every step and both human gates; two bounded remediation loops (DR-01, QA-01); stuck-sweep recovery; a refused `workflow revise` | `docs/scenarios/drills.md` |
 | `01-greenfield-core` | greenfield | 3 slices in 2 waves (parallel wave with ordered custody of shared files), 28+ ACs per slice, review loops that caught a flaky test, a rate-limiter race and a fail-open smoke reader before merge; release with bench, OSV, secret scan; one explicitly human-decided gap (AC-28 host forwarder) | `docs/scenarios/greenfield.md` |
-| `02-brownfield` | brownfield | six slices on shipped code: an enhancement read (audit), a purge with written rollback, a dogfood-sourced bug fix with regression tests first, an expand migration for the human's audit-column policy, CI/CD, and a behaviour-preserving refactor proven by characterization tests and before/after captures (D21); impact analyses first; a security finding caught by review after QA (CR-01); four drills (QA rejection loop, revert after failed smoke, stop→route, resume+abort); outcome `[final]` | `docs/scenarios/brownfield.md` |
+| `02-brownfield` | brownfield | six slices on shipped code: an enhancement read (audit), a purge with written rollback, a dogfood-sourced bug fix with regression tests first, an expand migration for the human's audit-column policy, CI/CD, and a behaviour-preserving refactor proven by characterization tests and before/after captures (D21); impact analyses first; a security finding caught by review after QA (CR-01); four drills (QA rejection loop, revert after failed smoke, stop→route, resume+abort); shipped at `30f8de4e` under the human's local-use sign-off, with the V4/V3 migration rollback rehearsed on a copy of its data | `docs/scenarios/brownfield.md` |
 | `03-ambiguous-analytics` | ambiguous | "marketing wants better analytics" turned into six decisions with options and consequences, parked on the human before design, built to the decided scope; stacked on mission 02's click work; shipped at `50ad9c3` under the human's sign-off with one disclosed and since-closed CI gap | `docs/scenarios/ambiguous.md` |
 
-## 4. Validation `[final]`
+## 4. Validation
 
 - Gate: `scripts/gw check` — unit + functional suites, 100 % line and branch on
   the merged execution data, Javadoc doclint; per-slice reports under
   `docs/qa/coverage/<slice>/`, AC ↔ test ↔ requirement-id traceability in
   `docs/qa/TRACEABILITY.md`, honest gaps in `docs/qa/GAPS.md`.
-- Independent review of every artefact on the other model family; the ledger
+- Independent review of every artefact by a seat that did not write it, on the
+  other model family for design, code, QA and security (requirements and release share
+  a runtime with their reviewer since D17, see §7); the ledger
   `docs/review/REVIEW-LEDGER.md` shows every file reviewed and every verdict.
+- The final shipped product (`30f8de4e`): 268 unit and 322 functional tests,
+  583/583 lines and 206/206 branches, re-run independently by the release
+  reviewer. The same code passed GitHub's `gate` in pull request #14.
 - Installed smoke of jar and container on loopback; benchmark against the
-  stated NFRs; OSV advisory check (0 advisories after the overrides); secret
-  scan.
+  stated NFRs; OSV advisory check (0 advisories on 97 runtime coordinates);
+  secret scan; migration rollback rehearsed with the previous binary started
+  on the rolled-back data.
 - Reliability metrics derived from engine records, not self-reports
   (`docs/metrics/README.md`): success rate, retries, rollbacks, MTTR,
-  end-to-end latency, human wait — final numbers `[final]`.
+  end-to-end latency, human wait. Final numbers, the whole run:
+
+| Metric | Value |
+|---|---|
+| Workflow instances | 17: 16 completed, 1 aborted (DRILL 4, on purpose), 0 failed |
+| Instance success rate (completed ÷ terminal) | 0.941; every product instance completed |
+| Step closures (failed) | 254 (18); step success 0.929 |
+| Retries (failed verdicts + step re-entries) | 55, all review loops working as designed |
+| Rollback text matches + engine resumes | 10; a heuristic, no production rollback was executed |
+| MTTR (failed check → next closure of that step) | 29 min mean |
+| End-to-end latency, completed instances | p50 5.6 h, p95 15.7 h |
+| Time parked on the human | 8.8 h, reported apart from agent throughput |
+
+  The derivations and their limits are in `docs/metrics/README.md`; per-mission
+  rows are in each scenario's Metrics section.
 
 ## 5. Risks, trade-offs and decisions
 
@@ -96,7 +119,7 @@ to the human at the mission-01 plan-lock and confirmed as stated; the analytics
 shape was decided by the human at mission 03's ambiguity park. Both decisions
 are recorded verbatim in the queue transitions exported under `docs/evidence/`.
 
-## 7. Limitations `[final]`
+## 7. Limitations
 
 - OpenRig's workflow runtime keeps one live packet per instance; parallelism is
   achieved with concurrent slice instances, disjoint territories, ordered
@@ -125,8 +148,10 @@ are recorded verbatim in the queue transitions exported under `docs/evidence/`.
 - Proof judgments bind the exact bytes of their evidence. Shared documents
   that later slices extend (traceability, gaps, the ERD) turn shipped items
   from accepted to unknown. They are re-affirmed by QA on the final `main`;
-  mission 03's affected items were re-affirmed against the exact byte-level
-  change; mission 01's `[final]`.
+  each re-affirmation names the exact byte-level change it checked. Mission
+  01's and mission 02's items were re-affirmed on `30f8de4e` before mission
+  02's release review, and mission 03's last three after mission 02's evidence
+  export.
 - One dependency update (the Gradle wrapper, 9.7.1 to 9.8.0) was merged on
   GitHub outside the rig's review. The lead adopted the same change in the
   rig's `main` with a fresh gate and a warmed Gradle home (`f3e6b0b`), so the
@@ -144,7 +169,19 @@ are recorded verbatim in the queue transitions exported under `docs/evidence/`.
 - Gradle's distribution server failed twice during CI (a 503 and a
   timeout). The failed jobs were re-run green, and making the gate tolerant
   of that is a recorded MEDIUM backlog item.
-- `[final]` anything not delivered by mission 02's close.
+- Not delivered, each recorded with an owner or trigger in the mission notes:
+  - custom aliases and link expiry, dropped from scope under the fast plan;
+  - a bounded retry and timeout for the Gradle wrapper download (MEDIUM);
+  - the shared `Clock` in `ping/` (LOW);
+  - pinning functional journeys to `127.0.0.1` so they cannot reach a foreign
+    loopback listener (LOW);
+  - `totalClicks` documented as "retained click rows" rather than implying a
+    lifetime total, in its Javadoc and API schema (M3S-01, LOW); the README and
+    runbook already say it correctly.
+- GitHub has no CI run on the exact commit the human signed off for mission 02
+  (`30f8de4e`), because agents never push. The human accepted that because the
+  code passed CI one documentation-only change earlier (`e43ed246`, pull
+  request #14). The final pull request runs the gate on everything shipped.
 
 ## 8. How to verify in 15 minutes
 
