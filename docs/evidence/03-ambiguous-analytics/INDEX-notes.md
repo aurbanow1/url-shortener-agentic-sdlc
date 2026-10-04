@@ -48,7 +48,24 @@ checks those hashes, preserved history and current local evidence links.
 
 The [independent release package audit](../../review/03-ambiguous-analytics/release-review.md)
 at eedc97f also re-derived8cf894a's840raw hashes,405response/log joins and
-38statistics bodies. Its focused final receipt/document disposition and the
-human ship decision remain pending. Exact-candidate hosted CI/CD stays
+38statistics bodies. Its focused final receipt/document review passed at
+93d55bd on package14815f9/product50ad9c3. Human approval for local use is
+[transition1916](../../../missions/03-ambiguous-analytics/release/ship-signoff-transitions.json)
+at the existing gateqitem-20261004023723-f58044d0, handled by the primary
+release-agent. Exact-candidate hosted CI/CD stays
 unverified. This supplement does not replace the final-state export or claim
-a human approval; nothing was published.
+a new approval; the recorded decision accepts that qualification. Nothing
+was published.
+
+After that review, QA2 appended D21 sections to shared TRACEABILITY/GAPS.
+The [later live proof capture](../../../missions/03-ambiguous-analytics/release/proof-readiness-shared-doc-drift-50ad9c3.json)
+reports unknown for items2/5/6 because those whole-file hashes changed;
+the other nine remain accepted. The reviewed ready snapshot stays unchanged.
+Lead transition1917 retains the reviewed immutable snapshot for the human
+decision and schedules one independent reaffirmation immediately before
+final evidence_export, against main as it then stands. This is evidence
+drift, not a claim about the unshipped D21 product, and not another human gate.
+The subsequent slice delivery stamp additionally moves item1's SPEC hash;
+only delivery frontmatter was added. Pre-export QA packet
+qitem-20261004024232-5aea9029 includes this observation. Export packet
+qitem-20261004024238-651b51b1 is parked on that independent return.

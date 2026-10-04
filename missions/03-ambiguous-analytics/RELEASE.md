@@ -3,7 +3,7 @@
 Prepared by `release2-agent@urlshort-factory`, 2026-10-04 UTC, under
 `qitem-20261004004828-05d2aab9`. Product candidate:
 **`50ad9c3ab9e65baa4100ede1772b514322957fa5`**. This package prepares a local
-artifact for independent release review and human sign-off; shipping is pending.
+artifact approved for local use by the human; nothing has been published.
 
 ## 1. Decision brief for ship sign-off
 
@@ -46,7 +46,7 @@ at 16:10:30.782Z, transition **876**:
 | Q5 A: reader | Existing statistics API | B CSV; C HTML dashboard; D cross-link view |
 | Q6 A: day | UTC calendar days | B timezone parameter; C operator-selected zone |
 
-**Proof status:** the [post-QA attributed readiness](release/proof-readiness-after-qa-50ad9c3.json)
+**Reviewed proof snapshot:** the [post-QA attributed readiness](release/proof-readiness-after-qa-50ad9c3.json)
 is **ready: all 12 items accepted, no issues**. QA's
 [receipt 13](slices/01-analytics-v2/proof/judgments/00000013.md) accepts item 12
 and [receipt 14](slices/01-analytics-v2/proof/judgments/00000014.md) reaffirms
@@ -62,13 +62,45 @@ remain unchanged as history. QA returned through
 final main. Mission03 does not wait for D21. No self-judgment is substituted.
 [Sequencing record](NOTES.md), [receipt/hash verification](release/post-qa-verification-50ad9c3.json).
 
-**Recommended default:** finish the independent release review's focused
-receipt/document check, then approve this pinned pre-D21 candidate for local use, retaining
+**Final release review:** [PASS at `93d55bd`](../../docs/review/03-ambiguous-analytics/release-review.md#focused-re-review--14815f9)
+for package `14815f9` and product `50ad9c3`. The reviewer independently checked
+all 41 current evidence references across 33 committed files and the final
+five-file delta. This is a package verdict, not human ship approval.
+
+**Live evidence change after review:** a [fresh readiness read](release/proof-readiness-shared-doc-drift-50ad9c3.json)
+is **unknown: items 2, 5 and 6 need reaffirmation**, while the other nine
+remain accepted. QA2 appended D21 sections to shared `TRACEABILITY.md` and
+`GAPS.md`, changing their whole-file hashes; those edits were uncommitted
+on this read. The earlier ready snapshot and final review remain historical
+evidence for the pinned candidate. Per the lead's transition 1917, independent
+QA reaffirms the changed references once immediately before final
+`evidence_export`, against main as it then stands. The human decides on the
+reviewed immutable snapshot. No product regression or D21 product dependency
+is inferred; no new gate or product review is required.
+The later slice delivery stamp also moved item 1's SPEC hash: only
+`approved-by`/`approved-at` frontmatter was added. The same pre-export QA
+item includes that stamp drift; the acceptance text is unchanged.
+
+**Human approval:** existing gate `qitem-20261004023723-f58044d0`, handled by
+the primary `release-agent`, was resolved by `human@kernel` at
+**2026-10-04T02:38:55.409Z**, transition **1916**:
+
+> approve: ship mission 03 analytics v2 at 50ad9c3 for local use; the exact-SHA hosted CI gap is accepted because the delta from the CI-verified 18db1de is one test-only change
+
+[Decision transitions](release/ship-signoff-transitions.json),
+[verbatim decision and delivery-stamp record](NOTES.md#release-agent--human-ship-sign-off).
+This records the human's reason; it does not establish hosted CI/CD runs for
+`50ad9c3`. The reviewed immutable package is `14815f9`, final review `93d55bd`.
+Delivery stamps are handled by the primary release seat and lead on the
+human's behalf; release2 makes no duplicate stamp or gate.
+
+**Recommended default presented to the human:** approve this pinned pre-D21 candidate for local use, retaining
 §7's limits. Exact-candidate hosted CI/CD is unverified and must be visible
 in the human's decision. The alternative is to hold for a human-triggered
 hosted CI/CD record, costing another external verification cycle. Rollback is
-the rehearsed revert of `c9b66dd`, retaining V3/V4 and the data (§8). No human
-ship decision or publication has occurred in this preparation.
+the rehearsed revert of `c9b66dd`, retaining V3/V4 and the data (§8). Nothing
+has been published. The recorded human decision accepts the hosted-CI
+gap for local use; the qualification itself remains in this package.
 
 ## 2. Artifact and gate
 
@@ -197,7 +229,8 @@ No correction was required within that audit scope.
 The [independent release review](../../docs/review/03-ambiguous-analytics/release-review.md)
 at `eedc97f` separately re-derived all 840 raw hashes, 405 wire/log joins and
 38 statistics bodies from preceding request inputs; no correction was needed.
-Its final disposition still awaits the focused post-QA document/receipt check.
+Its focused final check passed at `93d55bd` on package `14815f9`; the
+later shared-document hash change is recorded in §1.
 
 Installed smoke does not re-prove natural UTC midnight, natural disk failure,
 90-day aging, purge-in-progress shutdown, full container restart/down-up or
@@ -234,8 +267,8 @@ image OS-package scanning or future advisory status.
 | Independent code / security | [Code PASS](../../docs/review/01-analytics-v2/01-code-review.md), [security PASS](../../docs/review/01-analytics-v2/02-security-review.md), exact `ec466da`, record `61430eb`; item11 construction judged in [QA return](slices/01-analytics-v2/proof/qa-item11-ec466da.md) |
 | Integration / wave | X′ `22fc8e2`, merge `c9b66dd`; [merged gate](../../docs/evidence/03-ambiguous-analytics/integrate-01-analytics-v2-check-22fc8e2.txt), [independent wave PASS](../../docs/review/03-ambiguous-analytics/wave-1-review-review-agent.md), [structural vantage](../../docs/review/03-ambiguous-analytics/wave-review-design2-agent.md) `7c54ef7`/`9928513` |
 | Shared W2F-01 repair | Test candidate `0552b81`, merge `50ad9c3`, [owning re-review](../../docs/review/02-brownfield/wave-review-review-agent.md) `79eda7e`, [integration gate](../../docs/evidence/02-brownfield/integrate-w2f-01-check-0552b81.txt); our fresh gate in §2 |
-| Release QA return | [Restored-seat review](slices/01-analytics-v2/proof/qa-release-50ad9c3/QA.md) and [audit](slices/01-analytics-v2/proof/qa-release-50ad9c3/audit.json), `f825706`; final receipts/readiness `d203049`; receipts [13](slices/01-analytics-v2/proof/judgments/00000013.md) / [14](slices/01-analytics-v2/proof/judgments/00000014.md) on `50ad9c3`; [current captured readiness](release/proof-readiness-after-qa-50ad9c3.json) ready |
-| Independent release review | [Package review and raw re-derivation](../../docs/review/03-ambiguous-analytics/release-review.md), `eedc97f`: no new finding; focused final receipt/document disposition pending |
+| Release QA return | [Restored-seat review](slices/01-analytics-v2/proof/qa-release-50ad9c3/QA.md) and [audit](slices/01-analytics-v2/proof/qa-release-50ad9c3/audit.json), `f825706`; final receipts/readiness `d203049`; receipts [13](slices/01-analytics-v2/proof/judgments/00000013.md) / [14](slices/01-analytics-v2/proof/judgments/00000014.md) on `50ad9c3`; [reviewed captured readiness](release/proof-readiness-after-qa-50ad9c3.json) ready; later shared-document drift in §1 |
+| Independent release review | [Package review and raw re-derivation](../../docs/review/03-ambiguous-analytics/release-review.md), initial `eedc97f`, final PASS `93d55bd` on package `14815f9`/product `50ad9c3`; later shared-document drift recorded in §1 |
 | Shared QA/review context | [TRACEABILITY](../../docs/qa/TRACEABILITY.md), [GAPS](../../docs/qa/GAPS.md), [review ledger](../../docs/review/REVIEW-LEDGER.md), [cross-cutting register](../../docs/guidance/architecture.md) |
 
 The governance-indexed [export INDEX](../../docs/evidence/03-ambiguous-analytics/INDEX.md)
@@ -248,8 +281,9 @@ confirmed both required instance traces. This exporter captures the rig's
 cross-mission records too; directory placement is not mission ownership.
 [Snapshot notes](../../docs/evidence/03-ambiguous-analytics/INDEX-notes.md)
 map the remaining obligations and [governance clauses](../../docs/GOVERNANCE.md).
-Final-state export follows the human gate; this snapshot does not invent its
-future decision, release-review verdict or mission-close event.
+Final-state export follows the human gate; this preparation export remains
+historical. Later review and human decision are linked separately in §1;
+final export and mission close remain downstream obligations.
 
 Shared operator docs were committed by their custodian at **`e227acf`** and
 read here: [README](../../README.md) runs the product in three commands without
@@ -304,7 +338,7 @@ Living GAPS/proof hashes may change after this snapshot; QA alone reaffirms them
 | Gap / qualification | Current disposition and evidence | Owner |
 |---|---|---|
 | NFR-L1 proof12 | CLOSED for the specified run by QA receipt13: p95 3.7ms/p99 9.5ms at100 redirects/s for60s, zero bad responses. Same-host activity, trusted loopback, raised budgets and unretained client latency samples remain qualified (§3). Historical pending row is preserved beside the attributed closure. | QA return qitem-20261004020825-9237265b, pinned50ad9c3 |
-| Hosted CI/CD exact SHA | HTTP404 means unverified access; no candidate run URL/conclusion. Earlier successful runs and configuration-only failure-upload/lint evidence retain their own subject. No red hosted run, artifact-content review or wholly uncached image corroboration. | Human/operator supplies hosted record; release/review report it |
+| Hosted CI/CD exact SHA | HTTP404 means unverified access; no candidate run URL/conclusion. Human accepted this gap for local use at transition1916. Earlier successful runs and configuration-only failure-upload/lint evidence retain their own subject. No red hosted run, artifact-content review or wholly uncached image corroboration. | Human/operator; accepted qualification remains visible |
 | M3S-01 LOW | `totalClicks` Javadoc/schema can imply lifetime; README/RUNBOOK correctly explain retained rows, but candidate source/API wording remains. | Next authorized `click/` + OpenAPI holder; no slice scheduled |
 | M3S-02 LOW | Candidate property comment omits analytics identity effect; shared docs explain it. Later D21 owns comment-only repair; no later-tree claim here. | Mission02 `06-client-identity` |
 | M3S-03/04/05 INFO | Limiter-bypass fallback warning entered register `41eff65`; preserve single-statement snapshot; gate SHA custody explicitly recorded. | Future affected slice; current capture links in §§2/5 |
@@ -388,8 +422,9 @@ patch permit recovery without claiming a previously published rollback image.
 ## 9. Self-check
 
 - Decision brief quotes actual human transitions and links stamped SPECs;
-  six alternatives are recorded. All12 proof items accepted through QA;
-  focused final release review and human shipping decision remain pending.
+  six alternatives are recorded. Reviewed snapshot has all12 proof items
+  accepted and release review PASS; shared-document drift2/5/6 and stamp drift1,
+  human approval1916 and one reaffirmation before final export are explicit in §1.
 - Fresh exact-product gate and preserved jar/image identities are linked;
   every local evidence link is validated before commit. [Prep verification](release/package-verification.json),
   [post-QA verification](release/post-qa-verification-50ad9c3.json). Hosted runs are unverified.
@@ -408,5 +443,6 @@ patch permit recovery without claiming a previously published rollback image.
   down migration; data-loss and later-tree limits described step by step.
 - Current-model audit of QA's8cf894a and independent release re-derivation
   open raw bytes; QA's restored-seat receipts bind the benchmark/GAPS return.
-  Focused final release review is pending. Nothing pushed,
+  Final release review passed; later shared-document drift is not hidden.
+  Nothing pushed,
   release-tagged, published or exposed beyond localhost.
