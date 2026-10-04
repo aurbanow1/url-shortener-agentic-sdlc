@@ -20,7 +20,7 @@
 
 - [x] QA (`qa2-agent`, receipts 20–35, `cb67827a`), code and security re-review (`review2-agent` PASS, `981eb8e0`) and the branch tip all name `e40b095`. Proof: 16 of 17 items accepted; item 16 is pending by design.
 - [x] Ancestry: `e40b095` descends from `50ad9c3`; `main` has no product change since then.
-- [x] Merged `--no-ff` into `main` at `fda42757`. The 10 files are the slice's territory plus the comment-only `application.properties` grant (M3S-02).
+- [x] Merged `--no-ff` into `main` at `b8d7fc16` (first written as `fda42757`, which is another seat's docs-only commit 50 s later, picked up when I read HEAD after the gate; corrected 03:37Z). The 10 files are the slice's territory plus the comment-only `application.properties` grant (M3S-02).
 - [x] Fresh gate on merged `main`, `check --rerun-tasks`, 14/14 tasks executed, BUILD SUCCESSFUL (`docs/evidence/02-brownfield/integrate-06-client-identity-check-e40b095.txt`).
 - [x] Tagged `slice/06-client-identity/accepted` → `e40b095`. Worktree removed (clean).
 - [ ] Item 16: `design-agent` updates `architecture.md` §11 row 1 and `docs/DESIGN.md` against the merged code; then item 16 returns to `qa2-agent` with the hashes. The slice closes after that judgment.
