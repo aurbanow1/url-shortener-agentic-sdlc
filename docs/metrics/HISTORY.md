@@ -13,7 +13,9 @@ An external review found all three (2026-10-04). The generator now counts only e
 (`rollbacks.json`, raw evidence verified), ends MTTR at a `handoff` or `done` closure, keeps the
 freshest copy of every record, and `--check` proves the committed numbers regenerate offline from
 `docs/evidence/run-end/`. Under the new definitions the run has 6 executed rollbacks (and no revert
-on `main`) instead of 10 rollback signals; MTTR and every other total are unchanged.
+on `main`) instead of 10 rollback signals. MTTR is now the mean over every individual repair, 31 minutes
+over 16 repairs, where the earlier snapshots reported a mean of per-instance means (29 minutes); every other
+total is unchanged.
 
 ## Export-container scope limitation
 

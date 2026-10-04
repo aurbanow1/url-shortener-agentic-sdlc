@@ -1,6 +1,6 @@
 # SDLC reliability metrics
 
-Generated 2026-10-04T18:41:37.041Z by `tools/sdlc-metrics.mjs` from OpenRig workflow trails and queue transition logs (live daemon read).
+Generated 2026-10-04T18:48:17.901Z by `tools/sdlc-metrics.mjs` from OpenRig workflow trails and queue transition logs (live daemon read).
 
 ## Totals
 
@@ -13,7 +13,7 @@ Generated 2026-10-04T18:41:37.041Z by `tools/sdlc-metrics.mjs` from OpenRig work
 | Retries (failed closures + step re-entries) | 55 |
 | Rollbacks executed (rehearsals and drills with raw evidence + reverts on `main`) | 6 (6 + 0) |
 | Engine recoveries (resumes / aborted instances) | 1 / 1 |
-| MTTR, mean (failed closure → next handoff or done closure of that step) | 29 min |
+| MTTR, mean over every repair (failed closure → next handoff or done closure of that step) | 31 min (16 repairs) |
 | End-to-end latency, completed instances p50 / p95 | 5.6 h / 15.7 h |
 | Time parked on the human (all gates) | 8.8 h |
 
@@ -42,9 +42,10 @@ Generated 2026-10-04T18:41:37.041Z by `tools/sdlc-metrics.mjs` from OpenRig work
 ## Derivations and honest limits
 
 - **Source of truth**: `rig workflow trace --json` (append-only step trail; one entry per closed packet with `closureReason` handoff/done/failed) and `rig queue transitions --json` (every state change of a packet with actor and timestamp). Nothing is self-reported by agents.
+- **Drills are included**: DRILL 1's deliberate QA rejection and DRILL 4's deliberately failed step count as failed closures and retries, and DRILL 4's abort as the one aborted instance.
 - **Retry** counts an artifact verdict of `failed` (QA, code review or security review sent the candidate back) plus any step closed more than once with a non-`waiting` exit. A `waiting` closure re-presents the same step (the integrator waiting on a slice's proof) and is not counted. One remediation round therefore shows as one failed closure plus two re-entries (the checking step and the building step both run again). A retry is a governance event working as designed, not a defect of the factory.
 - **Rollback** counts only rollbacks that were executed: a merged change reverted, or a migration rolled back with the earlier binary started on the rolled-back data, each checked by the gate or an installed smoke. They are listed in [`rollbacks.json`](rollbacks.json) with their raw evidence, and the generator refuses to run if a listed file is missing; reverts that landed on `main` are counted from `git log`. Plans and descriptions of rollbacks do not count, and engine resumes and aborts are reported separately as recoveries. OpenRig 0.6.3 has no rollback event of its own, so the register is the record; every entry points at raw files.
-- **MTTR** is measured from a failed closure to the next `handoff` or `done` closure of the same step, i.e. the time to repair the candidate and pass that check again; a `waiting` closure is not a recovery. It measures repair of a rejected candidate, not production incident recovery: no production incident occurred. Instances with no failure have no MTTR (shown as –), not zero.
+- **MTTR** is measured from a failed closure to the next `handoff` or `done` closure of the same step, i.e. the time to repair the candidate and pass that check again; a `waiting` closure is not a recovery. It measures repair of a rejected candidate, not production incident recovery: no production incident occurred. The total is the mean over every individual repair; the per-instance column is the mean of that instance's repairs. Instances with no failure have no MTTR (shown as –), not zero.
 - **Reproducibility**: when the same record appears in several exports, the freshest copy wins (trace `instance.version`, highest `transitionId`, packet `tsUpdated`). `docs/evidence/run-end/` holds the exact inputs of this report, and `node tools/sdlc-metrics.mjs --check` regenerates it offline and fails on any difference.
 - **Human wait** is time a packet spent parked on `human@kernel`; it is reported separately so agent throughput and human latency are not conflated. The per-instance column sums the gate packets in that instance's trail; the total counts each packet once, because a slice gate also appears in the mission trail as the blocker of `wave_integration`.
 - Active instances contribute latency up to the generation time and are excluded from the p50/p95.

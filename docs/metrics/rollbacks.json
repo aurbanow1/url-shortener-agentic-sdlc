@@ -1,14 +1,16 @@
 {
-  "definition": "A rollback is counted only when it was executed: a merged change reverted, or a schema migration rolled back with the earlier binary started on the rolled-back data, and the result checked by the gate or an installed smoke. Each event names its raw evidence; tools/sdlc-metrics.mjs refuses to run if a listed file is missing. Rollback plans, rollback descriptions and engine resumes are not rollbacks. Reverts that landed on main are counted from git separately: commits reachable from main (origin/main when there is no local main) whose subject starts with 'Revert \"'; a revert merged into main from a branch has landed on main and counts. Entries under notCounted are kept with the reason they do not meet this definition.",
+  "definition": "A rollback is counted only when it was executed: a merged change reverted, or a schema migration rolled back with the earlier binary started on the rolled-back data, and the result checked by the gate or an installed smoke (a smoke step for a feature the rollback removed is expected to fail, and the entry says so). Each event names its raw evidence; tools/sdlc-metrics.mjs refuses to run if a listed file is missing. Rollback plans, rollback descriptions and engine resumes are not rollbacks. Reverts that landed on main are counted from git separately: commits reachable from main (origin/main when there is no local main) whose subject starts with 'Revert \"'; a revert merged into main from a branch has landed on main and counts. Entries under notCounted are kept with the reason they do not meet this definition.",
   "events": [
     {
       "evidenceCommittedAt": "2026-10-03T03:02:39Z",
       "mission": "00-hello",
       "instanceId": "01M3Z8AJ1EDFTHQ1HPAWPNP2YN",
       "kind": "revert",
-      "what": "Revert of the 01-ping merge on a throwaway branch; gate green on the reverted tree",
+      "what": "Revert of the 01-ping merge on a throwaway branch; gate green on the reverted tree (the rehearsal's commit a9f3d2f was on a throwaway branch and is not kept; RELEASE.md §8 and drills.md name the tree)",
       "evidence": [
-        "missions/00-hello/release/rollback-rehearsal-check.txt"
+        "missions/00-hello/release/rollback-rehearsal-check.txt",
+        "missions/00-hello/RELEASE.md",
+        "docs/scenarios/drills.md"
       ]
     },
     {
@@ -16,9 +18,11 @@
       "mission": "01-greenfield-core",
       "instanceId": "01M3ZXEXAMS945ZS0QZ26KZK1V",
       "kind": "revert",
-      "what": "Revert of the 03-operate merge (e6f062a, detached); gate green on the reverted tree",
+      "what": "Revert of the 03-operate merge on a detached throwaway commit (e6f062a, not kept); gate green on the reverted tree (RELEASE.md §8 and drills.md name the tree)",
       "evidence": [
-        "missions/01-greenfield-core/release/rollback-rehearsal-check-e6f062a.txt"
+        "missions/01-greenfield-core/release/rollback-rehearsal-check-e6f062a.txt",
+        "missions/01-greenfield-core/RELEASE.md",
+        "docs/scenarios/drills.md"
       ]
     },
     {
@@ -26,10 +30,12 @@
       "mission": "01-greenfield-core",
       "instanceId": "01M3ZXEXAMS945ZS0QZ26KZK1V",
       "kind": "container-rollback",
-      "what": "Operational rollback of the running container to the reverted build on the same volume, loopback bind kept, then roll-forward (release-review rework RR-01)",
+      "what": "Operational rollback of the running container to the reverted build on the same volume, loopback bind kept, then roll-forward (release-review rework RR-01). The installed smoke passes the whole public journey and stops, as expected, at the rate-limit metric the revert removes (SMOKE FAIL: metric urlshort.ratelimit.rejections not listed); a pre-existing link redirects and reads identically before, during and after",
       "evidence": [
         "missions/01-greenfield-core/release/rollback-smoke-8104e05.txt",
-        "missions/01-greenfield-core/release/rollforward-compose-up-f090103.txt"
+        "missions/01-greenfield-core/release/rollforward-compose-up-f090103.txt",
+        "missions/01-greenfield-core/release/rollback-link-before.json",
+        "missions/01-greenfield-core/release/rollback-link-after.json"
       ]
     },
     {

@@ -23,7 +23,9 @@
 //   human wait      packet parked on human@kernel -> transition recorded by human@kernel
 //   queue wait      packet created -> claimed; work time = claimed -> closed
 // When the same record appears in several exports, the freshest copy wins (trace: instance.version;
-// transitions: highest transitionId; packet: tsUpdated), so folder order never matters.
+// transitions: highest transitionId; packet: tsUpdated). On a tie the first copy read is kept; tied
+// copies differ only in volatile fields (pickup/waiting) that no number uses, so the numbers do not
+// depend on folder order.
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
@@ -36,7 +38,9 @@ const outDir = path.isAbsolute(outArg) ? outArg : path.join(root, outArg);
 const saveArg = argv.includes("--save-inputs") ? argv[argv.indexOf("--save-inputs") + 1] : null;
 const check = argv.includes("--check");
 if (check && live) throw new Error("--check regenerates offline; drop --live");
-const now = Date.now();
+// --check measures against the committed generation time, so a still-active instance or an
+// unreleased park cannot make an identical regeneration differ.
+const now = check ? Date.parse(JSON.parse(fs.readFileSync(path.join(outDir, "metrics.json"), "utf8")).totals.generatedAt) : Date.now();
 
 function rig(...args) {
   const out = execFileSync("rig", [...args, "--json"], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] });
@@ -52,7 +56,7 @@ const instances = new Map(); // instanceId -> { trace, mission }
 const packetTransitions = new Map(); // qitemId -> transitions[] (freshest copy)
 const packetShows = new Map(); // qitemId -> show (freshest copy)
 // Freshness of each record kind; a copy replaces the held one only when it is strictly fresher.
-const traceAge = (t) => t?.instance?.version ?? t?.trail?.length ?? -1;
+const traceAge = (t) => t?.instance?.version ?? -1; // the engine's monotonic instance version
 const transitionsAge = (tr) => Math.max(-1, ...(tr ?? []).map((t) => t.transitionId ?? -1));
 const showAge = (s) => ts(s?.tsUpdated) || -1;
 const keepFresher = (map, key, value, age) => { if (!map.has(key) || age(value) > age(map.get(key))) map.set(key, value); };
@@ -98,6 +102,7 @@ const register = readJson(path.join(root, "docs", "metrics", "rollbacks.json"));
 for (const e of register.events) for (const f of e.evidence) {
   if (!fs.existsSync(path.join(root, f))) throw new Error(`rollbacks.json: evidence missing for ${e.instanceId}: ${f}`);
 }
+for (const e of register.events) if (!instances.has(e.instanceId)) throw new Error(`rollbacks.json: unknown instance ${e.instanceId}`);
 const rollbacksByInstance = register.events.reduce((m, e) => m.set(e.instanceId, (m.get(e.instanceId) ?? 0) + 1), new Map());
 // Reverts that landed on main: commits reachable from main (a revert merged in from a branch counts),
 // never the checked-out branch, so an unmerged revert cannot inflate the number.
@@ -171,6 +176,7 @@ for (const [id, inst] of instances) {
     rollbacks,
     resumeCount: instance.resumeCount ?? 0,
     mttrSec: mttrs.length ? sec(mttrs.reduce((a, b) => a + b, 0) / mttrs.length) : null,
+    repairsSec: mttrs.map(sec),
     humanWaitSec: packets.reduce((a, p) => a + (p.humanWaitSec ?? 0), 0),
     queueWaitSec: packets.reduce((a, p) => a + (p.queueWaitSec ?? 0), 0),
     workSec: packets.reduce((a, p) => a + (p.workSec ?? 0), 0),
@@ -185,7 +191,7 @@ const terminal = report.filter((r) => ["completed", "failed", "aborted"].include
 const completed = report.filter((r) => r.status === "completed");
 const allClosures = report.reduce((a, r) => a + r.stepClosures, 0);
 const allFailed = report.reduce((a, r) => a + r.failedClosures, 0);
-const mttrAll = report.filter((r) => r.mttrSec !== null).map((r) => r.mttrSec);
+const mttrAll = report.flatMap((r) => r.repairsSec); // every individual repair, not per-instance means
 const pct = (arr, p) => { if (!arr.length) return null; const s = [...arr].sort((a, b) => a - b); return s[Math.min(s.length - 1, Math.floor(p * (s.length - 1)))]; };
 const totals = {
   generatedAt: new Date(now).toISOString(),
@@ -250,7 +256,7 @@ Generated ${totals.generatedAt} by \`tools/sdlc-metrics.mjs\` from OpenRig workf
 | Retries (failed closures + step re-entries) | ${totals.retries} |
 | Rollbacks executed (rehearsals and drills with raw evidence + reverts on \`main\`) | ${totals.rollbacks} (${totals.rollbacksRehearsedOrDrilled} + ${totals.revertsOnMain}) |
 | Engine recoveries (resumes / aborted instances) | ${totals.resumes} / ${totals.aborted} |
-| MTTR, mean (failed closure → next handoff or done closure of that step) | ${fmt(totals.mttrMeanSec)} |
+| MTTR, mean over every repair (failed closure → next handoff or done closure of that step) | ${fmt(totals.mttrMeanSec)} (${mttrAll.length} repairs) |
 | End-to-end latency, completed instances p50 / p95 | ${fmt(totals.e2eP50Sec)} / ${fmt(totals.e2eP95Sec)} |
 | Time parked on the human (all gates) | ${fmt(totals.humanWaitTotalSec)} |
 
@@ -263,9 +269,10 @@ ${rows}
 ## Derivations and honest limits
 
 - **Source of truth**: \`rig workflow trace --json\` (append-only step trail; one entry per closed packet with \`closureReason\` handoff/done/failed) and \`rig queue transitions --json\` (every state change of a packet with actor and timestamp). Nothing is self-reported by agents.
+- **Drills are included**: DRILL 1's deliberate QA rejection and DRILL 4's deliberately failed step count as failed closures and retries, and DRILL 4's abort as the one aborted instance.
 - **Retry** counts an artifact verdict of \`failed\` (QA, code review or security review sent the candidate back) plus any step closed more than once with a non-\`waiting\` exit. A \`waiting\` closure re-presents the same step (the integrator waiting on a slice's proof) and is not counted. One remediation round therefore shows as one failed closure plus two re-entries (the checking step and the building step both run again). A retry is a governance event working as designed, not a defect of the factory.
 - **Rollback** counts only rollbacks that were executed: a merged change reverted, or a migration rolled back with the earlier binary started on the rolled-back data, each checked by the gate or an installed smoke. They are listed in [\`rollbacks.json\`](rollbacks.json) with their raw evidence, and the generator refuses to run if a listed file is missing; reverts that landed on \`main\` are counted from \`git log\`. Plans and descriptions of rollbacks do not count, and engine resumes and aborts are reported separately as recoveries. OpenRig 0.6.3 has no rollback event of its own, so the register is the record; every entry points at raw files.
-- **MTTR** is measured from a failed closure to the next \`handoff\` or \`done\` closure of the same step, i.e. the time to repair the candidate and pass that check again; a \`waiting\` closure is not a recovery. It measures repair of a rejected candidate, not production incident recovery: no production incident occurred. Instances with no failure have no MTTR (shown as –), not zero.
+- **MTTR** is measured from a failed closure to the next \`handoff\` or \`done\` closure of the same step, i.e. the time to repair the candidate and pass that check again; a \`waiting\` closure is not a recovery. It measures repair of a rejected candidate, not production incident recovery: no production incident occurred. The total is the mean over every individual repair; the per-instance column is the mean of that instance's repairs. Instances with no failure have no MTTR (shown as –), not zero.
 - **Reproducibility**: when the same record appears in several exports, the freshest copy wins (trace \`instance.version\`, highest \`transitionId\`, packet \`tsUpdated\`). \`docs/evidence/run-end/\` holds the exact inputs of this report, and \`node tools/sdlc-metrics.mjs --check\` regenerates it offline and fails on any difference.
 - **Human wait** is time a packet spent parked on \`human@kernel\`; it is reported separately so agent throughput and human latency are not conflated. The per-instance column sums the gate packets in that instance's trail; the total counts each packet once, because a slice gate also appears in the mission trail as the blocker of \`wave_integration\`.
 - Active instances contribute latency up to the generation time and are excluded from the p50/p95.
