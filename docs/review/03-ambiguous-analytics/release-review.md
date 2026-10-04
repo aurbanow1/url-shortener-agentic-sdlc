@@ -1,8 +1,8 @@
 # Mission 03 — release review
 
-Product **50ad9c3ab9e65baa4100ede1772b514322957fa5**; initial package **07f44e2**, routing clarification **26cd845**. Reviewer: review-agent@urlshort-factory (Codex), 2026-10-04 UTC. Packet **qitem-20261004020758-49ceba8e**, instance **01M40RVNDQ0KT7FPWN1KJW0DC3**.
+Product **50ad9c3ab9e65baa4100ede1772b514322957fa5**; final package **14815f9**, initial package **07f44e2**, routing clarification **26cd845**. Reviewer: review-agent@urlshort-factory (Codex), 2026-10-04 UTC. Packet **qitem-20261004020758-49ceba8e**, instance **01M40RVNDQ0KT7FPWN1KJW0DC3**.
 
-**Package evidence passes; final readiness awaits the separately assigned QA return. No new MUST-FIX, HIGH, MEDIUM or LOW finding.** This preliminary status is not permission to ship or a handoff to the human gate. The final readiness disposition below controls the exit.
+**Final verdict: PASS for handoff to the human ship gate. All12 proof items accepted; no new MUST-FIX, HIGH, MEDIUM or LOW finding.** Exact-candidate hosted CI/CD remains unverified and the package's operational limits remain visible for the human's decision. This review is not ship approval. The initial wait and its focused resolution are retained below.
 
 ## Context and independence
 
@@ -46,10 +46,28 @@ These are fresh computations over retained observations, not a new application r
 
 Existing M3S-01/02 LOWs remain the assigned backlog, not blockers or new findings. No in-passing product fix is requested. Release2 is refreshing the current proof/GAPS statements once the already-routed QA receipts land, while retaining the original preparation snapshots. This is the expected completion of parallel evidence custody, not a failure invented against an intentionally unfinished downstream item.
 
-## Final readiness disposition
+## Initial readiness disposition — superseded by the return below
 
 **WAITING on QA packet qitem-20261004020825-9237265b**, currently parked on external:daemon-mutation: item12 benchmark judgment and item6 shared-GAPS reaffirmation. QA's appended797f8fb GAPS paragraph correctly closes the measured NFR-L1 condition while retaining host/load limits; I reviewed that delta. It does not substitute for an attributed receipt. The [live readiness capture](proof/release-readiness-waiting.json) has item6 unknown after the shared-file change, item12 pending and the other ten accepted; no issues. No ship handoff before current attributed readiness is accepted and the final doc-only update is checked.
 
 Continuation: after that item closes, read its exact receipts, independently hash every current receipt reference, read release2's final RELEASE/GAPS/readiness refresh, append a focused final disposition and ledger row, then hand off to ship_signoff if ready. Do not re-run settled product reviews, couple this release to D21 or replace the immutable prep snapshots. The blocked QA mutation is a workflow-service dependency, not a new product finding.
 
 Self-check: exact product/package identity and every package path accounted for; own fresh archived-data checks passed; full gate observations accurately attributed; no invented finding or reopened settled issue; review authored only under docs/review; final ledger/queue exit follows the readiness disposition. Nothing pushed, release-tagged, published, or exposed by this reviewer.
+
+## Readiness return — receipts 13 and 14
+
+QA packet9237265b closed at transition1907. Read the restored-seat audit and source, the complete797f8fb → f825706 GAPS correction, receipt13 for item12 and receipt14 for item6, and the committed follow-upd203049. Both new judgments name50ad9c3 and qa-agent as author; the other ten retain their original ec466da subject and previously established merge custody. This does not relabel earlier QA as a new release-candidate gate.
+
+The [fresh live readiness capture](proof/release-readiness-ready.json) is **ready,12/12 accepted, no issues**. Independently rehashed every current judgment reference: **41 references across33 distinct files**, all equal current bytes and committedd203049 content. The earlier sandbox/path failure and fallback-model attempt supply no acceptance; the new attributed receipts do.
+
+The revised GAPS paragraph closes only NFR-L1's specified single run. Trusted loopback, raised budgets, shared-host activity, no individual latency samples and no isolated GET-minus-HEAD cost proof remain explicit. These qualifications agree with the previously reviewed raw benchmark and the QA re-derivation. Original preparation snapshots remain historical evidence. No new finding or product change results from this return; final package-commit verification follows.
+
+## Focused re-review — 14815f9
+
+**PASS; readiness dependency resolved.** Read all five changed release files plus the QA return/receipt deltas in f825706 and d203049. The [focused audit](proof/release-final-audit.py), run against14815f9, [passes](proof/release-final-audit-50ad9c3.json): all41 evidence references are both hash-current and committed; receipts13/14 match the live judgment IDs; the new complete GAPS snapshot equals receipt14/current GAPS; the original manifest, pending GAPS and pending readiness bytes are unchanged. All118 local links in the current RELEASE resolve. The five-path delta ledger is embedded in that result.
+
+RELEASE/INDEX now distinguish ready post-QA evidence from the original pending snapshots and name both model-window rechecks. The source/build/tool/API diff between50ad9c3 and14815f9 is empty. All eight release-checklist rows now pass within the stated scope; no additional build, benchmark or product review was needed for this documentary completion.
+
+Handoff to release2-agent's human ship_signoff gate on exact50ad9c3, with final package14815f9. Preserve the unverified exact hosted CI/CD result, both wave LOWs and all measurement/operational limits in the decision brief. D21 remains outside this release. No non-blocking fix is expected in passing; assigned backlog remains backlog. Final evidence export/metrics follow the human decision. No release approval, publication or delivery stamp is made by this review.
+
+Final self-check: fresh attributed readiness12/12; all current receipt hashes/committed bytes verified; every final package delta file read; earlier empirical checks and scopes retained; no new findings; ledger resolution appended and exact-path commit prepared before the authored handoff.
