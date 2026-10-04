@@ -215,7 +215,7 @@ sequenceDiagram
     alt lookup path under /actuator, /v3/api-docs, /swagger-ui*
         RL->>B: chain (not charged)
     else limited
-        RL->>RL: budget = /api… ? CREATE : REDIRECT; client = clientOf(P, XFF, trusted)
+        RL->>RL: budget = /api… ? CREATE : REDIRECT#59; client = clientOf(P, XFF, trusted)
         RL->>L: tryTake(budget, client)
         alt admitted (0)
             L-->>RL: 0 (TAT advanced)
@@ -227,7 +227,7 @@ sequenceDiagram
         end
     end
     O->>O: http.server.requests{uri template or UNKNOWN, status}
-    F->>F: INFO "request completed" {status}; MDC.remove
+    F->>F: INFO "request completed" {status}#59; MDC.remove
 ```
 
 Shutdown: `SIGTERM` → Boot's shutdown hook → web server graceful phase

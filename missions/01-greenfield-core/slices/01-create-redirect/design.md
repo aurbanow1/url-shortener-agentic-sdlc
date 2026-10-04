@@ -357,7 +357,7 @@ sequenceDiagram
     participant E as ProblemDetailsAdvice
 
     C->>F: POST /api/links {"url":U} [Idempotency-Key: K]
-    F->>F: X-Request-Id R, MDC requestId=R; wrap body stream (limit 16 384 B)
+    F->>F: X-Request-Id R, MDC requestId=R#59; wrap body stream (limit 16 384 B)
     F->>LC: chain.doFilter
     LC->>V: validateUrl(U), validateIdempotencyKey(K)
     alt rule fails
@@ -369,7 +369,7 @@ sequenceDiagram
         S->>R: findByIdempotencyKey(K)
         alt bound and now < createdAt + 24h
             alt same url
-                S-->>LC: existing link (replay; no write)
+                S-->>LC: existing link (replay#59; no write)
                 LC-->>C: 201 Location /api/links/C, current representation
             else different url
                 S-->>E: ErrorResponseException 422 {errors:[{Idempotency-Key, mismatch}]}
@@ -390,7 +390,7 @@ sequenceDiagram
     end
     S-->>LC: link
     LC-->>C: 201 Location /api/links/C {code,shortUrl,url,state,createdAt}
-    F->>F: INFO "request completed" {status}; MDC.remove
+    F->>F: INFO "request completed" {status}#59; MDC.remove
 ```
 
 Redirect and retire (`docs/diagrams/redirect-sequence.mmd`):
@@ -407,7 +407,7 @@ sequenceDiagram
     participant A as AuditLog → H2 audit_log
     participant E as ProblemDetailsAdvice
 
-    V->>F: GET /C  (Accept: text/html,…,*/*;q=0.8)
+    V->>F: GET /C  (Accept: text/html,…,*/*#59;q=0.8)
     F->>RC: chain.doFilter (requestId on MDC)
     RC->>S: resolve(C)
     S->>R: findByCode(C)

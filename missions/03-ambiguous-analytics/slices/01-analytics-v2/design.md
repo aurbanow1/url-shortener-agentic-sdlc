@@ -111,7 +111,7 @@ sequenceDiagram
 
     V->>RL: GET /{code} (peer P, maybe X-Forwarded-For)
     RL->>RL: client = clientOf(P, X-Forwarded-For, trusted proxies) (ADR-0015)
-    RL->>RL: request.setAttribute(CLIENT_ATTRIBUTE, client); charge client's bucket
+    RL->>RL: request.setAttribute(CLIENT_ATTRIBUTE, client)#59; charge client's bucket
     RL->>RC: chain
     RC-->>V: 302
     RC->>CR: record(linkId, request)

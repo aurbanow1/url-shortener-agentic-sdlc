@@ -106,7 +106,7 @@ sequenceDiagram
     end
     S->>R: save(new Link(…, createdAt = now, …)) → INSERT (defaults fill created_by/updated_by)
     S->>R: stamp(B, now): updated_at = now (= created_at)
-    S->>A: append("link.create", …) → INSERT; created_at = updated_at = database clock, created_by = updated_by = anonymous
+    S->>A: append("link.create", …) → INSERT#59; created_at = updated_at = database clock, created_by = updated_by = anonymous
     S-->>C: 201 (body unchanged)
 
     C->>S: DELETE /api/links/{code}

@@ -11,7 +11,7 @@ sequenceDiagram
     Note over AC,CI: at start-up: peerIsConnection(server, tomcat) → boolean field
     C->>RL: any non-exempt request (peer, maybe X-Forwarded-For)
     RL->>CI: resolve(request, trustedProxies)
-    CI->>CI: clientOf(peer, X-Forwarded-For, trusted); setAttribute(CLIENT_ATTRIBUTE)
+    CI->>CI: clientOf(peer, X-Forwarded-For, trusted)#59; setAttribute(CLIENT_ATTRIBUTE)
     CI-->>RL: client → tryTake(budget, client)
     alt GET /{code} → 302
         RL->>RC: chain

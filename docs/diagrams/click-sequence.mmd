@@ -24,9 +24,9 @@ sequenceDiagram
     alt HEAD
         CR-->>RC: return (not a click)
     else GET
-        CR->>CR: origin(Referer); class(User-Agent)
+        CR->>CR: origin(Referer)#59; class(User-Agent)
         CR->>DS: stamp(peer address)
-        DS->>DS: under the lock: at = clock.instant(); rotate if at's day changed; copy key
+        DS->>DS: under the lock: at = clock.instant()#59; rotate if at's day changed#59; copy key
         DS-->>CR: (at, HMAC-SHA256 under at's day salt, 64 hex)
         CR->>Q: execute(ClickWrite(Click, R))
         alt queue full or closed
@@ -34,11 +34,11 @@ sequenceDiagram
         end
     end
     RC-->>V: 302 Location: <url>, Cache-Control: no-store
-    F->>F: INFO "request completed" {status 302}; MDC.remove
+    F->>F: INFO "request completed" {status 302}#59; MDC.remove
     Q->>Q: MDC requestId=R (restored on the writer thread)
     Q->>ST: insert(Click)
     alt write fails
-        Q->>Q: WARN "click lost" {requestId R, reason write failed, errorType}; nothing stored
+        Q->>Q: WARN "click lost" {requestId R, reason write failed, errorType}#59; nothing stored
     end
     Q->>Q: MDC.remove
     Note over Q: at shutdown: drain up to 5 s, then each unwritten ClickWrite → WARN "click lost" {its requestId, reason shutdown deadline}

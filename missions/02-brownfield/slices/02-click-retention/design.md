@@ -264,7 +264,7 @@ sequenceDiagram
                 T->>L: INFO "clicks purged" {deleted, cutoff, retentionDays}
             else RuntimeException
                 T->>L: WARN "click purge failed" {cutoff, retentionDays, errorType = class name}
-                Note over T: no retry today; the next UTC day's run deletes the same rows
+                Note over T: no retry today#59; the next UTC day's run deletes the same rows
             end
         else same day, before 00:10Z, or the clock stepped back
             T->>T: nothing
@@ -275,7 +275,7 @@ sequenceDiagram
     B->>B: graceful phase ≤ 10 s (the run, if any, keeps going)
     B->>P: @PreDestroy close()
     P->>T: shutdown(), awaitTermination(3 s), never interrupt
-    Note over T,ST: a statement still running at exit is undone by H2 at the next open; the next startup run repeats it
+    Note over T,ST: a statement still running at exit is undone by H2 at the next open#59; the next startup run repeats it
 ```
 
 The redirect and click-recording sequence (`docs/diagrams/click-sequence.mmd`) is unchanged
