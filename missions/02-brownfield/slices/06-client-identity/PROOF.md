@@ -4,7 +4,7 @@
 >
 > **HOW (the drop verb, not hand-placement):** put media files under `proof/`, then ATTACH them with `rig proof add OPR.99.0.3.6 --artifact-type qa --verdict PASS --candidate-sha <tip> --money-evidence "<one line>" --evidences "1" --media "screenshot-01.png"` — the drop writes the C1 header the Living Notes DELIVERED pairing joins on. Hand-placing files without a drop leaves the deliverable unpaired and `unverified`.
 
-QA checked by: qa2-agent@urlshort-factory   Date: 2026-10-04 UTC   Current verdict: QA PASS on e40b095; CR-01 resolution observed, independent re-review and proof16 downstream closure pending.
+QA checked by: qa2-agent@urlshort-factory   Date: 2026-10-04 UTC   Current verdict: QA PASS on exact e40b095; CR-01 formally resolved, independent code/security PASS, post-merge item 16 accepted in receipt 36. All 17 proof items accepted; live readiness ready, no issues.
 
 **Historical post-handoff update02:47Z onfb63a88: acceptance held.** Review2's delayed-writer probe
 reproduces a HIGH test-only polling-budget/NPE race in the new AC-5 helper.
@@ -215,3 +215,13 @@ both-way 326 mappings/GAPS written; valid local-media drop; all 3 HTTP apps and
 both probe JVMs stopped; candidate unchanged; no product/test edit. Evidence,
 renewed judgments and receipts committed before qa_check handoff. Formal review
 and downstream 16 are not prematurely accepted.
+
+## QA post-merge return — item 16
+
+On qitem-20261004033729-f28865b7, QA2 checked the remaining chronology, independent-review, merge and register/current-system clauses. Exact e40b095 is merge b8d7fc16's second parent. Impact 6772b68 precedes design/ADR amendments 57cb9ae and dependent move 7e23259. Review2 code/security PASS 981eb8e0 verifies D21 and all three consumers. Owner update 3b2ecd0b follows the merge; architecture section 11 row 1 and DESIGN match the merged authority and call sites, and both final hashes equal the packet. Snapshot fda42757 contains the merge. No discrepancy found.
+
+Receipt 36 accepts item 16 against exact e40b09541feb0b7555c475baa82587fdd09e4890. Live proof is ready: 17 accepted items, no issues. Evidence: docs/qa/06-client-identity/item16-followup.md and proof/qa-item16-custody.json; registered drop proof/qa-item16-e40b095.md and snapshot proof/qa-item16-readiness.json. Earlier pending-item statements in immutable captures describe their recorded time.
+
+### Self-check
+
+Read owner changes and authority/consumer code; checked chronology, ADR amendment bodies, review attribution, exact merge parents/tag/source equality, owner update ancestry and final document hashes. No new application or test run, no product/test mutation. The existing QA/reviewer/integrator gate and by-effect checks remain attributed to those runs. Receipt and evidence committed before closing this ordinary follow-up; the lead performs final workflow closure.

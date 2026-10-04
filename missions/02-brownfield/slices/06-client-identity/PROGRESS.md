@@ -14,7 +14,7 @@
 - [x] QA observes CR-01 resolution on e40b095 — own actual-helper 3-second writer holds with no trust/P pass full oracle; one helper stats read/no 429/NPE. Current characterization 72/72 on original production; affected matrix 159/818 green. Renewed 1–15/17 judgments bind e40b095; earlier failure/withdrawals remain history. Formal independent code/security re-review is recorded below.
 - [x] Re-check evidence and judgments recorded — evidence commit `a9fa99f7`; receipts 20–35 accept contract items 1–15/17 against exact `e40b09541feb0b7555c475baa82587fdd09e4890`. Live proof has 16 accepted items, item 16 pending and no evidence issues. Own verification covers 672 current artifact hashes, 378 coverage resources and all 3490 historical artifact hashes through the archive aliases. Final slice acceptance remains downstream.
 - [x] Review approved — review2 code/security PASS on exact `e40b09541feb0b7555c475baa82587fdd09e4890`, commit `981eb8e0`; CR-01 formally fixed. Reviewer independently ran the full 268/322 gate and actual-helper writer holds (3031/3056 ms), and reconciled the coverage/capture custody. QA read the committed re-review records; this entry attributes those additional checks to review2, rather than claiming another QA run. See `docs/review/06-client-identity/01-code-review.md` and `02-security-review.md`.
-- [ ] Proof16 downstream closure — independent review, merge and design-owner architecture/system-description updates return to QA, as confirmed in qitem-20261004015644-b1493e3f/transition1882. Other completed proof items are judged on the exact candidate; no premature slice-close claim.
+- [x] Proof 16 downstream closure — assigned return qitem-20261004033729-f28865b7, under transition 1882. QA checked exact no-ff merge b8d7fc16, independent review 981eb8e0, pre-move impact/ADR chronology and post-merge owner update 3b2ecd0b. Final architecture/DESIGN hashes match the packet and merged call sites. Receipt 36 accepts item 16 against exact e40b095. All 17 proof items are accepted; live readiness ready, no issues. The lead owns final workflow closure.
 
 ## Integrate — 2026-10-04T03:35Z (orchestration lead)
 
@@ -24,3 +24,9 @@
 - [x] Fresh gate on merged `main`, `check --rerun-tasks`, 14/14 tasks executed, BUILD SUCCESSFUL (`docs/evidence/02-brownfield/integrate-06-client-identity-check-e40b095.txt`).
 - [x] Tagged `slice/06-client-identity/accepted` → `e40b095`. Worktree removed (clean).
 - [ ] Item 16: `design-agent` updates `architecture.md` §11 row 1 and `docs/DESIGN.md` against the merged code; then item 16 returns to `qa2-agent` with the hashes. The slice closes after that judgment.
+
+## QA post-merge follow-up — 2026-10-04
+
+- [x] Item 16 returned and verified under the agreed sequencing; valid QA drop and receipt 36 recorded.
+- [x] Current proof: ready, 17/17 accepted on exact e40b095, no evidence issues. The earlier integrate section records its 03:35Z pending state.
+- [x] Evidence and receipt committed; no extra gate/journey claim and no product/test edit.
