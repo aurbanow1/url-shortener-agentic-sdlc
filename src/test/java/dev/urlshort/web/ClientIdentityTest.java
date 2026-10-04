@@ -46,8 +46,21 @@ class ClientIdentityTest {
 				Arguments.of("", "::1", U, "::1"));
 	}
 
+	/** The rule's remaining edges (design section 5.1, U4 to U10), with the same columns. */
+	static Stream<Arguments> ruleEdges() {
+		return Stream.of(
+				Arguments.of(P, P, U + ", " + V, V),
+				Arguments.of(P, P, U + ",,", U),
+				Arguments.of(P, P, "\t" + U + "\t", U),
+				Arguments.of(P, P, "unknown", "unknown"),
+				Arguments.of(P, P, "[2001:db8::1]:443", "[2001:db8::1]:443"),
+				Arguments.of(P, P, "203.0.113.7:8080", "203.0.113.7:8080"),
+				// exact text: Tomcat's full form of the IPv6 loopback does not match a listed "::1"
+				Arguments.of("::1", "0:0:0:0:0:0:0:1", U, "0:0:0:0:0:0:0:1"));
+	}
+
 	@ParameterizedTest
-	@MethodSource("identityMatrix")
+	@MethodSource({ "identityMatrix", "ruleEdges" })
 	void theChargedClientIsThePeerOrTheRightMostUntrustedForwardedHop(String trusted, String peer, String forwardedFor,
 			String client) {
 		assertThat(RateLimitFilter.clientOf(peer, forwardedFor, trustedSet(trusted))).isEqualTo(client);

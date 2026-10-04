@@ -268,6 +268,25 @@ class ClickRecorderTest {
 	}
 
 	@Test
+	void withoutTheLimitersAttributeThePeerIsHashed() throws Exception {
+		recorder.record(1L, request("GET", "req-no-attribute"));
+		recorder.settle();
+
+		verify(salt).stamp("203.0.113.77");
+	}
+
+	@Test
+	void anAttributeThatIsNotAStringIsIgnoredAndThePeerIsHashed() throws Exception {
+		MockHttpServletRequest request = request("GET", "req-integer-attribute");
+		request.setAttribute(RateLimitFilter.CLIENT_ATTRIBUTE, 42);
+
+		recorder.record(1L, request);
+		recorder.settle();
+
+		verify(salt).stamp("203.0.113.77");
+	}
+
+	@Test
 	void everyLostReasonIsRegisteredAtZeroBeforeAnyClick() {
 		assertThat(registry.find("urlshort.clicks.lost").counters())
 				.extracting(counter -> counter.getId().getTag("reason"))

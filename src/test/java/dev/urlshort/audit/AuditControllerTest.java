@@ -99,6 +99,25 @@ class AuditControllerTest {
 	}
 
 	@Test
+	void whitespaceOnlyRemoteIpSettingsAreUnsetAndKeepTheEndpointOpen() {
+		TomcatServerProperties tomcat = new TomcatServerProperties();
+		tomcat.getRemoteip().setRemoteIpHeader("  ");
+		tomcat.getRemoteip().setProtocolHeader("  ");
+
+		assertThat(controller(ForwardHeadersStrategy.NONE, tomcat).page(null, null, request("127.0.0.1")).getStatusCode())
+				.isEqualTo(HttpStatus.OK);
+	}
+
+	@Test
+	void bothRemoteIpSettingsTogetherCloseTheEndpoint() {
+		TomcatServerProperties tomcat = new TomcatServerProperties();
+		tomcat.getRemoteip().setRemoteIpHeader("x-forwarded-for");
+		tomcat.getRemoteip().setProtocolHeader("x-forwarded-proto");
+
+		assertForbidden(controller(ForwardHeadersStrategy.NONE, tomcat));
+	}
+
+	@Test
 	void limitDefaultsTo50AndAcceptsItsBounds() {
 		assertThat(AuditController.limit(null)).isEqualTo(50);
 		assertThat(AuditController.limit("1")).isEqualTo(1);
