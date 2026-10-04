@@ -13,7 +13,6 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.jspecify.annotations.Nullable;
 import org.slf4j.MDC;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -36,16 +35,13 @@ import tools.jackson.databind.json.JsonMapper;
  * every other problem body; this filter writes no log event, the request's one event is the
  * request-id filter's {@code request completed} with status {@code 429}.
  *
- * <p>Every charged request carries its client in {@link #CLIENT_ATTRIBUTE}; the peer address itself
- * is never rewritten, so every other reader of {@code getRemoteAddr()} sees the real peer
- * (ADR-0015 amendment, ADR-0019).
+ * <p>Every charged request carries its client in {@link ClientIdentity#CLIENT_ATTRIBUTE}; the peer
+ * address itself is never rewritten, so every other reader of {@code getRemoteAddr()} sees the real
+ * peer (ADR-0015 amendment, ADR-0019).
  */
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE + 2)
-public class RateLimitFilter extends OncePerRequestFilter {
-
-	/** The resolved-client attribute, now {@link ClientIdentity#CLIENT_ATTRIBUTE}; one key while both names exist. */
-	public static final String CLIENT_ATTRIBUTE = ClientIdentity.CLIENT_ATTRIBUTE;
+class RateLimitFilter extends OncePerRequestFilter {
 
 	private final RateLimiter limiter;
 	private final Set<String> trustedProxies;
@@ -95,8 +91,4 @@ public class RateLimitFilter extends OncePerRequestFilter {
 				|| path.equals("/swagger-ui.html") || path.startsWith("/swagger-ui/");
 	}
 
-	/** Delegates to {@link ClientIdentity#clientOf}, the rule's one home; removed once the tests name it. */
-	static String clientOf(String remote, @Nullable String forwardedFor, Set<String> trusted) {
-		return ClientIdentity.clientOf(remote, forwardedFor, trusted);
-	}
 }

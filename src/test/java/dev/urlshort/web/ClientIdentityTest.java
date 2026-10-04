@@ -2,13 +2,11 @@ package dev.urlshort.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import jakarta.servlet.http.HttpServletRequest;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -16,11 +14,11 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.mock.web.MockHttpServletRequest;
 
 /**
- * Characterization of "who is this client" as the code answers it today, before 06-client-identity moves
- * the rule into one component (docs/guidance/brownfield.md section 6). It pins the trusted-proxy rule
- * ({@code RateLimitFilter.clientOf}, ADR-0015) over the SPEC's identity matrix, and the audit read's
- * loopback predicate ({@code AuditController.fromLoopback}, ADR-0019) over its peers and forwarding
- * headers. When {@code ClientIdentity} exists, these calls move to it and every expected answer stays.
+ * {@link ClientIdentity}'s rules, written as characterization before 06-client-identity moved them there
+ * (docs/guidance/brownfield.md section 6): the trusted-proxy rule ({@code clientOf}, ADR-0015) over the
+ * SPEC's identity matrix and its remaining edges, and the audit read's loopback predicate
+ * ({@code fromLoopback}, ADR-0019) over its peers and forwarding headers. Every expected answer is the
+ * one the code gave before the move.
  */
 class ClientIdentityTest {
 
@@ -63,31 +61,31 @@ class ClientIdentityTest {
 	@MethodSource({ "identityMatrix", "ruleEdges" })
 	void theChargedClientIsThePeerOrTheRightMostUntrustedForwardedHop(String trusted, String peer, String forwardedFor,
 			String client) {
-		assertThat(RateLimitFilter.clientOf(peer, forwardedFor, trustedSet(trusted))).isEqualTo(client);
+		assertThat(ClientIdentity.clientOf(peer, forwardedFor, trustedSet(trusted))).isEqualTo(client);
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = { "127.0.0.1", "127.0.0.2", "127.255.255.254", "::1", "0:0:0:0:0:0:0:1", "::ffff:127.0.0.1" })
-	void aHeaderlessLoopbackPeerIsFromLoopback(String peer) throws Exception {
-		assertThat(fromLoopback(request(peer, null, null))).isTrue();
+	void aHeaderlessLoopbackPeerIsFromLoopback(String peer) {
+		assertThat(ClientIdentity.fromLoopback(request(peer, null, null))).isTrue();
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = { "192.0.2.10", "10.0.0.7", "::ffff:192.0.2.10", "fe80::1", "" })
-	void anyOtherPeerIsNotFromLoopback(String peer) throws Exception {
-		assertThat(fromLoopback(request(peer, null, null))).isFalse();
+	void anyOtherPeerIsNotFromLoopback(String peer) {
+		assertThat(ClientIdentity.fromLoopback(request(peer, null, null))).isFalse();
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = { "203.0.113.7", "127.0.0.1", "", "   " })
-	void anyXForwardedForHeaderClosesTheLoopbackPredicate(String value) throws Exception {
-		assertThat(fromLoopback(request("127.0.0.1", value, null))).isFalse();
+	void anyXForwardedForHeaderClosesTheLoopbackPredicate(String value) {
+		assertThat(ClientIdentity.fromLoopback(request("127.0.0.1", value, null))).isFalse();
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = { "for=203.0.113.7", "for=127.0.0.1", "", "   " })
-	void anyForwardedHeaderClosesTheLoopbackPredicate(String value) throws Exception {
-		assertThat(fromLoopback(request("127.0.0.1", null, value))).isFalse();
+	void anyForwardedHeaderClosesTheLoopbackPredicate(String value) {
+		assertThat(ClientIdentity.fromLoopback(request("127.0.0.1", null, value))).isFalse();
 	}
 
 	private static Set<String> trustedSet(String trusted) {
@@ -104,16 +102,5 @@ class ClientIdentityTest {
 			request.addHeader("Forwarded", forwarded);
 		}
 		return request;
-	}
-
-	/**
-	 * Today's predicate is package-private in {@code audit}, and this pre-work item may not touch product
-	 * code, so it is reached reflectively until {@code ClientIdentity} owns it (06-client-identity).
-	 */
-	private static boolean fromLoopback(HttpServletRequest request) throws Exception {
-		Method predicate = Class.forName("dev.urlshort.audit.AuditController")
-				.getDeclaredMethod("fromLoopback", HttpServletRequest.class);
-		predicate.setAccessible(true);
-		return (boolean) predicate.invoke(null, request);
 	}
 }

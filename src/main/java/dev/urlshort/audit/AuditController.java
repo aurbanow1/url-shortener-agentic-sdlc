@@ -84,11 +84,6 @@ class AuditController {
 		return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(trail.page(size, before));
 	}
 
-	/** Delegates to {@link ClientIdentity#fromLoopback}, the predicate's one home; removed once the tests name it. */
-	static boolean fromLoopback(HttpServletRequest request) {
-		return ClientIdentity.fromLoopback(request);
-	}
-
 	/** {@code null} is the default; otherwise a whole number from 1 to 100. */
 	static int limit(@Nullable String value) {
 		if (value == null) {
