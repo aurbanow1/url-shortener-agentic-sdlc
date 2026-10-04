@@ -9,7 +9,7 @@
 
 - [x] Implementation complete — candidate `ec466da` (design §13 steps 2–6, the granted AC-14 shape update), descending from click-retention's merge `ed2b940`
 - [x] Tests passing — `check --rerun-tasks` green on `ec466da` (221 unit / 241 functional, 100 % line and branch; `OpenApiDocumentTest` green)
-- [ ] Review approved
+- [x] Review approved — code/security PASS `61430eb`; integration record below
 - [x] QA check — ec466da, independent221unit/241functional; merged580/580 lines206/206 branches; all15AC effects and accepted original replay155/155. Proof1–10 judged at this stage; security11 and release12 pending under lead a12a0e2. Slice acceptance awaits integration.
 
 ## Integrate — 2026-10-04T00:25Z (orchestration lead)
@@ -20,3 +20,10 @@
 - [x] Merged X′ `--no-ff` into `main` at `94aa2c0`. All 18 files are inside the territory or its two grants (`RateLimitFilter` pair; one `AuditUpgradeJourneyTest` body).
 - [x] Fresh gate on merged `main`, `check --rerun-tasks`, 14/14 tasks executed, BUILD SUCCESSFUL (`docs/evidence/03-ambiguous-analytics/integrate-01-analytics-v2-check-22fc8e2.txt`).
 - [x] Tagged `slice/01-analytics-v2/accepted` → `22fc8e2`, the judged `ec466da` rebased. Worktree removed (clean).
+
+## Release proof return — 2026-10-04 (QA)
+
+- [x] Item 12 accepted on pinned release candidate `50ad9c3ab9e65baa4100ede1772b514322957fa5`, receipt **13** (`d6886378c083befc2be362e972b7fff06fadae0339adcc1586f8c44483a4c191`). Fresh raw recheck confirms 100 redirects/s for 60 s with 20 creates/s, p95 3.7 ms / p99 9.5 ms, zero bad load responses, and 12,000 stored GET clicks across both GET phases.
+- [x] Item 6 re-affirmed against current `GAPS.md`, receipt **14** (`e587d41a636b0ae6b3c585d4efd964ee065b4935556e35ead2e6c3e1d8c6ffd5`), subject `50ad9c3`. Rechecked `797f8fb` after restoration; numbers hold, configuration and unretained-client-sample limits added. No capacity or isolated click-cost claim.
+- [x] Fresh live proof read: **ready, 12/12 accepted**, no issues. All other judgments retain their original `ec466da` subject and established integration attribution. Stable audit and before/after reads: `proof/qa-release-50ad9c3/`.
+- Packet `qitem-20261004020825-9237265b` closed as standalone `no-follow-on` at 02:33:35Z (transition 1907). Mission 01/02 drift remains with the lead's separate final-main packet; human ship sign-off remains downstream.

@@ -86,6 +86,34 @@ Context and observations that help the mission but do not change its
 Active qa_check packet qitem-20261003231403-839a47f3, workflow01M416Z3CM54YQTX93V4KG0CPS. Candidate ec466da8da4b1efde9d612c6c8692070cc6fc4b9 remains clean in .worktrees/01-analytics-v2. Independent fresh gate221/241, merged580/580 lines206/206 branches. All15ACs independently observed;713curl responses+3HEAD wire checks reconcile in both console/file sinks, and all three processes stopped (ports18170/18171/18172; curl7 after stop). Original literal replay153/155 retains two inherited audit enumeration failures; lead a12a0e2 authorizes their carryforward, and the authorized repeat is155/155. Evidence lives under slices/01-analytics-v2/proof/qa-ec466da/. QA evidence is committed at6672ed9; raw archive and8809 reconciliation checks pass. QA proof drop made and items1–10 accepted; receipts are being committed before the authored handoff to code_review. Security11 returns before integration; benchmark12 returns after release_prep via qitem-20261003195138-8eb72ecb. Plain-file drill workflow01M4212A8BKA6JRZHZQBD90D07 completed separately: broken594c9c9 rejected (6c21101), READY8227b8c independently accepted (74ccb14); neither receipt claims product readiness.
 
 
+### QA release proof return — 2026-10-04T02:31Z
+
+Resumed assigned standalone packet `qitem-20261004020825-9237265b` after the
+lead's restored-seat continuation (transition 1900). Treated the earlier
+fallback-model attempt as unverified. Independently re-derived item 12 from
+the raw bench/statistics/Prometheus captures and the complete installed log;
+checked the pinned load-generator source and preserved jar hash. NFR-L1
+holds on this single run: 100 redirects/s for 60 s, p95 3.7 ms / p99 9.5 ms,
+zero bad load responses. The 19,200 load completions and 12,000 stored GET
+clicks reconcile. `797f8fb`'s numbers and bounded closure hold; added explicit
+configuration and client-sample limits to GAPS (evidence commit `f825706`).
+
+Own acceptance receipts: item 12 **13**, item 6 **14**, both subject
+`50ad9c3ab9e65baa4100ede1772b514322957fa5`. Live proof is **ready, 12/12
+accepted**, no issues. Stable narrative, audit, raw-input hashes and before/after
+readiness: `slices/01-analytics-v2/proof/qa-release-50ad9c3/`. Original release
+manifest/GAPS/proof snapshots remain unchanged; release2 refreshes separate
+post-QA snapshots from these receipts. Full product QA was not repeated.
+
+Item 6's first command returned `evidence_missing`: installed
+`judgments.js:evidenceAt` resolves non-`missions/` relative arguments from
+the slice, not the repository. A direct read-only call verified that
+`../../../../docs/qa/GAPS.md` resolves to the audited file and stores the
+portable normalized `docs/qa/GAPS.md` reference. The corrected call succeeds;
+this was an input-path issue, not a daemon outage or product defect. The
+standalone packet closed `no-follow-on` at 02:33:35Z (transition 1907);
+the subsequent owned-queue read is empty. No other slice was judged here.
+
 ## Release agent 2 — release_prep continuity
 
 2026-10-04: ownerrelease2-agent, packetqitem-20261004004828-05d2aab9,
@@ -118,3 +146,37 @@ error,limiter,concurrency,restart claims:PASS,no correction. Handoff must name
 window/commit for independent release_review re-check. Durable files under
 missions/03-ambiguous-analytics/release/, final RELEASE.md local links/anchors verified; explicit-path commit and
 release_review handoff prepared. Proof12 and hosted runs remain explicit. No publication.
+
+## Release agent 2 — post-QA readiness refresh
+
+2026-10-04 UTC: live `rig proof show 03-ambiguous-analytics --json` now
+reports **ready, all 12 items accepted, no issues**. QA actor
+`qa-agent@urlshort-factory` accepted item12 in receipt13 at02:26:21.226Z
+and reaffirmed item6 in receipt14 at02:30:51.360Z, both explicitly against
+`50ad9c3ab9e65baa4100ede1772b514322957fa5`. The separate QA return is
+qitem-20261004020825-9237265b; mission03 remains independent of D21.
+
+The lead's02:16Z model-restoration condition is satisfied by QA's fresh raw
+re-derivation and recheck of797f8fb before those receipts. QA's f825706
+retains the numeric NFR-L1 closure for this run and adds trusted-loopback,
+raised-budget and unretained-client-latency qualifications. The linked QA
+audit reconciles19200load completions and12000storedGETclicks; it does not
+claim to recompute percentiles from individual latency samples.
+
+New `release/proof-readiness-after-qa-50ad9c3.json` and
+`release/GAPS-after-qa-50ad9c3.md` capture the post-QA state. Current GAPS
+SHA256004509e6d7d92230fa3273e1c92e3b6b67c7bc42d44f90b6009dd135487fef43
+matches receipt14. Original preparation GAPS/proof, artifact manifest and
+package verification remain unchanged, including the original pending state.
+`release/post-qa-verification-50ad9c3.json` checks all current receipt evidence
+hashes, original snapshot preservation and local evidence links. Shared
+metrics/export remain their dated preparation snapshot; final export is
+downstream of the human gate.
+
+Independent release review eedc97f found no new defect and re-derived QA's
+8cf894a from840raw hashes,405response/log joins and38statistics bodies.
+RELEASE.md now distinguishes this completed package audit from its pending
+focused final receipt/document disposition. The exact candidate and hosted
+CI/CD HTTP404 qualification are unchanged. No push, release tag, publication
+or non-loopback exposure. Send the doc-only refresh SHA to review-agent for
+that focused check before any human ship handoff.
