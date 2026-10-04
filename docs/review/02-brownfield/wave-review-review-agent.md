@@ -1,4 +1,4 @@
-> Current lifecycle verdict: **NOT READY — W2F-01 HIGH; waiting for a test-only forward fix and the D21 sixth-slice merge.** See the final-wave section below (8e9c065..d55a502). The original pre-review is retained unchanged as history.
+> Current lifecycle verdict: **WAITING for the D21 sixth-slice merge. W2F-01 is fixed on 50ad9c3**, with a fresh independent full gate. See the re-review below. The original five-slice review and its failed gate remain unchanged as history; this is not yet a release handoff.
 
 # PRE-REVIEW of the merged range at `ed2b940` (draft; wave_review adds 04-audit-columns)
 
@@ -314,3 +314,33 @@ New rework is routed to the lead as **qitem-20261004003207-25b6f4c0** ([brief](p
 On continuation: read the lead's exact forward-fix SHA and independent receipts, verify W2F-01 and any fix-introduced changes, and append the resolution. Wait for the lead's `06-client-identity` merge notice, review that added range with the required structural vantage, and run/reconcile the full merged gate at the named final boundary before handoff. Keep the original five-slice range and later deltas explicit; do not silently substitute analytics into this mission's original product range.
 
 Self-check: original range and final merge pinned; prior 43-path review adopted and ten-file delta fully inspected (51 distinct product/tool files); real failed gate retained; ordering defect empirically reproduced; no source/test/SPEC/design edits; V4 receipts and documentary closure checked; new HIGH has file/line/evidence/repair and a durable routed owner. Final-wave row recorded in REVIEW-LEDGER; not a release approval.
+
+## Re-review 50ad9c3 — W2F-01 fixed; D21 still outstanding
+
+2026-10-04 UTC, review-agent (Codex). Returned under the same wave packet after the lead closed `qitem-20261004003207-25b6f4c0`. Exact merged head **50ad9c3ab9e65baa4100ede1772b514322957fa5**, candidate **0552b815e39b9899fa4fdaacf3ea3454e116720c**. I read the full changed class and complete first-parent merge diff, then ran the gate in clean detached worktree `.worktrees/review-w2f01-50ad9c3` at that exact merge.
+
+Context/confidence: high. The repair synchronizes a test with two already-required effects: committed rows and the subsequent log event. Production purge behavior, deadline and exact terminal assertions remain the contract. The original finding is preserved; its unchanged green rerun was never the resolution.
+
+| File — complete correction delta | Verdict |
+|---|---|
+| `src/functionalTest/java/dev/urlshort/click/ClickRetentionScheduleJourneyTest.java` (+11/-4) | **PASS** — lines 90–93 continue polling while old rows remain **or** the post-window event is absent. The 60 s bound and existing 100 ms polling sleep remain. Lines 95–97 retain exact rows, `singleElement` and exact cutoff; lines 101–105 extract the same JSON filter for both observations. No product/build file changed. |
+
+| Finding | Author response | Independent disposition |
+|---|---|---|
+| W2F-01 HIGH / JUDGMENT-GAP (design vantage calls it W2F-02) | Fixed by `0552b81`, merged `50ad9c3`; no product change | **FIXED.** In the reproduced state (DELETE visible, log not yet published), `runs(...).isEmpty()` now keeps the test in its bounded poll. An absent event still fails after timeout, and duplicates/wrong cutoff/wrong rows still fail the unchanged terminal assertions. No new finding introduced. |
+
+**Fresh verification:** `scripts/gw --offline check --rerun-tasks` with wrapper `--log` completed successfully, all 14 tasks executed: **226 unit + 250 functional**, zero failures/errors/skips, **582/582 lines and 206/206 branches**, Javadoc passed. Only canonical `test.exec` and `functionalTest.exec` existed. [Full log](proof/w2f01-recheck-50ad9c3.txt), [actual scheduled-test XML](proof/w2f01-recheck-50ad9c3.xml), [merged CSV](proof/w2f01-recheck-50ad9c3.csv). The XML records the startup event followed by the daily event with `deleted=2`, `cutoff=2026-07-07`; the scheduled test's retained exact assertions pass.
+
+**QA/custody audit:** all 109 hashes in QA2's `f4e08b3` manifest match. I parsed all ten targeted XMLs: each contains exactly the intended passing test and the expected startup/daily purge events. QA's merged coverage agrees with my independently recomputed totals. The merged file is byte-identical to candidate `0552b81`, and `src`, scripts, Gradle/build files and workflows have no differences from that QA candidate. [Reconciliation](proof/w2f01-reconciliation-50ad9c3.json) and [reproducible verifier](proof/w2f01-verify.py). The lead's separate merged-gate log is `docs/evidence/02-brownfield/integrate-w2f-01-check-0552b81.txt`.
+
+This merged full gate includes the already independently reviewed analytics merge `94aa2c0`; it is not a relabelling of the original mission-02 range. The reviewed correction is exactly `50ad9c3^1..50ad9c3` (one test file). Original range `8e9c065..d55a502` and its 51-file coverage remain as recorded. No forced logger barrier was injected into the fixed test; the closed ordering gap follows from the inspected condition, with actual scheduled execution confirmed by this run and QA's ten repeats.
+
+### Ponytail review
+
+No finding. One existing event filter is shared by the poll and assertion; no dependency, layer or generic waiting abstraction added. Security surface is unchanged because the entire correction is test-only.
+
+**Verdict for W2F-01: PASS / fixed**, with no remaining MUST-FIX/HIGH in the already reviewed five-slice outcome plus this correction. Existing non-blocking backlog stays on its recorded triggers, including V4 test pinning when V5 is introduced. Prior structural vantage `cda00ef` already described this exact required repair; its W2F-02 resolves with this finding.
+
+**Lifecycle continuation:** remain **waiting** on lead-owned **qitem-20261004005331-36607695**, the canonical merge notification for `06-client-identity` (D21). [Continuation brief](proof/d21-wave-continuation.md). At its closure, inspect the exact accepted candidate, merge range and gate; add that range and its structural/register review before release_prep. Do not reopen settled findings or infer sixth-slice acceptance from this test repair.
+
+Self-check: exact SHA and clean worktree verified before/after; one changed file fully read and accounted for; own complete gate and upstream hashes checked; original red evidence retained; resolution and ledger row recorded; only review evidence edited. No release approval or publication.
