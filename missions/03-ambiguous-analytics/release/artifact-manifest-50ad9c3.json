@@ -1,0 +1,94 @@
+{
+  "candidate": "50ad9c3ab9e65baa4100ede1772b514322957fa5",
+  "analyticsMerge": "c9b66dd",
+  "packageHeadSourceCheck": "8d3c536aeadfc176a6d34ebbfb89c5eb9504e32e",
+  "jarSha256": "fbe67b61f0f6f668e65949bc01a92802e5de64015ca78eb2d6bbc0462b2ebde2",
+  "imageId": "sha256:277703a6510ec2924fef9b423c0f48714c081fd2fe9da76461f54d702afd4b3b",
+  "localImageTag": "urlshort:mission03-50ad9c3",
+  "imageBuildCommand": "docker build -t urlshort:mission03-50ad9c3 .",
+  "imageBuildExit": 0,
+  "dockerVersion": {
+    "Client": {
+      "Platform": {
+        "Name": "Docker Engine - Community"
+      },
+      "Version": "29.2.0",
+      "ApiVersion": "1.51",
+      "DefaultAPIVersion": "1.53",
+      "GitCommit": "0b9d1985db",
+      "GoVersion": "go1.25.6",
+      "Os": "darwin",
+      "Arch": "arm64",
+      "BuildTime": "Mon Jan 26 19:20:51 2026",
+      "Context": "colima"
+    },
+    "Server": {
+      "Platform": {
+        "Name": "Docker Engine - Community"
+      },
+      "Version": "28.4.0",
+      "ApiVersion": "1.51",
+      "MinAPIVersion": "1.24",
+      "Os": "linux",
+      "Arch": "arm64",
+      "Components": [
+        {
+          "Name": "Engine",
+          "Version": "28.4.0",
+          "Details": {
+            "ApiVersion": "1.51",
+            "Arch": "arm64",
+            "BuildTime": "Wed Sep  3 20:58:55 2025",
+            "Experimental": "false",
+            "GitCommit": "249d679",
+            "GoVersion": "go1.24.7",
+            "KernelVersion": "6.8.0-64-generic",
+            "MinAPIVersion": "1.24",
+            "Os": "linux"
+          }
+        },
+        {
+          "Name": "containerd",
+          "Version": "1.7.27",
+          "Details": {
+            "GitCommit": "05044ec0a9a75232cad458027ca83437aae3f4da"
+          }
+        },
+        {
+          "Name": "runc",
+          "Version": "1.2.5",
+          "Details": {
+            "GitCommit": "v1.2.5-0-g59923ef"
+          }
+        },
+        {
+          "Name": "docker-init",
+          "Version": "0.19.0",
+          "Details": {
+            "GitCommit": "de40ad0"
+          }
+        }
+      ],
+      "GitCommit": "249d679",
+      "GoVersion": "go1.24.7",
+      "KernelVersion": "6.8.0-64-generic",
+      "BuildTime": "2025-09-03T20:58:55.000000000+00:00"
+    }
+  },
+  "gapSnapshotSha256": "18149e871a3225f68323117da91202d2186662b6667642e3815068ae12974068",
+  "limitations": [
+    "Docker build used cached layers; no wholly uncached-image or remote-registry proof",
+    "No release tag, push or publication",
+    "D21 is outside this candidate"
+  ],
+  "rollbackCommit": "5de969f6005f9cb5ca86df576c074a7a61c675e6",
+  "containerRunCommand": "docker run -d --name urlshort-m03-50ad9c3 --read-only --tmpfs /tmp:size=67108864,mode=1777 --mount type=volume,source=urlshort-m03-50ad9c3,target=/app/data -p127.0.0.1:18231:8080 --stop-timeout 20 urlshort:mission03-50ad9c3",
+  "jarRunSettings": {
+    "server.address": "127.0.0.1",
+    "server.port": 18230,
+    "spring.datasource.url": "jdbc:h2:file:/private/tmp/urlshort-m03-50ad9c3-db/urlshort;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+    "urlshort.rate-limit.create-per-minute": 1000000,
+    "urlshort.rate-limit.redirect-per-minute": 1000000,
+    "urlshort.rate-limit.trusted-proxies": "127.0.0.1"
+  }
+}

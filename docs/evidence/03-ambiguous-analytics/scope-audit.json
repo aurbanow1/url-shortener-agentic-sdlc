@@ -1,0 +1,47 @@
+{
+  "ok": true,
+  "mission": {
+    "name": "03-ambiguous-analytics",
+    "railStatus": "present",
+    "frontmatterError": null,
+    "findings": []
+  },
+  "slices": [
+    {
+      "name": "01-analytics-v2",
+      "railStatus": "present",
+      "frontmatterError": null,
+      "findings": [
+        {
+          "kind": "proof_artifact_c1_invalid",
+          "severity": "medium",
+          "path": "/Users/andrzej/Documents/projekty/test/openrig/url-shortener/missions/03-ambiguous-analytics/slices/01-analytics-v2/proof/qa-item11-ec466da.md",
+          "message": "Proof artifact violates the C1 header contract: no frontmatter header at all (required C1 fields: slice, candidate_sha, artifact_type, verdict, money_evidence).",
+          "remediation": "Re-drop via: rig proof add <slice> --artifact-type <guard|qa|rev1-r1|rev1-r2|adjudication> --verdict <CLEAR|BLOCKING|CONCERNING|PASS|NOT-CLEAR> --candidate-sha <sha> --money-evidence \"<line>\" — or add the missing frontmatter fields in place."
+        }
+      ]
+    }
+  ],
+  "graph": {
+    "mission": {
+      "id": "OPR.99.0.4",
+      "name": "03-ambiguous-analytics",
+      "dependsOn": [
+        "OPR.99.0.2"
+      ]
+    },
+    "nodes": [
+      {
+        "id": "OPR.99.0.4.1",
+        "name": "01-analytics-v2",
+        "dependsOn": []
+      }
+    ],
+    "ready": [
+      "OPR.99.0.4.1"
+    ],
+    "waiting": [],
+    "advisories": []
+  },
+  "totalFindings": 1
+}

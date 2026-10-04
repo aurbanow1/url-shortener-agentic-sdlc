@@ -1,0 +1,7 @@
+Command: gh api repos/aurbanow1/url-shortener-agentic-sdlc/actions/runs -f head_sha=50ad9c3ab9e65baa4100ede1772b514322957fa5 -f per_page=100 --method GET
+Exit: 1
+gh: Not Found (HTTP 404)
+{"message":"Not Found","documentation_url":"https://docs.github.com/rest/actions/workflow-runs#list-workflow-runs-for-a-repository","status":"404"}
+
+This response does not prove that no CI/CD runs exist. The API did not expose
+the repository's run list to this seat. No run URL or conclusion was verified.

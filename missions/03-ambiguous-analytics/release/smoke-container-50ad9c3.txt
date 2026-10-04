@@ -1,0 +1,16 @@
+Command: scripts/smoke.sh http://127.0.0.1:18231
+Exit: 0
+# health, liveness and readiness
+# ping: 200 application/json, {status:ok,time}, server-issued X-Request-Id
+# ping wrong method: 405 application/problem+json, still carries X-Request-Id, no trace
+# create: 201 with code and a shortUrl ending in it
+# redirect: 302 to the stored url, not cacheable
+# read: 200, active
+# stats: the click is counted with its referrer reduced to an origin
+# invalid create: 400 problem with errors[], the input not echoed
+# unknown code: 404
+# retire: 204, then the redirect answers 410
+# metrics: request timer, rejection counter, pool gauges
+# prometheus scrape
+# openapi
+SMOKE OK against http://127.0.0.1:18231

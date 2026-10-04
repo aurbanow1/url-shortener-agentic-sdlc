@@ -89,3 +89,20 @@ At that groundwork snapshot the review rejection remained natural and open
 through re-QA, and DRILL 1 was parked on its own item. The later DRILL 1 row
 above records the completed fallback. No earlier drill was rerun, product
 changed, or final release proof claimed for the groundwork packet.
+
+
+## Mission 03 release rollback rehearsal
+
+2026-10-04, release2-agent, candidate 50ad9c3. Branch-only rehearsal; no live
+product failure was injected, and main was untouched.
+
+| Command / observation | Evidence |
+|---|---|
+| `git worktree add -b drill/mission03-rollback .worktrees/drill-mission03-rollback 50ad9c3`; `git -C .worktrees/drill-mission03-rollback revert -m 1 --no-commit c9b66dd`; commit 5de969f after verification | [Exact patch](../../missions/03-ambiguous-analytics/release/rollback.patch); analytics merge reversed without conflict; V3/V4 and W2F-01 remain |
+| `scripts/gw --log missions/03-ambiguous-analytics/release/rollback-check-50ad9c3.txt --offline -p .worktrees/drill-mission03-rollback check bootJar --rerun-tasks` | [Gate](../../missions/03-ambiguous-analytics/release/rollback-check-50ad9c3.txt):451 tests,557/557 class-row CSV lines,200/200 branches; [summary](../../missions/03-ambiguous-analytics/release/rollback-gate-summary-50ad9c3.json) |
+| Stop candidate; copy stopped H2 file to disposable directory; run reverted jar on127.0.0.1:18230; `scripts/smoke.sh http://127.0.0.1:18230` | [Smoke PASS](../../missions/03-ambiguous-analytics/release/rollback-smoke-50ad9c3.txt), [existing12000clicks/v1shape](../../missions/03-ambiguous-analytics/release/rollback-stats-before-50ad9c3.txt), [newcounter404](../../missions/03-ambiguous-analytics/release/rollback-counter-50ad9c3.txt) |
+| `kill -TERM 42231`; `git worktree remove .worktrees/drill-mission03-rollback` | [Shutdown/port refusal](../../missions/03-ambiguous-analytics/release/teardown-50ad9c3.json); owned worktree removed; local branch and rollback jar retained |
+
+No mission03 schema rollback is needed; no rollback image was built. Purged
+rows and previously coalesced hashes cannot be reconstructed. Full Operator
+sequence and data-loss limits are in [RELEASE §8](../../missions/03-ambiguous-analytics/RELEASE.md#8-rollback).

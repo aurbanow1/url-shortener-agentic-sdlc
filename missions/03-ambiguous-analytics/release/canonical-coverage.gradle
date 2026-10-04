@@ -1,0 +1,11 @@
+allprojects {
+    afterEvaluate {
+        ['jacocoAllReport', 'jacocoTestCoverageVerification'].each { name ->
+            tasks.named(name) {
+                executionData.setFrom(files('build/jacoco/test.exec', 'build/jacoco/functionalTest.exec'))
+                outputs.upToDateWhen { false }
+                doFirst { println 'RELEASE canonical coverage inputs: test.exec, functionalTest.exec only' }
+            }
+        }
+    }
+}

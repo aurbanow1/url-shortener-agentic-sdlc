@@ -1,0 +1,55 @@
+{
+  "candidate": "50ad9c3ab9e65baa4100ede1772b514322957fa5",
+  "reportHead": "69d02316c49bbf4855915cee541a1d2b7e1e10c6",
+  "productDiffFromCandidate": "",
+  "executionInputs": {
+    "test.exec": "21cc7efb07eb1eaf6fdd998defa943db940afac37ea187e9fa8f343d04679d8e",
+    "functionalTest.exec": "38c31760adafafbd80c5106d42256a0b04b433d4b54635a32f88820c1df31e05"
+  },
+  "coverage": {
+    "LINE": {
+      "covered": 582,
+      "missed": 0
+    },
+    "BRANCH": {
+      "covered": 206,
+      "missed": 0
+    }
+  },
+  "suiteTasks": "up-to-date after fresh root gate on byte-equivalent pre-D21 product",
+  "wildcardArchive": "coverage-all-50ad9c3.csv retained; isolated class-row CSV sums identical. Bundle total581 distinct source lines versus582 summed class-row lines; RequestBodyLimitFilter shared source line.",
+  "bundleCounters": {
+    "INSTRUCTION": {
+      "missed": 0,
+      "covered": 2929
+    },
+    "BRANCH": {
+      "missed": 0,
+      "covered": 206
+    },
+    "LINE": {
+      "missed": 0,
+      "covered": 581
+    },
+    "COMPLEXITY": {
+      "missed": 0,
+      "covered": 266
+    },
+    "METHOD": {
+      "missed": 0,
+      "covered": 163
+    },
+    "CLASS": {
+      "missed": 0,
+      "covered": 51
+    }
+  },
+  "csvClassSumDifference": [
+    {
+      "package": "dev/urlshort/web",
+      "file": "RequestBodyLimitFilter.java",
+      "classLineSum": 28,
+      "distinctSourceLines": 27
+    }
+  ]
+}

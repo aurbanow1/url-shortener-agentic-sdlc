@@ -84,3 +84,35 @@ Context and observations that help the mission but do not change its
 ## 4. QA Agent
 
 Active qa_check packet qitem-20261003231403-839a47f3, workflow01M416Z3CM54YQTX93V4KG0CPS. Candidate ec466da8da4b1efde9d612c6c8692070cc6fc4b9 remains clean in .worktrees/01-analytics-v2. Independent fresh gate221/241, merged580/580 lines206/206 branches. All15ACs independently observed;713curl responses+3HEAD wire checks reconcile in both console/file sinks, and all three processes stopped (ports18170/18171/18172; curl7 after stop). Original literal replay153/155 retains two inherited audit enumeration failures; lead a12a0e2 authorizes their carryforward, and the authorized repeat is155/155. Evidence lives under slices/01-analytics-v2/proof/qa-ec466da/. QA evidence is committed at6672ed9; raw archive and8809 reconciliation checks pass. QA proof drop made and items1–10 accepted; receipts are being committed before the authored handoff to code_review. Security11 returns before integration; benchmark12 returns after release_prep via qitem-20261003195138-8eb72ecb. Plain-file drill workflow01M4212A8BKA6JRZHZQBD90D07 completed separately: broken594c9c9 rejected (6c21101), READY8227b8c independently accepted (74ccb14); neither receipt claims product readiness.
+
+
+## Release agent 2 — release_prep continuity
+
+2026-10-04: ownerrelease2-agent, packetqitem-20261004004828-05d2aab9,
+instance01M40RVNDQ0KT7FPWN1KJW0DC3. Package pinned to50ad9c3, never D21.
+Fresh root gate 476 tests; isolated coverage 581/581 bundle lines,
+582/582 class-row CSV line sum,206/206 branches; preserved jar SHA256
+fbe67b61f0f6f668e65949bc01a92802e5de64015ca78eb2d6bbc0462b2ebde2;
+local image277703a6510ec2924fef9b423c0f48714c081fd2fe9da76461f54d702afd4b3b,
+whole jar matches. Installed jar18230/container18231 pass; trusted4/3/1 and
+default4/1/1; bench100redirects/s+20creates/s p95redirect3.7ms/p999.5ms,
+12000GETclicks,zero bad responses. All owned processes/container/volume stopped
+and removed as applicable; ports refuse. Rollbackc9b66dd rehearsed on branch
+5de969f with copied database:451tests557/557lines200/200branches and smokePASS,
+12000clicks retained,v1shape; owned worktree removed.
+
+OSV97coordinates returns0advisories at00:52:33Z. Exact hostedSHA queryHTTP404:
+unverified, never borrow a3d6867 runs. Export01:23:04Z has17rig instances and
+183packets, INDEX maps governance; validated407JSONfiles. Shared docs e227acf
+read; coordinated metrics8d3c536 generated01:52:27Z read by exactinstance IDs,
+export-directory ownership label caveat and customambiguity-wait omission
+retained. Proof1–11accepted,12pending independentQA via lead-owned
+qitem-20261003195138-8eb72ecb after prep, before final export.
+
+DogfoodQA8cf894a boundedPASS/no new defects. Lead's4891097 records01:27–01:33Z
+Luna Reserve window;8cf894a was QA-authored in it. Current-model release2audit
+re-derives all840raw hashes,405wire/log joins and release-relevant aggregate,
+error,limiter,concurrency,restart claims:PASS,no correction. Handoff must name
+window/commit for independent release_review re-check. Durable files under
+missions/03-ambiguous-analytics/release/, final RELEASE.md local links/anchors verified; explicit-path commit and
+release_review handoff prepared. Proof12 and hosted runs remain explicit. No publication.

@@ -1,0 +1,1295 @@
+diff --git a/docs/api/openapi.json b/docs/api/openapi.json
+index 26dab4e..2f22014 100644
+--- a/docs/api/openapi.json
++++ b/docs/api/openapi.json
+@@ -69,11 +69,6 @@
+       },
+       "DayClicks" : {
+         "properties" : {
+-          "botClicks" : {
+-            "description" : "Clicks whose user agent was classified bot",
+-            "format" : "int64",
+-            "type" : "integer"
+-          },
+           "clicks" : {
+             "format" : "int64",
+             "type" : "integer"
+@@ -81,11 +76,6 @@
+           "date" : {
+             "format" : "date",
+             "type" : "string"
+-          },
+-          "uniqueVisitors" : {
+-            "description" : "Distinct visitors that UTC day; never combined across days",
+-            "format" : "int64",
+-            "type" : "integer"
+           }
+         },
+         "type" : "object"
+@@ -668,15 +658,19 @@
+                     "description" : "stats",
+                     "value" : {
+                       "clicksPerDay" : [ {
+-                        "botClicks" : 1,
+-                        "clicks" : 6,
+-                        "date" : "2026-10-01",
+-                        "uniqueVisitors" : 3
++                        "clicks" : 2,
++                        "date" : "2026-10-01"
++                      }, {
++                        "clicks" : 3,
++                        "date" : "2026-10-02"
++                      }, {
++                        "clicks" : 1,
++                        "date" : "2026-10-04"
+                       } ],
+-                      "code" : "aB3dE5fG",
++                      "code" : "Ab3dE9fG",
+                       "topReferrers" : [ {
+-                        "clicks" : 4,
+-                        "referrer" : "https://news.example.com"
++                        "clicks" : 5,
++                        "referrer" : "https://a.example"
+                       } ],
+                       "totalClicks" : 6
+                     }
+@@ -687,7 +681,7 @@
+                 }
+               }
+             },
+-            "description" : "Total clicks; per UTC day the clicks, unique visitors and bot clicks; and the top 10 referrer origins"
++            "description" : "Total clicks, clicks per UTC day and the top 10 referrer origins"
+           },
+           "404" : {
+             "content" : {
+diff --git a/src/functionalTest/java/dev/urlshort/audit/AuditUpgradeJourneyTest.java b/src/functionalTest/java/dev/urlshort/audit/AuditUpgradeJourneyTest.java
+index 8119fa6..47d2897 100644
+--- a/src/functionalTest/java/dev/urlshort/audit/AuditUpgradeJourneyTest.java
++++ b/src/functionalTest/java/dev/urlshort/audit/AuditUpgradeJourneyTest.java
+@@ -53,7 +53,7 @@ class AuditUpgradeJourneyTest {
+ 
+ 			// statistics first: the redirect below records a click of its own
+ 			assertThat(json.readTree(get(base + "/api/links/" + ACTIVE + "/stats").body())).isEqualTo(json.readTree(
+-					"{\"code\":\"" + ACTIVE + "\",\"totalClicks\":3,\"clicksPerDay\":[{\"date\":\"2026-10-01\",\"clicks\":3,\"uniqueVisitors\":1,\"botClicks\":0}],"
++					"{\"code\":\"" + ACTIVE + "\",\"totalClicks\":3,\"clicksPerDay\":[{\"date\":\"2026-10-01\",\"clicks\":3}],"
+ 							+ "\"topReferrers\":[{\"referrer\":\"https://ref.example\",\"clicks\":2}]}"));
+ 			HttpResponse<String> redirect = get(base + "/" + ACTIVE);
+ 			assertThat(redirect.statusCode()).isEqualTo(302);
+diff --git a/src/functionalTest/java/dev/urlshort/click/ClickMetricsJourneyTest.java b/src/functionalTest/java/dev/urlshort/click/ClickMetricsJourneyTest.java
+deleted file mode 100644
+index 694c357..0000000
+--- a/src/functionalTest/java/dev/urlshort/click/ClickMetricsJourneyTest.java
++++ /dev/null
+@@ -1,131 +0,0 @@
+-package dev.urlshort.click;
+-
+-import static org.assertj.core.api.Assertions.assertThat;
+-import static org.mockito.ArgumentMatchers.any;
+-import static org.mockito.Mockito.doThrow;
+-import static org.mockito.Mockito.reset;
+-
+-import java.net.URI;
+-import java.net.http.HttpClient;
+-import java.net.http.HttpRequest;
+-import java.net.http.HttpResponse;
+-import java.util.List;
+-import java.util.Map;
+-import java.util.Set;
+-import java.util.regex.Matcher;
+-import java.util.regex.Pattern;
+-
+-import org.junit.jupiter.api.Test;
+-import org.springframework.beans.factory.annotation.Autowired;
+-import org.springframework.beans.factory.annotation.Value;
+-import org.springframework.boot.micrometer.metrics.test.autoconfigure.AutoConfigureMetrics;
+-import org.springframework.boot.test.context.SpringBootTest;
+-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+-import org.springframework.dao.DataAccessResourceFailureException;
+-import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
+-import tools.jackson.databind.json.JsonMapper;
+-
+-/**
+- * The click counters (AC-10, AC-11; business rule 10; ADR-0016 amendment): {@code urlshort.clicks.recorded}
+- * grows by every stored click, {@code urlshort.clicks.lost} by every {@code click lost} event under that
+- * event's {@code reason}, and the scrape names no client. A real Tomcat with a {@link ClickStore} spy, as
+- * in {@code ClickResilienceJourneyTest} (v1's AC-15 mechanism); {@code @AutoConfigureMetrics} turns on the
+- * Prometheus export that Boot's test support otherwise leaves off, as in {@code RateLimitJourneyTest}.
+- */
+-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+-@AutoConfigureMetrics
+-class ClickMetricsJourneyTest {
+-
+-	private static final Set<String> REASONS = Set.of("rejected", "reduction failed", "write failed",
+-			"shutdown deadline", "shutdown deadline, outcome unknown");
+-
+-	@Value("${local.server.port}")
+-	private int port;
+-
+-	@Autowired
+-	private JsonMapper jsonMapper;
+-
+-	@Autowired
+-	private ClickRecorder recorder;
+-
+-	@MockitoSpyBean
+-	private ClickStore store;
+-
+-	private final HttpClient http = HttpClient.newHttpClient();
+-
+-	@Test
+-	void AC10_recordedAndLostClicksAreCounted() throws Exception {
+-		String code = create("https://example.com/v2-metrics");
+-		recorder.settle();
+-		double recordedBefore = meter("urlshort.clicks.recorded");
+-		double lostBefore = meter("urlshort.clicks.lost?tag=reason:write%20failed");
+-
+-		for (int i = 0; i < 3; i++) {
+-			assertThat(send("/" + code).statusCode()).isEqualTo(302);
+-		}
+-		recorder.settle();
+-		double recordedAfterWrites = meter("urlshort.clicks.recorded");
+-		doThrow(new DataAccessResourceFailureException("store down")).when(store).insert(any());
+-		try {
+-			for (int i = 0; i < 2; i++) {
+-				assertThat(send("/" + code).statusCode()).isEqualTo(302);
+-			}
+-			recorder.settle();
+-		}
+-		finally {
+-			reset(store);
+-		}
+-
+-		assertThat(recordedAfterWrites - recordedBefore).isEqualTo(3.0);
+-		assertThat(meter("urlshort.clicks.recorded")).isEqualTo(recordedAfterWrites);
+-		assertThat(meter("urlshort.clicks.lost?tag=reason:write%20failed") - lostBefore).isEqualTo(2.0);
+-	}
+-
+-	@Test
+-	void AC11_theClickCountersAreScrapeableAndNameNoClient() throws Exception {
+-		String code = create("https://example.com/v2-scrape");
+-		send("/" + code);
+-		recorder.settle();
+-
+-		HttpResponse<String> response = send("/actuator/prometheus");
+-		String scrape = response.body();
+-
+-		assertThat(response.statusCode()).as(scrape.substring(0, Math.min(300, scrape.length()))).isEqualTo(200);
+-		assertThat(response.headers().firstValue("Content-Type")).hasValueSatisfying(
+-				type -> assertThat(type).startsWith("text/plain"));
+-		List<String> lines = scrape.lines().filter(line -> line.startsWith("urlshort_clicks_")).toList();
+-		assertThat(lines).anyMatch(line -> line.startsWith("urlshort_clicks_recorded_total "));
+-		assertThat(lines).filteredOn(line -> line.startsWith("urlshort_clicks_lost_total")).hasSize(REASONS.size())
+-				.allSatisfy(line -> {
+-					Matcher labels = Pattern.compile("^urlshort_clicks_lost_total\\{reason=\"([^\"]*)\"} .*$")
+-							.matcher(line);
+-					assertThat(labels.matches()).as(line).isTrue();
+-					assertThat(labels.group(1)).isIn(REASONS);
+-				});
+-		assertThat(String.join("\n", lines)).doesNotContain(code).doesNotContain("127.0.0.1")
+-				.doesNotContain("example.com");
+-	}
+-
+-	/** The meter's {@code COUNT} measurement from {@code /actuator/metrics/<name>}. */
+-	private double meter(String nameAndQuery) throws Exception {
+-		return jsonMapper.readTree(send("/actuator/metrics/" + nameAndQuery).body()).get("measurements").get(0)
+-				.get("value").asDouble();
+-	}
+-
+-	private String create(String url) throws Exception {
+-		HttpResponse<String> created = http.send(HttpRequest.newBuilder(uri("/api/links"))
+-				.header("Content-Type", "application/json")
+-				.POST(HttpRequest.BodyPublishers.ofString(jsonMapper.writeValueAsString(Map.of("url", url)))).build(),
+-				HttpResponse.BodyHandlers.ofString());
+-		assertThat(created.statusCode()).isEqualTo(201);
+-		return jsonMapper.readTree(created.body()).get("code").asString();
+-	}
+-
+-	private HttpResponse<String> send(String path) throws Exception {
+-		return http.send(HttpRequest.newBuilder(uri(path)).GET().build(), HttpResponse.BodyHandlers.ofString());
+-	}
+-
+-	private URI uri(String path) {
+-		return URI.create("http://localhost:" + port + path);
+-	}
+-}
+diff --git a/src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java b/src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java
+index f6319af..2d9fbd4 100644
+--- a/src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java
++++ b/src/functionalTest/java/dev/urlshort/click/ClickRecordingJourneyTest.java
+@@ -220,8 +220,7 @@ class ClickRecordingJourneyTest {
+ 		tools.jackson.databind.JsonNode stats = jsonMapper.readTree(body);
+ 		assertThat(stats.propertyNames()).containsExactlyInAnyOrder("code", "totalClicks", "clicksPerDay",
+ 				"topReferrers");
+-		stats.get("clicksPerDay").forEach(day -> assertThat(day.propertyNames()).containsExactlyInAnyOrder("date", "clicks",
+-				"uniqueVisitors", "botClicks"));
++		stats.get("clicksPerDay").forEach(day -> assertThat(day.propertyNames()).containsExactlyInAnyOrder("date", "clicks"));
+ 		stats.get("topReferrers")
+ 				.forEach(ref -> assertThat(ref.propertyNames()).containsExactlyInAnyOrder("referrer", "clicks"));
+ 		assertThat(body).doesNotContain("203.0.113.77").doesNotContain("198.51.100.23").doesNotContain(hash)
+diff --git a/src/functionalTest/java/dev/urlshort/click/ClickResilienceTrustedProxyJourneyTest.java b/src/functionalTest/java/dev/urlshort/click/ClickResilienceTrustedProxyJourneyTest.java
+deleted file mode 100644
+index c86114f..0000000
+--- a/src/functionalTest/java/dev/urlshort/click/ClickResilienceTrustedProxyJourneyTest.java
++++ /dev/null
+@@ -1,13 +0,0 @@
+-package dev.urlshort.click;
+-
+-import org.springframework.boot.test.context.SpringBootTest;
+-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+-
+-/**
+- * AC-15: v1's slow-store, failing-store and concurrency journeys run unchanged with a trusted proxy
+- * configured, since the click's client now comes from the rate limiter's request attribute
+- * (business rule 6). The empty setting is {@link ClickResilienceJourneyTest} itself.
+- */
+-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, properties = "urlshort.rate-limit.trusted-proxies=10.9.9.9")
+-class ClickResilienceTrustedProxyJourneyTest extends ClickResilienceJourneyTest {
+-}
+diff --git a/src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java b/src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java
+index 81ed53e..2bb57e2 100644
+--- a/src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java
++++ b/src/functionalTest/java/dev/urlshort/click/ClickRetentionJourneyTest.java
+@@ -164,7 +164,7 @@ class ClickRetentionJourneyTest {
+ 		assertThat(redirect.getHeader("Location")).isEqualTo("https://example.com/only-old");
+ 		assertThat(one.get("totalClicks").asLong()).isEqualTo(1);
+ 		assertThat(one.get("clicksPerDay")).containsExactly(
+-				jsonMapper.readTree("{\"date\":\"" + T + "\",\"clicks\":1,\"uniqueVisitors\":1,\"botClicks\":0}"));
++				jsonMapper.readTree("{\"date\":\"" + T + "\",\"clicks\":1}"));
+ 		assertThat(read.getStatus()).isEqualTo(200);
+ 		assertThat(jsonMapper.readTree(read.getContentAsString())).isEqualTo(created);
+ 		assertThat(jdbc.sql("SELECT * FROM audit_log ORDER BY id").query().listOfRows()).isEqualTo(audit);
+@@ -223,7 +223,7 @@ class ClickRetentionJourneyTest {
+ 			assertThat(redirect(code, peer).getStatus()).isEqualTo(302);
+ 			recorder.settle();
+ 			assertThat(stats(code, peer).get("clicksPerDay")).contains(
+-					jsonMapper.readTree("{\"date\":\"" + T + "\",\"clicks\":1,\"uniqueVisitors\":1,\"botClicks\":0}"));
++					jsonMapper.readTree("{\"date\":\"" + T + "\",\"clicks\":1}"));
+ 			deleting.rollback();
+ 		}
+ 
+@@ -249,8 +249,7 @@ class ClickRetentionJourneyTest {
+ 
+ 		assertThat(startedDuringRun).as("redirects started before the run ended").isPositive();
+ 		assertThat(stats(code, peer).get("clicksPerDay")).containsExactly(
+-				jsonMapper.readTree("{\"date\":\"" + T + "\",\"clicks\":" + (sent + 1)
+-						+ ",\"uniqueVisitors\":1,\"botClicks\":0}"));
++				jsonMapper.readTree("{\"date\":\"" + T + "\",\"clicks\":" + (sent + 1) + "}"));
+ 	}
+ 
+ 	/** Records {@code times} clicks on each day, at noon of this context's clock, from {@code peer}. */
+diff --git a/src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java b/src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java
+index 1bd5a8f..41767ee 100644
+--- a/src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java
++++ b/src/functionalTest/java/dev/urlshort/click/StatsJourneyTest.java
+@@ -110,10 +110,8 @@ class StatsJourneyTest {
+ 		assertThat(response.getStatus()).isEqualTo(200);
+ 		JsonNode stats = jsonMapper.readTree(response.getContentAsString());
+ 
+-		assertThat(stats.get("clicksPerDay")).isEqualTo(jsonMapper.readTree(
+-				"[{\"date\":\"2026-10-01\",\"clicks\":2,\"uniqueVisitors\":1,\"botClicks\":0},"
+-				+ "{\"date\":\"2026-10-02\",\"clicks\":3,\"uniqueVisitors\":1,\"botClicks\":0},"
+-				+ "{\"date\":\"2026-10-04\",\"clicks\":1,\"uniqueVisitors\":1,\"botClicks\":0}]"));
++		assertThat(stats.get("clicksPerDay")).isEqualTo(jsonMapper.readTree("[{\"date\":\"2026-10-01\",\"clicks\":2},"
++				+ "{\"date\":\"2026-10-02\",\"clicks\":3},{\"date\":\"2026-10-04\",\"clicks\":1}]"));
+ 		assertThat(stats.get("totalClicks").asLong()).isEqualTo(6);
+ 		assertConsistent(stats);
+ 	}
+diff --git a/src/functionalTest/java/dev/urlshort/click/StatsV2JourneyTest.java b/src/functionalTest/java/dev/urlshort/click/StatsV2JourneyTest.java
+deleted file mode 100644
+index efcd242..0000000
+--- a/src/functionalTest/java/dev/urlshort/click/StatsV2JourneyTest.java
++++ /dev/null
+@@ -1,222 +0,0 @@
+-package dev.urlshort.click;
+-
+-import static dev.urlshort.click.ClickRecordingJourneyTest.BROWSER_ACCEPT;
+-import static dev.urlshort.click.ClickRecordingJourneyTest.peer;
+-import static org.assertj.core.api.Assertions.assertThat;
+-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+-
+-import java.time.Duration;
+-import java.time.Instant;
+-import java.time.LocalDate;
+-import java.time.ZoneOffset;
+-import java.util.Arrays;
+-import java.util.List;
+-import java.util.Map;
+-
+-import dev.urlshort.link.FunctionalClock;
+-import org.junit.jupiter.api.AfterEach;
+-import org.junit.jupiter.api.Test;
+-import org.springframework.beans.factory.annotation.Autowired;
+-import org.springframework.boot.test.context.SpringBootTest;
+-import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
+-import org.springframework.http.MediaType;
+-import org.springframework.jdbc.core.simple.JdbcClient;
+-import org.springframework.mock.web.MockHttpServletResponse;
+-import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+-import org.springframework.test.web.servlet.MockMvc;
+-import tools.jackson.databind.JsonNode;
+-import tools.jackson.databind.json.JsonMapper;
+-
+-/**
+- * The v2 per-day figures without a trusted proxy (AC-1 to AC-5, AC-8, AC-13; business rules 1 to 6):
+- * {@code uniqueVisitors} counts distinct clients within a UTC day, {@code botClicks} counts that day's
+- * {@code bot} clicks, and forwarding headers change nothing. Every test creates its own links.
+- */
+-@SpringBootTest
+-@AutoConfigureMockMvc
+-class StatsV2JourneyTest {
+-
+-	private static final String BROWSER = "Mozilla/5.0 (X11; Linux x86_64) Firefox/131.0";
+-	private static final String BOT = "Mozilla/5.0 (compatible; Googlebot/2.1)";
+-
+-	// day-shifted requests leave this peer's bucket a day ahead, so no other test uses it
+-	private static final String SHIFTED_PEER = "203.0.113.31";
+-
+-	@Autowired
+-	private MockMvc mockMvc;
+-
+-	@Autowired
+-	private JsonMapper jsonMapper;
+-
+-	@Autowired
+-	private JdbcClient jdbc;
+-
+-	@Autowired
+-	private ClickRecorder recorder;
+-
+-	@Autowired
+-	private FunctionalClock clock;
+-
+-	@AfterEach
+-	void resetClock() {
+-		clock.reset();
+-	}
+-
+-	@Test
+-	void AC01_thePerDayElementCarriesFourFigures() throws Exception {
+-		String code = create("https://example.com/v2-one");
+-		String never = create("https://example.com/v2-never");
+-		open(code, "203.0.113.21", BROWSER, null);
+-		recorder.settle();
+-
+-		JsonNode stats = stats(code);
+-
+-		assertThat(stats.propertyNames()).containsExactly("code", "totalClicks", "clicksPerDay", "topReferrers");
+-		assertThat(stats.get("clicksPerDay")).containsExactly(day(today(), 1, 1, 0));
+-		assertThat(stats.get("clicksPerDay").get(0).propertyNames()).containsExactly("date", "clicks",
+-				"uniqueVisitors", "botClicks");
+-		assertThat(stats(never)).isEqualTo(jsonMapper.readTree(
+-				"{\"code\":\"" + never + "\",\"totalClicks\":0,\"clicksPerDay\":[],\"topReferrers\":[]}"));
+-	}
+-
+-	@Test
+-	void AC02_uniqueVisitorsCountDistinctClientsWithinAUtcDay() throws Exception {
+-		String code = create("https://example.com/v2-uniques");
+-		for (int i = 0; i < 3; i++) {
+-			open(code, "203.0.113.1", BROWSER, null);
+-		}
+-		for (int i = 0; i < 2; i++) {
+-			open(code, "203.0.113.2", BROWSER, null);
+-		}
+-		open(code, "203.0.113.3", BROWSER, null);
+-		recorder.settle();
+-
+-		assertThat(stats(code).get("clicksPerDay")).containsExactly(day(today(), 6, 3, 0));
+-	}
+-
+-	@Test
+-	void AC03_uniquesArePerUtcDayAndNeverCombinedAcrossDays() throws Exception {
+-		String code = create("https://example.com/v2-days");
+-		LocalDate d = today().minusDays(10);
+-		at(d.atTime(23, 59, 59).toInstant(ZoneOffset.UTC));
+-		open(code, SHIFTED_PEER, BROWSER, null);
+-		at(d.plusDays(1).atStartOfDay().plusSeconds(1).toInstant(ZoneOffset.UTC));
+-		open(code, SHIFTED_PEER, BROWSER, null);
+-		recorder.settle();
+-		clock.reset();
+-
+-		JsonNode stats = stats(code);
+-
+-		assertThat(stats.get("clicksPerDay")).containsExactly(day(d, 1, 1, 0), day(d.plusDays(1), 1, 1, 0));
+-		assertThat(stats.propertyNames()).containsExactly("code", "totalClicks", "clicksPerDay", "topReferrers");
+-	}
+-
+-	@Test
+-	void AC04_botClicksAreCountedPerDayAndNothingElseChangesMeaning() throws Exception {
+-		String code = create("https://example.com/v2-bots");
+-		List<String> userAgents = Arrays.asList("Mozilla/5.0 (X11; Linux x86_64) Firefox/131.0",
+-				"Mozilla/5.0 (compatible; Googlebot/2.1)", "acme-crawler/1.0", "acme-spider", "curl/8.7.1", null);
+-		for (int i = 0; i < userAgents.size(); i++) {
+-			open(code, "203.0.113." + (41 + i), userAgents.get(i), null);
+-		}
+-		recorder.settle();
+-
+-		JsonNode stats = stats(code);
+-
+-		assertThat(stats.get("clicksPerDay")).containsExactly(day(today(), 6, 6, 3));
+-		assertThat(stats.get("totalClicks").asLong()).isEqualTo(6);
+-	}
+-
+-	@Test
+-	void AC05_oneClientsBotAndBrowserClicksAreOneVisitor() throws Exception {
+-		String code = create("https://example.com/v2-mixed");
+-		open(code, "203.0.113.9", BROWSER, null);
+-		open(code, "203.0.113.9", BOT, null);
+-		recorder.settle();
+-
+-		assertThat(stats(code).get("clicksPerDay")).containsExactly(day(today(), 2, 1, 1));
+-	}
+-
+-	@Test
+-	void AC08_withoutATrustedProxyForwardingHeadersChangeNothing() throws Exception {
+-		String code = create("https://example.com/v2-no-proxy");
+-		List<String> forwarded = List.of("192.0.2.81", "192.0.2.82, 198.51.100.83", "203.0.113.84");
+-		for (String value : forwarded) {
+-			// the SPEC's 203.0.113.77 is v1's AC-5 peer, which that test sends from a September clock;
+-			// sending from it at today's clock first would leave its bucket ahead and refuse AC-5
+-			open(code, "203.0.113.87", BROWSER, value);
+-		}
+-		recorder.settle();
+-
+-		assertThat(stats(code).get("clicksPerDay")).containsExactly(day(today(), 3, 1, 0));
+-		String rows = clickRows(code).toString();
+-		for (String value : List.of("192.0.2.81", "192.0.2.82", "198.51.100.83", "203.0.113.84")) {
+-			assertThat(rows).doesNotContain(value);
+-		}
+-	}
+-
+-	@Test
+-	void AC13_theApiDocumentDescribesTheV2PerDayElement() throws Exception {
+-		JsonNode document = jsonMapper.readTree(mockMvc.perform(get("/v3/api-docs")).andReturn().getResponse()
+-				.getContentAsString());
+-
+-		JsonNode ok = document.at("/paths/~1api~1links~1{code}~1stats/get/responses/200/content/application~1json");
+-		JsonNode stats = schema(document, ok.at("/schema/$ref").asString());
+-		JsonNode element = schema(document, stats.at("/properties/clicksPerDay/items/$ref").asString());
+-		assertThat(element.get("properties").propertyNames()).containsExactlyInAnyOrder("date", "clicks",
+-				"uniqueVisitors", "botClicks");
+-		JsonNode value = ok.at("/examples/stats/value");
+-		JsonNode example = value.isString() ? jsonMapper.readTree(value.asString()) : value;
+-		assertThat(example.get("clicksPerDay")).isNotEmpty().allSatisfy(day -> assertThat(day.propertyNames())
+-				.containsExactly("date", "clicks", "uniqueVisitors", "botClicks"));
+-	}
+-
+-	private JsonNode schema(JsonNode document, String ref) {
+-		return document.at("/components/schemas/" + ref.substring(ref.lastIndexOf('/') + 1));
+-	}
+-
+-	private JsonNode day(LocalDate date, long clicks, long uniqueVisitors, long botClicks) {
+-		return jsonMapper.readTree("{\"date\":\"" + date + "\",\"clicks\":" + clicks + ",\"uniqueVisitors\":"
+-				+ uniqueVisitors + ",\"botClicks\":" + botClicks + "}");
+-	}
+-
+-	private LocalDate today() {
+-		return LocalDate.ofInstant(clock.instant(), ZoneOffset.UTC);
+-	}
+-
+-	private void at(Instant instant) {
+-		clock.reset();
+-		clock.shift(Duration.between(clock.instant(), instant));
+-	}
+-
+-	private void open(String code, String peerAddress, String userAgent, String forwardedFor) throws Exception {
+-		MockHttpServletRequestBuilder request = get("/" + code).header("Accept", BROWSER_ACCEPT)
+-				.with(peer(peerAddress));
+-		if (userAgent != null) {
+-			request.header("User-Agent", userAgent);
+-		}
+-		if (forwardedFor != null) {
+-			request.header("X-Forwarded-For", forwardedFor);
+-		}
+-		assertThat(mockMvc.perform(request).andReturn().getResponse().getStatus()).isEqualTo(302);
+-	}
+-
+-	private JsonNode stats(String code) throws Exception {
+-		MockHttpServletResponse response = mockMvc.perform(get("/api/links/" + code + "/stats")).andReturn()
+-				.getResponse();
+-		assertThat(response.getStatus()).isEqualTo(200);
+-		return jsonMapper.readTree(response.getContentAsString());
+-	}
+-
+-	private List<Map<String, Object>> clickRows(String code) {
+-		return jdbc.sql("SELECT c.* FROM click c JOIN link l ON l.id = c.link_id WHERE l.code = :code")
+-				.param("code", code).query().listOfRows();
+-	}
+-
+-	private String create(String url) throws Exception {
+-		return jsonMapper.readTree(mockMvc.perform(post("/api/links").contentType(MediaType.APPLICATION_JSON)
+-				.content(jsonMapper.writeValueAsString(Map.of("url", url)))).andReturn().getResponse()
+-				.getContentAsString()).get("code").asString();
+-	}
+-}
+diff --git a/src/functionalTest/java/dev/urlshort/click/TrustedProxyClickJourneyTest.java b/src/functionalTest/java/dev/urlshort/click/TrustedProxyClickJourneyTest.java
+deleted file mode 100644
+index b6bcf41..0000000
+--- a/src/functionalTest/java/dev/urlshort/click/TrustedProxyClickJourneyTest.java
++++ /dev/null
+@@ -1,151 +0,0 @@
+-package dev.urlshort.click;
+-
+-import static dev.urlshort.click.ClickRecordingJourneyTest.BROWSER_ACCEPT;
+-import static dev.urlshort.click.ClickRecordingJourneyTest.peer;
+-import static org.assertj.core.api.Assertions.assertThat;
+-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+-
+-import java.time.LocalDate;
+-import java.time.ZoneOffset;
+-import java.util.List;
+-import java.util.Map;
+-
+-import org.junit.jupiter.api.Test;
+-import org.junit.jupiter.api.extension.ExtendWith;
+-import org.springframework.beans.factory.annotation.Autowired;
+-import org.springframework.boot.test.context.SpringBootTest;
+-import org.springframework.boot.test.system.CapturedOutput;
+-import org.springframework.boot.test.system.OutputCaptureExtension;
+-import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
+-import org.springframework.http.MediaType;
+-import org.springframework.jdbc.core.simple.JdbcClient;
+-import org.springframework.mock.web.MockHttpServletResponse;
+-import org.springframework.test.web.servlet.MockMvc;
+-import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+-import tools.jackson.databind.JsonNode;
+-import tools.jackson.databind.json.JsonMapper;
+-
+-/**
+- * Behind an operator-listed proxy the click's client is the rate limiter's client (AC-7, AC-9, AC-12;
+- * business rules 5, 6 and 11; ADR-0015): the right-most untrusted {@code X-Forwarded-For} entry, or the
+- * proxy when there is none. Forwarded values are never stored, logged or exposed.
+- */
+-@SpringBootTest(properties = "urlshort.rate-limit.trusted-proxies=10.9.9.9")
+-@AutoConfigureMockMvc
+-@ExtendWith(OutputCaptureExtension.class)
+-class TrustedProxyClickJourneyTest {
+-
+-	private static final String PROXY = "10.9.9.9";
+-	private static final List<String> FORWARDED = List.of("203.0.113.7", "203.0.113.8", "198.51.100.1");
+-
+-	@Autowired
+-	private MockMvc mockMvc;
+-
+-	@Autowired
+-	private JsonMapper jsonMapper;
+-
+-	@Autowired
+-	private JdbcClient jdbc;
+-
+-	@Autowired
+-	private ClickRecorder recorder;
+-
+-	@Test
+-	void AC07_behindATrustedProxyUniquesCountTheForwardedClients() throws Exception {
+-		String code = create("https://example.com/v2-proxy");
+-
+-		sendAc07Redirects(code);
+-		recorder.settle();
+-
+-		JsonNode stats = stats(code);
+-		assertThat(stats.get("clicksPerDay")).containsExactly(jsonMapper.readTree("{\"date\":\""
+-				+ LocalDate.now(ZoneOffset.UTC) + "\",\"clicks\":4,\"uniqueVisitors\":3,\"botClicks\":0}"));
+-		String rows = jdbc.sql("SELECT c.* FROM click c JOIN link l ON l.id = c.link_id WHERE l.code = :code")
+-				.param("code", code).query().listOfRows().toString();
+-		for (String value : List.of("203.0.113.7", "203.0.113.8", "198.51.100.1", PROXY)) {
+-			assertThat(rows).doesNotContain(value);
+-		}
+-	}
+-
+-	@Test
+-	void AC09_theStatisticsStillExposeAggregatesOnly() throws Exception {
+-		String code = create("https://example.com/v2-aggregates");
+-		open(code, "203.0.113.77", "Mozilla/5.0 uacanary", null,
+-				"https://News.Example/a/refpathcanary?t=refquerycanary#reffragcanary");
+-		open(code, "198.51.100.23", "uacanary-crawler/1.0", null, null);
+-		sendAc07Redirects(code);
+-		recorder.settle();
+-		List<Object> hashes = jdbc.sql("SELECT c.client_hash FROM click c JOIN link l ON l.id = c.link_id"
+-				+ " WHERE l.code = :code").param("code", code).query().singleColumn();
+-
+-		String body = mockMvc.perform(get("/api/links/" + code + "/stats")).andReturn().getResponse()
+-				.getContentAsString();
+-
+-		JsonNode stats = jsonMapper.readTree(body);
+-		assertThat(stats.propertyNames()).containsExactly("code", "totalClicks", "clicksPerDay", "topReferrers");
+-		stats.get("clicksPerDay").forEach(day -> assertThat(day.propertyNames()).containsExactly("date", "clicks",
+-				"uniqueVisitors", "botClicks"));
+-		assertThat(body).doesNotContain("203.0.113.77").doesNotContain("198.51.100.23").doesNotContain(PROXY)
+-				.doesNotContain("browser").doesNotContain("\"bot\"").doesNotContain("uacanary")
+-				.doesNotContain("refpathcanary").doesNotContain("refquerycanary").doesNotContain("reffragcanary")
+-				.doesNotContain("/a/");
+-		for (String value : FORWARDED) {
+-			assertThat(body).doesNotContain(value);
+-		}
+-		for (Object hash : hashes) {
+-			assertThat(body).doesNotContain((String) hash);
+-		}
+-	}
+-
+-	@Test
+-	void AC12_trustedProxyRedirectsLogNoForwardedValueOrAddress(CapturedOutput output) throws Exception {
+-		String code = create("https://example.com/v2-proxy-logs");
+-		recorder.settle();
+-		int windowStart = output.getAll().length();
+-
+-		sendAc07Redirects(code);
+-		recorder.settle();
+-
+-		String window = output.getAll().substring(windowStart);
+-		assertThat(window.lines().filter(line -> !line.isBlank())).isNotEmpty()
+-				.allSatisfy(line -> assertThat(jsonMapper.readTree(line).path("requestId").asString()).isNotBlank());
+-		for (String value : List.of("203.0.113.7", "203.0.113.8", "198.51.100.1", PROXY)) {
+-			assertThat(window).doesNotContain(value);
+-		}
+-	}
+-
+-	/** AC-7's table, all from the trusted proxy: two for one client, one with a forged left entry, one bare. */
+-	private void sendAc07Redirects(String code) throws Exception {
+-		open(code, PROXY, "Mozilla/5.0 Firefox/131.0", "203.0.113.7", null);
+-		open(code, PROXY, "Mozilla/5.0 Firefox/131.0", "203.0.113.7", null);
+-		open(code, PROXY, "Mozilla/5.0 Firefox/131.0", "198.51.100.1, 203.0.113.8", null);
+-		open(code, PROXY, "Mozilla/5.0 Firefox/131.0", null, null);
+-	}
+-
+-	private void open(String code, String peerAddress, String userAgent, String forwardedFor, String referer)
+-			throws Exception {
+-		MockHttpServletRequestBuilder request = get("/" + code).header("Accept", BROWSER_ACCEPT)
+-				.header("User-Agent", userAgent).with(peer(peerAddress));
+-		if (forwardedFor != null) {
+-			request.header("X-Forwarded-For", forwardedFor);
+-		}
+-		if (referer != null) {
+-			request.header("Referer", referer);
+-		}
+-		assertThat(mockMvc.perform(request).andReturn().getResponse().getStatus()).isEqualTo(302);
+-	}
+-
+-	private JsonNode stats(String code) throws Exception {
+-		MockHttpServletResponse response = mockMvc.perform(get("/api/links/" + code + "/stats")).andReturn()
+-				.getResponse();
+-		assertThat(response.getStatus()).isEqualTo(200);
+-		return jsonMapper.readTree(response.getContentAsString());
+-	}
+-
+-	private String create(String url) throws Exception {
+-		return jsonMapper.readTree(mockMvc.perform(post("/api/links").contentType(MediaType.APPLICATION_JSON)
+-				.content(jsonMapper.writeValueAsString(Map.of("url", url)))).andReturn().getResponse()
+-				.getContentAsString()).get("code").asString();
+-	}
+-}
+diff --git a/src/main/java/dev/urlshort/click/ClickRecorder.java b/src/main/java/dev/urlshort/click/ClickRecorder.java
+index b03ebe5..dc9dbcc 100644
+--- a/src/main/java/dev/urlshort/click/ClickRecorder.java
++++ b/src/main/java/dev/urlshort/click/ClickRecorder.java
+@@ -3,9 +3,6 @@ package dev.urlshort.click;
+ import java.time.Duration;
+ import java.time.LocalDate;
+ import java.time.ZoneOffset;
+-import java.util.HashMap;
+-import java.util.List;
+-import java.util.Map;
+ import java.util.Set;
+ import java.util.concurrent.ArrayBlockingQueue;
+ import java.util.concurrent.ConcurrentHashMap;
+@@ -15,9 +12,6 @@ import java.util.concurrent.ThreadPoolExecutor;
+ import java.util.concurrent.TimeUnit;
+ import java.util.concurrent.atomic.AtomicInteger;
+ 
+-import dev.urlshort.web.RateLimitFilter;
+-import io.micrometer.core.instrument.Counter;
+-import io.micrometer.core.instrument.MeterRegistry;
+ import jakarta.annotation.PreDestroy;
+ import jakarta.servlet.http.HttpServletRequest;
+ import org.jspecify.annotations.Nullable;
+@@ -40,11 +34,6 @@ import org.springframework.stereotype.Component;
+  * every click still unwritten is then reported once, before {@link #close()} returns (DR-01). Each
+  * click's state decides which of the request thread, the writer or the shutdown reports it, so no
+  * click is reported twice.
+- *
+- * <p>Counters (NFR-O3, ADR-0016 amendment): {@code urlshort.clicks.recorded} counts every insert that
+- * returned, and {@code urlshort.clicks.lost}, tagged with the same {@code reason}, counts every
+- * {@code click lost} event. A click whose insert returns after shutdown claimed it counts in both,
+- * which is the truth for it.
+  */
+ @Component
+ public class ClickRecorder {
+@@ -57,17 +46,10 @@ public class ClickRecorder {
+ 	private static final int RUNNING = 1;
+ 	private static final int DONE = 2;
+ 	private static final int CLAIMED = 3;
+-	private static final String REJECTED = "rejected";
+-	private static final String REDUCTION_FAILED = "reduction failed";
+-	private static final String WRITE_FAILED = "write failed";
+-	private static final String SHUTDOWN_DEADLINE = "shutdown deadline";
+-	private static final String OUTCOME_UNKNOWN = "shutdown deadline, outcome unknown";
+ 
+ 	private final ClickStore store;
+ 	private final DailySalt salt;
+ 	private final Duration drainDeadline;
+-	private final Counter recorded;
+-	private final Map<String, Counter> lostByReason = new HashMap<>();
+ 	private final Set<ClickWrite> outstanding = ConcurrentHashMap.newKeySet();
+ 	private final ThreadPoolExecutor writer = new ThreadPoolExecutor(1, 1, 0, TimeUnit.MILLISECONDS,
+ 			new ArrayBlockingQueue<>(QUEUE_CAPACITY), task -> {
+@@ -77,21 +59,14 @@ public class ClickRecorder {
+ 			}, new ThreadPoolExecutor.AbortPolicy());
+ 
+ 	@Autowired
+-	ClickRecorder(ClickStore store, DailySalt salt, MeterRegistry registry) {
+-		this(store, salt, registry, DRAIN_DEADLINE);
++	ClickRecorder(ClickStore store, DailySalt salt) {
++		this(store, salt, DRAIN_DEADLINE);
+ 	}
+ 
+-	ClickRecorder(ClickStore store, DailySalt salt, MeterRegistry registry, Duration drainDeadline) {
++	ClickRecorder(ClickStore store, DailySalt salt, Duration drainDeadline) {
+ 		this.store = store;
+ 		this.salt = salt;
+ 		this.drainDeadline = drainDeadline;
+-		recorded = Counter.builder("urlshort.clicks.recorded").description("Clicks written to the click store")
+-				.register(registry);
+-		// every reason registered up front, so the families are scrapeable at zero (ADR-0016 amendment)
+-		for (String reason : List.of(REJECTED, REDUCTION_FAILED, WRITE_FAILED, SHUTDOWN_DEADLINE, OUTCOME_UNKNOWN)) {
+-			lostByReason.put(reason, Counter.builder("urlshort.clicks.lost")
+-					.description("Clicks reported by a click lost event").tag("reason", reason).register(registry));
+-		}
+ 	}
+ 
+ 	/**
+@@ -100,10 +75,8 @@ public class ClickRecorder {
+ 	 * a click (rule 1) and records nothing.
+ 	 *
+ 	 * @param linkId the id of the link the Visitor was redirected to
+-	 * @param request the redirect request; only its {@code Referer}, {@code User-Agent} and client are
+-	 *        read, on this thread. The client is the one the rate limiter charged
+-	 *        ({@link RateLimitFilter#CLIENT_ATTRIBUTE}, ADR-0015), else the peer address; it is hashed
+-	 *        and never stored
++	 * @param request the redirect request; only its {@code Referer}, {@code User-Agent} and peer
++	 *        address are read, on this thread
+ 	 */
+ 	public void record(long linkId, HttpServletRequest request) {
+ 		if ("HEAD".equals(request.getMethod())) {
+@@ -111,17 +84,14 @@ public class ClickRecorder {
+ 		}
+ 		ClickWrite write;
+ 		try {
+-			// the rate limiter's client (rule 6); the peer only where the limiter did not run
+-			String address = request.getAttribute(RateLimitFilter.CLIENT_ATTRIBUTE) instanceof String client
+-					? client : request.getRemoteAddr();
+-			DailySalt.Stamp stamp = salt.stamp(address);
++			DailySalt.Stamp stamp = salt.stamp(request.getRemoteAddr());
+ 			write = new ClickWrite(new Click(linkId, stamp.at(), LocalDate.ofInstant(stamp.at(), ZoneOffset.UTC),
+ 					Click.referrerOrigin(request.getHeader("Referer")),
+ 					Click.userAgentClass(request.getHeader("User-Agent")), stamp.clientHash()),
+ 					MDC.get("requestId"));
+ 		}
+ 		catch (Exception ex) {
+-			lost(REDUCTION_FAILED, ex);
++			lost("reduction failed", ex);
+ 			return;
+ 		}
+ 		outstanding.add(write);
+@@ -130,7 +100,7 @@ public class ClickRecorder {
+ 		}
+ 		catch (RejectedExecutionException ex) {
+ 			outstanding.remove(write);
+-			lost(REJECTED, ex);
++			lost("rejected", ex);
+ 		}
+ 	}
+ 
+@@ -162,23 +132,21 @@ public class ClickRecorder {
+ 	void claimOutstanding() {
+ 		for (ClickWrite write : outstanding) {
+ 			if (write.state.compareAndSet(QUEUED, CLAIMED)) {
+-				write.reportAtShutdown(SHUTDOWN_DEADLINE);
++				write.reportAtShutdown("shutdown deadline");
+ 			}
+ 			else if (write.state.compareAndSet(RUNNING, CLAIMED)) {
+ 				// the insert may still commit after this report, so its outcome is not claimed
+-				write.reportAtShutdown(OUTCOME_UNKNOWN);
++				write.reportAtShutdown("shutdown deadline, outcome unknown");
+ 			}
+ 		}
+ 	}
+ 
+-	/** The one {@code click lost} WARN and its one {@code urlshort.clicks.lost} increment, same reason. */
+-	private void lost(String reason, @Nullable Throwable error) {
++	private static void lost(String reason, @Nullable Throwable error) {
+ 		LoggingEventBuilder event = log.atWarn().setMessage("click lost").addKeyValue("reason", reason);
+ 		if (error != null) {
+ 			event = event.addKeyValue("errorType", error.getClass().getName());
+ 		}
+ 		event.log();
+-		lostByReason.get(reason).increment();
+ 	}
+ 
+ 	/** One queued click; whoever moves its state first owns its report. */
+@@ -201,13 +169,11 @@ public class ClickRecorder {
+ 			MDC.put("requestId", requestId);
+ 			try {
+ 				store.insert(click);
+-				// counted whoever owns the report: a write shutdown already claimed can still commit
+-				recorded.increment();
+ 				state.compareAndSet(RUNNING, DONE);
+ 			}
+ 			catch (RuntimeException ex) {
+ 				if (state.compareAndSet(RUNNING, DONE)) {
+-					lost(WRITE_FAILED, ex);
++					lost("write failed", ex);
+ 				}
+ 			}
+ 			finally {
+diff --git a/src/main/java/dev/urlshort/click/ClickStore.java b/src/main/java/dev/urlshort/click/ClickStore.java
+index 049c00a..bec5a82 100644
+--- a/src/main/java/dev/urlshort/click/ClickStore.java
++++ b/src/main/java/dev/urlshort/click/ClickStore.java
+@@ -2,10 +2,7 @@ package dev.urlshort.click;
+ 
+ import java.time.LocalDate;
+ import java.time.ZoneOffset;
+-import java.util.ArrayList;
+-import java.util.HashMap;
+ import java.util.List;
+-import java.util.Map;
+ import java.util.Optional;
+ 
+ import org.jspecify.annotations.Nullable;
+@@ -13,7 +10,7 @@ import org.springframework.jdbc.core.simple.JdbcClient;
+ import org.springframework.stereotype.Component;
+ 
+ /**
+- * The {@code click} table (ADR-0013): one insert per recorded click, the one statement the
++ * The {@code click} table (ADR-0013): one insert per recorded click, the one grouped read the
+  * statistics are folded from, and the retention delete. Reads {@code link} only to turn a code into
+  * its id.
+  */
+@@ -51,52 +48,14 @@ class ClickStore {
+ 		return jdbc.sql("SELECT id FROM link WHERE code = :code").param("code", code).query(Long.class).optional();
+ 	}
+ 
+-	/**
+-	 * The link's clicks per (UTC day, referrer origin), and per UTC day its distinct client hashes and
+-	 * {@code bot} clicks, in one statement and so one snapshot (ADR-0013 and its 01-analytics-v2
+-	 * amendment). This is the only read of {@code client_hash}: it is compared only within its own
+-	 * {@code clicked_on}, the day of the salt that produced it, and never leaves the statement (rule 5).
+-	 */
+-	Stats stats(long linkId) {
+-		List<DayReferrerCount> referrers = new ArrayList<>();
+-		Map<LocalDate, DayFigures> days = new HashMap<>();
+-		jdbc.sql("SELECT clicked_on, referrer, COUNT(*) AS clicks, CAST(NULL AS BIGINT) AS unique_visitors,"
+-				+ " CAST(NULL AS BIGINT) AS bot_clicks FROM click WHERE link_id = :linkId GROUP BY clicked_on, referrer"
+-				+ " UNION ALL"
+-				+ " SELECT clicked_on, NULL, NULL, COUNT(DISTINCT client_hash),"
+-				+ " SUM(CASE WHEN user_agent_class = 'bot' THEN 1 ELSE 0 END)"
+-				+ " FROM click WHERE link_id = :linkId GROUP BY clicked_on")
++	/** The link's clicks counted per (UTC day, referrer origin) in one statement (ADR-0013). */
++	List<DayReferrerCount> countByDayAndReferrer(long linkId) {
++		return jdbc.sql("SELECT clicked_on, referrer, COUNT(*) AS clicks FROM click WHERE link_id = :linkId"
++				+ " GROUP BY clicked_on, referrer")
+ 				.param("linkId", linkId)
+-				.query(rs -> {
+-					LocalDate day = rs.getObject("clicked_on", LocalDate.class);
+-					Long uniqueVisitors = rs.getObject("unique_visitors", Long.class);
+-					if (uniqueVisitors == null) {
+-						referrers.add(new DayReferrerCount(day, rs.getString("referrer"), rs.getLong("clicks")));
+-					}
+-					else {
+-						days.put(day, new DayFigures(day, uniqueVisitors, rs.getLong("bot_clicks")));
+-					}
+-				});
+-		return new Stats(referrers, days);
+-	}
+-
+-	/**
+-	 * The statistics statement's rows, split by branch.
+-	 *
+-	 * @param referrers one group per (UTC day, referrer origin), as v1
+-	 * @param days the per-day figures, one entry for every day that has a referrer group
+-	 */
+-	record Stats(List<DayReferrerCount> referrers, Map<LocalDate, DayFigures> days) {
+-	}
+-
+-	/**
+-	 * One UTC day's v2 figures.
+-	 *
+-	 * @param day the UTC day
+-	 * @param uniqueVisitors distinct client hashes among that day's clicks
+-	 * @param botClicks that day's clicks of user-agent class {@code bot}
+-	 */
+-	record DayFigures(LocalDate day, long uniqueVisitors, long botClicks) {
++				.query((rs, row) -> new DayReferrerCount(rs.getObject("clicked_on", LocalDate.class),
++						rs.getString("referrer"), rs.getLong("clicks")))
++				.list();
+ 	}
+ 
+ 	/**
+diff --git a/src/main/java/dev/urlshort/click/LinkStats.java b/src/main/java/dev/urlshort/click/LinkStats.java
+index e724091..f77f419 100644
+--- a/src/main/java/dev/urlshort/click/LinkStats.java
++++ b/src/main/java/dev/urlshort/click/LinkStats.java
+@@ -7,9 +7,7 @@ import java.util.List;
+ import java.util.Map;
+ import java.util.TreeMap;
+ 
+-import dev.urlshort.click.ClickStore.DayFigures;
+ import dev.urlshort.click.ClickStore.DayReferrerCount;
+-import io.swagger.v3.oas.annotations.media.Schema;
+ 
+ /**
+  * A link's click statistics, exactly business rule 7's four members (AC-7, AC-17): aggregates only,
+@@ -26,28 +24,22 @@ record LinkStats(String code, long totalClicks, List<DayClicks> clicksPerDay, Li
+ 	static final int TOP_REFERRERS = 10;
+ 
+ 	/**
+-	 * Folds the rows of one statement, so every figure agrees with every other (AC-11): the grouped
+-	 * (day, referrer) counts into the total, the per-day clicks and the top referrers, and each day's
+-	 * unique visitors and bot clicks beside its clicks. Clicks without a referrer count in the total and
+-	 * per day only. Ranking happens here, not in SQL, so the tie order never depends on a database
+-	 * collation.
++	 * Folds the grouped (day, referrer) counts of one statement, so the three figures agree with each
++	 * other (AC-11). Clicks without a referrer count in the total and per day only. Ranking happens
++	 * here, not in SQL, so the tie order never depends on a database collation.
+ 	 */
+-	static LinkStats of(String code, ClickStore.Stats stats) {
++	static LinkStats of(String code, List<DayReferrerCount> rows) {
+ 		long total = 0;
+ 		Map<LocalDate, Long> perDay = new TreeMap<>();
+ 		Map<String, Long> perReferrer = new HashMap<>();
+-		for (DayReferrerCount row : stats.referrers()) {
++		for (DayReferrerCount row : rows) {
+ 			total += row.clicks();
+ 			perDay.merge(row.day(), row.clicks(), Long::sum);
+ 			if (row.referrer() != null) {
+ 				perReferrer.merge(row.referrer(), row.clicks(), Long::sum);
+ 			}
+ 		}
+-		// both branches read one snapshot, so every day with clicks has its figures
+-		List<DayClicks> days = perDay.entrySet().stream().map(e -> {
+-			DayFigures figures = stats.days().get(e.getKey());
+-			return new DayClicks(e.getKey(), e.getValue(), figures.uniqueVisitors(), figures.botClicks());
+-		}).toList();
++		List<DayClicks> days = perDay.entrySet().stream().map(e -> new DayClicks(e.getKey(), e.getValue())).toList();
+ 		List<ReferrerClicks> top = perReferrer.entrySet().stream()
+ 				.sorted(Map.Entry.<String, Long>comparingByValue(Comparator.reverseOrder())
+ 						.thenComparing(Map.Entry.comparingByKey()))
+@@ -56,17 +48,12 @@ record LinkStats(String code, long totalClicks, List<DayClicks> clicksPerDay, Li
+ 	}
+ 
+ 	/**
+-	 * Clicks on one UTC day (01-analytics-v2 rules 1 to 4).
++	 * Clicks on one UTC day.
+ 	 *
+ 	 * @param date the day, rendered {@code YYYY-MM-DD}
+-	 * @param clicks clicks recorded on it, bots included
+-	 * @param uniqueVisitors distinct visitors that day; defined per UTC day only and never combined
+-	 *        across days (an upper bound if the service restarted that day)
+-	 * @param botClicks clicks whose user agent was classified {@code bot}; also counted in the other figures
++	 * @param clicks clicks recorded on it
+ 	 */
+-	record DayClicks(LocalDate date, long clicks,
+-			@Schema(description = "Distinct visitors that UTC day; never combined across days") long uniqueVisitors,
+-			@Schema(description = "Clicks whose user agent was classified bot") long botClicks) {
++	record DayClicks(LocalDate date, long clicks) {
+ 	}
+ 
+ 	/**
+diff --git a/src/main/java/dev/urlshort/click/StatsController.java b/src/main/java/dev/urlshort/click/StatsController.java
+index e110223..58bb2a4 100644
+--- a/src/main/java/dev/urlshort/click/StatsController.java
++++ b/src/main/java/dev/urlshort/click/StatsController.java
+@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
+ @RestController
+ class StatsController {
+ 
+-	private static final String EXAMPLE = "{\"code\":\"aB3dE5fG\",\"totalClicks\":6,\"clicksPerDay\":["
+-			+ "{\"date\":\"2026-10-01\",\"clicks\":6,\"uniqueVisitors\":3,\"botClicks\":1}],"
+-			+ "\"topReferrers\":[{\"referrer\":\"https://news.example.com\",\"clicks\":4}]}";
++	private static final String EXAMPLE = "{\"code\":\"Ab3dE9fG\",\"totalClicks\":6,\"clicksPerDay\":["
++			+ "{\"date\":\"2026-10-01\",\"clicks\":2},{\"date\":\"2026-10-02\",\"clicks\":3},"
++			+ "{\"date\":\"2026-10-04\",\"clicks\":1}],\"topReferrers\":[{\"referrer\":\"https://a.example\",\"clicks\":5}]}";
+ 
+ 	private final ClickStore store;
+ 
+@@ -32,7 +32,7 @@ class StatsController {
+ 
+ 	@GetMapping("/api/links/{code:[A-Za-z0-9]{6,32}}/stats")
+ 	@Operation(summary = "Read a link's click statistics", responses = {
+-		@ApiResponse(responseCode = "200", description = "Total clicks; per UTC day the clicks, unique visitors and bot clicks; and the top 10 referrer origins",
++		@ApiResponse(responseCode = "200", description = "Total clicks, clicks per UTC day and the top 10 referrer origins",
+ 				content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
+ 						schema = @Schema(implementation = LinkStats.class),
+ 						examples = @ExampleObject(name = "stats", value = EXAMPLE))),
+@@ -40,6 +40,6 @@ class StatsController {
+ 				mediaType = "application/problem+json", schema = @Schema(implementation = ProblemDetail.class))) })
+ 	LinkStats stats(@PathVariable String code) {
+ 		long linkId = store.findLinkId(code).orElseThrow(Problems::notFound);
+-		return LinkStats.of(code, store.stats(linkId));
++		return LinkStats.of(code, store.countByDayAndReferrer(linkId));
+ 	}
+ }
+diff --git a/src/main/java/dev/urlshort/click/package-info.java b/src/main/java/dev/urlshort/click/package-info.java
+index 7b730f9..c3d1e99 100644
+--- a/src/main/java/dev/urlshort/click/package-info.java
++++ b/src/main/java/dev/urlshort/click/package-info.java
+@@ -8,11 +8,6 @@
+  * (slice 02-click-retention, NFR-P2). Boundary: the only call into this
+  * package from {@code link} is the redirect hook, and this package reads {@code link} only to turn a
+  * code into its id; it never writes links or audit rows.
+- *
+- * <p>The daily-salted client hash has one permitted use (01-analytics-v2, the human's Q2 B): counting
+- * distinct visitors within its own UTC day. It is never exposed in a response, metric, log or export,
+- * never joined with other data and never compared across days; the salt stays in memory and is
+- * dropped at UTC midnight (ADR-0012).
+  */
+ @NullMarked
+ package dev.urlshort.click;
+diff --git a/src/main/java/dev/urlshort/web/RateLimitFilter.java b/src/main/java/dev/urlshort/web/RateLimitFilter.java
+index f2b33d2..a0f74da 100644
+--- a/src/main/java/dev/urlshort/web/RateLimitFilter.java
++++ b/src/main/java/dev/urlshort/web/RateLimitFilter.java
+@@ -35,17 +35,10 @@ import tools.jackson.databind.json.JsonMapper;
+  * method, content type or path are examined. The {@code 429} is written here, in the same shape as
+  * every other problem body; this filter writes no log event, the request's one event is the
+  * request-id filter's {@code request completed} with status {@code 429}.
+- *
+- * <p>Every charged request carries its client in {@link #CLIENT_ATTRIBUTE}; the peer address itself
+- * is never rewritten, so every other reader of {@code getRemoteAddr()} sees the real peer
+- * (ADR-0015 amendment, ADR-0019).
+  */
+ @Component
+ @Order(Ordered.HIGHEST_PRECEDENCE + 2)
+-public class RateLimitFilter extends OncePerRequestFilter {
+-
+-	/** Request attribute holding the client this request was charged to (ADR-0015); read by the click recorder. */
+-	public static final String CLIENT_ATTRIBUTE = RateLimitFilter.class.getName() + ".client";
++class RateLimitFilter extends OncePerRequestFilter {
+ 
+ 	private final RateLimiter limiter;
+ 	private final Set<String> trustedProxies;
+@@ -73,10 +66,8 @@ public class RateLimitFilter extends OncePerRequestFilter {
+ 			return;
+ 		}
+ 		Budget budget = path.equals("/api") || path.startsWith("/api/") ? Budget.CREATE : Budget.REDIRECT;
+-		String client = clientOf(request.getRemoteAddr(), request.getHeader("X-Forwarded-For"), trustedProxies);
+-		// left for the click recorder, so a click's hashed client is the client charged here (ADR-0015)
+-		request.setAttribute(CLIENT_ATTRIBUTE, client);
+-		long retryAfter = limiter.tryTake(budget, client);
++		long retryAfter = limiter.tryTake(budget,
++				clientOf(request.getRemoteAddr(), request.getHeader("X-Forwarded-For"), trustedProxies));
+ 		if (retryAfter == 0) {
+ 			chain.doFilter(request, response);
+ 			return;
+diff --git a/src/test/java/dev/urlshort/click/ClickRecorderTest.java b/src/test/java/dev/urlshort/click/ClickRecorderTest.java
+index 2b0237b..4a2071e 100644
+--- a/src/test/java/dev/urlshort/click/ClickRecorderTest.java
++++ b/src/test/java/dev/urlshort/click/ClickRecorderTest.java
+@@ -25,8 +25,6 @@ import java.util.concurrent.atomic.AtomicInteger;
+ import ch.qos.logback.classic.Logger;
+ import ch.qos.logback.classic.spi.ILoggingEvent;
+ import ch.qos.logback.core.read.ListAppender;
+-import dev.urlshort.web.RateLimitFilter;
+-import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
+ import org.junit.jupiter.api.AfterEach;
+ import org.junit.jupiter.api.BeforeEach;
+ import org.junit.jupiter.api.Test;
+@@ -50,8 +48,7 @@ class ClickRecorderTest {
+ 
+ 	private final ClickStore store = mock(ClickStore.class);
+ 	private final DailySalt salt = mock(DailySalt.class);
+-	private final SimpleMeterRegistry registry = new SimpleMeterRegistry();
+-	private final ClickRecorder recorder = new ClickRecorder(store, salt, registry, Duration.ofMillis(200));
++	private final ClickRecorder recorder = new ClickRecorder(store, salt, Duration.ofMillis(200));
+ 	private final ListAppender<ILoggingEvent> events = new ListAppender<>();
+ 	private final Logger recorderLogger = (Logger) LoggerFactory.getLogger(ClickRecorder.class);
+ 
+@@ -255,99 +252,6 @@ class ClickRecorderTest {
+ 				event -> assertThat(keyValues(event)).containsEntry("reason", "shutdown deadline, outcome unknown"));
+ 	}
+ 
+-	@Test
+-	void theRateLimitersClientIsHashedWhenTheRequestCarriesIt() throws Exception {
+-		MockHttpServletRequest request = request("GET", "req-proxied");
+-		request.setAttribute(RateLimitFilter.CLIENT_ATTRIBUTE, "198.51.100.5");
+-
+-		recorder.record(1L, request);
+-		recorder.settle();
+-
+-		verify(salt).stamp("198.51.100.5");
+-		verify(salt, never()).stamp("203.0.113.77");
+-	}
+-
+-	@Test
+-	void everyLostReasonIsRegisteredAtZeroBeforeAnyClick() {
+-		assertThat(registry.find("urlshort.clicks.lost").counters())
+-				.extracting(counter -> counter.getId().getTag("reason"))
+-				.containsExactlyInAnyOrder("rejected", "reduction failed", "write failed", "shutdown deadline",
+-						"shutdown deadline, outcome unknown");
+-		assertThat(registry.find("urlshort.clicks.lost").counters()).allSatisfy(counter -> {
+-			assertThat(counter.count()).isZero();
+-			assertThat(counter.getId().getTags()).hasSize(1);
+-		});
+-		assertThat(recorded()).isZero();
+-	}
+-
+-	@Test
+-	void aStoredClickIsCountedAsRecorded() throws Exception {
+-		recorder.record(1L, request("GET", "req-count"));
+-		recorder.settle();
+-
+-		assertThat(recorded()).isEqualTo(1);
+-		assertThat(registry.find("urlshort.clicks.lost").counters()).allSatisfy(c -> assertThat(c.count()).isZero());
+-	}
+-
+-	@Test
+-	void aFailedWriteIsCountedUnderItsReason() throws Exception {
+-		doThrow(new DataAccessResourceFailureException("down")).when(store).insert(any());
+-
+-		recorder.record(1L, request("GET", "req-fail-count"));
+-		recorder.settle();
+-
+-		assertThat(lost("write failed")).isEqualTo(1);
+-		assertThat(recorded()).isZero();
+-	}
+-
+-	@Test
+-	void aRejectedClickIsCountedUnderItsReason() throws Exception {
+-		recorder.close();
+-
+-		recorder.record(1L, request("GET", "req-rejected-count"));
+-
+-		assertThat(lost("rejected")).isEqualTo(1);
+-	}
+-
+-	@Test
+-	void aReductionFailureIsCountedUnderItsReason() throws Exception {
+-		when(salt.stamp(anyString())).thenThrow(new GeneralSecurityException("no HMAC"));
+-
+-		recorder.record(1L, request("GET", "req-salt-count"));
+-
+-		assertThat(lost("reduction failed")).isEqualTo(1);
+-	}
+-
+-	@Test
+-	void shutdownReasonsAreCountedAndAWriteThatReturnsAfterTheClaimIsStillRecorded() throws Exception {
+-		CountDownLatch entered = new CountDownLatch(1);
+-		CountDownLatch release = new CountDownLatch(1);
+-		doAnswer(call -> {
+-			entered.countDown();
+-			release.await();
+-			return null;
+-		}).when(store).insert(any());
+-		recorder.record(1L, request("GET", "req-running-count"));
+-		recorder.record(2L, request("GET", "req-queued-count"));
+-		entered.await();
+-
+-		recorder.claimOutstanding();
+-		release.countDown();
+-		recorder.settle();
+-
+-		assertThat(lost("shutdown deadline, outcome unknown")).isEqualTo(1);
+-		assertThat(lost("shutdown deadline")).isEqualTo(1);
+-		assertThat(recorded()).as("the running insert returned, so its click is stored").isEqualTo(1);
+-	}
+-
+-	private double recorded() {
+-		return registry.get("urlshort.clicks.recorded").counter().count();
+-	}
+-
+-	private double lost(String reason) {
+-		return registry.get("urlshort.clicks.lost").tag("reason", reason).counter().count();
+-	}
+-
+ 	private static MockHttpServletRequest request(String method, String requestId) {
+ 		MDC.put("requestId", requestId);
+ 		MockHttpServletRequest request = new MockHttpServletRequest(method, "/Abc12345");
+diff --git a/src/test/java/dev/urlshort/click/LinkStatsTest.java b/src/test/java/dev/urlshort/click/LinkStatsTest.java
+index 3516432..fcdcb59 100644
+--- a/src/test/java/dev/urlshort/click/LinkStatsTest.java
++++ b/src/test/java/dev/urlshort/click/LinkStatsTest.java
+@@ -5,17 +5,11 @@ import static org.assertj.core.api.Assertions.assertThat;
+ import java.time.LocalDate;
+ import java.util.ArrayList;
+ import java.util.List;
+-import java.util.Map;
+ 
+-import dev.urlshort.click.ClickStore.DayFigures;
+ import dev.urlshort.click.ClickStore.DayReferrerCount;
+-import dev.urlshort.click.ClickStore.Stats;
+ import org.junit.jupiter.api.Test;
+ 
+-/**
+- * Business rule 7's fold of the grouped rows into the three figures (v1 AC-7, AC-9 to AC-11), with each
+- * day's v2 figures from the same statement (01-analytics-v2 rules 1, 3 and 4).
+- */
++/** Business rule 7's fold of the grouped rows into the three figures (AC-7, AC-9 to AC-11). */
+ class LinkStatsTest {
+ 
+ 	private static final LocalDate D1 = LocalDate.parse("2026-10-01");
+@@ -23,20 +17,17 @@ class LinkStatsTest {
+ 
+ 	@Test
+ 	void noRowsIsZeroAndTwoEmptyLists() {
+-		assertThat(LinkStats.of("Abc12345", new Stats(List.of(), Map.of())))
++		assertThat(LinkStats.of("Abc12345", List.of()))
+ 				.isEqualTo(new LinkStats("Abc12345", 0, List.of(), List.of()));
+ 	}
+ 
+ 	@Test
+-	void daysAreSummedAscendingWithTheirFiguresAndClicksWithoutAReferrerCountOnlyInTheTotals() {
+-		LinkStats stats = LinkStats.of("Abc12345", new Stats(
+-				List.of(new DayReferrerCount(D2, "https://a.example", 2), new DayReferrerCount(D1, null, 4),
+-						new DayReferrerCount(D1, "https://a.example", 1)),
+-				Map.of(D1, new DayFigures(D1, 3, 1), D2, new DayFigures(D2, 2, 0))));
++	void daysAreSummedAscendingAndClicksWithoutAReferrerCountOnlyInTheTotals() {
++		LinkStats stats = LinkStats.of("Abc12345", List.of(new DayReferrerCount(D2, "https://a.example", 2),
++				new DayReferrerCount(D1, null, 4), new DayReferrerCount(D1, "https://a.example", 1)));
+ 
+ 		assertThat(stats.totalClicks()).isEqualTo(7);
+-		assertThat(stats.clicksPerDay()).containsExactly(new LinkStats.DayClicks(D1, 5, 3, 1),
+-				new LinkStats.DayClicks(D2, 2, 2, 0));
++		assertThat(stats.clicksPerDay()).containsExactly(new LinkStats.DayClicks(D1, 5), new LinkStats.DayClicks(D2, 2));
+ 		assertThat(stats.topReferrers()).containsExactly(new LinkStats.ReferrerClicks("https://a.example", 3));
+ 	}
+ 
+@@ -50,8 +41,8 @@ class LinkStatsTest {
+ 			rows.add(new DayReferrerCount(D1, "https://d" + i + ".example", 1));
+ 		}
+ 
+-		List<String> top = LinkStats.of("Abc12345", new Stats(rows, Map.of(D1, new DayFigures(D1, 1, 0))))
+-				.topReferrers().stream().map(LinkStats.ReferrerClicks::referrer).toList();
++		List<String> top = LinkStats.of("Abc12345", rows).topReferrers().stream()
++				.map(LinkStats.ReferrerClicks::referrer).toList();
+ 
+ 		assertThat(top).containsExactly("https://a.example", "https://b.example", "https://c.example",
+ 				"https://d1.example", "https://d10.example", "https://d11.example", "https://d2.example",
+diff --git a/src/test/java/dev/urlshort/web/RateLimitFilterTest.java b/src/test/java/dev/urlshort/web/RateLimitFilterTest.java
+index 62b9ba7..aee613b 100644
+--- a/src/test/java/dev/urlshort/web/RateLimitFilterTest.java
++++ b/src/test/java/dev/urlshort/web/RateLimitFilterTest.java
+@@ -157,23 +157,6 @@ class RateLimitFilterTest {
+ 				counter -> assertThat(counter.getId().getTags()).extracting("key").containsExactly("budget"));
+ 	}
+ 
+-	@Test
+-	void theChargedClientIsLeftOnTheRequestForTheClickRecorderAndAnExemptRequestCarriesNone() throws Exception {
+-		when(limiter.tryTake(any(), anyString())).thenReturn(0L);
+-		MockHttpServletRequest limited = request("/Abc12345");
+-		limited.setRemoteAddr("10.9.9.9");
+-		limited.addHeader("X-Forwarded-For", "198.51.100.1, 203.0.113.8");
+-		MockHttpServletRequest exempt = request("/actuator/health");
+-
+-		filter.doFilter(limited, new MockHttpServletResponse(), new MockFilterChain());
+-		filter.doFilter(exempt, new MockHttpServletResponse(), new MockFilterChain());
+-
+-		verify(limiter).tryTake(Budget.REDIRECT, "203.0.113.8");
+-		assertThat(limited.getAttribute(RateLimitFilter.CLIENT_ATTRIBUTE)).isEqualTo("203.0.113.8");
+-		assertThat(limited.getRemoteAddr()).as("the peer address is never rewritten").isEqualTo("10.9.9.9");
+-		assertThat(exempt.getAttribute(RateLimitFilter.CLIENT_ATTRIBUTE)).isNull();
+-	}
+-
+ 	private static MockHttpServletRequest request(String uri) {
+ 		MockHttpServletRequest request = new MockHttpServletRequest("POST", uri);
+ 		request.setRemoteAddr("10.0.0.1");
