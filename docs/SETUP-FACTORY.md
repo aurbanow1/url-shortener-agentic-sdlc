@@ -22,6 +22,7 @@ git clone <this repo> && cd url-shortener
 scripts/gw check        # warms .gradle-home so sandboxed seats can build --offline
 # register the repo as an OpenRig project (the daemon's work tree):
 printf '  - id: urlshort\n    root: %s\n' "$PWD" >> ~/.openrig/workspace/workspace.yaml
+rig daemon start && rig daemon status   # validation runs in the daemon: without it, "Daemon not running"
 rig spec validate rig/rig.yaml && rig workflow validate "$PWD/rig/workflows/urlshort-slice.workflow.yaml"
 ```
 
@@ -32,7 +33,7 @@ specs resolve from the repo alone.
 ## Permissions (what the seats may do without asking)
 
 - Rig posture: `permission_policy: builtin:standard` (Claude `acceptEdits`, Codex `workspace-write`).
-- Claude seats: `.claude/settings.json` (committed) allows `rig`, `git`, `scripts/*`, `tools/*`, `java`, `node`, read-only shell tools, `docker compose|build|run|stop|rm|logs`; **denies** `git push`, `git reset --hard`, `git clean -f`, `rm -rf`, `docker push`. Seats reach the running app only through `scripts/http` (refuses non-loopback URLs) and run Gradle only through `scripts/gw` (`--log <file>` replaces shell redirection).
+- Claude seats: `.claude/settings.json` (committed) allows `rig`, `git`, `scripts/*`, `tools/*`, `java`, `node`, read-only shell tools, `docker compose|build|run|stop|rm|logs`; **denies** `git push`, `git reset --hard`, `git clean -f`, `rm -rf`, `docker push`. Seats reach the running app only through `scripts/http`, which checks every destination is exactly `localhost`, `127.0.0.1` or `[::1]` and refuses options that change or add one (`scripts/http-guard-check.sh` proves each case, and CI runs it) and run Gradle only through `scripts/gw` (`--log <file>` replaces shell redirection).
 - Codex seats: `.codex/rules/urlshort.rules` (project layer) allows the same families and marks `git push`, `git reset --hard`, `git clean`, `docker push` **forbidden**; a forbidden rule overrides any user-level allow. Verify: `codex execpolicy check --pretty --rules "$PWD/.codex/rules/urlshort.rules" git push origin main`.
 - Nothing is published by an agent. The human configured the Git remote for hosted
   CI/CD; push, release publication and ship sign-off remain human actions.

@@ -86,12 +86,15 @@ it in `docs/guidance/README.md` §2.
 | Instance success rate (completed ÷ terminal) | 0.941; every product instance completed |
 | Step closures (failed) | 254 (18); step success 0.929 |
 | Retries (failed verdicts + step re-entries) | 55, all review loops working as designed |
-| Rollback text matches + engine resumes | 10; a heuristic, no production rollback was executed |
-| MTTR (failed check → next closure of that step) | 29 min mean |
+| Rollbacks executed | 6: release rehearsals and drills, each with raw evidence (`docs/metrics/rollbacks.json`); no revert reached `main`, and no production rollback was needed |
+| Engine recoveries | 1 resume and 1 abort, both DRILL 4 |
+| MTTR (failed check → next handoff or done of that step) | 29 min mean: repair of a rejected candidate, not incident recovery |
 | End-to-end latency, completed instances | p50 5.6 h, p95 15.7 h |
 | Time parked on the human | 8.8 h, reported apart from agent throughput |
 
-  The derivations and their limits are in `docs/metrics/README.md`; per-mission
+  `node tools/sdlc-metrics.mjs --check` regenerates these numbers offline from
+  `docs/evidence/run-end/` and fails on any difference. The derivations and their
+  limits are in `docs/metrics/README.md`; per-mission
   rows are in each scenario's Metrics section.
 
 ## 5. Risks, trade-offs and decisions
@@ -185,11 +188,13 @@ are recorded verbatim in the queue transitions exported under `docs/evidence/`.
   human accepted each: mission 02's code passed CI one documentation-only
   change earlier (`e43ed246`, pull request #14), and mission 03's one test-only
   change earlier (`18db1de`). Later CI runs on `main` include both.
-- `scripts/http`, the curl wrapper agents use for HTTP checks, refuses URLs
-  that do not start with a loopback address. It checks only that prefix, so it
-  guards against accidents and is not a security boundary. For the Codex
-  seats, the hard network boundary is their sandbox, which has no network.
-  Found in the final fact-check; not changed.
+- `scripts/http`, the curl wrapper agents use for HTTP checks, at first
+  checked only that a URL argument began with a loopback address, so
+  `http://127.0.0.1.example.invalid/` or `--url=…` passed (found by the final
+  fact-check and an external review). It now checks every destination exactly,
+  refuses options that change or add one, and ignores `~/.curlrc` and proxies;
+  `scripts/http-guard-check.sh` runs 22 cases in CI. It remains an argument
+  guard: for the Codex seats the hard network boundary is their sandbox.
 
 ## 8. How to verify in 15 minutes
 
