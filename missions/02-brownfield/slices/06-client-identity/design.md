@@ -221,10 +221,11 @@ rows name neither `Q` nor `127.0.0.1`. The file's Javadoc states this.
 
 | Nested context | Status | Properties | Cases (SPEC AC) |
 |---|---|---|---|
-| `ShippedSettings` | kept | shipped | M1's click side (AC-5: `uniqueVisitors` 2). A6: all six loopback forms `200`. A7: the four non-loopback peers, `GET` and `HEAD`, `403`. A8: `X-Forwarded-For` and `Forwarded` with a remote, a loopback, a `for=127.0.0.1`, an empty and a whitespace value, from `127.0.0.1` and from `192.0.2.10`, all `403` without trail content |
-| `ShippedBudgets` | **added**: AC-3 | shipped limits (60 and 600 per minute), trusted list empty; `FunctionalClock` frozen, `@DirtiesContext`, as `SharedBudgets` | a fresh peer sends 61 creates, each with a different `X-Forwarded-For`, `Forwarded` and `X-Real-IP`: 60 are `201`, then `429`. Another fresh peer sends 601 redirects likewise: 600 are `302`, then `429` without `Location`. Both refusals carry an integer `Retry-After` of at least 1. **The clock must be frozen** (SPEC AC-3's GIVEN): on a running clock, a 60-per-minute bucket refills about once a second while the requests are sent, so the 61st could be admitted. That is why it does not run in `ShippedSettings`, which shares the suite's default context and its running clock (`RateLimitJourneyTest` freezes for the same reason) |
+| `ShippedSettings` | kept, except M1's click case, which **moves** to `ShippedBudgets` (DR-01) | shipped | A6: all six loopback forms `200`. A7: the four non-loopback peers, `GET` and `HEAD`, `403`. A8: `X-Forwarded-For` and `Forwarded` with a remote, a loopback, a `for=127.0.0.1`, an empty and a whitespace value, from `127.0.0.1` and from `192.0.2.10`, all `403` without trail content |
+| `ShippedBudgets` | **added**: AC-3, and M1's click case (moved, DR-01) | shipped limits declared explicitly (60 and 600 per minute), which gives it its own context; trusted list empty; the fixed-day clock below; `@DirtiesContext` | **AC-3:** a fresh peer sends 61 creates, each with a different `X-Forwarded-For`, `Forwarded` and `X-Real-IP`: 60 are `201`, then `429`. Another fresh peer sends 601 redirects likewise: 600 are `302`, then `429` without `Location`. Both refusals carry an integer `Retry-After` of at least 1. **The clock must be frozen** (SPEC AC-3's GIVEN): on a running clock, a 60-per-minute bucket refills about once a second while the requests are sent, so the 61st could be admitted. That is why it does not run in `ShippedSettings`, which shares the suite's default context and its running clock (`RateLimitJourneyTest` freezes for the same reason). **M1's AC-5 case:** the full AC-5 oracle below |
 | `ShippedSettings` | **added**: A10's `403` half | — | peer `192.0.2.10`, `GET /api/audit?limit=0` with `Accept: text/html`: a `403` problem, neither `400` nor `406` |
-| `TrustedProxies` | kept | `10.9.9.9,10.9.9.8,127.0.0.1` | M2 to M12's click side (AC-5): `totalClicks` 3, one element with `clicks` 3, `uniqueVisitors` 2, `botClicks` 0, and no raw value in the body. A trusted loopback peer reads only without a forwarding header; a trusted non-loopback peer is refused, with or without one (AC-6 to AC-8 under trust) |
+| `TrustedProxies` | kept, **amended** (DR-01): the fixed-day clock below and `@DirtiesContext`; the full AC-5 oracle | `10.9.9.9,10.9.9.8,127.0.0.1` | M2 to M12's click side (AC-5). A trusted loopback peer reads only without a forwarding header; a trusted non-loopback peer is refused, with or without one |
+| `TrustedAuditPeers` | **added** (DR-01) | `trusted-proxies` = the six loopback forms and the four non-loopback peers, each in the exact text the request uses: `127.0.0.1,127.0.0.2,127.255.255.254,::1,0:0:0:0:0:0:0:1,::ffff:127.0.0.1,192.0.2.10,10.0.0.7,::ffff:192.0.2.10,fe80::1`. A running clock is fine here (a few requests per client, under the `/api` budget) | **AC-6 under trust:** each of the six loopback peers, listed, sends a headerless `GET /api/audit`, and each gets `200` with `items` and `next`. **AC-7 under trust:** each of `192.0.2.10`, `10.0.0.7`, `::ffff:192.0.2.10` and `fe80::1`, listed, sends `GET` and `HEAD`, and each gets `403` with no trail content. **AC-8 under trust:** from the listed `127.0.0.1` and from the listed `192.0.2.10`, `X-Forwarded-For` and `Forwarded` each with a remote value (`203.0.113.7`, `for=203.0.113.7`), a forged loopback value (`127.0.0.2`, `for=127.0.0.2`), an empty value and a whitespace-only value: every response `403` without trail content. Trust for rate limiting never grants audit access |
 | `SharedBudgets` | kept | `10.9.9.9,10.9.9.8`, both limits 2 | M2 to M12's budget side (AC-4), on the redirect and the create budget: the row's request is `429` with `Retry-After: 30`, and the unrelated `192.0.2.200` succeeds |
 | `UntrustedBudgets` | **added** (the draft's N1) | trusted list empty, both limits 2; isolation as `SharedBudgets` | M1's budget side (AC-4), on both budgets. A10's `429` half: peer `192.0.2.10` spends its 2 creates, then `GET /api/audit?limit=0` with `Accept: text/html` is a `429` problem with `Retry-After`, neither `403`, `400` nor `406` |
 | `AddressRewritingSettings` | kept | a real server per case (`SpringApplicationBuilder`, `127.0.0.1`, port 0) | `native`, `framework`, and each `remoteip` header alone: `GET` and `HEAD`, plain and with `X-Forwarded-For: 127.0.0.2`, all `403`. The shipped control: `GET` and `HEAD` `200`, the forged header `403` |
@@ -258,11 +259,33 @@ rows name neither `Q` nor `127.0.0.1`. The file's Javadoc states this.
 - **AC-4 (budget sharing):** the reference peer spends the budget with two headerless requests; the
   row's request is then `429` with `Retry-After: 30` (and no `Location` on a redirect); the
   unrelated `192.0.2.200` succeeds.
-- **AC-5 (grouping):** the row's request, the reference peer and `192.0.2.200` each open a new
-  link once, as a browser. The settled statistics show 3 clicks and 2 unique visitors, and no raw
-  address in the body. **Added:** the same cases read `SELECT * FROM click WHERE link_id = …` and
-  find none of the row's raw values (`P`, `Q`, `U`, `V`, `10.0.0.5`, `198.51.100.1`). SPEC AC-5
-  asks this of click records, not only of the response.
+- **AC-5 (grouping), as amended by DR-01.**
+  - The row's request, the reference peer and `192.0.2.200` each open a new link once, as a browser,
+    while the clock stands on one fixed UTC day.
+  - The settled statistics are then asserted exactly: `totalClicks` 3, and `clicksPerDay` has
+    **exactly one** element, whose `date` is that fixed day and whose figures are `clicks` 3,
+    `uniqueVisitors` 2 and `botClicks` 0. M1's case gains the `totalClicks`, `botClicks`, single
+    element and date checks it lacked.
+  - No raw address appears in the body. **Added:** the same cases read
+    `SELECT * FROM click WHERE link_id = …` and find none of the row's raw values (`P`, `Q`, `U`,
+    `V`, `10.0.0.5`, `198.51.100.1`). SPEC AC-5 asks this of click records, not only of the
+    response.
+- **The fixed-day clock (DR-01)**, in `ShippedBudgets` and `TrustedProxies`, which have their own
+  contexts and `@DirtiesContext`:
+  - before the first case, `clock.freeze()`, then
+    `clock.shift(Duration.between(clock.instant(), NOON))` with
+    `NOON = Instant.parse("2026-10-01T12:00:00Z")`. `FunctionalClock` has no setter, so a frozen
+    shift reaches the instant;
+  - before every case, `clock.shift(Duration.ofMinutes(5))`. That refills every bucket, and twelve
+    cases stay well inside that day;
+  - so no case can straddle a UTC midnight, and the sole dated bucket is assertable.
+
+  A fixed past day is the suite's existing practice (`StatsJourneyTest`'s `2026-10-01`). Because
+  each context is its own and is closed after the class, the moved clock and its limiter state never
+  reach another journey. The functional overlay holds the purge, so the dated clicks stay. The day's
+  salt cannot expire mid-case: `DailySalt` computes the delay to the day's end from the application
+  clock (`DailySalt.java:62`), so a salt drawn at the frozen noon expires twelve real hours later,
+  and one client keeps one hash for the whole case.
 
 The cloud-platform case stays in `AuditForwardedHeadersJourneyTest`, unchanged.
 
@@ -350,7 +373,16 @@ checkout. Register row 1 is `design-agent`'s, after the merge.
 
 - 2026-10-04: drafted as pre-work (`c6b5560`, `84ba733`); promoted at the design step on SPEC
   `4f247f4`. Impact analysis first (`6772b68`); §5 merged with `dev2-agent`'s `240b230`; register
-  verdict CONSISTENT (`6fcb134`). Handed to `design_review`.
+  verdict CONSISTENT (`6fcb134`, re-checked on the final text at `a6dc733`). Handed to
+  `design_review`.
+- 2026-10-04T01:15Z: `review2-agent`'s design review raised DR-01 (MEDIUM, characterization plan),
+  to be corrected in passing. Answered below.
+
+## Review response
+
+| Id | Severity | Response |
+|---|---|---|
+| DR-01 | MEDIUM | **Fixed in §5.2; no change to the product design.**<br>**AC-7:** a new context `TrustedAuditPeers` lists all four non-loopback peers in exact request text (and the six loopback forms). Each sends `GET` and `HEAD` and gets `403` without trail content. Before, only `P` was trusted in `240b230`, and `AuditAccessSettingsJourneyTest` covers `192.0.2.10` with `GET` only.<br>**AC-8:** the same context sends `X-Forwarded-For` and `Forwarded` with a remote, a forged loopback, an empty and a whitespace-only value, from the listed `127.0.0.1` and the listed `192.0.2.10`. Every response is `403`; the kept trusted case used only a non-empty `X-Forwarded-For`.<br>**AC-6 under trust:** each listed loopback form gets `200` (same class of gap, closed in passing).<br>**AC-5:** the click cases ran on a running clock and did not assert the day. `TrustedProxies` and `ShippedBudgets` (which now holds M1's click case, moved from `ShippedSettings`, the shared default context) stand the clock on a fixed noon UTC (`2026-10-01T12:00:00Z`, by freeze and shift), with 5-minute steps and `@DirtiesContext`. Every AC-5 case now asserts `totalClicks` 3, exactly one `clicksPerDay` element with that date, and `clicks` 3, `uniqueVisitors` 2, `botClicks` 0. The salt cannot expire mid-case (`DailySalt` times its expiry on the application clock).<br>All of this lands in commit 1b, green on the baseline before the move. |
 
 ## Self-check
 
