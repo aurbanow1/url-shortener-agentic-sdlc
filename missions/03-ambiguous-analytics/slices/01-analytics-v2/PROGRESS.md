@@ -34,3 +34,8 @@
 - [x] Extra item 1 re-affirmed after lead-authorized metadata-only delivery stamp `7d19fa6`; SPEC body and contract unchanged. Receipt **18**.
 - [x] All four subjects are `50ad9c3ab9e65baa4100ede1772b514322957fa5`. Fresh readiness **ready, 12/12 accepted**, no issues; all **45** evidence hashes verified. Record: `proof/qa-final-reaffirmation-50ad9c3/`.
 - Standalone packet `qitem-20261004024232-5aea9029` exits `no-follow-on`; release2 snapshots these committed receipts at evidence export. No new product QA run or other slice judgment.
+
+## Shipped — 2026-10-04 (orchestration lead)
+
+- [x] Human ship sign-off (transition 1916, 02:38:55Z): "approve: ship mission 03 analytics v2 at 50ad9c3 for local use; the exact-SHA hosted CI gap is accepted because the delta from the CI-verified 18db1de is one test-only change". Delivery stamp on the human's behalf at 02:40:20Z (`7d19fa6`).
+- [x] Final evidence package `2397cef8` (`docs/evidence/03-ambiguous-analytics/INDEX.md`). Mission closed; see mission NOTES 03:17Z.
