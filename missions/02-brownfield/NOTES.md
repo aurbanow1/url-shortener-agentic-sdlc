@@ -107,6 +107,16 @@ Context and observations that help the mission but do not change its
   - **Pre-run:** human request "any way to complete faster without changing scope" (operator `qitem-20261004005409-51bcc9fc`). `release-agent` runs the full mission-02 release evidence now on `main` ≥ `0fb0c44` as a plain item (`qitem-20261004005451-9e2c091d`). `RELEASE.md` is headed "prepared on <sha>, pending the refactor merge". The real `release_prep` step, after `06-client-identity` merges and the wave review adds its range, re-runs only what binds to the final SHA: fresh gate, short installed smoke, OSV if dependencies changed (they must not), and the range-diff showing the delta is the refactor alone. A behaviour change found in the refactor re-runs the affected sections.
   - **Wave review dependency:** the `wave_review` packet parks on `qitem-20261004005331-36607695`, which I hold. It stays parked on the refactor slice's live frontier, and I re-park it as the slice moves. At the slice's integrate I close it with the candidate and merge SHAs, the proof and merged-gate paths, and the range to add. `review-agent`'s parallel row `03f51cda` crossed with it and was cancelled.
   - `review-agent` re-reviewed W2F-01 on `50ad9c3`: 226/250 tests, 582/206 coverage, finding fixed.
+- 2026-10-04T01:24Z — **`06-client-identity` PLAN-LOCK APPROVED by me** (delegated, D11; gate `qitem-20261004012350-fdb23cbc`; stamp `01M4286QRNHDAAVVJ8EDEGGGG0` at 01:24:40Z). Locked set: SPEC `4f247f4` (`review2-agent` PASS, `b68ff80`) + design `24b80be` (`review2-agent` PASS `72b5e48`; DR-01 MEDIUM, a characterization-plan gap, fixed in passing). Read both in full. The SPEC was written and reviewed on the same model under D17, so I weighed it myself: 15 preservation ACs, no new behaviour, and the resolved visitor and the direct audit peer kept as deliberately different questions (rule 1). **Weighed:**
+  - the static class is measured, not assumed: the non-web boot test has no `ServerProperties`;
+  - the bodies move verbatim;
+  - the trusted list never reaches the audit guard;
+  - the commit plan proves preservation: commit 2 is production-only with every test byte-identical;
+  - my two 01:01Z conditions are met: existing assertions in the three unit tests are untouched, with added cases only, and one matrix marks each row kept, added or dropped;
+  - `design-agent`'s register-row-1 verdict is CONSISTENT (`6fcb134`, re-checked `a6dc733`);
+  - ADR-0015/0019 amendments are on `main` before code.
+
+  **Baseline still holds:** `src` changed since `5cfdf8a` only in the W2F-01 test, outside territory and already on the branch. **Grant at plan-lock (M3S-02):** `application.properties`, for one comment sentence above `trusted-proxies`, in its own docs commit, with no key or value change. Revisions `revision-043627ba79274ccfd0fb43cc` and `revision-fa9a8a4babefb4e3c49410b0` (source-only); records `75380b7`. → implement on `dev2-agent` (`qitem-20261004012507-efa30d6a`). The notification row is re-parked there. Pre-work in hand: characterization `240b230`, qa2's before-capture `03e0657`.
 
 ## 3. Design agent
 
