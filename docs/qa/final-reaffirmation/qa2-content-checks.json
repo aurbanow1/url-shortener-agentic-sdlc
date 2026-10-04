@@ -1,0 +1,370 @@
+{
+  "packet": "qitem-20261004042358-6587e4be",
+  "originalPacket": "qitem-20261004041605-18a958ae",
+  "finalMain": "30f8de4e647b05ff54cde09f1019ae519b00069d",
+  "actor": "qa2-agent@urlshort-factory",
+  "method": "Compare retained evidence, versioned correction/review/closure records and pinned source; no new build, installed app, performance or hosted-workflow run.",
+  "itemEvidenceChecks": [
+    {
+      "scope": "01-greenfield-core/slices/03-operate",
+      "item": 5,
+      "previousReceipt": 29,
+      "evidence": [
+        {
+          "path": "docs/qa/GAPS.md",
+          "sha256": "6c50db0328c51453d424d6295e3ba020df4da5cbdd2f09fb4857ccdaf7a3b3f1",
+          "equalsFinalMain": true,
+          "retainedSha256": "c3be44240a44b68ab2c875fcf30a855ef91172c976539d804f7c87c7e601c06a",
+          "retainedHashMatches": false
+        },
+        {
+          "path": "docs/qa/03-operate/release-rejudgment-55a197a.md",
+          "sha256": "cb517d99370507b0ec743cc7fa00ef9e415c5f3f3d38a6c0008da1181c0d43cd",
+          "equalsFinalMain": true,
+          "retainedSha256": "cb517d99370507b0ec743cc7fa00ef9e415c5f3f3d38a6c0008da1181c0d43cd",
+          "retainedHashMatches": true
+        }
+      ]
+    },
+    {
+      "scope": "01-greenfield-core/slices/03-operate",
+      "item": 13,
+      "previousReceipt": 31,
+      "evidence": [
+        {
+          "path": "docs/qa/03-operate/release-rejudgment-55a197a.md",
+          "sha256": "cb517d99370507b0ec743cc7fa00ef9e415c5f3f3d38a6c0008da1181c0d43cd",
+          "equalsFinalMain": true,
+          "retainedSha256": "cb517d99370507b0ec743cc7fa00ef9e415c5f3f3d38a6c0008da1181c0d43cd",
+          "retainedHashMatches": true
+        },
+        {
+          "path": "docs/qa/03-operate/release-rejudgment-audit-55a197a.json",
+          "sha256": "0996b96f521d561147632ef08605ca05bcaecf1c96175f0da69e6ee65b633f1d",
+          "equalsFinalMain": true,
+          "retainedSha256": "0996b96f521d561147632ef08605ca05bcaecf1c96175f0da69e6ee65b633f1d",
+          "retainedHashMatches": true
+        },
+        {
+          "path": "missions/01-greenfield-core/slices/03-operate/SPEC.md",
+          "sha256": "85dd302077e31dd45d88e4ca4fa8be8218ffe3af5246b9f84c34e23027c9e2b4",
+          "equalsFinalMain": true,
+          "retainedSha256": "85dd302077e31dd45d88e4ca4fa8be8218ffe3af5246b9f84c34e23027c9e2b4",
+          "retainedHashMatches": true
+        },
+        {
+          "path": "docs/qa/GAPS.md",
+          "sha256": "6c50db0328c51453d424d6295e3ba020df4da5cbdd2f09fb4857ccdaf7a3b3f1",
+          "equalsFinalMain": true,
+          "retainedSha256": "c3be44240a44b68ab2c875fcf30a855ef91172c976539d804f7c87c7e601c06a",
+          "retainedHashMatches": false
+        },
+        {
+          "path": "docs/RISKS.md",
+          "sha256": "3d2b140725cbf445970e187ad433ed0d67cb73f98d18c485190e2e359cfc787a",
+          "equalsFinalMain": true,
+          "retainedSha256": "3d2b140725cbf445970e187ad433ed0d67cb73f98d18c485190e2e359cfc787a",
+          "retainedHashMatches": true
+        },
+        {
+          "path": "missions/01-greenfield-core/release/smoke-restart-container-f090103-run6.txt",
+          "sha256": "bc4519eaea2f59efc3bc112fa2bb6f057eb494dafed309b2ee47b7d9e81fb423",
+          "equalsFinalMain": true,
+          "retainedSha256": "bc4519eaea2f59efc3bc112fa2bb6f057eb494dafed309b2ee47b7d9e81fb423",
+          "retainedHashMatches": true
+        },
+        {
+          "path": "missions/01-greenfield-core/release/r0-vm-published-port-f090103-run1.txt",
+          "sha256": "969b15eec7888ea72e146cb14cdaafaa77d966088679b300475625045a58a504",
+          "equalsFinalMain": true,
+          "retainedSha256": "969b15eec7888ea72e146cb14cdaafaa77d966088679b300475625045a58a504",
+          "retainedHashMatches": true
+        },
+        {
+          "path": "missions/01-greenfield-core/release/r0-vm-published-port-f090103-run2.txt",
+          "sha256": "c98fb01659f32455ff3688f50bec43c0dd72e54c02f47cb86fb593e944d0821d",
+          "equalsFinalMain": true,
+          "retainedSha256": "c98fb01659f32455ff3688f50bec43c0dd72e54c02f47cb86fb593e944d0821d",
+          "retainedHashMatches": true
+        },
+        {
+          "path": "missions/01-greenfield-core/release/r0-in-namespace-control-f090103.txt",
+          "sha256": "41b6de3d5e12370a0f1bff1d080b36f1b1b0b9e403f3c7b15b11ede0048eae2a",
+          "equalsFinalMain": true,
+          "retainedSha256": "41b6de3d5e12370a0f1bff1d080b36f1b1b0b9e403f3c7b15b11ede0048eae2a",
+          "retainedHashMatches": true
+        },
+        {
+          "path": "missions/01-greenfield-core/release/smoke-inspect-container-f090103.txt",
+          "sha256": "27876214b05aaf097b7d57022a02e2296c778871ef3992a3ec9e4ea0b78353c1",
+          "equalsFinalMain": true,
+          "retainedSha256": "27876214b05aaf097b7d57022a02e2296c778871ef3992a3ec9e4ea0b78353c1",
+          "retainedHashMatches": true
+        },
+        {
+          "path": "missions/01-greenfield-core/release/bench-jar-f090103.txt",
+          "sha256": "42594b334cf5c05a103ac83a6393d35b0183f7d5870f425f81d0f5490c622322",
+          "equalsFinalMain": true,
+          "retainedSha256": "42594b334cf5c05a103ac83a6393d35b0183f7d5870f425f81d0f5490c622322",
+          "retainedHashMatches": true
+        }
+      ]
+    },
+    {
+      "scope": "02-brownfield/slices/02-click-retention",
+      "item": 5,
+      "previousReceipt": 5,
+      "evidence": [
+        {
+          "path": "docs/qa/GAPS.md",
+          "sha256": "6c50db0328c51453d424d6295e3ba020df4da5cbdd2f09fb4857ccdaf7a3b3f1",
+          "equalsFinalMain": true,
+          "retainedSha256": "ab9983a9a8f61754263aaf662e274a6354807f3f18191e1903a08ea9ab63f207",
+          "retainedHashMatches": false
+        },
+        {
+          "path": "docs/qa/coverage/02-click-retention/SUMMARY.md",
+          "sha256": "faa08ce4abdcd6f23cfce6e206b0f8ec150690cc874870208c608af79d7a4165",
+          "equalsFinalMain": true,
+          "retainedSha256": "faa08ce4abdcd6f23cfce6e206b0f8ec150690cc874870208c608af79d7a4165",
+          "retainedHashMatches": true
+        },
+        {
+          "path": "missions/02-brownfield/slices/02-click-retention/proof/qa-custody-sequencing.md",
+          "sha256": "6420b1a62c76189dc57abe2bfe595827625d5292df6a537eefce68f6f4a98110",
+          "equalsFinalMain": true,
+          "retainedSha256": "6420b1a62c76189dc57abe2bfe595827625d5292df6a537eefce68f6f4a98110",
+          "retainedHashMatches": true
+        }
+      ]
+    },
+    {
+      "scope": "02-brownfield/slices/02-click-retention",
+      "item": 10,
+      "previousReceipt": 9,
+      "evidence": [
+        {
+          "path": "docs/DESIGN.md",
+          "sha256": "a1028993f33e1c469ad6a81b76f0c019e60de279d0c4444496efe53db960f53d",
+          "equalsFinalMain": true,
+          "retainedSha256": "81efea0a4508d1ba23abcf43a33e65de3e3782323bed13b3536571892f3b540f",
+          "retainedHashMatches": false
+        },
+        {
+          "path": "docs/adr/0018-click-retention-daily-purge.md",
+          "sha256": "53bd72ed7ed74817835ace4d9c85126796f7751404c242d64c9300d074ba1acb",
+          "equalsFinalMain": true,
+          "retainedSha256": "c5b685dfa7eda19e3fc16e8756e7fc07709a788a36758e5992f0a7df17449ca8",
+          "retainedHashMatches": false
+        },
+        {
+          "path": "docs/adr/0020-audit-columns-expand-migration.md",
+          "sha256": "c9978210247a70938ca5ed2fe38a9a13f87794fae1590d85b92a2318e02a8d19",
+          "equalsFinalMain": true,
+          "retainedSha256": "70e7a6c93e2349d33d6f2ebb911cd1ec3dd10b006bfdb49e5867e52b71531d87",
+          "retainedHashMatches": false
+        },
+        {
+          "path": "docs/adr/0011-click-handoff-bounded-single-writer.md",
+          "sha256": "6d01495a14e56ac11139ce86b2d83ab03a686d1d02d0535d075675a1d8a16e24",
+          "equalsFinalMain": true,
+          "retainedSha256": "4c510cdaff06c2c49d47d6e36a0bb9607588c35051047dcf929949b805d34201",
+          "retainedHashMatches": false
+        },
+        {
+          "path": "docs/adr/0013-click-events-and-request-time-statistics.md",
+          "sha256": "737898715b892fd2c62ea9d53e22c04920c744843e86b649d33aac711599bd0d",
+          "equalsFinalMain": true,
+          "retainedSha256": "96e0db69ab128352668c254f909ad204f60a64623fa96f097bb31da515d55518",
+          "retainedHashMatches": false
+        },
+        {
+          "path": "missions/02-brownfield/slices/02-click-retention/proof/qa-adrs-and-rollback-a8fc8b6.json",
+          "sha256": "a4d9b3f5b98f5b28087491d17892063a11843c25a7f8be06ac5462258525bf52",
+          "equalsFinalMain": true,
+          "retainedSha256": "a4d9b3f5b98f5b28087491d17892063a11843c25a7f8be06ac5462258525bf52",
+          "retainedHashMatches": true
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "finding": "RF-01",
+      "items": [
+        "03-operate#5",
+        "03-operate#13"
+      ],
+      "closureCommit": "33c5b44af4313598ec2e415ba9e5cab331b560c8",
+      "merge": "5c264db083bf11b9c85bdef3e9c28129200d7a61",
+      "reviewCommit": "f49e39345ca06a94ccdff3b0a8c0749e991c8ea8",
+      "review": "docs/review/03-dogfood-fix/01-code-review.md and 02-security-review.md",
+      "changedOriginalRows": [
+        {
+          "before": "| 03-operate @1c8b2cf | Anonymous disk-gauge working-directory path | Existing LOW observation, not an AC-19 prohibited value | Fresh scrape inspected; all prohibited client/code/URL canaries absent; review retained current loopback scope | QA-OPR-02 LOW retained |",
+          "after": "| 03-operate @1c8b2cf | Anonymous disk-gauge working-directory path | Existing LOW observation W2-03 / QA-OPR-02, fixed by 03-dogfood-fix | Independent baseline reproduces path; exact 4fe7042 jar scrape and disk.free/disk.total retain values with no path, known working-directory path absent; proof/qa-4fe7042/http/ under 03-dogfood-fix and coverage/03-dogfood-fix/SUMMARY.md | **CLOSED by 03-dogfood-fix @4fe7042**; original observation retained as history |"
+        }
+      ],
+      "diskCaptures": [
+        {
+          "meter": "disk.free",
+          "baselineValue": 32546082816.0,
+          "candidateValue": 32545894400.0,
+          "baselineExposesPath": true,
+          "candidateAvailableTags": []
+        },
+        {
+          "meter": "disk.total",
+          "baselineValue": 494384795648.0,
+          "candidateValue": 494384795648.0,
+          "baselineExposesPath": true,
+          "candidateAvailableTags": []
+        }
+      ],
+      "pathFreeScrapeWithPositiveValues": true,
+      "originalReleaseAndHumanExceptionEvidenceHashesMatch": true,
+      "originalClaimStillHolds": true,
+      "scope": "Renew original disclosure/release judgment only; later dogfood change remains judged by its own QA/review. Preserve transition1011/amended55a197a, six failed host attempts and prior original-criterion rejection."
+    },
+    {
+      "finding": "RF-02",
+      "items": [
+        "02-click-retention#5"
+      ],
+      "closureCommit": "17593aa4ef6052fce2e06bfc0a0841c5ecf63242",
+      "actorCorrection": "382a7b2488d953ac3fd8e246a026d4d1a231b4e8",
+      "priorIndependentQaReviewReceipt": "missions/02-brownfield/slices/04-audit-columns/proof/judgments/00000012.md",
+      "priorQaReviewCommit": "bc9bb29a5965747556fe2f1c0c0f348e2c90a582",
+      "allFourCurrentRowsEqualPriorVerifiedClosure": true,
+      "retentionMergeSecondParent": "a2c34c146c75cfabe24b16ec9e30ad40628dd676",
+      "v3CandidateRebaseMergeFinalBytesEqual": true,
+      "v3Sha256": "908715401b5c84aa8b4d1525b91a9bd472d2a9ada605a8dbd5651ff1fdfc5fb6",
+      "originalClaimStillHolds": true,
+      "scope": "Own retention QA gap section unchanged; later V3/V4 closures retain their prior candidate/custody/QA attribution, not accepted for later slices here."
+    },
+    {
+      "finding": "RF-03",
+      "items": [
+        "02-click-retention#10"
+      ],
+      "adrCorrectionCommit": "bfc642dbf6bc0988c0a7142074aa31bd761ca0ce",
+      "registerCorrectionCommit": "2d3de57067a2a438f1869835bcec76bf93342fa3",
+      "reviewCommits": [
+        "82340b889a1c9f7995633a4c094d149e5cf12d03",
+        "bd74b5096b4e9c2667df6e839164f59d1ac4d26e"
+      ],
+      "review": "docs/review/02-brownfield/wave-review-review-agent.md, W2P-01 focused re-review and final background-work row",
+      "approvalRecord": "- 2026-10-03T23:33Z \u2014 **ADR text correction, approved before commit** (`design-agent`, 23:32Z, from `review-agent`'s wave pre-review). ADR-0011's click-retention amendment (line 113) and ADR-0018 (lines 126\u2013127) said neither background job interrupts a JDBC call. That is false for the click writer: `ClickRecorder.close` calls `shutdownNow()` after a failed 5 s drain (`ClickRecorder.java:120\u2013121`), as ADR-0011's own body says (lines 57\u201361). Only the purge never interrupts (`ClickPurge.java:113\u2013115`). Approved the design agent's wording, which states each job's own behaviour. It is a doc-only fix with no design or behaviour change, and click-retention is merged, so there is no re-lock. The live register row and the DESIGN.md row were already corrected at `2d3de57`. The pre-review cites the fix commit as resolved.",
+      "writerFiveSecondDrainThenInterruptOutcomeUnknown": true,
+      "purgeThreeSecondNonInterruptingWait": true,
+      "holdIndexFirstAddedAt": "4975d25f1bfa993d9b54bc497e2087aaa6cc0bee",
+      "holdAlreadyDefinedInPreImplementationADR": true,
+      "note": "Packet names register upkeep 2d3de57/3b2ecd0b; git -S resolves actual ADR-0018 index hold addition to 4975d25f, retained by both later updates. This is an existing setting, not a new behavior.",
+      "adrPrecedence": [
+        {
+          "path": "docs/adr/0018-click-retention-daily-purge.md",
+          "oldBase": "16312da",
+          "sha256": "c5b685dfa7eda19e3fc16e8756e7fc07709a788a36758e5992f0a7df17449ca8",
+          "existedAndIndexedBeforeDependentCandidate": true
+        },
+        {
+          "path": "docs/adr/0020-audit-columns-expand-migration.md",
+          "oldBase": "16312da",
+          "sha256": "c4f0525983042c98e5f4edbc5950031cfb3ecde0d8bca2795346605d79742f1d",
+          "existedAndIndexedBeforeDependentCandidate": true
+        },
+        {
+          "path": "docs/adr/0011-click-handoff-bounded-single-writer.md",
+          "oldBase": "16312da",
+          "sha256": "4c510cdaff06c2c49d47d6e36a0bb9607588c35051047dcf929949b805d34201",
+          "existedAndIndexedBeforeDependentCandidate": true
+        },
+        {
+          "path": "docs/adr/0013-click-events-and-request-time-statistics.md",
+          "oldBase": "16312da",
+          "sha256": "96e0db69ab128352668c254f909ad204f60a64623fa96f097bb31da515d55518",
+          "existedAndIndexedBeforeDependentCandidate": true
+        }
+      ],
+      "originalClaimStillHolds": true,
+      "scope": "NFR-M2 existence/index/precedence reaffirmed; later wording, analytics/V4/client-identity amendments retain their own review attribution, not accepted on retention behalf."
+    }
+  ],
+  "supportingFiles": [
+    {
+      "path": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/http/base-disk-free.body",
+      "sha256": "c9b2b82571992933240f780f7a5d39b65e3776c9b7d9e7778487668437c4f86c",
+      "equalsFinalMain": true
+    },
+    {
+      "path": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/http/base-disk-total.body",
+      "sha256": "1dc1c133b87b2a4600d24d9150292c81d00d4ee0b7810a07e45e444646d824c0",
+      "equalsFinalMain": true
+    },
+    {
+      "path": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/http/base-prometheus.body",
+      "sha256": "c2f0d36ea5cfce0e36035e99ab18b26e273ff0435b60459b0d3f9512b1fb9037",
+      "equalsFinalMain": true
+    },
+    {
+      "path": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/http/candidate-disk-free.body",
+      "sha256": "c80c53ac129f96f5d6a68c711f391bdbc2650eff2d7cc065b81d98a3fea2e11f",
+      "equalsFinalMain": true
+    },
+    {
+      "path": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/http/candidate-disk-total.body",
+      "sha256": "1724522337ba8e0494a95dc6cf7861107a2386d0777c84654f17963a45748a10",
+      "equalsFinalMain": true
+    },
+    {
+      "path": "missions/02-brownfield/slices/03-dogfood-fix/proof/qa-4fe7042/http/candidate-prometheus.body",
+      "sha256": "e0a926bc812885d71db2e05f5cd3d02bccea3f78ea98be4c0492650470a8ebc9",
+      "equalsFinalMain": true
+    },
+    {
+      "path": "docs/review/03-dogfood-fix/01-code-review.md",
+      "sha256": "cf406c53e3f1b1c1dd4cc8b8e1382c2207d4ebd4caad13b24849e0352a68bcfc",
+      "equalsFinalMain": true
+    },
+    {
+      "path": "docs/review/03-dogfood-fix/02-security-review.md",
+      "sha256": "3328d459dbdff8b51bcb470136702dbe70500741d1b391edde888e6c5bc6bc26",
+      "equalsFinalMain": true
+    },
+    {
+      "path": "docs/review/02-brownfield/wave-review-review-agent.md",
+      "sha256": "19b028868aba054373e1ab91b848bd056e8166d2de33ad8881d43deff0218b50",
+      "equalsFinalMain": true
+    },
+    {
+      "path": "missions/02-brownfield/slices/04-audit-columns/proof/judgments/00000012.md",
+      "sha256": "e9791afaf76045724ab40463432eb9d66618ed6820bf31c6efd8817c570fa52e",
+      "equalsFinalMain": true
+    },
+    {
+      "path": "missions/02-brownfield/slices/04-audit-columns/proof/qa-gap-closure-final.json",
+      "sha256": "f1abc201eb4273efe70afc837d9e0cf65a312f84751a0b2fc0529b0dbbb96594",
+      "equalsFinalMain": true
+    },
+    {
+      "path": "missions/02-brownfield/slices/02-click-retention/proof/judgments/00000011.md",
+      "sha256": "c6459906f989924c45b9021d5af2253889635afe75eb89e76e5c68e8f656a54a",
+      "equalsFinalMain": true
+    },
+    {
+      "path": "src/main/resources/db/migration/V3__add_click_audit_columns.sql",
+      "sha256": "908715401b5c84aa8b4d1525b91a9bd472d2a9ada605a8dbd5651ff1fdfc5fb6",
+      "equalsFinalMain": true
+    },
+    {
+      "path": "src/main/java/dev/urlshort/click/ClickRecorder.java",
+      "sha256": "e5550419be81a6a8e554667c54f36b5184fd920a92fecd427cc40f1f6eea0815",
+      "equalsFinalMain": true
+    },
+    {
+      "path": "src/main/java/dev/urlshort/click/ClickPurge.java",
+      "sha256": "8a48607d9146687556fd4fe931c99c7a6e3cfea5f1254f149554a949347d2574",
+      "equalsFinalMain": true
+    }
+  ]
+}
